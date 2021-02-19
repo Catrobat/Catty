@@ -256,11 +256,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self setupNavigationBar];
     
-    self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] init];
-    self.formulaEditorSectionViewController.formulaManager = _formulaManager;
-    self.formulaEditorSectionViewController.spriteObject = _object;
-    self.formulaEditorSectionViewController.formulaEditorVC = self;
-    
+    self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithFormulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -542,7 +538,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     CGFloat marginTop = self.brickCell.frame.origin.y + self.brickCell.frame.size.height;
     
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(0, marginTop, self.view.frame.size.width, 120) AndFormulaEditorViewController:self];
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(0, marginTop, self.view.frame.size.width - 2, 120) AndFormulaEditorViewController:self];
     
     [self.view addSubview:self.formulaEditorTextView];
     
@@ -734,8 +730,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showVariable:(UIButton *)sender {
-    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeData;
-    [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
+    FormulaEditorDataSectionViewController* vc = [[FormulaEditorDataSectionViewController alloc] initWithFormulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
+    
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (void)hideScrollViews

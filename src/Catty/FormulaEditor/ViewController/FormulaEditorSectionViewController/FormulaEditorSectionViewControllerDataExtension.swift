@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension FormulaEditorSectionViewController {
+extension FormulaEditorDataSectionViewController {
 
     func askProjectOrObject(isList: Bool) {
         let promptTitle = isList ? kUIFEActionList : kUIFEActionVar
@@ -84,18 +84,16 @@ extension FormulaEditorSectionViewController {
 
     @objc func saveVariable(name: String) {
         if self.newVarIsForProject {
-            if let project = self.spriteObject?.scene.project {
+            if let project = self.spriteObject.scene.project {
                 for variable in UserDataContainer.allVariables(for: project) where variable.name == name {
                     self.askForNewVariableName()
                     return
                 }
             }
         } else {
-            if let object = self.spriteObject {
-                for variable in UserDataContainer.objectAndProjectVariables(for: object) where variable.name == name {
-                    self.askForNewVariableName()
-                    return
-                }
+            for variable in UserDataContainer.objectAndProjectVariables(for: spriteObject) where variable.name == name {
+                self.askForNewVariableName()
+                return
             }
         }
 
@@ -103,86 +101,80 @@ extension FormulaEditorSectionViewController {
         userVariable.value = Int(0)
 
         if self.newVarIsForProject {
-            self.spriteObject?.scene.project?.userData.add(userVariable)
+            self.spriteObject.scene.project?.userData.add(userVariable)
         } else {
-            self.spriteObject?.userData.add(userVariable)
+            self.spriteObject.userData.add(userVariable)
         }
 
-        self.spriteObject?.scene.project?.saveToDisk(withNotification: false)
+        self.spriteObject.scene.project?.saveToDisk(withNotification: false)
         self.reloadData()
     }
 
     @objc func saveList(name: String) {
         if self.newVarIsForProject {
-            if let project = self.spriteObject?.scene.project {
+            if let project = self.spriteObject.scene.project {
                 for variable in UserDataContainer.allLists(for: project) where variable.name == name {
                     self.askForNewVariableName()
                     return
                 }
             }
         } else {
-            if let object = self.spriteObject {
-                for variable in UserDataContainer.objectAndProjectLists(for: object) where variable.name == name {
-                    self.askForNewVariableName()
-                    return
-                }
+            for variable in UserDataContainer.objectAndProjectLists(for: spriteObject) where variable.name == name {
+                self.askForNewVariableName()
+                return
             }
         }
 
         let userList = UserList(name: name)
 
         if self.newVarIsForProject {
-            self.spriteObject?.scene.project?.userData.add(userList)
+            self.spriteObject.scene.project?.userData.add(userList)
         } else {
-            self.spriteObject?.userData.add(userList)
+            self.spriteObject.userData.add(userList)
         }
 
-        self.spriteObject?.scene.project?.saveToDisk(withNotification: false)
+        self.spriteObject.scene.project?.saveToDisk(withNotification: false)
         self.reloadData()
+    }
+
+    private func getAllBricks(for object: SpriteObject) -> [Brick] {
+        var bricks = [Brick]()
+
+        for scriptElement in object.scriptList {
+            if let script = scriptElement as? Script {
+
+                for brickElement in script.brickList where brickElement is Brick {
+                    if let brick = brickElement as? Brick {
+                        bricks.append(brick)
+                    }
+                }
+
+            }
+        }
+
+        return bricks
     }
 
     func isVariableUsed(_ userVariable: UserVariable) -> Bool {
 
-        guard let project = self.spriteObject?.scene.project else {
+        guard let project = self.spriteObject.scene.project else {
             fatalError("project of the spriteObject is nil")
         }
 
         if project.userData.contains(userVariable) {
 
-            if let objects = self.spriteObject?.scene.objects() {
-
-                for object in objects {
-
-                    for scriptElement in object.scriptList {
-                        if let script = scriptElement as? Script {
-
-                            for brickElement in script.brickList where brickElement is Brick {
-                                if let brick = brickElement as? Brick {
-                                    if brick.isVariableUsed(variable: userVariable) {
-                                        return true
-                                    }
-                                }
-                            }
-
-                        }
+            for object in project.allObjects() {
+                for brick in self.getAllBricks(for: object) {
+                    if brick.isVariableUsed(variable: userVariable) {
+                        return true
                     }
-
                 }
             }
+
         } else {
-            if let object = spriteObject {
-                for scriptElement in object.scriptList {
-                    if let script = scriptElement as? Script {
-
-                        for brickElement in script.brickList where brickElement is Brick {
-                            if let brick = brickElement as? Brick {
-                                if brick.isVariableUsed(variable: userVariable) {
-                                    return true
-                                }
-                            }
-                        }
-
-                    }
+            for brick in self.getAllBricks(for: spriteObject) {
+                if brick.isVariableUsed(variable: userVariable) {
+                    return true
                 }
             }
         }
@@ -192,46 +184,23 @@ extension FormulaEditorSectionViewController {
 
     func isListUsed(_ userList: UserList) -> Bool {
 
-        guard let project = self.spriteObject?.scene.project else {
+        guard let project = self.spriteObject.scene.project else {
             fatalError("project of the spriteObject is nil")
         }
 
         if project.userData.contains(userList) {
-
-            if let objects = self.spriteObject?.scene.objects() {
-
-                for object in objects {
-
-                    for scriptElement in object.scriptList {
-                        if let script = scriptElement as? Script {
-
-                            for brickElement in script.brickList where brickElement is Brick {
-                                if let brick = brickElement as? Brick {
-                                    if brick.isListUsed(list: userList) {
-                                        return true
-                                    }
-                                }
-                            }
-
-                        }
+            for object in project.allObjects() {
+                for brick in self.getAllBricks(for: object) {
+                    if brick.isListUsed(list: userList) {
+                        return true
                     }
-
                 }
+
             }
         } else {
-            if let object = spriteObject {
-                for scriptElement in object.scriptList {
-                    if let script = scriptElement as? Script {
-
-                        for brickElement in script.brickList where brickElement is Brick {
-                            if let brick = brickElement as? Brick {
-                                if brick.isListUsed(list: userList) {
-                                    return true
-                                }
-                            }
-                        }
-
-                    }
+            for brick in self.getAllBricks(for: spriteObject) {
+                if brick.isListUsed(list: userList) {
+                    return true
                 }
             }
         }
@@ -243,15 +212,11 @@ extension FormulaEditorSectionViewController {
 
         if !self.isVariableUsed(userVariable) {
 
-            guard let object = self.spriteObject else {
-                fatalError("spriteObject is nil")
-            }
-
-            guard let project = object.scene.project else {
+            guard let project = self.spriteObject.scene.project else {
                 fatalError("project of the spriteObject is nil")
             }
 
-            if !object.userData.removeUserVariable(identifiedBy: userVariable.name) {
+            if !self.spriteObject.userData.removeUserVariable(identifiedBy: userVariable.name) {
                 if !project.userData.removeUserVariable(identifiedBy: userVariable.name) {
                     fatalError("Could not remove the variable")
                 }
@@ -273,15 +238,11 @@ extension FormulaEditorSectionViewController {
 
         if !self.isListUsed(userList) {
 
-            guard let object = self.spriteObject else {
-                fatalError("spriteObject is nil")
-            }
-
-            guard let project = object.scene.project else {
+            guard let project = self.spriteObject.scene.project else {
                 fatalError("project of the spriteObject is nil")
             }
 
-            if !object.userData.removeUserList(identifiedBy: userList.name) {
+            if !self.spriteObject.userData.removeUserList(identifiedBy: userList.name) {
                 if !project.userData.removeUserList(identifiedBy: userList.name) {
                     fatalError("Could not remove the list")
                 }

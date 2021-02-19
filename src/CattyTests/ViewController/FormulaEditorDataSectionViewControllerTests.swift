@@ -25,9 +25,9 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class FormulaEditorSectionViewControllerTests: XCTestCase {
+final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
 
-    var controller: FormulaEditorSectionViewController!
+    var controller: FormulaEditorDataSectionViewController!
     var project: Project!
     var spriteObject: SpriteObject!
     var script: Script!
@@ -49,8 +49,12 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         script = StartScript()
         spriteObject.scriptList.add(script!)
 
-        controller = FormulaEditorSectionViewController()
-        controller.spriteObject = spriteObject
+        let formulaManager = FormulaManager(stageSize: CGSize.zero, landscapeMode: false)
+        let formulaEditorVC = FormulaEditorViewController(nibName: nil, bundle: nil)
+
+        controller = FormulaEditorDataSectionViewController(formulaManager: formulaManager,
+                                                            spriteObject: spriteObject,
+                                                            formulaEditorViewController: formulaEditorVC)
     }
 
     func testIsVariableUsedGlobalWithoutBrick() {
