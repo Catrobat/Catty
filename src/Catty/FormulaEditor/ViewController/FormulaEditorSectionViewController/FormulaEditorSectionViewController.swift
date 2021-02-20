@@ -31,9 +31,9 @@
 @objc class FormulaEditorSectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @objc var formulaEditorSectionType: FormulaEditorSectionType = .none
-    @objc var formulaManager: FormulaManager
-    @objc var spriteObject: SpriteObject
-    @objc var formulaEditorVC: FormulaEditorViewController
+    @objc let formulaManager: FormulaManager
+    @objc let spriteObject: SpriteObject
+    @objc let formulaEditorVC: FormulaEditorViewController
 
     private var items = [FormulaEditorItem]()
     var numberOfSections = 0
@@ -122,7 +122,7 @@
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.formulaEditorVC.formulaEditorItemSelected(item: self.items[getTableViewRowIndex(indexPath: indexPath)])
+        self.formulaEditorItemSelected(item: self.items[getTableViewRowIndex(indexPath: indexPath)])
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -200,6 +200,18 @@
         }
 
         return sizes
+    }
+
+    func formulaEditorItemSelected(item: FormulaEditorItem) {
+
+        if let sensor = item.sensor {
+            self.formulaEditorVC.handleInput(for: sensor)
+        } else if let function = item.function {
+            self.formulaEditorVC.handleInput(for: function)
+        } else if let op = item.op {
+            self.formulaEditorVC.handleInput(for: op)
+        }
+
     }
 
     func presentUnexpectedErrorAlert() {

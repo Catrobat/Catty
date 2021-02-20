@@ -32,6 +32,8 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
     var spriteObject: SpriteObject!
     var script: Script!
     var scene: Scene!
+    var formulaManager: FormulaManager!
+    var formulaEditorVC: FormulaEditorViewController!
 
     override func setUp() {
         super.setUp()
@@ -49,8 +51,8 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
         script = StartScript()
         spriteObject.scriptList.add(script!)
 
-        let formulaManager = FormulaManager(stageSize: CGSize.zero, landscapeMode: false)
-        let formulaEditorVC = FormulaEditorViewController(nibName: nil, bundle: nil)
+        formulaManager = FormulaManager(stageSize: CGSize.zero, landscapeMode: false)
+        formulaEditorVC = FormulaEditorViewController(nibName: nil, bundle: nil)
 
         controller = FormulaEditorDataSectionViewController(formulaManager: formulaManager,
                                                             spriteObject: spriteObject,
@@ -162,7 +164,9 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
 
         XCTAssertFalse(controller.isVariableUsed(variable))
 
-        controller.spriteObject = objectB
+        controller = FormulaEditorDataSectionViewController(formulaManager: formulaManager,
+                                                            spriteObject: objectB,
+                                                            formulaEditorViewController: formulaEditorVC)
         XCTAssertTrue(controller.isVariableUsed(variable))
     }
 
@@ -285,7 +289,9 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
 
         XCTAssertFalse(controller.isListUsed(list))
 
-        controller.spriteObject = objectB
+        controller = FormulaEditorDataSectionViewController(formulaManager: formulaManager,
+                                                            spriteObject: objectB,
+                                                            formulaEditorViewController: formulaEditorVC)
         XCTAssertTrue(controller.isListUsed(list))
     }
 }

@@ -33,7 +33,7 @@
 		181E000625B5766700534C24 /* FormulaEditorSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		18237D6B24EC3A9300759854 /* UIDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18237D6A24EC3A9300759854 /* UIDefines.swift */; };
-		1829DEF925BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829DEF825BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift */; };
+		182B304625E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
 		18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385C67247C0EB30050819A /* LineShapeNode.swift */; };
 		18390A6924D0576100A07DFD /* StampBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A6824D0576100A07DFD /* StampBrick.swift */; };
@@ -1899,7 +1899,7 @@
 		181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewController.swift; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		18237D6A24EC3A9300759854 /* UIDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDefines.swift; sourceTree = "<group>"; };
-		1829DEF825BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewControllerDataExtension.swift; sourceTree = "<group>"; };
+		182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
 		18385C67247C0EB30050819A /* LineShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNode.swift; path = PlayerEngine/DataModel/LineShapeNode.swift; sourceTree = "<group>"; };
 		18390A6824D0576100A07DFD /* StampBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBrick.swift; sourceTree = "<group>"; };
@@ -4468,7 +4468,6 @@
 		18E3497C25DF8411008B9D6E /* FormulaEditorSectionViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1829DEF825BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift */,
 				181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */,
 				18E3497F25DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift */,
 			);
@@ -5826,6 +5825,7 @@
 				6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */,
 				6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */,
 				18BF581625D183F600ADD92C /* FormulaEditorDataSectionViewControllerTests.swift */,
+				182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -11893,6 +11893,7 @@
 				4C822655213FA7A400F3D750 /* SensorMock.swift in Sources */,
 				46A75DF425752B1200F3963D /* CircleShapeNodeTests.swift in Sources */,
 				9EBCBD8D2329C56F0074C2D9 /* SetSizeToBrickTests.swift in Sources */,
+				182B304625E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift in Sources */,
 				6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */,
 				4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
@@ -12471,7 +12472,6 @@
 				6F4B2FB72466704500B5F0ED /* ProjectMigrator.swift in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Project+CBXMLHandler.m in Sources */,
 				05E6801B255B5DAA00D1E295 /* EmbroideryDefines.swift in Sources */,
-				1829DEF925BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift in Sources */,
 				6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */,

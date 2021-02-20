@@ -22,18 +22,6 @@
 
 extension FormulaEditorViewController {
 
-    func formulaEditorItemSelected(item: FormulaEditorItem) {
-
-        if let sensor = item.sensor {
-            handleInput(for: sensor)
-        } else if let function = item.function {
-            handleInput(for: function)
-        } else if let op = item.op {
-            handleInput(for: op)
-        }
-
-    }
-
     @objc func divisionButtonPressed() {
         guard let op = formulaManager.getOperator(tag: DivideOperator.tag) else { return }
         handleInput(for: op)
@@ -54,23 +42,17 @@ extension FormulaEditorViewController {
         handleInput(for: op)
     }
 
-    private func resizeSection(scrollView: UIScrollView, for buttons: [UIButton], with buttonHeight: CGFloat, fullButtonWidth: Bool) {
-        let height = CGFloat(ceil(Double(buttons.count) / (fullButtonWidth ? 1 : 2))) * buttonHeight
-        scrollView.frame = CGRect(x: scrollView.frame.origin.x, y: scrollView.frame.origin.y, width: scrollView.frame.size.width, height: height)
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: height)
-    }
-
-    private func handleInput(for sensor: Sensor) {
+    func handleInput(for sensor: Sensor) {
         self.internFormula.handleKeyInput(for: sensor)
         self.handleInput()
     }
 
-    private func handleInput(for function: Function) {
+    func handleInput(for function: Function) {
         self.internFormula.handleKeyInput(for: function)
         self.handleInput()
     }
 
-    private func handleInput(for op: Operator) {
+    func handleInput(for op: Operator) {
         self.internFormula.handleKeyInput(for: op)
         self.handleInput()
     }
