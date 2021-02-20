@@ -26,5 +26,5 @@ import XCTest
 @testable import Pocket_Code
 
 final class FormulaEditorSectionViewControllerTests: XCTestCase {
-    
+
 }
