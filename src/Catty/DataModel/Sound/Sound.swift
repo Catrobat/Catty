@@ -37,7 +37,7 @@
     @objc(pathForScene:)
     func path(for scene: Scene) -> String? {
         guard let soundsPath = scene.soundsPath() else {
-            return String(format: "/%@", self.fileName)
+            return nil
         }
 
         return String(format: "%@/%@", soundsPath, self.fileName)
