@@ -27,4 +27,50 @@ import XCTest
 
 final class FormulaEditorSectionViewControllerTests: XCTestCase {
 
+    var viewController: FormulaEditorSectionViewController!
+    var formulaEditorViewController: FormulaEditorViewController!
+    var formulaManager: FormulaManager!
+    var spriteObject: SpriteObject!
+
+    override func setUp() {
+        formulaEditorViewController = FormulaEditorViewController()
+
+        formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
+        spriteObject = SpriteObject()
+
+        viewController = FormulaEditorSectionViewController(formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
+    }
+
+    func testInitAndSelectFunctions() {
+        let expectedItems = formulaManager.formulaEditorItemsForFunctionSection(spriteObject: spriteObject)
+        var itemsInTableView = 0
+
+        viewController.formulaEditorSectionType = .functions
+        viewController.reloadData()
+
+        XCTAssertTrue(viewController.numberOfSections >= 1)
+
+        for section in 0..<viewController.numberOfSections {
+            for row in 0..<viewController.numberOfRowsInSection[section] {
+
+                let internFormula = InternFormula()
+                formulaEditorViewController.internFormula = internFormula
+                XCTAssertEqual(0, internFormula.getInternTokenList()?.count)
+
+                viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: row, section: section))
+
+                assertThatInputIsValid(for: internFormula, having: expectedItems)
+                itemsInTableView += 1
+            }
+        }
+
+        XCTAssertEqual(expectedItems.count, itemsInTableView)
+    }
+
+    private func assertThatInputIsValid(for internFormula: InternFormula, having expectedItems: [FormulaEditorItem]) {
+        let tokens = internFormula.getInternTokenList()!
+        XCTAssertFalse(tokens.isEmpty)
+
+        XCTAssertEqual(1, expectedItems.filter { item in item.function!.tag() == tokens.first!.getStringValue() }.count)
+    }
 }

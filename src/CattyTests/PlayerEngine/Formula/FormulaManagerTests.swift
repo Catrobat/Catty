@@ -39,7 +39,7 @@ final class FormulaManagerTests: XCTestCase {
 
         XCTAssertEqual(0, manager.formulaEditorItems(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForLogicSection(spriteObject: spriteObject).count)
-        XCTAssertEqual(0, manager.formulaEditorItemsForMathSection(spriteObject: spriteObject).count)
+        XCTAssertEqual(0, manager.formulaEditorItemsForFunctionSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject).count)
     }
@@ -94,7 +94,7 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertEqual(4, manager.formulaEditorItems(spriteObject: spriteObject).count)
     }
 
-    func testFormulaEditorItemsForMathSection() {
+    func testFormulaEditorItemsForFunctionSection() {
         let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
                                                         value: 1.0,
                                                         formulaEditorSection: .functions(position: 10, subsection: .maths))
@@ -113,7 +113,7 @@ final class FormulaManagerTests: XCTestCase {
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
                                      operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
-        let items = manager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
+        let items = manager.formulaEditorItemsForFunctionSection(spriteObject: spriteObject)
         XCTAssertEqual(3, items.count)
         XCTAssertTrue(functionA.formulaEditorSections().elementsEqual(items[0].function!.formulaEditorSections()))
         XCTAssertTrue(sensorA.formulaEditorSections(for: spriteObject).elementsEqual(items[1].sensor!.formulaEditorSections(for: spriteObject)))
@@ -192,7 +192,7 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertTrue(operatorA.formulaEditorSections().elementsEqual(items[1].op!.formulaEditorSections()))
     }
 
-    func testFormulaEditorItemsForMathAndLogicSection() {
+    func testFormulaEditorItemsForFunctionAndLogicSection() {
         let function = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .functions(position: 10, subsection: .maths))
 
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSections: [.functions(position: 20, subsection: .maths), .sensors(position: 30, subsection: .device)])
@@ -204,7 +204,7 @@ final class FormulaManagerTests: XCTestCase {
                                      functionManager: FunctionManager(functions: [function]),
                                      operatorManager: OperatorManager(operators: [op]))
 
-        let mathItems = manager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
+        let mathItems = manager.formulaEditorItemsForFunctionSection(spriteObject: spriteObject)
         XCTAssertEqual(3, mathItems.count)
         XCTAssertTrue(mathItems.contains { $0.function?.tag() == function.tag() })
         XCTAssertTrue(mathItems.contains { $0.sensor?.tag() == sensorA.tag() })

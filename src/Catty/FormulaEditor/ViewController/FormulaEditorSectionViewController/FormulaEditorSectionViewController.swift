@@ -139,7 +139,7 @@
     private func initFunctionItems() {
         self.items.removeAll()
 
-        self.items = formulaManager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
+        self.items = formulaManager.formulaEditorItemsForFunctionSection(spriteObject: spriteObject)
 
         self.numberOfRowsInSection = self.groupSubsectionWiseAndGetSize(items.first?.sections.first?.subsection() as? FunctionSubsection, items: &items)
         self.numberOfSections = numberOfRowsInSection.count
