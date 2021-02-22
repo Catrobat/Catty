@@ -36,7 +36,8 @@ final class BrickCategoryTest: XCTestCase {
         let category = BrickCategory(type: kBrickCategoryType.controlBrick,
                                      name: kLocalizedCategoryControl,
                                      color: UIColor.controlBrickOrange,
-                                     strokeColor: UIColor.controlBrickStroke)
+                                     strokeColor: UIColor.controlBrickStroke,
+                                     enabled: true)
 
         XCTAssertEqual(expectedDisabledColor, category.colorDisabled())
     }
@@ -51,7 +52,8 @@ final class BrickCategoryTest: XCTestCase {
         let category = BrickCategory(type: kBrickCategoryType.controlBrick,
                                      name: kLocalizedCategoryControl,
                                      color: UIColor.controlBrickOrange,
-                                     strokeColor: UIColor.controlBrickStroke)
+                                     strokeColor: UIColor.controlBrickStroke,
+                                     enabled: true)
 
         XCTAssertEqual(expectedDisabledStrokeColor, category.strokeColorDisabled())
     }

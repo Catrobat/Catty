@@ -32,6 +32,10 @@ import UIKit
     @objc(init:) init(scriptCollectionViewController: ScriptCollectionViewController) {
         self.scriptCollectionViewController = scriptCollectionViewController
         categegoriesBricks = CatrobatSetup.self.registeredBrickCategories()
+
+        for category in categegoriesBricks where category.enabled == false {
+            categegoriesBricks.removeObject(category)
+        }
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -127,5 +131,4 @@ import UIKit
             presentingViewController?.dismiss(animated: true)
         }
     }
-
 }

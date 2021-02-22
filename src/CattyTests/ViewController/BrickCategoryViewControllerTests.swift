@@ -34,7 +34,7 @@ final class BrickCategoryViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let brickCategory = BrickCategory(type: kBrickCategoryType.controlBrick, name: "testCategory", color: UIColor.clear, strokeColor: UIColor.clear)
+        let brickCategory = BrickCategory(type: kBrickCategoryType.controlBrick, name: "testCategory", color: UIColor.clear, strokeColor: UIColor.clear, enabled: true)
         let spiteObject = SpriteObject()
 
         controller = BrickCategoryViewController(brickCategory: brickCategory, andObject: spiteObject)
