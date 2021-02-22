@@ -40,7 +40,7 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertEqual(0, manager.formulaEditorItems(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForLogicSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForFunctionSection(spriteObject: spriteObject).count)
-        XCTAssertEqual(0, manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject).count)
+        XCTAssertEqual(0, manager.formulaEditorItemsForSensorsSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject).count)
     }
 
@@ -162,7 +162,7 @@ final class FormulaManagerTests: XCTestCase {
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
                                      operatorManager: OperatorManager(operators: []))
 
-        let items = manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject)
+        let items = manager.formulaEditorItemsForSensorsSection(spriteObject: spriteObject)
         XCTAssertEqual(2, items.count)
         XCTAssertTrue(sensorA.formulaEditorSections(for: spriteObject).elementsEqual(items[0].sensor!.formulaEditorSections(for: spriteObject)))
         XCTAssertTrue(functionB.formulaEditorSections().elementsEqual(items[1].function!.formulaEditorSections()))

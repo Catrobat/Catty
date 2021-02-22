@@ -37,6 +37,14 @@
         let projectScope: Bool
     }
 
+    @objc init(formulaManager: FormulaManager, spriteObject: SpriteObject, formulaEditorViewController: FormulaEditorViewController) {
+        super.init(type: .data, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private var allVariablesAndLists = [VariableOrList]()
 
     override func viewDidLoad() {

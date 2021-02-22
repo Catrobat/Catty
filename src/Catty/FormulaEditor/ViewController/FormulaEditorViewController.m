@@ -256,7 +256,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self setupNavigationBar];
     
-    self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithFormulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -714,19 +713,19 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.calcScrollView scrollsToTop];
 }
 - (IBAction)showFunction:(UIButton *)sender {
-    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeFunctions;
+    self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithType:FormulaEditorSectionTypeFunctions formulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showLogic:(UIButton *)sender {
-    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeLogic;
+    self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithType:FormulaEditorSectionTypeLogic formulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showObject:(UIButton *)sender {
-    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeObject;
+    self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithType:FormulaEditorSectionTypeObject formulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showSensor:(UIButton *)sender {
-    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeSensors;
+    self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithType:FormulaEditorSectionTypeSensors formulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showVariable:(UIButton *)sender {

@@ -21,16 +21,16 @@
  */
 
 @objc enum FormulaEditorSectionType: Int {
-    case none
     case functions
     case object
     case logic
     case sensors
+    case data
 }
 
 @objc class FormulaEditorSectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @objc var formulaEditorSectionType: FormulaEditorSectionType = .none
+    @objc var formulaEditorSectionType: FormulaEditorSectionType
     @objc let formulaManager: FormulaManager
     @objc let spriteObject: SpriteObject
     @objc let formulaEditorVC: FormulaEditorViewController
@@ -42,10 +42,11 @@
 
     var tableView = UITableView()
 
-    @objc init(formulaManager: FormulaManager, spriteObject: SpriteObject, formulaEditorViewController: FormulaEditorViewController) {
+    @objc init(type: FormulaEditorSectionType, formulaManager: FormulaManager, spriteObject: SpriteObject, formulaEditorViewController: FormulaEditorViewController) {
         self.formulaManager = formulaManager
         self.spriteObject = spriteObject
         self.formulaEditorVC = formulaEditorViewController
+        self.formulaEditorSectionType = type
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -95,7 +96,7 @@
         case .sensors:
             self.initSensorItems()
 
-        case .none:
+        case .data:
             self.presentUnexpectedErrorAlert()
         }
 
@@ -170,7 +171,7 @@
     private func initSensorItems() {
         self.items.removeAll()
 
-        self.items = formulaManager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject)
+        self.items = formulaManager.formulaEditorItemsForSensorsSection(spriteObject: spriteObject)
 
         self.numberOfRowsInSection = self.groupSubsectionWiseAndGetSize(items.first?.sections.first?.subsection() as? SensorSubsection, items: &items)
         self.numberOfSections = numberOfRowsInSection.count
@@ -215,7 +216,7 @@
     }
 
     func presentUnexpectedErrorAlert() {
-        let alert = UIAlertController(title: "Some unexpected error occured", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: kLocalizedUnexpectedErrorTitle, message: kLocalizedUnexpectedErrorMessage, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: kLocalizedClose, style: .default) { _ in
             self.navigationController?.popViewController(animated: true)
         }

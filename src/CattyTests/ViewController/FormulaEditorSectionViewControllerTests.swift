@@ -38,14 +38,13 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
         spriteObject = SpriteObject()
 
-        viewController = FormulaEditorSectionViewController(formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
     }
 
     func testInitAndSelectFunctions() {
         let expectedItems = formulaManager.formulaEditorItemsForFunctionSection(spriteObject: spriteObject)
         var itemsInTableView = 0
 
-        viewController.formulaEditorSectionType = .functions
+        viewController = FormulaEditorSectionViewController(type: .functions, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
         viewController.reloadData()
 
         XCTAssertTrue(viewController.numberOfSections >= 1)
@@ -67,10 +66,108 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         XCTAssertEqual(expectedItems.count, itemsInTableView)
     }
 
+    func testInitAndSelectLogicSection() {
+        let expectedItems = formulaManager.formulaEditorItemsForLogicSection(spriteObject: spriteObject)
+        var itemsInTableView = 0
+
+        viewController = FormulaEditorSectionViewController(type: .logic, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
+        viewController.reloadData()
+
+        XCTAssertEqual(viewController.numberOfSections, 2)
+
+        for section in 0..<viewController.numberOfSections {
+            for row in 0..<viewController.numberOfRowsInSection[section] {
+
+                let internFormula = InternFormula()
+                formulaEditorViewController.internFormula = internFormula
+                XCTAssertEqual(0, internFormula.getInternTokenList()?.count)
+
+                viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: row, section: section))
+
+                assertThatInputIsValid(for: internFormula, having: expectedItems)
+                itemsInTableView += 1
+            }
+        }
+
+        XCTAssertEqual(expectedItems.count, itemsInTableView)
+    }
+
+    func testInitAndSelectObjectSection() {
+
+        let expectedItems = formulaManager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
+        var itemsInTableView = 0
+
+        viewController = FormulaEditorSectionViewController(type: .object, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
+        viewController.reloadData()
+
+        XCTAssertEqual(viewController.numberOfSections, 2)
+
+        for section in 0..<viewController.numberOfSections {
+            for row in 0..<viewController.numberOfRowsInSection[section] {
+
+                let internFormula = InternFormula()
+                formulaEditorViewController.internFormula = internFormula
+                XCTAssertEqual(0, internFormula.getInternTokenList()?.count)
+
+                viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: row, section: section))
+
+                assertThatInputIsValid(for: internFormula, having: expectedItems)
+                itemsInTableView += 1
+            }
+        }
+
+        XCTAssertEqual(expectedItems.count, itemsInTableView)
+
+    }
+
+    func testInitAndSelectSensorsSection() {
+
+        let expectedItems = formulaManager.formulaEditorItemsForSensorsSection(spriteObject: spriteObject)
+        var itemsInTableView = 0
+
+        viewController = FormulaEditorSectionViewController(type: .sensors, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
+        viewController.reloadData()
+
+        XCTAssertEqual(viewController.numberOfSections, 4)
+
+        for section in 0..<viewController.numberOfSections {
+            for row in 0..<viewController.numberOfRowsInSection[section] {
+
+                let internFormula = InternFormula()
+                formulaEditorViewController.internFormula = internFormula
+                XCTAssertEqual(0, internFormula.getInternTokenList()?.count)
+
+                viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: row, section: section))
+
+                assertThatInputIsValid(for: internFormula, having: expectedItems)
+                itemsInTableView += 1
+            }
+        }
+
+        XCTAssertEqual(expectedItems.count, itemsInTableView)
+
+    }
+
     private func assertThatInputIsValid(for internFormula: InternFormula, having expectedItems: [FormulaEditorItem]) {
         let tokens = internFormula.getInternTokenList()!
         XCTAssertFalse(tokens.isEmpty)
 
-        XCTAssertEqual(1, expectedItems.filter { item in item.function!.tag() == tokens.first!.getStringValue() }.count)
+        XCTAssertEqual(1, expectedItems.filter { item in
+
+            if let function = item.function {
+                return function.tag() == tokens.first!.getStringValue()
+            }
+
+            if let sensor = item.sensor {
+                return sensor.tag() == tokens.first!.getStringValue()
+            }
+
+            if let op = item.op {
+                return type(of: op).tag == tokens.first!.getStringValue()
+            }
+
+            return false
+
+        }.count)
     }
 }

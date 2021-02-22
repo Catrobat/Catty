@@ -38,7 +38,7 @@ extension FormulaManager {
         formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: true, deviceSection: false)
     }
 
-    @nonobjc func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
+    @nonobjc func formulaEditorItemsForSensorsSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
         formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: false, deviceSection: true)
     }
 

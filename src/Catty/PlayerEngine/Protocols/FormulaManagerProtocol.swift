@@ -56,5 +56,5 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
 
     func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
-    func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+    func formulaEditorItemsForSensorsSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 }
