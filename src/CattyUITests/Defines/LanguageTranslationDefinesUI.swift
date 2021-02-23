@@ -407,6 +407,7 @@ let kLocalizedDoNotRotate = NSLocalizedString("don't rotate", bundle: Bundle(for
 let kLocalizedLook = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetLook = NSLocalizedString("Switch to look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetBackground = NSLocalizedString("Set background", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetBackgroundAndWait = NSLocalizedString("Set background and wait", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNextLook = NSLocalizedString("Next look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNextBackground = NSLocalizedString("Next background", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPreviousLook = NSLocalizedString("Previous look", bundle: Bundle(for: LanguageTranslation.self), comment: "")

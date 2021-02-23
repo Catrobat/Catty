@@ -340,6 +340,15 @@ final class CBScheduler: CBSchedulerProtocol {
         runNextInstructionsGroup()
     }
 
+    func isWhenBackgroundChangesRunning(look: Look) -> Bool {
+        for context in _whenBackgroundChangesContexts {
+            if context.background == look && isContextScheduled(context) {
+                return true
+            }
+        }
+        return false
+    }
+
     func startWhenBackgroundChangesContexts() {
         for context in _whenBackgroundChangesContexts {
             let script = context.script as! WhenBackgroundChangesScript
