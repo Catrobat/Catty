@@ -59,7 +59,7 @@ class FormulaEditorTests: XCTestCase {
             XCTFail("Script Collection View is not updated with the changed formula")
         }
 
-        XCTWaiter().wait(for: [XCTNSNotificationExpectation(name: NSNotification.Name(rawValue: "Wait for project to be saved"))], timeout: 4)
+        XCTWaiter().wait(for: [XCTNSNotificationExpectation(name: NSNotification.Name(rawValue: "Wait for project to be saved"))], timeout: 10)
 
         app.navigationBars.buttons[kLocalizedMole + " 1"].tap()
         app.navigationBars.buttons[kLocalizedMyFirstProject].tap()
