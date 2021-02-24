@@ -145,9 +145,6 @@
 #import "FormulaElement.h"
 #import "Formula+CBXMLHandler.h"
 
-// Assets
-#import "Sound.h"
-
 // User
 #import <CommonCrypto/CommonCrypto.h>
 #import "JNKeychain.h"

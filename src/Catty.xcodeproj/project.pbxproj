@@ -1026,6 +1026,7 @@
 		5EF590BA2192D81F00C19F12 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* DoubleExtension.swift */; };
 		5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */; };
 		5EFBD5FC2145AADC003B3CDC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5FB2145AADC003B3CDC /* UIViewExtension.swift */; };
+		639CB8E525C418FE0051CB82 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639CB8E425C418FE0051CB82 /* Sound.swift */; };
 		6F021E6724A682350097F21A /* StoreProjectUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */; };
 		6F17FA1824B7579000885E07 /* UploadViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */; };
 		6F1911A124E7CE0D00CF1B4F /* SceneMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */; };
@@ -1247,7 +1248,6 @@
 		92FF31031A24DCAA00093DA7 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B61A24DCAA00093DA7 /* Script.m */; };
 		92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B81A24DCAA00093DA7 /* StartScript.m */; };
 		92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30BA1A24DCAA00093DA7 /* WhenScript.m */; };
-		92FF31061A24DCAA00093DA7 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30BD1A24DCAA00093DA7 /* Sound.m */; };
 		92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C01A24DCAA00093DA7 /* SpriteObject.m */; };
 		92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310D1A24DEB300093DA7 /* BaseCollectionViewController.m */; };
 		92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310F1A24DEB300093DA7 /* BaseTableViewController.m */; };
@@ -2990,6 +2990,7 @@
 		5EFBD5FB2145AADC003B3CDC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		5F4B40BB347790D38FB5B19E /* de */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		602C3F3AB880252BC2FA6D5D /* nl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		639CB8E425C418FE0051CB82 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectUploaderTests.swift; sourceTree = "<group>"; };
 		6F021E6924A68AB70097F21A /* StoreProjectUpload.uploadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.success.json; sourceTree = "<group>"; };
 		6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewControllerTests.swift; sourceTree = "<group>"; };
@@ -3373,8 +3374,6 @@
 		92FF30B81A24DCAA00093DA7 /* StartScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScript.m; sourceTree = "<group>"; };
 		92FF30B91A24DCAA00093DA7 /* WhenScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScript.h; sourceTree = "<group>"; };
 		92FF30BA1A24DCAA00093DA7 /* WhenScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScript.m; sourceTree = "<group>"; };
-		92FF30BC1A24DCAA00093DA7 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
-		92FF30BD1A24DCAA00093DA7 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		92FF30BF1A24DCAA00093DA7 /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
 		92FF30C01A24DCAA00093DA7 /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
 		92FF310C1A24DEB300093DA7 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
@@ -8476,8 +8475,7 @@
 		92FF30BB1A24DCAA00093DA7 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				92FF30BC1A24DCAA00093DA7 /* Sound.h */,
-				92FF30BD1A24DCAA00093DA7 /* Sound.m */,
+				639CB8E425C418FE0051CB82 /* Sound.swift */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -12539,6 +12537,7 @@
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
+				639CB8E525C418FE0051CB82 /* Sound.swift in Sources */,
 				4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
@@ -12754,7 +12753,6 @@
 				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,
 				186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */,
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */,
-				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
 				91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */,
 			);

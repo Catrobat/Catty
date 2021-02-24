@@ -26,7 +26,6 @@
 #import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
 #import "DarkBlueGradientImageDetailCell.h"
-#import "Sound.h"
 #import "SpriteObject.h"
 #import "AudioManager.h"
 #import "Util.h"
