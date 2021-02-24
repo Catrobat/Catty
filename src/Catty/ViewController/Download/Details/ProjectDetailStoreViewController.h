@@ -25,6 +25,9 @@
 #import "CBFileManager.h"
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "BaseTableViewController.h"
+#import "EVCircularProgressView.h"
+#import "ButtonTags.h"
+#import "RoundBorderedButton.h"
 
 @class CatrobatProject;
 

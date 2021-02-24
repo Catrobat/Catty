@@ -27,10 +27,10 @@
 #import "SceneTableViewController.h"
 #import "Util.h"
 #import "EVCircularProgressView.h"
-#import "CreateView.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
-
+#import "EVCircularProgressView.h"
+#import "RoundBorderedButton.h"
 
 @interface ProjectDetailStoreViewController ()
 
@@ -84,8 +84,6 @@
     self.view.backgroundColor = UIColor.background;
     NSDebug(@"%@",self.project.author);
     [self loadProject:self.project];
-    //    self.scrollViewOutlet.exclusiveTouch = YES;
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
     CBFileManager *fileManager = [CBFileManager sharedManager];
     fileManager.delegate = self;
     fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
@@ -126,18 +124,7 @@
 
 - (UIView*)createViewForProject:(CatrobatProject*)project
 {
-    UIView *view = [CreateView createProjectDetailView:project target:self];
-    if ([Project projectExistsWithProjectID:project.projectID]) {
-        [view viewWithTag:kDownloadButtonTag].hidden = YES;
-        [view viewWithTag:kOpenButtonTag].hidden = NO;
-        [view viewWithTag:kStopLoadingTag].hidden = YES;
-        [view viewWithTag:kDownloadAgainButtonTag].hidden = NO;
-    } else if (self.project.isdownloading) {
-        [view viewWithTag:kDownloadButtonTag].hidden = YES;
-        [view viewWithTag:kOpenButtonTag].hidden = YES;
-        [view viewWithTag:kStopLoadingTag].hidden = NO;
-        [view viewWithTag:kDownloadAgainButtonTag].hidden = YES;
-    }
+    UIView *view = [self createProjectDetailView:project target:self];
     return view;
 }
 
@@ -201,7 +188,12 @@
     [self downloadButtonPressed];
 }
 
--(void)downloadAgain
+- (void) reportProject:(id)sender;
+{
+    [self reportProject];
+}
+
+-(void)downloadAgain:(id)sender
 {
     EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
     [self.projectView viewWithTag:kOpenButtonTag].hidden = YES;
@@ -251,7 +243,6 @@
 {
     UIDevice *device = [UIDevice currentDevice];
     if ([[device model] isEqualToString:@"iPhone"] ) {
-        //NSString* telpromt = [phoneNumber stringByReplacingOccurrencesOfString:@"tel:" withString:@""];
         NSString *escapedPhoneNumber = [phoneNumber stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]];
         NSString *phoneURLString = [NSString stringWithFormat:@"telprompt:%@", escapedPhoneNumber];
         NSURL *url = [NSURL URLWithString:phoneURLString];
@@ -273,7 +264,6 @@
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
-        //        [self.loadingView setBackgroundColor:UIColor.globalTint];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
@@ -282,15 +272,6 @@
 - (void) hideLoadingView
 {
     [self.loadingView hide];
-}
-
-#pragma mark - open button
-- (void)showOpenButton
-{
-    [self.projectView viewWithTag:kDownloadButtonTag].hidden = NO;
-    [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
-    [self.projectView viewWithTag:kOpenButtonTag].hidden = YES;
-    [self.projectView viewWithTag:kDownloadAgainButtonTag].hidden = YES;
 }
 
 #pragma mark - actions
