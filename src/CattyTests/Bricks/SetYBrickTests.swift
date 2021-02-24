@@ -98,4 +98,15 @@ final class SetYBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(brick.yPosition, formulas?[0])
     }
+
+    func testMutableCopy() {
+        brick.yPosition = Formula(double: 2.0)
+
+        let copiedBrick: SetYBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! SetYBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.yPosition.isEqual(to: copiedBrick.yPosition))
+        XCTAssertFalse(brick.yPosition === copiedBrick.yPosition)
+    }
 }

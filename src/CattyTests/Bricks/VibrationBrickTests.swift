@@ -93,4 +93,16 @@ final class VibrationBrickTests: XCTestCase {
 
         XCTAssertEqual(brick.durationInSeconds, formulas?[0])
     }
+
+    func testMutableCopy() {
+        let brick = VibrationBrick()
+        brick.durationInSeconds = Formula(double: 2)
+
+        let copiedBrick: VibrationBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! VibrationBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.durationInSeconds.isEqual(to: copiedBrick.durationInSeconds))
+        XCTAssertFalse(brick.durationInSeconds === copiedBrick.durationInSeconds)
+    }
 }

@@ -156,4 +156,15 @@ final class WaitBrickTests: XCTestCase {
         XCTAssertFalse(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 1)))
     }
 
+    func testMutableCopy() {
+        let brick = WaitBrick()
+        brick.timeToWaitInSeconds = Formula(double: 2)
+
+        let copiedBrick: WaitBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! WaitBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.timeToWaitInSeconds.isEqual(to: copiedBrick.timeToWaitInSeconds))
+        XCTAssertFalse(brick.timeToWaitInSeconds === copiedBrick.timeToWaitInSeconds)
+    }
 }
