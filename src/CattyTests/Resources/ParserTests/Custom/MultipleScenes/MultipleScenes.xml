@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.27</applicationVersion>
+    <catrobatLanguageVersion>0.992</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>Google Nexus 4 API 22 - CBL 0.992</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>22.0</platformVersion>
+    <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Scenes</programName>
+    <remixOf/>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>1184</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>768</screenWidth>
+    <tags>Experimental</tags>
+    <url>/pocketcode/project/620ab113-e7ae-11ea-9251-005056a36f47</url>
+    <userHandle>catty</userHandle>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Scene 1</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList>
+            <look name="automatic_screenshot">
+              <fileName>5235c2eecb956adf8c3ff3e3e9f295e9_automatic_screenshot.png</fileName>
+            </look>
+          </lookList>
+          <nfcTagList/>
+          <scriptList/>
+          <soundList/>
+          <userBricks/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <userBrickVariableList/>
+      </data>
+      <originalWidth>768</originalWidth>
+      <originalHeight>1184</originalHeight>
+    </scene>
+    <scene>
+      <name>Scene 2</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList>
+            <look name="North Pole">
+              <fileName>8ada7bc98ee101e3877ceb3bc9bcc254_North Pole.png</fileName>
+            </look>
+          </lookList>
+          <nfcTagList/>
+          <scriptList/>
+          <soundList/>
+          <userBricks/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <userBrickVariableList/>
+      </data>
+      <originalWidth>768</originalWidth>
+      <originalHeight>1184</originalHeight>
+    </scene>
+  </scenes>
+  <programVariableList/>
+  <programListOfLists/>
+</program>

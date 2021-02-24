@@ -90,7 +90,12 @@
         let audioEngine = getAudioEngine()
         let scheduler = getScheduler(broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager, audioEngine: audioEngine)
 
-        return Stage(size: size,
+        guard let scene = project.scenes[0] as? Scene else {
+            preconditionFailure()
+        }
+
+        return Stage(scene: scene,
+                     size: size,
                      logger: logger,
                      scheduler: scheduler,
                      frontend: frontend,
@@ -125,7 +130,7 @@
     private func getFrontend() -> CBFrontendProtocol {
         guard let frontend = self.frontend else {
             guard let frontendLogger = Swell.getLogger(LoggerConfig.PlayerFrontendID) else { preconditionFailure() }
-            let frontend = CBFrontend(logger: frontendLogger, project: project)
+            let frontend = CBFrontend(logger: frontendLogger)
             frontend.addSequenceFilter(CBFilterDisabled())
             return frontend
         }

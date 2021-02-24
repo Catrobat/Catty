@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		05501DE7255E106F00C64E58 /* color_change.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05501DE4255E106F00C64E58 /* color_change.dst */; };
+		05744DF925C84328005455F9 /* XMLParseMultipleScenesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744DF825C84328005455F9 /* XMLParseMultipleScenesTests.swift */; };
+		05744E0A25C8437C005455F9 /* MultipleScenes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 05744E0925C8437C005455F9 /* MultipleScenes.xml */; };
 		05A3CE6D24F5164A0051DB39 /* CatrobatTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */; };
 		05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46724F517220051DB39 /* StoreProjectTests.swift */; };
 		05A3D46A24F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */; };
@@ -1865,6 +1867,8 @@
 		04A3B489CBF02EB8C919DC3B /* sr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04FC473CDF0FCFB7BD890320 /* el */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05501DE4255E106F00C64E58 /* color_change.dst */ = {isa = PBXFileReference; lastKnownFileType = file; path = color_change.dst; sourceTree = "<group>"; };
+		05744DF825C84328005455F9 /* XMLParseMultipleScenesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParseMultipleScenesTests.swift; sourceTree = "<group>"; };
+		05744E0925C8437C005455F9 /* MultipleScenes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MultipleScenes.xml; sourceTree = "<group>"; };
 		05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtension.swift; sourceTree = "<group>"; };
 		05A3D46724F517220051DB39 /* StoreProjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectTests.swift; sourceTree = "<group>"; };
 		05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtensionTests.swift; sourceTree = "<group>"; };
@@ -4318,6 +4322,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05744DEF25C84234005455F9 /* MultipleScenes */ = {
+			isa = PBXGroup;
+			children = (
+				05744E0925C8437C005455F9 /* MultipleScenes.xml */,
+			);
+			path = MultipleScenes;
+			sourceTree = "<group>";
+		};
 		05E68011255B5DAA00D1E295 /* Embroidery */ = {
 			isa = PBXGroup;
 			children = (
@@ -4974,6 +4986,7 @@
 		2ED4175F241120AF00AFE2FD /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				05744DEF25C84234005455F9 /* MultipleScenes */,
 				9E384934256191DC002D8F28 /* SamplerBricks */,
 				D3EBE87C2488E6A90026F51A /* GoToBricks */,
 				D3AF5C1C243F81FC00B04BC6 /* DisabledBricks */,
@@ -5360,6 +5373,7 @@
 				4C2CBB3A25A5AA8400C1C143 /* CatrobatLanguage0.993 */,
 				4C2CBB0825A5AA8400C1C143 /* UserListXMLHandlerTests.m */,
 				4C2CBB0725A5AA8400C1C143 /* SceneXMLHandlerTest.m */,
+				05744DF825C84328005455F9 /* XMLParseMultipleScenesTests.swift */,
 			);
 			path = "Parser & Serialization";
 			sourceTree = "<group>";
@@ -11141,6 +11155,7 @@
 				2D7BE51E21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json in Resources */,
 				4C55CCE924BF2AA700FB8393 /* Nyancat_1.0_0992.xml in Resources */,
 				4C55CD0F24BF2C0600FB8393 /* ReplaceItemInUserListBrick0992.xml in Resources */,
+				05744E0A25C8437C005455F9 /* MultipleScenes.xml in Resources */,
 				2DCB4928212EA477005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json in Resources */,
 				2ED41844241120B000AFE2FD /* Minions__093.xml in Resources */,
 				2ED41875241120B000AFE2FD /* LedFlashBrick0991.xml in Resources */,
@@ -11690,6 +11705,7 @@
 				5912C21623C4EAC700B3D9C0 /* FormulaTest.swift in Sources */,
 				9E2C2D8E23257387004B66C6 /* AbstractBrickTest.swift in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
+				05744DF925C84328005455F9 /* XMLParseMultipleScenesTests.swift in Sources */,
 				E57E6D85254040B400E775DF /* ChangeVolumeByNBrickTests.swift in Sources */,
 				4C0A209824CEA46700CC9B04 /* PaintViewControllerMock.swift in Sources */,
 				4C82267B213FA7A400F3D750 /* BackgroundNumberSensorTest.swift in Sources */,

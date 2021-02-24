@@ -109,7 +109,9 @@ final class StageTests: XCTestCase {
 
     func testVariableLabel() {
         let project = ProjectMock(width: self.screenSize.width, andHeight: self.screenSize.height)
-        project.scene = Scene()
+        let scene = Scene()
+        scene.project = project
+        project.scenes[0] = scene
         let stage = StageBuilder(project: project).build()
 
         let userVariable = UserVariable(name: "testName")

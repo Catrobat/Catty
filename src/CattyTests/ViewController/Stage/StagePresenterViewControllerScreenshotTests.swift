@@ -41,13 +41,13 @@ final class StagePresenterViewControllerScreenshotTest: XCTestCase {
 
     func testAutomaticScreenshot() {
         let expectedRootPath = project.projectPath() + kScreenshotAutoFilename
-        let expectedScenePath = project.scene.path()! + kScreenshotAutoFilename
+        let expectedScenePath = (project.scenes[0] as! Scene).path()! + kScreenshotAutoFilename
 
         XCTAssertFalse(FileManager.default.fileExists(atPath: expectedScenePath))
 
         let exp = expectation(description: "screenshot saved")
 
-        vc.takeAutomaticScreenshot(for: skView, and: project.scene)
+        vc.takeAutomaticScreenshot(for: skView, and: (project.scenes[0] as! Scene))
 
         DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)
@@ -69,13 +69,13 @@ final class StagePresenterViewControllerScreenshotTest: XCTestCase {
 
     func testManualScreenshot() {
         let expectedRootPath = project.projectPath() + kScreenshotManualFilename
-        let expectedScenePath = project.scene.path()! + kScreenshotManualFilename
+        let expectedScenePath = (project.scenes[0] as! Scene).path()! + kScreenshotManualFilename
 
         XCTAssertFalse(FileManager.default.fileExists(atPath: expectedScenePath))
         XCTAssertFalse(FileManager.default.fileExists(atPath: expectedRootPath))
 
         let exp = expectation(description: "screenshot saved")
-        vc.takeManualScreenshot(for: skView, and: project.scene)
+        vc.takeManualScreenshot(for: skView, and: (project.scenes[0] as! Scene))
 
         DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)
@@ -108,7 +108,7 @@ final class StagePresenterViewControllerScreenshotTest: XCTestCase {
         XCTAssertNotNil(imageCache.cachedImage(forPath: existingPath)!)
 
         let exp = expectation(description: "screenshot saved")
-        vc.takeManualScreenshot(for: skView, and: project.scene)
+        vc.takeManualScreenshot(for: skView, and: (project.scenes[0] as! Scene))
 
         DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)

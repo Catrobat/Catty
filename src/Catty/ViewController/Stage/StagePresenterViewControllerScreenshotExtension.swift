@@ -25,13 +25,13 @@
     public static var previewImageWidth: CGFloat { UIScreen.main.bounds.width }
     public static var previewImageHeight: CGFloat { previewImageWidth }
 
-    @objc(takeAutomaticScreenshotForSKView: andProject:)
+    @objc(takeAutomaticScreenshotForSKView: andScene:)
     func takeAutomaticScreenshot(for skView: SKView, and scene: Scene) {
         guard let snapshot = self.screenshot(for: skView) else { return }
         saveScreenshot(snapshot, for: scene, manualScreenshot: false)
     }
 
-    @objc(takeManualScreenshotForSKView: andProject:)
+    @objc(takeManualScreenshotForSKView: andScene:)
     func takeManualScreenshot(for skView: SKView, and scene: Scene) {
         guard let snapshot = self.screenshot(for: skView) else { return }
         saveScreenshot(snapshot, for: scene, manualScreenshot: true)

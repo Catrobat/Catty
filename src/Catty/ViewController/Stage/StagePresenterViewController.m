@@ -316,17 +316,6 @@
     [self continueAction:nil withDuration:kFirstSwipeDuration];
 }
 
--(void)resaveLooks
-{
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (SpriteObject *object in self.project.scene.objects) {
-            for (Look *look in object.lookList) {
-                [[RuntimeImageCache sharedImageCache] loadImageFromDiskWithPath:look.fileName];
-            }
-        }
-    });
-}
-
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
@@ -374,7 +363,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andProject:self.project.scene];
+                             [self takeAutomaticScreenshotForSKView:self.skView andScene:[self.project.scenes objectAtIndex:0]];
                          }
                      }];
     self.skView.paused = NO;
@@ -455,7 +444,7 @@
 
 - (void)takeScreenshotAction:(UIButton*)sender
 {
-    [self takeManualScreenshotForSKView:self.skView andProject:self.project.scene];
+    [self takeManualScreenshotForSKView:self.skView andScene: [self.project.scenes objectAtIndex: 0]];
 }
 
 #pragma mark - Pan Gesture Handler

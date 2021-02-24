@@ -61,7 +61,7 @@ class BrickCellVariableDataTests: XCTestCase {
         spriteObject2.userData.add(secondObjectVariable)
         userDataContainer.add(programVariable)
         project = Project()
-        project.scene = spriteObject.scene
+        project.scenes[0] = spriteObject.scene!
         project.userData = userDataContainer
 
         spriteObject.scene.project = project
