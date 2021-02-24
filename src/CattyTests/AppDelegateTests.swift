@@ -96,4 +96,15 @@ final class AppDelegateTests: XCTestCase {
 
         expect(self.scenePresenterViewController.methodCalls).toNot(contain("resumeAction"))
     }
+
+    func testDisabledOrientation() {
+
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.all)
+        appDelegate.disabledOrientation = true
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.portrait)
+        appDelegate.disabledOrientation = false
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.all)
+
+    }
+
 }
