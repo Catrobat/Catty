@@ -121,14 +121,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (BOOL)isEqual:(id _Nullable)object toObject:(id _Nullable)objectToCompare;
 
-+ (SpriteObject* _Nullable)objectWithName:(NSString* _Nullable)objectName forScene:(Scene* _Nullable)scene;
-
-+ (Sound* _Nullable)soundWithName:(NSString* _Nullable)objectName forObject:(SpriteObject* _Nullable)object;
-
-+ (Look* _Nullable)lookWithName:(NSString* _Nullable)objectName forObject:(SpriteObject* _Nullable)object;
-
-+ (NSMutableOrderedSet* _Nullable)allMessagesForProject:(Project* _Nonnull)project;
-
 + (BOOL)isNetworkError:(NSError* _Nullable)error;
 
 + (NSDictionary* _Nullable)getBrickInsertionDictionaryFromUserDefaults;

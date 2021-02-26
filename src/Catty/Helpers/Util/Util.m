@@ -475,60 +475,6 @@
     return NO;
 }
 
-+ (SpriteObject*)objectWithName:(NSString*)objectName forScene:(Scene*)scene
-{
-    for(SpriteObject *object in scene.objects) {
-        if([object.name isEqualToString:objectName]) {
-            return object;
-        }
-    }
-    return nil;
-}
-
-+ (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object
-{
-    for(Sound *sound in object.soundList) {
-        if([sound.name isEqualToString:objectName]) {
-            return sound;
-        }
-    }
-    return nil;
-}
-
-+ (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object
-{
-    for(Look *look in object.lookList) {
-        if([look.name isEqualToString:objectName]) {
-            return look;
-        }
-    }
-    return nil;
-}
-
-+ (NSMutableOrderedSet*)allMessagesForProject:(Project*)project
-{
-    NSMutableOrderedSet* messages = [[NSMutableOrderedSet alloc] init];
-    [messages addObjectsFromArray:project.allBroadcastMessages.array];
-    for(SpriteObject *object in project.allObjects) {
-        for(Script *script in object.scriptList) {
-            if([script isKindOfClass:[BroadcastScript class]]) {
-                BroadcastScript *broadcastScript = (BroadcastScript*)script;
-                [messages addObject:broadcastScript.receivedMessage];
-            }
-            for(Brick *brick in script.brickList) {
-                if([brick isKindOfClass:[BroadcastBrick class]]) {
-                    BroadcastBrick *broadcastBrick = (BroadcastBrick*)brick;
-                    [messages addObject:broadcastBrick.broadcastMessage];
-                } else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
-                    BroadcastWaitBrick *broadcastBrick = (BroadcastWaitBrick*)brick;
-                    [messages addObject:broadcastBrick.broadcastMessage];
-                }
-            }
-        }
-    }
-    return messages;
-}
-
 + (BOOL)isNetworkError:(NSError*)error
 {
     return error && error.code != kCFURLErrorCancelled;
