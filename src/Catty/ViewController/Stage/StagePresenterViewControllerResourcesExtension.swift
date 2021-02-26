@@ -34,7 +34,7 @@ import CoreBluetooth
             guard let project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo()) else {
                 DispatchQueue.main.async {
                     self.hideLoadingView()
-                    Util.alert(withText: kLocalizedInvalidZip)
+                    Util.alert(text: kLocalizedInvalidZip)
                 }
                 return
             }
@@ -136,9 +136,9 @@ import CoreBluetooth
                 top?.present(navController, animated: true)
 
             } else if CentralManager.sharedInstance.state == ManagerState.poweredOff {
-                Util.alert(withText: kLocalizedBluetoothPoweredOff)
+                Util.alert(text: kLocalizedBluetoothPoweredOff)
             } else {
-                Util.alert(withText: kLocalizedBluetoothNotAvailable)
+                Util.alert(text: kLocalizedBluetoothNotAvailable)
             }
         }
     }

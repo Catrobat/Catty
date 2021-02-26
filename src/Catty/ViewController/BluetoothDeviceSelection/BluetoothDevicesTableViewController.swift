@@ -76,7 +76,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
             if deviceArray[0] == BluetoothDeviceID.phiro.rawValue {
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     DispatchQueue.main.async {
-                        Util.alert(withTitle: klocalizedBluetoothConnectionNotPossible, andText: klocalizedBluetoothConnectionTryResetting )
+                        Util.alert(title: klocalizedBluetoothConnectionNotPossible, text: klocalizedBluetoothConnectionTryResetting )
                         self.delegate?.dismissAndDisconnect()
                     }
                     return
@@ -85,7 +85,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
             } else if deviceArray[0] == BluetoothDeviceID.arduino.rawValue {
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     DispatchQueue.main.async {
-                        Util.alert(withTitle: klocalizedBluetoothConnectionNotPossible, andText: klocalizedBluetoothConnectionTryResetting)
+                        Util.alert(title: klocalizedBluetoothConnectionNotPossible, text: klocalizedBluetoothConnectionTryResetting)
                         self.delegate?.dismissAndDisconnect()
                     }
                     return
