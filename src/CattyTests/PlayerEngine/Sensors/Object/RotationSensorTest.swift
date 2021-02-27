@@ -256,4 +256,20 @@ final class RotationSensorTest: XCTestCase {
         type(of: sensor).setRawValue(userInput: 180.0, for: spriteObject)
         XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
     }
+
+    func testConvertToStandardizedWithoutSpritNode() {
+        spriteObject.spriteNode = nil
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: Double.pi, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: Double.pi / 2, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: Double.pi * 2, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: Double.pi / 6, for: spriteObject), accuracy: Double.epsilon)
+
+        // after the first circle (360)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: Double.pi * 5, for: spriteObject), accuracy: Double.epsilon)
+
+        // before the first circle circle (0)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: -Double.pi * 4, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: -Double.pi / 4, for: spriteObject), accuracy: Double.epsilon)
+    }
 }
