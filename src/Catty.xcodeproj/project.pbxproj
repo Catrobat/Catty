@@ -90,6 +90,10 @@
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
 		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
+		229DC44225D6989000BA9AA2 /* ProjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DC44125D6989000BA9AA2 /* ProjectType.swift */; };
+		229DC44A25D698FF00BA9AA2 /* StoreProjectDownloaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DC44925D698FF00BA9AA2 /* StoreProjectDownloaderError.swift */; };
+		229DC44F25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DC44E25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift */; };
+		22BEC60425CAD86500AFE1C3 /* StoreFeaturedProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BEC60325CAD86500AFE1C3 /* StoreFeaturedProject.swift */; };
 		22C48768240FFAA3003CB222 /* BrickCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C48767240FFAA3003CB222 /* BrickCellTests.swift */; };
 		2D010F4822240C9F00CAAA06 /* XCUIElementExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D010F4722240C9F00CAAA06 /* XCUIElementExtension.swift */; };
 		2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */; };
@@ -1944,6 +1948,10 @@
 		224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerMock.swift; sourceTree = "<group>"; };
+		229DC44125D6989000BA9AA2 /* ProjectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectType.swift; sourceTree = "<group>"; };
+		229DC44925D698FF00BA9AA2 /* StoreProjectDownloaderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderError.swift; sourceTree = "<group>"; };
+		229DC44E25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFetchFailureInfo.swift; sourceTree = "<group>"; };
+		22BEC60325CAD86500AFE1C3 /* StoreFeaturedProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFeaturedProject.swift; sourceTree = "<group>"; };
 		22C48767240FFAA3003CB222 /* BrickCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellTests.swift; sourceTree = "<group>"; };
 		232DAAC73BFD01550ECFD889 /* sk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B9E6447F112720F0F74D139 /* tw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = tw; path = tw.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -4450,6 +4458,15 @@
 				187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		229DC43E25D6986200BA9AA2 /* StoreProjectEnums */ = {
+			isa = PBXGroup;
+			children = (
+				229DC44125D6989000BA9AA2 /* ProjectType.swift */,
+				229DC44925D698FF00BA9AA2 /* StoreProjectDownloaderError.swift */,
+			);
+			path = StoreProjectEnums;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -7437,9 +7454,11 @@
 		6FB09D1F24A29EF4009C69A0 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				229DC43E25D6986200BA9AA2 /* StoreProjectEnums */,
 				6FB09D2224A29F1E009C69A0 /* StoreProjectUploader.swift */,
 				E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */,
 				5907FA95252888DF0042EC5D /* StoreProjectReporter.swift */,
+				229DC44E25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -8242,6 +8261,7 @@
 			children = (
 				E4AEC86C210843D20081A980 /* ProjectInformation.swift */,
 				E4E5599620FCD6AD004B4A08 /* StoreProject.swift */,
+				22BEC60325CAD86500AFE1C3 /* StoreFeaturedProject.swift */,
 				92FF2EAD1A24C8A700093DA7 /* CatrobatInformation */,
 				92FF2EB01A24C8A700093DA7 /* CatrobatProject */,
 			);
@@ -12257,6 +12277,7 @@
 				4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */,
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
+				22BEC60425CAD86500AFE1C3 /* StoreFeaturedProject.swift in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				9E78D88B22A9B1D400948AC3 /* IterableCache.swift in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
@@ -12405,6 +12426,7 @@
 				4C0E25E920D39E5000A80273 /* StagePresenterViewControllerResourcesExtension.swift in Sources */,
 				AA74EF511BC0586F00D1E954 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
+				229DC44A25D698FF00BA9AA2 /* StoreProjectDownloaderError.swift in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
 				4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
@@ -12425,6 +12447,7 @@
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				5EFBD5FC2145AADC003B3CDC /* UIViewExtension.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
+				229DC44F25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift in Sources */,
 				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
 				592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */,
@@ -12554,6 +12577,7 @@
 				921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */,
 				9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */,
 				C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */,
+				229DC44225D6989000BA9AA2 /* ProjectType.swift in Sources */,
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
 				4C994E0A207A3D4100C415FD /* Sensor.swift in Sources */,
 				AA74F00D1BC05B5F00D1E954 /* SpeakBrick.m in Sources */,
