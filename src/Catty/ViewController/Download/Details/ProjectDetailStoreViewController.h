@@ -37,7 +37,9 @@
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
 @property (nonatomic, strong) StoreProjectDownloader *storeProjectDownloader;
+@property (nonatomic, strong) UIView *projectView;
 
-- (void) hideLoadingView;
+- (void)showLoadingView;
+- (void)hideLoadingView;
 
 @end

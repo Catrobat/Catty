@@ -34,7 +34,6 @@
 
 @interface ProjectDetailStoreViewController ()
 
-@property (nonatomic, strong) UIView *projectView;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) Project *loadedProject;
 @property (strong, nonatomic) NSURLSession *session;
@@ -71,28 +70,6 @@
     return _storeProjectDownloader;
 }
 
--(void)loadProject:(CatrobatProject*)project {
-    [self.projectView removeFromSuperview];
-    self.projectView = [self createViewForProject:project];
-    if(!self.project.author){
-        [self showLoadingView];
-        UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
-        button.enabled = NO;
-    }
-    CGFloat minHeight = self.view.frame.size.height;
-    [self.scrollViewOutlet addSubview:self.projectView];
-    self.scrollViewOutlet.delegate = self;
-    CGSize contentSize = self.projectView.bounds.size;
-    
-    if (contentSize.height < minHeight) {
-        contentSize.height = minHeight;
-    }
-    contentSize.height += 30.0f;
-    [self.scrollViewOutlet setContentSize:contentSize];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.scrollViewOutlet.userInteractionEnabled = YES;
-}
-
 - (void)initNavigationBar
 {
     self.title = self.navigationItem.title = kLocalizedDetails;
@@ -103,12 +80,6 @@
     [super viewWillDisappear:animated];
     self.hidesBottomBarWhenPushed = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (UIView*)createViewForProject:(CatrobatProject*)project
-{
-    UIView *view = [self createProjectDetailView:project target:self];
-    return view;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -137,21 +108,21 @@
 
 - (void)openButtonPressed:(id)sender
 {
-    
+
     NSString *localProjectName = [Project projectNameForProjectID:self.project.projectID];
-    
+
     [self showLoadingView];
     [CATransaction flush];
-    
+
     self.loadedProject = [Project projectWithLoadingInfo:[ProjectLoadingInfo projectLoadingInfoForProjectWithName:localProjectName projectID:self.project.projectID]];
-    
+
     [self hideLoadingView];
-    
+
     if (!self.loadedProject) {
         [Util alertWithText:kLocalizedUnableToLoadProject];
         return;
     }
-    
+
     [self openProject:self.loadedProject];
 }
 
@@ -206,15 +177,6 @@
     }
 }
 
-- (void)reloadWithProject:(CatrobatProject *)loadedProject
-{
-    [self loadProject:loadedProject];
-    UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
-    button.enabled = YES;
-    [self hideLoadingView];
-    [self.view setNeedsDisplay];
-}
-
 #pragma mark - loading view
 - (void)showLoadingView
 {
@@ -234,11 +196,11 @@
 - (void)stopLoading
 {
     [self.storeProjectDownloader cancelDownloadForProjectWithId:self.project.projectID];
-    
+
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     button.hidden = YES;
     button.progress = 0;
-    
+
     UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
     if(downloadAgainButton.enabled) {
         [self.view viewWithTag:kDownloadButtonTag].hidden = NO;

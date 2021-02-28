@@ -38,7 +38,7 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         self.addLoadingButton(to: view, withTarget: target)
         self.addOpenButton(to: view, withTarget: target)
         self.addDownloadAgainButton(to: view, withTarget: target)
-        self.addProjectDescriptionLabel(withDescription: project.projectDescription, to: view, target: target)
+        _ = self.addProjectDescriptionLabel(withDescription: project.projectDescription, to: view, target: target)
         let projectDouble = (project.uploaded as NSString).doubleValue
         let projectDate = Date(timeIntervalSince1970: TimeInterval(projectDouble))
         let uploaded = CatrobatProject.uploadDateFormatter().string(from: projectDate)
@@ -332,6 +332,11 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         label?.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
     }
 
+    private func createView(forProject project: CatrobatProject) -> UIView? {
+        let view = self.createProjectDetailView(project, target: self)
+        return view
+    }
+
     private func getInformationTitleLabel(withTitle icon: UIImage?, atXPosition xPosition: CGFloat, atYPosition yPosition: CGFloat, andHeight height: CGFloat) -> UIImageView? {
         let titleInformation = UIImageView(frame: CGRect(x: xPosition, y: yPosition, width: 15, height: 15))
         titleInformation.image = icon
@@ -352,6 +357,30 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         detailInformationLabel.backgroundColor = UIColor.clear
         detailInformationLabel.sizeToFit()
         return detailInformationLabel
+    }
+
+    func loadProject(_ project: CatrobatProject) {
+        self.projectView?.removeFromSuperview()
+        self.projectView = self.createView(forProject: project)
+
+        if self.project.author == nil {
+            self.showLoadingView()
+            let button = self.projectView.viewWithTag(Int(kDownloadButtonTag)) as! UIButton
+            button.isEnabled = false
+        }
+
+        self.scrollViewOutlet.addSubview(self.projectView)
+        self.scrollViewOutlet.delegate = self
+        var contentSize = self.projectView.bounds.size
+        let minHeight = self.view.frame.size.height
+
+        if contentSize.height < minHeight {
+            contentSize.height = minHeight
+        }
+        contentSize.height += 30.0
+        self.scrollViewOutlet.contentSize = contentSize
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.scrollViewOutlet.isUserInteractionEnabled = true
     }
 
     private func setMaxHeightIfGreaterFor(_ view: UIView?, withHeight height: CGFloat) {
