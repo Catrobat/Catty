@@ -28,7 +28,6 @@
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
-#define IS_IPHONEPLUS (([Util screenHeight] - kIphone6PScreenHeight) ? NO : YES)
 
 #define SAFE_BLOCK_CALL(__functor, ...)   \
 do {    \
@@ -69,23 +68,6 @@ if (__functor) __functor(__VA_ARGS__);  \
                                         isList:(BOOL)isList
                                   andTextField:(FormulaEditorTextView* _Nullable)textView
                                    initialText:(NSString* _Nullable)initialText;
-
-/* Returns the screen size in pixel or points */
-+ (CGSize)screenSize:(BOOL)inPixel;
-
-/* Returns the screen height in pixel or points */
-+ (CGFloat)screenHeight:(BOOL)inPixel;
-
-/* Returns the screen width in pixel or points */
-+ (CGFloat)screenWidth:(BOOL)inPixel;
-
-/* Returns the screen height in points */
-+ (CGFloat)screenHeight;
-
-/* Returns the screen width in points */
-+ (CGFloat)screenWidth;
-
-+ (CGFloat)statusBarHeight;
 
 + (CATransition* _Nonnull)getPushCATransition;
 

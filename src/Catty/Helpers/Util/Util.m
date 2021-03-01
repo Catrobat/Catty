@@ -86,45 +86,6 @@
      showWithController:[Util topmostViewController]];
 }
 
-+ (CGSize)screenSize:(BOOL)inPixel
-{
-    CGSize screenSize = inPixel ? [[UIScreen mainScreen] nativeBounds].size : [[UIScreen mainScreen] bounds].size;
-
-    if (inPixel && IS_IPHONEPLUS) {
-        CGFloat iPhonePlusDownsamplingFactor = 1.15;
-        screenSize.height = screenSize.height / iPhonePlusDownsamplingFactor;
-        screenSize.width = screenSize.width / iPhonePlusDownsamplingFactor;
-    }
-    
-    return screenSize;
-}
-
-+ (CGFloat)screenHeight:(BOOL)inPixel
-{
-    return [self screenSize:inPixel].height;
-}
-
-+ (CGFloat)screenWidth:(BOOL)inPixel
-{
-    return [self screenSize:inPixel].width;
-}
-
-+ (CGFloat)screenHeight
-{
-    return [self screenSize:false].height;
-}
-
-+ (CGFloat)screenWidth
-{
-    return [self screenSize:false].width;
-}
-
-+ (CGFloat)statusBarHeight
-{
-    CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
-    return MIN(statusBarSize.width, statusBarSize.height);
-}
-
 + (CATransition*)getPushCATransition
 {
     CATransition *transition = [CATransition animation];

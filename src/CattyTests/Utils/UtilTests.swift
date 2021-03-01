@@ -205,4 +205,14 @@ final class UtilTests: XCTestCase {
 
         XCTAssertEqual(project.allBroadcastMessages?.count, 1)
     }
+
+    func testStatusBarHeight() {
+        let statusBarFrame = UIApplication.shared.statusBarFrame.size
+
+        if statusBarFrame.width <= statusBarFrame.height {
+            XCTAssertEqual(statusBarFrame.width, Util.statusBarHeight())
+        } else {
+            XCTAssertEqual(statusBarFrame.height, Util.statusBarHeight())
+        }
+    }
 }
