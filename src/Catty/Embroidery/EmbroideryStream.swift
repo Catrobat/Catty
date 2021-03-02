@@ -55,16 +55,17 @@ class EmbroideryStream: Collection {
         size *= screenRatio
     }
 
-    init(streams: [EmbroideryStream], withName name: String? = nil) {
-        self.name = name
-        self.nextStitchIsColorChange = false
-        size = SpriteKitDefines.defaultCatrobatStitchingSize * EmbroideryDefines.sizeConversionFactor
+    convenience init(streams: [EmbroideryStream], withName name: String? = nil) {
+        self.init(projectWidth: nil, projectHeight: nil, withName: name)
 
+        guard streams.isNotEmpty else {
+            return
+        }
+
+        self.size = streams[0].size
         for stream in streams {
-            let syncArrayEnumerated = stream.stitches.enumerated()
-
-            for (_, value1) in syncArrayEnumerated {
-                self.append(value1)
+            for stitch in stream {
+                self.add(stitch)
             }
             self.addColorChange()
         }

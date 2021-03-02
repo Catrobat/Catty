@@ -235,6 +235,7 @@ final class EmbroideryStreamTests: XCTestCase {
         let streamArray = [stream, streamTwo]
         let mergedStream = EmbroideryStream(streams: streamArray)
         XCTAssertEqual(mergedStream.stitches.count, 8)
+        XCTAssertEqual(mergedStream.size, stream.size)
         XCTAssertFalse(mergedStream.stitches[0]!.isColorChange)
         XCTAssertFalse(mergedStream.stitches[1]!.isColorChange)
         XCTAssertFalse(mergedStream.stitches[2]!.isColorChange)
@@ -243,5 +244,11 @@ final class EmbroideryStreamTests: XCTestCase {
         XCTAssertFalse(mergedStream.stitches[5]!.isColorChange)
         XCTAssertFalse(mergedStream.stitches[6]!.isColorChange)
         XCTAssertFalse(mergedStream.stitches[7]!.isColorChange)
+    }
+
+    func testGenerateInitWithEmptyStreamsArray() {
+        let empty: [EmbroideryStream] = []
+        let stream = EmbroideryStream(streams: empty, withName: "Empty")
+        XCTAssertEqual(0, stream.count)
     }
 }

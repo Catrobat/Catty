@@ -117,7 +117,12 @@ class EmbroideryDSTService: EmbroideryProtocol {
     }
 
     func byteFromConversionTable(position: Int) -> UInt {
-        position < 0 ?
+        guard position > -EmbroideryDefines.MAX_STITCHING_DISTANCE
+                && position < EmbroideryDefines.MAX_STITCHING_DISTANCE
+        else {
+            fatalError("Embroidery Stream cannot be represented as DST")
+        }
+        return position < 0 ?
             EmbroideryDefines.CONVERSION_TABLE[(position * (-1)) + 121] :
             EmbroideryDefines.CONVERSION_TABLE[position]
     }
