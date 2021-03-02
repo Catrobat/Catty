@@ -24,10 +24,10 @@
 @objcMembers class ProjectManager: NSObject {
 
     static func createProject(name: String, projectId: String?) -> Project {
-        ProjectManager.createProject(name: name, projectId: projectId, fileManager: CBFileManager.shared())
+        ProjectManager.createProject(name: name, projectId: projectId, fileManager: CBFileManager.shared(), imageCache: RuntimeImageCache.shared())
     }
 
-    static func createProject(name: String, projectId: String?, fileManager: CBFileManager) -> Project {
+    static func createProject(name: String, projectId: String?, fileManager: CBFileManager, imageCache: RuntimeImageCache) -> Project {
 
         let project = Project()
         let projectName = Util.uniqueName(name, existingNames: Project.allProjectNames())
@@ -72,8 +72,47 @@
         }
 
         fileManager.writeData(data, path: filePath)
-        fileManager.imageCache.clear()
+        imageCache.clear()
         return project
     }
 
+    static func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo,
+                                         completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: projectLoadingInfo, fileManager: CBFileManager.shared(), imageCache: RuntimeImageCache.shared(), completion: completion)
+    }
+
+    static func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, fileManager: CBFileManager,
+                                         imageCache: RuntimeImageCache,
+                                         completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
+
+        let fallbackPaths = [
+            projectLoadingInfo.basePath + kScreenshotFilename,
+            projectLoadingInfo.basePath + kScreenshotManualFilename,
+            projectLoadingInfo.basePath + kScreenshotAutoFilename
+        ]
+
+        for imagePath in fallbackPaths {
+            let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize)
+            if image != nil {
+                completion(image, imagePath)
+                return
+            }
+        }
+
+        DispatchQueue.global(qos: .default).async {
+            for imagePath in fallbackPaths {
+                if fileManager.fileExists(imagePath as String) {
+                    imageCache.loadImageFromDisk(
+                        withPath: imagePath,
+                        andSize: UIDefines.previewImageSize,
+                        onCompletion: { image, path in completion(image, path) })
+
+                    return
+                }
+            }
+            completion(UIImage(named: "catrobat"), nil)
+        }
+
+        return
+    }
 }

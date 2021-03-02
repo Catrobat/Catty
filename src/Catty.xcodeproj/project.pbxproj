@@ -43,7 +43,6 @@
 		18390A7124D0594300A07DFD /* StampBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A7024D0594300A07DFD /* StampBrick+CBXMLHandler.swift */; };
 		18390A7324D0A33D00A07DFD /* StampBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A7224D0A33D00A07DFD /* StampBrickTests.swift */; };
 		184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184949B8248130A9000B8CDA /* NSStringExtension.swift */; };
-		184CA799249E839A00D3668B /* CBFileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CA798249E839A00D3668B /* CBFileManagerExtension.swift */; };
 		1858252B24D1A5E300092407 /* UIColorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */; };
 		186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212372475A1070098F4C5 /* SpriteKitDefines.swift */; };
 		186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212452475C9140098F4C5 /* PenConfiguration.swift */; };
@@ -1032,6 +1031,7 @@
 		5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */; };
 		5EFBD5FC2145AADC003B3CDC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5FB2145AADC003B3CDC /* UIViewExtension.swift */; };
 		639CB8E525C418FE0051CB82 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639CB8E425C418FE0051CB82 /* Sound.swift */; };
+		63D69EBB25E3178F00D662D6 /* CBFileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D69EBA25E3178F00D662D6 /* CBFileManagerExtension.swift */; };
 		6F021E6724A682350097F21A /* StoreProjectUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */; };
 		6F17FA1824B7579000885E07 /* UploadViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */; };
 		6F1911A124E7CE0D00CF1B4F /* SceneMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */; };
@@ -1910,7 +1910,6 @@
 		18390A7024D0594300A07DFD /* StampBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		18390A7224D0A33D00A07DFD /* StampBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBrickTests.swift; sourceTree = "<group>"; };
 		184949B8248130A9000B8CDA /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
-		184CA798249E839A00D3668B /* CBFileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerExtension.swift; sourceTree = "<group>"; };
 		1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtensionTests.swift; path = Extensions/UIColorExtensionTests.swift; sourceTree = "<group>"; };
 		186212372475A1070098F4C5 /* SpriteKitDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitDefines.swift; sourceTree = "<group>"; };
 		186212452475C9140098F4C5 /* PenConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenConfiguration.swift; sourceTree = "<group>"; };
@@ -3002,6 +3001,7 @@
 		5F4B40BB347790D38FB5B19E /* de */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		602C3F3AB880252BC2FA6D5D /* nl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		639CB8E425C418FE0051CB82 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		63D69EBA25E3178F00D662D6 /* CBFileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerExtension.swift; sourceTree = "<group>"; };
 		6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectUploaderTests.swift; sourceTree = "<group>"; };
 		6F021E6924A68AB70097F21A /* StoreProjectUpload.uploadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.success.json; sourceTree = "<group>"; };
 		6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewControllerTests.swift; sourceTree = "<group>"; };
@@ -8117,8 +8117,8 @@
 				6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */,
 				222A693D247EA490004BE434 /* UIDeviceExtension.swift */,
 				2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */,
-				184CA798249E839A00D3668B /* CBFileManagerExtension.swift */,
 				97D97BAA257AC141001FF344 /* URLSessionMultipartExtension.swift */,
+				63D69EBA25E3178F00D662D6 /* CBFileManagerExtension.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -12008,6 +12008,7 @@
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
 				4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */,
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
+				63D69EBB25E3178F00D662D6 /* CBFileManagerExtension.swift in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				4C0F9F82204BD20A00E71B2D /* SpeakAndWaitBrick+Instruction.swift in Sources */,
 				AA74EFF21BC05B5F00D1E954 /* ChangeTransparencyByNBrick.m in Sources */,
@@ -12625,7 +12626,6 @@
 				92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */,
 				05E6801D255B5DAA00D1E295 /* EmbroideryDSTHeader.swift in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
-				184CA799249E839A00D3668B /* CBFileManagerExtension.swift in Sources */,
 				AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */,
 				9218B2161CC4AB75007B4C60 /* PaintViewController.m in Sources */,
 				4C595F4521CAEB230097D850 /* DivideOperator.swift in Sources */,

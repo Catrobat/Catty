@@ -449,8 +449,7 @@
     cell.indexPath = indexPath;
     [cell setNeedsLayout];
     
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
+    [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
       
         if(image) {
             if ([cell.indexPath isEqual:indexPath]) {

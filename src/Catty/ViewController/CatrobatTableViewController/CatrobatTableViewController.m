@@ -345,8 +345,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
     if (indexPath.row == 0) {
         
-        CBFileManager *fileManager = [CBFileManager sharedManager];
-        [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
+        [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
             
             if(image && cell) {
                 dispatch_queue_main_t queue = dispatch_get_main_queue();
