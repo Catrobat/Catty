@@ -60,11 +60,11 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(hideLoadingView)
-                               name:kHideLoadingViewNotification
+                               name:NotificationName.hideLoadingView
                              object:nil];
     [notificationCenter addObserver:self
                            selector:@selector(showSavedView)
-                               name:kShowSavedViewNotification
+                               name:NotificationName.showSaved
                              object:nil];
   
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint

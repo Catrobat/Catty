@@ -68,5 +68,9 @@ public class NotificationName: NSObject {
     public static let settingsCrashReportingChanged = "SettingsTableViewController.crashReportingChanged"
     public static let mediaLibraryDownloadIndexFailure = "MediaLibrary.DownloadIndexFailure"
     public static let mediaLibraryDownloadDataFailure = "MediaLibrary.DownloadDataFailure"
+    public static let projectDownloaded = "ProjectDownloaded"
+    public static let hideLoadingView = "HideLoadingView"
+    public static let showSaved = "ShowSavedView"
+    public static let readyToUpload = "ReadyToUpload"
     public static let formulaSaved = "FormulaEditorViewController.saveIfPossible"
 }
