@@ -35,7 +35,7 @@
 @class UserList;
 @protocol UserDataProtocol;
 
-@interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIGestureRecognizerDelegate>
+@interface FormulaEditorViewController : UIViewController<UIGestureRecognizerDelegate>
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorHistory *history;
 @property (strong, nonatomic) NSMutableArray<UserVariable*> *variableSourceProject;
@@ -52,7 +52,5 @@
 - (void)backspace:(id)sender;
 
 - (void)handleInput;
-- (BOOL)isVariableUsed:(UserVariable*)variable;
-- (BOOL)isListUsed:(id<UserDataProtocol>)list;
 
 @end

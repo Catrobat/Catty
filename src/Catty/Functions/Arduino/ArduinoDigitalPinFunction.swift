@@ -53,6 +53,6 @@ class ArduinoDigitalPinFunction: SingleParameterDoubleFunction {
         if UserDefaults.standard.bool(forKey: kUseArduinoBricks) == false {
             return []
         }
-        return [.device(position: type(of: self).position)]
+        return [.sensors(position: type(of: self).position, subsection: .arduino)]
     }
 }

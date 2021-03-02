@@ -97,7 +97,7 @@ class ScriptCollectionVCTests: XCTestCase {
         XCTAssertTrue(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         app.buttons[kUIFESensor].tap()
-        app.buttons[kLocalizedSensorLoudness].tap()
+        app.tables.staticTexts[kLocalizedSensorLoudness].tap()
         app.buttons[kLocalizedDone].firstMatch.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)

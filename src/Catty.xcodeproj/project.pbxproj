@@ -24,14 +24,17 @@
 		05E6802A255B5E0300D1E295 /* CGVectorExtentionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68029255B5E0300D1E295 /* CGVectorExtentionsTests.swift */; };
 		05E6802C255B5E3400D1E295 /* CGVectorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */; };
 		05E6802F255B602700D1E295 /* stitch.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05E6802E255B602700D1E295 /* stitch.dst */; };
+		1801591E25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
 		181321C925C97E9D001BA787 /* FormulaEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181321C825C97E9D001BA787 /* FormulaEditorTests.swift */; };
 		181A12C324E42B6E00358440 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		181CC10724B750AF004A783E /* CBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CC10424B750AE004A783E /* CBPosition.swift */; };
 		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
+		181E000625B5766700534C24 /* FormulaEditorSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		18237D6B24EC3A9300759854 /* UIDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18237D6A24EC3A9300759854 /* UIDefines.swift */; };
+		182B304625E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
 		18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385C67247C0EB30050819A /* LineShapeNode.swift */; };
 		18390A6924D0576100A07DFD /* StampBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A6824D0576100A07DFD /* StampBrick.swift */; };
@@ -65,6 +68,7 @@
 		1882475B24C8514300B01653 /* SetPenColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */; };
 		188746B824DA914E003F5E81 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188746B724DA914E003F5E81 /* ProjectManager.swift */; };
 		188746BC24DA91EB003F5E81 /* ProjectManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188746BB24DA91EB003F5E81 /* ProjectManagerTests.swift */; };
+		18957DDF25B8B870001A623F /* FormulaEditorSubsection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18957DDE25B8B870001A623F /* FormulaEditorSubsection.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
 		18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */; };
 		18AAC23324A60C8800C96335 /* SetPenSizeBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */; };
@@ -75,10 +79,12 @@
 		18B5B530247EB059007D24A3 /* NSStringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */; };
 		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
 		18B9A1BA24A75F3C009028F8 /* SetPenSizeBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */; };
+		18BF581725D183F600ADD92C /* FormulaEditorDataSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF581625D183F600ADD92C /* FormulaEditorDataSectionViewControllerTests.swift */; };
 		18CAFAF624D4910A003324DA /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CAFAF524D4910A003324DA /* StageTests.swift */; };
 		18D939E724C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */; };
 		18D939EB24C97A1C00A32544 /* SetPenColorBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */; };
 		18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */; };
+		18E3498025DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E3497F25DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift */; };
 		18E83F7B2493BEFF003295DA /* PenClearBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7A2493BEFF003295DA /* PenClearBrick.swift */; };
 		18E83F7F2493BFE6003295DA /* PenClearBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */; };
 		18E83F812493C32C003295DA /* PenClearBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */; };
@@ -562,7 +568,7 @@
 		4C4B4CD723EE8ABB0054C861 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */; };
 		4C4B4CDF23EE98C80054C861 /* CustomAlertControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CDE23EE98C80054C861 /* CustomAlertControllerTests.swift */; };
 		4C4B4CE623EEA6C00054C861 /* BaseTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CE523EEA6BF0054C861 /* BaseTableViewControllerTests.swift */; };
-		4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */; };
+		4C4EE29D210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EE29A210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift */; };
 		4C4F21702314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F216D2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m */; };
 		4C5076D22578DBDC00650440 /* SetInstrumentBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5076D12578DBDC00650440 /* SetInstrumentBrick+CBXMLHandler.swift */; };
 		4C5076D42578DCB000650440 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5076D32578DCB000650440 /* Instrument.swift */; };
@@ -1886,13 +1892,16 @@
 		0C64E34E5347DA71ECB56DE6 /* pt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		113CDA22CF21176FFA49E694 /* sd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sd; path = sd.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewController.swift; sourceTree = "<group>"; };
 		180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTests.swift; sourceTree = "<group>"; };
 		180DDF422506800600EA526C /* AnalyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsMock.swift; sourceTree = "<group>"; };
 		181321C825C97E9D001BA787 /* FormulaEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorTests.swift; sourceTree = "<group>"; };
 		181CC10424B750AE004A783E /* CBPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPosition.swift; sourceTree = "<group>"; };
 		181DB737247DA62600B82B20 /* NSDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataExtension.swift; sourceTree = "<group>"; };
+		181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewController.swift; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		18237D6A24EC3A9300759854 /* UIDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDefines.swift; sourceTree = "<group>"; };
+		182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
 		18385C67247C0EB30050819A /* LineShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNode.swift; path = PlayerEngine/DataModel/LineShapeNode.swift; sourceTree = "<group>"; };
 		18390A6824D0576100A07DFD /* StampBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBrick.swift; sourceTree = "<group>"; };
@@ -1928,6 +1937,7 @@
 		1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+Instruction.swift"; sourceTree = "<group>"; };
 		188746B724DA914E003F5E81 /* ProjectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
 		188746BB24DA91EB003F5E81 /* ProjectManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectManagerTests.swift; sourceTree = "<group>"; };
+		18957DDE25B8B870001A623F /* FormulaEditorSubsection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSubsection.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
 		18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrick.swift; sourceTree = "<group>"; };
 		18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickCell.swift; sourceTree = "<group>"; };
@@ -1938,10 +1948,12 @@
 		18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSStringExtensionTests.swift; path = Extensions/NSStringExtensionTests.swift; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
 		18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickTests.swift; sourceTree = "<group>"; };
+		18BF581625D183F600ADD92C /* FormulaEditorDataSectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		18CAFAF524D4910A003324DA /* StageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageTests.swift; path = Scene/StageTests.swift; sourceTree = "<group>"; };
 		18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrickTests.swift; sourceTree = "<group>"; };
 		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
+		18E3497F25DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewController.swift; sourceTree = "<group>"; };
 		18E83F7A2493BEFF003295DA /* PenClearBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrick.swift; sourceTree = "<group>"; };
 		18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrickCell.swift; sourceTree = "<group>"; };
 		18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PenClearBrick+Instruction.swift"; path = "Catty/PlayerEngine/Instructions/Pen/PenClearBrick+Instruction.swift"; sourceTree = SOURCE_ROOT; };
@@ -2490,7 +2502,7 @@
 		4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		4C4B4CDE23EE98C80054C861 /* CustomAlertControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertControllerTests.swift; sourceTree = "<group>"; };
 		4C4B4CE523EEA6BF0054C861 /* BaseTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewControllerTests.swift; sourceTree = "<group>"; };
-		4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSection.swift; sourceTree = "<group>"; };
+		4C4EE29A210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerInputExtension.swift; sourceTree = "<group>"; };
 		4C4F216C2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		4C4F216D2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		4C5076D12578DBDC00650440 /* SetInstrumentBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetInstrumentBrick+CBXMLHandler.swift"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SetInstrumentBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
@@ -4455,6 +4467,15 @@
 			path = SpriteNode;
 			sourceTree = "<group>";
 		};
+		18E3497C25DF8411008B9D6E /* FormulaEditorSectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */,
+				18E3497F25DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift */,
+			);
+			path = FormulaEditorSectionViewController;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -5805,6 +5826,8 @@
 				4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */,
 				6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */,
 				6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */,
+				18BF581625D183F600ADD92C /* FormulaEditorDataSectionViewControllerTests.swift */,
+				182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -7976,10 +7999,12 @@
 		92DFB0041A38949E00FA9B0F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				18E3497C25DF8411008B9D6E /* FormulaEditorSectionViewController */,
 				92DFB0051A38949E00FA9B0F /* FormulaEditorViewController.h */,
 				92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */,
 				F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Section.swift */,
-				4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */,
+				4C4EE29A210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift */,
+				18957DDE25B8B870001A623F /* FormulaEditorSubsection.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -10128,6 +10153,7 @@
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
 				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
 				181321C825C97E9D001BA787 /* FormulaEditorTests.swift */,
+				1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */,
 			);
 			path = CattyUITests;
 			sourceTree = "<group>";
@@ -11502,6 +11528,7 @@
 				BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */,
 				4C7F50FC21E62B0E0010AC36 /* ProjectsTVCTests.swift in Sources */,
 				6F38BF69247537290052C692 /* ListTests.swift in Sources */,
+				1801591E25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift in Sources */,
 				5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */,
 				9E7564B222C7AB1A00D38A3B /* ObjectTVCTests.swift in Sources */,
 				4CA98E8821C8F1D400B2D9CA /* LooksTVCTests.swift in Sources */,
@@ -11724,6 +11751,7 @@
 				4C6FE171212D2D2E0067B7D5 /* CosFunctionTest.swift in Sources */,
 				4C53E38821D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift in Sources */,
 				D3F2717923CC9ADF00E339FD /* FormulaFunctionsTest.swift in Sources */,
+				18BF581725D183F600ADD92C /* FormulaEditorDataSectionViewControllerTests.swift in Sources */,
 				18D939EB24C97A1C00A32544 /* SetPenColorBrickTests.swift in Sources */,
 				46162CBD2544AE5600DF6042 /* SetRotationStyleBrickTests.swift in Sources */,
 				4C6FE15F212D2D2E0067B7D5 /* FalseFunctionTest.swift in Sources */,
@@ -11869,6 +11897,7 @@
 				4C822655213FA7A400F3D750 /* SensorMock.swift in Sources */,
 				46A75DF425752B1200F3963D /* CircleShapeNodeTests.swift in Sources */,
 				9EBCBD8D2329C56F0074C2D9 /* SetSizeToBrickTests.swift in Sources */,
+				182B304625E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift in Sources */,
 				6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */,
 				4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
@@ -11987,6 +12016,7 @@
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
 				5E7E7F8A2341CB8100411298 /* UIColorExtension.swift in Sources */,
+				18957DDF25B8B870001A623F /* FormulaEditorSubsection.swift in Sources */,
 				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
 				18390A6F24D058BA00A07DFD /* StampBrick+Instruction.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
@@ -12261,6 +12291,7 @@
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				4CEFFADB2105E46500DC5CFE /* ObjectDoubleSensor.swift in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessByNBrick+Instruction.swift in Sources */,
+				18E3498025DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
 				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
 				46D8055D2573E4B300CDDEC8 /* CBSpriteNodeEmbroideryExtension.swift in Sources */,
@@ -12734,11 +12765,14 @@
 				59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */,
+				59F007C62530823100039EBD /* ProjectDetailStoreViewControllerExtension.swift in Sources */,
+				4C4EE29D210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift in Sources */,
 				6F348C85245499F1000C963B /* AppDelegate.swift in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
 				929CC0D01BC39B0A0027DEC0 /* PhiroRGBLightBrick.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
+				181E000625B5766700534C24 /* FormulaEditorSectionViewController.swift in Sources */,
 				6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */,
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
 				F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */,

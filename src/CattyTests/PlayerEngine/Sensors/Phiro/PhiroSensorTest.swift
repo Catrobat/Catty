@@ -63,7 +63,7 @@ final class PhiroSensorTest: XCTestCase {
 
         let sections = phiroFrontLeft.formulaEditorSections(for: SpriteObject())
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: phiroFrontLeft).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: phiroFrontLeft).position, subsection: .phiro), sections.first)
 
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(0, phiroFrontLeft.formulaEditorSections(for: SpriteObject()).count)
@@ -74,7 +74,7 @@ final class PhiroSensorTest: XCTestCase {
 
         let sections = phiroFrontRight.formulaEditorSections(for: SpriteObject())
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: phiroFrontRight).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: phiroFrontRight).position, subsection: .phiro), sections.first)
 
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(0, phiroFrontRight.formulaEditorSections(for: SpriteObject()).count)
@@ -85,7 +85,7 @@ final class PhiroSensorTest: XCTestCase {
 
         let sections = phiroSideLeft.formulaEditorSections(for: SpriteObject())
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: phiroSideLeft).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: phiroSideLeft).position, subsection: .phiro), sections.first)
 
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(0, phiroSideLeft.formulaEditorSections(for: SpriteObject()).count)
@@ -96,7 +96,7 @@ final class PhiroSensorTest: XCTestCase {
 
         let sections = phiroSideRight.formulaEditorSections(for: SpriteObject())
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: phiroSideRight).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: phiroSideRight).position, subsection: .phiro), sections.first)
 
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(0, phiroSideRight.formulaEditorSections(for: SpriteObject()).count)
@@ -107,7 +107,7 @@ final class PhiroSensorTest: XCTestCase {
 
         let sections = phiroBottomLeft.formulaEditorSections(for: SpriteObject())
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: phiroBottomLeft).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: phiroBottomLeft).position, subsection: .phiro), sections.first)
 
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(0, phiroBottomLeft.formulaEditorSections(for: SpriteObject()).count)
@@ -118,7 +118,7 @@ final class PhiroSensorTest: XCTestCase {
 
         let sections = phiroBottomRight.formulaEditorSections(for: SpriteObject())
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: phiroBottomRight).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: phiroBottomRight).position, subsection: .phiro), sections.first)
 
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(0, phiroBottomRight.formulaEditorSections(for: SpriteObject()).count)

@@ -37,7 +37,6 @@ class FalseFunction: ZeroParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.logic(position: type(of: self).position),
-                .math(position: type(of: self).position)]
+        [.logic(position: type(of: self).position, subsection: .logical)]
     }
 }

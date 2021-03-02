@@ -49,6 +49,6 @@ class MultiFingerTouchedFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.device(position: type(of: self).position)]
+        [.sensors(position: type(of: self).position, subsection: .touch)]
     }
 }

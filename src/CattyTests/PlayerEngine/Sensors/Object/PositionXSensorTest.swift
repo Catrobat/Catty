@@ -139,6 +139,6 @@ final class PositionXSensorTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = sensor.formulaEditorSections(for: spriteObject)
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.object(position: type(of: sensor).position), sections.first)
+        XCTAssertEqual(.object(position: type(of: sensor).position, subsection: .motion), sections.first)
     }
 }

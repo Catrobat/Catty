@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var firebaseCrashlyticsReporter: FirebaseCrashlyticsReporter?
     var audioEngineHelper = AudioEngineHelper()
 
+    @objc var disabledOrientation = false
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.setupFirebase()
         self.setupSiren()
@@ -143,5 +145,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         ctvc.openURL(url: url)
         return true
+    }
+
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        self.disabledOrientation ? UIInterfaceOrientationMask.portrait : UIInterfaceOrientationMask.all
     }
 }

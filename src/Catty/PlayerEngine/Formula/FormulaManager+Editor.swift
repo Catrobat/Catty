@@ -26,7 +26,7 @@ extension FormulaManager {
         formulaEditorItems(for: spriteObject, mathSection: true, logicSection: true, objectSection: true, deviceSection: true)
     }
 
-    @nonobjc func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
+    @nonobjc func formulaEditorItemsForFunctionSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
         formulaEditorItems(for: spriteObject, mathSection: true, logicSection: false, objectSection: false, deviceSection: false)
     }
 
@@ -38,7 +38,7 @@ extension FormulaManager {
         formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: true, deviceSection: false)
     }
 
-    @nonobjc func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
+    @nonobjc func formulaEditorItemsForSensorsSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
         formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: false, deviceSection: true)
     }
 
@@ -49,25 +49,34 @@ extension FormulaManager {
         for item in allItems {
             for section in item.sections {
                 switch section {
-                case let .math(position):
+                case let .functions(position, _):
                     if mathSection {
                         items += (position, item)
                     }
-                case let .logic(position):
+
+                case let .logic(position, _):
+
                     if logicSection {
                         items += (position, item)
                     }
-                case let .object(position):
+
+                case let .object(position, _):
+
                     if objectSection {
                         items += (position, item)
                     }
-                case let .device(position):
+
+                case let .sensors(position, _):
+
                     if deviceSection {
                         items += (position, item)
                     }
+
                 }
             }
         }
+
         return items.sorted { $0.0 < $1.0 }.map { $0.1 }
     }
+
 }
