@@ -50,9 +50,9 @@
         "package": "Quick",
         "repositoryURL": "https://github.com/Quick/Quick",
         "state": {
-          "branch": "master",
-          "revision": "5b612da260294fbffbbb223e892a373820003dd2",
-          "version": null
+          "branch": null,
+          "revision": "8cce6acd38f965f5baa3167b939f86500314022b",
+          "version": "3.1.2"
         }
       },
       {

@@ -822,6 +822,7 @@
 		4CB562FC24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB562FB24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift */; };
 		4CB73A9023FC1F0400D5E9A7 /* CatrobatTableViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */; };
 		4CB73A9223FC1F1300D5E9A7 /* NavigationControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB73A9123FC1F1300D5E9A7 /* NavigationControllerMock.swift */; };
+		4CBB5F0925EFCB8100DD08B2 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 4CBB5F0825EFCB8100DD08B2 /* Quick */; };
 		4CBDF1A621CF82F100325338 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A521CF82F000325338 /* Operator.swift */; };
 		4CBDF1A921CF830E00325338 /* UnaryOperatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A721CF830E00325338 /* UnaryOperatorMock.swift */; };
 		4CBDF1AA21CF830E00325338 /* BinaryOperatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A821CF830E00325338 /* BinaryOperatorMock.swift */; };
@@ -940,7 +941,6 @@
 		4CF8A5842359BA5E00905BA9 /* StoreProjectDownloader.fetchProjectDetails.IntegerId.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CF8A5832359BA5E00905BA9 /* StoreProjectDownloader.fetchProjectDetails.IntegerId.success.json */; };
 		4CFABF5F24AB0DD40023D581 /* RuntimeImageCacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFABF5C24AB0DD40023D581 /* RuntimeImageCacheMock.swift */; };
 		4CFAC28D25ADCD8100AF0DD1 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 4CFAC28C25ADCD8100AF0DD1 /* Nimble */; };
-		4CFAC2C425ADCF4900AF0DD1 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 4CFAC2C325ADCF4900AF0DD1 /* Quick */; };
 		4CFAC2CD25ADD12100AF0DD1 /* DVR in Frameworks */ = {isa = PBXBuildFile; productRef = 4CFAC2CC25ADD12100AF0DD1 /* DVR */; };
 		4CFAC2F825ADD6C200AF0DD1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4CFAC2F725ADD6C200AF0DD1 /* Kingfisher */; };
 		4CFAC30825ADD89E00AF0DD1 /* Siren in Frameworks */ = {isa = PBXBuildFile; productRef = 4CFAC30725ADD89E00AF0DD1 /* Siren */; };
@@ -4288,12 +4288,12 @@
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
 				9EBAC31422A9BF47002E198D /* AudioKit.framework in Frameworks */,
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
-				4CFAC2C425ADCF4900AF0DD1 /* Quick in Frameworks */,
 				593624C61F76F374008A588D /* HMSegmentedControl.framework in Frameworks */,
 				593624C81F76F374008A588D /* MXPagerView.framework in Frameworks */,
 				593624C91F76F374008A588D /* MXParallaxHeader.framework in Frameworks */,
 				9EED5F8A2337ED270032898E /* libchromaprint.a in Frameworks */,
 				593624CA1F76F374008A588D /* MXSegmentedPager.framework in Frameworks */,
+				4CBB5F0925EFCB8100DD08B2 /* Quick in Frameworks */,
 				593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -10654,8 +10654,8 @@
 			name = "Catty Tests";
 			packageProductDependencies = (
 				4CFAC28C25ADCD8100AF0DD1 /* Nimble */,
-				4CFAC2C325ADCF4900AF0DD1 /* Quick */,
 				4CFAC2CC25ADD12100AF0DD1 /* DVR */,
+				4CBB5F0825EFCB8100DD08B2 /* Quick */,
 			);
 			productName = CattyTests;
 			productReference = CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */;
@@ -10808,10 +10808,10 @@
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			packageReferences = (
 				4CFAC28B25ADCD8100AF0DD1 /* XCRemoteSwiftPackageReference "Nimble" */,
-				4CFAC2C225ADCF4900AF0DD1 /* XCRemoteSwiftPackageReference "Quick" */,
 				4CFAC2CB25ADD12100AF0DD1 /* XCRemoteSwiftPackageReference "DVR" */,
 				4CFAC2F625ADD6C200AF0DD1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4CFAC30625ADD89E00AF0DD1 /* XCRemoteSwiftPackageReference "Siren" */,
+				4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */,
 			);
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
@@ -12764,8 +12764,7 @@
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,
 				59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
-				4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */,
-				59F007C62530823100039EBD /* ProjectDetailStoreViewControllerExtension.swift in Sources */,
+				4C4EE29D210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift in Sources */,
 				4C4EE29D210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift in Sources */,
 				6F348C85245499F1000C963B /* AppDelegate.swift in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
@@ -13498,20 +13497,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.2;
+			};
+		};
 		4CFAC28B25ADCD8100AF0DD1 /* XCRemoteSwiftPackageReference "Nimble" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Quick/Nimble";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 9.0.0;
-			};
-		};
-		4CFAC2C225ADCF4900AF0DD1 /* XCRemoteSwiftPackageReference "Quick" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Quick/Quick";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		4CFAC2CB25ADD12100AF0DD1 /* XCRemoteSwiftPackageReference "DVR" */ = {
@@ -13541,15 +13540,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4CBB5F0825EFCB8100DD08B2 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
 		4CFAC28C25ADCD8100AF0DD1 /* Nimble */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4CFAC28B25ADCD8100AF0DD1 /* XCRemoteSwiftPackageReference "Nimble" */;
 			productName = Nimble;
-		};
-		4CFAC2C325ADCF4900AF0DD1 /* Quick */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4CFAC2C225ADCF4900AF0DD1 /* XCRemoteSwiftPackageReference "Quick" */;
-			productName = Quick;
 		};
 		4CFAC2CC25ADD12100AF0DD1 /* DVR */ = {
 			isa = XCSwiftPackageProductDependency;
