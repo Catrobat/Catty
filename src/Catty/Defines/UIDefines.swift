@@ -40,5 +40,5 @@ class UIDefines: NSObject {
     @objc static let messagePickerAccessibilityLabel = "MessageView"
     @objc static let lookPickerAccessibilityLabel = "LookView"
     @objc static let backgroundPickerAccessibilityLabel = "BackgroundView"
-    @objc static var iOS12OrLessAccessibilityLabel = "iOS 12.0 or less"
+    @objc static let iOS12OrLessAccessibilityLabel = "iOS 12.0 or less"
 }

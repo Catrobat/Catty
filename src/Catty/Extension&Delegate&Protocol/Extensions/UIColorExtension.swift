@@ -233,24 +233,17 @@ extension UIColor {
 
     // MARK: FormulaEditor
 
-    static var formulaEditorOperator: UIColor {
-        self.buttonTint
+    static var formulaEditorNumericButtons: UIColor {
+        UIColor(red: 199, green: 199, blue: 204)
     }
 
-    static var formulaEditorHighlight: UIColor {
-        self.buttonTint
+    static var formulaEditorOperatorButtons: UIColor {
+        UIColor(red: 175, green: 175, blue: 179)
     }
 
-    static var formulaEditorOperand: UIColor {
-        self.buttonTint
-    }
+    static var formulaEditorLargeButtons: UIColor {
+        UIColor(red: 137, green: 137, blue: 140)
 
-    static var formulaEditorBorder: UIColor {
-        self.light
-    }
-
-    static var formulaButtonText: UIColor {
-        self.light
     }
 
     // MARK: IDE

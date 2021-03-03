@@ -603,6 +603,7 @@ let kUIFEObject = NSLocalizedString("Object", bundle: Bundle(for: LanguageTransl
 let kUIFESensor = NSLocalizedString("Sensors", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEVariable = NSLocalizedString("Variables", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEData = NSLocalizedString("Data", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEProperties = NSLocalizedString("Properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFECompute = NSLocalizedString("Compute", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEDone = NSLocalizedString("Done", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEError = NSLocalizedString("Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
