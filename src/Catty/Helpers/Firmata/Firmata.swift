@@ -82,7 +82,7 @@ class Firmata: FirmataProtocol {
     private var portMasks = [UInt8](repeating: 0, count: 3)
     weak var delegate: FirmataDelegate?
     private var sysexData = NSMutableData()
-    private var seenStartSysex: Bool = false
+    private var seenStartSysex = false
 
     // MARK: WRITE
     /* PINMODE

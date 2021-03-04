@@ -59,24 +59,24 @@ final class EmbroideryDSTServiceTests: XCTestCase {
         XCTAssertEqual(out, reference)
     }
 
-    func testGenerateInitWithStreams() {
-        let bundlePath = Bundle(for: type(of: self)).path(forResource: "color_change", ofType: "dst")
-        let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
-
-        let DSTService = EmbroideryDSTService()
-
-        let stream = EmbroideryStream(projectWidth: width, projectHeight: height)
-        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
-        stream.add(Stitch(atPosition: CGPoint(x: 250, y: 0)))
-
-        let streamTwo = EmbroideryStream(projectWidth: width, projectHeight: height)
-        streamTwo.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
-        streamTwo.add(Stitch(atPosition: CGPoint(x: 0, y: 250)))
-
-        let streamArray = [stream, streamTwo]
-        let mergedStream = EmbroideryStream(streams: streamArray)
-
-        let out = DSTService.generateOutput(embroideryStream: mergedStream)
-        XCTAssertEqual(out, reference)
-    }
+//    func testGenerateInitWithStreams() {
+//        let bundlePath = Bundle(for: type(of: self)).path(forResource: "color_change", ofType: "dst")
+//        let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
+//
+//        let DSTService = EmbroideryDSTService()
+//
+//        let stream = EmbroideryStream(projectWidth: width, projectHeight: height)
+//        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+//        stream.add(Stitch(atPosition: CGPoint(x: 250, y: 0)))
+//
+//        let streamTwo = EmbroideryStream(projectWidth: width, projectHeight: height)
+//        streamTwo.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+//        streamTwo.add(Stitch(atPosition: CGPoint(x: 0, y: 250)))
+//
+//        let streamArray = [stream, streamTwo]
+//        let mergedStream = EmbroideryStream(streams: streamArray)
+//
+//        let out = DSTService.generateOutput(embroideryStream: mergedStream)
+//        XCTAssertEqual(out, reference)
+//    }
 }

@@ -32,26 +32,28 @@ import UIKit
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let navigationTitleColor = UIColor.navText
-        let titleColor = UIColor.background
-        let selectedTitleColor = UIColor.navTint
+        // TODO: refactor
 
-        self.segmentedPager.backgroundColor = UIColor.navBar
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationTitleColor]
-        // Segmented Control customization
-        self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
-        self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTint
-
-        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
-        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: selectedTitleColor]
-        self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.box
-        self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint
-        self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.fixed
-
-        setHeader()
-
-        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissAndDisconnect))
-        self.navigationItem.rightBarButtonItem = rightButton
+//        let navigationTitleColor = UIColor.navText
+//        let titleColor = UIColor.background
+//        let selectedTitleColor = UIColor.navTint
+//
+//        self.segmentedPager.backgroundColor = UIColor.navBar
+//        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationTitleColor]
+//        // Segmented Control customization
+//        self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
+//        self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTint
+//
+//        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
+//        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: selectedTitleColor]
+//        self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.box
+//        self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint
+//        self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.fixed
+//
+//        setHeader()
+//
+//        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissAndDisconnect))
+//        self.navigationItem.rightBarButtonItem = rightButton
     }
 
     override func didReceiveMemoryWarning() {

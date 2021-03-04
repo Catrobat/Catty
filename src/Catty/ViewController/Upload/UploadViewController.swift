@@ -34,7 +34,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
     @objc weak var delegate: UploadViewControllerDelegate?
 
     private var uploadBarButton: UIBarButtonItem?
-    private var activeRequest: Bool = false
+    private var activeRequest = false
     private var project: Project?
     private var descriptionTextViewBottomConstraint: NSLayoutConstraint!
     private var firstLineViewTopConstraint: NSLayoutConstraint!
