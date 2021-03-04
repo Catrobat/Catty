@@ -26,7 +26,7 @@ final class TouchManagerMock: TouchManagerProtocol {
 
     var touchRecognizer: UILongPressGestureRecognizer?
     var stage: Stage?
-    var isScreenTouched: Bool = false
+    var isScreenTouched = false
     var touches: [CGPoint] = []
     var lastTouch: CGPoint?
 

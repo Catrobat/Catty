@@ -31,7 +31,7 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // TODO: refactor
 
 //        let navigationTitleColor = UIColor.navText
