@@ -4522,6 +4522,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2EED39A825F0F0440051CE4D /* MXSegmentedControl.framework */,
 				4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */,
 				4C10D9E223ED8DF500EB0C6E /* PromisesObjC.framework */,
 				4C10D9DF23ED8DCF00EB0C6E /* FirebaseInstallations.framework */,
@@ -11397,6 +11398,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MXSegmentedPager.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MXSegmentedControl.framework",
 			);
 			name = "Carthage Copy Frameworks Run Script";
 			outputPaths = (
@@ -11408,6 +11410,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MXSegmentedPager.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TTTAttributedLabel.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MXSegmentedControl.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
