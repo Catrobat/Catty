@@ -30,7 +30,8 @@
         return YES;
     }
     @catch (NSException *exception) {
-        *error = [[NSError alloc] initWithDomain:exception.name code:0 userInfo:exception.userInfo];
+        NSString *domain = [[NSString alloc] initWithFormat:@"%@ - %@", exception.name, exception.description];
+        *error = [[NSError alloc] initWithDomain:domain code:0 userInfo:exception.userInfo];
         return NO;
     }
 }
