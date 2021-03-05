@@ -25,7 +25,7 @@ import Nimble
 @testable import Pocket_Code
 import XCTest
 
-class StoreProjectsDownloaderTests: XCTestCase {
+class StoreProjectDownloaderTests: XCTestCase {
 
     let expectedParsingException = "The data couldn’t be read because it is missing."
 
@@ -90,12 +90,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
 
         downloader.fetchProjects(forType: .featured, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
-            switch error {
-            case let .request(error: _, statusCode: statusCode):
-                XCTAssertNotEqual(statusCode, 200)
-            default:
-                XCTFail("wrong error received")
-            }
+            XCTAssertEqual(.request(error: nil, statusCode: 404), error)
             expectation.fulfill()
         }
 
@@ -231,12 +226,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
 
         downloader.fetchProjects(forType: .mostDownloaded, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
-            switch error {
-            case let .request(error: _, statusCode: statusCode):
-                XCTAssertNotEqual(statusCode, 200)
-            default:
-                XCTFail("wrong error received")
-            }
+            XCTAssertEqual(.request(error: nil, statusCode: 404), error)
             expectation.fulfill()
         }
 
@@ -384,12 +374,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
 
         downloader.fetchProjects(forType: .mostViewed, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
-            switch error {
-            case let .request(error: _, statusCode: statusCode):
-                XCTAssertNotEqual(statusCode, 200)
-            default:
-                XCTFail("wrong error received")
-            }
+            XCTAssertEqual(.request(error: nil, statusCode: 404), error)
             expectation.fulfill()
         }
 
@@ -537,12 +522,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
 
         downloader.fetchProjects(forType: .mostRecent, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
-            switch error {
-            case let .request(error: _, statusCode: statusCode):
-                XCTAssertNotEqual(statusCode, 200)
-            default:
-                XCTFail("wrong error received")
-            }
+            XCTAssertEqual(.request(error: nil, statusCode: 404), error)
             expectation.fulfill()
         }
 
@@ -694,12 +674,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
 
         downloader.fetchSearchQuery(searchTerm: searchTerm) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
-            switch error {
-            case let .request(error: _, statusCode: statusCode):
-                XCTAssertNotEqual(statusCode, 200)
-            default:
-                XCTFail("wrong error received")
-            }
+            XCTAssertEqual(.request(error: nil, statusCode: 404), error)
             expectation.fulfill()
         }
 
@@ -804,12 +779,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
 
         downloader.fetchProjectDetails(for: projectId) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
-            switch error {
-            case let .request(error: _, statusCode: statusCode):
-                XCTAssertEqual(statusCode, 404)
-            default:
-                XCTFail("wrong error received")
-            }
+            XCTAssertEqual(.request(error: nil, statusCode: 404), error)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
@@ -834,19 +804,30 @@ class StoreProjectsDownloaderTests: XCTestCase {
 
     // MARK: - Download project
     func testDownloadProjectSucceeds() {
-           let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadProject.success")
-           let downloader = StoreProjectDownloader(session: dvrSession)
-           let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
-           let expectation = XCTestExpectation(description: "Download Project")
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadProject.success")
+        let fileManagerMock = CBFileManagerMock(filePath: [], directoryPath: [])
+
+        let downloader = StoreProjectDownloader(session: dvrSession, fileManager: fileManagerMock)
+        let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
+        let projectName = "projectName"
+        let expectation = XCTestExpectation(description: "Download Project")
+
+        XCTAssertEqual(0, downloader.downloadTasks.count)
+        XCTAssertEqual(0, fileManagerMock.downloadedProjectsStored.count)
 
         downloader.download(projectId: projectId,
+                            projectName: projectName,
                             completion: { data, error in
             XCTAssertNil(error, "request failed")
             guard data != nil else { XCTFail("no data received"); return }
             expectation.fulfill()
         }, progression: nil)
 
-            wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(0, downloader.downloadTasks.count)
+        XCTAssertEqual(1, fileManagerMock.downloadedProjectsStored.count)
+        XCTAssertEqual(projectName, fileManagerMock.downloadedProjectsStored[projectId])
     }
 
     func testDownloadProjectFailsWithUnexpectedError() {
@@ -856,6 +837,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
         let projectId = ""
 
         downloader.download(projectId: projectId,
+                            projectName: "projectName",
                             completion: {_, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
@@ -863,26 +845,68 @@ class StoreProjectsDownloaderTests: XCTestCase {
         }, progression: nil)
 
         wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(0, downloader.downloadTasks.count)
     }
 
     func testDownloadProjectFailsWithRequestError() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadProject.fail.request")
-        let downloader = StoreProjectDownloader(session: dvrSession)
-        let expectation = XCTestExpectation(description: "Download Projects")
-        let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
+        let projectId = ""
+        let url = URL(string: "\(NetworkDefines.downloadUrl)/\(projectId).catrobat")!
+        let response = HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: nil)
+        let error = ErrorMock("errorDescription")
+        let session = URLSessionMock(response: response, error: error)
+        let downloader = StoreProjectDownloader(session: session)
+        let userInfo = ["projectId": projectId,
+                        "url": url.absoluteString,
+                        "statusCode": 404,
+                        "error": error.localizedDescription] as [String: Any]
+
+        let expectedNotification = Notification(name: .projectDownloadFailure, object: downloader, userInfo: userInfo)
+
+        expect(downloader.download(projectId: projectId, projectName: "projectName", completion: { _, _ in }, progression: nil)).toEventually(postNotifications(contain(expectedNotification)))
+    }
+
+    func testDownloadProjectCancelled() {
+        let projectId = "projectId"
+        let url = URL(string: "\(NetworkDefines.downloadUrl)/\(projectId).catrobat")!
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled)
+        let session = URLSessionMock(response: response, error: error)
+        let downloader = StoreProjectDownloader(session: session)
+        let expectation = XCTestExpectation(description: "Cancel download")
 
         downloader.download(projectId: projectId,
-                            completion: { _, error in
-            guard let error = error else { XCTFail("no error received"); return }
-            switch error {
-            case let .request(error: _, statusCode: statusCode):
-                XCTAssertEqual(statusCode, 404)
-            default:
-                XCTFail("wrong error received")
-            }
+                            projectName: "projectName",
+                            completion: {_, error in
+            guard let error = error else { XCTFail("no error returned"); return }
+            XCTAssertEqual(error, .cancelled)
             expectation.fulfill()
         }, progression: nil)
+
         wait(for: [expectation], timeout: 1)
+    }
+
+    func testCancelDownload() {
+        let projectId = "projectId"
+        let task = URLSessionMock.URLSessionDataTaskMock({ _, _, _ in }, response: nil, error: nil)
+
+        XCTAssertFalse(task.cancelled)
+
+        let session = URLSessionMock(response: nil, error: nil)
+        let downloader = StoreProjectDownloader(session: session)
+
+        downloader.downloadTasks[projectId] = task
+
+        downloader.cancelDownload(for: projectId)
+
+        XCTAssertTrue(task.cancelled)
+    }
+
+    func testCancelDownloadInvalidProject() {
+        let session = URLSessionMock(response: nil, error: nil)
+        let downloader = StoreProjectDownloader(session: session)
+
+        downloader.cancelDownload(for: "invalidProjectId")
     }
 
     func testDownloadProjectVaildProgression() {
@@ -892,24 +916,12 @@ class StoreProjectsDownloaderTests: XCTestCase {
         let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
 
         downloader.download(projectId: projectId,
+                            projectName: "projectName",
                             completion: { _, _ in },
                             progression: { progress in
             XCTAssertEqual(0.5, progress)
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 1)
-    }
-}
-
-// Equatable conformance is added here in order to be able to compare a download operation's error code.
-// Wrapped error values won't be compared.
-extension StoreProjectDownloaderError: Equatable {
-    public static func == (lhs: StoreProjectDownloaderError, rhs: StoreProjectDownloaderError) -> Bool {
-        switch (lhs, rhs) {
-        case (.request, .request), (.parse, .parse), (.unexpectedError, .unexpectedError):
-            return true
-        default:
-            return false
-        }
     }
 }

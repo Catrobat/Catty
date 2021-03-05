@@ -24,6 +24,7 @@
 
 final class CBFileManagerMock: CBFileManager {
     var dataWritten: [String: Data]
+    var downloadedProjectsStored: [String: String]
 
     private var existingFiles: [String]
     private var existingDirectories: [String]
@@ -33,6 +34,7 @@ final class CBFileManagerMock: CBFileManager {
         self.existingFiles = filePath
         self.existingDirectories = directoryPath
         self.dataWritten = [:]
+        self.downloadedProjectsStored = [:]
     }
 
     convenience init(zipData: Data) {
@@ -83,5 +85,10 @@ final class CBFileManagerMock: CBFileManager {
             existingFiles.append(path)
             dataWritten[path] = data
         }
+    }
+
+    override func storeDownloadedProject(_ data: Data!, withID projectId: String!, andName projectName: String!) -> Bool {
+        downloadedProjectsStored[projectId] = projectName
+        return true
     }
 }

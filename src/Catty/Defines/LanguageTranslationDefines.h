@@ -262,7 +262,6 @@
 #define kLocalizedEnterReason NSLocalizedString(@"Enter a reason", nil)
 #define kLocalizedLoginToReport NSLocalizedString(@"Please log in to report this project as inappropriate", nil)
 #define kLocalizedName NSLocalizedString(@"Name", nil)
-#define kLocalizedDownloaded NSLocalizedString(@"Download successful", nil)
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)
 #define kLocalizedOff NSLocalizedString(@"off", nil)
 #define kLocalizedOn NSLocalizedString(@"on", nil)
@@ -299,8 +298,6 @@
 
 #define kLocalizedAboutPocketCodeDescription NSLocalizedString(@"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:", nil)
 #define kLocalizedTermsOfUseDescription NSLocalizedString(@"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", nil)
-#define kLocalizedNotEnoughFreeMemoryDescription NSLocalizedString(@"Not enough free memory to download this project. Please delete some of your projects", nil)
-#define kLocalizedProjectNotFound NSLocalizedString(@"The requested project can not be found. Please choose a different one.", nil)
 #define kLocalizedInvalidZip NSLocalizedString(@"The requested project can not be loaded. Please try again later.", nil)
 #define kLocalizedEnterYourProjectNameHere NSLocalizedString(@"Enter your project name here...", @"Placeholder for project-name input field")
 #define kLocalizedEnterNameForImportedProjectTitle NSLocalizedString(@"Import File", @"Title of prompt shown when a *.catrobat file is imported from a third-party app.")

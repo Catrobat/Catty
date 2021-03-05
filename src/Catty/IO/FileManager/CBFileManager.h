@@ -24,23 +24,10 @@
 #import "ProjectLoadingInfo.h"
 #import "Project.h"
 
-@protocol CBFileManagerDelegate <NSObject>
-
-- (void) downloadFinishedWithURL:(NSURL*)url andProjectLoadingInfo:(ProjectLoadingInfo*)info;
-- (void) updateProgress:(double)progress;
-- (void) setBackDownloadStatus;
-- (void) timeoutReached;
-- (void) maximumFilesizeReached;
-- (void) fileNotFound;
-- (void) invalidZip;
-
-@end
-
-@interface CBFileManager : NSObject <NSURLSessionDelegate,NSURLSessionDownloadDelegate>
+@interface CBFileManager : NSObject
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
-@property (atomic, strong) NSURL* projectURL;
 
 + (instancetype)sharedManager;
 
@@ -60,9 +47,8 @@
 - (NSDate*)lastModificationTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist;
-- (void)downloadProjectFromURL:(NSURL*)url withProjectID:(NSString*)projectID andName:(NSString*)name;
+- (BOOL)storeDownloadedProject:(NSData *)data withID:(NSString*)projectId andName:(NSString*)projectName;
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
-- (void)stopLoading:(NSURL *)projecturl;
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path;
 - (uint64_t)freeDiskspace;

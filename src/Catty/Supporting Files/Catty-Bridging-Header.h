@@ -183,6 +183,7 @@
 #import "CatrobatTableViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "LoginViewController.h"
+#import "ProjectDetailStoreViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -192,6 +193,7 @@
 #import "ProjectDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatLanguageDefines.h"
+#import "ButtonTags.h"
 
 #import "BrickFormulaProtocol.h"
 
@@ -203,7 +205,6 @@
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "SegueDefines.h"
-#import "ProjectDetailStoreViewController.h"
 #import "DarkBlueGradientFeaturedCell.h"
 #import "DarkBlueGradientImageCell.h"
 #import "CBXMLParser.h"
@@ -231,3 +232,4 @@
 #import "CBXMLValidator.h"
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLPositionStack.h"
+#import "EVCircularProgressView.h"
