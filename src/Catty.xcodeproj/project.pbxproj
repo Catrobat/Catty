@@ -962,20 +962,12 @@
 		592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E92094B84900BD6000 /* DeviceSensor.swift */; };
 		593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		593624C51F76F374008A588D /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
-		593624C61F76F374008A588D /* HMSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A651F76F05000BD634F /* HMSegmentedControl.framework */; };
-		593624C81F76F374008A588D /* MXPagerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A671F76F05000BD634F /* MXPagerView.framework */; };
-		593624C91F76F374008A588D /* MXParallaxHeader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A681F76F05000BD634F /* MXParallaxHeader.framework */; };
-		593624CA1F76F374008A588D /* MXSegmentedPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A691F76F05000BD634F /* MXSegmentedPager.framework */; };
 		5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */; };
 		593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 593E4DDD1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
 		593F2F582532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json in Resources */ = {isa = PBXBuildFile; fileRef = 593F2F572532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json */; };
 		593F2F5C253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json in Resources */ = {isa = PBXBuildFile; fileRef = 593F2F5B253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json */; };
 		59473A611F76F04B00BD634F /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
-		59473A6B1F76F05000BD634F /* HMSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A651F76F05000BD634F /* HMSegmentedControl.framework */; };
-		59473A6D1F76F05000BD634F /* MXPagerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A671F76F05000BD634F /* MXPagerView.framework */; };
-		59473A6E1F76F05000BD634F /* MXParallaxHeader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A681F76F05000BD634F /* MXParallaxHeader.framework */; };
-		59473A6F1F76F05000BD634F /* MXSegmentedPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A691F76F05000BD634F /* MXSegmentedPager.framework */; };
 		5947F6D5200CF3C70079DBCE /* MediaLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5947F6D4200CF3C70079DBCE /* MediaLibraryViewController.swift */; };
 		5947F6D9200D08430079DBCE /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5947F6D8200D08430079DBCE /* MediaType.swift */; };
 		5947F6DE200D20040079DBCE /* MediaLibraryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5947F6DD200D20040079DBCE /* MediaLibraryCollectionViewDataSource.swift */; };
@@ -4296,11 +4288,7 @@
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
 				9EBAC31422A9BF47002E198D /* AudioKit.framework in Frameworks */,
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
-				593624C61F76F374008A588D /* HMSegmentedControl.framework in Frameworks */,
-				593624C81F76F374008A588D /* MXPagerView.framework in Frameworks */,
-				593624C91F76F374008A588D /* MXParallaxHeader.framework in Frameworks */,
 				9EED5F8A2337ED270032898E /* libchromaprint.a in Frameworks */,
-				593624CA1F76F374008A588D /* MXSegmentedPager.framework in Frameworks */,
 				4CBB5F0925EFCB8100DD08B2 /* Quick in Frameworks */,
 				593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */,
 			);
@@ -4318,12 +4306,8 @@
 				CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */,
 				4CFAC30825ADD89E00AF0DD1 /* Siren in Frameworks */,
 				59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */,
-				59473A6B1F76F05000BD634F /* HMSegmentedControl.framework in Frameworks */,
-				59473A6D1F76F05000BD634F /* MXPagerView.framework in Frameworks */,
-				59473A6E1F76F05000BD634F /* MXParallaxHeader.framework in Frameworks */,
 				4C4B4CC223ED94230054C861 /* FirebaseCrashlytics.framework in Frameworks */,
 				4C10D9DD23ED8DA900EB0C6E /* GoogleDataTransport.framework in Frameworks */,
-				59473A6F1F76F05000BD634F /* MXSegmentedPager.framework in Frameworks */,
 				4C36D6D923374FA200670D58 /* ZipArchive.framework in Frameworks */,
 				4C4B4CD323EE76370054C861 /* GoogleAppMeasurement.framework in Frameworks */,
 				4C10D9CA23ED8CDC00EB0C6E /* nanopb.framework in Frameworks */,
@@ -4530,7 +4514,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2EED39A825F0F0440051CE4D /* MXSegmentedControl.framework */,
 				4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */,
 				4C10D9E223ED8DF500EB0C6E /* PromisesObjC.framework */,
 				4C10D9DF23ED8DCF00EB0C6E /* FirebaseInstallations.framework */,
@@ -10656,8 +10639,8 @@
 			buildConfigurationList = CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "Catty Tests" */;
 			buildPhases = (
 				CA7698A61B0E4A97000D0340 /* Sources */,
-				CA7698A71B0E4A97000D0340 /* Frameworks */,
 				CA7698A81B0E4A97000D0340 /* Resources */,
+				CA7698A71B0E4A97000D0340 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -10729,7 +10712,6 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 8FL5R8726S;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -11401,27 +11383,19 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Bohr.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/HMSegmentedControl.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MXPagerView.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MXParallaxHeader.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MXSegmentedPager.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MXSegmentedControl.framework",
 			);
 			name = "Carthage Copy Frameworks Run Script";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Bohr.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HMSegmentedControl.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/M13ProgressSuite.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MXPagerView.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MXParallaxHeader.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MXSegmentedPager.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TTTAttributedLabel.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MXSegmentedControl.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
