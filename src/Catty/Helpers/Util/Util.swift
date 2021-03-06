@@ -95,4 +95,41 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
         let platformVersionWithoutPatch = "\(major).\(minor)" as String
         return platformVersionWithoutPatch
     }
+
+    class func screenSize(_ inPixel: Bool) -> CGSize {
+        var screenSize = inPixel ? UIScreen.main.nativeBounds.size : UIScreen.main.bounds.size
+
+        if inPixel && UIScreen.main.bounds.height == CGFloat(kIphone6PScreenHeight) {
+            let iPhonePlusDownsamplingFactor = CGFloat(1.15)
+            screenSize.height /= iPhonePlusDownsamplingFactor
+            screenSize.width /= iPhonePlusDownsamplingFactor
+        }
+
+        return screenSize
+    }
+
+    class func screenHeight(_ inPixel: Bool) -> CGFloat {
+        let screenHeight = self.screenSize(inPixel).height
+        return screenHeight
+    }
+
+    class func screenWidth(_ inPixel: Bool) -> CGFloat {
+        let screenWidth = self.screenSize(inPixel).width
+        return screenWidth
+    }
+
+    class func screenHeight() -> CGFloat {
+        let screenHeight = self.screenSize(false).height
+        return screenHeight
+    }
+
+    class func screenWidth() -> CGFloat {
+        let screenWidth = self.screenSize(false).width
+        return screenWidth
+    }
+
+    class func statusBarHeight() -> CGFloat {
+        let statusBarSize = UIApplication.shared.statusBarFrame.size
+        return min(statusBarSize.width, statusBarSize.height)
+    }
 }
