@@ -42,7 +42,7 @@ final class XMLParserBrickTests095: XMLAbstractTest {
             try ConvertExceptionToError.catchException {
                 SetVariableBrick.parse(from: xmlElement, with: self.parserContext)
             }) { error in
-            XCTAssertTrue(error.localizedDescription.contains(NSStringFromClass(CBXMLParserHelper.self)))
+            XCTAssertTrue(error.localizedDescription.contains("Invalid number of formulas found"))
         }
     }
 
@@ -86,7 +86,7 @@ final class XMLParserBrickTests095: XMLAbstractTest {
 
             }
             ) { error in
-            XCTAssertTrue(error.localizedDescription.contains(NSStringFromClass(CBXMLParserHelper.self)))
+            XCTAssertTrue(error.localizedDescription.contains("Invalid number of formulas found"))
         }
     }
 

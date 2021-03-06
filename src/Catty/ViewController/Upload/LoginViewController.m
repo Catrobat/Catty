@@ -301,7 +301,6 @@
 
         if (error) {
             if ([Util isNetworkError:error]) {
-                NSLog(@"ERROR: %@", error);
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.loginButton.enabled = YES;
