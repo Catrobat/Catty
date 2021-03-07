@@ -12758,7 +12758,6 @@
 				59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				4C4EE29D210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift in Sources */,
-				4C4EE29D210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift in Sources */,
 				6F348C85245499F1000C963B /* AppDelegate.swift in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
