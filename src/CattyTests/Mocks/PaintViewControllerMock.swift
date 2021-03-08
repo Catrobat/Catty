@@ -23,6 +23,7 @@
 @testable import Pocket_Code
 
 class PaintViewControllerMock: PaintViewController {
+    var manager: UndoManager!
 
     let navigationControllerMock: UINavigationController
 
@@ -37,6 +38,8 @@ class PaintViewControllerMock: PaintViewController {
         self.navigationControllerMock = navigationController
 
         super.init(coder: coder)
+
+        manager = UndoManager.init(drawViewCanvas: self)
 
         self.editingImage = editingImage
         self.helper = UIView()

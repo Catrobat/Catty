@@ -48,9 +48,20 @@
         // post notifications to update UI
     } else {
         [[self prepareWithInvocationTarget:self] setImage:(CIImage*)self.canvas.saveView.image];
-        //    self.canvas.helper.frame = CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, image.size.width, image.size.height);
-        //    self.canvas.saveView.frame = CGRectMake(self.canvas.saveView.frame.origin.x, self.canvas.saveView.frame.origin.y, image.size.width, image.size.height);
-        //    self.canvas.drawView.frame = CGRectMake(self.canvas.drawView.frame.origin.x, self.canvas.drawView.frame.origin.y, image.size.width, image.size.height);
+        
+        CGSize imageSize = image.size;
+        CGSize canvasSizes = self.canvas.helper.frame.size;
+        
+        if ((imageSize.height > imageSize.width && canvasSizes.height < canvasSizes.width) ||
+            (imageSize.height < imageSize.width && canvasSizes.height > canvasSizes.width)) {
+            CGFloat zoomScale = self.canvas.scrollView.zoomScale;
+            self.canvas.scrollView.zoomScale = 1.0;
+            self.canvas.saveView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+            self.canvas.drawView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+            self.canvas.helper.frame = CGRectMake(self.canvas.helper.frame.origin.x, self.canvas.helper.frame.origin.y, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+            self.canvas.scrollView.zoomScale = zoomScale;
+        }
+        
         self.canvas.saveView.image = image;
         [self.canvas.saveView setNeedsDisplay];
     }
