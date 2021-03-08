@@ -839,17 +839,19 @@ UITextFieldDelegate>
         PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
         if (status == PHAuthorizationStatusNotDetermined) {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                switch (status) {
-                    case PHAuthorizationStatusAuthorized:
-                        [self presentImagePicker:pickerType];
-                        break;
-                    case PHAuthorizationStatusRestricted:
-                        break;
-                    case PHAuthorizationStatusDenied:
-                        break;
-                    default:
-                        break;
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    switch (status) {
+                        case PHAuthorizationStatusAuthorized:
+                            [self presentImagePicker:pickerType];
+                            break;
+                        case PHAuthorizationStatusRestricted:
+                            break;
+                        case PHAuthorizationStatusDenied:
+                            break;
+                        default:
+                            break;
+                    }
+                });
             }];
         }else{
             state = YES;
