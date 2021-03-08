@@ -134,65 +134,74 @@
 
     @objc public static func registeredBrickCategories() -> [BrickCategory] {
         var categories = [
+            BrickCategory(type: kBrickCategoryType.embroideryBrick,
+                          name: kLocalizedCategoryEmbroidery,
+                          color: UIColor.embroideryBrickPink,
+                          strokeColor: UIColor.embroideryBrickStroke,
+                          enabled: isEmbroideryEnabled()),
+
+            BrickCategory(type: kBrickCategoryType.arduinoBrick,
+                          name: kLocalizedCategoryArduino,
+                          color: UIColor.arduinoBrick,
+                          strokeColor: UIColor.arduinoBrickStroke,
+                          enabled: isArduinoEnabled()),
+
             BrickCategory(type: kBrickCategoryType.eventBrick,
                           name: kLocalizedCategoryEvent,
                           color: UIColor.eventBrick,
-                          strokeColor: UIColor.eventBrickStroke),
+                          strokeColor: UIColor.eventBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.controlBrick,
                           name: kLocalizedCategoryControl,
                           color: UIColor.controlBrickOrange,
-                          strokeColor: UIColor.controlBrickStroke),
+                          strokeColor: UIColor.controlBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.motionBrick,
                           name: kLocalizedCategoryMotion,
                           color: UIColor.motionBrickBlue,
-                          strokeColor: UIColor.motionBrickStroke),
+                          strokeColor: UIColor.motionBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.lookBrick,
                           name: kLocalizedCategoryLook,
                           color: UIColor.lookBrickGreen,
-                          strokeColor: UIColor.lookBrickStroke),
+                          strokeColor: UIColor.lookBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.penBrick,
                           name: kLocalizedCategoryPen,
                           color: UIColor.penBrickGreen,
-                          strokeColor: UIColor.penBrickStroke),
+                          strokeColor: UIColor.penBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.soundBrick,
                           name: kLocalizedCategorySound,
                           color: UIColor.soundBrickViolet,
-                          strokeColor: UIColor.soundBrickStroke),
+                          strokeColor: UIColor.soundBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.dataBrick,
                           name: kLocalizedCategoryData,
                           color: UIColor.variableBrickRed,
-                          strokeColor: UIColor.variableBrickStroke)
+                          strokeColor: UIColor.variableBrickStroke,
+                          enabled: true)
         ]
 
         if isPhiroEnabled() {
             categories.prepend(BrickCategory(type: kBrickCategoryType.phiroBrick,
                                              name: kLocalizedCategoryPhiro,
                                              color: UIColor.phiroBrick,
-                                             strokeColor: UIColor.phiroBrickStroke))
-        }
-        if isArduinoEnabled() {
-            categories.prepend(BrickCategory(type: kBrickCategoryType.arduinoBrick,
-                                             name: kLocalizedCategoryArduino,
-                                             color: UIColor.arduinoBrick,
-                                             strokeColor: UIColor.arduinoBrickStroke))
-        }
-        if isEmbroideryEnabled() {
-            categories.prepend(BrickCategory(type: kBrickCategoryType.embroideryBrick,
-                                             name: kLocalizedCategoryEmbroidery,
-                                             color: UIColor.embroideryBrickPink,
-                                             strokeColor: UIColor.embroideryBrickStroke))
+                                             strokeColor: UIColor.phiroBrickStroke,
+                                             enabled: isPhiroEnabled()))
         }
         if isFavouritesCategoryAvailable() {
             categories.prepend(BrickCategory(type: kBrickCategoryType.favouriteBricks,
                                              name: kLocalizedCategoryFrequentlyUsed,
                                              color: UIColor.frequentlyUsedBricks,
-                                             strokeColor: UIColor.frequentlyUsedBricksStroke))
+                                             strokeColor: UIColor.frequentlyUsedBricksStroke,
+                                             enabled: isFavouritesCategoryAvailable()))
         }
 
         return categories

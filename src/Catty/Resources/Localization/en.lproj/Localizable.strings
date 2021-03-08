@@ -512,9 +512,6 @@
 "Download" = "Download";
 
 /* No comment provided by engineer. */
-"Download successful" = "Download successful";
-
-/* No comment provided by engineer. */
 "Downloads" = "Downloads";
 
 /* No comment provided by engineer. */
@@ -1154,9 +1151,6 @@
 "not available. Continue anyway?" = "not available. Continue anyway?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "Not enough Memory";
 
 /* No comment provided by engineer. */
@@ -1734,9 +1728,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "The recent projects cannot be loaded";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
