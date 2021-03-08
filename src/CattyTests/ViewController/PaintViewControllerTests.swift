@@ -184,6 +184,52 @@ final class PaintViewControllerTests: XCTestCase {
         XCTAssertEqual(paintViewControllerMock.helper.frame, frameHorizontal)
     }
 
+    func testRotateRight() {
+        let size = CGSize(width: CGFloat(100), height: CGFloat(150))
+        let image = createImage(size)
+
+        let frame = CGRect(x: 0, y: 0, width: floor(size.height), height: floor(size.width))
+        let frameRotate = CGRect(x: 0, y: 0, width: floor(size.width), height: floor(size.height))
+
+        guard let paintViewControllerMock = PaintViewControllerMock(editingImage: image, navigationController: navigationController) else { return }
+        guard let mirrorRotationZoomTool = paintViewControllerMock.mirrorRotationZoomTool else { return }
+
+        paintViewControllerMock.saveView.frame = frame
+        paintViewControllerMock.drawView.frame = frame
+        paintViewControllerMock.helper.frame = frame
+        paintViewControllerMock.saveView.image = image
+
+        mirrorRotationZoomTool.rotateRight()
+
+        XCTAssertEqual(paintViewControllerMock.saveView.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.drawView.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.helper.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.degrees, 90)
+    }
+
+    func testRotateLeft() {
+        let size = CGSize(width: CGFloat(100), height: CGFloat(150))
+        let image = createImage(size)
+
+        let frame = CGRect(x: 0, y: 0, width: floor(size.height), height: floor(size.width))
+        let frameRotate = CGRect(x: 0, y: 0, width: floor(size.width), height: floor(size.height))
+
+        guard let paintViewControllerMock = PaintViewControllerMock(editingImage: image, navigationController: navigationController) else { return }
+        guard let mirrorRotationZoomTool = paintViewControllerMock.mirrorRotationZoomTool else { return }
+
+        paintViewControllerMock.saveView.frame = frame
+        paintViewControllerMock.drawView.frame = frame
+        paintViewControllerMock.helper.frame = frame
+        paintViewControllerMock.saveView.image = image
+
+        mirrorRotationZoomTool.rotateLeft()
+
+        XCTAssertEqual(paintViewControllerMock.saveView.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.drawView.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.helper.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.degrees, -90)
+    }
+
     private func createImage(_ size: CGSize) -> UIImage {
         let rect = CGRect(origin: .zero, size: size)
 

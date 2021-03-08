@@ -42,4 +42,4 @@
 #import "ButtonTags.h"
 #import "RoundBorderedButton.h"
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
-
+#import "MirrorRotationZoomTool.h"
