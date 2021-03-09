@@ -169,11 +169,11 @@
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
-/* paint */
-"Blue" = "Blue";
-
 /* No comment provided by engineer. */
 "blue" = "blue";
+
+/* paint */
+"Blue" = "Blue";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
@@ -766,11 +766,11 @@
 /* No comment provided by engineer. */
 "Go to front" = "Go to front";
 
-/* paint */
-"Green" = "Green";
-
 /* No comment provided by engineer. */
 "green" = "green";
+
+/* paint */
+"Green" = "Green";
 
 /* No comment provided by engineer. */
 "Guitar" = "Guitar";
@@ -908,10 +908,10 @@
 "left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"length" = "length";
 
 /* No comment provided by engineer. */
-"length" = "length";
+"Length" = "Length";
 
 /* No comment provided by engineer. */
 "letter" = "letter";
@@ -961,11 +961,11 @@
 /* No comment provided by engineer. */
 "longitude" = "longitude";
 
-/* No comment provided by engineer. */
-"Look" = "Look";
-
 /* LOOK */
 "look" = "look";
+
+/* No comment provided by engineer. */
+"Look" = "Look";
 
 /* No comment provided by engineer. */
 "look name" = "look name";
@@ -995,6 +995,9 @@
 "Maths" = "Maths";
 
 /* No comment provided by engineer. */
+"Maximize" = "Maximize";
+
+/* No comment provided by engineer. */
 "May" = "May";
 
 /* No comment provided by engineer. */
@@ -1014,6 +1017,9 @@
 
 /* No comment provided by engineer. */
 "MI" = "MI";
+
+/* No comment provided by engineer. */
+"Minimize" = "Minimize";
 
 /* No comment provided by engineer. */
 "minute" = "minute";
@@ -1381,11 +1387,11 @@
 /* paint */
 "Rectangle / Square" = "Rectangle / Square";
 
-/* No comment provided by engineer. */
-"red" = "red";
-
 /* paint */
 "Red" = "Red";
+
+/* No comment provided by engineer. */
+"red" = "red";
 
 /* No comment provided by engineer. */
 "Register" = "Register";

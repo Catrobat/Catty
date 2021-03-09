@@ -240,6 +240,8 @@
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
 #define kLocalizedPreview NSLocalizedString(@"Preview", nil)
 #define kLocalizedAxes NSLocalizedString(@"Axes", @"Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
+#define kLocalizedMaximize NSLocalizedString(@"Maximize", nil)
+#define kLocalizedMinimize NSLocalizedString(@"Minimize", nil)
 #define kLocalizedMostDownloaded NSLocalizedString(@"Most downloaded", nil)
 #define kLocalizedMostViewed NSLocalizedString(@"Most viewed", nil)
 #define kLocalizedNewest NSLocalizedString(@"Newest", nil)
