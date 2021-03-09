@@ -24,6 +24,7 @@
 
 class PaintViewControllerMock: PaintViewController {
     var manager: UndoManager!
+    var mirrorRotationZoomTool: MirrorRotationZoomTool!
 
     let navigationControllerMock: UINavigationController
 
@@ -40,6 +41,7 @@ class PaintViewControllerMock: PaintViewController {
         super.init(coder: coder)
 
         manager = UndoManager.init(drawViewCanvas: self)
+        mirrorRotationZoomTool = MirrorRotationZoomTool.init(drawViewCanvas: self)
 
         self.editingImage = editingImage
         self.helper = UIView()
