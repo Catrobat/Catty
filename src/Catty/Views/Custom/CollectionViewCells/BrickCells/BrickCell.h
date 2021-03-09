@@ -46,6 +46,7 @@
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic) BOOL isInserting;
+@property (nonatomic) CGFloat maxInputFormulaFrameLength;
 
 @property (nonatomic, strong) SelectButton *selectButton;
 
@@ -60,6 +61,7 @@
 - (void)insertAnimate:(BOOL)animate;
 - (void)setupBrickCell;
 - (void)setupBrickCellinSelectionView:(BOOL)inSelectionView inBackground:(BOOL)inBackground;
+- (void)calcMaxInputFormulaFrameLength: (NSArray*) partLabels WithFrame:(CGRect)frame WithParams:(NSArray*)params;
 
 - (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 - (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className;
