@@ -58,7 +58,7 @@ class LogFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("log", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionLog, type(of: function).name)
     }
 
     func testRequiredResources() {

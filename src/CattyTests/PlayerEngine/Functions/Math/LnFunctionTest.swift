@@ -58,7 +58,7 @@ class LnFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("ln", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionLn, type(of: function).name)
     }
 
     func testRequiredResources() {

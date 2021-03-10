@@ -58,7 +58,7 @@ class AcosFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("arccos", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionAcos, type(of: function).name)
     }
 
     func testRequiredResources() {

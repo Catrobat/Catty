@@ -58,7 +58,7 @@ class CeilFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("ceil", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionCeil, type(of: function).name)
     }
 
     func testRequiredResources() {

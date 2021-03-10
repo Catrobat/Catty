@@ -58,7 +58,7 @@ class RoundFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("round", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionRound, type(of: function).name)
     }
 
     func testRequiredResources() {

@@ -40,11 +40,11 @@ class FormulaEditorSectionViewControllerTests: XCTestCase {
         app.collectionViews.cells.allElementsBoundByIndex[1].tap()
         app.buttons[kLocalizedEditFormula].tap()
 
-        app.buttons.staticTexts[kUIFEFunctions].tap()
-        waitForElementToAppear(app.tables.staticTexts["abs(1)"]).tap()
+        waitForElementToAppear(app.buttons.staticTexts[kUIFEFunctions]).tap()
+        waitForElementToAppear(app.tables.staticTexts["\(kUIFEFunctionAbs)(1)"]).tap()
 
         if let textViewText = app.textViews.element.value as? String {
-            XCTAssertEqual(textViewText, "abs( 1 )")
+            XCTAssertEqual(textViewText, "\(kUIFEFunctionAbs)( 1 )")
         } else {
             XCTFail("Could not find the textview.")
         }

@@ -67,7 +67,7 @@ class PowFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("power", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionPower, type(of: function).name)
     }
 
     func testRequiredResources() {

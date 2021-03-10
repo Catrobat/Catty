@@ -22,7 +22,7 @@
 
 class PowerFunction: DoubleParameterDoubleFunction {
     static var tag = "POWER"
-    static var name = "power"
+    static var name = kUIFEFunctionPower
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

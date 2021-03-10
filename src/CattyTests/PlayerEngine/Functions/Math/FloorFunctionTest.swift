@@ -58,7 +58,7 @@ class FloorFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("floor", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionFloor, type(of: function).name)
     }
 
     func testRequiredResources() {

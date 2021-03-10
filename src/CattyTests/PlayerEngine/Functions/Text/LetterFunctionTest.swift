@@ -93,7 +93,7 @@ class LetterFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("letter", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionLetter, type(of: function).name)
     }
 
     func testRequiredResources() {

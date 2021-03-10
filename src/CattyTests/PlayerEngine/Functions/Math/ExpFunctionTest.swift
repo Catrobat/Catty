@@ -58,7 +58,7 @@ class ExpFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("exp", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionExp, type(of: function).name)
     }
 
     func testRequiredResources() {
