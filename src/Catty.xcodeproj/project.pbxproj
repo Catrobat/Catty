@@ -866,7 +866,6 @@
 		4CDE4CF6203DBBF500B43034 /* SharkfoodMuteSwitchDetector.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */; };
 		4CDE4CF7203DBBF500B43034 /* EVCircularProgressView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDF203DBBF400B43034 /* EVCircularProgressView.license */; };
 		4CDE4CF8203DBBF500B43034 /* LCTableViewPickerControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */; };
-		4CDE4CF9203DBBF500B43034 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */; };
 		4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */; };
 		4CDE4CFC203DBC8100B43034 /* Siren.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFB203DBC8100B43034 /* Siren.license */; };
 		4CDE4CFE203DBCC100B43034 /* Kingfisher.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFD203DBCC100B43034 /* Kingfisher.license */; };
@@ -965,13 +964,11 @@
 		5921F2AB24F51F3B0044D936 /* BrickCellLookDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921F2AA24F51F3B0044D936 /* BrickCellLookDataTests.swift */; };
 		592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */; };
 		592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E92094B84900BD6000 /* DeviceSensor.swift */; };
-		593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		593624C51F76F374008A588D /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
 		5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */; };
 		593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 593E4DDD1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
 		593F2F582532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json in Resources */ = {isa = PBXBuildFile; fileRef = 593F2F572532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json */; };
 		593F2F5C253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json in Resources */ = {isa = PBXBuildFile; fileRef = 593F2F5B253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json */; };
-		59473A611F76F04B00BD634F /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
 		5947F6D5200CF3C70079DBCE /* MediaLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5947F6D4200CF3C70079DBCE /* MediaLibraryViewController.swift */; };
 		5947F6D9200D08430079DBCE /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5947F6D8200D08430079DBCE /* MediaType.swift */; };
@@ -1282,7 +1279,10 @@
 		92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324B1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m */; };
 		92FF32BD1A24E2F400093DA7 /* ProjectTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324E1A24E2F400093DA7 /* ProjectTableHeaderView.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
+		970F1BDC25FC399500558A3A /* ActiveLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 970F1BDB25FC399500558A3A /* ActiveLabel */; };
+		9719895925F7E82F00039DEA /* ActiveLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 9719895825F7E82F00039DEA /* ActiveLabel.license */; };
 		9728AE9E25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */; };
+		97629D5325F7C3C800B71B73 /* ActiveLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97629D4825F7C11D00B71B73 /* ActiveLabel.framework */; };
 		97AC582125C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json in Resources */ = {isa = PBXBuildFile; fileRef = 97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */; };
 		9797CB8325AF7A6000A50444 /* SceneTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */; };
 		97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */; };
@@ -2834,7 +2834,6 @@
 		4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SharkfoodMuteSwitchDetector.license; sourceTree = "<group>"; };
 		4CDE4CDF203DBBF400B43034 /* EVCircularProgressView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EVCircularProgressView.license; sourceTree = "<group>"; };
 		4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LCTableViewPickerControl.license; sourceTree = "<group>"; };
-		4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TTTAttributedLabel.license; sourceTree = "<group>"; };
 		4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MXSegmentedPager.license; sourceTree = "<group>"; };
 		4CDE4CFB203DBC8100B43034 /* Siren.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Siren.license; sourceTree = "<group>"; };
 		4CDE4CFD203DBCC100B43034 /* Kingfisher.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Kingfisher.license; sourceTree = "<group>"; };
@@ -2941,7 +2940,6 @@
 		593E4DE31FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LXReorderableCollectionViewFlowLayout.framework; path = Carthage/Build/iOS/LXReorderableCollectionViewFlowLayout.framework; sourceTree = "<group>"; };
 		593F2F572532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json; sourceTree = "<group>"; };
 		593F2F5B253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json; sourceTree = "<group>"; };
-		59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTAttributedLabel.framework; path = Carthage/Build/iOS/TTTAttributedLabel.framework; sourceTree = "<group>"; };
 		59473A641F76F05000BD634F /* Bohr.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bohr.framework; path = Carthage/Build/iOS/Bohr.framework; sourceTree = "<group>"; };
 		59473A651F76F05000BD634F /* HMSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HMSegmentedControl.framework; path = Carthage/Build/iOS/HMSegmentedControl.framework; sourceTree = "<group>"; };
 		59473A671F76F05000BD634F /* MXPagerView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXPagerView.framework; path = Carthage/Build/iOS/MXPagerView.framework; sourceTree = "<group>"; };
@@ -3449,6 +3447,7 @@
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		95088280A879E5F515D4569E /* fa-AF */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "fa-AF"; path = "fa-AF.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		95C607797206029F5B454A53 /* sw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sw; path = sw.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9719895825F7E82F00039DEA /* ActiveLabel.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActiveLabel.license; sourceTree = "<group>"; };
 		9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerReportExtension.swift; sourceTree = "<group>"; };
 		97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.fail.invalidToken.json; sourceTree = "<group>"; };
 		97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -4289,7 +4288,6 @@
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
 				9EED5F8A2337ED270032898E /* libchromaprint.a in Frameworks */,
 				4CBB5F0925EFCB8100DD08B2 /* Quick in Frameworks */,
-				593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4301,9 +4299,11 @@
 				4C10D9E323ED8DF500EB0C6E /* PromisesObjC.framework in Frameworks */,
 				4C10D9D423ED8CDC00EB0C6E /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				9ED1150E22C56DEF0035DB63 /* AudioKit.framework in Frameworks */,
+				970F1BDC25FC399500558A3A /* ActiveLabel in Frameworks */,
 				4C10D9D623ED8CDC00EB0C6E /* FIRAnalyticsConnector.framework in Frameworks */,
 				CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */,
 				4CFAC30825ADD89E00AF0DD1 /* Siren in Frameworks */,
+				97629D5325F7C3C800B71B73 /* ActiveLabel.framework in Frameworks */,
 				59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */,
 				4C4B4CC223ED94230054C861 /* FirebaseCrashlytics.framework in Frameworks */,
 				4C10D9DD23ED8DA900EB0C6E /* GoogleDataTransport.framework in Frameworks */,
@@ -4314,7 +4314,6 @@
 				4C10D9CC23ED8CDC00EB0C6E /* FirebaseCore.framework in Frameworks */,
 				4CFAC2F825ADD6C200AF0DD1 /* Kingfisher in Frameworks */,
 				4C10D9C823ED8CDC00EB0C6E /* GoogleUtilities.framework in Frameworks */,
-				59473A611F76F04B00BD634F /* TTTAttributedLabel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4513,6 +4512,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97629D4825F7C11D00B71B73 /* ActiveLabel.framework */,
 				4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */,
 				4C10D9E223ED8DF500EB0C6E /* PromisesObjC.framework */,
 				4C10D9DF23ED8DCF00EB0C6E /* FirebaseInstallations.framework */,
@@ -4539,7 +4539,6 @@
 				59473A671F76F05000BD634F /* MXPagerView.framework */,
 				59473A681F76F05000BD634F /* MXParallaxHeader.framework */,
 				59473A691F76F05000BD634F /* MXSegmentedPager.framework */,
-				59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */,
 				92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */,
 			);
 			name = Frameworks;
@@ -6775,10 +6774,10 @@
 				4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */,
 				4CDE4CD0203DBBF200B43034 /* SSZipArchive.license */,
 				4CDE4CFB203DBC8100B43034 /* Siren.license */,
-				4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */,
 				4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */,
 				4CDE4CD3203DBBF200B43034 /* UIViewController+KNSemiModal.license */,
 				4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */,
+				9719895825F7E82F00039DEA /* ActiveLabel.license */,
 			);
 			name = Licenses;
 			path = Resources/Licenses;
@@ -10671,6 +10670,7 @@
 			packageProductDependencies = (
 				4CFAC2F725ADD6C200AF0DD1 /* Kingfisher */,
 				4CFAC30725ADD89E00AF0DD1 /* Siren */,
+				970F1BDB25FC399500558A3A /* ActiveLabel */,
 			);
 			productName = AppScaffold;
 			productReference = CADBD7FB19B0E8C200C62836 /* Pocket Code.app */;
@@ -10797,6 +10797,7 @@
 				4CFAC2F625ADD6C200AF0DD1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4CFAC30625ADD89E00AF0DD1 /* XCRemoteSwiftPackageReference "Siren" */,
 				4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */,
+				970F1BDA25FC399500558A3A /* XCRemoteSwiftPackageReference "ActiveLabel" */,
 			);
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
@@ -11265,7 +11266,6 @@
 				9EC5206124FC03E80029CD0E /* piano-72.wv in Resources */,
 				9EC5208524FC04EA0029CD0E /* cello-36.wv in Resources */,
 				4CDE4CF5203DBBF500B43034 /* UIImage+FloodFill.license in Resources */,
-				4CDE4CF9203DBBF500B43034 /* TTTAttributedLabel.license in Resources */,
 				9EC520B424FC063D0029CD0E /* saxophone-60.wv in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				4C33F214214BC0680014044C /* Document-Icon.png in Resources */,
@@ -11360,6 +11360,7 @@
 				9E5DFD08250574380049265C /* 22-drums.sfz in Resources */,
 				4C0EEE6C23F423E9005340B2 /* GoogleService-Info.plist in Resources */,
 				9EC5208F24FC04EB0029CD0E /* guitar-60.wv in Resources */,
+				9719895925F7E82F00039DEA /* ActiveLabel.license in Resources */,
 				9EC5206824FC03E80029CD0E /* organ.sfz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11376,14 +11377,11 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Bohr.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
 			);
 			name = "Carthage Copy Frameworks Run Script";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Bohr.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/M13ProgressSuite.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TTTAttributedLabel.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -13396,6 +13394,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREFIX_HEADER = "Catty/Supporting Files/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -13522,6 +13521,14 @@
 				version = 5.5.1;
 			};
 		};
+		970F1BDA25FC399500558A3A /* XCRemoteSwiftPackageReference "ActiveLabel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/optonaut/ActiveLabel.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -13549,6 +13556,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4CFAC30625ADD89E00AF0DD1 /* XCRemoteSwiftPackageReference "Siren" */;
 			productName = Siren;
+		};
+		970F1BDB25FC399500558A3A /* ActiveLabel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 970F1BDA25FC399500558A3A /* XCRemoteSwiftPackageReference "ActiveLabel" */;
+			productName = ActiveLabel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

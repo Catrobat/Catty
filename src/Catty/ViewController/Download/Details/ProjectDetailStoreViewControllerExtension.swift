@@ -19,6 +19,7 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+import ActiveLabel
 
 let kHTMLATagPattern = "(?i)<a([^>]+)>(.+?)</a>"
 let kHTMLAHrefTagPattern = "href=\"(.*?)\""
@@ -113,7 +114,7 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         let y = labelBounds.size.height.rounded(.up)
         let expectedSize = CGSize(width: x, height: y)
 
-        let descriptionLabel = TTTAttributedLabel(frame: CGRect.zero)
+        let descriptionLabel = ActiveLabel()
         if height == CGFloat(kIpadScreenHeight) {
             descriptionLabel.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: height * 0.35 + 40, width: 540, height: expectedSize.height)
         } else {
@@ -121,10 +122,13 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         }
 
         self.configureDescriptionLabel(descriptionLabel)
-        descriptionLabel.delegate = target as? TTTAttributedLabelDelegate
         descriptionLabel.text = description
 
         descriptionLabel.frame = CGRect(x: descriptionLabel.frame.origin.x, y: descriptionLabel.frame.origin.y, width: descriptionLabel.frame.size.width, height: expectedSize.height)
+        descriptionLabel.URLColor = UIColor.navBar
+
+        descriptionLabel.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
+
         view?.addSubview(descriptionLabel)
         self.setMaxHeightIfGreaterFor(view, withHeight: height * 0.35 + 40 + expectedSize.height)
         return descriptionLabel.frame.size.height
@@ -391,13 +395,11 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         }
     }
 
-    private func configureDescriptionLabel(_ label: TTTAttributedLabel) {
+    private func configureDescriptionLabel(_ label: ActiveLabel) {
         let height = ProjectDetailStoreViewController.height
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
         self.configureTextLabel(label, andHeight: height)
-        label.enabledTextCheckingTypes = NSTextCheckingAllTypes
-        label.verticalAlignment = TTTAttributedLabelVerticalAlignment.top
 
         var mutableLinkAttributes: [AnyHashable: Any] = [:]
         mutableLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.textTint
@@ -406,8 +408,5 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         var mutableActiveLinkAttributes: [AnyHashable: Any] = [:]
         mutableActiveLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.brown
         mutableActiveLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: false)
-
-        label.linkAttributes = mutableLinkAttributes
-        label.activeLinkAttributes = mutableActiveLinkAttributes
     }
 }
