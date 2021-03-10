@@ -172,6 +172,14 @@ extension UIColor {
         self.background
     }
 
+    static var navBarButton: UIColor {
+        self.light
+    }
+
+    static var navBarButtonHighlighted: UIColor {
+        self.light.withAlphaComponent(0.45)
+    }
+
     static var toolBar: UIColor {
         self.navBar
     }
