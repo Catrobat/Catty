@@ -35,4 +35,49 @@ final class BrickCellFormulaDataTests: XCTestCase {
 
         expect(formulaData.save(formula)).to(postNotifications(contain(expectedNotification)))
     }
+
+    func testCalcMaxInputFormulaFrameLengthWithOneFormula() {
+        let brickCell = BrickCell()
+        brickCell.maxInputFormulaFrameLength = 0
+
+        let partLabels = ["x: ", "y: ", ""]
+        let frame = CGRect(origin: CGPoint(x: 0, y: 30), size: CGSize(width: 321, height: 30))
+        let params = ["{FLOAT;range=(-inf,inf)}", ""]
+
+        XCTAssertEqual(brickCell.maxInputFormulaFrameLength, 0)
+
+        brickCell.calcMaxInputFormulaFrameLength(partLabels, withFrame: frame, withParams: params)
+
+        XCTAssertEqual(brickCell.maxInputFormulaFrameLength, 259, accuracy: 0.1)
+    }
+
+    func testCalcMaxInputFormulaFrameLengthWithTwoFormula() {
+        let brickCell = BrickCell()
+        brickCell.maxInputFormulaFrameLength = 0
+
+        let partLabels = ["x: ", "y: ", ""]
+        let frame = CGRect(origin: CGPoint(x: 0, y: 30), size: CGSize(width: 321, height: 30))
+        let params = ["{FLOAT;range=(-inf,inf)}", "{INT;range=(-inf,inf)}"]
+
+        XCTAssertEqual(brickCell.maxInputFormulaFrameLength, 0)
+
+        brickCell.calcMaxInputFormulaFrameLength(partLabels, withFrame: frame, withParams: params)
+
+        XCTAssertEqual(brickCell.maxInputFormulaFrameLength, 129.5, accuracy: 0.1)
+    }
+
+    func testCalcMaxInputFormulaFrameLengthWithoutFormula() {
+        let brickCell = BrickCell()
+        brickCell.maxInputFormulaFrameLength = 0
+
+        let partLabels = ["x: ", "y: ", ""]
+        let frame = CGRect(origin: CGPoint(x: 0, y: 30), size: CGSize(width: 321, height: 30))
+        let params = ["", ""]
+
+        XCTAssertEqual(brickCell.maxInputFormulaFrameLength, 0)
+
+        brickCell.calcMaxInputFormulaFrameLength(partLabels, withFrame: frame, withParams: params)
+
+        XCTAssertEqual(brickCell.maxInputFormulaFrameLength, 0)
+    }
 }
