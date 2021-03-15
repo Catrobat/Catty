@@ -48,7 +48,7 @@ class PrivacyPolicyViewController: UIViewController {
     }
 
     @IBAction private func disagreeButtonAction(_ sender: UIButton) {
-        Util.alert(withText: kLocalizedPrivacyPolicyDenyText)
+        Util.alert(text: kLocalizedPrivacyPolicyDenyText)
     }
 
     @IBAction private func acceptButtonAction(_ sender: UIButton) {

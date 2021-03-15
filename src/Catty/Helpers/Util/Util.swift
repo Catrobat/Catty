@@ -50,6 +50,18 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
         return appBuildVersion
     }
 
+    @objc(alertWithText:)
+    class func alert(text: String) {
+        alert(title: kLocalizedPocketCode, text: text)
+    }
+
+    @objc(alertWithTitle:andText:)
+    class func alert(title: String, text: String) {
+        AlertControllerBuilder.alert(title: title, message: text)
+            .addCancelAction(title: kLocalizedOK, handler: nil)
+            .build().showWithController(Util.topmostViewController())
+    }
+
     class func catrobatLanguageVersion() -> String {
         let catrobatLanguageVersion = Bundle.main.infoDictionary?["CatrobatLanguageVersion"] as! String
         return catrobatLanguageVersion
@@ -70,6 +82,26 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
         return deviceName
     }
 
+    class func defaultAlertForNetworkError() {
+        if Thread.isMainThread {
+            alert(text: kLocalizedErrorInternetConnection)
+        } else {
+            DispatchQueue.main.async(execute: {
+                Util.defaultAlertForNetworkError()
+            })
+        }
+    }
+
+    class func defaultAlertForUnknownError() {
+        if Thread.isMainThread {
+            alert(text: kLocalizedErrorUnknown)
+        } else {
+            DispatchQueue.main.async(execute: {
+                Util.defaultAlertForUnknownError()
+            })
+        }
+    }
+
     class func platformName() -> String? {
         let platformName = Bundle.main.infoDictionary?["CatrobatPlatformName"] as? String
         return platformName
@@ -88,6 +120,7 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
         let platformVersionWithPatch = "\(major).\(minor).\(patch)" as String
         return platformVersionWithPatch
     }
+
     class func platformVersionWithoutPatch() -> String {
         let os = self.platformVersion()
         let major = String(format: "%ld", os.majorVersion)
@@ -131,5 +164,51 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     class func statusBarHeight() -> CGFloat {
         let statusBarSize = UIApplication.shared.statusBarFrame.size
         return min(statusBarSize.width, statusBarSize.height)
+    }
+
+    class func showNotification(withMessage message: String?) {
+        guard let hud = BDKNotifyHUD(image: nil, text: message) else {
+            return
+        }
+
+        let vc = Util.topmostViewController()
+        if vc.view == nil {
+            return
+        }
+
+        hud.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
+        hud.center = CGPoint(x: vc.view.center.x, y: vc.view.center.y)
+
+        vc.view.addSubview(hud)
+        hud.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
+                    speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
+                    in: vc.view,
+                    completion: {
+                        hud.removeFromSuperview()
+                    })
+    }
+
+    class func showNotificationForSaveAction() {
+        guard let hud = BDKNotifyHUD(image: UIImage(named: kBDKNotifyHUDCheckmarkImageName), text: kLocalizedSaved) else {
+            return
+        }
+
+        let vc = Util.topmostViewController()
+        if vc.view == nil {
+            return
+        }
+
+        hud.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
+        hud.center = CGPoint(x: vc.view.center.x,
+                             y: vc.view.center.y + CGFloat(kBDKNotifyHUDCenterOffsetY))
+        hud.tag = Int(kSavedViewTag)
+
+        vc.view.addSubview(hud)
+        hud.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
+                    speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
+                    in: vc.view,
+                    completion: {
+                        hud.removeFromSuperview()
+                    })
     }
 }

@@ -55,10 +55,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (UIViewController* _Nonnull)topmostViewController;
 
-+ (void)alertWithText:(NSString* _Nullable)text;
-
-+ (void)alertWithTitle:(NSString* _Nullable)title andText:(NSString* _Nullable)text;
-
 + (void)askUserForVariableNameAndPerformAction:(SEL _Nullable)action
                                         target:(id _Nullable)target
                                    promptTitle:(NSString* _Nullable)title
@@ -115,10 +111,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSString* _Nullable)uniqueName:(NSString* _Nullable)nameToCheck existingNames:(NSArray* _Nullable)existingNames;
 
-+ (void)showNotificationWithMessage:(NSString* _Nullable)message;
-
-+ (void)showNotificationForSaveAction;
-
 + (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString* _Nullable)xmlPath;
 
 + (double)radiansToDegree:(double)rad;
@@ -138,10 +130,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 + (NSMutableOrderedSet* _Nullable)allMessagesForProject:(Project* _Nonnull)project;
 
 + (BOOL)isNetworkError:(NSError* _Nullable)error;
-
-+ (void)defaultAlertForNetworkError;
-
-+ (void)defaultAlertForUnknownError;
 
 + (NSDictionary* _Nullable)getBrickInsertionDictionaryFromUserDefaults;
 

@@ -372,7 +372,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
 
     @objc func checkProjectAction() {
         if projectNameTextField.text!.isEmpty {
-            Util.alert(withText: kLocalizedUploadProjectNecessary)
+            Util.alert(text: kLocalizedUploadProjectNecessary)
             return
         }
 
@@ -415,7 +415,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
                                     case .unexpectedError, .timeout:
                                         Util.defaultAlertForNetworkError()
                                     case .zippingError, .invalidProject, .request:
-                                        Util.alert(withText: kLocalizedUploadProblem)
+                                        Util.alert(text: kLocalizedUploadProblem)
                                     case .authenticationFailed:
                                         UserDefaults.standard.set(false, forKey: NetworkDefines.kUserIsLoggedIn)
 

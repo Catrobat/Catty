@@ -26,7 +26,7 @@ import Foundation
 extension ProjectDetailStoreViewController {
     func reportProject() {
         guard UserDefaults.standard.bool(forKey: NetworkDefines.kUserIsLoggedIn) else {
-            Util.alert(withText: kLocalizedLoginToReport)
+            Util.alert(text: kLocalizedLoginToReport)
             return
         }
 
@@ -35,7 +35,7 @@ extension ProjectDetailStoreViewController {
             .addDefaultActionWithTitle(kLocalizedOK, handler: {report in
                 let isValidInput = self.validateInput(input: report)
                 guard isValidInput.valid else {
-                    Util.alert(withText: isValidInput.localizedMessage)
+                    Util.alert(text: isValidInput.localizedMessage!)
                     return
                 }
                 self.sendReport(message: report)
@@ -53,13 +53,13 @@ extension ProjectDetailStoreViewController {
                     Util.defaultAlertForNetworkError()
                     self.hideLoadingView()
                 } else {
-                    Util.alert(withText: kLocalizedProjectNotReported)
+                    Util.alert(text: kLocalizedProjectNotReported)
                 }
                 return
             }
 
             DispatchQueue.main.async(execute: {
-                Util.alert(withText: kLocalizedReportedProject)
+                Util.alert(text: kLocalizedReportedProject)
             })
         })
     }
