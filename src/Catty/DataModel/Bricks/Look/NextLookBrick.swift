@@ -20,26 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PreviousLookBrick+CBXMLHandler.h"
-#import "CBXMLParserHelper.h"
-#import "GDataXMLElement+CustomExtensions.h"
-#import "CBXMLParserContext.h"
-#import "CBXMLSerializerContext.h"
-#import "CBXMLSerializerHelper.h"
-#import "Pocket_Code-Swift.h"
+@objc(NextLookBrick)
+@objcMembers class NextLookBrick: Brick, BrickProtocol {
+    override public required init() {
+        super.init()
+    }
 
-@implementation PreviousLookBrick (CBXMLHandler)
+    func path(for look: Look) -> String? {
+        look.path(for: script.object.scene)
+    }
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
-{
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-    return [self new]; // nothing else to do!
+    func category() -> kBrickCategoryType {
+        kBrickCategoryType.lookBrick
+    }
+
+    override func description() -> String {
+        "Nextlookbrick"
+    }
+
+    override func brickCell() -> BrickCellProtocol.Type {
+        NextLookBrickCell.self as BrickCellProtocol.Type
+    }
+
+    override func getRequiredResources() -> Int {
+        ResourceType.noResources.rawValue
+    }
 }
-
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
-{
-    GDataXMLElement *brick = [super xmlElementForBrickType:@"PreviousLookBrick" withContext:context];
-    return brick;
-}
-
-@end

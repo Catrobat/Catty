@@ -20,26 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NextLookBrick+CBXMLHandler.h"
-#import "CBXMLParserHelper.h"
-#import "GDataXMLElement+CustomExtensions.h"
-#import "CBXMLParserContext.h"
-#import "CBXMLSerializerContext.h"
-#import "CBXMLSerializerHelper.h"
-#import "Pocket_Code-Swift.h"
+extension PreviousLookBrick: CBXMLNodeProtocol {
+    static func parse(from xmlElement: GDataXMLElement!, with context: CBXMLParserContext!) -> Self! {
+        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 0)
+        return self.init()
+    }
 
-@implementation NextLookBrick (CBXMLHandler)
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
-{
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-    return [self new]; // nothing else to do!
+    func xmlElement(with context: CBXMLSerializerContext!) -> GDataXMLElement! {
+        let brick = super.xmlElement(for: "PreviousLookBrick", with: context)
+        return brick
+    }
 }
-
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
-{
-    GDataXMLElement *brick = [super xmlElementForBrickType:@"NextLookBrick" withContext:context];
-    return brick;
-}
-
-@end
