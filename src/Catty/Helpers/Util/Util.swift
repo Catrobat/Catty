@@ -62,6 +62,36 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
             .build().showWithController(Util.topmostViewController())
     }
 
+    @objc(allMessagesForProject:)
+    class func allMessages(for project: Project) -> NSOrderedSet {
+        guard let allBroadcastMessages = project.allBroadcastMessages?.array else {
+            return []
+        }
+        let messages = NSMutableOrderedSet(array: allBroadcastMessages)
+
+        for object in project.allObjects() {
+            for script in object.scriptList {
+                if let broadcastScript = script as? BroadcastScript {
+                    if let receivedMessage = broadcastScript.receivedMessage {
+                        messages.add(receivedMessage)
+                    }
+                }
+                if let script = script as? Script {
+                    for brick in script.brickList {
+                        if let broadcastBrick = brick as? BroadcastBrick {
+                            messages.add(broadcastBrick.broadcastMessage)
+                        } else if let broadcastBrick = brick as? BroadcastWaitBrick {
+                            messages.add(broadcastBrick.broadcastMessage)
+                        }
+                    }
+                }
+            }
+        }
+
+        // Return immutable set, because adding items afterwards would have no effect
+        return NSOrderedSet(orderedSet: messages)
+    }
+
     class func catrobatLanguageVersion() -> String {
         let catrobatLanguageVersion = Bundle.main.infoDictionary?["CatrobatLanguageVersion"] as! String
         return catrobatLanguageVersion
@@ -100,6 +130,30 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
                 Util.defaultAlertForUnknownError()
             })
         }
+    }
+
+    @objc(lookWithName:forObject:)
+    class func look(with name: String, for object: SpriteObject) -> Look? {
+        guard let lookList = object.lookList else {
+            return nil
+        }
+
+        for look in lookList {
+            if let look = look as? Look, look.name == name {
+                return look
+            }
+        }
+
+        return nil
+    }
+
+    @objc(objectWithName:forScene:)
+    class func object(with name: String, for scene: Scene) -> SpriteObject? {
+        for object in scene.objects() where object.name == name {
+            return object
+        }
+
+        return nil
     }
 
     class func platformName() -> String? {
@@ -210,5 +264,20 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
                     completion: {
                         hud.removeFromSuperview()
                     })
+    }
+
+    @objc(soundWithName:forObject:)
+    class func sound(with name: String, for object: SpriteObject) -> Sound? {
+        guard let soundList = object.soundList else {
+            return nil
+        }
+
+        for sound in soundList {
+            if let sound = sound as? Sound, sound.name == name {
+                return sound
+            }
+        }
+
+        return nil
     }
 }
