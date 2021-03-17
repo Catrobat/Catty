@@ -72,7 +72,7 @@ final class SetLookBrickTests: AbstractBrickTest {
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
         XCTAssertFalse(brick === copiedBrick)
-        XCTAssertTrue(brick.look.isEqual(copiedBrick.look))
+        XCTAssertTrue(brick.look!.isEqual(copiedBrick.look))
         XCTAssertTrue(copiedBrick.look === brick.look)
     }
 
@@ -144,5 +144,25 @@ final class SetLookBrickTests: AbstractBrickTest {
         XCTAssertEqual(lookA, spriteNode.currentLook)
         XCTAssertEqual(1, imageCacheMock.loadImageFromDiskCalledPaths.count)
         XCTAssertEqual(lookWithInvalidPath.path(for: scene), imageCacheMock.loadImageFromDiskCalledPaths.first!)
+    }
+
+    func testIsEqualReturnTrue() {
+        let brick1 = SetLookBrick()
+        brick1.look = lookA
+
+        let brick2 = SetLookBrick()
+        brick2.look = lookA
+
+        XCTAssertTrue(brick1.isEqual(to: brick2))
+    }
+
+    func testIsEqualReturnFalse() {
+        let brick1 = SetLookBrick()
+        brick1.look = lookA
+
+        let brick2 = SetBackgroundBrick()
+        brick2.look = lookA
+
+        XCTAssertFalse(brick1.isEqual(to: brick2))
     }
 }

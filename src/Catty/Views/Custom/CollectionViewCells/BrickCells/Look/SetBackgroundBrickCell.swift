@@ -20,33 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetBackgroundBrickCell.h"
+@objc(SetBackgroundBrickCell)
+class SetBackgroundBrickCell: BrickCell, BrickCellProtocol {
 
-@interface SetBackgroundBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+    public var lookComboBox: iOSCombobox?
+    public var textLabel: UILabel?
 
-@implementation SetBackgroundBrickCell
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight2h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.lookComboBox = inlineViewSubViews[1] as? iOSCombobox
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetBackground.appending("\n%@")
+    }
+
+    override func parameters() -> [String] {
+        ["{BACKGROUND}"]
+    }
 }
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-    self.lookComboBoxView = inlineViewSubViews[1];
-}
-
-- (NSArray<NSString*>*)parameters
-{
-    return [[NSArray alloc] initWithObjects:@"{BACKGROUND}", nil];
-}
-
-- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
-{
-    return [kLocalizedSetBackground stringByAppendingString:@"\n%@"];
-}
-
-@end
