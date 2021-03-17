@@ -29,16 +29,12 @@
         super.init()
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.lookBrick
-    }
-
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override public required init() {
         super.init()
+    }
+
+    func category() -> kBrickCategoryType {
+        kBrickCategoryType.lookBrick
     }
 
     override func isDisabledForBackground() -> Bool {
