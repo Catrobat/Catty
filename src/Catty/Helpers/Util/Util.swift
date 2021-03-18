@@ -277,7 +277,6 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
                 return sound
             }
         }
-
         return nil
     }
 }
