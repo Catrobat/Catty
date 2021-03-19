@@ -88,7 +88,7 @@ class JoinFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("join", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionJoin, type(of: function).name)
     }
 
     func testRequiredResources() {

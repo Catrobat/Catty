@@ -83,7 +83,7 @@ class ContainsFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("contains", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionContains, type(of: function).name)
     }
 
     func testRequiredResources() {

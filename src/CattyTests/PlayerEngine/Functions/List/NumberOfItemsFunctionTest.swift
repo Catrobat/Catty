@@ -79,7 +79,7 @@ class NumberOfItemsFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("number_of_items", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionNumberOfItems, type(of: function).name)
     }
 
     func testRequiredResources() {

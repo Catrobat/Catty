@@ -23,7 +23,7 @@
 class CeilFunction: SingleParameterDoubleFunction {
 
     static var tag = "CEIL"
-    static var name = "ceil"
+    static var name = kUIFEFunctionCeil
     static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

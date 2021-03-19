@@ -51,7 +51,7 @@ class PiFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("pi", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionPi, type(of: function).name)
     }
 
     func testRequiredResources() {

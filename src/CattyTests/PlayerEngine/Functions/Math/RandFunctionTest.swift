@@ -130,7 +130,7 @@ class RandFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("random", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionRand, type(of: function).name)
     }
 
     func testRequiredResources() {

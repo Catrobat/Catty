@@ -22,7 +22,7 @@
 
 class TrueFunction: ZeroParameterDoubleFunction {
     static var tag = "TRUE"
-    static var name = "true"
+    static var name = kUIFEFunctionTrue
     static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

@@ -22,7 +22,7 @@
 
 class RegularExpressionFunction: DoubleParameterStringFunction {
     static var tag = "REGEX"
-    static var name = "regex"
+    static var name = kUIFEFunctionRegularExpression
     static var defaultValue = ""
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

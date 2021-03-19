@@ -58,7 +58,7 @@ class CosFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("cos", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionCosine, type(of: function).name)
     }
 
     func testRequiredResources() {

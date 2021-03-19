@@ -58,7 +58,7 @@ class TanFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("tan", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionTan, type(of: function).name)
     }
 
     func testRequiredResources() {

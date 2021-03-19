@@ -58,7 +58,7 @@ class AsinFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("arcsin", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionAsin, type(of: function).name)
     }
 
     func testRequiredResources() {

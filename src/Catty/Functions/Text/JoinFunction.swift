@@ -22,7 +22,7 @@
 
 class JoinFunction: DoubleParameterStringFunction {
     static var tag = "JOIN"
-    static var name = "join"
+    static var name = kUIFEFunctionJoin
     static var defaultValue = ""
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

@@ -23,7 +23,7 @@
 class SqrtFunction: SingleParameterDoubleFunction {
 
     static var tag = "SQRT"
-    static var name = "sqrt"
+    static var name = kUIFEFunctionSqrt
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
