@@ -116,14 +116,14 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
         XCTAssertFalse(brick === copiedBrick)
 
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: copiedBrick.changeBrightness))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: copiedBrick.changeBrightness))
         XCTAssertFalse(brick.changeBrightness === copiedBrick.changeBrightness)
 
         brick.changeBrightness = Formula(integer: 50)
 
         copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeBrightnessByNBrick
 
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: copiedBrick.changeBrightness))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: copiedBrick.changeBrightness))
         XCTAssertFalse(brick.changeBrightness === copiedBrick.changeBrightness)
     }
 
@@ -131,15 +131,15 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         brick.changeBrightness = Formula(integer: 1)
         var formulas = brick.getFormulas()
 
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: formulas?[0]))
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: Formula(integer: 1)))
-        XCTAssertFalse(brick.changeBrightness.isEqual(to: Formula(integer: -22)))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: Formula(integer: 1)))
+        XCTAssertFalse(brick.changeBrightness!.isEqual(to: Formula(integer: -22)))
 
         brick.changeBrightness = Formula(integer: -22)
         formulas = brick.getFormulas()
 
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: formulas?[0]))
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: Formula(integer: -22)))
-        XCTAssertFalse(brick.changeBrightness.isEqual(to: Formula(integer: 1)))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: Formula(integer: -22)))
+        XCTAssertFalse(brick.changeBrightness!.isEqual(to: Formula(integer: 1)))
     }
 }
