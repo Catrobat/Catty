@@ -30,6 +30,8 @@ import Foundation
     var engineOutputMixer = AKMixer()
     var postProcessingMixer = AKMixer()
 
+    var tempo = Int()
+
     var subtrees = [String: AudioSubtree]()
     let subtreeCreationQueue = DispatchQueue(label: "SubtreeCreationQueue")
     let audioPlayerFactory: AudioPlayerFactory
@@ -139,6 +141,12 @@ import Foundation
     func setInstrument(_ instrument: Instrument, key: String) {
         let subtree = getSubtree(key: key)
         subtree.setInstrument(instrument)
+    }
+
+    func setTempo(tempo: Int) {
+        self.tempo = tempo
+        if self.tempo < 20 { self.tempo = 20 }
+        if self.tempo > 500 { self.tempo = 500 }
     }
 
     private func getSubtree(key: String) -> AudioSubtree {

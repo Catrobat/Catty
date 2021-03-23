@@ -452,6 +452,7 @@ let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", bundle: Bundl
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChangeVolumeBy = NSLocalizedString("Change volume by", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetInstrumentTo = NSLocalizedString("Set Instrument to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetTempoTo = NSLocalizedString("Set tempo to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSay = NSLocalizedString("Say", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedThink = NSLocalizedString("Think", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", bundle: Bundle(for: LanguageTranslation.self), comment: "")

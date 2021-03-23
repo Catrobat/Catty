@@ -105,6 +105,7 @@
             SetVolumeToBrick(),
             ChangeVolumeByNBrick(),
             SetInstrumentBrick(),
+            SetTempoToBrick(),
             // variable bricks
             SetVariableBrick(),
             ChangeVariableBrick(),
