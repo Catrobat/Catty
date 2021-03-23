@@ -271,6 +271,11 @@
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
 #define kLocalizedMoreInformation NSLocalizedString(@"More information", nil)
 #define kLocalizedScene NSLocalizedString(@"Scene", nil)
+#define kLocalizedAppSettingSection NSLocalizedString(@"APP SETTINGS", nil)
+#define kLocalizedAboutSection NSLocalizedString(@"ABOUT", nil)
+#define kLocalizedPrivacySection NSLocalizedString(@"PRIVACY", nil)
+#define kLocalizedMoreSection NSLocalizedString(@"MORE", nil)
+
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

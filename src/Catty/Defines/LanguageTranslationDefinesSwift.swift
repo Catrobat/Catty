@@ -271,6 +271,11 @@ let kLocalizedCameraBack = NSLocalizedString("back", comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", comment: "")
 let kLocalizedMoreInformation = NSLocalizedString("More information", comment: "")
 let kLocalizedScene = NSLocalizedString("Scene", comment: "")
+let kLocalizedAppSettingSection = NSLocalizedString("APP SETTINGS", comment: "")
+let kLocalizedAboutSection = NSLocalizedString("ABOUT", comment: "")
+let kLocalizedPrivacySection = NSLocalizedString("PRIVACY", comment: "")
+let kLocalizedMoreSection = NSLocalizedString("MORE", comment: "")
+
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

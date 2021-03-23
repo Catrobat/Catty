@@ -378,6 +378,9 @@
 		46E271E7256D3205005DF607 /* TextInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E271E6256D3205005DF607 /* TextInputViewControllerTests.swift */; };
 		46E9E4A425AF53A100027D28 /* CircleShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E9E4A325AF53A100027D28 /* CircleShapeNode.swift */; };
 		46F1754E24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */; };
+		4B1AEC7C2609AC4100C6D2D7 /* SettingToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AEC7B2609AC4100C6D2D7 /* SettingToggleView.swift */; };
+		4B7955BE2609A08A005A2F43 /* AppSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7955BD2609A08A005A2F43 /* AppSettingsTableViewCell.swift */; };
+		4B7955CA2609A4EA005A2F43 /* SettingsPageCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7955C92609A4EA005A2F43 /* SettingsPageCellHeaderView.swift */; };
 		4C0076DA25F6AF79002D754D /* StagePresenterSideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0076D725F6AF79002D754D /* StagePresenterSideMenuViewTests.swift */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
@@ -2259,6 +2262,9 @@
 		46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		481639B0D938C88A5E2E6963 /* ms */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4997640FD2AB79927E45C4EF /* ca */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B1AEC7B2609AC4100C6D2D7 /* SettingToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingToggleView.swift; sourceTree = "<group>"; };
+		4B7955BD2609A08A005A2F43 /* AppSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		4B7955C92609A4EA005A2F43 /* SettingsPageCellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageCellHeaderView.swift; sourceTree = "<group>"; };
 		4C0076D725F6AF79002D754D /* StagePresenterSideMenuViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StagePresenterSideMenuViewTests.swift; sourceTree = "<group>"; };
 		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
 		4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Editor.swift"; sourceTree = "<group>"; };
@@ -5260,6 +5266,31 @@
 				46C5D9F0254FF4F9003D58D9 /* RotationStyleTests.swift */,
 			);
 			path = SpriteObject;
+			sourceTree = "<group>";
+		};
+		4B1AEC742609AC0A00C6D2D7 /* AppSettings */ = {
+			isa = PBXGroup;
+			children = (
+				4B7955BD2609A08A005A2F43 /* AppSettingsTableViewCell.swift */,
+			);
+			path = AppSettings;
+			sourceTree = "<group>";
+		};
+		4B1AEC7A2609AC1E00C6D2D7 /* CellComponents */ = {
+			isa = PBXGroup;
+			children = (
+				4B1AEC7B2609AC4100C6D2D7 /* SettingToggleView.swift */,
+			);
+			path = CellComponents;
+			sourceTree = "<group>";
+		};
+		4B7955C22609A4B8005A2F43 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4B1AEC7A2609AC1E00C6D2D7 /* CellComponents */,
+				4B1AEC742609AC0A00C6D2D7 /* AppSettings */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		4C0EEE6A23F423E3005340B2 /* Firebase */ = {
@@ -8781,6 +8812,7 @@
 		92FF32381A24E2F400093DA7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				4B7955C22609A4B8005A2F43 /* Settings */,
 				92FF32391A24E2F400093DA7 /* BaseCell */,
 				92FF323C1A24E2F400093DA7 /* CatrobatImageCell.h */,
 				97D0158E2553392A00B6967D /* RoundedImageView.swift */,
@@ -8826,6 +8858,7 @@
 		92FF324C1A24E2F400093DA7 /* Header */ = {
 			isa = PBXGroup;
 			children = (
+				4B7955C92609A4EA005A2F43 /* SettingsPageCellHeaderView.swift */,
 				92FF324D1A24E2F400093DA7 /* ProjectTableHeaderView.h */,
 				92FF324E1A24E2F400093DA7 /* ProjectTableHeaderView.m */,
 			);
@@ -12674,6 +12707,7 @@
 				AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */,
 				2219ED8D2519EB8100EBA379 /* NSMutableArrayExtension.swift in Sources */,
 				05E6801C255B5DAA00D1E295 /* Stitch.swift in Sources */,
+				4B1AEC7C2609AC4100C6D2D7 /* SettingToggleView.swift in Sources */,
 				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
@@ -12737,6 +12771,7 @@
 				46B472BD2560946F007972DB /* StitchBrick+Instruction.swift in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
+				4B7955CA2609A4EA005A2F43 /* SettingsPageCellHeaderView.swift in Sources */,
 				4C5AEF0722F7037200280F8B /* CatrobatSetup+Bricks.swift in Sources */,
 				5907FA96252888DF0042EC5D /* StoreProjectReporter.swift in Sources */,
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
@@ -12749,6 +12784,7 @@
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92D56C341BF202E700A54750 /* FirmataDevice.swift in Sources */,
 				2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */,
+				4B7955BE2609A08A005A2F43 /* AppSettingsTableViewCell.swift in Sources */,
 				AA74EFFF1BC05B5F00D1E954 /* GlideToBrick.m in Sources */,
 				AA74F0081BC05B5F00D1E954 /* TurnLeftBrick.m in Sources */,
 				AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */,
@@ -13356,7 +13392,7 @@
 				COMPRESS_PNG_FILES = NO;
 				CURRENT_PROJECT_VERSION = 46;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 8FL5R8726S;
+				DEVELOPMENT_TEAM = FVZ5PWG6VV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",

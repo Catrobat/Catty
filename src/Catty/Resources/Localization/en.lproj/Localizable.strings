@@ -8,6 +8,9 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"ABOUT" = "ABOUT";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "About Catrobat";
 
 /* No comment provided by engineer. */
@@ -93,6 +96,9 @@
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Animate brick-parts";
+
+/* No comment provided by engineer. */
+"APP SETTINGS" = "APP SETTINGS";
 
 /* No comment provided by engineer. */
 "Apr" = "Apr";
@@ -1037,6 +1043,9 @@
 "month" = "month";
 
 /* No comment provided by engineer. */
+"MORE" = "MORE";
+
+/* No comment provided by engineer. */
 "More" = "More";
 
 /* No comment provided by engineer. */
@@ -1347,6 +1356,9 @@
 
 /* No comment provided by engineer. */
 "Previous look" = "Previous look";
+
+/* No comment provided by engineer. */
+"PRIVACY" = "PRIVACY";
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
