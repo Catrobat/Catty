@@ -184,6 +184,7 @@ let kLocalizedRename = NSLocalizedString("Rename", bundle: Bundle(for: LanguageT
 let kLocalizedCopy = NSLocalizedString("Copy", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeleteObjects = NSLocalizedString("Delete actors or objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMoveObjects = NSLocalizedString("Move actors or objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCopyObjects = NSLocalizedString("Copy actors or objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeleteProjects = NSLocalizedString("Delete projects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPocketCodeRecorder = NSLocalizedString("Pocket Code Recorder", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedOpen = NSLocalizedString("Open", bundle: Bundle(for: LanguageTranslation.self), comment: "")

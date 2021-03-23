@@ -135,41 +135,6 @@ class MyFirstProjectTests: XCTestCase {
         XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
     }
 
-    func testCanEditDescriptionViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
-
-        XCTAssert(app.buttons[kLocalizedDescription].exists)
-        app.buttons[kLocalizedDescription].tap()
-
-        app.textViews["descriptionTextView"].typeText("This is test description")
-
-        app.navigationBars.buttons[kLocalizedDone].tap()
-
-        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
-        XCTAssertFalse(waitForElementToDisappear(app.staticTexts["\(kLocalizedLoading)..."]).exists)
-
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
-
-        XCTAssert(app.buttons[kLocalizedDescription].exists)
-        app.buttons[kLocalizedDescription].tap()
-
-        XCTAssertEqual(app.textViews["descriptionTextView"].value as! String, "This is test description")
-    }
-
-    func testCanAbortEditDescriptionViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
-
-        XCTAssert(app.buttons[kLocalizedDescription].exists)
-        app.buttons[kLocalizedDescription].tap()
-
-        app.navigationBars.buttons[kLocalizedCancel].tap()
-        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
-    }
-
     func testCanAbortDeleteSingleObjectViaSwipe() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
