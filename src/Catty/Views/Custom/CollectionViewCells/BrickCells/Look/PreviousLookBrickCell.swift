@@ -20,10 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+@objc(PreviousLookBrickCell)
+class PreviousLookBrickCell: BrickCell, BrickCellProtocol {
+    public var textLabel: UILabel?
 
-@interface NextLookBrick : Brick<BrickProtocol>
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
-- (NSString*)pathForLook:(Look*)look;
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
-@end
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        isBackground ? kLocalizedPreviousBackground : kLocalizedPreviousLook
+    }
+}

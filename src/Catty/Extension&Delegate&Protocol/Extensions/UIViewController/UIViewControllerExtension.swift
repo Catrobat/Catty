@@ -47,18 +47,18 @@ extension UIViewController {
 
     @nonobjc func openProjectDetails(url: URL, storeProjectDownloader: StoreProjectDownloaderProtocol) {
         guard let projectId = url.catrobatProjectId() else {
-            Util.alert(withText: kLocalizedInvalidURLGiven)
+            Util.alert(text: kLocalizedInvalidURLGiven)
             return
         }
 
         storeProjectDownloader.fetchProjectDetails(for: projectId, completion: {project, error in
 
             guard error == nil else {
-                Util.alert(withText: kLocalizedUnableToLoadProject)
+                Util.alert(text: kLocalizedUnableToLoadProject)
                 return
             }
             guard let storeProject = project else {
-                Util.alert(withText: kLocalizedInvalidZip)
+                Util.alert(text: kLocalizedInvalidZip)
                 return
             }
             let catrobatProject = storeProject.toCatrobatProject()

@@ -22,7 +22,7 @@
 
 class ElementFunction: DoubleParameterFunction {
     static var tag = "LIST_ITEM"
-    static var name = "element"
+    static var name = kUIFEFunctionItem
     static var defaultValue = "" as AnyObject
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false

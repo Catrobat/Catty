@@ -23,7 +23,7 @@
 class SinFunction: SingleParameterDoubleFunction {
 
     static var tag = "SIN"
-    static var name = "sin"
+    static var name = kUIFEFunctionSine
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

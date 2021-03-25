@@ -65,7 +65,7 @@ class MinFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("min", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionMin, type(of: function).name)
     }
 
     func testRequiredResources() {

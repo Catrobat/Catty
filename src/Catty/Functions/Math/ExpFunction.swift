@@ -23,7 +23,7 @@
 class ExpFunction: SingleParameterDoubleFunction {
 
     static var tag = "EXP"
-    static var name = "exp"
+    static var name = kUIFEFunctionExp
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

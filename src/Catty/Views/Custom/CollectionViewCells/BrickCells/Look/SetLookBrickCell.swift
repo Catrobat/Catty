@@ -20,8 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+@objc(SetLookBrickCell)
+class SetLookBrickCell: BrickCell, BrickCellProtocol {
 
-@interface PreviousLookBrickCell : BrickCell<BrickCellProtocol>
+    public var lookComboBox: iOSCombobox?
+    public var textLabel: UILabel?
 
-@end
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight2h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.lookComboBox = inlineViewSubViews[1] as? iOSCombobox
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetLook.appending("\n%@")
+    }
+
+    override func parameters() -> [String] {
+        ["{LOOK}"]
+    }
+}

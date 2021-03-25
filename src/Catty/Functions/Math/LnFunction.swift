@@ -23,7 +23,7 @@
 class LnFunction: SingleParameterDoubleFunction {
 
     static var tag = "LN"
-    static var name = "ln"
+    static var name = kUIFEFunctionLn
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

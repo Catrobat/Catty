@@ -68,7 +68,7 @@ class LengthFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("length", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionLength, type(of: function).name)
     }
 
     func testRequiredResources() {

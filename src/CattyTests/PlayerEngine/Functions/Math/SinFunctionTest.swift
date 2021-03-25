@@ -58,7 +58,7 @@ class SinFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("sin", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionSine, type(of: function).name)
     }
 
     func testRequiredResources() {

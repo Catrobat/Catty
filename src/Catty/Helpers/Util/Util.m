@@ -73,19 +73,6 @@
     return [self topViewControllerInViewController:ROOTVIEW];
 }
 
-+ (void)alertWithText:(NSString*)text
-{
-    [Util alertWithTitle:kLocalizedPocketCode andText:text];
-}
-
-+ (void)alertWithTitle:(NSString *)title andText:(NSString *)text
-{
-    [[[[AlertControllerBuilder alertWithTitle:title message:text]
-     addCancelActionWithTitle:kLocalizedOK handler:nil]
-     build]
-     showWithController:[Util topmostViewController]];
-}
-
 + (CATransition*)getPushCATransition
 {
     CATransition *transition = [CATransition animation];
@@ -135,7 +122,7 @@
     } else {
         return [InputValidationResult validInput];
     }
-    
+
     NSAssert(invalidNameMessage != nil, @"This case should already be handled");
     return [InputValidationResult invalidInputWithLocalizedMessage:invalidNameMessage];
 }
@@ -206,7 +193,7 @@
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
          InputValidationResult *result = [self validationResultWithName:name minLength:minInputLength maxlength:maxInputLength];
-         
+
          if (!result.valid) {
              return result;
          }
@@ -278,7 +265,7 @@
          } else {
              return [InputValidationResult validInput];
          }
-         
+
          NSAssert(invalidNameMessage != nil, @"This case should already be handled");
          return [InputValidationResult invalidInputWithLocalizedMessage:invalidNameMessage];
      }] build]
@@ -427,30 +414,30 @@
 {
     unsigned count;
     objc_property_t *properties = class_copyPropertyList([instance class], &count);
-    
+
     NSMutableDictionary *propertiesDictionary = [NSMutableDictionary new];
-    
+
     unsigned i;
     for (i = 0; i < count; i++)
     {
         objc_property_t property = properties[i];
-        
+
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
-        
+
         // TODO use introspection
         if ([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"]
             || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]
             || [name isEqualToString:@"brickCategoryType"] || [name isEqualToString:@"brickType"]) {
             continue;
         }
-        
+
         NSObject *currentProperty = [instance valueForKey:name];
         if(currentProperty != nil)
             [propertiesDictionary setValue:currentProperty forKey:name];
     }
-    
+
     free(properties);
-    
+
     return propertiesDictionary;
 }
 
@@ -458,7 +445,7 @@
 {
     NSString *sceneNumberAsString = [NSString stringWithFormat:@" %@",  @(sceneNumber)];
     NSString *sceneNameForSceneNumber = [kLocalizedScene stringByAppendingString:sceneNumberAsString];
-    
+
     return sceneNameForSceneNumber;
 }
 
@@ -488,85 +475,9 @@
     return NO;
 }
 
-+ (SpriteObject*)objectWithName:(NSString*)objectName forScene:(Scene*)scene
-{
-    for(SpriteObject *object in scene.objects) {
-        if([object.name isEqualToString:objectName]) {
-            return object;
-        }
-    }
-    return nil;
-}
-
-+ (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object
-{
-    for(Sound *sound in object.soundList) {
-        if([sound.name isEqualToString:objectName]) {
-            return sound;
-        }
-    }
-    return nil;
-}
-
-+ (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object
-{
-    for(Look *look in object.lookList) {
-        if([look.name isEqualToString:objectName]) {
-            return look;
-        }
-    }
-    return nil;
-}
-
-+ (NSMutableOrderedSet*)allMessagesForProject:(Project*)project
-{
-    NSMutableOrderedSet* messages = [[NSMutableOrderedSet alloc] init];
-    [messages addObjectsFromArray:project.allBroadcastMessages.array];
-    for(SpriteObject *object in project.allObjects) {
-        for(Script *script in object.scriptList) {
-            if([script isKindOfClass:[BroadcastScript class]]) {
-                BroadcastScript *broadcastScript = (BroadcastScript*)script;
-                [messages addObject:broadcastScript.receivedMessage];
-            }
-            for(Brick *brick in script.brickList) {
-                if([brick isKindOfClass:[BroadcastBrick class]]) {
-                    BroadcastBrick *broadcastBrick = (BroadcastBrick*)brick;
-                    [messages addObject:broadcastBrick.broadcastMessage];
-                } else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
-                    BroadcastWaitBrick *broadcastBrick = (BroadcastWaitBrick*)brick;
-                    [messages addObject:broadcastBrick.broadcastMessage];
-                }
-            }
-        }
-    }
-    return messages;
-}
-
 + (BOOL)isNetworkError:(NSError*)error
 {
     return error && error.code != kCFURLErrorCancelled;
-}
-
-+ (void)defaultAlertForNetworkError
-{
-    if ([NSThread isMainThread]) {
-        [[self class] alertWithText:kLocalizedErrorInternetConnection];
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [Util defaultAlertForNetworkError];
-        });
-    }
-}
-
-+ (void)defaultAlertForUnknownError
-{
-    if ([NSThread isMainThread]) {
-        [[self class] alertWithText:kLocalizedErrorUnknown];
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [Util defaultAlertForUnknownError];
-        });
-    }
 }
 
 #pragma mark - brick statistics
@@ -627,7 +538,7 @@
                                      return NSOrderedAscending;
                                  }
                              }];
-    
+
     NSUInteger count = ([sortedBricks count] >= N) ? N : [sortedBricks count];
     NSRange range;
     range.location = 0;
@@ -675,36 +586,6 @@
     string = [string stringByReplacingOccurrencesOfString:@"%3C" withString:@"<"];
     string = [string stringByReplacingOccurrencesOfString:@"%3E" withString:@">"];
     return string;
-}
-
-+ (void)showNotificationWithMessage:(NSString *)message
-{
-    BDKNotifyHUD *notficicationHud = [BDKNotifyHUD notifyHUDWithImage:nil text:message];
-    UIViewController *vc = [Util topmostViewController];
-    
-    notficicationHud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    notficicationHud.center = CGPointMake(vc.view.center.x, vc.view.center.y);
-    
-    [vc.view addSubview:notficicationHud];
-    [notficicationHud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                                    speed:kBDKNotifyHUDPresentationSpeed
-                                   inView:vc.view
-                               completion:^{ [notficicationHud removeFromSuperview]; }];
-}
-
-+ (void)showNotificationForSaveAction {
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName] text:kLocalizedSaved];
-    UIViewController *vc = [Util topmostViewController];
-    
-    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    hud.center = CGPointMake(vc.view.center.x, vc.view.center.y + kBDKNotifyHUDCenterOffsetY);
-    hud.tag = kSavedViewTag;
-    
-    [vc.view addSubview:hud];
-    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                       speed:kBDKNotifyHUDPresentationSpeed
-                      inView:vc.view
-                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 + (void)openUrlExternal:(NSURL*)url

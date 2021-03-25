@@ -84,7 +84,7 @@ class RegularExpressionFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("regex", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionRegularExpression, type(of: function).name)
     }
 
     func testRequiredResources() {

@@ -55,7 +55,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     fileprivate func presentAlertController(withTitle title: String?, message: String?) {
-        Util.alert(withTitle: title, andText: message)
+        Util.alert(title: title!, text: message!)
     }
 
     fileprivate func openRateUsURL() {
@@ -68,6 +68,16 @@ class SettingsTableViewController: UITableViewController {
         if let url = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+
+    fileprivate func disconnect() {
+        BluetoothService.sharedInstance().disconnect()
+        Util.alert(text: kLocalizedDisconnectBluetoothDevices)
+    }
+
+    fileprivate func removeKnownDevices() {
+        BluetoothService.sharedInstance().removeKnownDevices()
+        Util.alert(text: kLocalizedRemovedKnownBluetoothDevices)
     }
 
     fileprivate func logoutUser() {

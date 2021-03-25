@@ -20,26 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PreviousLookBrick+CBXMLHandler.h"
-#import "CBXMLParserHelper.h"
-#import "GDataXMLElement+CustomExtensions.h"
-#import "CBXMLParserContext.h"
-#import "CBXMLSerializerContext.h"
-#import "CBXMLSerializerHelper.h"
-#import "Pocket_Code-Swift.h"
+@objc(SetBackgroundBrickCell)
+class SetBackgroundBrickCell: BrickCell, BrickCellProtocol {
 
-@implementation PreviousLookBrick (CBXMLHandler)
+    public var lookComboBox: iOSCombobox?
+    public var textLabel: UILabel?
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
-{
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-    return [self new]; // nothing else to do!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight2h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.lookComboBox = inlineViewSubViews[1] as? iOSCombobox
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetBackground.appending("\n%@")
+    }
+
+    override func parameters() -> [String] {
+        ["{BACKGROUND}"]
+    }
 }
-
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
-{
-    GDataXMLElement *brick = [super xmlElementForBrickType:@"PreviousLookBrick" withContext:context];
-    return brick;
-}
-
-@end

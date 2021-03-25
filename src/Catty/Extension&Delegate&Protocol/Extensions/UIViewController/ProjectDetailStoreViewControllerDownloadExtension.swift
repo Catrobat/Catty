@@ -36,7 +36,7 @@ extension ProjectDetailStoreViewController {
                     case .unexpectedError, .timeout:
                         Util.defaultAlertForNetworkError()
                     case .parse(error: _), .request(error: _, statusCode: _):
-                        Util.alert(withText: kLocalizedInvalidZip)
+                        Util.alert(text: kLocalizedInvalidZip)
                     }
 
                     self.resetDownloadStatus()

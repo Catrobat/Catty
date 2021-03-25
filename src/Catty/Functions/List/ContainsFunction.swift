@@ -22,7 +22,7 @@
 
 class ContainsFunction: DoubleParameterDoubleFunction {
     static var tag = "CONTAINS"
-    static var name = "contains"
+    static var name = kUIFEFunctionContains
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
