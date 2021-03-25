@@ -72,7 +72,7 @@ class AppSettingsTableViewCell: SettingsTableViewCell {
             title: kLocalizedArduinoBricks,
             description: kLocalizedArduinoBricksDescription
         )
-        arduinoAppSetting.setupToggleAccessibilityLabel(label : kLocalizedArduinoBricks)
+        arduinoAppSetting.setupToggleAccessibilityLabel(label: kLocalizedArduinoBricks)
         arduinoAppSetting.delegate = self
         NSLayoutConstraint.activate([
             arduinoAppSetting.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

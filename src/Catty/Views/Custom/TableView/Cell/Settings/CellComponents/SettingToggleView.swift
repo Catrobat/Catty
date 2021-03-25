@@ -95,7 +95,7 @@ class SettingToggleView: UIView {
         hStack.addArrangedSubview(toggle)
     }
 
-    func setupToggleAccessibilityLabel(label : String){
+    func setupToggleAccessibilityLabel(label: String) {
         toggle.accessibilityLabel = label
     }
 
