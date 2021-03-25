@@ -108,6 +108,9 @@
 #define kLocalizedCatrobatCommunity NSLocalizedString(@"Catrobat community", nil)
 #define kLocalizedDeletionMenu NSLocalizedString(@"Deletion mode", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
+#define kLocalizedOpenCatrobatWebsite NSLocalizedString(@"Catrobat website", nil)
+#define kLocalizedAboutUs NSLocalizedString(@"About us", nil)
+#define kLocalizedViewTermsOfUse NSLocalizedString(@"View Terms of Use and Service", nil)
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use and Service", @"Button title at the settings screen to get to the terms of use and service.")
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
 #define kLocalizedRateUs NSLocalizedString(@"Rate Us", nil)
@@ -251,7 +254,7 @@
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
 #define kLocalizedArduinoBricks NSLocalizedString(@"Arduino extension", nil)
 #define kLocalizedEmbroideryBricks NSLocalizedString(@"Embroidery extension", nil)
-#define kLocalizedSendCrashReports NSLocalizedString(@"Sending anonymous crash reports", nil)
+#define kLocalizedSendCrashReports NSLocalizedString(@"Send anonymous crash reports", nil)
 #define kLocalizedSendCrashReportsDescription NSLocalizedString(@"Allow the app to send crash reports automatically", nil)
 #define kLocalizedFrontCamera NSLocalizedString(@"Front camera", nil)
 #define kLocalizedDisconnectAllDevices NSLocalizedString(@"Disconnect all devices", nil)
@@ -272,6 +275,11 @@
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
 #define kLocalizedMoreInformation NSLocalizedString(@"More information", nil)
 #define kLocalizedScene NSLocalizedString(@"Scene", nil)
+#define kLocalizedAppSettingSection NSLocalizedString(@"APP SETTINGS", nil)
+#define kLocalizedAboutSection NSLocalizedString(@"ABOUT", nil)
+#define kLocalizedPrivacySection NSLocalizedString(@"PRIVACY", nil)
+#define kLocalizedMoreSection NSLocalizedString(@"MORE", nil)
+
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

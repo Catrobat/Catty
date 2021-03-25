@@ -108,6 +108,9 @@ let kLocalizedHelp = NSLocalizedString("Help", bundle: Bundle(for: LanguageTrans
 let kLocalizedCatrobatCommunity = NSLocalizedString("Catrobat community", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeletionMenu = NSLocalizedString("Deletion mode", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAboutPocketCode = NSLocalizedString("About Pocket Code", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedOpenCatrobatWebsite = NSLocalizedString("Catrobat website", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAboutUs = NSLocalizedString("About us", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedViewTermsOfUse = NSLocalizedString("View Terms of Use and Service", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedTermsOfUse = NSLocalizedString("Terms of Use and Service", bundle: Bundle(for: LanguageTranslation.self), comment: "Button title at the settings screen to get to the terms of use and service.")
 let kLocalizedForgotPassword = NSLocalizedString("Forgot password", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRateUs = NSLocalizedString("Rate Us", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -251,7 +254,7 @@ let kLocalizedLists = NSLocalizedString("Lists", bundle: Bundle(for: LanguageTra
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedArduinoBricks = NSLocalizedString("Arduino extension", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEmbroideryBricks = NSLocalizedString("Embroidery extension", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedSendCrashReports = NSLocalizedString("Sending anonymous crash reports", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSendCrashReports = NSLocalizedString("Send anonymous crash reports", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSendCrashReportsDescription = NSLocalizedString("Allow the app to send crash reports automatically", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDisconnectAllDevices = NSLocalizedString("Disconnect all devices", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -272,6 +275,11 @@ let kLocalizedCameraBack = NSLocalizedString("back", bundle: Bundle(for: Languag
 let kLocalizedCameraFront = NSLocalizedString("front", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMoreInformation = NSLocalizedString("More information", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedScene = NSLocalizedString("Scene", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAppSettingSection = NSLocalizedString("APP SETTINGS", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAboutSection = NSLocalizedString("ABOUT", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPrivacySection = NSLocalizedString("PRIVACY", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedMoreSection = NSLocalizedString("MORE", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

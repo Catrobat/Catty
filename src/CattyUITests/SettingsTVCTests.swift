@@ -38,7 +38,7 @@ class SettingsTVCTests: XCTestCase {
         app.switches[kLocalizedArduinoBricks].tap()
         app.switches[kLocalizedSendCrashReports].tap()
 
-        app.staticTexts[kLocalizedAboutPocketCode].tap()
+        app.staticTexts[kLocalizedAboutUs].tap()
         XCTAssert(app.navigationBars[kLocalizedAboutPocketCode].exists)
         app.navigationBars.buttons[kLocalizedSettings].tap()
 
