@@ -26,30 +26,18 @@ protocol AppSettingsDelegate: AnyObject {
     func didToggleArduinoExtension(isOn: Bool)
 }
 
-class AppSettingsTableViewCell: UITableViewCell {
+class AppSettingsTableViewCell: SettingsTableViewCell {
     static let identifier = "AppSettingsTableViewCell"
 
     public weak var delegate: AppSettingsDelegate?
-    private let cellTitle: SettingsPageCellHeaderView = {
-        let cellTitle = SettingsPageCellHeaderView()
-        cellTitle.translatesAutoresizingMaskIntoConstraints = false
-        cellTitle.configure(title: kLocalizedAppSettingSection)
-        return cellTitle
-    }()
 
-    private let arduinoAppSetting: SettingToggleView = {
-        let arduinoAppSetting = SettingToggleView()
-        arduinoAppSetting.translatesAutoresizingMaskIntoConstraints = false
-        arduinoAppSetting.configure(
-            title: "Arduino extension",
-            description: "Allow the app to control arduino extentions"
-        )
-        return arduinoAppSetting
-    }()
+    private var cellTitle: SettingsPageCellHeaderView!
+    private var arduinoAppSetting: SettingToggleView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        initialize()
+        setupCellHeader()
+        setupArduinoSettings()
     }
 
     required init?(coder: NSCoder) {
@@ -59,26 +47,44 @@ class AppSettingsTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
+        setupCellHeader()
+        setupArduinoSettings()
     }
 
-    func initialize() {
+    func setupCellHeader() {
+        cellTitle = SettingsPageCellHeaderView()
         contentView.addSubview(cellTitle)
-        contentView.addSubview(arduinoAppSetting)
-        arduinoAppSetting.delegate = self
-
+        cellTitle.translatesAutoresizingMaskIntoConstraints = false
+        cellTitle.configure(title: kLocalizedAppSettingSection)
         NSLayoutConstraint.activate([
-            cellTitle.heightAnchor.constraint(equalToConstant: 40),
+            cellTitle.heightAnchor.constraint(equalToConstant: SettingsPageCellHeaderView.defaultHeaderHeight),
             cellTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             cellTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            cellTitle.topAnchor.constraint(equalTo: contentView.topAnchor),
+            cellTitle.topAnchor.constraint(equalTo: contentView.topAnchor)
+        ])
+    }
 
-            arduinoAppSetting.heightAnchor.constraint(equalToConstant: 60),
+    func setupArduinoSettings() {
+        arduinoAppSetting = SettingToggleView()
+        contentView.addSubview(arduinoAppSetting)
+        arduinoAppSetting.translatesAutoresizingMaskIntoConstraints = false
+        arduinoAppSetting.configure(
+            title: "Arduino extension",
+            description: "Allow the app to control arduino extentions"
+        )
+        arduinoAppSetting.delegate = self
+        NSLayoutConstraint.activate([
             arduinoAppSetting.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             arduinoAppSetting.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            arduinoAppSetting.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 8),
+            arduinoAppSetting.topAnchor.constraint(equalTo: cellTitle.bottomAnchor, constant: 0),
             arduinoAppSetting.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+
+        if UserDefaults.standard.bool(forKey: kUseArduinoBricks) {
+            arduinoAppSetting.setSwitchIsOn(isOn: true)
+            return
+        }
+        arduinoAppSetting.setSwitchIsOn(isOn: false)
     }
 
 }

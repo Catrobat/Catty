@@ -27,59 +27,46 @@ protocol SettingToggleDelegate: AnyObject {
 
 class SettingToggleView: UIView {
 
-    private let topDivider: UIView = {
-        let topDivider = UIView()
-        topDivider.translatesAutoresizingMaskIntoConstraints = false
-        topDivider.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
-        return topDivider
-    }()
-
-    private let bottomDivider: UIView = {
-        let bottomDivider = UIView()
-        bottomDivider.translatesAutoresizingMaskIntoConstraints = false
-        bottomDivider.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
-        return bottomDivider
-    }()
-
-    private let toggle: UISwitch = {
+    private var toggle: UISwitch = {
         let toggle = UISwitch()
         toggle.translatesAutoresizingMaskIntoConstraints = false
         toggle.addTarget(self, action: #selector(settingToggled), for: .valueChanged)
         return toggle
     }()
 
-    private let settingTitle: UILabel = {
+    private var settingTitle: UILabel = {
         let settingTitle = UILabel()
         settingTitle.translatesAutoresizingMaskIntoConstraints = false
+        settingTitle.font = UIFont.systemFont(ofSize: 16)
         settingTitle.numberOfLines = 0
         return settingTitle
     }()
 
-    private let settingDescription: UILabel = {
+    private var settingDescription: UILabel = {
         let settingDescription = UILabel()
-        settingDescription.font = UIFont.systemFont(ofSize: 12)
+        settingDescription.font = UIFont.systemFont(ofSize: 11)
         settingDescription.numberOfLines = 0
         settingDescription.translatesAutoresizingMaskIntoConstraints = false
         settingDescription.textColor = UIColor.darkGray
         return settingDescription
     }()
 
-    private let hStack: UIStackView = {
+    private var hStack: UIStackView = {
         let hStack = UIStackView()
         hStack.translatesAutoresizingMaskIntoConstraints = false
         hStack.axis = NSLayoutConstraint.Axis.horizontal
         hStack.alignment = UIStackView.Alignment.center
-        hStack.spacing = 12
+        hStack.spacing = 8
         hStack.distribution = UIStackView.Distribution.equalCentering
         return hStack
     }()
 
-    private let vLabelStack: UIStackView = {
+    private var vLabelStack: UIStackView = {
         let vLabelStack = UIStackView()
         vLabelStack.translatesAutoresizingMaskIntoConstraints = false
         vLabelStack.spacing = 2
         vLabelStack.axis = NSLayoutConstraint.Axis.vertical
-        vLabelStack.distribution = UIStackView.Distribution.fillProportionally
+        vLabelStack.distribution = UIStackView.Distribution.fill
         return vLabelStack
     }()
 
@@ -87,8 +74,6 @@ class SettingToggleView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(topDivider)
-        self.addSubview(bottomDivider)
         self.addSubview(hStack)
 
         hStack.addArrangedSubview(vLabelStack)
@@ -98,17 +83,10 @@ class SettingToggleView: UIView {
         vLabelStack.addArrangedSubview(settingDescription)
 
         NSLayoutConstraint.activate([
-            topDivider.heightAnchor.constraint(equalToConstant: 1),
-            topDivider.topAnchor.constraint(equalTo: self.topAnchor),
-            topDivider.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            topDivider.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            hStack.topAnchor.constraint(equalTo: topDivider.bottomAnchor, constant: 8),
+            hStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
             hStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             hStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            bottomDivider.heightAnchor.constraint(equalToConstant: 1),
-            bottomDivider.topAnchor.constraint(equalTo: hStack.bottomAnchor, constant: 8),
-            bottomDivider.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            bottomDivider.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            hStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
         ])
     }
 
@@ -120,6 +98,10 @@ class SettingToggleView: UIView {
     public func configure(title: String, description: String) {
         settingTitle.text = title
         settingDescription.text = description
+    }
+
+    public func setSwitchIsOn(isOn: Bool) {
+        toggle.setOn(isOn, animated: false)
     }
 
     @objc fileprivate func settingToggled(_ sender: UISwitch) {

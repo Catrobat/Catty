@@ -379,8 +379,18 @@
 		46E9E4A425AF53A100027D28 /* CircleShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E9E4A325AF53A100027D28 /* CircleShapeNode.swift */; };
 		46F1754E24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */; };
 		4B1AEC7C2609AC4100C6D2D7 /* SettingToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AEC7B2609AC4100C6D2D7 /* SettingToggleView.swift */; };
+		4B2D920B260AF8780032B107 /* MoreSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D920A260AF8780032B107 /* MoreSettingsTableViewCell.swift */; };
+		4B2D9221260B03E10032B107 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D9220260B03E10032B107 /* SettingsTableViewCell.swift */; };
+		4B4C31DF260CCD97002D48CB /* LogoutSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C31DE260CCD97002D48CB /* LogoutSettingTableViewCell.swift */; };
+		4B542772260A4B8E009CA078 /* AboutUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B542771260A4B8E009CA078 /* AboutUsTableViewCell.swift */; };
+		4B69F613260A258300ECCA68 /* PrivacySettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69F612260A258300ECCA68 /* PrivacySettingsTableViewCell.swift */; };
+		4B69F61B260A25F200ECCA68 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69F61A260A25F200ECCA68 /* SettingsButton.swift */; };
 		4B7955BE2609A08A005A2F43 /* AppSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7955BD2609A08A005A2F43 /* AppSettingsTableViewCell.swift */; };
 		4B7955CA2609A4EA005A2F43 /* SettingsPageCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7955C92609A4EA005A2F43 /* SettingsPageCellHeaderView.swift */; };
+		4BD3EC6C260CDCF0004EBEA6 /* AboutPocketCodeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3EC6B260CDCF0004EBEA6 /* AboutPocketCodeTableViewController.swift */; };
+		4BD3EC74260CDE08004EBEA6 /* AboutPocketCodeDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3EC73260CDE08004EBEA6 /* AboutPocketCodeDescriptionTableViewCell.swift */; };
+		4BD67330260CECC8009A8EDE /* TermsOfUseOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6732F260CECC8009A8EDE /* TermsOfUseOptionTableViewController.swift */; };
+		4BD6733A260CED92009A8EDE /* TermsOfUseAndServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD67339260CED92009A8EDE /* TermsOfUseAndServiceTableViewCell.swift */; };
 		4C0076DA25F6AF79002D754D /* StagePresenterSideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0076D725F6AF79002D754D /* StagePresenterSideMenuViewTests.swift */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
@@ -1165,8 +1175,6 @@
 		929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */; };
 		929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */; };
 		929CC0FC1BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F71BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift */; };
-		92B46F831BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F7E1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m */; };
-		92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */; };
 		92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F8C1BC7B3E5004980C1 /* ArduinoBrick.m */; };
 		92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F8E1BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m */; };
 		92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F901BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m */; };
@@ -2263,8 +2271,18 @@
 		481639B0D938C88A5E2E6963 /* ms */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4997640FD2AB79927E45C4EF /* ca */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B1AEC7B2609AC4100C6D2D7 /* SettingToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingToggleView.swift; sourceTree = "<group>"; };
+		4B2D920A260AF8780032B107 /* MoreSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		4B2D9220260B03E10032B107 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		4B4C31DE260CCD97002D48CB /* LogoutSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutSettingTableViewCell.swift; sourceTree = "<group>"; };
+		4B542771260A4B8E009CA078 /* AboutUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewCell.swift; sourceTree = "<group>"; };
+		4B69F612260A258300ECCA68 /* PrivacySettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsTableViewCell.swift; sourceTree = "<group>"; };
+		4B69F61A260A25F200ECCA68 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		4B7955BD2609A08A005A2F43 /* AppSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		4B7955C92609A4EA005A2F43 /* SettingsPageCellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageCellHeaderView.swift; sourceTree = "<group>"; };
+		4BD3EC6B260CDCF0004EBEA6 /* AboutPocketCodeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPocketCodeTableViewController.swift; sourceTree = "<group>"; };
+		4BD3EC73260CDE08004EBEA6 /* AboutPocketCodeDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPocketCodeDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		4BD6732F260CECC8009A8EDE /* TermsOfUseOptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseOptionTableViewController.swift; sourceTree = "<group>"; };
+		4BD67339260CED92009A8EDE /* TermsOfUseAndServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseAndServiceTableViewCell.swift; sourceTree = "<group>"; };
 		4C0076D725F6AF79002D754D /* StagePresenterSideMenuViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StagePresenterSideMenuViewTests.swift; sourceTree = "<group>"; };
 		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
 		4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Editor.swift"; sourceTree = "<group>"; };
@@ -3231,10 +3249,6 @@
 		929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroPlayToneBrick+Instruction.swift"; sourceTree = "<group>"; };
 		929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroRGBLightBrick+Instruction.swift"; sourceTree = "<group>"; };
 		929CC0F71BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroMotorStopBrick+Instruction.swift"; sourceTree = "<group>"; };
-		92B46F7D1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPocketCodeOptionTableViewController.h; sourceTree = "<group>"; };
-		92B46F7E1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPocketCodeOptionTableViewController.m; sourceTree = "<group>"; };
-		92B46F811BC79585004980C1 /* TermsOfUseOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfUseOptionTableViewController.h; sourceTree = "<group>"; };
-		92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOfUseOptionTableViewController.m; sourceTree = "<group>"; };
 		92B46F8B1BC7B3E5004980C1 /* ArduinoBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArduinoBrick.h; sourceTree = "<group>"; };
 		92B46F8C1BC7B3E5004980C1 /* ArduinoBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArduinoBrick.m; sourceTree = "<group>"; };
 		92B46F8D1BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArduinoSendDigitalValueBrick.h; sourceTree = "<group>"; };
@@ -5280,17 +5294,71 @@
 			isa = PBXGroup;
 			children = (
 				4B1AEC7B2609AC4100C6D2D7 /* SettingToggleView.swift */,
+				4B69F61A260A25F200ECCA68 /* SettingsButton.swift */,
 			);
 			path = CellComponents;
+			sourceTree = "<group>";
+		};
+		4B2D9211260AF87D0032B107 /* MoreSettings */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D920A260AF8780032B107 /* MoreSettingsTableViewCell.swift */,
+			);
+			path = MoreSettings;
+			sourceTree = "<group>";
+		};
+		4B4C31E5260CCD9E002D48CB /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				4B4C31DE260CCD97002D48CB /* LogoutSettingTableViewCell.swift */,
+			);
+			path = Logout;
+			sourceTree = "<group>";
+		};
+		4B542778260A4B96009CA078 /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				4B542771260A4B8E009CA078 /* AboutUsTableViewCell.swift */,
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
+		4B69F60F260A254700ECCA68 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				4B69F612260A258300ECCA68 /* PrivacySettingsTableViewCell.swift */,
+			);
+			path = Privacy;
 			sourceTree = "<group>";
 		};
 		4B7955C22609A4B8005A2F43 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				4B1AEC7A2609AC1E00C6D2D7 /* CellComponents */,
+				4B69F60F260A254700ECCA68 /* Privacy */,
 				4B1AEC742609AC0A00C6D2D7 /* AppSettings */,
+				4B542778260A4B96009CA078 /* AboutUs */,
+				4B2D9211260AF87D0032B107 /* MoreSettings */,
+				4B2D9220260B03E10032B107 /* SettingsTableViewCell.swift */,
+				4B4C31E5260CCD9E002D48CB /* Logout */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		4BD3EC7D260CDE36004EBEA6 /* AboutPocketCode */ = {
+			isa = PBXGroup;
+			children = (
+				4BD3EC73260CDE08004EBEA6 /* AboutPocketCodeDescriptionTableViewCell.swift */,
+			);
+			path = AboutPocketCode;
+			sourceTree = "<group>";
+		};
+		4BD6733E260CED99009A8EDE /* TermsOfUseAndService */ = {
+			isa = PBXGroup;
+			children = (
+				4BD67339260CED92009A8EDE /* TermsOfUseAndServiceTableViewCell.swift */,
+			);
+			path = TermsOfUseAndService;
 			sourceTree = "<group>";
 		};
 		4C0EEE6A23F423E3005340B2 /* Firebase */ = {
@@ -7833,11 +7901,9 @@
 		92B46F881BC7958C004980C1 /* SettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				92B46F7D1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.h */,
-				92B46F7E1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m */,
 				224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */,
-				92B46F811BC79585004980C1 /* TermsOfUseOptionTableViewController.h */,
-				92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */,
+				4BD6732F260CECC8009A8EDE /* TermsOfUseOptionTableViewController.swift */,
+				4BD3EC6B260CDCF0004EBEA6 /* AboutPocketCodeTableViewController.swift */,
 			);
 			name = SettingsViewController;
 			sourceTree = "<group>";
@@ -8818,6 +8884,8 @@
 				97D0158E2553392A00B6967D /* RoundedImageView.swift */,
 				92FF32401A24E2F400093DA7 /* ContinueImage */,
 				92FF32431A24E2F400093DA7 /* DarkBlueGradient */,
+				4BD3EC7D260CDE36004EBEA6 /* AboutPocketCode */,
+				4BD6733E260CED99009A8EDE /* TermsOfUseAndService */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -11424,7 +11492,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Bohr.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
 			);
@@ -12039,11 +12106,13 @@
 				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
 				4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */,
+				4BD67330260CECC8009A8EDE /* TermsOfUseOptionTableViewController.swift in Sources */,
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
 				63D69EBB25E3178F00D662D6 /* CBFileManagerExtension.swift in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				4C0F9F82204BD20A00E71B2D /* SpeakAndWaitBrick+Instruction.swift in Sources */,
 				AA74EFF21BC05B5F00D1E954 /* ChangeTransparencyByNBrick.m in Sources */,
+				4BD3EC74260CDE08004EBEA6 /* AboutPocketCodeDescriptionTableViewCell.swift in Sources */,
 				929CC0CD1BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m in Sources */,
 				4C0F9F8E204BD27200E71B2D /* RepeatUntilBrickCell.m in Sources */,
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
@@ -12088,6 +12157,7 @@
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
 				186AA33C2482D0CA001E38FD /* PenDownBrick.swift in Sources */,
 				AA74F00C1BC05B5F00D1E954 /* SetVolumeToBrick.m in Sources */,
+				4B542772260A4B8E009CA078 /* AboutUsTableViewCell.swift in Sources */,
 				CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */,
 				4CF0729E20D66F8D00F93AB5 /* LookNameSensor.swift in Sources */,
 				4C8C3616213AA2BD00279BC7 /* PhiroIfLogicBeginBrick+Condition.swift in Sources */,
@@ -12285,6 +12355,7 @@
 				59EA52BF24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				4C0D2A84254AA2C100A8637F /* RotationStyle.swift in Sources */,
+				4B69F613260A258300ECCA68 /* PrivacySettingsTableViewCell.swift in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				97BA19DF25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
@@ -12301,6 +12372,7 @@
 				BACDF3571F1F9BB000346167 /* DeleteItemOfUserListBrick+CBXMLHandler.m in Sources */,
 				921D468A1BDF698A0086AD20 /* NextLookBrick+Instruction.swift in Sources */,
 				9218B2141CC4AB75007B4C60 /* BrushPickerViewController.m in Sources */,
+				4BD3EC6C260CDCF0004EBEA6 /* AboutPocketCodeTableViewController.swift in Sources */,
 				AA74EE2B1BC0541E00D1E954 /* GlideToBrick+Instruction.swift in Sources */,
 				AA74F09A1BC05FCE00D1E954 /* BrickCellInlineView.m in Sources */,
 				AA74EE3B1BC0543700D1E954 /* SetVolumeToBrick+Instruction.swift in Sources */,
@@ -12396,6 +12468,7 @@
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				9E78D88B22A9B1D400948AC3 /* IterableCache.swift in Sources */,
+				4B2D9221260B03E10032B107 /* SettingsTableViewCell.swift in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
@@ -12469,7 +12542,6 @@
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
 				92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */,
-				92B46F831BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m in Sources */,
 				4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */,
 				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
 				929CC0CE1BC39B0A0027DEC0 /* PhiroMotorStopBrick.m in Sources */,
@@ -12573,6 +12645,7 @@
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
 				4C6D14E6210B1273006147BD /* InclinationXSensor.swift in Sources */,
 				224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */,
+				4B69F61B260A25F200ECCA68 /* SettingsButton.swift in Sources */,
 				4C0F9F3A204ADC4E00E71B2D /* SayForBubbleBrick.m in Sources */,
 				BA987D052194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m in Sources */,
 				F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */,
@@ -12700,6 +12773,7 @@
 				D38F58672441CFCA0079F6EA /* GoToBrickCell.m in Sources */,
 				92D56C3B1BF20B4700A54750 /* PhiroHelper.swift in Sources */,
 				AA74F0C31BC05FCE00D1E954 /* TurnRightBrickCell.m in Sources */,
+				4B2D920B260AF8780032B107 /* MoreSettingsTableViewCell.swift in Sources */,
 				AA74F0A01BC05FCE00D1E954 /* IfLogicElseBrickCell.m in Sources */,
 				AA74F0A91BC05FCE00D1E954 /* SetVariableBrickCell.m in Sources */,
 				4CF0729620D66B2800F93AB5 /* ColorSensor.swift in Sources */,
@@ -12709,6 +12783,7 @@
 				05E6801C255B5DAA00D1E295 /* Stitch.swift in Sources */,
 				4B1AEC7C2609AC4100C6D2D7 /* SettingToggleView.swift in Sources */,
 				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
+				4BD6733A260CED92009A8EDE /* TermsOfUseAndServiceTableViewCell.swift in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				18AAC23724A6170600C96335 /* SetPenSizeBrick+Instruction.swift in Sources */,
@@ -12731,6 +12806,7 @@
 				92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */,
 				4C0F9F43204ADC6600E71B2D /* ThinkBubbleBrick.m in Sources */,
 				AAF6D9D81BC0BAF300686849 /* ShowBrick+Instruction.swift in Sources */,
+				4B4C31DF260CCD97002D48CB /* LogoutSettingTableViewCell.swift in Sources */,
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
 				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
@@ -12816,7 +12892,6 @@
 				BA3337372195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,
 				AA74F0001BC05B5F00D1E954 /* GoNStepsBackBrick.m in Sources */,
-				92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				4C37A0AA212E7E540074F417 /* FormulaEditorItem.swift in Sources */,
 				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,

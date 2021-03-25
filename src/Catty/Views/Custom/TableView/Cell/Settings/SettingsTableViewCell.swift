@@ -22,56 +22,34 @@
 
 import UIKit
 
-class SettingsPageCellHeaderView: UIView {
+class SettingsTableViewCell: UITableViewCell {
 
-    static let defaultHeaderHeight: CGFloat = 60
+    var divider: UIView!
 
-    private var title: UILabel!
-
-    private var divider: UIView!
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setupDivider()
-        setupHeading()
+    }
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupDivider()
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setupHeading() {
-        title = UILabel()
-        self.addSubview(title)
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.textColor = UIColor.gray
-        title.font = UIFont.systemFont(ofSize: 12)
-
-        NSLayoutConstraint.activate([
-            title.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            title.bottomAnchor.constraint(equalTo: divider.bottomAnchor, constant: -8),
-            title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            title.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: 20)
-        ])
     }
 
     private func setupDivider() {
         divider = UIView()
-        self.addSubview(divider)
+        contentView.addSubview(divider)
         divider.translatesAutoresizingMaskIntoConstraints = false
         divider.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
-
         NSLayoutConstraint.activate([
             divider.heightAnchor.constraint(equalToConstant: 1),
-            divider.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            divider.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            divider.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            divider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            divider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
         ])
     }
-
-    public func configure(title: String) {
-        self.title.text = title
-    }
-
 }
