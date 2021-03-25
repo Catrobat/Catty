@@ -27,67 +27,21 @@ protocol SettingToggleDelegate: AnyObject {
 
 class SettingToggleView: UIView {
 
-    private var toggle: UISwitch = {
-        let toggle = UISwitch()
-        toggle.translatesAutoresizingMaskIntoConstraints = false
-        toggle.addTarget(self, action: #selector(settingToggled), for: .valueChanged)
-        return toggle
-    }()
-
-    private var settingTitle: UILabel = {
-        let settingTitle = UILabel()
-        settingTitle.translatesAutoresizingMaskIntoConstraints = false
-        settingTitle.font = UIFont.systemFont(ofSize: 16)
-        settingTitle.numberOfLines = 0
-        return settingTitle
-    }()
-
-    private var settingDescription: UILabel = {
-        let settingDescription = UILabel()
-        settingDescription.font = UIFont.systemFont(ofSize: 11)
-        settingDescription.numberOfLines = 0
-        settingDescription.translatesAutoresizingMaskIntoConstraints = false
-        settingDescription.textColor = UIColor.darkGray
-        return settingDescription
-    }()
-
-    private var hStack: UIStackView = {
-        let hStack = UIStackView()
-        hStack.translatesAutoresizingMaskIntoConstraints = false
-        hStack.axis = NSLayoutConstraint.Axis.horizontal
-        hStack.alignment = UIStackView.Alignment.center
-        hStack.spacing = 8
-        hStack.distribution = UIStackView.Distribution.equalCentering
-        return hStack
-    }()
-
-    private var vLabelStack: UIStackView = {
-        let vLabelStack = UIStackView()
-        vLabelStack.translatesAutoresizingMaskIntoConstraints = false
-        vLabelStack.spacing = 2
-        vLabelStack.axis = NSLayoutConstraint.Axis.vertical
-        vLabelStack.distribution = UIStackView.Distribution.fill
-        return vLabelStack
-    }()
+    private var toggle: UISwitch!
+    private var settingTitle: UILabel!
+    private var settingDescription: UILabel!
+    private var hStack: UIStackView!
+    private var vLabelStack: UIStackView!
 
     public weak var delegate: SettingToggleDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(hStack)
-
-        hStack.addArrangedSubview(vLabelStack)
-        hStack.addArrangedSubview(toggle)
-
-        vLabelStack.addArrangedSubview(settingTitle)
-        vLabelStack.addArrangedSubview(settingDescription)
-
-        NSLayoutConstraint.activate([
-            hStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            hStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            hStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            hStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
-        ])
+        setupHStack()
+        setupVLabelStack()
+        setupSettingTitle()
+        setupSettingDescripton()
+        setupToggle()
     }
 
     required init?(coder: NSCoder) {
@@ -106,5 +60,59 @@ class SettingToggleView: UIView {
 
     @objc fileprivate func settingToggled(_ sender: UISwitch) {
         delegate?.didToggleSetting(isOn: sender.isOn)
+    }
+
+    private func setupVLabelStack() {
+        vLabelStack = UIStackView()
+        vLabelStack.translatesAutoresizingMaskIntoConstraints = false
+        vLabelStack.spacing = 2
+        vLabelStack.axis = NSLayoutConstraint.Axis.vertical
+        vLabelStack.distribution = UIStackView.Distribution.fill
+        hStack.addArrangedSubview(vLabelStack)
+    }
+
+    private func setupHStack() {
+        hStack = UIStackView()
+        self.addSubview(hStack)
+        hStack.translatesAutoresizingMaskIntoConstraints = false
+        hStack.axis = NSLayoutConstraint.Axis.horizontal
+        hStack.alignment = UIStackView.Alignment.center
+        hStack.spacing = 8
+        hStack.distribution = UIStackView.Distribution.equalCentering
+        NSLayoutConstraint.activate([
+            hStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+            hStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            hStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            hStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
+        ])
+    }
+
+    private func setupToggle() {
+        toggle = UISwitch()
+        toggle.isAccessibilityElement = true
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        toggle.addTarget(self, action: #selector(settingToggled), for: .valueChanged)
+        hStack.addArrangedSubview(toggle)
+    }
+
+    func setupToggleAccessibilityLabel(label : String){
+        toggle.accessibilityLabel = label
+    }
+
+    private func setupSettingTitle() {
+        settingTitle = UILabel()
+        settingTitle.translatesAutoresizingMaskIntoConstraints = false
+        settingTitle.font = UIFont.systemFont(ofSize: 16)
+        settingTitle.numberOfLines = 0
+        vLabelStack.addArrangedSubview(settingTitle)
+    }
+
+    private func setupSettingDescripton() {
+        settingDescription = UILabel()
+        settingDescription.font = UIFont.systemFont(ofSize: 11)
+        settingDescription.numberOfLines = 0
+        settingDescription.translatesAutoresizingMaskIntoConstraints = false
+        settingDescription.textColor = UIColor.darkGray
+        vLabelStack.addArrangedSubview(settingDescription)
     }
 }

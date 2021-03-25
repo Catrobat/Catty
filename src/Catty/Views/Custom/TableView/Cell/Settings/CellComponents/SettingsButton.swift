@@ -62,7 +62,7 @@ class SettingsButton: UIButton {
         self.setImage(rightIcon, for: .normal)
     }
 
-    public func setDefault(){
+    public func setDefault() {
         self.setTitleColor(nil, for: .normal)
         self.tintColor = nil
     }

@@ -32,6 +32,7 @@ class LogoutSettingTableViewCell: SettingsTableViewCell {
 
     private var topDivider: UIView!
     private var logoutButton: SettingsButton!
+
     weak var delegate: LogoutDelegate?
 
     override func awakeFromNib() {

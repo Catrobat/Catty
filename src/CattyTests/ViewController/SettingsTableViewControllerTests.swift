@@ -41,7 +41,7 @@ final class SettingsTableViewControllerTests: XCTestCase {
         let switchParameter = UISwitch()
         switchParameter.setOn(true, animated: false)
 
-        expect(self.controller?.changeFirebaseCrashReportSettings(switchParameter))
+        expect(self.controller?.changeFirebaseCrashReportSettings(isOn: switchParameter.isOn))
             .to(postNotifications(contain(expectedNotification)))
     }
 
@@ -52,7 +52,7 @@ final class SettingsTableViewControllerTests: XCTestCase {
         let switchParameter = UISwitch()
         switchParameter.setOn(false, animated: false)
 
-        expect(self.controller?.changeFirebaseCrashReportSettings(switchParameter))
+        expect(self.controller?.changeFirebaseCrashReportSettings(isOn: switchParameter.isOn))
             .to(postNotifications(contain(expectedNotification)))
     }
 }

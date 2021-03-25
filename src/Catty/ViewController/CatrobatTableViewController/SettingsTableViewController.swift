@@ -127,7 +127,6 @@ extension SettingsTableViewController {
 extension SettingsTableViewController: AppSettingsDelegate {
     func didToggleArduinoExtension(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: kUseArduinoBricks)
-        print(UserDefaults.standard.bool(forKey: kUseArduinoBricks))
     }
 }
 
@@ -160,6 +159,5 @@ extension SettingsTableViewController: MoreSettingsDelegate {
 extension SettingsTableViewController: LogoutDelegate {
     func didTapLogout() {
         logoutUser()
-        print("logout pressed")
     }
 }

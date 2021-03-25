@@ -253,7 +253,7 @@
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
 #define kLocalizedArduinoBricks NSLocalizedString(@"Arduino extension", nil)
 #define kLocalizedEmbroideryBricks NSLocalizedString(@"Embroidery extension", nil)
-#define kLocalizedSendCrashReports NSLocalizedString(@"Sending anonymous crash reports", nil)
+#define kLocalizedSendCrashReports NSLocalizedString(@"Send anonymous crash reports", nil)
 #define kLocalizedSendCrashReportsDescription NSLocalizedString(@"Allow the app to send crash reports automatically", nil)
 #define kLocalizedFrontCamera NSLocalizedString(@"Front camera", nil)
 #define kLocalizedDisconnectAllDevices NSLocalizedString(@"Disconnect all devices", nil)

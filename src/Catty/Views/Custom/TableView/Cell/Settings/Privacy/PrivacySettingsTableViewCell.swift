@@ -79,9 +79,10 @@ class PrivacySettingsTableViewCell: SettingsTableViewCell {
         contentView.addSubview(privacySetting)
         privacySetting.translatesAutoresizingMaskIntoConstraints = false
         privacySetting.delegate = self
+        privacySetting.setupToggleAccessibilityLabel(label: kLocalizedSendCrashReports)
         privacySetting.configure(
-            title: "Send anonyomous crash reports",
-            description: "Allow the app to send crash reports automatically"
+            title: kLocalizedSendCrashReports,
+            description: kLocalizedSendCrashReportsDescription
         )
         NSLayoutConstraint.activate([
             privacySetting.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

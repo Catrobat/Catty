@@ -29,10 +29,10 @@ protocol AppSettingsDelegate: AnyObject {
 class AppSettingsTableViewCell: SettingsTableViewCell {
     static let identifier = "AppSettingsTableViewCell"
 
-    public weak var delegate: AppSettingsDelegate?
-
     private var cellTitle: SettingsPageCellHeaderView!
     private var arduinoAppSetting: SettingToggleView!
+
+    public weak var delegate: AppSettingsDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -69,9 +69,10 @@ class AppSettingsTableViewCell: SettingsTableViewCell {
         contentView.addSubview(arduinoAppSetting)
         arduinoAppSetting.translatesAutoresizingMaskIntoConstraints = false
         arduinoAppSetting.configure(
-            title: "Arduino extension",
-            description: "Allow the app to control arduino extentions"
+            title: kLocalizedArduinoBricks,
+            description: kLocalizedArduinoBricksDescription
         )
+        arduinoAppSetting.setupToggleAccessibilityLabel(label : kLocalizedArduinoBricks)
         arduinoAppSetting.delegate = self
         NSLayoutConstraint.activate([
             arduinoAppSetting.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
