@@ -126,6 +126,7 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
 
         descriptionLabel.frame = CGRect(x: descriptionLabel.frame.origin.x, y: descriptionLabel.frame.origin.y, width: descriptionLabel.frame.size.width, height: expectedSize.height)
         descriptionLabel.URLColor = UIColor.navBar
+        descriptionLabel.URLSelectedColor = UIColor.navTint
 
         descriptionLabel.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
 
