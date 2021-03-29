@@ -99,7 +99,7 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
         let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
 
         XCTAssertFalse(view.aspectRatioButton!.isHidden)
-        XCTAssertFalse(view.aspectRatioLabel!.isHidden)
+        XCTAssertTrue(view.aspectRatioLabel == nil)
     }
 
     func testAspectRatioLandscapeHidden() {
@@ -110,7 +110,7 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
         let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
 
         XCTAssertTrue(view.aspectRatioButton!.isHidden)
-        XCTAssertTrue(view.aspectRatioLabel!.isHidden)
+        XCTAssertTrue(view.aspectRatioLabel == nil)
     }
 
     func testRestart() {
