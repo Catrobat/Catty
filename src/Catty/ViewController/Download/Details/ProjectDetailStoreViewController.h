@@ -23,7 +23,6 @@
 #import <UIKit/UIKit.h>
 #import "ProjectStoreDelegate.h"
 #import "CBFileManager.h"
-#import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "BaseTableViewController.h"
 #import "EVCircularProgressView.h"
 #import "ButtonTags.h"
@@ -32,7 +31,7 @@
 @class CatrobatProject;
 @class StoreProjectDownloader;
 
-@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, TTTAttributedLabelDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
+@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
