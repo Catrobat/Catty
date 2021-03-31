@@ -20,31 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
-import Foundation
+class SetTempoToBrickCell: BrickCell, BrickCellProtocol {
 
-@objc protocol AudioEngineProtocol {
-    @objc func start()
+    var textLabel: UILabel?
+    var tempoTextField: UITextField?
 
-    @objc func pause()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
-    @objc func resume()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
-    @objc func stop()
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
+    }
 
-    func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?)
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.tempoTextField = inlineViewSubViews[1] as? UITextField
+    }
 
-    func setVolumeTo(percent: Double, key: String)
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetTempoTo + " %@"
+    }
 
-    func changeVolumeBy(percent: Double, key: String)
-
-    func stopAllAudioPlayers()
-
-    func getSpeechSynth() -> SpeechSynthesizer
-
-    func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?)
-
-    func setInstrument(_ instrument: Instrument, key: String)
-
-    func setTempo(tempo: Int)
+    override func parameters() -> [String]! {
+        NSArray.init(objects: "{FLOAT;range=(0,inf)}") as? [String]
+    }
 }

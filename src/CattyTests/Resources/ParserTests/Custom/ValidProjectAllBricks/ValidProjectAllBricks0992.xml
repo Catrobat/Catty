@@ -741,6 +741,15 @@
                     <commentedOut>false</commentedOut>
                     <instrumentSelection>PIANO</instrumentSelection>
                 </brick>
+                <brick type="SetTempoToBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TEMPO">
+                      <type>NUMBER</type>
+                      <value>60</value>
+                    </formula>
+                  </formulaList>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>

@@ -404,4 +404,11 @@ class XMLParserTests0992: XMLAbstractTest {
             XCTAssertTrue(instruments.contains(instrument))
         }
     }
+
+    func testSetTempoToBrick() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0992")
+        let setTempoToBrick = (project.scene.object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 3) as! Brick
+
+        XCTAssertTrue(setTempoToBrick.isKind(of: SetTempoToBrick.self), "Invalid brick type")
+    }
 }

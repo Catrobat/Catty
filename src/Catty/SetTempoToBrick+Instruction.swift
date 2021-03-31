@@ -20,31 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
-import Foundation
+@objc extension SetTempoToBrick: CBInstructionProtocol {
 
-@objc protocol AudioEngineProtocol {
-    @objc func start()
+    @nonobjc func instruction() -> CBInstruction {
+        guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
+        let spriteObjectName = spriteObject.name
 
-    @objc func pause()
-
-    @objc func resume()
-
-    @objc func stop()
-
-    func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?)
-
-    func setVolumeTo(percent: Double, key: String)
-
-    func changeVolumeBy(percent: Double, key: String)
-
-    func stopAllAudioPlayers()
-
-    func getSpeechSynth() -> SpeechSynthesizer
-
-    func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?)
-
-    func setInstrument(_ instrument: Instrument, key: String)
-
-    func setTempo(tempo: Int)
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = scheduler.getAudioEngine()
+            if spriteObjectName != nil {
+                audioEngine.setTempo(tempo: context.formulaInterpreter.interpretInteger(self.getFormulas()[0], for: spriteObject))
+            }
+        }
+    }
 }

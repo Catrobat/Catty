@@ -452,6 +452,7 @@
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeBy NSLocalizedString(@"Change volume by", nil)
 #define kLocalizedSetInstrumentTo NSLocalizedString(@"Set Instrument to", nil)
+#define kLocalizedSetTempoTo NSLocalizedString(@"Set tempo to", nil)
 #define kLocalizedSay NSLocalizedString(@"Say", nil)
 #define kLocalizedThink NSLocalizedString(@"Think", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
