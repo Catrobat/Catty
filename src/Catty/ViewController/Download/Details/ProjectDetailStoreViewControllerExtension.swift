@@ -88,7 +88,6 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         self.configureTitleLabel(descriptionTitleLabel, andHeight: height)
         descriptionTitleLabel.text = kLocalizedDescription
         view?.addSubview(descriptionTitleLabel)
-
         description = description.replacingOccurrences(of: "<br>", with: "")
         description = description.replacingOccurrences(of: "<br />", with: "")
 
@@ -113,19 +112,21 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         let y = labelBounds.size.height.rounded(.up)
         let expectedSize = CGSize(width: x, height: y)
 
-        let descriptionLabel = TTTAttributedLabel(frame: CGRect.zero)
-        if height == CGFloat(kIpadScreenHeight) {
-            descriptionLabel.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: height * 0.35 + 40, width: 540, height: expectedSize.height)
-        } else {
-            descriptionLabel.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: height * 0.35 + 40, width: 280, height: expectedSize.height)
-        }
+        let descriptionLabel = UILabel(frame: .zero)
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view?.addSubview(descriptionLabel)
+
+        NSLayoutConstraint.activate([
+            descriptionLabel.leadingAnchor.constraint(equalTo: view!.leadingAnchor, constant: (view?.frame.size.width ?? 0) / 15),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view!.trailingAnchor, constant: -(view?.frame.size.width ?? 0) / 15),
+            descriptionLabel.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 10),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: expectedSize.height)
+        ])
 
         self.configureDescriptionLabel(descriptionLabel)
-        descriptionLabel.delegate = target as? TTTAttributedLabelDelegate
         descriptionLabel.text = description
 
         descriptionLabel.frame = CGRect(x: descriptionLabel.frame.origin.x, y: descriptionLabel.frame.origin.y, width: descriptionLabel.frame.size.width, height: expectedSize.height)
-        view?.addSubview(descriptionLabel)
         self.setMaxHeightIfGreaterFor(view, withHeight: height * 0.35 + 40 + expectedSize.height)
         return descriptionLabel.frame.size.height
     }
@@ -391,23 +392,10 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         }
     }
 
-    private func configureDescriptionLabel(_ label: TTTAttributedLabel) {
+    private func configureDescriptionLabel(_ label: UILabel) {
         let height = ProjectDetailStoreViewController.height
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
         self.configureTextLabel(label, andHeight: height)
-        label.enabledTextCheckingTypes = NSTextCheckingAllTypes
-        label.verticalAlignment = TTTAttributedLabelVerticalAlignment.top
-
-        var mutableLinkAttributes: [AnyHashable: Any] = [:]
-        mutableLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.textTint
-        mutableLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: true)
-
-        var mutableActiveLinkAttributes: [AnyHashable: Any] = [:]
-        mutableActiveLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.brown
-        mutableActiveLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: false)
-
-        label.linkAttributes = mutableLinkAttributes
-        label.activeLinkAttributes = mutableActiveLinkAttributes
     }
 }
