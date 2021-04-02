@@ -50,6 +50,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) Formula *formula;
 @property (strong, nonatomic) BrickCellFormulaData *brickCellData;
 @property (strong, nonatomic) BrickCell *brickCell;
+@property (weak, nonatomic) UIAlertController *computeDialog;
+@property (weak, nonatomic) NSTimer *dialogUpdateTimer;
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *pickerGesture;
@@ -511,9 +513,27 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.formulaManager setupForFormula:formula];
     
     NSString *computedString = [self interpretFormula:formula forSpriteObject:spriteObject];
-    [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
     
-    [self.formulaManager stop];
+    _computeDialog = [UIAlertController alertControllerWithTitle:computedString message:NULL preferredStyle:UIAlertControllerStyleAlert];
+    
+    _dialogUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:true block:^(NSTimer * _Nonnull timer) {
+        [self.formulaManager setupForFormula:formula];
+        NSString *computedString = [self interpretFormula:formula forSpriteObject:spriteObject];
+        self.computeDialog.title = computedString;
+    }];
+    
+    UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:kLocalizedClose style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self->_dialogUpdateTimer invalidate];
+    }];
+    [self.computeDialog addAction:dismissAction];
+    
+    [self presentViewController:self.computeDialog animated:true completion:NULL];
+}
+
+- (void)updateComputeDialog:(Formula*)formula andSpriteObject:(SpriteObject*)spriteObject {
+    [self.formulaManager setupForFormula:formula];
+    NSString *computedString = [self interpretFormula:formula forSpriteObject:spriteObject];
+    self.computeDialog.title = computedString;
 }
 
 - (NSString*)interpretFormula:(Formula*)formula forSpriteObject:(SpriteObject*)spriteObject {
@@ -808,17 +828,26 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)showSyntaxErrorView
 {
+    UIAlertController* errorDialog = [UIAlertController alertControllerWithTitle:NULL message:NULL preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleDefault handler:NULL];
+    [errorDialog addAction:okAction];
+    
     if (self.internFormula != nil && self.internFormula.isEmpty) {
-        [self showNotification:kUIFEEmptyInput andDuration:kBDKNotifyHUDPresentationDuration];
+        errorDialog.title = kUIFEEmptyInput;
     } else {
-        [self showNotification:kUIFESyntaxError andDuration:kBDKNotifyHUDPresentationDuration];
+        errorDialog.title = kUIFESyntaxError;
         [self.formulaEditorTextView setParseErrorCursorAndSelection];
     }
+    
+    [self presentViewController:errorDialog animated:true completion:NULL];
 }
 
 - (void)showFormulaTooLongView
 {
-    [self showNotification:kUIFEtooLongFormula andDuration:kBDKNotifyHUDPresentationDuration];
+    UIAlertController* errorDialog = [UIAlertController alertControllerWithTitle:kUIFEtooLongFormula message:NULL preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleDefault handler:NULL];
+    [errorDialog addAction:okAction];
+    [self presentViewController:errorDialog animated:true completion:NULL];
 }
 
 #pragma mark NotificationCenter
