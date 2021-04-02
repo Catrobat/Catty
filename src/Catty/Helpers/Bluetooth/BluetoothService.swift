@@ -262,21 +262,21 @@ open class BluetoothService: NSObject {
         if let manager = self.selectionManager {
             manager.deviceNotResponding()
         }
-        Util.alert(withTitle: klocalizedBluetoothConnectionFailed, andText: klocalizedBluetoothNotResponding)
+        Util.alert(title: klocalizedBluetoothConnectionFailed, text: klocalizedBluetoothNotResponding)
     }
 
     func giveUpFailure() {
         if let manager = self.selectionManager {
             manager.giveUpConnectionToDevice()
         }
-        Util.alert(withTitle: klocalizedBluetoothConnectionLost, andText: klocalizedBluetoothDisconnected)
+        Util.alert(title: klocalizedBluetoothConnectionLost, text: klocalizedBluetoothDisconnected)
     }
 
     func connectionFailure() {
         if let manager = self.selectionManager {
             manager.deviceFailedConnection()
         }
-        Util.alert(withTitle: klocalizedBluetoothConnectionFailed, andText: klocalizedBluetoothCannotConnect)
+        Util.alert(title: klocalizedBluetoothConnectionFailed, text: klocalizedBluetoothCannotConnect)
     }
 
     //    func setPhiroDevice(peripheral:Peripheral){

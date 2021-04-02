@@ -43,7 +43,7 @@ import Foundation
 
     @nonobjc func openURL(url: URL, storeProjectDownloader: StoreProjectDownloaderProtocol) {
         guard let projectId = CatrobatTableViewController.catrobatProjectIdFromURL(url: url) else {
-            Util.alert(withText: kLocalizedInvalidURLGiven)
+            Util.alert(text: kLocalizedInvalidURLGiven)
             return
         }
         self.showLoadingView()
@@ -52,11 +52,11 @@ import Foundation
             self.hideLoadingView()
 
             guard error == nil else {
-                Util.alert(withText: kLocalizedUnableToLoadProject)
+                Util.alert(text: kLocalizedUnableToLoadProject)
                 return
             }
             guard let storeProject = project else {
-                Util.alert(withText: kLocalizedInvalidZip)
+                Util.alert(text: kLocalizedInvalidZip)
                 return
             }
             let catrobatProject = storeProject.toCatrobatProject()

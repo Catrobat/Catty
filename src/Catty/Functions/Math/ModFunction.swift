@@ -22,7 +22,7 @@
 
 class ModFunction: DoubleParameterDoubleFunction {
     static var tag = "MOD"
-    static var name = "mod"
+    static var name = kUIFEFunctionMod
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

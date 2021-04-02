@@ -20,33 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetBackgroundBrickCell.h"
+extension NextLookBrick: CBXMLNodeProtocol {
+    static func parse(from xmlElement: GDataXMLElement!, with context: CBXMLParserContext!) -> Self! {
+        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 0)
+        return self.init()
+    }
 
-@interface SetBackgroundBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
-
-@implementation SetBackgroundBrickCell
-
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
+    func xmlElement(with context: CBXMLSerializerContext!) -> GDataXMLElement! {
+        let brick = super.xmlElement(for: "NextLookBrick", with: context)
+        return brick
+    }
 }
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-    self.lookComboBoxView = inlineViewSubViews[1];
-}
-
-- (NSArray<NSString*>*)parameters
-{
-    return [[NSArray alloc] initWithObjects:@"{BACKGROUND}", nil];
-}
-
-- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
-{
-    return [kLocalizedSetBackground stringByAppendingString:@"\n%@"];
-}
-
-@end

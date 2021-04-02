@@ -20,10 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+@objc(PreviousLookBrick)
+@objcMembers class PreviousLookBrick: Brick, BrickProtocol {
+    override public required init() {
+        super.init()
+    }
 
-@interface NextLookBrick : Brick<BrickProtocol>
+    func path(for look: Look) -> String? {
+        look.path(for: script.object.scene)
+    }
 
-- (NSString*)pathForLook:(Look*)look;
+    func category() -> kBrickCategoryType {
+        kBrickCategoryType.lookBrick
+    }
 
-@end
+    override func description() -> String {
+        "Previouslookbrick"
+    }
+
+    override func brickCell() -> BrickCellProtocol.Type {
+        PreviousLookBrickCell.self as BrickCellProtocol.Type
+    }
+
+    override func getRequiredResources() -> Int {
+        ResourceType.noResources.rawValue
+    }
+}

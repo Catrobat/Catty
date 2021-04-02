@@ -23,7 +23,7 @@
 class NumberOfItemsFunction: SingleParameterDoubleFunction {
 
     static var tag = "NUMBER_OF_ITEMS"
-    static var name = "number_of_items"
+    static var name = kUIFEFunctionNumberOfItems
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false

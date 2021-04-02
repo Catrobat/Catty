@@ -83,7 +83,7 @@ class ModFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("mod", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionMod, type(of: function).name)
     }
 
     func testRequiredResources() {

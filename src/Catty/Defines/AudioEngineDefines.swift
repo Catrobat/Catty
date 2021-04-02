@@ -23,5 +23,6 @@
 enum AudioEngineDefines {
 
     static let defaultInstrument = Instrument.piano
+    static let defaultTempo = 60
 
 }

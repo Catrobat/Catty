@@ -65,7 +65,7 @@ class MaxFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("max", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionMax, type(of: function).name)
     }
 
     func testRequiredResources() {

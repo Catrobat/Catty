@@ -58,7 +58,7 @@ class AbsFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("abs", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionAbs, type(of: function).name)
     }
 
     func testRequiredResources() {

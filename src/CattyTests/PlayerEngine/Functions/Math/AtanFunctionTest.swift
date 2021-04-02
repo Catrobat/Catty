@@ -58,7 +58,7 @@ class AtanFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("arctan", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionAtan, type(of: function).name)
     }
 
     func testRequiredResources() {

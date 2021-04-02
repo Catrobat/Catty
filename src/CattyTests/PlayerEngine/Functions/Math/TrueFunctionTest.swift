@@ -51,7 +51,7 @@ class TrueFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("true", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionTrue, type(of: function).name)
     }
 
     func testRequiredResources() {

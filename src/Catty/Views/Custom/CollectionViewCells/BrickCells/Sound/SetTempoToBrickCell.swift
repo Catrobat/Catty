@@ -20,10 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+class SetTempoToBrickCell: BrickCell, BrickCellProtocol {
 
-@interface PreviousLookBrick : Brick<BrickProtocol>
+    var textLabel: UILabel?
+    var tempoTextField: UITextField?
 
-- (NSString*)pathForLook:(Look*)look;
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
-@end
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.tempoTextField = inlineViewSubViews[1] as? UITextField
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetTempoTo + " %@"
+    }
+
+    override func parameters() -> [String]! {
+        NSArray.init(objects: "{FLOAT;range=(0,inf)}") as? [String]
+    }
+}

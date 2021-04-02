@@ -20,37 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PreviousLookBrick.h"
-#import "ObjectTableViewController.h"
-#import "Script.h"
-#import "Pocket_Code-Swift.h"
+@objc(NextLookBrickCell)
+class NextLookBrickCell: BrickCell, BrickCellProtocol {
+    public var textLabel: UILabel?
 
-@implementation PreviousLookBrick
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
-- (kBrickCategoryType)category
-{
-    return kLookBrick;
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        isBackground ? kLocalizedNextBackground : kLocalizedNextLook
+    }
 }
-
-- (NSString *)brickTitle {
-    return @"";
-}
-
-- (NSString*)pathForLook:(Look*)look
-{
-    return [look pathForScene:self.script.object.scene];
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Previouslookbrick"];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return kNoResources;
-}
-
-@end

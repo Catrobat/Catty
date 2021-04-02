@@ -22,7 +22,7 @@
 
 class MaxFunction: DoubleParameterDoubleFunction {
     static var tag = "MAX"
-    static var name = "max"
+    static var name = kUIFEFunctionMax
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true

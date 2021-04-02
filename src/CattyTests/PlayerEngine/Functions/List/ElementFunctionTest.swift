@@ -97,7 +97,7 @@ class ElementFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("element", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionItem, type(of: function).name)
     }
 
     func testRequiredResources() {

@@ -20,8 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+@objc extension SetTempoToBrick: CBInstructionProtocol {
 
-@interface PreviousLookBrickCell : BrickCell<BrickCellProtocol>
+    @nonobjc func instruction() -> CBInstruction {
+        guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
+        let spriteObjectName = spriteObject.name
 
-@end
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = scheduler.getAudioEngine()
+            if spriteObjectName != nil {
+                audioEngine.setTempo(tempo: context.formulaInterpreter.interpretInteger(self.getFormulas()[0], for: spriteObject))
+            }
+        }
+    }
+}

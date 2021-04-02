@@ -20,33 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetLookBrickCell.h"
+@objc(SetLookBrickCell)
+class SetLookBrickCell: BrickCell, BrickCellProtocol {
 
-@interface SetLookBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+    public var lookComboBox: iOSCombobox?
+    public var textLabel: UILabel?
 
-@implementation SetLookBrickCell
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight2h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.lookComboBox = inlineViewSubViews[1] as? iOSCombobox
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetLook.appending("\n%@")
+    }
+
+    override func parameters() -> [String] {
+        ["{LOOK}"]
+    }
 }
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-    self.lookComboBoxView = inlineViewSubViews[1];
-}
-
-- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
-{
-    return [kLocalizedSetLook stringByAppendingString:@"\n%@"];
-}
-
-- (NSArray<NSString*>*)parameters
-{
-    return [[NSArray alloc] initWithObjects:@"{LOOK}", nil];
-}
-
-@end

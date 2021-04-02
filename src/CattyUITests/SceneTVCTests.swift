@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PreviousLookBrick.h"
-#import "CBXMLNodeProtocol.h"
+import XCTest
 
-@interface PreviousLookBrick (CBXMLHandler) <CBXMLNodeProtocol>
+class SceneTVCTests: XCTestCase {
 
-@end
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchApp()
+    }
+
+    func testCopySelectedObjects() {
+        let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        waitForElementToAppear(app.buttons[kLocalizedCopyObjects]).tap()
+        app.buttons[kLocalizedSelectAllItems].tap()
+        app.buttons[kLocalizedCopy].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
+        for object in projectObjects {
+            XCTAssert(app.tables.staticTexts[object + " (1)"].exists)
+        }
+    }
+}

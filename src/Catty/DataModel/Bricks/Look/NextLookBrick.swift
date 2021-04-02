@@ -20,11 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
-#import "iOSCombobox.h"
+@objc(NextLookBrick)
+@objcMembers class NextLookBrick: Brick, BrickProtocol {
+    override public required init() {
+        super.init()
+    }
 
-@interface SetBackgroundBrickCell : BrickCell<BrickCellProtocol>
+    func path(for look: Look) -> String? {
+        look.path(for: script.object.scene)
+    }
 
-@property (nonatomic, weak) iOSCombobox *lookComboBoxView;
+    func category() -> kBrickCategoryType {
+        kBrickCategoryType.lookBrick
+    }
 
-@end
+    override func description() -> String {
+        "Nextlookbrick"
+    }
+
+    override func brickCell() -> BrickCellProtocol.Type {
+        NextLookBrickCell.self as BrickCellProtocol.Type
+    }
+
+    override func getRequiredResources() -> Int {
+        ResourceType.noResources.rawValue
+    }
+}
