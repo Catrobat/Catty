@@ -113,7 +113,7 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         let y = labelBounds.size.height.rounded(.up)
         let expectedSize = CGSize(width: x, height: y)
 
-        let descriptionLabel = UILabel(frame: .zero)
+        let descriptionLabel = ActiveLabel(frame: .zero)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view?.addSubview(descriptionLabel)
 
