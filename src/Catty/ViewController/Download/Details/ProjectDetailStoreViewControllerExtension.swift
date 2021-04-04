@@ -128,6 +128,10 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         descriptionLabel.text = description
 
         descriptionLabel.frame = CGRect(x: descriptionLabel.frame.origin.x, y: descriptionLabel.frame.origin.y, width: descriptionLabel.frame.size.width, height: expectedSize.height)
+        descriptionLabel.URLColor = UIColor.navBar
+        descriptionLabel.URLSelectedColor = UIColor.navTint
+        descriptionLabel.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
+
         self.setMaxHeightIfGreaterFor(view, withHeight: height * 0.35 + 40 + expectedSize.height)
         return descriptionLabel.frame.size.height
     }
@@ -393,10 +397,17 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         }
     }
 
-    private func configureDescriptionLabel(_ label: UILabel) {
+    private func configureDescriptionLabel(_ label: ActiveLabel) {
         let height = ProjectDetailStoreViewController.height
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
         self.configureTextLabel(label, andHeight: height)
+        var mutableLinkAttributes: [AnyHashable: Any] = [:]
+        mutableLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.textTint
+        mutableLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: true)
+
+        var mutableActiveLinkAttributes: [AnyHashable: Any] = [:]
+        mutableActiveLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.brown
+        mutableActiveLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: false)
     }
 }
