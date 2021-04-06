@@ -19,36 +19,34 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+class SetBrightnessBrickCell: BrickCell, BrickCellProtocol {
 
-#import "SetBrightnessBrickCell.h"
+    private var leftTextLabel: UILabel?
+    private var rightTextLabel: UILabel?
+    private var textField: UITextField?
 
-@interface SetBrightnessBrickCell ()
-@property (nonatomic, strong) UILabel *leftTextLabel;
-@property (nonatomic, strong) UILabel *rightTextLabel;
-@end
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
-@implementation SetBrightnessBrickCell
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight2h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.leftTextLabel = inlineViewSubViews[0] as? UILabel
+        self.textField = inlineViewSubViews[1] as? UITextField
+        self.rightTextLabel = inlineViewSubViews[2] as? UILabel
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String? {
+        kLocalizedSetBrightness + "\n" + kLocalizedTo + " %@"    }
+
+    override func parameters() -> [String]? {
+        NSArray.init(objects: "{FLOAT;range=(-inf,inf)}") as? [String]
+    }
 }
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.leftTextLabel = inlineViewSubViews[0];
-    self.brightnessTextField = inlineViewSubViews[1];
-    self.rightTextLabel = inlineViewSubViews[2];
-}
-
-- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
-{
-    return [kLocalizedSetBrightness stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@" %@\%"]]];
-}
-
-- (NSArray<NSString*>*)parameters
-{
-    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", nil];
-}
-
-@end

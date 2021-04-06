@@ -37,7 +37,8 @@
             let brightness = formulaInterpreter.interpretDouble(bright, for: object)
             spriteNode.catrobatBrightness = brightness
 
-            let lookImage = UIImage(contentsOfFile: self.path(for: look))
+            guard let path = self.pathForLook(look: look) else { return }
+            let lookImage = UIImage(contentsOfFile: path)
             spriteNode.executeFilter(lookImage)
         }
     }
