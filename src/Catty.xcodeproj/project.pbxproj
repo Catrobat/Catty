@@ -83,6 +83,7 @@
 		18D939E724C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */; };
 		18D939EB24C97A1C00A32544 /* SetPenColorBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */; };
 		18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */; };
+		18DFA1C2261D9C8B00BA1F8B /* FormulaEditorViewControllerAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DFA1BF261D9C8B00BA1F8B /* FormulaEditorViewControllerAlertExtension.swift */; };
 		18E3498025DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E3497F25DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift */; };
 		18E83F7B2493BEFF003295DA /* PenClearBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7A2493BEFF003295DA /* PenClearBrick.swift */; };
 		18E83F7F2493BFE6003295DA /* PenClearBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */; };
@@ -1293,7 +1294,9 @@
 		97770B8825E5A88C00F51EFA /* SetBrightnessBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */; };
 		97770B8F25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */; };
 		97AC582125C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json in Resources */ = {isa = PBXBuildFile; fileRef = 97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */; };
+		97629D5325F7C3C800B71B73 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		9797CB8325AF7A6000A50444 /* SceneTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */; };
+		97AC582125C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json in Resources */ = {isa = PBXBuildFile; fileRef = 97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */; };
 		97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */; };
 		97BA19DF25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */; };
 		97D015912553392A00B6967D /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D0158E2553392A00B6967D /* RoundedImageView.swift */; };
@@ -1957,6 +1960,7 @@
 		18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrickTests.swift; sourceTree = "<group>"; };
 		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
+		18DFA1BF261D9C8B00BA1F8B /* FormulaEditorViewControllerAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerAlertExtension.swift; sourceTree = "<group>"; };
 		18E3497F25DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewController.swift; sourceTree = "<group>"; };
 		18E83F7A2493BEFF003295DA /* PenClearBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrick.swift; sourceTree = "<group>"; };
 		18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrickCell.swift; sourceTree = "<group>"; };
@@ -3458,9 +3462,9 @@
 		9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerReportExtension.swift; sourceTree = "<group>"; };
 		97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBrightnessBrick.swift; sourceTree = "<group>"; };
 		97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBrightnessByNBrick.swift; sourceTree = "<group>"; };
+		9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTVCTests.swift; sourceTree = "<group>"; };
 		97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.fail.invalidToken.json; sourceTree = "<group>"; };
 		97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerExtension.swift; sourceTree = "<group>"; };
-		9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTVCTests.swift; sourceTree = "<group>"; };
 		97D0158E2553392A00B6967D /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedImageView.swift; path = Catty/Views/Custom/TableView/Cell/RoundedImageView.swift; sourceTree = SOURCE_ROOT; };
 		97D97BAA257AC141001FF344 /* URLSessionMultipartExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMultipartExtension.swift; sourceTree = "<group>"; };
 		97D97BAE257AC6DD001FF344 /* URLSessionMultipartExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMultipartExtensionTests.swift; sourceTree = "<group>"; };
@@ -4303,7 +4307,7 @@
 				4C10D9D623ED8CDC00EB0C6E /* FIRAnalyticsConnector.framework in Frameworks */,
 				CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */,
 				4CFAC30825ADD89E00AF0DD1 /* Siren in Frameworks */,
-				97629D5325F7C3C800B71B73 /* ActiveLabel.framework in Frameworks */,
+				97629D5325F7C3C800B71B73 /* (null) in Frameworks */,
 				59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */,
 				4C4B4CC223ED94230054C861 /* FirebaseCrashlytics.framework in Frameworks */,
 				4C10D9DD23ED8DA900EB0C6E /* GoogleDataTransport.framework in Frameworks */,
@@ -4512,7 +4516,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				97629D4825F7C11D00B71B73 /* ActiveLabel.framework */,
 				4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */,
 				4C10D9E223ED8DF500EB0C6E /* PromisesObjC.framework */,
 				4C10D9DF23ED8DCF00EB0C6E /* FirebaseInstallations.framework */,
@@ -7993,6 +7996,7 @@
 				F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Section.swift */,
 				4C4EE29A210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift */,
 				18957DDE25B8B870001A623F /* FormulaEditorSubsection.swift */,
+				18DFA1BF261D9C8B00BA1F8B /* FormulaEditorViewControllerAlertExtension.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -12190,6 +12194,7 @@
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,
 				92D56C301BF202E700A54750 /* BluetoothDevice.swift in Sources */,
 				4C0F9F91204BD28100E71B2D /* CameraBrickCell.m in Sources */,
+				18DFA1C2261D9C8B00BA1F8B /* FormulaEditorViewControllerAlertExtension.swift in Sources */,
 				18390A7124D0594300A07DFD /* StampBrick+CBXMLHandler.swift in Sources */,
 				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
