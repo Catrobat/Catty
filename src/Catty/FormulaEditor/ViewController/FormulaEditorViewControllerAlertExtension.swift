@@ -47,27 +47,27 @@ extension FormulaEditorViewController {
 
     @objc func showSyntaxErrorView() {
 
-        let errorDialog = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        self.computeDialog = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: kLocalizedOK, style: .cancel, handler: nil)
-        errorDialog.addAction(okAction)
+        self.computeDialog.addAction(okAction)
 
         if self.internFormula != nil && self.internFormula.isEmpty() {
-            errorDialog.title = kUIFEEmptyInput
+            self.computeDialog.title = kUIFEEmptyInput
         } else {
-            errorDialog.title = kUIFESyntaxError
+            self.computeDialog.title = kUIFESyntaxError
             self.setParseErrorCursorAndSelection()
         }
 
-        self.present(errorDialog, animated: true, completion: nil)
+        self.present(self.computeDialog, animated: true, completion: nil)
     }
 
     @objc func showFormulaTooLongView() {
 
-        let errorDialog = UIAlertController(title: kUIFEtooLongFormula, message: nil, preferredStyle: .alert)
+        self.computeDialog = UIAlertController(title: kUIFEtooLongFormula, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: kLocalizedOK, style: .cancel, handler: nil)
-        errorDialog.addAction(okAction)
+        self.computeDialog.addAction(okAction)
 
-        self.present(errorDialog, animated: true, completion: nil)
+        self.present(self.computeDialog, animated: true, completion: nil)
 
     }
 
