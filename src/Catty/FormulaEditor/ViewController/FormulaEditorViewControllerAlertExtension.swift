@@ -41,7 +41,7 @@ extension FormulaEditorViewController {
 
         self.computeDialog.addAction(dismissAction)
 
-        self.present(computeDialog, animated: true, completion: nil)
+        UIApplication.shared.windows.last?.rootViewController?.present(computeDialog, animated: true, completion: nil)
 
     }
 
@@ -58,7 +58,7 @@ extension FormulaEditorViewController {
             self.setParseErrorCursorAndSelection()
         }
 
-        self.present(self.computeDialog, animated: true, completion: nil)
+        UIApplication.shared.windows.last?.rootViewController?.present(self.computeDialog, animated: true, completion: nil)
     }
 
     @objc func showFormulaTooLongView() {
@@ -67,7 +67,7 @@ extension FormulaEditorViewController {
         let okAction = UIAlertAction(title: kLocalizedOK, style: .cancel, handler: nil)
         self.computeDialog.addAction(okAction)
 
-        self.present(self.computeDialog, animated: true, completion: nil)
+        UIApplication.shared.windows.last?.rootViewController?.present(self.computeDialog, animated: true, completion: nil)
 
     }
 
