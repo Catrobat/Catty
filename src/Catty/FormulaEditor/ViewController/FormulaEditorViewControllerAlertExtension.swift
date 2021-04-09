@@ -29,7 +29,9 @@ extension FormulaEditorViewController {
         let computedString = self.interpretFormula(formula, for: spriteObject)
 
         self.computeDialog = UIAlertController(title: computedString, message: nil, preferredStyle: .alert)
-        self.dialogUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+        self.computeDialog.view.tintColor = UIColor.medium
+
+        self.dialogUpdateTimer = Timer.scheduledTimer(withTimeInterval: UIDefines.formulaEditorComputeRefreshInterval, repeats: true, block: { _ in
             self.formulaManager.setup(for: formula)
             let computedString = self.interpretFormula(formula, for: spriteObject)
             self.computeDialog.title = computedString
@@ -37,6 +39,7 @@ extension FormulaEditorViewController {
 
         let dismissAction = UIAlertAction(title: kLocalizedClose, style: .cancel) { _ in
             self.dialogUpdateTimer.invalidate()
+            self.formulaManager.stop()
         }
 
         self.computeDialog.addAction(dismissAction)
@@ -48,6 +51,7 @@ extension FormulaEditorViewController {
     @objc func showSyntaxErrorView() {
 
         self.computeDialog = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        self.computeDialog.view.tintColor = UIColor.medium
         let okAction = UIAlertAction(title: kLocalizedOK, style: .cancel, handler: nil)
         self.computeDialog.addAction(okAction)
 
@@ -64,6 +68,7 @@ extension FormulaEditorViewController {
     @objc func showFormulaTooLongView() {
 
         self.computeDialog = UIAlertController(title: kUIFEtooLongFormula, message: nil, preferredStyle: .alert)
+        self.computeDialog.view.tintColor = UIColor.medium
         let okAction = UIAlertAction(title: kLocalizedOK, style: .cancel, handler: nil)
         self.computeDialog.addAction(okAction)
 
