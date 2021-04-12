@@ -89,6 +89,7 @@
 		18E83F812493C32C003295DA /* PenClearBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */; };
 		18E83F832493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */; };
 		18E83F852493C978003295DA /* PenClearBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F842493C978003295DA /* PenClearBrickTests.swift */; };
+		18E908A82624995900EF57D6 /* FormulaEditorComputeDialogTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E908A72624995900EF57D6 /* FormulaEditorComputeDialogTest.swift */; };
 		2219ED8D2519EB8100EBA379 /* NSMutableArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */; };
 		2219ED93251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */; };
 		222A6934247E43AB004BE434 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
@@ -1962,6 +1963,7 @@
 		18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PenClearBrick+Instruction.swift"; path = "Catty/PlayerEngine/Instructions/Pen/PenClearBrick+Instruction.swift"; sourceTree = SOURCE_ROOT; };
 		18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PenClearBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		18E83F842493C978003295DA /* PenClearBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrickTests.swift; sourceTree = "<group>"; };
+		18E908A72624995900EF57D6 /* FormulaEditorComputeDialogTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorComputeDialogTest.swift; sourceTree = "<group>"; };
 		18EF8F4D5C0ED599CBA2B488 /* vi */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B5E0F4EFA8B76CD707F0556 /* ur */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C035A070A526C061039C146 /* ha */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ha; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -10135,6 +10137,7 @@
 				181321C825C97E9D001BA787 /* FormulaEditorTests.swift */,
 				1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */,
 				9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */,
+				18E908A72624995900EF57D6 /* FormulaEditorComputeDialogTest.swift */,
 			);
 			path = CattyUITests;
 			sourceTree = "<group>";
@@ -11502,6 +11505,7 @@
 				BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */,
 				4C7F50FC21E62B0E0010AC36 /* ProjectsTVCTests.swift in Sources */,
 				6F38BF69247537290052C692 /* ListTests.swift in Sources */,
+				18E908A82624995900EF57D6 /* FormulaEditorComputeDialogTest.swift in Sources */,
 				1801591E25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift in Sources */,
 				5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */,
 				9E7564B222C7AB1A00D38A3B /* ObjectTVCTests.swift in Sources */,
