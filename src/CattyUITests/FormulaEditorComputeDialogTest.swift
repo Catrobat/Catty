@@ -45,20 +45,11 @@ class FormulaEditorComputeDialogTest: XCTestCase {
         waitForElementToAppear(app.tables.staticTexts[kUIFESensorTimeSecond]).tap()
         waitForElementToAppear(app.buttons.staticTexts[kUIFECompute]).tap()
 
-        if let initial = Int(app.alerts.element.label) {
-
-            sleep(5)
-
-            if let final = Int(app.alerts.element.label) {
-                XCTAssertEqual(final, initial + 5)
-            }
-
+        for _ in 1...2 {
+            let initial = Int(app.alerts.element.label)
             sleep(2)
-
-            if let final = Int(app.alerts.element.label) {
-                XCTAssertEqual(final, initial + 7)
-            }
-
+            let final = Int(app.alerts.element.label)
+            XCTAssertNotEqual(initial!, final!)
         }
 
     }
