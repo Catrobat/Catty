@@ -45,11 +45,15 @@
 @property (weak, nonatomic) SpriteObject *object;
 @property (strong, nonatomic) FormulaManager *formulaManager;
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
+@property (strong, nonatomic) UIAlertController *computeDialog;
+@property (weak, nonatomic) NSTimer *dialogUpdateTimer;
 
 - (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andFormulaManager:(FormulaManager*)formulaManager;
 - (void)update;
 - (void)updateDeleteButton:(BOOL)enabled;
 - (void)backspace:(id)sender;
+- (NSString*)interpretFormula:(Formula*)formula forSpriteObject:(SpriteObject*)spriteObject;
+- (void)setParseErrorCursorAndSelection;
 
 - (void)handleInput;
 

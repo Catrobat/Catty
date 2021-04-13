@@ -30,6 +30,8 @@ class UIDefines: NSObject {
     @objc static let brickCategorySectionInset = CGFloat(10.0)
     @objc static let brickCategoryBrickInset = CGFloat(5.0)
 
+    static let formulaEditorComputeRefreshInterval = 1.0
+
     static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
 
     static let playButtonAccessibilityLabel = "Play"

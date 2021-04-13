@@ -506,16 +506,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-- (void)showComputeDialog:(Formula*)formula andSpriteObject:(SpriteObject*)spriteObject
-{
-    [self.formulaManager setupForFormula:formula];
-    
-    NSString *computedString = [self interpretFormula:formula forSpriteObject:spriteObject];
-    [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
-    
-    [self.formulaManager stop];
-}
-
 - (NSString*)interpretFormula:(Formula*)formula forSpriteObject:(SpriteObject*)spriteObject {
     id result = [self.formulaManager interpret:formula forSpriteObject:spriteObject];
     
@@ -530,6 +520,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     
     return @"";
+}
+
+- (void)setParseErrorCursorAndSelection
+{
+    [self.internFormula selectParseErrorTokenAndSetCursor];
+    int startIndex = [self.internFormula getExternSelectionStartIndex];
+    int endIndex = [self.internFormula getExternSelectionEndIndex];
+    NSUInteger cursorPostionIndex = [self.internFormula getExternCursorPosition];
+    [self.formulaEditorTextView highlightSelection:cursorPostionIndex start:startIndex end:endIndex];
 }
 
 #pragma mark - UI
@@ -804,21 +803,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)showChangesDiscardedView
 {
     [self showNotification:kUIFEChangesDiscarded andDuration:kBDKNotifyHUDPresentationDuration];
-}
-
-- (void)showSyntaxErrorView
-{
-    if (self.internFormula != nil && self.internFormula.isEmpty) {
-        [self showNotification:kUIFEEmptyInput andDuration:kBDKNotifyHUDPresentationDuration];
-    } else {
-        [self showNotification:kUIFESyntaxError andDuration:kBDKNotifyHUDPresentationDuration];
-        [self.formulaEditorTextView setParseErrorCursorAndSelection];
-    }
-}
-
-- (void)showFormulaTooLongView
-{
-    [self showNotification:kUIFEtooLongFormula andDuration:kBDKNotifyHUDPresentationDuration];
 }
 
 #pragma mark NotificationCenter
