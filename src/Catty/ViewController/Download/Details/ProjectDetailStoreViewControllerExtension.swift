@@ -21,9 +21,6 @@
  */
 import ActiveLabel
 
-let kHTMLATagPattern = "(?i)<a([^>]+)>(.+?)</a>"
-let kHTMLAHrefTagPattern = "href=\"(.*?)\""
-
 @objc extension ProjectDetailStoreViewController {
 
     static var height: CGFloat = Util.screenHeight()
@@ -125,10 +122,6 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         descriptionLabel.text = description
 
         descriptionLabel.frame = CGRect(x: descriptionLabel.frame.origin.x, y: descriptionLabel.frame.origin.y, width: descriptionLabel.frame.size.width, height: expectedSize.height)
-        descriptionLabel.URLColor = UIColor.navBar
-        descriptionLabel.URLSelectedColor = UIColor.navTint
-
-        descriptionLabel.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
 
         view?.addSubview(descriptionLabel)
         self.setMaxHeightIfGreaterFor(view, withHeight: height * 0.35 + 40 + expectedSize.height)
@@ -402,12 +395,10 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         label.numberOfLines = 0
         self.configureTextLabel(label, andHeight: height)
 
-        var mutableLinkAttributes: [AnyHashable: Any] = [:]
-        mutableLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.textTint
-        mutableLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: true)
+        label.enabledTypes = [.url]
+        label.URLColor = UIColor.navBar
+        label.URLSelectedColor = UIColor.navTint
 
-        var mutableActiveLinkAttributes: [AnyHashable: Any] = [:]
-        mutableActiveLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.brown
-        mutableActiveLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: false)
+        label.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
     }
 }
