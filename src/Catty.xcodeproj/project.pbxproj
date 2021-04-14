@@ -24,6 +24,7 @@
 		05E6802A255B5E0300D1E295 /* CGVectorExtentionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68029255B5E0300D1E295 /* CGVectorExtentionsTests.swift */; };
 		05E6802C255B5E3400D1E295 /* CGVectorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */; };
 		05E6802F255B602700D1E295 /* stitch.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05E6802E255B602700D1E295 /* stitch.dst */; };
+		17A8ABE92624EAA400DDD480 /* FormulaParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8ABE82624EAA400DDD480 /* FormulaParserTest.swift */; };
 		1801591E25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
@@ -654,7 +655,6 @@
 		4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */; };
 		4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */; };
 		4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */; };
-		4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */; };
 		4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */; };
 		4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */; };
 		4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */; };
@@ -1897,6 +1897,7 @@
 		0C64E34E5347DA71ECB56DE6 /* pt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		113CDA22CF21176FFA49E694 /* sd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sd; path = sd.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		17A8ABE82624EAA400DDD480 /* FormulaParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaParserTest.swift; path = Formula/FormulaParserTest.swift; sourceTree = "<group>"; };
 		1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewController.swift; sourceTree = "<group>"; };
 		180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTests.swift; sourceTree = "<group>"; };
 		180DDF422506800600EA526C /* AnalyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsMock.swift; sourceTree = "<group>"; };
@@ -2597,7 +2598,6 @@
 		4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserErrorDetectionTest.m; path = Formula/FormulaParserErrorDetectionTest.m; sourceTree = "<group>"; };
 		4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserFunctionsTest.m; path = Formula/FormulaParserFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserOperatorsTest.m; path = Formula/FormulaParserOperatorsTest.m; sourceTree = "<group>"; };
-		4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserTest.m; path = Formula/FormulaParserTest.m; sourceTree = "<group>"; };
 		4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaParserStringFunctionsTest.m; path = Formula/InternFormulaParserStringFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaStateTest.m; path = Formula/InternFormulaStateTest.m; sourceTree = "<group>"; };
 		4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTest.m; path = Formula/InternFormulaTest.m; sourceTree = "<group>"; };
@@ -5742,7 +5742,7 @@
 				4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */,
 				4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */,
 				4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */,
-				4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */,
+				17A8ABE82624EAA400DDD480 /* FormulaParserTest.swift */,
 				4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */,
 				4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */,
 				4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */,
@@ -11785,6 +11785,7 @@
 				E579F11A253DCD90009107C8 /* ChangeXByNBrickTests.swift in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
 				E579F109253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift in Sources */,
+				17A8ABE92624EAA400DDD480 /* FormulaParserTest.swift in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C2CBB5525A5AA8400C1C143 /* XMLParserTests098.swift in Sources */,
@@ -11845,7 +11846,6 @@
 				4C6FE15E212D2D2E0067B7D5 /* MaxFunctionTest.swift in Sources */,
 				1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */,
 				4C822674213FA7A400F3D750 /* InclinationXSensorTest.swift in Sources */,
-				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
 				4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */,
 				4C1A596323FD9E79001A78D2 /* SettingsTableViewControllerTests.swift in Sources */,
