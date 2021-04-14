@@ -268,4 +268,38 @@ final class ProjectManagerTests: XCTestCase {
         }
         fileManager.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
     }
+
+    func testProjectNamesForID() {
+        // TODO: Remove this once Project.allProjectLoadingInfos() has been moved to ProjectManager and can use CBFileManagerMock
+        let fileManager = CBFileManager.shared()!
+        for loadingInfo in Project.allProjectLoadingInfos() as! [ProjectLoadingInfo] {
+            fileManager.deleteDirectory(loadingInfo.basePath!)
+        }
+
+        var projectNames = ProjectManager.projectNames(for: "")
+        XCTAssertNil(projectNames)
+
+        projectNames = ProjectManager.projectNames(for: "invalid")
+        XCTAssertNil(projectNames)
+
+        let project = ProjectManager.createProject(name: "projectName", projectId: "1234", fileManager: fileManager, imageCache: imageCache)
+
+        projectNames = ProjectManager.projectNames(for: project.header.programID)
+        XCTAssertNotNil(projectNames)
+        XCTAssertEqual(1, projectNames?.count)
+        XCTAssertEqual(projectNames?.first!, project.header.programName)
+
+        let anotherProject = ProjectManager.createProject(name: project.header.programName + " (1)", projectId: project.header.programID, fileManager: fileManager, imageCache: imageCache)
+
+        projectNames = ProjectManager.projectNames(for: project.header.programID)
+        XCTAssertNotNil(projectNames)
+        XCTAssertEqual(2, projectNames?.count)
+
+        project.rename(toProjectName: project.header.programName, andProjectId: project.header.programID + "5", andShowSaveNotification: true)
+
+        projectNames = ProjectManager.projectNames(for: anotherProject.header.programID)
+        XCTAssertNotNil(projectNames)
+        XCTAssertEqual(1, projectNames?.count)
+        XCTAssertEqual(projectNames?.first!, anotherProject.header.programName)
+    }
 }

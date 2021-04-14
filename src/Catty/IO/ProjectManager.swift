@@ -21,9 +21,9 @@
  */
 
 @objc(ProjectManager)
-@objcMembers class ProjectManager: NSObject {
+class ProjectManager: NSObject {
 
-    static func createProject(name: String, projectId: String?) -> Project {
+    @objc static func createProject(name: String, projectId: String?) -> Project {
         ProjectManager.createProject(name: name, projectId: projectId, fileManager: CBFileManager.shared(), imageCache: RuntimeImageCache.shared())
     }
 
@@ -76,8 +76,7 @@
         return project
     }
 
-    static func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo,
-                                         completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
+    @objc static func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
         ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: projectLoadingInfo, fileManager: CBFileManager.shared(), imageCache: RuntimeImageCache.shared(), completion: completion)
     }
 
@@ -114,5 +113,23 @@
         }
 
         return
+    }
+
+    static func projectNames(for projectID: String, fileManager: CBFileManager = CBFileManager.shared()) -> [String]? {
+        if projectID.isEmpty {
+            return nil
+        }
+
+        var projectNames = [String]()
+        let allProjectLoadingInfos = Project.allProjectLoadingInfos()
+        for case let projectLoadingInfo as ProjectLoadingInfo in allProjectLoadingInfos where projectLoadingInfo.projectID == projectID {
+            projectNames.append(projectLoadingInfo.visibleName)
+        }
+
+        if projectNames.isEmpty {
+            return nil
+        }
+
+        return projectNames
     }
 }
