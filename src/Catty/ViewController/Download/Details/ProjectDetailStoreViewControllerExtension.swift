@@ -401,4 +401,42 @@ import ActiveLabel
 
         label.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
     }
+
+    func openButtonPressed() {
+        guard let localProjectNames = ProjectManager.projectNames(for: project.projectID) else {
+            Util.alert(text: kLocalizedUnableToLoadProject)
+            return
+        }
+
+        if localProjectNames.count > 1 {
+            let nameSelectionSheet = UIAlertController(title: kLocalizedOpen, message: nil, preferredStyle: .actionSheet)
+
+            nameSelectionSheet.addAction(title: kLocalizedCancel, style: .cancel, handler: nil)
+
+            for localProjectName in localProjectNames {
+                nameSelectionSheet.addAction(title: localProjectName, style: .default, handler: { action in
+                    self.openProject(withLocalName: action.title)
+                })
+            }
+
+            self.present(nameSelectionSheet, animated: true, completion: nil)
+        } else {
+            openProject(withLocalName: localProjectNames.first)
+        }
+
+    }
+
+    private func openProject(withLocalName localProjectName: String?) {
+        showLoadingView()
+        CATransaction.flush()
+
+        guard let selectedProject = Project.init(loadingInfo: ProjectLoadingInfo.init(forProjectWithName: localProjectName, projectID: project.projectID)) else {
+            hideLoadingView()
+            Util.alert(text: kLocalizedUnableToLoadProject)
+            return
+        }
+
+        hideLoadingView()
+        openProject(selectedProject)
+    }
 }

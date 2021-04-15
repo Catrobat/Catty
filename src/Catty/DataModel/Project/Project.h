@@ -76,6 +76,5 @@
 + (NSString* _Nonnull)projectDirectoryNameForProjectName:(NSString* _Nonnull)projectName
                                                projectID:(NSString* _Nullable)projectID;
 + (nullable ProjectLoadingInfo *)projectLoadingInfoForProjectDirectoryName:(NSString* _Nonnull)projectDirectoryName;
-+ (nullable NSString *)projectNameForProjectID:(NSString* _Nonnull)projectID;
 
 @end

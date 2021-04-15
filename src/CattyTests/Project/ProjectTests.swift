@@ -25,7 +25,7 @@
 import Nimble
 import XCTest
 
-class ProjectTest: XCTestCase {
+class ProjectTests: XCTestCase {
 
     var project: Project!
     var fileManager: CBFileManager!
