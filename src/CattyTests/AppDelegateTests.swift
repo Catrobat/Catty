@@ -107,4 +107,31 @@ final class AppDelegateTests: XCTestCase {
 
     }
 
+    func testApplicationAppOpenUrlMethod() {
+        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "CatrobatTableViewController") as? CatrobatTableViewController else { return }
+        let rootViewController = UINavigationController()
+        rootViewController.pushViewController(viewController, animated: false)
+        appDelegate.window?.rootViewController = rootViewController
+
+        let bundle = Bundle.init(for: self.classForCoder)
+        guard let xmlPath = bundle.path(forResource: "817", ofType: "catrobat") else {
+            XCTAssertFalse(false)
+            return
+        }
+
+        let sumProjectNamesBefore = Project.allProjectNames().count
+
+        let canOpen = appDelegate.application(UIApplication.shared, open: URL(fileURLWithPath: xmlPath))
+
+        let sumProjectNamesAfter = Project.allProjectNames().count
+
+        XCTAssertEqual(sumProjectNamesBefore + 1, sumProjectNamesAfter)
+        XCTAssertTrue(canOpen)
+    }
+
+    func testApplicationAppOpenUrlMethodWithInvalidUrl() {
+        let canOpen = appDelegate.application(UIApplication.shared, open: URL(string: "invalid")!)
+        XCTAssertFalse(canOpen)
+    }
 }

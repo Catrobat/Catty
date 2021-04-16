@@ -302,4 +302,34 @@ final class ProjectManagerTests: XCTestCase {
         XCTAssertEqual(1, projectNames?.count)
         XCTAssertEqual(projectNames?.first!, anotherProject.header.programName)
     }
+
+    func testAddProjectFromFileWithValidUrl() {
+        let bundle = Bundle.init(for: self.classForCoder)
+        guard let xmlPath = bundle.path(forResource: "817", ofType: "catrobat") else {
+            XCTAssertFalse(false)
+            return
+        }
+
+        let sumProjectNamesBefore = Project.allProjectNames().count
+
+        let canOpen = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: xmlPath))
+
+        let sumProjectNamesAfter = Project.allProjectNames().count
+
+        XCTAssertEqual(sumProjectNamesBefore + 1, sumProjectNamesAfter)
+        XCTAssertTrue(canOpen)
+
+        XCTAssertTrue((Project.allProjectNames() as! [String]).contains("Tic-Tac-Toe Master"))
+    }
+
+    func testAddProjectFromFileWithInvalidUrl() {
+        let sumProjectNamesBefor = Project.allProjectNames().count
+
+        let canOpen = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: "test"))
+
+        let sumProjectNamesAfter = Project.allProjectNames().count
+
+        XCTAssertEqual(sumProjectNamesBefor, sumProjectNamesAfter)
+        XCTAssertFalse(canOpen)
+    }
 }

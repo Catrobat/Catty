@@ -282,6 +282,7 @@ let kLocalizedThisFeatureIsComingSoon = NSLocalizedString("This feature is comin
 let kLocalizedNoDescriptionAvailable = NSLocalizedString("No description available", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNoSearchResults = NSLocalizedString("No search results", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnableToLoadProject = NSLocalizedString("Unable to load project!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedUnableToImportProject = NSLocalizedString("Unable to import project!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedThisActionCannotBeUndone = NSLocalizedString("This action can not be undone!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedErrorInternetConnection = NSLocalizedString("An unknown error occurred. Check your Internet connection.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedErrorUnknown = NSLocalizedString("An unknown error occurred. Please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")

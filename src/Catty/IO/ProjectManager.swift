@@ -132,4 +132,51 @@ class ProjectManager: NSObject {
 
         return projectNames
     }
+
+    static func addProjectFromFile(url: URL) -> Bool {
+        let fileManager = CBFileManager.shared()
+        let tempProjectName = String(Date().timeIntervalSinceReferenceDate) + url.lastPathComponent
+        let path = url.path
+        var newProject: NSData?
+
+        if url.startAccessingSecurityScopedResource() {
+            newProject = NSData.init(contentsOfFile: path)
+            url.stopAccessingSecurityScopedResource()
+        }
+
+        if newProject == nil {
+            Util.alert(text: kLocalizedUnableToImportProject)
+            return false
+        }
+
+        fileManager?.unzipAndStore(newProject as Data?, withProjectID: nil, withName: tempProjectName)
+
+        return getProjectNameAndRename(tempProjectName: tempProjectName)
+    }
+
+    private static func getProjectNameAndRename(tempProjectName: String) -> Bool {
+        guard let projectLoadingInfo = ProjectLoadingInfo.init(forProjectWithName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
+        else {
+            Project.removeProjectFromDisk(withProjectName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
+            Util.alert(text: kLocalizedUnableToImportProject)
+            return false
+        }
+
+        let projectPath = projectLoadingInfo.basePath + kProjectCodeFileName
+
+        let parser = Parser.init()
+        let projectObject = parser.generateObjectForProject(withPath: projectPath)
+
+        if projectObject == nil {
+            Project.removeProjectFromDisk(withProjectName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
+            Util.alert(text: kLocalizedUnableToImportProject)
+            return false
+        }
+
+        let newProjectName = Util.uniqueName(projectObject?.header.programName, existingNames: Project.allProjectNames())
+        let project = Project.init(loadingInfo: projectLoadingInfo)
+        project?.rename(toProjectName: newProjectName!, andShowSaveNotification: false)
+
+        return true
+    }
 }

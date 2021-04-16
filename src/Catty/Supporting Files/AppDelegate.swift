@@ -150,4 +150,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         self.disabledOrientation ? UIInterfaceOrientationMask.portrait : UIInterfaceOrientationMask.all
     }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
+
+        let vc = self.window?.rootViewController as! UINavigationController
+        vc.popToRootViewController(animated: true)
+
+        if let ctvc = vc.topViewController as? CatrobatTableViewController {
+            if ProjectManager.addProjectFromFile(url: url) {
+                ctvc.performSegue(withIdentifier: kSegueToProjects, sender: ctvc)
+                return true
+            }
+        }
+        return false
+    }
 }
