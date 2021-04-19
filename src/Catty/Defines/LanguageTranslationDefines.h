@@ -216,6 +216,8 @@
 #define kLocalizedNo NSLocalizedString(@"No", nil)
 #define kLocalizedDeleteProject NSLocalizedString(@"Delete project", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
+#define kLocalizedSaveChanges NSLocalizedString(@"Save changes", nil)
+#define kLocalizedDiscardChanges NSLocalizedString(@"Discard changes", nil)
 #define kLocalizedSaved NSLocalizedString(@"Saved", nil)
 #define kLocalizedProjectUploaded NSLocalizedString(@"Upload successful", nil)
 #define kLocalizedProjectUploadedBody NSLocalizedString(@"Your project was uploaded to the Catrobat community where others can use and download it.", nil)

@@ -352,14 +352,15 @@
 
 - (void)showSavePaintImageAlert
 {
-    [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
-        addCancelActionWithTitle:kLocalizedCancel handler:^{
-        
-    }]
-       addDefaultActionWithTitle:kLocalizedYes handler:^{
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:nil]
+       addCancelActionWithTitle:kLocalizedCancel handler:nil]
+       addDefaultActionWithTitle:kLocalizedSaveChanges handler:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self savePaintImage:self.saveView.image andPath:self.editingPath];
         });
+        [[self navigationController] popViewControllerAnimated:YES];
+    }]
+       addDestructiveActionWithTitle:kLocalizedDiscardChanges handler:^{
         [[self navigationController] popViewControllerAnimated:YES];
     }] build]
      showWithController:self];

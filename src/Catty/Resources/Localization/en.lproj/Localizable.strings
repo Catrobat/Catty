@@ -512,6 +512,9 @@
 "Disagree" = "Disagree";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Discard changes";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "Disconnect all devices";
 
 /* No comment provided by engineer. */
@@ -1497,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
+
+/* No comment provided by engineer. */
+"Save changes" = "Save changes";
 
 /* paint */
 "Save to Photos" = "Save to Photos";
