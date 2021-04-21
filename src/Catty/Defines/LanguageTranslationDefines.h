@@ -467,6 +467,8 @@
 #define kLocalizedShowVariable NSLocalizedString(@"Show variable", nil)
 #define kLocalizedHideVariable NSLocalizedString(@"Hide variable", nil)
 #define kLocalizedAt NSLocalizedString(@"at ", nil)
+#define kLocalizedSendWebRequestTo NSLocalizedString(@"Send web request to", nil)
+#define kLocalizedAndStoreAnswerIn NSLocalizedString(@"and store answer in", nil)
 
 //userlist
 #define kLocalizedUserListAdd NSLocalizedString(@"Add", nil)
@@ -749,6 +751,7 @@
 #define kLocalizedVibration NSLocalizedString(@"vibration", nil)
 #define kLocalizedSensorLoudness NSLocalizedString(@"loudness", nil)
 #define kLocalizedSensorLED NSLocalizedString(@"LED", nil)
+#define kLocalizedInternet NSLocalizedString(@"Internet", nil)
 #define kLocalizedNotAvailable NSLocalizedString(@"not available. Continue anyway?", nil)
 
 #define kUIFESensorFaceDetected NSLocalizedString(@"face detected", nil)
@@ -841,6 +844,7 @@
 #define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
 #define kLocalizedUnexpectedErrorTitle NSLocalizedString(@"Unexpected Error", nil)
 #define kLocalizedUnexpectedErrorMessage NSLocalizedString(@"Unexpected Error, please try again later.", nil)
+#define kLocalizedDownloadSizeErrorMessage NSLocalizedString(@"Download too big", nil)
 
 //************************************************************************************************************
 //**************************************       Audio Engine        *********************************************

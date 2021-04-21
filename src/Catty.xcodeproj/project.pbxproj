@@ -125,6 +125,17 @@
 		2DCB4934212EA9BF005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */; };
 		2DCB4936212EAAEF005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json */; };
 		2DCB4938212EAB36005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */; };
+		2E0E25D525E265840020CD9D /* WebRequestDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */; };
+		2E25F6E1262040550044B2DF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E25F6E0262040550044B2DF /* Reachability.swift */; };
+		2E5E767B260DEB9400D4DEBD /* WebRequestDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E767A260DEB9400D4DEBD /* WebRequestDownloaderMock.swift */; };
+		2E7ED10625E38E1A0009F17F /* WebRequestDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7ED10525E38E1A0009F17F /* WebRequestDownloaderTests.swift */; };
+		2E7ED11425E3AAFA0009F17F /* WebRequestDownloader.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E7ED11325E3AAFA0009F17F /* WebRequestDownloader.success.json */; };
+		2E8780A82542BCE200816B52 /* WebRequestBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */; };
+		2EBD8456253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD8455253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift */; };
+		2EBD845B253FEEA1009BFED5 /* WebRequestBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */; };
+		2EBD845D253FEF57009BFED5 /* WebRequestBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD845C253FEF57009BFED5 /* WebRequestBrickCell.swift */; };
+		2EBD845F253FEFB6009BFED5 /* WebRequestBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD845E253FEFB6009BFED5 /* WebRequestBrick+Instruction.swift */; };
+		2ECA319C25E6461E00CEC967 /* WebRequestDownloader.fail.json in Resources */ = {isa = PBXBuildFile; fileRef = 2ECA319B25E6461E00CEC967 /* WebRequestDownloader.fail.json */; };
 		2ED4179F241120AF00AFE2FD /* Nyancat_1.0_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2ED41695241120AE00AFE2FD /* Nyancat_1.0_0991.xml */; };
 		2ED417A0241120AF00AFE2FD /* Nyancat_1.0_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2ED41696241120AE00AFE2FD /* Nyancat_1.0_091.xml */; };
 		2ED417A1241120AF00AFE2FD /* Nyancat_1.0_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2ED41697241120AE00AFE2FD /* Nyancat_1.0_093.xml */; };
@@ -2007,6 +2018,17 @@
 		2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json; sourceTree = "<group>"; };
 		2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.success.json; sourceTree = "<group>"; };
 		2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.fail.request.json; sourceTree = "<group>"; };
+		2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestDownloader.swift; sourceTree = "<group>"; };
+		2E25F6E0262040550044B2DF /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		2E5E767A260DEB9400D4DEBD /* WebRequestDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderMock.swift; sourceTree = "<group>"; };
+		2E7ED10525E38E1A0009F17F /* WebRequestDownloaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderTests.swift; sourceTree = "<group>"; };
+		2E7ED11325E3AAFA0009F17F /* WebRequestDownloader.success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WebRequestDownloader.success.json; sourceTree = "<group>"; };
+		2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrickTests.swift; sourceTree = "<group>"; };
+		2EBD8455253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebRequestBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrick.swift; sourceTree = "<group>"; };
+		2EBD845C253FEF57009BFED5 /* WebRequestBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrickCell.swift; sourceTree = "<group>"; };
+		2EBD845E253FEFB6009BFED5 /* WebRequestBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WebRequestBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/WebRequestBrick+Instruction.swift"; sourceTree = "<group>"; };
+		2ECA319B25E6461E00CEC967 /* WebRequestDownloader.fail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WebRequestDownloader.fail.json; sourceTree = "<group>"; };
 		2ED41695241120AE00AFE2FD /* Nyancat_1.0_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_0991.xml; sourceTree = "<group>"; };
 		2ED41696241120AE00AFE2FD /* Nyancat_1.0_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_091.xml; sourceTree = "<group>"; };
 		2ED41697241120AE00AFE2FD /* Nyancat_1.0_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_093.xml; sourceTree = "<group>"; };
@@ -4578,6 +4600,40 @@
 			path = SearchStore;
 			sourceTree = "<group>";
 		};
+		2E0E25D125E265480020CD9D /* WebRequestDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */,
+			);
+			path = WebRequestDownloader;
+			sourceTree = "<group>";
+		};
+		2E25F6DD262040380044B2DF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2E25F6E0262040550044B2DF /* Reachability.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2E7ED10425E38DF50009F17F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E7ED11225E3AAC10009F17F /* Fixtures */,
+				2E7ED10525E38E1A0009F17F /* WebRequestDownloaderTests.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2E7ED11225E3AAC10009F17F /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				2E7ED11325E3AAFA0009F17F /* WebRequestDownloader.success.json */,
+				2ECA319B25E6461E00CEC967 /* WebRequestDownloader.fail.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
 		2ED41693241120AE00AFE2FD /* UserProjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -6423,6 +6479,7 @@
 				9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */,
 				AA74EF751BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.h */,
 				AA74EF761BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m */,
+				2EBD8455253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift */,
 			);
 			name = Data;
 			path = VariableBricks;
@@ -7097,6 +7154,7 @@
 				E579F11B253DCE2C009107C8 /* ChangeYByNBrickTests.swift */,
 				E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */,
 				971C6F20260526ED00AD4857 /* SetTempoToBrickTests.swift */,
+				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -7346,6 +7404,7 @@
 				6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */,
 				180DDF422506800600EA526C /* AnalyticsMock.swift */,
 				59B7A8D22504E83F001C736A /* StageMock.swift */,
+				2E5E767A260DEB9400D4DEBD /* WebRequestDownloaderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -8203,6 +8262,7 @@
 				D63864691AE63EB4008569E6 /* Keychain */,
 				92FF2E621A24C7D800093DA7 /* Logger */,
 				92FF2E701A24C7D800093DA7 /* NavigationController */,
+				2E25F6DD262040380044B2DF /* Network */,
 				4C0F9F47204ADD0C00E71B2D /* OrderedDictionary */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
@@ -8210,6 +8270,7 @@
 				5E99F2E123442DD2007878C1 /* ThemesHelper */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
 				92FF2E851A24C7D800093DA7 /* Utils */,
+				2E0E25D125E265480020CD9D /* WebRequestDownloader */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -9600,6 +9661,7 @@
 				BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */,
 				9200C2CE1C808206002F5CA4 /* ShowTextBrick+Instruction.swift */,
 				AA74EE251BC0540D00D1E954 /* SetVariableBrick+Instruction.swift */,
+				2EBD845E253FEFB6009BFED5 /* WebRequestBrick+Instruction.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -9738,6 +9800,7 @@
 				9200C2C81C808006002F5CA4 /* ShowTextBrick.m */,
 				AA74EF991BC05B5F00D1E954 /* SetVariableBrick.h */,
 				AA74EF9A1BC05B5F00D1E954 /* SetVariableBrick.m */,
+				2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -9975,6 +10038,7 @@
 				9200C2D41C8082EF002F5CA4 /* ShowTextBrickCell.m */,
 				AA74F0401BC05FCE00D1E954 /* SetVariableBrickCell.h */,
 				AA74F0411BC05FCE00D1E954 /* SetVariableBrickCell.m */,
+				2EBD845C253FEF57009BFED5 /* WebRequestBrickCell.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -10203,6 +10267,7 @@
 				4CEB222C1B95E47500B3BE2F /* Bricks */,
 				CAD740E61AF2D3F600C32937 /* CBStack */,
 				4CD0BA9721467C4500BF17A4 /* DataModel */,
+				2E7ED10425E38DF50009F17F /* Helpers */,
 				C34B44FB17F3403400624730 /* Extensions */,
 				4CA658EB21EBA5A5000E5797 /* FileManager */,
 				4C3C03F5199BA5250004F594 /* Formula */,
@@ -10899,6 +10964,7 @@
 				2ED41864241120B000AFE2FD /* ValidHeader095.xml in Resources */,
 				4C3286232546D81000C31F9D /* GoToBrick_0993.xml in Resources */,
 				2ED4181E241120AF00AFE2FD /* Compass_0.1_093.xml in Resources */,
+				2E7ED11425E3AAFA0009F17F /* WebRequestDownloader.success.json in Resources */,
 				2ED41862241120B000AFE2FD /* ValidHeader097.xml in Resources */,
 				2ED41873241120B000AFE2FD /* Encapsulated_0991.xml in Resources */,
 				2ED41823241120AF00AFE2FD /* Compass_0.1_0991.xml in Resources */,
@@ -10996,6 +11062,7 @@
 				598E6553252A338B009F7C83 /* StoreProjectReporter.reportProject.success.json in Resources */,
 				2ED4187B241120B000AFE2FD /* NumberOfItemsInListFunction0991.xml in Resources */,
 				2ED4185A241120B000AFE2FD /* SoundMapping.xml in Resources */,
+				2ECA319C25E6461E00CEC967 /* WebRequestDownloader.fail.json in Resources */,
 				4C55CCE324BF2A7700FB8393 /* Memory_0992.xml in Resources */,
 				2ED417CE241120AF00AFE2FD /* Galaxy_War_095.xml in Resources */,
 				2ED417F6241120AF00AFE2FD /* Pythagorean_Theorem_092.xml in Resources */,
@@ -11616,6 +11683,7 @@
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				4C822679213FA7A400F3D750 /* SizeSensorTest.swift in Sources */,
+				2E7ED10625E38E1A0009F17F /* WebRequestDownloaderTests.swift in Sources */,
 				4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */,
 				46C5D9F6254FF641003D58D9 /* RotationStyleTests.swift in Sources */,
 				9E2C2D9023257704004B66C6 /* ChangeBrightnessByNBrickTests.swift in Sources */,
@@ -11716,6 +11784,7 @@
 				9E2C2D8E23257387004B66C6 /* AbstractBrickTest.swift in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				E57E6D85254040B400E775DF /* ChangeVolumeByNBrickTests.swift in Sources */,
+				2E8780A82542BCE200816B52 /* WebRequestBrickTests.swift in Sources */,
 				4C0A209824CEA46700CC9B04 /* PaintViewControllerMock.swift in Sources */,
 				4C82267B213FA7A400F3D750 /* BackgroundNumberSensorTest.swift in Sources */,
 				59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */,
@@ -11772,6 +11841,7 @@
 				4C82266A213FA7A400F3D750 /* TimeSecondSensorTest.swift in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				9EBED5FD230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift in Sources */,
+				2E5E767B260DEB9400D4DEBD /* WebRequestDownloaderMock.swift in Sources */,
 				4C53E39021D5247C00F2EC76 /* NotOperatorTest.swift in Sources */,
 				4C822671213FA7A400F3D750 /* AccelerationXSensorTest.swift in Sources */,
 				6FCC9CC624B89D2B000DB08F /* StoreProjectUploaderMock.swift in Sources */,
@@ -12104,6 +12174,7 @@
 				4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */,
 				4C1E33A125DA570D00F44F13 /* PaintImageView.swift in Sources */,
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
+				2EBD845F253FEFB6009BFED5 /* WebRequestBrick+Instruction.swift in Sources */,
 				4C724E5F1B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m in Sources */,
 				E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */,
 				D30359E82444723D006688F5 /* GoToBrick+Instruction.swift in Sources */,
@@ -12186,6 +12257,7 @@
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
 				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
+				2E0E25D525E265840020CD9D /* WebRequestDownloader.swift in Sources */,
 				BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */,
 				E577F0462563C5A400368C18 /* BrickCategoryOverviewController.swift in Sources */,
 				E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */,
@@ -12330,6 +12402,7 @@
 				C8E037482605E745008F39D0 /* SetTempoToBrickCell.swift in Sources */,
 				9EC5174224FBD7ED0029CD0E /* SetInstrumentBrick.swift in Sources */,
 				AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */,
+				2EBD8456253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift in Sources */,
 				4C994E11207A3D4100C415FD /* SensorManagerProtocol.swift in Sources */,
 				59697DA8201F4D0400A0071A /* MediaItem.swift in Sources */,
 				4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */,
@@ -12513,6 +12586,7 @@
 				92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */,
 				929CC0F01BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m in Sources */,
 				AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.swift in Sources */,
+				2E25F6E1262040550044B2DF /* Reachability.swift in Sources */,
 				929CC0F91BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift in Sources */,
 				BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */,
 				4C0E25E920D39E5000A80273 /* StagePresenterViewControllerResourcesExtension.swift in Sources */,
@@ -12653,6 +12727,7 @@
 				4C4B4CD723EE8ABB0054C861 /* NotificationExtension.swift in Sources */,
 				AA74EF541BC0586F00D1E954 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
 				4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */,
+				2EBD845B253FEEA1009BFED5 /* WebRequestBrick.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
 				4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */,
 				9EC5174624FBD92F0029CD0E /* SetInstrumentBrickCell.swift in Sources */,
@@ -12675,6 +12750,7 @@
 				D38F58672441CFCA0079F6EA /* GoToBrickCell.m in Sources */,
 				92D56C3B1BF20B4700A54750 /* PhiroHelper.swift in Sources */,
 				AA74F0C31BC05FCE00D1E954 /* TurnRightBrickCell.m in Sources */,
+				2EBD845D253FEF57009BFED5 /* WebRequestBrickCell.swift in Sources */,
 				AA74F0A01BC05FCE00D1E954 /* IfLogicElseBrickCell.m in Sources */,
 				AA74F0A91BC05FCE00D1E954 /* SetVariableBrickCell.m in Sources */,
 				4CF0729620D66B2800F93AB5 /* ColorSensor.swift in Sources */,

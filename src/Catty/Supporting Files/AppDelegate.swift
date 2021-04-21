@@ -117,6 +117,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if defaults.value(forKey: kFirebaseSendCrashReports) == nil {
             defaults.set(kFirebaseSendCrashReportsDefault, forKey: kFirebaseSendCrashReports)
         }
+
+        if defaults.value(forKey: kUseWebRequestBrick) == nil {
+            defaults.set(kWebRequestBrickActivated, forKey: kUseWebRequestBrick)
+        }
     }
 
     func setupFirebase() {
