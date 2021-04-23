@@ -27,6 +27,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
 
     var progress: Float = 0
     var project: StoreProject?
+    var featuredProject: StoreFeaturedProject?
     var collectionText: StoreProjectCollection.StoreProjectCollectionText?
     var collectionNumber: StoreProjectCollection.StoreProjectCollectionNumber?
     var projectData: Data?
@@ -51,9 +52,33 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
         }
     }
 
-    func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void) {
+    func fetchProjects(for type: ProjectType, offset: Int, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collectionText, self.error)
+            let projectArrayMock: [StoreProject]? = [self.project ?? StoreProject(projectId: "",
+                                                                                  projectName: "",
+                                                                                  author: "",
+                                                                                  description: "",
+                                                                                  version: "",
+                                                                                  views: 0,
+                                                                                  downloads: 0,
+                                                                                  uploaded: 0,
+                                                                                  uploadedString: "",
+                                                                                  screenshotBig: "",
+                                                                                  screenshotSmall: "",
+                                                                                  projectUrl: "",
+                                                                                  downloadUrl: "",
+                                                                                  fileSize: 1.0,
+                                                                                  tags: [""])] //handle nil project
+            completion(projectArrayMock, self.error)
+            self.expectation?.fulfill()
+        }
+    }
+
+    func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            let featuredProjectArrayMock: [StoreFeaturedProject]? = [self.featuredProject ?? StoreFeaturedProject(id: "", url: "", name: "", author: "", featuredImage: "")]
+
+            completion(featuredProjectArrayMock, self.error)
             self.expectation?.fulfill()
         }
     }
