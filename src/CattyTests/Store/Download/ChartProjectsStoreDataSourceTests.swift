@@ -51,7 +51,6 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
         self.downloaderMock.project =
             StoreProject(projectId: "",
                          projectName: "",
-                         projectNameShort: "",
                          author: "",
                          description: "",
                          version: "",
@@ -64,7 +63,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
                          projectUrl: "",
                          downloadUrl: "",
                          fileSize: 1.0,
-                         featuredImage: "")
+                         tags: [""])
 
         let dataSource = ChartProjectStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch project from data source")
@@ -81,7 +80,6 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
     func testMostViewedProjectEmpty() {
         self.downloaderMock.project = StoreProject(projectId: "",
                                                    projectName: "",
-                                                   projectNameShort: "",
                                                    author: "",
                                                    description: "",
                                                    version: "",
@@ -94,7 +92,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
                                                    projectUrl: "",
                                                    downloadUrl: "",
                                                    fileSize: 1.0,
-                                                   featuredImage: "")
+                                                   tags: [""])
 
         let dataSource = ChartProjectStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch project from data source")
@@ -111,7 +109,6 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
     func testMostRecentProjectEmpty() {
         self.downloaderMock.project = StoreProject(projectId: "",
                                                    projectName: "",
-                                                   projectNameShort: "",
                                                    author: "",
                                                    description: "",
                                                    version: "",
@@ -124,7 +121,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
                                                    projectUrl: "",
                                                    downloadUrl: "",
                                                    fileSize: 1.0,
-                                                   featuredImage: "")
+                                                   tags: [""])
 
         let dataSource = ChartProjectStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch project from data source")

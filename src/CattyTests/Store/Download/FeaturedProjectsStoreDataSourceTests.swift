@@ -51,7 +51,6 @@ class FeaturedProjectsStoreDataSourceTests: XCTestCase {
         self.downloaderMock.project =
             StoreProject(projectId: "",
                          projectName: "",
-                         projectNameShort: "",
                          author: "",
                          description: "",
                          version: "",
@@ -64,7 +63,7 @@ class FeaturedProjectsStoreDataSourceTests: XCTestCase {
                          projectUrl: "",
                          downloadUrl: "",
                          fileSize: 1.0,
-                         featuredImage: "")
+                         tags: [""])
 
         let dataSource = FeaturedProjectsStoreTableDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch items from data source")

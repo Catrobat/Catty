@@ -39,7 +39,6 @@ final class StoreProjectTests: XCTestCase {
         XCTAssertEqual(catrobatProject.projectUrl, storeProject.projectUrl ?? "")
         XCTAssertEqual(catrobatProject.screenshotBig, baseURL + (storeProject.screenshotBig ?? ""))
         XCTAssertEqual(catrobatProject.screenshotSmall, baseURL + (storeProject.screenshotSmall ?? ""))
-        XCTAssertEqual(catrobatProject.featuredImage, baseURL + (storeProject.featuredImage ?? ""))
         if let uploaded = storeProject.uploaded {
             XCTAssertEqual(catrobatProject.uploaded, String(uploaded))
         } else {
@@ -53,7 +52,6 @@ final class StoreProjectTests: XCTestCase {
         let testProject = StoreProject(
             projectId: "827",
             projectName: "Airplane with shadow",
-            projectNameShort: "Airplane with shadow",
             author: "hej-wickie-hej",
             description: "Fly over wooden floor tiles, steering with your device's inclination.",
             version: "0.9.5",
@@ -66,7 +64,7 @@ final class StoreProjectTests: XCTestCase {
             projectUrl: "pocketcode/project/827",
             downloadUrl: "pocketcode/download/827.catrobat",
             fileSize: 1.2287311553955078,
-            featuredImage: nil
+            tags: ["game"]
         )
         assertAllFieldsEqual(in: testProject.toCatrobatProject(), and: testProject)
     }
