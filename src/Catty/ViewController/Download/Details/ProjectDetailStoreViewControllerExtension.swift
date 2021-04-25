@@ -81,14 +81,14 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         self.setMaxHeightIfGreaterFor(view, withHeight: authorLabel.frame.origin.y + authorLabel.frame.size.height)
     }
 
-    private func addProjectDescriptionLabel(withDescription description: String, to view: UIView!, target: Any?) -> CGFloat {
+    private func addProjectDescriptionLabel(withDescription description: String, to view: UIView, target: Any?) -> CGFloat {
         var description = description
         let height = ProjectDetailStoreViewController.height
         self.addHorizontalLine(to: view, andHeight: height * 0.35 - 15)
-        let descriptionTitleLabel = UILabel(frame: CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: height * 0.35, width: 155, height: 25))
+        let descriptionTitleLabel = UILabel(frame: CGRect(x: view.frame.size.width / 15, y: height * 0.35, width: 155, height: 25))
         self.configureTitleLabel(descriptionTitleLabel, andHeight: height)
         descriptionTitleLabel.text = kLocalizedDescription
-        view?.addSubview(descriptionTitleLabel)
+        view.addSubview(descriptionTitleLabel)
         description = description.replacingOccurrences(of: "<br>", with: "")
         description = description.replacingOccurrences(of: "<br />", with: "")
 
@@ -115,7 +115,7 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
 
         let descriptionLabel = ActiveLabel(frame: .zero)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view?.addSubview(descriptionLabel)
+        view.addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: (view.frame.size.width) / 15),
