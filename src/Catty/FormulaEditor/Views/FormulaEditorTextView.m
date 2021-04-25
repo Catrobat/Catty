@@ -259,15 +259,6 @@
     self.backspaceButton.frame = backspaceFrame;
 }
 
-- (void)setParseErrorCursorAndSelection
-{
-    [self.formulaEditorViewController.internFormula selectParseErrorTokenAndSetCursor];
-    int startIndex = [self.formulaEditorViewController.internFormula getExternSelectionStartIndex];
-    int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
-    NSUInteger cursorPostionIndex = [self.formulaEditorViewController.internFormula getExternCursorPosition];
-    [self highlightSelection:cursorPostionIndex start:startIndex end:endIndex];
-}
-
 #pragma mark Gesture delegates
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {

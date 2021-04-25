@@ -246,20 +246,6 @@
     return [ProjectLoadingInfo projectLoadingInfoForProjectWithName:projectName projectID:projectID];
 }
 
-+ (nullable NSString *)projectNameForProjectID:(NSString*)projectID
-{
-    if ((! projectID) || (! [projectID length])) {
-        return nil;
-    }
-    NSArray *allProjectLoadingInfos = [[self class] allProjectLoadingInfos];
-    for (ProjectLoadingInfo *projectLoadingInfo in allProjectLoadingInfos) {
-        if ([projectLoadingInfo.projectID isEqualToString:projectID]) {
-            return projectLoadingInfo.visibleName;
-        }
-    }
-    return nil;
-}
-
 // returns true if either same projectID and/or same projectName already exists
 + (BOOL)projectExistsWithProjectName:(NSString*)projectName projectID:(NSString*)projectID
 {

@@ -35,7 +35,6 @@
 @interface ProjectDetailStoreViewController ()
 
 @property (nonatomic, strong) LoadingView *loadingView;
-@property (nonatomic, strong) Project *loadedProject;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 
@@ -86,7 +85,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES];
-    self.loadedProject = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -108,22 +106,7 @@
 
 - (void)openButtonPressed:(id)sender
 {
-
-    NSString *localProjectName = [Project projectNameForProjectID:self.project.projectID];
-
-    [self showLoadingView];
-    [CATransaction flush];
-
-    self.loadedProject = [Project projectWithLoadingInfo:[ProjectLoadingInfo projectLoadingInfoForProjectWithName:localProjectName projectID:self.project.projectID]];
-
-    [self hideLoadingView];
-
-    if (!self.loadedProject) {
-        [Util alertWithText:kLocalizedUnableToLoadProject];
-        return;
-    }
-
-    [self openProject:self.loadedProject];
+    [self openButtonPressed];
 }
 
 - (void)downloadButtonPressed

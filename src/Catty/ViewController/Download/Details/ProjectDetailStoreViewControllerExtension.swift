@@ -21,9 +21,6 @@
  */
 import ActiveLabel
 
-let kHTMLATagPattern = "(?i)<a([^>]+)>(.+?)</a>"
-let kHTMLAHrefTagPattern = "href=\"(.*?)\""
-
 @objc extension ProjectDetailStoreViewController {
 
     static var height: CGFloat = Util.screenHeight()
@@ -405,9 +402,47 @@ let kHTMLAHrefTagPattern = "href=\"(.*?)\""
         var mutableLinkAttributes: [AnyHashable: Any] = [:]
         mutableLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.textTint
         mutableLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: true)
+        label.enabledTypes = [.url]
+        label.URLColor = UIColor.navBar
+        label.URLSelectedColor = UIColor.navTint
 
-        var mutableActiveLinkAttributes: [AnyHashable: Any] = [:]
-        mutableActiveLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.brown
-        mutableActiveLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: false)
+        label.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
+    }
+
+    func openButtonPressed() {
+        guard let localProjectNames = ProjectManager.projectNames(for: project.projectID) else {
+            Util.alert(text: kLocalizedUnableToLoadProject)
+            return
+        }
+
+        if localProjectNames.count > 1 {
+            let nameSelectionSheet = UIAlertController(title: kLocalizedOpen, message: nil, preferredStyle: .actionSheet)
+
+            nameSelectionSheet.addAction(title: kLocalizedCancel, style: .cancel, handler: nil)
+
+            for localProjectName in localProjectNames {
+                nameSelectionSheet.addAction(title: localProjectName, style: .default, handler: { action in
+                    self.openProject(withLocalName: action.title)
+                })
+            }
+
+            self.present(nameSelectionSheet, animated: true, completion: nil)
+        } else {
+            openProject(withLocalName: localProjectNames.first)
+        }
+
+    }
+
+    private func openProject(withLocalName localProjectName: String?) {
+        showLoadingView()
+        CATransaction.flush()
+
+        guard let selectedProject = Project.init(loadingInfo: ProjectLoadingInfo.init(forProjectWithName: localProjectName, projectID: project.projectID)) else {
+            hideLoadingView()
+            Util.alert(text: kLocalizedUnableToLoadProject)
+            return
+        }
+        hideLoadingView()
+        openProject(selectedProject)
     }
 }
