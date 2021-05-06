@@ -45,9 +45,24 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
         }
     }
 
-    func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
+    func fetchSearchQuery(searchTerm: String, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collectionNumber, self.error)
+            let projectArrayMock: [StoreProject]? = [self.project ?? StoreProject(projectId: "",
+                                                                                  projectName: "",
+                                                                                  author: "",
+                                                                                  description: "",
+                                                                                  version: "",
+                                                                                  views: 0,
+                                                                                  downloads: 0,
+                                                                                  uploaded: 0,
+                                                                                  uploadedString: "",
+                                                                                  screenshotBig: "",
+                                                                                  screenshotSmall: "",
+                                                                                  projectUrl: "",
+                                                                                  downloadUrl: "",
+                                                                                  fileSize: 1.0,
+                                                                                  tags: [""])] //handle nil project
+            completion(projectArrayMock, self.error)
             self.expectation?.fulfill()
         }
     }
