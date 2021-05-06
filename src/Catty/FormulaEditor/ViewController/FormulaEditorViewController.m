@@ -33,7 +33,6 @@
 #import "BrickCellFormulaData.h"
 #import "BDKNotifyHUD.h"
 #import "KeychainUserDefaultsDefines.h"
-#import "ShapeButton.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
@@ -50,6 +49,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) Formula *formula;
 @property (strong, nonatomic) BrickCellFormulaData *brickCellData;
 @property (strong, nonatomic) BrickCell *brickCell;
+@property (strong, nonatomic) FormulaEditorKeyboardView* keyboard;
+@property (strong, nonatomic) FormulaEditorKeyboardAccessoryView* keyboardAccessory;
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *pickerGesture;
@@ -59,29 +60,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSMutableArray *normalTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *highlightedButtons;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
-
-@property (weak, nonatomic) IBOutlet UIButton *calcButton;
-@property (weak, nonatomic) IBOutlet UIButton *functionsButton;
-@property (weak, nonatomic) IBOutlet UIButton *logicButton;
-@property (weak, nonatomic) IBOutlet UIButton *objectButton;
-@property (weak, nonatomic) IBOutlet UIButton *sensorButton;
-@property (weak, nonatomic) IBOutlet ShapeButton *deleteButton;
-@property (weak, nonatomic) IBOutlet UIButton *dataButton;
-
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
-@property (weak, nonatomic) IBOutlet UIButton *undoButton;
-@property (weak, nonatomic) IBOutlet UIButton *redoButton;
-@property (weak, nonatomic) IBOutlet UIButton *computeButton;
-@property (weak, nonatomic) IBOutlet UIButton *divisionButton;
-@property (weak, nonatomic) IBOutlet UIButton *multiplicationButton;
-@property (weak, nonatomic) IBOutlet UIButton *substractionButton;
-@property (weak, nonatomic) IBOutlet UIButton *additionButton;
+@property (strong, nonatomic) UIBarButtonItem* undoButton;
+@property (strong, nonatomic) UIBarButtonItem* redoButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
-@property (weak, nonatomic) IBOutlet UIButton *variable;
-@property (weak, nonatomic) IBOutlet UIButton *takeVar;
-@property (weak, nonatomic) IBOutlet UIButton *deleteUserData;
-@property (weak, nonatomic) IBOutlet UIButton *addNewTextButton;
 
 @property (nonatomic) BOOL isProjectVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
@@ -92,6 +74,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @end
 
 @implementation FormulaEditorViewController
+
+#define TEXT_FIELD_MARGIN_BOTTOM 2
 
 @synthesize formulaEditorTextView;
 
@@ -230,18 +214,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self showFormulaEditorTextView];
 
-    [self colorFormulaEditor];
-    [self hideScrollViews];
-    self.calcScrollView.hidden = NO;
-    [self.calcButton setSelected:YES];
-    self.calcScrollView.contentSize = CGSizeMake(self.calcScrollView.frame.size.width,self.calcScrollView.frame.size.height);
-    
-    [self localizeView];
-    
-    self.deleteButton.shapeStrokeColor = UIColor.navTint;
-    
-    [self setupButtons];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formulaTextViewTextDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
     
     
@@ -261,14 +233,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.formulaEditorTextView becomeFirstResponder];
+    [self update];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.formulaEditorControllerDidAppear object:self];
-    [self update];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -290,7 +261,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void) setupNavigationBar {
-    self.navigationItem.title = kUIFormulaEditorTitle;
+
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedBack
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:nil
@@ -311,18 +282,24 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                                             action:@selector(doneTapped)];
     
     doneButton.tintColor = UIColor.navTint;
-    self.navigationItem.rightBarButtonItem = doneButton;
-}
-
-- (void)setupButtons {
-    [self.divisionButton addTarget:self action:@selector(divisionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.multiplicationButton addTarget:self action:@selector(multiplicationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.substractionButton addTarget:self action:@selector(substractionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.additionButton addTarget:self action:@selector(additionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (BOOL)canBecomeFirstResponder {
-    return YES;
+    
+    UIImage* undoButtonImage = [UIImage imageNamed:@"undoButton"];
+    self.undoButton = [[UIBarButtonItem alloc] initWithImage: undoButtonImage
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(undo)];
+    
+    [self.undoButton setEnabled:false];
+    
+    UIImage* redoButtonImage = [UIImage imageNamed:@"redoButton"];
+    self.redoButton = [[UIBarButtonItem alloc] initWithImage: redoButtonImage
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(redo)];
+    
+    [self.redoButton setEnabled:false];
+    
+    self.navigationItem.rightBarButtonItems = @[doneButton, self.redoButton, self.undoButton];
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
@@ -330,34 +307,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formulaEditorTextView resignFirstResponder];
         
         [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedUndoTypingDescription]
-         addCancelActionWithTitle:kLocalizedCancel handler:^{
-             [self.formulaEditorTextView becomeFirstResponder];
-         }]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
          addDefaultActionWithTitle:kLocalizedUndo handler:^{
              [self undo];
-             [self.formulaEditorTextView becomeFirstResponder];
          }] build]
          showWithController:self];
     }
 }
-
-#pragma mark - localizeView
-- (void)localizeView
-{
-    [self.calcButton setTitle:kUIFENumbers forState:UIControlStateNormal];
-    [self.functionsButton setTitle:kUIFEFunctions forState:UIControlStateNormal];
-    [self.logicButton setTitle:kUIFELogic forState:UIControlStateNormal];
-    [self.objectButton setTitle:kUIFEObject forState:UIControlStateNormal];
-    [self.sensorButton setTitle:kUIFESensor forState:UIControlStateNormal];
-    [self.dataButton setTitle:kUIFEData forState:UIControlStateNormal];
-    [self.computeButton setTitle:kUIFECompute forState:UIControlStateNormal];
-    [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
-    [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
-    [self.takeVar setTitle:kUIFETake forState:UIControlStateNormal];
-    [self.deleteUserData setTitle:kUIFEDelete forState:UIControlStateNormal];
-    [self.addNewTextButton setTitle:kUIFEAddNewText forState:UIControlStateNormal];
-}
-
 
 #pragma mark - helper methods
 - (void)dismissFormulaEditorViewController
@@ -377,7 +333,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 #pragma mark - TextField Actions
-- (IBAction)buttonPressed:(id)sender
+- (void)buttonPressed:(id)sender
 {
     if([sender isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)sender;
@@ -398,17 +354,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
-    [self switchBack];
 }
 
--(void)switchBack
-{
-    if (self.calcScrollView.hidden == YES) {
-        [self showCalc:nil];
-    }
-}
-
-- (IBAction)undo
+- (void)undo
 {
     if (![self.history undoIsPossible]) {
         return;
@@ -422,7 +370,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-- (IBAction)redo:(id)sender
+- (void)redo
 {
     if (![self.history redoIsPossible]) {
         return;
@@ -435,7 +383,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self setCursorPositionToEndOfFormula];
     }
 }
-- (IBAction)backspaceButtonAction:(id)sender
+- (void)backspaceButtonAction
 {
     [self backspace:nil];
 }
@@ -460,10 +408,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)updateDeleteButton:(BOOL)enabled
 {
-    self.deleteButton.shapeStrokeColor = enabled ? UIColor.navTint : UIColor.grayColor;
+    self.keyboard.backspaceButton.enabled = enabled;
 }
 
-- (IBAction)compute:(id)sender
+- (void)computeTapped
 {
     if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:self.formulaManager];
@@ -534,79 +482,48 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - UI
 - (void)showFormulaEditorTextView
 {
+    [self setupFormulaEditorKeyboard];
+    
     CGFloat marginTop = self.brickCell.frame.origin.y + self.brickCell.frame.size.height;
     
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(0, marginTop, self.view.frame.size.width - 2, 120) AndFormulaEditorViewController:self];
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(0, marginTop, self.view.frame.size.width, 120) AndFormulaEditorViewController:self];
+    self.formulaEditorTextView.inputView = _keyboard;
+    self.formulaEditorTextView.inputAccessoryView = _keyboardAccessory;
     
     [self.view addSubview:self.formulaEditorTextView];
-    
-    [self update];
     [self.formulaEditorTextView becomeFirstResponder];
+        
+    [self update];
+    
 }
 
--(void) colorFormulaEditor
+- (void)setupFormulaEditorKeyboard
 {
-    for(UIButton *button in self.orangeTypeButton) {
-        [button setTitleColor:UIColor.formulaButtonText forState:UIControlStateNormal];
-        [button setBackgroundColor:UIColor.formulaEditorOperator];
-        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaEditorOperand] forState:UIControlStateHighlighted];
-        [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:UIColor.formulaEditorBorder.CGColor];
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        button.titleLabel.minimumScaleFactor = 0.01f;
-    }
+    _keyboard = [[FormulaEditorKeyboardView alloc] initWithKeyboardWidth:CGRectGetWidth(self.view.bounds)];
+    _keyboardAccessory = [[FormulaEditorKeyboardAccessoryView alloc] initWithKeyboardWidth:CGRectGetWidth(self.view.bounds)];
+
+    _keyboardAccessory.accessibilityIdentifier = @"keyboardAccessoryView";
+    [_keyboardAccessory.functionsButton addTarget:self action:@selector(showFunctionSection) forControlEvents:UIControlEventTouchUpInside];
+    [_keyboardAccessory.propertiesButton addTarget:self action:@selector(showObjectSection) forControlEvents:UIControlEventTouchUpInside];
+    [_keyboardAccessory.sensorsButton addTarget:self action:@selector(showSensorSection) forControlEvents:UIControlEventTouchUpInside];
+    [_keyboardAccessory.logicButton addTarget:self action:@selector(showLogicSection) forControlEvents:UIControlEventTouchUpInside];
+    [_keyboardAccessory.dataButton addTarget:self action:@selector(showDataSection) forControlEvents:UIControlEventTouchUpInside];
+    [_keyboard.arrowButton addTarget:self action:@selector(arrowKeyTapped) forControlEvents:UIControlEventTouchUpInside];
+    [_keyboard.computeButton addTarget:self action:@selector(computeTapped) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.textButton addTarget:self action:@selector(textButtonTapped) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.additionButton addTarget:self action:@selector(additionButtonPressed) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.subtractionButton addTarget:self action:@selector(substractionButtonPressed) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.multiplicationButton addTarget:self action:@selector(multiplicationButtonPressed) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.divisionButton addTarget:self action:@selector(divisionButtonPressed) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.equalsButton addTarget:self action:@selector(equalsButtonPressed) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.backspaceButton addTarget:self action:@selector(backspaceButtonAction) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.decimalPointButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.openingBracketButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
+    [_keyboard.closingBracketButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
     
-    for(UIButton *button in self.normalTypeButton) {
-        [button setTitleColor:UIColor.formulaEditorOperand forState:UIControlStateNormal];
-        [button setTitleColor:UIColor.background forState:UIControlStateHighlighted];
-        [button setBackgroundColor:UIColor.background];
-        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaEditorOperand] forState:UIControlStateHighlighted];
-        [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:UIColor.formulaEditorBorder.CGColor];
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        button.titleLabel.minimumScaleFactor = 0.01f;
-        //    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
-        //    {
-        //        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
-        //       {
-        //            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
-        //           [[self.normalTypeButton objectAtIndex:i] setTitleColor:UIColor.navTint forState:UIControlStateNormal];
-        //            }
-        //        }
+    for (UIButton* numericButton in _keyboard.numericButtons) {
+        [numericButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
     }
-    //    for(UIButton *button in self.toolTypeButton) {
-    //        [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    //        [button setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateHighlighted];
-    //        [button setTitleColor:UIColor.utilityTint forState:UIControlStateSelected];
-    //        [button setBackgroundColor:UIColor.background];
-    //        [[button layer] setBorderWidth:1.0f];
-    //        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
-    //        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-    //        button.titleLabel.minimumScaleFactor = 0.01f;
-    //    }
-    
-    for(UIButton *button in self.toolTypeButton) {
-        [button setTitleColor:UIColor.formulaButtonText forState:UIControlStateNormal];
-        [button setTitleColor:UIColor.formulaEditorOperator forState:UIControlStateSelected];
-        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaEditorOperator] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaButtonText] forState:UIControlStateSelected];
-        [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:UIColor.formulaEditorBorder.CGColor];
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        button.titleLabel.minimumScaleFactor = 0.01f;
-    }
-    
-    for(UIButton *button in self.highlightedButtons) {
-        [button setTitleColor:UIColor.formulaButtonText forState:UIControlStateNormal];
-        [button setTitleColor:UIColor.grayColor forState:UIControlStateDisabled];
-        [button setBackgroundColor:UIColor.formulaEditorOperator];
-        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaEditorOperand] forState:UIControlStateSelected];
-        [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:UIColor.formulaEditorBorder.CGColor];
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        button.titleLabel.minimumScaleFactor = 0.01f;
-    }
-    
 }
 
 - (void)update
@@ -616,7 +533,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.undoButton setEnabled:[self.history undoIsPossible]];
     [self.redoButton setEnabled:[self.history redoIsPossible]];
     if (self.internFormula != nil) {
-        [self.computeButton setEnabled:!self.internFormula.isEmpty];
         [self.doneButton setEnabled:!self.internFormula.isEmpty];
     }
 }
@@ -692,63 +608,62 @@ NS_ENUM(NSInteger, ButtonIndex) {
     return NO;
 }
 
-//- (IBAction)showMathFunctionsMenu:(id)sender
-//{
-//    [self.formulaEditorTextView resignFirstResponder];
-//    [self.mathFunctionsMenu show];
-//    [self.mathFunctionsMenu becomeFirstResponder];
-//}
-//
-//- (IBAction)showLogicalOperatorsMenu:(id)sender
-//{
-//    [self.formulaEditorTextView resignFirstResponder];
-//    [self.logicalOperatorsMenu show];
-//    [self.logicalOperatorsMenu becomeFirstResponder];
-//}
-- (IBAction)showCalc:(UIButton *)sender {
-    [self hideScrollViews];
-    self.calcScrollView.hidden = NO;
-    [self.calcButton setSelected:YES];
-    [self.calcScrollView scrollsToTop];
-}
-- (IBAction)showFunction:(UIButton *)sender {
+- (void)showFunctionSection {
     self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithType:FormulaEditorSectionTypeFunctions formulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
+    self.formulaEditorSectionViewController.title = kUIFEFunctions;
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
-- (IBAction)showLogic:(UIButton *)sender {
+- (void)showLogicSection {
     self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithType:FormulaEditorSectionTypeLogic formulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
+    self.formulaEditorSectionViewController.title = kUIFELogic;
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
-- (IBAction)showObject:(UIButton *)sender {
+- (void)showObjectSection {
     self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithType:FormulaEditorSectionTypeObject formulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
+    self.formulaEditorSectionViewController.title = kUIFEProperties;
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
-- (IBAction)showSensor:(UIButton *)sender {
+- (void)showSensorSection {
     self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] initWithType:FormulaEditorSectionTypeSensors formulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
+    self.formulaEditorSectionViewController.title = kUIFESensor;
     [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
-- (IBAction)showVariable:(UIButton *)sender {
+- (void)showDataSection {
     FormulaEditorDataSectionViewController* vc = [[FormulaEditorDataSectionViewController alloc] initWithFormulaManager:_formulaManager spriteObject:_object formulaEditorViewController:self];
-    
+    vc.title = kUIFEData;
     [self.navigationController pushViewController:vc animated:true];
 }
 
-- (void)hideScrollViews
-{
-    [self.calcButton setSelected:NO];
-    [self.functionsButton setSelected:NO];
-    [self.objectButton setSelected:NO];
-    [self.logicButton setSelected:NO];
-    [self.sensorButton setSelected:NO];
-    [self.dataButton setSelected:NO];
+- (void)arrowKeyTapped {
+    [_keyboard animateArrowButton];
+    
+    BOOL hide = true;
+    
+    if (self->formulaEditorTextView.inputAccessoryView.hidden) {
+        [self->formulaEditorTextView.inputAccessoryView setHidden:false];
+        hide = false;
+    }
+    
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        CGFloat alpha = (hide) ? 0.0 : 1.0 ;
+        CGFloat translation = (hide) ? 4.0 : 0;
+        
+        self->formulaEditorTextView.inputAccessoryView.alpha = alpha;
+        self->formulaEditorTextView.inputAccessoryView.transform = CGAffineTransformMakeTranslation(0, translation);
+        
+    } completion:^(BOOL finished) {
+        
+        if (finished) {
+            if (hide) {
+                [self->formulaEditorTextView.inputAccessoryView setHidden:true];
+            }
+        }
+        [self.formulaEditorTextView update];
+    }];
 }
 
-- (void)closeMenu
-{
-    [self.formulaEditorTextView becomeFirstResponder];
-}
-
-- (IBAction)addNewText:(id)sender {
+- (void)textButtonTapped {
     [self.formulaEditorTextView resignFirstResponder];
     
     [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:)
@@ -812,8 +727,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (note.object) {
         FormulaEditorTextView *textView = (FormulaEditorTextView *)note.object;
         BOOL containsText = textView.text.length > 0;
-        self.deleteButton.shapeStrokeColor = containsText ? UIColor.navTint : UIColor.grayColor;
-        self.deleteButton.enabled = containsText;
+        self.keyboard.backspaceButton.tintColor = containsText ? UIColor.navTint : UIColor.grayColor;
+        self.keyboard.backspaceButton.enabled = containsText;
     }
 }
 

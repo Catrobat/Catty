@@ -59,7 +59,7 @@ class FormulaEditorSectionViewControllerTests: XCTestCase {
         app.collectionViews.cells.allElementsBoundByIndex[1].tap()
         app.buttons[kLocalizedEditFormula].tap()
 
-        app.buttons.staticTexts[kUIFELogic].tap()
+        waitForElementToAppear(app.buttons.staticTexts[kUIFELogic]).tap()
         waitForElementToAppear(app.tables.staticTexts["and"]).tap()
 
         if let textViewText = app.textViews.element.value as? String {
@@ -78,7 +78,7 @@ class FormulaEditorSectionViewControllerTests: XCTestCase {
         app.collectionViews.cells.allElementsBoundByIndex[1].tap()
         app.buttons[kLocalizedEditFormula].tap()
 
-        app.buttons.staticTexts[kUIFESensor].tap()
+        waitForElementToAppear(app.buttons.staticTexts[kUIFESensor]).tap()
         waitForElementToAppear(app.tables.staticTexts["inclination x"]).tap()
 
         if let textViewText = app.textViews.element.value as? String {

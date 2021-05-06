@@ -603,6 +603,7 @@
 #define kUIFESensor NSLocalizedString(@"Sensors", nil)
 #define kUIFEVariable NSLocalizedString(@"Variables", nil)
 #define kUIFEData NSLocalizedString(@"Data", nil)
+#define kUIFEProperties NSLocalizedString(@"Properties", nil)
 #define kUIFECompute NSLocalizedString(@"Compute", nil)
 #define kUIFEDone NSLocalizedString(@"Done", nil)
 #define kUIFEError NSLocalizedString(@"Error", nil)

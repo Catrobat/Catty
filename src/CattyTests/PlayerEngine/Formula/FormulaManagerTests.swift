@@ -193,6 +193,7 @@ final class FormulaManagerTests: XCTestCase {
     }
 
     func testFormulaEditorItemsForFunctionAndLogicSection() {
+
         let function = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .functions(position: 10, subsection: .maths))
 
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSections: [.functions(position: 20, subsection: .maths), .sensors(position: 30, subsection: .device)])

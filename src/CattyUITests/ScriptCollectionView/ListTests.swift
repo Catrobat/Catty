@@ -111,7 +111,7 @@ class ListTests: XCTestCase {
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
 
         app.buttons[kLocalizedEditFormula].tap()
-        app.buttons[kUIFEAddNewText].tap()
+        waitForElementToAppear(app.buttons[kUIFEAddNewText]).tap()
         XCTAssertEqual(alert.textFields.firstMatch.value as! String, listName)
     }
 
@@ -132,7 +132,7 @@ class ListTests: XCTestCase {
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
 
         app.buttons[kLocalizedEditFormula].tap()
-        app.buttons[kUIFEData].tap()
+        waitForElementToAppear(app.buttons[kUIFEData]).tap()
         waitForElementToAppear(app.navigationBars.buttons[kLocalizedAdd]).tap()
         waitForElementToAppear(app.buttons[kUIFENewList]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()

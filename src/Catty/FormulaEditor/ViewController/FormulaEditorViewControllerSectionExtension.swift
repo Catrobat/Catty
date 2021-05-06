@@ -42,6 +42,11 @@ extension FormulaEditorViewController {
         handleInput(for: op)
     }
 
+    @objc func equalsButtonPressed() {
+        guard let op = formulaManager.getOperator(tag: EqualOperator.tag) else { return }
+        handleInput(for: op)
+    }
+
     func handleInput(for sensor: Sensor) {
         self.internFormula.handleKeyInput(for: sensor)
         self.handleInput()
