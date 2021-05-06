@@ -408,7 +408,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)updateDeleteButton:(BOOL)enabled
 {
-    self.keyboard.backspaceButton.tintColor = enabled ? UIColor.blackColor : UIColor.darkGrayColor;
+    self.keyboard.backspaceButton.enabled = enabled;
 }
 
 - (void)computeTapped

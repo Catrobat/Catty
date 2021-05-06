@@ -120,8 +120,11 @@ class BackspaceButton: FormulaEditorKeyboardButton {
     init() {
         super.init()
         self.backgroundColor = .formulaEditorOperatorButtons
-        let image = UIImage(named: "backspaceButton")?.withRenderingMode(.alwaysTemplate)
-        self.setImage(image, for: .normal)
+        self.setTitle("⌫", for: .normal)
+        self.setTitleColor(.black, for: .normal)
+        self.setTitleColor(.darkGray, for: .disabled)
+        self.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 23, weight: .light)
     }
 
     required init?(coder: NSCoder) {
