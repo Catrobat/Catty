@@ -72,6 +72,8 @@ class NetworkDefines: NSObject {
     static let projectsLimit = "limit="
     static let maxVersion = "max_version="
     static let tagLanguage = "language="
+    static let projectQuery = "query="
+    static let projectCategory = "category="
 
     // MARK: MediaLibrary
 

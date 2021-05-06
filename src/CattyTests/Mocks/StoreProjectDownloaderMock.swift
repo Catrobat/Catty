@@ -47,8 +47,8 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
 
     func fetchSearchQuery(searchTerm: String, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let projectArrayMock: [StoreProject]? = [self.project ?? StoreProject(projectId: "",
-                                                                                  projectName: "",
+            let projectArrayMock: [StoreProject]? = [self.project ?? StoreProject(id: "",
+                                                                                  name: "",
                                                                                   author: "",
                                                                                   description: "",
                                                                                   version: "",
@@ -69,8 +69,8 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
 
     func fetchProjects(for type: ProjectType, offset: Int, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let projectArrayMock: [StoreProject]? = [self.project ?? StoreProject(projectId: "",
-                                                                                  projectName: "",
+            let projectArrayMock: [StoreProject]? = [self.project ?? StoreProject(id: "",
+                                                                                  name: "",
                                                                                   author: "",
                                                                                   description: "",
                                                                                   version: "",

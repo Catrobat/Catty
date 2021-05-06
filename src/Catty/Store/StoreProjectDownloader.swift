@@ -23,7 +23,7 @@
 protocol StoreProjectDownloaderProtocol {
     func fetchProjects(for type: ProjectType, offset: Int, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void)
     func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void)
-    func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void)
+    func fetchSearchQuery(searchTerm: String, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void)
     func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void)
     func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?)
 }
@@ -37,22 +37,19 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
         self.session = session
     }
 
-    func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
+    func fetchSearchQuery(searchTerm: String, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
 
-        guard let indexURL = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@",
-                                                NetworkDefines.apiEndpointProjects,
-                                                NetworkDefines.connectionSearch,
-                                                searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "",
-                                                NetworkDefines.projectsLimit,
-                                                NetworkDefines.searchStoreMaxResults,
-                                                NetworkDefines.projectsOffset,
-                                                0,
-                                                NetworkDefines.maxVersion,
-                                                Util.catrobatLanguageVersion()))
-            else { return }
+        let version: String = Util.catrobatLanguageVersion()
+        guard let indexURL = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionSearch)?\(NetworkDefines.projectQuery)" +
+                "\(searchTerm)&\(NetworkDefines.maxVersion)\(version)&\(NetworkDefines.projectsLimit)" +
+                "\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)0")
+
+        else {
+            return
+        }
 
         self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
-            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionNumber?, error: StoreProjectDownloaderError?)
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: [StoreProject]?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
                     let searchErrorInfo = ProjectFetchFailureInfo(url: indexURL.absoluteString, description: error.localizedDescription, projectName: searchTerm)
@@ -77,9 +74,9 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
 
                     return (nil, .request(error: error, statusCode: response.statusCode))
                 }
-                let items: StoreProjectCollection.StoreProjectCollectionNumber?
+                let items: [StoreProject]?
                 do {
-                    items = try JSONDecoder().decode(StoreProjectCollection.StoreProjectCollectionNumber.self, from: data)
+                    items = try JSONDecoder().decode([StoreProject].self, from: data)
                 } catch {
                     let searchErrorInfo = ProjectFetchFailureInfo(url: indexURL.absoluteString, statusCode: response.statusCode, description: error.localizedDescription, projectName: searchTerm)
 
@@ -99,7 +96,7 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
 
         let version: String = Util.catrobatLanguageVersion()
 
-        guard let url = URL(string: "\(NetworkDefines.apiEndpointProjects)?category=\(type.apiCategory())&\(NetworkDefines.maxVersion)\(version)&" +
+        guard let url = URL(string: "\(NetworkDefines.apiEndpointProjects)?\(NetworkDefines.projectCategory)\(type.apiCategory())&\(NetworkDefines.maxVersion)\(version)&" +
                                 "\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)"
                                 + "\(offset)") else { return }
 

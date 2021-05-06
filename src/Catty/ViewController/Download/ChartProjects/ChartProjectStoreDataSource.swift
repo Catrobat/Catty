@@ -149,7 +149,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             cell.tag = indexPath.row
             if projects.isEmpty == false && indexPath.row < self.projects.count {
                 cell.chartImage = nil
-                cell.chartTitle = projects[indexPath.row].projectName
+                cell.chartTitle = projects[indexPath.row].name
                 cell.project = projects[indexPath.row]
 
                 DispatchQueue.global().async {
@@ -184,7 +184,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         }
         self.delegate?.showLoadingIndicator(false)
 
-        self.downloader.fetchProjectDetails(for: cellProject.projectId) { project, error in
+        self.downloader.fetchProjectDetails(for: cellProject.id) { project, error in
             guard timer.isValid else { return }
             guard let StoreProject = project, error == nil else { return }
             cell.project = StoreProject

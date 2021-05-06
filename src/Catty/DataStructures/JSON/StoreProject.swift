@@ -21,8 +21,8 @@
  */
 
 struct StoreProject: Codable {
-    let projectId: String //naming: just id and name
-    let projectName: String
+    let id: String
+    let name: String
     let author: String
     let description: String?
     let version: String?
@@ -39,8 +39,8 @@ struct StoreProject: Codable {
     let tags: [String]?
 
     private enum CodingKeys: String, CodingKey {
-        case projectId = "id"
-        case projectName = "name"
+        case id = "id"
+        case name = "name"
         case author = "author"
         case description = "description"
         case version = "version"
@@ -57,11 +57,11 @@ struct StoreProject: Codable {
         case tags = "tags"
     }
 
-    init(projectId: String, projectName: String, author: String, description: String?, version: String?,
+    init(id: String, name: String, author: String, description: String?, version: String?,
          views: Int?, downloads: Int?, uploaded: Int?, uploadedString: String?, screenshotBig: String?, screenshotSmall: String?,
          projectUrl: String?, downloadUrl: String?, fileSize: Float?, tags: [String]) {
-        self.projectId = projectId
-        self.projectName = projectName
+        self.id = id
+        self.name = name
         self.author = author
         self.description = description
         self.version = version
@@ -80,13 +80,13 @@ struct StoreProject: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        if let value = try? container.decode(Int.self, forKey: .projectId) {
-            projectId = String(value)
+        if let value = try? container.decode(Int.self, forKey: .id) {
+            id = String(value)
         } else {
-            projectId = try container.decode(String.self, forKey: .projectId)
+            id = try container.decode(String.self, forKey: .id)
         }
 
-        projectName = try container.decode(String.self, forKey: .projectName)
+        name = try container.decode(String.self, forKey: .name)
         author = try container.decode(String.self, forKey: .author)
         description = try container.decodeIfPresent(String.self, forKey: .description)
         version = try container.decodeIfPresent(String.self, forKey: .version)
@@ -104,13 +104,13 @@ struct StoreProject: Codable {
 
     func toCatrobatProject() -> CatrobatProject {
         var projectDictionary = [String: Any]()
-        projectDictionary["ProjectName"] = self.projectName
+        projectDictionary["ProjectName"] = self.name
         projectDictionary["Author"] = self.author
         projectDictionary["Description"] = self.description ?? ""
         projectDictionary["DownloadUrl"] = self.downloadUrl ?? ""
         projectDictionary["Downloads"] = self.downloads ?? 0
-        projectDictionary["ProjectId"] = self.projectId
-        projectDictionary["ProjectName"] = self.projectName
+        projectDictionary["ProjectId"] = self.id
+        projectDictionary["ProjectName"] = self.name
         projectDictionary["ProjectUrl"] = self.projectUrl ?? ""
         projectDictionary["ScreenshotBig"] = self.screenshotBig ?? ""
         projectDictionary["ScreenshotSmall"] = self.screenshotSmall ?? ""

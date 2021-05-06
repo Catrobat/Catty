@@ -195,8 +195,8 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.first else { XCTFail("no most downloaded projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, "")
-            XCTAssertNotEqual(item.projectName, "")
+            XCTAssertNotEqual(item.id, "")
+            XCTAssertNotEqual(item.name, "")
             XCTAssertNotEqual(item.author, "")
 
             expectation.fulfill()
@@ -215,7 +215,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no most downloaded projects found"); return }
             guard let item = projects.first else { XCTFail("no most downloaded projects in array"); return }
 
-            XCTAssertNotEqual(item.projectId, "")
+            XCTAssertNotEqual(item.id, "")
             expectation.fulfill()
         }
 
@@ -352,8 +352,8 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.first else { XCTFail("no most viewed projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, "")
-            XCTAssertNotEqual(item.projectName, "")
+            XCTAssertNotEqual(item.id, "")
+            XCTAssertNotEqual(item.name, "")
             XCTAssertNotEqual(item.author, "")
 
             expectation.fulfill()
@@ -372,7 +372,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no most viewed projects found"); return }
             guard let item = projects.first else { XCTFail("no most viewed projects in array"); return }
 
-            XCTAssertNotEqual(item.projectId, "")
+            XCTAssertNotEqual(item.id, "")
             expectation.fulfill()
         }
 
@@ -509,8 +509,8 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.first else { XCTFail("no most recent projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, "")
-            XCTAssertNotEqual(item.projectName, "")
+            XCTAssertNotEqual(item.id, "")
+            XCTAssertNotEqual(item.name, "")
             XCTAssertNotEqual(item.author, "")
 
             expectation.fulfill()
@@ -529,7 +529,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no most recent projects found"); return }
             guard let item = projects.first else { XCTFail("no most recent projects in array"); return }
 
-            XCTAssertNotEqual(item.projectId, "")
+            XCTAssertNotEqual(item.id, "")
             expectation.fulfill()
         }
 
@@ -667,8 +667,8 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.first else { XCTFail("no projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, "")
-            XCTAssertNotEqual(item.projectName, "")
+            XCTAssertNotEqual(item.id, "")
+            XCTAssertNotEqual(item.name, "")
             XCTAssertNotEqual(item.author, "")
 
             expectation.fulfill()
@@ -688,7 +688,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no projects found"); return }
             guard let item = projects.first else { XCTFail("no projects in array"); return }
 
-            XCTAssertNotEqual(item.projectId, "")
+            XCTAssertNotEqual(item.id, "")
             expectation.fulfill()
         }
 
@@ -754,7 +754,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
         let searchTerm = "Galaxy"
         let version: String = Util.catrobatLanguageVersion()
 
-        let url = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionSearch)?query=" +
+        let url = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionSearch)?\(NetworkDefines.projectQuery)" +
                             "\(searchTerm)&\(NetworkDefines.maxVersion)\(version)&\(NetworkDefines.projectsLimit)" +
                             "\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)0")
         let response = HTTPURLResponse(url: url!, statusCode: 404, httpVersion: nil, headerFields: nil)
