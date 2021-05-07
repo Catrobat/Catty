@@ -31,6 +31,7 @@ import UIKit
     func takeScreenshotAction()
     func showHideAxisAction()
     func aspectRatioAction()
+    func shareDST()
 }
 
 enum SideMenuButtonType {
@@ -56,6 +57,8 @@ enum SideMenuButtonType {
     let numberOfButtons: Int
     var aspectRatioButton: UIButton?
     var aspectRatioLabel: UIButton?
+    @objc var shareButton: UIButton?
+    @objc var shareLabel: UIButton?
 
     @objc(initWithFrame:andStagePresenterViewController_:)
     init(frame: CGRect, delegate: StagePresenterSideMenuDelegate) {
@@ -124,6 +127,17 @@ enum SideMenuButtonType {
 
         let axesLabel = setupLabel(title: kLocalizedAxes, selector: #selector(delegate?.showHideAxisAction))
         axesLabel.topAnchor.constraint(equalTo: axesButton.bottomAnchor, constant: marginLabel).isActive = true
+
+        let shareButton = setupButton(imageName: "square.and.arrow.up.reg", selector: #selector(delegate?.shareDST))
+
+        shareButton.topAnchor.constraint(equalTo: axesLabel.bottomAnchor, constant: marginTopBottom - marginLabel).isActive = true
+        self.shareButton = shareButton
+        self.shareButton?.isHidden = true
+
+        let shareLabel = setupLabel(title: kLocalizedCategoryEmbroidery, selector: #selector(delegate?.shareDST))
+        shareLabel.topAnchor.constraint(equalTo: shareButton.bottomAnchor, constant: marginLabel).isActive = true
+        self.shareLabel = shareLabel
+        self.shareLabel?.isHidden = true
 
         let aspectRatioLabel = setupLabel(title: kLocalizedMaximize, selector: #selector(self.aspectRatioAction), target: self)
         aspectRatioLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -289,9 +303,17 @@ enum SideMenuButtonType {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        button.setImage(newImage, for: .normal)
-        button.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .highlighted)
-        button.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .selected)
-        button.tintColor = UIColor.navBarButtonHighlighted
-    }
+        let newImageHighlight = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        button.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageView?.tintColor = UIColor.navBarButton
+        if #available(iOS 13.0, *) {
+            button.currentImage?.withTintColor(UIColor.navBarButton)
+        }
+        button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .highlighted)
+        button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .selected)
+        if #available(iOS 13.0, *) {
+            button.currentImage?.withTintColor(UIColor.navBarButtonHighlighted)
+        }    }
 }
