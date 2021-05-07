@@ -1283,6 +1283,7 @@
 		92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324B1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m */; };
 		92FF32BD1A24E2F400093DA7 /* ProjectTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324E1A24E2F400093DA7 /* ProjectTableHeaderView.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
+		9705D61F262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705D61E262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift */; };
 		970F1BDC25FC399500558A3A /* ActiveLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 970F1BDB25FC399500558A3A /* ActiveLabel */; };
 		9719895925F7E82F00039DEA /* ActiveLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 9719895825F7E82F00039DEA /* ActiveLabel.license */; };
 		971C6F1A26051ED800AD4857 /* SetTempoToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971C6F1926051ED800AD4857 /* SetTempoToBrick.swift */; };
@@ -3453,6 +3454,7 @@
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		95088280A879E5F515D4569E /* fa-AF */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "fa-AF"; path = "fa-AF.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		95C607797206029F5B454A53 /* sw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sw; path = sw.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9705D61E262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePresenterViewControllerShareExtension.swift; sourceTree = "<group>"; };
 		9719895825F7E82F00039DEA /* ActiveLabel.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActiveLabel.license; sourceTree = "<group>"; };
 		971C6F1926051ED800AD4857 /* SetTempoToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTempoToBrick.swift; sourceTree = "<group>"; };
 		971C6F20260526ED00AD4857 /* SetTempoToBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTempoToBrickTests.swift; sourceTree = "<group>"; };
@@ -8664,6 +8666,7 @@
 				4C0E25E820D39E5000A80273 /* StagePresenterViewControllerResourcesExtension.swift */,
 				4CDE807121A1A0AE009EFD31 /* StagePresenterViewControllerScreenshotExtension.swift */,
 				E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */,
+				9705D61E262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift */,
 			);
 			path = Stage;
 			sourceTree = "<group>";
@@ -12254,6 +12257,7 @@
 				97BA19DF25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
+				9705D61F262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				6F50E54C247907E7007885AA /* UserList+CBXMLHandler.m in Sources */,
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.swift in Sources */,
