@@ -312,12 +312,12 @@ final class ProjectManagerTests: XCTestCase {
 
         let sumProjectNamesBefore = Project.allProjectNames().count
 
-        let canOpen = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: xmlPath))
+        let project = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: xmlPath))
+        XCTAssertNotNil(project)
 
         let sumProjectNamesAfter = Project.allProjectNames().count
 
         XCTAssertEqual(sumProjectNamesBefore + 1, sumProjectNamesAfter)
-        XCTAssertTrue(canOpen)
 
         XCTAssertTrue((Project.allProjectNames() as! [String]).contains("Tic-Tac-Toe Master"))
     }
@@ -325,11 +325,11 @@ final class ProjectManagerTests: XCTestCase {
     func testAddProjectFromFileWithInvalidUrl() {
         let sumProjectNamesBefor = Project.allProjectNames().count
 
-        let canOpen = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: "test"))
+        let project = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: "test"))
+        XCTAssertNil(project)
 
         let sumProjectNamesAfter = Project.allProjectNames().count
 
         XCTAssertEqual(sumProjectNamesBefor, sumProjectNamesAfter)
-        XCTAssertFalse(canOpen)
     }
 }

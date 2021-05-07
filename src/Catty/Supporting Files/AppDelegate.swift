@@ -153,15 +153,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
 
-        let vc = self.window?.rootViewController as! UINavigationController
-        vc.popToRootViewController(animated: true)
+        let vc = self.window?.rootViewController as? UINavigationController
+        vc?.popToRootViewController(animated: true)
 
-        if let ctvc = vc.topViewController as? CatrobatTableViewController {
-            if ProjectManager.addProjectFromFile(url: url) {
-                ctvc.performSegue(withIdentifier: kSegueToProjects, sender: ctvc)
-                return true
-            }
+        guard let topViewController = vc?.topViewController,
+              let project = ProjectManager.addProjectFromFile(url: url) else {
+            return false
         }
-        return false
+
+        topViewController.openProject(project)
+        return true
     }
 }

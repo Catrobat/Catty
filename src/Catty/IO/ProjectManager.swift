@@ -133,7 +133,7 @@ class ProjectManager: NSObject {
         return projectNames
     }
 
-    static func addProjectFromFile(url: URL) -> Bool {
+    static func addProjectFromFile(url: URL) -> Project? {
         let fileManager = CBFileManager.shared()
         let tempProjectName = String(Date().timeIntervalSinceReferenceDate) + url.lastPathComponent
         let path = url.path
@@ -146,7 +146,7 @@ class ProjectManager: NSObject {
 
         if newProject == nil {
             Util.alert(text: kLocalizedUnableToImportProject)
-            return false
+            return nil
         }
 
         fileManager?.unzipAndStore(newProject as Data?, withProjectID: nil, withName: tempProjectName)
@@ -154,29 +154,26 @@ class ProjectManager: NSObject {
         return getProjectNameAndRename(tempProjectName: tempProjectName)
     }
 
-    private static func getProjectNameAndRename(tempProjectName: String) -> Bool {
-        guard let projectLoadingInfo = ProjectLoadingInfo.init(forProjectWithName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
-        else {
+    private static func getProjectNameAndRename(tempProjectName: String) -> Project? {
+        guard let projectLoadingInfo = ProjectLoadingInfo(forProjectWithName: tempProjectName, projectID: kNoProjectIDYetPlaceholder) else {
             Project.removeProjectFromDisk(withProjectName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
             Util.alert(text: kLocalizedUnableToImportProject)
-            return false
+            return nil
         }
+        projectLoadingInfo.useOriginalName = true
 
-        let projectPath = projectLoadingInfo.basePath + kProjectCodeFileName
-
-        let parser = Parser.init()
-        let projectObject = parser.generateObjectForProject(withPath: projectPath)
-
-        if projectObject == nil {
+        guard let projectObject = Project(loadingInfo: projectLoadingInfo),
+              let newProjectName = Util.uniqueName(projectObject.header.programName, existingNames: Project.allProjectNames()) else {
             Project.removeProjectFromDisk(withProjectName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
             Util.alert(text: kLocalizedUnableToImportProject)
-            return false
+            return nil
         }
 
-        let newProjectName = Util.uniqueName(projectObject?.header.programName, existingNames: Project.allProjectNames())
-        let project = Project.init(loadingInfo: projectLoadingInfo)
-        project?.rename(toProjectName: newProjectName!, andShowSaveNotification: false)
+        projectLoadingInfo.useOriginalName = false
 
-        return true
+        let project = Project(loadingInfo: projectLoadingInfo)
+        project?.rename(toProjectName: newProjectName, andShowSaveNotification: false)
+
+        return project
     }
 }
