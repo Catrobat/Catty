@@ -367,6 +367,7 @@
 		4614B1DD25608E8B004174AD /* StitchBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4614B1DC25608E8B004174AD /* StitchBrickCell.swift */; };
 		46162CBD2544AE5600DF6042 /* SetRotationStyleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46162CB92544AE2D00DF6042 /* SetRotationStyleBrickTests.swift */; };
 		4635B28125E98B2800970CCA /* NextLookBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635B28025E98B2800970CCA /* NextLookBrick.swift */; };
+		4635B25B25E82C8100970CCA /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4635B25625E82C7200970CCA /* 817.catrobat */; };
 		4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */; };
 		46A75DF425752B1200F3963D /* CircleShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */; };
 		46B472BD2560946F007972DB /* StitchBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */; };
@@ -2254,6 +2255,7 @@
 		4614B1DC25608E8B004174AD /* StitchBrickCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StitchBrickCell.swift; sourceTree = "<group>"; };
 		46162CB92544AE2D00DF6042 /* SetRotationStyleBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRotationStyleBrickTests.swift; sourceTree = "<group>"; };
 		4635B28025E98B2800970CCA /* NextLookBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLookBrick.swift; sourceTree = "<group>"; };
+		4635B25625E82C7200970CCA /* 817.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = 817.catrobat; path = CattyTests/Resources/ParserTests/ZipProjects/817.catrobat; sourceTree = SOURCE_ROOT; };
 		4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShapeNodeTests.swift; sourceTree = "<group>"; };
 		46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StitchBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -5221,6 +5223,14 @@
 			path = Embroidery;
 			sourceTree = "<group>";
 		};
+		4635B25525E82C5E00970CCA /* ZipProjects */ = {
+			isa = PBXGroup;
+			children = (
+				4635B25625E82C7200970CCA /* 817.catrobat */,
+			);
+			path = ZipProjects;
+			sourceTree = "<group>";
+		};
 		4647D55823D8AF9F001A67F6 /* PrivacyPolicy */ = {
 			isa = PBXGroup;
 			children = (
@@ -5325,6 +5335,7 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
+				4635B25525E82C5E00970CCA /* ZipProjects */,
 				2ED4175F241120AF00AFE2FD /* Custom */,
 				2ED41693241120AE00AFE2FD /* UserProjects */,
 			);
@@ -11102,6 +11113,7 @@
 				2ED417CA241120AF00AFE2FD /* Galaxy_War_092.xml in Resources */,
 				2ED417A5241120AF00AFE2FD /* Word_balloon_demo_098.xml in Resources */,
 				2ED41841241120B000AFE2FD /* Minions__096.xml in Resources */,
+				4635B25B25E82C8100970CCA /* 817.catrobat in Resources */,
 				2ED417FC241120AF00AFE2FD /* Minecraft_Work_In_Progress_097.xml in Resources */,
 				2ED41840241120B000AFE2FD /* Minions__097.xml in Resources */,
 				4C3285F92546CF9400C31F9D /* Sensors_0993.xml in Resources */,

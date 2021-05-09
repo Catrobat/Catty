@@ -81,7 +81,7 @@
                 [notificationCenter postNotificationName:NotificationName.showSaved object:self];
             });
         }
-        // TODO: find correct serializer class dynamically
+
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProjectCodeFileName];
         id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath fileManager:fileManager];
         [serializer serializeProject:self];
@@ -286,11 +286,6 @@
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProjectCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
 
-    //    //######### FIXME remove that later!! {
-    //        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    //        xmlPath = [bundle pathForResource:@"ValidProjectAllBricks093" ofType:@"xml"];
-    //    // }
-
     Project *project = nil;
     CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
 
@@ -308,16 +303,17 @@
     } else {
         project = [catrobatParser parseAndCreateProject];
     }
-    project.header.programName = loadingInfo.visibleName;
+    
     project.header.programID = loadingInfo.projectID;
+    if (!loadingInfo.useOriginalName) {
+        project.header.programName = loadingInfo.visibleName;
+    }
 
     if (! project) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectInvalidXml object:loadingInfo];
         return nil;
     }
 
-    NSDebug(@"%@", [project description]);
-    NSDebug(@"ProjectResolution: width/height:  %f / %f", project.header.screenWidth.floatValue, project.header.screenHeight.floatValue);
     [self updateLastModificationTimeForProjectWithName:loadingInfo.visibleName projectID:loadingInfo.projectID];
     
     CBFileManager *fileManager = [[CBFileManager alloc] init];

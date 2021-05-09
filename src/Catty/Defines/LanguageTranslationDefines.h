@@ -282,6 +282,7 @@
 #define kLocalizedNoDescriptionAvailable NSLocalizedString(@"No description available", nil)
 #define kLocalizedNoSearchResults NSLocalizedString(@"No search results", nil)
 #define kLocalizedUnableToLoadProject NSLocalizedString(@"Unable to load project!", nil)
+#define kLocalizedUnableToImportProject NSLocalizedString(@"Unable to import project!", nil)
 #define kLocalizedThisActionCannotBeUndone NSLocalizedString(@"This action can not be undone!", nil)
 #define kLocalizedErrorInternetConnection NSLocalizedString(@"An unknown error occurred. Check your Internet connection.", nil)
 #define kLocalizedErrorUnknown NSLocalizedString(@"An unknown error occurred. Please try again later.", nil)
