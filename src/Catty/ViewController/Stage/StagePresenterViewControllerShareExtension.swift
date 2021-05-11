@@ -30,7 +30,18 @@
         }
         let embroideryStreamMerged = EmbroideryStream(streams: embroideryStream)
         let data = EmbroideryDSTService().generateOutput(embroideryStream: embroideryStreamMerged)
-        let shareData = [data]
+
+        let temporaryFolder = FileManager.default.temporaryDirectory
+        let fileName = String(self.project.header.programName!) + ".dst"
+        let temporaryFileURL = temporaryFolder.appendingPathComponent(fileName)
+        do {
+            try data.write(to: temporaryFileURL)
+        } catch {
+            print("File could not be written!")
+            return
+        }
+
+        let shareData = [temporaryFileURL]
         let activityViewController = UIActivityViewController(activityItems: shareData, applicationActivities: nil)
 
         // This lines is for the popover you need to show in iPad
