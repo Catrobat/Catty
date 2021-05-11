@@ -546,20 +546,8 @@
         self.menuViewRightConstraint.constant = self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalLandscape;
     } else {
         self.menuViewRightConstraint.constant = self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalPortrait;
-        if (self.isEmbroideryStreamFilled) {
-            self.menuView.shareButton.hidden = false;
-            self.menuView.shareLabel.hidden = false;
-        } else {
-            self.menuView.shareButton.hidden = true;
-            self.menuView.shareLabel.hidden = true;
-        }
     }
     [self.view layoutIfNeeded];
-}
-
-- (BOOL)checkEmbroideryEnabled
-{
-    return self.isEmbroideryStreamFilled;
 }
 
 - (void)hideMenuView

@@ -32,7 +32,7 @@ import UIKit
     func showHideAxisAction()
     func aspectRatioAction()
     func shareDST()
-    func checkEmbroideryEnabled() -> Bool
+    func isEmbroideryNeeded() -> Bool
 }
 
 enum SideMenuButtonType {
