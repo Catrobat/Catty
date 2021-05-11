@@ -135,12 +135,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 # pragma mark BrickCellDelegate
 - (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event {
-    BOOL forceChange = event != nil && ((UITouch*)[[event allTouches] anyObject]).tapCount == 2;
-    [self changeBrickCellFormulaData:formulaData andForce:forceChange];
+    [self changeBrickCellFormulaData:formulaData];
     [self.brickCell setNeedsDisplay];
 }
 
-- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andForce:(BOOL)forceChange
+- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
 {
     InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:self.formulaManager];
     
@@ -164,20 +163,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
             saved = YES;
         }
         [self initFormulaData:brickCellData];
-        if(saved) {
-            [self showChangesSavedView];
-        }
         return saved;
     } else if(formulaParserStatus == FORMULA_PARSER_STACK_OVERFLOW) {
         [self showFormulaTooLongView];
     } else {
-        if(forceChange) {
-            [self initFormulaData:brickCellData];
-            [self showChangesDiscardedView];
-            return YES;
-        } else {
             [self showSyntaxErrorView];
-        }
     }
     
     return NO;
@@ -682,42 +672,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     NSDebug(@"Text: %@", text);
     [self handleInputWithTitle:text AndButtonType:TOKEN_TYPE_STRING];
     [self.formulaEditorTextView becomeFirstResponder];
-}
-
-- (void)showNotification:(NSString*)text andDuration:(CGFloat)duration
-{
-    if(self.notficicationHud)
-        [self.notficicationHud removeFromSuperview];
-    
-    CGFloat brickAndInputHeight = self.navigationController.navigationBar.frame.size.height + self.brickCellData.brickCell.frame.size.height + self.formulaEditorTextView.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height + 10;
-    CGFloat keyboardHeight = self.formulaEditorTextView.inputView.frame.size.height;
-    CGFloat spacerHeight = self.view.frame.size.height - brickAndInputHeight - keyboardHeight;
-    CGFloat offset;
-    
-    self.notficicationHud = [BDKNotifyHUD notifyHUDWithImage:nil text:text];
-    self.notficicationHud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    
-    if(spacerHeight < self.notficicationHud.frame.size.height)
-        offset = brickAndInputHeight / 2 + self.notficicationHud.frame.size.height / 2;
-    else
-        offset = brickAndInputHeight + self.notficicationHud.frame.size.height / 2 + kBDKNotifyHUDPaddingTop;
-    
-    self.notficicationHud.center = CGPointMake(self.view.center.x, offset);
-    
-    [self.view addSubview:self.notficicationHud];
-    [self.notficicationHud presentWithDuration:duration
-                                         speed:kBDKNotifyHUDPresentationSpeed
-                                        inView:self.view completion:^{ [self.notficicationHud removeFromSuperview]; }];
-}
-
-- (void)showChangesSavedView
-{
-    [self showNotification:kUIFEChangesSaved andDuration:kBDKNotifyHUDPresentationDuration];
-}
-
-- (void)showChangesDiscardedView
-{
-    [self showNotification:kUIFEChangesDiscarded andDuration:kBDKNotifyHUDPresentationDuration];
 }
 
 #pragma mark NotificationCenter
