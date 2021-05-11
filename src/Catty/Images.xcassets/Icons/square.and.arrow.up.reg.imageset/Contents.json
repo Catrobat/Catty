@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "square.and.arrow.up.reg.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -10,6 +9,7 @@
       "scale" : "2x"
     },
     {
+      "filename" : "square.and.arrow.up.reg-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
