@@ -59,14 +59,12 @@ enum SideMenuButtonType {
     var aspectRatioButton: UIButton?
     var aspectRatioLabel: UIButton?
     @objc var embroidery: Bool
-    @objc var shareButton: UIButton?
-    @objc var shareLabel: UIButton?
 
     @objc(initWithFrame:andStagePresenterViewController_:)
     init(frame: CGRect, delegate: StagePresenterSideMenuDelegate) {
         self.delegate = delegate
         self.landscape = delegate.project.header.landscapeMode
-        self.embroidery = true
+        self.embroidery = self.delegate?.isEmbroideryNeeded() ?? false
         self.project = delegate.project
         if embroidery {
             self.numberOfButtons = 8

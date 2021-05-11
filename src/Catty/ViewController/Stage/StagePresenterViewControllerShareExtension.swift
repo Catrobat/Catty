@@ -86,4 +86,13 @@
         }
         return false
     }
+
+    func isEmbroideryNeeded() -> Bool {
+        let requiredRessources = self.project.getRequiredResources()
+        NSLog("required ressources: \(requiredRessources)")
+        if requiredRessources > 0 {
+            return true
+        }
+        return false
+    }
 }
