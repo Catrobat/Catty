@@ -32,7 +32,6 @@ import UIKit
     func showHideAxisAction()
     func aspectRatioAction()
     func shareDST()
-    func isEmbroideryNeeded() -> Bool
 }
 
 enum SideMenuButtonType {
@@ -64,8 +63,8 @@ enum SideMenuButtonType {
     init(frame: CGRect, delegate: StagePresenterSideMenuDelegate) {
         self.delegate = delegate
         self.landscape = delegate.project.header.landscapeMode
-        self.embroidery = self.delegate?.isEmbroideryNeeded() ?? false
         self.project = delegate.project
+        self.embroidery = self.project.getRequiredResources() & ResourceType.embroidery.rawValue > 0
         if embroidery {
             self.numberOfButtons = 8
         } else {

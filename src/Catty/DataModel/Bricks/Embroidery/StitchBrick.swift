@@ -36,7 +36,7 @@
     }
 
     override func getRequiredResources() -> Int {
-        ResourceType.noResources.rawValue
+        ResourceType.embroidery.rawValue
     }
 
     override func brickCell() -> BrickCellProtocol.Type! {
