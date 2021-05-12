@@ -82,7 +82,7 @@ extension XCTestCase {
         app.tap()
         app.navigationBars.buttons[kLocalizedBack].tap()
 
-        waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode]).buttons[kLocalizedYes].tap()
+        waitForElementToAppear(app.sheets.firstMatch).buttons[kLocalizedSaveChanges].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[kLocalizedPocketCode]))
     }
 
