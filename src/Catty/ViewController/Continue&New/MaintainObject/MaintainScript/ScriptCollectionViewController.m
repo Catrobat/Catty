@@ -864,6 +864,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (void)copyBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath
 {
     NSArray* indexArray = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:indexPath andBrick:brick];
+    
+    [self.collectionView reloadData];
+    
     [self.collectionView insertItemsAtIndexPaths:indexArray];
     self.placeHolderView.hidden = YES;
     [self.object.scene.project saveToDiskWithNotification:YES];

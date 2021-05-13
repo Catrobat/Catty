@@ -1744,6 +1744,7 @@
 		E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProject.swift */; };
 		E5103DEE25CAE67300A32DF8 /* StagePresenterSideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */; };
+		E5635D8625FFB118001E4297 /* BrickCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5635D8525FFB118001E4297 /* BrickCopyTests.swift */; };
 		E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E564EBE0255D60F4001F0CD0 /* PlayButton.swift */; };
 		E577F0462563C5A400368C18 /* BrickCategoryOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */; };
 		E577F04A2563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577F0492563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift */; };
@@ -4186,6 +4187,7 @@
 		E4E5599620FCD6AD004B4A08 /* StoreProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProject.swift; sourceTree = "<group>"; };
 		E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePresenterSideMenuView.swift; sourceTree = "<group>"; };
 		E5505707FE2839B02A26E338 /* en-AU */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E5635D8525FFB118001E4297 /* BrickCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCopyTests.swift; sourceTree = "<group>"; };
 		E564EBE0255D60F4001F0CD0 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		E57396A397CC08132F593B32 /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewController.swift; sourceTree = "<group>"; };
@@ -5697,6 +5699,7 @@
 			isa = PBXGroup;
 			children = (
 				4C38B3732371522200F33721 /* BrickManagerTests.swift */,
+				E5635D8525FFB118001E4297 /* BrickCopyTests.swift */,
 			);
 			path = BrickManager;
 			sourceTree = "<group>";
@@ -11711,6 +11714,7 @@
 				4C822659213FA7A400F3D750 /* AudioManagerMock.swift in Sources */,
 				9E4D238C232AF688009D0C3C /* SetColorBrickTests.swift in Sources */,
 				6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */,
+				E5635D8625FFB118001E4297 /* BrickCopyTests.swift in Sources */,
 				D3C6E3A824C8134A00A9E186 /* GoToBrickTests.swift in Sources */,
 				4CD27AAA21B5765C00DDADB5 /* FeatureMock.swift in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
