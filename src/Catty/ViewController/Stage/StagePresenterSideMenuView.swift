@@ -50,6 +50,7 @@ enum SideMenuButtonType {
     let fontSize = 14.0
     let marginTopBottom = CGFloat(20.0)
     let marginLabel = CGFloat(5.0)
+    let minimumPaddingTopAndBottom = CGFloat(365.0)
 
     weak var delegate: StagePresenterSideMenuDelegate?
     var landscape: Bool
@@ -57,7 +58,7 @@ enum SideMenuButtonType {
     let numberOfButtons: Int
     var aspectRatioButton: UIButton?
     var aspectRatioLabel: UIButton?
-    @objc var embroidery: Bool
+    var embroidery: Bool
 
     @objc(initWithFrame:andStagePresenterViewController_:)
     init(frame: CGRect, delegate: StagePresenterSideMenuDelegate) {
@@ -65,8 +66,9 @@ enum SideMenuButtonType {
         self.landscape = delegate.project.header.landscapeMode
         self.project = delegate.project
         self.embroidery = self.project.getRequiredResources() & ResourceType.embroidery.rawValue > 0
+
         if embroidery {
-            self.numberOfButtons = 8
+            self.numberOfButtons = 7
         } else {
             self.numberOfButtons = 6
         }
@@ -300,14 +302,19 @@ enum SideMenuButtonType {
 
     private func setupImage(_ imageName: String, for button: UIButton) {
         let sizeFactor = landscape ? 1 : 2
-        let dividingConstant = self.frame.size.width / (self.frame.size.height / (CGFloat(sizeFactor * (numberOfButtons + 2))))
+        var dividingConstant = self.frame.size.width / (self.frame.size.height / (CGFloat(sizeFactor * (numberOfButtons + 2))))
         button.frame.size.width = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight)
         button.frame.size.height = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight)
 
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant), false, 0.0)
+        let availableSpace = self.frame.size.height - (button.frame.size.height / dividingConstant) * CGFloat(numberOfButtons)
+        if availableSpace < minimumPaddingTopAndBottom {
+            dividingConstant *= 1.4
+        }
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: button.frame.size.width / dividingConstant, height: button.frame.size.height / dividingConstant), false, 0.0)
 
         let image = UIImage(named: imageName)
-        image?.draw(in: CGRect(x: 0, y: 0, width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant))
+        image?.draw(in: CGRect(x: 0, y: 0, width: button.frame.size.width / dividingConstant, height: button.frame.size.height / dividingConstant))
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -324,5 +331,6 @@ enum SideMenuButtonType {
         button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .selected)
         if #available(iOS 13.0, *) {
             button.currentImage?.withTintColor(UIColor.navBarButtonHighlighted)
-        }    }
+        }
+    }
 }
