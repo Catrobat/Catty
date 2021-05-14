@@ -66,8 +66,9 @@ enum SideMenuButtonType {
         self.landscape = delegate.project.header.landscapeMode
         self.project = delegate.project
         self.embroidery = self.project.getRequiredResources() & ResourceType.embroidery.rawValue > 0
+
         if embroidery {
-            self.numberOfButtons = 8
+            self.numberOfButtons = 7
         } else {
             self.numberOfButtons = 7
         }
@@ -313,7 +314,6 @@ enum SideMenuButtonType {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: button.frame.size.width / dividingConstant, height: button.frame.size.height / dividingConstant), false, 0.0)
 
         let image = UIImage(named: imageName)
-        //image?.draw(in: CGRect(x: 0, y: 0, width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant))
         image?.draw(in: CGRect(x: 0, y: 0, width: button.frame.size.width / dividingConstant, height: button.frame.size.height / dividingConstant))
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -331,5 +331,6 @@ enum SideMenuButtonType {
         button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .selected)
         if #available(iOS 13.0, *) {
             button.currentImage?.withTintColor(UIColor.navBarButtonHighlighted)
-        }    }
+        }
+    }
 }
