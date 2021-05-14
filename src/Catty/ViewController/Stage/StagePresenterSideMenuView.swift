@@ -70,7 +70,7 @@ enum SideMenuButtonType {
         if embroidery {
             self.numberOfButtons = 7
         } else {
-            self.numberOfButtons = 7
+            self.numberOfButtons = 6
         }
 
         super.init(frame: frame)
@@ -151,7 +151,7 @@ enum SideMenuButtonType {
         }
 
         let aspectRatioLabel = setupLabel(title: kLocalizedMaximize, selector: #selector(self.aspectRatioAction), target: self)
-        aspectRatioLabel.translatesAutoresizingMaskIntoConstraints = false
+        //aspectRatioLabel.translatesAutoresizingMaskIntoConstraints = false
         aspectRatioLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (marginTopBottom - marginLabel) * -1).isActive = true
         self.aspectRatioLabel = aspectRatioLabel
 
@@ -213,10 +213,10 @@ enum SideMenuButtonType {
 
         if aspectRatioLabel.currentTitle == kLocalizedMaximize {
             aspectRatioLabel.setTitle(kLocalizedMinimize, for: .normal)
-            setupImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
+            changeImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
          } else {
             aspectRatioLabel.setTitle(kLocalizedMaximize, for: .normal)
-            setupImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
+            changeImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
          }
 
         self.delegate?.aspectRatioAction()
@@ -303,6 +303,7 @@ enum SideMenuButtonType {
     private func setupImage(_ imageName: String, for button: UIButton) {
         let sizeFactor = landscape ? 1 : 2
         var dividingConstant = self.frame.size.width / (self.frame.size.height / (CGFloat(sizeFactor * (numberOfButtons + 2))))
+
         button.frame.size.width = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight)
         button.frame.size.height = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight)
 
@@ -311,10 +312,41 @@ enum SideMenuButtonType {
             dividingConstant *= 1.4
         }
 
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: button.frame.size.width / dividingConstant, height: button.frame.size.height / dividingConstant), false, 0.0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant), false, 0.0)
 
         let image = UIImage(named: imageName)
-        image?.draw(in: CGRect(x: 0, y: 0, width: button.frame.size.width / dividingConstant, height: button.frame.size.height / dividingConstant))
+        image?.draw(in: CGRect(x: 0, y: 0, width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant))
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        let newImageHighlight = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        button.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageView?.tintColor = UIColor.navBarButton
+        if #available(iOS 13.0, *) {
+            button.currentImage?.withTintColor(UIColor.navBarButton)
+        }
+        button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .highlighted)
+        button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .selected)
+        if #available(iOS 13.0, *) {
+            button.currentImage?.withTintColor(UIColor.navBarButtonHighlighted)
+        }
+
+    }
+
+    private func changeImage(_ imageName: String, for button: UIButton) {
+
+        guard let currentImage = button.currentImage else { return }
+
+        let width = currentImage.size.width
+        let height = currentImage.size.height
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, 0.0)
+
+        let image = UIImage(named: imageName)
+        image?.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
