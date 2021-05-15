@@ -151,7 +151,6 @@ enum SideMenuButtonType {
         }
 
         let aspectRatioLabel = setupLabel(title: kLocalizedMaximize, selector: #selector(self.aspectRatioAction), target: self)
-        //aspectRatioLabel.translatesAutoresizingMaskIntoConstraints = false
         aspectRatioLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (marginTopBottom - marginLabel) * -1).isActive = true
         self.aspectRatioLabel = aspectRatioLabel
 
