@@ -29,6 +29,7 @@
 @class FormulaManager;
 @class LoadingView;
 @class StagePresenterSideMenuView;
+@class StagePresenterViewControllerShareExtension;
 
 @interface StagePresenterViewController : UIViewController
 

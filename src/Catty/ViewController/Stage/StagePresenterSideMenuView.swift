@@ -31,6 +31,7 @@ import UIKit
     func takeScreenshotAction()
     func showHideAxisAction()
     func aspectRatioAction()
+    func shareDST()
 }
 
 enum SideMenuButtonType {
@@ -49,6 +50,7 @@ enum SideMenuButtonType {
     let fontSize = 14.0
     let marginTopBottom = CGFloat(20.0)
     let marginLabel = CGFloat(5.0)
+    let minimumPaddingTopAndBottom = CGFloat(365.0)
 
     weak var delegate: StagePresenterSideMenuDelegate?
     var landscape: Bool
@@ -56,13 +58,20 @@ enum SideMenuButtonType {
     let numberOfButtons: Int
     var aspectRatioButton: UIButton?
     var aspectRatioLabel: UIButton?
+    var embroidery: Bool
 
     @objc(initWithFrame:andStagePresenterViewController_:)
     init(frame: CGRect, delegate: StagePresenterSideMenuDelegate) {
         self.delegate = delegate
         self.landscape = delegate.project.header.landscapeMode
         self.project = delegate.project
-        self.numberOfButtons = 6
+        self.embroidery = self.project.getRequiredResources() & ResourceType.embroidery.rawValue > 0
+
+        if embroidery {
+            self.numberOfButtons = 7
+        } else {
+            self.numberOfButtons = 6
+        }
 
         super.init(frame: frame)
         setupView()
@@ -101,8 +110,19 @@ enum SideMenuButtonType {
         let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction))
         backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: marginLabel).isActive = true
 
+        let screenshotButton = setupButton(imageName: "stage_dialog_button_screenshot", selector: #selector(delegate?.takeScreenshotAction))
         let restartLabel = setupLabel(title: kLocalizedRestart, selector: #selector(delegate?.restartAction))
-        restartLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: marginLabel * -1).isActive = true
+
+        if embroidery == true {
+            screenshotButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -marginLabel).isActive = true
+
+            restartLabel.bottomAnchor.constraint(equalTo: screenshotButton.topAnchor, constant: marginTopBottom * -1).isActive = true
+
+        } else {
+            screenshotButton.topAnchor.constraint(equalTo: self.centerYAnchor, constant: marginTopBottom - marginLabel).isActive = true
+
+            restartLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: marginLabel * -1).isActive = true
+        }
 
         let restartButton = setupButton(imageName: "stage_dialog_button_restart", selector: #selector(delegate?.restartAction))
         restartButton.bottomAnchor.constraint(equalTo: restartLabel.topAnchor, constant: marginLabel * -1).isActive = true
@@ -113,9 +133,6 @@ enum SideMenuButtonType {
         let continueButton = setupButton(imageName: "stage_dialog_button_continue", selector: #selector(delegate?.continueAction))
         continueButton.bottomAnchor.constraint(equalTo: continueLabel.topAnchor, constant: marginLabel * -1).isActive = true
 
-        let screenshotButton = setupButton(imageName: "stage_dialog_button_screenshot", selector: #selector(delegate?.takeScreenshotAction))
-        screenshotButton.topAnchor.constraint(equalTo: self.centerYAnchor, constant: marginTopBottom - marginLabel).isActive = true
-
         let screenshotLabel = setupLabel(title: kLocalizedPreview, selector: #selector(delegate?.takeScreenshotAction))
         screenshotLabel.topAnchor.constraint(equalTo: screenshotButton.bottomAnchor, constant: marginLabel).isActive = true
 
@@ -125,8 +142,15 @@ enum SideMenuButtonType {
         let axesLabel = setupLabel(title: kLocalizedAxes, selector: #selector(delegate?.showHideAxisAction))
         axesLabel.topAnchor.constraint(equalTo: axesButton.bottomAnchor, constant: marginLabel).isActive = true
 
+        if embroidery {
+            let shareButton = setupButton(imageName: "square.and.arrow.up.reg", selector: #selector(delegate?.shareDST))
+            shareButton.topAnchor.constraint(equalTo: axesLabel.bottomAnchor, constant: marginTopBottom - marginLabel).isActive = true
+
+            let shareLabel = setupLabel(title: kLocalizedCategoryEmbroidery, selector: #selector(delegate?.shareDST))
+            shareLabel.topAnchor.constraint(equalTo: shareButton.bottomAnchor, constant: marginLabel).isActive = true
+        }
+
         let aspectRatioLabel = setupLabel(title: kLocalizedMaximize, selector: #selector(self.aspectRatioAction), target: self)
-        aspectRatioLabel.translatesAutoresizingMaskIntoConstraints = false
         aspectRatioLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (marginTopBottom - marginLabel) * -1).isActive = true
         self.aspectRatioLabel = aspectRatioLabel
 
@@ -188,10 +212,10 @@ enum SideMenuButtonType {
 
         if aspectRatioLabel.currentTitle == kLocalizedMaximize {
             aspectRatioLabel.setTitle(kLocalizedMinimize, for: .normal)
-            setupImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
+            changeImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
          } else {
             aspectRatioLabel.setTitle(kLocalizedMaximize, for: .normal)
-            setupImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
+            changeImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
          }
 
         self.delegate?.aspectRatioAction()
@@ -277,9 +301,15 @@ enum SideMenuButtonType {
 
     private func setupImage(_ imageName: String, for button: UIButton) {
         let sizeFactor = landscape ? 1 : 2
-        let dividingConstant = self.frame.size.width / (self.frame.size.height / (CGFloat(sizeFactor * (numberOfButtons + 2))))
+        var dividingConstant = self.frame.size.width / (self.frame.size.height / (CGFloat(sizeFactor * (numberOfButtons + 2))))
+
         button.frame.size.width = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight)
         button.frame.size.height = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight)
+
+        let availableSpace = self.frame.size.height - (button.frame.size.height / dividingConstant) * CGFloat(numberOfButtons)
+        if availableSpace < minimumPaddingTopAndBottom {
+            dividingConstant *= 1.4
+        }
 
         UIGraphicsBeginImageContextWithOptions(CGSize(width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant), false, 0.0)
 
@@ -289,9 +319,49 @@ enum SideMenuButtonType {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        button.setImage(newImage, for: .normal)
-        button.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .highlighted)
-        button.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .selected)
-        button.tintColor = UIColor.navBarButtonHighlighted
+        let newImageHighlight = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        button.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageView?.tintColor = UIColor.navBarButton
+        if #available(iOS 13.0, *) {
+            button.currentImage?.withTintColor(UIColor.navBarButton)
+        }
+        button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .highlighted)
+        button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .selected)
+        if #available(iOS 13.0, *) {
+            button.currentImage?.withTintColor(UIColor.navBarButtonHighlighted)
+        }
+
+    }
+
+    private func changeImage(_ imageName: String, for button: UIButton) {
+
+        guard let currentImage = button.currentImage else { return }
+
+        let width = currentImage.size.width
+        let height = currentImage.size.height
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, 0.0)
+
+        let image = UIImage(named: imageName)
+        image?.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        let newImageHighlight = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        button.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageView?.tintColor = UIColor.navBarButton
+        if #available(iOS 13.0, *) {
+            button.currentImage?.withTintColor(UIColor.navBarButton)
+        }
+        button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .highlighted)
+        button.setImage(newImageHighlight?.withRenderingMode(.alwaysTemplate), for: .selected)
+        if #available(iOS 13.0, *) {
+            button.currentImage?.withTintColor(UIColor.navBarButtonHighlighted)
+        }
     }
 }
