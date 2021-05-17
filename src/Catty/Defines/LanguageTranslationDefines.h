@@ -818,6 +818,7 @@
 //************************************************************************************************************
 
 #define kLocalizedMediaLibrary NSLocalizedString(@"Media library", nil)
+#define kLocalizedSelectFile NSLocalizedString(@"Select file", nil)
 #define kLocalizedMediaLibraryConnectionIssueTitle NSLocalizedString(@"Connection failed", nil)
 #define kLocalizedMediaLibraryConnectionIssueMessage NSLocalizedString(@"Cannot connect to the media library. Please check your internet connection.", nil)
 #define kLocalizedMediaLibraryImportFailedTitle NSLocalizedString(@"Failed to import item", nil)

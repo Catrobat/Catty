@@ -1319,6 +1319,7 @@
 		972622E225F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972622E125F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift */; };
 		9728AE9E25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */; };
 		9767BAFA26668ECD009794E8 /* JoinThreeStringsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767BAF926668ECD009794E8 /* JoinThreeStringsFunctionTest.swift */; };
+		97417A9B265284400079A2A2 /* SoundsTableViewController+SelectFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97417A9A265284400079A2A2 /* SoundsTableViewController+SelectFile.swift */; };
 		97770B8825E5A88C00F51EFA /* SetBrightnessBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */; };
 		97770B8F25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */; };
 		9797CB8325AF7A6000A50444 /* SceneTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */; };
@@ -3523,6 +3524,7 @@
 		972622E125F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetBrightnessBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerReportExtension.swift; sourceTree = "<group>"; };
 		9767BAF926668ECD009794E8 /* JoinThreeStringsFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinThreeStringsFunctionTest.swift; sourceTree = "<group>"; };
+		97417A9A265284400079A2A2 /* SoundsTableViewController+SelectFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundsTableViewController+SelectFile.swift"; sourceTree = "<group>"; };
 		97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBrightnessBrick.swift; sourceTree = "<group>"; };
 		97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBrightnessByNBrick.swift; sourceTree = "<group>"; };
 		9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTVCTests.swift; sourceTree = "<group>"; };
@@ -8608,6 +8610,7 @@
 				5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */,
 				92FF312C1A24DEB300093DA7 /* SRViewController.h */,
 				92FF312D1A24DEB300093DA7 /* SRViewController.m */,
+				97417A9A265284400079A2A2 /* SoundsTableViewController+SelectFile.swift */,
 			);
 			path = MaintainSounds;
 			sourceTree = "<group>";
@@ -12823,6 +12826,7 @@
 				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,
 				BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */,
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,
+				97417A9B265284400079A2A2 /* SoundsTableViewController+SelectFile.swift in Sources */,
 				59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				4C4EE29D210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift in Sources */,
