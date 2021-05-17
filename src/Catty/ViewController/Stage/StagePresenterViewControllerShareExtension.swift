@@ -25,7 +25,7 @@
     func shareDST() {
 
         var embroideryStream = [EmbroideryStream]()
-        for object in project.scene.objects() {
+        for object in project.scene.objects() where !object.spriteNode.embroideryStream.isEmpty {
             embroideryStream.append(object.spriteNode.embroideryStream)
         }
         let embroideryStreamMerged = EmbroideryStream(streams: embroideryStream)
