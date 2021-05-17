@@ -75,15 +75,4 @@
         }
         self.present(activityViewController, animated: true, completion: nil)
     }
-
-    func isEmbroideryStreamFilled() -> Bool {
-
-        for object in self.project.allObjects() {
-            guard let spritenode = object.spriteNode else { continue }
-            if !spritenode.embroideryStream.isEmpty {
-                return true
-            }
-        }
-        return false
-    }
 }

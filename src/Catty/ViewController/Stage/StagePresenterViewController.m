@@ -413,6 +413,11 @@
     [self takeManualScreenshotForSKView:self.skView andProject:self.project.scene];
 }
 
+- (void)shareDSTAction
+{
+    [self shareDST];
+}
+
 #pragma mark - Pan Gesture Handler
 
 - (void)handlePan:(UIPanGestureRecognizer*)gesture
