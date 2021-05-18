@@ -126,7 +126,7 @@ class StagePresenterSideMenuDelegateMock: StagePresenterSideMenuDelegate {
     var takeScreenshotActionCalled = false
     var showHideAxisActionCalled = false
     var aspectRatioActionCalled = false
-    var shareDSTCalled = false
+    var shareDSTActionCalled = false
 
     init(project: Project) {
         self.project = project
@@ -156,7 +156,7 @@ class StagePresenterSideMenuDelegateMock: StagePresenterSideMenuDelegate {
         aspectRatioActionCalled = true
     }
 
-    func shareDST() {
-        shareDSTCalled = true
+    func shareDSTAction() {
+        shareDSTActionCalled = true
     }
 }
