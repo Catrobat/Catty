@@ -22,22 +22,17 @@
 
 @testable import Pocket_Code
 
-class StagePresenterViewControllerMock: StagePresenterViewController {
+class EmbroideryServiceMock: EmbroideryProtocol {
 
-    var showLoadingViewCalls = 0
-    var hideLoadingViewCalls = 0
-    var latestPresentedViewController: UIViewController?
-    var embroideryService: EmbroideryProtocol?
+    var inputStream: EmbroideryStream?
+    var outputData: Data
 
-    override func showLoadingView() {
-        showLoadingViewCalls += 1
+    init(outputData: Data) {
+        self.outputData = outputData
     }
 
-    override func hideLoadingView() {
-        hideLoadingViewCalls += 1
-    }
-
-    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        self.latestPresentedViewController = viewControllerToPresent
+    func generateOutput(embroideryStream: EmbroideryStream) -> Data {
+        self.inputStream = embroideryStream
+        return self.outputData
     }
 }

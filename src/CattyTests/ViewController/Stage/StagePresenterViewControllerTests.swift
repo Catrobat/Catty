@@ -108,4 +108,40 @@ final class StagePresenterViewControllerTest: XCTestCase {
         expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
         expect(self.vc.hideLoadingViewCalls).toEventually(equal(1))
     }
+
+    func testShareDST() {
+        let expectedStitch = Stitch(x: 0, y: 1)
+        let data = Data()
+
+        let stream = EmbroideryStream(projectWidth: project.header.screenWidth as? CGFloat, projectHeight: project.header.screenHeight as? CGFloat)
+        stream.stitches.append(expectedStitch)
+
+        let embroideryServiceMock = EmbroideryServiceMock(outputData: data)
+
+        vc.project = project
+
+        XCTAssertEqual(1, project.allObjects().count)
+
+        let background = project.allObjects().first!
+        let backgroundNode = CBSpriteNodeMock(spriteObject: background)
+        background.spriteNode = backgroundNode
+
+        let object = SpriteObjectMock(scene: project.scene)
+        let objectNode = CBSpriteNodeMock(spriteObject: object)
+        objectNode.embroideryStream = stream
+        object.spriteNode = objectNode
+        project.scene.add(object: object)
+
+        XCTAssertEqual(2, project.allObjects().count)
+        XCTAssertNil(vc.latestPresentedViewController)
+        XCTAssertNil(embroideryServiceMock.inputStream)
+
+        vc.shareDST(embroideryService: embroideryServiceMock)
+
+        XCTAssertNotNil(embroideryServiceMock.inputStream)
+        XCTAssertEqual(1, embroideryServiceMock.inputStream?.stitches.count)
+        XCTAssertEqual(expectedStitch.getPosition(), embroideryServiceMock.inputStream?.stitches.first?.getPosition())
+
+        XCTAssertNotNil(vc.latestPresentedViewController as? UIActivityViewController)
+    }
 }

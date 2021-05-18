@@ -20,16 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension StagePresenterViewController {
+extension StagePresenterViewController {
 
-    func shareDST() {
+    @objc func shareDST() {
+        shareDST(embroideryService: EmbroideryDSTService())
+    }
+
+    func shareDST(embroideryService: EmbroideryProtocol) {
 
         var embroideryStream = [EmbroideryStream]()
-        for object in project.scene.objects() {
+        for object in project.scene.objects() where !object.spriteNode.embroideryStream.isEmpty {
             embroideryStream.append(object.spriteNode.embroideryStream)
         }
         let embroideryStreamMerged = EmbroideryStream(streams: embroideryStream)
-        let data = EmbroideryDSTService().generateOutput(embroideryStream: embroideryStreamMerged)
+        let data = embroideryService.generateOutput(embroideryStream: embroideryStreamMerged)
 
         let temporaryFolder = FileManager.default.temporaryDirectory
         let fileName = String(self.project.header.programName!) + ".dst"
