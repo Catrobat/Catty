@@ -14,6 +14,9 @@
 "About Pocket Code" = "Acerca do Pocket Code";
 
 /* No comment provided by engineer. */
+"absolute value" = "absolute value";
+
+/* No comment provided by engineer. */
 "acceleration x" = "aceleracao_x";
 
 /* No comment provided by engineer. */
@@ -101,6 +104,15 @@
 "April" = "Abril";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccosine";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsine";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctangent";
+
+/* No comment provided by engineer. */
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
@@ -169,11 +181,11 @@
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
-/* paint */
-"Blue" = "Azul";
-
 /* No comment provided by engineer. */
 "blue" = "Azul";
+
+/* paint */
+"Blue" = "Azul";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "O Bluetooth não está disponível. Ou o seu dispositivo não suporta o Bluetooth 4.0, ou o seu circuito integrado de Bluetooth está danificado. Por favor verifique ligando a outro dispositivo Bluetooth nas Configurações.";
@@ -230,7 +242,7 @@
 "Catrobat community" = "Comunidade Catrobat";
 
 /* No comment provided by engineer. */
-"ceil" = "tecto";
+"ceiling" = "ceiling";
 
 /* No comment provided by engineer. */
 "Cello" = "Cello";
@@ -299,6 +311,9 @@
 "color" = "cor";
 
 /* No comment provided by engineer. */
+"Comparison operators" = "operador de Comparação";
+
+/* No comment provided by engineer. */
 "compass" = "bússola";
 
 /* No comment provided by engineer. */
@@ -341,6 +356,9 @@
 "Copy" = "Copiar";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Copy actors or objects";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
@@ -350,10 +368,19 @@
 "Copy project" = "Copy project";
 
 /* No comment provided by engineer. */
+"cosine" = "cosine";
+
+/* No comment provided by engineer. */
 "Create account" = "Criar conta";
 
 /* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Create patterns for stiching machines";
+
+/* No comment provided by engineer. */
 "Data" = "Dados";
+
+/* No comment provided by engineer. */
+"Date and time" = "Data e hora";
 
 /* No comment provided by engineer. */
 "day" = "day";
@@ -366,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "Dezembro";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "decimal logarithm";
 
 /* No comment provided by engineer. */
 "degrees" = "graus";
@@ -461,6 +491,9 @@
 "device motion-sensor" = "device motion-sensor";
 
 /* No comment provided by engineer. */
+"Device sensors" = "Device sensors";
+
+/* No comment provided by engineer. */
 "direction" = "direcção";
 
 /* No comment provided by engineer. */
@@ -479,6 +512,9 @@
 "Disagree" = "Discordar";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Discard changes";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "Desligar todos os dispositivos";
 
 /* No comment provided by engineer. */
@@ -488,7 +524,7 @@
 "Do you really want to delete the current drawing?" = "Quer mesmo remover o desenho actual?";
 
 /* paint */
-"Do you want to save the changes" = "Quer guardar as alterações";
+"Do you want to save your changes?" = "Deseja salvar as alterações?";
 
 /* No comment provided by engineer. */
 "don't rotate" = "não girar";
@@ -498,9 +534,6 @@
 
 /* No comment provided by engineer. */
 "Download" = "Descarregar";
-
-/* No comment provided by engineer. */
-"Download successful" = "Download concluído";
 
 /* No comment provided by engineer. */
 "Downloads" = "Descargas";
@@ -569,6 +602,12 @@
 "Email" = "Correio electrónico";
 
 /* No comment provided by engineer. */
+"Embroidery" = "Embroidery";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "Embroidery extension";
+
+/* No comment provided by engineer. */
 "Empty input!" = "Empty input!";
 
 /* No comment provided by engineer. */
@@ -623,10 +662,16 @@
 "Error" = "Erro";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
 
 /* No comment provided by engineer. */
 "Event" = "Evento";
+
+/* No comment provided by engineer. */
+"exponent" = "exponent";
 
 /* No comment provided by engineer. */
 "FA" = "Fá";
@@ -704,6 +749,9 @@
 "Forgot password" = "Esqueci-me da palavra-passe";
 
 /* No comment provided by engineer. */
+"Formula Editor" = "Formula Editor";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "Fórmula demasiado longa!";
 
 /* No comment provided by engineer. */
@@ -725,6 +773,12 @@
 "Front camera" = "Câmara frontal";
 
 /* No comment provided by engineer. */
+"Functions" = "Funções";
+
+/* No comment provided by engineer. */
+"General properties" = "propriedades gerais";
+
+/* No comment provided by engineer. */
 "Glide" = "Deslizar";
 
 /* No comment provided by engineer. */
@@ -736,11 +790,11 @@
 /* No comment provided by engineer. */
 "Go to front" = "Ir para a frente";
 
-/* paint */
-"Green" = "Verde";
-
 /* No comment provided by engineer. */
 "green" = "Verde";
+
+/* paint */
+"Green" = "Verde";
 
 /* No comment provided by engineer. */
 "Guitar" = "Guitar";
@@ -827,6 +881,9 @@
 "italic" = "itálico";
 
 /* No comment provided by engineer. */
+"item" = "elemento";
+
+/* No comment provided by engineer. */
 "Jan" = "Jan";
 
 /* No comment provided by engineer. */
@@ -878,10 +935,10 @@
 "left-right only" = "só esquerda-direita";
 
 /* No comment provided by engineer. */
-"Length" = "Comprimento";
+"length" = "comprimento";
 
 /* No comment provided by engineer. */
-"length" = "comprimento";
+"Length" = "Comprimento";
 
 /* No comment provided by engineer. */
 "letter" = "letra";
@@ -899,6 +956,12 @@
 "Lists" = "Listas";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "Lists for all actors and objects";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "Lists for this actor or object only";
+
+/* No comment provided by engineer. */
 "Loading" = "Carregando";
 
 /* No comment provided by engineer. */
@@ -909,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "Lógica";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "Logical (Boolean) operators and constants";
 
 /* No comment provided by engineer. */
 "Login" = "Entrar";
@@ -922,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "longitude";
 
-/* No comment provided by engineer. */
-"Look" = "Aparência";
-
 /* LOOK */
 "look" = "aparência";
+
+/* No comment provided by engineer. */
+"Look" = "Aparência";
 
 /* No comment provided by engineer. */
 "look name" = "nome_aparência";
@@ -953,7 +1019,13 @@
 "Marimba" = "Marimba";
 
 /* No comment provided by engineer. */
-"Math" = "Matemática";
+"Maths" = "Matemática";
+
+/* No comment provided by engineer. */
+"Maximize" = "Maximize";
+
+/* No comment provided by engineer. */
+"maximum of" = "max";
 
 /* No comment provided by engineer. */
 "May" = "Maio";
@@ -977,6 +1049,12 @@
 "MI" = "Mi";
 
 /* No comment provided by engineer. */
+"Minimize" = "Minimize";
+
+/* No comment provided by engineer. */
+"minimum of" = "min";
+
+/* No comment provided by engineer. */
 "minute" = "minute";
 
 /* paint */
@@ -984,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Seg";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Toupeira";
@@ -1008,6 +1089,9 @@
 
 /* No comment provided by engineer. */
 "Motion" = "Movimento";
+
+/* No comment provided by engineer. */
+"Motion properties" = "propriedades de movimento";
 
 /* No comment provided by engineer. */
 "Move" = "Mover";
@@ -1047,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "natural logarithm";
 
 /* No comment provided by engineer. */
 "New" = "Novo";
@@ -1112,9 +1199,6 @@
 "not available. Continue anyway?" = "indisponível. Continuar mesmo assim?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "Não há Memória suficiente";
 
 /* No comment provided by engineer. */
@@ -1139,13 +1223,7 @@
 "Object" = "Objecto";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Object lists:";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "Variáveis do objecto:";
 
 /* No comment provided by engineer. */
 "Oct" = "Out";
@@ -1218,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
+
+/* No comment provided by engineer. */
+"pi" = "pi";
 
 /* No comment provided by engineer. */
 "Piano" = "Piano";
@@ -1304,6 +1385,9 @@
 "position y" = "posicao_y";
 
 /* No comment provided by engineer. */
+"power" = "power";
+
+/* No comment provided by engineer. */
 "Preview" = "Pré visualizar";
 
 /* No comment provided by engineer. */
@@ -1319,16 +1403,10 @@
 "Project" = "Projecto";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
-
-/* No comment provided by engineer. */
 "Project name" = "Project name";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Project Name is necessary!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
 
 /* No comment provided by engineer. */
 "Projects" = "Programas";
@@ -1337,7 +1415,13 @@
 "Projects on device" = "Programas";
 
 /* No comment provided by engineer. */
+"Properties" = "Objeto";
+
+/* No comment provided by engineer. */
 "random position" = "Posição aleatória";
+
+/* No comment provided by engineer. */
+"random value from to" = "random";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Avalie-nos";
@@ -1351,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "Rectângulo / Quadrado";
 
-/* No comment provided by engineer. */
-"red" = "Vermelho";
-
 /* paint */
 "Red" = "Vermelho";
+
+/* No comment provided by engineer. */
+"red" = "Vermelho";
 
 /* No comment provided by engineer. */
 "Register" = "Registar";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Registo efectuado com sucesso";
+
+/* No comment provided by engineer. */
+"regular expression" = "regular expression";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Remover dispositivos conhecidos";
@@ -1417,11 +1504,11 @@
 /* No comment provided by engineer. */
 "Saturday" = "Sábado";
 
+/* No comment provided by engineer. */
+"Save changes" = "Save changes";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
-
-/* No comment provided by engineer. */
-"Save to PocketCode" = "Guardar no Pocket Code";
 
 /* No comment provided by engineer. */
 "Saved" = "Guardado";
@@ -1535,6 +1622,9 @@
 "Set size to" = "Alterar o tamanho para";
 
 /* No comment provided by engineer. */
+"Set tempo to" = "Set tempo to";
+
+/* No comment provided by engineer. */
 "Set transparency " = "Alterar a transparência para ";
 
 /* No comment provided by engineer. */
@@ -1560,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "Mostrar variável";
+
+/* No comment provided by engineer. */
+"sine" = "sine";
 
 /* No comment provided by engineer. */
 "size" = "tamanho";
@@ -1591,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "Velocidade";
 
-/* No comment provided by engineer. */
-"sqrt" = "raiz quadrada";
-
 /* paint */
 "square" = "quadrado";
+
+/* No comment provided by engineer. */
+"square root" = "sqrt";
 
 /* No comment provided by engineer. */
 "stage is touched" = "stage is touched";
@@ -1628,6 +1721,9 @@
 "steps" = "passos";
 
 /* No comment provided by engineer. */
+"Stitch" = "Stitch";
+
+/* No comment provided by engineer. */
 "Stop all sounds" = "Parar todos os sons";
 
 /* No comment provided by engineer. */
@@ -1643,6 +1739,9 @@
 "Switch to look" = "Mudar para aparência";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "Switch to look with number";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "Erro de Sintaxe!";
 
 /* No comment provided by engineer. */
@@ -1650,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Synth Pad" = "Synth Pad";
+
+/* No comment provided by engineer. */
+"tangent" = "tangent";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
@@ -1665,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "Toque em \"+\" para adicionar sons";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "Termos de Utilização e Serviço";
@@ -1698,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "The recent projects cannot be loaded";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
@@ -1757,6 +1859,9 @@
 "Today" = "Hoje";
 
 /* No comment provided by engineer. */
+"Touch detection" = "Deteção de toque";
+
+/* No comment provided by engineer. */
 "touch position" = "Posição de toque";
 
 /* No comment provided by engineer. */
@@ -1785,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "Virar à direita";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Unable to import project!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Unable to load project!";
@@ -1856,9 +1964,6 @@
 "Username must not be blank" = "O nome de utilizador não pode estar em branco";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/List";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Nome da variável:";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1974,12 @@
 
 /* No comment provided by engineer. */
 "Variables" = "Variáveis";
+
+/* No comment provided by engineer. */
+"Variables for all actors and objects" = "Variables for all actors and objects";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "Variables for this actor or object only";
 
 /* No comment provided by engineer. */
 "Version" = "Versão";
@@ -1887,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Views" = "Visualizações";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Visual sensors";
 
 /* No comment provided by engineer. */
 "Wait" = "Esperar";
@@ -1962,6 +2076,9 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "Seu relatório foi enviado com sucesso!";
 
 /* paint */
 "Zoom" = "Zoom";

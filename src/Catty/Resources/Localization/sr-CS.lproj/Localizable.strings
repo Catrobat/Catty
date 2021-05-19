@@ -14,6 +14,9 @@
 "About Pocket Code" = "O Pocket Code-u";
 
 /* No comment provided by engineer. */
+"absolute value" = "absolute value";
+
+/* No comment provided by engineer. */
 "acceleration x" = "ubrzanje x";
 
 /* No comment provided by engineer. */
@@ -101,6 +104,15 @@
 "April" = "April";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccosine";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsine";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctangent";
+
+/* No comment provided by engineer. */
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
@@ -169,11 +181,11 @@
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Pre nego što počnete sa programiranjem, pročitajte i prihvatite našu Politiku privatnosti da biste koristili aplikaciju:";
 
-/* paint */
-"Blue" = "Plava";
-
 /* No comment provided by engineer. */
 "blue" = "plava";
+
+/* paint */
+"Blue" = "Plava";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth nije dostupan. Ili vaš uređaj ne podržava Bluetooth 4.0 ili je Bluetooth čip oštećen. Proverite sa povezivanjem drugih Bluetooth uređaja u podešavanjima.";
@@ -230,7 +242,7 @@
 "Catrobat community" = "Catrobat zajednica";
 
 /* No comment provided by engineer. */
-"ceil" = "ceil";
+"ceiling" = "ceiling";
 
 /* No comment provided by engineer. */
 "Cello" = "Cello";
@@ -299,6 +311,9 @@
 "color" = "boja";
 
 /* No comment provided by engineer. */
+"Comparison operators" = "Operatori za poređenje";
+
+/* No comment provided by engineer. */
 "compass" = "kompas";
 
 /* No comment provided by engineer. */
@@ -341,6 +356,9 @@
 "Copy" = "kopiraj";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Copy actors or objects";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Kopiraj kocku";
 
 /* No comment provided by engineer. */
@@ -350,10 +368,19 @@
 "Copy project" = "Kopiraj projekat";
 
 /* No comment provided by engineer. */
+"cosine" = "cosine";
+
+/* No comment provided by engineer. */
 "Create account" = "Napravite nalog";
 
 /* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Create patterns for stiching machines";
+
+/* No comment provided by engineer. */
 "Data" = "Podaci";
+
+/* No comment provided by engineer. */
+"Date and time" = "Datum i vreme";
 
 /* No comment provided by engineer. */
 "day" = "dan";
@@ -366,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "Decembar";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "decimal logarithm";
 
 /* No comment provided by engineer. */
 "degrees" = "stepeni";
@@ -461,6 +491,9 @@
 "device motion-sensor" = "device motion-sensor";
 
 /* No comment provided by engineer. */
+"Device sensors" = "Senzori uređaja";
+
+/* No comment provided by engineer. */
 "direction" = "pravac";
 
 /* No comment provided by engineer. */
@@ -479,6 +512,9 @@
 "Disagree" = "Ne slažem se";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Discard changes";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "Isključite sve uređaje";
 
 /* No comment provided by engineer. */
@@ -488,7 +524,7 @@
 "Do you really want to delete the current drawing?" = "Da li zaista želite da izbrišete trenutni crtež?";
 
 /* paint */
-"Do you want to save the changes" = "Da li želite da sačuvate svoje izmene?";
+"Do you want to save your changes?" = "Da li želite da sačuvate svoje izmene?";
 
 /* No comment provided by engineer. */
 "don't rotate" = "ne rotiraj";
@@ -498,9 +534,6 @@
 
 /* No comment provided by engineer. */
 "Download" = "Preuzmi";
-
-/* No comment provided by engineer. */
-"Download successful" = "Preuzimanje uspešno";
 
 /* No comment provided by engineer. */
 "Downloads" = "Prеuzimanja";
@@ -569,6 +602,12 @@
 "Email" = "Email";
 
 /* No comment provided by engineer. */
+"Embroidery" = "Embroidery";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "Embroidery ekstenzija";
+
+/* No comment provided by engineer. */
 "Empty input!" = "Prazan unos!";
 
 /* No comment provided by engineer. */
@@ -623,10 +662,16 @@
 "Error" = "Greška";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "Greška prilikom čuvanja datoteke";
 
 /* No comment provided by engineer. */
 "Event" = "Događaj";
+
+/* No comment provided by engineer. */
+"exponent" = "exponent";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -704,6 +749,9 @@
 "Forgot password" = "Zaboravljеna lozinka";
 
 /* No comment provided by engineer. */
+"Formula Editor" = "Formula Editor";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "Formula preduga!";
 
 /* No comment provided by engineer. */
@@ -725,6 +773,12 @@
 "Front camera" = "Prednja kamera";
 
 /* No comment provided by engineer. */
+"Functions" = "Funkcije";
+
+/* No comment provided by engineer. */
+"General properties" = "Opšta svojstva";
+
+/* No comment provided by engineer. */
 "Glide" = "Klizati";
 
 /* No comment provided by engineer. */
@@ -736,11 +790,11 @@
 /* No comment provided by engineer. */
 "Go to front" = "Idi napred";
 
-/* paint */
-"Green" = "Zelena";
-
 /* No comment provided by engineer. */
 "green" = "zelena";
+
+/* paint */
+"Green" = "Zelena";
 
 /* No comment provided by engineer. */
 "Guitar" = "Guitar";
@@ -827,6 +881,9 @@
 "italic" = "kurziv";
 
 /* No comment provided by engineer. */
+"item" = "stavka";
+
+/* No comment provided by engineer. */
 "Jan" = "Jan";
 
 /* No comment provided by engineer. */
@@ -878,10 +935,10 @@
 "left-right only" = "samo levo-desno";
 
 /* No comment provided by engineer. */
-"Length" = "Dužina";
+"length" = "dužina";
 
 /* No comment provided by engineer. */
-"length" = "dužina";
+"Length" = "Dužina";
 
 /* No comment provided by engineer. */
 "letter" = "slovo";
@@ -899,6 +956,12 @@
 "Lists" = "Liste";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "Liste za sve aktere i objekte";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "Liste samo za ovog aktera ili objekta";
+
+/* No comment provided by engineer. */
 "Loading" = "Učitavanje";
 
 /* No comment provided by engineer. */
@@ -909,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "Logika";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "Logički (Bulovi) operatori i konstante";
 
 /* No comment provided by engineer. */
 "Login" = "Prijava";
@@ -922,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "longitude";
 
-/* No comment provided by engineer. */
-"Look" = "Izgled";
-
 /* LOOK */
 "look" = "izgled";
+
+/* No comment provided by engineer. */
+"Look" = "Izgled";
 
 /* No comment provided by engineer. */
 "look name" = "ime izgleda";
@@ -953,7 +1019,13 @@
 "Marimba" = "Marimba";
 
 /* No comment provided by engineer. */
-"Math" = "Math";
+"Maths" = "Matematika";
+
+/* No comment provided by engineer. */
+"Maximize" = "Maximize";
+
+/* No comment provided by engineer. */
+"maximum of" = "maksimum od";
 
 /* No comment provided by engineer. */
 "May" = "Maj";
@@ -977,6 +1049,12 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
+"Minimize" = "Minimize";
+
+/* No comment provided by engineer. */
+"minimum of" = "minimum od";
+
+/* No comment provided by engineer. */
 "minute" = "minuta";
 
 /* paint */
@@ -984,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Pon";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Mole";
@@ -1008,6 +1089,9 @@
 
 /* No comment provided by engineer. */
 "Motion" = "Porket";
+
+/* No comment provided by engineer. */
+"Motion properties" = "Svojstva pokreta";
 
 /* No comment provided by engineer. */
 "Move" = "Pomakni";
@@ -1047,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "Ime već postoji.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "natural logarithm";
 
 /* No comment provided by engineer. */
 "New" = "Novi";
@@ -1112,9 +1199,6 @@
 "not available. Continue anyway?" = "nije dostupno. Nastaviti u svakom slučaju?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Nema dovoljno slobodne memorije za preuzimanje ovog projekta. Izbrišite neke svoje projekte";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "Nema dovoljno memorije";
 
 /* No comment provided by engineer. */
@@ -1139,13 +1223,7 @@
 "Object" = "Objekat";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Liste objekata:";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "Ime objekta ili aktera";
-
-/* No comment provided by engineer. */
-"Object variables:" = "Promenljive objekta:";
 
 /* No comment provided by engineer. */
 "Oct" = "Okt";
@@ -1218,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
+
+/* No comment provided by engineer. */
+"pi" = "pi";
 
 /* No comment provided by engineer. */
 "Piano" = "Piano";
@@ -1304,6 +1385,9 @@
 "position y" = "pozicija y";
 
 /* No comment provided by engineer. */
+"power" = "power";
+
+/* No comment provided by engineer. */
 "Preview" = "Pregled";
 
 /* No comment provided by engineer. */
@@ -1319,16 +1403,10 @@
 "Project" = "Projekat";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
-
-/* No comment provided by engineer. */
 "Project name" = "Naziv projekta";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Naziv projekta je neophodan!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Promenljive projekta:";
 
 /* No comment provided by engineer. */
 "Projects" = "Programi";
@@ -1337,7 +1415,13 @@
 "Projects on device" = "Programi";
 
 /* No comment provided by engineer. */
+"Properties" = "Svojstva";
+
+/* No comment provided by engineer. */
 "random position" = "nasumična pozicija";
+
+/* No comment provided by engineer. */
+"random value from to" = "slučajna vrednost od do";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Ocenite nas";
@@ -1351,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "Pravougaonik / kvadrat";
 
-/* No comment provided by engineer. */
-"red" = "crvena";
-
 /* paint */
 "Red" = "Crvena";
+
+/* No comment provided by engineer. */
+"red" = "crvena";
 
 /* No comment provided by engineer. */
 "Register" = "Registracija";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Registracija je uspešna";
+
+/* No comment provided by engineer. */
+"regular expression" = "regular expression";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Uklonite poznate uređaje";
@@ -1417,11 +1504,11 @@
 /* No comment provided by engineer. */
 "Saturday" = "Subota";
 
+/* No comment provided by engineer. */
+"Save changes" = "Save changes";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
-
-/* No comment provided by engineer. */
-"Save to PocketCode" = "Spremi u PocketCode";
 
 /* No comment provided by engineer. */
 "Saved" = "Sačuvano";
@@ -1535,6 +1622,9 @@
 "Set size to" = "Podesi veličinu za";
 
 /* No comment provided by engineer. */
+"Set tempo to" = "Set tempo to";
+
+/* No comment provided by engineer. */
 "Set transparency " = "Podesi transparentnost";
 
 /* No comment provided by engineer. */
@@ -1560,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "Pokaži varijablu";
+
+/* No comment provided by engineer. */
+"sine" = "sine";
 
 /* No comment provided by engineer. */
 "size" = "veličina";
@@ -1591,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "Brzina";
 
-/* No comment provided by engineer. */
-"sqrt" = "sqrt";
-
 /* paint */
 "square" = "kvadrat";
+
+/* No comment provided by engineer. */
+"square root" = "kvadratni koren";
 
 /* No comment provided by engineer. */
 "stage is touched" = "scena je dodirnuta";
@@ -1628,6 +1721,9 @@
 "steps" = "koraci";
 
 /* No comment provided by engineer. */
+"Stitch" = "Stitch";
+
+/* No comment provided by engineer. */
 "Stop all sounds" = "Isključite sve zvukove";
 
 /* No comment provided by engineer. */
@@ -1643,6 +1739,9 @@
 "Switch to look" = "Prebaci na izgled";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "Prebaci na izgled sa brojem";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "Sintaksna greška!";
 
 /* No comment provided by engineer. */
@@ -1650,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Synth Pad" = "Synth Pad";
+
+/* No comment provided by engineer. */
+"tangent" = "tangent";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Pritisnite \"'+\" da dodate glumce ili objekte";
@@ -1665,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "Pritisni \"+\" da bi dodali zvuk";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "Uslovi korišćenja i usluge";
@@ -1698,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "Nedavni projekti se ne mogu učitati";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "Traženi projekat nije moguće pronaći. Izaberite drugi.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "Traženi projekat se ne može učitati. Pokušajte ponovo kasnije.";
@@ -1757,6 +1859,9 @@
 "Today" = "Danas";
 
 /* No comment provided by engineer. */
+"Touch detection" = "Prepoznavanje dodira";
+
+/* No comment provided by engineer. */
 "touch position" = "pozicija dodira";
 
 /* No comment provided by engineer. */
@@ -1785,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "Okreni desno";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Unable to import project!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Nije moguće učitati projekat!";
@@ -1856,9 +1964,6 @@
 "Username must not be blank" = "Korisničko ime ne sme da bude prazno";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/List";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Ime promenljive:";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1974,12 @@
 
 /* No comment provided by engineer. */
 "Variables" = "Promenljive";
+
+/* No comment provided by engineer. */
+"Variables for all actors and objects" = "Promenljive za sve glumce i objekte";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "Promenljive samo za ovog aktera ili objekat";
 
 /* No comment provided by engineer. */
 "Version" = "Verzija";
@@ -1887,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Views" = "pregleda";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Visual sensors";
 
 /* No comment provided by engineer. */
 "Wait" = "Sačekaj";
@@ -1962,6 +2076,9 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "Vaša prijava je bila uspešno poslata!";
 
 /* paint */
 "Zoom" = "Uvеćaj";

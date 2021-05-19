@@ -3750,7 +3750,9 @@
 		9EE674E12325447C0029D153 /* half_seconds_patchwork.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = half_seconds_patchwork.mp3; sourceTree = "<group>"; };
 		9EE674E22325447C0029D153 /* short_drum_long_sax.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short_drum_long_sax.mp3; sourceTree = "<group>"; };
 		9EED5F892337ED270032898E /* libchromaprint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchromaprint.a; path = CattyTests/Lib/Chromaprint/libchromaprint.a; sourceTree = "<group>"; };
+		A032C198F02439059E373A5C /* pa */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pa; path = pa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A46D335B661B03F52135C789 /* gu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = gu; path = gu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A61F854BCF220F35A21001B8 /* kab */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = kab; path = kab.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A6B80FF78CD540E39740C5D8 /* fi */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
@@ -10806,6 +10808,8 @@
 				uz,
 				fil,
 				ka,
+				kab,
+				pa,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			packageReferences = (
@@ -12898,6 +12902,8 @@
 				04A3B489CBF02EB8C919DC3B /* sr */,
 				97FD56903AF79540DDE45F42 /* tl */,
 				74A9F6B2015F2F7A3F38B5E4 /* ka */,
+				A61F854BCF220F35A21001B8 /* kab */,
+				A032C198F02439059E373A5C /* pa */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
