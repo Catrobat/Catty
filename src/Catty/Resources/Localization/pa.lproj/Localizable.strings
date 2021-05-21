@@ -1,0 +1,2084 @@
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "ਉਸੀ ਨਾਮ ਵਾਲਾ ਸੁਨੇਹਾ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"A project with the same name already exists, try again." = "ਉਸੀ ਨਾਮ ਵਾਲਾ ਪ੍ਰੋਜੈਕਟ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Abc" = "Abc";
+
+/* No comment provided by engineer. */
+"About Catrobat" = "ਕੈਟਰੋਬੈਟ ਬਾਰੇ";
+
+/* No comment provided by engineer. */
+"About Pocket Code" = "ਪਾਕੇਟ ਕੋਡ ਬਾਰੇ";
+
+/* No comment provided by engineer. */
+"absolute value" = "ਸਹੀ ਮੁੱਲ";
+
+/* No comment provided by engineer. */
+"acceleration x" = "ਪ੍ਰਵੇਗ x";
+
+/* No comment provided by engineer. */
+"acceleration y" = "ਪ੍ਰਵੇਗ y";
+
+/* No comment provided by engineer. */
+"acceleration z" = "ਪ੍ਰਵੇਗ z";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "ਪ੍ਰਵੇਸ਼-ਸੂਚਕ";
+
+/* No comment provided by engineer. */
+"Actors and objects" = "ਅਦਾਕਾਰ ਅਤੇ ਆਬਜੈਕਟ";
+
+/* No comment provided by engineer. */
+"Add" = "ਸ਼ਾਮਲ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Add actor or object" = "ਅਦਾਕਾਰ ਜਾਂ ਆਬਜੈਕਟ ਸ਼ਾਮਲ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"add comment here..." = "ਇੱਥੇ ਟਿੱਪਣੀ ਸ਼ਾਮਲ ਕਰੋ ...";
+
+/* No comment provided by engineer. */
+"Add image" = "ਚਿੱਤਰ ਸ਼ਾਮਲ ਕਰੋ";
+
+/* Action sheet menu title */
+"Add look" = "ਦਿੱਖ ਸ਼ਾਮਲ ਕਰੋ";
+
+/* Action sheet menu title */
+"Add sound" = "ਆਵਾਜ਼ ਸ਼ਾਮਲ ਕਰੋ\n \nਆਵਾਜ਼ ਸ਼ਾਮਲ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Agree" = "ਸਹਿਮਤ";
+
+/* No comment provided by engineer. */
+"all around" = "ਸਾਰੇ ਆਲੇ - ਦੁਆਲੇ";
+
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "ਸਾਰੇ ਬਲਿ Bluetoothਟੁੱਥ ਉਪਕਰਣ ਸਫਲਤਾਪੂਰਵਕ ਕੁਨੈਕਟ ਹੋ ਗਏ";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "ਸਾਰੇ ਜਾਣੇ ਬਲਿ Bluetoothਟੁੱਥ ਡਿਵਾਈਸਿਸ ਸਫਲਤਾਪੂਰਕ ਹਟਾਏ ਗਏ";
+
+/* No comment provided by engineer. */
+"Allow the app to control Arduino boards" = "ਐਪ ਨੂੰ ਅਰਦਿਨੋ ਬੋਰਡਾਂ ਨੂੰ ਨਿਯੰਤਰਣ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿਓ";
+
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "ਐਪ ਨੂੰ ਕਰੈਸ਼ ਰਿਪੋਰਟਾਂ ਆਪਣੇ ਆਪ ਭੇਜਣ ਦੀ ਆਗਿਆ ਦਿਓ";
+
+/* paint */
+"Alpha" = "ਅਲਫ਼ਾ";
+
+/* No comment provided by engineer. */
+"altitude" = "ਉਚਾਈ";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "ਇਕੋ ਨਾਮ ਦੀ ਇਕ ਤਸਵੀਰ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "ਇਕੋ ਨਾਮ ਨਾਲ ਇਕ ਆਬਜੈਕਟ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "ਇੱਕ ਅਣਜਾਣ ਗਲਤੀ ਆਈ ਹੈ. ਆਪਣੇ ਇੰਟਰਨੈਟ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Please try again later." = "ਇੱਕ ਅਣਜਾਣ ਗਲਤੀ ਆਈ ਹੈ. ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ.";
+
+/* No comment provided by engineer. */
+"and" = "ਅਤੇ";
+
+/* No comment provided by engineer. */
+"and store written answer in " = "ਅਤੇ ਲਿਖਤੀ ਜਵਾਬ ਅੰਦਰ ਸਟੋਰ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"and wait" = "ਅਤੇ ਇੰਤਜ਼ਾਰ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Animate brick-parts" = "ਇਨੀ-ਹਿੱਸੇ ਐਨੀਮੇਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Apr" = "ਅਪ੍ਰੈਲ";
+
+/* No comment provided by engineer. */
+"April" = "ਅਪ੍ਰੈਲ";
+
+/* No comment provided by engineer. */
+"arccosine" = "ਆਰਕੋਸਾਈਨ";
+
+/* No comment provided by engineer. */
+"arcsine" = "ਆਰਕਸਾਈਨ";
+
+/* No comment provided by engineer. */
+"arctangent" = "ਆਰਕਟੰਜੈਂਟ";
+
+/* No comment provided by engineer. */
+"Arduino" = "ਅਰਦਿਨੋ";
+
+/* No comment provided by engineer. */
+"arduino analog" = "ਅਰਦੂਨੋ ਐਨਾਲਾਗ";
+
+/* No comment provided by engineer. */
+"arduino digital" = "ਆਰਡਿਨੋ ਡਿਜੀਟਲ";
+
+/* No comment provided by engineer. */
+"Arduino extension" = "ਅਰੂਦਿਨੋ ਐਕਸਟੈਂਸ਼ਨ";
+
+/* No comment provided by engineer. */
+"Ask " = "ਪੁੱਛੋ";
+
+/* No comment provided by engineer. */
+"at " = "ਤੇ";
+
+/* No comment provided by engineer. */
+"at position" = "ਸਥਿਤੀ 'ਤੇ";
+
+/* paint */
+"Attributes:" = "ਗੁਣ:";
+
+/* No comment provided by engineer. */
+"Aug" = "ਅਗਸਤ";
+
+/* No comment provided by engineer. */
+"August" = "ਅਗਸਤ";
+
+/* No comment provided by engineer. */
+"Authentication failed" = "ਪ੍ਰਮਾਣਿਕਤਾ ਅਸਫਲ";
+
+/* No comment provided by engineer. */
+"Author" = "ਲੇਖਕ";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "ਧੁਰਾ";
+
+/* No comment provided by engineer. */
+"back" = "ਵਾਪਸ";
+
+/* No comment provided by engineer. */
+"Back" = "ਵਾਪਸ";
+
+/* No comment provided by engineer. */
+"Background" = "ਪਿਛੋਕੜ";
+
+/* No comment provided by engineer. */
+"background name" = "ਪਿਛੋਕੜ ਦਾ ਨਾਮ";
+
+/* No comment provided by engineer. */
+"background number" = "ਪਿਛੋਕੜ ਨੰਬਰ";
+
+/* No comment provided by engineer. */
+"Backgrounds" = "ਪਿਛੋਕੜ";
+
+/* No comment provided by engineer. */
+"Bass" = "ਬਾਸ";
+
+/* No comment provided by engineer. */
+"Bassoon" = "ਬਾਸੂਨ";
+
+/* No comment provided by engineer. */
+"becomes true" = "ਸੱਚ ਬਣ ਜਾਂਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "ਕੋਡਿੰਗ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ ਸਾਡੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ:";
+
+/* No comment provided by engineer. */
+"blue" = "ਨੀਲਾ";
+
+/* paint */
+"Blue" = "ਨੀਲਾ";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "ਬਲਿ Bluetoothਟੁੱਥ ਉਪਲਬਧ ਨਹੀਂ ਹੈ. ਜਾਂ ਤਾਂ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਬਲੂਟੁੱਥ 4.0 ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ ਜਾਂ ਤੁਹਾਡੀ ਬਲਿ Bluetoothਟੁੱਥ ਚਿੱਪ ਖਰਾਬ ਹੋ ਗਈ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਇਸਨੂੰ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇੱਕ ਹੋਰ ਬਲਿ Bluetoothਟੁੱਥ ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਸ਼ਨ ਦੁਆਰਾ ਜਾਂਚ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "ਬਲਿ Bluetoothਟੁੱਥ ਬੰਦ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਇਸਨੂੰ ਇੱਕ ਬਲੂਟੁੱਥ ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਲਈ ਚਾਲੂ ਕਰੋ.";
+
+/* paint */
+"bold" = "ਬੋਲਡ";
+
+/* No comment provided by engineer. */
+"Both" = "ਦੋਵੇਂ";
+
+/* No comment provided by engineer. */
+"Bricks" = "ਇੱਟਾਂ";
+
+/* No comment provided by engineer. */
+"brightness" = "ਚਮਕ";
+
+/* No comment provided by engineer. */
+"Broadcast" = "ਪ੍ਰਸਾਰਨ";
+
+/* No comment provided by engineer. */
+"Broadcast and wait" = "ਪ੍ਰਸਾਰਣ ਅਤੇ ਉਡੀਕ ਕਰੋ";
+
+/* paint */
+"Brush" = "ਬੁਰਸ਼";
+
+/* No comment provided by engineer. */
+"by" = "ਨਾਲ";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "ਰਜਿਸਟਰ ਕਰਕੇ ਤੁਸੀਂ ਸਾਡੇ ਨਾਲ ਸਹਿਮਤ ਹੋ";
+
+/* No comment provided by engineer. */
+"Can't restart project!" = "ਪ੍ਰੋਜੈਕਟ ਨੂੰ ਮੁੜ ਚਾਲੂ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ!";
+
+/* No comment provided by engineer. */
+"Cancel" = "ਰੱਦ ਕਰੋ";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਨਹੀਂ ਕਰ ਸਕਦਾ, ਕਿਰਪਾ ਕਰਕੇ ਡਿਵਾਈਸ ਨੂੰ ਰੀਸੈਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਨਹੀਂ ਕਰ ਸਕਦਾ. ਉਪਕਰਣ ਜਵਾਬ ਨਹੀਂ ਦੇ ਰਿਹਾ ਹੈ.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the media library. Please check your internet connection." = "ਮੀਡੀਆ ਲਾਇਬ੍ਰੇਰੀ ਨਾਲ ਜੁੜ ਨਹੀਂ ਸਕਦਾ. ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਇੰਟਰਨੈਟ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Categories" = "ਵਰਗ";
+
+/* No comment provided by engineer. */
+"Catrobat community" = "ਕੈਟ੍ਰੋਬੈਟ ਕਮਿ communityਨਿਟੀ";
+
+/* No comment provided by engineer. */
+"ceiling" = "ਛੱਤ";
+
+/* No comment provided by engineer. */
+"Cello" = "ਸੇਲੋ";
+
+/* No comment provided by engineer. */
+"Change brightness " = "ਚਮਕ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change color " = "ਰੰਗ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change size by" = "ਆਕਾਰ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "ਲੈਂਡਸਕੇਪ ਵਿੱਚ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "ਪੋਰਟਰੇਟ 'ਤੇ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change transparency " = "ਪਾਰਦਰਸ਼ਤਾ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change variable" = "ਪਰਿਵਰਤਨ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change volume by" = "ਦੁਆਰਾ ਵਾਲੀਅਮ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change x by " = "X ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Change y by " = "Y ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Changes discarded." = "ਤਬਦੀਲੀਆਂ ਰੱਦ ਕੀਤੀਆਂ ਗਈਆਂ.";
+
+/* No comment provided by engineer. */
+"Changes saved." = "ਬਦਲਾਅ ਸੁਰੱਖਿਅਤ ਕੀਤੇ ਗਏ.";
+
+/* No comment provided by engineer. */
+"Choir" = "ਕੋਅਰ";
+
+/* No comment provided by engineer. */
+"Choose" = "ਚੁਣੋ";
+
+/* No comment provided by engineer. */
+"Choose image" = "ਚਿੱਤਰ ਚੁਣੋ";
+
+/* No comment provided by engineer. */
+"Clarinet" = "ਕਲੇਰਨੀਟ";
+
+/* No comment provided by engineer. */
+"Clear" = "ਸਾਫ਼";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "ਗ੍ਰਾਫਿਕ ਪ੍ਰਭਾਵ ਸਾਫ਼ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Close" = "ਬੰਦ ਕਰੋ";
+
+/* paint */
+"Close Paint" = "ਕਲੋਜ ਪੇਂਟ";
+
+/* No comment provided by engineer. */
+"color" = "ਰੰਗ";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "ਤੁਲਨਾ ਓਪਰੇਟਰ";
+
+/* No comment provided by engineer. */
+"compass" = "ਕੰਪਾਸ";
+
+/* No comment provided by engineer. */
+"Compute" = "ਗਣਨਾ";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "ਗਿਣਿਆ ਨਤੀਜਾ%.2f ਹੈ";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "ਗਿਣਿਆ ਨਤੀਜਾ ਗਲਤ ਹੈ";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "ਗਿਣਿਆ ਨਤੀਜਾ ਸਹੀ ਹੈ";
+
+/* No comment provided by engineer. */
+"Confirm password" = "ਪਾਸਵਰਡ ਪੱਕਾ ਕਰੋ";
+
+/* bluetooth */
+"Connection failed" = "ਕੁਨੈਕਸ਼ਨ ਫੇਲ੍ਹ ਹੈ";
+
+/* bluetooth */
+"Connection lost" = "ਕਨੈਕਸ਼ਨ ਗੁੰਮ ਗਿਆ";
+
+/* bluetooth */
+"Connection not possible" = "ਕੁਨੈਕਸ਼ਨ ਸੰਭਵ ਨਹੀਂ ਹੈ";
+
+/* No comment provided by engineer. */
+"contains" = "ਸ਼ਾਮਿਲ ਹੈ";
+
+/* No comment provided by engineer. */
+"Continue" = "ਜਾਰੀ ਰੱਖੋ";
+
+/* No comment provided by engineer. */
+"Continue project" = "ਪ੍ਰੋਜੈਕਟ ਜਾਰੀ ਰੱਖੋ";
+
+/* No comment provided by engineer. */
+"Control" = "ਨਿਯੰਤਰਣ";
+
+/* No comment provided by engineer. */
+"Copy" = "ਕਾੱਪੀ";
+
+/* No comment provided by engineer. */
+"Copy actors or objects" = "ਅਦਾਕਾਰਾਂ ਜਾਂ ਵਸਤੂਆਂ ਦੀ ਨਕਲ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Copy brick" = "ਇੱਟ ਕਾਪੀ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Copy looks" = "ਕਾਪੀ ਲੱਗਦੀ ਹੈ";
+
+/* No comment provided by engineer. */
+"Copy project" = "ਪ੍ਰੋਜੈਕਟ ਦੀ ਨਕਲ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"cosine" = "ਕੋਸਾਈਨ";
+
+/* No comment provided by engineer. */
+"Create account" = "ਖਾਤਾ ਬਣਾਉ";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "ਸਿਲਾਈ ਮਸ਼ੀਨ ਲਈ ਪੈਟਰਨ ਬਣਾਓ";
+
+/* No comment provided by engineer. */
+"Data" = "ਡਾਟਾ";
+
+/* No comment provided by engineer. */
+"Date and time" = "ਤਾਰੀਖ ਅਤੇ ਸਮਾਂ";
+
+/* No comment provided by engineer. */
+"day" = "ਦਿਨ";
+
+/* No comment provided by engineer. */
+"debug" = "ਡੀਬੱਗ";
+
+/* No comment provided by engineer. */
+"Dec" = "ਦਸੰਬਰ";
+
+/* No comment provided by engineer. */
+"December" = "ਦਸੰਬਰ";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "ਦਸ਼ਮਲਵ ਲਾਗੀਥਮ";
+
+/* No comment provided by engineer. */
+"degrees" = "ਡਿਗਰੀ";
+
+/* No comment provided by engineer. */
+"Delete" = "ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete actors or objects" = "ਅਦਾਕਾਰ ਜਾਂ ਵਸਤੂਆਂ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete backgrounds" = "ਬੈਕਗ੍ਰਾਉਂਡ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete brick" = "ਇੱਟ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete condition" = "ਸਥਿਤੀ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "ਸੂਚੀ ਵਿੱਚੋਂ ਸਾਰੀਆਂ ਚੀਜ਼ਾਂ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete looks" = "ਦਿੱਖ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete loop" = "ਲੂਪ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete project" = "ਪ੍ਰੋਜੈਕਟ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete projects" = "ਪ੍ਰੋਜੈਕਟ ਹਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete script" = "ਸਕ੍ਰਿਪਟ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete sounds" = "ਆਵਾਜ਼ਾਂ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete these bricks?" = "ਕੀ ਇਹ ਇੱਟਾਂ ਮਿਟਾਉਣੀਆਂ ਹਨ?";
+
+/* No comment provided by engineer. */
+"Delete these conditions?" = "ਕੀ ਇਨ੍ਹਾਂ ਸ਼ਰਤਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?";
+
+/* No comment provided by engineer. */
+"Delete these loops?" = "ਕੀ ਇਹ ਲੂਪਸ ਮਿਟਾਉਣੇ ਹਨ?";
+
+/* No comment provided by engineer. */
+"Delete these scripts?" = "ਇਹ ਸਕ੍ਰਿਪਟਾਂ ਮਿਟਾਉਣੀਆਂ ਹਨ?";
+
+/* No comment provided by engineer. */
+"Delete this actor or object" = "ਇਸ ਅਦਾਕਾਰ ਜਾਂ ਆਬਜੈਕਟ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete this background" = "ਇਸ ਪਿਛੋਕੜ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete this brick?" = "ਇਸ ਇੱਟ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?";
+
+/* No comment provided by engineer. */
+"Delete this condition?" = "ਇਸ ਸ਼ਰਤ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?";
+
+/* No comment provided by engineer. */
+"Delete this look" = "ਇਸ ਦਿੱਖ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete this loop?" = "ਇਸ ਲੂਪ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?";
+
+/* No comment provided by engineer. */
+"Delete this project" = "ਇਸ ਪ੍ਰੋਜੈਕਟ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete this script?" = "ਇਸ ਸਕ੍ਰਿਪਟ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "ਇਸ ਆਵਾਜ਼ ਨੂੰ ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Deletion mode" = "ਹਟਾਉਣ ਢੰਗ";
+
+/* No comment provided by engineer. */
+"Description" = "ਵੇਰਵਾ";
+
+/* No comment provided by engineer. */
+"Details" = "ਵੇਰਵਾ";
+
+/* bluetooth */
+"Device disconnected." = "ਡਿਵਾਈਸ ਕਨੈਕਟ ਹੋ ਗਿਆ.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "ਡਿਵਾਈਸ ਮੋਸ਼ਨ ਸੈਂਸਰ";
+
+/* No comment provided by engineer. */
+"Device sensors" = "ਡਿਵਾਈਸ ਸੈਂਸਰ";
+
+/* No comment provided by engineer. */
+"direction" = "ਦਿਸ਼ਾ";
+
+/* No comment provided by engineer. */
+"Disable brick" = "ਇੱਟ ਨੂੰ ਅਯੋਗ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Disable condition" = "ਅਯੋਗ ਸਥਿਤੀ";
+
+/* No comment provided by engineer. */
+"Disable loop" = "ਲੂਪ ਅਯੋਗ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Disable script" = "ਸਕ੍ਰਿਪਟ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ";
+
+/* No comment provided by engineer. */
+"Disagree" = "ਅਸਹਿਮਤ";
+
+/* No comment provided by engineer. */
+"Discard changes" = "ਬਦਲਾਵ ਬਰਖਾਸਤ";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "ਸਾਰੀਆਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਡਿਸਕਨੈਕਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"DO" = "ਕਰੋ";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਮੌਜੂਦਾ ਡਰਾਇੰਗ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?";
+
+/* paint */
+"Do you want to save your changes?" = "ਤੁਹਾਨੂੰ ਆਪਣੇ ਤਬਦੀਲੀ ਨੂੰ ਸੰਭਾਲਣ ਲਈ ਚਾਹੁੰਦੇ ਹੋ?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "ਘੁੰਮਾਓ ਨਾ";
+
+/* No comment provided by engineer. */
+"Done" = "ਹੋ ਗਿਆ";
+
+/* No comment provided by engineer. */
+"Download" = "ਡਾ .ਨਲੋਡ";
+
+/* No comment provided by engineer. */
+"Downloads" = "ਡਾਉਨਲੋਡਸ";
+
+/* No comment provided by engineer. */
+"Draw new image" = "ਨਵਾਂ ਚਿੱਤਰ ਬਣਾਓ";
+
+/* No comment provided by engineer. */
+"Duration" = "ਅਵਧੀ";
+
+/* No comment provided by engineer. */
+"Edit" = "ਸੋਧ";
+
+/* No comment provided by engineer. */
+"Edit actor or object" = "ਅਦਾਕਾਰ ਜਾਂ ਆਬਜੈਕਟ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ";
+
+/* Action sheet menu title */
+"Edit background" = "ਪਿਛੋਕੜ ਸੰਪਾਦਿਤ ਕਰੋ";
+
+/* Action sheet menu title */
+"Edit backgrounds" = "ਪਿਛੋਕੜ ਸੰਪਾਦਿਤ ਕਰੋ";
+
+/* Action sheet menu title */
+"Edit brick" = "ਇੱਟ ਸੋਧੋ";
+
+/* No comment provided by engineer. */
+"Edit formula" = "ਫਾਰਮੂਲਾ ਸੋਧੋ";
+
+/* Action sheet menu title */
+"Edit look" = "ਸੋਧ ਵੇਖਣ";
+
+/* Action sheet menu title */
+"Edit looks" = "ਸੋਧ ਦਿਸਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"Edit project" = "ਪ੍ਰੋਜੈਕਟ ਨੂੰ ਸੋਧੋ";
+
+/* No comment provided by engineer. */
+"Edit projects" = "ਪ੍ਰੋਜੈਕਟ ਸੋਧੋ";
+
+/* Action sheet menu title */
+"Edit script" = "ਸਕ੍ਰਿਪਟ ਸੋਧੋ";
+
+/* Action sheet menu title */
+"Edit sound" = "ਆਵਾਜ਼ ਸੋਧੋ";
+
+/* Action sheet menu title */
+"Edit sounds" = "ਆਵਾਜ਼ਾਂ ਸੋਧੋ";
+
+/* No comment provided by engineer. */
+"Electric Guitar" = "ਇਲੈਕਟ੍ਰਿਕ ਗਿਟਾਰ";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "ਇਲੈਕਟ੍ਰਿਕ ਪਿਆਨੋ";
+
+/* No comment provided by engineer. */
+"element" = "ਤੱਤ";
+
+/* paint */
+"Ellipse / Circle" = "ਅੰਡਾਕਾਰ / ਚੱਕਰ";
+
+/* No comment provided by engineer. */
+"Else" = "ਹੋਰ";
+
+/* No comment provided by engineer. */
+"Email" = "ਈ - ਮੇਲ";
+
+/* No comment provided by engineer. */
+"Embroidery" = "ਕਢਾਈ";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "ਕroਾਈ ਦਾ ਵਿਸਥਾਰ";
+
+/* No comment provided by engineer. */
+"Empty input!" = "ਖਾਲੀ ਇੰਪੁੱਟ!";
+
+/* No comment provided by engineer. */
+"Enable brick" = "ਇੱਟ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ";
+
+/* No comment provided by engineer. */
+"Enable condition" = "ਸਥਿਤੀ ਯੋਗ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Enable loop" = "ਲੂਪ ਨੂੰ ਯੋਗ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Enable script" = "ਸਕ੍ਰਿਪਟ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ";
+
+/* No comment provided by engineer. */
+"End if" = "ਖਤਮ ਕਰੋ ਜੇ";
+
+/* No comment provided by engineer. */
+"End of Loop" = "ਲੂਪ ਦਾ ਅੰਤ";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "ਇੱਕ ਕਾਰਨ ਦਰਜ";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "ਆਪਣੀ ਤਸਵੀਰ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "ਆਪਣੀ ਸੂਚੀ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "ਆਪਣਾ ਸੁਨੇਹਾ ਇੱਥੇ ਦਰਜ ਕਰੋ ...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "ਆਪਣੇ ਵਸਤੂ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "ਆਪਣੇ ਪ੍ਰੋਜੈਕਟ ਦਾ ਵੇਰਵਾ ਇੱਥੇ ਦਰਜ ਕਰੋ ...";
+
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "ਆਪਣੇ ਪ੍ਰੋਜੈਕਟ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "ਆਪਣੇ ਆਵਾਜ਼ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "ਆਪਣਾ ਵੇਰੀਏਬਲ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+
+/* paint */
+"Eraser" = "ਈਰੇਜ਼ਰ";
+
+/* No comment provided by engineer. */
+"Error" = "ਗਲਤੀ";
+
+/* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "ਪ੍ਰੋਜੈਕਟ ਦੀ ਰਿਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਆਈ ਹੈ. ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ.";
+
+/* No comment provided by engineer. */
+"Error saving file" = "ਫਾਈਲ ਨੂੰ ਸੇਵ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ";
+
+/* No comment provided by engineer. */
+"Event" = "ਘਟਨਾ";
+
+/* No comment provided by engineer. */
+"exponent" = "ਘਾਤਕ";
+
+/* No comment provided by engineer. */
+"FA" = "ਐੱਫ";
+
+/* No comment provided by engineer. */
+"face detected" = "ਚਿਹਰਾ ਖੋਜਿਆ";
+
+/* No comment provided by engineer. */
+"faceposition x" = "ਚਿਹਰਾ ਸਥਿਤੀ x";
+
+/* No comment provided by engineer. */
+"faceposition y" = "ਚਿਹਰੇ ਦੀ ਸਥਿਤੀ y";
+
+/* No comment provided by engineer. */
+"facesize" = "ਫੇਸਾਈਜ਼";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "ਆਈਟਮ ਆਯਾਤ ਕਰਨ ਵਿੱਚ ਅਸਫਲ";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "ਫੀਚਰਡ ਪ੍ਰੋਜੈਕਟਾਂ ਨੂੰ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "ਹਾਲੀਆ ਪ੍ਰੋਜੈਕਟਾਂ ਨੂੰ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "ਆਵਾਜ਼ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "ਆਵਾਜ਼ ਚਲਾਉਣ ਵਿੱਚ ਅਸਫਲ";
+
+/* No comment provided by engineer. */
+"false" = "ਗਲਤ";
+
+/* No comment provided by engineer. */
+"Featured projects" = "ਫੀਚਰਡ ਪ੍ਰੋਜੈਕਟ";
+
+/* No comment provided by engineer. */
+"Feb" = "ਫਰਵਰੀ";
+
+/* No comment provided by engineer. */
+"February" = "ਫਰਵਰੀ";
+
+/* paint */
+"Fill" = "ਭਰੋ";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "ਫਲੈਸ਼ਲਾਈਟ ਬੰਦ";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "ਫਲੈਸ਼ਲਾਈਟ ਚਾਲੂ";
+
+/* No comment provided by engineer. */
+"floor" = "ਫਲੋਰ";
+
+/* No comment provided by engineer. */
+"Flute" = "ਬੰਸਰੀ";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "ਇਸ ਪ੍ਰੋਜੈਕਟ ਵਿੱਚ ਹੇਠ ਲਿਖੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਵਰਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ ਜੋ ਪਾਕੇਟ ਕੋਡ ਦੇ ਇਸ ਸੰਸਕਰਣ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹਨ:";
+
+/* No comment provided by engineer. */
+"for" = "ਲਈ";
+
+/* No comment provided by engineer. */
+"for all actors or objects" = "ਸਾਰੇ ਅਦਾਕਾਰਾਂ ਜਾਂ ਵਸਤੂਆਂ ਲਈ";
+
+/* No comment provided by engineer. */
+"for this actor or object" = "ਇਸ ਅਦਾਕਾਰ ਜਾਂ ਆਬਜੈਕਟ ਲਈ";
+
+/* No comment provided by engineer. */
+"Forever" = "ਹਮੇਸ਼ਾ ਲਈ";
+
+/* No comment provided by engineer. */
+"Forgot password" = "ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ";
+
+/* No comment provided by engineer. */
+"Formula Editor" = "ਫਾਰਮੂਲਾ ਸੰਪਾਦਕ";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "ਫਾਰਮੂਲਾ ਬਹੁਤ ਲੰਮਾ!";
+
+/* No comment provided by engineer. */
+"Fr" = "ਫਰ";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently used" = "ਅਕਸਰ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"Friday" = "ਸ਼ੁੱਕਰਵਾਰ";
+
+/* No comment provided by engineer. */
+"From camera" = "ਕੈਮਰੇ ਤੋਂ";
+
+/* No comment provided by engineer. */
+"front" = "ਸਾਹਮਣੇ";
+
+/* No comment provided by engineer. */
+"Front camera" = "ਸਾਹਮਣੇ ਕੈਮਰਾ";
+
+/* No comment provided by engineer. */
+"Functions" = "ਕਾਰਜ";
+
+/* No comment provided by engineer. */
+"General properties" = "ਆਮ ਵਿਸ਼ੇਸ਼ਤਾ";
+
+/* No comment provided by engineer. */
+"Glide" = "ਗਲਾਈਡ";
+
+/* No comment provided by engineer. */
+"Go back" = "ਵਾਪਸ ਜਾਓ";
+
+/* No comment provided by engineer. */
+"Go to" = "ਜਾਓ";
+
+/* No comment provided by engineer. */
+"Go to front" = "ਸਾਹਮਣੇ ਜਾਓ";
+
+/* No comment provided by engineer. */
+"green" = "ਹਰਾ";
+
+/* paint */
+"Green" = "ਹਰਾ";
+
+/* No comment provided by engineer. */
+"Guitar" = "ਗਿਟਾਰ";
+
+/* No comment provided by engineer. */
+"gyro-sensor" = "ਜਾਇਰੋ ਸੈਂਸਰ";
+
+/* No comment provided by engineer. */
+"Hello!" = "ਹੈਲੋ!";
+
+/* No comment provided by engineer. */
+"Help" = "ਮਦਦ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Hide" = "ਲੁਕਾਓ";
+
+/* No comment provided by engineer. */
+"Hide details" = "ਵੇਰਵੇ ਲੁਕਾਓ";
+
+/* No comment provided by engineer. */
+"Hide variable" = "ਵੇਰੀਏਬਲ ਲੁਕਾਓ";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "ਹਾਂ!";
+
+/* No comment provided by engineer. */
+"hour" = "ਘੰਟਾ";
+
+/* No comment provided by engineer. */
+"If" = "ਜੇ";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "ਜੇ ਕਿਨਾਰੇ ਤੇ, ਉਛਾਲ";
+
+/* paint */
+"Image" = "ਚਿੱਤਰ";
+
+/* No comment provided by engineer. */
+"Image name" = "ਚਿੱਤਰ ਦਾ ਨਾਮ";
+
+/* No comment provided by engineer. */
+"Image source not available" = "ਚਿੱਤਰ ਸਰੋਤ ਉਪਲਬਧ ਨਹੀਂ ਹੈ";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "ਆਯਾਤ ਫਾਇਲ";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "ਆਦੇਸ਼ ਵਿੱਚ ਵਰਤਣ ਲਈ ਜੇਬ ਕੋਡ ਅਤੇ ਹੋਰ ਚੱਲਣਯੋਗ Catrobat ਪ੍ਰਾਜੈਕਟ ਨੂੰ ਦੁਆਰਾ ਦੀ ਪੇਸ਼ਕਸ਼ ਦੀ ਹੈ, ਤੁਹਾਨੂੰ ਵਰਤਣ ਦੀ ਸਾਡੀ ਸ਼ਬਦ ਨੂੰ ਕਰਨ ਲਈ ਸਹਿਮਤ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ ਅਤੇ ਸਖ਼ਤੀ ਨਾਲ ਪਾਲਣਾ ਤੁਹਾਨੂੰ ਪਾਕੇਟ ਕੋਡ ਅਤੇ ਸਾਡੇ ਹੋਰ ਚੱਲਣਯੋਗ ਨੂੰ ਵਰਤਣ, ਜਦ ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਜਾ ਕਰਨ ਲਈ. ਕਿਰਪਾ ਕਰਕੇ ਉਨ੍ਹਾਂ ਦੇ ਸਹੀ ਨਿਰਮਾਣ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਲਿੰਕ ਨੂੰ ਵੇਖੋ.";
+
+/* No comment provided by engineer. */
+"inclination x" = "ਝੁਕਾਅ x";
+
+/* No comment provided by engineer. */
+"inclination y" = "ਝੁਕਾਅ y";
+
+/* No comment provided by engineer. */
+"Information" = "ਜਾਣਕਾਰੀ";
+
+/* No comment provided by engineer. */
+"Insert" = "ਇਨਸਰਟ";
+
+/* paint */
+"Inserted" = "ਪਾਈ ਗਈ";
+
+/* No comment provided by engineer. */
+"into list" = "ਸੂਚੀ ਵਿੱਚ ਕਰਨ ਲਈ";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "ਗਲਤ ਇਨਪੁਟ ਦਿੱਤਾ ਗਿਆ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "ਗਲਤ URL ਦਿੱਤਾ ਗਿਆ!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "is true";
+
+/* No comment provided by engineer. */
+"is true then" = "ਫਿਰ ਸੱਚ ਹੈ";
+
+/* paint */
+"italic" = "ਤਿਰਛੀ";
+
+/* No comment provided by engineer. */
+"item" = "ਇਕਾਈ";
+
+/* No comment provided by engineer. */
+"Jan" = "ਜਨ";
+
+/* No comment provided by engineer. */
+"January" = "ਜਨਵਰੀ";
+
+/* No comment provided by engineer. */
+"join" = "ਜੁੜੋ";
+
+/* No comment provided by engineer. */
+"Jul" = "ਜੁਲਾਈ";
+
+/* No comment provided by engineer. */
+"July" = "ਜੁਲਾਈ";
+
+/* No comment provided by engineer. */
+"Jun" = "ਜੂਨ";
+
+/* No comment provided by engineer. */
+"June" = "ਜੂਨ";
+
+/* bluetooth */
+"Known devices" = "ਜਾਣੇ ਜੰਤਰ";
+
+/* No comment provided by engineer. */
+"LA" = "ਲਾ";
+
+/* No comment provided by engineer. */
+"Last access" = "ਆਖਰੀ ਪਹੁੰਚ";
+
+/* No comment provided by engineer. */
+"last stage touch index" = "ਆਖਰੀ ਪੜਾਅ ਟੱਚ ਇੰਡੈਕਸ";
+
+/* No comment provided by engineer. */
+"latitude" = "ਵਿਥਕਾਰ";
+
+/* No comment provided by engineer. */
+"layer" = "ਪਰਤ";
+
+/* No comment provided by engineer. */
+"layers" = "ਪਰਤਾਂ";
+
+/* No comment provided by engineer. */
+"LED" = "ਅਗਵਾਈ";
+
+/* No comment provided by engineer. */
+"Left" = "ਖੱਬੇ";
+
+/* No comment provided by engineer. */
+"left-right only" = "ਸਿਰਫ ਖੱਬੇ-ਸੱਜੇ";
+
+/* No comment provided by engineer. */
+"length" = "ਲੰਬਾਈ";
+
+/* No comment provided by engineer. */
+"Length" = "ਲੰਬਾਈ";
+
+/* No comment provided by engineer. */
+"letter" = "ਪੱਤਰ";
+
+/* paint */
+"Line" = "ਲਾਈਨ";
+
+/* No comment provided by engineer. */
+"List name:" = "ਸੂਚੀ ਦਾ ਨਾਮ:";
+
+/* No comment provided by engineer. */
+"List type" = "ਸੂਚੀ ਕਿਸਮ";
+
+/* No comment provided by engineer. */
+"Lists" = "ਸੂਚੀਆਂ";
+
+/* No comment provided by engineer. */
+"Lists for all actors and objects" = "ਸਾਰੇ ਅਦਾਕਾਰਾਂ ਅਤੇ ਆਬਜੈਕਟ ਲਈ ਸੂਚੀਬੱਧ";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "ਸਿਰਫ ਇਸ ਅਦਾਕਾਰ ਜਾਂ ਇਕਾਈ ਲਈ ਸੂਚੀਬੱਧ";
+
+/* No comment provided by engineer. */
+"Loading" = "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"location" = "ਟਿਕਾਣਾ";
+
+/* No comment provided by engineer. */
+"location accuracy" = "ਸਥਾਨ ਦੀ ਸ਼ੁੱਧਤਾ";
+
+/* No comment provided by engineer. */
+"Logic" = "ਤਰਕ";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "ਲਾਜ਼ੀਕਲ (ਬੂਲੀਅਨ) ਦੇ ਚਾਲਕ ਅਤੇ ਸਥਿਰ";
+
+/* No comment provided by engineer. */
+"Login" = "ਲਾਗਿਨ";
+
+/* No comment provided by engineer. */
+"Login successful" = "ਲੌਗਇਨ ਸਫਲ";
+
+/* No comment provided by engineer. */
+"Logout" = "ਬਾਹਰ ਆਉਣਾ";
+
+/* No comment provided by engineer. */
+"longitude" = "ਲੰਬਕਾਰ";
+
+/* LOOK */
+"look" = "ਦੇਖੋ";
+
+/* No comment provided by engineer. */
+"Look" = "ਦੇਖੋ";
+
+/* No comment provided by engineer. */
+"look name" = "ਨਾਮ ਵੇਖੋ";
+
+/* No comment provided by engineer. */
+"look number" = "ਨੰਬਰ ਵੇਖੋ";
+
+/* No comment provided by engineer. */
+"Looks" = "ਵੇਖਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"loudness" = "ਉੱਚੀ";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "ਚੁੰਬਕੀ-ਸੂਚਕ";
+
+/* No comment provided by engineer. */
+"Mar" = "ਮਾਰ";
+
+/* No comment provided by engineer. */
+"March" = "ਮਾਰਚ";
+
+/* No comment provided by engineer. */
+"Marimba" = "ਮਾਰਿੰਬਾ";
+
+/* No comment provided by engineer. */
+"Maths" = "ਗਣਿਤ";
+
+/* No comment provided by engineer. */
+"Maximize" = "ਵੱਧੋ ਵੱਧ";
+
+/* No comment provided by engineer. */
+"maximum of" = "ਵੱਧ ਤੋਂ ਵੱਧ";
+
+/* No comment provided by engineer. */
+"May" = "ਮਈ";
+
+/* No comment provided by engineer. */
+"Measure" = "ਮਾਪ";
+
+/* No comment provided by engineer. */
+"Media library" = "ਮੀਡੀਆ ਲਾਇਬ੍ਰੇਰੀ";
+
+/* paint */
+"Menu" = "ਮੀਨੂ";
+
+/* No comment provided by engineer. */
+"Message" = "ਸੁਨੇਹਾ";
+
+/* No comment provided by engineer. */
+"message 1" = "ਸੁਨੇਹਾ 1";
+
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"Minimize" = "ਘੱਟੋ ਘੱਟ";
+
+/* No comment provided by engineer. */
+"minimum of" = "ਘੱਟੋ ਘੱਟ";
+
+/* No comment provided by engineer. */
+"minute" = "ਮਿੰਟ";
+
+/* paint */
+"Mirror" = "ਸ਼ੀਸ਼ਾ";
+
+/* No comment provided by engineer. */
+"Mo" = "ਮੋ";
+
+/* No comment provided by engineer. */
+"modulo" = "ਮੋਡੂਲੋ";
+
+/* Prefix of default catrobat project object names (except background object) */
+"Mole" = "ਮੋਲ";
+
+/* No comment provided by engineer. */
+"Monday" = "ਸੋਮਵਾਰ";
+
+/* No comment provided by engineer. */
+"month" = "ਮਹੀਨਾ";
+
+/* No comment provided by engineer. */
+"More" = "ਹੋਰ";
+
+/* No comment provided by engineer. */
+"More information" = "ਹੋਰ ਜਾਣਕਾਰੀ";
+
+/* No comment provided by engineer. */
+"Most downloaded" = "ਬਹੁਤੇ ਡਾedਨਲੋਡ ਕੀਤੇ";
+
+/* No comment provided by engineer. */
+"Most viewed" = "ਸਭ ਵੇਖਿਆ ਗਿਆ";
+
+/* No comment provided by engineer. */
+"Motion" = "ਗਤੀ";
+
+/* No comment provided by engineer. */
+"Motion properties" = "ਗਤੀ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ";
+
+/* No comment provided by engineer. */
+"Move" = "ਭੇਜੋ";
+
+/* No comment provided by engineer. */
+"Move actors or objects" = "ਅਭਿਨੇਤਾ ਜਾਂ ਵਸਤੂਆਂ ਨੂੰ ਮੂਵ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Move brick" = "ਇੱਟ ਮੂਵ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Move looks" = "ਮੂਵ ਲੁੱਕਸ";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "ਫਿਰੋ ਮੋਟਰ ਨੂੰ ਪਿੱਛੇ ਭੇਜੋ";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "ਫਿਰੋ ਮੋਟਰ ਨੂੰ ਅੱਗੇ ਵਧਾਓ";
+
+/* No comment provided by engineer. */
+"Move sounds" = "ਆਵਾਜ਼ਾਂ ਮੂਵ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Music Box" = "ਸੰਗੀਤ ਬਾਕਸ";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "ਮੇਰਾ ਪਹਿਲਾ ਪ੍ਰਾਜੈਕਟ";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My image" = "ਮੇਰੀ ਤਸਵੀਰ";
+
+/* Title for first (default) object */
+"My object" = "ਮੇਰੀ ਵਸਤੂ";
+
+/* No comment provided by engineer. */
+"Name" = "ਨਾਮ";
+
+/* No comment provided by engineer. */
+"Name already exists." = "ਨਾਮ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "ਕੁਦਰਤੀ ਲੋਗਰਿਥਮ";
+
+/* No comment provided by engineer. */
+"New" = "ਨਵਾਂ";
+
+/* paint */
+"New canvas" = "ਨਵਾਂ ਕੈਨਵਸ";
+
+/* No comment provided by engineer. */
+"New list" = "ਨਵੀਂ ਸੂਚੀ";
+
+/* No comment provided by engineer. */
+"New message" = "ਨਵਾ ਸੁਨੇਹਾ";
+
+/* No comment provided by engineer. */
+"New project" = "ਨਵਾਂ ਪ੍ਰੋਜੈਕਟ";
+
+/* No comment provided by engineer. */
+"New text" = "ਨਵਾਂ ਟੈਕਸਟ";
+
+/* No comment provided by engineer. */
+"New variable" = "ਨਵਾਂ ਵੇਰੀਏਬਲ";
+
+/* No comment provided by engineer. */
+"New..." = "ਨਵਾਂ ...";
+
+/* No comment provided by engineer. */
+"Newest" = "ਨਵੀਨਤਮ";
+
+/* No comment provided by engineer. */
+"Next background" = "ਪਿਛੋਕੜ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Next look" = "ਅਗਲੀ ਨਜ਼ਰ";
+
+/* No comment provided by engineer. */
+"No" = "ਨਹੀਂ";
+
+/* No comment provided by engineer. */
+"No camera available" = "ਕੋਈ ਕੈਮਰਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ";
+
+/* No comment provided by engineer. */
+"No categories selected" = "ਕੋਈ ਵਰਗ ਨਹੀਂ ਚੁਣਿਆ ਗਿਆ";
+
+/* No comment provided by engineer. */
+"No description available" = "ਕੋਈ ਵੇਰਵਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "ਕੋਈ ਜਾਂ ਅਵੈਧ ਚਿੱਤਰ ਨਾਮ ਦਾਖਲ ਨਹੀਂ ਹੋਇਆ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "ਕੋਈ ਜਾਂ ਗਲਤ ਧੁਨੀ ਨਾਮ ਦਾਖਲ ਨਹੀਂ ਹੋਇਆ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"No search results" = "ਹੇ ਖੋਜ ਨਤੀਜੇ";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "ਕੋਈ ਵ੍ਹਾਈਟਸਪੇਸ ਅੱਖਰ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ";
+
+/* No comment provided by engineer. */
+"not" = "ਨਹੀਂ";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "ਉਪਲਭਦ ਨਹੀ. ਕੀ ਜਾਰੀ ਰੱਖਣਾ ਹੈ?";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "ਲੋੜੀਂਦੀ ਮੈਮੋਰੀ ਨਹੀਂ ਹੈ";
+
+/* No comment provided by engineer. */
+"Note" = "ਨੋਟ";
+
+/* paint */
+"Nothing to crop!" = "ਦੀ ਫਸਲ ਨੂੰ ਕੁਝ!";
+
+/* No comment provided by engineer. */
+"Nov" = "ਨਵੰਬਰ";
+
+/* No comment provided by engineer. */
+"November" = "ਨਵੰਬਰ";
+
+/* No comment provided by engineer. */
+"number of items" = "ਵਸਤੂਆਂ ਦੀ ਗਿਣਤੀ";
+
+/* No comment provided by engineer. */
+"Numbers" = "ਨੰਬਰ";
+
+/* No comment provided by engineer. */
+"Object" = "ਆਬਜੈਕਟ";
+
+/* No comment provided by engineer. */
+"Object or actor name" = "ਆਬਜੈਕਟ ਜਾਂ ਅਦਾਕਾਰ ਦਾ ਨਾਮ";
+
+/* No comment provided by engineer. */
+"Oct" = "ਅਕਤੂਬਰ";
+
+/* No comment provided by engineer. */
+"October" = "ਅਕਤੂਬਰ";
+
+/* No comment provided by engineer. */
+"off" = "ਬੰਦ";
+
+/* No comment provided by engineer. */
+"OK" = "ਠੀਕ ਹੈ";
+
+/* No comment provided by engineer. */
+"on" = "ਚਾਲੂ";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "ਸਿਰਫ 15 ਅੱਖਰਾਂ ਦੀ ਆਗਿਆ ਹੈ";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "ਸਿਰਫ ਜਗ੍ਹਾ ਦੀ ਆਗਿਆ ਨਹੀਂ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ%lu ਹੋਰ ਅੱਖਰ ਭਰੋ.";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "ਸਿਰਫ ਵਿਸ਼ੇਸ਼ ਪਾਤਰਾਂ ਦੀ ਆਗਿਆ ਨਹੀਂ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ%lu ਹੋਰ ਅੱਖਰ ਭਰੋ.";
+
+/* No comment provided by engineer. */
+"Open" = "ਖੁੱਲਾ";
+
+/* No comment provided by engineer. */
+"or" = "ਜਾਂ";
+
+/* No comment provided by engineer. */
+"Organ" = "ਅੰਗ";
+
+/* No comment provided by engineer. */
+"Password" = "ਪਾਸਵਰਡ";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "ਪਾਸਵਰਡ ਠੀਕ ਨਹੀਂ ਹੈ!\n ਇਸ ਵਿੱਚ ਘੱਟੋ ਘੱਟ 6 ਅੱਖਰ / ਚਿੰਨ੍ਹ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ";
+
+/* No comment provided by engineer. */
+"Pen" = "ਕਲਮ";
+
+/* No comment provided by engineer. */
+"Pen down" = "ਕਲਮ ਡਾ .ਨ";
+
+/* No comment provided by engineer. */
+"Pen up" = "ਕਲਮ";
+
+/* No comment provided by engineer. */
+"Phiro" = "ਫਿਰੋ";
+
+/* No comment provided by engineer. */
+"phiro bottom left" = "ਫਿਰੋ ਤਲ ਖੱਬੇ";
+
+/* No comment provided by engineer. */
+"phiro bottom right" = "ਫਿਰੋ ਤਲ ਸੱਜੇ";
+
+/* No comment provided by engineer. */
+"phiro front left" = "ਫਿਰੋ ਅੱਗੇ ਖੱਬੇ";
+
+/* No comment provided by engineer. */
+"phiro front right" = "ਫਿਰੋ ਸਾਹਮਣੇ ਸੱਜਾ";
+
+/* No comment provided by engineer. */
+"phiro side left" = "ਫਿਰੋ ਖੱਬੇ ਪਾਸੇ";
+
+/* No comment provided by engineer. */
+"phiro side right" = "ਫਿਰੋ ਸੱਜੇ ਪਾਸੇ";
+
+/* No comment provided by engineer. */
+"pi" = "pi";
+
+/* No comment provided by engineer. */
+"Piano" = "ਪਿਆਨੋ";
+
+/* paint */
+"Pipette" = "ਪਾਈਪੇਟ";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "ਪੀਜ਼ਾਕੈਟੋ";
+
+/* No comment provided by engineer. */
+"Place at " = "'ਤੇ ਰੱਖੋ";
+
+/* No comment provided by engineer. */
+"Play" = "ਖੇਡੋ";
+
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "ਫਿਲੋ ਸੰਗੀਤ ਚਲਾਓ";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "ਕਿਰਪਾ ਕਰਕੇ ਹੋਰ ਨਾਮ ਚੁਣੋ:";
+
+/* No comment provided by engineer. */
+"Please choose up to three categories" = "ਕਿਰਪਾ ਕਰਕੇ ਤਿੰਨ ਸ਼੍ਰੇਣੀਆਂ ਦੀ ਚੋਣ ਕਰੋ";
+
+/* paint */
+"Please enter a text." = "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਪਾਠ ਦਾਖਲ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Please enter at least %lu character(s)." = "ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ%lu ਅੱਖਰ ਭਰੋ.";
+
+/* No comment provided by engineer. */
+"Please log in to report this project as inappropriate" = "ਇਸ ਪ੍ਰਾਜੈਕਟ ਨੂੰ ਅਣਉਚਿਤ ਵਜੋਂ ਰਿਪੋਰਟ ਕਰਨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਲੌਗਇਨ ਕਰੋ";
+
+/* paint */
+"Please pick a tool" = "ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਟੂਲ ਚੁਣੋ";
+
+/* No comment provided by engineer. */
+"Please select a project to upload" = "ਕਿਰਪਾ ਕਰਕੇ ਅਪਲੋਡ ਕਰਨ ਲਈ ਇੱਕ ਪ੍ਰੋਜੈਕਟ ਦੀ ਚੋਣ ਕਰੋ";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "ਕਿਰਪਾ ਕਰਕੇ ਡਿਵਾਈਸ ਨੂੰ ਰੀਸੈਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "ਪਾਕੇਟ ਕੋਡ";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "ਆਈਓਐਸ ਲਈ ਪਾਕੇਟ ਕੋਡ";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "ਪਾਕੇਟ ਕੋਡ ਦੀ ਤੁਹਾਡੇ ਕੈਮਰੇ ਤੱਕ ਪਹੁੰਚ ਨਹੀਂ ਹੈ. ਐਕਸੈਸ ਦੀ ਆਗਿਆ ਦੇਣ ਲਈ, ਸੈਟਿੰਗਜ਼ 'ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ ਕੈਮਰਾ ਚਾਲੂ ਕਰੋ. ਤੁਹਾਡੀ ਡਰਾਇੰਗ ਤੁਹਾਡੇ ਲਈ ਆਪਣੇ ਆਪ ਪਾਕੇਟਕੋਡ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਹੋ ਜਾਏਗੀ.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "ਜੇਬ ਕੋਡ ਦੀ ਤੁਹਾਡੀਆਂ ਤਸਵੀਰਾਂ ਤੱਕ ਪਹੁੰਚ ਨਹੀਂ ਹੈ. ਐਕਸੈਸ ਦੀ ਆਗਿਆ ਦੇਣ ਲਈ, ਸੈਟਿੰਗਜ਼ 'ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ ਚਿੱਤਰਾਂ ਨੂੰ ਸਰਗਰਮ ਕਰੋ. ਤੁਹਾਡੀ ਡਰਾਇੰਗ ਤੁਹਾਡੇ ਲਈ ਆਪਣੇ ਆਪ ਪਾਕੇਟਕੋਡ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਹੋ ਜਾਏਗੀ.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "ਜੇਬ ਕੋਡ ਦੀ ਤੁਹਾਡੇ ਮਾਈਕ੍ਰੋਫੋਨ ਤੱਕ ਪਹੁੰਚ ਨਹੀਂ ਹੈ. ਐਕਸੈਸ ਦੀ ਆਗਿਆ ਦੇਣ ਲਈ, ਸੈਟਿੰਗਾਂ 'ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ ਮਾਈਕ੍ਰੋਫੋਨ ਨੂੰ ਐਕਟੀਵੇਟ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "ਪੌਕੇਟ ਕੋਡ ਆਈਓਐਸ ਲਈ ਵਿਜ਼ੂਅਲ ਪ੍ਰੋਗਰਾਮਿੰਗ ਭਾਸ਼ਾ ਕੈਟ੍ਰੋਬੈਟ ਲਈ ਇੱਕ ਪ੍ਰੋਗਰਾਮਿੰਗ ਵਾਤਾਵਰਣ ਹੈ. ਪਾਕੇਟ ਕੋਡ ਦਾ ਕੋਡ ਜਿਆਦਾਤਰ ਜੀ ਐਨ ਯੂ ਏਜੀਪੀਐਲ ਵੀ 3 ਲਾਇਸੈਂਸ ਦੇ ਅਧੀਨ ਹੈ. ਲਾਇਸੈਂਸ ਬਾਰੇ ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਹੇਠ ਦਿੱਤੇ ਲਿੰਕ ਵੇਖੋ:";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "ਪੋਕੇਟ ਕੋਡ ਰਿਕਾਰਡਰ";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "ਪੋਕੇਟ ਕੋਡ ਸਰੋਤ ਕੋਡ ਲਾਇਸੈਂਸ";
+
+/* paint */
+"Pocket Paint" = "ਪੋਕੇਟ ਪੇਂਟ";
+
+/* No comment provided by engineer. */
+"Point in direction" = "ਦਿਸ਼ਾ ਵੱਲ ਪੁਆਇੰਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Point towards" = "ਵੱਲ ਇਸ਼ਾਰਾ ਕਰੋ";
+
+/* paint */
+"Pointer" = "ਪੁਆਇੰਟਰ";
+
+/* No comment provided by engineer. */
+"position x" = "ਸਥਿਤੀ x";
+
+/* No comment provided by engineer. */
+"position y" = "ਸਥਿਤੀ y";
+
+/* No comment provided by engineer. */
+"power" = "ਤਾਕਤ";
+
+/* No comment provided by engineer. */
+"Preview" = "ਝਲਕ";
+
+/* No comment provided by engineer. */
+"Previous background" = "ਪਿਛਲਾ ਪਿਛੋਕੜ";
+
+/* No comment provided by engineer. */
+"Previous look" = "ਪਿਛਲਾ ਟ੍ਰੈਕ";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "ਗੋਪਨੀਯਤਾ ਸੈਟਿੰਗਜ਼";
+
+/* No comment provided by engineer. */
+"Project" = "ਪ੍ਰੋਜੈਕਟ";
+
+/* No comment provided by engineer. */
+"Project name" = "ਪ੍ਰੋਜੈਕਟ ਦਾ ਨਾਮ";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "ਪ੍ਰੋਜੈਕਟ ਦਾ ਨਾਮ ਜ਼ਰੂਰੀ ਹੈ!";
+
+/* No comment provided by engineer. */
+"Projects" = "ਪ੍ਰੋਜੈਕਟ";
+
+/* No comment provided by engineer. */
+"Projects on device" = "ਡਿਵਾਈਸ ਤੇ ਪ੍ਰਾਜੈਕਟ";
+
+/* No comment provided by engineer. */
+"Properties" = "ਗੁਣ";
+
+/* No comment provided by engineer. */
+"random position" = "ਬੇਤਰਤੀਬੇ ਸਥਿਤੀ";
+
+/* No comment provided by engineer. */
+"random value from to" = "ਤੋਂ ਬੇਤਰਤੀਬੇ ਮੁੱਲ";
+
+/* No comment provided by engineer. */
+"Rate Us" = "ਸਾਨੂੰ ਦਰਜਾ ਦਿਓ";
+
+/* No comment provided by engineer. */
+"RE" = "RE";
+
+/* No comment provided by engineer. */
+"Recording" = "ਰਿਕਾਰਡਿੰਗ";
+
+/* paint */
+"Rectangle / Square" = "ਆਇਤਾਕਾਰ / ਵਰਗ";
+
+/* paint */
+"Red" = "ਲਾਲ";
+
+/* No comment provided by engineer. */
+"red" = "ਲਾਲ";
+
+/* No comment provided by engineer. */
+"Register" = "ਰਜਿਸਟਰ";
+
+/* No comment provided by engineer. */
+"Registration successful" = "ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਸਫਲ";
+
+/* No comment provided by engineer. */
+"regular expression" = "ਨਿਯਮਤ ਸਮੀਕਰਨ";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "ਜਾਣੇ ਜੰਤਰ ਨੂੰ ਹਟਾਓ";
+
+/* No comment provided by engineer. */
+"Rename" = "ਨਾਮ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Rename actor or object" = "ਅਦਾਕਾਰ ਜਾਂ ਆਬਜੈਕਟ ਦਾ ਨਾਮ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Rename image" = "ਚਿੱਤਰ ਦਾ ਨਾਮ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Rename project" = "ਪ੍ਰੋਜੈਕਟ ਦਾ ਨਾਮ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Rename sound" = "ਆਵਾਜ਼ ਦਾ ਨਾਮ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Repeat" = "ਦੁਹਰਾਓ";
+
+/* No comment provided by engineer. */
+"Repeat until" = "ਜਦ ਤੱਕ ਦੁਹਰਾਓ";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "ਸੂਚੀ ਵਿਚ ਇਕਾਈ ਨੂੰ ਤਬਦੀਲ";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "ਅਣਉਚਿਤ ਤੌਰ ਤੇ ਰਿਪੋਰਟ ਕਰੋ";
+
+/* paint */
+"Resize" = "ਮੁੜ ਆਕਾਰ ਦਿਓ";
+
+/* No comment provided by engineer. */
+"Restart" = "ਮੁੜ ਚਾਲੂ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Result" = "ਨਤੀਜਾ";
+
+/* No comment provided by engineer. */
+"Right" = "ਸਹੀ";
+
+/* paint */
+"Rotate" = "ਘੁੰਮਾਓ";
+
+/* paint */
+"round" = "ਗੋਲ";
+
+/* No comment provided by engineer. */
+"Sa" = "ਸਾ";
+
+/* No comment provided by engineer. */
+"Saturday" = "ਸ਼ਨੀਵਾਰ";
+
+/* No comment provided by engineer. */
+"Save changes" = "ਸੰਭਾਲੋ ਬਦਲਾਅ";
+
+/* paint */
+"Save to Photos" = "ਫੋਟੋਆਂ ਵਿੱਚ ਸੇਵ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Saved" = "ਸੰਭਾਲੀ ਗਈ";
+
+/* No comment provided by engineer. */
+"Saxophone" = "ਸੈਕਸੋਫੋਨ";
+
+/* No comment provided by engineer. */
+"Say" = "ਕਹੋ";
+
+/* No comment provided by engineer. */
+"Scene" = "ਸੀਨ";
+
+/* No comment provided by engineer. */
+"Script" = "ਸਕ੍ਰਿਪਟ";
+
+/* No comment provided by engineer. */
+"Scripts" = "ਸਕ੍ਰਿਪਟ";
+
+/* bluetooth */
+"Search" = "ਖੋਜ";
+
+/* No comment provided by engineer. */
+"second" = "ਦੂਜਾ";
+
+/* No comment provided by engineer. */
+"second " = "ਦੂਜਾ";
+
+/* No comment provided by engineer. */
+"seconds" = "ਸਕਿੰਟ";
+
+/* No comment provided by engineer. */
+"seconds " = "ਸਕਿੰਟ";
+
+/* No comment provided by engineer. */
+"Select all" = "ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ";
+
+/* bluetooth */
+"Select Arduino" = "ਅਰੂਦਿਨੋ ਚੁਣੋ";
+
+/* No comment provided by engineer. */
+"Select brick category" = "ਇੱਟ ਸ਼੍ਰੇਣੀ ਦੀ ਚੋਣ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Select categories" = "ਸ਼੍ਰੇਣੀਆਂ ਚੁਣੋ";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "ਲਾਜ਼ੀਕਲ ਆਪਰੇਟਰ ਚੁਣੋ";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "ਗਣਿਤ ਦਾ ਕਾਰਜ ਚੁਣੋ";
+
+/* paint */
+"Select option:" = "ਚੋਣ ਦੀ ਚੋਣ ਕਰੋ:";
+
+/* bluetooth */
+"Select Phiro" = "ਫਿਲੋ ਚੁਣੋ";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "ਅਗਿਆਤ ਕਰੈਸ਼ ਰਿਪੋਰਟਾਂ ਭੇਜ ਰਿਹਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"Sensors" = "ਸੈਂਸਰ";
+
+/* No comment provided by engineer. */
+"Sep" = "ਸਤੰਬਰ";
+
+/* No comment provided by engineer. */
+"September" = "ਸਤੰਬਰ";
+
+/* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "ਸਰਵਰ ਜਵਾਬ ਦੇਣ ਵਿੱਚ ਕਾਫ਼ੀ ਦੇਰ ਕਰ ਰਿਹਾ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Session expired, please log in." = "ਸੈਸ਼ਨ ਦੀ ਮਿਆਦ ਖਤਮ, ਕਿਰਪਾ ਕਰਕੇ ਲੌਗਇਨ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "ਅਰੂਦਿਨੋ ਡਿਜੀਟਲ ਪਿੰਨ ਸੈਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "ਸੈੱਟ Arduino PWM ~ ਪਿੰਨ";
+
+/* No comment provided by engineer. */
+"Set background" = "ਪਿਛੋਕੜ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set brightness " = "ਚਮਕ ਨਿਰਧਾਰਤ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set color " = "ਰੰਗ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set description" = "ਵੇਰਵਾ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "ਲਈ ਯੰਤਰ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set pen color to" = "ਨੂੰ ਸੈੱਟ ਕਲਮ ਦਾ ਰੰਗ";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "ਅਕਾਰ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set Phiro light" = "ਫੀਰੋ ਲਾਈਟ ਸੈਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "ਰੋਟੇਸ਼ਨ ਸ਼ੈਲੀ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set size to" = "ਅਕਾਰ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "ਟੈਂਪੂ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set transparency " = "ਪਾਰਦਰਸ਼ਤਾ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set variable" = "ਵੇਰੀਏਬਲ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set volume to" = "ਵਾਲੀਅਮ ਨੂੰ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set x to " = "X ਨੂੰ ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set y to " = "ਨੂੰ y ਸੈੱਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Settings" = "ਸੈਟਿੰਗਜ਼";
+
+/* No comment provided by engineer. */
+"Show" = "ਵਿਖਾਓ";
+
+/* No comment provided by engineer. */
+"Show details" = "ਵੇਰਵਾ ਦਿਖਾਓ";
+
+/* No comment provided by engineer. */
+"Show variable" = "ਵੇਰੀਏਬਲ ਦਿਖਾਓ";
+
+/* No comment provided by engineer. */
+"sine" = "ਸਾਈਨ";
+
+/* No comment provided by engineer. */
+"size" = "ਅਕਾਰ";
+
+/* No comment provided by engineer. */
+"Size" = "ਆਕਾਰ";
+
+/* No comment provided by engineer. */
+"Skip" = "ਛੱਡੋ";
+
+/* No comment provided by engineer. */
+"SO" = "ਐਸ.ਓ.";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "ਪ੍ਰੋਜੈਕਟ ਨੂੰ ਅਪਲੋਡ ਕਰਨ ਵੇਲੇ ਕੁਝ ਗਲਤ ਹੋਇਆ.";
+
+/* No comment provided by engineer. */
+"Sound" = "ਆਵਾਜ਼";
+
+/* No comment provided by engineer. */
+"Sound name" = "ਅਵਾਜ਼ ਦਾ ਨਾਮ";
+
+/* No comment provided by engineer. */
+"Sounds" = "ਆਵਾਜ਼ਾਂ";
+
+/* No comment provided by engineer. */
+"Speak" = "ਬੋਲੋ";
+
+/* No comment provided by engineer. */
+"Speed" = "ਗਤੀ";
+
+/* paint */
+"square" = "ਵਰਗ";
+
+/* No comment provided by engineer. */
+"square root" = "ਵਰਗਮੂਲ";
+
+/* No comment provided by engineer. */
+"stage is touched" = "ਅਵਸਥਾ ਨੂੰ ਛੂਹਿਆ ਜਾਂਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"stage touch x" = "ਸਟੇਜ ਟੱਚ x";
+
+/* No comment provided by engineer. */
+"stage touch y" = "ਸਟੇਜ ਟੱਚ y";
+
+/* paint */
+"Stamp" = "ਸਟੈਂਪ";
+
+/* paint */
+"Stamped" = "ਮੋਹਰ ਲੱਗੀ";
+
+/* No comment provided by engineer. */
+"Start sound" = "ਆਵਾਜ਼ ਸ਼ੁਰੂ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Start sound and wait" = "ਆਵਾਜ਼ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਉਡੀਕ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Steel Drum" = "ਸਟੀਲ ਡਰੱਮ";
+
+/* No comment provided by engineer. */
+"step" = "ਕਦਮ";
+
+/* No comment provided by engineer. */
+"steps" = "ਕਦਮ";
+
+/* No comment provided by engineer. */
+"Stitch" = "ਸਿਲਾਈ";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "ਸਾਰੀਆਂ ਆਵਾਜ਼ਾਂ ਰੋਕੋ";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "ਫਿਰੋ ਮੋਟਰ ਰੋਕੋ";
+
+/* No comment provided by engineer. */
+"Su" = "ਸੁ";
+
+/* No comment provided by engineer. */
+"Sunday" = "ਐਤਵਾਰ";
+
+/* No comment provided by engineer. */
+"Switch to look" = "ਵੇਖਣ ਲਈ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Switch to look with number" = "ਨੰਬਰ ਨਾਲ ਵੇਖਣ ਲਈ ਬਦਲੋ";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "ਸਿੰਟੈਕਸ ਗਲਤੀ!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "ਸਿੰਥ ਲੀਡ";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "ਸਿੰਥ ਪੈਡ";
+
+/* No comment provided by engineer. */
+"tangent" = "ਰੰਗਲਾ";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add actors or objects" = "ਅਦਾਕਾਰਾਂ ਜਾਂ ਆਬਜੈਕਟਾਂ ਨੂੰ ਜੋੜਨ ਲਈ \"+\" ਤੇ ਟੈਪ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add backgrounds" = "ਟੈਪ \"+\" ਪਿਛੋਕੜ ਨੂੰ ਜੋਡ਼ਨ ਲਈ";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add looks" = "ਦਿੱਖ ਸ਼ਾਮਲ ਕਰਨ ਲਈ \"+\" ਤੇ ਟੈਪ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add scripts" = "ਸਕ੍ਰਿਪਟਾਂ ਨੂੰ ਜੋੜਨ ਲਈ \"+\" ਤੇ ਟੈਪ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add sounds" = "ਆਵਾਜ਼ਾਂ ਜੋੜਨ ਲਈ \"+\" ਤੇ ਟੈਪ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "ਵੇਰੀਏਬਲ ਅਤੇ ਸੂਚੀਆਂ ਜੋੜਨ ਲਈ \"+\" ਤੇ ਟੈਪ ਕਰੋ";
+
+/* Button title at the settings screen to get to the terms of use and service. */
+"Terms of Use and Service" = "ਵਰਤੋਂ ਅਤੇ ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ";
+
+/* paint */
+"Text" = "ਟੈਕਸਟ";
+
+/* No comment provided by engineer. */
+"Text message:" = "ਟੈਕਸਟ ਸੁਨੇਹਾ:";
+
+/* paint */
+"Text:" = "ਟੈਕਸਟ:";
+
+/* No comment provided by engineer. */
+"Th" = "th";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "ਵੇਰਵੇ ਵਿੱਚ ਅਯੋਗ ਅੱਖਰ ਹਨ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "ਫੀਚਰਡ ਪ੍ਰੋਜੈਕਟ ਲੋਡ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the media library:" = "ਹੇਠ ਦਿੱਤੀ ਇਕਾਈ ਨੂੰ ਮੀਡੀਆ ਲਾਇਬ੍ਰੇਰੀ ਤੋਂ ਆਯਾਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "ਇੰਪੁੱਟ ਬਹੁਤ ਲੰਬਾ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਵੱਧ ਤੋਂ ਵੱਧ%lu ਅੱਖਰ ਭਰੋ.";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "ਨਾਮ ਵਿੱਚ ਬਲੌਕ ਕੀਤੇ ਅੱਖਰ ਸ਼ਾਮਲ ਹਨ. ਮੁੜ ਕੋਸ਼ਿਸ ਕਰੋ ਜੀ!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "ਹਾਲੀਆ ਪ੍ਰੋਜੈਕਟ ਲੋਡ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "ਬੇਨਤੀ ਕੀਤਾ ਪ੍ਰਾਜੈਕਟ ਲੋਡ ਨਹੀ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ. ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "ਧੁਨੀ ਚੀਜ਼ ਨੂੰ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "ਧੁਨੀ ਵਸਤੂ ਨੂੰ ਚਲਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"Think" = "ਸੋਚੋ";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "ਇਸ ਕਿਰਿਆ ਨੂੰ ਵਾਪਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "ਇਹ ਵਿਸ਼ੇਸ਼ਤਾ ਜਲਦੀ ਆ ਰਹੀ ਹੈ!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "ਇਹ ਸੂਚੀ ਹਟਾਈ ਨਹੀਂ ਜਾ ਸਕਦੀ ਕਿਉਂਕਿ ਇਹ ਅਜੇ ਵੀ ਵਰਤੋਂ ਅਧੀਨ ਹੈ.";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "ਇਸ ਪਰਿਵਰਤਨ ਨੂੰ ਹਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਕਿਉਂਕਿ ਇਹ ਅਜੇ ਵੀ ਵਰਤੋਂ ਅਧੀਨ ਹੈ.";
+
+/* No comment provided by engineer. */
+"Thursday" = "ਵੀਰਵਾਰ ਨੂੰ";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "ਸਮਾਂ";
+
+/* No comment provided by engineer. */
+"times" = "ਵਾਰ";
+
+/* No comment provided by engineer. */
+"to" = "ਨੂੰ";
+
+/* No comment provided by engineer. */
+"to list" = "ਸੂਚੀ ਵਿੱਚ ਕਰਨ ਲਈ";
+
+/* No comment provided by engineer. */
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "ਤੁਹਾਨੂੰ ਸਾਡੀ ਸੇਵਾਵਾਂ ਅਤੇ ਇਸ ਨਾਲ ਜੁੜੇ ਖਾਤੇ ਦੇ ਸਾਰੇ ਲਾਭ ਪੇਸ਼ ਕਰਨ ਲਈ, ਤੁਹਾਡੇ ਤੋਂ ਕੁਝ ਡੈਟਾ ਇੱਕਠਾ ਕਰਨਾ ਜ਼ਰੂਰੀ ਹੈ.\n\n\u{2022} ਆਪਣੀਆਂ ਸੇਵਾਵਾਂ (ਐਪਸ ਅਤੇ ਵੈਬਸਾਈਟਸ) ਨੂੰ ਕਾਇਮ ਰੱਖਣ ਅਤੇ ਬਿਹਤਰ ਬਣਾਉਣ ਲਈ ਅਤੇ ਆਈਸੀਟੀ ਅਤੇ ਸਟੈਮ / ਸਟੇਮ ਸਿੱਖਿਆ 'ਤੇ ਵਿਗਿਆਨਕ ਖੋਜ ਕਰਨ ਲਈ, ਅਸੀਂ ਗੂਗਲ ਐਲਐਲਸੀ (ਯੂਐਸਏ) ਦੁਆਰਾ ਗੂਗਲ ਵਿਸ਼ਲੇਸ਼ਣ, ਕ੍ਰੈਸ਼ਲਾਈਟਿਕਸ ਅਤੇ ਫਾਇਰਬੇਸ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹਾਂ. ਸਾਡੀ ਸੇਵਾਵਾਂ, ਜਿਵੇਂ ਕਿ ਕਰੈਸ਼ ਜਾਣਕਾਰੀ, ਟਾਈਮਸਟੈਂਪਸ, ਵਿਜ਼ਿਟ ਪੇਜਾਂ / ਸਕ੍ਰੀਨਾਂ, ਸਾਡੀ ਐਪਸ ਅਤੇ ਸੇਵਾਵਾਂ ਦੀ ਵਰਤੋਂ, ਵਰਤੇ ਗਏ ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਅਤੇ ਨੈੱਟਵਰਕ ਪ੍ਰਦਾਤਾ ਬਾਰੇ ਜਾਣਕਾਰੀ ਬਾਰੇ ਮੈਟਾਡੇਟਾ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਡਾਇਨੇਟਰੇਸ ਐਲ ਐਲ ਸੀ (ਯੂਐਸਏ) ਦੁਆਰਾ ਡਾਇਨੇਟ੍ਰਾਸ. ਇਹ ਵਿਸ਼ਲੇਸ਼ਣ ਅਤੇ ਇਕੱਤਰ ਕੀਤਾ ਡੇਟਾ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਹੈ ਅਤੇ ਇਸ ਵਿਚ ਕੋਈ ਨਿਜੀ ਜਾਣਕਾਰੀ ਨਹੀਂ ਹੈ (IP ਐਡਰੈੱਸ ਦੇ ਆਖਰੀ ਬਿੱਟ ਗੁਮਨਾਮ ਹੋ ਜਾਂਦੇ ਹਨ). ਹਾਲਾਂਕਿ, ਇਕੱਤਰ ਕੀਤਾ ਡਾਟਾ ਸਰਵਿਸ ਪ੍ਰੋਵਾਈਡਰ (ਗੂਗਲ ਐਲਐਲਸੀ, ਯੂਐਸਏ ਅਤੇ ਡਾਇਨੇਟਰੇਸ ਐਲਐਲਸੀ, ਯੂਐਸਏ) ਨੂੰ ਤਬਦੀਲ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ. ਡੇਟਾ ਪ੍ਰੋਸੈਸਿੰਗ ਗੂਗਲ ਐਲਐਲਸੀ ਅਤੇ ਡਾਇਨੇਟਰੇਸ ਐਲਐਲਸੀ ਨਾਲ ਸਮਝੌਤੇ 'ਤੇ ਅਧਾਰਤ ਹੈ. ਸੇਵਾ ਪ੍ਰਦਾਤਾ ਨਾਲ ਇਹ ਸੰਬੰਧ ਯੂਰਪੀਅਨ ਯੂਨੀਅਨ ਦੇ ਜਨਰਲ ਡੇਟਾ ਪ੍ਰੋਟੈਕਸ਼ਨ ਰੈਗੂਲੇਸ਼ਨ (ਈਯੂ ਜੀਡੀਪੀਆਰ) ਅਤੇ ਈਯੂ-ਯੂਐਸਏ \"ਪ੍ਰਾਈਵੇਸੀ ਸ਼ੀਲਡ\" ਸਮਝੌਤੇ ਦੇ ਅਨੁਸਾਰ ਹੈ.\n\n\u{2022} ਸਾਡੇ ਸਿਸਟਮ ਵਿੱਚ ਇੱਕ ਖਾਤਾ ਬਣਾਉਣਾ ਅਤੇ ਇਸਤੇਮਾਲ ਕਰਨਾ ਅਤੇ ਪ੍ਰਤੀ ਈ-ਮੇਲ ਰਾਹੀਂ ਤੁਹਾਡੇ ਖਾਤੇ ਬਾਰੇ ਲੋੜੀਂਦੀਆਂ ਤਬਦੀਲੀਆਂ ਬਾਰੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕਰਨਾ, ਜਿਵੇਂ ਕਿ ਸਾਡੀ ਵਰਤੋਂ ਦੀਆਂ ਸੇਵਾਵਾਂ ਅਤੇ ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ, ਸਾਡੇ ਕਮਿ communityਨਿਟੀ ਨਿਯਮਾਂ, ਜਾਂ ਸਾਡੀਆਂ ਨੀਤੀਆਂ ਦੀ ਅਪਡੇਟ ਜਾਂ ਉਲੰਘਣਾ. , ਅਸੀਂ ਤੁਹਾਡੇ ਉਪਯੋਗਕਰਤਾ ਨਾਮ ਨੂੰ ਸਟੋਰ ਕਰਾਂਗੇ ਅਤੇ, ਜੇ ਤੁਹਾਡੇ ਦੁਆਰਾ ਪ੍ਰਦਾਨ ਕੀਤੇ ਗਏ ਹਨ, ਤਾਂ ਤੁਹਾਡਾ ਈ-ਮੇਲ ਪਤਾ. ਜੇ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਆਪਣੇ ਗੂਗਲ ਜਾਂ ਫੇਸਬੁੱਕ ਖਾਤੇ ਰਾਹੀਂ ਜੋੜਿਆ ਹੈ, ਤਾਂ ਅਸੀਂ ਇਸ ਤੋਂ ਇਲਾਵਾ ਇਨ੍ਹਾਂ ਸੇਵਾਵਾਂ 'ਤੇ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੁੜਿਆ ਇੱਕ ਪਛਾਣ ਕੁੰਜੀ ਸਟੋਰ ਕਰਾਂਗੇ. ਅਸੀਂ ਇਸ ਡੇਟਾ ਨੂੰ ਕਿਸੇ ਹੋਰ (ਉਦਾ., ਮਾਰਕੀਟਿੰਗ) ਉਦੇਸ਼ਾਂ ਲਈ ਨਹੀਂ ਵਰਤਾਂਗੇ, ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਸਪਸ਼ਟ ਤੌਰ ਤੇ ਸਾਨੂੰ ਅਜਿਹਾ ਕਰਨ ਦੀ ਆਗਿਆ ਨਹੀਂ ਦਿੰਦੇ.\n\n\u{2022} ਸਵੈਇੱਛੁਕ ਅਧਾਰ 'ਤੇ, ਤੁਸੀਂ ਸਾਨੂੰ ਆਪਣੇ ਨਿਵਾਸੀ ਦੇਸ਼ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਵਾਲੀ ਸਾਈਟ' ਤੇ ਆਪਣੇ ਖਾਤੇ ਦੇ ਪੰਨੇ ਦੁਆਰਾ ਦੇ ਸਕਦੇ ਹੋ. ਇਹ ਤੁਹਾਡੇ ਜਨਤਕ ਪ੍ਰੋਫਾਈਲ 'ਤੇ ਪ੍ਰਦਰਸ਼ਤ ਹੋਏਗਾ ਅਤੇ ਸਿਰਫ ਸਾਡੇ ਦੁਆਰਾ ਅੰਕੜਿਆਂ ਅਤੇ ਖੋਜ ਦੇ ਉਦੇਸ਼ਾਂ ਲਈ ਵਰਤੇ ਜਾਣਗੇ. ਇਹ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਸੈਟਿੰਗਜ਼ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਹਟਾਇਆ ਜਾ ਸਕਦਾ ਹੈ.\n\n\u{2022} ਤੁਸੀਂ https://share.catrob.at 'ਤੇ ਆਪਣੇ ਪ੍ਰੋਫਾਈਲ ਪੇਜ ਦੁਆਰਾ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾ ਕੇ ਕਿਸੇ ਵੀ ਸਮੇਂ ਆਪਣੇ ਖਾਤੇ ਨਾਲ ਸਬੰਧਤ ਨਿੱਜੀ ਡੇਟਾ ਦੀ ਵਰਤੋਂ ਵਾਪਸ ਲੈ ਸਕਦੇ ਹੋ. ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾਉਣ ਤੋਂ ਬਾਅਦ ਤੁਸੀਂ ਅਜੇ ਵੀ ਪ੍ਰਦਾਨ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ ਸੇਵਾਵਾਂ ਦੀ ਵਰਤੋਂ ਦੇ ਯੋਗ ਹੋਵੋਗੇ, ਪਰ ਸਹਿਯੋਗੀ ਨਹੀਂ, ਉਦਾਹਰਣ ਵਜੋਂ, ਅਪਲੋਡ ਕਰਨ ਵਾਲੇ ਪ੍ਰੋਗਰਾਮਾਂ, ਟਿੱਪਣੀਆਂ ਜਾਂ ਪਸੰਦ ਦੇ ਜ਼ਰੀਏ. ਨਾਲ ਹੀ, ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੁੜੀ ਸਾਰੀ ਪ੍ਰਦਾਨ ਕੀਤੀ ਸਮਗਰੀ, ਉਦਾ., ਅਪਲੋਡ ਕੀਤੇ ਪ੍ਰੋਗਰਾਮਾਂ, ਟਿਪਣੀਆਂ, ਆਦਿ ਨੂੰ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ.\n\n\u{2022} ਸਾਡੀਆਂ ਸੇਵਾਵਾਂ ਦੀ ਦੁਰਵਰਤੋਂ ਤੋਂ ਬਚਣ ਲਈ, ਉਦਾਹਰਣ ਵਜੋਂ, ਨਾਜਾਇਜ਼ ਉਦੇਸ਼ਾਂ ਲਈ ਉਪਭੋਗਤਾ ਦੁਆਰਾ ਦਿੱਤੇ ਅਪਲੋਡਸ ਜਾਂ ਟਿੱਪਣੀਆਂ ਦੁਆਰਾ, ਉਪਭੋਗਤਾ ਦੁਆਰਾ ਤਿਆਰ ਕੀਤੇ ਸਾਰੇ ਜਨਤਕ ਡੇਟਾ (ਅਪਲੋਡ, ਟਿੱਪਣੀਆਂ) ਇੱਕ ਟਾਈਮਸਟੈਂਪ ਅਤੇ ਵਰਤੇ ਹੋਏ ਇੰਟਰਨੈਟ ਦੇ ਨਾਲ ਇੱਕ ਡਾਟਾਬੇਸ ਵਿੱਚ ਅੰਦਰੂਨੀ ਰੂਪ ਵਿੱਚ ਸਟੋਰ ਕੀਤੇ ਜਾਣਗੇ. ਪਤਾ ਇਹ ਡੇਟਾ ਕਿਸੇ ਵੀ ਸੰਸਥਾ ਦੁਆਰਾ ਇਸਤੇਮਾਲ ਜਾਂ ਅੱਗੇ ਨਹੀਂ ਵਰਤਿਆ ਜਾਏਗਾ, ਜਦ ਤੱਕ ਕਿ ਕਾਫ਼ੀ ਗੈਰ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈਆਂ ਨੂੰ ਉਚਿਤ ਤੌਰ 'ਤੇ ਸ਼ੱਕ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ ਅਤੇ ਅਧਿਕਾਰਤ ਤੌਰ' ਤੇ ਹੱਕਦਾਰ ਕਾਨੂੰਨੀ ਸੰਸਥਾਵਾਂ ਲਾਗੂ ਕਾਨੂੰਨ ਦੇ ਅਧਾਰ ਤੇ ਇਸ ਦੀ ਬੇਨਤੀ ਨਹੀਂ ਕਰਦੀਆਂ. ਹਰ ਕੇਸ ਦੀ ਪਹਿਲਾਂ ਸਾਡੇ ਦੁਆਰਾ ਵਿਅਕਤੀਗਤ ਅਧਾਰ 'ਤੇ ਚੰਗੀ ਤਰ੍ਹਾਂ ਜਾਂਚ ਕੀਤੀ ਜਾਏਗੀ.\n\n\u{2022} ਤੁਸੀਂ ਮੇਲ-ਛੀਪ ਸੇਵਾ (ਰਾਕੇਟ ਸਾਇੰਸ ਗਰੁੱਪ ਐਲਐਲਸੀ ਡੀ / ਬੀ / ਇੱਕ ਮੇਲਚਿੰਪ, ਅਮਰੀਕਾ) ਦੁਆਰਾ ਸਾਡੇ ਦੁਆਰਾ ਪ੍ਰਦਾਨ ਕੀਤੇ ਗਏ https://catrob.at/ ਨਿletਜ਼ਲੈਟਰ 'ਤੇ ਸਵੈ-ਇੱਛਾ ਨਾਲ ਕੈਟ੍ਰੋਬੈਟ ਨਿ Newsਜ਼ਲੈਟਰ ਦੀ ਗਾਹਕੀ ਲੈ ਸਕਦੇ ਹੋ. ਫਿਰ ਤੁਸੀਂ ਕੈਟ੍ਰੋਬੈਟ ਪ੍ਰੋਜੈਕਟ ਅਤੇ ਇਸ ਦੀਆਂ ਸੇਵਾਵਾਂ ਬਾਰੇ ਤੁਹਾਡੇ ਪ੍ਰਦਾਨ ਕੀਤੇ ਈ-ਮੇਲ ਪਤੇ ਤੇ ਅਪਡੇਟ ਪ੍ਰਾਪਤ ਕਰੋਗੇ. ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸਮੇਂ ਹਰ ਨਿ newsletਜ਼ਲੈਟਰ ਦੇ ਫੁਟਰ ਵਿਚ \"ਗਾਹਕੀ ਛੱਡੋ\" ਲਿੰਕ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਨਿ theਜ਼ਲੈਟਰ ਵਾਪਸ ਲੈ ਸਕਦੇ ਹੋ. ਇਹ ਨਿ newsletਜ਼ਲੈਟਰ ਮੇਲਚਿੰਪ ਦੁਆਰਾ ਦਿੱਤਾ ਗਿਆ ਹੈ ਜਿਸਦੇ ਨਾਲ ਸਾਡੇ ਕੋਲ ਇੱਕ ਡੇਟਾ ਪ੍ਰੋਸੈਸਿੰਗ ਸਮਝੌਤਾ ਹੈ ਅਤੇ ਜੋ ਈਯੂ ਜਨਰਲ ਡੇਟਾ ਪ੍ਰੋਟੈਕਸ਼ਨ ਰੈਗੂਲੇਸ਼ਨ ਅਤੇ ਈਯੂ-ਯੂਐਸਏ \"ਪ੍ਰਾਈਵੇਸੀ ਸ਼ੀਲਡ\" ਲਈ ਵਚਨਬੱਧ ਹੈ. ਮੇਲਚਿੰਪ ਬਾਰੇ ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਮੇਲਚਿੰਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਅਤੇ ਵਰਤੋਂ ਦੀਆਂ ਸ਼ਰਤਾਂ ਨੂੰ ਵੀ ਵੇਖੋ.\n\n\u{2022} ਸਾਰੀਆਂ ਸੇਵਾਵਾਂ ਇੰਟਰਨੈਸ਼ਨਲ ਕੈਟ੍ਰੋਬੈਟ ਐਸੋਸੀਏਸ਼ਨ - ਵੀਰੇਨ ਜ਼ੂਰ ਫਰਡਰੰਗ ਫ੍ਰੀਅਰ ਸਾੱਫਟਵੇਅਰ ਦੀ ਛਤਰੀ ਹੇਠ ਮੁਫਤ ਓਪਨ ਸੋਰਸ ਕੈਟ੍ਰੋਬੈਟ ਪ੍ਰੋਜੈਕਟ ਦੁਆਰਾ ਦਿੱਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ, ਗ੍ਰੇਜ਼, ਆਸਟਰੀਆ (ਯੂਰਪੀਅਨ ਯੂਨੀਅਨ) ਵਿੱਚ ਸ਼ਾਮਲ ਇੱਕ ਗੈਰ-ਮੁਨਾਫਾ ਐੱਨ ਜੀ ਓ. ਸਾਡੀਆਂ ਨੀਤੀਆਂ ਈਯੂ ਅਤੇ ਆਸਟ੍ਰੀਆ ਦੇ ਡੇਟਾ ਪ੍ਰੋਟੈਕਸ਼ਨ ਕਨੂੰਨ (ਜੀਡੀਪੀਆਰ) ਦਾ ਸਨਮਾਨ ਕਰਦੀਆਂ ਹਨ. ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ contact@catrobat.org ਨੂੰ ਇੱਕ ਈ-ਮੇਲ ਭੇਜੋ ਜਾਂ ਕੈਟ੍ਰੋਬੈਟ ਨੂੰ ਮੇਲ ਕਰੋ,\nਸੀ / ਓ\nਇੰਸਟੀਚਿ ofਟ ਆਫ ਸਾੱਫਟਵੇਅਰ ਟੈਕਨੋਲੋਜੀ,\nਗ੍ਰੇਜ਼ ਯੂਨੀਵਰਸਿਟੀ ਆਫ ਟੈਕਨੋਲੋਜੀ,\nਇਨਫੈਲਡਗੱਸ 16 ਬੀ,\nਏ -1010 ਗ੍ਰੈਜ਼, ਆਸਟਰੀਆ\n(ਯੂਰੋਪੀ ਸੰਘ).\n\nਜੇ ਤੁਹਾਡੀ ਉਮਰ 14 ਸਾਲ ਤੋਂ ਘੱਟ ਹੈ, ਤਾਂ ਇਸ ਨੀਤੀ ਨੂੰ ਕਾਨੂੰਨੀ ਸਰਪ੍ਰਸਤ (ਆਮ ਤੌਰ ਤੇ ਮਾਪਿਆਂ) ਦੁਆਰਾ ਸਵੀਕਾਰ ਕਰਨਾ ਲਾਜ਼ਮੀ ਹੈ.\n\nਕੈਟ੍ਰੋਬੈਟ ਦੀ ਅਧਿਕਾਰਤ ਅੰਗਰੇਜ਼ੀ ਭਾਸ਼ਾ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵੈੱਬ ਉੱਤੇ https://catrob.at/privacypolicy ਦੇ ਤਹਿਤ ਉਪਲਬਧ ਹੈ.\n\nਸੰਸਕਰਣ 2.2, 17 ਅਕਤੂਬਰ 2019\n\nਸਾਡੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਦਾ ਪੁਰਾਣਾ, ਪੁਰਾਣਾ, ਵਰਜ਼ਨ ਇੱਥੇ ਲੱਭੋ (2.0): http://developer.catrobat.org/privacy_policy_2-0";
+
+/* No comment provided by engineer. */
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "ਸਾਡੇ ਐਪ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ, ਸਾਡੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨਾ ਜ਼ਰੂਰੀ ਹੈ. ਪਰ, ਜੇਕਰ ਤੁਹਾਨੂੰ don\'t ਇਸ ਨੂੰ ਕੀ ਕਰਨ ਦੀ ਆਰਾਮਦਾਇਕ ਮਹਿਸੂਸ ਕਰਦੇ ਹੋ, ਤੁਹਾਨੂੰ share.catrob.at' ਤੇ ਸਾਡੇ ਮੁਫ਼ਤ ਵੈਬ-ਸੇਵਾ ਨੂੰ ਵਰਤ ਸਕਦੇ ਹੋ";
+
+/* No comment provided by engineer. */
+"to x:" = "ਤੋਂ x:";
+
+/* No comment provided by engineer. */
+"Today" = "ਅੱਜ";
+
+/* No comment provided by engineer. */
+"Touch detection" = "ਟਚ ਖੋਜ";
+
+/* No comment provided by engineer. */
+"touch position" = "ਅਹਿਸਾਸ ਸਥਿਤੀ";
+
+/* No comment provided by engineer. */
+"transparency" = "ਪਾਰਦਰਸ਼ਤਾ";
+
+/* No comment provided by engineer. */
+"Trombone" = "ਟ੍ਰੋਮਬੋਨ";
+
+/* No comment provided by engineer. */
+"true" = "ਸੱਚ ਹੈ";
+
+/* No comment provided by engineer. */
+"Tu" = "ਤੁ";
+
+/* No comment provided by engineer. */
+"Tuesday" = "ਮੰਗਲਵਾਰ";
+
+/* No comment provided by engineer. */
+"Turn camera" = "ਕੈਮਰਾ ਚਾਲੂ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Turn flashlight" = "ਬੰਦ ਪਾਪਾ";
+
+/* No comment provided by engineer. */
+"Turn left" = "ਖੱਬੇ ਪਾਸੇ ਮੁੜੋ";
+
+/* No comment provided by engineer. */
+"Turn right" = "ਸੱਜੇ ਮੁੜੋ";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "ਪ੍ਰੋਜੈਕਟ ਆਯਾਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ!";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "ਪ੍ਰੋਜੈਕਟ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "ਉਹ ਆਵਾਜ਼ ਵਜਾਉਣ ਵਿੱਚ ਅਸਮਰੱਥ!\nਹੋ ਸਕਦਾ ਹੈ ਕਿ ਇਹ ਸਹੀ ਅਵਾਜ਼ ਨਾ ਹੋਵੇ ਜਾਂ ਫਾਈਲ ਖਰਾਬ ਹੈ.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "ਚੁਣੀ ਆਵਾਜ਼ ਚਲਾਉਣ ਵਿੱਚ ਅਸਮਰੱਥ. ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਸਾਈਲੈਂਟ ਮੋਡ ਵਿੱਚ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਆਈਫੋਨ ਦੇ ਖੱਬੇ ਪਾਸੇ ਸਵਿੱਚ ਟੌਗਲ ਕਰਕੇ ਸਾਈਲੈਂਟ ਮੋਡ ਨੂੰ ਬੰਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਪਲੇ 'ਤੇ ਟੈਪ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "ਚੁਣੀ ਆਵਾਜ਼ ਚਲਾਉਣ ਵਿੱਚ ਅਸਮਰੱਥ. ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਸਾਈਲੈਂਟ ਮੋਡ ਵਿੱਚ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਆਈਪੈਡ ਦੇ ਸੱਜੇ ਪਾਸੇ ਸਵਿੱਚ ਟੌਗਲ ਕਰਕੇ ਸਾਈਲੈਂਟ ਮੋਡ ਨੂੰ ਬੰਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਪਲੇ 'ਤੇ ਟੈਪ ਕਰੋ.";
+
+/* paint */
+"underline" = "ਰੇਖਾ ਲਾਈਨ";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "ਵਾਪਿਸ";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "ਡਰਾਇੰਗ ਨੂੰ ਵਾਪਸ ਕਰਨਾ ਹੈ?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "ਟਾਈਪਿੰਗ ਨੂੰ ਪਹਿਲਾਂ ਵਰਗਾ ਕਰਨਾ ਹੈ?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "ਅਚਾਨਕ ਗਲਤੀ";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "ਅਚਾਨਕ ਗਲਤੀ, ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "ਅਣਜਾਣ ਐਲੀਮੈਂਟ";
+
+/* No comment provided by engineer. */
+"Unselect all" = "ਸਭ ਦੀ ਚੋਣ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "ਅਸਮਰਥਿਤ ਇੱਟ:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "ਅਸਮਰਥਿਤ ਤੱਤ";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "ਅਸਮਰਥਿਤ ਸਕ੍ਰਿਪਟ:";
+
+/* No comment provided by engineer. */
+"Upload project" = "ਅੱਪਲੋਡ ਪ੍ਰਾਜੈਕਟ ਨੂੰ";
+
+/* No comment provided by engineer. */
+"Upload selected project" = "ਚੁਣੇ ਗਏ ਪ੍ਰੋਜੈਕਟ ਨੂੰ ਅਪਲੋਡ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Upload successful" = "ਅਪਲੋਡ ਸਫਲ";
+
+/* No comment provided by engineer. */
+"Uploaded" = "ਅਪਲੋਡ ਕੀਤਾ ਗਿਆ";
+
+/* No comment provided by engineer. */
+"Use camera" = "ਕੈਮਰਾ ਵਰਤੋ";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "ਫੀਰੋ ਇੱਟਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Username" = "ਉਪਯੋਗਕਰਤਾ ਨਾਮ";
+
+/* No comment provided by engineer. */
+"Username must not be blank" = "ਉਪਯੋਗਕਰਤਾ ਨਾਮ ਖਾਲੀ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ";
+
+/* No comment provided by engineer. */
+"Variable name:" = "ਪਰਿਵਰਤਨਸ਼ੀਲ ਨਾਮ:";
+
+/* No comment provided by engineer. */
+"Variable or list" = "ਪਰਿਵਰਤਨਸ਼ੀਲ ਜਾਂ ਸੂਚੀ";
+
+/* No comment provided by engineer. */
+"Variable type" = "ਪਰਿਵਰਤਨਸ਼ੀਲ ਕਿਸਮ";
+
+/* No comment provided by engineer. */
+"Variables" = "ਵੇਰੀਏਬਲ";
+
+/* No comment provided by engineer. */
+"Variables for all actors and objects" = "ਸਾਰੇ ਅਦਾਕਾਰਾਂ ਅਤੇ ਆਬਜੈਕਟ ਲਈ ਪਰਿਵਰਤਨ";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "ਸਿਰਫ ਇਸ ਅਦਾਕਾਰ ਜਾਂ ਇਕਾਈ ਲਈ ਪਰਿਵਰਤਨ";
+
+/* No comment provided by engineer. */
+"Version" = "ਵਰਜਨ";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "ਵਿਬ੍ਰਾਫੋਨ";
+
+/* No comment provided by engineer. */
+"Vibrate for" = "ਲਈ ਵਾਈਬ੍ਰੇਟ";
+
+/* No comment provided by engineer. */
+"vibration" = "ਕੰਬਣੀ";
+
+/* No comment provided by engineer. */
+"View" = "ਵੇਖੋ";
+
+/* No comment provided by engineer. */
+"Views" = "ਵਿਚਾਰ";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "ਵਿਜ਼ੂਅਲ ਸੈਂਸਰ";
+
+/* No comment provided by engineer. */
+"Wait" = "ਉਡੀਕ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Wait until" = "ਇੰਤਜ਼ਾਰ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"We" = "ਅਸੀਂ";
+
+/* No comment provided by engineer. */
+"Wednesday" = "ਬੁੱਧਵਾਰ";
+
+/* No comment provided by engineer. */
+"weekday" = "ਹਫਤੇ ਦਾ ਦਿਨ";
+
+/* No comment provided by engineer. */
+"Welcome!" = "ਸੁਆਗਤ ਹੈ";
+
+/* No comment provided by engineer. */
+"What's your name?" = "ਤੁਹਾਡਾ ਨਾਮ ਕੀ ਹੈ?";
+
+/* No comment provided by engineer. */
+"When" = "ਕਦੋਂ";
+
+/* No comment provided by engineer. */
+"When background changes to" = "ਜਦੋਂ ਪਿਛੋਕੜ ਬਦਲਿਆ ਜਾਵੇ";
+
+/* No comment provided by engineer. */
+"When project starts" = "ਜਦੋਂ ਪ੍ਰੋਜੈਕਟ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"When stage is tapped" = "ਜਦੋਂ ਸਟੇਜ ਟੇਪ ਕੀਤਾ ਜਾਂਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"When tapped" = "ਜਦੋਂ ਟੇਪ ਕੀਤਾ ਜਾਂਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"When you receive" = "ਜਦੋਂ ਤੁਸੀਂ ਪ੍ਰਾਪਤ ਕਰਦੇ ਹੋ";
+
+/* paint */
+"Width selection" = "ਚੌੜਾਈ ਚੋਣ";
+
+/* No comment provided by engineer. */
+"with" = "ਦੇ ਨਾਲ";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "ਲੱਕੜ ਦੀ ਬੰਸਰੀ";
+
+/* No comment provided by engineer. */
+"x: " = "x: ";
+
+/* No comment provided by engineer. */
+"y: " = "y: ";
+
+/* No comment provided by engineer. */
+"year" = "ਸਾਲ";
+
+/* No comment provided by engineer. */
+"Yes" = "ਹਾਂ";
+
+/* No comment provided by engineer. */
+"Yesterday" = "ਕੱਲ";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "ਤੁਹਾਨੂੰ ਹੀ ਇਸ ਪ੍ਰਾਜੈਕਟ ਨੂੰ ਡਾਊਨਲੋਡ ਕੀਤਾ ਹੈ!";
+
+/* No comment provided by engineer. */
+"Your answer" = "ਤੁਹਾਡਾ ਜਵਾਬ";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "ਤੁਹਾਡੀ ਈਮੇਲ ਅਵੈਧ ਜਾਪਦੀ ਹੈ";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "ਤੁਹਾਡਾ ਪ੍ਰਾਜੈਕਟ ਨੂੰ Catrobat ਭਾਈਚਾਰੇ ਹੋਰ ਨੂੰ ਵਰਤਣ ਅਤੇ ਇਸ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ, ਜਿੱਥੇ ਨੂੰ ਅੱਪਲੋਡ ਕੀਤਾ ਗਿਆ.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "ਤੁਹਾਡੀ ਰਿਪੋਰਟ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜੀ ਗਈ ਸੀ!";
+
+/* paint */
+"Zoom" = "ਜ਼ੂਮ";

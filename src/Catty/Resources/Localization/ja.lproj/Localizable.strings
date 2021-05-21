@@ -1,8 +1,8 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "同じ名前のメッセージが既に存在します。もう一度やり直してください。";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "同じ名前のプロジェクトが既に存在します。もう一度やり直してください。";
 
 /* No comment provided by engineer. */
 "Abc" = "Abc";
@@ -14,55 +14,58 @@
 "About Pocket Code" = "ポケットコードについて";
 
 /* No comment provided by engineer. */
-"acceleration x" = "x_加速";
+"absolute value" = "abs";
 
 /* No comment provided by engineer. */
-"acceleration y" = "y_加速";
+"acceleration x" = "アクセラレーションX";
+
+/* No comment provided by engineer. */
+"acceleration y" = "加速度Y";
 
 /* No comment provided by engineer. */
 "acceleration z" = "z_加速";
 
 /* No comment provided by engineer. */
-"acceleration-sensor" = "acceleration-sensor";
+"acceleration-sensor" = "加速度センサー";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "アクターとオブジェクト";
 
 /* No comment provided by engineer. */
 "Add" = "追加";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "アクターまたはオブジェクトを追加";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"add comment here..." = "ここにコメントを追加...";
 
 /* No comment provided by engineer. */
-"Add image" = "Add image";
+"Add image" = "画像を追加";
 
 /* Action sheet menu title */
 "Add look" = "外見を追加します。";
 
 /* Action sheet menu title */
-"Add sound" = "Add sound";
+"Add sound" = "サウンドを追加";
 
 /* No comment provided by engineer. */
 "Agree" = "同意する";
 
 /* No comment provided by engineer. */
-"all around" = "all around";
+"all around" = "至る所に";
 
 /* No comment provided by engineer. */
-"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+"All Bluetooth devices successfully disconnected" = "すべてのBluetoothデバイスが正常に切断されました";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+"All known Bluetooth devices successfully removed" = "すべての既知のBluetoothデバイスを削除しました";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"Allow the app to control Arduino boards" = "Arduinoボードの制御をアプリに許可する";
 
 /* No comment provided by engineer. */
-"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+"Allow the app to send crash reports automatically" = "アプリがクラッシュレポートを自動的に送信できるようにします";
 
 /* paint */
 "Alpha" = "透過度";
@@ -71,49 +74,58 @@
 "altitude" = "高度";
 
 /* No comment provided by engineer. */
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+"An image with the same name already exists, try again." = "同じ名前の画像が既に存在します。もう一度やり直してください。";
 
 /* No comment provided by engineer. */
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+"An object with the same name already exists, try again." = "同じ名前のオブジェクトが既に存在します。もう一度やり直してください。";
 
 /* No comment provided by engineer. */
 "An unknown error occurred. Check your Internet connection." = "不明なエラーが発生しました。インターネット接続を確認してください";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+"An unknown error occurred. Please try again later." = "不明なエラーが発生しました。後でもう一度お試しください。";
 
 /* No comment provided by engineer. */
 "and" = "かつ";
 
 /* No comment provided by engineer. */
-"and store written answer in " = "and store written answer in ";
+"and store written answer in " = "書かれた答えを保存します ";
 
 /* No comment provided by engineer. */
 "and wait" = "待つ";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Animate brick-parts";
+"Animate brick-parts" = "レンガパーツをアニメーション化する";
 
 /* No comment provided by engineer. */
-"Apr" = "Apr";
+"Apr" = "4月";
 
 /* No comment provided by engineer. */
 "April" = "4月";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccos";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsin";
+
+/* No comment provided by engineer. */
+"arctangent" = "逆正接関数";
+
+/* No comment provided by engineer. */
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino analog" = "arduino analog";
+"arduino analog" = "arduino アナログ";
 
 /* No comment provided by engineer. */
-"arduino digital" = "arduino digital";
+"arduino digital" = "arduinoデジタル";
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino ブロック";
 
 /* No comment provided by engineer. */
-"Ask " = "Ask ";
+"Ask " = "質問する ";
 
 /* No comment provided by engineer. */
 "at " = "位置 ";
@@ -122,25 +134,25 @@
 "at position" = "位置";
 
 /* paint */
-"Attributes:" = "Attributes:";
+"Attributes:" = "属性:";
 
 /* No comment provided by engineer. */
-"Aug" = "Aug";
+"Aug" = "8月";
 
 /* No comment provided by engineer. */
 "August" = "8月";
 
 /* No comment provided by engineer. */
-"Authentication failed" = "Authentication failed";
+"Authentication failed" = "認証に失敗しました";
 
 /* No comment provided by engineer. */
-"Author" = "Author";
+"Author" = "作成者";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
 "Axes" = "軸";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "戻る";
 
 /* No comment provided by engineer. */
 "Back" = "戻る";
@@ -158,31 +170,31 @@
 "Backgrounds" = "背景";
 
 /* No comment provided by engineer. */
-"Bass" = "Bass";
+"Bass" = "ベース";
 
 /* No comment provided by engineer. */
-"Bassoon" = "Bassoon";
+"Bassoon" = "バスーン";
 
 /* No comment provided by engineer. */
 "becomes true" = "真になる";
 
 /* No comment provided by engineer. */
-"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "コーディングを開始する前に、アプリを使用するために当社のプライバシーポリシーをお読みいただき、同意してください:";
+
+/* No comment provided by engineer. */
+"blue" = "青";
 
 /* paint */
 "Blue" = "青";
 
 /* No comment provided by engineer. */
-"blue" = "blue";
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetoothが利用できません。お使いのデバイスがBluetoothをサポートしていません 4. またはBluetoothチップが破損しています。設定で別のBluetoothデバイスに接続して確認してください。";
 
 /* No comment provided by engineer. */
-"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
-
-/* No comment provided by engineer. */
-"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetoothがオフになっています。Bluetoothデバイスに接続するにはオンにしてください。";
 
 /* paint */
-"bold" = "bold";
+"bold" = "ボールド";
 
 /* No comment provided by engineer. */
 "Both" = "両方";
@@ -209,31 +221,31 @@
 "By registering you agree to our" = "登録により、同意します。";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "プロジェクトを再起動できません！";
 
 /* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
 /* bluetooth */
-"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+"Cannot connect to device, please try resetting the device and try again." = "デバイスに接続できません。デバイスをリセットして再試行してください。";
 
 /* bluetooth */
-"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+"Cannot connect to device. The device is not responding." = "デバイスに接続できません。デバイスが応答していません。";
 
 /* No comment provided by engineer. */
-"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "メディアライブラリに接続できません。インターネット接続を確認してください。";
 
 /* No comment provided by engineer. */
 "Categories" = "範囲";
 
 /* No comment provided by engineer. */
-"Catrobat community" = "Catrobat community";
+"Catrobat community" = "Catrobat コミュニティ";
 
 /* No comment provided by engineer. */
-"ceil" = "ceil";
+"ceiling" = "ceil";
 
 /* No comment provided by engineer. */
-"Cello" = "Cello";
+"Cello" = "チェロ";
 
 /* No comment provided by engineer. */
 "Change brightness " = "明るさの変更：";
@@ -245,10 +257,10 @@
 "Change size by" = "サイズを変更：";
 
 /* No comment provided by engineer. */
-"Change to landscape" = "Change to landscape";
+"Change to landscape" = "横向きに変更";
 
 /* No comment provided by engineer. */
-"Change to portrait" = "Change to portrait";
+"Change to portrait" = "ポートレートに変更";
 
 /* No comment provided by engineer. */
 "Change transparency " = "透明度を変更：";
@@ -260,28 +272,28 @@
 "Change volume by" = "音量を変更して：";
 
 /* No comment provided by engineer. */
-"Change x by " = "Change x by ";
+"Change x by " = "xを変更: ";
 
 /* No comment provided by engineer. */
-"Change y by " = "Change y by ";
+"Change y by " = "yを変更: ";
 
 /* No comment provided by engineer. */
-"Changes discarded." = "Changes discarded.";
+"Changes discarded." = "変更は破棄されました。";
 
 /* No comment provided by engineer. */
 "Changes saved." = "変更を保存しました!";
 
 /* No comment provided by engineer. */
-"Choir" = "Choir";
+"Choir" = "合唱団";
 
 /* No comment provided by engineer. */
-"Choose" = "Choose";
+"Choose" = "選択";
 
 /* No comment provided by engineer. */
 "Choose image" = "画像を選択";
 
 /* No comment provided by engineer. */
-"Clarinet" = "Clarinet";
+"Clarinet" = "クラリネット";
 
 /* No comment provided by engineer. */
 "Clear" = "クリア";
@@ -293,37 +305,40 @@
 "Close" = "閉じる";
 
 /* paint */
-"Close Paint" = "Close Paint";
+"Close Paint" = "ペイントを閉じる";
 
 /* No comment provided by engineer. */
 "color" = "色";
 
 /* No comment provided by engineer. */
-"compass" = "compass";
+"Comparison operators" = "比較演算子";
+
+/* No comment provided by engineer. */
+"compass" = "コンパス";
 
 /* No comment provided by engineer. */
 "Compute" = "計算";
 
 /* No comment provided by engineer. */
-"Computed result is %.2f" = "Computed result is %.2f";
+"Computed result is %.2f" = "計算結果は %.2f です";
 
 /* No comment provided by engineer. */
-"Computed result is FALSE" = "Computed result is FALSE";
+"Computed result is FALSE" = "計算結果は FALSE です";
 
 /* No comment provided by engineer. */
-"Computed result is TRUE" = "Computed result is TRUE";
+"Computed result is TRUE" = "計算結果は TRUE です。";
 
 /* No comment provided by engineer. */
 "Confirm password" = "パスワードの確認";
 
 /* bluetooth */
-"Connection failed" = "Connection failed";
+"Connection failed" = "接続に失敗しました";
 
 /* bluetooth */
-"Connection lost" = "Connection lost";
+"Connection lost" = "接続が切断されました";
 
 /* bluetooth */
-"Connection not possible" = "Connection not possible";
+"Connection not possible" = "接続できません";
 
 /* No comment provided by engineer. */
 "contains" = "contains";
@@ -332,7 +347,7 @@
 "Continue" = "続行";
 
 /* No comment provided by engineer. */
-"Continue project" = "Continue project";
+"Continue project" = "プロジェクトを続ける";
 
 /* No comment provided by engineer. */
 "Control" = "制御";
@@ -341,19 +356,31 @@
 "Copy" = "コピー";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy actors or objects" = "アクターまたはオブジェクトをコピー";
 
 /* No comment provided by engineer. */
-"Copy looks" = "Copy looks";
+"Copy brick" = "ブロックをコピー";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy looks" = "外見をコピー";
 
 /* No comment provided by engineer. */
-"Create account" = "Create account";
+"Copy project" = "プロジェクトをコピー";
+
+/* No comment provided by engineer. */
+"cosine" = "cos";
+
+/* No comment provided by engineer. */
+"Create account" = "アカウントを作成";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "ステッチマシンのパターンを作成";
 
 /* No comment provided by engineer. */
 "Data" = "データ";
+
+/* No comment provided by engineer. */
+"Date and time" = "日付と時刻";
 
 /* No comment provided by engineer. */
 "day" = "日";
@@ -362,10 +389,13 @@
 "debug" = "debug";
 
 /* No comment provided by engineer. */
-"Dec" = "Dec";
+"Dec" = "12月";
 
 /* No comment provided by engineer. */
 "December" = "12月";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "log";
 
 /* No comment provided by engineer. */
 "degrees" = "度";
@@ -374,79 +404,79 @@
 "Delete" = "削除";
 
 /* No comment provided by engineer. */
-"Delete actors or objects" = "Delete actors or objects";
+"Delete actors or objects" = "アクターまたはオブジェクトを削除";
 
 /* No comment provided by engineer. */
-"Delete backgrounds" = "Delete backgrounds";
+"Delete backgrounds" = "背景を削除";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Delete brick";
+"Delete brick" = "ブロックを削除";
 
 /* No comment provided by engineer. */
-"Delete condition" = "Delete condition";
+"Delete condition" = "条件を削除";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "リストからアイテムを削除";
 
 /* No comment provided by engineer. */
-"Delete looks" = "Delete looks";
+"Delete looks" = "外見を削除する";
 
 /* No comment provided by engineer. */
-"Delete loop" = "Delete loop";
+"Delete loop" = "ループを削除";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete project" = "プロジェクトを削除";
 
 /* No comment provided by engineer. */
-"Delete projects" = "Delete projects";
+"Delete projects" = "プロジェクトを削除";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete script" = "スクリプトを削除";
 
 /* No comment provided by engineer. */
-"Delete sounds" = "Delete sounds";
+"Delete sounds" = "サウンドを削除";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "Delete these bricks?";
+"Delete these bricks?" = "これらのブロックを削除しますか？";
 
 /* No comment provided by engineer. */
-"Delete these conditions?" = "Delete these conditions?";
+"Delete these conditions?" = "これらの条件を削除しますか？";
 
 /* No comment provided by engineer. */
-"Delete these loops?" = "Delete these loops?";
+"Delete these loops?" = "これらのループを削除しますか？";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "Delete these scripts?";
+"Delete these scripts?" = "これらのスクリプトを削除しますか？";
 
 /* No comment provided by engineer. */
-"Delete this actor or object" = "Delete this actor or object";
+"Delete this actor or object" = "このアクターまたはオブジェクトを削除";
 
 /* No comment provided by engineer. */
-"Delete this background" = "Delete this background";
+"Delete this background" = "この背景を削除";
 
 /* No comment provided by engineer. */
-"Delete this brick?" = "Delete this brick?";
+"Delete this brick?" = "このブロックを削除しますか？";
 
 /* No comment provided by engineer. */
-"Delete this condition?" = "Delete this condition?";
+"Delete this condition?" = "この条件を削除しますか？";
 
 /* No comment provided by engineer. */
-"Delete this look" = "Delete this look";
+"Delete this look" = "この外見を削除";
 
 /* No comment provided by engineer. */
-"Delete this loop?" = "Delete this loop?";
+"Delete this loop?" = "このループを削除しますか？";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "このプロジェクトを削除";
 
 /* No comment provided by engineer. */
-"Delete this script?" = "Delete this script?";
+"Delete this script?" = "このスクリプトを削除しますか？";
 
 /* No comment provided by engineer. */
-"Delete this sound" = "Delete this sound";
+"Delete this sound" = "このサウンドを削除";
 
 /* No comment provided by engineer. */
-"Deletion mode" = "Deletion mode";
+"Deletion mode" = "削除モード";
 
 /* No comment provided by engineer. */
 "Description" = "説明";
@@ -455,40 +485,46 @@
 "Details" = "詳細";
 
 /* bluetooth */
-"Device disconnected." = "Device disconnected.";
+"Device disconnected." = "デバイスが切断されました。";
 
 /* No comment provided by engineer. */
-"device motion-sensor" = "device motion-sensor";
+"device motion-sensor" = "端末のモーションセンサー";
+
+/* No comment provided by engineer. */
+"Device sensors" = "デバイスのセンサー";
 
 /* No comment provided by engineer. */
 "direction" = "方向";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "ブロックを無効にする";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "条件を無効にする";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "ループを無効にする";
 
 /* No comment provided by engineer. */
-"Disable script" = "Disable script";
+"Disable script" = "スクリプトを無効にする";
 
 /* No comment provided by engineer. */
 "Disagree" = "同意しない";
 
 /* No comment provided by engineer. */
-"Disconnect all devices" = "Disconnect all devices";
+"Discard changes" = "変更点の破棄";
 
 /* No comment provided by engineer. */
-"DO" = "DO";
+"Disconnect all devices" = "すべてのデバイスを切断";
+
+/* No comment provided by engineer. */
+"DO" = "ド";
 
 /* paint */
-"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
+"Do you really want to delete the current drawing?" = "現在の図面を削除してもよろしいですか？";
 
 /* paint */
-"Do you want to save the changes" = "Do you want to save the changes";
+"Do you want to save your changes?" = "変更内容を保存しますか？";
 
 /* No comment provided by engineer. */
 "don't rotate" = "回転しない";
@@ -500,10 +536,7 @@
 "Download" = "ダウンロード";
 
 /* No comment provided by engineer. */
-"Download successful" = "ダウンロードに成功しました";
-
-/* No comment provided by engineer. */
-"Downloads" = "Downloads";
+"Downloads" = "ダウンロード";
 
 /* No comment provided by engineer. */
 "Draw new image" = "新しい画像を描画します。";
@@ -515,106 +548,112 @@
 "Edit" = "編集";
 
 /* No comment provided by engineer. */
-"Edit actor or object" = "Edit actor or object";
+"Edit actor or object" = "アクターまたはオブジェクトを編集";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "背景を編集";
 
 /* Action sheet menu title */
-"Edit backgrounds" = "Edit backgrounds";
+"Edit backgrounds" = "背景を編集";
 
 /* Action sheet menu title */
-"Edit brick" = "Edit brick";
+"Edit brick" = "ブロックを編集";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "数式を編集";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "外見を編集";
 
 /* Action sheet menu title */
-"Edit looks" = "Edit looks";
+"Edit looks" = "外見を編集";
 
 /* No comment provided by engineer. */
-"Edit project" = "Edit project";
+"Edit project" = "プロジェクトを編集";
 
 /* No comment provided by engineer. */
-"Edit projects" = "Edit projects";
+"Edit projects" = "プロジェクトを編集";
 
 /* Action sheet menu title */
-"Edit script" = "Edit script";
+"Edit script" = "スクリプトを編集";
 
 /* Action sheet menu title */
-"Edit sound" = "Edit sound";
+"Edit sound" = "サウンドを編集";
 
 /* Action sheet menu title */
-"Edit sounds" = "Edit sounds";
+"Edit sounds" = "サウンドを編集";
 
 /* No comment provided by engineer. */
-"Electric Guitar" = "Electric Guitar";
+"Electric Guitar" = "エレキギター";
 
 /* No comment provided by engineer. */
-"Electric Piano" = "Electric Piano";
+"Electric Piano" = "電子ピアノ";
 
 /* No comment provided by engineer. */
 "element" = "element";
 
 /* paint */
-"Ellipse / Circle" = "Ellipse / Circle";
+"Ellipse / Circle" = "楕円/円";
 
 /* No comment provided by engineer. */
 "Else" = "そうではなかったら、";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "Eメールアドレス";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Embroidery" = "刺繍（刺繍）";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Embroidery extension" = "刺繍拡張";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Empty input!" = "空の入力!";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable brick" = "ブロックを有効にする";
 
 /* No comment provided by engineer. */
-"Enable script" = "Enable script";
+"Enable condition" = "条件を有効にする";
+
+/* No comment provided by engineer. */
+"Enable loop" = "ループを有効化";
+
+/* No comment provided by engineer. */
+"Enable script" = "スクリプトの有効化";
 
 /* No comment provided by engineer. */
 "End if" = "「もし」の終わり";
 
 /* No comment provided by engineer. */
-"End of Loop" = "End of Loop";
+"End of Loop" = "ループの終わり";
 
 /* No comment provided by engineer. */
 "Enter a reason" = "理由を入力してください。";
 
 /* Placeholder for add image-name input field */
-"Enter your image name here..." = "Enter your image name here...";
+"Enter your image name here..." = "ここに画像名を入力してください...";
 
 /* Placeholder for list input field */
-"Enter your list name here..." = "Enter your list name here...";
+"Enter your list name here..." = "ここにリスト名を入力してください...";
 
 /* Placeholder for message input field */
-"Enter your message here..." = "Enter your message here...";
+"Enter your message here..." = "ここにメッセージを入力してください...";
 
 /* Placeholder for add object-name input field */
-"Enter your object name here..." = "Enter your object name here...";
+"Enter your object name here..." = "ここにオブジェクト名を入力してください...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "プロジェクトの説明をここに入力してください...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "プロジェクト名を入力してください...";
 
 /* Placeholder for add sound-name input field */
-"Enter your sound name here..." = "Enter your sound name here...";
+"Enter your sound name here..." = "サウンド名を入力してください...";
 
 /* Placeholder for variable input field */
-"Enter your variable name here..." = "Enter your variable name here...";
+"Enter your variable name here..." = "ここに変数名を入力してください...";
 
 /* paint */
 "Eraser" = "消しゴム";
@@ -623,49 +662,55 @@
 "Error" = "エラー";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error occurred while reporting the project. Please try again later." = "プロジェクトの報告中にエラーが発生しました。後でもう一度やり直してください。";
+
+/* No comment provided by engineer. */
+"Error saving file" = "ファイルの保存に失敗しました";
 
 /* No comment provided by engineer. */
 "Event" = "イベント";
 
 /* No comment provided by engineer. */
+"exponent" = "指数関数";
+
+/* No comment provided by engineer. */
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
+"face detected" = "顔が検出されました";
 
 /* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
+"faceposition x" = "顔の位置x";
 
 /* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
+"faceposition y" = "顔の位置y";
 
 /* No comment provided by engineer. */
 "facesize" = "facesize";
 
 /* No comment provided by engineer. */
-"Failed to import item" = "Failed to import item";
+"Failed to import item" = "アイテムのインポートに失敗しました";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
+"Failed to load featured projects" = "注目のプロジェクトの読み込みに失敗しました";
 
 /* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
+"Failed to load recent projects" = "最近のプロジェクトの読み込みに失敗しました";
 
 /* No comment provided by engineer. */
-"Failed to load sound" = "Failed to load sound";
+"Failed to load sound" = "サウンドの読み込みに失敗しました";
 
 /* No comment provided by engineer. */
-"Failed to play sound" = "Failed to play sound";
+"Failed to play sound" = "サウンドの再生に失敗しました";
 
 /* No comment provided by engineer. */
 "false" = "偽";
 
 /* No comment provided by engineer. */
-"Featured projects" = "Featured projects";
+"Featured projects" = "注目のプロジェクト";
 
 /* No comment provided by engineer. */
-"Feb" = "Feb";
+"Feb" = "2月";
 
 /* No comment provided by engineer. */
 "February" = "2月";
@@ -674,55 +719,64 @@
 "Fill" = "塗りつぶし";
 
 /* No comment provided by engineer. */
-"Flashlight off" = "Flashlight off";
+"Flashlight off" = "ライトを消灯する";
 
 /* No comment provided by engineer. */
-"Flashlight on" = "Flashlight on";
+"Flashlight on" = "フラッシュライト オン";
 
 /* No comment provided by engineer. */
 "floor" = "floor";
 
 /* No comment provided by engineer. */
-"Flute" = "Flute";
+"Flute" = "フルート";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "このプロジェクトで使用されている以下の機能はPocket Codeのバージョンと互換性がありません:";
 
 /* No comment provided by engineer. */
 "for" = "次の";
 
 /* No comment provided by engineer. */
-"for all actors or objects" = "for all actors or objects";
+"for all actors or objects" = "すべてのアクターや物体に";
 
 /* No comment provided by engineer. */
-"for this actor or object" = "for this actor or object";
+"for this actor or object" = "このアクターまたはオブジェクトに対して";
 
 /* No comment provided by engineer. */
 "Forever" = "ずっと";
 
 /* No comment provided by engineer. */
-"Forgot password" = "Forgot password";
+"Forgot password" = "パスワードを忘れた場合";
+
+/* No comment provided by engineer. */
+"Formula Editor" = "数式エディター";
 
 /* No comment provided by engineer. */
 "Formula too long!" = "数式が長すぎます!";
 
 /* No comment provided by engineer. */
-"Fr" = "Fr";
+"Fr" = "金";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
+"Frequently used" = "よく使用されます";
 
 /* No comment provided by engineer. */
-"Friday" = "Friday";
+"Friday" = "金曜日";
 
 /* No comment provided by engineer. */
-"From camera" = "From camera";
+"From camera" = "カメラから";
 
 /* No comment provided by engineer. */
 "front" = "前面";
 
 /* No comment provided by engineer. */
-"Front camera" = "Front camera";
+"Front camera" = "フロントカメラ";
+
+/* No comment provided by engineer. */
+"Functions" = "関数";
+
+/* No comment provided by engineer. */
+"General properties" = "全般プロパティ";
 
 /* No comment provided by engineer. */
 "Glide" = "滑る：";
@@ -736,17 +790,17 @@
 /* No comment provided by engineer. */
 "Go to front" = "前に出す";
 
+/* No comment provided by engineer. */
+"green" = "緑";
+
 /* paint */
 "Green" = "緑";
 
 /* No comment provided by engineer. */
-"green" = "green";
+"Guitar" = "ギター";
 
 /* No comment provided by engineer. */
-"Guitar" = "Guitar";
-
-/* No comment provided by engineer. */
-"gyro-sensor" = "gyro-sensor";
+"gyro-sensor" = "ジャイロセンサー";
 
 /* No comment provided by engineer. */
 "Hello!" = "こんにちは！";
@@ -776,46 +830,46 @@
 "If on edge, bounce" = "端に当たったら、跳ね返る";
 
 /* paint */
-"Image" = "Image";
+"Image" = "画像";
 
 /* No comment provided by engineer. */
-"Image name" = "Image name";
+"Image name" = "画像名";
 
 /* No comment provided by engineer. */
-"Image source not available" = "Image source not available";
+"Image source not available" = "画像ソースが利用できません";
 
 /* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
-"Import File" = "Import File";
+"Import File" = "ファイルをインポート";
 
 /* No comment provided by engineer. */
-"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Catrobat プロジェクトによって提供されたポケットコードおよびその他の実行可能ファイルの使用を許可するために。 利用規約に同意し、Pocket Codeおよびその他の実行可能ファイルを使用する場合は厳密に従う必要があります。 詳細は以下のリンクをご覧ください。";
 
 /* No comment provided by engineer. */
-"inclination x" = "x_傾斜";
+"inclination x" = "アクセラレーションX";
 
 /* No comment provided by engineer. */
-"inclination y" = "y_傾斜";
+"inclination y" = "傾斜Y";
 
 /* No comment provided by engineer. */
-"Information" = "Information";
+"Information" = "情報";
 
 /* No comment provided by engineer. */
 "Insert" = "挿入";
 
 /* paint */
-"Inserted" = "Inserted";
+"Inserted" = "挿入された";
 
 /* No comment provided by engineer. */
 "into list" = "リストに";
 
 /* No comment provided by engineer. */
-"Invalid input entered, try again." = "Invalid input entered, try again.";
+"Invalid input entered, try again." = "無効な入力が入力されました。もう一度やり直してください。";
 
 /* No comment provided by engineer. */
-"Invalid URL given!" = "Invalid URL given!";
+"Invalid URL given!" = "無効なURLが与えられました！";
 
 /* No comment provided by engineer. */
-"iOS." = "iOS.";
+"iOS." = "iOSです。";
 
 /* No comment provided by engineer. */
 "is true" = "が真";
@@ -824,10 +878,13 @@
 "is true then" = "は本当だったら";
 
 /* paint */
-"italic" = "italic";
+"italic" = "イタリック";
 
 /* No comment provided by engineer. */
-"Jan" = "Jan";
+"item" = "element";
+
+/* No comment provided by engineer. */
+"Jan" = "1月";
 
 /* No comment provided by engineer. */
 "January" = "1月";
@@ -836,25 +893,25 @@
 "join" = "join";
 
 /* No comment provided by engineer. */
-"Jul" = "Jul";
+"Jul" = "7月";
 
 /* No comment provided by engineer. */
 "July" = "7月";
 
 /* No comment provided by engineer. */
-"Jun" = "Jun";
+"Jun" = "6月";
 
 /* No comment provided by engineer. */
 "June" = "6月";
 
 /* bluetooth */
-"Known devices" = "Known devices";
+"Known devices" = "既知のデバイス";
 
 /* No comment provided by engineer. */
 "LA" = "LA";
 
 /* No comment provided by engineer. */
-"Last access" = "Last access";
+"Last access" = "最終アクセス";
 
 /* No comment provided by engineer. */
 "last stage touch index" = "last_screen_touch_index";
@@ -878,10 +935,10 @@
 "left-right only" = "左右のみ";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"length" = "length";
 
 /* No comment provided by engineer. */
-"length" = "length";
+"Length" = "長さ";
 
 /* No comment provided by engineer. */
 "letter" = "letter";
@@ -890,19 +947,25 @@
 "Line" = "ライン";
 
 /* No comment provided by engineer. */
-"List name:" = "List name:";
+"List name:" = "リスト名:";
 
 /* No comment provided by engineer. */
-"List type" = "List type";
+"List type" = "リストの種類";
 
 /* No comment provided by engineer. */
 "Lists" = "リスト";
 
 /* No comment provided by engineer. */
-"Loading" = "Loading";
+"Lists for all actors and objects" = "すべてのアクターとオブジェクトのリスト";
 
 /* No comment provided by engineer. */
-"location" = "location";
+"Lists for this actor or object only" = "このアクターまたはオブジェクトのみのリスト";
+
+/* No comment provided by engineer. */
+"Loading" = "読み込み中";
+
+/* No comment provided by engineer. */
+"location" = "場所";
 
 /* No comment provided by engineer. */
 "location accuracy" = "位置の精度";
@@ -911,10 +974,13 @@
 "Logic" = "論理";
 
 /* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "論理 (ブール) 演算子";
+
+/* No comment provided by engineer. */
 "Login" = "ログイン";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "ログイン成功";
 
 /* No comment provided by engineer. */
 "Logout" = "ログアウト";
@@ -922,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "経度";
 
-/* No comment provided by engineer. */
-"Look" = "外見";
-
 /* LOOK */
 "look" = "外見";
+
+/* No comment provided by engineer. */
+"Look" = "外見";
 
 /* No comment provided by engineer. */
 "look name" = "look_name";
@@ -941,25 +1007,31 @@
 "loudness" = "ラウドネス";
 
 /* No comment provided by engineer. */
-"magnetic-sensor" = "magnetic-sensor";
+"magnetic-sensor" = "磁気センサー";
 
 /* No comment provided by engineer. */
-"Mar" = "Mar";
+"Mar" = "3月";
 
 /* No comment provided by engineer. */
 "March" = "3月";
 
 /* No comment provided by engineer. */
-"Marimba" = "Marimba";
+"Marimba" = "マリンバ";
 
 /* No comment provided by engineer. */
-"Math" = "Math";
+"Maths" = "Maths";
+
+/* No comment provided by engineer. */
+"Maximize" = "マキシマイズ";
+
+/* No comment provided by engineer. */
+"maximum of" = "最大";
 
 /* No comment provided by engineer. */
 "May" = "5月";
 
 /* No comment provided by engineer. */
-"Measure" = "Measure";
+"Measure" = "測定";
 
 /* No comment provided by engineer. */
 "Media library" = "メディア ライブラリー";
@@ -968,13 +1040,19 @@
 "Menu" = "メニュー";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
+"Message" = "メッセージ";
 
 /* No comment provided by engineer. */
 "message 1" = "メッセージ 1";
 
 /* No comment provided by engineer. */
 "MI" = "MI";
+
+/* No comment provided by engineer. */
+"Minimize" = "ミニマム";
+
+/* No comment provided by engineer. */
+"minimum of" = "最小値";
 
 /* No comment provided by engineer. */
 "minute" = "分";
@@ -985,11 +1063,14 @@
 /* No comment provided by engineer. */
 "Mo" = "Mo";
 
+/* No comment provided by engineer. */
+"modulo" = "mod";
+
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "ほくろ";
 
 /* No comment provided by engineer. */
-"Monday" = "Monday";
+"Monday" = "月曜日";
 
 /* No comment provided by engineer. */
 "month" = "月";
@@ -998,7 +1079,7 @@
 "More" = "もっと";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "詳細情報";
 
 /* No comment provided by engineer. */
 "Most downloaded" = "最もダウンロードされているもの";
@@ -1010,16 +1091,19 @@
 "Motion" = "動き";
 
 /* No comment provided by engineer. */
+"Motion properties" = "運動プロパティ";
+
+/* No comment provided by engineer. */
 "Move" = "移動";
 
 /* No comment provided by engineer. */
-"Move actors or objects" = "Move actors or objects";
+"Move actors or objects" = "アクターまたはオブジェクトを移動";
 
 /* No comment provided by engineer. */
-"Move brick" = "Move brick";
+"Move brick" = "ブロックを移動";
 
 /* No comment provided by engineer. */
-"Move looks" = "Move looks";
+"Move looks" = "外見を移動";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "Phiro モーターを後に移動";
@@ -1028,31 +1112,34 @@
 "Move Phiro motor forward" = "Phiro モーターを前に移動";
 
 /* No comment provided by engineer. */
-"Move sounds" = "Move sounds";
+"Move sounds" = "音を移動する";
 
 /* No comment provided by engineer. */
-"Music Box" = "Music Box";
+"Music Box" = "オルゴールボックス";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "私の最初のプログラム";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My image" = "My image";
+"My image" = "私の画像";
 
 /* Title for first (default) object */
-"My object" = "My object";
+"My object" = "自分のオブジェクト";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "名前";
 
 /* No comment provided by engineer. */
-"Name already exists." = "Name already exists.";
+"Name already exists." = "名前は既に存在します。";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "ln";
 
 /* No comment provided by engineer. */
 "New" = "新しい";
 
 /* paint */
-"New canvas" = "New canvas";
+"New canvas" = "新しいキャンバス";
 
 /* No comment provided by engineer. */
 "New list" = "新しいリスト";
@@ -1061,7 +1148,7 @@
 "New message" = "新しいメッセージ";
 
 /* No comment provided by engineer. */
-"New project" = "New project";
+"New project" = "新規プロジェクト";
 
 /* No comment provided by engineer. */
 "New text" = "新しいテキスト";
@@ -1070,7 +1157,7 @@
 "New variable" = "新しい変数";
 
 /* No comment provided by engineer. */
-"New..." = "New...";
+"New..." = "新規...";
 
 /* No comment provided by engineer. */
 "Newest" = "最新";
@@ -1085,46 +1172,43 @@
 "No" = "いいえ";
 
 /* No comment provided by engineer. */
-"No camera available" = "No camera available";
+"No camera available" = "利用可能なカメラがありません";
 
 /* No comment provided by engineer. */
-"No categories selected" = "No categories selected";
+"No categories selected" = "カテゴリが選択されていません";
 
 /* No comment provided by engineer. */
-"No description available" = "No description available";
+"No description available" = "説明はありません";
 
 /* No comment provided by engineer. */
-"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+"No or invalid image name entered, try again." = "画像名が入力されていないか無効です。もう一度やり直してください。";
 
 /* No comment provided by engineer. */
-"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+"No or invalid sound name entered, try again." = "音声名が入力されていないか無効です。もう一度やり直してください。";
 
 /* No comment provided by engineer. */
-"No search results" = "No search results";
+"No search results" = "検索結果がありません";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "No whitespace character allowed";
+"No whitespace character allowed" = "空白文字は使用できません";
 
 /* No comment provided by engineer. */
 "not" = "NOT";
 
 /* No comment provided by engineer. */
-"not available. Continue anyway?" = "not available. Continue anyway?";
+"not available. Continue anyway?" = "利用できません。続行しますか？";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
-
-/* No comment provided by engineer. */
-"Not enough Memory" = "Not enough Memory";
+"Not enough Memory" = "メモリが不足しています";
 
 /* No comment provided by engineer. */
 "Note" = "注意";
 
 /* paint */
-"Nothing to crop!" = "Nothing to crop!";
+"Nothing to crop!" = "トリミングするものがありません！";
 
 /* No comment provided by engineer. */
-"Nov" = "Nov";
+"Nov" = "11月";
 
 /* No comment provided by engineer. */
 "November" = "11月";
@@ -1133,22 +1217,16 @@
 "number of items" = "number_of_items";
 
 /* No comment provided by engineer. */
-"Numbers" = "Numbers";
+"Numbers" = "数値";
 
 /* No comment provided by engineer. */
 "Object" = "スプライト";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Object lists:";
+"Object or actor name" = "オブジェクトまたはアクター名";
 
 /* No comment provided by engineer. */
-"Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "Object variables:";
-
-/* No comment provided by engineer. */
-"Oct" = "Oct";
+"Oct" = "10月";
 
 /* No comment provided by engineer. */
 "October" = "10月";
@@ -1163,13 +1241,13 @@
 "on" = "オン";
 
 /* No comment provided by engineer. */
-"only 15 characters allowed" = "only 15 characters allowed";
+"only 15 characters allowed" = "許可されているのは15文字だけ";
 
 /* No comment provided by engineer. */
-"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+"Only space is not allowed. Please enter at least %lu other character(s)." = "スペースのみ許可されていません。少なくとも %lu 文字以上入力してください。";
 
 /* No comment provided by engineer. */
-"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "特殊文字のみ使用できません。少なくとも %lu 文字以上入力してください。";
 
 /* No comment provided by engineer. */
 "Open" = "開く ";
@@ -1178,13 +1256,13 @@
 "or" = "OR";
 
 /* No comment provided by engineer. */
-"Organ" = "Organ";
+"Organ" = "オルガン";
 
 /* No comment provided by engineer. */
 "Password" = "パスワード";
 
 /* No comment provided by engineer. */
-"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "パスワードは有効ではありません！ \n 少なくとも6文字/記号を含める必要があります";
 
 /* No comment provided by engineer. */
 "Passwords do not match" = "パスワードが一致しません";
@@ -1202,31 +1280,34 @@
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
-"phiro bottom left" = "phiro bottom left";
+"phiro bottom left" = "左下にフィロがあります";
 
 /* No comment provided by engineer. */
-"phiro bottom right" = "phiro bottom right";
+"phiro bottom right" = "フィロの右下に";
 
 /* No comment provided by engineer. */
-"phiro front left" = "phiro front left";
+"phiro front left" = "フィロの前左";
 
 /* No comment provided by engineer. */
-"phiro front right" = "phiro front right";
+"phiro front right" = "フィロ正面右";
 
 /* No comment provided by engineer. */
-"phiro side left" = "phiro side left";
+"phiro side left" = "ピロ・サイド・レフト";
 
 /* No comment provided by engineer. */
-"phiro side right" = "phiro side right";
+"phiro side right" = "フィロサイド右";
 
 /* No comment provided by engineer. */
-"Piano" = "Piano";
+"pi" = "pi";
+
+/* No comment provided by engineer. */
+"Piano" = "ピアノ";
 
 /* paint */
 "Pipette" = "ピペット";
 
 /* No comment provided by engineer. */
-"Pizzicato" = "Pizzicato";
+"Pizzicato" = "ピチカート";
 
 /* No comment provided by engineer. */
 "Place at " = "配置：";
@@ -1235,49 +1316,49 @@
 "Play" = "プレイ";
 
 /* No comment provided by engineer. */
-"Play Phiro music\n" = "Play Phiro music\n";
+"Play Phiro music\n" = "Phiro 音楽を再生する\n";
 
 /* No comment provided by engineer. */
-"Please choose another name:" = "Please choose another name:";
+"Please choose another name:" = "別の名前を選択してください:";
 
 /* No comment provided by engineer. */
-"Please choose up to three categories" = "Please choose up to three categories";
+"Please choose up to three categories" = "最大3つのカテゴリを選択してください";
 
 /* paint */
-"Please enter a text." = "Please enter a text.";
+"Please enter a text." = "テキストを入力してください。";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
+"Please enter at least %lu character(s)." = "少なくとも %lu 文字を入力してください。";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+"Please log in to report this project as inappropriate" = "このプロジェクトを不適切として報告するにはログインしてください";
 
 /* paint */
-"Please pick a tool" = "Please pick a tool";
+"Please pick a tool" = "ツールを選択してください";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Please select a project to upload";
+"Please select a project to upload" = "アップロードするプロジェクトを選択してください";
 
 /* bluetooth */
-"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+"Please try resetting the device and try again." = "デバイスをリセットしてもう一度やり直してください。";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "ポケット\nコード";
 
 /* No comment provided by engineer. */
-"Pocket Code for iOS" = "Pocket Code for iOS";
+"Pocket Code for iOS" = "iOS用ポケットコード";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "ポケットコードはカメラにアクセスできません。アクセスを許可するには、設定をタップしてカメラを有効にしてください。 図面は自動的に PocketCode に保存されます。";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "ポケットコードは画像にアクセスできません。アクセスを許可するには、設定をタップして画像を有効にしてください。 図面は自動的に PocketCode に保存されます。";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "ポケットコードはマイクにアクセスできません。アクセスを許可するには、設定をタップしてマイクを有効にしてください。";
 
 /* No comment provided by engineer. */
-"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Codeは、ビジュアルプログラミング言語CatrobatのiOS用のプログラミング環境です。 ポケットコードのコードは GNU AGPL v3 ライセンスの下にあります。ライセンスの詳細については以下のリンクをご覧ください。";
 
 /* No comment provided by engineer. */
 "Pocket Code Recorder" = "ポケットコードのサウンドレコーダー";
@@ -1295,13 +1376,16 @@
 "Point towards" = "方向（スプライト）：";
 
 /* paint */
-"Pointer" = "Pointer";
+"Pointer" = "ポインター";
 
 /* No comment provided by engineer. */
-"position x" = "x_位置";
+"position x" = "ポジションX";
 
 /* No comment provided by engineer. */
-"position y" = "y_位置";
+"position y" = "ポジションY";
+
+/* No comment provided by engineer. */
+"power" = "power";
 
 /* No comment provided by engineer. */
 "Preview" = "プレビュー";
@@ -1313,22 +1397,16 @@
 "Previous look" = "前の外見";
 
 /* No comment provided by engineer. */
-"Privacy Settings" = "Privacy Settings";
+"Privacy Settings" = "プライバシー設定";
 
 /* No comment provided by engineer. */
-"Project" = "Project";
+"Project" = "プロジェクト";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
+"Project name" = "プロジェクト名";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
-
-/* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
+"Project Name is necessary!" = "プロジェクト名が必要です！";
 
 /* No comment provided by engineer. */
 "Projects" = "プログラム";
@@ -1337,34 +1415,43 @@
 "Projects on device" = "プログラム";
 
 /* No comment provided by engineer. */
+"Properties" = "オブジェクト";
+
+/* No comment provided by engineer. */
 "random position" = "ランダムな位置";
 
 /* No comment provided by engineer. */
-"Rate Us" = "Rate Us";
+"random value from to" = "random";
+
+/* No comment provided by engineer. */
+"Rate Us" = "評価してください";
 
 /* No comment provided by engineer. */
 "RE" = "RE";
 
 /* No comment provided by engineer. */
-"Recording" = "Recording";
+"Recording" = "録音中";
 
 /* paint */
-"Rectangle / Square" = "Rectangle / Square";
-
-/* No comment provided by engineer. */
-"red" = "red";
+"Rectangle / Square" = "矩形/正方形（角）";
 
 /* paint */
 "Red" = "赤";
 
 /* No comment provided by engineer. */
+"red" = "赤";
+
+/* No comment provided by engineer. */
 "Register" = "登録";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "登録が完了しました";
 
 /* No comment provided by engineer. */
-"Remove known devices" = "Remove known devices";
+"regular expression" = "正規表現";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "既知のデバイスを削除";
 
 /* No comment provided by engineer. */
 "Rename" = "名前の変更";
@@ -1373,7 +1460,7 @@
 "Rename actor or object" = "オブジェクトの名前を変更";
 
 /* No comment provided by engineer. */
-"Rename image" = "Rename image";
+"Rename image" = "画像の名前を変更";
 
 /* No comment provided by engineer. */
 "Rename project" = "プログラム名を変更";
@@ -1394,13 +1481,13 @@
 "Report as inappropriate" = "不適切として報告します。";
 
 /* paint */
-"Resize" = "Resize";
+"Resize" = "サイズ変更";
 
 /* No comment provided by engineer. */
 "Restart" = "再スタート";
 
 /* No comment provided by engineer. */
-"Result" = "Result";
+"Result" = "結果";
 
 /* No comment provided by engineer. */
 "Right" = "右";
@@ -1412,31 +1499,31 @@
 "round" = "round";
 
 /* No comment provided by engineer. */
-"Sa" = "Sa";
+"Sa" = "サ";
 
 /* No comment provided by engineer. */
-"Saturday" = "Saturday";
+"Saturday" = "土曜日";
+
+/* No comment provided by engineer. */
+"Save changes" = "変更の保存";
 
 /* paint */
-"Save to Photos" = "Save to Photos";
+"Save to Photos" = "写真に保存";
 
 /* No comment provided by engineer. */
-"Save to PocketCode" = "Save to PocketCode";
+"Saved" = "保存しました";
 
 /* No comment provided by engineer. */
-"Saved" = "Saved";
-
-/* No comment provided by engineer. */
-"Saxophone" = "Saxophone";
+"Saxophone" = "サクソフォーン";
 
 /* No comment provided by engineer. */
 "Say" = "言う";
 
 /* No comment provided by engineer. */
-"Scene" = "Scene";
+"Scene" = "シーン";
 
 /* No comment provided by engineer. */
-"Script" = "Script";
+"Script" = "スクリプト";
 
 /* No comment provided by engineer. */
 "Scripts" = "スクリプト";
@@ -1448,37 +1535,37 @@
 "second" = "秒";
 
 /* No comment provided by engineer. */
-"second " = "second ";
+"second " = "秒 ";
 
 /* No comment provided by engineer. */
 "seconds" = "秒";
 
 /* No comment provided by engineer. */
-"seconds " = "seconds ";
+"seconds " = "秒 ";
 
 /* No comment provided by engineer. */
 "Select all" = "すべて選択";
 
 /* bluetooth */
-"Select Arduino" = "Select Arduino";
+"Select Arduino" = "Arduinoの選択";
 
 /* No comment provided by engineer. */
-"Select brick category" = "Select brick category";
+"Select brick category" = "ブロックのカテゴリを選択";
 
 /* No comment provided by engineer. */
-"Select categories" = "Select categories";
+"Select categories" = "カテゴリを選択";
 
 /* No comment provided by engineer. */
-"Select logical operator" = "Select logical operator";
+"Select logical operator" = "論理演算子を選択";
 
 /* No comment provided by engineer. */
-"Select mathematical function" = "Select mathematical function";
+"Select mathematical function" = "数学関数を選択";
 
 /* paint */
-"Select option:" = "Select option:";
+"Select option:" = "オプションを選択:";
 
 /* bluetooth */
-"Select Phiro" = "Select Phiro";
+"Select Phiro" = "セレクトピロ";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "匿名のクラッシュ レポートを送信";
@@ -1487,16 +1574,16 @@
 "Sensors" = "センサー";
 
 /* No comment provided by engineer. */
-"Sep" = "Sep";
+"Sep" = "9月";
 
 /* No comment provided by engineer. */
 "September" = "9月";
 
 /* No comment provided by engineer. */
-"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+"Server is taking to long to respond, please try again later." = "サーバーは応答に時間がかかっています。後でもう一度お試しください。";
 
 /* No comment provided by engineer. */
-"Session expired, please log in." = "Session expired, please log in.";
+"Session expired, please log in." = "セッションの期限が切れました。ログインしてください。";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "Arduino のデジタル端子を設定";
@@ -1517,7 +1604,7 @@
 "Set description" = "説明を設定する";
 
 /* No comment provided by engineer. */
-"Set Instrument to" = "Set Instrument to";
+"Set Instrument to" = "楽器の設定";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "ペンの色を設定";
@@ -1535,6 +1622,9 @@
 "Set size to" = "サイズ：";
 
 /* No comment provided by engineer. */
+"Set tempo to" = "テンポを設定";
+
+/* No comment provided by engineer. */
 "Set transparency " = "透明度の設定 ";
 
 /* No comment provided by engineer. */
@@ -1544,10 +1634,10 @@
 "Set volume to" = "音量：";
 
 /* No comment provided by engineer. */
-"Set x to " = "Set x to ";
+"Set x to " = "xを設定 ";
 
 /* No comment provided by engineer. */
-"Set y to " = "Set y to ";
+"Set y to " = "y に設定 ";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
@@ -1562,6 +1652,9 @@
 "Show variable" = "変数を表示";
 
 /* No comment provided by engineer. */
+"sine" = "sin";
+
+/* No comment provided by engineer. */
 "size" = "サイズ";
 
 /* No comment provided by engineer. */
@@ -1571,7 +1664,7 @@
 "Skip" = "スキップ";
 
 /* No comment provided by engineer. */
-"SO" = "SO";
+"SO" = "ソ";
 
 /* No comment provided by engineer. */
 "Something went wrong while uploading the project." = "アップロード中にエラーが発生しました";
@@ -1580,7 +1673,7 @@
 "Sound" = "音";
 
 /* No comment provided by engineer. */
-"Sound name" = "Sound name";
+"Sound name" = "サウンド名";
 
 /* No comment provided by engineer. */
 "Sounds" = "サウンド";
@@ -1591,26 +1684,26 @@
 /* No comment provided by engineer. */
 "Speed" = "スピード";
 
-/* No comment provided by engineer. */
-"sqrt" = "sqrt";
-
 /* paint */
-"square" = "square";
+"square" = "正方形の";
+
+/* No comment provided by engineer. */
+"square root" = "sqrt";
 
 /* No comment provided by engineer. */
 "stage is touched" = "screen_is_touched";
 
 /* No comment provided by engineer. */
-"stage touch x" = "screen_touch_x";
+"stage touch x" = "ステージタッチX";
 
 /* No comment provided by engineer. */
-"stage touch y" = "screen_touch_y";
+"stage touch y" = "ステージタッチY";
 
 /* paint */
 "Stamp" = "スタンプ";
 
 /* paint */
-"Stamped" = "Stamped";
+"Stamped" = "スタンプ済み";
 
 /* No comment provided by engineer. */
 "Start sound" = "サウンドの再生";
@@ -1619,13 +1712,16 @@
 "Start sound and wait" = "サウンドを開始して待つ";
 
 /* No comment provided by engineer. */
-"Steel Drum" = "Steel Drum";
+"Steel Drum" = "スチールドラム(ドラム)";
 
 /* No comment provided by engineer. */
-"step" = "step";
+"step" = "ステップ";
 
 /* No comment provided by engineer. */
 "steps" = "ステップ";
+
+/* No comment provided by engineer. */
+"Stitch" = "ステッチ";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "すべてのサウンドを停止";
@@ -1634,28 +1730,34 @@
 "Stop Phiro motor" = "Phiro モーターを停止";
 
 /* No comment provided by engineer. */
-"Su" = "Su";
+"Su" = "日";
 
 /* No comment provided by engineer. */
-"Sunday" = "Sunday";
+"Sunday" = "日曜日";
 
 /* No comment provided by engineer. */
 "Switch to look" = "コスチュームに切り替える：";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "番号で外見に切り替え";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "数式が正しくありません!";
 
 /* No comment provided by engineer. */
-"Synth Lead" = "Synth Lead";
+"Synth Lead" = "シンセリード";
 
 /* No comment provided by engineer. */
-"Synth Pad" = "Synth Pad";
+"Synth Pad" = "シンセパッド";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
+"tangent" = "tan";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+"Tap \"+\" to add actors or objects" = "「+」をタップすると、アクターやオブジェクトを追加できます";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add backgrounds" = "「+」をタップして背景を追加";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add looks" = "外見を追加するに「+」をタップしてください";
@@ -1666,6 +1768,9 @@
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "「+」をタップしてのサウンドを追加するには";
 
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "変数とリストを追加するには「+」をタップします";
+
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "利用とサービスの規約";
 
@@ -1673,67 +1778,64 @@
 "Text" = "テキスト";
 
 /* No comment provided by engineer. */
-"Text message:" = "Text message:";
+"Text message:" = "テキストメッセージ:";
 
 /* paint */
-"Text:" = "Text:";
+"Text:" = "テキストです。";
 
 /* No comment provided by engineer. */
-"Th" = "Th";
+"Th" = "木";
 
 /* No comment provided by engineer. */
-"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+"The description contains invalid characters, try again." = "説明に無効な文字が含まれています。再度お試し下さい。";
 
 /* No comment provided by engineer. */
-"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+"The featured projects cannot be loaded" = "注目プロジェクトを読み込むことができません";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
+"The following item could not be imported from the media library:" = "メディアライブラリから次の項目をインポートできませんでした:";
 
 /* No comment provided by engineer. */
-"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+"The input is too long. Please enter maximal %lu character(s)." = "入力が長すぎます。最大 %lu 文字を入力してください。";
 
 /* No comment provided by engineer. */
-"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+"The name contains blocked characters. Please try again!" = "名前にブロックされた文字が含まれています。もう一度やり直してください！";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "最近のプロジェクトは読み込めません";
 
 /* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+"The requested project can not be loaded. Please try again later." = "要求されたプロジェクトを読み込むことができません。後でもう一度お試しください。";
 
 /* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The sound item cannot be loaded" = "サウンドアイテムを読み込むことができません";
 
 /* No comment provided by engineer. */
-"The sound item cannot be loaded" = "The sound item cannot be loaded";
-
-/* No comment provided by engineer. */
-"The sound item cannot be played" = "The sound item cannot be played";
+"The sound item cannot be played" = "サウンドアイテムを再生できません";
 
 /* No comment provided by engineer. */
 "Think" = "考える";
 
 /* No comment provided by engineer. */
-"This action can not be undone!" = "This action can not be undone!";
+"This action can not be undone!" = "この操作は元に戻せません！";
 
 /* No comment provided by engineer. */
-"This feature is coming soon!" = "This feature is coming soon!";
+"This feature is coming soon!" = "この機能は近日公開予定です！";
 
 /* No comment provided by engineer. */
-"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
+"This list can not be deleted because it is still in use." = "まだ使用されているため、このリストは削除できません。";
 
 /* No comment provided by engineer. */
-"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+"This variable can not be deleted because it is still in use." = "この変数はまだ使用されているため削除できません。";
 
 /* No comment provided by engineer. */
-"Thursday" = "Thursday";
+"Thursday" = "木曜日";
 
 /* No comment provided by engineer. */
 "TI" = "TI";
 
 /* No comment provided by engineer. */
-"time" = "time";
+"time" = "時間";
 
 /* No comment provided by engineer. */
 "times" = "回";
@@ -1745,10 +1847,10 @@
 "to list" = "リストに";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "お客様に当社のサービスおよび関連するアカウントのすべての利点を提供するために、お客様から特定のデータを収集する必要があります。\n\n\u{2022} 当社のサービス（アプリやウェブサイト）を維持・改善し、ICTやSTEM/STEAM教育に関する科学的研究を行うために、当社は、Google LLC（米国）が提供するGoogle Analytics、Crashlytics、Firebase、およびDynatrace LLC（米国）が提供するDynatraceを利用して、当社サービスの利用状況に関するメタデータ（クラッシュ情報、タイムスタンプ、訪問したページ／画面、当社アプリやサービスの利用状況、使用したOS、ネットワークプロバイダーに関する情報など）を取得しています。この分析と収集されたデータは、お客様のプロフィールにリンクされることはなく、いかなる個人情報も含まれません（IPアドレスの最後のビットは匿名化されます）。ただし、収集されたデータは、サービス提供者（Google LLC, USAおよびDynatrace LLC, USA）に転送されます。データ処理は、Google LLCおよびDynatrace LLCとの契約に基づいて行われます。このサービス提供者との関係は、EUの一般データ保護規則（EU GDPR）およびEU-USA「プライバシーシールド」協定に準拠しています。\n\n\u{2022} 当社のシステムでアカウントを作成して使用するために、また、お客様のアカウントに関する必要な変更（例えば、当社の「利用規約およびサービス」、当社のコミュニティルール、または当社のポリシーの更新や違反など）を電子メールで通知するために、当社はお客様のユーザー名と、お客様から提供された場合はお客様の電子メールアドレスを保存します。お客様がGoogleまたはFacebookのアカウントを介してアカウントに接続している場合、当社はさらに、これらのサービスでお客様のアカウントに接続された識別キーを保存します。当社は、お客様が明示的に許可した場合を除き、このデータを他の目的（マーケティングなど）に使用することはありません。\n\n\u{2022} 任意で、共有サイトのアカウントページからお客様の居住国を提供することができます。この情報は、お客様の公開プロフィールに表示され、当社の統計・調査目的でのみ使用されます。この情報は、お客様のプロフィール設定でいつでも削除できます。\n\n\u{2022} お客様は、https://share.catrob.at のお客様のプロフィールページからアカウントを削除することで、お客様のアカウントに属する個人データの使用をいつでも撤回することができます。アカウントを削除した後も、お客様は提供されるサービスを利用することができますが、番組のアップロード、コメント、「いいね！」などの共同作業はできません。また、アップロードした番組やコメントなど、アカウントにリンクしている提供コンテンツもすべて削除されます。\n\n\u{2022} ユーザーが投稿したアップロードやコメントが違法な目的で使用されるなど、当社のサービスが悪用されることを防ぐため、ユーザーが作成したすべての公開データ（アップロードやコメント）は、タイムスタンプや使用されたインターネットアドレスとともに、内部的にデータベースに保存されます。このデータは、十分な違法行為が合理的に疑われ、公式に権利を有する法的機関が適用法に基づいて要求した場合を除き、いかなる機関によっても使用されたり転送されたりすることはありません。ただし、違法行為の疑いがある場合や、法律に基づき公的機関から要請があった場合は、個別に確認させていただきます。\n\n\u{2022} お客様は、MailChimp サービス（The Rocket Science Group LLC d/b/a MailChimp, USA）を通じて当社が提供する https://catrob.at/newsletter にある「Catrobat Newsletter」を自発的に購読することができます。これにより、提供された電子メールアドレス宛に、Catrobat プロジェクトおよびそのサービスに関する最新情報を受け取ることができます。お客様は、すべてのニュースレターのフッターにある「配信停止」のリンクを利用して、いつでもニュースレターを取り消すことができます。このニュースレターは、EU一般データ保護規則およびEU-USA「プライバシーシールド」を遵守し、データ処理に関する契約を結んでいるMailChimp社によって提供されています。MailChimpの詳細については、MailChimp\\のプライバシーポリシーと利用規約をご覧ください。\n\n\u{2022} すべてのサービスは、オーストリアのグラーツで設立された非営利 NGO である International Catrobat Association - Verein zur Förderung freier Software の傘下で、無料のオープンソース Catrobat プロジェクトによって提供されています。私たちのポリシーは、EUおよびオーストリアのデータ保護法（GDPR）を尊重しています。お問い合わせは、contact@catrobat.org にメールをお送りいただくか、Catrobat に郵送してください。\nc/o\nInstitute of Software Technology,\nGraz University of Technology (グラーツ工科大学)。\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(欧州連合)を参照してください。\n\nお客様が14歳未満の場合は、このポリシーに法的保護者（通常は親）の同意が必要です。\n\nCatrobat\\の公式英語版プライバシーポリシーは、ウェブ上のhttps://catrob.at/privacypolicy。\n\nバージョン2.2、2019年10月17日\n\n旧バージョンのプライバシーポリシー(2.0)はこちらからご覧いただけます： http://developer.catrobat.org/privacy_policy_2-0";
 
 /* No comment provided by engineer. */
-"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "アプリを使用するには、当社のプライバシーポリシーに同意する必要があります。 ただし、快適にご利用いただけない場合は、share.catrob.at で無料のウェブサービスをご利用いただけます。";
 
 /* No comment provided by engineer. */
 "to x:" = "x：";
@@ -1757,22 +1859,25 @@
 "Today" = "今日";
 
 /* No comment provided by engineer. */
+"Touch detection" = "タッチ検出";
+
+/* No comment provided by engineer. */
 "touch position" = "タッチ位置";
 
 /* No comment provided by engineer. */
 "transparency" = "透明度";
 
 /* No comment provided by engineer. */
-"Trombone" = "Trombone";
+"Trombone" = "トロンボーン";
 
 /* No comment provided by engineer. */
 "true" = "真";
 
 /* No comment provided by engineer. */
-"Tu" = "Tu";
+"Tu" = "(火)";
 
 /* No comment provided by engineer. */
-"Tuesday" = "Tuesday";
+"Tuesday" = "火曜日";
 
 /* No comment provided by engineer. */
 "Turn camera" = "カメラを";
@@ -1787,67 +1892,70 @@
 "Turn right" = "右方向：";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to import project!" = "プロジェクトをインポートすることができません。";
 
 /* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+"Unable to load project!" = "プロジェクトを読み込めません！";
 
 /* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "そのサウンドを再生できません！\nおそらくこれは有効なサウンドではないか、ファイルが破損しています。";
 
 /* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "選択したサウンドを再生できません。デバイスはサイレントモードです。 iPhoneの左側のスイッチを切り替え、もう一度再生をタップして、サイレントモードをオフにしてください。";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "選択したサウンドを再生できません。デバイスはサイレントモードです。 お使いのiPadの右側にあるスイッチを切り替え、もう一度再生をタップして、サイレントモードをオフにしてください。";
 
 /* paint */
-"underline" = "underline";
+"underline" = "アンダーライン";
 
 /* Button title of alert view to invoke undo if user shakes device */
 "Undo" = "取り消す";
 
 /* Description text in alert view if user shakes the device */
-"Undo Drawing?" = "Undo Drawing?";
+"Undo Drawing?" = "描画を元に戻しますか？";
 
 /* Description text in alert view if user shakes the device */
-"Undo Typing?" = "Undo Typing?";
+"Undo Typing?" = "入力を元に戻しますか？";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Unexpected Error";
+"Unexpected Error" = "予期しないエラー";
 
 /* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+"Unexpected Error, please try again later." = "予期しないエラーです。しばらくしてからもう一度お試しください。";
 
 /* No comment provided by engineer. */
-"Unknown Element" = "Unknown Element";
+"Unknown Element" = "不明な要素";
 
 /* No comment provided by engineer. */
-"Unselect all" = "Unselect all";
+"Unselect all" = "すべて選択解除";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Unsupported Brick:";
+"Unsupported Brick:" = "対応していないブロック:";
 
 /* No comment provided by engineer. */
-"Unsupported Elements" = "Unsupported Elements";
+"Unsupported Elements" = "対応していない要素";
 
 /* No comment provided by engineer. */
-"Unsupported Script:" = "Unsupported Script:";
+"Unsupported Script:" = "サポートされていないスクリプト";
 
 /* No comment provided by engineer. */
 "Upload project" = "プログラムをアップロード";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Upload selected project";
+"Upload selected project" = "選択したプロジェクトをアップロード";
 
 /* No comment provided by engineer. */
 "Upload successful" = "アップロードが成功";
 
 /* No comment provided by engineer. */
-"Uploaded" = "Uploaded";
+"Uploaded" = "アップロードしました";
 
 /* No comment provided by engineer. */
 "Use camera" = "使用カメラ";
 
 /* No comment provided by engineer. */
-"Use Phiro bricks" = "Use Phiro bricks";
+"Use Phiro bricks" = "ピロ・ブリックの使用";
 
 /* No comment provided by engineer. */
 "Username" = "ユーザー名";
@@ -1856,37 +1964,43 @@
 "Username must not be blank" = "ユーザー名を空白にできません";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/List";
+"Variable name:" = "変数名:";
 
 /* No comment provided by engineer. */
-"Variable name:" = "Variable name:";
+"Variable or list" = "変数またはリスト";
 
 /* No comment provided by engineer. */
-"Variable or list" = "Variable or list";
-
-/* No comment provided by engineer. */
-"Variable type" = "Variable type";
+"Variable type" = "変数の型";
 
 /* No comment provided by engineer. */
 "Variables" = "変数";
 
 /* No comment provided by engineer. */
-"Version" = "Version";
+"Variables for all actors and objects" = "すべてのアクターとオブジェクトの変数";
 
 /* No comment provided by engineer. */
-"Vibraphone" = "Vibraphone";
+"Variables for this actor or object only" = "このアクターまたはオブジェクトのみの変数";
+
+/* No comment provided by engineer. */
+"Version" = "バージョン";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "バイブラフォン";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "振動する";
 
 /* No comment provided by engineer. */
-"vibration" = "vibration";
+"vibration" = "振動";
 
 /* No comment provided by engineer. */
-"View" = "View";
+"View" = "表示";
 
 /* No comment provided by engineer. */
-"Views" = "Views";
+"Views" = "ビュー";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "ビジュアルセンサー";
 
 /* No comment provided by engineer. */
 "Wait" = " ";
@@ -1895,19 +2009,19 @@
 "Wait until" = "次まで待つ";
 
 /* No comment provided by engineer. */
-"We" = "We";
+"We" = "私たちは";
 
 /* No comment provided by engineer. */
-"Wednesday" = "Wednesday";
+"Wednesday" = "水曜日";
 
 /* No comment provided by engineer. */
 "weekday" = "曜日";
 
 /* No comment provided by engineer. */
-"Welcome!" = "Welcome!";
+"Welcome!" = "ようこそ！";
 
 /* No comment provided by engineer. */
-"What's your name?" = "What's your name?";
+"What's your name?" = "あなたのお名前は？";
 
 /* No comment provided by engineer. */
 "When" = "場合";
@@ -1916,7 +2030,7 @@
 "When background changes to" = "背景を変更した場合";
 
 /* No comment provided by engineer. */
-"When project starts" = "When project starts";
+"When project starts" = "プロジェクト開始時";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "画面にタッチした時";
@@ -1928,13 +2042,13 @@
 "When you receive" = "受け取ったとき";
 
 /* paint */
-"Width selection" = "Width selection";
+"Width selection" = "幅の選択";
 
 /* No comment provided by engineer. */
 "with" = "で";
 
 /* No comment provided by engineer. */
-"Wooden Flute" = "Wooden Flute";
+"Wooden Flute" = "木製のフルート";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";
@@ -1952,16 +2066,19 @@
 "Yesterday" = "昨日";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "このプロジェクトは既にダウンロードされています！";
 
 /* No comment provided by engineer. */
-"Your answer" = "Your answer";
+"Your answer" = "あなたの回答";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "あなたのメール アドレスは無効なようです";
 
 /* No comment provided by engineer. */
-"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+"Your project was uploaded to the Catrobat community where others can use and download it." = "プロジェクトは Catrobat コミュニティにアップロードされました。";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "レポートは正常に送信されました!";
 
 /* paint */
-"Zoom" = "Zoom";
+"Zoom" = "ズーム";

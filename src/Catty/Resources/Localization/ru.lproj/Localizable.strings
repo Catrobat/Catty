@@ -14,10 +14,13 @@
 "About Pocket Code" = "О Pocket Code";
 
 /* No comment provided by engineer. */
+"absolute value" = "абсолютное значение";
+
+/* No comment provided by engineer. */
 "acceleration x" = "ускорение_х";
 
 /* No comment provided by engineer. */
-"acceleration y" = "ускорение_у";
+"acceleration y" = "ускорение у";
 
 /* No comment provided by engineer. */
 "acceleration z" = "ускорение_z";
@@ -101,6 +104,15 @@
 "April" = "Апрель";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccosine";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsine";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctangent";
+
+/* No comment provided by engineer. */
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
@@ -169,11 +181,11 @@
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Прежде чем вы сможете приступить к программированию, прочтите и примите нашу политику конфиденциальности, чтобы использовать приложение:";
 
-/* paint */
-"Blue" = "Синий";
-
 /* No comment provided by engineer. */
 "blue" = "синий";
+
+/* paint */
+"Blue" = "Синий";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth недоступен. Либо ваше устройство не поддерживает Bluetooth 4.0 или ваш Bluetooth-чип поврежден. Пожалуйста, проверьте его соединением с другим Bluetooth-устройством в настройках.";
@@ -230,7 +242,7 @@
 "Catrobat community" = "Сообщество Catrobat";
 
 /* No comment provided by engineer. */
-"ceil" = "округление к большему";
+"ceiling" = "округление к большему";
 
 /* No comment provided by engineer. */
 "Cello" = "Виолончель";
@@ -299,6 +311,9 @@
 "color" = "цвет";
 
 /* No comment provided by engineer. */
+"Comparison operators" = "операторы сравнения";
+
+/* No comment provided by engineer. */
 "compass" = "компас";
 
 /* No comment provided by engineer. */
@@ -341,6 +356,9 @@
 "Copy" = "Копировать";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Копировать персонажа или объекты";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Копировать блок";
 
 /* No comment provided by engineer. */
@@ -350,10 +368,19 @@
 "Copy project" = "Копировать проект";
 
 /* No comment provided by engineer. */
+"cosine" = "косинус";
+
+/* No comment provided by engineer. */
 "Create account" = "Зарегистрироваться";
 
 /* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Создать шаблоны для швейных машин";
+
+/* No comment provided by engineer. */
 "Data" = "Данные";
+
+/* No comment provided by engineer. */
+"Date and time" = "Дата и время";
 
 /* No comment provided by engineer. */
 "day" = "день";
@@ -366,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "Декабрь";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "десятичный логарифм";
 
 /* No comment provided by engineer. */
 "degrees" = "градусов";
@@ -461,6 +491,9 @@
 "device motion-sensor" = "датчик движения устройства";
 
 /* No comment provided by engineer. */
+"Device sensors" = "Датчики устройства";
+
+/* No comment provided by engineer. */
 "direction" = "направление";
 
 /* No comment provided by engineer. */
@@ -479,6 +512,9 @@
 "Disagree" = "Отклонить";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Отбросить изменения";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "Отключить все устройства";
 
 /* No comment provided by engineer. */
@@ -488,7 +524,7 @@
 "Do you really want to delete the current drawing?" = "Вы действительно хотите удалить текущий рисунок?";
 
 /* paint */
-"Do you want to save the changes" = "Вы хотите сохранить изменения";
+"Do you want to save your changes?" = "Хотите ли вы сохранить свои изменения?";
 
 /* No comment provided by engineer. */
 "don't rotate" = "не вращать";
@@ -498,9 +534,6 @@
 
 /* No comment provided by engineer. */
 "Download" = "Скачать";
-
-/* No comment provided by engineer. */
-"Download successful" = "Загрузка успешно завершена";
 
 /* No comment provided by engineer. */
 "Downloads" = "Загрузки";
@@ -569,6 +602,12 @@
 "Email" = "Почта";
 
 /* No comment provided by engineer. */
+"Embroidery" = "Вышивка";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "Расширение для вышивки";
+
+/* No comment provided by engineer. */
 "Empty input!" = "Пустой ввод!";
 
 /* No comment provided by engineer. */
@@ -623,10 +662,16 @@
 "Error" = "Ошибка";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Произошла ошибка при загрузке проекта. Пожалуйста, повторите попытку позже.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "Ошибка сохранения файла";
 
 /* No comment provided by engineer. */
 "Event" = "Событие";
+
+/* No comment provided by engineer. */
+"exponent" = "экспонент";
 
 /* No comment provided by engineer. */
 "FA" = "ФА";
@@ -704,6 +749,9 @@
 "Forgot password" = "Забыли пароль?";
 
 /* No comment provided by engineer. */
+"Formula Editor" = "Редактор формул";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "Выражение слишком длинное!";
 
 /* No comment provided by engineer. */
@@ -725,6 +773,12 @@
 "Front camera" = "Фронтальная камера";
 
 /* No comment provided by engineer. */
+"Functions" = "Функции";
+
+/* No comment provided by engineer. */
+"General properties" = "общие свойства";
+
+/* No comment provided by engineer. */
 "Glide" = "Скользить ";
 
 /* No comment provided by engineer. */
@@ -736,11 +790,11 @@
 /* No comment provided by engineer. */
 "Go to front" = "Переместить на передний план";
 
-/* paint */
-"Green" = "зелёный";
-
 /* No comment provided by engineer. */
 "green" = "зелёный";
+
+/* paint */
+"Green" = "зелёный";
 
 /* No comment provided by engineer. */
 "Guitar" = "Гитара";
@@ -791,10 +845,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Для использования Pocket Code и других продуктов в рамках проекта Catrobat Вы должны принять условия Лицензионного Соглашения и строго следовать им при использовании Pocket Code и других продуктов. Посмотрите точную формулировку лицензии по ссылке ниже.";
 
 /* No comment provided by engineer. */
-"inclination x" = "наклон_x";
+"inclination x" = "наклон x";
 
 /* No comment provided by engineer. */
-"inclination y" = "наклон_y";
+"inclination y" = "наклон y";
 
 /* No comment provided by engineer. */
 "Information" = "Информация";
@@ -825,6 +879,9 @@
 
 /* paint */
 "italic" = "курсив";
+
+/* No comment provided by engineer. */
+"item" = "элемент";
 
 /* No comment provided by engineer. */
 "Jan" = "Янв";
@@ -878,10 +935,10 @@
 "left-right only" = "только влево-вправо";
 
 /* No comment provided by engineer. */
-"Length" = "Длина";
+"length" = "длина";
 
 /* No comment provided by engineer. */
-"length" = "длина";
+"Length" = "Длина";
 
 /* No comment provided by engineer. */
 "letter" = "буква";
@@ -899,6 +956,12 @@
 "Lists" = "Списки";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "Списки для всех актеров или объектов";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "Списки только для этого актера или объекта";
+
+/* No comment provided by engineer. */
 "Loading" = "Загрузка";
 
 /* No comment provided by engineer. */
@@ -909,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "Логические";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "Логические (Булевы) операторы и константы";
 
 /* No comment provided by engineer. */
 "Login" = "Войти";
@@ -922,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "долгота";
 
-/* No comment provided by engineer. */
-"Look" = "Образ";
-
 /* LOOK */
 "look" = "образ";
+
+/* No comment provided by engineer. */
+"Look" = "Образ";
 
 /* No comment provided by engineer. */
 "look name" = "название образа";
@@ -953,7 +1019,13 @@
 "Marimba" = "Маримба";
 
 /* No comment provided by engineer. */
-"Math" = "Математика";
+"Maths" = "Математика";
+
+/* No comment provided by engineer. */
+"Maximize" = "Максимизировать";
+
+/* No comment provided by engineer. */
+"maximum of" = "макс.";
 
 /* No comment provided by engineer. */
 "May" = "Май";
@@ -977,6 +1049,12 @@
 "MI" = "МИ";
 
 /* No comment provided by engineer. */
+"Minimize" = "Минимизировать";
+
+/* No comment provided by engineer. */
+"minimum of" = "минимум";
+
+/* No comment provided by engineer. */
 "minute" = "минута";
 
 /* paint */
@@ -984,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Пн";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Крот";
@@ -1008,6 +1089,9 @@
 
 /* No comment provided by engineer. */
 "Motion" = "Движение";
+
+/* No comment provided by engineer. */
+"Motion properties" = "свойства движения";
 
 /* No comment provided by engineer. */
 "Move" = "Переместить";
@@ -1047,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "Такое имя уже существует.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "натуральный логарифм";
 
 /* No comment provided by engineer. */
 "New" = "Новый";
@@ -1112,9 +1199,6 @@
 "not available. Continue anyway?" = "недоступно. Все равно продолжить?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Недостаточно памяти для загрузки этого проекта. Пожалуйста, удалите некоторые проекты";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "Недостаточно памяти";
 
 /* No comment provided by engineer. */
@@ -1139,13 +1223,7 @@
 "Object" = "Объект";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Списки объектов:";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "Имя объекта или актера";
-
-/* No comment provided by engineer. */
-"Object variables:" = "Переменные объекта:";
 
 /* No comment provided by engineer. */
 "Oct" = "Окт";
@@ -1218,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
+
+/* No comment provided by engineer. */
+"pi" = "пи";
 
 /* No comment provided by engineer. */
 "Piano" = "Пианино";
@@ -1298,10 +1379,13 @@
 "Pointer" = "Указатель";
 
 /* No comment provided by engineer. */
-"position x" = "координата_x";
+"position x" = "координата x";
 
 /* No comment provided by engineer. */
-"position y" = "координата_y";
+"position y" = "координата y";
+
+/* No comment provided by engineer. */
+"power" = "степень";
 
 /* No comment provided by engineer. */
 "Preview" = "Предпросмотр";
@@ -1319,16 +1403,10 @@
 "Project" = "Проект";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Списки проекта:";
-
-/* No comment provided by engineer. */
 "Project name" = "Название проекта";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Необходимо имя проекта!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Переменные проекта:";
 
 /* No comment provided by engineer. */
 "Projects" = "Проекты";
@@ -1337,7 +1415,13 @@
 "Projects on device" = "Проекты на устройстве";
 
 /* No comment provided by engineer. */
+"Properties" = "Свойства";
+
+/* No comment provided by engineer. */
 "random position" = "Случайное место";
+
+/* No comment provided by engineer. */
+"random value from to" = "случайный";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Оценить нас";
@@ -1351,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "Прямоугольник / Квадрат";
 
-/* No comment provided by engineer. */
-"red" = "красный";
-
 /* paint */
 "Red" = "красный";
+
+/* No comment provided by engineer. */
+"red" = "красный";
 
 /* No comment provided by engineer. */
 "Register" = "Зарегистрироваться";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Регистрация завершена";
+
+/* No comment provided by engineer. */
+"regular expression" = "регулярное выражение";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Удалить известные устройства";
@@ -1417,11 +1504,11 @@
 /* No comment provided by engineer. */
 "Saturday" = "Суббота";
 
+/* No comment provided by engineer. */
+"Save changes" = "Сохранить изменения";
+
 /* paint */
 "Save to Photos" = "Сохранить фотографии ";
-
-/* No comment provided by engineer. */
-"Save to PocketCode" = "Сохранить в PocketCode";
 
 /* No comment provided by engineer. */
 "Saved" = "Сохранено";
@@ -1535,6 +1622,9 @@
 "Set size to" = "Установить размер";
 
 /* No comment provided by engineer. */
+"Set tempo to" = "Установить темп";
+
+/* No comment provided by engineer. */
 "Set transparency " = "Задать прозрачность ";
 
 /* No comment provided by engineer. */
@@ -1560,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "Показать переменную";
+
+/* No comment provided by engineer. */
+"sine" = "синус";
 
 /* No comment provided by engineer. */
 "size" = "размер";
@@ -1591,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "Скорость";
 
-/* No comment provided by engineer. */
-"sqrt" = "корень";
-
 /* paint */
 "square" = "квадрат";
+
+/* No comment provided by engineer. */
+"square root" = "корень";
 
 /* No comment provided by engineer. */
 "stage is touched" = "к_экрану_прикоснулись";
@@ -1604,7 +1697,7 @@
 "stage touch x" = "прикосновение_к_экрану_x";
 
 /* No comment provided by engineer. */
-"stage touch y" = "прикосновение_к_экрану_y";
+"stage touch y" = "прикосновение к экрану y";
 
 /* paint */
 "Stamp" = "Штамп";
@@ -1628,6 +1721,9 @@
 "steps" = "шагов";
 
 /* No comment provided by engineer. */
+"Stitch" = "Прикрепить";
+
+/* No comment provided by engineer. */
 "Stop all sounds" = "Остановить все звуки";
 
 /* No comment provided by engineer. */
@@ -1643,6 +1739,9 @@
 "Switch to look" = "Задать образ";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "Переключиться на образ с номером";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "Ошибка формулы!";
 
 /* No comment provided by engineer. */
@@ -1650,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Synth Pad" = "Фоновый Синтезатор";
+
+/* No comment provided by engineer. */
+"tangent" = "тангенс";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Нажми \"+\", чтобы добавить актеров или объектов";
@@ -1665,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "Нажмите «+», чтобы добавить звуки";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Нажмите \"+\", чтобы добавить переменные и списки";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "Условия пользования и обслуживания";
@@ -1698,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "Недавние проекты не могут быть загружены";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "Запрошенный проект не найден. Пожалуйста, выберите другой.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "Запрошенный проект не может быть загружен. Пожалуйста, повторите попытку позже.";
@@ -1757,6 +1859,9 @@
 "Today" = "Сегодня";
 
 /* No comment provided by engineer. */
+"Touch detection" = "Обнаружение касаний";
+
+/* No comment provided by engineer. */
 "touch position" = "Место, к которому прикоснулись";
 
 /* No comment provided by engineer. */
@@ -1785,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "Повернуть направо";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Невозможно импортировать проект!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Не удается загрузить проект!";
@@ -1856,9 +1964,6 @@
 "Username must not be blank" = "Имя пользователя не должно быть пустым";
 
 /* No comment provided by engineer. */
-"Var/List" = "Переменная/Список";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Имя переменной:";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1974,12 @@
 
 /* No comment provided by engineer. */
 "Variables" = "Переменные";
+
+/* No comment provided by engineer. */
+"Variables for all actors and objects" = "Переменные для всех актеров и объектов";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "Переменные только для этого актера или объекта";
 
 /* No comment provided by engineer. */
 "Version" = "Версия";
@@ -1887,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Views" = "Просмотры";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Визуальные датчики";
 
 /* No comment provided by engineer. */
 "Wait" = "Ждать";
@@ -1962,6 +2076,9 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Ваш проект был загружен в сообщество Catrobat, где его могут использовать и загружать другие.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "Ваше сообщение успешно отправлено!";
 
 /* paint */
 "Zoom" = "Масштаб";
