@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ActiveLabel",
+        "repositoryURL": "https://github.com/optonaut/ActiveLabel.swift",
+        "state": {
+          "branch": null,
+          "revision": "36949c1a69ef8b40574da20c9e24b115f387b1cf",
+          "version": "1.1.5"
+        }
+      },
+      {
         "package": "CwlCatchException",
         "repositoryURL": "https://github.com/mattgallagher/CwlCatchException.git",
         "state": {
@@ -33,7 +42,7 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "d0d669fba45e16b0669ce4986725b71da41c4049",
+          "revision": "0be276f6a7fd54af4c3eb03f2d12e12d8c8a1a1d",
           "version": "6.0.1"
         }
       },
@@ -50,9 +59,9 @@
         "package": "Quick",
         "repositoryURL": "https://github.com/Quick/Quick",
         "state": {
-          "branch": "master",
-          "revision": "daece8247ce389d80eaa7c6fd0a02cbaa2024f83",
-          "version": null
+          "branch": null,
+          "revision": "8cce6acd38f965f5baa3167b939f86500314022b",
+          "version": "3.1.2"
         }
       },
       {

@@ -45,7 +45,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloader {
         }
     }
 
-    func fetchSearchQuery(searchTerm: String, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchSearchQuery(searchTerm: String, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             if let project = self.project {
                 completion([project], self.error)
@@ -56,7 +56,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloader {
         }
     }
 
-    func fetchProjects(for type: ProjectType, offset: Int, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchProjects(for type: ProjectType, offset: Int, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             if let project = self.project {
                 completion([project], self.error)
@@ -67,7 +67,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloader {
         }
     }
 
-    func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             if let featuredProject = self.featuredProject {
                 completion([featuredProject], self.error)

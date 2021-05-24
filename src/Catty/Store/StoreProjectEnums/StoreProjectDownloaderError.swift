@@ -20,13 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-enum StoreProjectDownloaderError: Error {
+enum StoreProjectDownloaderError: Equatable {
     /// Indicates an error with the URLRequest.
     case request(error: Error?, statusCode: Int)
     /// Indicates a parsing error of the received data.
     case parse(error: Error)
     /// Indicates a server timeout.
     case timeout
+    /// Indicates a manual cancellation by the user.
+    case cancelled
     /// Indicates an unexpected error.
     case unexpectedError
+
+    static func == (e1: StoreProjectDownloaderError, e2: StoreProjectDownloaderError) -> Bool {
+        switch (e1, e2) {
+        case (.request(let error1, let statusCode1), .request(let error2, let statusCode2)) where error1?.localizedDescription == error2?.localizedDescription && statusCode1 == statusCode2:
+            return true
+        case (.parse(let error1), .parse(let error2)) where error1.localizedDescription == error2.localizedDescription:
+            return true
+        case (.timeout, .timeout):
+            return true
+        case (.cancelled, .cancelled):
+            return true
+        case (.unexpectedError, .unexpectedError):
+            return true
+        default:
+            return false
+        }
+    }
 }

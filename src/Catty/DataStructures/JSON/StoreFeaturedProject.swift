@@ -27,7 +27,6 @@ struct StoreFeaturedProject: Codable {
     let author: String
     let featuredImage: String
 
-
     private enum CodingKeys: String, CodingKey {
         case id = "project_id"
         case url = "project_url"

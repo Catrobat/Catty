@@ -182,7 +182,7 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             return
         }
 
-        if requestUrl.absoluteString.contains(NetworkDefines.projectDetailsUrlPrefix) {
+        if requestUrl.absoluteString.contains(NetworkDefines.apiEndpointProjectDetails) {
             self.openProjectDetails(url: requestUrl)
             decisionHandler(.cancel)
             return
