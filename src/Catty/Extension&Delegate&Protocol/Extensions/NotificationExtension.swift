@@ -39,9 +39,11 @@ extension Notification.Name {
     static var projectFetchFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchFailure) }
     static var projectFetchDetailsFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchDetailsFailure) }
     static var projectSearchFailure: Notification.Name { .init(rawValue: NotificationName.projectSearchFailure) }
+    static var projectDownloadFailure: Notification.Name { .init(rawValue: NotificationName.projectDownloadFailure) }
     static var settingsCrashReportingChanged: Notification.Name { .init(rawValue: NotificationName.settingsCrashReportingChanged) }
     static var mediaLibraryDownloadIndexFailure: Notification.Name { .init(rawValue: NotificationName.mediaLibraryDownloadIndexFailure) }
     static var mediaLibraryDownloadDataFailure: Notification.Name { .init(rawValue: NotificationName.mediaLibraryDownloadDataFailure) }
+    static var formulaSaved: Notification.Name { .init(rawValue: NotificationName.formulaSaved) }
 }
 
 @objcMembers
@@ -64,7 +66,13 @@ public class NotificationName: NSObject {
     public static let projectFetchFailure = "Project.fetchFailure"
     public static let projectFetchDetailsFailure = "Project.fetchDetailsFailure"
     public static let projectSearchFailure = "Project.searchFailure"
+    public static let projectDownloadFailure = "Project.downloadFailure"
     public static let settingsCrashReportingChanged = "SettingsTableViewController.crashReportingChanged"
     public static let mediaLibraryDownloadIndexFailure = "MediaLibrary.DownloadIndexFailure"
     public static let mediaLibraryDownloadDataFailure = "MediaLibrary.DownloadDataFailure"
+    public static let projectDownloaded = "ProjectDownloaded"
+    public static let hideLoadingView = "HideLoadingView"
+    public static let showSaved = "ShowSavedView"
+    public static let readyToUpload = "ReadyToUpload"
+    public static let formulaSaved = "FormulaEditorViewController.saveIfPossible"
 }

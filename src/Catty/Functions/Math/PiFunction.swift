@@ -22,7 +22,7 @@
 
 class PiFunction: ZeroParameterDoubleFunction {
     static var tag = "PI"
-    static var name = "pi"
+    static var name = kUIFEFunctionPi
     static var defaultValue = Double.pi
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -37,6 +37,6 @@ class PiFunction: ZeroParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: type(of: self).position)]
+        [.functions(position: type(of: self).position, subsection: .maths)]
     }
 }

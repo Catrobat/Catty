@@ -30,9 +30,12 @@
 #import "RuntimeImageCache.h"
 #import "Pocket_Code-Swift.h"
 
-@interface StagePresenterViewController() <UIActionSheetDelegate>
+@interface StagePresenterViewController() <UIActionSheetDelegate, StagePresenterSideMenuDelegate>
 @property (nonatomic, strong) Stage *stage;
 @property (nonatomic, strong) SKView *skView;
+@property (nonatomic, strong) StagePresenterSideMenuView *menuView;
+@property (nonatomic, strong) NSLayoutConstraint *menuViewLeadingConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *menuViewRightConstraint;
 
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
@@ -59,6 +62,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _skView = [[SKView alloc] initWithFrame:self.view.bounds];
+    _skView.paused = NO;
+    
+    #if DEBUG == 1
+        _skView.showsFPS = YES;
+        _skView.showsNodeCount = YES;
+        _skView.showsDrawCount = YES;
+    #endif
+    
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.background;
 }
@@ -79,21 +92,34 @@
     
     [self.view addSubview:self.skView];
     
-    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"SceneMenuView" owner:self options:nil];
-    self.menuView = [subviewArray objectAtIndex:0];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    self.menuView = [[StagePresenterSideMenuView alloc] initWithFrame:CGRectMake(0, 0, screenWidth / StagePresenterSideMenuView.widthProportionalPortrait, screenHeight) andStagePresenterViewController_: self];
+    
     [self.view insertSubview:self.menuView aboveSubview:self.skView];
+    
     self.menuView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.menuView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
+    [self.menuView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.menuView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+
+    if (self.project.header.landscapeMode == YES)
+    {
+        self.menuViewRightConstraint = [self.menuView.rightAnchor constraintEqualToAnchor:self.view.leftAnchor constant:self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalLandscape];
+    } else {
+        self.menuViewRightConstraint = [self.menuView.rightAnchor constraintEqualToAnchor:self.view.leftAnchor constant:self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalPortrait];
+    }
+    
+    self.menuViewRightConstraint.active = YES;
     self.menuViewLeadingConstraint = [self.menuView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor];
     self.menuViewLeadingConstraint.active = YES;
     [self.view layoutIfNeeded];
-
-    [self setUpMenuButtons];
-    [self setUpLabels];
-    [self setUpGridView];
-    [self checkAspectRatio];
     
+    [self setUpGridView];
     [self setupStageAndStart];
+    
+    [self hideMenuView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -145,70 +171,6 @@
 }
 
 #pragma mark View Setup
-- (void)setUpLabels
-{
-    NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
-                               kLocalizedRestart,
-                               kLocalizedContinue,
-                               kLocalizedPreview,
-                               kLocalizedAxes, nil];
-    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel, self.menuRestartLabel, self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel, nil];
-    for (int i = 0; i < [labelTextArray count]; ++i) {
-        [self setupLabel:labelTextArray[i]
-                 andView:labelArray[i]];
-    }
-    [self.menuBackLabel addTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuContinueLabel addTarget:self action:@selector(continueAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuRestartLabel addTarget:self action:@selector(restartAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuAxisLabel addTarget:self action:@selector(showHideAxisAction:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)setupLabel:(NSString*)name andView:(UIButton*)label
-{
-    [label setTitle:name forState:UIControlStateNormal];
-    label.tintColor = UIColor.navTint;
-    label.titleLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
-    label.titleLabel.textAlignment = NSTextAlignmentCenter;
-}
-
-- (void)setUpMenuButtons
-{
-    [self setupButtonWithButton:self.menuBackButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
-                    andSelector:@selector(stopAction)];
-    [self setupButtonWithButton:self.menuContinueButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_continue"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"]
-                    andSelector:@selector(continueAction:withDuration:)];
-    [self setupButtonWithButton:self.menuScreenshotButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_screenshot"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"]
-                    andSelector:@selector(takeScreenshotAction:)];
-    [self setupButtonWithButton:self.menuRestartButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_restart"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"]
-                    andSelector:@selector(restartAction:)];
-    [self setupButtonWithButton:self.menuAxisButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_toggle_axis"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"]
-                    andSelector:@selector(showHideAxisAction:)];
-    [self setupButtonWithButton:self.menuAspectRatioButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
-                    andSelector:@selector(manageAspectRatioAction:)];
-}
-
-- (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal
-      andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
-{
-    [button setBackgroundImage:stateNormal forState:UIControlStateNormal];
-    [button setBackgroundImage:stateHighlighted forState:UIControlStateHighlighted];
-    [button setBackgroundImage:stateHighlighted forState:UIControlStateSelected];
-    [button addTarget:self action:myAction forControlEvents:UIControlEventTouchUpInside];
-}
-
 - (void)setUpGridView
 {
     self.gridView.backgroundColor = UIColor.clearColor;
@@ -272,13 +234,6 @@
     [self.view insertSubview:self.gridView aboveSubview:self.skView];
 }
 
-- (void)checkAspectRatio
-{
-    if (self.project.header.screenWidth.floatValue == [Util screenWidth:true] && self.project.header.screenHeight.floatValue == [Util screenHeight:true]) {
-        self.menuAspectRatioButton.hidden = YES;
-    }
-}
-
 - (void)setupStageAndStart
 {
     // Initialize scene
@@ -303,7 +258,7 @@
     }
     
     [self hideLoadingView];
-    [self continueAction:nil withDuration:kFirstSwipeDuration];
+    [self continueActionWithDuration:kFirstSwipeDuration];
 }
 
 -(void)resaveLooks
@@ -347,7 +302,12 @@
     [self.stage resumeScheduler];
 }
 
-- (void)continueAction:(UIButton*)sender withDuration:(CGFloat)duration
+- (void)continueAction
+{
+    [self continueActionWithDuration:0];
+}
+
+- (void)continueActionWithDuration:(CGFloat)duration
 {
     if (duration != kFirstSwipeDuration) {
         [self resumeAction];
@@ -384,7 +344,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)restartAction:(UIButton*)sender
+- (void)restartAction
 {
     [self showLoadingView];
     
@@ -397,6 +357,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.project = [Project projectWithLoadingInfo:[Util lastUsedProjectLoadingInfo]];
             [self setupStageAndStart];
+            [self.menuView restartWithProject:self.project];
         });
     });
 }
@@ -423,7 +384,7 @@
 
 #pragma mark - User Event Handling
 
-- (void)showHideAxisAction:(UIButton*)sender
+- (void)showHideAxisAction
 {
     if (self.gridView.hidden == NO) {
         self.gridView.hidden = YES;
@@ -432,10 +393,14 @@
     }
 }
 
-- (void)manageAspectRatioAction:(UIButton *)sender
+- (void)aspectRatioAction
 {
     self.stage.scaleMode = self.stage.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
-    self.project.header.screenMode = [self.project.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
+    if ([self.project.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch]) {
+         self.project.header.screenMode = kCatrobatHeaderScreenModeMaximize;
+    } else {
+        self.project.header.screenMode = kCatrobatHeaderScreenModeStretch;
+    }
     [self.skView setNeedsLayout];
     self.menuOpen = YES;
     // pause Scene
@@ -443,9 +408,14 @@
     view.paused = YES;
 }
 
-- (void)takeScreenshotAction:(UIButton*)sender
+- (void)takeScreenshotAction
 {
     [self takeManualScreenshotForSKView:self.skView andProject:self.project.scene];
+}
+
+- (void)shareDSTAction
+{
+    [self shareDST];
 }
 
 #pragma mark - Pan Gesture Handler
@@ -455,17 +425,25 @@
     CGPoint translate = [gesture translationInView:gesture.view];
     translate.y = 0.0;
     
+    
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.firstGestureTouchPoint = [gesture locationInView:gesture.view];
     }
     
     if (gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.firstGestureTouchPoint.x < kSlidingStartArea && self.menuOpen == NO ) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{[self handlePositvePan:translate];}
                              completion:nil];
+        }else if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.menuOpen == YES ) {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handlePositvePan:translate];}
+                             completion:nil];
+            
         } else if (translate.x < 0.0 && translate.x > -self.menuView.frame.size.width && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -512,7 +490,7 @@
                                  self.menuOpen = NO;
                                  [self resumeAction];
                              }];
-        } else if (translate.x > (-self.menuView.frame.size.width/4) && translate.x < 0.0   && self.menuOpen == YES) {
+        } else if (translate.x > (-self.menuView.frame.size.width/4) && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -525,6 +503,18 @@
                                  [self pauseAction];
                              }];
         }
+        else {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self hideMenuView];}
+                             completion:^(BOOL finished) {
+                                 SKView * view = self.skView;
+                                 view.paused = NO;
+                                 self.menuOpen = NO;
+                                 [self resumeAction];
+                             }];
+        }
     }
 }
 
@@ -532,26 +522,45 @@
 {
     [self.view bringSubviewToFront:self.menuView];
     self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width + translate.x;
+    self.menuViewRightConstraint.constant = translate.x;
     [self.view layoutIfNeeded];
 }
 
 - (void)handleNegativePan:(CGPoint)translate
 {
-    self.menuViewLeadingConstraint.constant = translate.x;
-    [self.view layoutIfNeeded];
+    if (self.menuViewRightConstraint.constant > 0)
+    {
+        self.menuViewLeadingConstraint.constant = self.menuViewLeadingConstraint.constant + translate.x;
+        self.menuViewRightConstraint.constant = self.menuViewRightConstraint.constant + translate.x;
+        if (self.menuViewRightConstraint.constant < 0.0)
+        {
+            self.menuViewLeadingConstraint.constant = self.menuViewLeadingConstraint.constant + fabs(self.menuViewRightConstraint.constant);
+            self.menuViewRightConstraint.constant = 0.0;
+            self.menuOpen = NO;
+        }
+        [self.view layoutIfNeeded];
+    }
 }
 
 - (void)showMenuView
 {
     [self.view bringSubviewToFront:self.menuView];
     self.menuViewLeadingConstraint.constant = 0;
+    
+    if(self.project.header.landscapeMode == YES){
+        self.menuViewRightConstraint.constant = self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalLandscape;
+    } else {
+        self.menuViewRightConstraint.constant = self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalPortrait;
+    }
     [self.view layoutIfNeeded];
 }
 
 - (void)hideMenuView
 {
+    
     dispatch_async(dispatch_get_main_queue(), ^(void){
         self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width;
+        self.menuViewRightConstraint.constant = 0;
         [self.view layoutIfNeeded];
     });
 }
@@ -591,20 +600,6 @@
 - (BOOL)isPaused
 {
     return self.menuOpen;
-}
-
-- (SKView*)skView
-{
-    if (!_skView) {
-        _skView = [[SKView alloc] initWithFrame:self.view.bounds];
-#if DEBUG == 1
-        _skView.showsFPS = YES;
-        _skView.showsNodeCount = YES;
-        _skView.showsDrawCount = YES;
-#endif
-    }
-    _skView.paused = NO;
-    return _skView;
 }
 
 #pragma mark - Helpers

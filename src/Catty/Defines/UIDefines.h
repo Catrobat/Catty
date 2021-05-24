@@ -43,15 +43,8 @@
 #define kMenuImageNameExplore @"explore"
 #define kMenuImageNameUpload @"upload"
 
-// view tags
-#define kPlaceHolderTag        99994
-#define kLoadingViewTag        99995
+// view tag
 #define kSavedViewTag          99996
-#define kRegistrationViewTag   99997
-#define kLoginViewTag          99998
-#define kUploadViewTag         99999
-
-#define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
 #define kBrickCellDeleteButtonWidthHeight 55.0f
@@ -63,7 +56,6 @@ static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotificatio
 static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
 static NSString *const kRecordAddedNotification = @"RecordAddedNotification";
 static NSString *const kBrickDetailViewDismissed = @"BrickDetailViewDismissed";
-static NSString *const kProjectDownloadedNotification = @"ProjectDownloadedNotification";
 static NSString *const kHideLoadingViewNotification = @"HideLoadingViewNotification";
 static NSString *const kShowSavedViewNotification = @"ShowSavedViewNotification";
 static NSString *const kReadyToUpload = @"ReadyToUploadProject";
@@ -75,11 +67,7 @@ static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 static NSString *const kUserInfoSound = @"UserInfoSound";
 
 // UI Elements
-#define kNavigationbarHeight 64.0f
 #define kToolbarHeight 44.0f
-#define kHandleImageHeight 15.0f
-#define kHandleImageWidth 40.0f
-#define kOffsetTopBrickSelectionView 70.0f
 
 //BDKNotifyHUD
 #define kBDKNotifyHUDDestinationOpacity 0.3f
@@ -104,6 +92,7 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kArduinoBrick              = 7,
     kPhiroBrick                = 8,
     kPenBrick                  = 9,
+    kEmbroideryBrick           = 10,
     kInvisible                = 99,
     kFavouriteBricks           = 0
 };
@@ -139,15 +128,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickShapeNormalMarginHeightDeduction 14.0f
 #define kBrickShapeRoundedSmallMarginHeightDeduction 27.0f
 #define kBrickShapeRoundedBigMarginHeightDeduction 47.0f
-#define kBrickPatternImageViewOffsetX 0.0f
-#define kBrickPatternImageViewOffsetY 0.0f
-#define kBrickPatternBackgroundImageViewOffsetX 54.0f
-#define kBrickPatternBackgroundImageViewOffsetY 0.0f
-#define kBrickLabelOffsetX 0.0f
-#define kBrickLabelOffsetY 5.0f
 #define kBrickInlineViewCanvasOffsetX 0.0f
 #define kBrickInlineViewCanvasOffsetY 0.0f
-#define kBrickBackgroundImageNameSuffix @"_bg"
 
 #define kBrickLabelFontSize 15.0f
 #define kBrickTextFieldFontSize 15.0f

@@ -1,6 +1,4 @@
 github "SecondRenaissance/Bohr"
-github "TTTAttributedLabel/TTTAttributedLabel" ~> 2.0.0
-github "maxep/MXSegmentedPager" ~> 3.3.0
 github "audiokit/audiokit" "v4.11.2"
 github "ZipArchive/ZipArchive"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.json" ~> 6.34.0

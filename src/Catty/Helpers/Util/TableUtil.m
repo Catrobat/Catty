@@ -22,6 +22,7 @@
 
 #import "TableUtil.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 #define kFeaturedProjectsBannerHeight  400.0f
 #define kFeaturedProjectsBannerWidth   1024.0f

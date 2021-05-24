@@ -55,6 +55,6 @@
         if spriteObject.isBackground() == true {
             return []
         }
-        return [.object(position: type(of: self).position)]
+        return [.object(position: type(of: self).position, subsection: .general)]
     }
 }

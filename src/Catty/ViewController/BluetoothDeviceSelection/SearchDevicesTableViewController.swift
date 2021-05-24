@@ -55,7 +55,7 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = UITableViewCell()
         let peripheral = CentralManager.sharedInstance.peripherals[indexPath.row]
         cell.textLabel?.text = peripheral.name
         cell.accessoryType = .none

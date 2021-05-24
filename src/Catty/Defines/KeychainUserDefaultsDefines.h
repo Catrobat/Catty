@@ -27,6 +27,7 @@
 
 #define kUsePhiroBricks @"usePhiroBricks"
 #define kUseArduinoBricks @"useArduinoBricks"
+#define kUseEmbroideryBricks @"useEmbroideryBricks"
 
 #define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
 #define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
@@ -35,4 +36,5 @@
 
 #define kPhiroActivated 0
 #define kArduinoActivated 1
+#define kEmbroideryActivated 1
 #define kFirebaseSendCrashReportsDefault 1

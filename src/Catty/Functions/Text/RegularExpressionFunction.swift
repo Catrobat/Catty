@@ -22,7 +22,7 @@
 
 class RegularExpressionFunction: DoubleParameterStringFunction {
     static var tag = "REGEX"
-    static var name = "regex"
+    static var name = kUIFEFunctionRegularExpression
     static var defaultValue = ""
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -34,7 +34,7 @@ class RegularExpressionFunction: DoubleParameterStringFunction {
 
     func secondParameter() -> FunctionParameter { .string(defaultValue: "I am a panda") }
 
-    func formulaEditorSections() -> [FormulaEditorSection] { [.math(position: type(of: self).position)] }
+    func formulaEditorSections() -> [FormulaEditorSection] { [.functions(position: type(of: self).position, subsection: .texts)] }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
         let pattern = type(of: self).interpretParameter(parameter: firstParameter)

@@ -41,6 +41,7 @@
 - (BOOL)areAllCellsSelectedInSection:(NSInteger)section;
 - (void)changeToEditingMode:(id)sender;
 - (void)changeToMoveMode:(id)sender;
+- (void)changeToCopyMode:(id)sender;
 - (void)exitEditingMode;
 - (void)showLoadingView;
 - (void)hideLoadingView;

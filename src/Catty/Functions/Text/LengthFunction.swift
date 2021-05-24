@@ -23,7 +23,7 @@
 class LengthFunction: SingleParameterDoubleFunction {
 
     static var tag = "LENGTH"
-    static var name = "length"
+    static var name = kUIFEFunctionLength
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -43,6 +43,6 @@ class LengthFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: type(of: self).position)]
+        [.functions(position: type(of: self).position, subsection: .texts)]
     }
 }

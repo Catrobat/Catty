@@ -58,7 +58,7 @@ class AcosFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("arccos", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionAcos, type(of: function).name)
     }
 
     func testRequiredResources() {
@@ -72,6 +72,6 @@ class AcosFunctionTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.math(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.functions(position: type(of: function).position, subsection: .maths), sections.first)
     }
 }

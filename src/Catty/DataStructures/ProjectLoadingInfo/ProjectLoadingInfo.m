@@ -30,11 +30,15 @@
 {
     NSString *documentsDirectory = [Util applicationDocumentsDirectory];
     NSString *projectsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProjectsFolder];
-    ProjectLoadingInfo *info = [[ProjectLoadingInfo alloc] init];
+    
     NSString *projectDirectoryName = [Project projectDirectoryNameForProjectName:projectName projectID:projectID];
+    
+    ProjectLoadingInfo *info = [[ProjectLoadingInfo alloc] init];
     info.basePath = [NSString stringWithFormat:@"%@/%@/", projectsPath, projectDirectoryName];
     info.visibleName = [Util enableBlockedCharactersForString:projectName];
     info.projectID = projectID;
+    info.useOriginalName = false;
+    
     return info;
 }
 

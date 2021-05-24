@@ -100,7 +100,6 @@ enum CBBroadcastType: String {
 }
 
 // MARK: - Protocol extensions
-// TODO: simplify and remove duplicate...
 extension Collection where Iterator.Element == CBScriptContextProtocol {
 
     func contains(_ e: Iterator.Element) -> Bool {

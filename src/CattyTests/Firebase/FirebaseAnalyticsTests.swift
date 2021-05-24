@@ -88,4 +88,15 @@ final class FirebaseAnalyticsTests: XCTestCase {
         XCTAssertEqual(String(describing: type(of: script)), analytics.loggedEvents["script_disabled"]??.first?.value as! String)
     }
 
+    func testFormulaSavedNotification() {
+        let previousCount = analytics.loggedEvents.count
+        let formula = Formula(string: "1234")!
+
+        NotificationCenter.default.post(name: .formulaSaved, object: formula)
+
+        XCTAssertEqual(analytics.loggedEvents.count, previousCount + 1)
+
+        let event = analytics.loggedEvents["formula_saved"]!
+        XCTAssertEqual(formula.getDisplayString(), event?[AnalyticsParameterItemName] as? String)
+    }
 }

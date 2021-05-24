@@ -22,7 +22,7 @@
 
 class LetterFunction: DoubleParameterStringFunction {
     static var tag = "LETTER"
-    static var name = "letter"
+    static var name = kUIFEFunctionLetter
     static var defaultValue = ""
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -54,6 +54,6 @@ class LetterFunction: DoubleParameterStringFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: type(of: self).position)]
+        [.functions(position: type(of: self).position, subsection: .texts)]
     }
 }

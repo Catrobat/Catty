@@ -23,7 +23,7 @@
 class CosFunction: SingleParameterDoubleFunction {
 
     static var tag = "COS"
-    static var name = "cos"
+    static var name = kUIFEFunctionCosine
     static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -43,6 +43,6 @@ class CosFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: type(of: self).position)]
+        [.functions(position: type(of: self).position, subsection: .maths)]
     }
 }

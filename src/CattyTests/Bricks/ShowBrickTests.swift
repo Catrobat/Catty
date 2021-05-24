@@ -47,4 +47,13 @@ final class ShowBrickTests: AbstractBrickTest {
 
         XCTAssertFalse(spriteNode.isHidden, "ShowBrick is not correctly calculated")
     }
+
+    func testMutableCopy() {
+        let brick = ShowBrick()
+
+        let copiedBrick: ShowBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ShowBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+    }
 }

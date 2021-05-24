@@ -50,11 +50,11 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
 
     func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
-    func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+    func formulaEditorItemsForFunctionSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
     func formulaEditorItemsForLogicSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
     func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
-    func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+    func formulaEditorItemsForSensorsSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 }

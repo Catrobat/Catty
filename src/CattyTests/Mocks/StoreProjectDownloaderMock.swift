@@ -23,7 +23,7 @@
 @testable import Pocket_Code
 import XCTest
 
-final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
+final class StoreProjectDownloaderMock: StoreProjectDownloader {
 
     var progress: Float = 0
     var project: StoreProject?
@@ -34,7 +34,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
     var error: StoreProjectDownloaderError?
     var expectation: XCTestExpectation?
 
-    func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
+    override func download(projectId: String, projectName: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.projectData, self.error)
             self.expectation?.fulfill()
@@ -78,7 +78,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
         }
     }
 
-    func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.project, self.error)
             self.expectation?.fulfill()

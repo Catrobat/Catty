@@ -23,7 +23,7 @@
 class AbsFunction: SingleParameterDoubleFunction {
 
     static var tag = "ABS"
-    static var name = "abs"
+    static var name = kUIFEFunctionAbs
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -43,6 +43,6 @@ class AbsFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: (type(of: self).position))]
+        [.functions(position: type(of: self).position, subsection: .maths)]
     }
 }

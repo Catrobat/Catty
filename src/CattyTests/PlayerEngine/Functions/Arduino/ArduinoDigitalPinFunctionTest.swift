@@ -76,7 +76,7 @@ class ArduinoDigitalPinFunctionTest: XCTestCase {
 
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: function).position, subsection: .arduino), sections.first)
 
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
         XCTAssertEqual(0, function.formulaEditorSections().count)

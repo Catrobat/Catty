@@ -38,3 +38,7 @@
 #import "BrickCellMessageData.h"
 #import "BroadcastBrickCell.h"
 #import "BrickInsertManager.h"
+#import "EVCircularProgressView.h"
+#import "ButtonTags.h"
+#import "RoundBorderedButton.h"
+#import "MirrorRotationZoomTool.h"

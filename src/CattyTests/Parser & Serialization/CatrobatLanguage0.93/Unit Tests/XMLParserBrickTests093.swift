@@ -55,7 +55,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
         self.parserContext!.spriteObject = SpriteObject()
         self.parserContext!.spriteObject.lookList = lookList
-        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetLookBrick.self as? CBXMLNodeProtocol.Type) as! Brick
+        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetLookBrick.self) as! Brick
 
         XCTAssertTrue(brick.isKind(of: SetLookBrick.self), "Invalid brick class")
 

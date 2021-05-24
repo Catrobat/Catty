@@ -23,7 +23,7 @@
 class AcosFunction: SingleParameterDoubleFunction {
 
     static var tag = "ACOS"
-    static var name = "arccos"
+    static var name = kUIFEFunctionAcos
     static var defaultValue = Double.pi / 2
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -43,6 +43,6 @@ class AcosFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: (type(of: self).position))]
+        [.functions(position: type(of: self).position, subsection: .maths)]
     }
 }

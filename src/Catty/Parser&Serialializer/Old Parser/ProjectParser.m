@@ -25,7 +25,6 @@
 #import "GDataXMLNode.h"
 #import "Project.h"
 #import <objc/runtime.h>
-#import "Sound.h"
 #import "Formula.h"
 #import "Script.h"
 #import "XMLObjectReference.h"
@@ -142,6 +141,13 @@
         
         if (lookName && lookFileName) {
             object = [[Look alloc] initWithName:[lookName stringValue] andPath:[lookFileName stringValue]];
+        }
+    } else if ([className isEqualToString:@"Sound"]) {
+        GDataXMLElement *soundName = [node childWithElementName:@"name"];
+        GDataXMLElement *soundFileName = [node childWithElementName:@"fileName"];
+        
+        if (soundName && soundFileName) {
+            object = [[Sound alloc] initWithName:[soundName stringValue] andFileName:[soundFileName stringValue]];
         }
     } else {
         object = [[NSClassFromString(className) alloc] init];

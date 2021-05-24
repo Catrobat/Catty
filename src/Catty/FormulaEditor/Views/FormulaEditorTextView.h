@@ -28,7 +28,6 @@
 - (id)initWithFrame:(CGRect)frame AndFormulaEditorViewController:(FormulaEditorViewController*)formulaEditorViewController;
 - (void)update;
 - (void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex;
-- (void)setParseErrorCursorAndSelection;
 - (NSString*)getHighlightedText;
 
 @end

@@ -30,6 +30,12 @@ final class SpriteObjectMock: SpriteObject {
         background = false
     }
 
+    init(scene: Scene) {
+        background = false
+        super.init()
+        self.scene = scene
+    }
+
     override func isBackground() -> Bool {
         self.background
     }

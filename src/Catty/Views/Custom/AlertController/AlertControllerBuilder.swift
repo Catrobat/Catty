@@ -30,7 +30,7 @@ public final class AlertControllerBuilder: NSObject {
     }
 
     @objc(actionSheetWithTitle:)
-    public static func actionSheet(title: String) -> AlertActionAdding {
+    public static func actionSheet(title: String?) -> AlertActionAdding {
         AlertController(title: title, message: nil, style: .actionSheet)
     }
 

@@ -48,6 +48,6 @@ class FaceDetectedSensor: DeviceSensor {
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        [.device(position: type(of: self).position)]
+        [.sensors(position: type(of: self).position, subsection: .visual)]
     }
 }

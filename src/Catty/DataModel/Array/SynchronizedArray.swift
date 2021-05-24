@@ -42,6 +42,12 @@ public class SynchronizedArray<Element> {
         return result
     }
 
+    var endIndex: Int {
+        var result = 0
+        queue.sync { result = self.array.endIndex }
+        return result
+    }
+
     var first: Element? {
         var result: Element?
         queue.sync { result = self.array.first }
@@ -105,6 +111,14 @@ public class SynchronizedArray<Element> {
         var result = 0
         queue.sync {
             result = self.array.index(i, offsetBy: distance)
+        }
+        return result
+    }
+
+    public func index(after index: Array<Element>.Index) -> Array<Element>.Index {
+        var result = 0
+        queue.sync {
+            result = self.array.index(after: index)
         }
         return result
     }

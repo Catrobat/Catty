@@ -22,7 +22,7 @@
 
 class ContainsFunction: DoubleParameterDoubleFunction {
     static var tag = "CONTAINS"
-    static var name = "contains"
+    static var name = kUIFEFunctionContains
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
@@ -59,6 +59,6 @@ class ContainsFunction: DoubleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: (type(of: self).position))]
+        [.functions(position: type(of: self).position, subsection: .lists)]
     }
 }

@@ -58,7 +58,7 @@ class SqrtFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("sqrt", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionSqrt, type(of: function).name)
     }
 
     func testRequiredResources() {
@@ -72,6 +72,6 @@ class SqrtFunctionTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.math(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.functions(position: type(of: function).position, subsection: .maths), sections.first)
     }
 }

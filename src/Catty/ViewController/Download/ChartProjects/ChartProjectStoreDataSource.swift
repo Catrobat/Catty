@@ -54,7 +54,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     var mostRecentScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
 
     var scrollView = UIScrollView()
-    var isReloadingData: Bool = false
+    var isReloadingData = false
 
     var projects: [StoreProject] {
         switch projectType {

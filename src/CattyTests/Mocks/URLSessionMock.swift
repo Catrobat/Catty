@@ -71,6 +71,7 @@ class URLSessionMock: URLSession {
         var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
         var mockResponse: URLResponse?
         var mockError: Error?
+        var cancelled = false
 
         required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void,
                       response: URLResponse?,
@@ -97,6 +98,10 @@ class URLSessionMock: URLSession {
         override func resume() {
             self.completionHandler?(nil, mockResponse, mockError)
             self.completionHandler = nil
+        }
+
+        override func cancel() {
+            cancelled = true
         }
     }
 }

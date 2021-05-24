@@ -30,10 +30,11 @@
 #define marginBottomSquaredBrick -4.9f
 #define marginBottomRoundedBrick 2.6f
 
-@class Brick, BrickCellInlineView, BrickCell, SelectButton;
+@class Brick, BrickCellInlineView, BrickCell, BrickCellFormulaData, SelectButton;
 @protocol BrickCellDataDelegate, BrickCellDataProtocol;
 
 @protocol BrickCellDelegate<NSObject>
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event;
 @optional
 - (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end
@@ -45,6 +46,7 @@
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic) BOOL isInserting;
+@property (nonatomic) CGFloat maxInputFormulaFrameLength;
 
 @property (nonatomic, strong) SelectButton *selectButton;
 
@@ -59,6 +61,7 @@
 - (void)insertAnimate:(BOOL)animate;
 - (void)setupBrickCell;
 - (void)setupBrickCellinSelectionView:(BOOL)inSelectionView inBackground:(BOOL)inBackground;
+- (void)calcMaxInputFormulaFrameLength: (NSArray*) partLabels WithFrame:(CGRect)frame WithParams:(NSArray*)params;
 
 - (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 - (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className;

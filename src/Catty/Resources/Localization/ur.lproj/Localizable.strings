@@ -14,6 +14,9 @@
 "About Pocket Code" = "پاکٹ کوڈ کے بارے میں";
 
 /* No comment provided by engineer. */
+"absolute value" = "absolute value";
+
+/* No comment provided by engineer. */
 "acceleration x" = "تیز رفتار x";
 
 /* No comment provided by engineer. */
@@ -101,6 +104,15 @@
 "April" = "اپریل";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccosine";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsine";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctangent";
+
+/* No comment provided by engineer. */
 "Arduino" = "آردوانو";
 
 /* No comment provided by engineer. */
@@ -169,11 +181,11 @@
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
-/* paint */
-"Blue" = "نیلا";
-
 /* No comment provided by engineer. */
 "blue" = "نیلا";
+
+/* paint */
+"Blue" = "نیلا";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "بلوٹوت دستیاب نہیں ہے. یا تو آپ کا آلہ بلوٹوت 4.0 کی حمایت نہیں کرتا ہے یا آپ کا بلوٹوت چپ نقصان پہنچا ہے. اس ترتیبات میں کسی اور بلوٹوت آلہ کے سلسلے میں براہ کرم چیک کریں.";
@@ -230,7 +242,7 @@
 "Catrobat community" = "کاٹروبٹ کے تمام لوگ                      ";
 
 /* No comment provided by engineer. */
-"ceil" = "چھت";
+"ceiling" = "چھت";
 
 /* No comment provided by engineer. */
 "Cello" = "Cello";
@@ -299,6 +311,9 @@
 "color" = "رنگ";
 
 /* No comment provided by engineer. */
+"Comparison operators" = "موازنہ آپریٹرز";
+
+/* No comment provided by engineer. */
 "compass" = "قطب نما";
 
 /* No comment provided by engineer. */
@@ -341,6 +356,9 @@
 "Copy" = "نقل بنائین";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Copy actors or objects";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
@@ -350,10 +368,19 @@
 "Copy project" = " منصوبے کاپی کریں\n";
 
 /* No comment provided by engineer. */
+"cosine" = "cosine";
+
+/* No comment provided by engineer. */
 "Create account" = "اکاؤنٹ بنائیں\n";
 
 /* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Create patterns for stiching machines";
+
+/* No comment provided by engineer. */
 "Data" = "ڈیٹا";
+
+/* No comment provided by engineer. */
+"Date and time" = "تاریخ اور وقت";
 
 /* No comment provided by engineer. */
 "day" = "دن";
@@ -366,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "دسمبر";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "decimal logarithm";
 
 /* No comment provided by engineer. */
 "degrees" = "ڈگری";
@@ -461,6 +491,9 @@
 "device motion-sensor" = "آلہ تحریک سینسر";
 
 /* No comment provided by engineer. */
+"Device sensors" = "آلہ سینسر";
+
+/* No comment provided by engineer. */
 "direction" = "سمت";
 
 /* No comment provided by engineer. */
@@ -479,6 +512,9 @@
 "Disagree" = "غیر متفق";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Discard changes";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "تمام آلات کو منسلک کریں";
 
 /* No comment provided by engineer. */
@@ -488,7 +524,7 @@
 "Do you really want to delete the current drawing?" = "آپ واقعی موجودہ ڈرائنگ حذف کرنا چاہتے ہیں؟";
 
 /* paint */
-"Do you want to save the changes" = "کیا آپ تبدیلیاں محفوظ کرنا چاہتے ہیں";
+"Do you want to save your changes?" = "کیا آپ تبدیلیاں محفوظ کرنا چاہتے ہیں?";
 
 /* No comment provided by engineer. */
 "don't rotate" = "گھومنا مت کرو";
@@ -498,9 +534,6 @@
 
 /* No comment provided by engineer. */
 "Download" = "ڈاؤنلوڈ";
-
-/* No comment provided by engineer. */
-"Download successful" = "ڈاؤن لوڈ کامیاب";
 
 /* No comment provided by engineer. */
 "Downloads" = "ڈاؤن لوڈز";
@@ -569,6 +602,12 @@
 "Email" = "ای میل";
 
 /* No comment provided by engineer. */
+"Embroidery" = "کشیدہ کاری";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "کشیدہ کاری کی توسیع";
+
+/* No comment provided by engineer. */
 "Empty input!" = "خالی ان پٹ!";
 
 /* No comment provided by engineer. */
@@ -623,10 +662,16 @@
 "Error" = "خرابی";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "فائل کو بچانے میں خرابی";
 
 /* No comment provided by engineer. */
 "Event" = "واقعہ";
+
+/* No comment provided by engineer. */
+"exponent" = "exponent";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -704,6 +749,9 @@
 "Forgot password" = "پاس ورڈ بھول گئے";
 
 /* No comment provided by engineer. */
+"Formula Editor" = "Formula Editor";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "فارمولا بہت لمبا ہے!";
 
 /* No comment provided by engineer. */
@@ -725,6 +773,12 @@
 "Front camera" = "سامنے والا کیمرہ";
 
 /* No comment provided by engineer. */
+"Functions" = "افعال";
+
+/* No comment provided by engineer. */
+"General properties" = "عام خصوصیات";
+
+/* No comment provided by engineer. */
 "Glide" = "سرکنا";
 
 /* No comment provided by engineer. */
@@ -736,11 +790,11 @@
 /* No comment provided by engineer. */
 "Go to front" = "سامنے جاؤ";
 
-/* paint */
-"Green" = "سبز";
-
 /* No comment provided by engineer. */
 "green" = "سبز";
+
+/* paint */
+"Green" = "سبز";
 
 /* No comment provided by engineer. */
 "Guitar" = "Guitar";
@@ -827,6 +881,9 @@
 "italic" = "اطالوی";
 
 /* No comment provided by engineer. */
+"item" = "اشیاء";
+
+/* No comment provided by engineer. */
 "Jan" = "جنوری";
 
 /* No comment provided by engineer. */
@@ -878,10 +935,10 @@
 "left-right only" = "بایاں-دایاں صرف";
 
 /* No comment provided by engineer. */
-"Length" = "لمبائی";
+"length" = "لمبائی";
 
 /* No comment provided by engineer. */
-"length" = "لمبائی";
+"Length" = "لمبائی";
 
 /* No comment provided by engineer. */
 "letter" = "حرف";
@@ -899,6 +956,12 @@
 "Lists" = "فہرستیں";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "فہرست تمام اداکاروں اور اشیاء کے لئے";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "اس اداکار یا صرف آبجیکٹ کے لیے فہرستیں";
+
+/* No comment provided by engineer. */
 "Loading" = "لوڈ ہو رہا ہے...";
 
 /* No comment provided by engineer. */
@@ -909,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "منطق";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "منطقی (بولین) آپریٹرز اور رکاوٹوں";
 
 /* No comment provided by engineer. */
 "Login" = "لاگ اِن";
@@ -922,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "طول و عرض";
 
-/* No comment provided by engineer. */
-"Look" = "دیکھو";
-
 /* LOOK */
 "look" = "دیکھو";
+
+/* No comment provided by engineer. */
+"Look" = "دیکھو";
 
 /* No comment provided by engineer. */
 "look name" = "نام دیکھو";
@@ -953,7 +1019,13 @@
 "Marimba" = "Marimba";
 
 /* No comment provided by engineer. */
-"Math" = "ریاضی";
+"Maths" = "ریاضی";
+
+/* No comment provided by engineer. */
+"Maximize" = "Maximize";
+
+/* No comment provided by engineer. */
+"maximum of" = "زیادہ سے زیادہ";
 
 /* No comment provided by engineer. */
 "May" = "مئی";
@@ -977,6 +1049,12 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
+"Minimize" = "Minimize";
+
+/* No comment provided by engineer. */
+"minimum of" = "کم از کم";
+
+/* No comment provided by engineer. */
 "minute" = "منٹ";
 
 /* paint */
@@ -984,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Mo";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "تل";
@@ -1008,6 +1089,9 @@
 
 /* No comment provided by engineer. */
 "Motion" = "حرکت";
+
+/* No comment provided by engineer. */
+"Motion properties" = "حرکت خصوصیات";
 
 /* No comment provided by engineer. */
 "Move" = "آگۓ بڑہیں";
@@ -1047,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "نام پہلے ہی موجود ہے";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "natural logarithm";
 
 /* No comment provided by engineer. */
 "New" = "نیا";
@@ -1112,9 +1199,6 @@
 "not available. Continue anyway?" = "دستیاب نہیں ہے. ویسے بھی جاری رکھیں؟";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "اس منصوبے کو ڈاؤن لوڈ کرنے کے لئے کافی مفت میموری نہیں ہے. آپ کے کچھ منصوبوں کو حذف کریں";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "میموری کافی نہیں ہے";
 
 /* No comment provided by engineer. */
@@ -1139,13 +1223,7 @@
 "Object" = "آبجیکٹ";
 
 /* No comment provided by engineer. */
-"Object lists:" = "آبجیکٹ کی فہرست";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "آبجیکٹ متغیرات:";
 
 /* No comment provided by engineer. */
 "Oct" = "اکتوبر";
@@ -1218,6 +1296,9 @@
 
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
+
+/* No comment provided by engineer. */
+"pi" = "pi";
 
 /* No comment provided by engineer. */
 "Piano" = "Piano";
@@ -1304,6 +1385,9 @@
 "position y" = "پوزیشن y";
 
 /* No comment provided by engineer. */
+"power" = "قوت";
+
+/* No comment provided by engineer. */
 "Preview" = "پیش منظر";
 
 /* No comment provided by engineer. */
@@ -1319,16 +1403,10 @@
 "Project" = "منصوبہ";
 
 /* No comment provided by engineer. */
-"Project lists:" = "آبجیکٹ کی فہرست";
-
-/* No comment provided by engineer. */
 "Project name" = "نام پروجیکٹ";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "پروگرام کا نام ضروری ہے۔";
-
-/* No comment provided by engineer. */
-"Project variables:" = "آبجیکٹ متغیرات:";
 
 /* No comment provided by engineer. */
 "Projects" = "پروگرامات";
@@ -1337,7 +1415,13 @@
 "Projects on device" = "پروگرامات";
 
 /* No comment provided by engineer. */
+"Properties" = "آبجیکٹ";
+
+/* No comment provided by engineer. */
 "random position" = "بے ترتیب پوزیشن";
+
+/* No comment provided by engineer. */
+"random value from to" = "سے بے ترتیب قیمت";
 
 /* No comment provided by engineer. */
 "Rate Us" = "ہمیں اعزاز دیں!";
@@ -1351,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "مستطیل / مربع";
 
-/* No comment provided by engineer. */
-"red" = "سرخ";
-
 /* paint */
 "Red" = "سرخ";
+
+/* No comment provided by engineer. */
+"red" = "سرخ";
 
 /* No comment provided by engineer. */
 "Register" = "رجسٹر کریں";
 
 /* No comment provided by engineer. */
 "Registration successful" = "رجسٹریشن کامیاب!";
+
+/* No comment provided by engineer. */
+"regular expression" = "regular expression";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "معروف آلات کو ہٹا دیں";
@@ -1417,11 +1504,11 @@
 /* No comment provided by engineer. */
 "Saturday" = "ہفتہ";
 
+/* No comment provided by engineer. */
+"Save changes" = "Save changes";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
-
-/* No comment provided by engineer. */
-"Save to PocketCode" = "پاکٹ کوڈ میں محفوظ کریں";
 
 /* No comment provided by engineer. */
 "Saved" = "محفوظ ہوا";
@@ -1535,6 +1622,9 @@
 "Set size to" = "سائز کو سیٹ کریں";
 
 /* No comment provided by engineer. */
+"Set tempo to" = "Set tempo to";
+
+/* No comment provided by engineer. */
 "Set transparency " = "شفافیت مقرر کریں";
 
 /* No comment provided by engineer. */
@@ -1560,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "ویریئبل دکھائیں";
+
+/* No comment provided by engineer. */
+"sine" = "sine";
 
 /* No comment provided by engineer. */
 "size" = "سائز";
@@ -1591,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "رفتار";
 
-/* No comment provided by engineer. */
-"sqrt" = "جذر المربع";
-
 /* paint */
 "square" = "مربع";
+
+/* No comment provided by engineer. */
+"square root" = "سکویر روٹ";
 
 /* No comment provided by engineer. */
 "stage is touched" = "مرحلے چھوڑا جاتا ہے";
@@ -1628,6 +1721,9 @@
 "steps" = "قدم";
 
 /* No comment provided by engineer. */
+"Stitch" = "سلائی";
+
+/* No comment provided by engineer. */
 "Stop all sounds" = "تمام آوازیں بند کریں";
 
 /* No comment provided by engineer. */
@@ -1643,6 +1739,9 @@
 "Switch to look" = "نظر میں تبدیلی کریں";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "نمبر کے ساتھ نظر میں تبدیلی کریں";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "مطابقت پذیری کی خرابی!";
 
 /* No comment provided by engineer. */
@@ -1650,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Synth Pad" = "Synth Pad";
+
+/* No comment provided by engineer. */
+"tangent" = "tangent";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "اداکاروں یا اشیاء کو شامل کرنے کیلئے \"+\" ٹیپ کریں";
@@ -1665,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "آواز شامل کرنے کیلئے \"+\" ٹپ کریں";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "استعمال اور خدمات کی شرائط";
@@ -1698,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "حالیہ منصوبوں کو لوڈ نہیں کیا جا سکتا";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "درخواست شدہ پروجیکٹ نہیں مل سکی. براہ مہربانی ایک مختلف کا انتخاب کریں.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "درخواست شدہ منصوبے لوڈ نہیں کی جا سکتی. براہ کرم کچھ دیر بعد کوشش کریں.";
@@ -1757,6 +1859,9 @@
 "Today" = "آج";
 
 /* No comment provided by engineer. */
+"Touch detection" = " چھونا کھوج";
+
+/* No comment provided by engineer. */
 "touch position" = "ٹچ پوزیشن";
 
 /* No comment provided by engineer. */
@@ -1785,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "دائیں مڑیں";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Unable to import project!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "منصوبے کو لوڈ کرنے میں ناکام";
@@ -1856,9 +1964,6 @@
 "Username must not be blank" = "صارف کا نام خالی نہیں ہونا چاہیئے";
 
 /* No comment provided by engineer. */
-"Var/List" = "متغیر / فہرست";
-
-/* No comment provided by engineer. */
 "Variable name:" = "متغیر نام";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1974,12 @@
 
 /* No comment provided by engineer. */
 "Variables" = "متغیر";
+
+/* No comment provided by engineer. */
+"Variables for all actors and objects" = "تمام اداکاروں اور اشیاء کے لئے متغیرات";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "اس اداکار یا صرف آبجیکٹ کے لیے متغیرات";
 
 /* No comment provided by engineer. */
 "Version" = "ورژن";
@@ -1887,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Views" = "مناظر";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Visual sensors";
 
 /* No comment provided by engineer. */
 "Wait" = "انتظار کریں";
@@ -1962,6 +2076,9 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "آپکی رپورٹ کامیابی سے بھیج دی گئی!";
 
 /* paint */
 "Zoom" = "Zoom";

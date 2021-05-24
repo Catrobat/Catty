@@ -45,7 +45,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     var baseUrl = ""
     var lastSearchTerm = ""
 
-    var isReloadingData: Bool = false
+    var isReloadingData = false
 
     // MARK: - Initializer
 

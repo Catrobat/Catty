@@ -88,7 +88,7 @@ class JoinFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("join", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionJoin, type(of: function).name)
     }
 
     func testRequiredResources() {
@@ -102,6 +102,6 @@ class JoinFunctionTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.math(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.functions(position: type(of: function).position, subsection: .texts), sections.first)
     }
 }

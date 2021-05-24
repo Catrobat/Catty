@@ -100,6 +100,22 @@ class StoreProjectUploaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
+    func testUploadProjectFailsForInvalidToken() {
+        let dvrSession = Session(cassetteName: "StoreProjectUpload.uploadProject.fail.invalidToken")
+        let expectation = XCTestExpectation(description: "Upload Projects")
+        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
+
+        uploader.upload(project: self.project,
+                        completion: { projectId, error in
+                            guard let error = error else { XCTFail("no error received"); return }
+                            XCTAssertNil(projectId)
+                            XCTAssertEqual(error, .authenticationFailed)
+                            expectation.fulfill()
+        }, progression: nil)
+
+        wait(for: [expectation], timeout: 1)
+    }
+
     func testUploadProjectFailsForZippingError() {
         self.fileManagerMock = CBFileManagerMock(filePath: [String](), directoryPath: [String]())
         let uploader = StoreProjectUploader(fileManager: fileManagerMock)

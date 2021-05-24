@@ -61,6 +61,7 @@
 
     // raw value is in radians, standardized value is in degrees
     @objc static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
+        guard let _ = spriteObject.spriteNode else { return self.defaultRawValue }
         let rawValueDegrees = Util.radians(toDegree: rawValue)
         return self.convertSceneToDegrees(rawValueDegrees, for: spriteObject)
     }
@@ -95,6 +96,6 @@
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        [.object(position: type(of: self).position)]
+        [.object(position: type(of: self).position, subsection: .motion)]
     }
 }

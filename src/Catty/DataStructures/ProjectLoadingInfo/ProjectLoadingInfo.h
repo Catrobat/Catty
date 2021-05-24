@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSString *basePath;
 @property (nonatomic, strong) NSString *visibleName;
 @property (nonatomic, strong) NSString *projectID;
+@property (nonatomic) BOOL useOriginalName;
 
 + (ProjectLoadingInfo*)projectLoadingInfoForProjectWithName:(NSString*)projectName projectID:(NSString*)projectID;
 - (BOOL)isEqualToLoadingInfo:(ProjectLoadingInfo*)loadingInfo;

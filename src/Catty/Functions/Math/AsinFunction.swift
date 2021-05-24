@@ -23,7 +23,7 @@
 class AsinFunction: SingleParameterDoubleFunction {
 
     static var tag = "ASIN"
-    static var name = "arcsin"
+    static var name = kUIFEFunctionAsin
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -43,6 +43,6 @@ class AsinFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: (type(of: self).position))]
+        [.functions(position: type(of: self).position, subsection: .maths)]
     }
 }

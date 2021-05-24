@@ -60,11 +60,11 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(hideLoadingView)
-                               name:kHideLoadingViewNotification
+                               name:NotificationName.hideLoadingView
                              object:nil];
     [notificationCenter addObserver:self
                            selector:@selector(showSavedView)
-                               name:kShowSavedViewNotification
+                               name:NotificationName.showSaved
                              object:nil];
   
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint
@@ -309,6 +309,21 @@
 }
 
 - (void)changeToEditingMode:(id)sender
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.navigationItem.hidesBackButton = YES;
+    self.normalModeRightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    self.editing = YES;
+}
+
+- (void)changeToCopyMode:(id)sender
 {
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                                      style:UIBarButtonItemStylePlain

@@ -22,7 +22,7 @@
 
 class FloorFunction: SingleParameterDoubleFunction {
     static var tag = "FLOOR"
-    static var name = "floor"
+    static var name = kUIFEFunctionFloor
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -42,6 +42,6 @@ class FloorFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: type(of: self).position)]
+        [.functions(position: type(of: self).position, subsection: .maths)]
     }
 }

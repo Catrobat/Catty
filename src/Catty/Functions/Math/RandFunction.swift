@@ -22,7 +22,7 @@
 
 class RandFunction: DoubleParameterDoubleFunction {
     static var tag = "RAND"
-    static var name = "random"
+    static var name = kUIFEFunctionRand
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
@@ -69,6 +69,6 @@ class RandFunction: DoubleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: type(of: self).position)]
+        [.functions(position: type(of: self).position, subsection: .maths)]
     }
 }

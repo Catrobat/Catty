@@ -22,6 +22,7 @@
 
 #import "LineTool.h"
 #import "UndoManager.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation LineTool
 

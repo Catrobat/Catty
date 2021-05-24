@@ -65,7 +65,7 @@ class MaxFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("max", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionMax, type(of: function).name)
     }
 
     func testRequiredResources() {
@@ -79,6 +79,6 @@ class MaxFunctionTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.math(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.functions(position: type(of: function).position, subsection: .maths), sections.first)
     }
 }

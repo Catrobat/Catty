@@ -40,7 +40,7 @@
 
 - (id)initWithFrame:(CGRect)frame AndFormulaEditorViewController:(FormulaEditorViewController*)formulaEditorViewController
 {
-    CGRect rect = CGRectMake(frame.origin.x+5, frame.origin.y+2, frame.size.width-10, frame.size.height);
+    CGRect rect = CGRectMake(frame.origin.x + 5, frame.origin.y+TEXT_FIELD_MARGIN_BOTTOM, frame.size.width - 10, frame.size.height);
     self = [super initWithFrame:rect];
     self.formulaEditorViewController = formulaEditorViewController;
     if (self) {
@@ -50,9 +50,8 @@
         [self addGestureRecognizer:self.tapRecognizer];
         self.tapRecognizer.delegate = self;
         [self.tapRecognizer setCancelsTouchesInView:NO];
-        self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
-        self.inputView.backgroundColor = UIColor.background;
         self.userInteractionEnabled = YES;
+        self.scrollEnabled = YES;
         [self setAutocorrectionType:UITextAutocorrectionTypeNo];
         self.backgroundColor = UIColor.whiteColor;
         [[self layer] setBorderColor:UIColor.grayColor.CGColor];
@@ -117,7 +116,6 @@
     }
 }
 
-
 - (void)formulaTapped:(UITapGestureRecognizer *)recognizer
 {
     UITextView *formulaView = (UITextView *)recognizer.view;
@@ -140,8 +138,6 @@
     int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
     
     [self highlightSelection:cursorPostionIndex start:startIndex end:endIndex];
-    
-    
 }
 
 - (void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex
@@ -209,6 +205,7 @@
         return @"";
     }
 }
+
 - (BOOL)hasApostropheAtBeginAndEnd:(NSString *)text
 {
     BOOL containsFirstApostrophe = [[text substringWithRange:NSMakeRange(0, 1)]  isEqual: @"'"];
@@ -244,14 +241,7 @@
     [super setAttributedText:attributedText];
     [self layoutIfNeeded];
     
-    CGRect frame = self.frame;
-    frame.size.height = self.contentSize.height;
-    
-    float maxHeight = [[UIScreen mainScreen] bounds].size.height - self.frame.origin.y - self.inputView.frame.size.height - TEXT_FIELD_MARGIN_BOTTOM;
-    if(frame.size.height > maxHeight)
-        frame.size.height = maxHeight;
-    
-    self.frame = frame;
+    [self resize];
     [self scrollRangeToVisible:NSMakeRange(self.text.length - 1, 1)];
     
     CGRect backspaceFrame = self.backspaceButton.frame;
@@ -259,13 +249,22 @@
     self.backspaceButton.frame = backspaceFrame;
 }
 
-- (void)setParseErrorCursorAndSelection
-{
-    [self.formulaEditorViewController.internFormula selectParseErrorTokenAndSetCursor];
-    int startIndex = [self.formulaEditorViewController.internFormula getExternSelectionStartIndex];
-    int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
-    NSUInteger cursorPostionIndex = [self.formulaEditorViewController.internFormula getExternCursorPosition];
-    [self highlightSelection:cursorPostionIndex start:startIndex end:endIndex];
+- (void)resize {
+    CGFloat maxHeight = self.formulaEditorViewController.view.frame.size.height - self.frame.origin.y - self.inputView.frame.size.height - TEXT_FIELD_MARGIN_BOTTOM * 2;
+    
+    if (!self.inputAccessoryView.hidden) {
+        maxHeight -= self.inputAccessoryView.frame.size.height;
+    }
+    
+    CGRect frame = self.frame;
+    
+    if (self.contentSize.height > maxHeight) {
+        frame.size.height = maxHeight;
+    } else {
+        frame.size.height = self.contentSize.height;
+    }
+    
+    self.frame = frame;
 }
 
 #pragma mark Gesture delegates

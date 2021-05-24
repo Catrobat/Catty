@@ -51,7 +51,7 @@ class FalseFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("false", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionFalse, type(of: function).name)
     }
 
     func testRequiredResources() {
@@ -64,8 +64,7 @@ class FalseFunctionTest: XCTestCase {
 
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
-        XCTAssertEqual(2, sections.count)
-        XCTAssertTrue(sections.contains(.logic(position: type(of: function).position)))
-        XCTAssertTrue(sections.contains(.math(position: type(of: function).position)))
+        XCTAssertEqual(1, sections.count)
+        XCTAssertTrue(sections.contains(.logic(position: type(of: function).position, subsection: .logical)))
     }
 }

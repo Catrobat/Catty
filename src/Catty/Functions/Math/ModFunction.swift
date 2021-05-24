@@ -22,7 +22,7 @@
 
 class ModFunction: DoubleParameterDoubleFunction {
     static var tag = "MOD"
-    static var name = "mod"
+    static var name = kUIFEFunctionMod
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -67,6 +67,6 @@ class ModFunction: DoubleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: type(of: self).position)]
+        [.functions(position: type(of: self).position, subsection: .maths)]
     }
 }

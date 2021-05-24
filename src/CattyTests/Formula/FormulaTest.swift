@@ -180,4 +180,87 @@ final class FormulaTest: XCTestCase {
         formula = Formula(formulaElement: parseTree)!
         XCTAssertFalse(formula.isSingularNumber())
     }
+
+    func testMutableCopy() {
+        let parent = FormulaElement(double: 1.0)!
+        let leftChild = FormulaElement(double: 2.0)!
+        let rightChild = FormulaElement(double: 3.0)!
+        let leftChild2 = FormulaElement(double: 4.0)!
+        let rightChild2 = FormulaElement(double: 5.0)!
+
+        leftChild.parent = parent
+        parent.leftChild = leftChild
+        leftChild.leftChild = leftChild2
+        leftChild2.parent = leftChild
+
+        rightChild.parent = parent
+        parent.rightChild = rightChild
+        rightChild.rightChild = rightChild2
+        rightChild2.parent = rightChild
+
+        let formula = Formula(formulaElement: parent)!
+        let copiedFormula = formula.mutableCopy(with: CBMutableCopyContext()) as! Formula
+
+        XCTAssertTrue(formula.isEqual(to: copiedFormula))
+        XCTAssertFalse(formula.formulaTree === copiedFormula.formulaTree)
+
+        copiedFormula.formulaTree.rightChild.value = "6.0"
+
+        XCTAssertFalse(copiedFormula.formulaTree.rightChild.value.isEqual(formula.formulaTree.rightChild.value))
+    }
+
+    func testGetDisplayString() {
+
+        let formulaString = "1.0"
+        var formula = Formula(string: formulaString)!
+        let formattedString = String(format: "'%@'", formulaString)
+        var displayString = formula.getDisplayString()
+        XCTAssertEqual(displayString, formattedString)
+
+        formula = Formula(double: 1.0)
+        displayString = formula.getDisplayString()
+        XCTAssertEqual(displayString, "1.00")
+
+        formula = Formula(float: 1.0)
+        displayString = formula.getDisplayString()
+        XCTAssertEqual(displayString, "1.00")
+
+        formula = Formula(integer: 1)
+        displayString = formula.getDisplayString()
+        XCTAssertEqual(displayString, "1")
+
+        let internTokenList = NSMutableArray()
+        let token1 = InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: "ROUND")!
+        let token2 = InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN)!
+        let token3 = InternToken(type: TOKEN_TYPE_NUMBER, andValue: "1.1111")!
+        let token4 = InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)!
+        internTokenList.add(token1)
+        internTokenList.add(token2)
+        internTokenList.add(token3)
+        internTokenList.add(token4)
+
+        var tokenList = [InternToken]()
+        for tokenElement in internTokenList {
+            if let internToken = tokenElement as? InternToken {
+                tokenList.append(internToken)
+            }
+        }
+
+        let internParser = InternFormulaParser(tokens: tokenList, andFormulaManager: formulaManager)!
+        let parseTree = internParser.parseFormula(for: nil)
+        XCTAssertNotNil(parseTree)
+
+        formula = Formula(formulaElement: parseTree)!
+        displayString = formula.getDisplayString()
+        XCTAssertEqual(displayString, "round( 1.1111 )")
+    }
+
+    func testSetDisplayStringManually() {
+        let formula = Formula()
+        let formulaString = "1.0"
+        let formattedString = String(format: "'%@'", formulaString)
+        formula.displayString = formattedString as NSString
+        let displayString = formula.getDisplayString()
+        XCTAssertEqual(displayString, formattedString)
+    }
 }

@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "0be276f6a7fd54af4c3eb03f2d12e12d8c8a1a1d",
+          "revision": "d0d669fba45e16b0669ce4986725b71da41c4049",
           "version": "6.0.1"
         }
       },
@@ -51,7 +51,7 @@
         "repositoryURL": "https://github.com/Quick/Quick",
         "state": {
           "branch": "master",
-          "revision": "5b612da260294fbffbbb223e892a373820003dd2",
+          "revision": "daece8247ce389d80eaa7c6fd0a02cbaa2024f83",
           "version": null
         }
       },

@@ -102,7 +102,7 @@ class FirmataMock: Firmata {
     var receivedPinMode: PinMode = .unknown
     var receivedString: String = ""
     var receivedPinState: PinState = .low
-    var receivedBool: Bool = false
+    var receivedBool = false
 
     override func writePinMode(_ newMode: PinMode, pin: UInt8) {
         receivedPin = pin

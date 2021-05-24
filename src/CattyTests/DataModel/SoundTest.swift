@@ -43,9 +43,9 @@ final class SoundTest: XCTestCase {
           let equalSound = Sound(name: "testSound", fileName: "testSoundFile")
           let otherSound = Sound(name: "otherSound", fileName: "testSoundFile")
 
-           XCTAssertTrue(sound.isEqual(to: equalSound))
+           XCTAssertTrue(sound.isEqual(equalSound))
            XCTAssertFalse(sound === equalSound)
-           XCTAssertFalse(sound.isEqual(to: otherSound))
+           XCTAssertFalse(sound.isEqual(otherSound))
        }
 
        func testMutableCopyWithContext() {

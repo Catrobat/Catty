@@ -101,7 +101,7 @@ class MultiFingerXFunctionTests: XCTestCase {
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: function).position, subsection: .touch), sections.first)
     }
 
     private func standardizedValue(_ point: CGPoint) -> Double {

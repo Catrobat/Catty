@@ -58,7 +58,7 @@ class LnFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("ln", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionLn, type(of: function).name)
     }
 
     func testRequiredResources() {
@@ -72,6 +72,6 @@ class LnFunctionTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.math(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.functions(position: type(of: function).position, subsection: .maths), sections.first)
     }
 }

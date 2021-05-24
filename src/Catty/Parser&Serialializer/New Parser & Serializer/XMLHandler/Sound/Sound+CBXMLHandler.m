@@ -41,10 +41,8 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"sound"];
-    Sound *sound = [self new];
     if ([CBXMLParserHelper isReferenceElement: xmlElement]) {
-        sound = [self parseSoundWithReferenceForElement:xmlElement withContext:context];
-        return sound;
+        return [self parseSoundWithReferenceForElement:xmlElement withContext:context];
     }
     NSArray *soundChildElements = [xmlElement children];
     [XMLError exceptionIf:[soundChildElements count] notEquals:2 message:@"Sound must contain two child nodes"];
@@ -62,8 +60,8 @@
     
     [XMLError exceptionIfString:nameChildNode.name isNotEqualToString:@"name" message:@"Sound contains wrong child node(s)"];
     [XMLError exceptionIfString:fileNameChildNode.name isNotEqualToString:@"fileName" message:@"Sound contains wrong child node(s)"];
-    sound.name = [nameChildNode stringValue];
-    sound.fileName = [fileNameChildNode stringValue];
+    Sound *sound = [[Sound alloc] initWithName:[nameChildNode stringValue] andFileName:[fileNameChildNode stringValue]];
+
     return sound;
 }
 

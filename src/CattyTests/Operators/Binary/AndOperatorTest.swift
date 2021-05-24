@@ -58,6 +58,6 @@ class AndOperatorTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = op.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertTrue(sections.contains(.logic(position: type(of: op).position)))
+        XCTAssertTrue(sections.contains(.logic(position: type(of: op).position, subsection: .logical)))
     }
 }

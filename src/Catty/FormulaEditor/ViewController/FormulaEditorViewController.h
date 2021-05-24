@@ -35,7 +35,7 @@
 @class UserList;
 @protocol UserDataProtocol;
 
-@interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIGestureRecognizerDelegate>
+@interface FormulaEditorViewController : UIViewController<UIGestureRecognizerDelegate>
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorHistory *history;
 @property (strong, nonatomic) NSMutableArray<UserVariable*> *variableSourceProject;
@@ -45,16 +45,16 @@
 @property (weak, nonatomic) SpriteObject *object;
 @property (strong, nonatomic) FormulaManager *formulaManager;
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
+@property (strong, nonatomic) UIAlertController *computeDialog;
+@property (weak, nonatomic) NSTimer *dialogUpdateTimer;
 
 - (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andFormulaManager:(FormulaManager*)formulaManager;
-- (void)setBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 - (void)update;
 - (void)updateDeleteButton:(BOOL)enabled;
 - (void)backspace:(id)sender;
-- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData*)brickCellData andForce:(BOOL)forceChange;
+- (NSString*)interpretFormula:(Formula*)formula forSpriteObject:(SpriteObject*)spriteObject;
+- (void)setParseErrorCursorAndSelection;
 
 - (void)handleInput;
-- (BOOL)isVariableUsed:(UserVariable*)variable;
-- (BOOL)isListUsed:(id<UserDataProtocol>)list;
 
 @end

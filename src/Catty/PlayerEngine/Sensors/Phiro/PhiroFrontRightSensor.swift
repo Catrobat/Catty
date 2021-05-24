@@ -51,6 +51,6 @@
         if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
             return []
         }
-        return [.device(position: type(of: self).position)]
+        return [.sensors(position: type(of: self).position, subsection: .phiro)]
     }
 }

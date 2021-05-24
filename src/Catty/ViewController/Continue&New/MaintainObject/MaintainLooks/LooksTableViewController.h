@@ -30,7 +30,6 @@
 
 @protocol PaintDelegate <NSObject>
 
-- (void)showSavePaintImageAlert:(UIImage*)image andPath:(NSString *)path;
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
 - (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
 @end

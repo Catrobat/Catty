@@ -23,8 +23,8 @@
 class ProjectMock: Project {
 
     private var mockedRequiredResources: Int = 0
-    public var saveNotificationShown: Bool = false
-    public var saved: Bool = false
+    public var saveNotificationShown = false
+    public var saved = false
     public var isLastUsedProject = false
 
     override convenience init() {

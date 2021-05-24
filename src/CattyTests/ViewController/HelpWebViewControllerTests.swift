@@ -74,13 +74,31 @@ final class HelpWebViewControllerTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
-    func testDecidePolicyForNavigationCancelWhenMissingProjectID() {
+    func testDecidePolicyForNavigationAllowWhenDownloadURL() {
         let webView = WKWebView()
         let viewController = HelpWebViewController()
 
-        let expectation = XCTestExpectation(description: "NavigationActionPolicy canceled when project ID is misisng from download URL")
+        let expectation = XCTestExpectation(description: "NavigationActionPolicy allow when download URL detected")
 
-        if let url = URL(string: NetworkDefines.downloadUrl + "/.catrobat?fname=some_name") {
+        if let url = URL(string: NetworkDefines.downloadUrl + "/") {
+            let testRequest4 = URLRequest(url: url)
+            let navigationAction = DemoNavigationAction(testRequest: testRequest4)
+            viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in
+                XCTAssertEqual(navigationActionPolicy, WKNavigationActionPolicy.allow)
+                expectation.fulfill()
+            }
+        }
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testDecidePolicyForNavigationCancelWhenProjectDetailsURL() {
+        let webView = WKWebView()
+        let viewController = HelpWebViewController()
+
+        let expectation = XCTestExpectation(description: "NavigationActionPolicy canceled when project details URL was detected")
+
+        if let url = URL(string: NetworkDefines.projectDetailsUrlPrefix + "/123.catrobat?fname=My+first+project") {
             let testRequest4 = URLRequest(url: url)
             let navigationAction = DemoNavigationAction(testRequest: testRequest4)
             viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in
@@ -91,77 +109,4 @@ final class HelpWebViewControllerTests: XCTestCase {
 
         wait(for: [expectation], timeout: 1)
     }
-
-    func testDecidePolicyForNavigationCancelWhenMissingProjectName() {
-        let webView = WKWebView()
-        let viewController = HelpWebViewController()
-
-        let expectation = XCTestExpectation(description: "NavigationActionPolicy canceled when project name is misisng from download URL")
-
-        if let url = URL(string: NetworkDefines.downloadUrl + "/1234.catrobat") {
-            let testRequest3 = URLRequest(url: url)
-            let navigationAction = DemoNavigationAction(testRequest: testRequest3)
-            viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in
-                XCTAssertEqual(navigationActionPolicy, WKNavigationActionPolicy.cancel)
-                expectation.fulfill()
-            }
-        }
-
-        wait(for: [expectation], timeout: 1)
-    }
-
-    func testDecidePolicyForNavigationCancelWhenInvalidDownloadURL() {
-        let webView = WKWebView()
-        let viewController = HelpWebViewController()
-
-        let expectation = XCTestExpectation(description: "NavigationActionPolicy canceled when an invalid download URL detected")
-
-        if let url = URL(string: NetworkDefines.downloadUrl + "/123catrobat?fname=some+project+name") {
-            let testRequest4 = URLRequest(url: url)
-            let navigationAction = DemoNavigationAction(testRequest: testRequest4)
-            viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in
-                XCTAssertEqual(navigationActionPolicy, WKNavigationActionPolicy.cancel)
-                expectation.fulfill()
-            }
-        }
-
-        wait(for: [expectation], timeout: 1)
-    }
-
-    func testDecidePolicyForNavigationCancelWhenProjectExists() {
-        let webView = WKWebView()
-        let viewController = HelpWebViewController()
-
-        let expectation = XCTestExpectation(description: "NavigationActionPolicy canceled when project to download already exists")
-
-        if let url = URL(string: NetworkDefines.downloadUrl + "/123.catrobat?fname=My+first+project") {
-            let testRequest4 = URLRequest(url: url)
-            let navigationAction = DemoNavigationAction(testRequest: testRequest4)
-            viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in
-                XCTAssertEqual(navigationActionPolicy, WKNavigationActionPolicy.cancel)
-                expectation.fulfill()
-            }
-        }
-
-        wait(for: [expectation], timeout: 1)
-    }
-
-     func testDecidePolicyForNavigationCancelWhenValidDownloadURL() {
-           let webView = WKWebView()
-           let viewController = HelpWebViewController()
-
-           let expectation = XCTestExpectation(description: "NavigationActionPolicy canceled when a valid download URL is detected")
-
-           if let url = URL(string: NetworkDefines.downloadUrl + "/123.catrobat?fname=some_name") {
-               let testRequest4 = URLRequest(url: url)
-               let navigationAction = DemoNavigationAction(testRequest: testRequest4)
-               viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in
-                   XCTAssertEqual(navigationActionPolicy, WKNavigationActionPolicy.cancel)
-                   expectation.fulfill()
-               }
-           }
-
-           wait(for: [expectation], timeout: 1)
-       }
-
 }

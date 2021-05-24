@@ -96,4 +96,32 @@ final class AppDelegateTests: XCTestCase {
 
         expect(self.scenePresenterViewController.methodCalls).toNot(contain("resumeAction"))
     }
+
+    func testDisabledOrientation() {
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.all)
+
+        appDelegate.disabledOrientation = true
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.portrait)
+
+        appDelegate.disabledOrientation = false
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.all)
+
+    }
+
+    func testApplicationAppOpenUrlMethod() {
+        let xmlPath = Bundle.init(for: self.classForCoder).path(forResource: "817", ofType: "catrobat")
+        let sumProjectNamesBefore = Project.allProjectNames().count
+
+        let canOpen = appDelegate.application(UIApplication.shared, open: URL(fileURLWithPath: xmlPath!))
+
+        let sumProjectNamesAfter = Project.allProjectNames().count
+
+        XCTAssertEqual(sumProjectNamesBefore + 1, sumProjectNamesAfter)
+        XCTAssertTrue(canOpen)
+    }
+
+    func testApplicationAppOpenUrlMethodWithInvalidUrl() {
+        let canOpen = appDelegate.application(UIApplication.shared, open: URL(string: "invalid")!)
+        XCTAssertFalse(canOpen)
+    }
 }

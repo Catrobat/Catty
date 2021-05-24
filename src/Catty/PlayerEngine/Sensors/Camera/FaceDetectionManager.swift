@@ -22,7 +22,7 @@
 
 class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
 
-    var isFaceDetected: Bool = false
+    var isFaceDetected = false
     var facePositionRatioFromLeft: Double?
     var facePositionRatioFromBottom: Double?
     var faceSizeRatio: Double?
