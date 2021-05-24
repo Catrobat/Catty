@@ -27,18 +27,16 @@ import XCTest
 final class StoreProjectTests: XCTestCase {
 
     private func assertAllFieldsEqual(in catrobatProject: CatrobatProject, and storeProject: StoreProject) {
-        let baseURL = NetworkDefines.baseUrl.replacingOccurrences(of: "/pocketcode/", with: "/")
-
         XCTAssertEqual(catrobatProject.projectName, storeProject.name)
         XCTAssertEqual(catrobatProject.author, storeProject.author)
         XCTAssertEqual(catrobatProject.projectDescription, storeProject.description ?? "")
-        XCTAssertEqual(catrobatProject.downloadUrl, baseURL + (storeProject.downloadUrl ?? ""))
+        XCTAssertEqual(catrobatProject.downloadUrl, storeProject.downloadUrl ?? "")
         XCTAssertEqual(catrobatProject.downloads, (storeProject.downloads as NSNumber?) ?? 0)
         XCTAssertEqual(catrobatProject.projectID, storeProject.id)
         XCTAssertEqual(catrobatProject.projectName, storeProject.name)
         XCTAssertEqual(catrobatProject.projectUrl, storeProject.projectUrl ?? "")
-        XCTAssertEqual(catrobatProject.screenshotBig, baseURL + (storeProject.screenshotBig ?? ""))
-        XCTAssertEqual(catrobatProject.screenshotSmall, baseURL + (storeProject.screenshotSmall ?? ""))
+        XCTAssertEqual(catrobatProject.screenshotBig, storeProject.screenshotBig ?? "")
+        XCTAssertEqual(catrobatProject.screenshotSmall, storeProject.screenshotSmall ?? "")
         if let uploaded = storeProject.uploaded {
             XCTAssertEqual(catrobatProject.uploaded, String(uploaded))
         } else {

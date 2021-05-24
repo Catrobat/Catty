@@ -48,22 +48,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
     }
 
     func testMostDownloadedProjectEmpty() {
-        self.downloaderMock.project =
-            StoreProject(id: "",
-                         name: "",
-                         author: "",
-                         description: "",
-                         version: "",
-                         views: 0,
-                         downloads: 0,
-                         uploaded: 0,
-                         uploadedString: "",
-                         screenshotBig: "",
-                         screenshotSmall: "",
-                         projectUrl: "",
-                         downloadUrl: "",
-                         fileSize: 1.0,
-                         tags: [""])
+        self.downloaderMock.project = nil
 
         let dataSource = ChartProjectStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch project from data source")
@@ -78,21 +63,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
     }
 
     func testMostViewedProjectEmpty() {
-        self.downloaderMock.project = StoreProject(id: "",
-                                                   name: "",
-                                                   author: "",
-                                                   description: "",
-                                                   version: "",
-                                                   views: 0,
-                                                   downloads: 0,
-                                                   uploaded: 0,
-                                                   uploadedString: "",
-                                                   screenshotBig: "",
-                                                   screenshotSmall: "",
-                                                   projectUrl: "",
-                                                   downloadUrl: "",
-                                                   fileSize: 1.0,
-                                                   tags: [""])
+        self.downloaderMock.project = nil
 
         let dataSource = ChartProjectStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch project from data source")
@@ -107,21 +78,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
     }
 
     func testMostRecentProjectEmpty() {
-        self.downloaderMock.project = StoreProject(id: "",
-                                                   name: "",
-                                                   author: "",
-                                                   description: "",
-                                                   version: "",
-                                                   views: 0,
-                                                   downloads: 0,
-                                                   uploaded: 0,
-                                                   uploadedString: "",
-                                                   screenshotBig: "",
-                                                   screenshotSmall: "",
-                                                   projectUrl: "",
-                                                   downloadUrl: "",
-                                                   fileSize: 1.0,
-                                                   tags: [""])
+        self.downloaderMock.project = nil
 
         let dataSource = ChartProjectStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch project from data source")
