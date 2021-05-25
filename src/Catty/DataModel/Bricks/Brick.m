@@ -185,6 +185,12 @@
     self.script = nil;
 }
 
+- (NSString*)getWebRequestURL
+{
+    //OVERRIDE IN EVERY BRICK
+    return nil;
+}
+
 - (NSInteger)getRequiredResources
 {
     //OVERRIDE IN EVERY BRICK

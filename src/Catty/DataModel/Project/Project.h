@@ -51,6 +51,7 @@
 - (void)setDescription:(NSString* _Nonnull)description;
 - (NSArray<SpriteObject*>* _Nonnull)allObjects;
 - (BOOL)isEqualToProject:(Project* _Nonnull)project;
+- (NSMutableArray* _Nullable)getWebRequestURLs;
 - (NSInteger)getRequiredResources;
 - (void)changeProjectOrientation;
 - (void)updateReferences;

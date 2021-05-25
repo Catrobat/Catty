@@ -164,6 +164,19 @@
     // Override this method in Script implementation
 }
 
+- (NSMutableArray*)getWebRequestURLs
+{
+    NSMutableArray* urlList = [[NSMutableArray alloc] init];
+    
+    for (Brick *brick in self.brickList) {
+        NSString* url = [brick getWebRequestURL];
+        if (url != nil) {
+            [urlList addObject:url];
+        }
+    }
+    return urlList;
+}
+
 - (NSInteger)getRequiredResources
 {
     NSInteger resources = kNoResources;

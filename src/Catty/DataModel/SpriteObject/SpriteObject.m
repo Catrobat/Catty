@@ -446,6 +446,16 @@
     return newObject;
 }
 
+- (NSMutableArray*)getWebRequestURLs
+{
+    NSMutableArray* urlList = [[NSMutableArray alloc] init];
+    
+    for (Script *script in self.scriptList) {
+        [urlList addObjectsFromArray: [script getWebRequestURLs]];
+    }
+    return urlList;
+}
+
 - (NSInteger)getRequiredResources
 {
     NSInteger resources = kNoResources;

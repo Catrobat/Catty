@@ -41,7 +41,8 @@ import CoreBluetooth
             self.project = project
             DispatchQueue.main.async {
                 self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
-                let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
+                var readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
+                readyToStart = self.notifyUserAboutExecutionOfAWebRequestBrick(navigationController: navigationController)
                 if readyToStart && !(self.navigationController?.topViewController is StagePresenterViewController) {
                     navigationController.pushViewController(self, animated: true)
                 } else {
@@ -49,6 +50,36 @@ import CoreBluetooth
                 }
             }
         }
+    }
+
+    @nonobjc private func notifyUserAboutExecutionOfAWebRequestBrick(navigationController: UINavigationController) -> Bool {
+        let webRequestURLs = project.getWebRequestURLs()
+        guard let webRequestURLCount = webRequestURLs?.count else { return true }
+
+        // TODO: How to handle the error cases correct?
+        guard let trustedDomains = TrustedDomainManager() else { return true }
+        _ = trustedDomains.clear() // Just needed for CATTY-571
+
+        if webRequestURLCount > 0, let urls = webRequestURLs as? [String] {
+            for url in urls {
+                if !trustedDomains.isUrlInTrustedDomains(url: url) {
+                    DispatchQueue.main.async {
+                        AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: url)
+                            .addCancelAction(title: kLocalizedNo) {
+                                self.continueWithoutRequiredResourcesOrWebAccess(navigationController: navigationController)
+                            }
+                            .addDefaultAction(title: kLocalizedYes) {
+                                _ = trustedDomains.add(url: url)
+                                self.continueWithoutRequiredResourcesOrWebAccess(navigationController: navigationController)
+                            }
+                        .build()
+                        .showWithController(navigationController)
+                    }
+                    return false
+                }
+            }
+        }
+        return true
     }
 
     @nonobjc private func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
@@ -112,7 +143,7 @@ import CoreBluetooth
                 AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: unavailableResourceNames.joined(separator: ", ") + " " + kLocalizedNotAvailable)
                     .addCancelAction(title: kLocalizedCancel, handler: nil)
                     .addDefaultAction(title: kLocalizedYes) {
-                        self.continueWithoutRequiredResources(navigationController: navigationController)
+                        self.continueWithoutRequiredResourcesOrWebAccess(navigationController: navigationController)
                     }
                 .build()
                 .showWithController(navigationController)
@@ -146,7 +177,7 @@ import CoreBluetooth
         }
     }
 
-    @nonobjc private func continueWithoutRequiredResources(navigationController: UINavigationController) {
+    @nonobjc private func continueWithoutRequiredResourcesOrWebAccess(navigationController: UINavigationController) {
         navigationController.pushViewController(self, animated: true)
     }
 }

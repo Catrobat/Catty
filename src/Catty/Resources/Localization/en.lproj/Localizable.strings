@@ -67,6 +67,9 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
 
+/* No comment provided by engineer. */
+"Allow web access" = "Allow web access";
+
 /* paint */
 "Alpha" = "Alpha";
 

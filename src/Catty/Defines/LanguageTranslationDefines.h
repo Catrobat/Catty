@@ -469,6 +469,7 @@
 #define kLocalizedAt NSLocalizedString(@"at ", nil)
 #define kLocalizedSendWebRequestTo NSLocalizedString(@"Send web request to", nil)
 #define kLocalizedAndStoreAnswerIn NSLocalizedString(@"and store answer in", nil)
+#define kLocalizedAllowWebAccess NSLocalizedString(@"Allow web access", nil)
 
 //userlist
 #define kLocalizedUserListAdd NSLocalizedString(@"Add", nil)

@@ -66,6 +66,8 @@
 
 - (void)removeReferences;
 
+- (NSString*)getWebRequestURL;
+
 - (NSInteger)getRequiredResources;
 
 - (void)setDefaultValuesForObject:(SpriteObject *)spriteObject;

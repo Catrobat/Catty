@@ -53,6 +53,7 @@
 - (void)removeFromObject;
 - (void)removeReferences;
 
+- (NSMutableArray*)getWebRequestURLs;
 - (NSInteger)getRequiredResources;
 - (Class<BrickCellProtocol>)brickCell;
 

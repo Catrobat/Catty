@@ -177,6 +177,11 @@
     return YES;
 }
 
+- (NSMutableArray*)getWebRequestURLs;
+{
+    return [self.scene getWebRequestURLs];
+}
+
 - (NSInteger)getRequiredResources
 {
     return [self.scene getRequiredResources];

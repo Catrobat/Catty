@@ -171,6 +171,16 @@
         project?.saveToDisk(withNotification: true)
     }
 
+    func getWebRequestURLs() -> NSMutableArray? {
+        var urlList = [String]()
+        for obj in self.objects() {
+            if let webRequestURLs = obj.getWebRequestURLs() as? [String] {
+                urlList.append(contentsOf: webRequestURLs)
+            }
+        }
+        return NSMutableArray(array: urlList)
+    }
+
     func getRequiredResources() -> Int {
         var resources = 0
         for obj in self.objects() {

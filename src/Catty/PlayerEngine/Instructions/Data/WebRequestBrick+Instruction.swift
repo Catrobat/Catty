@@ -35,11 +35,16 @@ extension WebRequestBrick: CBInstructionProtocol {
                 requestString = String(requestString.dropLast())
             }
 
+            guard let trustedDomains = TrustedDomainManager() else { return CBInstruction.invalidInstruction }
             let downloader = WebRequestDownloader(url: requestString, session: nil)
 
             return CBInstruction.waitExecClosure { _, scheduler in
-                self.sendRequest(downloader: downloader) { response, error in
-                    self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                if !trustedDomains.isUrlInTrustedDomains(url: requestString) {
+                    self.callbackSubmit(with: nil, error: .blacklisted, scheduler: scheduler)
+                } else {
+                    self.sendRequest(downloader: downloader) { response, error in
+                        self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                    }
                 }
                 scheduler.pause()
             }
@@ -61,6 +66,8 @@ extension WebRequestBrick: CBInstructionProtocol {
     private func extractMessage(input: String?, error: WebRequestBrickError?) -> String {
         guard let input = input else {
             switch error {
+            case .blacklisted:
+                return "511"
             case .downloadSize:
                 return kLocalizedDownloadSizeErrorMessage
             case .invalidURL:
@@ -99,6 +106,8 @@ extension WebRequestBrick: CBInstructionProtocol {
     }
 
     enum WebRequestBrickError: Error {
+        /// Indicates a download from a blacklisted URL
+        case blacklisted
         /// Indicates a download bigger than kWebRequestMaxDownloadSizeInBytes
         case downloadSize
         /// Indicates an invalid URL

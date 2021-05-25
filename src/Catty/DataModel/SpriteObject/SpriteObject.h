@@ -75,6 +75,7 @@
 - (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save;;
 - (void)removeReferences;
 
+- (NSMutableArray*)getWebRequestURLs;
 - (NSInteger)getRequiredResources;
 
 // compare

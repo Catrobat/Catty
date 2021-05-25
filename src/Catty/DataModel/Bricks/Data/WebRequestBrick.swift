@@ -38,6 +38,10 @@
         "WebRequestBrick"
     }
 
+    override func getWebRequestURL() -> String? {
+        request?.getDisplayString()
+    }
+
     override func getRequiredResources() -> Int {
         ResourceType.internet.rawValue
     }

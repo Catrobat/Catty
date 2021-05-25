@@ -469,6 +469,7 @@ let kLocalizedHideVariable = NSLocalizedString("Hide variable", comment: "")
 let kLocalizedAt = NSLocalizedString("at ", comment: "")
 let kLocalizedSendWebRequestTo = NSLocalizedString("Send web request to", comment: "")
 let kLocalizedAndStoreAnswerIn = NSLocalizedString("and store answer in", comment: "")
+let kLocalizedAllowWebAccess = NSLocalizedString("Allow web access", comment: "")
 
 //userlist
 let kLocalizedUserListAdd = NSLocalizedString("Add", comment: "")

@@ -39,4 +39,4 @@
 #define kArduinoActivated 1
 #define kEmbroideryActivated 1
 #define kFirebaseSendCrashReportsDefault 1
-#define kWebRequestBrickActivated 0
+#define kWebRequestBrickActivated 1
