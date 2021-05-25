@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -403,5 +403,12 @@ class XMLParserTests0992: XMLAbstractTest {
         for instrument in availableInstruments {
             XCTAssertTrue(instruments.contains(instrument))
         }
+    }
+
+    func testSetTempoToBrick() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0992")
+        let setTempoToBrick = (project.scene.object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 3) as! Brick
+
+        XCTAssertTrue(setTempoToBrick.isKind(of: SetTempoToBrick.self), "Invalid brick type")
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -76,7 +76,7 @@ class ArduinoAnalogPinFunctionTest: XCTestCase {
 
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: function).position, subsection: .arduino), sections.first)
 
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
         XCTAssertEqual(0, function.formulaEditorSections().count)

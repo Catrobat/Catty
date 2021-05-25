@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,9 +30,7 @@ class CattyUISnapshots: XCTestCase {
     override func setUp() {
         setupSnapshot(app)
         app.launch()
-
         dismissPrivacyPolicyScreenIfShown()
-        restoreDefaultProject()
     }
 
     func testUIScreenshots() {
@@ -107,5 +105,11 @@ class CattyUISnapshots: XCTestCase {
 
         wait(for: [loadCompleteExpectation], timeout: 2.1)
         snapshot("03-Catrobat community charts")
+    }
+
+    private func dismissPrivacyPolicyScreenIfShown() {
+        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
+            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
+        }
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -50,11 +50,11 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
 
     func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
-    func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+    func formulaEditorItemsForFunctionSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
     func formulaEditorItemsForLogicSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
     func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
-    func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+    func formulaEditorItemsForSensorsSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 }

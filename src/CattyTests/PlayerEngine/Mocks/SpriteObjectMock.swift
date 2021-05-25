@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,12 @@ final class SpriteObjectMock: SpriteObject {
 
     override init() {
         background = false
+    }
+
+    init(scene: Scene) {
+        background = false
+        super.init()
+        self.scene = scene
     }
 
     override func isBackground() -> Bool {

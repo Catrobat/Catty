@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,11 +30,15 @@
 {
     NSString *documentsDirectory = [Util applicationDocumentsDirectory];
     NSString *projectsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProjectsFolder];
-    ProjectLoadingInfo *info = [[ProjectLoadingInfo alloc] init];
+    
     NSString *projectDirectoryName = [Project projectDirectoryNameForProjectName:projectName projectID:projectID];
+    
+    ProjectLoadingInfo *info = [[ProjectLoadingInfo alloc] init];
     info.basePath = [NSString stringWithFormat:@"%@/%@/", projectsPath, projectDirectoryName];
     info.visibleName = [Util enableBlockedCharactersForString:projectName];
     info.projectID = projectID;
+    info.useOriginalName = false;
+    
     return info;
 }
 

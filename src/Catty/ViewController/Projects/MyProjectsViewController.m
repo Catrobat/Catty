@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -449,8 +449,7 @@
     cell.indexPath = indexPath;
     [cell setNeedsLayout];
     
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
+    [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
       
         if(image) {
             if ([cell.indexPath isEqual:indexPath]) {

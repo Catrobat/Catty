@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -95,8 +95,8 @@ final class SensorManagerTests: XCTestCase {
 
     func testFormulaEditorItems() {
         let sensorA = SensorMock(tag: "tagA", formulaEditorSections: [])
-        let sensorB = SensorMock(tag: "tagB", formulaEditorSections: [.device(position: 1), .math(position: 10)])
-        let sensorC = SensorMock(tag: "tagC", formulaEditorSections: [.object(position: 2), .math(position: 10)])
+        let sensorB = SensorMock(tag: "tagB", formulaEditorSections: [.sensors(position: 1, subsection: .device), .functions(position: 10, subsection: .maths)])
+        let sensorC = SensorMock(tag: "tagC", formulaEditorSections: [.object(position: 2, subsection: .general), .functions(position: 10, subsection: .maths)])
 
         let manager = SensorManager(sensors: [sensorA, sensorB, sensorC], landscapeMode: false)
         let items = manager.formulaEditorItems(for: SpriteObject())

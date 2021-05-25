@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -39,6 +39,12 @@ public class SynchronizedArray<Element> {
     var startIndex: Int {
         var result = 0
         queue.sync { result = self.array.startIndex }
+        return result
+    }
+
+    var endIndex: Int {
+        var result = 0
+        queue.sync { result = self.array.endIndex }
         return result
     }
 
@@ -105,6 +111,14 @@ public class SynchronizedArray<Element> {
         var result = 0
         queue.sync {
             result = self.array.index(i, offsetBy: distance)
+        }
+        return result
+    }
+
+    public func index(after index: Array<Element>.Index) -> Array<Element>.Index {
+        var result = 0
+        queue.sync {
+            result = self.array.index(after: index)
         }
         return result
     }

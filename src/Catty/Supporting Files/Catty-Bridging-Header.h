@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -66,8 +66,6 @@
 #import "MoveNStepsBrick.h"
 #import "IfOnEdgeBounceBrick.h"
 #import "ShowBrick.h"
-#import "SetLookBrick.h"
-#import "SetBackgroundBrick.h"
 #import "SetSizeToBrick.h"
 #import "PointInDirectionBrick.h"
 #import "PlaceAtBrick.h"
@@ -92,14 +90,10 @@
 #import "ArduinoSendDigitalValueBrick.h"
 #import "ArduinoSendPWMValueBrick.h"
 #import "SetTransparencyBrick.h"
-#import "SetBrightnessBrick.h"
 #import "SetColorBrick.h"
 #import "ChangeColorByNBrick.h"
-#import "NextLookBrick.h"
-#import "PreviousLookBrick.h"
 #import "ClearGraphicEffectBrick.h"
 #import "ChangeTransparencyByNBrick.h"
-#import "ChangeBrightnessByNBrick.h"
 #import "ShowTextBrick.h"
 #import "HideTextBrick.h"
 #import "FlashBrick.h"
@@ -128,24 +122,18 @@
 #import "MoveNStepsBrickCell.h"
 #import "GoNStepsBackBrickCell.h"
 #import "IfLogicBeginBrickCell.h"
-#import "NextLookBrickCell.h"
-#import "PreviousLookBrickCell.h"
 #import "ChangeVariableBrickCell.h"
 #import "ReplaceItemInUserListBrickCell.h"
-#import "SetBackgroundBrickCell.h"
-#import "SetLookBrickCell.h"
 
 #import "BrickCellVariableData.h"
 #import "BrickCellListData.h"
 #import "BrickCellLookData.h"
+#import "BrickCellFormulaData.h"
 
 // Formulas
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "Formula+CBXMLHandler.h"
-
-// Assets
-#import "Sound.h"
 
 // User
 #import <CommonCrypto/CommonCrypto.h>
@@ -170,6 +158,7 @@
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
+#import "UndoManager.h"
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes
@@ -185,6 +174,7 @@
 #import "CatrobatTableViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "LoginViewController.h"
+#import "ProjectDetailStoreViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -194,6 +184,7 @@
 #import "ProjectDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatLanguageDefines.h"
+#import "ButtonTags.h"
 
 #import "BrickFormulaProtocol.h"
 
@@ -205,7 +196,6 @@
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "SegueDefines.h"
-#import "ProjectDetailStoreViewController.h"
 #import "DarkBlueGradientFeaturedCell.h"
 #import "DarkBlueGradientImageCell.h"
 #import "CBXMLParser.h"
@@ -213,6 +203,7 @@
 #import "GDataXMLNode.h"
 #import "CBXMLSerializer.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLParserHelper.h"
@@ -233,3 +224,5 @@
 #import "CBXMLValidator.h"
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLPositionStack.h"
+#import "EVCircularProgressView.h"
+#import "BrickLookProtocol.h"

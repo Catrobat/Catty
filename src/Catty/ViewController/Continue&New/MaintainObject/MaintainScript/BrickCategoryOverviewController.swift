@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,10 @@ import UIKit
     @objc(init:) init(scriptCollectionViewController: ScriptCollectionViewController) {
         self.scriptCollectionViewController = scriptCollectionViewController
         categegoriesBricks = CatrobatSetup.self.registeredBrickCategories()
+
+        for category in categegoriesBricks where category.enabled == false {
+            categegoriesBricks.removeObject(category)
+        }
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -41,6 +45,10 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupCollectionView()
     }
 
@@ -123,5 +131,4 @@ import UIKit
             presentingViewController?.dismiss(animated: true)
         }
     }
-
 }

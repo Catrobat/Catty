@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -63,9 +63,9 @@ class CreateProjectTests: XCTestCase {
         //Draw image
         app.tap()
 
-        app.navigationBars.buttons[kLocalizedBackgrounds].tap()
-        XCTAssert(app.alerts[kLocalizedSaveToPocketCode].exists)
-        app.alerts[kLocalizedSaveToPocketCode].buttons[kLocalizedYes].tap()
+        app.navigationBars.buttons[kLocalizedBack].tap()
+        XCTAssert(app.sheets.firstMatch.exists)
+        app.sheets.firstMatch.buttons[kLocalizedSaveChanges].tap()
 
         let addImageAlert = waitForElementToAppear(app.alerts[kLocalizedAddImage])
         addImageAlert.buttons[kLocalizedOK].tap()

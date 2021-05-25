@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,36 +24,71 @@ import Foundation
 
 class EmbroideryStream: Collection {
 
-    var name: String?
-    var stitches = [Stitch]()
-
     typealias IndexType = Array<Stitch>.Index
 
     var startIndex: IndexType { stitches.startIndex }
     var endIndex: IndexType { stitches.endIndex }
 
+    var name: String?
     var nextStitchIsColorChange: Bool
 
-    init(withName name: String? = nil) {
+    var stitches = SynchronizedArray<Stitch>()
+    var drawEmbroideryQueue = SynchronizedArray<Stitch>()
+
+    private(set) var size: CGFloat
+
+    init(projectWidth: CGFloat?, projectHeight: CGFloat?, withName name: String? = nil) {
         self.name = name
         self.nextStitchIsColorChange = false
+
+        size = SpriteKitDefines.defaultCatrobatStitchingSize * EmbroideryDefines.sizeConversionFactor
+        guard let width = projectWidth, let height = projectHeight else {
+            return
+        }
+
+        let deviceScreenRect = UIScreen.main.nativeBounds
+        let deviceDiagonalPixel = CGFloat(sqrt(pow(deviceScreenRect.width, 2) + pow(deviceScreenRect.height, 2)))
+
+        let creatorDiagonalPixel = CGFloat(sqrt(pow(width, 2) + pow(height, 2)))
+
+        let screenRatio = creatorDiagonalPixel / deviceDiagonalPixel
+        size *= screenRatio
+    }
+
+    convenience init(streams: [EmbroideryStream], withName name: String? = nil) {
+        self.init(projectWidth: nil, projectHeight: nil, withName: name)
+
+        guard streams.isNotEmpty else {
+            return
+        }
+
+        self.size = streams[0].size
+        for stream in streams {
+            for stitch in stream {
+                self.add(stitch)
+            }
+            self.addColorChange()
+        }
     }
 
     subscript(index: IndexType) -> Stitch {
-        stitches[index]
+        guard let stitch = stitches[index] else {
+            fatalError("Array index out of bounds")
+        }
+        return stitch
     }
 
     func index(after i: IndexType) -> IndexType {
         stitches.index(after: i)
     }
 
-    func addStich(stitch: Stitch) {
+    func add(_ stitch: Stitch) {
         if let lastStitch = stitches.last {
             if lastStitch.maxDistanceInEmbroideryDimensions(stitch: stitch) > EmbroideryDefines.MAX_STITCHING_DISTANCE {
                 addInterpolatedStiches(stitch: stitch)
             }
         }
-        appendStitch(stitch: stitch)
+        append(stitch)
     }
 
     func addColorChange() {
@@ -71,17 +106,20 @@ class EmbroideryStream: Collection {
 
         for i in 0...Int(splitCount) {
             let splitFactor = CGFloat(Double(i) / splitCount)
-            let interploatedX = round(lastStitch.x + splitFactor * (stitch.x - lastStitch.x))
-            let interploatedY = round(lastStitch.y + splitFactor * (stitch.y - lastStitch.y))
-            appendStitch(stitch: Stitch(atPosition: CGPoint(x: interploatedX, y: interploatedY), asJump: true))
+            let interpolatedX = round(lastStitch.x + splitFactor * (stitch.x - lastStitch.x))
+            let interpolatedY = round(lastStitch.y + splitFactor * (stitch.y - lastStitch.y))
+
+            let interpolatedStitch = Stitch(atPosition: CGPoint(x: interpolatedX, y: interpolatedY), asJump: true, isInterpolated: true)
+            append(interpolatedStitch)
         }
     }
 
-    private func appendStitch(stitch: Stitch) {
+    private func append(_ stitch: Stitch) {
         if nextStitchIsColorChange {
             stitch.isColorChange = true
             nextStitchIsColorChange = false
         }
+        drawEmbroideryQueue.append(stitch)
         stitches.append(stitch)
     }
 }

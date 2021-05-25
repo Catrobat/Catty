@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -345,8 +345,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
     if (indexPath.row == 0) {
         
-        CBFileManager *fileManager = [CBFileManager sharedManager];
-        [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
+        [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
             
             if(image && cell) {
                 dispatch_queue_main_t queue = dispatch_get_main_queue();

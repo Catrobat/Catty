@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -67,20 +67,19 @@ class ScriptCollectionVCTests: XCTestCase {
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         addBrick(label: kLocalizedBroadcast, section: kLocalizedCategoryEvent, in: app)
-
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
+        tapOnMessagePicker(of: kLocalizedBroadcast, in: app)
 
         app.pickerWheels.firstMatch.swipeDown()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
 
         let alert = app.alerts[kLocalizedNewMessage]
         alert.textFields[kLocalizedEnterYourMessageHere].typeText(message)
         alert.buttons[kLocalizedOK].tap()
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
+        tapOnMessagePicker(of: kLocalizedBroadcast, in: app)
 
         app.pickerWheels.firstMatch.swipeDown()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
 
         alert.textFields[kLocalizedEnterYourMessageHere].typeText(message + "b")
         alert.buttons[kLocalizedOK].tap()
@@ -98,8 +97,8 @@ class ScriptCollectionVCTests: XCTestCase {
         XCTAssertTrue(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         app.buttons[kUIFESensor].tap()
-        app.buttons[kLocalizedSensorLoudness].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.tables.staticTexts[kLocalizedSensorLoudness].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
     }
@@ -116,7 +115,7 @@ class ScriptCollectionVCTests: XCTestCase {
         app.buttons[kUIFEAddNewText].tap()
         app.alerts[kUIFENewText].buttons[kLocalizedOK].tap()
 
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
     }
 

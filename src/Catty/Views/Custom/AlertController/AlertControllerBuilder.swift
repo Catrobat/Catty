@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ public final class AlertControllerBuilder: NSObject {
     }
 
     @objc(actionSheetWithTitle:)
-    public static func actionSheet(title: String) -> AlertActionAdding {
+    public static func actionSheet(title: String?) -> AlertActionAdding {
         AlertController(title: title, message: nil, style: .actionSheet)
     }
 

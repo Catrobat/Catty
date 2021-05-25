@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -68,7 +68,7 @@ class LengthFunctionTest: XCTestCase {
     }
 
     func testName() {
-        XCTAssertEqual("length", type(of: function).name)
+        XCTAssertEqual(kUIFEFunctionLength, type(of: function).name)
     }
 
     func testRequiredResources() {
@@ -82,6 +82,6 @@ class LengthFunctionTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.math(position: type(of: function).position), sections.first)
+        XCTAssertEqual(.functions(position: type(of: function).position, subsection: .texts), sections.first)
     }
 }

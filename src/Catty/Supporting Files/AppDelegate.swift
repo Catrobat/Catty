@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var firebaseCrashlyticsReporter: FirebaseCrashlyticsReporter?
     var audioEngineHelper = AudioEngineHelper()
 
+    @objc var disabledOrientation = false
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.setupFirebase()
         self.setupSiren()
@@ -52,9 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.UITests) {
             UIApplication.shared.keyWindow?.layer.speed = 10.0
-        }
-        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.disableAnimations) {
-            UIView.setAnimationsEnabled(false)
         }
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.restoreDefaultProject) {
             CBFileManager.shared()?.deleteAllFilesInDocumentsDirectory()
@@ -111,6 +110,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.set(false, forKey: kUseArduinoBricks)
         }
 
+        if !Util.isEmbroideryActivated() {
+            defaults.set(false, forKey: kUseEmbroideryBricks)
+        }
+
         if defaults.value(forKey: kFirebaseSendCrashReports) == nil {
             defaults.set(kFirebaseSendCrashReportsDefault, forKey: kFirebaseSendCrashReports)
         }
@@ -137,10 +140,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL,
-            let ctvc = vc?.topViewController as? CatrobatTableViewController else {
-                return false
+            let topViewController = vc?.topViewController else {
+            return false
         }
-        ctvc.openURL(url: url)
+        topViewController.openProjectDetails(url: url)
+        return true
+    }
+
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        self.disabledOrientation ? UIInterfaceOrientationMask.portrait : UIInterfaceOrientationMask.all
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
+
+        let vc = self.window?.rootViewController as? UINavigationController
+        vc?.popToRootViewController(animated: true)
+
+        guard let topViewController = vc?.topViewController,
+              let project = ProjectManager.addProjectFromFile(url: url) else {
+            return false
+        }
+
+        topViewController.openProject(project)
         return true
     }
 }

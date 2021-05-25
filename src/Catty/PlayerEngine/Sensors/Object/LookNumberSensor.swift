@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -55,6 +55,6 @@
         if spriteObject.isBackground() == true {
             return []
         }
-        return [.object(position: type(of: self).position)]
+        return [.object(position: type(of: self).position, subsection: .general)]
     }
 }

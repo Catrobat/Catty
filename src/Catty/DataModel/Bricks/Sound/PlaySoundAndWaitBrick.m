@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,8 +21,8 @@
  */
 
 #import "PlaySoundAndWaitBrick.h"
-#import "Sound.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PlaySoundAndWaitBrick
 
@@ -58,7 +58,7 @@
 {
     if([self class] != [brick class])
         return NO;
-    if(![self.sound isEqualToSound:((PlaySoundAndWaitBrick*)brick).sound])
+    if(![self.sound isEqual:((PlaySoundAndWaitBrick*)brick).sound])
         return NO;
     return YES;
 }

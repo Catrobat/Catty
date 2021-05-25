@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -90,20 +90,22 @@ static FlashHelper *sharedFlashHandler = nil;
         if ((toggle == FlashON && weakSelf.wasTurnedOn != FlashPause && sharedFlashHandler.wasTurnedOn != FlashON) || toggle == FlashResume) {
             if ([self isAvailable]){
                 AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-
+                AVCapturePhotoSettings *photosettings = [AVCapturePhotoSettings photoSettings];
+                
                 [device lockForConfiguration:nil];
                 [device setTorchMode:AVCaptureTorchModeOn];
-                [device setFlashMode:AVCaptureFlashModeOn];
+                photosettings.flashMode = AVCaptureFlashModeOn;
                 [device unlockForConfiguration];
                 sharedFlashHandler.wasTurnedOn = FlashON;
             }
         } else if (toggle == FlashOFF || toggle == FlashPause || toggle == FlashUninitialized) {
             if ([self isAvailable]){
                 AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+                AVCapturePhotoSettings *photosettings = [AVCapturePhotoSettings photoSettings];
                 
                 [device lockForConfiguration:nil];
                 [device setTorchMode:AVCaptureTorchModeOff];
-                [device setFlashMode:AVCaptureFlashModeOff];
+                photosettings.flashMode = AVCaptureFlashModeOff;
                 [device unlockForConfiguration];
             }
             if (toggle != FlashPause) {

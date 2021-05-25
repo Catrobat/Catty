@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,52 +21,108 @@
  */
 
 import BluetoothHelper
-import MXSegmentedPager
 import UIKit
 
-@objc class BluetoothPopupVC: MXSegmentedPagerController {
+@objc class BluetoothPopupVC: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
     @objc var deviceArray: [Int]?
     @objc var rightButton = UIBarButtonItem()
+
+    var segementedControl = UISegmentedControl()
+    var pageViewController: UIPageViewController?
+    var bluetoothDevicesTableViewControllers = [BluetoothDevicesTableViewController]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let navigationTitleColor = UIColor.navText
-        let titleColor = UIColor.background
-        let selectedTitleColor = UIColor.navTint
-
-        self.segmentedPager.backgroundColor = UIColor.navBar
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationTitleColor]
-        // Segmented Control customization
-        self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
-        self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTint
-
-        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
-        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: selectedTitleColor]
-        self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.box
-        self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint
-        self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.fixed
-
         setHeader()
 
         rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissAndDisconnect))
         self.navigationItem.rightBarButtonItem = rightButton
+
+        // Segmented Control
+        self.segementedControl = UISegmentedControl(items: [klocalizedBluetoothKnown, klocalizedBluetoothSearch])
+        self.segementedControl.frame = CGRect(width: self.view.bounds.width, height: 40)
+        self.segementedControl.selectedSegmentIndex = 0
+
+        self.view.addSubview(self.segementedControl)
+        self.segementedControl.translatesAutoresizingMaskIntoConstraints = false
+
+        self.segementedControl.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        self.segementedControl.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        self.segementedControl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 5).isActive = true
+        self.segementedControl.addTarget(self, action: #selector(self.segmentedControllerValueChanged(_:)), for: .valueChanged)
+
+        //Page view controller
+        self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        self.pageViewController?.dataSource = self
+        self.pageViewController?.delegate = self
+
+        if let pageVC = self.pageViewController {
+            self.addChild(pageVC)
+            self.view.addSubview(pageVC.view)
+            pageVC.view.frame = CGRect(x: 0, y: self.segementedControl.frame.maxY, width: self.view.bounds.width, height: self.view.bounds.height - 40)
+            pageVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        }
+
+        let knownDevicesVC = KnownDevicesTableViewController()
+        knownDevicesVC.delegate = self
+        knownDevicesVC.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.bluetoothDevicesTableViewControllers.append(knownDevicesVC)
+
+        let searchDevicesVC = SearchDevicesTableViewController()
+        searchDevicesVC.delegate = self
+        searchDevicesVC.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.bluetoothDevicesTableViewControllers.append(searchDevicesVC)
+
+        self.pageViewController?.setViewControllers([self.bluetoothDevicesTableViewControllers[0]], direction: .forward, animated: false)
+
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func segmentedControllerValueChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            self.pageViewController?.setViewControllers([self.bluetoothDevicesTableViewControllers[0]], direction: .reverse, animated: true)
+        } else if sender.selectedSegmentIndex == 1 {
+            self.pageViewController?.setViewControllers([self.bluetoothDevicesTableViewControllers[1]], direction: .forward, animated: true)
+        }
     }
 
-    override func segmentedPager(_ segmentedPager: MXSegmentedPager, titleForSectionAt index: Int) -> String {
-        [klocalizedBluetoothKnown, klocalizedBluetoothSearch][index];//
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        if let index = self.bluetoothDevicesTableViewControllers.firstIndex(of: viewController as! BluetoothDevicesTableViewController) {
+            if index == 1 {
+                let vc = bluetoothDevicesTableViewControllers[0] as! KnownDevicesTableViewController
+                return vc
+            } else {
+                return nil
+            }
+        }
+
+        return nil
     }
 
-    override func segmentedPager(_ segmentedPager: MXSegmentedPager, viewControllerForPageAt index: Int) -> UIViewController {
-        let vc: BluetoothDevicesTableViewController = super.segmentedPager(segmentedPager, viewControllerForPageAt: index) as! BluetoothDevicesTableViewController
-        vc.delegate = self
-        return vc
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        if let index = self.bluetoothDevicesTableViewControllers.firstIndex(of: viewController as! BluetoothDevicesTableViewController) {
+            if index == 0 {
+                let vc = bluetoothDevicesTableViewControllers[1] as! SearchDevicesTableViewController
+                return vc
+            } else {
+                return nil
+            }
+        }
+
+        return nil
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if let index = self.bluetoothDevicesTableViewControllers.firstIndex(of: previousViewControllers[0] as! BluetoothDevicesTableViewController) {
+            if index == 0 {
+                self.segementedControl.selectedSegmentIndex = 1
+            } else if index == 1 {
+                self.segementedControl.selectedSegmentIndex = 0
+            }
+        }
     }
 
     @objc func dismissAndDisconnect() {

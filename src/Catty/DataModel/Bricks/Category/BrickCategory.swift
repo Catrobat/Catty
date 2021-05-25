@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,12 +26,14 @@
     @objc public let name: String
     @objc public let color: UIColor
     @objc public let strokeColor: UIColor
+    @objc public let enabled: Bool
 
-    init(type: kBrickCategoryType, name: String, color: UIColor, strokeColor: UIColor) {
+    init(type: kBrickCategoryType, name: String, color: UIColor, strokeColor: UIColor, enabled: Bool) {
         self.type = type
         self.name = name
         self.color = color
         self.strokeColor = strokeColor
+        self.enabled = enabled
     }
 
     @objc public func colorDisabled() -> UIColor {

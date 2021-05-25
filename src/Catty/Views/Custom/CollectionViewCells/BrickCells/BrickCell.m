@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -64,6 +64,7 @@
         self.opaque = NO;
         self.clipsToBounds = NO;
         self.isInserting = NO;
+        self.maxInputFormulaFrameLength = 0;
     }
     return self;
 }
@@ -137,7 +138,7 @@
 {
     if (! _inlineView) {
         BrickCellInlineView *inlineView = [[BrickCellInlineView alloc] initWithFrame:CGRectZero];
-        [self addSubview:inlineView];
+        [self.contentView addSubview:inlineView];
         _inlineView = inlineView;
     }
     return _inlineView;
@@ -298,6 +299,30 @@
     return subviews;
 }
 
+- (void)calcMaxInputFormulaFrameLength: (NSArray*) partLabels WithFrame:(CGRect)frame WithParams:(NSArray*)params
+{
+    NSUInteger formulaCounter = 0;
+    
+    for (NSString* afterLabelParam in params) {
+        if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
+            formulaCounter++;
+        }
+    }
+    
+    if(!formulaCounter)
+        return;
+    
+    NSString* labelTitle = @"";
+    
+    for (NSString* partLabelTitle in partLabels) {
+        labelTitle = [labelTitle stringByAppendingString:partLabelTitle];
+    }
+    
+    UILabel* textLabel = [UIUtil newDefaultBrickLabelWithFrame:frame AndText:labelTitle andRemainingSpace:frame.size.width];
+    
+    self.maxInputFormulaFrameLength = (frame.size.width - ((NSInteger)textLabel.frame.size.width + kBrickInputFieldLeftMargin * [partLabels count]) - kBrickTextFieldFontSize) / formulaCounter;
+}
+
 - (NSMutableArray*)inlineViewSubviewsOfLabel:(NSString*)labelTitle WithParams:(NSArray*)params WithFrame:(CGRect)frame ForLineNumber:(NSInteger)lineNumber
 {
     CGRect remainingFrame = frame;
@@ -315,6 +340,8 @@
     NSUInteger totalNumberOfSubViews = totalNumberOfPartLabels + totalNumberOfParams;
     NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:totalNumberOfSubViews];
     NSInteger counter = 0;
+    [self calcMaxInputFormulaFrameLength:partLabels WithFrame:frame WithParams:params];
+    
     for (NSString *partLabelTitle in partLabels) {
         if (partLabelTitle.length) {
             UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle andRemainingSpace:remainingFrame.size.width];

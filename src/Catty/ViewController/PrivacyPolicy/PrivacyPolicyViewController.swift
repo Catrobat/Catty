@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ class PrivacyPolicyViewController: UIViewController {
     }
 
     @IBAction private func disagreeButtonAction(_ sender: UIButton) {
-        Util.alert(withText: kLocalizedPrivacyPolicyDenyText)
+        Util.alert(text: kLocalizedPrivacyPolicyDenyText)
     }
 
     @IBAction private func acceptButtonAction(_ sender: UIButton) {

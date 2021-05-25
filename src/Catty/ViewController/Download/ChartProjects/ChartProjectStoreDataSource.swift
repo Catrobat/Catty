@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     var mostRecentScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
 
     var scrollView = UIScrollView()
-    var isReloadingData: Bool = false
+    var isReloadingData = false
 
     var projects: [StoreProject] {
         switch projectType {

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 #import "CBFileManager.h"
 #import "Util.h"
 #import <ZipArchive/ZipArchive.h>
-#import "Sound.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "Pocket_Code-Swift.h"
 
@@ -31,9 +30,6 @@
 
 @property (nonatomic, strong, readwrite) NSString *documentsDirectory;
 @property (nonatomic, strong) NSString *projectsDirectory;
-@property (nonatomic, strong) NSMutableDictionary *projectTaskDict;
-@property (nonatomic, strong) NSMutableDictionary *projectNameDict;
-@property (nonatomic, strong) NSMutableDictionary *projectIDDict;
 
 @property (nonatomic, strong) NSURLSession *downloadSession;
 
@@ -67,30 +63,6 @@
     return _projectsDirectory;
 }
 
-
-- (NSMutableDictionary*)projectTaskDict {
-    if (_projectTaskDict == nil) {
-        _projectTaskDict = [[NSMutableDictionary alloc] init];
-    }
-    return _projectTaskDict;
-}
-
-- (NSMutableDictionary*)projectNameDict
-{
-    if (!_projectNameDict) {
-        _projectNameDict = [[NSMutableDictionary alloc] init];
-    }
-    return _projectNameDict;
-}
-
-- (NSMutableDictionary*)projectIDDict
-{
-    if (! _projectIDDict) {
-        _projectIDDict = [[NSMutableDictionary alloc] init];
-    }
-    return _projectIDDict;
-}
-
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath
 {
     NSError *error;
@@ -114,10 +86,9 @@
         CFRelease(fileUTI); // manually free this, because ownership was transfered to ARC
 
         if (isPlayable) {
-            Sound *sound = [[Sound alloc] init];
+            Sound *sound = [[Sound alloc] initWithName:@"" andFileName:fileName];
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
             NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts firstObject] : fileName);
-            sound.fileName = fileName;
             NSUInteger soundNameLength = [fileNameWithoutExtension length];
             if (soundNameLength > kMaxNumOfSoundNameCharacters)
                 soundNameLength = kMaxNumOfSoundNameCharacters;
@@ -354,27 +325,6 @@
     }
 }
 
-- (void)downloadProjectFromURL:(NSURL*)url withProjectID:(NSString*)projectID andName:(NSString*)name
-{
-    NSDebug(@"Starting downloading project '%@' with id %@ from url: %@", name, projectID, [url absoluteString]);
-    
-    if (! self.downloadSession) {
-        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-        sessionConfig.timeoutIntervalForRequest = NetworkDefines.connectionTimeout;
-        self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
-                                                             delegate:self
-                                                        delegateQueue:nil];
-    }
-    
-    NSURLSessionDownloadTask *getProjectTask = [self.downloadSession downloadTaskWithURL:url];
-    if (getProjectTask) {
-        [self.projectTaskDict setObject:url forKey:getProjectTask];
-        [self.projectNameDict setObject:name forKey:getProjectTask];
-        [self.projectIDDict setObject:projectID forKey:getProjectTask];
-        [getProjectTask resume];
-    }
-}
-
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path
 {
     if (! [self fileExists:path]) {
@@ -393,38 +343,17 @@
 }
 
 #pragma mark - Helper
-- (void)storeDownloadedProject:(NSData *)data andTask:(NSURLSessionDownloadTask *)task
+- (BOOL)storeDownloadedProject:(NSData *)data withID:(NSString*)projectId andName:(NSString*)projectName
 {
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
                                                       error:nil];
     
     if (jsonObject && [jsonObject isKindOfClass:[NSDictionary class]] && [jsonObject objectForKey:@"error"]) {
-        // JSON API returned a 404 error (different from HTTP 404 error)
-        if ([self.delegate respondsToSelector:@selector(fileNotFound)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate fileNotFound];
-            });
-        }
-        
-        return;
+        return NO;
     }
 
-    NSString *name = [self.projectNameDict objectForKey:task];
-    NSString *projectID = [self.projectIDDict objectForKey:task];
-    if ([self unzipAndStore:data withProjectID:projectID withName:name])
-    {
-        ProjectLoadingInfo* info = [ProjectLoadingInfo projectLoadingInfoForProjectWithName:name
-                                                                                  projectID:projectID];
-        NSURL* url = [self.projectTaskDict objectForKey:task];
-        if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProjectLoadingInfo:)] && [self.projectURL isEqual:url]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate downloadFinishedWithURL:url andProjectLoadingInfo:info];
-            });
-        } else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProjectLoadingInfo:)] && [self.delegate isKindOfClass:[HelpWebViewController class]]){
-            [self.delegate downloadFinishedWithURL:url andProjectLoadingInfo:info];
-        }
-    }
+    return [self unzipAndStore:data withProjectID:projectId withName:projectName];
 }
 
 // IMPORTANT: all downloaded projects own a unique projectID, but if this project was generated by the user
@@ -452,13 +381,6 @@
     [Logger logError:error];
 
     if (!unzipSuccess) {
-        NSDebug(@"Unzip unsuccessfull");
-        if ([self.delegate respondsToSelector:@selector(invalidZip)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate invalidZip];
-            });
-        }
-
         return NO;
     }
 
@@ -487,29 +409,6 @@
     }
 }
 
-- (void)stopLoading:(NSURL *)projecturl
-{
-    if (self.projectTaskDict.count > 0) {
-        NSArray *temp = [self.projectTaskDict allKeysForObject:projecturl];
-        if (temp) {
-            NSURLSessionDownloadTask *key = [temp objectAtIndex:0];
-            [self stopLoadingTask:key];
-        }
-    }
-}
-
-- (void)stopLoadingTask:(NSURLSessionDownloadTask *)task
-{
-    [task cancel];
-    NSURL* url = [self.projectTaskDict objectForKey:task];
-    if (url) {
-        [self.projectTaskDict removeObjectForKey:task];
-        [self.projectNameDict removeObjectForKey:task];
-        [self.projectIDDict removeObjectForKey:task];
-    }
-    [Util setNetworkActivityIndicator:NO];
-}
-
 - (uint64_t)freeDiskspace
 {
     uint64_t totalFreeSpace = 0;
@@ -526,119 +425,6 @@
     }
     return totalFreeSpace;
 }
-
-#pragma mark - NSURLSessionDelegate
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
-{
-    NSURL *url = [self.projectTaskDict objectForKey:downloadTask];
-    if (url) {
-        [self storeDownloadedProject:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
-        [self.projectTaskDict removeObjectForKey:downloadTask];
-        [self.projectNameDict removeObjectForKey:downloadTask];
-        [self.projectIDDict removeObjectForKey:downloadTask];
-        // Notification for reloading MyProjectViewController
-        [[NSNotificationCenter defaultCenter] postNotificationName:kProjectDownloadedNotification object:self];
-    }
-    [Util setNetworkActivityIndicator:NO];
-}
-
-- (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
-{
-}
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
-{
-    NSURL* url = [self.projectTaskDict objectForKey:downloadTask];
-    if (! url) {
-        return;
-    }
-    
-    uint64_t freeDiskspace = [self freeDiskspace];
-    if (totalBytesExpectedToWrite != NSURLResponseUnknownLength && freeDiskspace < totalBytesExpectedToWrite) {
-        [self stopLoadingTask:downloadTask];
-        if ([self.delegate respondsToSelector:@selector(maximumFilesizeReached)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate maximumFilesizeReached];
-            });
-        }
-        [Util setNetworkActivityIndicator:NO];
-        return;
-    } else {
-        double progress = (double)totalBytesWritten/(double)totalBytesExpectedToWrite;
-        if (url) {
-            if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.projectURL isEqual:url]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate updateProgress:progress];
-                });
-            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[HelpWebViewController class]]){
-                [self.delegate updateProgress:progress];
-            }
-
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [Util setNetworkActivityIndicator:YES];
-        });
-    }
-}
-
-- (void)URLSession:(NSURLSession*)session task:(NSURLSessionTask*)task didCompleteWithError:(NSError*)error
-{
-    if (error) {
-        // FIXME: hack: workaround for app crash issue...
-        if (error.code != kCFURLErrorNotConnectedToInternet) {
-            [task suspend];
-            [Util setNetworkActivityIndicator:NO];
-        }
-        if (error.code == kCFURLErrorCannotFindHost) {
-            if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate setBackDownloadStatus];
-                });
-            }
-            return;
-        }
-        if (error.code == kCFURLErrorTimedOut){
-            if ([self.delegate respondsToSelector:@selector(timeoutReached)]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate timeoutReached];
-                });
-            }
-            return;
-        }
-        if (error.code == kCFURLErrorDataLengthExceedsMaximum){
-            if ([self.delegate respondsToSelector:@selector(maximumFilesizeReached)]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate maximumFilesizeReached];
-                });
-            }
-            return;
-        }
-        
-        NSURL *url = [self.projectTaskDict objectForKey:task];
-        if (url) {
-            [self.projectTaskDict removeObjectForKey:task];
-            [self.projectNameDict removeObjectForKey:task];
-            [self.projectIDDict removeObjectForKey:task];
-        }
-        if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate setBackDownloadStatus];
-            });
-        }
-        [Util setNetworkActivityIndicator:NO];
-    }
-}
-
--(void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error
-{
-    if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate setBackDownloadStatus];
-        });
-    }
-    [Util setNetworkActivityIndicator:NO];
-}
-
 
 #pragma mark - exclude file from iCloud Backup
 - (BOOL)addSkipBackupAttributeToItemAtURL:(NSString *)URL

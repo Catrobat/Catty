@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,14 +43,15 @@ class BrickCellTests: XCTestCase {
         app.buttons[kLocalizedYes].tap()
     }
 
-    private func addLookBrickWithValuesToProject(brick: String, category: String) {
+    private func addBackgroundBrickWithValuesToProject(brick: String, category: String) {
         clearScript()
         addBrick(label: brick, section: category, in: app)
 
         for lookName in testLookNames {
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnBackgroundPicker(for: brick, in: app)
+
             app.pickerWheels.firstMatch.swipeDown()
-            app.buttons[kLocalizedDone].tap()
+            app.buttons[kLocalizedDone].firstMatch.tap()
 
             let alert1 = waitForElementToAppear(app.sheets[kLocalizedAddLook])
             alert1.buttons[kLocalizedDrawNewImage].tap()
@@ -63,10 +64,10 @@ class BrickCellTests: XCTestCase {
             let coordinate: XCUICoordinate = drawView.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0))
             coordinate.tap()
 
-            waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]).buttons[kLocalizedBackgrounds].tap()
+            waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]).buttons[kLocalizedBack].tap()
 
-            let alert2 = waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode])
-            alert2.buttons[kLocalizedYes].tap()
+            let alert2 = waitForElementToAppear(app.sheets.firstMatch)
+            alert2.buttons[kLocalizedSaveChanges].tap()
 
             let alert3 = waitForElementToAppear(app.alerts[kLocalizedAddImage])
             alert3.textFields.buttons["Clear text"].tap()
@@ -76,7 +77,6 @@ class BrickCellTests: XCTestCase {
     }
 
     func testVariableBrickParameterSpace() {
-
         let brickWidth: CGFloat
         let initialParameterTextViewWidth: CGFloat
         let firstParameterTextView: XCUIElement
@@ -100,7 +100,7 @@ class BrickCellTests: XCTestCase {
         for i in 1...8 {
             app.buttons["\(String(i))"].staticTexts["\(String(i))"].doubleTap()
         }
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
 
         firstParameterTextViewWidth = firstParameterTextView.frame.size.width
 
@@ -111,12 +111,14 @@ class BrickCellTests: XCTestCase {
         for i in 1...8 {
             app.buttons["\(String(i))"].staticTexts["\(String(i))"].doubleTap()
         }
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         secondParameterTextViewWidth = secondParameterTextView.frame.size.width
 
         XCTAssertTrue(firstParameterTextViewWidth > initialParameterTextViewWidth)
         XCTAssertEqual(firstParameterTextViewWidth, secondParameterTextViewWidth, accuracy: 0.0001)
-        XCTAssertTrue(brickWidth - (firstParameterTextViewWidth + secondParameterTextViewWidth) < firstParameterTextViewWidth)
+
+        let remainingSpaceRight = brickWidth - (secondParameterTextView.frame.origin.x + secondParameterTextView.frame.size.width)
+        XCTAssertTrue(remainingSpaceRight < firstParameterTextViewWidth)
     }
 
     func testSetBackgroundBrick() {
@@ -126,17 +128,17 @@ class BrickCellTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addLookBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryLook)
+        addBackgroundBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryLook)
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+        tapOnBackgroundPicker(for: brick, in: app)
 
         XCTAssertEqual(app.pickerWheels.element.children(matching: .any).count, 5)
 
         for lookName in testLookNames {
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnBackgroundPicker(for: brick, in: app)
 
             app.pickerWheels.element.adjust(toPickerWheelValue: lookName)
-            app.buttons[kLocalizedDone].tap()
+            app.buttons[kLocalizedDone].firstMatch.tap()
         }
     }
 }

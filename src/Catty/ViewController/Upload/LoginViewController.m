@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -301,7 +301,6 @@
 
         if (error) {
             if ([Util isNetworkError:error]) {
-                NSLog(@"ERROR: %@", error);
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.loginButton.enabled = YES;
@@ -403,13 +402,13 @@
 -(void)openTermsOfUse
 {
     NSString *url = NetworkDefines.termsOfUseUrl;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
 }
 
 - (void)forgotPassword
 {
     NSString *url = NetworkDefines.recoverPassword;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
 }
 
 #pragma mark Helpers

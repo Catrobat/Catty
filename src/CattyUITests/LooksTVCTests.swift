@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -77,5 +77,42 @@ class LooksTVCTests: XCTestCase {
             let projectVC = waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject])
             XCTAssert(waitForElementToAppear(projectVC.buttons[kLocalizedPocketCode]).exists)
         }
+    }
+    func testCancelEnterNameDialog() {
+        let testElement = kLocalizedLooks
+        let testObject = "Mole 1"
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.tables.staticTexts[testObject].tap()
+        app.tables.staticTexts[testElement].tap()
+        app.buttons[kLocalizedAdd].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
+
+        app.tap()
+        app.navigationBars.buttons[kLocalizedBack].tap()
+
+        waitForElementToAppear(app.sheets.firstMatch).buttons[kLocalizedSaveChanges].tap()
+        waitForElementToAppear(app.alerts[kLocalizedAddImage]).buttons[kLocalizedCancel].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[testObject]))
+    }
+
+    func testPaintBackButton() {
+        let testElement = kLocalizedLooks
+        let testObject = "Mole 1"
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.tables.staticTexts[testObject].tap()
+        app.tables.staticTexts[testElement].tap()
+        app.buttons[kLocalizedAdd].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
+        app.navigationBars.buttons[kLocalizedBack].tap()
+        XCTAssertFalse(app.sheets.firstMatch.exists)
+
+        app.buttons[kLocalizedAdd].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
+        app.tap()
+        app.navigationBars.buttons[kLocalizedBack].tap()
+        XCTAssertTrue(app.sheets.firstMatch.exists)
     }
 }

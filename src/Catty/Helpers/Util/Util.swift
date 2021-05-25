@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -50,6 +50,48 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
         return appBuildVersion
     }
 
+    @objc(alertWithText:)
+    class func alert(text: String) {
+        alert(title: kLocalizedPocketCode, text: text)
+    }
+
+    @objc(alertWithTitle:andText:)
+    class func alert(title: String, text: String) {
+        AlertControllerBuilder.alert(title: title, message: text)
+            .addCancelAction(title: kLocalizedOK, handler: nil)
+            .build().showWithController(Util.topmostViewController())
+    }
+
+    @objc(allMessagesForProject:)
+    class func allMessages(for project: Project) -> NSOrderedSet {
+        guard let allBroadcastMessages = project.allBroadcastMessages?.array else {
+            return []
+        }
+        let messages = NSMutableOrderedSet(array: allBroadcastMessages)
+
+        for object in project.allObjects() {
+            for script in object.scriptList {
+                if let broadcastScript = script as? BroadcastScript {
+                    if let receivedMessage = broadcastScript.receivedMessage {
+                        messages.add(receivedMessage)
+                    }
+                }
+                if let script = script as? Script {
+                    for brick in script.brickList {
+                        if let broadcastBrick = brick as? BroadcastBrick {
+                            messages.add(broadcastBrick.broadcastMessage)
+                        } else if let broadcastBrick = brick as? BroadcastWaitBrick {
+                            messages.add(broadcastBrick.broadcastMessage)
+                        }
+                    }
+                }
+            }
+        }
+
+        // Return immutable set, because adding items afterwards would have no effect
+        return NSOrderedSet(orderedSet: messages)
+    }
+
     class func catrobatLanguageVersion() -> String {
         let catrobatLanguageVersion = Bundle.main.infoDictionary?["CatrobatLanguageVersion"] as! String
         return catrobatLanguageVersion
@@ -70,6 +112,50 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
         return deviceName
     }
 
+    class func defaultAlertForNetworkError() {
+        if Thread.isMainThread {
+            alert(text: kLocalizedErrorInternetConnection)
+        } else {
+            DispatchQueue.main.async(execute: {
+                Util.defaultAlertForNetworkError()
+            })
+        }
+    }
+
+    class func defaultAlertForUnknownError() {
+        if Thread.isMainThread {
+            alert(text: kLocalizedErrorUnknown)
+        } else {
+            DispatchQueue.main.async(execute: {
+                Util.defaultAlertForUnknownError()
+            })
+        }
+    }
+
+    @objc(lookWithName:forObject:)
+    class func look(with name: String, for object: SpriteObject) -> Look? {
+        guard let lookList = object.lookList else {
+            return nil
+        }
+
+        for look in lookList {
+            if let look = look as? Look, look.name == name {
+                return look
+            }
+        }
+
+        return nil
+    }
+
+    @objc(objectWithName:forScene:)
+    class func object(with name: String, for scene: Scene) -> SpriteObject? {
+        for object in scene.objects() where object.name == name {
+            return object
+        }
+
+        return nil
+    }
+
     class func platformName() -> String? {
         let platformName = Bundle.main.infoDictionary?["CatrobatPlatformName"] as? String
         return platformName
@@ -88,11 +174,110 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
         let platformVersionWithPatch = "\(major).\(minor).\(patch)" as String
         return platformVersionWithPatch
     }
+
     class func platformVersionWithoutPatch() -> String {
         let os = self.platformVersion()
         let major = String(format: "%ld", os.majorVersion)
         let minor = String(format: "%ld", os.minorVersion)
         let platformVersionWithoutPatch = "\(major).\(minor)" as String
         return platformVersionWithoutPatch
+    }
+
+    class func screenSize(_ inPixel: Bool) -> CGSize {
+        var screenSize = inPixel ? UIScreen.main.nativeBounds.size : UIScreen.main.bounds.size
+
+        if inPixel && UIScreen.main.bounds.height == CGFloat(kIphone6PScreenHeight) {
+            let iPhonePlusDownsamplingFactor = CGFloat(1.15)
+            screenSize.height /= iPhonePlusDownsamplingFactor
+            screenSize.width /= iPhonePlusDownsamplingFactor
+        }
+
+        return screenSize
+    }
+
+    class func screenHeight(_ inPixel: Bool) -> CGFloat {
+        let screenHeight = self.screenSize(inPixel).height
+        return screenHeight
+    }
+
+    class func screenWidth(_ inPixel: Bool) -> CGFloat {
+        let screenWidth = self.screenSize(inPixel).width
+        return screenWidth
+    }
+
+    class func screenHeight() -> CGFloat {
+        let screenHeight = self.screenSize(false).height
+        return screenHeight
+    }
+
+    class func screenWidth() -> CGFloat {
+        let screenWidth = self.screenSize(false).width
+        return screenWidth
+    }
+
+    class func statusBarHeight() -> CGFloat {
+        let statusBarSize = UIApplication.shared.statusBarFrame.size
+        return min(statusBarSize.width, statusBarSize.height)
+    }
+
+    class func showNotification(withMessage message: String?) {
+        guard let hud = BDKNotifyHUD(image: nil, text: message) else {
+            return
+        }
+
+        let vc = Util.topmostViewController()
+        if vc.view == nil {
+            return
+        }
+
+        hud.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
+        hud.center = CGPoint(x: vc.view.center.x, y: vc.view.center.y)
+
+        vc.view.addSubview(hud)
+        hud.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
+                    speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
+                    in: vc.view,
+                    completion: {
+                        hud.removeFromSuperview()
+                    })
+    }
+
+    class func showNotificationForSaveAction() {
+        guard let hud = BDKNotifyHUD(image: UIImage(named: kBDKNotifyHUDCheckmarkImageName), text: kLocalizedSaved) else {
+            return
+        }
+
+        let vc = Util.topmostViewController()
+        if vc.view == nil {
+            return
+        }
+
+        hud.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
+        hud.center = CGPoint(x: vc.view.center.x,
+                             y: vc.view.center.y + CGFloat(kBDKNotifyHUDCenterOffsetY))
+        hud.tag = Int(kSavedViewTag)
+
+        vc.view.addSubview(hud)
+        hud.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
+                    speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
+                    in: vc.view,
+                    completion: {
+                        hud.removeFromSuperview()
+                    })
+    }
+
+    @objc(soundWithName:forObject:)
+    class func sound(with name: String, for object: SpriteObject) -> Sound? {
+        guard let soundList = object.soundList else {
+            return nil
+        }
+
+        for sound in soundList {
+            if let sound = sound as? Sound, sound.name == name {
+                return sound
+            }
+        }
+
+        return nil
     }
 }

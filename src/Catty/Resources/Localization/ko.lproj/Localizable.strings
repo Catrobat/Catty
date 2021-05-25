@@ -14,6 +14,9 @@
 "About Pocket Code" = "포켓 코드에 대하여";
 
 /* No comment provided by engineer. */
+"absolute value" = "절대 값";
+
+/* No comment provided by engineer. */
 "acceleration x" = "x축방향 가속도";
 
 /* No comment provided by engineer. */
@@ -101,6 +104,15 @@
 "April" = "4월";
 
 /* No comment provided by engineer. */
+"arccosine" = "아크 코사인";
+
+/* No comment provided by engineer. */
+"arcsine" = "아크 사인";
+
+/* No comment provided by engineer. */
+"arctangent" = "아크 탄젠트";
+
+/* No comment provided by engineer. */
 "Arduino" = "아두이노";
 
 /* No comment provided by engineer. */
@@ -169,11 +181,11 @@
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "코딩을 시작하기전에 앱 사용 정책을 보아 주세요:";
 
-/* paint */
-"Blue" = "파랑";
-
 /* No comment provided by engineer. */
 "blue" = "파랑";
+
+/* paint */
+"Blue" = "파랑";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth는 사용할 수 없습니다. 장치는 블루투스 4.0을 지원 하지 않거나 또는 블루투스 칩 손상되었습니다. 설정에서 다른 Bluetooth 장치에 연결하여 확인 하시기 바랍니다.";
@@ -230,7 +242,7 @@
 "Catrobat community" = "Catrobat 공유";
 
 /* No comment provided by engineer. */
-"ceil" = "위";
+"ceiling" = "위";
 
 /* No comment provided by engineer. */
 "Cello" = "첼로";
@@ -299,6 +311,9 @@
 "color" = "색";
 
 /* No comment provided by engineer. */
+"Comparison operators" = "비교 연산";
+
+/* No comment provided by engineer. */
 "compass" = "나침반";
 
 /* No comment provided by engineer. */
@@ -341,6 +356,9 @@
 "Copy" = "복사하기";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "배우 또는 개체 복사";
+
+/* No comment provided by engineer. */
 "Copy brick" = "블록 복사";
 
 /* No comment provided by engineer. */
@@ -350,10 +368,19 @@
 "Copy project" = "프로젝트 복사";
 
 /* No comment provided by engineer. */
+"cosine" = "코사인";
+
+/* No comment provided by engineer. */
 "Create account" = "계정 만들기";
 
 /* No comment provided by engineer. */
+"Create patterns for stiching machines" = "스티칭 머신 용 패턴 생성";
+
+/* No comment provided by engineer. */
 "Data" = "변수";
+
+/* No comment provided by engineer. */
+"Date and time" = "날짜와 시간";
 
 /* No comment provided by engineer. */
 "day" = "일";
@@ -366,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "12월";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "십진 로그";
 
 /* No comment provided by engineer. */
 "degrees" = "도";
@@ -461,6 +491,9 @@
 "device motion-sensor" = "동작 센서 선택";
 
 /* No comment provided by engineer. */
+"Device sensors" = "기기의 센서들";
+
+/* No comment provided by engineer. */
 "direction" = "방향";
 
 /* No comment provided by engineer. */
@@ -479,6 +512,9 @@
 "Disagree" = "동의하지 않음";
 
 /* No comment provided by engineer. */
+"Discard changes" = "변경 사항을 취소";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "모든 장치 연결 해제";
 
 /* No comment provided by engineer. */
@@ -488,7 +524,7 @@
 "Do you really want to delete the current drawing?" = "현재 그림을 삭제 하시겠습니까?";
 
 /* paint */
-"Do you want to save the changes" = "변경 내용을 저장하시겠습니까";
+"Do you want to save your changes?" = "변경 내용을 저장 하시겠습니까?";
 
 /* No comment provided by engineer. */
 "don't rotate" = "회전 정지";
@@ -498,9 +534,6 @@
 
 /* No comment provided by engineer. */
 "Download" = "다운로드";
-
-/* No comment provided by engineer. */
-"Download successful" = "다운로드 성공";
 
 /* No comment provided by engineer. */
 "Downloads" = "다운로드";
@@ -569,6 +602,12 @@
 "Email" = "이메일 주소";
 
 /* No comment provided by engineer. */
+"Embroidery" = "자수";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "자수 확대";
+
+/* No comment provided by engineer. */
 "Empty input!" = "입력이 없습니다!";
 
 /* No comment provided by engineer. */
@@ -623,10 +662,16 @@
 "Error" = "오류";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "프로젝트를보고하는 동안 오류가 발생했습니다. 나중에 다시 시도하세요.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "화일저장 오류";
 
 /* No comment provided by engineer. */
 "Event" = "이벤트";
+
+/* No comment provided by engineer. */
+"exponent" = "멱지수";
 
 /* No comment provided by engineer. */
 "FA" = "파";
@@ -704,6 +749,9 @@
 "Forgot password" = "비밀번호 분실";
 
 /* No comment provided by engineer. */
+"Formula Editor" = "공식 편집기";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "수식이 너무 깁니다! 해결하거나 취소하려면 다시 누르십시오.";
 
 /* No comment provided by engineer. */
@@ -725,6 +773,12 @@
 "Front camera" = "전면 카메라";
 
 /* No comment provided by engineer. */
+"Functions" = "함수";
+
+/* No comment provided by engineer. */
+"General properties" = "일반 속성";
+
+/* No comment provided by engineer. */
 "Glide" = "움직이기";
 
 /* No comment provided by engineer. */
@@ -736,11 +790,11 @@
 /* No comment provided by engineer. */
 "Go to front" = "앞으로 이동";
 
-/* paint */
-"Green" = "초록";
-
 /* No comment provided by engineer. */
 "green" = "초록";
+
+/* paint */
+"Green" = "초록";
 
 /* No comment provided by engineer. */
 "Guitar" = "기타";
@@ -827,6 +881,9 @@
 "italic" = "기울임";
 
 /* No comment provided by engineer. */
+"item" = "항목";
+
+/* No comment provided by engineer. */
 "Jan" = "1월";
 
 /* No comment provided by engineer. */
@@ -878,10 +935,10 @@
 "left-right only" = "왼쪽-오른쪽만";
 
 /* No comment provided by engineer. */
-"Length" = "길이";
+"length" = "길이";
 
 /* No comment provided by engineer. */
-"length" = "길이";
+"Length" = "길이";
 
 /* No comment provided by engineer. */
 "letter" = "문자";
@@ -899,6 +956,12 @@
 "Lists" = "리스트";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "배우와 오브젝트를 위한 리스트";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "배우와 오브젝트만을 위한 리스트";
+
+/* No comment provided by engineer. */
 "Loading" = "로딩";
 
 /* No comment provided by engineer. */
@@ -909,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "논리 연산";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "논리 연산";
 
 /* No comment provided by engineer. */
 "Login" = "로그인";
@@ -922,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "경도";
 
-/* No comment provided by engineer. */
-"Look" = "모양";
-
 /* LOOK */
 "look" = "모양";
+
+/* No comment provided by engineer. */
+"Look" = "모양";
 
 /* No comment provided by engineer. */
 "look name" = "모양 이름";
@@ -953,7 +1019,13 @@
 "Marimba" = "마림바";
 
 /* No comment provided by engineer. */
-"Math" = "수학";
+"Maths" = "수학함수";
+
+/* No comment provided by engineer. */
+"Maximize" = "최대화";
+
+/* No comment provided by engineer. */
+"maximum of" = "최댓값";
 
 /* No comment provided by engineer. */
 "May" = "5월";
@@ -977,6 +1049,12 @@
 "MI" = "미";
 
 /* No comment provided by engineer. */
+"Minimize" = "최소화";
+
+/* No comment provided by engineer. */
+"minimum of" = "최솟값";
+
+/* No comment provided by engineer. */
 "minute" = "분";
 
 /* paint */
@@ -984,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "월";
+
+/* No comment provided by engineer. */
+"modulo" = "모듈로";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "두더지";
@@ -1008,6 +1089,9 @@
 
 /* No comment provided by engineer. */
 "Motion" = "움직임";
+
+/* No comment provided by engineer. */
+"Motion properties" = "운동 속성";
 
 /* No comment provided by engineer. */
 "Move" = "이동하기";
@@ -1047,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "이미 존재하는 이름입니다";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "자연 로그";
 
 /* No comment provided by engineer. */
 "New" = "새로운";
@@ -1112,9 +1199,6 @@
 "not available. Continue anyway?" = "사용할 수 없습니다. 계속하시겠습니까?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "이 프로그램을 다운로드할 메모리가 부족합니다. 다른 프로그램을 삭제하고 시도해 보세요.";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "메모리가 부족합니다";
 
 /* No comment provided by engineer. */
@@ -1139,13 +1223,7 @@
 "Object" = "오브젝트";
 
 /* No comment provided by engineer. */
-"Object lists:" = "오브젝트 리스트:";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "오브젝트나 배우의 이름";
-
-/* No comment provided by engineer. */
-"Object variables:" = "스프라이트 변수:";
 
 /* No comment provided by engineer. */
 "Oct" = "10월";
@@ -1220,6 +1298,9 @@
 "phiro side right" = "피로 오른쪽 옆";
 
 /* No comment provided by engineer. */
+"pi" = "파이";
+
+/* No comment provided by engineer. */
 "Piano" = "피아노";
 
 /* paint */
@@ -1247,7 +1328,7 @@
 "Please enter a text." = "텍스트를 입력해주세요.";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "%d자 이상을 입력하세요.";
+"Please enter at least %lu character(s)." = "%lu 자 이상을 입력하십시오.";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "이 프로젝트를 부적합하다고 신고하려면 로그인 해 주세요";
@@ -1304,6 +1385,9 @@
 "position y" = "y좌표";
 
 /* No comment provided by engineer. */
+"power" = "거듭제곱";
+
+/* No comment provided by engineer. */
 "Preview" = "캡처하기";
 
 /* No comment provided by engineer. */
@@ -1319,16 +1403,10 @@
 "Project" = "프로그램";
 
 /* No comment provided by engineer. */
-"Project lists:" = "오브젝트 리스트:";
-
-/* No comment provided by engineer. */
 "Project name" = "프로젝트 이름";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "프로젝트 이름이 필요합니다!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "프로젝트 변수:";
 
 /* No comment provided by engineer. */
 "Projects" = "프로그램";
@@ -1337,7 +1415,13 @@
 "Projects on device" = "프로그램";
 
 /* No comment provided by engineer. */
+"Properties" = "오브젝트";
+
+/* No comment provided by engineer. */
 "random position" = "랜덤 위치";
+
+/* No comment provided by engineer. */
+"random value from to" = "랜덤";
 
 /* No comment provided by engineer. */
 "Rate Us" = "평가하기";
@@ -1351,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "직사각형 / 정사각형";
 
-/* No comment provided by engineer. */
-"red" = "빨강";
-
 /* paint */
 "Red" = "빨강";
+
+/* No comment provided by engineer. */
+"red" = "빨강";
 
 /* No comment provided by engineer. */
 "Register" = "등록";
 
 /* No comment provided by engineer. */
 "Registration successful" = "등록 성공";
+
+/* No comment provided by engineer. */
+"regular expression" = "정규 표현";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "알려진 장치 제거";
@@ -1417,11 +1504,11 @@
 /* No comment provided by engineer. */
 "Saturday" = "토요일";
 
+/* No comment provided by engineer. */
+"Save changes" = "변경 사항을 저장하다";
+
 /* paint */
 "Save to Photos" = "사진 저장하기";
-
-/* No comment provided by engineer. */
-"Save to PocketCode" = "PocketCode에 저장";
 
 /* No comment provided by engineer. */
 "Saved" = "저장 완료";
@@ -1535,6 +1622,9 @@
 "Set size to" = "크기 설정하기";
 
 /* No comment provided by engineer. */
+"Set tempo to" = "빠르기 설정";
+
+/* No comment provided by engineer. */
 "Set transparency " = "투명도 정하기";
 
 /* No comment provided by engineer. */
@@ -1560,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "변수 보이기";
+
+/* No comment provided by engineer. */
+"sine" = "사인";
 
 /* No comment provided by engineer. */
 "size" = "크기";
@@ -1591,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "속도";
 
-/* No comment provided by engineer. */
-"sqrt" = "제곱근";
-
 /* paint */
 "square" = "정사각형";
+
+/* No comment provided by engineer. */
+"square root" = "제곱근";
 
 /* No comment provided by engineer. */
 "stage is touched" = "화면을 터치할 때";
@@ -1628,6 +1721,9 @@
 "steps" = "픽셀";
 
 /* No comment provided by engineer. */
+"Stitch" = "스티치";
+
+/* No comment provided by engineer. */
 "Stop all sounds" = "모든 소리 멈추기";
 
 /* No comment provided by engineer. */
@@ -1643,6 +1739,9 @@
 "Switch to look" = "모양 바꾸기";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "번호와 함께 모양 바꾸기";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "입력에 오류가 있습니다! 해결하거나 취소하려면 다시 누르십시오.";
 
 /* No comment provided by engineer. */
@@ -1650,6 +1749,9 @@
 
 /* No comment provided by engineer. */
 "Synth Pad" = "신스 패드";
+
+/* No comment provided by engineer. */
+"tangent" = "접선";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "배우와 오브젝트를 추가하려면 \"+\" 를 터치";
@@ -1665,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "소리를 추가하려면 \"+\"를 터치하세요";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "변수와 목록을 추가하려면 \"+\"를 탭하세요.";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "사용과 서비스 약관";
@@ -1698,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "최근 프로젝트를 가져올 수 없습니다";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "요청한 프로그램을 찾을 수 없습니다. 다른 프로그램을 선택 하십시오.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "요청한 프로젝트을 가져올 수 없습니다. 다른 프로그램을 선택 하십시오.";
@@ -1745,7 +1847,7 @@
 "to list" = "리스트에";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "당사 서비스 및 관련 계정의 모든 혜택을 제공하려면 귀하로부터 특정 데이터를 수집해야합니다.\n\n\u{2022} Google 서비스 (앱 및 웹 사이트)를 유지 및 개선하고 ICT 및 STEM / STEAM 교육에 대한 과학적 연구를 수행하기 위해 Google LLC (미국)와 함께 Google Analytics, Crashlytics, Firebase를 모두 사용합니다. Dynatrace LLC (미국)의 Dynatrace는 서비스 사용에 대한 메타 데이터 (예 : 충돌 정보, 타임 스탬프, 방문한 페이지 / 화면, 앱 및 서비스 사용, 사용 된 운영 체제, 네트워크 공급자에 대한 정보)를 가져옵니다. 이 분석 및 수집 된 데이터는 귀하의 프로필에 연결되지 않으며 개인 정보를 포함하지 않습니다 (IP 주소의 마지막 비트가 익명화 됨). 그러나 수집 된 데이터는 서비스 제공 업체 (미국의 Google LLC 및 미국의 Dynatrace LLC)로 전송됩니다. 데이터 처리는 Google LLC 및 Dynatrace LLC와의 계약을 기반으로합니다. 서비스 제공 업체와의이 관계는 유럽 연합의 일반 데이터 보호 규정 (EU GDPR) 및 EU- 미국 \"프라이버시 실드\"계약을 준수합니다.\n\n\u{2022} Google 시스템에서 계정을 생성 및 사용하고 이메일로 계정에 대한 필요한 변경 사항 (예 : 이용 약관, 커뮤니티 규칙 또는 정책의 업데이트 또는 위반)을 알리기 위해 , 당사는 귀하의 사용자 이름과 귀하가 제공 한 경우 귀하의 이메일 주소를 저장합니다. Google 또는 Facebook 계정을 통해 계정을 연결 한 경우, 당사는 이러한 서비스에서 귀하의 계정에 연결된 식별 키를 추가로 저장합니다. 당사는 귀하가 명시 적으로 허용하지 않는 한이 데이터를 기타 (예 : 마케팅) 목적으로 사용하지 않습니다.\n\n\u{2022} 자발적으로 공유 사이트의 계정 페이지를 통해 거주 국가를 제공 할 수 있습니다. 이것은 귀하의 공개 프로필에 표시되며 당사의 통계 및 연구 목적으로 만 사용됩니다. 프로필 설정에서 언제든지 제거 할 수 있습니다.\n\n\u{2022} https://share.catrob.at의 프로필 페이지를 통해 계정을 삭제하면 언제든지 계정에 속한 개인 데이터의 사용을 철회 할 수 있습니다. 계정을 삭제 한 후에도 제공된 서비스를 계속 사용할 수 있지만 프로그램 업로드, 댓글 또는 좋아요를 통한 공동 작업은 할 수 없습니다. 또한 업로드 된 프로그램, 댓글 등 귀하의 계정에 연결된 모든 제공된 콘텐츠가 삭제됩니다.\n\n\u{2022} 예를 들어 사용자가 제공 한 업로드 또는 불법적 인 목적의 댓글을 통해 Google 서비스의 오용을 방지하기 위해 사용자가 생성 한 모든 공개 데이터 (업로드, 댓글)는 타임 스탬프 및 사용 된 인터넷과 함께 내부적으로 데이터베이스에 저장됩니다. 주소. 이 데이터는 충분히 불법적 인 행위가 합리적으로 의심되고 공식적으로 권한이있는 법률 기관이 관련 법률에 따라 요청하지 않는 한 어떤 기관에서 사용하거나 전달하지 않습니다. 각 사례는 먼저 당사가 개별적으로 철저히 확인합니다.\n\n\u{2022} MailChimp 서비스 (The Rocket Science Group LLC d / b / a MailChimp, USA)를 통해 당사에서 제공하는 https://catrob.at/newsletter에서 Catrobat 뉴스 레터를 자발적으로 구독 할 수 있습니다. 그런 다음 제공된 이메일 주소로 Catrobat 프로젝트 및 해당 서비스에 대한 업데이트를 받게됩니다. 모든 뉴스 레터의 바닥 글에있는 \"구독 취소\"링크를 사용하여 언제든지 뉴스 레터를 철회 할 수 있습니다. 이 뉴스 레터는 데이터 처리 계약을 맺고 EU 일반 데이터 보호 규정 및 EU-USA \"프라이버시 쉴드\"를 약속 한 MailChimp에서 제공합니다. MailChimp에 대한 자세한 내용은 MailChimp의 개인 정보 보호 정책 및 사용 약관을 참조하십시오.\n\n\u{2022} 모든 서비스는 오스트리아 Graz (유럽 연합)에 설립 된 비영리 NGO 인 International Catrobat Association – Verein zur Förderung freier Software의 산하에 무료 오픈 소스 Catrobat 프로젝트에서 제공됩니다. 당사의 정책은 EU 및 오스트리아 데이터 보호법 (GDPR)을 준수합니다. 당사에 연락하려면 contact@catrobat.org로 이메일을 보내거나 Catrobat로 메일을 보내주십시오.\nc / o\n소프트웨어 기술 연구소,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 그라츠, 오스트리아\n(유럽 연합).\n\n14 세 미만인 경우 법적 보호자 (일반적으로 부모)가이 정책을 수락해야합니다.\n\nCatrobat \\의 공식 영어 개인 정보 보호 정책은 웹 https://catrob.at/privacypolicy에서 확인할 수 있습니다.\n\n버전 2.2, 2019 년 10 월 17 일\n\n이전 버전의 이전 버전의 개인 정보 보호 정책 (2.0)을 여기에서 찾으십시오. http://developer.catrobat.org/privacy_policy_2-0";
 
 /* No comment provided by engineer. */
 "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "이 앱을 사용하려면, 개인보호정책을 따라야 하며, 불편하지 않아야 무료 웹서비스를 사용할 수 있다.";
@@ -1755,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Today" = "오늘";
+
+/* No comment provided by engineer. */
+"Touch detection" = "터치 감지";
 
 /* No comment provided by engineer. */
 "touch position" = "터치 위치";
@@ -1785,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "오른쪽으로 돌기";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "프로젝트를 가져올 수 없습니다!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "프로젝트를 로드할 수 없습니다.";
@@ -1856,9 +1964,6 @@
 "Username must not be blank" = "파일 이름을 반드시 입력해야 합니다.";
 
 /* No comment provided by engineer. */
-"Var/List" = "변수/리스트";
-
-/* No comment provided by engineer. */
 "Variable name:" = "변수 이름:";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1974,12 @@
 
 /* No comment provided by engineer. */
 "Variables" = "변수";
+
+/* No comment provided by engineer. */
+"Variables for all actors and objects" = "배우와 오브젝트를 위한 변수";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "배우와 오브젝트만을 위한 변수";
 
 /* No comment provided by engineer. */
 "Version" = "버전 정보";
@@ -1887,6 +1998,9 @@
 
 /* No comment provided by engineer. */
 "Views" = "조회수";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "시각 센서";
 
 /* No comment provided by engineer. */
 "Wait" = "기다리기";
@@ -1962,6 +2076,9 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "프로젝트는 Catrobat 커뮤니티에 업로드되어 누구나 사용할 수 있습니다.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "버그 신고가 성공적으로 전송되었습니다!";
 
 /* paint */
 "Zoom" = "줌";

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -124,8 +124,7 @@
     if (elementType) {
         return (ElementType)elementType.integerValue;
     }
-    NSError(@"Unknown Type: %@", type);
-    return -1;
+    return UNKNOWN_TYPE;
 }
 
 - (NSString*)stringForElementType:(ElementType)type

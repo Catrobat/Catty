@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@
 @testable import Pocket_Code
 import XCTest
 
-final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
+final class StoreProjectDownloaderMock: StoreProjectDownloader {
 
     var progress: Float = 0
     var project: StoreProject?
@@ -33,7 +33,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
     var error: StoreProjectDownloaderError?
     var expectation: XCTestExpectation?
 
-    func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
+    override func download(projectId: String, projectName: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.projectData, self.error)
             self.expectation?.fulfill()
@@ -44,21 +44,21 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
         }
     }
 
-    func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collectionNumber, self.error)
             self.expectation?.fulfill()
         }
     }
 
-    func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collectionText, self.error)
             self.expectation?.fulfill()
         }
     }
 
-    func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.project, self.error)
             self.expectation?.fulfill()

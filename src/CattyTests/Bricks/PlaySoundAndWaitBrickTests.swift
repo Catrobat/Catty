@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ final class PlaySoundAndWaitBrickTests: XCTestCase {
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
         XCTAssertFalse(brick === copiedBrick)
-        XCTAssertTrue(brick.sound.isEqual(to: copiedBrick.sound))
+        XCTAssertTrue(brick.sound.isEqual(copiedBrick.sound))
         XCTAssertTrue(brick.sound === copiedBrick.sound)
     }
 

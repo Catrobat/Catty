@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,9 +43,9 @@ final class SoundTest: XCTestCase {
           let equalSound = Sound(name: "testSound", fileName: "testSoundFile")
           let otherSound = Sound(name: "otherSound", fileName: "testSoundFile")
 
-           XCTAssertTrue(sound.isEqual(to: equalSound))
+           XCTAssertTrue(sound.isEqual(equalSound))
            XCTAssertFalse(sound === equalSound)
-           XCTAssertFalse(sound.isEqual(to: otherSound))
+           XCTAssertFalse(sound.isEqual(otherSound))
        }
 
        func testMutableCopyWithContext() {

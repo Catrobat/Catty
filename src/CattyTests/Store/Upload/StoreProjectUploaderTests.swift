@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -86,6 +86,22 @@ class StoreProjectUploaderTests: XCTestCase {
     func testUploadProjectFailsForAuthenticationError() {
         JNKeychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.uploadProject.fail.authentication")
+        let expectation = XCTestExpectation(description: "Upload Projects")
+        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
+
+        uploader.upload(project: self.project,
+                        completion: { projectId, error in
+                            guard let error = error else { XCTFail("no error received"); return }
+                            XCTAssertNil(projectId)
+                            XCTAssertEqual(error, .authenticationFailed)
+                            expectation.fulfill()
+        }, progression: nil)
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testUploadProjectFailsForInvalidToken() {
+        let dvrSession = Session(cassetteName: "StoreProjectUpload.uploadProject.fail.invalidToken")
         let expectation = XCTestExpectation(description: "Upload Projects")
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
 

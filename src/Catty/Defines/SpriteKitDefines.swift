@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,4 +36,12 @@ class SpriteKitDefines: NSObject {
     static let defaultValueShowVariable = "0"
 
     static let defaultRotationStyle = RotationStyle.allAround
+    @objc static let avCaptureDeviceType = AVCaptureDevice.DeviceType.builtInWideAngleCamera
+
+    static let stitchingLineShapeNodeName = "stitchingLineShapeNode"
+    static let stitchingPointShapeNodeName = "stitchingPointShapeNode"
+    static let defaultCatrobatStitchingSize = CGFloat(3.15)
+    static let defaultStitchingZPosition = CGFloat(0)
+    static let defaultStitchingColor = UIColor(red: 0, green: 0, blue: 0)
+    static let stitchingCircleRadius = CGFloat(3.0)
 }

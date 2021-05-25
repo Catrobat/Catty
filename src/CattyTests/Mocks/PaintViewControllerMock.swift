@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@testable import Pocket_Code
+
 class PaintViewControllerMock: PaintViewController {
+    var manager: UndoManager!
+    var mirrorRotationZoomTool: MirrorRotationZoomTool!
 
     let navigationControllerMock: UINavigationController
 
@@ -36,10 +40,13 @@ class PaintViewControllerMock: PaintViewController {
 
         super.init(coder: coder)
 
+        manager = UndoManager.init(drawViewCanvas: self)
+        mirrorRotationZoomTool = MirrorRotationZoomTool.init(drawViewCanvas: self)
+
         self.editingImage = editingImage
         self.helper = UIView()
-        self.drawView = UIImageView()
-        self.saveView = UIImageView()
+        self.drawView = PaintImageView(frame: .zero, image: nil)
+        self.saveView = PaintImageView(frame: .zero, image: nil)
     }
 
     required init?(coder: NSCoder) {

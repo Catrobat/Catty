@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSString *basePath;
 @property (nonatomic, strong) NSString *visibleName;
 @property (nonatomic, strong) NSString *projectID;
+@property (nonatomic) BOOL useOriginalName;
 
 + (ProjectLoadingInfo*)projectLoadingInfoForProjectWithName:(NSString*)projectName projectID:(NSString*)projectID;
 - (BOOL)isEqualToLoadingInfo:(ProjectLoadingInfo*)loadingInfo;

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,44 +26,114 @@ import XCTest
 
 final class PreviousLookBrickTests: AbstractBrickTest {
 
-    func testNextLookBrick() {
-        let object = SpriteObject()
-        let project = ProjectManager.createProject(name: "a", projectId: "1")
-        object.scene = project.scene
-        let spriteNode = CBSpriteNode(spriteObject: object)
-        object.spriteNode = spriteNode
+    var lookA: Look!
+    var lookB: Look!
+    var lookC: Look!
+    var image: UIImage!
 
-        let bundle = Bundle(for: type(of: self))
-        let filePath = bundle.path(forResource: "test.png", ofType: nil)
-        let imageData = UIImage(contentsOfFile: filePath!)!.pngData()
+    var scene: Scene!
+    var spriteNode: CBSpriteNode!
+    var script: Script!
 
-        var look: Look!
-        var look2: Look!
-        do {
-            look = Look(name: "test", filePath: "test.png")
-            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
-            look2 = Look(name: "test2", filePath: "test2.png")
-            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test2.png"))
-        } catch {
-            XCTFail("Error when writing image data")
-        }
+    override func setUp() {
+        super.setUp()
 
-        let script = WhenScript()
-        script.object = object
+        let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
+        image = UIImage(contentsOfFile: filePath)
+
+        lookA = LookMock(name: "LookA", absolutePath: filePath)
+        lookB = LookMock(name: "LookB", absolutePath: filePath)
+        lookC = LookMock(name: "LookC", absolutePath: filePath)
+        scene = Scene(name: "scene")
+
+        scene.project = Project()
+
+        let backgroundObject = SpriteObject()
+        scene.add(object: backgroundObject)
+
+        spriteNode = CBSpriteNode(spriteObject: backgroundObject)
+        backgroundObject.spriteNode = spriteNode
+
+        script = Script()
+        script.object = backgroundObject
+    }
+
+    func testPreviousLookBrickWithCache() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [:],
+                                                   cachedImages: [CachedImage(path: lookB.path(for: scene)!, image: image)])
+
+        script.object.lookList.add(lookA!)
+        script.object.lookList.add(lookB!)
+        script.object.lookList.add(lookC!)
+
+        let brick = PreviousLookBrick()
+        brick.script = script
+        spriteNode.currentLook = lookA
+
+        XCTAssertEqual(spriteNode.currentLook, lookA, "Current look should be lookA")
+
+        let action = brick.actionBlock(imageCache: imageCacheMock)
+        action()
+
+        XCTAssertEqual(spriteNode.currentLook, lookC, "PreviousLookBrick not correct")
+        XCTAssertEqual(0, imageCacheMock.loadImageFromDiskCalledPaths.count)
+    }
+
+    func testPreviousLookBrickWithoutCache() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [lookB.path(for: scene)!: image],
+                                                   cachedImages: [])
+
+        script.object.lookList.add(lookA!)
+        script.object.lookList.add(lookB!)
+        script.object.lookList.add(lookC!)
+
+        let brick = PreviousLookBrick()
+        brick.script = script
+        spriteNode.currentLook = lookA
+
+        XCTAssertEqual(spriteNode.currentLook, lookA, "Current look should be lookA")
+
+        let action = brick.actionBlock(imageCache: imageCacheMock)
+        action()
+
+        XCTAssertEqual(spriteNode.currentLook, lookC, "PreviousLookBrick not correct")
+        XCTAssertEqual(1, imageCacheMock.loadImageFromDiskCalledPaths.count)
+        XCTAssertEqual(lookB.path(for: scene), imageCacheMock.loadImageFromDiskCalledPaths.first!)
+    }
+
+    func testPreviousLookBrickWithOneLook() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [lookB.path(for: scene)!: image],
+                                                   cachedImages: [])
+
+        script.object.lookList.add(lookA!)
+
+        let brick = PreviousLookBrick()
+        brick.script = script
+        spriteNode.currentLook = lookA
+
+        XCTAssertEqual(spriteNode.currentLook, lookA, "Current look should be lookA")
+
+        let action = brick.actionBlock(imageCache: imageCacheMock)
+        action()
+
+        XCTAssertEqual(spriteNode.currentLook, lookA, "Current look should be lookA")
+    }
+
+    func testPreviousLookBrickWithNoLook() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [lookB.path(for: scene)!: image],
+                                                   cachedImages: [])
+
         let brick = PreviousLookBrick()
         brick.script = script
 
-        object.lookList.add(look!)
-        object.lookList.add(look2!)
-        object.spriteNode.currentLook = look2
-        object.spriteNode.currentUIImageLook = UIImage(contentsOfFile: filePath!)
+        XCTAssertNil(spriteNode.currentLook)
 
-        let action = brick.actionBlock()
+        let action = brick.actionBlock(imageCache: imageCacheMock)
         action()
 
-        XCTAssertEqual(spriteNode.currentLook, look, "PreviousLookBrick not correct")
-        Project.removeProjectFromDisk(withProjectName: project.header.programName, projectID: project.header.programID)
+        XCTAssertNil(spriteNode.currentLook)
     }
+
     func testMutableCopy() {
           let brick = PreviousLookBrick()
           let script = Script()

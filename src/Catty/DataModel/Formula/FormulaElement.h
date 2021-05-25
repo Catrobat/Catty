@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,8 @@ typedef NS_CLOSED_ENUM(NSInteger, ElementType) {
     USER_VARIABLE,
     USER_LIST,
     BRACKET,
-    STRING
+    STRING,
+    UNKNOWN_TYPE,
 };
 
 typedef NS_ENUM(NSInteger, IdempotenceState) {
@@ -49,7 +50,8 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 @"USER_VARIABLE"            : @(USER_VARIABLE),\
 @"USER_LIST"            : @(USER_LIST),\
 @"BRACKET"        : @(BRACKET),\
-@"STRING"                 : @(STRING)\
+@"STRING"                 : @(STRING),\
+@"UNKNOWN_TYPE"                 : @(UNKNOWN_TYPE)\
 }
 
 #define kstringElementTypeDict @{\
@@ -60,7 +62,8 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 @(USER_VARIABLE)            : @"USER_VARIABLE",\
 @(USER_LIST)            : @"USER_LIST",\
 @(BRACKET)       : @"BRACKET",\
-@(STRING)                 : @"STRING"\
+@(STRING)                 : @"STRING",\
+@(UNKNOWN_TYPE)                 : @"UNKNOWN_TYPE"\
 }
 
 @interface FormulaElement : NSObject<CBMutableCopying>

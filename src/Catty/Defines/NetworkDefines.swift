@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -59,6 +59,7 @@ class NetworkDefines: NSObject {
     static var downloadUrl: String { baseUrl.appending("download") }
     static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
     static var helpUrl: String { "https://catrob.at/help" }
+    static var projectDetailsUrlPrefix: String { baseUrlProduction.appending("project/") }
 
     static let connectionSearch = "search.json"
     static let connectionUpload = "upload.json"

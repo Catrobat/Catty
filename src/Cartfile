@@ -1,13 +1,5 @@
-github "ArtSabintsev/Siren"
 github "SecondRenaissance/Bohr"
-github "Marxon13/M13ProgressSuite" ~> 1.2.9
-github "TTTAttributedLabel/TTTAttributedLabel" ~> 2.0.0
-github "maxep/MXSegmentedPager" ~> 3.3.0
-github "onevcat/Kingfisher" ~> 4.0
-github "venmo/DVR"
-github "audiokit/audiokit" "v4.9.4"
+github "audiokit/audiokit" "v4.11.2"
 github "ZipArchive/ZipArchive"
-github "Quick/Quick"
-github "Quick/Nimble"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.json" ~> 6.34.0
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseCrashlyticsBinary.json" ~> 6.34.0

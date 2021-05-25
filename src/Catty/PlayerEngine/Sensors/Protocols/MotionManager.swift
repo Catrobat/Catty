@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,9 +23,9 @@
 import CoreMotion
 
 protocol MotionManager {
-    var accelerometerData: AccelerometerData? { get }
-    var deviceMotion: DeviceMotion? { get }
-    var gyroData: GyroData? { get }
+    var accelerometerData: CMAccelerometerData? { get }
+    var deviceMotion: CMDeviceMotion? { get }
+    var gyroData: CMGyroData? { get }
     var isDeviceMotionAvailable: Bool { get }
     var isAccelerometerAvailable: Bool { get }
     var isGyroAvailable: Bool { get }
@@ -39,23 +39,4 @@ protocol MotionManager {
     func stopDeviceMotionUpdates()
     func stopGyroUpdates()
     func stopMagnetometerUpdates()
-}
-
-protocol AccelerometerData {
-    var acceleration: CMAcceleration { get }
-}
-
-protocol DeviceMotion {
-    var attitude: Attitude { get }
-    var gravity: CMAcceleration { get }
-    var userAcceleration: CMAcceleration { get }
-}
-
-protocol GyroData {
-    var rotationRate: CMRotationRate { get }
-}
-
-protocol Attitude {
-    var pitch: Double { get }
-    var roll: Double { get }
 }

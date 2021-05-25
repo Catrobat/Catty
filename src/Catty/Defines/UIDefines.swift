@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,8 +30,15 @@ class UIDefines: NSObject {
     @objc static let brickCategorySectionInset = CGFloat(10.0)
     @objc static let brickCategoryBrickInset = CGFloat(5.0)
 
+    static let formulaEditorComputeRefreshInterval = 1.0
+
     static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
 
     static let playButtonAccessibilityLabel = "Play"
-    @objc static var iOS12OrLessAccessibilityLabel = "iOS 12.0 or less"
+    @objc static let variablePickerAccessibilityLabel = "VariableView"
+    @objc static let listPickerAccessibilityLabel = "ListView"
+    @objc static let messagePickerAccessibilityLabel = "MessageView"
+    @objc static let lookPickerAccessibilityLabel = "LookView"
+    @objc static let backgroundPickerAccessibilityLabel = "BackgroundView"
+    @objc static let iOS12OrLessAccessibilityLabel = "iOS 12.0 or less"
 }

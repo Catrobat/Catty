@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@ let kLocalizedUndoDrawingDescription = NSLocalizedString("Undo Drawing?", bundle
 let kLocalizedUndoTypingDescription = NSLocalizedString("Undo Typing?", bundle: Bundle(for: LanguageTranslation.self), comment: "Description text in alert view if user shakes the device")
 let kLocalizedSelectAllItems = NSLocalizedString("Select all", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnselectAllItems = NSLocalizedString("Unselect all", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedSaveToPocketCode = NSLocalizedString("Save to PocketCode", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSaveToPocketCode = NSLocalizedString("Pocket Paint", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEditSounds = NSLocalizedString("Edit sounds", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
 let kLocalizedEditSound = NSLocalizedString("Edit sound", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
 let kLocalizedEditLooks = NSLocalizedString("Edit looks", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
@@ -184,6 +184,7 @@ let kLocalizedRename = NSLocalizedString("Rename", bundle: Bundle(for: LanguageT
 let kLocalizedCopy = NSLocalizedString("Copy", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeleteObjects = NSLocalizedString("Delete actors or objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMoveObjects = NSLocalizedString("Move actors or objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCopyObjects = NSLocalizedString("Copy actors or objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeleteProjects = NSLocalizedString("Delete projects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPocketCodeRecorder = NSLocalizedString("Pocket Code Recorder", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedOpen = NSLocalizedString("Open", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -215,6 +216,8 @@ let kLocalizedYes = NSLocalizedString("Yes", bundle: Bundle(for: LanguageTransla
 let kLocalizedNo = NSLocalizedString("No", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeleteProject = NSLocalizedString("Delete project", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLoading = NSLocalizedString("Loading", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSaveChanges = NSLocalizedString("Save changes", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDiscardChanges = NSLocalizedString("Discard changes", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSaved = NSLocalizedString("Saved", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedProjectUploaded = NSLocalizedString("Upload successful", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedProjectUploadedBody = NSLocalizedString("Your project was uploaded to the Catrobat community where others can use and download it.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -240,6 +243,8 @@ let kLocalizedLength = NSLocalizedString("Length", bundle: Bundle(for: LanguageT
 let kLocalizedRestart = NSLocalizedString("Restart", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPreview = NSLocalizedString("Preview", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAxes = NSLocalizedString("Axes", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
+let kLocalizedMaximize = NSLocalizedString("Maximize", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedMinimize = NSLocalizedString("Minimize", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMostDownloaded = NSLocalizedString("Most downloaded", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMostViewed = NSLocalizedString("Most viewed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNewest = NSLocalizedString("Newest", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -247,6 +252,7 @@ let kLocalizedVariables = NSLocalizedString("Variables", bundle: Bundle(for: Lan
 let kLocalizedLists = NSLocalizedString("Lists", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedArduinoBricks = NSLocalizedString("Arduino extension", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedEmbroideryBricks = NSLocalizedString("Embroidery extension", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSendCrashReports = NSLocalizedString("Sending anonymous crash reports", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSendCrashReportsDescription = NSLocalizedString("Allow the app to send crash reports automatically", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -256,10 +262,11 @@ let kLocalizedRecording = NSLocalizedString("Recording", bundle: Bundle(for: Lan
 let kLocalizedError = NSLocalizedString("Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMemoryWarning = NSLocalizedString("Not enough Memory", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedReportProject = NSLocalizedString("Report as inappropriate", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedReportedProject = NSLocalizedString("Your report was successfully sent!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedProjectNotReported = NSLocalizedString("Error occurred while reporting the project. Please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEnterReason = NSLocalizedString("Enter a reason", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLoginToReport = NSLocalizedString("Please log in to report this project as inappropriate", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedName = NSLocalizedString("Name", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedDownloaded = NSLocalizedString("Download successful", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSettings = NSLocalizedString("Settings", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedOff = NSLocalizedString("off", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedOn = NSLocalizedString("on", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -277,6 +284,7 @@ let kLocalizedThisFeatureIsComingSoon = NSLocalizedString("This feature is comin
 let kLocalizedNoDescriptionAvailable = NSLocalizedString("No description available", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNoSearchResults = NSLocalizedString("No search results", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnableToLoadProject = NSLocalizedString("Unable to load project!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedUnableToImportProject = NSLocalizedString("Unable to import project!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedThisActionCannotBeUndone = NSLocalizedString("This action can not be undone!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedErrorInternetConnection = NSLocalizedString("An unknown error occurred. Check your Internet connection.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedErrorUnknown = NSLocalizedString("An unknown error occurred. Please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -288,6 +296,7 @@ let kLocalizedBluetoothNotAvailable = NSLocalizedString("Bluetooth is not availa
 let kLocalizedDisconnectBluetoothDevices = NSLocalizedString("All Bluetooth devices successfully disconnected", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRemovedKnownBluetoothDevices = NSLocalizedString("All known Bluetooth devices successfully removed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedArduinoBricksDescription = NSLocalizedString("Allow the app to control Arduino boards", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedEmbroideryBricksDescription = NSLocalizedString("Create patterns for stiching machines", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -295,8 +304,6 @@ let kLocalizedArduinoBricksDescription = NSLocalizedString("Allow the app to con
 
 let kLocalizedAboutPocketCodeDescription = NSLocalizedString("Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedTermsOfUseDescription = NSLocalizedString("In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedNotEnoughFreeMemoryDescription = NSLocalizedString("Not enough free memory to download this project. Please delete some of your projects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedProjectNotFound = NSLocalizedString("The requested project can not be found. Please choose a different one.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedInvalidZip = NSLocalizedString("The requested project can not be loaded. Please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEnterYourProjectNameHere = NSLocalizedString("Enter your project name here...", bundle: Bundle(for: LanguageTranslation.self), comment: "Placeholder for project-name input field")
 let kLocalizedEnterNameForImportedProjectTitle = NSLocalizedString("Import File", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of prompt shown when a *.catrobat file is imported from a third-party app.")
@@ -332,6 +339,9 @@ let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following feat
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
+
+// embroidery bricks
+let kLocalizedStitch = NSLocalizedString("Stitch", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // control bricks
 let kLocalizedScript = NSLocalizedString("Script", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -424,6 +434,7 @@ let kLocalizedAsk = NSLocalizedString("Ask ", bundle: Bundle(for: LanguageTransl
 let kLocalizedAndStoreWrittenAnswerIn = NSLocalizedString("and store written answer in ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDefaultAskBrickQuestion = NSLocalizedString("What's your name?", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAskBrickAnswer = NSLocalizedString("Your answer", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSwitchToLookWithNumber = NSLocalizedString("Switch to look with number", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -444,6 +455,7 @@ let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", bundle: Bundl
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChangeVolumeBy = NSLocalizedString("Change volume by", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetInstrumentTo = NSLocalizedString("Set Instrument to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetTempoTo = NSLocalizedString("Set tempo to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSay = NSLocalizedString("Say", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedThink = NSLocalizedString("Think", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -556,7 +568,7 @@ let kLocalizedPaintFill = NSLocalizedString("Fill", bundle: Bundle(for: Language
 let kLocalizedPaintZoom = NSLocalizedString("Zoom", bundle: Bundle(for: LanguageTranslation.self), comment: "paint")
 let kLocalizedPaintPointer = NSLocalizedString("Pointer", bundle: Bundle(for: LanguageTranslation.self), comment: "paint")
 let kLocalizedPaintTextTool = NSLocalizedString("Text", bundle: Bundle(for: LanguageTranslation.self), comment: "paint")
-let kLocalizedPaintSaveChanges = NSLocalizedString("Do you want to save the changes", bundle: Bundle(for: LanguageTranslation.self), comment: "paint")
+let kLocalizedPaintSaveChanges = NSLocalizedString("Do you want to save your changes?", bundle: Bundle(for: LanguageTranslation.self), comment: "paint")
 let kLocalizedPaintMenuButtonTitle = NSLocalizedString("Menu", bundle: Bundle(for: LanguageTranslation.self), comment: "paint")
 let kLocalizedPaintSelect = NSLocalizedString("Select option:", bundle: Bundle(for: LanguageTranslation.self), comment: "paint")
 let kLocalizedPaintSave = NSLocalizedString("Save to Photos", bundle: Bundle(for: LanguageTranslation.self), comment: "paint")
@@ -581,6 +593,7 @@ let kLocalizedPaintTextAlert = NSLocalizedString("Please enter a text.", bundle:
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************
 
+let kUIFormulaEditorTitle = NSLocalizedString("Formula Editor", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIActionSheetTitleSelectLogicalOperator = NSLocalizedString("Select logical operator", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIActionSheetTitleSelectMathematicalFunction = NSLocalizedString("Select mathematical function", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFENumbers = NSLocalizedString("Numbers", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -588,11 +601,12 @@ let kUIFELogic = NSLocalizedString("Logic", bundle: Bundle(for: LanguageTranslat
 let kUIFEVar = NSLocalizedString("New", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFETake = NSLocalizedString("Choose", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEDelete = NSLocalizedString("Delete", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFEMath = NSLocalizedString("Math", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctions = NSLocalizedString("Functions", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEObject = NSLocalizedString("Object", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensor = NSLocalizedString("Sensors", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEVariable = NSLocalizedString("Variables", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFEVariableList = NSLocalizedString("Var/List", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEData = NSLocalizedString("Data", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEProperties = NSLocalizedString("Properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFECompute = NSLocalizedString("Compute", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEDone = NSLocalizedString("Done", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEError = NSLocalizedString("Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -609,11 +623,23 @@ let kUIFEVarName = NSLocalizedString("Variable name:", bundle: Bundle(for: Langu
 let kUIFEListName = NSLocalizedString("List name:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEOtherName = NSLocalizedString("Please choose another name:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEAddNewText = NSLocalizedString("Abc", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEProjectVariables = NSLocalizedString("Variables for all actors and objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEObjectVariables = NSLocalizedString("Variables for this actor or object only", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEProjectLists = NSLocalizedString("Lists for all actors and objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEObjectLists = NSLocalizedString("Lists for this actor or object only", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionMaths = NSLocalizedString("Maths", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionTexts = NSLocalizedString("Text", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionLists = NSLocalizedString("Lists", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionLogical = NSLocalizedString("Logical (Boolean) operators and constants", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionComprison = NSLocalizedString("Comparison operators", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionDeviceSensors = NSLocalizedString("Device sensors", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionTouchDetection = NSLocalizedString("Touch detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionVisualSensors = NSLocalizedString("Visual sensors", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionDataAndTime = NSLocalizedString("Date and time", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionGeneral = NSLocalizedString("General properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionMotion = NSLocalizedString("Motion properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEAddVariablesAndLists = NSLocalizedString("Tap \"+\" to add variables and lists", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
-let kUIFEProjectVars = NSLocalizedString("Project variables:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFEObjectVars = NSLocalizedString("Object variables:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFEProjectLists = NSLocalizedString("Project lists:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFEObjectLists = NSLocalizedString("Object lists:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEDeleteVarBeingUsed = NSLocalizedString("This variable can not be deleted because it is still in use.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEDeleteListBeingUsed = NSLocalizedString("This list can not be deleted because it is still in use.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEActionVar = NSLocalizedString("Variable type", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -627,14 +653,34 @@ let kUIFEEmptyInput = NSLocalizedString("Empty input!", bundle: Bundle(for: Lang
 
 let kUIFEVarOrList = NSLocalizedString("Variable or list", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
-let kUIFEFunctionSqrt = NSLocalizedString("sqrt", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionSine = NSLocalizedString("sine", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionCosine = NSLocalizedString("cosine", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTan = NSLocalizedString("tangent", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionPower = NSLocalizedString("power", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionLn = NSLocalizedString("natural logarithm", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionLog = NSLocalizedString("decimal logarithm", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionPi = NSLocalizedString("pi", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionMod = NSLocalizedString("modulo", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionAbs = NSLocalizedString("absolute value", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionAsin = NSLocalizedString("arcsine", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionAcos = NSLocalizedString("arccosine", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionAtan = NSLocalizedString("arctangent", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionExp = NSLocalizedString("exponent", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionMax = NSLocalizedString("maximum of", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionMin = NSLocalizedString("minimum of", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionRound = NSLocalizedString("round", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionRand = NSLocalizedString("random value from to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionItem = NSLocalizedString("item", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionRegularExpression = NSLocalizedString("regular expression", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFEFunctionSqrt = NSLocalizedString("square root", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionTrue = NSLocalizedString("true", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionFalse = NSLocalizedString("false", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionLetter = NSLocalizedString("letter", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionJoin = NSLocalizedString("join", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionLength = NSLocalizedString("length", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionFloor = NSLocalizedString("floor", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFEFunctionCeil = NSLocalizedString("ceil", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionCeil = NSLocalizedString("ceiling", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionNumberOfItems = NSLocalizedString("number of items", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionElement = NSLocalizedString("element", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionContains = NSLocalizedString("contains", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -729,6 +775,7 @@ let kLocalizedCategoryData = NSLocalizedString("Data", bundle: Bundle(for: Langu
 let kLocalizedCategoryArduino = NSLocalizedString("Arduino", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryEmbroidery = NSLocalizedString("Embroidery", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

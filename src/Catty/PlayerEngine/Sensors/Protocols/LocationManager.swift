@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import CoreLocation
+
 protocol LocationManager {
-    var heading: Heading? { get }
-    var location: Location? { get }
+    var heading: CLHeading? { get }
+    var location: CLLocation? { get }
 
     static func locationServicesEnabled() -> Bool
     static func headingAvailable() -> Bool
@@ -32,19 +34,4 @@ protocol LocationManager {
     func startUpdatingLocation()
     func stopUpdatingHeading()
     func stopUpdatingLocation()
-}
-
-protocol Heading {
-    var magneticHeading: Double { get }
-}
-
-protocol Location {
-    var coordinate: LocationCoordinate2D { get }
-    var altitude: Double { get }
-    var horizontalAccuracy: Double { get }
-}
-
-protocol LocationCoordinate2D {
-    var longitude: Double { get }
-    var latitude: Double { get }
 }

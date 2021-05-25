@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 class FalseFunction: ZeroParameterDoubleFunction {
     static var tag = "FALSE"
-    static var name = "false"
+    static var name = kUIFEFunctionFalse
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
@@ -37,7 +37,6 @@ class FalseFunction: ZeroParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.logic(position: type(of: self).position),
-                .math(position: type(of: self).position)]
+        [.logic(position: type(of: self).position, subsection: .logical)]
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
     @objc weak var delegate: UploadViewControllerDelegate?
 
     private var uploadBarButton: UIBarButtonItem?
-    private var activeRequest: Bool = false
+    private var activeRequest = false
     private var project: Project?
     private var descriptionTextViewBottomConstraint: NSLayoutConstraint!
     private var firstLineViewTopConstraint: NSLayoutConstraint!
@@ -254,7 +254,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
     func initObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(UploadViewController.uploadAction),
-                                               name: NSNotification.Name(rawValue: kReadyToUpload),
+                                               name: NSNotification.Name(rawValue: NotificationName.readyToUpload),
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow),
@@ -372,7 +372,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
 
     @objc func checkProjectAction() {
         if projectNameTextField.text!.isEmpty {
-            Util.alert(withText: kLocalizedUploadProjectNecessary)
+            Util.alert(text: kLocalizedUploadProjectNecessary)
             return
         }
 
@@ -415,7 +415,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
                                     case .unexpectedError, .timeout:
                                         Util.defaultAlertForNetworkError()
                                     case .zippingError, .invalidProject, .request:
-                                        Util.alert(withText: kLocalizedUploadProblem)
+                                        Util.alert(text: kLocalizedUploadProblem)
                                     case .authenticationFailed:
                                         UserDefaults.standard.set(false, forKey: NetworkDefines.kUserIsLoggedIn)
 

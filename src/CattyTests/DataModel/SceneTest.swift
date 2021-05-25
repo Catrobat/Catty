@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -82,24 +82,24 @@ final class SceneTest: XCTestCase {
         XCTAssertEqual("testObject", scene.objects()[0].name)
     }
 
-     func testInsertObject() {
-         let object1 = SpriteObject()
-         object1.name = "testObject1"
+    func testInsertObject() {
+        let object1 = SpriteObject()
+        object1.name = "testObject1"
 
-         let object2 = SpriteObject()
-         object2.name = "testObject2"
+        let object2 = SpriteObject()
+        object2.name = "testObject2"
 
-         XCTAssertEqual(0, scene.objects().count)
+        XCTAssertEqual(0, scene.objects().count)
 
-         scene.add(object: object1)
-         XCTAssertEqual(1, scene.objects().count)
+        scene.add(object: object1)
+        XCTAssertEqual(1, scene.objects().count)
 
-         scene.insert(object: object2, at: 5)
-         XCTAssertEqual(1, scene.objects().count)
+        scene.insert(object: object2, at: 5)
+        XCTAssertEqual(1, scene.objects().count)
 
-         scene.insert(object: object2, at: 1)
-         XCTAssertEqual(2, scene.objects().count)
-     }
+        scene.insert(object: object2, at: 1)
+        XCTAssertEqual(2, scene.objects().count)
+    }
 
     func testRemoveObjectAtIndex() {
         let object1 = SpriteObject()
@@ -282,5 +282,21 @@ final class SceneTest: XCTestCase {
 
         XCTAssertTrue(scene.isEqual(copyScene))
         XCTAssertFalse(copyScene === scene)
+    }
+
+    func testCopyObjects() {
+        let object1 = SpriteObject()
+        object1.name = "testObject1"
+        scene.add(object: object1)
+
+        let object2 = SpriteObject()
+        object2.name = "testObject2"
+        scene.add(object: object2)
+
+        let objectsBefore = scene.count
+        let objectsList = scene.copyObjects([object1, object2])
+        XCTAssertEqual(objectsBefore * 2, scene.count)
+        XCTAssertEqual("testObject1 (1)", objectsList[0].name)
+        XCTAssertEqual("testObject2 (1)", objectsList[1].name)
     }
 }

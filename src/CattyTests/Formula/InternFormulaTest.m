@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -217,7 +217,7 @@
     XCTAssertEqual(0, [[internFormula getSelection] getStartIndex], @"Selection start index not as expected");
     XCTAssertEqual(5, [[internFormula getSelection] getEndIndex], @"Selection end index not as expected");
 
-    doubleClickIndex = (int)[@"random" length];
+    doubleClickIndex = (int)[kUIFEFunctionRand length];
     
     int singleClickIndex = doubleClickIndex;
     
@@ -341,7 +341,7 @@
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
-    [internFormula setCursorAndSelection:((int)[@"sin" length] + 1) selected:NO];
+    [internFormula setCursorAndSelection:((int)[kUIFEFunctionSine length] + 1) selected:NO];
     
     externFormulaString = [internFormula getExternFormulaString];
     
@@ -358,7 +358,7 @@
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
-    [internFormula setCursorAndSelection:((int)[@"sin" length] + 2) selected:NO];
+    [internFormula setCursorAndSelection:((int)[kUIFEFunctionSine length] + 2) selected:NO];
     
     externFormulaString = [internFormula getExternFormulaString];
     
@@ -375,7 +375,7 @@
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
-    [internFormula setCursorAndSelection:((int)[@"sin" length] + 2) selected:NO];
+    [internFormula setCursorAndSelection:((int)[kUIFEFunctionSine length] + 2) selected:NO];
     
     externFormulaString = [internFormula getExternFormulaString];
     
@@ -488,7 +488,7 @@
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
-    [internFormula setCursorAndSelection:((int)[@"sin" length] + 4) selected:YES];
+    [internFormula setCursorAndSelection:((int)[kUIFEFunctionSine length] + 4) selected:YES];
     
     XCTAssertNil(internFormula.internFormulaTokenSelection, @"Selection changed!");
     

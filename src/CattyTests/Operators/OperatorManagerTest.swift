@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -73,8 +73,8 @@ final class OperatorManagerTests: XCTestCase {
     }
 
     func testFormulaEditorItems() {
-        let operatorA = BinaryOperatorMock(value: 0, formulaEditorSections: [.object(position: 2), .math(position: 10)])
-        let operatorB = UnaryOperatorMock(value: 0, formulaEditorSections: [.device(position: 1), .math(position: 10)])
+        let operatorA = BinaryOperatorMock(value: 0, formulaEditorSections: [.object(position: 2, subsection: .general), .functions(position: 10, subsection: .maths)])
+        let operatorB = UnaryOperatorMock(value: 0, formulaEditorSections: [.sensors(position: 1, subsection: .device), .functions(position: 10, subsection: .maths)])
 
         let manager = OperatorManager(operators: [operatorA, operatorB])
         let items = manager.formulaEditorItems()

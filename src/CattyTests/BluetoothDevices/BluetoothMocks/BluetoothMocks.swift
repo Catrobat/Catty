@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -102,7 +102,7 @@ class FirmataMock: Firmata {
     var receivedPinMode: PinMode = .unknown
     var receivedString: String = ""
     var receivedPinState: PinState = .low
-    var receivedBool: Bool = false
+    var receivedBool = false
 
     override func writePinMode(_ newMode: PinMode, pin: UInt8) {
         receivedPin = pin
