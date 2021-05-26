@@ -77,7 +77,7 @@ import UIKit
         header.textColor = UIColor.globalTint
         var navTopAnchor = view.safeTopAnchor
         if self.navigationController != nil {
-            navTopAnchor = topLayoutGuide.bottomAnchor
+            navTopAnchor = view.safeAreaLayoutGuide.topAnchor
         }
         header.setAnchors(top: navTopAnchor,
                           left: view.safeLeftAnchor,
