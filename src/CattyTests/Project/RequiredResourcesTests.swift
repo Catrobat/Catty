@@ -322,6 +322,14 @@ final class RequiredResourcesTests: XCTestCase {
         XCTAssertEqual(resources, ResourceType.loudness.rawValue, "Resourses ChangeVariableBrick not correctly calculated")
     }
 
+    func testWebRequestBrickResources() {
+        let brick = WebRequestBrick()
+        let project = getProjectWithOneSpriteWithBrick(brick: brick)
+
+        let resources = project?.getRequiredResources()
+        XCTAssertEqual(resources, ResourceType.internet.rawValue, "Resourses WebRequestBrick not correctly calculated")
+    }
+
     // MARK: Sound
     func testStopAllSoundsBrickResources() {
         let brick = StopAllSoundsBrick()

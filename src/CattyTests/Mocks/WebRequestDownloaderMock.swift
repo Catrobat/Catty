@@ -20,23 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@testable import Pocket_Code
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcEmail @"userEmail"
+class WebRequestDownloaderMock: WebRequestDownloader {
+    required init(url: String, session: URLSession?) {
+        super.init(url: url, session: session)
+    }
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-#define kUseEmbroideryBricks @"useEmbroideryBricks"
-#define kUseWebRequestBrick @"useWebRequestBrick"
-
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
-
-#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
-
-#define kPhiroActivated 0
-#define kArduinoActivated 1
-#define kEmbroideryActivated 1
-#define kFirebaseSendCrashReportsDefault 1
-#define kWebRequestBrickActivated 0
+    func downloadWithError(error: NSError, completion: @escaping (String?, Error?) -> Void) {
+        self.completion = completion
+        self.urlSession(self.session!, task: URLSessionTask(), didCompleteWithError: error)
+    }
+}

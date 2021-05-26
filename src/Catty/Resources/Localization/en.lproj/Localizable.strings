@@ -89,6 +89,9 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
+"and store answer in" = "and store answer in";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "and store written answer in ";
 
 /* No comment provided by engineer. */
@@ -536,6 +539,9 @@
 "Download" = "Download";
 
 /* No comment provided by engineer. */
+"Download too big" = "Download too big";
+
+/* No comment provided by engineer. */
 "Downloads" = "Downloads";
 
 /* No comment provided by engineer. */
@@ -858,6 +864,9 @@
 
 /* paint */
 "Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"Internet" = "Internet";
 
 /* No comment provided by engineer. */
 "into list" = "into list";
@@ -1566,6 +1575,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Select Phiro";
+
+/* No comment provided by engineer. */
+"Send web request to" = "Send web request to";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Sending anonymous crash reports";
