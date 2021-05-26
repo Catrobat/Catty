@@ -25,6 +25,8 @@
 		05E6802C255B5E3400D1E295 /* CGVectorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */; };
 		05E6802F255B602700D1E295 /* stitch.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05E6802E255B602700D1E295 /* stitch.dst */; };
 		17A8ABE92624EAA400DDD480 /* FormulaParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8ABE82624EAA400DDD480 /* FormulaParserTest.swift */; };
+		17A8AC652644E6A900DDD480 /* ForceInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A8AC642644E6A900DDD480 /* ForceInit.m */; };
+		17A8AC6F2644E79B00DDD480 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		1801591E25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
@@ -1138,7 +1140,6 @@
 		923503911BA707DE00021F6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginViewController.m */; };
 		925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */; };
 		926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197EF1BF3249E006D1A61 /* ArduinoTests.swift */; };
-		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B7041C9E8F6C008BC594 /* SoundCache.m */; };
 		9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */; };
 		927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */; };
@@ -1900,6 +1901,8 @@
 		113CDA22CF21176FFA49E694 /* sd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sd; path = sd.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		17A8ABE82624EAA400DDD480 /* FormulaParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaParserTest.swift; path = Formula/FormulaParserTest.swift; sourceTree = "<group>"; };
+		17A8AC642644E6A900DDD480 /* ForceInit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForceInit.m; sourceTree = "<group>"; };
+		17A8AC6B2644E6B500DDD480 /* ForceInit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForceInit.h; sourceTree = "<group>"; };
 		1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewController.swift; sourceTree = "<group>"; };
 		180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTests.swift; sourceTree = "<group>"; };
 		180DDF422506800600EA526C /* AnalyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsMock.swift; sourceTree = "<group>"; };
@@ -10269,6 +10272,8 @@
 			children = (
 				BA38080B21A1D8920075B831 /* ConvertExceptionToError.m */,
 				BA38080D21A1D8CD0075B831 /* ConvertExceptionToError.h */,
+				17A8AC642644E6A900DDD480 /* ForceInit.m */,
+				17A8AC6B2644E6B500DDD480 /* ForceInit.h */,
 			);
 			path = TestHelpers;
 			sourceTree = "<group>";
@@ -11565,6 +11570,7 @@
 				4C5AEEF322F6F22700280F8B /* MoveNStepsBrickCellTests.swift in Sources */,
 				18B5B529247E542A007D24A3 /* NSDataExtensionTests.swift in Sources */,
 				4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */,
+				17A8AC652644E6A900DDD480 /* ForceInit.m in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
 				9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */,
@@ -11843,6 +11849,7 @@
 				4C2CBB5025A5AA8400C1C143 /* XMLParserBlackBoxTests095.swift in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				6F17FA1824B7579000885E07 /* UploadViewControllerTests.swift in Sources */,
+				17A8AC6F2644E79B00DDD480 /* BluetoothMocks.swift in Sources */,
 				186E991D2488FBDB00627E36 /* PenUpBrickTests.swift in Sources */,
 				5921F2AB24F51F3B0044D936 /* BrickCellLookDataTests.swift in Sources */,
 				4C2CBB5F25A5AA8400C1C143 /* XMLParserBlackBoxTests0993.swift in Sources */,
@@ -12592,7 +12599,6 @@
 				639CB8E525C418FE0051CB82 /* Sound.swift in Sources */,
 				4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
-				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
 				9EC5175824FBE5B20029CD0E /* Sampler.swift in Sources */,

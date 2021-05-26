@@ -23,6 +23,8 @@
 import BluetoothHelper
 import CoreBluetooth
 
+@testable import Pocket_Code
+
 class FirmataDelegateMock: FirmataDelegate {
     var callbackInvolved = false
     var data = Data()
@@ -159,23 +161,31 @@ class FirmataMock: Firmata {
 
 class PeripheralMock: CBPeripheral {
 
-    var dataToSend = Data()
+    private static var dataToSendStorage = [PeripheralMock: Data]()
 
-    init(test: Bool) {
-        //HACK
+    static func create() -> PeripheralMock {
+        let cbPeripheral = ForceInit.createInstance(ofClass: "CBPeripheral") as! CBPeripheral
+        object_setClass(cbPeripheral, PeripheralMock.self)
+        let peripheralMock = cbPeripheral as! PeripheralMock
+        PeripheralMock.dataToSendStorage[peripheralMock] = Data()
+        return peripheralMock
     }
 
     override func writeValue(_ data: Data, for characteristic: CBCharacteristic, type: CBCharacteristicWriteType) {
-        dataToSend = data
+        PeripheralMock.dataToSendStorage[self] = data
+    }
+
+    var dataToSend: Data {
+        PeripheralMock.dataToSendStorage[self]!
     }
 }
 
 class CharacteristicMock: CBCharacteristic {
 
-    init(test: Bool) {
-        //HACK
-        //        self.properties = CBCharacteristicProperties(CBCharacteristicProperties.WriteWithoutResponse.rawValue)
-
+    static func create() -> CharacteristicMock {
+        let cbCharacteristic = ForceInit.createInstance(ofClass: "CBCharacteristic") as! CBCharacteristic
+        object_setClass(cbCharacteristic, CharacteristicMock.self)
+        return cbCharacteristic as! CharacteristicMock
     }
 
     override internal var properties: CBCharacteristicProperties {
