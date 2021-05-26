@@ -23,7 +23,6 @@
 #import "LoginViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
-#import "JNKeychain.h"
 #import "RegisterViewController.h"
 #import "Pocket_Code-Swift.h"
 
@@ -359,7 +358,7 @@
         [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [JNKeychain saveValue:token forKey: NetworkDefines.kUserLoginToken];
+        [Keychain saveValue:token forKey: NetworkDefines.kUserLoginToken];
         
         [self hideLoadingView];
         [self.navigationController popViewControllerAnimated:NO];
