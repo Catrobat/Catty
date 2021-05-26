@@ -103,6 +103,9 @@ import CoreBluetooth
         if ((requiredResources & ResourceType.LED.rawValue) > 0) && !FlashHelper.sharedFlashHandler().isAvailable() {
             unavailableResourceNames.append(kLocalizedSensorLED)
         }
+        if (requiredResources & ResourceType.internet.rawValue > 0) && !Reachability.isConnectedToNetwork() {
+            unavailableResourceNames.append(kLocalizedInternet)
+        }
 
         if !unavailableResourceNames.isEmpty {
             DispatchQueue.main.async {
