@@ -137,7 +137,6 @@
 
 // User
 #import <CommonCrypto/CommonCrypto.h>
-#import "JNKeychain.h"
 
 //------------------------------------------------------------------------------------------------------------
 // Extension classes
