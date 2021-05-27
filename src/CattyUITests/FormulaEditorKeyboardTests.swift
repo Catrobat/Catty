@@ -265,7 +265,8 @@ class FormulaEditorKeyboardTests: XCTestCase {
         app.collectionViews.cells.allElementsBoundByIndex[1].tap()
         waitForElementToAppear(app.buttons[kLocalizedEditFormula]).tap()
 
-        XCTAssertTrue(app.otherElements["keyboardAccessoryView"].exists)
+        XCTAssertTrue(waitForElementToAppear(app.otherElements["keyboardAccessoryView"]).exists)
+
         waitForElementToAppear(app.buttons["arrowButton"]).tap()
         XCTAssertFalse(app.otherElements["keyboardAccessoryView"].exists)
 
