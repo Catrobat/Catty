@@ -389,7 +389,6 @@
 		46A75DF425752B1200F3963D /* CircleShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */; };
 		46B472BD2560946F007972DB /* StitchBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */; };
 		46B472C225609573007972DB /* StitchBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */; };
-		46B54F1925A373B90065B016 /* SetBackgroundAndWaitBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B54F1825A373B90065B016 /* SetBackgroundAndWaitBrick+Condition.swift */; };
 		46B94F8D2577B736007E5ABE /* CBSpriteNodeStitchExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B94F8C2577B736007E5ABE /* CBSpriteNodeStitchExtensionTests.swift */; };
 		46B94F9725791507007E5ABE /* StitchBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B94F9625791507007E5ABE /* StitchBrickTests.swift */; };
 		46C5D9F4254FF637003D58D9 /* SpriteObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5D9EE254FF4F9003D58D9 /* SpriteObjectTest.swift */; };
@@ -900,6 +899,7 @@
 		4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */; };
 		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
 		4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AD2660C39D007221DA /* 817.catrobat */; };
+		4CE3C4B02660E455007221DA /* CBSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */; };
 		4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */; };
 		4CE3D68D2107B4E300005629 /* FaceDetectedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68C2107B4E300005629 /* FaceDetectedSensor.swift */; };
 		4CE3D68F2107B68600005629 /* FaceDetectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */; };
@@ -2297,7 +2297,6 @@
 		46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShapeNodeTests.swift; sourceTree = "<group>"; };
 		46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StitchBrick+Instruction.swift"; sourceTree = "<group>"; };
 		46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StitchBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
-		46B54F1825A373B90065B016 /* SetBackgroundAndWaitBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetBackgroundAndWaitBrick+Condition.swift"; sourceTree = "<group>"; };
 		46B94F8C2577B736007E5ABE /* CBSpriteNodeStitchExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeStitchExtensionTests.swift; sourceTree = "<group>"; };
 		46B94F9625791507007E5ABE /* StitchBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StitchBrickTests.swift; sourceTree = "<group>"; };
 		46C5D9EE254FF4F9003D58D9 /* SpriteObjectTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectTest.swift; sourceTree = "<group>"; };
@@ -2891,6 +2890,7 @@
 		4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeMock.swift; sourceTree = "<group>"; };
 		4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
 		4CE3C4AD2660C39D007221DA /* 817.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = 817.catrobat; path = CattyTests/Resources/ParserTests/ZipProjects/817.catrobat; sourceTree = SOURCE_ROOT; };
+		4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulerTests.swift; path = PlayerEngine/CBSchedulerTests.swift; sourceTree = "<group>"; };
 		4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManager.swift; sourceTree = "<group>"; };
 		4CE3D68C2107B4E300005629 /* FaceDetectedSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectedSensor.swift; sourceTree = "<group>"; };
 		4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerProtocol.swift; sourceTree = "<group>"; };
@@ -7280,7 +7280,6 @@
 				BA987D0C2194E647002DAA05 /* WaitUntilBrick+Condition.swift */,
 				59032EE424A29CAE00BD86C4 /* WhenBackgroundChangesScript+Condition.swift */,
 				5908EBDF24EE64A6002EB16E /* WhenConditionScript+Condition.swift */,
-				46B54F1825A373B90065B016 /* SetBackgroundAndWaitBrick+Condition.swift */,
 			);
 			path = Condition;
 			sourceTree = "<group>";
@@ -9648,6 +9647,7 @@
 				D30ECD192440963100FAD17D /* Frontend */,
 				9E8F729B22E12820005CDABE /* AudioEngine */,
 				4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */,
+				4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */,
 				4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */,
 				4CE1D434213E5D110014DAF9 /* Formula */,
 				4C6FE139212D2D2E0067B7D5 /* Functions */,
@@ -11913,6 +11913,7 @@
 				1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */,
 				E57E6D8F2540552F00E775DF /* AddItemToUserListBrickTests.swift in Sources */,
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
+				4CE3C4B02660E455007221DA /* CBSchedulerTests.swift in Sources */,
 				4C665F6C253F209D00A84BB6 /* LooksTableViewControllerTests.swift in Sources */,
 				9EBCBD832329B44E0074C2D9 /* NextLookBrickTests.swift in Sources */,
 				46C5D9F4254FF637003D58D9 /* SpriteObjectTest.swift in Sources */,
@@ -12234,7 +12235,6 @@
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
 				4C0F9F28204ADBE000E71B2D /* RepeatUntilBrick.m in Sources */,
 				4420ACB5250929E800951328 /* AskBrick.swift in Sources */,
-				46B54F1925A373B90065B016 /* SetBackgroundAndWaitBrick+Condition.swift in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProjectLoadingInfo.m in Sources */,
 				4CF072A020D670C400F93AB5 /* TouchSensor.swift in Sources */,
 				AA74EE2C1BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift in Sources */,

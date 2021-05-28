@@ -85,8 +85,6 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
     func performBroadcastWithMessage(_ message: String, senderContext: CBScriptContextProtocol,
                                      broadcastType: CBBroadcastType) {
         logger.info("Performing \(broadcastType.rawValue) with message '\(message)'")
-        let enqueuedWaitingScripts = _broadcastWaitingContextsQueue[senderContext.id]
-        assert(enqueuedWaitingScripts == nil || enqueuedWaitingScripts!.isEmpty)
 
         var isSelfBroadcast = false
         guard let registeredContexts = _registeredBroadcastContexts[message], !registeredContexts.isEmpty else {

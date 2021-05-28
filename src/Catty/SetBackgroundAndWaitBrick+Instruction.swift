@@ -50,10 +50,15 @@
             let condition = NSCondition()
             condition.lock()
 
-            while self.script?.object != nil && self.checkCondition(look: look, scheduler: scheduler as! CBScheduler) {
+            while self.script?.object != nil && self.isWhenBackgroundChangesRunning(scheduler: scheduler) {
                 condition.wait(until: Date().addingTimeInterval(waitingTimeUntilNextCheck))
             }
             condition.unlock()
         }
+    }
+
+    @nonobjc func isWhenBackgroundChangesRunning(scheduler: CBSchedulerProtocol) -> Bool {
+        guard let look = self.look else { return false }
+        return scheduler.isWhenBackgroundChangesContextScheduled(look: look)
     }
 }

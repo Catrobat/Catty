@@ -156,7 +156,7 @@ final class SetBackgroundAndWaitBrickTests: XCTestCase {
 
         scheduler.startWhenBackgroundChangesContexts()
 
-        XCTAssertTrue(brick.checkCondition(look: lookA, scheduler: scheduler))
+        XCTAssertTrue(brick.isWhenBackgroundChangesRunning(scheduler: scheduler))
     }
 
     func testWaitPartWithoutWaiting() {
@@ -175,7 +175,7 @@ final class SetBackgroundAndWaitBrickTests: XCTestCase {
 
         scheduler.startWhenBackgroundChangesContexts()
 
-        XCTAssertFalse(brick.checkCondition(look: lookB, scheduler: scheduler))
+        XCTAssertFalse(brick.isWhenBackgroundChangesRunning(scheduler: scheduler))
     }
 
     func testIsEqual() {

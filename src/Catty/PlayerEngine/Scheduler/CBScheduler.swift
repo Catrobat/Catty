@@ -65,6 +65,15 @@ final class CBScheduler: CBSchedulerProtocol {
         return _scheduledContexts[spriteName]?.contains(context) == true
     }
 
+    func isWhenBackgroundChangesContextScheduled(look: Look) -> Bool {
+        for context in _whenBackgroundChangesContexts {
+            if context.background == look && isContextScheduled(context) {
+                return true
+            }
+        }
+        return false
+    }
+
     // MARK: - Model methods
     func registerSpriteNode(_ spriteNode: CBSpriteNode) {
         guard let spriteNodeName = spriteNode.name, _spriteNodes[spriteNode.name!] == nil else {
@@ -338,15 +347,6 @@ final class CBScheduler: CBSchedulerProtocol {
             scheduleContext(context)
         }
         runNextInstructionsGroup()
-    }
-
-    func isWhenBackgroundChangesRunning(look: Look) -> Bool {
-        for context in _whenBackgroundChangesContexts {
-            if context.background == look && isContextScheduled(context) {
-                return true
-            }
-        }
-        return false
     }
 
     func startWhenBackgroundChangesContexts() {

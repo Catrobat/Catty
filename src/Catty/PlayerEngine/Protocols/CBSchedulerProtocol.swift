@@ -27,6 +27,7 @@ protocol CBSchedulerProtocol: AnyObject {
 
     // queries
     func isContextScheduled(_ context: CBScriptContextProtocol) -> Bool
+    func isWhenBackgroundChangesContextScheduled(look: Look) -> Bool
     func startWhenContextsOfSpriteNodeWithName(_ spriteName: String)
     func startWhenTouchDownContexts()
     func startWhenConditionContexts()
