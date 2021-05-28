@@ -29,10 +29,6 @@
         super.init()
     }
 
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override public required init() {
         super.init()
     }
@@ -59,7 +55,8 @@
     }
 
     override func isEqual(to brick: Brick!) -> Bool {
-        (self.look?.isEqual((brick as! SetBackgroundAndWaitBrick).look)) == true
+        guard let setBackgroundAndWaitBrick = brick as? SetBackgroundAndWaitBrick else { return false }
+        return self.look?.isEqual(setBackgroundAndWaitBrick.look) == true
     }
 
     override func getRequiredResources() -> Int {

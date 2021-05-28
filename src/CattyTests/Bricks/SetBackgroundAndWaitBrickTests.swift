@@ -177,4 +177,25 @@ final class SetBackgroundAndWaitBrickTests: XCTestCase {
 
         XCTAssertFalse(brick.checkCondition(look: lookB, scheduler: scheduler))
     }
+
+    func testIsEqual() {
+        let brickA = SetBackgroundAndWaitBrick(look: lookA)
+        let brickB = SetBackgroundAndWaitBrick(look: lookA)
+
+        XCTAssertTrue(brickA.isEqual(to: brickB))
+    }
+
+    func testIsEqualDifferentLook() {
+        let brickA = SetBackgroundAndWaitBrick(look: lookA)
+        let brickB = SetBackgroundAndWaitBrick(look: lookB)
+
+        XCTAssertFalse(brickA.isEqual(to: brickB))
+    }
+
+    func testIsEqualDifferentBrick() {
+        let brickA = SetBackgroundAndWaitBrick(look: lookA)
+        let brickB = SetBackgroundBrick(look: lookB)
+
+        XCTAssertFalse(brickA.isEqual(to: brickB))
+    }
 }
