@@ -25,45 +25,27 @@ extension UIView {
     // MARK: Safe Area wrapper
 
     var safeTopAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.topAnchor
-        }
-        return topAnchor
+        safeAreaLayoutGuide.topAnchor
     }
 
     var safeLeftAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.leftAnchor
-        }
-        return leftAnchor
+        safeAreaLayoutGuide.leftAnchor
     }
 
     var safeRightAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.rightAnchor
-        }
-        return rightAnchor
+        safeAreaLayoutGuide.rightAnchor
     }
 
     var safeBottomAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.bottomAnchor
-        }
-        return bottomAnchor
+        safeAreaLayoutGuide.bottomAnchor
     }
 
     var safeSuperViewCenterXAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return (self.superview?.safeAreaLayoutGuide.centerXAnchor)!
-        }
-        return (self.superview?.centerXAnchor)!
+        (self.superview?.safeAreaLayoutGuide.centerXAnchor)!
     }
 
     var safeSuperViewCenterYAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return (self.superview?.safeAreaLayoutGuide.centerYAnchor)!
-        }
-        return (self.superview?.centerYAnchor)!
+        (self.superview?.safeAreaLayoutGuide.centerYAnchor)!
     }
 
     // MARK: View helper functions

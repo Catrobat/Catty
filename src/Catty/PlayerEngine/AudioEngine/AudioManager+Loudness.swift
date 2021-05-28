@@ -78,7 +78,7 @@ extension AudioManager: AudioManagerProtocol {
 
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setActive(true)
-        try? audioSession.setCategoryWrapper(.playAndRecord, mode: .default)
+        try? audioSession.setCategory(.playAndRecord, mode: .default)
         try? audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
         try? self.recorder = AVAudioRecorder(url: url, settings: settings)
     }

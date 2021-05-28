@@ -27,6 +27,8 @@
 		17A8ABE92624EAA400DDD480 /* FormulaParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8ABE82624EAA400DDD480 /* FormulaParserTest.swift */; };
 		17A8AC652644E6A900DDD480 /* ForceInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A8AC642644E6A900DDD480 /* ForceInit.m */; };
 		17A8AC6F2644E79B00DDD480 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
+		17D5F5BE265E927A00C678FF /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D5F5BD265E927A00C678FF /* Keychain.swift */; };
+		17D5F5C0265EAEF700C678FF /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D5F5BF265EAEF700C678FF /* KeychainTests.swift */; };
 		1801591E25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
@@ -1042,7 +1044,6 @@
 		5E7E7F8A2341CB8100411298 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E7F892341CB8100411298 /* UIColorExtension.swift */; };
 		5E84B7A72341FC68009982AA /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E84B7A62341FC68009982AA /* UITextFieldExtension.swift */; };
 		5E99F2E323442E1A007878C1 /* ThemesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E99F2E223442E1A007878C1 /* ThemesHelper.swift */; };
-		5EA1089421B8FBD200B837B9 /* AVAudioSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1089321B8FBD200B837B9 /* AVAudioSessionExtension.swift */; };
 		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* DoubleExtension.swift */; };
 		5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */; };
@@ -1143,7 +1144,6 @@
 		921D468B1BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46851BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift */; };
 		921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */; };
 		921E84E81CC9F3E400F7EE9F /* TextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */; };
-		921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 921EE9B51BA8045A00834711 /* JNKeychain.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */; };
@@ -1914,6 +1914,8 @@
 		17A8ABE82624EAA400DDD480 /* FormulaParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaParserTest.swift; path = Formula/FormulaParserTest.swift; sourceTree = "<group>"; };
 		17A8AC642644E6A900DDD480 /* ForceInit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForceInit.m; sourceTree = "<group>"; };
 		17A8AC6B2644E6B500DDD480 /* ForceInit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForceInit.h; sourceTree = "<group>"; };
+		17D5F5BD265E927A00C678FF /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Keychain/Keychain.swift; sourceTree = "<group>"; };
+		17D5F5BF265EAEF700C678FF /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewController.swift; sourceTree = "<group>"; };
 		180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTests.swift; sourceTree = "<group>"; };
 		180DDF422506800600EA526C /* AnalyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsMock.swift; sourceTree = "<group>"; };
@@ -3034,7 +3036,6 @@
 		5E7E7F892341CB8100411298 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		5E84B7A62341FC68009982AA /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		5E99F2E223442E1A007878C1 /* ThemesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesHelper.swift; sourceTree = "<group>"; };
-		5EA1089321B8FBD200B837B9 /* AVAudioSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionExtension.swift; sourceTree = "<group>"; };
 		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -3184,8 +3185,6 @@
 		921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetTransparencyBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetTransparencyBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921E84E61CC9F3E400F7EE9F /* TextInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputViewController.h; sourceTree = "<group>"; };
 		921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputViewController.m; sourceTree = "<group>"; };
-		921EE9B41BA8045A00834711 /* JNKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JNKeychain.h; path = Keychain/JNKeychain.h; sourceTree = "<group>"; };
-		921EE9B51BA8045A00834711 /* JNKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JNKeychain.m; path = Keychain/JNKeychain.m; sourceTree = "<group>"; };
 		92289A451A42F2A3008C771A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
 		92289A461A42F2A3008C771A /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		92289A471A42F2A3008C771A /* iOSCombobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCombobox.h; sourceTree = "<group>"; };
@@ -4626,6 +4625,7 @@
 			children = (
 				2E7ED11225E3AAC10009F17F /* Fixtures */,
 				2E7ED10525E38E1A0009F17F /* WebRequestDownloaderTests.swift */,
+				17D5F5BF265EAEF700C678FF /* KeychainTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -8166,7 +8166,6 @@
 			isa = PBXGroup;
 			children = (
 				4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */,
-				5EA1089321B8FBD200B837B9 /* AVAudioSessionExtension.swift */,
 				05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */,
 				6FD28D0924702CAD0035F606 /* NSDateExtension.swift */,
 				18DAFC56247BD1400082C62A /* SpriteNode */,
@@ -10583,8 +10582,7 @@
 		D63864691AE63EB4008569E6 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				921EE9B41BA8045A00834711 /* JNKeychain.h */,
-				921EE9B51BA8045A00834711 /* JNKeychain.m */,
+				17D5F5BD265E927A00C678FF /* Keychain.swift */,
 			);
 			name = Keychain;
 			sourceTree = "<group>";
@@ -10772,7 +10770,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					187E079F24E26CED00E652C4 = {
 						CreatedOnToolsVersion = 11.2.1;
@@ -11943,6 +11941,7 @@
 				18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */,
 				4C6FE15E212D2D2E0067B7D5 /* MaxFunctionTest.swift in Sources */,
 				1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */,
+				17D5F5C0265EAEF700C678FF /* KeychainTests.swift in Sources */,
 				4C822674213FA7A400F3D750 /* InclinationXSensorTest.swift in Sources */,
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
 				4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */,
@@ -12229,7 +12228,6 @@
 				186AA3472482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift in Sources */,
 				594DF6EB25EA9160005CEE16 /* ProjectDetailStoreViewControllerDownloadExtension.swift in Sources */,
 				C8A0338A260650CB00702911 /* SetTempoToBrick+Instruction.swift in Sources */,
-				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,
 				AA74F0991BC05FCE00D1E954 /* BrickCellVariableData.m in Sources */,
 				46D0516724F8155600A79155 /* SetRotationStyleBrickCell.swift in Sources */,
 				9218B20A1CC4AB75007B4C60 /* UIViewController+KNSemiModal.m in Sources */,
@@ -12279,6 +12277,7 @@
 				972622CD25F5145D00ABCC7A /* SetBrightnessBrickCell.swift in Sources */,
 				2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */,
 				92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */,
+				17D5F5BE265E927A00C678FF /* Keychain.swift in Sources */,
 				F4E6E5C0210E1FE900D86FE6 /* RandFunction.swift in Sources */,
 				92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */,
 				92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */,
@@ -12819,7 +12818,6 @@
 				5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */,
 				9218B2111CC4AB75007B4C60 /* PointerTool.m in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
-				5EA1089421B8FBD200B837B9 /* AVAudioSessionExtension.swift in Sources */,
 				F4E6E580210DE61900D86FE6 /* PowerFunction.swift in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
 				AA74EF551BC0586F00D1E954 /* PointToBrick+CBXMLHandler.m in Sources */,
@@ -13104,7 +13102,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = CattyUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -13139,7 +13137,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = CattyUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -13216,7 +13214,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -13293,7 +13291,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -13350,7 +13348,7 @@
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -13414,7 +13412,7 @@
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -13467,7 +13465,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -13519,7 +13517,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -93,7 +93,7 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         touchHelperView = UIView(frame: CGRect.zero)
         touchHelperView?.backgroundColor = UIColor.clear
         progressView.tintColor = UIColor.navTint
-        automaticallyAdjustsScrollViewInsets = false
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
     }
 
     override func viewWillAppear(_ animated: Bool) {

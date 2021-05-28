@@ -377,7 +377,7 @@ import ActiveLabel
         }
         contentSize.height += 30.0
         self.scrollViewOutlet.contentSize = contentSize
-        self.automaticallyAdjustsScrollViewInsets = false
+        self.scrollViewOutlet.contentInsetAdjustmentBehavior = .never
         self.scrollViewOutlet.isUserInteractionEnabled = true
     }
 
