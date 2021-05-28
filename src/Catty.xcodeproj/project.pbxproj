@@ -384,7 +384,6 @@
 		4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */; };
 		468EE8D9257F8F94003976DD /* SetBackgroundAndWaitBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468EE8D8257F8F94003976DD /* SetBackgroundAndWaitBrick.swift */; };
 		468EE8DF257F9730003976DD /* SetBackgroundAndWaitBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468EE8DE257F9730003976DD /* SetBackgroundAndWaitBrickCell.swift */; };
-		468EE8E3257F9A84003976DD /* SetBackgroundAndWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468EE8E2257F9A84003976DD /* SetBackgroundAndWaitBrick+Instruction.swift */; };
 		468EE8FE257FE40B003976DD /* SetBackgroundAndWaitBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468EE8FD257FE40B003976DD /* SetBackgroundAndWaitBrick+CBXMLHandler.swift */; };
 		46A75DF425752B1200F3963D /* CircleShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */; };
 		46B472BD2560946F007972DB /* StitchBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */; };
@@ -900,6 +899,10 @@
 		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
 		4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AD2660C39D007221DA /* 817.catrobat */; };
 		4CE3C4B02660E455007221DA /* CBSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */; };
+		4CE3C4B22660F388007221DA /* SetBackgroundAndWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B12660F387007221DA /* SetBackgroundAndWaitBrick+Instruction.swift */; };
+		4CE3C4B42660F3AC007221DA /* SetInstrumentBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */; };
+		4CE3C4B62660F3C5007221DA /* SetTempoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B52660F3C4007221DA /* SetTempoToBrick+Instruction.swift */; };
+		4CE3C4B82660F3E0007221DA /* SetLookByIndexBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B72660F3E0007221DA /* SetLookByIndexBrick+Instruction.swift */; };
 		4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */; };
 		4CE3D68D2107B4E300005629 /* FaceDetectedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68C2107B4E300005629 /* FaceDetectedSensor.swift */; };
 		4CE3D68F2107B68600005629 /* FaceDetectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */; };
@@ -1439,7 +1442,6 @@
 		9EBED5FD230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBED5FC230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift */; };
 		9EC5174224FBD7ED0029CD0E /* SetInstrumentBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5174124FBD7ED0029CD0E /* SetInstrumentBrick.swift */; };
 		9EC5174624FBD92F0029CD0E /* SetInstrumentBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5174524FBD92F0029CD0E /* SetInstrumentBrickCell.swift */; };
-		9EC5174824FBDBB80029CD0E /* SetInstrumentBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5174724FBDBB80029CD0E /* SetInstrumentBrick+Instruction.swift */; };
 		9EC5175824FBE5B20029CD0E /* Sampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5175724FBE5B20029CD0E /* Sampler.swift */; };
 		9EC5205C24FC03E80029CD0E /* electric-piano-60.wv in Resources */ = {isa = PBXBuildFile; fileRef = 9EC5204D24FC03E70029CD0E /* electric-piano-60.wv */; };
 		9EC5205D24FC03E80029CD0E /* electric-piano.sfz in Resources */ = {isa = PBXBuildFile; fileRef = 9EC5204E24FC03E70029CD0E /* electric-piano.sfz */; };
@@ -1719,7 +1721,6 @@
 		BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */; };
 		C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B8C0B21945B560F7272 /* AlertController.swift */; };
 		C8A0338326064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0338226064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift */; };
-		C8A0338A260650CB00702911 /* SetTempoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A03389260650CB00702911 /* SetTempoToBrick+Instruction.swift */; };
 		C8CD7DD425E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD7DD325E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift */; };
 		C8E037482605E745008F39D0 /* SetTempoToBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E037472605E745008F39D0 /* SetTempoToBrickCell.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
@@ -1794,7 +1795,6 @@
 		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
 		E5E1E5AA25780DA100D2F1BC /* SetLookByIndexBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */; };
 		E5E1E5AE25780E3200D2F1BC /* SetLookByIndexBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */; };
-		E5E1E5B025780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5AF25780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift */; };
 		E5E1E5B2257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */; };
 		E5E1E5B42578117400D2F1BC /* SetLookByIndexBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
@@ -2292,7 +2292,6 @@
 		4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		468EE8D8257F8F94003976DD /* SetBackgroundAndWaitBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundAndWaitBrick.swift; sourceTree = "<group>"; };
 		468EE8DE257F9730003976DD /* SetBackgroundAndWaitBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundAndWaitBrickCell.swift; sourceTree = "<group>"; };
-		468EE8E2257F9A84003976DD /* SetBackgroundAndWaitBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetBackgroundAndWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
 		468EE8FD257FE40B003976DD /* SetBackgroundAndWaitBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SetBackgroundAndWaitBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShapeNodeTests.swift; sourceTree = "<group>"; };
 		46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StitchBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -2891,6 +2890,10 @@
 		4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
 		4CE3C4AD2660C39D007221DA /* 817.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = 817.catrobat; path = CattyTests/Resources/ParserTests/ZipProjects/817.catrobat; sourceTree = SOURCE_ROOT; };
 		4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulerTests.swift; path = PlayerEngine/CBSchedulerTests.swift; sourceTree = "<group>"; };
+		4CE3C4B12660F387007221DA /* SetBackgroundAndWaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetBackgroundAndWaitBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetBackgroundAndWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetInstrumentBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetInstrumentBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4CE3C4B52660F3C4007221DA /* SetTempoToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetTempoToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetTempoToBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4CE3C4B72660F3E0007221DA /* SetLookByIndexBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetLookByIndexBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetLookByIndexBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManager.swift; sourceTree = "<group>"; };
 		4CE3D68C2107B4E300005629 /* FaceDetectedSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectedSensor.swift; sourceTree = "<group>"; };
 		4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerProtocol.swift; sourceTree = "<group>"; };
@@ -3721,7 +3724,6 @@
 		9EBED5FC230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerprintingAudioPlayerFactory.swift; sourceTree = "<group>"; };
 		9EC5174124FBD7ED0029CD0E /* SetInstrumentBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstrumentBrick.swift; sourceTree = "<group>"; };
 		9EC5174524FBD92F0029CD0E /* SetInstrumentBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstrumentBrickCell.swift; sourceTree = "<group>"; };
-		9EC5174724FBDBB80029CD0E /* SetInstrumentBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetInstrumentBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9EC5175724FBE5B20029CD0E /* Sampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sampler.swift; sourceTree = "<group>"; };
 		9EC5204D24FC03E70029CD0E /* electric-piano-60.wv */ = {isa = PBXFileReference; lastKnownFileType = file; path = "electric-piano-60.wv"; sourceTree = "<group>"; };
 		9EC5204E24FC03E70029CD0E /* electric-piano.sfz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "electric-piano.sfz"; sourceTree = "<group>"; };
@@ -4158,7 +4160,6 @@
 		C286B2695528549DC9B2916D /* af */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C42D117BCEADFF7368CA3159 /* bn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8A0338226064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SetTempoToBrick+CBXMLHandler.swift"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Sound/SetTempoToBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
-		C8A03389260650CB00702911 /* SetTempoToBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetTempoToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		C8CD7DD325E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewControllerTests.swift; sourceTree = "<group>"; };
 		C8E037472605E745008F39D0 /* SetTempoToBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTempoToBrickCell.swift; sourceTree = "<group>"; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
@@ -4255,7 +4256,6 @@
 		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
 		E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrick.swift; sourceTree = "<group>"; };
 		E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrickCell.swift; sourceTree = "<group>"; };
-		E5E1E5AF25780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetLookByIndexBrick+Instruction.swift"; sourceTree = "<group>"; };
 		E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetLookByIndexBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrickTests.swift; sourceTree = "<group>"; };
 		EACB63B95D9C0A7F1388E4F3 /* id */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -9725,12 +9725,12 @@
 				AA74EE341BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift */,
 				9E2AEA51239888C100CDF58F /* PlaySoundAndWaitBrick+Instruction.swift */,
 				AA74EE351BC0543600D1E954 /* PlaySoundBrick+Instruction.swift */,
-				9EC5174724FBDBB80029CD0E /* SetInstrumentBrick+Instruction.swift */,
+				4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */,
+				4CE3C4B52660F3C4007221DA /* SetTempoToBrick+Instruction.swift */,
 				AA74EE361BC0543600D1E954 /* SetVolumeToBrick+Instruction.swift */,
 				4C0F9F81204BD20900E71B2D /* SpeakAndWaitBrick+Instruction.swift */,
 				AA74EE371BC0543600D1E954 /* SpeakBrick+Instruction.swift */,
 				AA74EE381BC0543600D1E954 /* StopAllSoundsBrick+Instruction.swift */,
-				C8A03389260650CB00702911 /* SetTempoToBrick+Instruction.swift */,
 			);
 			name = Sound;
 			sourceTree = "<group>";
@@ -9739,7 +9739,7 @@
 			isa = PBXGroup;
 			children = (
 				44801DA825235511007CDBA5 /* AskBrick+Instruction.swift */,
-				468EE8E2257F9A84003976DD /* SetBackgroundAndWaitBrick+Instruction.swift */,
+				4CE3C4B12660F387007221DA /* SetBackgroundAndWaitBrick+Instruction.swift */,
 				4C0F9F73204BD1CE00E71B2D /* CameraBrick+Instruction.swift */,
 				921D46811BDF698A0086AD20 /* ChangeBrightnessByNBrick+Instruction.swift */,
 				921D46821BDF698A0086AD20 /* ChangeTransparencyByNBrick+Instruction.swift */,
@@ -9756,11 +9756,11 @@
 				AAF6D9D31BC0B9EA00686849 /* HideBrick+Instruction.swift */,
 				99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */,
 				AAF6D9D91BC0BB1F00686849 /* SetLookBrick+Instruction.swift */,
+				4CE3C4B72660F3E0007221DA /* SetLookByIndexBrick+Instruction.swift */,
 				AAF6D9DB1BC0BFFE00686849 /* SetSizeToBrick+Instruction.swift */,
 				AAF6D9D71BC0BAF300686849 /* ShowBrick+Instruction.swift */,
 				4C0F9F7E204BD1F700E71B2D /* ThinkBubbleBrick+Instruction.swift */,
 				4C0F9F7D204BD1F700E71B2D /* ThinkForBubbleBrick+Instruction.swift */,
-				E5E1E5AF25780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift */,
 			);
 			name = Look;
 			sourceTree = "<group>";
@@ -12064,7 +12064,6 @@
 				186AA33F2482DA65001E38FD /* PenDownBrickCell.swift in Sources */,
 				05E6801E255B5DAA00D1E295 /* EmbroideryProtocol.swift in Sources */,
 				AA74F0BF1BC05FCE00D1E954 /* PointToBrickCell.m in Sources */,
-				9EC5174824FBDBB80029CD0E /* SetInstrumentBrick+Instruction.swift in Sources */,
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
@@ -12074,6 +12073,7 @@
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
 				4C595F5921CAF6B30097D850 /* OrOperator.swift in Sources */,
+				4CE3C4B82660F3E0007221DA /* SetLookByIndexBrick+Instruction.swift in Sources */,
 				AA74F0941BC05FCE00D1E954 /* BrickCellLookData.m in Sources */,
 				59032EE524A29CAE00BD86C4 /* WhenBackgroundChangesScript+Condition.swift in Sources */,
 				F45AF6FD212960A3000F88A6 /* FacePositionXSensor.swift in Sources */,
@@ -12469,6 +12469,7 @@
 				4CDA808521366AEA0052FA24 /* FormulaManagerProtocol.swift in Sources */,
 				4CF0728D20D659F700F93AB5 /* PhiroSideRightSensor.swift in Sources */,
 				AA74F0021BC05B5F00D1E954 /* MoveNStepsBrick.m in Sources */,
+				4CE3C4B22660F388007221DA /* SetBackgroundAndWaitBrick+Instruction.swift in Sources */,
 				4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */,
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
@@ -12572,6 +12573,7 @@
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				4C0F9F85204BD24600E71B2D /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
+				4CE3C4B42660F3AC007221DA /* SetInstrumentBrick+Instruction.swift in Sources */,
 				4C595F4F21CAEBEE0097D850 /* GreaterThanOperator.swift in Sources */,
 				92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */,
 				4CF0728120D6577500F93AB5 /* PhiroSensor.swift in Sources */,
@@ -12587,7 +12589,6 @@
 				9E2AEA52239888C100CDF58F /* PlaySoundAndWaitBrick+Instruction.swift in Sources */,
 				92DFB0191A38949E00FA9B0F /* InternToExternGenerator.m in Sources */,
 				AA74EEE31BC057B900D1E954 /* NoteBrick+CBXMLHandler.m in Sources */,
-				E5E1E5B025780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift in Sources */,
 				4CF0729A20D66C4800F93AB5 /* BackgroundNumberSensor.swift in Sources */,
 				6F4B2FB72466704500B5F0ED /* ProjectMigrator.swift in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Project+CBXMLHandler.m in Sources */,
@@ -12908,7 +12909,6 @@
 				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,
 				186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */,
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */,
-				468EE8E3257F9A84003976DD /* SetBackgroundAndWaitBrick+Instruction.swift in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
 				91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */,
 			);

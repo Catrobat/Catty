@@ -141,7 +141,7 @@ final class SetBackgroundAndWaitBrickTests: XCTestCase {
     }
 
     func testWaitConditionTrue() {
-        let brick = SetBackgroundAndWaitBrick()
+        let brick = SetBackgroundAndWaitBrick(look: lookA)
         whenBackgroundChangesScript.look = lookA
 
         let whenBackgroundChangesScriptContext = CBWhenBackgroundChangesScriptContext(
