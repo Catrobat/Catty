@@ -28,8 +28,6 @@ final class StoreProjectDownloaderMock: StoreProjectDownloader {
     var progress: Float = 0
     var project: StoreProject?
     var featuredProject: StoreFeaturedProject?
-    var collectionText: StoreProjectCollection.StoreProjectCollectionText?
-    var collectionNumber: StoreProjectCollection.StoreProjectCollectionNumber?
     var projectData: Data?
     var error: StoreProjectDownloaderError?
     var expectation: XCTestExpectation?

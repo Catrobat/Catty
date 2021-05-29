@@ -52,23 +52,6 @@ class StoreProjectDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testfetchFeaturedProjectsSucceedsWithIntegerId() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchFeaturedProjects.IntegerId.success")
-        let downloader = StoreProjectDownloader(session: dvrSession)
-        let expectation = XCTestExpectation(description: "Fetch Featured Projects")
-
-        downloader.fetchFeaturedProjects(offset: 0) { projects, error in
-            XCTAssertNil(error, "request failed")
-            guard let projects = projects else { XCTFail("no featured projects found"); return }
-            guard let item = projects.first else { XCTFail("no featured projects in array"); return }
-
-            XCTAssertNotEqual(item.id, "")
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
-    }
-
     func testfetchFeaturedProjectsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProjectDownloader(session: mockSession)
@@ -194,23 +177,6 @@ class StoreProjectDownloaderTests: XCTestCase {
             XCTAssertNotEqual(item.name, "")
             XCTAssertNotEqual(item.author, "")
 
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
-    }
-
-    func testfetchMostDownloadedProjectsSucceedsWithIntegerId() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostDownloadedProjects.IntegerId.success")
-        let downloader = StoreProjectDownloader(session: dvrSession)
-        let expectation = XCTestExpectation(description: "Fetch Most Downloaded Projects")
-
-        downloader.fetchProjects(for: .mostDownloaded, offset: 0) { projects, error in
-            XCTAssertNil(error, "request failed")
-            guard let projects = projects else { XCTFail("no most downloaded projects found"); return }
-            guard let item = projects.first else { XCTFail("no most downloaded projects in array"); return }
-
-            XCTAssertNotEqual(item.id, "")
             expectation.fulfill()
         }
 
@@ -352,23 +318,6 @@ class StoreProjectDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testfetchMostViewedProjectsSucceedsWithIntegerId() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostViewedProjects.IntegerId.success")
-        let downloader = StoreProjectDownloader(session: dvrSession)
-        let expectation = XCTestExpectation(description: "Fetch Most Viewed Projects")
-
-        downloader.fetchProjects(for: .mostViewed, offset: 0) { projects, error in
-            XCTAssertNil(error, "request failed")
-            guard let projects = projects else { XCTFail("no most viewed projects found"); return }
-            guard let item = projects.first else { XCTFail("no most viewed projects in array"); return }
-
-            XCTAssertNotEqual(item.id, "")
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
-    }
-
     func testfetchMostViewedProjectsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProjectDownloader(session: mockSession)
@@ -498,23 +447,6 @@ class StoreProjectDownloaderTests: XCTestCase {
             XCTAssertNotEqual(item.name, "")
             XCTAssertNotEqual(item.author, "")
 
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
-    }
-
-    func testfetchMostRecentProjectsSucceedsWithIntegerId() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostRecentProjects.IntegerId.success")
-        let downloader = StoreProjectDownloader(session: dvrSession)
-        let expectation = XCTestExpectation(description: "Fetch Most Recent Projects")
-
-        downloader.fetchProjects(for: .mostRecent, offset: 0) { projects, error in
-            XCTAssertNil(error, "request failed")
-            guard let projects = projects else { XCTFail("no most recent projects found"); return }
-            guard let item = projects.first else { XCTFail("no most recent projects in array"); return }
-
-            XCTAssertNotEqual(item.id, "")
             expectation.fulfill()
         }
 
@@ -657,24 +589,6 @@ class StoreProjectDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testSearchProjectsSucceedsWithIntegerId() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.searchProjects.IntegerId.success")
-        let downloader = StoreProjectDownloader(session: dvrSession)
-        let expectation = XCTestExpectation(description: "Fetch Search Projects")
-        let searchTerm = "Galaxy"
-
-        downloader.fetchSearchQuery(searchTerm: searchTerm) { projects, error in
-            XCTAssertNil(error, "request failed")
-            guard let projects = projects else { XCTFail("no projects found"); return }
-            guard let item = projects.first else { XCTFail("no projects in array"); return }
-
-            XCTAssertNotEqual(item.id, "")
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
-    }
-
     func testfetchSearchProjectsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProjectDownloader(session: mockSession)
@@ -747,21 +661,6 @@ class StoreProjectDownloaderTests: XCTestCase {
 
     func testFetchProjectDetailsSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchProjectDetails.success")
-        let downloader = StoreProjectDownloader(session: dvrSession)
-        let projectId = "821"
-        let expectation = XCTestExpectation(description: "Download Featured Project")
-
-        downloader.fetchProjectDetails(for: projectId) { data, error in
-            XCTAssertNil(error, "request failed")
-            guard data != nil else { XCTFail("no data received"); return }
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
-    }
-
-    func testFetchProjectDetailsSucceedsWithIntegerId() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchProjectDetails.IntegerId.success")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let projectId = "821"
         let expectation = XCTestExpectation(description: "Download Featured Project")
