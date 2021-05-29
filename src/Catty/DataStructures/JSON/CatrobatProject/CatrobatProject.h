@@ -38,6 +38,7 @@
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSNumber *views;
 @property (nonatomic, strong) NSString *size;
+@property (nonatomic, strong) NSArray<NSString *> *tags;
 @property (nonatomic) BOOL isdownloading;
 
 - (id)initWithDict:(NSDictionary*)dict;

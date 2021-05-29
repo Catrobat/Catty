@@ -37,6 +37,7 @@ final class StoreProjectTests: XCTestCase {
         XCTAssertEqual(catrobatProject.projectUrl, storeProject.projectUrl ?? "")
         XCTAssertEqual(catrobatProject.screenshotBig, storeProject.screenshotBig ?? "")
         XCTAssertEqual(catrobatProject.screenshotSmall, storeProject.screenshotSmall ?? "")
+        XCTAssertEqual(catrobatProject.tags, storeProject.tags ?? [""])
         if let uploaded = storeProject.uploaded {
             XCTAssertEqual(catrobatProject.uploaded, String(uploaded))
         } else {
