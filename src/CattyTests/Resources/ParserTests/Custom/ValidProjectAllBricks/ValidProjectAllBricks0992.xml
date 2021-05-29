@@ -686,6 +686,10 @@
                 <brick type="StitchBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
+                <brick type="SetBackgroundAndWaitBrick">
+                  <commentedOut>false</commentedOut>
+                  <look reference="../../../../../lookList/look"/>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>

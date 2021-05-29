@@ -407,6 +407,7 @@ let kLocalizedDoNotRotate = NSLocalizedString("don't rotate", comment: "")
 let kLocalizedLook = NSLocalizedString("Look", comment: "")
 let kLocalizedSetLook = NSLocalizedString("Switch to look", comment: "")
 let kLocalizedSetBackground = NSLocalizedString("Set background", comment: "")
+let kLocalizedSetBackgroundAndWait = NSLocalizedString("Set background and wait", comment: "")
 let kLocalizedNextLook = NSLocalizedString("Next look", comment: "")
 let kLocalizedNextBackground = NSLocalizedString("Next background", comment: "")
 let kLocalizedPreviousLook = NSLocalizedString("Previous look", comment: "")
@@ -467,6 +468,8 @@ let kLocalizedChangeVariable = NSLocalizedString("Change variable", comment: "")
 let kLocalizedShowVariable = NSLocalizedString("Show variable", comment: "")
 let kLocalizedHideVariable = NSLocalizedString("Hide variable", comment: "")
 let kLocalizedAt = NSLocalizedString("at ", comment: "")
+let kLocalizedSendWebRequestTo = NSLocalizedString("Send web request to", comment: "")
+let kLocalizedAndStoreAnswerIn = NSLocalizedString("and store answer in", comment: "")
 
 //userlist
 let kLocalizedUserListAdd = NSLocalizedString("Add", comment: "")
@@ -749,6 +752,7 @@ let kLocalizedSensorMagnetic = NSLocalizedString("magnetic-sensor", comment: "")
 let kLocalizedVibration = NSLocalizedString("vibration", comment: "")
 let kLocalizedSensorLoudness = NSLocalizedString("loudness", comment: "")
 let kLocalizedSensorLED = NSLocalizedString("LED", comment: "")
+let kLocalizedInternet = NSLocalizedString("Internet", comment: "")
 let kLocalizedNotAvailable = NSLocalizedString("not available. Continue anyway?", comment: "")
 
 let kUIFESensorFaceDetected = NSLocalizedString("face detected", comment: "")
@@ -841,6 +845,7 @@ let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", c
 let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", comment: "")
 let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", comment: "")
 let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", comment: "")
+let kLocalizedDownloadSizeErrorMessage = NSLocalizedString("Download too big", comment: "")
 
 //************************************************************************************************************
 //**************************************       Audio Engine        *********************************************

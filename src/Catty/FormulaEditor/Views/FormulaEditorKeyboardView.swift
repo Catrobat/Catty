@@ -63,12 +63,8 @@ protocol FormulaEditorKeyboardViewProtocol {
         let accessoryViewHeight = FormulaEditorKeyboardAccessoryView.height
         let inputViewHeight = FormulaEditorKeyboardView.keyboardHeight - accessoryViewHeight
 
-        if #available(iOS 11.0, *) {
-            let bottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-            frame = CGRect(origin: .zero, size: CGSize(width: keyboardWidth, height: inputViewHeight + bottomInset))
-        } else {
-            frame = CGRect(origin: .zero, size: CGSize(width: keyboardWidth, height: inputViewHeight))
-        }
+        let bottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        frame = CGRect(origin: .zero, size: CGSize(width: keyboardWidth, height: inputViewHeight + bottomInset))
 
         super.init(frame: frame)
         self.backgroundColor = UIColor.white

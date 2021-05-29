@@ -34,7 +34,7 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        crashlytics = CrashlyticsMock(collectionEnabled: false)
+        crashlytics = CrashlyticsMock.create(collectionEnabled: false)
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
         reporter = FirebaseCrashlyticsReporter(crashlytics: crashlytics!)
     }
@@ -46,7 +46,7 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
     func testSetupCrashReportsDisabled() {
         UserDefaults.standard.set(false, forKey: kFirebaseSendCrashReports)
 
-        crashlytics = CrashlyticsMock(collectionEnabled: false)
+        crashlytics = CrashlyticsMock.create(collectionEnabled: false)
         _ = FirebaseCrashlyticsReporter(crashlytics: crashlytics!)
         XCTAssertFalse(crashlytics!.isCrashlyticsCollectionEnabled())
     }

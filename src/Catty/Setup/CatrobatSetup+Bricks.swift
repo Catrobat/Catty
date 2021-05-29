@@ -74,6 +74,7 @@
             NextLookBrick(),
             PreviousLookBrick(),
             SetBackgroundBrick(),
+            SetBackgroundAndWaitBrick(),
             SetBrightnessBrick(),
             ChangeSizeByNBrick(),
             ChangeTransparencyByNBrick(),
@@ -115,6 +116,7 @@
             InsertItemIntoUserListBrick(),
             ReplaceItemInUserListBrick(),
             DeleteItemOfUserListBrick(),
+            // arduino bricks
             ArduinoSendDigitalValueBrick(),
             ArduinoSendPWMValueBrick(),
             // embroidery brick
@@ -128,6 +130,10 @@
             bricks.append(PhiroPlayToneBrick())
             bricks.append(PhiroRGBLightBrick())
             bricks.append(PhiroIfLogicBeginBrick())
+        }
+
+        if isWebRequestBrickEnabled() {
+            bricks.append(WebRequestBrick())
         }
 
         return bricks
@@ -222,5 +228,9 @@
 
     private static func isEmbroideryEnabled() -> Bool {
          UserDefaults.standard.bool(forKey: kUseEmbroideryBricks)
+    }
+
+    private static func isWebRequestBrickEnabled() -> Bool {
+         UserDefaults.standard.bool(forKey: kUseWebRequestBrick)
     }
 }

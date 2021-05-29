@@ -27,7 +27,7 @@ import XCTest
 
 class PhiroDeviceTest: XCTestCase {
 
-    var device = PhiroDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock(test: true), advertisements: [String: String](), rssi: 0))
+    var device = PhiroDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock.create(), advertisements: [String: String](), rssi: 0))
 
     override func setUp() {
         super.setUp()

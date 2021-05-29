@@ -228,13 +228,13 @@ extension MediaLibraryViewController {
         let sharedAudioSession = AVAudioSession.sharedInstance()
         self.originalAudioSessionCategory = sharedAudioSession.category
         self.originalAudioSessionCategoryOptions = sharedAudioSession.categoryOptions
-        try? sharedAudioSession.setCategoryWrapper(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
+        try? sharedAudioSession.setCategory(.playback, mode: .default, options: .mixWithOthers)
     }
 
     private func undoEnableSoundInSilentMode() {
         if let category = self.originalAudioSessionCategory, let options = self.originalAudioSessionCategoryOptions {
             let sharedAudioSession = AVAudioSession.sharedInstance()
-            try? sharedAudioSession.setCategoryWrapper(category, mode: .default, options: options)
+            try? sharedAudioSession.setCategory(category, mode: .default, options: options)
         }
     }
 }

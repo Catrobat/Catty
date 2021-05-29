@@ -34,7 +34,8 @@ class AudioEngineAbstractTest: XMLAbstractTest {
     override func setUp() {
         super.setUp()
         do {
-            tape = try AKAudioFile()
+            // FIXME: Use proper default initializer when migrating to AudioKit 5
+            tape = try AKAudioFile(writeIn: AKAudioFile.BaseDirectory.temp, name: nil, settings: [:])
             audioEngine = AudioEngineFingerprintingStub(audioPlayerFactory: FingerprintingAudioPlayerFactory())
             recorder = audioEngine.addNodeRecorderAtEngineOut(tape: tape)
 

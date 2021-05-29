@@ -137,7 +137,6 @@
 
 // User
 #import <CommonCrypto/CommonCrypto.h>
-#import "JNKeychain.h"
 
 //------------------------------------------------------------------------------------------------------------
 // Extension classes
@@ -202,6 +201,7 @@
 #import "Parser.h"
 #import "GDataXMLNode.h"
 #import "CBXMLSerializer.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLSerializerContext.h"

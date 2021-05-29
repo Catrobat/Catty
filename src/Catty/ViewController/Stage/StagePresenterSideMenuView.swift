@@ -101,11 +101,7 @@ enum SideMenuButtonType {
     private func setUpButtonsPortrait() {
         let backButton = setupButton(imageName: "stage_dialog_button_back", selector: #selector(delegate?.stopAction))
         backButton.center = self.center
-        if #available(iOS 11.0, *) {
-            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
-        } else {
-            backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: marginTopBottom).isActive = true
-        }
+        backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
 
         let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction))
         backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 0).isActive = true
@@ -161,21 +157,13 @@ enum SideMenuButtonType {
 
     private func setUpButtonsLandscape() {
         let backButton = setupButton(imageName: "stage_dialog_button_back", selector: #selector(delegate?.stopAction), type: .landscapeFirstColumn)
-        if #available(iOS 11.0, *) {
-            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
-        } else {
-            backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: marginTopBottom).isActive = true
-        }
+        backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
 
         let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction), type: .landscapeFirstColumn)
         backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 0).isActive = true
 
         let continueButton = setupButton(imageName: "stage_dialog_button_continue", selector: #selector(delegate?.continueAction), type: .landscapeSecondColumn)
-        if #available(iOS 11.0, *) {
-            continueButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
-        } else {
-            continueButton.topAnchor.constraint(equalTo: self.topAnchor, constant: marginTopBottom).isActive = true
-        }
+        continueButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
 
         let continueLabel = setupLabel(title: kLocalizedContinue, selector: #selector(delegate?.continueAction), type: .landscapeSecondColumn)
         continueLabel.topAnchor.constraint(equalTo: continueButton.bottomAnchor, constant: 0).isActive = true

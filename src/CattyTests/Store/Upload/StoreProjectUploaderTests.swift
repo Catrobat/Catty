@@ -40,7 +40,7 @@ class StoreProjectUploaderTests: XCTestCase {
         self.project = Project()
         self.project.header = header
 
-        JNKeychain.saveValue("validToken", forKey: NetworkDefines.kUserLoginToken)
+        Keychain.saveValue("validToken", forKey: NetworkDefines.kUserLoginToken)
         UserDefaults.standard.setValue("UserName", forKey: kcUsername)
 
         self.expectedZippedProjectData = "zippedProjectData".data(using: .utf8)
@@ -49,7 +49,7 @@ class StoreProjectUploaderTests: XCTestCase {
 
     override func tearDown() {
         UserDefaults.standard.removeObject(forKey: kcUsername)
-        JNKeychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
+        Keychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
         super.tearDown()
     }
 
@@ -84,7 +84,7 @@ class StoreProjectUploaderTests: XCTestCase {
     }
 
     func testUploadProjectFailsForAuthenticationError() {
-        JNKeychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
+        Keychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.uploadProject.fail.authentication")
         let expectation = XCTestExpectation(description: "Upload Projects")
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
