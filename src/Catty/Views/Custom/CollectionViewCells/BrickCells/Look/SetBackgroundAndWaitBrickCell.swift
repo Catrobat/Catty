@@ -20,30 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
+@objc(SetBackgroundAndWaitBrickCell)
+class SetBackgroundAndWaitBrickCell: BrickCell, BrickCellProtocol {
 
-final class SpriteObjectMock: SpriteObject {
+    public var lookComboBox: iOSCombobox?
+    public var textLabel: UILabel?
 
-    var background: Bool
-
-    override init() {
-        background = false
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
-    init(scene: Scene) {
-        background = false
-        super.init()
-        self.scene = scene
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
-    init(name: String, scene: Scene) {
-        background = false
-        super.init()
-        self.name = name
-        self.scene = scene
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight2h)
     }
 
-    override func isBackground() -> Bool {
-        self.background
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.lookComboBox = inlineViewSubViews[1] as? iOSCombobox
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetBackgroundAndWait.appending("\n%@")
+    }
+
+    override func parameters() -> [String] {
+        ["{BACKGROUND}"]
     }
 }

@@ -407,6 +407,7 @@
 #define kLocalizedLook NSLocalizedString(@"Look", nil)
 #define kLocalizedSetLook NSLocalizedString(@"Switch to look", nil)
 #define kLocalizedSetBackground NSLocalizedString(@"Set background", nil)
+#define kLocalizedSetBackgroundAndWait NSLocalizedString(@"Set background and wait", nil)
 #define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
 #define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
 #define kLocalizedPreviousLook NSLocalizedString(@"Previous look", nil)
