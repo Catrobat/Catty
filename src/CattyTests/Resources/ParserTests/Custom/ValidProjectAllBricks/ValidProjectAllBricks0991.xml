@@ -656,6 +656,24 @@
               <commentedOut>false</commentedOut>
               <spinnerSelection>80</spinnerSelection>
             </brick>
+            <brick type="SetBackgroundByIndexBrick">
+              <commentedOut>false</commentedOut>
+              <formulaList>
+                <formula category="BACKGROUND_INDEX">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetBackgroundByIndexBrick">
+              <commentedOut>false</commentedOut>
+              <formulaList>
+                <formula category="LOOK_INDEX">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+            </brick>
           </brickList>
           <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
