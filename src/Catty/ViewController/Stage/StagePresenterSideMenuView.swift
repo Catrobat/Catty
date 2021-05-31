@@ -220,7 +220,13 @@ enum SideMenuButtonType {
             setupImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
         }
 
-        if CGFloat(project.header.screenWidth.floatValue) == Util.screenWidth(true) && CGFloat(project.header.screenHeight.floatValue) == Util.screenHeight(true) {
+        let screenHeight = Util.screenHeight(true)
+        let screenWidth = Util.screenWidth(true)
+        let projectWidth = CGFloat(project.header.screenWidth.floatValue)
+        let projectHeight = CGFloat(project.header.screenHeight.floatValue)
+        let hideAspectRatio = landscape ? (projectWidth == screenHeight && projectHeight == screenWidth) : (projectWidth == screenWidth && projectHeight == screenHeight)
+
+        if hideAspectRatio {
             aspectRatioLabel.isHidden = true
             aspectRatioButton.isHidden = true
         } else {
