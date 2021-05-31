@@ -42,7 +42,9 @@
     
     //    if (enabled) {
     fingerSwiped = NO;
-    lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+    if ([recognizer numberOfTouches] > 0) {
+        lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+    }
     //    }
     
   }else if (recognizer.state == UIGestureRecognizerStateChanged){
