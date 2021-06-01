@@ -72,8 +72,19 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 @property (nonatomic, strong) NSString* value;
 @property (nonatomic, strong) FormulaElement* leftChild;
 @property (nonatomic, strong) FormulaElement* rightChild;
+@property (nonatomic, strong) NSMutableArray<FormulaElement*>* additionalChildren;
 @property (nonatomic, strong) FormulaElement* parent;
 @property (nonatomic) IdempotenceState idempotenceState;
+
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
+- (id)initWithType:(NSString*)type
+             value:(NSString*)value
+         leftChild:(FormulaElement*)leftChild
+        rightChild:(FormulaElement*)rightChild
+additionalChildren:(NSArray<FormulaElement*>*)additionalChildren
+            parent:(FormulaElement*)parent;
 
 - (id)initWithType:(NSString*)type
              value:(NSString*)value
@@ -85,7 +96,14 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
              value:(NSString*)value
          leftChild:(FormulaElement*)leftChild
         rightChild:(FormulaElement*)rightChild
+        additionalChildren:(NSArray<FormulaElement*>*)additionalChildren
             parent:(FormulaElement*)parent;
+
+- (id)initWithElementType:(ElementType)type
+                    value:(NSString*)value
+                leftChild:(FormulaElement*)leftChild
+               rightChild:(FormulaElement*)rightChild
+                   parent:(FormulaElement*)parent;
 
 - (id)initWithElementType:(ElementType)type
                     value:(NSString*)value;

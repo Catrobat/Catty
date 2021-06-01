@@ -108,109 +108,173 @@ final class FormulaElementTest: XCTestCase {
     func testIsVariableUsedWithNoChild() {
         let userVariable = UserVariable(name: "UserVariable")
 
-        let userVariableFormulaElemnt = FormulaElement()
-        XCTAssertFalse(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        let formulaElement = FormulaElement(elementType: .STRING, value: userVariable.name)!
+        XCTAssertFalse(formulaElement.isVariableUsed(userVariable))
 
-        userVariableFormulaElemnt.value = userVariable.name
-        userVariableFormulaElemnt.type = ElementType.USER_VARIABLE
-        XCTAssertTrue(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        formulaElement.type = ElementType.USER_VARIABLE
+        XCTAssertTrue(formulaElement.isVariableUsed(userVariable))
     }
 
     func testIsVariableUsedWithoutRighChildOnly() {
         let userVariable = UserVariable(name: "UserVariable")
 
-        let userVariableFormulaElemnt = FormulaElement()
-        XCTAssertFalse(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        let parentElement = FormulaElement(elementType: .STRING, value: userVariable.name)!
+        XCTAssertFalse(parentElement.isVariableUsed(userVariable))
 
-        let rightChild = FormulaElement()
-        rightChild.value = userVariable.name
-        rightChild.type = ElementType.USER_VARIABLE
-        userVariableFormulaElemnt.rightChild = rightChild
-        XCTAssertTrue(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        let rightChild = FormulaElement(elementType: .USER_VARIABLE, value: userVariable.name)
+        parentElement.rightChild = rightChild
+        XCTAssertTrue(parentElement.isVariableUsed(userVariable))
     }
 
     func testIsVariableUsedWithoutLeftChildOnly() {
         let userVariable = UserVariable(name: "UserVariable")
 
-        let userVariableFormulaElemnt = FormulaElement()
-        XCTAssertFalse(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        let parentElement = FormulaElement(elementType: .STRING, value: userVariable.name)!
+        XCTAssertFalse(parentElement.isVariableUsed(userVariable))
 
-        let leftChild = FormulaElement()
-        leftChild.value = userVariable.name
-        leftChild.type = ElementType.USER_VARIABLE
-        userVariableFormulaElemnt.rightChild = leftChild
-        XCTAssertTrue(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        parentElement.rightChild = FormulaElement(elementType: .USER_VARIABLE, value: userVariable.name)
+        XCTAssertTrue(parentElement.isVariableUsed(userVariable))
     }
 
     func testIsVariableUsedWithBothChild() {
         let userVariable = UserVariable(name: "UserVariable")
 
-        let userVariableFormulaElemnt = FormulaElement()
-        XCTAssertFalse(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        let parentElement = FormulaElement(integer: 0)!
+        XCTAssertFalse(parentElement.isVariableUsed(userVariable))
 
-        let rightChild = FormulaElement()
-        userVariableFormulaElemnt.rightChild = rightChild
-        XCTAssertFalse(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        parentElement.rightChild = FormulaElement(integer: 0)
+        XCTAssertFalse(parentElement.isVariableUsed(userVariable))
 
-        let leftChild = FormulaElement()
-        leftChild.value = userVariable.name
-        leftChild.type = ElementType.USER_VARIABLE
-        userVariableFormulaElemnt.leftChild = leftChild
-        XCTAssertTrue(userVariableFormulaElemnt.isVariableUsed(userVariable))
+        parentElement.leftChild = FormulaElement(elementType: .USER_VARIABLE, value: userVariable.name)
+        XCTAssertTrue(parentElement.isVariableUsed(userVariable))
     }
 
     func testIsListUsedWithNoChild() {
         let userList = UserList(name: "UserList")
 
-        let userListFormulaElemnt = FormulaElement()
-        XCTAssertFalse(userListFormulaElemnt.isListUsed(userList))
+        let formulaElement = FormulaElement(integer: 0)!
+        XCTAssertFalse(formulaElement.isListUsed(userList))
 
-        userListFormulaElemnt.value = userList.name
-        userListFormulaElemnt.type = ElementType.USER_LIST
-        XCTAssertTrue(userListFormulaElemnt.isListUsed(userList))
+        formulaElement.value = userList.name
+        formulaElement.type = ElementType.USER_LIST
+        XCTAssertTrue(formulaElement.isListUsed(userList))
     }
 
     func testIsListUsedWithRightChildOnly() {
         let userList = UserList(name: "UserList")
 
-        let userListFormulaElemnt = FormulaElement()
-        XCTAssertFalse(userListFormulaElemnt.isListUsed(userList))
+        let parentElement = FormulaElement(integer: 0)!
+        XCTAssertFalse(parentElement.isListUsed(userList))
 
-        let rightChild = FormulaElement()
-        rightChild.value = userList.name
-        rightChild.type = ElementType.USER_LIST
-        userListFormulaElemnt.rightChild = rightChild
-        XCTAssertTrue(userListFormulaElemnt.isListUsed(userList))
+        parentElement.rightChild = FormulaElement(elementType: .USER_LIST, value: userList.name)
+        XCTAssertTrue(parentElement.isListUsed(userList))
     }
 
     func testIsListUsedWithLeftChildOnly() {
         let userList = UserList(name: "UserList")
 
-        let userListFormulaElemnt = FormulaElement()
-        XCTAssertFalse(userListFormulaElemnt.isListUsed(userList))
+        let parentElement = FormulaElement(integer: 0)!
+        XCTAssertFalse(parentElement.isListUsed(userList))
 
-        let leftChild = FormulaElement()
-        leftChild.value = userList.name
-        leftChild.type = ElementType.USER_LIST
-        userListFormulaElemnt.rightChild = leftChild
-        XCTAssertTrue(userListFormulaElemnt.isListUsed(userList))
+        parentElement.rightChild = FormulaElement(elementType: .USER_LIST, value: userList.name)
+        XCTAssertTrue(parentElement.isListUsed(userList))
     }
 
     func testIsListUsedWithBothChild() {
         let userList = UserList(name: "UserList")
 
-        let userListFormulaElemnt = FormulaElement()
-        XCTAssertFalse(userListFormulaElemnt.isListUsed(userList))
+        let parentElement = FormulaElement(integer: 0)!
+        XCTAssertFalse(parentElement.isListUsed(userList))
 
-        let rightChild = FormulaElement()
-        userListFormulaElemnt.rightChild = rightChild
-        XCTAssertFalse(userListFormulaElemnt.isListUsed(userList))
+        parentElement.rightChild = FormulaElement(integer: 0)
+        XCTAssertFalse(parentElement.isListUsed(userList))
 
-        let leftChild = FormulaElement()
-        leftChild.value = userList.name
-        leftChild.type = ElementType.USER_LIST
-        userListFormulaElemnt.leftChild = leftChild
-        XCTAssertTrue(userListFormulaElemnt.isListUsed(userList))
+        parentElement.leftChild = FormulaElement(elementType: .USER_LIST, value: userList.name)
+        XCTAssertTrue(parentElement.isListUsed(userList))
     }
 
+    func testIsEqualToFormulaElementAndGetRequiredResources() {
+        let element = FormulaElement(elementType: ElementType.STRING,
+                                     value: nil,
+                                     leftChild: nil,
+                                     rightChild: nil,
+                                     additionalChildren: nil,
+                                     parent: nil)
+
+        let element2 = FormulaElement(elementType: ElementType.OPERATOR,
+                                      value: nil,
+                                      leftChild: nil,
+                                      rightChild: nil,
+                                      additionalChildren: nil,
+                                      parent: nil)
+
+        XCTAssertFalse((element?.isEqual(to: element2))!)
+
+        element2?.type = ElementType.STRING
+        XCTAssertTrue((element?.isEqual(to: element2))!)
+
+        element?.value = "Test"
+        XCTAssertFalse((element?.isEqual(to: element2))!)
+
+        element2?.value = "Test"
+        XCTAssertTrue((element?.isEqual(to: element2))!)
+
+        let child = FormulaElement(elementType: ElementType.SENSOR, value: InclinationYSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
+        let child2 = FormulaElement(integer: 1)
+
+        element?.leftChild = child
+        element2?.leftChild = child2
+        XCTAssertFalse((element?.isEqual(to: element2))!)
+
+        element2?.leftChild = child
+        XCTAssertTrue((element?.isEqual(to: element2))!)
+
+        var resources = element?.leftChild.getRequiredResources()
+        XCTAssertEqual(resources, ResourceType.accelerometerAndDeviceMotion.rawValue, "Resourses leftChild not correctly calculated")
+
+        element?.rightChild = child
+        element2?.rightChild = child2
+        XCTAssertFalse((element?.isEqual(to: element2))!)
+
+        element2?.rightChild = child
+        XCTAssertTrue((element?.isEqual(to: element2))!)
+
+        resources = element?.rightChild.getRequiredResources()
+        XCTAssertEqual(resources, ResourceType.accelerometerAndDeviceMotion.rawValue, "Resourses rightChild not correctly calculated")
+
+        element?.additionalChildren = [child as Any]
+        element2?.additionalChildren = [child2 as Any]
+        XCTAssertFalse((element?.isEqual(to: element2))!)
+
+        element2?.additionalChildren = [child as Any]
+        XCTAssertTrue((element?.isEqual(to: element2))!)
+
+        resources = element?.getRequiredResources()
+        XCTAssertEqual(resources, ResourceType.accelerometerAndDeviceMotion.rawValue, "Resourses additionalChildren not correctly calculated")
+    }
+
+    func testInitWithAdditionalChildren() {
+        let elementWithoutAdditionalChildren = FormulaElement(elementType: ElementType.STRING,
+                                                              value: nil,
+                                                              leftChild: nil,
+                                                              rightChild: nil,
+                                                              additionalChildren: nil,
+                                                              parent: nil)
+
+        XCTAssertEqual(0, elementWithoutAdditionalChildren?.additionalChildren.count)
+
+        let childA = FormulaElement(integer: 0)!
+        let childB = FormulaElement(integer: 0)!
+
+        let elementWithAdditionalChildren = FormulaElement(elementType: ElementType.STRING,
+                                                           value: nil,
+                                                           leftChild: nil,
+                                                           rightChild: nil,
+                                                           additionalChildren: [childA, childB],
+                                                           parent: nil)
+
+        XCTAssertEqual(2, elementWithAdditionalChildren?.additionalChildren.count)
+        XCTAssertEqual(elementWithAdditionalChildren, childA.parent)
+        XCTAssertEqual(elementWithAdditionalChildren, childB.parent)
+    }
 }

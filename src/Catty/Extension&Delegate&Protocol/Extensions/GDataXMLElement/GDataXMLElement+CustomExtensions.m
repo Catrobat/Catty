@@ -128,6 +128,19 @@
     return nil;
 }
 
+- (NSArray<GDataXMLElement*>*)childrenWithElementName:(NSString*)elementName
+{
+    NSMutableArray<GDataXMLElement*> *children = [NSMutableArray new];
+    NSArray *childElements = [self children];
+    
+    for (GDataXMLElement *childElement in childElements) {
+        if ([[childElement name] isEqualToString:elementName]) {
+            [children addObject:childElement];
+        }
+    }
+    return children;
+}
+
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath
 {
     NSArray *pathComponents = [catrobatXPath componentsSeparatedByString:@"/"];

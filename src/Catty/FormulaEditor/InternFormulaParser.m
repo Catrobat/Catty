@@ -303,6 +303,12 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
             [self getNextToken];
             functionTree.rightChild = [self termListForSpriteObject:object];
         }
+        
+        while ([self.currentToken isFunctionParameterDelimiter]) {
+            [self getNextToken];
+            [functionTree.additionalChildren addObject:[self termListForSpriteObject:object]];
+        }
+        
         if (![self.currentToken isFunctionParameterBracketClose]) {
             [InternFormulaParserException raise:@"Parse Error" format:@""];
         }

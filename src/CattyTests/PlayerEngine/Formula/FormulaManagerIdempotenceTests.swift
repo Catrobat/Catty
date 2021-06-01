@@ -33,7 +33,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
     }
 
     func testIsIdempotentDefaultValue() {
-        let formula = Formula(formulaElement: FormulaElement())!
+        let formula = Formula(formulaElement: FormulaElement(elementType: .FUNCTION, value: "unknownFunction"))!
         XCTAssertEqual(IdempotenceState.NOT_CHECKED, formula.formulaTree.idempotenceState)
         XCTAssertFalse(interpreter.isIdempotent(formula))
     }

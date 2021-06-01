@@ -29,13 +29,18 @@ final class RequiredResourcesTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let sensors = CatrobatSetup.registeredSensors(stageSize: CGSize.zero,
+                                                      motionManager: MotionManagerMock(),
+                                                      locationManager: LocationManagerMock(),
+                                                      faceDetectionManager: FaceDetectionManagerMock(),
+                                                      audioManager: AudioManagerMock(),
+                                                      touchManager: TouchManagerMock(),
+                                                      bluetoothService: BluetoothService.sharedInstance())
 
-    }
+        let functions = CatrobatSetup.registeredFunctions(touchManager: TouchManagerMock(), bluetoothService: BluetoothService.sharedInstance())
 
-    override func tearDown() {
-        //Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+        _ = SensorManager(sensors: sensors, landscapeMode: false)
+        _ = FunctionManager(functions: functions)
     }
 
     func getProjectWithOneSpriteWithBrick(brick: Brick?) -> Project? {

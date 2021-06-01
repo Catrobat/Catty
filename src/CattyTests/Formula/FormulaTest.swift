@@ -263,4 +263,20 @@ final class FormulaTest: XCTestCase {
         let displayString = formula.getDisplayString()
         XCTAssertEqual(displayString, formattedString)
     }
+
+    func testInitWithUserVariable() {
+        let variable = UserVariable(name: "variableName")
+        let formula = Formula(userVariable: variable)
+
+        XCTAssertEqual(ElementType.USER_VARIABLE, formula?.formulaTree.type)
+        XCTAssertEqual(variable.name, formula?.formulaTree.value)
+    }
+
+    func testInitWithUserList() {
+        let list = UserList(name: "listName")
+        let formula = Formula(userList: list)
+
+        XCTAssertEqual(ElementType.USER_LIST, formula?.formulaTree.type)
+        XCTAssertEqual(list.name, formula?.formulaTree.value)
+    }
 }

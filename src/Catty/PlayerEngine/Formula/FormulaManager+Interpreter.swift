@@ -222,8 +222,15 @@ extension FormulaManager {
     private func interpretFunction(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         let leftParam = functionParameter(formulaElement: formulaElement.leftChild, spriteObject: spriteObject)
         let rightParam = functionParameter(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
+        var additionalParameters: [AnyObject] = []
 
-        return functionManager.value(tag: formulaElement.value, firstParameter: leftParam, secondParameter: rightParam, spriteObject: spriteObject)
+        for additionalChild in formulaElement.additionalChildren {
+            if let additionalParameter = functionParameter(formulaElement: additionalChild as? FormulaElement, spriteObject: spriteObject) {
+                additionalParameters.append(additionalParameter)
+            }
+        }
+
+        return functionManager.value(tag: formulaElement.value, firstParameter: leftParam, secondParameter: rightParam, additionalParameters: additionalParameters, spriteObject: spriteObject)
     }
 
     private func interpretOperator(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {

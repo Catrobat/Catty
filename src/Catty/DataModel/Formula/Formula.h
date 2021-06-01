@@ -27,6 +27,7 @@
 
 @class FormulaElement;
 @class SpriteObject;
+@class UserList;
 
 @interface Formula : NSObject<CBMutableCopying>
 
@@ -38,6 +39,8 @@
 - (id)initWithDouble:(double)value;
 - (id)initWithFloat:(float)value;
 - (id)initWithString:(NSString*)value;
+- (id)initWithUserVariable:(UserVariable*)variable;
+- (id)initWithUserList:(UserList*)list;
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
 - (BOOL)isSingularNumber;

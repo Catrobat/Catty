@@ -599,7 +599,7 @@
     
     FormulaElement* parent = nil;
     
-    //Parent for now set to nil
+    // Parent for now set to nil
     // If needed please parse it
     FormulaElement* formulaElement = [[FormulaElement alloc] initWithType:type
                                                                     value:value

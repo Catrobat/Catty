@@ -35,35 +35,35 @@ final class FormulaCacheTests: XCTestCase {
     func testInsert() {
         XCTAssertEqual(0, cache.count())
 
-        let key = FormulaElement()
+        let key = FormulaElement(integer: 0)
         let value = String("value") as AnyObject
 
-        cache.insert(object: value, forKey: key)
+        cache.insert(object: value, forKey: key!)
         XCTAssertEqual(1, cache.count())
     }
 
     func testInsertTwiceForSameKey() {
         XCTAssertEqual(0, cache.count())
 
-        let key = FormulaElement()
+        let key = FormulaElement(integer: 0)
         let value = String("value") as AnyObject
 
-        cache.insert(object: value, forKey: key)
+        cache.insert(object: value, forKey: key!)
         XCTAssertEqual(1, cache.count())
 
-        cache.insert(object: value, forKey: key)
+        cache.insert(object: value, forKey: key!)
         XCTAssertEqual(1, cache.count())
     }
 
     func testInsertForTwoKeys() {
         XCTAssertEqual(0, cache.count())
 
-        let keyA = FormulaElement()
-        let keyB = FormulaElement()
+        let keyA = FormulaElement(string: "A")
+        let keyB = FormulaElement(string: "B")
         let value = String("value") as AnyObject
 
-        cache.insert(object: value, forKey: keyA)
-        cache.insert(object: value, forKey: keyB)
+        cache.insert(object: value, forKey: keyA!)
+        cache.insert(object: value, forKey: keyB!)
 
         XCTAssertEqual(2, cache.count())
     }
@@ -71,8 +71,8 @@ final class FormulaCacheTests: XCTestCase {
     func testRemove() {
         XCTAssertEqual(0, cache.count())
 
-        let keyA = FormulaElement()
-        let keyB = FormulaElement()
+        let keyA = FormulaElement(string: "A")!
+        let keyB = FormulaElement(string: "B")!
         let valueA = String("valueA") as AnyObject
         let valueB = String("valueB") as AnyObject
 
@@ -92,8 +92,8 @@ final class FormulaCacheTests: XCTestCase {
     func testRetrieveObject() {
         XCTAssertEqual(0, cache.count())
 
-        let keyA = FormulaElement()
-        let keyB = FormulaElement()
+        let keyA = FormulaElement(string: "A")!
+        let keyB = FormulaElement(string: "B")!
         let valueA = String("valueA") as AnyObject
         let valueB = String("valueB") as AnyObject
 
@@ -112,15 +112,15 @@ final class FormulaCacheTests: XCTestCase {
     }
 
     func testClear() {
-        let key = FormulaElement()
+        let key = FormulaElement(integer: 0)
         let value = String("value") as AnyObject
 
-        cache.insert(object: value, forKey: key)
+        cache.insert(object: value, forKey: key!)
         XCTAssertEqual(1, cache.count())
 
         cache.clear()
 
         XCTAssertEqual(0, cache.count())
-        XCTAssertNil(cache.retrieve(forKey: key))
+        XCTAssertNil(cache.retrieve(forKey: key!))
     }
 }

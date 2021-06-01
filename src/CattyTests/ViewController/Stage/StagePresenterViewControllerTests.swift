@@ -103,10 +103,10 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
         vc.checkResourcesAndPushViewController(to: navigationController)
 
-        expect(self.navigationController.currentViewController).toEventually(beNil())
-        expect(self.navigationController.view.subviews.count).toEventually(equal(1))
-        expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
-        expect(self.vc.hideLoadingViewCalls).toEventually(equal(1))
+        expect(self.navigationController.currentViewController).toEventually(beNil(), timeout: .seconds(3))
+        expect(self.navigationController.view.subviews.count).toEventually(equal(1), timeout: .seconds(3))
+        expect(self.vc.showLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
+        expect(self.vc.hideLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
     }
 
     func testShareDST() {

@@ -70,37 +70,18 @@
 
     func testConditionOfWhenConditionScript() {
         let userVariable = UserVariable(name: "userVariable")
-        let formulaTree = FormulaElement()
+        let formulaTree = FormulaElement(elementType: .OPERATOR, value: AndOperator.tag)!
 
         userVariable.value = "0"
         project.userData.add(userVariable)
 
-        formulaTree.type = ElementType.OPERATOR
-        formulaTree.value = AndOperator.tag
+        formulaTree.rightChild = FormulaElement(elementType: .OPERATOR, value: SmallerThanOperator.tag)
+        formulaTree.rightChild.leftChild = FormulaElement(elementType: .USER_VARIABLE, value: userVariable.name)
+        formulaTree.rightChild.rightChild = FormulaElement(elementType: .NUMBER, value: "4")
 
-        formulaTree.rightChild = FormulaElement()
-        formulaTree.rightChild.type = ElementType.OPERATOR
-        formulaTree.rightChild.value = SmallerThanOperator.tag
-
-        formulaTree.rightChild.leftChild = FormulaElement()
-        formulaTree.rightChild.leftChild.type = ElementType.USER_VARIABLE
-        formulaTree.rightChild.leftChild.value = userVariable.name
-
-        formulaTree.rightChild.rightChild = FormulaElement()
-        formulaTree.rightChild.rightChild.type = ElementType.NUMBER
-        formulaTree.rightChild.rightChild.value = "4"
-
-        formulaTree.leftChild = FormulaElement()
-        formulaTree.leftChild.type = ElementType.OPERATOR
-        formulaTree.leftChild.value = GreaterThanOperator.tag
-
-        formulaTree.leftChild.leftChild = FormulaElement()
-        formulaTree.leftChild.leftChild.type = ElementType.USER_VARIABLE
-        formulaTree.leftChild.leftChild.value = userVariable.name
-
-        formulaTree.leftChild.rightChild = FormulaElement()
-        formulaTree.leftChild.rightChild.type = ElementType.NUMBER
-        formulaTree.leftChild.rightChild.value = "2"
+        formulaTree.leftChild = FormulaElement(elementType: .OPERATOR, value: GreaterThanOperator.tag)
+        formulaTree.leftChild.leftChild = FormulaElement(elementType: .USER_VARIABLE, value: userVariable.name)
+        formulaTree.leftChild.rightChild = FormulaElement(elementType: .NUMBER, value: "2")
 
         let formula = Formula(formulaElement: formulaTree)!
         script.condition = formula
