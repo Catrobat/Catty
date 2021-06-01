@@ -25,9 +25,20 @@
 
 @implementation LoopBeginBrick
 
+- (kBrickCategoryType)category
+{
+    return kControlBrick;
+}
+
 - (BOOL)isLoopBrick
 {
     return YES;
+}
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Loop Begin Brick"];
 }
 
 #pragma mark - Compare

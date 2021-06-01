@@ -55,7 +55,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"EndLoop"];
+    return [NSString stringWithFormat:@"Loop End Brick"];
 }
 
 #pragma mark - Compare

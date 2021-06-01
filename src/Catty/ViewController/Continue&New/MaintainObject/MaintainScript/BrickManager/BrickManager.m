@@ -336,99 +336,25 @@
 
 #pragma mark ScriptCollectionViewController Copy
 
-- (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath andBrick:(Brick<BrickProtocol>*)brick
+-(NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath *)indexPath andBrick:(Brick *)brick
+{
+    return [self scriptCollectionCopyBrickWithIndexPath:indexPath forBrick:brick andNestedIndex:0];
+}
+
+- (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath forBrick:(Brick*)brick andNestedIndex:(int)nestedIndex
 {
     if ([brick isLoopBrick]) {
-        // loop brick
-        LoopBeginBrick *loopBeginBrick = nil;
-        LoopEndBrick *loopEndBrick = nil;
-        if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-            loopBeginBrick = ((LoopBeginBrick*)brick);
-            loopEndBrick = loopBeginBrick.loopEndBrick;
-        } else {
-            CBAssert([brick isKindOfClass:[LoopEndBrick class]]);
-            loopEndBrick = ((LoopEndBrick*)brick);
-            loopBeginBrick = loopEndBrick.loopBeginBrick;
-        }
-        CBAssert((loopBeginBrick != nil) || (loopEndBrick != nil));
-        NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
-        NSUInteger loopEndIndex = (loopBeginIndex + 1);
-        LoopBeginBrick<CBConditionProtocol> *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
-        LoopEndBrick *copiedLoopEndBrick = [loopEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
-        copiedLoopBeginBrick.loopEndBrick = copiedLoopEndBrick;
-        copiedLoopEndBrick.loopBeginBrick = copiedLoopBeginBrick;
-        [brick.script addBrick:copiedLoopBeginBrick atIndex:loopBeginIndex];
-        [brick.script addBrick:copiedLoopEndBrick atIndex:loopEndIndex];
-        NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
-        NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 2) inSection:indexPath.section];
-        return @[loopBeginIndexPath, loopEndIndexPath];
-        
+        return [self copyLoopBrickWithIndexPath:indexPath forBrick:brick andNestedIndex:nestedIndex];
     } else if ([brick isIfLogicBrick]) {
-        // if brick
-        IfThenLogicBeginBrick *ifThenLogicBeginBrick = nil;
-        IfThenLogicEndBrick *ifThenLogicEndBrick = nil;
-        IfLogicBeginBrick *ifLogicBeginBrick = nil;
-        IfLogicElseBrick *ifLogicElseBrick = nil;
-        IfLogicEndBrick *ifLogicEndBrick = nil;
-        if ([brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
-            ifThenLogicBeginBrick = ((IfThenLogicBeginBrick*)brick);
-            ifThenLogicEndBrick = ifThenLogicBeginBrick.ifEndBrick;
-        } else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
-            ifLogicBeginBrick = ((IfLogicBeginBrick*)brick);
-            ifLogicElseBrick = ifLogicBeginBrick.ifElseBrick;
-            ifLogicEndBrick = ifLogicBeginBrick.ifEndBrick;
-        } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
-            ifLogicElseBrick = ((IfLogicElseBrick*)brick);
-            ifLogicBeginBrick = ifLogicElseBrick.ifBeginBrick;
-            ifLogicEndBrick = ifLogicElseBrick.ifEndBrick;
-        } else if ([brick isKindOfClass:[IfThenLogicEndBrick class]]) {
-            ifThenLogicEndBrick = ((IfThenLogicEndBrick*)brick);
-            ifThenLogicBeginBrick = ifThenLogicEndBrick.ifBeginBrick;
-        } else {
-            CBAssert([brick isKindOfClass:[IfLogicEndBrick class]]);
-            ifLogicEndBrick = ((IfLogicEndBrick*)brick);
-            ifLogicBeginBrick = ifLogicEndBrick.ifBeginBrick;
-            ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
-        }
-        if(ifLogicBeginBrick != nil) {
-            CBAssert((ifLogicBeginBrick != nil) && (ifLogicElseBrick != nil) && (ifLogicEndBrick != nil));
-            NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
-            NSUInteger ifLogicElseIndex = (ifLogicBeginIndex + 1);
-            NSUInteger ifLogicEndIndex = (ifLogicElseIndex + 1);
-            IfLogicBeginBrick *copiedIfLogicBeginBrick = [ifLogicBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
-            IfLogicElseBrick *copiedIfLogicElseBrick = [ifLogicElseBrick mutableCopyWithContext:[CBMutableCopyContext new]];
-            IfLogicEndBrick *copiedIfLogicEndBrick = [ifLogicEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
-            copiedIfLogicBeginBrick.ifElseBrick = copiedIfLogicElseBrick;
-            copiedIfLogicBeginBrick.ifEndBrick = copiedIfLogicEndBrick;
-            copiedIfLogicElseBrick.ifBeginBrick = copiedIfLogicBeginBrick;
-            copiedIfLogicElseBrick.ifEndBrick = copiedIfLogicEndBrick;
-            copiedIfLogicEndBrick.ifBeginBrick = copiedIfLogicBeginBrick;
-            copiedIfLogicEndBrick.ifElseBrick = copiedIfLogicElseBrick;
-            [brick.script addBrick:copiedIfLogicBeginBrick atIndex:ifLogicBeginIndex];
-            [brick.script addBrick:copiedIfLogicElseBrick atIndex:ifLogicElseIndex];
-            [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicEndIndex];
-            NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
-            NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 2) inSection:indexPath.section];
-            NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 3) inSection:indexPath.section];
-            return @[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath];
-        } else if(ifThenLogicBeginBrick != nil){
-            CBAssert((ifThenLogicBeginBrick != nil) && (ifLogicElseBrick == nil) && (ifThenLogicEndBrick != nil));
-            NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifThenLogicBeginBrick];
-            NSUInteger ifLogicEndIndex = (ifLogicBeginIndex + 1);
-            IfThenLogicBeginBrick *copiedIfLogicBeginBrick = [ifThenLogicBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
-            IfThenLogicEndBrick *copiedIfLogicEndBrick = [ifThenLogicEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
-            copiedIfLogicBeginBrick.ifEndBrick = copiedIfLogicEndBrick;
-            copiedIfLogicEndBrick.ifBeginBrick = copiedIfLogicBeginBrick;
-            [brick.script addBrick:copiedIfLogicBeginBrick atIndex:ifLogicBeginIndex];
-            [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicEndIndex];
-            NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
-            NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 2) inSection:indexPath.section];
-            return @[ifLogicBeginIndexPath, ifLogicEndIndexPath];
+        if([brick isKindOfClass:[IfThenLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicEndBrick class]])
+        {
+            return [self copyIfThenLogicBrickWithIndexPath:indexPath forBrick:brick andNestedIndex:nestedIndex];
+        } else if([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]]) {
+            return [self copyIfLogicBrickWithIndexPath:indexPath forBrick:brick andNestedIndex:nestedIndex];
         } else {
             return @[];
         }
     } else {
-        // normal brick
         NSUInteger copiedBrickIndex = ([brick.script.brickList indexOfObject:brick] + 1);
         Brick *copiedBrick = [brick mutableCopyWithContext:[CBMutableCopyContext new]];
         [brick.script addBrick:copiedBrick atIndex:copiedBrickIndex];
@@ -437,6 +363,292 @@
     }
 }
 
+- (NSArray*)copyLoopBrickWithIndexPath:(NSIndexPath*)indexPath forBrick:(Brick*)brick andNestedIndex:(int)nestedIndex
+{
+    LoopBeginBrick *loopBeginBrick = nil;
+    LoopEndBrick *loopEndBrick = nil;
+    NSUInteger loopBeginIndex = 0;
+    NSUInteger loopEndIndex = 0;
+    NSMutableArray *nestedBricks = [NSMutableArray new];
+
+    if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+        loopBeginBrick = ((LoopBeginBrick*)brick);
+        loopEndBrick = loopBeginBrick.loopEndBrick;
+    } else {
+        loopEndBrick = ((LoopEndBrick*)brick);
+        loopBeginBrick = loopEndBrick.loopBeginBrick;
+    }
+    loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
+    loopEndIndex = [brick.script.brickList indexOfObject:loopEndBrick];
+
+    for (int i = (int) loopBeginIndex + 1; i < loopEndIndex; i++)
+    {
+        Brick *object = [brick.script.brickList objectAtIndex:i];
+        [nestedBricks addObject:object];
+    }
+    
+    LoopBeginBrick<CBConditionProtocol> *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    LoopEndBrick *copiedLoopEndBrick = [loopEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    copiedLoopBeginBrick.loopEndBrick = copiedLoopEndBrick;
+    copiedLoopEndBrick.loopBeginBrick = copiedLoopBeginBrick;
+    if(nestedIndex == 0)
+    {
+        [brick.script addBrick:copiedLoopBeginBrick atIndex:loopBeginIndex];
+    }
+    else
+    {
+        [brick.script addBrick:copiedLoopBeginBrick atIndex:nestedIndex];
+    }
+    
+    NSMutableArray *returnValues = [NSMutableArray new];
+    NSIndexPath *loopIndexPath = [NSIndexPath indexPathForItem:( 1 + nestedIndex) inSection:indexPath.section];
+    [returnValues addObject:loopIndexPath];
+    NSInteger loopBeginIndexCopy = loopBeginIndex + 1;
+    Brick *nestedBrick;
+    for(int i = 0; i < nestedBricks.count; i++)
+    {
+        nestedBrick = nestedBricks[i];
+        if([nestedBrick isKindOfClass:[LoopBeginBrick class]] || [nestedBrick isKindOfClass:[IfThenLogicBeginBrick class]] || [nestedBrick isKindOfClass:[IfLogicBeginBrick class]] )
+        {
+            NSArray* nestedLoopOrLogic = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:[NSIndexPath indexPathForItem:(i + 2) inSection:indexPath.section] forBrick:nestedBrick andNestedIndex:(int)loopBeginIndex + 1 + i - nestedIndex];
+            [returnValues addObjectsFromArray:nestedLoopOrLogic];
+            i += nestedLoopOrLogic.count-1;
+        }
+        else if ([nestedBrick isKindOfClass:[IfLogicElseBrick class]] )
+        {
+            NSError(@"Copying wrong Brick, Should not happen!!");
+        }
+        else if ([nestedBrick isKindOfClass:[LoopEndBrick class]] || [nestedBrick isKindOfClass:[IfThenLogicEndBrick class]] || [nestedBrick isKindOfClass:[IfLogicEndBrick class]])
+        {
+            NSError(@"Copying wrong Brick, Should not happen!!");
+        }
+        else
+        {
+            if(nestedIndex == 0)
+            {
+                [brick.script addBrick:[nestedBrick mutableCopyWithContext:[CBMutableCopyContext new]] atIndex:loopBeginIndex + 1 + i];
+            }
+            else
+            {
+                [brick.script addBrick:[nestedBrick mutableCopyWithContext:[CBMutableCopyContext new]] atIndex:nestedIndex + 1 + i];
+            }
+            loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 2 + i) inSection:indexPath.section];
+            [returnValues addObject:loopIndexPath];
+        }
+    }
+    
+    if(nestedIndex == 0)
+    {
+        [brick.script addBrick:copiedLoopEndBrick atIndex:loopBeginIndexCopy + nestedBricks.count];
+    }
+    else
+    {
+        [brick.script addBrick:copiedLoopEndBrick atIndex:nestedIndex + 1 + nestedBricks.count];
+    }
+    loopIndexPath = [NSIndexPath indexPathForItem:(1 + nestedIndex + nestedBricks.count) inSection:indexPath.section];
+    [returnValues addObject:loopIndexPath];
+    return returnValues;
+}
+
+- (NSArray*)copyIfLogicBrickWithIndexPath:(NSIndexPath*)indexPath forBrick:(Brick*)brick andNestedIndex:(int)nestedIndex
+{
+    IfLogicBeginBrick *ifLogicBeginBrick = nil;
+    IfLogicElseBrick *ifLogicElseBrick = nil;
+    IfLogicEndBrick *ifLogicEndBrick = nil;
+    NSMutableArray *nestedBricks = [NSMutableArray new];
+    if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+        ifLogicBeginBrick = ((IfLogicBeginBrick*)brick);
+        ifLogicElseBrick = ifLogicBeginBrick.ifElseBrick;
+        ifLogicEndBrick = ifLogicBeginBrick.ifEndBrick;
+    } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
+        ifLogicElseBrick = ((IfLogicElseBrick*)brick);
+        ifLogicBeginBrick = ifLogicElseBrick.ifBeginBrick;
+        ifLogicEndBrick = ifLogicElseBrick.ifEndBrick;
+    } else {
+        ifLogicEndBrick = ((IfLogicEndBrick*)brick);
+        ifLogicBeginBrick = ifLogicEndBrick.ifBeginBrick;
+        ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
+    }
+    
+    NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
+    NSUInteger ifLogicEndIndex = [brick.script.brickList indexOfObject:ifLogicEndBrick];
+    
+    IfLogicBeginBrick *copiedIfLogicBeginBrick = [ifLogicBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    IfLogicElseBrick *copiedIfLogicElseBrick = [ifLogicElseBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    IfLogicEndBrick *copiedIfLogicEndBrick = [ifLogicEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    copiedIfLogicBeginBrick.ifElseBrick = copiedIfLogicElseBrick;
+    copiedIfLogicBeginBrick.ifEndBrick = copiedIfLogicEndBrick;
+    copiedIfLogicElseBrick.ifBeginBrick = copiedIfLogicBeginBrick;
+    copiedIfLogicElseBrick.ifEndBrick = copiedIfLogicEndBrick;
+    copiedIfLogicEndBrick.ifBeginBrick = copiedIfLogicBeginBrick;
+    copiedIfLogicEndBrick.ifElseBrick = copiedIfLogicElseBrick;
+    
+    for (int i = (int) ifLogicBeginIndex + 1; i < ifLogicEndIndex; i++)
+    {
+        Brick *object = [brick.script.brickList objectAtIndex:i];
+        [nestedBricks addObject:object];
+    }
+    
+    if(nestedIndex == 0)
+    {
+        [brick.script addBrick:copiedIfLogicBeginBrick atIndex:ifLogicBeginIndex];
+    }
+    else
+    {
+        [brick.script addBrick:copiedIfLogicBeginBrick atIndex:nestedIndex];
+    }
+    NSMutableArray *returnValues = [NSMutableArray new];
+    NSIndexPath *loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 1) inSection:indexPath.section];
+    [returnValues addObject:loopIndexPath];
+    Brick *nestedBrick;
+    
+    for(int i = 0; i < nestedBricks.count; i++)
+    {
+        nestedBrick = nestedBricks[i];
+        if([nestedBrick isKindOfClass:[LoopBeginBrick class]] || [nestedBrick isKindOfClass:[IfThenLogicBeginBrick class]] || [nestedBrick isKindOfClass:[IfLogicBeginBrick class]] )
+        {
+            NSArray* nestedLoopOrLogic = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:[NSIndexPath indexPathForItem:(i + 2) inSection:indexPath.section] forBrick:nestedBrick andNestedIndex:(int)ifLogicBeginIndex + 1 + i - nestedIndex];
+            [returnValues addObjectsFromArray:nestedLoopOrLogic];
+            i += nestedLoopOrLogic.count-1;
+        }
+        else if ([nestedBrick isKindOfClass:[IfLogicElseBrick class]] )
+        {
+            if(nestedIndex == 0)
+            {
+                [brick.script addBrick:copiedIfLogicElseBrick atIndex:ifLogicBeginIndex + 1 + i];
+            }
+            else
+            {
+                [brick.script addBrick:copiedIfLogicElseBrick atIndex:nestedIndex + 1 + i];
+            }
+            loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 2 + i) inSection:indexPath.section];
+            [returnValues addObject:loopIndexPath];
+        }
+        else if ([nestedBrick isKindOfClass:[LoopEndBrick class]] || [nestedBrick isKindOfClass:[IfThenLogicEndBrick class]] || [nestedBrick isKindOfClass:[IfLogicEndBrick class]])
+        {
+            NSError(@"Copying wrong Brick, Should not happen!!");
+        }
+        else
+        {
+            if(nestedIndex == 0)
+            {
+                [brick.script addBrick:[nestedBrick mutableCopyWithContext:[CBMutableCopyContext new]] atIndex:ifLogicBeginIndex + 1 + i];
+            }
+            else
+            {
+                [brick.script addBrick:[nestedBrick mutableCopyWithContext:[CBMutableCopyContext new]] atIndex:nestedIndex + 1 + i];
+            }
+            loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 2 + i) inSection:indexPath.section];
+            [returnValues addObject:loopIndexPath];
+        }
+    }
+    
+    if(nestedIndex == 0)
+    {
+        [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicBeginIndex + 1 + nestedBricks.count];
+    }
+    else
+    {
+        [brick.script addBrick:copiedIfLogicEndBrick atIndex:nestedIndex + 1 + nestedBricks.count];
+    }
+    loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 2 + nestedBricks.count) inSection:indexPath.section];
+    [returnValues addObject:loopIndexPath];
+    return returnValues;
+}
+
+- (NSArray*)copyIfThenLogicBrickWithIndexPath:(NSIndexPath*)indexPath forBrick:(Brick*)brick andNestedIndex:(int)nestedIndex
+{
+    IfThenLogicBeginBrick *ifThenLogicBeginBrick = nil;
+    IfThenLogicEndBrick *ifThenLogicEndBrick = nil;
+    NSMutableArray *nestedBricks = [NSMutableArray new];
+    if ([brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
+        ifThenLogicBeginBrick = ((IfThenLogicBeginBrick*)brick);
+        ifThenLogicEndBrick = ifThenLogicBeginBrick.ifEndBrick;
+    } else {
+        ifThenLogicEndBrick = ((IfThenLogicEndBrick*)brick);
+        ifThenLogicBeginBrick = ifThenLogicEndBrick.ifBeginBrick;
+    }
+    
+    NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifThenLogicBeginBrick];
+    NSUInteger ifLogicEndIndex = [brick.script.brickList indexOfObject:ifThenLogicEndBrick];
+    
+    for (int i = (int) ifLogicBeginIndex + 1; i < ifLogicEndIndex; i++)
+    {
+        Brick *object = [brick.script.brickList objectAtIndex:i];
+        [nestedBricks addObject:object];
+    }
+    IfThenLogicBeginBrick *copiedIfLogicBeginBrick = [ifThenLogicBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    IfThenLogicEndBrick *copiedIfLogicEndBrick = [ifThenLogicEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    copiedIfLogicBeginBrick.ifEndBrick = copiedIfLogicEndBrick;
+    copiedIfLogicEndBrick.ifBeginBrick = copiedIfLogicBeginBrick;
+    
+    if(nestedIndex == 0)
+    {
+        [brick.script addBrick:copiedIfLogicBeginBrick atIndex:ifLogicBeginIndex];
+    }
+    else
+    {
+        [brick.script addBrick:copiedIfLogicBeginBrick atIndex:nestedIndex];
+    }
+    NSMutableArray *returnValues = [NSMutableArray new];
+    NSIndexPath *loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 1) inSection:indexPath.section];
+    [returnValues addObject:loopIndexPath];
+    Brick *nestedBrick;
+    
+    
+    for (int i = 0; i < nestedBricks.count; i++)
+    {
+        nestedBrick = nestedBricks[i];
+        if([nestedBrick isKindOfClass:[LoopBeginBrick class]] || [nestedBrick isKindOfClass:[IfThenLogicBeginBrick class]] || [nestedBrick isKindOfClass:[IfLogicBeginBrick class]] )
+        {
+            NSArray* nestedLoopOrLogic = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:[NSIndexPath indexPathForItem:(i + 2) inSection:indexPath.section] forBrick:nestedBrick andNestedIndex:(int)ifLogicBeginIndex + 1 + i - nestedIndex];
+            [returnValues addObjectsFromArray:nestedLoopOrLogic];
+            i += nestedLoopOrLogic.count -1;
+        }
+        else if ([nestedBrick isKindOfClass:[IfLogicElseBrick class]] )
+        {
+            if(nestedIndex == 0)
+            {
+                [brick.script addBrick:[nestedBrick mutableCopyWithContext:[CBMutableCopyContext new]] atIndex:ifLogicBeginIndex + 1 + i];
+            }
+            else
+            {
+                [brick.script addBrick:[nestedBrick mutableCopyWithContext:[CBMutableCopyContext new]] atIndex:nestedIndex + 1 + i];
+            }
+            loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 2 + i) inSection:indexPath.section];
+            [returnValues addObject:loopIndexPath];
+        }
+        else if ([nestedBrick isKindOfClass:[LoopEndBrick class]] || [nestedBrick isKindOfClass:[IfThenLogicEndBrick class]] || [nestedBrick isKindOfClass:[IfLogicEndBrick class]])
+        {
+            NSError(@"Copying wrong Brick, Should not happen!!");
+        }
+        else
+        {
+            if(nestedIndex == 0)
+            {
+                [brick.script addBrick:[nestedBrick mutableCopyWithContext:[CBMutableCopyContext new]] atIndex:ifLogicBeginIndex + 1 + i];
+            }
+            else
+            {
+                [brick.script addBrick:[nestedBrick mutableCopyWithContext:[CBMutableCopyContext new]] atIndex:nestedIndex + 1 + i];
+            }
+            loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 2 + i) inSection:indexPath.section];
+            [returnValues addObject:loopIndexPath];
+        }
+    }
+    
+    if(nestedIndex == 0)
+    {
+        [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicBeginIndex + 1 + nestedBricks.count];
+    }
+    else
+    {
+        [brick.script addBrick:copiedIfLogicEndBrick atIndex:nestedIndex + 1 + nestedBricks.count];
+    }
+    loopIndexPath = [NSIndexPath indexPathForItem:(nestedIndex + 2 + nestedBricks.count) inSection:indexPath.section];
+    [returnValues addObject:loopIndexPath];
+    return returnValues;
+}
 
 #pragma mark RemovingBrick from CollectionView
 

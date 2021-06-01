@@ -184,11 +184,11 @@
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
-/* No comment provided by engineer. */
-"blue" = "blue";
-
 /* paint */
 "Blue" = "Blue";
+
+/* No comment provided by engineer. */
+"blue" = "blue";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
@@ -796,11 +796,11 @@
 /* No comment provided by engineer. */
 "Go to front" = "Go to front";
 
-/* No comment provided by engineer. */
-"green" = "green";
-
 /* paint */
 "Green" = "Green";
+
+/* No comment provided by engineer. */
+"green" = "green";
 
 /* No comment provided by engineer. */
 "Guitar" = "Guitar";
@@ -944,10 +944,10 @@
 "left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
-"length" = "length";
+"Length" = "Length";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"length" = "length";
 
 /* No comment provided by engineer. */
 "letter" = "letter";
@@ -997,11 +997,11 @@
 /* No comment provided by engineer. */
 "longitude" = "longitude";
 
-/* LOOK */
-"look" = "look";
-
 /* No comment provided by engineer. */
 "Look" = "Look";
+
+/* LOOK */
+"look" = "look";
 
 /* No comment provided by engineer. */
 "look name" = "look name";
@@ -1444,11 +1444,11 @@
 /* paint */
 "Rectangle / Square" = "Rectangle / Square";
 
-/* paint */
-"Red" = "Red";
-
 /* No comment provided by engineer. */
 "red" = "red";
+
+/* paint */
+"Red" = "Red";
 
 /* No comment provided by engineer. */
 "Register" = "Register";

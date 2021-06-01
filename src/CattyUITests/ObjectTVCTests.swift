@@ -89,7 +89,7 @@ class ObjectTVCTests: XCTestCase {
         //Check if copied successfull
         app.navigationBars[kLocalizedScripts].buttons["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts[kLocalizedEndOfLoop].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 12).staticTexts[kLocalizedEndOfLoop].exists)
     }
 
     func testScriptsCanDeleteWhenProjectStartedBrick() {
