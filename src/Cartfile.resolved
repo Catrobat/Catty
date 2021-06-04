@@ -1,5 +1,4 @@
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.json" "6.34.0"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseCrashlyticsBinary.json" "6.34.0"
 github "SecondRenaissance/Bohr" "3.0.0"
-github "ZipArchive/ZipArchive" "v2.2.3"
 github "audiokit/audiokit" "v4.11.2"
