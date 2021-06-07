@@ -27,8 +27,8 @@ extension SetBackgroundByIndexBrick: CBXMLNodeProtocol {
         var formula = Formula()
 
         let formulaListElement = xmlElement.child(withElementName: "formulaList")
-        let formulaElemnt = formulaListElement?.child(withElementName: "formula", containingAttribute: "category", withValue: "LOOK_INDEX")
-        if formulaElemnt == nil {
+        let formulaElement = formulaListElement?.child(withElementName: "formula", containingAttribute: "category", withValue: "LOOK_INDEX")
+        if formulaElement == nil {
             formula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "BACKGROUND_INDEX", with: context)
         } else {
             formula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "LOOK_INDEX", with: context)

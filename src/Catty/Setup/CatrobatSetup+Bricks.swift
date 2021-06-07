@@ -76,7 +76,6 @@
             SetBackgroundBrick(),
             SetBackgroundAndWaitBrick(),
             SetBackgroundByIndexBrick(),
-            SetBackgroundByIndexBrick(),
             SetBrightnessBrick(),
             ChangeSizeByNBrick(),
             ChangeTransparencyByNBrick(),
