@@ -1256,7 +1256,6 @@
 		92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E871A24C7D800093DA7 /* TableUtil.m */; };
 		92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E891A24C7D800093DA7 /* UIUtil.m */; };
 		92FF2EA41A24C7D800093DA7 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E8B1A24C7D800093DA7 /* Util.m */; };
-		92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EAF1A24C8A700093DA7 /* CatrobatInformation.m */; };
 		92FF2EBF1A24C8A700093DA7 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB21A24C8A700093DA7 /* CatrobatProject.m */; };
 		92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB51A24C8A700093DA7 /* OrderedDictionary.m */; };
 		92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB81A24C8A700093DA7 /* OrderedMapTable.m */; };
@@ -1761,7 +1760,6 @@
 		E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */; };
 		E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */; };
 		E4668B4220FE02F40021FA0B /* FeaturedProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProjectsCell.swift */; };
-		E4AEC86D210843D20081A980 /* ProjectInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC86C210843D20081A980 /* ProjectInformation.swift */; };
 		E4AEC89F210852030081A980 /* StoreProjectDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* StoreProjectDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift */; };
 		E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */; };
@@ -3399,8 +3397,6 @@
 		92FF2E891A24C7D800093DA7 /* UIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtil.m; sourceTree = "<group>"; };
 		92FF2E8A1A24C7D800093DA7 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		92FF2E8B1A24C7D800093DA7 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
-		92FF2EAE1A24C8A700093DA7 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
-		92FF2EAF1A24C8A700093DA7 /* CatrobatInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatInformation.m; sourceTree = "<group>"; };
 		92FF2EB11A24C8A700093DA7 /* CatrobatProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProject.h; sourceTree = "<group>"; };
 		92FF2EB21A24C8A700093DA7 /* CatrobatProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProject.m; sourceTree = "<group>"; };
 		92FF2EB41A24C8A700093DA7 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
@@ -4216,7 +4212,6 @@
 		E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreTableViewController.swift; sourceTree = "<group>"; };
 		E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreTableDataSource.swift; sourceTree = "<group>"; };
 		E4668B4120FE02F40021FA0B /* FeaturedProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsCell.swift; sourceTree = "<group>"; };
-		E4AEC86C210843D20081A980 /* ProjectInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInformation.swift; sourceTree = "<group>"; };
 		E4AEC89D210852010081A980 /* StoreProjectDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderTests.swift; sourceTree = "<group>"; };
 		E4AEC89E210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloader.swift; sourceTree = "<group>"; };
@@ -4517,6 +4512,7 @@
 		229DC43E25D6986200BA9AA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4CE05762266E4D78008AD7FF /* API */,
 				229DC44E25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift */,
 				229DC44125D6989000BA9AA2 /* ProjectType.swift */,
 				229DC44925D698FF00BA9AA2 /* StoreProjectDownloaderError.swift */,
@@ -6983,6 +6979,16 @@
 			path = Builder;
 			sourceTree = "<group>";
 		};
+		4CE05762266E4D78008AD7FF /* API */ = {
+			isa = PBXGroup;
+			children = (
+				92FF2EB01A24C8A700093DA7 /* CatrobatProject */,
+				E4E5599620FCD6AD004B4A08 /* StoreProject.swift */,
+				22BEC60325CAD86500AFE1C3 /* StoreFeaturedProject.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		4CE1D42F213E5C130014DAF9 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -8400,34 +8406,12 @@
 				CA3E72E91B0C00C200D6B184 /* 3rdParty */,
 				CAD740E01AF2D2DA00C32937 /* CBStack */,
 				4C2650671A6538470050775B /* CBCopyContext */,
-				92FF2EAC1A24C8A700093DA7 /* JSON */,
 				92FF2EB31A24C8A700093DA7 /* OrderedDictionary */,
 				92FF2EB61A24C8A700093DA7 /* OrderedMapTable */,
 				92FF2EB91A24C8A700093DA7 /* ProjectLoadingInfo */,
 				4C2EE4141B555B55006DE9B8 /* Parser & Serializer */,
 			);
 			path = DataStructures;
-			sourceTree = "<group>";
-		};
-		92FF2EAC1A24C8A700093DA7 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				E4AEC86C210843D20081A980 /* ProjectInformation.swift */,
-				E4E5599620FCD6AD004B4A08 /* StoreProject.swift */,
-				22BEC60325CAD86500AFE1C3 /* StoreFeaturedProject.swift */,
-				92FF2EAD1A24C8A700093DA7 /* CatrobatInformation */,
-				92FF2EB01A24C8A700093DA7 /* CatrobatProject */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
-		92FF2EAD1A24C8A700093DA7 /* CatrobatInformation */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2EAE1A24C8A700093DA7 /* CatrobatInformation.h */,
-				92FF2EAF1A24C8A700093DA7 /* CatrobatInformation.m */,
-			);
-			path = CatrobatInformation;
 			sourceTree = "<group>";
 		};
 		92FF2EB01A24C8A700093DA7 /* CatrobatProject */ = {
@@ -12305,7 +12289,6 @@
 				4C0F9F91204BD28100E71B2D /* CameraBrickCell.m in Sources */,
 				18390A7124D0594300A07DFD /* StampBrick+CBXMLHandler.swift in Sources */,
 				4C214C1E26200D3600E70B22 /* FormulaEditorViewControllerAlertExtension.swift in Sources */,
-				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				4C5076D62578E6C600650440 /* AudioEngineDefines.swift in Sources */,
 				4C0F9F39204ADC4E00E71B2D /* SayBubbleBrick.m in Sources */,
@@ -12699,7 +12682,6 @@
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				92B46FA71BC7C2A5004980C1 /* ArduinoSendDigitalValueBrick+Instruction.swift in Sources */,
-				E4AEC86D210843D20081A980 /* ProjectInformation.swift in Sources */,
 				222A693E247EA490004BE434 /* UIDeviceExtension.swift in Sources */,
 				AA74EFFC1BC05B5F00D1E954 /* ChangeXByNBrick.m in Sources */,
 				AA74EFE31BC05B5F00D1E954 /* ForeverBrick.m in Sources */,
