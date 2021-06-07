@@ -46,7 +46,7 @@ class StoreProjectDownloader: NSObject, StoreProjectDownloaderProtocol {
     func fetchSearchQuery(searchTerm: String, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
 
         let version: String = Util.catrobatLanguageVersion()
-        guard let indexURL = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionSearch)?\(NetworkDefines.projectQuery)" +
+        guard let indexURL = URL(string: "\(NetworkDefines.apiEndpointSearch)?\(NetworkDefines.projectQuery)" +
                 "\(searchTerm)&\(NetworkDefines.maxVersion)\(version)&\(NetworkDefines.projectsLimit)" +
                 "\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)0")
 
@@ -150,7 +150,7 @@ class StoreProjectDownloader: NSObject, StoreProjectDownloaderProtocol {
     func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void) {
         let version: String = Util.catrobatLanguageVersion()
 
-        let featuredUrl = "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.maxVersion)\(version)&"
+        let featuredUrl = "\(NetworkDefines.apiEndpointFeatured)?\(NetworkDefines.featuredPlatform)&\(NetworkDefines.maxVersion)\(version)&"
             + "\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)"
             + "\(offset)"
         guard let url = URL(string: featuredUrl) else { return }

@@ -63,10 +63,8 @@ class NetworkDefines: NSObject {
     static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
     static var helpUrl: String { "https://catrob.at/help" }
 
-    static let connectionSearch = "search"
     static let connectionUpload = "upload.json"
     static let connectionIDQuery = "getInfoById.json"
-    static let connectionFeatured = "featured"
 
     static let projectsOffset = "offset="
     static let projectsLimit = "limit="
@@ -74,6 +72,7 @@ class NetworkDefines: NSObject {
     static let tagLanguage = "language="
     static let projectQuery = "query="
     static let projectCategory = "category="
+    static let featuredPlatform = "platform=ios"
 
     // MARK: MediaLibrary
 
@@ -90,6 +89,9 @@ class NetworkDefines: NSObject {
 
     static var apiEndpointProjects = newApiEndpoint.appending("projects")
     static var apiEndpointProjectDetails = newApiEndpoint.appending("project")
+    static var apiEndpointFeatured = apiEndpointProjects.appending("/featured")
+    static var apiEndpointSearch = apiEndpointProjects.appending("/search")
+
     static let chartProjectsMaxResults = 10
     static let recentProjectsMaxResults = 20
     static let searchStoreMaxResults = 50
