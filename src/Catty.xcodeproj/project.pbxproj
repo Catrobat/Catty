@@ -905,7 +905,6 @@
 		4CE3C4B02660E455007221DA /* CBSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */; };
 		4CE3C4B22660F388007221DA /* SetBackgroundAndWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B12660F387007221DA /* SetBackgroundAndWaitBrick+Instruction.swift */; };
 		4CE3C4B42660F3AC007221DA /* SetInstrumentBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */; };
-		4CE3C4B62660F3C5007221DA /* SetTempoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B52660F3C4007221DA /* SetTempoToBrick+Instruction.swift */; };
 		4CE3C4B82660F3E0007221DA /* SetLookByIndexBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B72660F3E0007221DA /* SetLookByIndexBrick+Instruction.swift */; };
 		4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */; };
 		4CE3D68D2107B4E300005629 /* FaceDetectedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68C2107B4E300005629 /* FaceDetectedSensor.swift */; };
@@ -1763,7 +1762,6 @@
 		E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */; };
 		E4668B4220FE02F40021FA0B /* FeaturedProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProjectsCell.swift */; };
 		E4AEC86D210843D20081A980 /* ProjectInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC86C210843D20081A980 /* ProjectInformation.swift */; };
-		E4AEC8712108445D0081A980 /* StoreProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8702108445D0081A980 /* StoreProjectCollection.swift */; };
 		E4AEC89F210852030081A980 /* StoreProjectDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* StoreProjectDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift */; };
 		E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */; };
@@ -4219,7 +4217,6 @@
 		E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreTableDataSource.swift; sourceTree = "<group>"; };
 		E4668B4120FE02F40021FA0B /* FeaturedProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsCell.swift; sourceTree = "<group>"; };
 		E4AEC86C210843D20081A980 /* ProjectInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInformation.swift; sourceTree = "<group>"; };
-		E4AEC8702108445D0081A980 /* StoreProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProjectCollection.swift; sourceTree = "<group>"; };
 		E4AEC89D210852010081A980 /* StoreProjectDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderTests.swift; sourceTree = "<group>"; };
 		E4AEC89E210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloader.swift; sourceTree = "<group>"; };
@@ -4517,13 +4514,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		229DC43E25D6986200BA9AA2 /* StoreProjectEnums */ = {
+		229DC43E25D6986200BA9AA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				229DC44E25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift */,
 				229DC44125D6989000BA9AA2 /* ProjectType.swift */,
 				229DC44925D698FF00BA9AA2 /* StoreProjectDownloaderError.swift */,
 			);
-			path = StoreProjectEnums;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -7604,11 +7602,10 @@
 		6FB09D1F24A29EF4009C69A0 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				229DC43E25D6986200BA9AA2 /* StoreProjectEnums */,
+				229DC43E25D6986200BA9AA2 /* Model */,
 				6FB09D2224A29F1E009C69A0 /* StoreProjectUploader.swift */,
 				E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */,
 				5907FA95252888DF0042EC5D /* StoreProjectReporter.swift */,
-				229DC44E25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -8718,7 +8715,6 @@
 			isa = PBXGroup;
 			children = (
 				97BA19DB25B235F7003DE323 /* Details */,
-				E4AEC8702108445D0081A980 /* StoreProjectCollection.swift */,
 				E4B1BF4D20F719DB00800555 /* FeaturedProjects */,
 				2DA8790F212BD67700FE0585 /* ChartProjects */,
 				2DA87910212BD6C000FE0585 /* SearchStore */,
@@ -12243,7 +12239,6 @@
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
 				186AA3472482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift in Sources */,
 				594DF6EB25EA9160005CEE16 /* ProjectDetailStoreViewControllerDownloadExtension.swift in Sources */,
-				C8A0338A260650CB00702911 /* SetTempoToBrick+Instruction.swift in Sources */,
 				AA74F0991BC05FCE00D1E954 /* BrickCellVariableData.m in Sources */,
 				46D0516724F8155600A79155 /* SetRotationStyleBrickCell.swift in Sources */,
 				9218B20A1CC4AB75007B4C60 /* UIViewController+KNSemiModal.m in Sources */,
@@ -12362,7 +12357,6 @@
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.swift in Sources */,
 				AA74EE3D1BC0543700D1E954 /* StopAllSoundsBrick+Instruction.swift in Sources */,
 				AA74EEDC1BC057B900D1E954 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
-				E4AEC8712108445D0081A980 /* StoreProjectCollection.swift in Sources */,
 				4C0F9F5A204BD16300E71B2D /* CameraBrick+CBXMLHandler.m in Sources */,
 				AA74EFFA1BC05B5F00D1E954 /* ShowBrick.m in Sources */,
 				AA74EF501BC0586F00D1E954 /* GlideToBrick+CBXMLHandler.m in Sources */,
