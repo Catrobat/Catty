@@ -189,7 +189,7 @@
                    layout:(UICollectionViewLayout*)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return kBrickOverlapHeight;
+    return UIDefines.brickOverlapHeight;
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
@@ -536,7 +536,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [brickCell insertAnimate:brickCell.scriptOrBrick.isAnimatedInsertBrick];
     }
     if (self.isEditing) {
-        brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
+        brickCell.center = CGPointMake(brickCell.center.x + UIDefines.selectButtonTranslationOffsetX, brickCell.center.y);
         brickCell.selectButton.alpha = 1.0f;
         if(!brickCell.isScriptBrick)
         {
@@ -1369,7 +1369,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     [UIView animateWithDuration:0.5f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
-            brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
+            brickCell.center = CGPointMake(brickCell.center.x + UIDefines.selectButtonTranslationOffsetX, brickCell.center.y);
             brickCell.selectButton.alpha = 1.0f;
         }
     } completion:^(BOOL finished) {

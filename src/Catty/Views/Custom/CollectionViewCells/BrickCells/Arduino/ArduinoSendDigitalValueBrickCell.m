@@ -32,7 +32,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight2h;
+    return UIDefines.brickHeight2h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

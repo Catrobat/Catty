@@ -253,7 +253,7 @@
     }
     
     [self hideLoadingView];
-    [self continueActionWithDuration:kFirstSwipeDuration];
+    [self continueActionWithDuration:UIDefines.firstSwipeDuration];
 }
 
 -(void)resaveLooks
@@ -304,7 +304,7 @@
 
 - (void)continueActionWithDuration:(CGFloat)duration
 {
-    if (duration != kFirstSwipeDuration) {
+    if (duration != UIDefines.firstSwipeDuration) {
         [self resumeAction];
     }
     
@@ -312,7 +312,7 @@
     animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
 
     [UIView animateWithDuration:animateDuration
-                          delay:kHideMenuViewDelay
+                          delay:UIDefines.hideMenuViewDelay
                         options: UIViewAnimationOptionTransitionFlipFromRight
                      animations:^{[self hideMenuView];}
                      completion:^(BOOL finished){
@@ -426,7 +426,7 @@
     }
     
     if (gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.firstGestureTouchPoint.x < kSlidingStartArea && self.menuOpen == NO ) {
+        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.firstGestureTouchPoint.x < UIDefines.slidingStartArea && self.menuOpen == NO ) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -451,7 +451,7 @@
     if (gesture.state == UIGestureRecognizerStateCancelled ||
         gesture.state == UIGestureRecognizerStateEnded ||
         gesture.state == UIGestureRecognizerStateFailed) {
-        if (translate.x > (self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        if (translate.x > (self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < UIDefines.slidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -463,7 +463,7 @@
                                  view.paused=YES;
                                  [self pauseAction];
                              }];
-        } else if(translate.x > 0.0 && translate.x <(self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        } else if(translate.x > 0.0 && translate.x <(self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < UIDefines.slidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut

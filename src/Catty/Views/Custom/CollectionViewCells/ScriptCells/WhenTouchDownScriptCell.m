@@ -21,6 +21,7 @@
  */
 
 #import "WhenTouchDownScriptCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface WhenTouchDownScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -35,7 +36,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeightControl1h;
+    return UIDefines.brickHeightControl1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

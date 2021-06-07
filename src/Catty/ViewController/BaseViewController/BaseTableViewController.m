@@ -126,7 +126,7 @@
 {
     [super viewWillAppear:animated];
     for (UIView *view in self.view.subviews) {
-        if (view.tag == kSavedViewTag)
+        if (view.tag == UIDefines.savedViewTag)
             [view removeFromSuperview];
     }
     [self hideLoadingView];

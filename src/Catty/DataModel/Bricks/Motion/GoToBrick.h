@@ -23,6 +23,10 @@
 #import "Brick.h"
 #import "BrickStaticChoiceProtocol.h"
 
+#define kGoToTouchPosition 80
+#define kGoToRandomPosition 81
+#define kGoToOtherSpritePosition 82
+
 @class SpriteObject;
 
 @interface GoToBrick : Brick<BrickStaticChoiceProtocol>

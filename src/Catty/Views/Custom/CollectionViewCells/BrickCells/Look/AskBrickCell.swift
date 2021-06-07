@@ -36,7 +36,7 @@ class AskBrickCell: BrickCell, BrickCellProtocol {
     }
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeight3h)
+        UIDefines.brickHeight3h
     }
 
     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {

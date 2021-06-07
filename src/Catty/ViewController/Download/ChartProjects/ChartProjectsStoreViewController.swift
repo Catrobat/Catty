@@ -96,8 +96,8 @@ class ChartProjectsStoreViewController: UIViewController, SelectedChartProjectsD
 
     // check iPhone4 or iphone5
     private func checkIphoneScreenSize() -> Bool {
-        let screenHeight = Float(Util.screenHeight())
-        return (((screenHeight - kIphone4ScreenHeight) == 0) || ((screenHeight - kIphone5ScreenHeight) == 0)) ? true : false
+        let screenHeight = Util.screenHeight()
+        return (((screenHeight - UIDefines.iPhone4ScreenHeight) == 0) || ((screenHeight - UIDefines.iPhone5ScreenHeight) == 0)) ? true : false
     }
 
     private func setupTableView() {

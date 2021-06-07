@@ -48,7 +48,7 @@
         _parameterNumber = parameter;
         
         self.titleLabel.textColor = UIColor.whiteColor;
-        self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
+        self.titleLabel.font = [UIFont systemFontOfSize:UIDefines.brickTextFieldFontSize];
         self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
         

@@ -186,7 +186,7 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     class func screenSize(_ inPixel: Bool) -> CGSize {
         var screenSize = inPixel ? UIScreen.main.nativeBounds.size : UIScreen.main.bounds.size
 
-        if inPixel && UIScreen.main.bounds.height == CGFloat(kIphone6PScreenHeight) {
+        if inPixel && UIScreen.main.bounds.height == UIDefines.iPhone6PScreenHeight {
             let iPhonePlusDownsamplingFactor = CGFloat(1.15)
             screenSize.height /= iPhonePlusDownsamplingFactor
             screenSize.width /= iPhonePlusDownsamplingFactor
@@ -230,12 +230,12 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
             return
         }
 
-        hud.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
+        hud.destinationOpacity = UIDefines.bdkNotifyHUDDestinationOpacity
         hud.center = CGPoint(x: vc.view.center.x, y: vc.view.center.y)
 
         vc.view.addSubview(hud)
-        hud.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
-                    speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
+        hud.present(withDuration: UIDefines.bdkNotifyHUDPresentationDuration,
+                    speed: UIDefines.bdkNotifyHUDPresentationSpeed,
                     in: vc.view,
                     completion: {
                         hud.removeFromSuperview()
@@ -243,7 +243,7 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     }
 
     class func showNotificationForSaveAction() {
-        guard let hud = BDKNotifyHUD(image: UIImage(named: kBDKNotifyHUDCheckmarkImageName), text: kLocalizedSaved) else {
+        guard let hud = BDKNotifyHUD(image: UIImage(named: UIDefines.bdkNotifyHUDCheckmarkImageName), text: kLocalizedSaved) else {
             return
         }
 
@@ -252,14 +252,14 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
             return
         }
 
-        hud.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
+        hud.destinationOpacity = UIDefines.bdkNotifyHUDDestinationOpacity
         hud.center = CGPoint(x: vc.view.center.x,
-                             y: vc.view.center.y + CGFloat(kBDKNotifyHUDCenterOffsetY))
-        hud.tag = Int(kSavedViewTag)
+                             y: vc.view.center.y + UIDefines.bdkNotifyHUDCenterOffsetY)
+        hud.tag = UIDefines.savedViewTag
 
         vc.view.addSubview(hud)
-        hud.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
-                    speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
+        hud.present(withDuration: UIDefines.bdkNotifyHUDPresentationDuration,
+                    speed: UIDefines.bdkNotifyHUDPresentationSpeed,
                     in: vc.view,
                     completion: {
                         hud.removeFromSuperview()

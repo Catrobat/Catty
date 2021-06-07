@@ -59,7 +59,7 @@
         NSArray *actionElements = [xmlElement elementsForName:@"action"];
         [XMLError exceptionIf:[actionElements count] notEquals:1 message:@"Wrong number of action elements given!"];
         GDataXMLElement *actionElement = [actionElements firstObject];
-        [XMLError exceptionIf:[kWhenScriptDefaultAction isEqualToString:[actionElement stringValue]] equals:NO
+        [XMLError exceptionIf:[UIDefines.whenScriptDefaultAction isEqualToString:[actionElement stringValue]] equals:NO
                       message:@"Invalid action %@ for WhenScript given", [actionElement stringValue]];
         whenScript.action = [actionElement stringValue];
         script = whenScript;
@@ -277,7 +277,7 @@
     } else if ([self isKindOfClass:[WhenScript class]]) {
         WhenScript *whenScript = (WhenScript*)self;
         [XMLError exceptionIfNil:whenScript.action message:@"WhenScript contains invalid action string"];
-        [XMLError exceptionIf:[kWhenScriptDefaultAction isEqualToString:whenScript.action] equals:NO
+        [XMLError exceptionIf:[UIDefines.whenScriptDefaultAction isEqualToString:whenScript.action] equals:NO
                       message:@"WhenScript contains invalid action string %@", whenScript.action];
         GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:whenScript.action context:context];
         [xmlElement addChild:actionXmlElement context:context];

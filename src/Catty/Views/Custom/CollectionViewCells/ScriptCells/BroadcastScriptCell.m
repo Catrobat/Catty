@@ -21,6 +21,7 @@
  */
 
 #import "BroadcastScriptCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BroadcastScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -35,7 +36,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeightControl2h;
+    return UIDefines.brickHeightControl2h;
 }
 
 - (void)hookUpSubViews:(NSArray*)inlineViewSubViews

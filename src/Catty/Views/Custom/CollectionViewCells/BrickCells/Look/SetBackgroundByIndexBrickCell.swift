@@ -34,7 +34,7 @@ class SetBackgroundByIndexBrickCell: BrickCell, BrickCellProtocol {
     }
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeight1h)
+        UIDefines.brickHeight1h
     }
 
     func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {

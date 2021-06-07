@@ -145,7 +145,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                   kLocalizedCatrobatCommunity,
                   kLocalizedUploadProject, nil];
 
-    self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNameProjects, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
+    self.imageNames = [[NSArray alloc] initWithObjects:UIDefines.menuImageNameContinue, UIDefines.menuImageNameNew, UIDefines.menuImageNameProjects, UIDefines.menuImageNameHelp, UIDefines.menuImageNameExplore, UIDefines.menuImageNameUpload, nil];
 }
 
 - (void)initNavigationBar

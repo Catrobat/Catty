@@ -565,7 +565,7 @@
     NSArray* defautArray = [NSArray new];
     OrderedDictionary * dict = [[OrderedDictionary alloc] initWithCapacity:defautArray.count];
     for (NSString * brick in defautArray.reverseObjectEnumerator) {
-        [dict insertObject:kNSNumberZero forKey:brick atIndex:0];
+        [dict insertObject:UIDefines.nsNumberZero forKey:brick atIndex:0];
     }
     return dict;
 }

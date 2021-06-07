@@ -22,13 +22,14 @@
 
 #import "WhenScript.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation WhenScript
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        self.action = kWhenScriptDefaultAction;
+        self.action = UIDefines.whenScriptDefaultAction;
     }
     return self;
 }

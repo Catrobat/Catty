@@ -22,6 +22,7 @@
 
 #import "RepeatBrickCell.h"
 #import "RepeatBrick.h"
+#import "Pocket_Code-Swift.h"
 
 @interface RepeatBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -32,7 +33,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight1h;
+    return UIDefines.brickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

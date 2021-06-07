@@ -21,6 +21,7 @@
  */
 
 #import "ChooseCameraBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ChooseCameraBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight2h;
+    return UIDefines.brickHeight2h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

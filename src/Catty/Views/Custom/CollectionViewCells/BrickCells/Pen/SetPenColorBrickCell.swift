@@ -31,7 +31,7 @@ class SetPenColorBrickCell: BrickCell, BrickCellProtocol {
     var blueTextField: UITextField?
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeight2h)
+        UIDefines.brickHeight2h
     }
 
     func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {

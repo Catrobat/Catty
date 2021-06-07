@@ -48,7 +48,7 @@
         self.text = [textBrick textForLineNumber:line andParameterNumber:parameter];
         
         self.borderStyle = UITextBorderStyleNone;
-        self.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
+        self.font = [UIFont systemFontOfSize:UIDefines.brickTextFieldFontSize];
         self.autocorrectionType = UITextAutocorrectionTypeNo;
         self.keyboardType = UIKeyboardTypeDefault;
         self.returnKeyType = UIReturnKeyDone;

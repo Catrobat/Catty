@@ -284,24 +284,24 @@
     [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(hideShowUserAction) userInfo:nil repeats:NO];
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:nil
                                                     text:kLocalizedPaintInserted];
-    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.destinationOpacity = UIDefines.bdkNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + UIDefines.bdkNotifyHUDCenterOffsetY);
     [self.canvas.view addSubview:hud];
-    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                       speed:kBDKNotifyHUDPresentationSpeed
+    [hud presentWithDuration:UIDefines.bdkNotifyHUDPresentationDuration
+                       speed:UIDefines.bdkNotifyHUDPresentationSpeed
                       inView:self.canvas.view
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)showStampAction
 {
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:UIDefines.bdkNotifyHUDCheckmarkImageName]
                                                     text:kLocalizedPaintStamped];
-    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.destinationOpacity = UIDefines.bdkNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + UIDefines.bdkNotifyHUDCenterOffsetY);
     [self.canvas.view addSubview:hud];
-    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                       speed:kBDKNotifyHUDPresentationSpeed
+    [hud presentWithDuration:UIDefines.bdkNotifyHUDPresentationDuration
+                       speed:UIDefines.bdkNotifyHUDPresentationSpeed
                       inView:self.canvas.view
                   completion:^{ [hud removeFromSuperview]; }];
 }

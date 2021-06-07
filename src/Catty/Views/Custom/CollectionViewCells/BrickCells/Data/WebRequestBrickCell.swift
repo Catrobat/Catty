@@ -28,7 +28,7 @@ class WebRequestBrickCell: BrickCell, BrickCellProtocol {
     var variableComboBox: iOSCombobox?
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeight3h)
+        UIDefines.brickHeight3h
     }
 
     func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {

@@ -21,6 +21,7 @@
  */
 
 #import "WhenScriptCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface WhenScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -35,7 +36,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeightControl1h;
+    return UIDefines.brickHeightControl1h;
 }
 
 - (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
