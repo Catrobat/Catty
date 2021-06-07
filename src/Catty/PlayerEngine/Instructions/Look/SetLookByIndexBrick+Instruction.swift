@@ -29,19 +29,14 @@ extension SetLookByIndexBrick: CBInstructionProtocol {
     func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let formula = self.lookIndex,
-            let lookList = spriteNode.getLookList()
+            let formula = self.lookIndex
             else { fatalError("This should never happen!") }
 
         return {
-            let lookCount = lookList.count
             let lookIndex = formulaInterpreter.interpretInteger(formula, for: object)
-            if  lookIndex < 1 || lookIndex > lookCount {
-                return
-            }
+            guard let lookAtIndex = spriteNode.look(for: lookIndex) else { return }
 
             let cache = RuntimeImageCache.shared()
-            let lookAtIndex = lookList.object(at: lookIndex - 1) as? Look
             var image = cache?.cachedImage(forPath: self.pathForLook(look: lookAtIndex))
 
             if image == nil {

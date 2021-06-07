@@ -436,6 +436,7 @@ let kLocalizedAndStoreWrittenAnswerIn = NSLocalizedString("and store written ans
 let kLocalizedDefaultAskBrickQuestion = NSLocalizedString("What's your name?", comment: "")
 let kLocalizedAskBrickAnswer = NSLocalizedString("Your answer", comment: "")
 let kLocalizedSwitchToLookWithNumber = NSLocalizedString("Switch to look with number", comment: "")
+let kLocalizedSetBackgroundByIndex = NSLocalizedString("Set background to number", comment: "")
 
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", comment: "")

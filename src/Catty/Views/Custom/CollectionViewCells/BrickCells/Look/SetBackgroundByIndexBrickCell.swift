@@ -20,27 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
+class SetBackgroundByIndexBrickCell: BrickCell, BrickCellProtocol {
 
-class SceneTVCTests: XCTestCase {
+    var textLabel: UILabel?
+    var backgroundIndexField: UITextField?
 
-    var app: XCUIApplication!
-
-    override func setUp() {
-        super.setUp()
-        app = launchApp()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
-    func testCopySelectedObjects() {
-        let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
-        app.tables.staticTexts[kLocalizedContinueProject].tap()
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
-        waitForElementToAppear(app.buttons[kLocalizedCopyObjects]).tap()
-        app.buttons[kLocalizedSelectAllItems].tap()
-        app.buttons[kLocalizedCopy].tap()
-        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
-        for object in projectObjects {
-            XCTAssert(app.tables.staticTexts[object + " (1)"].exists)
-        }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetBackgroundByIndex + " %@"
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.backgroundIndexField = inlineViewSubViews[1] as? UITextField
+    }
+
+    override func parameters() -> [String]! {
+        NSArray.init(objects: "{FLOAT;range=(-inf,inf)}") as? [String]
     }
 }

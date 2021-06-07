@@ -436,6 +436,7 @@
 #define kLocalizedDefaultAskBrickQuestion NSLocalizedString(@"What's your name?", nil)
 #define kLocalizedAskBrickAnswer NSLocalizedString(@"Your answer", nil)
 #define kLocalizedSwitchToLookWithNumber NSLocalizedString(@"Switch to look with number", nil)
+#define kLocalizedSetBackgroundByIndex NSLocalizedString(@"Set background to number", nil)
 
 // pen bricks
 #define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)
