@@ -174,13 +174,14 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
         self.audioPlayerFinishPlayingCompletionBlock?.completion?()
         self.audioPlayerFinishPlayingCompletionBlock = nil
 
-        silentDetector?.silentNotify = { silent in
-            if silent {
-                Util.alert(
-                text: (Util.isPhone()
-                    ? kLocalizedDeviceIsInMutedStateIPhoneDescription
-                    : kLocalizedDeviceIsInMutedStateIPadDescription))
-            return            }
+        if silentDetector?.isMute == true {
+            Util.alert(
+            text: (Util.isPhone()
+                ? kLocalizedDeviceIsInMutedStateIPhoneDescription
+                : kLocalizedDeviceIsInMutedStateIPadDescription))
+
+            completion?()
+            return
         }
 
         do {
