@@ -102,7 +102,7 @@ class StoreProjectDownloaderTests: XCTestCase {
     func testfetchFeaturedProjectsFailsWithUnexpectedErrorNotification() {
         let session = URLSessionMock()
         let offset = 0
-        let url = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.maxVersion)\(Util.catrobatLanguageVersion())&"
+        let url = URL(string: "\(NetworkDefines.apiEndpointFeatured)?\(NetworkDefines.featuredPlatform)&\(NetworkDefines.maxVersion)\(Util.catrobatLanguageVersion())&"
                         + "\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)"
                         + "\(offset)")!
         let error = ErrorMock("")
@@ -116,7 +116,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchFeaturedProjects.fail.request")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let offset = 0
-        let url = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.maxVersion)\(Util.catrobatLanguageVersion())&"
+        let url = URL(string: "\(NetworkDefines.apiEndpointFeatured)?\(NetworkDefines.featuredPlatform)&\(NetworkDefines.maxVersion)\(Util.catrobatLanguageVersion())&"
                         + "\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)"
                         + "\(offset)")!
         let error = ErrorMock("")
@@ -129,7 +129,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchFeaturedProjects.fail.parse")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let offset = 0
-        let url = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.maxVersion)\(Util.catrobatLanguageVersion())&"
+        let url = URL(string: "\(NetworkDefines.apiEndpointFeatured)?\(NetworkDefines.featuredPlatform)&\(NetworkDefines.maxVersion)\(Util.catrobatLanguageVersion())&"
                         + "\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)"
                         + "\(offset)")!
         let errorInfo = ProjectFetchFailureInfo(url: url.absoluteString, statusCode: 200, description: expectedParsingException)
@@ -147,7 +147,7 @@ class StoreProjectDownloaderTests: XCTestCase {
 
     func testfetchFeaturedProjectsFailsWithTimeoutErrorNotification() {
         let offset = 0
-        let url = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.maxVersion)\(Util.catrobatLanguageVersion())&"
+        let url = URL(string: "\(NetworkDefines.apiEndpointFeatured)?\(NetworkDefines.featuredPlatform)&\(NetworkDefines.maxVersion)\(Util.catrobatLanguageVersion())&"
                         + "\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)"
                         + "\(offset)")!
         let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
@@ -643,7 +643,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         let searchTerm = "Galaxy"
         let version: String = Util.catrobatLanguageVersion()
 
-        let url = URL(string: "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionSearch)?\(NetworkDefines.projectQuery)" +
+        let url = URL(string: "\(NetworkDefines.apiEndpointSearch)?\(NetworkDefines.projectQuery)" +
                             "\(searchTerm)&\(NetworkDefines.maxVersion)\(version)&\(NetworkDefines.projectsLimit)" +
                             "\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)0")
         let response = HTTPURLResponse(url: url!, statusCode: 404, httpVersion: nil, headerFields: nil)
