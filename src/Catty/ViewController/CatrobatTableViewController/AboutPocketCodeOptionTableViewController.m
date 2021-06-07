@@ -24,7 +24,6 @@
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
-#import <Firebase/Firebase.h>
 
 @implementation AboutPocketCodeOptionTableViewController
 

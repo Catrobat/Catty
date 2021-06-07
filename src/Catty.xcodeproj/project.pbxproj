@@ -470,14 +470,6 @@
 		4C0F9FA9204BD2D600E71B2D /* SpeakAndWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FA7204BD2D600E71B2D /* SpeakAndWaitBrickCell.m */; };
 		4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD4204BD3C200E71B2D /* ChooseCameraBrickTests.swift */; };
 		4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD8204BD3D500E71B2D /* RepeatUntilBrickTests.swift */; };
-		4C10D9C823ED8CDC00EB0C6E /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9BD23ED8CDA00EB0C6E /* GoogleUtilities.framework */; };
-		4C10D9CA23ED8CDC00EB0C6E /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C023ED8CDA00EB0C6E /* nanopb.framework */; };
-		4C10D9CC23ED8CDC00EB0C6E /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C123ED8CDB00EB0C6E /* FirebaseCore.framework */; };
-		4C10D9D423ED8CDC00EB0C6E /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C523ED8CDB00EB0C6E /* FirebaseCoreDiagnostics.framework */; };
-		4C10D9D623ED8CDC00EB0C6E /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C623ED8CDB00EB0C6E /* FIRAnalyticsConnector.framework */; };
-		4C10D9DD23ED8DA900EB0C6E /* GoogleDataTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9DA23ED8D7500EB0C6E /* GoogleDataTransport.framework */; };
-		4C10D9E023ED8DCF00EB0C6E /* FirebaseInstallations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9DF23ED8DCF00EB0C6E /* FirebaseInstallations.framework */; };
-		4C10D9E323ED8DF500EB0C6E /* PromisesObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9E223ED8DF500EB0C6E /* PromisesObjC.framework */; };
 		4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795020AEBE38006C6E32 /* LongitudeSensor.swift */; };
 		4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */; };
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
@@ -596,9 +588,6 @@
 		4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
-		4C4B4CC223ED94230054C861 /* FirebaseCrashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */; };
-		4C4B4CCC23EDE1560054C861 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C223ED8CDB00EB0C6E /* FirebaseAnalytics.framework */; };
-		4C4B4CD323EE76370054C861 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C423ED8CDB00EB0C6E /* GoogleAppMeasurement.framework */; };
 		4C4B4CD723EE8ABB0054C861 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */; };
 		4C4B4CDF23EE98C80054C861 /* CustomAlertControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CDE23EE98C80054C861 /* CustomAlertControllerTests.swift */; };
 		4C4B4CE623EEA6C00054C861 /* BaseTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CE523EEA6BF0054C861 /* BaseTableViewControllerTests.swift */; };
@@ -904,6 +893,8 @@
 		4CDE807621A1B112009EFD31 /* StagePresenterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE807521A1B112009EFD31 /* StagePresenterViewControllerTests.swift */; };
 		4CDF7BB62138735700FFF7F4 /* StageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BB52138735700FFF7F4 /* StageBuilder.swift */; };
 		4CE0574C266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0574B266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift */; };
+		4CE05754266E2287008AD7FF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE05753266E2287008AD7FF /* FirebaseAnalytics */; };
+		4CE05756266E2287008AD7FF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE05755266E2287008AD7FF /* FirebaseCrashlytics */; };
 		4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */; };
 		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
 		4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AD2660C39D007221DA /* 817.catrobat */; };
@@ -4335,23 +4326,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C10D9E023ED8DCF00EB0C6E /* FirebaseInstallations.framework in Frameworks */,
-				4C10D9E323ED8DF500EB0C6E /* PromisesObjC.framework in Frameworks */,
-				4C10D9D423ED8CDC00EB0C6E /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				9ED1150E22C56DEF0035DB63 /* AudioKit.framework in Frameworks */,
 				970F1BDC25FC399500558A3A /* ActiveLabel in Frameworks */,
-				4C10D9D623ED8CDC00EB0C6E /* FIRAnalyticsConnector.framework in Frameworks */,
+				4CE05754266E2287008AD7FF /* FirebaseAnalytics in Frameworks */,
 				CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */,
 				4CFAC30825ADD89E00AF0DD1 /* Siren in Frameworks */,
 				59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */,
-				4C4B4CC223ED94230054C861 /* FirebaseCrashlytics.framework in Frameworks */,
-				4C10D9DD23ED8DA900EB0C6E /* GoogleDataTransport.framework in Frameworks */,
-				4C4B4CD323EE76370054C861 /* GoogleAppMeasurement.framework in Frameworks */,
-				4C10D9CA23ED8CDC00EB0C6E /* nanopb.framework in Frameworks */,
-				4C4B4CCC23EDE1560054C861 /* FirebaseAnalytics.framework in Frameworks */,
-				4C10D9CC23ED8CDC00EB0C6E /* FirebaseCore.framework in Frameworks */,
+				4CE05756266E2287008AD7FF /* FirebaseCrashlytics in Frameworks */,
 				4CFAC2F825ADD6C200AF0DD1 /* Kingfisher in Frameworks */,
-				4C10D9C823ED8CDC00EB0C6E /* GoogleUtilities.framework in Frameworks */,
 				17D5F5CE266A819000C678FF /* ZipArchive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -10769,6 +10751,8 @@
 				4CFAC30725ADD89E00AF0DD1 /* Siren */,
 				970F1BDB25FC399500558A3A /* ActiveLabel */,
 				17D5F5CD266A819000C678FF /* ZipArchive */,
+				4CE05753266E2287008AD7FF /* FirebaseAnalytics */,
+				4CE05755266E2287008AD7FF /* FirebaseCrashlytics */,
 			);
 			productName = AppScaffold;
 			productReference = CADBD7FB19B0E8C200C62836 /* Pocket Code.app */;
@@ -10899,6 +10883,7 @@
 				4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */,
 				970F1BDA25FC399500558A3A /* XCRemoteSwiftPackageReference "ActiveLabel" */,
 				17D5F5CC266A819000C678FF /* XCRemoteSwiftPackageReference "ZipArchive" */,
+				4CE05752266E2287008AD7FF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
@@ -13609,6 +13594,14 @@
 				minimumVersion = 3.1.2;
 			};
 		};
+		4CE05752266E2287008AD7FF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
 		4CFAC28B25ADCD8100AF0DD1 /* XCRemoteSwiftPackageReference "Nimble" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Quick/Nimble";
@@ -13661,6 +13654,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */;
 			productName = Quick;
+		};
+		4CE05753266E2287008AD7FF /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CE05752266E2287008AD7FF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		4CE05755266E2287008AD7FF /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CE05752266E2287008AD7FF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		4CFAC28C25ADCD8100AF0DD1 /* Nimble */ = {
 			isa = XCSwiftPackageProductDependency;
