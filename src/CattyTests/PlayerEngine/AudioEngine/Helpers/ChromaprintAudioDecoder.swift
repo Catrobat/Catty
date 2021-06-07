@@ -24,13 +24,14 @@
  */
 
 import AVFoundation
+import Chromaprint
 
 class ChromaprintAudioDecoder {
 
     public  func decodeAudio(
         _ fromUrl: URL,
         withMaxLength maxLength: Int ,
-        forContext context: UnsafeMutablePointer<ChromaprintContext?>) -> Double {
+        forContext context: OpaquePointer) -> Double {
 
         let asset = AVURLAsset(url: fromUrl)
         let reader: AVAssetReader
@@ -116,8 +117,7 @@ class ChromaprintAudioDecoder {
                         destination: data!.mutableBytes)     /// destination buffer
 
                     let opaquePtr = OpaquePointer(data!.mutableBytes)
-                    let samples = UnsafeMutablePointer<Int16>(opaquePtr)
-                    //                    let samples = UnsafeMutablePointer<Int16>(data!.mutableBytes)
+                    let samples = UnsafePointer<Int16>(opaquePtr)
 
                     /**
                      *  - ctx: Chromaprint context pointer
@@ -138,7 +138,7 @@ class ChromaprintAudioDecoder {
                     /// pick the smaller of the two values so we don't remove too much
                     let length = min(remainingSamples, sampleCount)
 
-                    chromaprint_feed(context, UnsafeMutableRawPointer(samples), length)
+                    chromaprint_feed(context, samples, length)
 
                     sampleData.append(samples, length: bufferLength)
                     CMSampleBufferInvalidate(sampleBufferRef)
