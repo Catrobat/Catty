@@ -20,27 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct ProjectInformation: Codable {
-    let ProjectInformationNumber: ProjectInformationNumber
-    let ProjectInformationText: ProjectInformationText
-
-    struct ProjectInformationNumber: Codable {
-        let baseUrl: String
-        let projectsExtension: String
-
-        private enum CodingKeys: String, CodingKey {
-            case baseUrl = "BaseUrl"
-            case projectsExtension = "ProjectsExtension"
-        }
-    }
-
-    struct ProjectInformationText: Codable {
-        let baseUrl: String
-        let projectsExtension: String
-
-        private enum CodingKeys: String, CodingKey {
-            case baseUrl = "BaseUrl"
-            case projectsExtension = "ProjectsExtension"
-        }
-    }
+struct ProjectFetchFailureInfo: Equatable {
+    var type: ProjectType?
+    var url: String
+    var statusCode: Int?
+    var description: String
+    var projectName: String?
 }

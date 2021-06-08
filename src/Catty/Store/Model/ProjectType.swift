@@ -20,32 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct StoreProjectCollection: Codable {
-    struct StoreProjectCollectionNumber: Codable {
-        let projects: [StoreProject]
-        let completeTerm: String?
-        let preHeaderMessages: String
-        let information: ProjectInformation.ProjectInformationNumber
+enum ProjectType {
+    case mostDownloaded
+    case mostViewed
+    case mostRecent
 
-        private enum CodingKeys: String, CodingKey {
-            case projects = "CatrobatProjects"
-            case completeTerm
-            case preHeaderMessages
-            case information = "CatrobatInformation"
-        }
-    }
+    func apiCategory() -> String {
+        switch self {
+        case .mostDownloaded:
+            return "most_downloaded"
+        case .mostViewed:
+            return "most_viewed"
+        case .mostRecent:
+            return "recent"
 
-    struct StoreProjectCollectionText: Codable {
-        let projects: [StoreProject]
-        let completeTerm: String?
-        let preHeaderMessages: String
-        let information: ProjectInformation.ProjectInformationText
-
-        private enum CodingKeys: String, CodingKey {
-            case projects = "CatrobatProjects"
-            case completeTerm
-            case preHeaderMessages
-            case information = "CatrobatInformation"
         }
     }
 }

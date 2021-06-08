@@ -98,7 +98,7 @@ final class HelpWebViewControllerTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "NavigationActionPolicy canceled when project details URL was detected")
 
-        if let url = URL(string: NetworkDefines.projectDetailsUrlPrefix + "/123.catrobat?fname=My+first+project") {
+        if let url = URL(string: NetworkDefines.apiEndpointProjectDetails + "/123.catrobat?fname=My+first+project") {
             let testRequest4 = URLRequest(url: url)
             let navigationAction = DemoNavigationAction(testRequest: testRequest4)
             viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in

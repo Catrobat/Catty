@@ -21,9 +21,8 @@
  */
 
 struct StoreProject: Codable {
-    let projectId: String
-    let projectName: String
-    let projectNameShort: String?
+    let id: String
+    let name: String
     let author: String
     let description: String?
     let version: String?
@@ -36,35 +35,33 @@ struct StoreProject: Codable {
     let projectUrl: String?
     let downloadUrl: String?
     let fileSize: Float?
-    let featuredImage: String?
     let isPrivate: Bool! = false
+    let tags: [String]?
 
     private enum CodingKeys: String, CodingKey {
-        case projectId = "ProjectId"
-        case projectName = "ProjectName"
-        case projectNameShort = "ProjectNameShort"
-        case author = "Author"
-        case description = "Description"
-        case version = "Version"
-        case views = "Views"
-        case downloads = "Downloads"
-        case uploaded = "Uploaded"
-        case uploadedString = "UploadedString"
-        case screenshotBig = "ScreenshotBig"
-        case screenshotSmall = "ScreenshotSmall"
-        case projectUrl = "ProjectUrl"
-        case downloadUrl = "DownloadUrl"
-        case fileSize = "FileSize"
-        case featuredImage = "FeaturedImage"
-        case isPrivate = "Private"
+        case id = "id"
+        case name = "name"
+        case author = "author"
+        case description = "description"
+        case version = "version"
+        case views = "views"
+        case downloads = "download"
+        case uploaded = "uploaded"
+        case uploadedString = "uploaded_string"
+        case screenshotBig = "screenshot_large"
+        case screenshotSmall = "screenshot_small"
+        case projectUrl = "project_url"
+        case downloadUrl = "download_url"
+        case fileSize = "filesize"
+        case isPrivate = "private"
+        case tags = "tags"
     }
 
-    init(projectId: String, projectName: String, projectNameShort: String?, author: String, description: String?, version: String?,
+    init(id: String, name: String, author: String, description: String?, version: String?,
          views: Int?, downloads: Int?, uploaded: Int?, uploadedString: String?, screenshotBig: String?, screenshotSmall: String?,
-         projectUrl: String?, downloadUrl: String?, fileSize: Float?, featuredImage: String?) {
-        self.projectId = projectId
-        self.projectName = projectName
-        self.projectNameShort = projectNameShort
+         projectUrl: String?, downloadUrl: String?, fileSize: Float?, tags: [String]) {
+        self.id = id
+        self.name = name
         self.author = author
         self.description = description
         self.version = version
@@ -77,20 +74,19 @@ struct StoreProject: Codable {
         self.projectUrl = projectUrl
         self.downloadUrl = downloadUrl
         self.fileSize = fileSize
-        self.featuredImage = featuredImage
+        self.tags = tags
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        if let value = try? container.decode(Int.self, forKey: .projectId) {
-            projectId = String(value)
+        if let value = try? container.decode(Int.self, forKey: .id) {
+            id = String(value)
         } else {
-            projectId = try container.decode(String.self, forKey: .projectId)
+            id = try container.decode(String.self, forKey: .id)
         }
 
-        projectName = try container.decode(String.self, forKey: .projectName)
-        projectNameShort = try container.decodeIfPresent(String.self, forKey: .projectNameShort)
+        name = try container.decode(String.self, forKey: .name)
         author = try container.decode(String.self, forKey: .author)
         description = try container.decodeIfPresent(String.self, forKey: .description)
         version = try container.decodeIfPresent(String.self, forKey: .version)
@@ -103,27 +99,27 @@ struct StoreProject: Codable {
         projectUrl = try container.decodeIfPresent(String.self, forKey: .projectUrl)
         downloadUrl = try container.decodeIfPresent(String.self, forKey: .downloadUrl)
         fileSize = try container.decodeIfPresent(Float.self, forKey: .fileSize)
-        featuredImage = try container.decodeIfPresent(String.self, forKey: .featuredImage)
+        tags = try container.decode([String].self, forKey: .tags)
     }
 
     func toCatrobatProject() -> CatrobatProject {
         var projectDictionary = [String: Any]()
-        projectDictionary["ProjectName"] = self.projectName
+        projectDictionary["ProjectName"] = self.name
         projectDictionary["Author"] = self.author
         projectDictionary["Description"] = self.description ?? ""
         projectDictionary["DownloadUrl"] = self.downloadUrl ?? ""
         projectDictionary["Downloads"] = self.downloads ?? 0
-        projectDictionary["ProjectId"] = self.projectId
-        projectDictionary["ProjectName"] = self.projectName
+        projectDictionary["ProjectId"] = self.id
+        projectDictionary["ProjectName"] = self.name
         projectDictionary["ProjectUrl"] = self.projectUrl ?? ""
         projectDictionary["ScreenshotBig"] = self.screenshotBig ?? ""
         projectDictionary["ScreenshotSmall"] = self.screenshotSmall ?? ""
-        projectDictionary["FeaturedImage"] = self.featuredImage ?? ""
         projectDictionary["Uploaded"] = self.uploaded ?? 0
         projectDictionary["Version"] = self.version ?? ""
         projectDictionary["Views"] = self.views ?? 0
         projectDictionary["FileSize"] = self.fileSize ?? 0.0
+        projectDictionary["Tags"] = self.tags ?? ""
 
-        return CatrobatProject(dict: projectDictionary, andBaseUrl: NetworkDefines.featuredImageBaseUrl)
+        return CatrobatProject(dict: projectDictionary)
     }
 }

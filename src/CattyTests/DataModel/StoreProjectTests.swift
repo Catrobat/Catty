@@ -27,19 +27,17 @@ import XCTest
 final class StoreProjectTests: XCTestCase {
 
     private func assertAllFieldsEqual(in catrobatProject: CatrobatProject, and storeProject: StoreProject) {
-        let baseURL = NetworkDefines.baseUrl.replacingOccurrences(of: "/pocketcode/", with: "/")
-
-        XCTAssertEqual(catrobatProject.projectName, storeProject.projectName)
+        XCTAssertEqual(catrobatProject.projectName, storeProject.name)
         XCTAssertEqual(catrobatProject.author, storeProject.author)
         XCTAssertEqual(catrobatProject.projectDescription, storeProject.description ?? "")
-        XCTAssertEqual(catrobatProject.downloadUrl, baseURL + (storeProject.downloadUrl ?? ""))
+        XCTAssertEqual(catrobatProject.downloadUrl, storeProject.downloadUrl ?? "")
         XCTAssertEqual(catrobatProject.downloads, (storeProject.downloads as NSNumber?) ?? 0)
-        XCTAssertEqual(catrobatProject.projectID, storeProject.projectId)
-        XCTAssertEqual(catrobatProject.projectName, storeProject.projectName)
+        XCTAssertEqual(catrobatProject.projectID, storeProject.id)
+        XCTAssertEqual(catrobatProject.projectName, storeProject.name)
         XCTAssertEqual(catrobatProject.projectUrl, storeProject.projectUrl ?? "")
-        XCTAssertEqual(catrobatProject.screenshotBig, baseURL + (storeProject.screenshotBig ?? ""))
-        XCTAssertEqual(catrobatProject.screenshotSmall, baseURL + (storeProject.screenshotSmall ?? ""))
-        XCTAssertEqual(catrobatProject.featuredImage, baseURL + (storeProject.featuredImage ?? ""))
+        XCTAssertEqual(catrobatProject.screenshotBig, storeProject.screenshotBig ?? "")
+        XCTAssertEqual(catrobatProject.screenshotSmall, storeProject.screenshotSmall ?? "")
+        XCTAssertEqual(catrobatProject.tags, storeProject.tags ?? [""])
         if let uploaded = storeProject.uploaded {
             XCTAssertEqual(catrobatProject.uploaded, String(uploaded))
         } else {
@@ -51,9 +49,8 @@ final class StoreProjectTests: XCTestCase {
 
     func testToCatrobatProject() {
         let testProject = StoreProject(
-            projectId: "827",
-            projectName: "Airplane with shadow",
-            projectNameShort: "Airplane with shadow",
+            id: "827",
+            name: "Airplane with shadow",
             author: "hej-wickie-hej",
             description: "Fly over wooden floor tiles, steering with your device's inclination.",
             version: "0.9.5",
@@ -66,7 +63,7 @@ final class StoreProjectTests: XCTestCase {
             projectUrl: "pocketcode/project/827",
             downloadUrl: "pocketcode/download/827.catrobat",
             fileSize: 1.2287311553955078,
-            featuredImage: nil
+            tags: ["game"]
         )
         assertAllFieldsEqual(in: testProject.toCatrobatProject(), and: testProject)
     }

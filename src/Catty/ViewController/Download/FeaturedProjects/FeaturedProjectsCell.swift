@@ -22,14 +22,14 @@
 
 import UIKit
 
-protocol FeaturedProjectsCellProtocol: AnyObject {
-    func selectedCell(dataSource datasource: FeaturedProjectsStoreTableDataSource, didSelectCellWith cell: FeaturedProjectsCell)
+protocol FeaturedProjectsCellDelegate: AnyObject {
+    func openProject(_ project: StoreProject)
 }
 
 class FeaturedProjectsCell: UITableViewCell {
 
-    weak var delegete: FeaturedProjectsCellProtocol?
-    var project: StoreProject?
+    weak var delegete: FeaturedProjectsCellDelegate?
+    var project: StoreFeaturedProject?
 
     @IBOutlet private weak var featuredImageView: UIImageView!
 

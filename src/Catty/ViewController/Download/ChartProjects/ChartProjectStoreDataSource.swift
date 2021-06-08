@@ -39,7 +39,6 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     weak var delegate: SelectedChartProjectsDataSource?
 
     let downloader: StoreProjectDownloaderProtocol
-    var baseUrl = ""
     var projectType: ProjectType
 
     var mostDownloadedProjects = [StoreProject]()
@@ -65,8 +64,6 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             return mostViewedProjects
         case .mostRecent:
             return mostRecentProjects
-        default:
-            return [StoreProject]()
         }
     }
 
@@ -78,8 +75,6 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             return mostViewedOffset
         case .mostRecent:
             return mostRecentOffset
-        default:
-            return 0
         }
     }
 
@@ -91,8 +86,6 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             return mostViewedScrollViewOffset
         case .mostRecent:
             return mostRecentScrollViewOffset
-        default:
-            return CGPoint(x: 0, y: 0)
         }
     }
 
@@ -115,24 +108,21 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         scrollView.setContentOffset(scrollViewOffset, animated: false)
 
         if self.projectOffset == projects.count || projects.isEmpty {
-            self.downloader.fetchProjects(forType: type, offset: self.projectOffset) {items, error in
+            self.downloader.fetchProjects(for: type, offset: self.projectOffset) {items, error in
 
                 guard let collection = items, error == nil else { completion(error); return }
 
                 switch self.projectType {
                 case .mostDownloaded:
-                    self.mostDownloadedProjects.append(contentsOf: collection.projects)
+                    self.mostDownloadedProjects.append(contentsOf: collection)
                     self.mostDownloadedOffset += NetworkDefines.recentProjectsMaxResults
                 case .mostViewed:
-                    self.mostViewedProjects.append(contentsOf: collection.projects)
+                    self.mostViewedProjects.append(contentsOf: collection)
                     self.mostViewedOffset += NetworkDefines.recentProjectsMaxResults
                 case .mostRecent:
-                    self.mostRecentProjects.append(contentsOf: collection.projects)
+                    self.mostRecentProjects.append(contentsOf: collection)
                     self.mostRecentOffset += NetworkDefines.recentProjectsMaxResults
-                default:
-                    return
                 }
-                self.baseUrl = collection.information.baseUrl
                 completion(nil)
 
             }
@@ -159,12 +149,12 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             cell.tag = indexPath.row
             if projects.isEmpty == false && indexPath.row < self.projects.count {
                 cell.chartImage = nil
-                cell.chartTitle = projects[indexPath.row].projectName
+                cell.chartTitle = projects[indexPath.row].name
                 cell.project = projects[indexPath.row]
 
                 DispatchQueue.global().async {
                     guard let screenshotSmall = self.projects[indexPath.row].screenshotSmall else { return }
-                    guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
+                    guard let imageUrl = URL(string: screenshotSmall) else { return }
                     guard let data = try? Data(contentsOf: imageUrl) else { return }
                     DispatchQueue.main.async {
                         // this check is supposed to prevent setting an asynchronously downloaded
@@ -194,7 +184,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         }
         self.delegate?.showLoadingIndicator(false)
 
-        self.downloader.fetchProjectDetails(for: cellProject.projectId) { project, error in
+        self.downloader.fetchProjectDetails(for: cellProject.id) { project, error in
             guard timer.isValid else { return }
             guard let StoreProject = project, error == nil else { return }
             cell.project = StoreProject
@@ -215,8 +205,6 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             mostViewedScrollViewOffset = scrollView.contentOffset
         case .mostRecent:
             mostRecentScrollViewOffset = scrollView.contentOffset
-        default:
-            return
         }
         let checkPoint = Float(scrollView.contentSize.height - TableUtil.heightForImageCell())
         let currentViewBottomEdge = Float(scrollView.contentOffset.y + scrollView.frame.size.height)
