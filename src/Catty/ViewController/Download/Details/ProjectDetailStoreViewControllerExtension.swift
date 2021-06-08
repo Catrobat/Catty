@@ -24,6 +24,7 @@ import ActiveLabel
 @objc extension ProjectDetailStoreViewController {
 
     static var height: CGFloat = Util.screenHeight()
+    static var marginLeftPercentage: CGFloat = 15.0
 
     func createProjectDetailView(_ project: CatrobatProject, target: Any?) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: Util.screenWidth(), height: 0))
@@ -57,7 +58,7 @@ import ActiveLabel
     }
 
     private func addNameLabel(withProjectName projectName: String?, to view: UIView?) {
-        let height = ProjectDetailStoreViewController.self.height
+        let height = type(of: self).height
         let nameLabel = UILabel(frame: CGRect(x: (view?.frame.size.width ?? 0.0) / 2 - 10, y: height * 0.05, width: 155, height: 25))
         nameLabel.text = projectName
         nameLabel.lineBreakMode = .byWordWrapping
@@ -82,7 +83,7 @@ import ActiveLabel
         var description = description
         let height = ProjectDetailStoreViewController.height
         self.addHorizontalLine(to: view, andHeight: height * 0.35 - 15)
-        let descriptionTitleLabel = UILabel(frame: CGRect(x: view.frame.size.width / 15, y: height * 0.35, width: 155, height: 25))
+        let descriptionTitleLabel = UILabel(frame: CGRect(x: view.frame.size.width / type(of: self).marginLeftPercentage, y: height * 0.35, width: 155, height: 25))
         self.configureTitleLabel(descriptionTitleLabel, andHeight: height)
         descriptionTitleLabel.text = kLocalizedDescription
         view.addSubview(descriptionTitleLabel)
@@ -115,8 +116,8 @@ import ActiveLabel
         view.addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: (view.frame.size.width) / 15),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width) / 15),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: (view.frame.size.width) / type(of: self).marginLeftPercentage),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width) / type(of: self).marginLeftPercentage),
             descriptionLabel.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 10),
             descriptionLabel.heightAnchor.constraint(equalToConstant: expectedSize.height)
         ])
@@ -131,7 +132,7 @@ import ActiveLabel
     private func addThumbnailImage(withImageUrlString imageUrlString: String?, to view: UIView?) {
         let imageView = UIImageView()
         let errorImage = UIImage(named: "thumbnail_large")
-        imageView.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / 15,
+        imageView.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / type(of: self).marginLeftPercentage,
                                  y: (view?.frame.size.height ?? 0.0) * 0.1,
                                  width: (view?.frame.size.width ?? 0.0) / 3,
                                  height: ProjectDetailStoreViewController.height / 4.5)
@@ -242,7 +243,7 @@ import ActiveLabel
         let height = ProjectDetailStoreViewController.height
         var offset = (view?.frame.size.height ?? 0.0) + height * 0.05
         self.addHorizontalLine(to: view, andHeight: offset - 15)
-        let informationLabel = UILabel(frame: CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: offset, width: 155, height: 25))
+        let informationLabel = UILabel(frame: CGRect(x: (view?.frame.size.width ?? 0.0) / type(of: self).marginLeftPercentage, y: offset, width: 155, height: 25))
         informationLabel.text = kLocalizedInformation
         self.configureTitleLabel(informationLabel, andHeight: height)
         view?.addSubview(informationLabel)
