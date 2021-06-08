@@ -1,0 +1,5 @@
+framework module Chromaprint {
+    header "chromaprint.h"
+    link "c++"
+    link framework "Accelerate"
+}

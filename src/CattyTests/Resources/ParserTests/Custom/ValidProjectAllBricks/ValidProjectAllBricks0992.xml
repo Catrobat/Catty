@@ -745,6 +745,24 @@
                     <commentedOut>false</commentedOut>
                     <instrumentSelection>PIANO</instrumentSelection>
                 </brick>
+                <brick type="SetBackgroundByIndexBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="LOOK_INDEX">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetBackgroundByIndexBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="BACKGROUND_INDEX">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                </brick>
                 <brick type="SetTempoToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>

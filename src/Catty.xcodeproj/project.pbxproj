@@ -29,6 +29,8 @@
 		17A8AC6F2644E79B00DDD480 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		17D5F5BE265E927A00C678FF /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D5F5BD265E927A00C678FF /* Keychain.swift */; };
 		17D5F5C0265EAEF700C678FF /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D5F5BF265EAEF700C678FF /* KeychainTests.swift */; };
+		17D5F5C7266A5B3900C678FF /* Chromaprint.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D5F5C6266A5B3800C678FF /* Chromaprint.xcframework */; };
+		17D5F5CE266A819000C678FF /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 17D5F5CD266A819000C678FF /* ZipArchive */; };
 		1801591E25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
@@ -389,6 +391,8 @@
 		468EE8D9257F8F94003976DD /* SetBackgroundAndWaitBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468EE8D8257F8F94003976DD /* SetBackgroundAndWaitBrick.swift */; };
 		468EE8DF257F9730003976DD /* SetBackgroundAndWaitBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468EE8DE257F9730003976DD /* SetBackgroundAndWaitBrickCell.swift */; };
 		468EE8FE257FE40B003976DD /* SetBackgroundAndWaitBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468EE8FD257FE40B003976DD /* SetBackgroundAndWaitBrick+CBXMLHandler.swift */; };
+		4691E51D25F2B03F00122891 /* SetBackgroundByIndexBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4691E51C25F2B03F00122891 /* SetBackgroundByIndexBrick.swift */; };
+		4691E52725F2B27B00122891 /* SetBackgroundByIndexBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4691E52625F2B27B00122891 /* SetBackgroundByIndexBrickCell.swift */; };
 		46A75DF425752B1200F3963D /* CircleShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */; };
 		46B472BD2560946F007972DB /* StitchBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */; };
 		46B472C225609573007972DB /* StitchBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */; };
@@ -566,7 +570,6 @@
 		4C33F210214BC0200014044C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F20F214BC01F0014044C /* Default-568h@2x.png */; };
 		4C33F212214BC0390014044C /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F211214BC0390014044C /* My first project.catrobat */; };
 		4C33F214214BC0680014044C /* Document-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F213214BC0680014044C /* Document-Icon.png */; };
-		4C36D6D923374FA200670D58 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C36D6D623374FA200670D58 /* ZipArchive.framework */; };
 		4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */; };
 		4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */; };
 		4C37A0A5212E767C0074F417 /* ArduinoDigitalPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */; };
@@ -802,6 +805,7 @@
 		4C82268F213FB2C600F3D750 /* MultiFingerYFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C82268E213FB2C600F3D750 /* MultiFingerYFunctionTests.swift */; };
 		4C822691213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C822690213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift */; };
 		4C822693213FBC4400F3D750 /* MultiFingerTouchedFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C822692213FBC4400F3D750 /* MultiFingerTouchedFunction.swift */; };
+		4C8AA9BC266F42850082891E /* SetTempoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8AA9BB266F42850082891E /* SetTempoToBrick+Instruction.swift */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
 		4C8C3612213A9FDF00279BC7 /* ForeverBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C3611213A9FDF00279BC7 /* ForeverBrick+Condition.swift */; };
 		4C8C3616213AA2BD00279BC7 /* PhiroIfLogicBeginBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C3615213AA2BD00279BC7 /* PhiroIfLogicBeginBrick+Condition.swift */; };
@@ -899,7 +903,7 @@
 		4CDE807421A1A0AE009EFD31 /* StagePresenterViewControllerScreenshotExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE807121A1A0AE009EFD31 /* StagePresenterViewControllerScreenshotExtension.swift */; };
 		4CDE807621A1B112009EFD31 /* StagePresenterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE807521A1B112009EFD31 /* StagePresenterViewControllerTests.swift */; };
 		4CDF7BB62138735700FFF7F4 /* StageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BB52138735700FFF7F4 /* StageBuilder.swift */; };
-		4CE05764266E5075008AD7FF /* SetTempoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE05763266E5074008AD7FF /* SetTempoToBrick+Instruction.swift */; };
+		4CE0574C266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0574B266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift */; };
 		4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */; };
 		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
 		4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AD2660C39D007221DA /* 817.catrobat */; };
@@ -1102,6 +1106,8 @@
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
 		6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
+		83F822FE25EBA15B0093DD9A /* SetBackgroundByIndexBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F822FD25EBA15B0093DD9A /* SetBackgroundByIndexBrick+Instruction.swift */; };
+		83F8231325EBAA810093DD9A /* SetBackgroundByIndexBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */; };
 		91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */; };
 		91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */; };
 		9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2C61C808006002F5CA4 /* HideTextBrick.m */; };
@@ -1409,7 +1415,6 @@
 		9E5DFD20250574380049265C /* synth-lead-60.wv in Resources */ = {isa = PBXBuildFile; fileRef = 9E5DFCFC250574380049265C /* synth-lead-60.wv */; };
 		9E5DFD8C25057ECF0049265C /* ScratchSampleInstruments.license in Resources */ = {isa = PBXBuildFile; fileRef = 9E5DFD8B25057ECF0049265C /* ScratchSampleInstruments.license */; };
 		9E7564B222C7AB1A00D38A3B /* ObjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */; };
-		9E773797230B4EBC004F264D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E773796230B4EBC004F264D /* Accelerate.framework */; };
 		9E78D88322A9AF8400948AC3 /* AudioEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E78D88222A9AF8400948AC3 /* AudioEngineProtocol.swift */; };
 		9E78D88722A9AFB400948AC3 /* AudioSubtree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E78D88622A9AFB400948AC3 /* AudioSubtree.swift */; };
 		9E78D88922A9B16200948AC3 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E78D88822A9B16200948AC3 /* AudioPlayer.swift */; };
@@ -1503,7 +1508,6 @@
 		9EE674DA23253A5E0029D153 /* PlaySameSoundTwiceDifferentObjects.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674D923253A5D0029D153 /* PlaySameSoundTwiceDifferentObjects.xml */; };
 		9EE674E32325447C0029D153 /* half_seconds_patchwork.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674E12325447C0029D153 /* half_seconds_patchwork.mp3 */; };
 		9EE674E42325447C0029D153 /* short_drum_long_sax.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674E22325447C0029D153 /* short_drum_long_sax.mp3 */; };
-		9EED5F8A2337ED270032898E /* libchromaprint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED5F892337ED270032898E /* libchromaprint.a */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
 		AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */; };
@@ -1917,6 +1921,7 @@
 		17A8AC6B2644E6B500DDD480 /* ForceInit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForceInit.h; sourceTree = "<group>"; };
 		17D5F5BD265E927A00C678FF /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Keychain/Keychain.swift; sourceTree = "<group>"; };
 		17D5F5BF265EAEF700C678FF /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		17D5F5C6266A5B3800C678FF /* Chromaprint.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Chromaprint.xcframework; path = CattyTests/Lib/Chromaprint.xcframework; sourceTree = "<group>"; };
 		1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewController.swift; sourceTree = "<group>"; };
 		180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTests.swift; sourceTree = "<group>"; };
 		180DDF422506800600EA526C /* AnalyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsMock.swift; sourceTree = "<group>"; };
@@ -2292,6 +2297,8 @@
 		468EE8D8257F8F94003976DD /* SetBackgroundAndWaitBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundAndWaitBrick.swift; sourceTree = "<group>"; };
 		468EE8DE257F9730003976DD /* SetBackgroundAndWaitBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundAndWaitBrickCell.swift; sourceTree = "<group>"; };
 		468EE8FD257FE40B003976DD /* SetBackgroundAndWaitBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SetBackgroundAndWaitBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		4691E51C25F2B03F00122891 /* SetBackgroundByIndexBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundByIndexBrick.swift; sourceTree = "<group>"; };
+		4691E52625F2B27B00122891 /* SetBackgroundByIndexBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundByIndexBrickCell.swift; sourceTree = "<group>"; };
 		46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShapeNodeTests.swift; sourceTree = "<group>"; };
 		46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StitchBrick+Instruction.swift"; sourceTree = "<group>"; };
 		46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StitchBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
@@ -2513,7 +2520,6 @@
 		4C33F20F214BC01F0014044C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C33F211214BC0390014044C /* My first project.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = "My first project.catrobat"; path = "Resources/My first project.catrobat"; sourceTree = "<group>"; };
 		4C33F213214BC0680014044C /* Document-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Document-Icon.png"; path = "Resources/Document-Icon.png"; sourceTree = "<group>"; };
-		4C36D6D623374FA200670D58 /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZipArchive.framework; path = Carthage/Build/iOS/ZipArchive.framework; sourceTree = "<group>"; };
 		4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinFunction.swift; sourceTree = "<group>"; };
 		4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinFunctionTest.swift; sourceTree = "<group>"; };
 		4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinFunction.swift; sourceTree = "<group>"; };
@@ -2781,6 +2787,7 @@
 		4C82268E213FB2C600F3D750 /* MultiFingerYFunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiFingerYFunctionTests.swift; sourceTree = "<group>"; };
 		4C822690213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiFingerTouchedFunctionTests.swift; sourceTree = "<group>"; };
 		4C822692213FBC4400F3D750 /* MultiFingerTouchedFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiFingerTouchedFunction.swift; sourceTree = "<group>"; };
+		4C8AA9BB266F42850082891E /* SetTempoToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetTempoToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetTempoToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
 		4C8C3611213A9FDF00279BC7 /* ForeverBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForeverBrick+Condition.swift"; sourceTree = "<group>"; };
@@ -2885,7 +2892,7 @@
 		4CDE807121A1A0AE009EFD31 /* StagePresenterViewControllerScreenshotExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StagePresenterViewControllerScreenshotExtension.swift; sourceTree = "<group>"; };
 		4CDE807521A1B112009EFD31 /* StagePresenterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePresenterViewControllerTests.swift; sourceTree = "<group>"; };
 		4CDF7BB52138735700FFF7F4 /* StageBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageBuilder.swift; sourceTree = "<group>"; };
-		4CE05763266E5074008AD7FF /* SetTempoToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetTempoToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetTempoToBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4CE0574B266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SetBackgroundByIndexBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeMock.swift; sourceTree = "<group>"; };
 		4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
 		4CE3C4AD2660C39D007221DA /* 817.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = 817.catrobat; path = CattyTests/Resources/ParserTests/ZipProjects/817.catrobat; sourceTree = SOURCE_ROOT; };
@@ -3111,6 +3118,8 @@
 		811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoryViewController.m; sourceTree = "<group>"; };
 		8120AF21A605CC5BCBCC7453 /* ig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ig; path = ig.lproj/Localizable.strings; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		83F822FD25EBA15B0093DD9A /* SetBackgroundByIndexBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetBackgroundByIndexBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetBackgroundByIndexBrick+Instruction.swift"; sourceTree = "<group>"; };
+		83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundByIndexBrickTests.swift; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "App-Info.plist"; path = "Supporting Files/App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerBuilder.swift; sourceTree = "<group>"; };
 		91FC8B8C0B21945B560F7272 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -3685,7 +3694,6 @@
 		9E5DFD8925057C050049265C /* steel-drum-60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "steel-drum-60.wav"; sourceTree = "<group>"; };
 		9E5DFD8A25057C050049265C /* steel-drum.sfz */ = {isa = PBXFileReference; lastKnownFileType = text; path = "steel-drum.sfz"; sourceTree = "<group>"; };
 		9E5DFD8B25057ECF0049265C /* ScratchSampleInstruments.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScratchSampleInstruments.license; sourceTree = "<group>"; };
-		9E773796230B4EBC004F264D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9E78D88222A9AF8400948AC3 /* AudioEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineProtocol.swift; sourceTree = "<group>"; };
 		9E78D88622A9AFB400948AC3 /* AudioSubtree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSubtree.swift; sourceTree = "<group>"; };
 		9E78D88822A9B16200948AC3 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -3778,7 +3786,6 @@
 		9EE674D923253A5D0029D153 /* PlaySameSoundTwiceDifferentObjects.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PlaySameSoundTwiceDifferentObjects.xml; sourceTree = "<group>"; };
 		9EE674E12325447C0029D153 /* half_seconds_patchwork.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = half_seconds_patchwork.mp3; sourceTree = "<group>"; };
 		9EE674E22325447C0029D153 /* short_drum_long_sax.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short_drum_long_sax.mp3; sourceTree = "<group>"; };
-		9EED5F892337ED270032898E /* libchromaprint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchromaprint.a; path = CattyTests/Lib/Chromaprint/libchromaprint.a; sourceTree = "<group>"; };
 		A032C198F02439059E373A5C /* pa */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pa; path = pa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A46D335B661B03F52135C789 /* gu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = gu; path = gu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A61F854BCF220F35A21001B8 /* kab */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = kab; path = kab.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -4314,13 +4321,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17D5F5C7266A5B3900C678FF /* Chromaprint.xcframework in Frameworks */,
 				4CFAC2CD25ADD12100AF0DD1 /* DVR in Frameworks */,
 				4CFAC28D25ADCD8100AF0DD1 /* Nimble in Frameworks */,
-				9E773797230B4EBC004F264D /* Accelerate.framework in Frameworks */,
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
 				9EBAC31422A9BF47002E198D /* AudioKit.framework in Frameworks */,
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
-				9EED5F8A2337ED270032898E /* libchromaprint.a in Frameworks */,
 				4CBB5F0925EFCB8100DD08B2 /* Quick in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4340,13 +4346,13 @@
 				59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */,
 				4C4B4CC223ED94230054C861 /* FirebaseCrashlytics.framework in Frameworks */,
 				4C10D9DD23ED8DA900EB0C6E /* GoogleDataTransport.framework in Frameworks */,
-				4C36D6D923374FA200670D58 /* ZipArchive.framework in Frameworks */,
 				4C4B4CD323EE76370054C861 /* GoogleAppMeasurement.framework in Frameworks */,
 				4C10D9CA23ED8CDC00EB0C6E /* nanopb.framework in Frameworks */,
 				4C4B4CCC23EDE1560054C861 /* FirebaseAnalytics.framework in Frameworks */,
 				4C10D9CC23ED8CDC00EB0C6E /* FirebaseCore.framework in Frameworks */,
 				4CFAC2F825ADD6C200AF0DD1 /* Kingfisher in Frameworks */,
 				4C10D9C823ED8CDC00EB0C6E /* GoogleUtilities.framework in Frameworks */,
+				17D5F5CE266A819000C678FF /* ZipArchive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4556,6 +4562,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17D5F5C6266A5B3800C678FF /* Chromaprint.xcframework */,
 				4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */,
 				4C10D9E223ED8DF500EB0C6E /* PromisesObjC.framework */,
 				4C10D9DF23ED8DCF00EB0C6E /* FirebaseInstallations.framework */,
@@ -4569,10 +4576,7 @@
 				4C10D9C423ED8CDB00EB0C6E /* GoogleAppMeasurement.framework */,
 				4C10D9BD23ED8CDA00EB0C6E /* GoogleUtilities.framework */,
 				4C10D9C023ED8CDA00EB0C6E /* nanopb.framework */,
-				4C36D6D623374FA200670D58 /* ZipArchive.framework */,
-				9E773796230B4EBC004F264D /* Accelerate.framework */,
 				9EBAC31222A9BE5A002E198D /* AudioKit.framework */,
-				9EED5F892337ED270032898E /* libchromaprint.a */,
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
 				DE5C4E6D138ED109004892CA /* libz.dylib */,
 				59473A641F76F05000BD634F /* Bohr.framework */,
@@ -6395,6 +6399,7 @@
 				4C0F9F6D204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m */,
 				E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */,
 				972622DC25F51A8F00ABCC7A /* ChangeBrightnessByNBrick+CBXMLHandler.swift */,
+				4CE0574B266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift */,
 				972622E125F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift */,
 			);
 			name = Look;
@@ -7184,6 +7189,7 @@
 				E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */,
 				971C6F20260526ED00AD4857 /* SetTempoToBrickTests.swift */,
 				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
+				83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -9715,7 +9721,7 @@
 				9E2AEA51239888C100CDF58F /* PlaySoundAndWaitBrick+Instruction.swift */,
 				AA74EE351BC0543600D1E954 /* PlaySoundBrick+Instruction.swift */,
 				4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */,
-				4CE05763266E5074008AD7FF /* SetTempoToBrick+Instruction.swift */,
+				4C8AA9BB266F42850082891E /* SetTempoToBrick+Instruction.swift */,
 				AA74EE361BC0543600D1E954 /* SetVolumeToBrick+Instruction.swift */,
 				4C0F9F81204BD20900E71B2D /* SpeakAndWaitBrick+Instruction.swift */,
 				AA74EE371BC0543600D1E954 /* SpeakBrick+Instruction.swift */,
@@ -9750,6 +9756,7 @@
 				AAF6D9D71BC0BAF300686849 /* ShowBrick+Instruction.swift */,
 				4C0F9F7E204BD1F700E71B2D /* ThinkBubbleBrick+Instruction.swift */,
 				4C0F9F7D204BD1F700E71B2D /* ThinkForBubbleBrick+Instruction.swift */,
+				83F822FD25EBA15B0093DD9A /* SetBackgroundByIndexBrick+Instruction.swift */,
 			);
 			name = Look;
 			sourceTree = "<group>";
@@ -9866,6 +9873,7 @@
 				E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */,
 				97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */,
 				97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */,
+				4691E51C25F2B03F00122891 /* SetBackgroundByIndexBrick.swift */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -10105,6 +10113,7 @@
 				E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */,
 				972622BD25F5113B00ABCC7A /* ChangeBrightnessByNBrickCell.swift */,
 				972622CC25F5145C00ABCC7A /* SetBrightnessBrickCell.swift */,
+				4691E52625F2B27B00122891 /* SetBackgroundByIndexBrickCell.swift */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -10759,6 +10768,7 @@
 				4CFAC2F725ADD6C200AF0DD1 /* Kingfisher */,
 				4CFAC30725ADD89E00AF0DD1 /* Siren */,
 				970F1BDB25FC399500558A3A /* ActiveLabel */,
+				17D5F5CD266A819000C678FF /* ZipArchive */,
 			);
 			productName = AppScaffold;
 			productReference = CADBD7FB19B0E8C200C62836 /* Pocket Code.app */;
@@ -10888,6 +10898,7 @@
 				4CFAC30625ADD89E00AF0DD1 /* XCRemoteSwiftPackageReference "Siren" */,
 				4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */,
 				970F1BDA25FC399500558A3A /* XCRemoteSwiftPackageReference "ActiveLabel" */,
+				17D5F5CC266A819000C678FF /* XCRemoteSwiftPackageReference "ZipArchive" */,
 			);
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
@@ -11463,12 +11474,10 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Bohr.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
 			);
 			name = "Carthage Copy Frameworks Run Script";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Bohr.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -11937,6 +11946,7 @@
 				BC35168C231D00B90090872A /* SpriteBubbleConstraintsTests.swift in Sources */,
 				18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */,
 				4C6FE15E212D2D2E0067B7D5 /* MaxFunctionTest.swift in Sources */,
+				83F8231325EBAA810093DD9A /* SetBackgroundByIndexBrickTests.swift in Sources */,
 				1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */,
 				17D5F5C0265EAEF700C678FF /* KeychainTests.swift in Sources */,
 				4C822674213FA7A400F3D750 /* InclinationXSensorTest.swift in Sources */,
@@ -12238,6 +12248,7 @@
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
 				4CE67888210C4B1D00D90B5D /* Function.swift in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
+				4691E51D25F2B03F00122891 /* SetBackgroundByIndexBrick.swift in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
 				468EE8D9257F8F94003976DD /* SetBackgroundAndWaitBrick.swift in Sources */,
 				5E21DA7121A5289F00017D2C /* DataExtension.swift in Sources */,
@@ -12317,6 +12328,7 @@
 				4CF429ED213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift in Sources */,
 				92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */,
 				AA74EEE51BC057B900D1E954 /* WaitBrick+CBXMLHandler.m in Sources */,
+				4691E52725F2B27B00122891 /* SetBackgroundByIndexBrickCell.swift in Sources */,
 				5E43D71821928053006FDF2A /* SwellAll.swift in Sources */,
 				18390A6D24D057E100A07DFD /* StampBrickCell.swift in Sources */,
 				AA74F0A61BC05FCE00D1E954 /* RepeatBrickCell.m in Sources */,
@@ -12643,6 +12655,7 @@
 				4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */,
 				9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */,
 				4C595F4B21CAEBA50097D850 /* EqualOperator.swift in Sources */,
+				4C8AA9BC266F42850082891E /* SetTempoToBrick+Instruction.swift in Sources */,
 				9E0F740C22B532280030CD89 /* MathUtil.swift in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
 				5E21DA6821A3E4AF00017D2C /* UIImageExtension.swift in Sources */,
@@ -12829,7 +12842,6 @@
 				D38F58622441B19F0079F6EA /* GoToBrick.m in Sources */,
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
 				46B472BD2560946F007972DB /* StitchBrick+Instruction.swift in Sources */,
-				4CE05764266E5075008AD7FF /* SetTempoToBrick+Instruction.swift in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				188AF51A260352BC00FFE0EB /* FormulaEditorKeyboardAccessoryView.swift in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
@@ -12881,6 +12893,7 @@
 				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,
 				4C0F9F7C204BD1EC00E71B2D /* SetBackgroundBrick+Instruction.swift in Sources */,
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,
+				83F822FE25EBA15B0093DD9A /* SetBackgroundByIndexBrick+Instruction.swift in Sources */,
 				46E9E4A425AF53A100027D28 /* CircleShapeNode.swift in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
@@ -12889,6 +12902,7 @@
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
 				91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */,
+				4CE0574C266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13015,7 +13029,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8FL5R8726S;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -13059,7 +13073,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8FL5R8726S;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -13093,6 +13107,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8FL5R8726S;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -13132,6 +13147,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8FL5R8726S;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -13317,8 +13333,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -13326,7 +13340,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8FL5R8726S;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -13357,15 +13371,8 @@
 					"@loader_path/Frameworks",
 					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CattyTests/Lib/Chromaprint",
-				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = (
-					"-lc++",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/CattyTests/Lib/Chromaprint";
@@ -13381,8 +13388,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -13391,7 +13396,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8FL5R8726S;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -13421,15 +13426,8 @@
 					"@loader_path/Frameworks",
 					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CattyTests/Lib/Chromaprint",
-				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"-lc++",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/CattyTests/Lib/Chromaprint";
@@ -13595,6 +13593,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		17D5F5CC266A819000C678FF /* XCRemoteSwiftPackageReference "ZipArchive" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ZipArchive/ZipArchive.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.2;
+			};
+		};
 		4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Quick/Quick";
@@ -13646,6 +13652,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		17D5F5CD266A819000C678FF /* ZipArchive */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17D5F5CC266A819000C678FF /* XCRemoteSwiftPackageReference "ZipArchive" */;
+			productName = ZipArchive;
+		};
 		4CBB5F0825EFCB8100DD08B2 /* Quick */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */;

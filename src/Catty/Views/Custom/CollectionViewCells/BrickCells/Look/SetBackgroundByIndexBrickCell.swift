@@ -20,25 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+class SetBackgroundByIndexBrickCell: BrickCell, BrickCellProtocol {
 
-#import "Catty-Bridging-Header.h"
+    var textLabel: UILabel?
+    var backgroundIndexField: UITextField?
 
-#import "ConvertExceptionToError.h"
-#import "ForceInit.h"
-#import "LoginViewController.h"
-#import "BaseCollectionViewController.h"
-#import "ScriptCollectionViewController.h"
-#import "FormulaEditorViewController.h"
-#import "LookImageViewController.h"
-#import "LooksTableViewController.h"
-#import "PaintViewController.h"
-#import "BrickCellMessageData.h"
-#import "BroadcastBrickCell.h"
-#import "BrickInsertManager.h"
-#import "EVCircularProgressView.h"
-#import "ButtonTags.h"
-#import "RoundBorderedButton.h"
-#import "MirrorRotationZoomTool.h"
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetBackgroundByIndex + " %@"
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.backgroundIndexField = inlineViewSubViews[1] as? UITextField
+    }
+
+    override func parameters() -> [String]! {
+        NSArray.init(objects: "{FLOAT;range=(-inf,inf)}") as? [String]
+    }
+}

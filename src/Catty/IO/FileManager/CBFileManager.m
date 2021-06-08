@@ -22,7 +22,7 @@
 
 #import "CBFileManager.h"
 #import "Util.h"
-#import <ZipArchive/ZipArchive.h>
+#import <ZipArchive.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "Pocket_Code-Swift.h"
 

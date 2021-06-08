@@ -91,6 +91,28 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
         XCTAssertTrue(view.aspectRatioLabel!.isHidden)
     }
 
+    func testAspectRatioLandscape() {
+        project.header.screenWidth = NSNumber(value: Util.screenWidth(true).doubleValue)
+        project.header.screenHeight = NSNumber(value: Util.screenHeight(true).doubleValue)
+        project.header.landscapeMode = true
+
+        let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
+
+        XCTAssertFalse(view.aspectRatioButton!.isHidden)
+        XCTAssertFalse(view.aspectRatioLabel!.isHidden)
+    }
+
+    func testAspectRatioLandscapeHidden() {
+        project.header.screenWidth = NSNumber(value: Util.screenHeight(true).doubleValue)
+        project.header.screenHeight = NSNumber(value: Util.screenWidth(true).doubleValue)
+        project.header.landscapeMode = true
+
+        let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
+
+        XCTAssertTrue(view.aspectRatioButton!.isHidden)
+        XCTAssertTrue(view.aspectRatioLabel!.isHidden)
+    }
+
     func testRestart() {
         let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
         XCTAssertFalse(view.landscape)
