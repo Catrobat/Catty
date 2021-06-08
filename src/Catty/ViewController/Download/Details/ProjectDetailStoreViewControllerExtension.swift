@@ -124,11 +124,6 @@ import ActiveLabel
         self.configureDescriptionLabel(descriptionLabel)
         descriptionLabel.text = description
 
-        descriptionLabel.frame = CGRect(x: descriptionLabel.frame.origin.x, y: descriptionLabel.frame.origin.y, width: descriptionLabel.frame.size.width, height: expectedSize.height)
-        descriptionLabel.URLColor = UIColor.navBar
-        descriptionLabel.URLSelectedColor = UIColor.navTint
-        descriptionLabel.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
-
         self.setMaxHeightIfGreaterFor(view, withHeight: height * 0.35 + 40 + expectedSize.height)
         return descriptionLabel.frame.size.height
     }
@@ -399,9 +394,6 @@ import ActiveLabel
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
         self.configureTextLabel(label, andHeight: height)
-        var mutableLinkAttributes: [AnyHashable: Any] = [:]
-        mutableLinkAttributes[kCTForegroundColorAttributeName as String] = UIColor.textTint
-        mutableLinkAttributes[kCTUnderlineStyleAttributeName as String] = NSNumber(value: true)
         label.enabledTypes = [.url]
         label.URLColor = UIColor.navBar
         label.URLSelectedColor = UIColor.navTint
