@@ -137,7 +137,6 @@
 
 // User
 #import <CommonCrypto/CommonCrypto.h>
-#import "JNKeychain.h"
 
 //------------------------------------------------------------------------------------------------------------
 // Extension classes
@@ -159,6 +158,8 @@
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
 #import "UndoManager.h"
+#import "SharkfoodMuteSwitchDetector.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes
@@ -191,7 +192,6 @@
 //-----------------------------------------------------------------------------------------------------------
 // Headers to sort
 //-----------------------------------------------------------------------------------------------------------
-#import "CatrobatInformation.h"
 #import "CatrobatProject.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -202,6 +202,7 @@
 #import "Parser.h"
 #import "GDataXMLNode.h"
 #import "CBXMLSerializer.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLSerializerContext.h"

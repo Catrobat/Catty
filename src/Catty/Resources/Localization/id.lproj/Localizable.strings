@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "Pesan dengan nama yang sama sudah ada, coba lagi.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "Proyek dengan nama yang sama sudah ada, coba lagi.";
 
 /* No comment provided by engineer. */
 "Abc" = "Abc";
@@ -12,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "Tentang Pocket Code";
+
+/* No comment provided by engineer. */
+"absolute value" = "nilai mutlak";
 
 /* No comment provided by engineer. */
 "acceleration x" = "percepatan_x";
@@ -26,13 +29,13 @@
 "acceleration-sensor" = "akselerasi-sensor";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "Aktor dan objek";
 
 /* No comment provided by engineer. */
 "Add" = "Tambahkan";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "Tambahkan aktor atau objek";
 
 /* No comment provided by engineer. */
 "add comment here..." = "tambahkan komentar di sini…";
@@ -50,7 +53,7 @@
 "Agree" = "Setuju";
 
 /* No comment provided by engineer. */
-"all around" = "all around";
+"all around" = "semuanya";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Semua perangkat Bluetooth berhasil diputuskan";
@@ -59,10 +62,10 @@
 "All known Bluetooth devices successfully removed" = "Semua perangkat Bluetooth yang dikenal berhasil dihapus";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"Allow the app to control Arduino boards" = "Izinkan aplikasi untuk mengontrol papan Arduino";
 
 /* No comment provided by engineer. */
-"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+"Allow the app to send crash reports automatically" = "Izinkan aplikasi mengirim laporan kerusakan secara otomatis";
 
 /* paint */
 "Alpha" = "Alfa";
@@ -86,13 +89,13 @@
 "and" = "dan";
 
 /* No comment provided by engineer. */
-"and store written answer in " = "and store written answer in ";
+"and store written answer in " = "dan simpan jawaban tertulis di ";
 
 /* No comment provided by engineer. */
 "and wait" = "dan tunggu";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Animate brick-parts";
+"Animate brick-parts" = "Menganimasikan bagian bata";
 
 /* No comment provided by engineer. */
 "Apr" = "Apr";
@@ -101,19 +104,28 @@
 "April" = "April";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccosine";
+
+/* No comment provided by engineer. */
+"arcsine" = "busur";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctangent";
+
+/* No comment provided by engineer. */
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino analog" = "arduino analog";
+"arduino analog" = "analog arduino";
 
 /* No comment provided by engineer. */
-"arduino digital" = "arduino digital";
+"arduino digital" = "Arduino digital";
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Batu bata Arduino";
 
 /* No comment provided by engineer. */
-"Ask " = "Ask ";
+"Ask " = "Meminta ";
 
 /* No comment provided by engineer. */
 "at " = "di ";
@@ -140,7 +152,7 @@
 "Axes" = "Sumbu";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "kembali";
 
 /* No comment provided by engineer. */
 "Back" = "Kembali";
@@ -158,7 +170,7 @@
 "Backgrounds" = "Latar belakang";
 
 /* No comment provided by engineer. */
-"Bass" = "Bass";
+"Bass" = "Bas";
 
 /* No comment provided by engineer. */
 "Bassoon" = "Bassoon";
@@ -167,13 +179,13 @@
 "becomes true" = "menjadi kenyataan";
 
 /* No comment provided by engineer. */
-"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Sebelum Anda dapat memulai pengkodean, harap baca dan setujui Kebijakan Privasi kami untuk menggunakan aplikasi:";
+
+/* No comment provided by engineer. */
+"blue" = "biru";
 
 /* paint */
 "Blue" = "Biru";
-
-/* No comment provided by engineer. */
-"blue" = "blue";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth tidak tersedia Perangkat Anda tidak mendukung Bluetooth 4.0 atau chip Bluetooth Anda rusak. Harap periksa dengan koneksi ke perangkat Bluetooth lain di Pengaturan.";
@@ -209,7 +221,7 @@
 "By registering you agree to our" = "Dengan mendaftar, Anda setuju dengan";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "Tidak dapat memulai ulang proyek!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Batalkan";
@@ -221,19 +233,19 @@
 "Cannot connect to device. The device is not responding." = "Tidak dapat terhubung ke perangkat. Perangkat tidak merespons.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "Tidak dapat terhubung ke perpustakaan media. Silakan periksa koneksi internet Anda.";
 
 /* No comment provided by engineer. */
 "Categories" = "Kategori";
 
 /* No comment provided by engineer. */
-"Catrobat community" = "Catrobat community";
+"Catrobat community" = "Komunitas Catrobat";
 
 /* No comment provided by engineer. */
-"ceil" = "ceil";
+"ceiling" = "ceil";
 
 /* No comment provided by engineer. */
-"Cello" = "Cello";
+"Cello" = "Selo";
 
 /* No comment provided by engineer. */
 "Change brightness " = "Ubah kecerahan ";
@@ -245,10 +257,10 @@
 "Change size by" = "Ubah ukuran menjadi";
 
 /* No comment provided by engineer. */
-"Change to landscape" = "Change to landscape";
+"Change to landscape" = "Ubah ke lanskap";
 
 /* No comment provided by engineer. */
-"Change to portrait" = "Change to portrait";
+"Change to portrait" = "Ubah ke potret";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Ubah transparasi ";
@@ -260,19 +272,19 @@
 "Change volume by" = "Mengubah volume oleh";
 
 /* No comment provided by engineer. */
-"Change x by " = "Change x by ";
+"Change x by " = "Ubah x dengan ";
 
 /* No comment provided by engineer. */
-"Change y by " = "Change y by ";
+"Change y by " = "Ubah y oleh ";
 
 /* No comment provided by engineer. */
-"Changes discarded." = "Changes discarded.";
+"Changes discarded." = "Perubahan dibuang.";
 
 /* No comment provided by engineer. */
 "Changes saved." = "Perubahan disimpan!";
 
 /* No comment provided by engineer. */
-"Choir" = "Choir";
+"Choir" = "Paduan suara";
 
 /* No comment provided by engineer. */
 "Choose" = "Memilih";
@@ -281,7 +293,7 @@
 "Choose image" = "Pilih citra";
 
 /* No comment provided by engineer. */
-"Clarinet" = "Clarinet";
+"Clarinet" = "Klarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "Bersih";
@@ -297,6 +309,9 @@
 
 /* No comment provided by engineer. */
 "color" = "warna";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "Operator perbandingan";
 
 /* No comment provided by engineer. */
 "compass" = "Kompas";
@@ -320,7 +335,7 @@
 "Connection failed" = "Koneksi gagal";
 
 /* bluetooth */
-"Connection lost" = "Connection lost";
+"Connection lost" = "Koneksi terputus";
 
 /* bluetooth */
 "Connection not possible" = "Koneksi tidak memungkinkan";
@@ -332,7 +347,7 @@
 "Continue" = "Lanjutkan";
 
 /* No comment provided by engineer. */
-"Continue project" = "Continue project";
+"Continue project" = "Lanjutkan proyek";
 
 /* No comment provided by engineer. */
 "Control" = "Kontrol";
@@ -341,19 +356,31 @@
 "Copy" = "Salin";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy actors or objects" = "Salin aktor atau objek";
 
 /* No comment provided by engineer. */
-"Copy looks" = "Copy looks";
+"Copy brick" = "Salin batu bata";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy looks" = "Salin tampilan";
+
+/* No comment provided by engineer. */
+"Copy project" = "Salin proyek";
+
+/* No comment provided by engineer. */
+"cosine" = "kosinus";
 
 /* No comment provided by engineer. */
 "Create account" = "Membuat akun";
 
 /* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Buat pola untuk mesin stiching";
+
+/* No comment provided by engineer. */
 "Data" = "Data";
+
+/* No comment provided by engineer. */
+"Date and time" = "Tanggal dan waktu";
 
 /* No comment provided by engineer. */
 "day" = "hari";
@@ -368,85 +395,88 @@
 "December" = "Desember";
 
 /* No comment provided by engineer. */
+"decimal logarithm" = "logaritma desimal";
+
+/* No comment provided by engineer. */
 "degrees" = "derajat";
 
 /* No comment provided by engineer. */
 "Delete" = "Hapus";
 
 /* No comment provided by engineer. */
-"Delete actors or objects" = "Delete actors or objects";
+"Delete actors or objects" = "Hapus aktor atau objek";
 
 /* No comment provided by engineer. */
-"Delete backgrounds" = "Delete backgrounds";
+"Delete backgrounds" = "Hapus latar belakang";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Delete brick";
+"Delete brick" = "Hapus bata";
 
 /* No comment provided by engineer. */
-"Delete condition" = "Delete condition";
+"Delete condition" = "Hapus kondisi";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "Menghapus item dari daftar";
 
 /* No comment provided by engineer. */
-"Delete looks" = "Delete looks";
+"Delete looks" = "Hapus tampilan";
 
 /* No comment provided by engineer. */
-"Delete loop" = "Delete loop";
+"Delete loop" = "Hapus loop";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete project" = "Hapus proyek";
 
 /* No comment provided by engineer. */
-"Delete projects" = "Delete projects";
+"Delete projects" = "Hapus proyek";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete script" = "Hapus skrip";
 
 /* No comment provided by engineer. */
-"Delete sounds" = "Delete sounds";
+"Delete sounds" = "Hapus suara";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "Delete these bricks?";
+"Delete these bricks?" = "Hapus bata ini?";
 
 /* No comment provided by engineer. */
-"Delete these conditions?" = "Delete these conditions?";
+"Delete these conditions?" = "Hapus ketentuan ini?";
 
 /* No comment provided by engineer. */
-"Delete these loops?" = "Delete these loops?";
+"Delete these loops?" = "Hapus loop ini?";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "Delete these scripts?";
+"Delete these scripts?" = "Hapus skrip ini?";
 
 /* No comment provided by engineer. */
-"Delete this actor or object" = "Delete this actor or object";
+"Delete this actor or object" = "Hapus aktor atau objek ini";
 
 /* No comment provided by engineer. */
 "Delete this background" = "Hapus latar belakang ini";
 
 /* No comment provided by engineer. */
-"Delete this brick?" = "Delete this brick?";
+"Delete this brick?" = "Hapus bata ini?";
 
 /* No comment provided by engineer. */
-"Delete this condition?" = "Delete this condition?";
+"Delete this condition?" = "Hapus ketentuan ini?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "Hapus penampilan ini";
 
 /* No comment provided by engineer. */
-"Delete this loop?" = "Delete this loop?";
+"Delete this loop?" = "Hapus loop ini?";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "Hapus proyek ini";
 
 /* No comment provided by engineer. */
-"Delete this script?" = "Delete this script?";
+"Delete this script?" = "Hapus skrip ini?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Hapus suara ini";
 
 /* No comment provided by engineer. */
-"Deletion mode" = "Deletion mode";
+"Deletion mode" = "Mode penghapusan";
 
 /* No comment provided by engineer. */
 "Description" = "Keterangan";
@@ -458,25 +488,31 @@
 "Device disconnected." = "Perangkat terputus.";
 
 /* No comment provided by engineer. */
-"device motion-sensor" = "device motion-sensor";
+"device motion-sensor" = "sensor gerak perangkat";
+
+/* No comment provided by engineer. */
+"Device sensors" = "Sensor perangkat";
 
 /* No comment provided by engineer. */
 "direction" = "arah";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "Nonaktifkan bata";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "Nonaktifkan kondisi";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "Nonaktifkan loop";
 
 /* No comment provided by engineer. */
-"Disable script" = "Disable script";
+"Disable script" = "Nonaktifkan skrip";
 
 /* No comment provided by engineer. */
 "Disagree" = "Tidak setuju";
+
+/* No comment provided by engineer. */
+"Discard changes" = "Membuang perubahan";
 
 /* No comment provided by engineer. */
 "Disconnect all devices" = "Lepaskan semua perangkat";
@@ -488,7 +524,7 @@
 "Do you really want to delete the current drawing?" = "Anda yakin ingin menghapus gambar saat ini?";
 
 /* paint */
-"Do you want to save the changes" = "Anda yakin ingin menyimpan perubahan?";
+"Do you want to save your changes?" = "Apakah Anda ingin menyimpan perubahan?";
 
 /* No comment provided by engineer. */
 "don't rotate" = "jangan memutar";
@@ -498,9 +534,6 @@
 
 /* No comment provided by engineer. */
 "Download" = "Unduh";
-
-/* No comment provided by engineer. */
-"Download successful" = "Berhasil mengunduh";
 
 /* No comment provided by engineer. */
 "Downloads" = "Unduhan";
@@ -515,46 +548,46 @@
 "Edit" = "Edit";
 
 /* No comment provided by engineer. */
-"Edit actor or object" = "Edit actor or object";
+"Edit actor or object" = "Edit aktor atau objek";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "Edit latar belakang";
 
 /* Action sheet menu title */
-"Edit backgrounds" = "Edit backgrounds";
+"Edit backgrounds" = "Edit latar belakang";
 
 /* Action sheet menu title */
-"Edit brick" = "Edit brick";
+"Edit brick" = "Edit bata";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "Edit rumus";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "Edit tampilan";
 
 /* Action sheet menu title */
-"Edit looks" = "Edit looks";
+"Edit looks" = "Edit penampilan";
 
 /* No comment provided by engineer. */
-"Edit project" = "Edit project";
+"Edit project" = "Edit proyek";
 
 /* No comment provided by engineer. */
-"Edit projects" = "Edit projects";
+"Edit projects" = "Edit proyek";
 
 /* Action sheet menu title */
-"Edit script" = "Edit script";
+"Edit script" = "Edit skrip";
 
 /* Action sheet menu title */
-"Edit sound" = "Edit sound";
+"Edit sound" = "Edit suara";
 
 /* Action sheet menu title */
-"Edit sounds" = "Edit sounds";
+"Edit sounds" = "Edit suara";
 
 /* No comment provided by engineer. */
-"Electric Guitar" = "Electric Guitar";
+"Electric Guitar" = "Gitar elektrik";
 
 /* No comment provided by engineer. */
-"Electric Piano" = "Electric Piano";
+"Electric Piano" = "Piano Elektrik";
 
 /* No comment provided by engineer. */
 "element" = "elemen";
@@ -569,19 +602,25 @@
 "Email" = "Surel";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Embroidery" = "Sulaman";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Embroidery extension" = "Ekstensi bordir";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Empty input!" = "Masukan kosong!";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable brick" = "Aktifkan bata";
 
 /* No comment provided by engineer. */
-"Enable script" = "Enable script";
+"Enable condition" = "Aktifkan kondisi";
+
+/* No comment provided by engineer. */
+"Enable loop" = "Aktifkan loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "Aktifkan skrip";
 
 /* No comment provided by engineer. */
 "End if" = "End If";
@@ -596,7 +635,7 @@
 "Enter your image name here..." = "Masukkan nama citra di sini...";
 
 /* Placeholder for list input field */
-"Enter your list name here..." = "Enter your list name here...";
+"Enter your list name here..." = "Masukkan nama daftar Anda di sini...";
 
 /* Placeholder for message input field */
 "Enter your message here..." = "Masukkan pesan anda disini...";
@@ -605,10 +644,10 @@
 "Enter your object name here..." = "Masukkan nama objek di sini...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "Masukkan deskripsi proyek Anda di sini...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "Masukkan nama proyek Anda di sini...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Masukkan nama suara di sini...";
@@ -623,19 +662,25 @@
 "Error" = "Kesalahan";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error occurred while reporting the project. Please try again later." = "Terjadi kesalahan saat melaporkan proyek. Silakan coba lagi nanti.";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Terjadi kesalahan saat menyimpan file";
 
 /* No comment provided by engineer. */
 "Event" = "Peristiwa";
 
 /* No comment provided by engineer. */
+"exponent" = "eksponen";
+
+/* No comment provided by engineer. */
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
+"face detected" = "wajah terdeteksi";
 
 /* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
+"faceposition x" = "posisi muka x";
 
 /* No comment provided by engineer. */
 "faceposition y" = "faceposition y";
@@ -644,25 +689,25 @@
 "facesize" = "menghadapi";
 
 /* No comment provided by engineer. */
-"Failed to import item" = "Failed to import item";
+"Failed to import item" = "Gagal mengimpor item";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
+"Failed to load featured projects" = "Gagal memuat proyek unggulan";
 
 /* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
+"Failed to load recent projects" = "Gagal memuat proyek terbaru";
 
 /* No comment provided by engineer. */
-"Failed to load sound" = "Failed to load sound";
+"Failed to load sound" = "Gagal memuat suara";
 
 /* No comment provided by engineer. */
-"Failed to play sound" = "Failed to play sound";
+"Failed to play sound" = "Gagal memutar suara";
 
 /* No comment provided by engineer. */
 "false" = "palsu";
 
 /* No comment provided by engineer. */
-"Featured projects" = "Featured projects";
+"Featured projects" = "Proyek unggulan";
 
 /* No comment provided by engineer. */
 "Feb" = "Feb";
@@ -683,19 +728,19 @@
 "floor" = "lantai";
 
 /* No comment provided by engineer. */
-"Flute" = "Flute";
+"Flute" = "Seruling";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Fitur berikut yang digunakan dalam proyek ini tidak kompatibel dengan versi Pocket Code ini:";
 
 /* No comment provided by engineer. */
 "for" = "untuk";
 
 /* No comment provided by engineer. */
-"for all actors or objects" = "for all actors or objects";
+"for all actors or objects" = "untuk semua aktor atau objek";
 
 /* No comment provided by engineer. */
-"for this actor or object" = "for this actor or object";
+"for this actor or object" = "untuk aktor atau objek ini";
 
 /* No comment provided by engineer. */
 "Forever" = "Selamanya";
@@ -704,25 +749,34 @@
 "Forgot password" = "Lupa kata sandi";
 
 /* No comment provided by engineer. */
+"Formula Editor" = "Editor Formula";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "Formula terlalu panjang!";
 
 /* No comment provided by engineer. */
 "Fr" = "Jum";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
+"Frequently used" = "Sering digunakan";
 
 /* No comment provided by engineer. */
 "Friday" = "Jumat";
 
 /* No comment provided by engineer. */
-"From camera" = "From camera";
+"From camera" = "Dari kamera";
 
 /* No comment provided by engineer. */
 "front" = "depan";
 
 /* No comment provided by engineer. */
 "Front camera" = "Kamera depan";
+
+/* No comment provided by engineer. */
+"Functions" = "Fungsi";
+
+/* No comment provided by engineer. */
+"General properties" = "Properti Umum";
 
 /* No comment provided by engineer. */
 "Glide" = "Meluncur";
@@ -736,14 +790,14 @@
 /* No comment provided by engineer. */
 "Go to front" = "Pergi ke depan";
 
+/* No comment provided by engineer. */
+"green" = "hijau";
+
 /* paint */
 "Green" = "Hijau";
 
 /* No comment provided by engineer. */
-"green" = "green";
-
-/* No comment provided by engineer. */
-"Guitar" = "Guitar";
+"Guitar" = "Gitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
@@ -827,6 +881,9 @@
 "italic" = "miring";
 
 /* No comment provided by engineer. */
+"item" = "elemen";
+
+/* No comment provided by engineer. */
 "Jan" = "Jan";
 
 /* No comment provided by engineer. */
@@ -878,10 +935,10 @@
 "left-right only" = "kiri kanan saja";
 
 /* No comment provided by engineer. */
-"Length" = "Panjang";
+"length" = "panjang";
 
 /* No comment provided by engineer. */
-"length" = "panjang";
+"Length" = "Panjang";
 
 /* No comment provided by engineer. */
 "letter" = "surat";
@@ -890,25 +947,34 @@
 "Line" = "Garis";
 
 /* No comment provided by engineer. */
-"List name:" = "List name:";
+"List name:" = "Daftar nama:";
 
 /* No comment provided by engineer. */
-"List type" = "List type";
+"List type" = "Jenis daftar";
 
 /* No comment provided by engineer. */
 "Lists" = "Daftar";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "Daftar untuk semua aktor dan objek";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "Daftar untuk aktor atau objek ini saja";
+
+/* No comment provided by engineer. */
 "Loading" = "Memuat";
 
 /* No comment provided by engineer. */
-"location" = "location";
+"location" = "lokasi";
 
 /* No comment provided by engineer. */
 "location accuracy" = "akurasi_lokasi";
 
 /* No comment provided by engineer. */
 "Logic" = "Logika";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "Operator logika (boolean)";
 
 /* No comment provided by engineer. */
 "Login" = "Masuk";
@@ -922,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "garis bujur";
 
-/* No comment provided by engineer. */
-"Look" = "Lihat";
-
 /* LOOK */
 "look" = "Lihat";
+
+/* No comment provided by engineer. */
+"Look" = "Lihat";
 
 /* No comment provided by engineer. */
 "look name" = "lihat_nama";
@@ -953,7 +1019,13 @@
 "Marimba" = "Marimba";
 
 /* No comment provided by engineer. */
-"Math" = "Matematika";
+"Maths" = "Matematika";
+
+/* No comment provided by engineer. */
+"Maximize" = "Maksimalkan";
+
+/* No comment provided by engineer. */
+"maximum of" = "max";
 
 /* No comment provided by engineer. */
 "May" = "Mei";
@@ -977,6 +1049,12 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
+"Minimize" = "Memperkecil";
+
+/* No comment provided by engineer. */
+"minimum of" = "menit";
+
+/* No comment provided by engineer. */
 "minute" = "menit";
 
 /* paint */
@@ -984,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Sen";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Mole";
@@ -998,7 +1079,7 @@
 "More" = "Lebih";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "Informasi lebih lanjut";
 
 /* No comment provided by engineer. */
 "Most downloaded" = "Paling banyak diunduh";
@@ -1010,16 +1091,19 @@
 "Motion" = "Gerak";
 
 /* No comment provided by engineer. */
+"Motion properties" = "Sifat gerak";
+
+/* No comment provided by engineer. */
 "Move" = "Pindah";
 
 /* No comment provided by engineer. */
-"Move actors or objects" = "Move actors or objects";
+"Move actors or objects" = "Pindahkan aktor atau objek";
 
 /* No comment provided by engineer. */
-"Move brick" = "Move brick";
+"Move brick" = "Pindahkan bata";
 
 /* No comment provided by engineer. */
-"Move looks" = "Move looks";
+"Move looks" = "Pindahkan penampilan";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "Pindahkan motor Phiro ke belakang";
@@ -1028,31 +1112,34 @@
 "Move Phiro motor forward" = "Pindahkan motor Phiro ke depan";
 
 /* No comment provided by engineer. */
-"Move sounds" = "Move sounds";
+"Move sounds" = "Pindahkan suara";
 
 /* No comment provided by engineer. */
-"Music Box" = "Music Box";
+"Music Box" = "Kotak musik";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Program pertama saya";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My image" = "My image";
+"My image" = "Gambar saya";
 
 /* Title for first (default) object */
-"My object" = "My object";
+"My object" = "Objek saya";
 
 /* No comment provided by engineer. */
 "Name" = "Nama";
 
 /* No comment provided by engineer. */
-"Name already exists." = "Name already exists.";
+"Name already exists." = "Nama sudah ada.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "logaritma natural";
 
 /* No comment provided by engineer. */
 "New" = "Baru";
 
 /* paint */
-"New canvas" = "New canvas";
+"New canvas" = "Kanvas baru";
 
 /* No comment provided by engineer. */
 "New list" = "Daftar Baru";
@@ -1061,7 +1148,7 @@
 "New message" = "Pesan baru";
 
 /* No comment provided by engineer. */
-"New project" = "New project";
+"New project" = "Proyek baru";
 
 /* No comment provided by engineer. */
 "New text" = "Teks baru";
@@ -1085,13 +1172,13 @@
 "No" = "Tidak";
 
 /* No comment provided by engineer. */
-"No camera available" = "No camera available";
+"No camera available" = "Tidak ada kamera yang tersedia";
 
 /* No comment provided by engineer. */
-"No categories selected" = "No categories selected";
+"No categories selected" = "Tidak ada kategori yang dipilih";
 
 /* No comment provided by engineer. */
-"No description available" = "No description available";
+"No description available" = "Deskripsi tidak tersedia";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Nama citra yang kosong atau tidak valid dimasukkan, cobalah lagi.";
@@ -1110,9 +1197,6 @@
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "tidak tersedia. Terus sin?";
-
-/* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Memori tidak cukup";
@@ -1139,13 +1223,7 @@
 "Object" = "Objek";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Object lists:";
-
-/* No comment provided by engineer. */
-"Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "Variabel objek:";
+"Object or actor name" = "Objek atau nama aktor";
 
 /* No comment provided by engineer. */
 "Oct" = "Okt";
@@ -1202,22 +1280,25 @@
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
-"phiro bottom left" = "phiro bottom left";
+"phiro bottom left" = "phiro kiri bawah";
 
 /* No comment provided by engineer. */
-"phiro bottom right" = "phiro bottom right";
+"phiro bottom right" = "phiro kanan bawah";
 
 /* No comment provided by engineer. */
-"phiro front left" = "phiro front left";
+"phiro front left" = "phiro kiri depan";
 
 /* No comment provided by engineer. */
-"phiro front right" = "phiro front right";
+"phiro front right" = "phiro kanan depan";
 
 /* No comment provided by engineer. */
-"phiro side left" = "phiro side left";
+"phiro side left" = "sisi kiri phiro";
 
 /* No comment provided by engineer. */
-"phiro side right" = "phiro side right";
+"phiro side right" = "sisi phiro kanan";
+
+/* No comment provided by engineer. */
+"pi" = "pi";
 
 /* No comment provided by engineer. */
 "Piano" = "Piano";
@@ -1238,25 +1319,25 @@
 "Play Phiro music\n" = "Mainkan musik Phiro\n";
 
 /* No comment provided by engineer. */
-"Please choose another name:" = "Please choose another name:";
+"Please choose another name:" = "Pilih nama lain:";
 
 /* No comment provided by engineer. */
-"Please choose up to three categories" = "Please choose up to three categories";
+"Please choose up to three categories" = "Pilih hingga tiga kategori";
 
 /* paint */
-"Please enter a text." = "Please enter a text.";
+"Please enter a text." = "Harap masukkan teks.";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
+"Please enter at least %lu character(s)." = "Harap masukkan setidaknya %lu karakter.";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+"Please log in to report this project as inappropriate" = "Harap masuk untuk melaporkan proyek ini sebagai tidak pantas";
 
 /* paint */
 "Please pick a tool" = "Silakan pilih sebuah alat";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Please select a project to upload";
+"Please select a project to upload" = "Pilih proyek untuk diupload";
 
 /* bluetooth */
 "Please try resetting the device and try again." = "Coba atur ulang perangkat dan coba lagi.";
@@ -1304,6 +1385,9 @@
 "position y" = "posisi_y";
 
 /* No comment provided by engineer. */
+"power" = "kekuasaan";
+
+/* No comment provided by engineer. */
 "Preview" = "Pratinjau";
 
 /* No comment provided by engineer. */
@@ -1319,16 +1403,10 @@
 "Project" = "Proyek";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
+"Project name" = "Nama Proyek";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
-
-/* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
+"Project Name is necessary!" = "Nama Proyek diperlukan!";
 
 /* No comment provided by engineer. */
 "Projects" = "Program";
@@ -1337,7 +1415,13 @@
 "Projects on device" = "Program";
 
 /* No comment provided by engineer. */
+"Properties" = "Objek";
+
+/* No comment provided by engineer. */
 "random position" = "Posisi acak";
+
+/* No comment provided by engineer. */
+"random value from to" = "acak";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Beri Peringkat";
@@ -1351,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "Rectangl/Square";
 
-/* No comment provided by engineer. */
-"red" = "red";
-
 /* paint */
 "Red" = "Merah";
+
+/* No comment provided by engineer. */
+"red" = "merah";
 
 /* No comment provided by engineer. */
 "Register" = "Daftar";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Pendaftaran berhasil";
+
+/* No comment provided by engineer. */
+"regular expression" = "ekspresi reguler";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Hapus perangkat yang dikenal";
@@ -1417,23 +1504,23 @@
 /* No comment provided by engineer. */
 "Saturday" = "Sabtu";
 
-/* paint */
-"Save to Photos" = "Save to Photos";
-
 /* No comment provided by engineer. */
-"Save to PocketCode" = "Simpan ke Pocket Code";
+"Save changes" = "Simpan perubahan";
+
+/* paint */
+"Save to Photos" = "Simpan ke Foto";
 
 /* No comment provided by engineer. */
 "Saved" = "Tersimpan";
 
 /* No comment provided by engineer. */
-"Saxophone" = "Saxophone";
+"Saxophone" = "Saksofon";
 
 /* No comment provided by engineer. */
 "Say" = "Mengatakan";
 
 /* No comment provided by engineer. */
-"Scene" = "Scene";
+"Scene" = "Tempat kejadian";
 
 /* No comment provided by engineer. */
 "Script" = "Naskah";
@@ -1457,16 +1544,16 @@
 "seconds " = "detik ";
 
 /* No comment provided by engineer. */
-"Select all" = "Select all";
+"Select all" = "Pilih Semua";
 
 /* bluetooth */
 "Select Arduino" = "Pilih Arduino";
 
 /* No comment provided by engineer. */
-"Select brick category" = "Select brick category";
+"Select brick category" = "Pilih kategori bata";
 
 /* No comment provided by engineer. */
-"Select categories" = "Select categories";
+"Select categories" = "Pilih kategori";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Pilih operator logika";
@@ -1493,10 +1580,10 @@
 "September" = "September";
 
 /* No comment provided by engineer. */
-"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+"Server is taking to long to respond, please try again later." = "Server membutuhkan waktu lama untuk merespons, coba lagi nanti.";
 
 /* No comment provided by engineer. */
-"Session expired, please log in." = "Session expired, please log in.";
+"Session expired, please log in." = "Sesi kedaluwarsa, silakan masuk.";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "Tetapkan pin digital Arduino";
@@ -1517,7 +1604,7 @@
 "Set description" = "Atur keterangan";
 
 /* No comment provided by engineer. */
-"Set Instrument to" = "Set Instrument to";
+"Set Instrument to" = "Setel Instrumen ke";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "Tetapkan warna pena";
@@ -1535,6 +1622,9 @@
 "Set size to" = "Atur ukuran ke";
 
 /* No comment provided by engineer. */
+"Set tempo to" = "Setel tempo ke";
+
+/* No comment provided by engineer. */
 "Set transparency " = "Atur transparansi ";
 
 /* No comment provided by engineer. */
@@ -1544,10 +1634,10 @@
 "Set volume to" = "Atur volume";
 
 /* No comment provided by engineer. */
-"Set x to " = "Set x to ";
+"Set x to " = "Setel x ke ";
 
 /* No comment provided by engineer. */
-"Set y to " = "Set y to ";
+"Set y to " = "Setel y ke ";
 
 /* No comment provided by engineer. */
 "Settings" = "Pengaturan";
@@ -1560,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "Tampilkan variabel";
+
+/* No comment provided by engineer. */
+"sine" = "sinus";
 
 /* No comment provided by engineer. */
 "size" = "ukuran";
@@ -1591,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "Kecepatan";
 
-/* No comment provided by engineer. */
-"sqrt" = "sqrt";
-
 /* paint */
 "square" = "persegi";
+
+/* No comment provided by engineer. */
+"square root" = "sqrt";
 
 /* No comment provided by engineer. */
 "stage is touched" = "layar_di_sentuh";
@@ -1619,13 +1712,16 @@
 "Start sound and wait" = "Mulai suara dan tunggu";
 
 /* No comment provided by engineer. */
-"Steel Drum" = "Steel Drum";
+"Steel Drum" = "Drum besi";
 
 /* No comment provided by engineer. */
 "step" = "langkah";
 
 /* No comment provided by engineer. */
 "steps" = "langkah";
+
+/* No comment provided by engineer. */
+"Stitch" = "Menjahit";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Hentikan semua suara";
@@ -1643,6 +1739,9 @@
 "Switch to look" = "Beralih ke tampilan";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "Beralih untuk melihat dengan nomor";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "Galat Sintaksis!";
 
 /* No comment provided by engineer. */
@@ -1652,10 +1751,13 @@
 "Synth Pad" = "Synth Pad";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
+"tangent" = "garis singgung";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+"Tap \"+\" to add actors or objects" = "Ketuk \"+\" untuk menambahkan aktor atau objek";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add backgrounds" = "Ketuk \"+\" untuk menambahkan latar belakang";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add looks" = "Tekan \"+\" untuk menambah tampilan";
@@ -1665,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "Tekan \"+\" untuk menambah suara";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Ketuk \"+\" untuk menambahkan variabel dan daftar";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "Syarat Penggunaan dan Layanan";
@@ -1685,10 +1790,10 @@
 "The description contains invalid characters, try again." = "Keterangan berisi karakter yang tidak valid, cobalah lagi.";
 
 /* No comment provided by engineer. */
-"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+"The featured projects cannot be loaded" = "Proyek unggulan tidak dapat dimuat";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
+"The following item could not be imported from the media library:" = "Item berikut tidak dapat diimpor dari perpustakaan media:";
 
 /* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "Masukannya terlalu panjang. Silahkan masukkan karakter maksimal %lu.";
@@ -1697,19 +1802,16 @@
 "The name contains blocked characters. Please try again!" = "Nama berisi karakter yang diblokir. Silahkan coba lagi!";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "Proyek terbaru tidak dapat dimuat";
 
 /* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+"The requested project can not be loaded. Please try again later." = "Proyek yang diminta tidak dapat dimuat. Silakan coba lagi nanti.";
 
 /* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The sound item cannot be loaded" = "Item suara tidak dapat dimuat";
 
 /* No comment provided by engineer. */
-"The sound item cannot be loaded" = "The sound item cannot be loaded";
-
-/* No comment provided by engineer. */
-"The sound item cannot be played" = "The sound item cannot be played";
+"The sound item cannot be played" = "Item suara tidak dapat dimainkan";
 
 /* No comment provided by engineer. */
 "Think" = "Berpikir";
@@ -1721,7 +1823,7 @@
 "This feature is coming soon!" = "Fitur ini akan segera hadir!";
 
 /* No comment provided by engineer. */
-"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
+"This list can not be deleted because it is still in use." = "Daftar ini tidak dapat dihapus karena masih digunakan.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Variabel ini tidak dapat dihapus karena masih dalam penggunaan.";
@@ -1745,10 +1847,10 @@
 "to list" = "ke daftar";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "Untuk menawarkan kepada Anda semua manfaat layanan kami dan akun terkait, Anda perlu mengumpulkan data tertentu.\n\n\u{2022} Untuk memelihara dan meningkatkan layanan kami (aplikasi dan situs web) dan untuk melakukan penelitian ilmiah tentang TIK dan pendidikan STEM / STEAM, kami menggunakan Google Analytics, Crashlytics, dan Firebase, semuanya oleh Google LLC (AS), serta Dynatrace by Dynatrace LLC (USA) untuk mendapatkan metadata tentang penggunaan layanan kami, misalnya, informasi kerusakan, cap waktu, halaman / layar yang dikunjungi, penggunaan aplikasi dan layanan kami, sistem operasi yang digunakan, dan informasi tentang penyedia jaringan. Analisis ini dan data yang dikumpulkan tidak ditautkan ke profil Anda dan tidak berisi informasi pribadi apa pun (bit terakhir dari alamat IP menjadi anonim). Namun, data yang dikumpulkan akan ditransfer ke penyedia layanan (Google LLC, USA dan Dynatrace LLC, USA). Pemrosesan data didasarkan pada perjanjian dengan Google LLC dan Dynatrace LLC. Hubungan dengan penyedia layanan ini sesuai dengan Peraturan Perlindungan Data Umum Uni Eropa (GDPR UE) dan perjanjian \"Perlindungan Privasi\" UE-AS.\n\n\u{2022} Untuk membuat dan menggunakan akun di sistem kami, dan untuk memberi tahu Anda tentang perubahan yang diperlukan tentang akun Anda melalui email, misalnya, pembaruan atau pelanggaran Persyaratan Penggunaan dan Layanan kami, aturan komunitas kami, atau kebijakan kami , kami akan menyimpan nama pengguna Anda dan, jika diberikan oleh Anda, alamat email Anda. Jika Anda telah menghubungkan akun Anda melalui akun Google atau Facebook Anda, kami juga menyimpan kunci identifikasi yang terhubung ke akun Anda pada layanan ini. Kami tidak akan menggunakan data ini untuk tujuan lain (misalnya, pemasaran), kecuali Anda secara eksplisit mengizinkan kami untuk melakukannya.\n\n\u{2022} Secara sukarela, Anda dapat memberikan kami negara tempat tinggal Anda melalui halaman akun Anda di situs berbagi. Ini akan ditampilkan di profil publik Anda dan hanya digunakan untuk keperluan statistik dan penelitian oleh kami. Itu dapat dihapus kapan saja di pengaturan profil Anda.\n\n\u{2022} Anda dapat menarik penggunaan data pribadi milik akun Anda kapan saja dengan menghapus akun Anda melalui halaman profil Anda di https://share.catrob.at. Setelah menghapus akun Anda, Anda masih dapat menggunakan layanan yang disediakan, tetapi tidak dapat berkolaborasi, misalnya, melalui mengunggah program, memberi komentar, atau menyukai. Selain itu, semua konten yang disediakan dan ditautkan ke akun Anda, misalnya, program yang diunggah, komentar, dll., Akan dihapus.\n\n\u{2022} Untuk menghindari penyalahgunaan layanan kami, misalnya, melalui unggahan atau komentar yang dikontribusikan pengguna untuk tujuan ilegal, semua data publik yang dibuat pengguna (unggahan, komentar) akan disimpan secara internal dalam database, bersama dengan stempel waktu dan internet yang digunakan alamat. Data ini tidak akan digunakan oleh atau diteruskan ke lembaga mana pun, kecuali tindakan ilegal cukup diduga dan lembaga hukum yang berhak secara resmi memintanya berdasarkan hukum yang berlaku. Setiap kasus akan diperiksa secara menyeluruh secara individual oleh kami terlebih dahulu.\n\n\u{2022} Anda dapat berlangganan Buletin Catrobat secara sukarela, di https://catrob.at/newsletter yang kami sediakan melalui layanan MailChimp (The Rocket Science Group LLC d / b / a MailChimp, USA). Anda kemudian akan menerima pembaruan tentang proyek Catrobat dan layanannya ke alamat email yang Anda berikan. Anda dapat menarik buletin kapan saja dengan menggunakan tautan \"berhenti berlangganan\" di bagian bawah setiap buletin. Buletin ini disediakan oleh MailChimp dengan siapa kami memiliki perjanjian pemrosesan data dan yang berkomitmen pada Peraturan Perlindungan Data Umum UE dan \"Perlindungan Privasi\" UE-AS. Untuk detail lebih lanjut tentang MailChimp, harap lihat juga Kebijakan Privasi dan Syarat Penggunaan MailChimp.\n\n\u{2022} Semua Layanan disediakan oleh proyek Catrobat sumber terbuka gratis di bawah payung Asosiasi Catrobat Internasional - Verein zur Förderung freier Software, sebuah LSM nirlaba yang didirikan di Graz, Austria (Uni Eropa). Kebijakan kami menghormati undang-undang perlindungan data UE dan Austria (GDPR). Untuk menghubungi kami, silakan kirim email ke contact@catrobat.org atau kirim email ke Catrobat,\nbersama\nInstitut Teknologi Perangkat Lunak,\nUniversitas Teknologi Graz,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(Uni Eropa).\n\nJika Anda berusia di bawah 14 tahun, polis ini harus diterima oleh wali resmi (biasanya orang tua).\n\nKebijakan privasi bahasa Inggris resmi Catrobat tersedia di web di bawah https://catrob.at/privacypolicy.\n\nVersi 2.2, 17 Oktober 2019\n\nTemukan versi sebelumnya, usang, dari kebijakan privasi kami (2.0) di sini: http://developer.catrobat.org/privacy_policy_2-0";
 
 /* No comment provided by engineer. */
-"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "Untuk menggunakan aplikasi kami, Anda perlu menerima Kebijakan Privasi kami. Namun, jika Anda merasa tidak nyaman melakukannya, Anda dapat menggunakan layanan web gratis kami di share.catrob.at";
 
 /* No comment provided by engineer. */
 "to x:" = "ke X:";
@@ -1757,13 +1859,16 @@
 "Today" = "Hari ini";
 
 /* No comment provided by engineer. */
+"Touch detection" = "Deteksi sentuhan";
+
+/* No comment provided by engineer. */
 "touch position" = "Sentuh posisi";
 
 /* No comment provided by engineer. */
 "transparency" = "transparansi";
 
 /* No comment provided by engineer. */
-"Trombone" = "Trombone";
+"Trombone" = "Trombon";
 
 /* No comment provided by engineer. */
 "true" = "benar";
@@ -1787,7 +1892,10 @@
 "Turn right" = "Belok kanan";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to import project!" = "Tidak dapat mengimpor proyek!";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Tidak dapat memuat proyek!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Tidak dapat memutar suara ini!\nMungkin suara tidak valid atau berkas rusak.";
@@ -1811,31 +1919,31 @@
 "Undo Typing?" = "Batalkan mengetik?";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Unexpected Error";
+"Unexpected Error" = "Kesalahan tak terduga";
 
 /* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+"Unexpected Error, please try again later." = "Kesalahan Tak Terduga, coba lagi nanti.";
 
 /* No comment provided by engineer. */
-"Unknown Element" = "Unknown Element";
+"Unknown Element" = "Elemen Tidak Diketahui";
 
 /* No comment provided by engineer. */
-"Unselect all" = "Unselect all";
+"Unselect all" = "Batalkan semua pilihan";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Unsupported Brick:";
+"Unsupported Brick:" = "Bata Tidak Didukung:";
 
 /* No comment provided by engineer. */
-"Unsupported Elements" = "Unsupported Elements";
+"Unsupported Elements" = "Elemen Tidak Didukung";
 
 /* No comment provided by engineer. */
-"Unsupported Script:" = "Unsupported Script:";
+"Unsupported Script:" = "Skrip Tidak Didukung:";
 
 /* No comment provided by engineer. */
 "Upload project" = "Mengunggah Program";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Upload selected project";
+"Upload selected project" = "Unggah proyek yang dipilih";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Unggahan berhasil";
@@ -1856,19 +1964,22 @@
 "Username must not be blank" = "Nama pengguna tidak boleh kosong";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/List";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Nama variabel:";
 
 /* No comment provided by engineer. */
-"Variable or list" = "Variable or list";
+"Variable or list" = "Variabel atau daftar";
 
 /* No comment provided by engineer. */
 "Variable type" = "Tipe variabel";
 
 /* No comment provided by engineer. */
 "Variables" = "Variabel";
+
+/* No comment provided by engineer. */
+"Variables for all actors and objects" = "Variabel untuk semua aktor dan objek";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "Variabel untuk aktor atau objek ini saja";
 
 /* No comment provided by engineer. */
 "Version" = "Versi";
@@ -1883,10 +1994,13 @@
 "vibration" = "getaran";
 
 /* No comment provided by engineer. */
-"View" = "View";
+"View" = "Melihat";
 
 /* No comment provided by engineer. */
 "Views" = "Tampilan";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Sensor visual";
 
 /* No comment provided by engineer. */
 "Wait" = "Tunggu";
@@ -1904,10 +2018,10 @@
 "weekday" = "hari kerja";
 
 /* No comment provided by engineer. */
-"Welcome!" = "Welcome!";
+"Welcome!" = "Selamat datang!";
 
 /* No comment provided by engineer. */
-"What's your name?" = "What's your name?";
+"What's your name?" = "Siapa namamu?";
 
 /* No comment provided by engineer. */
 "When" = "Kapan";
@@ -1916,7 +2030,7 @@
 "When background changes to" = "Saat latar belakang berubah";
 
 /* No comment provided by engineer. */
-"When project starts" = "When project starts";
+"When project starts" = "Saat proyek dimulai";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Saat layar tersentuh";
@@ -1934,7 +2048,7 @@
 "with" = "dengan";
 
 /* No comment provided by engineer. */
-"Wooden Flute" = "Wooden Flute";
+"Wooden Flute" = "Seruling Kayu";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";
@@ -1952,16 +2066,19 @@
 "Yesterday" = "Kemarin";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "Anda sudah mengunduh proyek ini!";
 
 /* No comment provided by engineer. */
-"Your answer" = "Your answer";
+"Your answer" = "Jawaban Anda";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Email Anda tampaknya tidak sah";
 
 /* No comment provided by engineer. */
-"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Proyek Anda telah diunggah ke komunitas Catrobat di mana orang lain dapat menggunakan dan mengunduhnya.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "Laporan Anda berhasil dikirim!";
 
 /* paint */
-"Zoom" = "Zoom";
+"Zoom" = "Perbesar";

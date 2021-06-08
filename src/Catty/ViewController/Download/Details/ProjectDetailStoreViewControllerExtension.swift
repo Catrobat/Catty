@@ -382,7 +382,7 @@ import ActiveLabel
         }
         contentSize.height += 30.0
         self.scrollViewOutlet.contentSize = contentSize
-        self.automaticallyAdjustsScrollViewInsets = false
+        self.scrollViewOutlet.contentInsetAdjustmentBehavior = .never
         self.scrollViewOutlet.isUserInteractionEnabled = true
     }
 
@@ -435,14 +435,20 @@ import ActiveLabel
 
     private func openProject(withLocalName localProjectName: String?) {
         showLoadingView()
-        CATransaction.flush()
 
-        guard let selectedProject = Project.init(loadingInfo: ProjectLoadingInfo.init(forProjectWithName: localProjectName, projectID: project.projectID)) else {
-            hideLoadingView()
-            Util.alert(text: kLocalizedUnableToLoadProject)
-            return
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let selectedProject = Project.init(loadingInfo: ProjectLoadingInfo.init(forProjectWithName: localProjectName, projectID: self.project.projectID)) else {
+                DispatchQueue.main.async {
+                    self.hideLoadingView()
+                    Util.alert(text: kLocalizedUnableToLoadProject)
+                }
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.hideLoadingView()
+                self.openProject(selectedProject)
+            }
         }
-        hideLoadingView()
-        openProject(selectedProject)
     }
 }

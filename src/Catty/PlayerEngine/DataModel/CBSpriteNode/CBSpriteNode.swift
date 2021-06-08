@@ -176,6 +176,13 @@ class CBSpriteNode: SKSpriteNode {
         spriteObject.lookList
     }
 
+    @objc func look(for index: Int) -> Look? {
+        if  index < 1 || index > spriteObject.lookList.count {
+            return nil
+        }
+        return spriteObject.lookList[index - 1] as? Look
+    }
+
     @objc func changeLook(_ look: Look?) {
         guard let look = look,
             let filePathForLook = look.path(for: spriteObject.scene),

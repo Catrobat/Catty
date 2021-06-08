@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedFeaturedProjectsDataSource {
+class FeaturedProjectsStoreTableViewController: UITableViewController, FeaturedProjectsCellDelegate {
 
     // MARK: - Properties
 
@@ -139,15 +139,10 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
             self.shouldHideLoadingView = false
         }
     }
-}
 
-extension FeaturedProjectsStoreTableViewController: FeaturedProjectsCellProtocol {
-
-    func selectedCell(dataSource datasource: FeaturedProjectsStoreTableDataSource, didSelectCellWith cell: FeaturedProjectsCell) {
-        if let project = cell.project {
-            self.showLoadingView()
-            projectForSegue = project
-            performSegue(withIdentifier: kSegueToProjectDetail, sender: self)
-        }
+    func openProject(_ project: StoreProject) {
+        self.showLoadingView()
+        projectForSegue = project
+        performSegue(withIdentifier: kSegueToProjectDetail, sender: self)
     }
 }

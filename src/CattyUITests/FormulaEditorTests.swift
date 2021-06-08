@@ -40,8 +40,8 @@ class FormulaEditorTests: XCTestCase {
         app.collectionViews.cells.allElementsBoundByIndex[1].tap()
         app.buttons[kLocalizedEditFormula].tap()
 
-        app.scrollViews.buttons.staticTexts["7"].tap()
-        app.scrollViews.buttons.staticTexts["5"].tap()
+        waitForElementToAppear(app.buttons.staticTexts["7"]).tap()
+        waitForElementToAppear(app.buttons.staticTexts["5"]).tap()
         app.buttons[kLocalizedDone].firstMatch.tap()
 
         var predicate = NSPredicate(format: "label CONTAINS[c] %@", "75")
@@ -50,8 +50,8 @@ class FormulaEditorTests: XCTestCase {
         }
 
         app.collectionViews.cells.staticTexts.containing(predicate).firstMatch.tap()
-        app.scrollViews.buttons.staticTexts["3"].tap()
-        app.scrollViews.buttons.staticTexts["0"].tap()
+        waitForElementToAppear(app.buttons.staticTexts["3"]).tap()
+        waitForElementToAppear(app.buttons.staticTexts["0"]).tap()
         app.buttons[kLocalizedDone].firstMatch.tap()
 
         predicate = NSPredicate(format: "label CONTAINS[c] %@", "30")
@@ -84,8 +84,8 @@ class FormulaEditorTests: XCTestCase {
         app.collectionViews.cells.allElementsBoundByIndex[1].tap()
         app.buttons[kLocalizedEditFormula].tap()
 
-        app.scrollViews.buttons.staticTexts["7"].tap()
-        app.scrollViews.buttons.staticTexts["5"].tap()
+        waitForElementToAppear(app.buttons.staticTexts["7"]).tap()
+        waitForElementToAppear(app.buttons.staticTexts["5"]).tap()
         app.buttons[kLocalizedCancel].firstMatch.tap()
 
         var predicate = NSPredicate(format: "label CONTAINS[c] %@", "30")

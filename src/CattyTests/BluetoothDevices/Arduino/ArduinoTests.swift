@@ -28,7 +28,7 @@ import XCTest
 class ArduinoTests: XCTestCase {
 
     var mock = ArduinoTestMock()
-    var arduinoTest = ArduinoDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock(test: true), advertisements: [String: String](), rssi: 0))
+    var arduinoTest = ArduinoDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock.create(), advertisements: [String: String](), rssi: 0))
 
     override func setUp( ) {
         super.setUp()
@@ -571,7 +571,7 @@ class ArduinoTests: XCTestCase {
         //Given
         let name = "test"
         let data = name.data(using: String.Encoding.ascii)
-        arduinoTest.txCharacteristic = CharacteristicMock(test: true)
+        arduinoTest.txCharacteristic = CharacteristicMock.create()
         //When
         arduinoTest.sendData(data!)
         //Then
@@ -587,7 +587,7 @@ class ArduinoTests: XCTestCase {
         //Given
         let name = "testtesttesttesttesttest"
         let data = name.data(using: String.Encoding.ascii)
-        arduinoTest.txCharacteristic = CharacteristicMock(test: true)
+        arduinoTest.txCharacteristic = CharacteristicMock.create()
         //When
         arduinoTest.sendData(data!)
         //Then

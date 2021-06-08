@@ -40,9 +40,8 @@ final class CatrobatTableViewControllerExtensionTests: XCTestCase {
         navigationControllerMock = NavigationControllerMock()
         controller = CatrobatTableViewControllerMock(navigationControllerMock)
 
-        project = StoreProject(projectId: testId,
-                               projectName: "",
-                               projectNameShort: "",
+        project = StoreProject(id: testId,
+                               name: "",
                                author: "",
                                description: "",
                                version: "",
@@ -55,7 +54,7 @@ final class CatrobatTableViewControllerExtensionTests: XCTestCase {
                                projectUrl: "",
                                downloadUrl: "",
                                fileSize: 1.0,
-                               featuredImage: "")
+                               tags: [""])
 
         storeProjectDownloaderMock = StoreProjectDownloaderMock()
         storeProjectDownloaderMock.project = project

@@ -27,7 +27,7 @@
 #import "Catty-Bridging-Header.h"
 
 #import "ConvertExceptionToError.h"
-#import "chromaprint.h"
+#import "ForceInit.h"
 #import "LoginViewController.h"
 #import "BaseCollectionViewController.h"
 #import "ScriptCollectionViewController.h"

@@ -212,4 +212,20 @@ final class UserVariableTests: XCTestCase {
         userVariable.change(by: Double(incrementValue))
         XCTAssertEqual(String(initialValue + incrementValue), userVariable.textLabel?.text)
     }
+
+    func testTruncateIfTextLabelLengthExceeded() {
+        let userVariable = UserVariable(name: "name")
+        userVariable.textLabel = SKLabelNode()
+
+        var value = ""
+        for _ in 0...(SpriteKitDefines.maxLengthSKLabelNode - 1) {
+            value += "a"
+        }
+        userVariable.value = value
+
+        XCTAssertEqual(value, userVariable.textLabel?.text)
+
+        userVariable.value = value + "a"
+        XCTAssertEqual(value + "...", userVariable.textLabel?.text)
+    }
 }

@@ -117,6 +117,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if defaults.value(forKey: kFirebaseSendCrashReports) == nil {
             defaults.set(kFirebaseSendCrashReportsDefault, forKey: kFirebaseSendCrashReports)
         }
+
+        if defaults.value(forKey: kUseWebRequestBrick) == nil {
+            defaults.set(kWebRequestBrickActivated, forKey: kUseWebRequestBrick)
+        }
     }
 
     func setupFirebase() {
@@ -149,5 +153,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         self.disabledOrientation ? UIInterfaceOrientationMask.portrait : UIInterfaceOrientationMask.all
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
+
+        let vc = self.window?.rootViewController as? UINavigationController
+        vc?.popToRootViewController(animated: true)
+
+        guard let topViewController = vc?.topViewController,
+              let project = ProjectManager.addProjectFromFile(url: url) else {
+            return false
+        }
+
+        topViewController.openProject(project)
+        return true
     }
 }

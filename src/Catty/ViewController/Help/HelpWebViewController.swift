@@ -93,7 +93,7 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         touchHelperView = UIView(frame: CGRect.zero)
         touchHelperView?.backgroundColor = UIColor.clear
         progressView.tintColor = UIColor.navTint
-        automaticallyAdjustsScrollViewInsets = false
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -182,7 +182,7 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             return
         }
 
-        if requestUrl.absoluteString.contains(NetworkDefines.projectDetailsUrlPrefix) {
+        if requestUrl.absoluteString.contains(NetworkDefines.apiEndpointProjectDetails) {
             self.openProjectDetails(url: requestUrl)
             decisionHandler(.cancel)
             return

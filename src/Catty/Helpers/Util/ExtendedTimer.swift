@@ -25,7 +25,6 @@ import Foundation
 final class ExtendedTimer: Hashable {
 
     var timer: Timer?
-    let block: ((ExtendedTimer) -> Void)?
     let execOnMainRunLoop: Bool
     var hasStarted = false
     var pauseDate: Date?
@@ -47,25 +46,14 @@ final class ExtendedTimer: Hashable {
 
         self.execOnMainRunLoop = execOnMainRunLoop
 
-        if #available(iOS 10.0, *) {
-            self.block = nil
-            self.timer = Timer.init(timeInterval: timeInterval, repeats: repeats) { _ in
-                block(self)
-            }
-        } else {
-            self.timer = nil
-            self.block = block
-            self.timer = Timer.init(timeInterval: timeInterval, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: repeats)
+        self.timer = Timer.init(timeInterval: timeInterval, repeats: repeats) { _ in
+            block(self)
         }
 
         if startTimerImmediately {
             scheduleTimer()
             self.hasStarted = true
         }
-    }
-
-    @objc func fire(timer: Timer) {
-        self.block?(self)
     }
 
     func invalidate() {

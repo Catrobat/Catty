@@ -89,6 +89,9 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
+"and store answer in" = "and store answer in";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "and store written answer in ";
 
 /* No comment provided by engineer. */
@@ -512,6 +515,9 @@
 "Disagree" = "Disagree";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Discard changes";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "Disconnect all devices";
 
 /* No comment provided by engineer. */
@@ -531,6 +537,9 @@
 
 /* No comment provided by engineer. */
 "Download" = "Download";
+
+/* No comment provided by engineer. */
+"Download too big" = "Download too big";
 
 /* No comment provided by engineer. */
 "Downloads" = "Downloads";
@@ -855,6 +864,9 @@
 
 /* paint */
 "Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"Internet" = "Internet";
 
 /* No comment provided by engineer. */
 "into list" = "into list";
@@ -1412,6 +1424,9 @@
 "Projects on device" = "Projects on device";
 
 /* No comment provided by engineer. */
+"Properties" = "Properties";
+
+/* No comment provided by engineer. */
 "random position" = "random position";
 
 /* No comment provided by engineer. */
@@ -1498,6 +1513,9 @@
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
 
+/* No comment provided by engineer. */
+"Save changes" = "Save changes";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
 
@@ -1559,6 +1577,9 @@
 "Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
+"Send web request to" = "Send web request to";
+
+/* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Sending anonymous crash reports";
 
 /* No comment provided by engineer. */
@@ -1584,6 +1605,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "Set background";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "Set background and wait";
+
+/* No comment provided by engineer. */
+"Set background to number" = "Set background to number";
 
 /* No comment provided by engineer. */
 "Set brightness " = "Set brightness ";
@@ -1881,6 +1908,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "Turn right";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Unable to import project!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Unable to load project!";

@@ -216,6 +216,8 @@ let kLocalizedYes = NSLocalizedString("Yes", bundle: Bundle(for: LanguageTransla
 let kLocalizedNo = NSLocalizedString("No", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeleteProject = NSLocalizedString("Delete project", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLoading = NSLocalizedString("Loading", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSaveChanges = NSLocalizedString("Save changes", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDiscardChanges = NSLocalizedString("Discard changes", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSaved = NSLocalizedString("Saved", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedProjectUploaded = NSLocalizedString("Upload successful", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedProjectUploadedBody = NSLocalizedString("Your project was uploaded to the Catrobat community where others can use and download it.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -282,6 +284,7 @@ let kLocalizedThisFeatureIsComingSoon = NSLocalizedString("This feature is comin
 let kLocalizedNoDescriptionAvailable = NSLocalizedString("No description available", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNoSearchResults = NSLocalizedString("No search results", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnableToLoadProject = NSLocalizedString("Unable to load project!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedUnableToImportProject = NSLocalizedString("Unable to import project!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedThisActionCannotBeUndone = NSLocalizedString("This action can not be undone!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedErrorInternetConnection = NSLocalizedString("An unknown error occurred. Check your Internet connection.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedErrorUnknown = NSLocalizedString("An unknown error occurred. Please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -404,6 +407,7 @@ let kLocalizedDoNotRotate = NSLocalizedString("don't rotate", bundle: Bundle(for
 let kLocalizedLook = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetLook = NSLocalizedString("Switch to look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetBackground = NSLocalizedString("Set background", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetBackgroundAndWait = NSLocalizedString("Set background and wait", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNextLook = NSLocalizedString("Next look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNextBackground = NSLocalizedString("Next background", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPreviousLook = NSLocalizedString("Previous look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -432,6 +436,7 @@ let kLocalizedAndStoreWrittenAnswerIn = NSLocalizedString("and store written ans
 let kLocalizedDefaultAskBrickQuestion = NSLocalizedString("What's your name?", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAskBrickAnswer = NSLocalizedString("Your answer", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSwitchToLookWithNumber = NSLocalizedString("Switch to look with number", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetBackgroundByIndex = NSLocalizedString("Set background to number", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -464,6 +469,8 @@ let kLocalizedChangeVariable = NSLocalizedString("Change variable", bundle: Bund
 let kLocalizedShowVariable = NSLocalizedString("Show variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedHideVariable = NSLocalizedString("Hide variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAt = NSLocalizedString("at ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSendWebRequestTo = NSLocalizedString("Send web request to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAndStoreAnswerIn = NSLocalizedString("and store answer in", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //userlist
 let kLocalizedUserListAdd = NSLocalizedString("Add", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -603,6 +610,7 @@ let kUIFEObject = NSLocalizedString("Object", bundle: Bundle(for: LanguageTransl
 let kUIFESensor = NSLocalizedString("Sensors", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEVariable = NSLocalizedString("Variables", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEData = NSLocalizedString("Data", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEProperties = NSLocalizedString("Properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFECompute = NSLocalizedString("Compute", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEDone = NSLocalizedString("Done", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEError = NSLocalizedString("Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -745,6 +753,7 @@ let kLocalizedSensorMagnetic = NSLocalizedString("magnetic-sensor", bundle: Bund
 let kLocalizedVibration = NSLocalizedString("vibration", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSensorLoudness = NSLocalizedString("loudness", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSensorLED = NSLocalizedString("LED", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedInternet = NSLocalizedString("Internet", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNotAvailable = NSLocalizedString("not available. Continue anyway?", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFESensorFaceDetected = NSLocalizedString("face detected", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -837,6 +846,7 @@ let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", b
 let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDownloadSizeErrorMessage = NSLocalizedString("Download too big", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**************************************       Audio Engine        *********************************************

@@ -1,5 +1,2 @@
 github "SecondRenaissance/Bohr"
 github "audiokit/audiokit" "v4.11.2"
-github "ZipArchive/ZipArchive"
-binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.json" ~> 6.34.0
-binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseCrashlyticsBinary.json" ~> 6.34.0

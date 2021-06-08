@@ -84,7 +84,7 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
 
         parameters.append(FormData(name: fileChecksumParameterTag, value: checksum))
 
-        if let token = JNKeychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
+        if let token = Keychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
             parameters.append(FormData(name: tokenParameterTag, value: token))
         }
 

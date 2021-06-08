@@ -216,6 +216,8 @@
 #define kLocalizedNo NSLocalizedString(@"No", nil)
 #define kLocalizedDeleteProject NSLocalizedString(@"Delete project", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
+#define kLocalizedSaveChanges NSLocalizedString(@"Save changes", nil)
+#define kLocalizedDiscardChanges NSLocalizedString(@"Discard changes", nil)
 #define kLocalizedSaved NSLocalizedString(@"Saved", nil)
 #define kLocalizedProjectUploaded NSLocalizedString(@"Upload successful", nil)
 #define kLocalizedProjectUploadedBody NSLocalizedString(@"Your project was uploaded to the Catrobat community where others can use and download it.", nil)
@@ -282,6 +284,7 @@
 #define kLocalizedNoDescriptionAvailable NSLocalizedString(@"No description available", nil)
 #define kLocalizedNoSearchResults NSLocalizedString(@"No search results", nil)
 #define kLocalizedUnableToLoadProject NSLocalizedString(@"Unable to load project!", nil)
+#define kLocalizedUnableToImportProject NSLocalizedString(@"Unable to import project!", nil)
 #define kLocalizedThisActionCannotBeUndone NSLocalizedString(@"This action can not be undone!", nil)
 #define kLocalizedErrorInternetConnection NSLocalizedString(@"An unknown error occurred. Check your Internet connection.", nil)
 #define kLocalizedErrorUnknown NSLocalizedString(@"An unknown error occurred. Please try again later.", nil)
@@ -404,6 +407,7 @@
 #define kLocalizedLook NSLocalizedString(@"Look", nil)
 #define kLocalizedSetLook NSLocalizedString(@"Switch to look", nil)
 #define kLocalizedSetBackground NSLocalizedString(@"Set background", nil)
+#define kLocalizedSetBackgroundAndWait NSLocalizedString(@"Set background and wait", nil)
 #define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
 #define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
 #define kLocalizedPreviousLook NSLocalizedString(@"Previous look", nil)
@@ -432,6 +436,7 @@
 #define kLocalizedDefaultAskBrickQuestion NSLocalizedString(@"What's your name?", nil)
 #define kLocalizedAskBrickAnswer NSLocalizedString(@"Your answer", nil)
 #define kLocalizedSwitchToLookWithNumber NSLocalizedString(@"Switch to look with number", nil)
+#define kLocalizedSetBackgroundByIndex NSLocalizedString(@"Set background to number", nil)
 
 // pen bricks
 #define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)
@@ -464,6 +469,8 @@
 #define kLocalizedShowVariable NSLocalizedString(@"Show variable", nil)
 #define kLocalizedHideVariable NSLocalizedString(@"Hide variable", nil)
 #define kLocalizedAt NSLocalizedString(@"at ", nil)
+#define kLocalizedSendWebRequestTo NSLocalizedString(@"Send web request to", nil)
+#define kLocalizedAndStoreAnswerIn NSLocalizedString(@"and store answer in", nil)
 
 //userlist
 #define kLocalizedUserListAdd NSLocalizedString(@"Add", nil)
@@ -603,6 +610,7 @@
 #define kUIFESensor NSLocalizedString(@"Sensors", nil)
 #define kUIFEVariable NSLocalizedString(@"Variables", nil)
 #define kUIFEData NSLocalizedString(@"Data", nil)
+#define kUIFEProperties NSLocalizedString(@"Properties", nil)
 #define kUIFECompute NSLocalizedString(@"Compute", nil)
 #define kUIFEDone NSLocalizedString(@"Done", nil)
 #define kUIFEError NSLocalizedString(@"Error", nil)
@@ -745,6 +753,7 @@
 #define kLocalizedVibration NSLocalizedString(@"vibration", nil)
 #define kLocalizedSensorLoudness NSLocalizedString(@"loudness", nil)
 #define kLocalizedSensorLED NSLocalizedString(@"LED", nil)
+#define kLocalizedInternet NSLocalizedString(@"Internet", nil)
 #define kLocalizedNotAvailable NSLocalizedString(@"not available. Continue anyway?", nil)
 
 #define kUIFESensorFaceDetected NSLocalizedString(@"face detected", nil)
@@ -837,6 +846,7 @@
 #define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
 #define kLocalizedUnexpectedErrorTitle NSLocalizedString(@"Unexpected Error", nil)
 #define kLocalizedUnexpectedErrorMessage NSLocalizedString(@"Unexpected Error, please try again later.", nil)
+#define kLocalizedDownloadSizeErrorMessage NSLocalizedString(@"Download too big", nil)
 
 //************************************************************************************************************
 //**************************************       Audio Engine        *********************************************

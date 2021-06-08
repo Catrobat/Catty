@@ -107,7 +107,7 @@ class VariableTests: XCTestCase {
         app.buttons[kLocalizedOK].tap()
         app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
-        app.buttons[kUIFEAddNewText].tap()
+        waitForElementToAppear(app.buttons[kUIFEAddNewText]).tap()
         XCTAssertEqual(alert.textFields.firstMatch.value as! String, testVariable)
     }
 
@@ -125,7 +125,7 @@ class VariableTests: XCTestCase {
         app.buttons[kLocalizedOK].tap()
         app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
-        app.buttons[kUIFEData].tap()
+        waitForElementToAppear(app.buttons[kUIFEData]).tap()
         waitForElementToAppear(app.navigationBars.buttons[kLocalizedAdd]).tap()
         waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()

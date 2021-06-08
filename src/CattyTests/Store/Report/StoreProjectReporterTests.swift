@@ -40,7 +40,7 @@ class StoreProjectsReporterTests: XCTestCase {
        self.project = Project()
        self.project.header = header
 
-       JNKeychain.saveValue("validToken", forKey: NetworkDefines.kUserLoginToken)
+       Keychain.saveValue("validToken", forKey: NetworkDefines.kUserLoginToken)
        UserDefaults.standard.setValue("UserName", forKey: kcUsername)
 
        self.expectedZippedProjectData = "zippedProjectData".data(using: .utf8)
@@ -49,7 +49,7 @@ class StoreProjectsReporterTests: XCTestCase {
 
    override func tearDown() {
        UserDefaults.standard.removeObject(forKey: kcUsername)
-       JNKeychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
+       Keychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
        super.tearDown()
    }
 
@@ -136,7 +136,7 @@ class StoreProjectsReporterTests: XCTestCase {
         let projectId = "817"
         let message = "Not appropriate content"
 
-        JNKeychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
+        Keychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
         let dvrSession = Session(cassetteName: "StoreProjectReporter.reportProject.authentication.fail")
         let expectation = XCTestExpectation(description: "Report Projects")
         let reporter = StoreProjectReporter(session: dvrSession)

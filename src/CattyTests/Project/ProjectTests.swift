@@ -309,7 +309,7 @@ class ProjectTests: XCTestCase {
     }
 
     func testProjectWithLoadingInfoInvalidDirectory() {
-        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName + "invalid", projectID: kNoProjectIDYetPlaceholder)
+        let loadingInfo = ProjectLoadingInfo(forProjectWithName: project.header.programName + "invalid", projectID: kNoProjectIDYetPlaceholder)
 
         XCTAssertFalse(fileManager.directoryExists(loadingInfo!.basePath))
 
@@ -318,7 +318,7 @@ class ProjectTests: XCTestCase {
     }
 
     func testProjectWithLoadingInfo() {
-        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName, projectID: kNoProjectIDYetPlaceholder)
+        let loadingInfo = ProjectLoadingInfo(forProjectWithName: project.header.programName, projectID: kNoProjectIDYetPlaceholder)
 
         XCTAssertTrue(fileManager.directoryExists(loadingInfo!.basePath))
 
@@ -338,11 +338,29 @@ class ProjectTests: XCTestCase {
 
         fileManager.moveExistingDirectory(atPath: oldDirectoryName, toPath: project.projectPath())
 
-        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: newProjectName, projectID: kNoProjectIDYetPlaceholder)
+        let loadingInfo = ProjectLoadingInfo(forProjectWithName: newProjectName, projectID: kNoProjectIDYetPlaceholder)
         XCTAssertTrue(fileManager.directoryExists(loadingInfo!.basePath))
 
         let project = Project(loadingInfo: loadingInfo!)
         XCTAssertEqual(newProjectName, project!.header.programName!)
+    }
+
+    func testProjectWithLoadingInfoDivergingNameAndUseOriginalName() {
+        let oldProjectName = project.header.programName
+        let oldDirectoryName = project.projectPath()
+
+        project.header.programName += "new"
+
+        let newProjectName = project.header.programName
+        XCTAssertNotEqual(oldProjectName, newProjectName)
+
+        fileManager.moveExistingDirectory(atPath: oldDirectoryName, toPath: project.projectPath())
+
+        let loadingInfo = ProjectLoadingInfo(forProjectWithName: newProjectName, projectID: kNoProjectIDYetPlaceholder)
+        loadingInfo?.useOriginalName = true
+
+        let project = Project(loadingInfo: loadingInfo!)
+        XCTAssertEqual(oldProjectName, project!.header.programName!)
     }
 
     func testDefaultProjectWithoutSavedNotification() {
@@ -356,13 +374,13 @@ class ProjectTests: XCTestCase {
     }
 
     func testNotificationForValidProjectWithLoadingInfo() {
-        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName, projectID: kNoProjectIDYetPlaceholder)
+        let loadingInfo = ProjectLoadingInfo(forProjectWithName: project.header.programName, projectID: kNoProjectIDYetPlaceholder)
 
         expect(Project(loadingInfo: loadingInfo!)).to(postNotifications(equal([])))
     }
 
     func testNotificationForInvalidProjectWithLoading() {
-        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName + "InvalidProject", projectID: kNoProjectIDYetPlaceholder)
+        let loadingInfo = ProjectLoadingInfo(forProjectWithName: project.header.programName + "InvalidProject", projectID: kNoProjectIDYetPlaceholder)
 
         let expectedNotification = Notification(name: .projectInvalidVersion, object: loadingInfo)
         expect(Project(loadingInfo: loadingInfo!)).to(postNotifications(equal([expectedNotification])))

@@ -66,8 +66,8 @@ class BrickCellTests: XCTestCase {
 
             waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]).buttons[kLocalizedBack].tap()
 
-            let alert2 = waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode])
-            alert2.buttons[kLocalizedYes].tap()
+            let alert2 = waitForElementToAppear(app.sheets.firstMatch)
+            alert2.buttons[kLocalizedSaveChanges].tap()
 
             let alert3 = waitForElementToAppear(app.alerts[kLocalizedAddImage])
             alert3.textFields.buttons["Clear text"].tap()
