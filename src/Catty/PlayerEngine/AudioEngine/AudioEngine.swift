@@ -24,48 +24,46 @@ import AudioKit
 import Foundation
 
 @objc class AudioEngine: NSObject, AudioEngineProtocol {
+    let audioPlayerFactory: AudioPlayerFactory
+
+    var engine = AudioKit.AudioEngine()
+    var engineOutputMixer = AudioKit.Mixer()
+
     var audioEngineHelper = AudioEngineHelper()
     var speechSynth = SpeechSynthesizer()
-
-    var engineOutputMixer = AKMixer()
-    var postProcessingMixer = AKMixer()
 
     var tempo = Int()
 
     var subtrees = [String: AudioSubtree]()
     let subtreeCreationQueue = DispatchQueue(label: "SubtreeCreationQueue")
-    let audioPlayerFactory: AudioPlayerFactory
 
     init(audioPlayerFactory: AudioPlayerFactory = StandardAudioPlayerFactory()) {
         self.audioPlayerFactory = audioPlayerFactory
+        self.engine.output = self.engineOutputMixer
         super.init()
     }
 
     @objc func start() {
-        AKSettings.disableAVAudioSessionCategoryManagement = true
+        AudioKit.Settings.disableAVAudioSessionCategoryManagement = true
         audioEngineHelper.activateAudioSession()
-        AKManager.output = postProcessingMixer
-        engineOutputMixer.connect(to: postProcessingMixer)
+
         do {
-            try AKManager.start()
-        } catch {
-            print("COULD NOT START AUDIO ENGINE! MAKE SURE TO ALWAYS SHUT DOWN AUDIO ENGINE BEFORE" +
-                "INSTANTIATING IT AGAIN (AFTER EVERY TEST CASE)! USE AN AUDIOENGINEMOCK IN TESTS" +
-                "WHEN A SCENE DOES NOT NEED THE AUDIO ENGINE.")
+            try engine.start()
+        } catch let error as NSError {
+            print("Could not start audio engine:", error)
         }
     }
 
     @objc func pause() {
         pauseAllAudioSources()
-        AKManager.engine.pause()
+        engine.pause()
     }
 
     @objc func resume() {
         do {
-            try AKManager.engine.start()
+            try engine.start()
         } catch let error as NSError {
-            print("Could not resume audio engine.")
-            print(error)
+            print("Could not resume audio engine:", error)
         }
 
         resumeAllAudioSources()
@@ -73,13 +71,7 @@ import Foundation
 
     @objc func stop() {
         stopAllAudioSources()
-
-        do {
-            try AKManager.stop()
-            try AKManager.shutdown()
-        } catch {
-            print("Something went wrong when stopping the audio engine!")
-        }
+        engine.stop()
     }
 
     private func pauseAllAudioSources() {
@@ -152,16 +144,11 @@ import Foundation
     private func getSubtree(key: String) -> AudioSubtree {
         subtreeCreationQueue.sync {
             if subtrees[key] == nil {
-                _ = createNewAudioSubtree(key: key)
+                let subtree = AudioSubtree(audioPlayerFactory: audioPlayerFactory)
+                subtree.setOutput(engineOutputMixer)
+                subtrees[key] = subtree
             }
         }
         return subtrees[key]!
-    }
-
-    internal func createNewAudioSubtree(key: String) -> AudioSubtree {
-        let subtree = AudioSubtree(audioPlayerFactory: audioPlayerFactory)
-        subtree.setup(engineOut: engineOutputMixer)
-        subtrees[key] = subtree
-        return subtree
     }
 }

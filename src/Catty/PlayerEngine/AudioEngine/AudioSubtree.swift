@@ -21,18 +21,18 @@
  */
 
 import AudioKit
+import DunneAudioKit
 import Foundation
 
 @objc class AudioSubtree: NSObject {
-    var subtreeOutputMixer = AKMixer()
-    var audioPlayerMixer = AKMixer()
     var audioPlayerFactory: AudioPlayerFactory
 
+    var subtreeOutputMixer = AudioKit.Mixer()
+
     var instrument = AudioEngineDefines.defaultInstrument
+    var samplerCache = IterableCache<DunneAudioKit.Sampler>()
 
     var audioPlayerCache = IterableCache<AudioPlayer>()
-    var samplerCache = IterableCache<Sampler>()
-
     let playerCreationQueue = DispatchQueue(label: "PlayerCreationQueue")
 
     init(audioPlayerFactory: AudioPlayerFactory) {
@@ -40,34 +40,22 @@ import Foundation
         super.init()
     }
 
-    func setup(engineOut: AKInput) {
-        subtreeOutputMixer.connect(to: engineOut)
-        audioPlayerMixer.connect(to: subtreeOutputMixer)
+    func setOutput(_ mixer: AudioKit.Mixer) {
+        mixer.addInput(subtreeOutputMixer)
     }
 
     func playSound(fileName: String, filePath: String, expectation: CBExpectation?) {
-        if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
-            startExistingAudioPlayer(audioPlayer: audioPlayer, expectation: expectation)
-        } else {
-            let audioPlayer = audioPlayerFactory.createAudioPlayer(fileName: fileName, filePath: filePath)
-            if let player = audioPlayer {
-                startNonExistingAudioPlayer(audioPlayer: player, fileName: fileName, expectation: expectation)
-            }
-        }
-    }
-
-    func connectSubtreeTo(node: AKInput) -> AKInput {
-        subtreeOutputMixer.connect(to: node)
+        getAudioPlayer(fileName: fileName, filePath: filePath)?.play(expectation: expectation)
     }
 
     func setVolumeTo(percent: Double) {
         let volume = percent / 100
-        subtreeOutputMixer.volume = MathUtil.moveValueIntoRange(volume, min: 0, max: 1)
+        subtreeOutputMixer.volume = AudioKit.AUValue(MathUtil.moveValueIntoRange(volume, min: 0, max: 1))
     }
 
     func changeVolumeBy(percent: Double) {
-        let newVolume = subtreeOutputMixer.volume + (percent / 100)
-        subtreeOutputMixer.volume = MathUtil.moveValueIntoRange(newVolume, min: 0, max: 1)
+        let newVolume = Double(subtreeOutputMixer.volume) + (percent / 100)
+        subtreeOutputMixer.volume = AudioKit.AUValue(MathUtil.moveValueIntoRange(newVolume, min: 0, max: 1))
     }
 
     func pauseAllAudioPlayers() {
@@ -91,24 +79,20 @@ import Foundation
 
     func setInstrument(_ instrument: Instrument) {
         self.instrument = instrument
-        if let instrumentPath = instrument.path {
-            samplerCache.object(forKey: SamplerType.instrument.rawValue)?.loadSFZ(path: instrumentPath, fileName: instrument.fileName)
+        if let instrumentURL = instrument.url {
+            samplerCache.object(forKey: SamplerType.instrument.rawValue)?.loadSFZ(url: instrumentURL)
         }
     }
 
-    private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, expectation: CBExpectation?) {
+    private func getAudioPlayer(fileName: String, filePath: String) -> AudioPlayer? {
         playerCreationQueue.sync {
-            if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
-                startExistingAudioPlayer(audioPlayer: audioPlayer, expectation: expectation)
-            } else {
-                audioPlayerCache.setObject(audioPlayer, forKey: fileName)
-                audioPlayer.connect(to: audioPlayerMixer)
-                audioPlayer.play(expectation: expectation)
+            if audioPlayerCache.object(forKey: fileName) == nil {
+                if let audioPlayer = audioPlayerFactory.createAudioPlayer(fileName: fileName, filePath: filePath) {
+                    audioPlayer.setOutput(self.subtreeOutputMixer)
+                    audioPlayerCache.setObject(audioPlayer, forKey: fileName)
+                }
             }
         }
-    }
-
-    private func startExistingAudioPlayer(audioPlayer: AudioPlayer, expectation: CBExpectation?) {
-        audioPlayer.play(expectation: expectation)
+        return audioPlayerCache.object(forKey: fileName)
     }
 }

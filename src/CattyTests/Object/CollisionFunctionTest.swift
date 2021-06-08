@@ -33,7 +33,7 @@ final class CollisionFunctionTests: XMLAbstractTest {
     let noCollision = 2
 
     override func setUp() {
-        self.skView = SKView(frame: CGRect(size: stageSize))
+        self.skView = SKView(frame: CGRect(origin: .zero, size: stageSize))
     }
 
     func testCollisionWithObjectsOverlap() {

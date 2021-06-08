@@ -24,8 +24,9 @@ import AudioKit
 import Foundation
 
 class AudioPlayer: NSDiscardableContent {
+    var player: AudioKit.AudioPlayer
+    var outputMixer: AudioKit.Mixer?
 
-    var akPlayer: AKPlayer
     var playerIsFinishedExpectation: CBExpectation?
     var fileName: String
     var soundCompletionHandler: (() -> Void)!
@@ -35,65 +36,69 @@ class AudioPlayer: NSDiscardableContent {
     let playingQueue = DispatchQueue(label: "PlayingQueue")
 
     init(soundFile: AVAudioFile) {
-        fileName = soundFile.fileNamePlusExtension
-        akPlayer = AKPlayer(audioFile: soundFile)
-        akPlayer.isLooping = false
+        fileName = soundFile.url.lastPathComponent
+        player = AudioKit.AudioPlayer()
+        player.file = soundFile
+        player.isLooping = false
         soundCompletionHandler = standardSoundCompletionHandler
-        akPlayer.completionHandler = soundCompletionHandler
+        player.completionHandler = soundCompletionHandler
     }
 
     func play(expectation: CBExpectation?) {
-        if !(akPlayer.playerNode.engine?.isRunning ?? false) {
+        if !(player.playerNode.engine?.isRunning ?? false) {
             return
         }
 
         playingQueue.sync {
             soundCompletionHandler()
             if !self.isDiscarded {
-                if akPlayer.isPlaying {
-                    akPlayer.stop()
+                if player.isPlaying {
+                    player.stop()
                 }
                 addExpectation(expectation)
-                akPlayer.play()
+                player.play()
             }
         }
     }
 
     func stop() {
         soundCompletionHandler()
-        akPlayer.stop()
+        player.stop()
     }
 
     func remove() {
         playingQueue.sync {
             self.isDiscarded = true
             self.stop()
-            if !akPlayer.connectionPoints.isEmpty {
-                akPlayer.detach()
-            }
+            outputMixer?.removeInput(player)
+            outputMixer = nil
         }
     }
 
     func pause() {
-        if akPlayer.isPlaying {
-            akPlayer.pause()
+        if player.isPlaying {
+            player.pause()
             self.isPaused = true
         }
     }
 
     func resume() {
         if self.isPaused {
-            akPlayer.resume()
+            player.resume()
             self.isPaused = false
         }
     }
 
-    func connect(to node: AKInput) {
-        akPlayer.connect(to: node)
+    func setOutput(_ mixer: AudioKit.Mixer) {
+        if let previousMixer = outputMixer {
+            previousMixer.removeInput(player)
+        }
+        mixer.addInput(player)
+        outputMixer = mixer
     }
 
     func isPlaying() -> Bool {
-        akPlayer.isPlaying
+        player.isPlaying
     }
 
     func getFileName() -> String {
@@ -102,7 +107,7 @@ class AudioPlayer: NSDiscardableContent {
 
     func setSoundCompletionHandler(_ completionHandler: @escaping () -> Void) {
         soundCompletionHandler = completionHandler
-        akPlayer.completionHandler = completionHandler
+        player.completionHandler = completionHandler
     }
 
     private func standardSoundCompletionHandler() {
