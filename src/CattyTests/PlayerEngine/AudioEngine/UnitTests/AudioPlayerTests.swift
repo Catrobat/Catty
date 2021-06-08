@@ -27,25 +27,25 @@ import XCTest
 @testable import Pocket_Code
 
 final class AudioPlayerTests: XCTestCase {
-
-    var player: AudioPlayer!
+    var audioPlayer: Pocket_Code.AudioPlayer!
+    var testMixer = AudioKit.Mixer()
+    var audioEngine = AudioKit.AudioEngine()
 
     override func setUp() {
-        var file: AKAudioFile?
+        var file: AVAudioFile?
         let audioFileURL = Bundle(for: type(of: self)).url(forResource: "silence", withExtension: "mp3")
         do {
-            file = try AKAudioFile(forReading: audioFileURL!)
+            file = try AVAudioFile(forReading: audioFileURL!)
         } catch {
             print("Could not load audio file with url \(audioFileURL!.absoluteString)")
         }
 
-        let akPlayer = AKPlayer(audioFile: file!)
-        player = AudioPlayer(soundFile: file!)
+        audioPlayer = Pocket_Code.AudioPlayer(soundFile: file!)
+        audioPlayer.setOutput(testMixer)
+        audioEngine.output = testMixer
 
-        player.akPlayer = akPlayer
-        AKManager.output = player.akPlayer
         do {
-            try AKManager.start()
+            try audioEngine.start()
         } catch {
             print("could not start audio engine")
         }
@@ -53,55 +53,55 @@ final class AudioPlayerTests: XCTestCase {
     }
 
     override func tearDown() {
-        try? AKManager.stop()
+        audioEngine.stop()
     }
 
     func testPlayDiscardedPlayerExpectPlayerNotToPlay() {
-        player.isDiscarded = true
-        player.play(expectation: nil)
-        expect(self.player.akPlayer.isPlaying) == false
+        audioPlayer.isDiscarded = true
+        audioPlayer.play(expectation: nil)
+        expect(self.audioPlayer.player.isPlaying) == false
     }
 
     func testStopExpectWaitExpectationToBeFulfilled() {
         let soundIsFinishedExpectation = CBExpectation()
 
-        player.play(expectation: soundIsFinishedExpectation)
-        XCTAssertTrue(player.akPlayer.isPlaying)
-        player.stop()
+        audioPlayer.play(expectation: soundIsFinishedExpectation)
+        XCTAssertTrue(audioPlayer.player.isPlaying)
+        audioPlayer.stop()
 
         expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
-        expect(self.player.akPlayer.isPlaying) == false
+        expect(self.audioPlayer.player.isPlaying) == false
     }
 
     func testPause() {
-        player.play(expectation: nil)
-        expect(self.player.akPlayer.isPlaying) == true
-        player.pause()
-        expect(self.player.akPlayer.isPaused) == true
-        expect(self.player.isPaused) == true
-        player.stop()
+        audioPlayer.play(expectation: nil)
+        expect(self.audioPlayer.player.isPlaying) == true
+        audioPlayer.pause()
+        expect(self.audioPlayer.player.isPaused) == true
+        expect(self.audioPlayer.isPaused) == true
+        audioPlayer.stop()
     }
 
     func testResume() {
-        player.play(expectation: nil)
-        expect(self.player.akPlayer.isPlaying) == true
-        player.pause()
-        expect(self.player.akPlayer.isPaused) == true
-        expect(self.player.isPaused) == true
-        player.resume()
-        expect(self.player.akPlayer.isPlaying) == true
-        player.stop()
+        audioPlayer.play(expectation: nil)
+        expect(self.audioPlayer.player.isPlaying) == true
+        audioPlayer.pause()
+        expect(self.audioPlayer.player.isPaused) == true
+        expect(self.audioPlayer.isPaused) == true
+        audioPlayer.resume()
+        expect(self.audioPlayer.player.isPlaying) == true
+        audioPlayer.stop()
     }
 
     func testRemoveExpectPlayerDiscardedAndStopped() {
         let soundIsFinishedExpectation = CBExpectation()
 
-        expect(self.player.akPlayer.connectionPoints.count) == 1
-        player.play(expectation: soundIsFinishedExpectation)
-        expect(self.player.akPlayer.isPlaying) == true
-        player.remove()
+        expect(self.testMixer.hasInput(self.audioPlayer.player)) == true
+        audioPlayer.play(expectation: soundIsFinishedExpectation)
+        expect(self.audioPlayer.player.isPlaying) == true
+        audioPlayer.remove()
         expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
-        expect(self.player.akPlayer.isPlaying) == false
-        expect(self.player.akPlayer.connectionPoints.count) == 0
+        expect(self.audioPlayer.player.isPlaying) == false
+        expect(self.testMixer.hasInput(self.audioPlayer.player)) == false
     }
 }

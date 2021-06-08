@@ -47,9 +47,9 @@
     var tag: String { self.data.tag }
     var fileName: String { self.data.folder + ".sfz" }
 
-    var path: String? {
+    var url: URL? {
         if let resourcePath = Bundle.main.resourcePath {
-            return resourcePath + "/Audio Engine/Sample Instruments Compressed/" + self.data.folder
+            return URL(fileURLWithPath: resourcePath + "/Audio Engine/Sample Instruments Compressed/" + self.data.folder + "/" + self.fileName)
         }
         return nil
     }

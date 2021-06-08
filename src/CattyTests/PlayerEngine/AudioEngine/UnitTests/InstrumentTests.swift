@@ -54,7 +54,7 @@ final class InstrumentTests: XCTestCase {
         XCTAssertEqual("choir.sfz", Instrument.choir.fileName)
     }
 
-    func testPath() {
-        XCTAssertEqual(Bundle.main.resourcePath! + "/Audio Engine/Sample Instruments Compressed/choir", Instrument.choir.path)
+    func testURL() {
+        XCTAssertEqual(URL(fileURLWithPath: Bundle.main.resourcePath! + "/Audio Engine/Sample Instruments Compressed/choir/choir.sfz"), Instrument.choir.url)
     }
 }
