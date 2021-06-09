@@ -94,7 +94,7 @@ import ActiveLabel
             description = kLocalizedNoDescriptionAvailable
         }
 
-        let maximumLabelSize = CGSize(width: 296, height: Int.max)
+        let maximumLabelSize = CGSize(width: view.frame.size.width / 100 * (100 - type(of: self).marginLeftPercentage * 2), height: CGFloat(Int.max))
         var attributes: [AnyHashable: Any]?
         if height == CGFloat(kIpadScreenHeight) {
             attributes = [descriptionTitleLabel.font: UIFont.systemFont(ofSize: 20)]
