@@ -471,6 +471,7 @@ let kLocalizedHideVariable = NSLocalizedString("Hide variable", bundle: Bundle(f
 let kLocalizedAt = NSLocalizedString("at ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSendWebRequestTo = NSLocalizedString("Send web request to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAndStoreAnswerIn = NSLocalizedString("and store answer in", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAllowWebAccess = NSLocalizedString("Allow web access", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //userlist
 let kLocalizedUserListAdd = NSLocalizedString("Add", bundle: Bundle(for: LanguageTranslation.self), comment: "")

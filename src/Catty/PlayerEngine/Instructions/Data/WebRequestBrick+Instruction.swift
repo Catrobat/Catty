@@ -25,21 +25,32 @@ extension WebRequestBrick: CBInstructionProtocol {
     @nonobjc func instruction() -> CBInstruction {
         if WebRequestBrick.isWebRequestBrickEnabled() {
             guard let request = self.request else { fatalError("Unexpected found nil.") }
-            guard let displayString = request.getDisplayString() else { fatalError("Unexpected found nil.") }
+            guard let trustedDomains = TrustedDomainManager() else { return CBInstruction.invalidInstruction }
 
-            var requestString = displayString
-            if requestString.hasPrefix("'") {
-                requestString = String(requestString.dropFirst())
-            }
-            if requestString.hasSuffix("'") {
-                requestString = String(requestString.dropLast())
-            }
+            return CBInstruction.waitExecClosure { context, scheduler in
+                let displayString = context.formulaInterpreter.interpretString(request, for: self.script.object)
+                let requestString = self.prepareRequestString(input: displayString)
+                let downloader = WebRequestDownloader(url: requestString, session: nil)
 
-            let downloader = WebRequestDownloader(url: requestString, session: nil)
-
-            return CBInstruction.waitExecClosure { _, scheduler in
-                self.sendRequest(downloader: downloader) { response, error in
-                    self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                if !trustedDomains.isUrlInTrustedDomains(url: requestString) {
+                    DispatchQueue.main.async {
+                        AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
+                            .addCancelAction(title: kLocalizedNo) {
+                                self.callbackSubmit(with: nil, error: .blacklisted, scheduler: scheduler)
+                                return
+                            }
+                            .addDefaultAction(title: kLocalizedYes) {
+                                self.sendRequest(downloader: downloader) { response, error in
+                                    self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                                }
+                            }
+                            .build()
+                            .showWithController(Util.topmostViewController())
+                    }
+                } else {
+                    self.sendRequest(downloader: downloader) { response, error in
+                        self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                    }
                 }
                 scheduler.pause()
             }
@@ -58,9 +69,25 @@ extension WebRequestBrick: CBInstructionProtocol {
         }
     }
 
+    func prepareRequestString(input: String) -> String {
+        var requestString = input
+        if requestString.hasPrefix("'") {
+            requestString = String(requestString.dropFirst())
+        }
+        if requestString.hasSuffix("'") {
+            requestString = String(requestString.dropLast())
+        }
+        if !requestString.hasPrefix("https://") && !requestString.hasPrefix("http://") {
+            requestString = "https://" + requestString
+        }
+        return requestString
+    }
+
     private func extractMessage(input: String?, error: WebRequestBrickError?) -> String {
         guard let input = input else {
             switch error {
+            case .blacklisted:
+                return "511"
             case .downloadSize:
                 return kLocalizedDownloadSizeErrorMessage
             case .invalidURL:
@@ -99,6 +126,8 @@ extension WebRequestBrick: CBInstructionProtocol {
     }
 
     enum WebRequestBrickError: Error {
+        /// Indicates a download from a blacklisted URL
+        case blacklisted
         /// Indicates a download bigger than kWebRequestMaxDownloadSizeInBytes
         case downloadSize
         /// Indicates an invalid URL

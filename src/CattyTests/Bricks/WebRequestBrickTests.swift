@@ -114,4 +114,22 @@ final class WebRequestBrickTests: XCTestCase {
 
          XCTAssertEqual(brick.userVariable, nil)
     }
+
+    func testPrepareRequestString() {
+        var input = "catrob.at/joke"
+        var output = brick.prepareRequestString(input: input)
+        XCTAssertEqual(output, "https://" + input)
+
+        input = "http://catrob.at/joke"
+        output = brick.prepareRequestString(input: input)
+        XCTAssertEqual(output, input)
+
+        input = "https://catrob.at/joke"
+        output = brick.prepareRequestString(input: input)
+        XCTAssertEqual(output, input)
+
+        input = "'http://catrob.at/joke'"
+        output = brick.prepareRequestString(input: input)
+        XCTAssertEqual(output, "http://catrob.at/joke")
+    }
 }

@@ -56,5 +56,8 @@
 - (BOOL)unzipAndStore:(NSData*)projectData
         withProjectID:(NSString*)projectID
              withName:(NSString*)name;
+- (NSArray*)urls:(NSSearchPathDirectory)directory inDomainMask:(NSSearchPathDomainMask)domainMask;
+- (NSData*)read:(NSString*)path;
+- (BOOL)write:(NSData*)data toPath:(NSString*)path;
 
 @end
