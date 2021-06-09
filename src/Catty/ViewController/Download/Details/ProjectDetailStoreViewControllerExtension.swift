@@ -24,6 +24,7 @@ import ActiveLabel
 @objc extension ProjectDetailStoreViewController {
 
     static var height: CGFloat = Util.screenHeight()
+    static var marginLeftPercentage: CGFloat = 15.0
 
     func createProjectDetailView(_ project: CatrobatProject, target: Any?) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: Util.screenWidth(), height: 0))
@@ -57,7 +58,7 @@ import ActiveLabel
     }
 
     private func addNameLabel(withProjectName projectName: String?, to view: UIView?) {
-        let height = ProjectDetailStoreViewController.self.height
+        let height = type(of: self).height
         let nameLabel = UILabel(frame: CGRect(x: (view?.frame.size.width ?? 0.0) / 2 - 10, y: height * 0.05, width: 155, height: 25))
         nameLabel.text = projectName
         nameLabel.lineBreakMode = .byWordWrapping
@@ -78,15 +79,14 @@ import ActiveLabel
         self.setMaxHeightIfGreaterFor(view, withHeight: authorLabel.frame.origin.y + authorLabel.frame.size.height)
     }
 
-    private func addProjectDescriptionLabel(withDescription description: String, to view: UIView?, target: Any?) -> CGFloat {
+    private func addProjectDescriptionLabel(withDescription description: String, to view: UIView, target: Any?) -> CGFloat {
         var description = description
         let height = ProjectDetailStoreViewController.height
         self.addHorizontalLine(to: view, andHeight: height * 0.35 - 15)
-        let descriptionTitleLabel = UILabel(frame: CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: height * 0.35, width: 155, height: 25))
+        let descriptionTitleLabel = UILabel(frame: CGRect(x: view.frame.size.width / type(of: self).marginLeftPercentage, y: height * 0.35, width: 155, height: 25))
         self.configureTitleLabel(descriptionTitleLabel, andHeight: height)
         descriptionTitleLabel.text = kLocalizedDescription
-        view?.addSubview(descriptionTitleLabel)
-
+        view.addSubview(descriptionTitleLabel)
         description = description.replacingOccurrences(of: "<br>", with: "")
         description = description.replacingOccurrences(of: "<br />", with: "")
 
@@ -94,7 +94,7 @@ import ActiveLabel
             description = kLocalizedNoDescriptionAvailable
         }
 
-        let maximumLabelSize = CGSize(width: 296, height: Int.max)
+        let maximumLabelSize = CGSize(width: view.frame.size.width / 100 * (100 - type(of: self).marginLeftPercentage * 2), height: CGFloat(Int.max))
         var attributes: [AnyHashable: Any]?
         if height == CGFloat(kIpadScreenHeight) {
             attributes = [descriptionTitleLabel.font: UIFont.systemFont(ofSize: 20)]
@@ -111,19 +111,20 @@ import ActiveLabel
         let y = labelBounds.size.height.rounded(.up)
         let expectedSize = CGSize(width: x, height: y)
 
-        let descriptionLabel = ActiveLabel()
-        if height == CGFloat(kIpadScreenHeight) {
-            descriptionLabel.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: height * 0.35 + 40, width: 540, height: expectedSize.height)
-        } else {
-            descriptionLabel.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: height * 0.35 + 40, width: 280, height: expectedSize.height)
-        }
+        let descriptionLabel = ActiveLabel(frame: .zero)
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(descriptionLabel)
+
+        NSLayoutConstraint.activate([
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: (view.frame.size.width) / type(of: self).marginLeftPercentage),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width) / type(of: self).marginLeftPercentage),
+            descriptionLabel.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 10),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: expectedSize.height)
+        ])
 
         self.configureDescriptionLabel(descriptionLabel)
         descriptionLabel.text = description
 
-        descriptionLabel.frame = CGRect(x: descriptionLabel.frame.origin.x, y: descriptionLabel.frame.origin.y, width: descriptionLabel.frame.size.width, height: expectedSize.height)
-
-        view?.addSubview(descriptionLabel)
         self.setMaxHeightIfGreaterFor(view, withHeight: height * 0.35 + 40 + expectedSize.height)
         return descriptionLabel.frame.size.height
     }
@@ -131,7 +132,7 @@ import ActiveLabel
     private func addThumbnailImage(withImageUrlString imageUrlString: String?, to view: UIView?) {
         let imageView = UIImageView()
         let errorImage = UIImage(named: "thumbnail_large")
-        imageView.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / 15,
+        imageView.frame = CGRect(x: (view?.frame.size.width ?? 0.0) / type(of: self).marginLeftPercentage,
                                  y: (view?.frame.size.height ?? 0.0) * 0.1,
                                  width: (view?.frame.size.width ?? 0.0) / 3,
                                  height: ProjectDetailStoreViewController.height / 4.5)
@@ -242,7 +243,7 @@ import ActiveLabel
         let height = ProjectDetailStoreViewController.height
         var offset = (view?.frame.size.height ?? 0.0) + height * 0.05
         self.addHorizontalLine(to: view, andHeight: offset - 15)
-        let informationLabel = UILabel(frame: CGRect(x: (view?.frame.size.width ?? 0.0) / 15, y: offset, width: 155, height: 25))
+        let informationLabel = UILabel(frame: CGRect(x: (view?.frame.size.width ?? 0.0) / type(of: self).marginLeftPercentage, y: offset, width: 155, height: 25))
         informationLabel.text = kLocalizedInformation
         self.configureTitleLabel(informationLabel, andHeight: height)
         view?.addSubview(informationLabel)
@@ -394,7 +395,6 @@ import ActiveLabel
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
         self.configureTextLabel(label, andHeight: height)
-
         label.enabledTypes = [.url]
         label.URLColor = UIColor.navBar
         label.URLSelectedColor = UIColor.navTint
