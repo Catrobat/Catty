@@ -25,8 +25,15 @@
 
     var request: Formula?
     var userVariable: UserVariable?
+    var downloaderFactory: WebRequestDownloaderFactory
 
     override required init() {
+        self.downloaderFactory = WebRequestDownloaderFactory()
+        super.init()
+    }
+
+    init(downloaderFactory: WebRequestDownloaderFactory) {
+        self.downloaderFactory = downloaderFactory
         super.init()
     }
 

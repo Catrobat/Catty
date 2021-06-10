@@ -85,3 +85,9 @@ enum WebRequestDownloadError: Error {
     /// Indicates an unexpected error
     case unexpectedError
 }
+
+class WebRequestDownloaderFactory {
+    func create(url: String, session: URLSession? = nil) -> WebRequestDownloader {
+        WebRequestDownloader(url: url, session: session)
+    }
+}

@@ -30,7 +30,7 @@ extension WebRequestBrick: CBInstructionProtocol {
             return CBInstruction.waitExecClosure { context, scheduler in
                 let displayString = context.formulaInterpreter.interpretString(request, for: self.script.object)
                 let requestString = self.prepareRequestString(input: displayString)
-                let downloader = WebRequestDownloader(url: requestString, session: nil)
+                let downloader = self.downloaderFactory.create(url: requestString)
 
                 if !trustedDomains.isUrlInTrustedDomains(url: requestString) {
                     DispatchQueue.main.async {

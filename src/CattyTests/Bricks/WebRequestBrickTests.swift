@@ -132,4 +132,25 @@ final class WebRequestBrickTests: XCTestCase {
         output = brick.prepareRequestString(input: input)
         XCTAssertEqual(output, "http://catrob.at/joke")
     }
+
+    func testWebRequestUrlIsNotInTrustedDomains() {
+
+        // TODO: Implement
+
+        brick.downloaderFactory = WebRequestDownloaderFactoryMock()
+
+        switch brick.instruction() {
+        case let .waitExecClosure(closure):
+            closure(context, scheduler)
+        default:
+            XCTFail("Fatal Error")
+        }
+
+    }
+}
+
+class WebRequestDownloaderFactoryMock: WebRequestDownloaderFactory {
+    override func create(url: String, session: URLSession? = nil) -> WebRequestDownloader {
+        WebRequestDownloader() // TODO: Implement
+    }
 }
