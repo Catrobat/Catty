@@ -23,12 +23,38 @@
 @testable import Pocket_Code
 
 class WebRequestDownloaderMock: WebRequestDownloader {
+
+    var downloadMethodCalls = 0
+    var expectedResponse: String?
+    var expectedError: WebRequestDownloaderError?
+
     required init(url: String, session: URLSession?) {
         super.init(url: url, session: session)
     }
 
-    func downloadWithError(error: NSError, completion: @escaping (String?, Error?) -> Void) {
-        self.completion = completion
-        self.urlSession(self.session!, task: URLSessionTask(), didCompleteWithError: error)
+    required init(expectedResponse: String? = nil, expectedError: WebRequestDownloaderError? = nil) {
+        self.expectedResponse = expectedResponse
+        self.expectedError = expectedError
+        super.init(url: "", session: nil)
+    }
+
+    override func download(completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
+        downloadMethodCalls += 1
+        completion(expectedResponse, expectedError)
+    }
+}
+
+class WebRequestDownloaderFactoryMock: WebRequestDownloaderFactory {
+
+    let downloaderMock: WebRequestDownloader
+    var latestUrl: String?
+
+    required init(_ downloaderMock: WebRequestDownloader) {
+        self.downloaderMock = downloaderMock
+    }
+
+    override func create(url: String, session: URLSession? = nil) -> WebRequestDownloader {
+        self.latestUrl = url
+        return downloaderMock
     }
 }

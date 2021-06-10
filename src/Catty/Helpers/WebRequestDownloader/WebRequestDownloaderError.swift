@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,12 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc
-class LaunchArguments: NSObject {
-
-    static let UITests = "UITests"
-    static let restoreDefaultProject = "restoreDefaultProject"
-    @objc static let skipPrivacyPolicy = "skipPrivacyPolicy"
-    @objc static let alwaysShowPrivacyPolicy = "alwaysShowPrivacyPolicy"
-
+enum WebRequestDownloaderError: Error, CaseIterable {
+    case invalidUrl
+    /// Indicates a download bigger than kWebRequestMaxDownloadSizeInBytes
+    case downloadSize
+    case noInternet
+    case unexpectedError
 }

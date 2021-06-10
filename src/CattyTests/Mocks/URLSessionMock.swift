@@ -38,6 +38,10 @@ class URLSessionMock: URLSession {
         super.init()
     }
 
+    override func dataTask(with url: URL) -> URLSessionDataTask {
+        URLSessionDataTaskMock(nil, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
+    }
+
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
          URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
     }
@@ -73,7 +77,7 @@ class URLSessionMock: URLSession {
         var mockError: Error?
         var cancelled = false
 
-        required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void,
+        required init(_ completionHandler: ((Data?, URLResponse?, Error?) -> Void)?,
                       response: URLResponse?,
                       error: Error?,
                       _ bytesSent: Int64? = 0,

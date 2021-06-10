@@ -478,6 +478,11 @@
 		4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */; };
 		4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */; };
 		4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */; };
+		4C20487B2671DF7000AE2E1B /* CBScriptContextMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */; };
+		4C20487E2671ECEA00AE2E1B /* WebRequestBrickError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20487D2671ECEA00AE2E1B /* WebRequestBrickError.swift */; };
+		4C2048802671F17F00AE2E1B /* WebRequestDownloaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */; };
+		4C2048822671F18F00AE2E1B /* WebRequestDownloaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */; };
+		4C2048852671F7A600AE2E1B /* WebRequestBrickError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048842671F7A600AE2E1B /* WebRequestBrickError.swift */; };
 		4C214C1E26200D3600E70B22 /* FormulaEditorViewControllerAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C214C1B26200D3500E70B22 /* FormulaEditorViewControllerAlertExtension.swift */; };
 		4C245CAC244481F3004C941C /* NimbleMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C245CA9244481F3004C941C /* NimbleMatcher.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
@@ -2430,6 +2435,11 @@
 		4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptCollectionVCTests.swift; sourceTree = "<group>"; };
 		4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleParameterStringFunctionMock.swift; sourceTree = "<group>"; };
 		4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
+		4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBScriptContextMock.swift; sourceTree = "<group>"; };
+		4C20487D2671ECEA00AE2E1B /* WebRequestBrickError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestBrickError.swift; sourceTree = "<group>"; };
+		4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderFactory.swift; sourceTree = "<group>"; };
+		4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderError.swift; sourceTree = "<group>"; };
+		4C2048842671F7A600AE2E1B /* WebRequestBrickError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestBrickError.swift; sourceTree = "<group>"; };
 		4C214C1B26200D3500E70B22 /* FormulaEditorViewControllerAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerAlertExtension.swift; sourceTree = "<group>"; };
 		4C245CA9244481F3004C941C /* NimbleMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleMatcher.swift; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
@@ -4624,6 +4634,8 @@
 			isa = PBXGroup;
 			children = (
 				2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */,
+				4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */,
+				4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */,
 			);
 			path = WebRequestDownloader;
 			sourceTree = "<group>";
@@ -5446,6 +5458,24 @@
 				4C1E33A825DA5A3D00F44F13 /* PaintImageViewTests.swift */,
 			);
 			path = Paint;
+			sourceTree = "<group>";
+		};
+		4C20487C2671ECD100AE2E1B /* WebRequestBrick */ = {
+			isa = PBXGroup;
+			children = (
+				2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */,
+				4C20487D2671ECEA00AE2E1B /* WebRequestBrickError.swift */,
+			);
+			path = WebRequestBrick;
+			sourceTree = "<group>";
+		};
+		4C2048832671F78700AE2E1B /* WebRequestBrick */ = {
+			isa = PBXGroup;
+			children = (
+				4C2048842671F7A600AE2E1B /* WebRequestBrickError.swift */,
+				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
+			);
+			path = WebRequestBrick;
 			sourceTree = "<group>";
 		};
 		4C2650671A6538470050775B /* CBCopyContext */ = {
@@ -7069,8 +7099,8 @@
 				E579F11B253DCE2C009107C8 /* ChangeYByNBrickTests.swift */,
 				E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */,
 				971C6F20260526ED00AD4857 /* SetTempoToBrickTests.swift */,
-				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
 				83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */,
+				4C2048832671F78700AE2E1B /* WebRequestBrick */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -7295,6 +7325,8 @@
 			isa = PBXGroup;
 			children = (
 				4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */,
+				6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */,
+				4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */,
 				4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */,
 				4CEE86512653963A002BC7ED /* EmbroideryServiceMock.swift */,
 				4C3B151A23F07C7800527D4A /* ErrorMock.swift */,
@@ -7317,7 +7349,6 @@
 				4C7182E023EEF47500195BC7 /* UICollectionViewMock.swift */,
 				4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
-				6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */,
 				6FCC9CC524B89D2B000DB08F /* StoreProjectUploaderMock.swift */,
 				6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */,
 				6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */,
@@ -8490,6 +8521,7 @@
 		92FF310A1A24DEB300093DA7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				91FC81FA01E91B5CF3266F79 /* AlertController */,
 				4647D55823D8AF9F001A67F6 /* PrivacyPolicy */,
 				92FF310B1A24DEB300093DA7 /* BaseViewController */,
 				92C631831BC502CB00486958 /* BluetoothDeviceSelection */,
@@ -8672,7 +8704,6 @@
 			isa = PBXGroup;
 			children = (
 				E564EBDF255D60F4001F0CD0 /* Button */,
-				91FC81FA01E91B5CF3266F79 /* AlertController */,
 				593E4DDC1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout */,
 				928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */,
 				92FF31A91A24E2F400093DA7 /* CollectionViewCells */,
@@ -9701,7 +9732,7 @@
 				9200C2C81C808006002F5CA4 /* ShowTextBrick.m */,
 				AA74EF991BC05B5F00D1E954 /* SetVariableBrick.h */,
 				AA74EF9A1BC05B5F00D1E954 /* SetVariableBrick.m */,
-				2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */,
+				4C20487C2671ECD100AE2E1B /* WebRequestBrick */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -11592,6 +11623,7 @@
 				18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */,
 				4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
+				4C2048852671F7A600AE2E1B /* WebRequestBrickError.swift in Sources */,
 				6F4B2FB92466706B00B5F0ED /* ProjectMigratorTest.swift in Sources */,
 				E579F10F253DAF20009107C8 /* SayBubbleBrickTests.swift in Sources */,
 				4C822681213FA7A400F3D750 /* TransparencySensorTest.swift in Sources */,
@@ -11693,6 +11725,7 @@
 				9E24D7072326EBC300608203 /* ShowBrickTests.swift in Sources */,
 				4C4778F6267C83F500CAF398 /* FormulaTest.swift in Sources */,
 				18390A7324D0A33D00A07DFD /* StampBrickTests.swift in Sources */,
+				4C20487B2671DF7000AE2E1B /* CBScriptContextMock.swift in Sources */,
 				05E68025255B5DEE00D1E295 /* EmbroideryDSTHeaderTests.swift in Sources */,
 				4C822659213FA7A400F3D750 /* AudioManagerMock.swift in Sources */,
 				9E4D238C232AF688009D0C3C /* SetColorBrickTests.swift in Sources */,
@@ -12039,6 +12072,7 @@
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */,
 				4C595F5721CAF6590097D850 /* AndOperator.swift in Sources */,
+				4C2048802671F17F00AE2E1B /* WebRequestDownloaderFactory.swift in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				6F4F8AFF24CF261C002C3814 /* UserDataContainer.swift in Sources */,
 				F45AF701212960B4000F88A6 /* FaceSizeSensor.swift in Sources */,
@@ -12470,6 +12504,7 @@
 				6F4B2FB72466704500B5F0ED /* ProjectMigrator.swift in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Project+CBXMLHandler.m in Sources */,
 				05E6801B255B5DAA00D1E295 /* EmbroideryDefines.swift in Sources */,
+				4C2048822671F18F00AE2E1B /* WebRequestDownloaderError.swift in Sources */,
 				97770B8F25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift in Sources */,
 				6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
@@ -12547,6 +12582,7 @@
 				9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */,
 				4C595F4B21CAEBA50097D850 /* EqualOperator.swift in Sources */,
 				4C8AA9BC266F42850082891E /* SetTempoToBrick+Instruction.swift in Sources */,
+				4C20487E2671ECEA00AE2E1B /* WebRequestBrickError.swift in Sources */,
 				9E0F740C22B532280030CD89 /* MathUtil.swift in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
 				5E21DA6821A3E4AF00017D2C /* UIImageExtension.swift in Sources */,

@@ -20,12 +20,38 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc
-class LaunchArguments: NSObject {
+@testable import Pocket_Code
 
-    static let UITests = "UITests"
-    static let restoreDefaultProject = "restoreDefaultProject"
-    @objc static let skipPrivacyPolicy = "skipPrivacyPolicy"
-    @objc static let alwaysShowPrivacyPolicy = "alwaysShowPrivacyPolicy"
+class CBScriptContextMock: CBScriptContextProtocol {
 
+    var id: String
+    var spriteNode: CBSpriteNode
+    var script: Script
+    var formulaInterpreter: FormulaInterpreterProtocol
+    var touchManager: TouchManagerProtocol
+    var state: CBScriptContextState
+    var index: Int
+
+    required init(object: SpriteObject, script: Script, formulaManager: FormulaManagerProtocol) {
+        self.id = "id"
+        self.spriteNode = CBSpriteNodeMock(spriteObject: object)
+        self.script = script
+        self.formulaInterpreter = formulaManager
+        self.touchManager = formulaManager.touchManager
+        self.state = .runnable
+        self.index = 0
+    }
+
+    func appendInstructions(_ instructionList: [CBInstruction]) {
+    }
+
+    func nextInstruction() -> CBInstruction? {
+        nil
+    }
+
+    func jump(numberOfInstructions: Int) {
+    }
+
+    func reset() {
+    }
 }

@@ -95,4 +95,19 @@ final class TrustedDomainManagerTests: XCTestCase {
         XCTAssertNil(trustedDomain?.add(url: testUrl1))
         XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: testUrl2))!)
     }
+
+    func testClear() {
+        let url = "url"
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+
+        var error = trustedDomain?.add(url: url)
+        XCTAssertNil(error)
+
+        XCTAssertTrue(trustedDomain!.isUrlInTrustedDomains(url: url))
+
+        error = trustedDomain?.clear()
+        XCTAssertNil(error)
+
+        XCTAssertFalse(trustedDomain!.isUrlInTrustedDomains(url: url))
+    }
 }

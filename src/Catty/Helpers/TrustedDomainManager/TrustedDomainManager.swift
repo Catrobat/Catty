@@ -98,6 +98,11 @@ class TrustedDomainManager {
         trustedDomains.append(standardizeUrl(url: url))
         return storeTrustedDomains()
     }
+
+    func clear() -> TrustedDomainManagerError? {
+        trustedDomains.removeAll()
+        return storeTrustedDomains()
+    }
 }
 
 enum TrustedDomainManagerError: Error {

@@ -55,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.UITests) {
             UIApplication.shared.keyWindow?.layer.speed = 10.0
         }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.alwaysShowPrivacyPolicy) {
+            PrivacyPolicyViewController.showOnEveryLaunch = true
+        }
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.restoreDefaultProject) {
             CBFileManager.shared()?.deleteAllFilesInDocumentsDirectory()
             CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()

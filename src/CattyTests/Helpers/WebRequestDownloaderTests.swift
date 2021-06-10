@@ -53,12 +53,11 @@ final class WebRequestDownloaderTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Fetch Fail")
 
         downloader.download { _, error in
-            guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case WebRequestDownloadError.invalidUrl:
+            case .invalidUrl:
                 expectation.fulfill()
             default:
-                XCTFail("wrong error received")
+                XCTFail("wrong or no error received")
             }
         }
 
@@ -77,13 +76,14 @@ final class WebRequestDownloaderTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Fetch Fail Download Size")
 
-        downloader.download { _, error in
-            guard let error = error else { XCTFail("no error received"); return }
+        downloader.download { data, error in
+            XCTAssertNil(data)
+
             switch error {
-            case WebRequestDownloadError.downloadSize:
+            case .downloadSize:
                 expectation.fulfill()
             default:
-                XCTFail("wrong error received")
+                XCTFail("wrong or no error received")
             }
         }
 
@@ -91,44 +91,46 @@ final class WebRequestDownloaderTests: XCTestCase {
     }
 
     func testWebRequestFailsWithNoInternet() {
-        let mockSession = URLSessionMock()
-        let url = "https://share.catrob.at/api/projects?category=random&limit=5000"
-        let mock = WebRequestDownloaderMock(url: url, session: mockSession)
-
         let error = NSError(domain: "", code: NSURLErrorNotConnectedToInternet, userInfo: nil)
+        let mockSession = URLSessionMock(error: error)
+
+        let downloader = WebRequestDownloader(url: "https://catrob.at", session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Fail Download No Internet")
 
-        mock.downloadWithError(error: error) { data, error in
+        downloader.download { data, error in
             XCTAssertNil(data)
-            switch error as? WebRequestDownloadError {
+
+            switch error {
             case .noInternet:
                 expectation.fulfill()
             default:
-                XCTFail("wrong error received")
+                XCTFail("wrong or no error received")
             }
         }
 
+        downloader.urlSession(mockSession, task: URLSessionDataTask(), didCompleteWithError: error)
         wait(for: [expectation], timeout: 1.0)
     }
 
     func testWebRequestFailsWithUnexpectedError() {
-        let mockSession = URLSessionMock()
-        let url = "https://share.catrob.at/api/projects?category=random"
-        let mock = WebRequestDownloaderMock(url: url, session: mockSession)
-
         let error = NSError(domain: "", code: NSURLErrorUnknown, userInfo: nil)
+        let mockSession = URLSessionMock(error: error)
+
+        let downloader = WebRequestDownloader(url: "https://catrob.at", session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Fail Download Unxpected")
 
-        mock.downloadWithError(error: error) { data, error in
+        downloader.download { data, error in
             XCTAssertNil(data)
-            switch error as? WebRequestDownloadError {
+
+            switch error {
             case .unexpectedError:
                 expectation.fulfill()
             default:
-                XCTFail("wrong error received")
+                XCTFail("wrong or no error received")
             }
         }
 
+        downloader.urlSession(mockSession, task: URLSessionDataTask(), didCompleteWithError: error)
         wait(for: [expectation], timeout: 1.0)
     }
 }

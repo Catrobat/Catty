@@ -37,6 +37,12 @@ final class CatrobatTableViewControllerTests: XCTestCase {
         XCTAssertNil(navigationController!.currentViewController)
     }
 
+    override func tearDown() {
+        PrivacyPolicyViewController.hasBeenShown = true
+        PrivacyPolicyViewController.showOnEveryLaunch = false
+        super.tearDown()
+    }
+
     func testShowPrivacyPolicyShowHasNotBeenShownAndDoNotShowOnEveryLaunch() {
         PrivacyPolicyViewController.hasBeenShown = false
         PrivacyPolicyViewController.showOnEveryLaunch = false

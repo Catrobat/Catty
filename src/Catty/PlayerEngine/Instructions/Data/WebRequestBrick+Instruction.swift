@@ -85,36 +85,18 @@ extension WebRequestBrick: CBInstructionProtocol {
 
     private func extractMessage(input: String?, error: WebRequestBrickError?) -> String {
         guard let input = input else {
-            switch error {
-            case .blacklisted:
-                return "511"
-            case .downloadSize:
-                return kLocalizedDownloadSizeErrorMessage
-            case .invalidURL:
-                return kLocalizedInvalidURLGiven
-            case .noInternet, .timeout:
-                return "500"
-            case let .request(error: _, statusCode: statusCode):
-                return String(statusCode)
-            default:
+            guard let error = error else {
                 return kLocalizedUnexpectedErrorTitle
             }
+            return error.message()
         }
         return input
     }
 
     private func sendRequest(downloader: WebRequestDownloader, completion: @escaping (String?, WebRequestBrickError?) -> Void) {
         downloader.download { response, error in
-            if let error = error as? WebRequestDownloadError {
-                if case WebRequestDownloadError.invalidUrl = error {
-                    completion(nil, .invalidURL)
-                } else if case WebRequestDownloadError.noInternet = error {
-                    completion(nil, .noInternet)
-                } else if case WebRequestDownloadError.downloadSize = error {
-                    completion(nil, .downloadSize)
-                } else {
-                    completion(nil, .unexpectedError)
-                }
+            if let error = error {
+                completion(nil, WebRequestBrickError(downloaderError: error))
             } else {
                 completion(response, nil)
             }
@@ -123,22 +105,5 @@ extension WebRequestBrick: CBInstructionProtocol {
 
     private static func isWebRequestBrickEnabled() -> Bool {
          UserDefaults.standard.bool(forKey: kUseWebRequestBrick)
-    }
-
-    enum WebRequestBrickError: Error {
-        /// Indicates a download from a blacklisted URL
-        case blacklisted
-        /// Indicates a download bigger than kWebRequestMaxDownloadSizeInBytes
-        case downloadSize
-        /// Indicates an invalid URL
-        case invalidURL
-        /// Indicates that no internet connection is present
-        case noInternet
-        /// Indicates an error with the URLRequest
-        case request(error: Error?, statusCode: Int)
-        /// Indicates a request timeout
-        case timeout
-        /// Indicates an unexpected error
-        case unexpectedError
     }
 }
