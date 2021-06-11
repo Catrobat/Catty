@@ -80,6 +80,8 @@ import CoreMotion
             rawValue = sensor.standardizedValue(for: spriteObject) as AnyObject
         } else if let sensor = sensor as? DeviceSensor {
             rawValue = sensor.standardizedValue(landscapeMode: landscapeMode) as AnyObject
+        } else if let sensor = sensor as? LanguageSensor {
+            rawValue = sensor.standardizedValue(landscapeMode: landscapeMode) as AnyObject
         }
         return rawValue
     }

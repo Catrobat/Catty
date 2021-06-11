@@ -40,6 +40,7 @@ extension CatrobatSetup {
          LongitudeSensor(locationManagerGetter: { locationManager }),
          LocationAccuracySensor(locationManagerGetter: { locationManager }),
          AltitudeSensor(locationManagerGetter: { locationManager }),
+         UserLanguageSensor(),
          FingerTouchedSensor(touchManagerGetter: { touchManager }),
          FingerXSensor(touchManagerGetter: { touchManager }),
          FingerYSensor(touchManagerGetter: { touchManager }),
