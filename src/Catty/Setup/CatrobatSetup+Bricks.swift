@@ -206,9 +206,9 @@
         }
         if isRecentlyUsedAvailable() {
             categories.prepend(BrickCategory(type: kBrickCategoryType.recentlyUsedBricks,
-                                             name: kLocalizedCategoryFrequentlyUsed,
-                                             color: UIColor.frequentlyUsedBricks,
-                                             strokeColor: UIColor.frequentlyUsedBricksStroke,
+                                             name: kLocalizedCategoryRecentlyUsed,
+                                             color: UIColor.recentlyUsedBricks,
+                                             strokeColor: UIColor.recentlyUsedBricksStroke,
                                              enabled: isRecentlyUsedAvailable()))
         }
 
@@ -224,7 +224,7 @@
     }
 
     private static func isRecentlyUsedAvailable() -> Bool {
-        RecentlyUsedBricksManager.getRecentlyUsedBricks().count >= kMinRecentlyUsedSize
+        RecentlyUsedBricksManager.getRecentlyUsedBricks().count >= UIDefines.recentlyUsedBricksMinSize
     }
 
     private static func isEmbroideryEnabled() -> Bool {

@@ -41,7 +41,7 @@ class RecentlyUsedBricksManager: NSObject {
     class func updateRecentlyUsedBricks(for brickOrScript: String) {
         var recentlyUsed = getRecentlyUsedBricks()
         recentlyUsed.removeAll(where: { $0 == brickOrScript })
-        if recentlyUsed.count >= kMaxRecentlyUsedSize {
+        if recentlyUsed.count >= UIDefines.recentlyUsedBricksMaxSize {
             recentlyUsed.removeLast()
         }
         recentlyUsed.prepend(brickOrScript)

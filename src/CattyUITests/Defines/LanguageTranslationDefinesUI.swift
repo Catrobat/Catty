@@ -770,7 +770,7 @@ let kUIFETextMessage = NSLocalizedString("Text message:", bundle: Bundle(for: La
 //************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
-let kLocalizedCategoryFrequentlyUsed = NSLocalizedString("Frequently used", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of View where the user can see the frequently used bricks.")
+let kLocalizedCategoryRecentlyUsed = NSLocalizedString("Recently used", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of brick category where the user can see his or her recently used bricks.")
 let kLocalizedCategoryEvent = NSLocalizedString("Event", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryControl = NSLocalizedString("Control", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryMotion = NSLocalizedString("Motion", bundle: Bundle(for: LanguageTranslation.self), comment: "")

@@ -97,9 +97,6 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kRecentlyUsedBricks        = 0
 };
 
-#define kMinRecentlyUsedSize 1
-#define kMaxRecentlyUsedSize 10
-
 #define WRAP_UINT_IN_NSNUMBER(number) ([NSNumber numberWithUnsignedInteger:number])
 #define kNSNumberZero WRAP_UINT_IN_NSNUMBER(0)
 
