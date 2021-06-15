@@ -770,7 +770,7 @@
 //************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
-#define kLocalizedCategoryFrequentlyUsed NSLocalizedString(@"Frequently used", @"Title of View where the user can see the frequently used bricks.")
+#define kLocalizedCategoryRecentlyUsed NSLocalizedString(@"Recently used", @"Title of brick category where the user can see his or her recently used bricks.")
 #define kLocalizedCategoryEvent NSLocalizedString(@"Event", nil)
 #define kLocalizedCategoryControl NSLocalizedString(@"Control", nil)
 #define kLocalizedCategoryMotion NSLocalizedString(@"Motion", nil)

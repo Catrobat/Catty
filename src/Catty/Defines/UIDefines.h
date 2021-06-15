@@ -93,12 +93,9 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kPhiroBrick                = 8,
     kPenBrick                  = 9,
     kEmbroideryBrick           = 10,
-    kInvisible                = 99,
-    kFavouriteBricks           = 0
+    kInvisible                 = 99,
+    kRecentlyUsedBricks        = 0
 };
-
-#define kMinFavouriteBrickSize 5
-#define kMaxFavouriteBrickSize 10
 
 #define WRAP_UINT_IN_NSNUMBER(number) ([NSNumber numberWithUnsignedInteger:number])
 #define kNSNumberZero WRAP_UINT_IN_NSNUMBER(0)

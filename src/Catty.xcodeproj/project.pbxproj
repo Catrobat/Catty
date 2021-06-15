@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0502CFA826754E570028CF53 /* RecentlyUsedBricksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502CFA726754E570028CF53 /* RecentlyUsedBricksManager.swift */; };
+		0502CFAD26763BCC0028CF53 /* RecentlyUsedBricksManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502CFAB26763B6B0028CF53 /* RecentlyUsedBricksManagerTests.swift */; };
 		05501DE7255E106F00C64E58 /* color_change.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05501DE4255E106F00C64E58 /* color_change.dst */; };
 		05A3CE6D24F5164A0051DB39 /* CatrobatTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */; };
 		05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46724F517220051DB39 /* StoreProjectTests.swift */; };
@@ -1885,6 +1887,8 @@
 		008104EAAB0CBEC616F8EABD /* uz */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04A3B489CBF02EB8C919DC3B /* sr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04FC473CDF0FCFB7BD890320 /* el */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0502CFA726754E570028CF53 /* RecentlyUsedBricksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyUsedBricksManager.swift; sourceTree = "<group>"; };
+		0502CFAB26763B6B0028CF53 /* RecentlyUsedBricksManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyUsedBricksManagerTests.swift; sourceTree = "<group>"; };
 		05501DE4255E106F00C64E58 /* color_change.dst */ = {isa = PBXFileReference; lastKnownFileType = file; path = color_change.dst; sourceTree = "<group>"; };
 		05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtension.swift; sourceTree = "<group>"; };
 		05A3D46724F517220051DB39 /* StoreProjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectTests.swift; sourceTree = "<group>"; };
@@ -5770,6 +5774,7 @@
 			isa = PBXGroup;
 			children = (
 				4C38B3732371522200F33721 /* BrickManagerTests.swift */,
+				0502CFAB26763B6B0028CF53 /* RecentlyUsedBricksManagerTests.swift */,
 			);
 			path = BrickManager;
 			sourceTree = "<group>";
@@ -6909,6 +6914,7 @@
 				4CB4FE031B95DF2900431757 /* BrickInsertManager.m */,
 				4CB4FE041B95DF2900431757 /* BrickMoveManager.h */,
 				4CB4FE051B95DF2900431757 /* BrickMoveManager.m */,
+				0502CFA726754E570028CF53 /* RecentlyUsedBricksManager.swift */,
 			);
 			path = BrickManager;
 			sourceTree = "<group>";
@@ -11873,6 +11879,7 @@
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C2CBB5525A5AA8400C1C143 /* XMLParserTests098.swift in Sources */,
+				0502CFAD26763BCC0028CF53 /* RecentlyUsedBricksManagerTests.swift in Sources */,
 				4C2CBB4B25A5AA8400C1C143 /* XMLParserHeaderTests095.swift in Sources */,
 				9EA6DCB02329A9E1007E837A /* MoveNStepsBrickTests.swift in Sources */,
 				4C82267D213FA7A400F3D750 /* PositionYSensorTest.swift in Sources */,
@@ -12535,6 +12542,7 @@
 				F470A2E32129DAFB005EC9A3 /* ElementFunction.swift in Sources */,
 				97770B8825E5A88C00F51EFA /* SetBrightnessBrick.swift in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Project.m in Sources */,
+				0502CFA826754E570028CF53 /* RecentlyUsedBricksManager.swift in Sources */,
 				186E99172488F4F400627E36 /* PenUpBrickCell.swift in Sources */,
 				4C82268D213FB29A00F3D750 /* MultiFingerYFunction.swift in Sources */,
 				BA987D0F2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift in Sources */,

@@ -204,12 +204,12 @@
                                              strokeColor: UIColor.phiroBrickStroke,
                                              enabled: isPhiroEnabled()))
         }
-        if isFavouritesCategoryAvailable() {
-            categories.prepend(BrickCategory(type: kBrickCategoryType.favouriteBricks,
-                                             name: kLocalizedCategoryFrequentlyUsed,
-                                             color: UIColor.frequentlyUsedBricks,
-                                             strokeColor: UIColor.frequentlyUsedBricksStroke,
-                                             enabled: isFavouritesCategoryAvailable()))
+        if isRecentlyUsedAvailable() {
+            categories.prepend(BrickCategory(type: kBrickCategoryType.recentlyUsedBricks,
+                                             name: kLocalizedCategoryRecentlyUsed,
+                                             color: UIColor.recentlyUsedBricks,
+                                             strokeColor: UIColor.recentlyUsedBricksStroke,
+                                             enabled: isRecentlyUsedAvailable()))
         }
 
         return categories
@@ -223,8 +223,8 @@
         UserDefaults.standard.bool(forKey: kUsePhiroBricks)
     }
 
-    private static func isFavouritesCategoryAvailable() -> Bool {
-        Util.getBrickInsertionDictionaryFromUserDefaults()?.count ?? 0 >= kMinFavouriteBrickSize
+    private static func isRecentlyUsedAvailable() -> Bool {
+        RecentlyUsedBricksManager.getRecentlyUsedBricks().count >= UIDefines.recentlyUsedBricksMinSize
     }
 
     private static func isEmbroideryEnabled() -> Bool {

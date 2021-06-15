@@ -41,4 +41,7 @@ class UIDefines: NSObject {
     @objc static let lookPickerAccessibilityLabel = "LookView"
     @objc static let backgroundPickerAccessibilityLabel = "BackgroundView"
     @objc static let iOS12OrLessAccessibilityLabel = "iOS 12.0 or less"
+
+    static let recentlyUsedBricksMinSize = 1
+    static let recentlyUsedBricksMaxSize = 10
 }
