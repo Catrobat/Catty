@@ -88,7 +88,15 @@
 		18B5B530247EB059007D24A3 /* NSStringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */; };
 		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
 		18B9A1BA24A75F3C009028F8 /* SetPenSizeBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */; };
+		18C39A3D255E751300AAB889 /* StoreAuthenticator.login.success.authentication.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C39A3C255E751200AAB889 /* StoreAuthenticator.login.success.authentication.json */; };
+		18C39A41255E782500AAB889 /* StoreAuthenticator.login.fail.authentication.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C39A40255E782500AAB889 /* StoreAuthenticator.login.fail.authentication.json */; };
+		18C39A43255E79B600AAB889 /* StoreAuthenticator.register.success.authentication.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C39A42255E79B600AAB889 /* StoreAuthenticator.register.success.authentication.json */; };
+		18C39A45255E7B6900AAB889 /* StoreAuthenticator.register.fail.emailalreadyinuse.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C39A44255E7B6900AAB889 /* StoreAuthenticator.register.fail.emailalreadyinuse.json */; };
+		18C39A47255E7E7D00AAB889 /* StoreAuthenticator.register.fail.usernametooshort.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C39A46255E7E7C00AAB889 /* StoreAuthenticator.register.fail.usernametooshort.json */; };
+		18C39A49255E808B00AAB889 /* StoreAuthenticator.register.fail.passwordtooshort.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C39A48255E808B00AAB889 /* StoreAuthenticator.register.fail.passwordtooshort.json */; };
+		18C4B7262541BE1A00F61768 /* StoreAuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4B7252541BE1A00F61768 /* StoreAuthenticatorTests.swift */; };
 		18CAFAF624D4910A003324DA /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CAFAF524D4910A003324DA /* StageTests.swift */; };
+		18CDC98225309DF900F1136D /* StoreAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CDC98125309DF900F1136D /* StoreAuthenticator.swift */; };
 		18D939E724C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */; };
 		18D939EB24C97A1C00A32544 /* SetPenColorBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */; };
 		18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */; };
@@ -1974,8 +1982,16 @@
 		18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSStringExtensionTests.swift; path = Extensions/NSStringExtensionTests.swift; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
 		18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickTests.swift; sourceTree = "<group>"; };
+		18C39A3C255E751200AAB889 /* StoreAuthenticator.login.success.authentication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.login.success.authentication.json; sourceTree = "<group>"; };
+		18C39A40255E782500AAB889 /* StoreAuthenticator.login.fail.authentication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.login.fail.authentication.json; sourceTree = "<group>"; };
+		18C39A42255E79B600AAB889 /* StoreAuthenticator.register.success.authentication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.register.success.authentication.json; sourceTree = "<group>"; };
+		18C39A44255E7B6900AAB889 /* StoreAuthenticator.register.fail.emailalreadyinuse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.register.fail.emailalreadyinuse.json; sourceTree = "<group>"; };
+		18C39A46255E7E7C00AAB889 /* StoreAuthenticator.register.fail.usernametooshort.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.register.fail.usernametooshort.json; sourceTree = "<group>"; };
+		18C39A48255E808B00AAB889 /* StoreAuthenticator.register.fail.passwordtooshort.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.register.fail.passwordtooshort.json; sourceTree = "<group>"; };
+		18C4B7252541BE1A00F61768 /* StoreAuthenticatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAuthenticatorTests.swift; sourceTree = "<group>"; };
 		18BF581625D183F600ADD92C /* FormulaEditorSectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		18CAFAF524D4910A003324DA /* StageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageTests.swift; path = Scene/StageTests.swift; sourceTree = "<group>"; };
+		18CDC98125309DF900F1136D /* StoreAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAuthenticator.swift; sourceTree = "<group>"; };
 		18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrickTests.swift; sourceTree = "<group>"; };
 		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
@@ -4470,6 +4486,28 @@
 				5921F2AA24F51F3B0044D936 /* BrickCellLookDataTests.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		18C4B7242541BDC800F61768 /* Authenticate */ = {
+			isa = PBXGroup;
+			children = (
+				18CE0676254D3F80009D716E /* Fixtures */,
+				18C4B7252541BE1A00F61768 /* StoreAuthenticatorTests.swift */,
+			);
+			path = Authenticate;
+			sourceTree = "<group>";
+		};
+		18CE0676254D3F80009D716E /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				18C39A48255E808B00AAB889 /* StoreAuthenticator.register.fail.passwordtooshort.json */,
+				18C39A46255E7E7C00AAB889 /* StoreAuthenticator.register.fail.usernametooshort.json */,
+				18C39A44255E7B6900AAB889 /* StoreAuthenticator.register.fail.emailalreadyinuse.json */,
+				18C39A42255E79B600AAB889 /* StoreAuthenticator.register.success.authentication.json */,
+				18C39A40255E782500AAB889 /* StoreAuthenticator.login.fail.authentication.json */,
+				18C39A3C255E751200AAB889 /* StoreAuthenticator.login.success.authentication.json */,
+			);
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		18DAFC56247BD1400082C62A /* SpriteNode */ = {
@@ -7524,6 +7562,7 @@
 		6F021E6124A6811A0097F21A /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				18C4B7242541BDC800F61768 /* Authenticate */,
 				5907FA99252905750042EC5D /* Report */,
 				E4AEC8732108503D0081A980 /* Download */,
 				6F021E6424A681270097F21A /* Upload */,
@@ -7606,6 +7645,7 @@
 				229DC43E25D6986200BA9AA2 /* Model */,
 				6FB09D2224A29F1E009C69A0 /* StoreProjectUploader.swift */,
 				E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */,
+				18CDC98125309DF900F1136D /* StoreAuthenticator.swift */,
 				5907FA95252888DF0042EC5D /* StoreProjectReporter.swift */,
 			);
 			path = Store;
@@ -10997,6 +11037,7 @@
 				9EE674D123252F510029D153 /* silence.mp3 in Resources */,
 				2ED41857241120B000AFE2FD /* VariableMapping.xml in Resources */,
 				2ED41835241120B000AFE2FD /* Skydiving_Steve_0991.xml in Resources */,
+				18C39A41255E782500AAB889 /* StoreAuthenticator.login.fail.authentication.json in Resources */,
 				2ED417E1241120AF00AFE2FD /* Memory_097.xml in Resources */,
 				4C3285DD2546CE4300C31F9D /* CameraBricks_0993.xml in Resources */,
 				2ED417C0241120AF00AFE2FD /* SKYPASCAL_093.xml in Resources */,
@@ -11097,6 +11138,7 @@
 				4C55CCFF24BF2BAE00FB8393 /* UserData_0992.xml in Resources */,
 				4C3286212546D7CA00C31F9D /* UserVariables_0993.xml in Resources */,
 				2ED4186A241120B000AFE2FD /* EscapingChars_0991.xml in Resources */,
+				18C39A47255E7E7D00AAB889 /* StoreAuthenticator.register.fail.usernametooshort.json in Resources */,
 				2ED4186E241120B000AFE2FD /* ValidProject096.xml in Resources */,
 				2ED417FE241120AF00AFE2FD /* Minecraft_Work_In_Progress_098.xml in Resources */,
 				2ED41860241120B000AFE2FD /* ValidProjectAllBricks095.xml in Resources */,
@@ -11201,6 +11243,8 @@
 				4C3286072546D4AA00C31F9D /* Demonstration_0993.xml in Resources */,
 				4C3285FF2546D40700C31F9D /* ValidProjectAllBricks0993.xml in Resources */,
 				05E6802F255B602700D1E295 /* stitch.dst in Resources */,
+				18CE068A254D91D5009D716E /* StoreAuthenticator.register.fail.invalidfield.json in Resources */,
+				4CF8A5822359B96500905BA9 /* StoreProjectDownloader.searchProjects.IntegerId.success.json in Resources */,
 				2ED417B2241120AF00AFE2FD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */,
 				4C55CD0124BF2BBD00FB8393 /* Encapsulated_0992.xml in Resources */,
@@ -11252,6 +11296,7 @@
 				9E929E3F239D7EFB002D8F96 /* PlaySoundAndWaitBrickContinueWhenInterrupted.xml in Resources */,
 				599E64A2202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json in Resources */,
 				2ED417D0241120AF00AFE2FD /* Galaxy_War_097.xml in Resources */,
+				18C39A49255E808B00AAB889 /* StoreAuthenticator.register.fail.passwordtooshort.json in Resources */,
 				4C55CD0524BF2BD900FB8393 /* LedFlashBrick0992.xml in Resources */,
 				4C55CCDD24BF29B500FB8393 /* Compass_0.1_0992.xml in Resources */,
 				2ED417BB241120AF00AFE2FD /* Piano_098.xml in Resources */,
@@ -11263,6 +11308,7 @@
 				9E544D392387562400935C17 /* SpeakBrickWithSoundBrick.xml in Resources */,
 				2ED41816241120AF00AFE2FD /* Drink_more_water_096.xml in Resources */,
 				2ED417DA241120AF00AFE2FD /* Airplane_with_shadow_091.xml in Resources */,
+				18C39A3D255E751300AAB889 /* StoreAuthenticator.login.success.authentication.json in Resources */,
 				2ED41868241120B000AFE2FD /* EscapingChars_0994.xml in Resources */,
 				2ED4185F241120B000AFE2FD /* ValidProjectAllBricks096.xml in Resources */,
 				2ED4183E241120B000AFE2FD /* X_Ray_phone_091.xml in Resources */,
@@ -11288,6 +11334,7 @@
 				4C32861D2546D5BF00C31F9D /* WaitUntilBrick0993.xml in Resources */,
 				4C32860B2546D4F900C31F9D /* Memory_0993.xml in Resources */,
 				2ED417AB241120AF00AFE2FD /* Word_balloon_demo_095.xml in Resources */,
+				18C39A45255E7B6900AAB889 /* StoreAuthenticator.register.fail.emailalreadyinuse.json in Resources */,
 				97AC582125C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json in Resources */,
 				2ED4185B241120B000AFE2FD /* Sensors_0991.xml in Resources */,
 				4C3285ED2546CF5800C31F9D /* DeleteItemOfUserListBrick0993.xml in Resources */,
@@ -11297,6 +11344,7 @@
 				2ED4180D241120AF00AFE2FD /* Flap_Pac_Man_097.xml in Resources */,
 				599E64A0202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */,
 				2ED417F1241120AF00AFE2FD /* Pythagorean_Theorem_096.xml in Resources */,
+				18C39A43255E79B600AAB889 /* StoreAuthenticator.register.success.authentication.json in Resources */,
 				2ED417FB241120AF00AFE2FD /* Minecraft_Work_In_Progress_096.xml in Resources */,
 				2ED417B7241120AF00AFE2FD /* Piano_096.xml in Resources */,
 				2ED417E3241120AF00AFE2FD /* Memory_095.xml in Resources */,
@@ -11696,6 +11744,7 @@
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
 				6F4B2FB92466706B00B5F0ED /* ProjectMigratorTest.swift in Sources */,
 				E579F10F253DAF20009107C8 /* SayBubbleBrickTests.swift in Sources */,
+				18C4B7262541BE1A00F61768 /* StoreAuthenticatorTests.swift in Sources */,
 				4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */,
 				4C822681213FA7A400F3D750 /* TransparencySensorTest.swift in Sources */,
 				590200D223FC03A900F0978B /* BrickExtensionTests.swift in Sources */,
@@ -12046,6 +12095,7 @@
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
+				18CDC98225309DF900F1136D /* StoreAuthenticator.swift in Sources */,
 				4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */,
 				4405C95A24F803EA005C36DC /* UserVariable+CBXMLHandler.swift in Sources */,
 				AA74F00E1BC05B5F00D1E954 /* StopAllSoundsBrick.m in Sources */,

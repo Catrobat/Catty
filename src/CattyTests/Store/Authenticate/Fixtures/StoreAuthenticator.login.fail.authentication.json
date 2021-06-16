@@ -1,0 +1,39 @@
+{
+  "name" : "StoreAuthenticator.login.fail.authentication",
+  "interactions" : [
+    {
+      "recorded_at" : 1605255159.736779,
+      "request" : {
+        "headers" : {
+          "Content-Length" : "396",
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/login\/Login.json",
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJ1c2VybmFtZSINCg0KdGVzdF91c2VyDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InBhc3N3b3JkIg0KDQppbmNvcnJlY3RfcGFzc3dvcmQNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K"
+      },
+      "response" : {
+        "body" : {
+          "code" : 401,
+          "message" : "Invalid credentials."
+        },
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/login\/Login.json",
+        "headers" : {
+          "Strict-Transport-Security" : "max-age=15768000",
+          "x-robots-tag" : "noindex",
+          "Set-Cookie" : "PHPSESSID=2qdklsa97jhjs101s9j2canjd7; path=\/; HttpOnly",
+          "Server" : "nginx",
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/686114",
+          "Expires" : "Fri, 13 Nov 2020 08:12:39 GMT",
+          "Pragma" : "no-cache",
+          "Content-Encoding" : "gzip",
+          "x-debug-token" : "686114",
+          "Date" : "Fri, 13 Nov 2020 08:12:39 GMT",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "Content-Type" : "application\/json"
+        },
+        "status" : 401
+      }
+    }
+  ]
+}
