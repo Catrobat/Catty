@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "رسالة بنفس الاسم موجود بالفعل، حاول مرة أخرى.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "يوجد مشروع بنفس الاسم مسبقا، حاول مرة أخرى.";
 
 /* No comment provided by engineer. */
 "Abc" = "أ ب ج";
@@ -12,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "حول تطبيق بوكت بينت";
+
+/* No comment provided by engineer. */
+"absolute value" = "القيمة المطلقة";
 
 /* No comment provided by engineer. */
 "acceleration x" = "تسارع x";
@@ -32,7 +35,7 @@
 "Add" = "إضافة";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "إضافة ممثل أو كائن";
 
 /* No comment provided by engineer. */
 "add comment here..." = "أضف تعليق هنا...";
@@ -48,6 +51,9 @@
 
 /* No comment provided by engineer. */
 "Agree" = "موافق";
+
+/* No comment provided by engineer. */
+"all around" = "في جميع أنحاء";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "جميع أجهزة Bluetooth التي تم قطع الاتصال بنجاح";
@@ -83,10 +89,13 @@
 "and" = "و";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "وتخزين الإجابة المكتوبة في ";
+
+/* No comment provided by engineer. */
 "and wait" = "والانتظار";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Animate brick-parts";
+"Animate brick-parts" = "تحريك أجزاء الطوب";
 
 /* No comment provided by engineer. */
 "Apr" = "نيسان (إبريل)";
@@ -95,16 +104,28 @@
 "April" = "نيسان / ابريل";
 
 /* No comment provided by engineer. */
+"arccosine" = "قوس جيب تمام الزاوية";
+
+/* No comment provided by engineer. */
+"arcsine" = "جيب الزاوية القوسي";
+
+/* No comment provided by engineer. */
+"arctangent" = "ظل الزاوية القوسي";
+
+/* No comment provided by engineer. */
 "Arduino" = "الاردوينو";
 
 /* No comment provided by engineer. */
-"arduino analog" = "arduino analog";
+"arduino analog" = "تناظري الكاردينو";
 
 /* No comment provided by engineer. */
-"arduino digital" = "arduino digital";
+"arduino digital" = "أردوينو رقمي";
 
 /* No comment provided by engineer. */
 "Arduino extension" = "لبّنات برمجية لـ اردوينو";
+
+/* No comment provided by engineer. */
+"Ask " = "اسأل ";
 
 /* No comment provided by engineer. */
 "at " = "في ";
@@ -131,7 +152,7 @@
 "Axes" = "محاور";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "الرجوع";
 
 /* No comment provided by engineer. */
 "Back" = "رجوع";
@@ -149,16 +170,22 @@
 "Backgrounds" = "خلفيات الشاشة";
 
 /* No comment provided by engineer. */
+"Bass" = "كاسح";
+
+/* No comment provided by engineer. */
+"Bassoon" = "باسون";
+
+/* No comment provided by engineer. */
 "becomes true" = "يتحقق الشرط";
 
 /* No comment provided by engineer. */
-"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
-
-/* paint */
-"Blue" = "أزرق";
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "قبل أن تتمكن من بدء البرمجة، يرجى قراءة وقبول سياسة الخصوصية لاستخدام التطبيق:";
 
 /* No comment provided by engineer. */
 "blue" = "ازرق";
+
+/* paint */
+"Blue" = "أزرق";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "البلوثوت غير متوفر. إما جهازك لا يدعم تقنية البلوتوث 4.0 أو رقاقة البلوتوث في جهازك معطوبة. من فضلك قم بتفحصها من خلال الاتصال بجهاز بلوتوث آخر في الإعدادات.";
@@ -194,7 +221,7 @@
 "By registering you agree to our" = "بالتسجيل، أنت توافق على";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "لا يمكن إعادة تشغيل المشروع!";
 
 /* No comment provided by engineer. */
 "Cancel" = "إلغاء";
@@ -206,7 +233,7 @@
 "Cannot connect to device. The device is not responding." = "لا يمكن الاتصال بالجهاز. الجهاز لا يستجيب.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "لا يمكن الاتصال بمكتبة الوسائط. الرجاء التحقق من اتصالك بالإنترنت.";
 
 /* No comment provided by engineer. */
 "Categories" = "الفئات";
@@ -215,7 +242,10 @@
 "Catrobat community" = "مجتمع كاتروبات";
 
 /* No comment provided by engineer. */
-"ceil" = "تقريب للأعلى";
+"ceiling" = "تقريب للأعلى";
+
+/* No comment provided by engineer. */
+"Cello" = "سيليو";
 
 /* No comment provided by engineer. */
 "Change brightness " = "تغيير درجة السطوع ";
@@ -227,6 +257,12 @@
 "Change size by" = "تغيير الحجم بمقدار";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "التغيير إلى أفقي";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "تغيير إلى عمودي";
+
+/* No comment provided by engineer. */
 "Change transparency " = "تغيير درجة الشفافية ";
 
 /* No comment provided by engineer. */
@@ -236,22 +272,28 @@
 "Change volume by" = "تغيير مستوى الصوت بمقدار";
 
 /* No comment provided by engineer. */
-"Change x by " = "Change x by ";
+"Change x by " = "تغيير x بمقدار ";
 
 /* No comment provided by engineer. */
-"Change y by " = "Change y by ";
+"Change y by " = "تغيير y بمقدار ";
 
 /* No comment provided by engineer. */
-"Changes discarded." = "Changes discarded.";
+"Changes discarded." = "تم تجاهل التغييرات.";
 
 /* No comment provided by engineer. */
 "Changes saved." = "تم حفظ التغييرات!";
+
+/* No comment provided by engineer. */
+"Choir" = "جوقة";
 
 /* No comment provided by engineer. */
 "Choose" = "إختيار";
 
 /* No comment provided by engineer. */
 "Choose image" = "اختر الصورة";
+
+/* No comment provided by engineer. */
+"Clarinet" = "كلارينيت";
 
 /* No comment provided by engineer. */
 "Clear" = "امسح";
@@ -267,6 +309,9 @@
 
 /* No comment provided by engineer. */
 "color" = "لون";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "عوامل تشغيل المقارنة";
 
 /* No comment provided by engineer. */
 "compass" = "بوصلة";
@@ -290,7 +335,7 @@
 "Connection failed" = "فشل الاتصال";
 
 /* bluetooth */
-"Connection lost" = "Connection lost";
+"Connection lost" = "تم فقدان الاتصال";
 
 /* bluetooth */
 "Connection not possible" = "الإتصال غير ممكن";
@@ -311,22 +356,37 @@
 "Copy" = "نسخ";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy actors or objects" = "نسخ الممثلين أو العناصر";
 
 /* No comment provided by engineer. */
-"Copy looks" = "Copy looks";
+"Copy brick" = "نسخ الطوب";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy looks" = "نسخ المظاهر";
+
+/* No comment provided by engineer. */
+"Copy project" = "نسخ المشروع";
+
+/* No comment provided by engineer. */
+"cosine" = "جتا الزاوية";
 
 /* No comment provided by engineer. */
 "Create account" = "إنشاء حساب";
 
 /* No comment provided by engineer. */
+"Create patterns for stiching machines" = "إنشاء أنماط لصنع الآلات";
+
+/* No comment provided by engineer. */
+"Data" = "البيانات";
+
+/* No comment provided by engineer. */
+"Date and time" = "التاريخ والوقت";
+
+/* No comment provided by engineer. */
 "day" = "اليوم";
 
 /* No comment provided by engineer. */
-"debug" = "debug";
+"debug" = "التصحيح";
 
 /* No comment provided by engineer. */
 "Dec" = "كانون الأول‏ (ديسمبر)";
@@ -335,85 +395,88 @@
 "December" = "كانون أول / ديسمبر";
 
 /* No comment provided by engineer. */
+"decimal logarithm" = "لوغاريثم";
+
+/* No comment provided by engineer. */
 "degrees" = "درجة";
 
 /* No comment provided by engineer. */
 "Delete" = "حذف";
 
 /* No comment provided by engineer. */
-"Delete actors or objects" = "Delete actors or objects";
+"Delete actors or objects" = "حذف الممثلين أو العناصر";
 
 /* No comment provided by engineer. */
-"Delete backgrounds" = "Delete backgrounds";
+"Delete backgrounds" = "حذف الخلفيات";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Delete brick";
+"Delete brick" = "حذف الطوب";
 
 /* No comment provided by engineer. */
-"Delete condition" = "Delete condition";
+"Delete condition" = "حذف الشرط";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "حذف عنصر من قائمة";
 
 /* No comment provided by engineer. */
-"Delete looks" = "Delete looks";
+"Delete looks" = "حذف المظاهر";
 
 /* No comment provided by engineer. */
-"Delete loop" = "Delete loop";
+"Delete loop" = "حذف الحلقة";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete project" = "حذف المشروع";
 
 /* No comment provided by engineer. */
-"Delete projects" = "Delete projects";
+"Delete projects" = "حذف المشاريع";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete script" = "حذف البرنامج النصي";
 
 /* No comment provided by engineer. */
-"Delete sounds" = "Delete sounds";
+"Delete sounds" = "حذف الأصوات";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "Delete these bricks?";
+"Delete these bricks?" = "حذف هذه الطوبة؟";
 
 /* No comment provided by engineer. */
-"Delete these conditions?" = "Delete these conditions?";
+"Delete these conditions?" = "هل تريد حذف هذه الأغاني؟";
 
 /* No comment provided by engineer. */
-"Delete these loops?" = "Delete these loops?";
+"Delete these loops?" = "حذف هذه الحلقات؟";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "Delete these scripts?";
+"Delete these scripts?" = "حذف هذه البرامج النصية؟";
 
 /* No comment provided by engineer. */
-"Delete this actor or object" = "Delete this actor or object";
+"Delete this actor or object" = "حذف هذا الممثل أو الكائن";
 
 /* No comment provided by engineer. */
 "Delete this background" = "حذف خلفية الشاشة هذه";
 
 /* No comment provided by engineer. */
-"Delete this brick?" = "Delete this brick?";
+"Delete this brick?" = "حذف هذه الطوبة؟";
 
 /* No comment provided by engineer. */
-"Delete this condition?" = "Delete this condition?";
+"Delete this condition?" = "حذف هذا الشرط؟";
 
 /* No comment provided by engineer. */
 "Delete this look" = "حذف هذا المشهد";
 
 /* No comment provided by engineer. */
-"Delete this loop?" = "Delete this loop?";
+"Delete this loop?" = "حذف هذه الحلقة؟";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "حذف هذا المشروع";
 
 /* No comment provided by engineer. */
-"Delete this script?" = "Delete this script?";
+"Delete this script?" = "حذف هذا البرنامج النصي؟";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "حذف هذا الصوت";
 
 /* No comment provided by engineer. */
-"Deletion mode" = "Deletion mode";
+"Deletion mode" = "وضع الحذف";
 
 /* No comment provided by engineer. */
 "Description" = "الوصف";
@@ -425,25 +488,31 @@
 "Device disconnected." = "الجهاز غير متصل.";
 
 /* No comment provided by engineer. */
-"device motion-sensor" = "device motion-sensor";
+"device motion-sensor" = "جهاز استشعار الحركة";
+
+/* No comment provided by engineer. */
+"Device sensors" = "أجهزة إستشعار الجهاز";
 
 /* No comment provided by engineer. */
 "direction" = "الاتجاه";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "تعطيل الطوب";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "تعطيل الحالة";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "تعطيل الحلقة";
 
 /* No comment provided by engineer. */
 "Disable script" = "تعطيل النص البرمجي";
 
 /* No comment provided by engineer. */
 "Disagree" = "غير موافق";
+
+/* No comment provided by engineer. */
+"Discard changes" = "تجاهل التغييرات";
 
 /* No comment provided by engineer. */
 "Disconnect all devices" = "قطع إتصال جميع الأجهزة";
@@ -455,16 +524,16 @@
 "Do you really want to delete the current drawing?" = "هل تريد حقاً حذف الرسم الحالي؟";
 
 /* paint */
-"Do you want to save the changes" = "هل تريد حفظ التغييرات";
+"Do you want to save your changes?" = "هل تريد حفظ التغييرات؟";
+
+/* No comment provided by engineer. */
+"don't rotate" = "لا تدور";
 
 /* No comment provided by engineer. */
 "Done" = "موافق";
 
 /* No comment provided by engineer. */
 "Download" = "تحميل";
-
-/* No comment provided by engineer. */
-"Download successful" = "تم التنزيل بنجاح";
 
 /* No comment provided by engineer. */
 "Downloads" = "التنزيلات";
@@ -479,40 +548,46 @@
 "Edit" = "تحرير";
 
 /* No comment provided by engineer. */
-"Edit actor or object" = "Edit actor or object";
+"Edit actor or object" = "تعديل الفاعل أو الكائن";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "تعديل الخلفية";
 
 /* Action sheet menu title */
-"Edit backgrounds" = "Edit backgrounds";
+"Edit backgrounds" = "تعديل الخلفيات";
 
 /* Action sheet menu title */
-"Edit brick" = "Edit brick";
+"Edit brick" = "تعديل الطوب";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "تعديل الصيغة";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "تحرير مظهر";
 
 /* Action sheet menu title */
-"Edit looks" = "Edit looks";
+"Edit looks" = "تعديل المظاهر";
 
 /* No comment provided by engineer. */
-"Edit project" = "Edit project";
+"Edit project" = "تحرير المشروع";
 
 /* No comment provided by engineer. */
-"Edit projects" = "Edit projects";
+"Edit projects" = "تحرير المشاريع";
 
 /* Action sheet menu title */
-"Edit script" = "Edit script";
+"Edit script" = "تعديل البرنامج النصي";
 
 /* Action sheet menu title */
-"Edit sound" = "Edit sound";
+"Edit sound" = "تعديل الصوت";
 
 /* Action sheet menu title */
-"Edit sounds" = "Edit sounds";
+"Edit sounds" = "تعديل الأصوات";
+
+/* No comment provided by engineer. */
+"Electric Guitar" = "غيتار كهربائي";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "بيانو كهربائي";
 
 /* No comment provided by engineer. */
 "element" = "عنصر";
@@ -527,16 +602,22 @@
 "Email" = "البريد الألكتروني";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Embroidery" = "التطريز";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Embroidery extension" = "التطريز";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Empty input!" = "إدخال فارغ!";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable brick" = "تمكين الطوب";
+
+/* No comment provided by engineer. */
+"Enable condition" = "تمكين الشرط";
+
+/* No comment provided by engineer. */
+"Enable loop" = "تمكين الحلقة";
 
 /* No comment provided by engineer. */
 "Enable script" = "تفعيل النص البرمجي";
@@ -563,10 +644,10 @@
 "Enter your object name here..." = "أدخل اسم الكائن الخاص بك هنا...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "أدخل وصف مشروعك هنا...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "أدخل اسم المشروع الخاص بك هنا...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "قم بإدخال اسم الصوت الخاص بك هنا...";
@@ -581,19 +662,28 @@
 "Error" = "خطأ";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error occurred while reporting the project. Please try again later." = "حدث خطأ أثناء الإبلاغ عن المشروع. الرجاء المحاولة مرة أخرى لاحقاً.";
+
+/* No comment provided by engineer. */
+"Error saving file" = "خطأ في حفظ الملف";
+
+/* No comment provided by engineer. */
+"Event" = "الحدث";
+
+/* No comment provided by engineer. */
+"exponent" = "الأس الطبيعي";
 
 /* No comment provided by engineer. */
 "FA" = "فا";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
+"face detected" = "تم اكتشاف الوجه";
 
 /* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
+"faceposition x" = "واجهة الوسط x";
 
 /* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
+"faceposition y" = "واجهة الوسط y";
 
 /* No comment provided by engineer. */
 "facesize" = "حجم الوجه";
@@ -602,10 +692,10 @@
 "Failed to import item" = "فشلت عملية استيراد العنصر";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
+"Failed to load featured projects" = "فشل تحميل المشاريع المميزة";
 
 /* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
+"Failed to load recent projects" = "فشل تحميل المشاريع الأخيرة";
 
 /* No comment provided by engineer. */
 "Failed to load sound" = "فشل في تحميل الملف الصوتي";
@@ -617,7 +707,7 @@
 "false" = "خطأ";
 
 /* No comment provided by engineer. */
-"Featured projects" = "Featured projects";
+"Featured projects" = "المشاريع المميزة";
 
 /* No comment provided by engineer. */
 "Feb" = "شباط (فبراير)";
@@ -638,16 +728,19 @@
 "floor" = "تقريب للاسفل";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Flute" = "لطيف";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "الميزات التالية المستخدمة في هذا المشروع غير متوافقة مع هذا الإصدار من Pocket Code:";
 
 /* No comment provided by engineer. */
 "for" = "لفترة";
 
 /* No comment provided by engineer. */
-"for all actors or objects" = "for all actors or objects";
+"for all actors or objects" = "لجميع الجهات الفاعلة أو الكائنات";
 
 /* No comment provided by engineer. */
-"for this actor or object" = "for this actor or object";
+"for this actor or object" = "لهذا الممثل أو الكائن";
 
 /* No comment provided by engineer. */
 "Forever" = "تكرار لا نهائي";
@@ -656,25 +749,34 @@
 "Forgot password" = "نسيت كلمة المرور";
 
 /* No comment provided by engineer. */
+"Formula Editor" = "محرر الصيغة";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "الصيغة طويلة جداً!";
 
 /* No comment provided by engineer. */
 "Fr" = "الجمعة";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
+"Frequently used" = "الاستخدام المتكرر";
 
 /* No comment provided by engineer. */
 "Friday" = "الجمعة";
 
 /* No comment provided by engineer. */
-"From camera" = "From camera";
+"From camera" = "من الكاميرا";
 
 /* No comment provided by engineer. */
 "front" = "الأمامية";
 
 /* No comment provided by engineer. */
 "Front camera" = "الكاميرا الأمامية";
+
+/* No comment provided by engineer. */
+"Functions" = "الدوال";
+
+/* No comment provided by engineer. */
+"General properties" = "الخصائص العامة";
 
 /* No comment provided by engineer. */
 "Glide" = "إنزلق خلال";
@@ -688,11 +790,14 @@
 /* No comment provided by engineer. */
 "Go to front" = "الذهاب إلى الامام";
 
+/* No comment provided by engineer. */
+"green" = "أخضر";
+
 /* paint */
 "Green" = "أخضر";
 
 /* No comment provided by engineer. */
-"green" = "أخضر";
+"Guitar" = "غيتار";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "جهاز إستشعار الدوران";
@@ -776,6 +881,9 @@
 "italic" = "مائل";
 
 /* No comment provided by engineer. */
+"item" = "عنصر";
+
+/* No comment provided by engineer. */
 "Jan" = "كانون الثاني (يناير)";
 
 /* No comment provided by engineer. */
@@ -824,10 +932,13 @@
 "Left" = "اليسار";
 
 /* No comment provided by engineer. */
-"Length" = "طول";
+"left-right only" = "من اليسار-اليمين فقط";
 
 /* No comment provided by engineer. */
 "length" = "طول النص";
+
+/* No comment provided by engineer. */
+"Length" = "طول";
 
 /* No comment provided by engineer. */
 "letter" = "حرف من النص";
@@ -845,16 +956,25 @@
 "Lists" = "قوائم";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "قوائم لكل المتغيرات";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "قوائم لهذا الكائن فقط";
+
+/* No comment provided by engineer. */
 "Loading" = "جار التحميل…";
 
 /* No comment provided by engineer. */
-"location" = "location";
+"location" = "الموقع";
 
 /* No comment provided by engineer. */
 "location accuracy" = "دقة_الموقع";
 
 /* No comment provided by engineer. */
 "Logic" = "المنطق";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "عوامل التشغيل المنطقية (بوليان)";
 
 /* No comment provided by engineer. */
 "Login" = "تسجيل الدخول";
@@ -868,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "خط الطول";
 
-/* No comment provided by engineer. */
-"Look" = "منظر";
-
 /* LOOK */
 "look" = "منظر";
+
+/* No comment provided by engineer. */
+"Look" = "منظر";
 
 /* No comment provided by engineer. */
 "look name" = "إسم_المنظر";
@@ -896,7 +1016,16 @@
 "March" = "اذار/ مارس";
 
 /* No comment provided by engineer. */
-"Math" = "رياضيات";
+"Marimba" = "ماريمبا";
+
+/* No comment provided by engineer. */
+"Maths" = "الرياضيات";
+
+/* No comment provided by engineer. */
+"Maximize" = "تحقيق أقصى قدر";
+
+/* No comment provided by engineer. */
+"maximum of" = "أكبر قيمة";
 
 /* No comment provided by engineer. */
 "May" = "أيار/مايو";
@@ -920,6 +1049,12 @@
 "MI" = "مي";
 
 /* No comment provided by engineer. */
+"Minimize" = "تصغير";
+
+/* No comment provided by engineer. */
+"minimum of" = "أقل قيمة";
+
+/* No comment provided by engineer. */
 "minute" = "دقيقة";
 
 /* paint */
@@ -927,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "الإثنين";
+
+/* No comment provided by engineer. */
+"modulo" = "باقي القسمة";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "الخلد";
@@ -941,7 +1079,7 @@
 "More" = "أكثر";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "مزيد من المعلومات";
 
 /* No comment provided by engineer. */
 "Most downloaded" = "الأكثر تنزيلا";
@@ -953,16 +1091,19 @@
 "Motion" = "الحركة";
 
 /* No comment provided by engineer. */
+"Motion properties" = "خصائص الحركة";
+
+/* No comment provided by engineer. */
 "Move" = "تحريك";
 
 /* No comment provided by engineer. */
-"Move actors or objects" = "Move actors or objects";
+"Move actors or objects" = "نقل الممثلين أو العناصر";
 
 /* No comment provided by engineer. */
-"Move brick" = "Move brick";
+"Move brick" = "نقل الطوب";
 
 /* No comment provided by engineer. */
-"Move looks" = "Move looks";
+"Move looks" = "نقل المظاهر";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "تحريك روبوت الاطفال الى الخلف";
@@ -971,16 +1112,19 @@
 "Move Phiro motor forward" = "تحريك روبوت الاطفال الى الأمام";
 
 /* No comment provided by engineer. */
-"Move sounds" = "Move sounds";
+"Move sounds" = "نقل الأصوات";
+
+/* No comment provided by engineer. */
+"Music Box" = "صندوق الموسيقى";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "مشروعي الأول";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My image" = "My image";
+"My image" = "صورتي";
 
 /* Title for first (default) object */
-"My object" = "My object";
+"My object" = "الغرض الخاص بي";
 
 /* No comment provided by engineer. */
 "Name" = "الإسم";
@@ -989,10 +1133,13 @@
 "Name already exists." = "هذا الاسم موجود مسبقاً.";
 
 /* No comment provided by engineer. */
+"natural logarithm" = "اللوغاريثم الطبيعي";
+
+/* No comment provided by engineer. */
 "New" = "جديد";
 
 /* paint */
-"New canvas" = "New canvas";
+"New canvas" = "قماش جديد";
 
 /* No comment provided by engineer. */
 "New list" = "قائمة جديدة";
@@ -1025,13 +1172,13 @@
 "No" = "لا";
 
 /* No comment provided by engineer. */
-"No camera available" = "No camera available";
+"No camera available" = "لا توجد كاميرا متاحة";
 
 /* No comment provided by engineer. */
-"No categories selected" = "No categories selected";
+"No categories selected" = "لم يتم تحديد فئات";
 
 /* No comment provided by engineer. */
-"No description available" = "No description available";
+"No description available" = "لا يوجد وصف متاح";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "لا يوجد إسم أو إدخال أسم غير صحيح للصورة، حاول مرة أخرى.";
@@ -1050,9 +1197,6 @@
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "غير متوفر. هل تريد المتابعة على أية حال؟";
-
-/* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "لا توجد ذاكرة كافية";
@@ -1079,13 +1223,7 @@
 "Object" = "الكائن";
 
 /* No comment provided by engineer. */
-"Object lists:" = "قوائم الكائن:";
-
-/* No comment provided by engineer. */
-"Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "متغيرات الكائن:";
+"Object or actor name" = "اسم الكائن أو الممثل";
 
 /* No comment provided by engineer. */
 "Oct" = "تشرين الأول (أكتوبر)";
@@ -1118,6 +1256,9 @@
 "or" = "أو";
 
 /* No comment provided by engineer. */
+"Organ" = "عضو";
+
+/* No comment provided by engineer. */
 "Password" = "كلمة المرور";
 
 /* No comment provided by engineer. */
@@ -1139,28 +1280,40 @@
 "Phiro" = "روبوت الاطفال";
 
 /* No comment provided by engineer. */
-"phiro bottom left" = "phiro bottom left";
+"phiro bottom left" = "أسفل phiro لليسار";
 
 /* No comment provided by engineer. */
-"phiro bottom right" = "phiro bottom right";
+"phiro bottom right" = "أسفل phiro لليمين";
 
 /* No comment provided by engineer. */
-"phiro front left" = "phiro front left";
+"phiro front left" = "واجهة الفيرو لليسار";
 
 /* No comment provided by engineer. */
-"phiro front right" = "phiro front right";
+"phiro front right" = "فيرو أمام اليمين";
 
 /* No comment provided by engineer. */
-"phiro side left" = "phiro side left";
+"phiro side left" = "الجانب الأيسر لـ phiro";
 
 /* No comment provided by engineer. */
-"phiro side right" = "phiro side right";
+"phiro side right" = "فيرو الجانب الأيمن";
+
+/* No comment provided by engineer. */
+"pi" = "قيمة باي";
+
+/* No comment provided by engineer. */
+"Piano" = "بيانو";
 
 /* paint */
 "Pipette" = "التقاط اللون";
 
 /* No comment provided by engineer. */
+"Pizzicato" = "بيتزا";
+
+/* No comment provided by engineer. */
 "Place at " = "تحديد موقع الكائن في ";
+
+/* No comment provided by engineer. */
+"Play" = "تشغيل";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "تشغيل موسيقى روبوت الاطفال\n";
@@ -1172,19 +1325,19 @@
 "Please choose up to three categories" = "اختر كحد أقصى ثلاث فئات";
 
 /* paint */
-"Please enter a text." = "Please enter a text.";
+"Please enter a text." = "الرجاء إدخال نص.";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
+"Please enter at least %lu character(s)." = "الرجاء إدخال %lu حرف على الأقل.";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+"Please log in to report this project as inappropriate" = "الرجاء تسجيل الدخول للإبلاغ عن هذا المشروع باعتباره غير مناسب";
 
 /* paint */
 "Please pick a tool" = "الرجاء إنتقاء أداة";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Please select a project to upload";
+"Please select a project to upload" = "الرجاء تحديد مشروع للتحميل";
 
 /* bluetooth */
 "Please try resetting the device and try again." = "الرجاء محاولة إعادة تعيين الجهاز, والمحاولة من جديد.";
@@ -1232,6 +1385,9 @@
 "position y" = "الموقع y";
 
 /* No comment provided by engineer. */
+"power" = "القوة";
+
+/* No comment provided by engineer. */
 "Preview" = "معاينة";
 
 /* No comment provided by engineer. */
@@ -1247,16 +1403,10 @@
 "Project" = "المشروع";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
-
-/* No comment provided by engineer. */
 "Project name" = "اسم البرنامج";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
+"Project Name is necessary!" = "اسم المشروع ضروري!";
 
 /* No comment provided by engineer. */
 "Projects" = "البرامج";
@@ -1265,7 +1415,13 @@
 "Projects on device" = "البرامج";
 
 /* No comment provided by engineer. */
+"Properties" = "الكائن";
+
+/* No comment provided by engineer. */
 "random position" = "موقع عشوائي";
+
+/* No comment provided by engineer. */
+"random value from to" = "رقم عشوائي";
 
 /* No comment provided by engineer. */
 "Rate Us" = "قم بتقييمنا";
@@ -1279,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "مستطيل/مربع";
 
-/* No comment provided by engineer. */
-"red" = "احمر";
-
 /* paint */
 "Red" = "أحمر";
+
+/* No comment provided by engineer. */
+"red" = "احمر";
 
 /* No comment provided by engineer. */
 "Register" = "تسجيل";
 
 /* No comment provided by engineer. */
 "Registration successful" = "تم التسجيل بنجاح";
+
+/* No comment provided by engineer. */
+"regular expression" = "التعبير العادي";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "إزالة الأجهزة المعروفة";
@@ -1345,20 +1504,23 @@
 /* No comment provided by engineer. */
 "Saturday" = "السبت";
 
-/* paint */
-"Save to Photos" = "Save to Photos";
-
 /* No comment provided by engineer. */
-"Save to PocketCode" = "حفظ الي بوكت كوود";
+"Save changes" = "احفظ التغييرات";
+
+/* paint */
+"Save to Photos" = "حفظ في الصور";
 
 /* No comment provided by engineer. */
 "Saved" = "تم الحفظ";
 
 /* No comment provided by engineer. */
+"Saxophone" = "ساكسوفون";
+
+/* No comment provided by engineer. */
 "Say" = "قُل";
 
 /* No comment provided by engineer. */
-"Scene" = "Scene";
+"Scene" = "المشهد";
 
 /* No comment provided by engineer. */
 "Script" = "النصوص البرمجية";
@@ -1388,10 +1550,10 @@
 "Select Arduino" = "حدد أردوينو";
 
 /* No comment provided by engineer. */
-"Select brick category" = "Select brick category";
+"Select brick category" = "حدد فئة الطوب";
 
 /* No comment provided by engineer. */
-"Select categories" = "Select categories";
+"Select categories" = "حدد الفئات";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "حدد عامل التشغيل المنطقي";
@@ -1418,10 +1580,10 @@
 "September" = "أيلول";
 
 /* No comment provided by engineer. */
-"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+"Server is taking to long to respond, please try again later." = "الخادم يستغرق وقتا طويلا للاستجابة، الرجاء المحاولة مرة أخرى لاحقا.";
 
 /* No comment provided by engineer. */
-"Session expired, please log in." = "Session expired, please log in.";
+"Session expired, please log in." = "انتهت صلاحية الجلسة، الرجاء تسجيل الدخول.";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "تعيين قيمة إبرة أردوينو الرقمية";
@@ -1442,6 +1604,9 @@
 "Set description" = "وصف مجموعة";
 
 /* No comment provided by engineer. */
+"Set Instrument to" = "تعيين أداة إلى";
+
+/* No comment provided by engineer. */
 "Set pen color to" = "تعيين لون قلم التلوين الى";
 
 /* No comment provided by engineer. */
@@ -1451,7 +1616,13 @@
 "Set Phiro light" = "تعيين ضوء روبوت الاطفال";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "تعيين نمط الاستدارة الى ";
+
+/* No comment provided by engineer. */
 "Set size to" = "تعيين الحجم الى";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "تعيين الإيقاع إلى";
 
 /* No comment provided by engineer. */
 "Set transparency " = "تعيين درجة الشفافية الى ";
@@ -1463,10 +1634,10 @@
 "Set volume to" = "تعيين مستوى الصوت إلى";
 
 /* No comment provided by engineer. */
-"Set x to " = "Set x to ";
+"Set x to " = "تعيين x إلى ";
 
 /* No comment provided by engineer. */
-"Set y to " = "Set y to ";
+"Set y to " = "تعيين y إلى ";
 
 /* No comment provided by engineer. */
 "Settings" = "إعدادات";
@@ -1479,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "إظهار المتغير";
+
+/* No comment provided by engineer. */
+"sine" = "جيب الزاوية";
 
 /* No comment provided by engineer. */
 "size" = "الحجم";
@@ -1510,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "سرعة";
 
-/* No comment provided by engineer. */
-"sqrt" = "الجذر التربيعي";
-
 /* paint */
 "square" = "مربع";
+
+/* No comment provided by engineer. */
+"square root" = "الجذر التربيعي";
 
 /* No comment provided by engineer. */
 "stage is touched" = "تم لمس الشاشة";
@@ -1538,10 +1712,16 @@
 "Start sound and wait" = "بدء تشغيل مقطع صوتي والانتظار";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "درام فولاذي";
+
+/* No comment provided by engineer. */
 "step" = "خطوات";
 
 /* No comment provided by engineer. */
 "steps" = "خطوات";
+
+/* No comment provided by engineer. */
+"Stitch" = "حياكة";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "إيقاف كافة الأصوات";
@@ -1559,13 +1739,25 @@
 "Switch to look" = "تبديل المظهر الى";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "تبديل الى منظر مُحدد برقم";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "خطأ في بناء الجملة!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "مزامنة العملاء المحتملين";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "مزامنة اللوحة";
+
+/* No comment provided by engineer. */
+"tangent" = "ظل الزاوية";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "اضغط على \"+\" لإضافة أشكال او عناصر";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+"Tap \"+\" to add backgrounds" = "انقر فوق \"+\" لإضافة خلفيات";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add looks" = "انقر فوق \"+\" لإضافة منظر";
@@ -1575,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "انقر فوق \"+\" لإضافة الأصوات";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "انقر فوق \"+\" لإضافة متغيرات وقوائم";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "شروط الاستخدام والخدمات";
@@ -1595,10 +1790,10 @@
 "The description contains invalid characters, try again." = "يحتوي الوصف على أحرف غير صحيحة، حاول مرة أخرى.";
 
 /* No comment provided by engineer. */
-"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+"The featured projects cannot be loaded" = "لا يمكن تحميل المشاريع المميزة";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
+"The following item could not be imported from the media library:" = "تعذر استيراد العنصر التالي من مكتبة وسائط الإعلام:";
 
 /* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "الإدخال طويل جداً. الرجاء إدخال كحد أقصى %lu حرف (أحرف).";
@@ -1607,13 +1802,10 @@
 "The name contains blocked characters. Please try again!" = "الاسم يحتوي على أحرف المحظورة. الرجاء إعادة المحاولة!";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "لا يمكن تحميل المشاريع الأخيرة";
 
 /* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
-
-/* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The requested project can not be loaded. Please try again later." = "لا يمكن تحميل المشروع المطلوب. الرجاء المحاولة مرة أخرى لاحقاً.";
 
 /* No comment provided by engineer. */
 "The sound item cannot be loaded" = "الملف الصوتي لم يتم تحميله";
@@ -1631,7 +1823,7 @@
 "This feature is coming soon!" = "هذه الميزة قريبا!";
 
 /* No comment provided by engineer. */
-"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
+"This list can not be deleted because it is still in use." = "لا يمكن حذف هذه القائمة لأنها لا تزال قيد الاستخدام.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "لا يمكن حذف هذا المتغير لأنه لا يزال قيد الاستخدام.";
@@ -1655,10 +1847,10 @@
 "to list" = "الى القائمة";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "لنقدم لك جميع مزايا خدماتنا والحساب المرتبط ، من الضروري جمع بيانات معينة منك.\n\n\\ u {2022} للحفاظ على خدماتنا (التطبيقات والمواقع الإلكترونية) وتحسينها ولإجراء بحث علمي حول تكنولوجيا المعلومات والاتصالات وتعليم STEM / STEAM ، نستخدم Google Analytics و Crashlytics و Firebase ، وكل ذلك بواسطة Google LLC (الولايات المتحدة الأمريكية) ، بالإضافة إلى Dynatrace بواسطة Dynatrace LLC (الولايات المتحدة الأمريكية) للحصول على بيانات وصفية حول استخدام خدماتنا ، على سبيل المثال ، معلومات التعطل والطوابع الزمنية والصفحات / الشاشات التي تمت زيارتها واستخدام تطبيقاتنا وخدماتنا ونظام التشغيل المستخدم ومعلومات حول مزود الشبكة. لا يرتبط هذا التحليل والبيانات التي تم جمعها بملفك الشخصي ولا يحتوي على أي معلومات شخصية (يتم إخفاء هوية الأجزاء الأخيرة من عنوان IP). ومع ذلك ، سيتم نقل البيانات التي تم جمعها إلى مزود الخدمة (Google LLC ، الولايات المتحدة الأمريكية و Dynatrace LLC ، الولايات المتحدة الأمريكية). تعتمد معالجة البيانات على اتفاقيات مع Google LLC و Dynatrace LLC. تتوافق هذه العلاقة مع مزود الخدمة مع لائحة حماية البيانات العامة للاتحاد الأوروبي (EU GDPR) واتفاقية \"Privacy Shield\" بين الاتحاد الأوروبي والولايات المتحدة الأمريكية.\n\\ u {2022} لإنشاء حساب واستخدامه في أنظمتنا ، ولإبلاغك بالتغييرات الضرورية حول حسابك لكل بريد إلكتروني ، على سبيل المثال ، التحديثات أو الانتهاكات لشروط الاستخدام والخدمة أو قواعد المجتمع أو سياساتنا ، سنقوم بتخزين اسم المستخدم الخاص بك وعنوان البريد الإلكتروني الخاص بك إذا قدمته. إذا قمت بتوصيل حسابك عبر حساب Google أو Facebook الخاص بك ، فإننا نقوم أيضًا بتخزين مفتاح تعريف متصل بحسابك على هذه الخدمات. لن نستخدم هذه البيانات لأي أغراض أخرى (مثل التسويق) ، ما لم تسمح لنا صراحةً بذلك.\n\n\\ u {2022} على أساس طوعي ، يمكنك تزويدنا ببلد إقامتك من خلال صفحة حسابك على موقع المشاركة. سيتم عرض هذا في ملفك الشخصي العام ولن نستخدمه إلا للأغراض الإحصائية والبحثية. يمكن إزالته في أي وقت من إعدادات ملف التعريف الخاص بك.\n\n\\ u {2022} يمكنك سحب استخدام البيانات الشخصية الخاصة بحسابك في أي وقت عن طريق حذف حسابك من خلال صفحة ملفك الشخصي على https://share.catrob.at. بعد حذف حسابك ، ستظل قادرًا على استخدام الخدمات المقدمة ، ولكن ليس التعاون ، على سبيل المثال ، من خلال تحميل البرامج أو التعليق أو الإعجاب. أيضًا ، سيتم حذف جميع المحتويات المقدمة والمرتبطة بحسابك ، على سبيل المثال ، البرامج التي تم تحميلها والتعليقات وما إلى ذلك.\n\n\\ u {2022} لتجنب إساءة استخدام خدماتنا ، على سبيل المثال ، من خلال عمليات التحميل أو التعليقات التي يساهم بها المستخدم لأغراض غير قانونية ، سيتم تخزين جميع البيانات العامة التي ينشئها المستخدم (التحميلات والتعليقات) داخليًا في قاعدة بيانات ، جنبًا إلى جنب مع الطابع الزمني والإنترنت المستخدم تبوك. لن يتم استخدام هذه البيانات من قبل أي مؤسسات أو إرسالها إليها ، ما لم يكن هناك اشتباه معقول بإجراءات غير قانونية كافية وطلبتها المؤسسات القانونية المخولة رسميًا بناءً على القانون المعمول به. سيتم فحص كل حالة بدقة على أساس فردي من قبلنا أولاً.\n\n\\ u {2022} يمكنك الاشتراك طوعًا في نشرة Catrobat الإخبارية على https://catrob.at/newsletter التي نوفرها من خلال خدمة MailChimp (The Rocket Science Group LLC d / b / a MailChimp ، الولايات المتحدة الأمريكية). ستتلقى بعد ذلك تحديثات حول مشروع Catrobat وخدماته على عنوان البريد الإلكتروني الذي قدمته. يمكنك سحب النشرة الإخبارية في أي وقت باستخدام رابط \"إلغاء الاشتراك\" الموجود في تذييل كل رسالة إخبارية. يتم توفير هذه النشرة الإخبارية بواسطة MailChimp التي لدينا معها اتفاقية لمعالجة البيانات والتي تلتزم باللائحة العامة لحماية البيانات في الاتحاد الأوروبي و \"Privacy Shield\" بين الاتحاد الأوروبي والولايات المتحدة الأمريكية. لمزيد من التفاصيل حول MailChimp ، يرجى أيضًا الاطلاع على سياسة الخصوصية وشروط الاستخدام الخاصة بـ MailChimp.\n\n\\ u {2022} يتم توفير جميع الخدمات من خلال مشروع Catrobat المجاني مفتوح المصدر تحت مظلة International Catrobat Association - Verein zur Förderung freier Software ، وهي منظمة غير حكومية غير ربحية تأسست في غراتس ، النمسا (الاتحاد الأوروبي). تدفع سياساتنا احترامًا لقانون حماية البيانات في الاتحاد الأوروبي والنمساوي (GDPR). للتواصل معنا ، يرجى إرسال بريد إلكتروني إلى contact@catrobat.org أو مراسلتنا عبر البريد الإلكتروني Catrobat ،\nج / س\nمعهد تكنولوجيا البرمجيات ،\nجامعة غراتس للتكنولوجيا ،\nInffeldgasse 16b ،\nA-8010 جراتس ، النمسا\n(الإتحاد الأوربي).\n\nإذا كان عمرك أقل من 14 عامًا ، فيجب قبول هذه السياسة من قبل وصي قانوني (عادةً أحد الوالدين).\n\nسياسة الخصوصية الرسمية للغة الإنجليزية من Catrobat متاحة على الويب تحت https://catrob.at/privacypolicy.\n\nالإصدار 2.2 ، 17 أكتوبر 2019\n\nابحث عن الإصدار القديم القديم لسياسة الخصوصية (2.0) هنا: http://developer.catrobat.org/privacy_policy_2-0";
 
 /* No comment provided by engineer. */
-"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "لاستخدام تطبيقنا، من الضروري قبول سياسة الخصوصية لدينا. ومع ذلك، إذا كنت لا تشعر بالارتياح للقيام بذلك، يمكنك استخدام خدمات الويب المجانية لدينا على share.catrob.at";
 
 /* No comment provided by engineer. */
 "to x:" = "إلى س:";
@@ -1667,10 +1859,16 @@
 "Today" = "اليوم";
 
 /* No comment provided by engineer. */
+"Touch detection" = "الكشف عن التلامس";
+
+/* No comment provided by engineer. */
 "touch position" = "قم بلمس الموقع";
 
 /* No comment provided by engineer. */
 "transparency" = "الشفافية";
+
+/* No comment provided by engineer. */
+"Trombone" = "ترومبون";
 
 /* No comment provided by engineer. */
 "true" = "صحيح";
@@ -1694,7 +1892,10 @@
 "Turn right" = "انعطف نحو اليمين";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to import project!" = "تعذر استيراد المشروع!";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "تعذر تحميل المشروع!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "غير قادر على تشغيل هذا الصوت! ربما الصوت غير صالح أو أن الملف لا يعمل.";
@@ -1718,31 +1919,31 @@
 "Undo Typing?" = "هل تريد التراجع عن الكتابة؟";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Unexpected Error";
+"Unexpected Error" = "خطأ غير متوقع";
 
 /* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+"Unexpected Error, please try again later." = "خطأ غير متوقع، الرجاء المحاولة مرة أخرى لاحقاً.";
 
 /* No comment provided by engineer. */
-"Unknown Element" = "Unknown Element";
+"Unknown Element" = "عنصر غير معروف";
 
 /* No comment provided by engineer. */
-"Unselect all" = "Unselect all";
+"Unselect all" = "إلغاء تحديد الكل";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Unsupported Brick:";
+"Unsupported Brick:" = "طوب غير مدعوم:";
 
 /* No comment provided by engineer. */
-"Unsupported Elements" = "Unsupported Elements";
+"Unsupported Elements" = "عناصر غير مدعومة";
 
 /* No comment provided by engineer. */
-"Unsupported Script:" = "Unsupported Script:";
+"Unsupported Script:" = "سكريبت غير مدعوم:";
 
 /* No comment provided by engineer. */
 "Upload project" = "تحميل البرنامج";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Upload selected project";
+"Upload selected project" = "تحميل المشروع المحدد";
 
 /* No comment provided by engineer. */
 "Upload successful" = "تم التحميل بنجاح";
@@ -1763,16 +1964,10 @@
 "Username must not be blank" = "يجب أن لا يكون اسم المستخدم فارغ";
 
 /* No comment provided by engineer. */
-"Var/List" = "متغير/قائمة";
-
-/* No comment provided by engineer. */
-"Variable" = "متغير";
-
-/* No comment provided by engineer. */
 "Variable name:" = "اسم المتغير:";
 
 /* No comment provided by engineer. */
-"Variable or list" = "Variable or list";
+"Variable or list" = "المتغير أو القائمة";
 
 /* No comment provided by engineer. */
 "Variable type" = "نوع المتغير";
@@ -1781,7 +1976,16 @@
 "Variables" = "المتغيرات";
 
 /* No comment provided by engineer. */
+"Variables for all actors and objects" = "متغيرات لكل الكائنات";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "متغيرات لهذا الكائن فقط";
+
+/* No comment provided by engineer. */
 "Version" = "الإصدار";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "فيبرافون";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "الإهتزاز لـفترة";
@@ -1790,7 +1994,13 @@
 "vibration" = "الاهتزاز";
 
 /* No comment provided by engineer. */
+"View" = "عرض";
+
+/* No comment provided by engineer. */
 "Views" = "عرض";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "أجهزة الاستشعار البصرية";
 
 /* No comment provided by engineer. */
 "Wait" = "انتظر";
@@ -1811,13 +2021,16 @@
 "Welcome!" = "مرحبا!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "ما هو اسمك؟";
+
+/* No comment provided by engineer. */
 "When" = "عندما";
 
 /* No comment provided by engineer. */
 "When background changes to" = "عند تغيير الخلفية إلى";
 
 /* No comment provided by engineer. */
-"When project starts" = "When project starts";
+"When project starts" = "عندما يبدأ المشروع";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "عند لمس الشاشة";
@@ -1835,10 +2048,13 @@
 "with" = "مع";
 
 /* No comment provided by engineer. */
-"x: " = "x: ";
+"Wooden Flute" = "لطيف خشبي";
 
 /* No comment provided by engineer. */
-"y: " = "y: ";
+"x: " = "س: ";
+
+/* No comment provided by engineer. */
+"y: " = "ص:";
 
 /* No comment provided by engineer. */
 "year" = "السنة";
@@ -1850,10 +2066,19 @@
 "Yesterday" = "البارحة";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "لقد قمت بتحميل هذا المشروع مسبقاً!";
+
+/* No comment provided by engineer. */
+"Your answer" = "إجابتك";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "البريد الالكتروني الخاص بك غير صحيح";
 
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "تم تحميل مشروعك إلى مجتمع كاتروبات حيث يمكن للآخرين استخدامه وتحميله.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "تم إرسال تقريرك بنجاح!";
+
 /* paint */
-"Zoom" = "Zoom";
+"Zoom" = "تكبير";

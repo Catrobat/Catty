@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,21 +23,21 @@
 @objc extension SetBackgroundBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        .action { context in SKAction.run(self.actionBlock()) }
+        .action { _ in SKAction.run(self.actionBlock(imageCache: RuntimeImageCache.shared())) }
     }
 
-    @objc func actionBlock() -> () -> Void {
+    @objc func actionBlock(imageCache: RuntimeImageCache) -> () -> Void {
         guard let object = self.script.object.scene.objects().first,
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
 
         return {
-            let cache = RuntimeImageCache.shared()
-            var image = cache?.cachedImage(forPath: self.pathForLook())
+            guard let _ = self.look else { return }
+
+            var image = imageCache.cachedImage(forPath: self.pathForLook())
 
             if image == nil {
-                print("LoadImageFromDisk")
-                cache?.loadImageFromDisk(withPath: self.pathForLook())
+                imageCache.loadImageFromDisk(withPath: self.pathForLook())
                 guard let imageFromDisk = UIImage(contentsOfFile: self.pathForLook()) else { return }
                 image = imageFromDisk
             }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -50,11 +50,9 @@
     self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout new];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    if (@available(iOS 11, *)) {
-        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     [self setupSubviews];
+    [self updateTitle];
 }
 
 #pragma mark - Setup
@@ -125,6 +123,7 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
     NSAssert(cell.scriptOrBrick, @"Error, no brick.");
     
     [Util incrementStatisticCountForBrick:cell.scriptOrBrick];
+    [RecentlyUsedBricksManager updateRecentlyUsedBricksFor: NSStringFromClass([cell.scriptOrBrick class])];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.brickSelected object:cell.scriptOrBrick];
     
@@ -149,12 +148,12 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
     if (@available(iOS 13, *))
     {
         return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
-        kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+        UIDefines.brickCategorySectionInset, 0.0f, UIDefines.brickCategorySectionInset, 0.0f);
     } else
     {
         return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
         CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) +
-        kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+        UIDefines.brickCategorySectionInset, 0.0f, UIDefines.brickCategorySectionInset, 0.0f);
     }
     
 }
@@ -163,7 +162,13 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
                    layout:(UICollectionViewLayout*)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 8.f;
+    return UIDefines.brickCategoryBrickInset;
 }
+
+- (void) updateTitle
+{
+    self.title = self.category.name;
+}
+
 
 @end

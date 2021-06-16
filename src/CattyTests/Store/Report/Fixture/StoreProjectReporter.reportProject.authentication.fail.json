@@ -1,0 +1,35 @@
+{
+  "name" : "StoreProjectReporter.reportProject.authentication.fail",
+  "interactions" : [
+    {
+      "recorded_at" : 1602093111.95871,
+      "request" : {
+        "body" : "cHJvZ3JhbT04MTcmbm90ZT1Ob3QgYXBwcm9wcmlhdGUgY29udGVudCZjYXRlZ29yeT1JbmFwcHJvcHJpYXRl",
+        "headers" : {
+          "Content-Length" : "63",
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98551263596598746108249098092---------------------------"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/reportProject\/reportProject.json"
+      },
+      "response" : {
+        "status" : 401,
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/reportProject\/reportProject.json",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Server" : "nginx",
+          "Content-Type" : "application\/json",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "x-robots-tag" : "noindex",
+          "Set-Cookie" : "PHPSESSID=jtbm3k4dpb79g80316gq8b5ihe; path=\/; HttpOnly",
+          "x-debug-token" : "6d96e4",
+          "Expires" : "Wed, 07 Oct 2020 17:51:51 GMT",
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/6d96e4",
+          "Pragma" : "no-cache",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Date" : "Wed, 07 Oct 2020 17:51:51 GMT"
+        }
+      }
+    }
+  ]
+}

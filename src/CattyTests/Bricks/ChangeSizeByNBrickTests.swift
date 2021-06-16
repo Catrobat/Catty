@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -85,5 +85,18 @@ final class ChangeSizeByNBrickTests: AbstractBrickTest {
 
         XCTAssertTrue(brick.size.isEqual(to: copiedBrick.size))
         XCTAssertFalse(brick.size === copiedBrick.size)
+    }
+
+    func testGetFormulas() {
+        brick.size = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.size, formulas?[0])
+
+        brick.size = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.size, formulas?[0])
     }
 }

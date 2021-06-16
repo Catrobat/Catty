@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
         self.parserContext!.spriteObject = SpriteObject()
         self.parserContext!.spriteObject.lookList = lookList
-        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetLookBrick.self as? CBXMLNodeProtocol.Type) as! Brick
+        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetLookBrick.self) as! Brick
 
         XCTAssertTrue(brick.isKind(of: SetLookBrick.self), "Invalid brick class")
 

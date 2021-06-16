@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ class PocketCodeMainScreenTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     func testContinue() {
@@ -85,9 +85,9 @@ class PocketCodeMainScreenTests: XCTestCase {
 
             let alert = waitForElementToAppear(app.alerts[kLocalizedPocketCode])
             XCTAssert(alert.exists)
-            waitForElementToAppear(alert.buttons[kLocalizedOK]).tap()
 
-            waitForElementToAppear(alertQuery.buttons[kLocalizedCancel]).tap()
+            alert.buttons[kLocalizedOK].tap()
+            alertQuery.buttons[kLocalizedCancel].tap()
         }
     }
 
@@ -102,7 +102,7 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testProjects() {
-        let projectNames = ["testProject1", "testProject2", "testProject3"]
+        let projectNames = ["testProject1", "testProject2"]
 
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
@@ -116,11 +116,11 @@ class PocketCodeMainScreenTests: XCTestCase {
         let enterYourProjectNameHereTextField = alertQuery.textFields[kLocalizedEnterYourProjectNameHere]
         let okButton = alertQuery.buttons[kLocalizedOK]
 
-        for i in 0...2 {
+        for projectName in projectNames {
             newStaticText.tap()
-            enterYourProjectNameHereTextField.typeText(projectNames[i])
+            enterYourProjectNameHereTextField.typeText(projectName)
             okButton.tap()
-            app.navigationBars[projectNames[i]].buttons[kLocalizedPocketCode].tap()
+            app.navigationBars[projectName].buttons[kLocalizedPocketCode].tap()
         }
 
         tablesQuery.staticTexts[kLocalizedProjectsOnDevice].tap()

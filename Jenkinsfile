@@ -18,7 +18,7 @@ pipeline {
   stages {
     stage('Unlock keychain') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'eb111b76-63f8-4546-bc26-5fcb94721e1a', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+        withCredentials([usernamePassword(credentialsId: '29a4006b-0d8b-4fe9-9237-b00856bdb0de', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
           script {
             unlockMACKeychain "${PASSWORD}"
           }
@@ -39,6 +39,13 @@ pipeline {
       steps {
         sh 'cd src && fastlane build_catty'
       }
+      post {
+        always {
+          archiveArtifacts(artifacts: 'src/fastlane/builds/', allowEmptyArchive: true)
+          archiveArtifacts(artifacts: 'src/fastlane/Install.html', allowEmptyArchive: true)
+          archiveArtifacts(artifacts: 'src/fastlane/Adhoc.plist', allowEmptyArchive: true)
+        }
+      }
     }
     stage('Test') {
       steps {
@@ -49,9 +56,6 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts(artifacts: 'src/fastlane/builds/', allowEmptyArchive: true)
-      archiveArtifacts(artifacts: 'src/fastlane/Install.html', allowEmptyArchive: true)
-      archiveArtifacts(artifacts: 'src/fastlane/Adhoc.plist', allowEmptyArchive: true)
       junit testResults: 'src/fastlane/test_output/report.junit', allowEmptyResults: true
     }
   }

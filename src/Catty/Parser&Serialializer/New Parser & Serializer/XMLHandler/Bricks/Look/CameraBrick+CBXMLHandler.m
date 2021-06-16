@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -37,12 +37,12 @@
     NSString *brickType = [xmlElement XMLRootElementAsString];
     CameraBrick *cameraBrick = [self new];
     
-    if([brickType rangeOfString:@"CameraBrick"].location != NSNotFound){
+    if([brickType rangeOfString:@"CameraBrick"].location != NSNotFound) {
         
         NSUInteger childCount = [[xmlElement childrenWithoutCommentsAndCommentedOutTag] count];
         
         if (childCount != 1 && childCount != 2) {
-            [XMLError exceptionWithMessage:@"Camera Brick is faulty"];
+            [XMLError exceptionWithMessage:@"Wrong number of child elements for CameraBrick"];
         } else if (childCount == 2) {
             GDataXMLElement *spinnerValuesElement = [xmlElement childWithElementName:@"spinnerValues"];
             [XMLError exceptionIfNil:spinnerValuesElement
@@ -75,16 +75,7 @@
     
     NSString *numberString = [NSString stringWithFormat:@"%i", self.cameraChoice];
     GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
-    GDataXMLElement *spinnerValues = [GDataXMLElement elementWithName:@"spinnerValues" context:context];
-    
-    GDataXMLElement *off = [GDataXMLElement elementWithName:@"string" stringValue:@"off" context:context];
-    GDataXMLElement *on = [GDataXMLElement elementWithName:@"string" stringValue:@"on" context:context];
-    
-    [spinnerValues addChild:off context:context];
-    [spinnerValues addChild:on context:context];
-    
     [brick addChild:spinnerID context:context];
-    [brick addChild:spinnerValues context:context];
     
     return brick;
 }

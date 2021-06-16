@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -71,6 +71,7 @@ class URLSessionMock: URLSession {
         var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
         var mockResponse: URLResponse?
         var mockError: Error?
+        var cancelled = false
 
         required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void,
                       response: URLResponse?,
@@ -97,6 +98,10 @@ class URLSessionMock: URLSession {
         override func resume() {
             self.completionHandler?(nil, mockResponse, mockError)
             self.completionHandler = nil
+        }
+
+        override func cancel() {
+            cancelled = true
         }
     }
 }

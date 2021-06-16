@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,24 +24,25 @@
 
     @objc public static func registeredBricks() -> [BrickProtocol] {
         var bricks: [BrickProtocol] = [
-            // control bricks
+            // event bricks
             BroadcastScript(),
             StartScript(),
+            WhenScript(),
+            WhenConditionScript(),
+            WhenTouchDownScript(),
+            BroadcastBrick(),
+            BroadcastWaitBrick(),
+            WhenBackgroundChangesScript(),
+            // control bricks
             WaitBrick(),
             IfThenLogicBeginBrick(),
             IfThenLogicEndBrick(),
             IfLogicBeginBrick(),
             IfLogicElseBrick(),
             IfLogicEndBrick(),
-            WhenScript(),
-            WhenConditionScript(),
-            BroadcastBrick(),
-            BroadcastWaitBrick(),
             ForeverBrick(),
             RepeatBrick(),
             RepeatUntilBrick(),
-            WhenBackgroundChangesScript(),
-            WhenTouchDownScript(),
             NoteBrick(),
             WaitUntilBrick(),
             LoopEndBrick(),
@@ -65,13 +66,16 @@
             SetRotationStyleBrick(),
             // look bricks
             HideBrick(),
-            SetLookBrick(),
             ShowBrick(),
+            SetLookBrick(),
+            SetLookByIndexBrick(),
             SetSizeToBrick(),
             SetTransparencyBrick(),
             NextLookBrick(),
             PreviousLookBrick(),
             SetBackgroundBrick(),
+            SetBackgroundAndWaitBrick(),
+            SetBackgroundByIndexBrick(),
             SetBrightnessBrick(),
             ChangeSizeByNBrick(),
             ChangeTransparencyByNBrick(),
@@ -102,6 +106,8 @@
             SpeakAndWaitBrick(),
             SetVolumeToBrick(),
             ChangeVolumeByNBrick(),
+            SetInstrumentBrick(),
+            SetTempoToBrick(),
             // variable bricks
             SetVariableBrick(),
             ChangeVariableBrick(),
@@ -111,8 +117,11 @@
             InsertItemIntoUserListBrick(),
             ReplaceItemInUserListBrick(),
             DeleteItemOfUserListBrick(),
+            // arduino bricks
             ArduinoSendDigitalValueBrick(),
-            ArduinoSendPWMValueBrick()
+            ArduinoSendPWMValueBrick(),
+            // embroidery brick
+            StitchBrick()
         ]
 
         if isPhiroEnabled() {
@@ -124,59 +133,83 @@
             bricks.append(PhiroIfLogicBeginBrick())
         }
 
+        if isWebRequestBrickEnabled() {
+            bricks.append(WebRequestBrick())
+        }
+
         return bricks
     }
 
     @objc public static func registeredBrickCategories() -> [BrickCategory] {
         var categories = [
+            BrickCategory(type: kBrickCategoryType.embroideryBrick,
+                          name: kLocalizedCategoryEmbroidery,
+                          color: UIColor.embroideryBrickPink,
+                          strokeColor: UIColor.embroideryBrickStroke,
+                          enabled: isEmbroideryEnabled()),
+
+            BrickCategory(type: kBrickCategoryType.arduinoBrick,
+                          name: kLocalizedCategoryArduino,
+                          color: UIColor.arduinoBrick,
+                          strokeColor: UIColor.arduinoBrickStroke,
+                          enabled: isArduinoEnabled()),
+
+            BrickCategory(type: kBrickCategoryType.eventBrick,
+                          name: kLocalizedCategoryEvent,
+                          color: UIColor.eventBrick,
+                          strokeColor: UIColor.eventBrickStroke,
+                          enabled: true),
+
             BrickCategory(type: kBrickCategoryType.controlBrick,
                           name: kLocalizedCategoryControl,
                           color: UIColor.controlBrickOrange,
-                          strokeColor: UIColor.controlBrickStroke),
+                          strokeColor: UIColor.controlBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.motionBrick,
                           name: kLocalizedCategoryMotion,
                           color: UIColor.motionBrickBlue,
-                          strokeColor: UIColor.motionBrickStroke),
+                          strokeColor: UIColor.motionBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.lookBrick,
                           name: kLocalizedCategoryLook,
                           color: UIColor.lookBrickGreen,
-                          strokeColor: UIColor.lookBrickStroke),
+                          strokeColor: UIColor.lookBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.penBrick,
                           name: kLocalizedCategoryPen,
                           color: UIColor.penBrickGreen,
-                          strokeColor: UIColor.penBrickStroke),
+                          strokeColor: UIColor.penBrickStroke,
+                          enabled: true),
 
             BrickCategory(type: kBrickCategoryType.soundBrick,
                           name: kLocalizedCategorySound,
                           color: UIColor.soundBrickViolet,
-                          strokeColor: UIColor.soundBrickStroke),
+                          strokeColor: UIColor.soundBrickStroke,
+                          enabled: true),
 
-            BrickCategory(type: kBrickCategoryType.variableBrick,
-                          name: kLocalizedCategoryVariable,
+            BrickCategory(type: kBrickCategoryType.dataBrick,
+                          name: kLocalizedCategoryData,
                           color: UIColor.variableBrickRed,
-                          strokeColor: UIColor.variableBrickStroke)
+                          strokeColor: UIColor.variableBrickStroke,
+                          enabled: true)
         ]
 
-        if isFavouritesCategoryAvailable() {
-            categories.prepend(BrickCategory(type: kBrickCategoryType.favouriteBricks,
-                                             name: kLocalizedCategoryFrequentlyUsed,
-                                             color: UIColor.controlBrickOrange,
-                                             strokeColor: UIColor.controlBrickStroke))
-        }
-        if isArduinoEnabled() {
-            categories.append(BrickCategory(type: kBrickCategoryType.arduinoBrick,
-                                            name: kLocalizedCategoryArduino,
-                                            color: UIColor.arduinoBrick,
-                                            strokeColor: UIColor.arduinoBrickStroke))
-        }
         if isPhiroEnabled() {
-            categories.append(BrickCategory(type: kBrickCategoryType.phiroBrick,
-                                            name: kLocalizedCategoryPhiro,
-                                            color: UIColor.phiroBrick,
-                                            strokeColor: UIColor.phiroBrickStroke))
+            categories.prepend(BrickCategory(type: kBrickCategoryType.phiroBrick,
+                                             name: kLocalizedCategoryPhiro,
+                                             color: UIColor.phiroBrick,
+                                             strokeColor: UIColor.phiroBrickStroke,
+                                             enabled: isPhiroEnabled()))
+        }
+        if isRecentlyUsedAvailable() {
+            categories.prepend(BrickCategory(type: kBrickCategoryType.recentlyUsedBricks,
+                                             name: kLocalizedCategoryRecentlyUsed,
+                                             color: UIColor.recentlyUsedBricks,
+                                             strokeColor: UIColor.recentlyUsedBricksStroke,
+                                             enabled: isRecentlyUsedAvailable()))
         }
 
         return categories
@@ -190,7 +223,15 @@
         UserDefaults.standard.bool(forKey: kUsePhiroBricks)
     }
 
-    private static func isFavouritesCategoryAvailable() -> Bool {
-        Util.getBrickInsertionDictionaryFromUserDefaults()?.count ?? 0 >= kMinFavouriteBrickSize
+    private static func isRecentlyUsedAvailable() -> Bool {
+        RecentlyUsedBricksManager.getRecentlyUsedBricks().count >= UIDefines.recentlyUsedBricksMinSize
+    }
+
+    private static func isEmbroideryEnabled() -> Bool {
+         UserDefaults.standard.bool(forKey: kUseEmbroideryBricks)
+    }
+
+    private static func isWebRequestBrickEnabled() -> Bool {
+         UserDefaults.standard.bool(forKey: kUseWebRequestBrick)
     }
 }

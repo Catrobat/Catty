@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,87 +25,15 @@
 
 @implementation CBXMLValidator
 
-+ (NSString*)exceptionName
-{
-    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:3];
-    // Example: 1   UIKit                               0x00540c89 -[UIApplication _callInitializationDelegatesForURL:payload:suspended:] + 1163
-    NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
-    [array removeObject:@""];
-    NSUInteger index = 0;
-    NSDebug(@"Stack = %@", [array objectAtIndex:index++]);
-#if DEBUG == 1
-    NSString *framework = [array objectAtIndex:index++];
-    NSString *tempString = [array objectAtIndex:index++];
-    NSString *memoryAddress = nil;
-    NSCharacterSet *chars = [[NSCharacterSet
-                              characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
-    BOOL tempStringContainsValidMemoryAddress = (NSNotFound == [tempString rangeOfCharacterFromSet:chars].location);
-    if (tempStringContainsValidMemoryAddress) {
-        memoryAddress = tempString;
-    } else {
-        framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
-        memoryAddress = [array objectAtIndex:index++];
-    }
-    NSLog(@"Framework = %@", framework);
-    NSLog(@"Memory address = %@", memoryAddress);
-#endif // DEBUG
-    NSString *classCaller = [array objectAtIndex:index++];
-    return classCaller;
-}
-
-+ (NSString*)exceptionMessagePrefix
-{
-    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:3];
-    // Example: 1   UIKit                               0x00540c89 -[UIApplication _callInitializationDelegatesForURL:payload:suspended:] + 1163
-    NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
-    [array removeObject:@""];
-    NSUInteger index = 0;
-    NSDebug(@"Stack = %@", [array objectAtIndex:index++]);
-#if DEBUG == 1
-    NSString *framework = [array objectAtIndex:index++];
-    NSString *tempString = [array objectAtIndex:index++];
-    NSString *memoryAddress = nil;
-    NSCharacterSet *chars = [[NSCharacterSet
-                              characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
-    BOOL tempStringContainsValidMemoryAddress = (NSNotFound == [tempString rangeOfCharacterFromSet:chars].location);
-    if (tempStringContainsValidMemoryAddress) {
-        memoryAddress = tempString;
-    } else {
-        framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
-        memoryAddress = [array objectAtIndex:index++];
-    }
-    NSLog(@"Framework = %@", framework);
-    NSLog(@"Memory address = %@", memoryAddress);
-#endif // DEBUG
-
-    NSString *classCaller = [array objectAtIndex:index++];
-    NSString *functionCaller = [array objectAtIndex:index++];
-    NSString *lineCaller = [array objectAtIndex:index++];
-    NSDebug(@"Class caller = %@", classCaller);
-    NSDebug(@"Function caller = %@", functionCaller);
-    NSDebug(@"Line caller = %@", lineCaller);
-    return [NSString stringWithFormat:@"[%@:%@(%@)]", classCaller, functionCaller, lineCaller];
-}
-
 + (void)throwExceptionWithMessage:(NSString*)exceptionMessage arguments:(va_list)argList NS_FORMAT_FUNCTION(1,0)
 {
     if (exceptionMessage) {
         exceptionMessage = [[NSString alloc] initWithFormat:exceptionMessage arguments:argList];
-        NSString *exceptionName = [[self class] exceptionName];
-        NSString *exceptionMessagePrefix = [[self class] exceptionMessagePrefix];
-        exceptionMessage = [NSString stringWithFormat:@"%@ %@",
-                            exceptionMessagePrefix,
-                            exceptionMessage];
-        [NSException raise:exceptionName
-                    format:exceptionMessage, nil];
     } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wformat-security"
-        [NSException raise:[[self class] exceptionName] format:[[self class] exceptionMessagePrefix]];
-#pragma clang diagnostic pop
+        exceptionMessage = @"XML exception without message";
     }
+    
+    [NSException raise:NSStringFromClass([self class]) format:exceptionMessage, nil];
 }
 
 + (void)exceptionIfNode:(GDataXMLNode*)node isNilOrNodeNameNotEquals:(NSString*)expectedNodeName

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -61,6 +61,7 @@
 
     // raw value is in radians, standardized value is in degrees
     @objc static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
+        guard let _ = spriteObject.spriteNode else { return self.defaultRawValue }
         let rawValueDegrees = Util.radians(toDegree: rawValue)
         return self.convertSceneToDegrees(rawValueDegrees, for: spriteObject)
     }
@@ -95,6 +96,6 @@
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        [.object(position: type(of: self).position)]
+        [.object(position: type(of: self).position, subsection: .motion)]
     }
 }

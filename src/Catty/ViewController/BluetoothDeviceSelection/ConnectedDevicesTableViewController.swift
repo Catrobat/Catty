@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,10 +47,10 @@ class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
     }
 
     func getConnectedDevices() {
-        let afterPeripheralDiscovered = {(peripherals: [Peripheral]) -> Void in
+        let afterPeripheralDiscovered = {(_: [Peripheral]) -> Void in
             self.updateWhenActive()
         }
-        let afterTimeout = {(error: NSError) -> Void in
+        let afterTimeout = {(_: NSError) -> Void in
 
         }
 

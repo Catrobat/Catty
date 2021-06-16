@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -76,6 +76,8 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kCompass =              1 << 11,
     kDeviceMotion =         1 << 12,
     kTouchHandler =         1 << 13,
+    kEmbroidery =           1 << 14,
+    kInternet =             1 << 15,
     kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion // TODO Pass ResourceType parameters as array (e.g. in "Sensor")
 };
 

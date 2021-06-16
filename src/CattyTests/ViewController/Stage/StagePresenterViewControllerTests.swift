@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,16 +27,21 @@ import XCTest
 
 final class StagePresenterViewControllerTest: XCTestCase {
 
-    var vc: StagePresenterViewController!
+    var vc: StagePresenterViewControllerMock!
     var skView: SKView!
     var project: Project!
+    var navigationController: NavigationControllerMock!
 
     override func setUp() {
         super.setUp()
-        vc = StagePresenterViewController()
-        skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
 
-        project = ProjectManager.createProject(name: "testProject", projectId: "")
+        vc = StagePresenterViewControllerMock()
+
+        navigationController = NavigationControllerMock()
+        navigationController.view = UIView()
+
+        skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
+        project = ProjectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
     }
 
     func testNotification() {
@@ -73,5 +78,70 @@ final class StagePresenterViewControllerTest: XCTestCase {
         XCTAssertEqual(gridLabels![2].text, String(-project.header.screenHeight.intValue / 2))
         XCTAssertEqual(gridLabels![3].text, String(-project.header.screenWidth.intValue / 2))
         XCTAssertEqual(gridLabels![4].text, String(project.header.screenWidth.intValue / 2))
+    }
+
+    func testCheckResourcesAndPushViewController() {
+        CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
+        Util.setLastProjectWithName(kDefaultProjectBundleName, projectID: nil)
+
+        XCTAssertNil(navigationController.currentViewController)
+        XCTAssertEqual(0, navigationController.view.subviews.count)
+        XCTAssertEqual(0, vc.showLoadingViewCalls)
+
+        vc.checkResourcesAndPushViewController(to: navigationController)
+
+        expect(self.navigationController.currentViewController).toEventually(equal(vc))
+        expect(self.navigationController.view.subviews.count).toEventually(equal(1))
+        expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
+        expect(self.vc.hideLoadingViewCalls).toEventually(equal(0))
+    }
+
+    func testCheckResourcesAndPushViewControllerInvalidProject() {
+        Util.setLastProjectWithName("InvalidProject", projectID: Date().timeIntervalSinceNow.description)
+
+        XCTAssertNil(navigationController.currentViewController)
+
+        vc.checkResourcesAndPushViewController(to: navigationController)
+
+        expect(self.navigationController.currentViewController).toEventually(beNil())
+        expect(self.navigationController.view.subviews.count).toEventually(equal(1))
+        expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
+        expect(self.vc.hideLoadingViewCalls).toEventually(equal(1))
+    }
+
+    func testShareDST() {
+        let expectedStitch = Stitch(x: 0, y: 1)
+        let data = Data()
+
+        let stream = EmbroideryStream(projectWidth: project.header.screenWidth as? CGFloat, projectHeight: project.header.screenHeight as? CGFloat)
+        stream.stitches.append(expectedStitch)
+
+        let embroideryServiceMock = EmbroideryServiceMock(outputData: data)
+
+        vc.project = project
+
+        XCTAssertEqual(1, project.allObjects().count)
+
+        let background = project.allObjects().first!
+        let backgroundNode = CBSpriteNodeMock(spriteObject: background)
+        background.spriteNode = backgroundNode
+
+        let object = SpriteObjectMock(scene: project.scene)
+        let objectNode = CBSpriteNodeMock(spriteObject: object)
+        objectNode.embroideryStream = stream
+        object.spriteNode = objectNode
+        project.scene.add(object: object)
+
+        XCTAssertEqual(2, project.allObjects().count)
+        XCTAssertNil(vc.latestPresentedViewController)
+        XCTAssertNil(embroideryServiceMock.inputStream)
+
+        vc.shareDST(embroideryService: embroideryServiceMock)
+
+        XCTAssertNotNil(embroideryServiceMock.inputStream)
+        XCTAssertEqual(1, embroideryServiceMock.inputStream?.stitches.count)
+        XCTAssertEqual(expectedStitch.getPosition(), embroideryServiceMock.inputStream?.stitches.first?.getPosition())
+
+        XCTAssertNotNil(vc.latestPresentedViewController as? UIActivityViewController)
     }
 }

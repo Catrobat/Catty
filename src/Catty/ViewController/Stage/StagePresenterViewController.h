@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,31 +24,19 @@
 #import <SpriteKit/SpriteKit.h>
 
 @protocol SpriteManagerDelegate;
+
 @class Project;
 @class FormulaManager;
 @class LoadingView;
+@class StagePresenterSideMenuView;
+@class StagePresenterViewControllerShareExtension;
 
 @interface StagePresenterViewController : UIViewController
-
-@property (nonatomic, strong) UIView *menuView;
-@property (nonatomic, strong) NSLayoutConstraint *menuViewLeadingConstraint;
 
 @property (nonatomic, strong) Project *project;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIView *gridView;
-
-@property (weak,nonatomic) IBOutlet UIButton *menuBackButton;
-@property (weak,nonatomic) IBOutlet UIButton *menuContinueButton;
-@property (weak,nonatomic) IBOutlet UIButton *menuScreenshotButton;
-@property (weak,nonatomic) IBOutlet UIButton *menuRestartButton;
-@property (weak,nonatomic) IBOutlet UIButton *menuAxisButton;
-@property (weak,nonatomic) IBOutlet UIButton *menuAspectRatioButton;
-@property (weak,nonatomic) IBOutlet UIButton *menuBackLabel;
-@property (weak,nonatomic) IBOutlet UIButton *menuContinueLabel;
-@property (weak,nonatomic) IBOutlet UIButton *menuScreenshotLabel;
-@property (weak,nonatomic) IBOutlet UIButton *menuRestartLabel;
-@property (weak,nonatomic) IBOutlet UIButton *menuAxisLabel;
 
 - (void)pauseAction;
 - (void)resumeAction;

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ class MyFirstProjectTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     func testCanDeleteMultipleObjectsViaEditMode() {
@@ -132,39 +132,6 @@ class MyFirstProjectTests: XCTestCase {
         XCTAssert(app.buttons[kLocalizedShowDetails].exists)
         app.buttons[kLocalizedCancel].tap()
 
-        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
-    }
-
-    func testCanEditDescriptionViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
-
-        XCTAssert(app.buttons[kLocalizedDescription].exists)
-        app.buttons[kLocalizedDescription].tap()
-
-        app.textViews["descriptionTextView"].typeText("This is test description")
-
-        app.navigationBars.buttons[kLocalizedDone].tap()
-        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
-
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
-
-        XCTAssert(app.buttons[kLocalizedDescription].exists)
-        app.buttons[kLocalizedDescription].tap()
-
-        XCTAssertEqual(app.textViews["descriptionTextView"].value as! String, "This is test description")
-    }
-
-    func testCanAbortEditDescriptionViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
-
-        XCTAssert(app.buttons[kLocalizedDescription].exists)
-        app.buttons[kLocalizedDescription].tap()
-
-        app.navigationBars.buttons[kLocalizedCancel].tap()
         XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
     }
 

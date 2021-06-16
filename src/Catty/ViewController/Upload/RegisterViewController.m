@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 #import "RegisterViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
-#import "JNKeychain.h"
 #import "Pocket_Code-Swift.h"
 
 #import "KeychainUserDefaultsDefines.h"
@@ -304,7 +303,6 @@
         
         if (error) {
             if ([Util isNetworkError:error]) {
-                NSLog(@"ERROR: %@", error);
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.registerButton.enabled = YES;
@@ -373,7 +371,7 @@
         [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [JNKeychain saveValue:token forKey: NetworkDefines.kUserLoginToken];
+        [Keychain saveValue: token forKey: NetworkDefines.kUserLoginToken];
         
         [self hideLoadingView];
         [self.navigationController popToRootViewControllerAnimated:NO];
@@ -406,7 +404,7 @@
 -(void)openTermsOfUse
 {
     NSString *url = NetworkDefines.termsOfUseUrl;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:[NSDictionary dictionary] completionHandler:nil];
 }
 
 -(void)dismissKeyboard {

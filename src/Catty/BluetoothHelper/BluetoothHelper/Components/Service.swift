@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ public final class Service: ServiceWrapper {
     internal let _peripheral: Peripheral
     internal let cbService: CBService
 
-    internal var ownCharacteristics  = [CBUUID: Characteristic]()
+    internal var ownCharacteristics = [CBUUID: Characteristic]()
 
     // MARK: init
     internal init(ownService: CBService, peripheral: Peripheral) {
@@ -85,14 +85,12 @@ public final class Service: ServiceWrapper {
     public func initCharacteristics() {
         self.ownCharacteristics.removeAll()
         guard let ownChracteristics = self.cbService.characteristics else {
-            NSLog("error")
             return
         }
         for cbCharacteristic in ownChracteristics {
             let ownCharacteristic = Characteristic(cbCharacteristic: cbCharacteristic, service: self)
             self.ownCharacteristics[ownCharacteristic.uuid] = ownCharacteristic
             ownCharacteristic.didDiscover()
-            //            NSLog("Characteristic uuid=\(ownCharacteristic.uuid.UUIDString), name=\(ownCharacteristic.name)")
         }
 
     }
@@ -112,7 +110,6 @@ public final class ServiceHelper<S: ServiceWrapper> {
     }
 
     public func discoverCharacteristicsIfConnected(_ service: S, characteristics: [CBUUID]?=nil) -> Future<S> {
-        //        NSLog("uuid=\(service.uuid.UUIDString), name=\(service.name)")
         self.characteristicsDiscoveredPromise = Promise<S>()
         if service.state == .connected {
             service.discoverCharacteristics(characteristics)

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -107,7 +107,7 @@
 
         object.name = Util.uniqueName(name, existingNames: allObjectNames())
         self.add(object: object)
-        project?.saveToDisk(withNotification: true)
+        project?.saveToDisk(withNotification: false)
     }
 
     @objc(removeObjectAtIndex:)
@@ -239,6 +239,18 @@
         }
 
         return nil
+    }
+
+    @objc(copyObjects:)
+    func copyObjects(_ objects: [SpriteObject]) -> [SpriteObject] {
+        var objectsList = [SpriteObject]()
+        for object in objects {
+            guard let copiedObject = self.copy(object, withNameForCopiedObject: object.name) else {
+                return objectsList
+            }
+            objectsList.append(copiedObject)
+        }
+        return objectsList
     }
 
     func mutableCopy(with context: CBMutableCopyContext) -> Any {

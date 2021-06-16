@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -132,5 +132,18 @@ final class GoNStepsBackBrickTests: AbstractBrickTest {
 
         XCTAssertTrue(brick.steps.isEqual(to: copiedBrick.steps))
         XCTAssertFalse(brick.steps === copiedBrick.steps)
+    }
+
+    func testGetFormulas() {
+        brick.steps = Formula(double: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.steps, formulas?[0])
+
+        brick.steps = Formula(double: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.steps, formulas?[0])
     }
 }

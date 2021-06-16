@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,22 +23,22 @@
 @objc extension PreviousLookBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+        .action { _ in SKAction.run(self.actionBlock(imageCache: RuntimeImageCache.shared())) }
     }
 
-    @objc func actionBlock() -> () -> Void {
+    @objc func actionBlock(imageCache: RuntimeImageCache) -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
         return {
             guard let look = spriteNode.previousLook() else { return }
-            let cache = RuntimeImageCache.shared()
-            var image = cache?.cachedImage(forPath: self.path(for: look))
+            var image = imageCache.cachedImage(forPath: self.path(for: look))
 
             if image == nil {
-                print("LoadImageFromDisk")
-                cache?.loadImageFromDisk(withPath: self.path(for: look))
-                guard let imageFromDisk = UIImage(contentsOfFile: self.path(for: look)) else { return }
+                imageCache.loadImageFromDisk(withPath: self.path(for: look))
+
+                guard let path = self.path(for: look) else { return }
+                guard let imageFromDisk = UIImage(contentsOfFile: path) else { return }
                 image = imageFromDisk
             }
 

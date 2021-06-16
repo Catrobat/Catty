@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ObjectTableViewController ()
 
@@ -135,9 +136,8 @@
 {
     [super setupToolBar];
 
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
+    UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
+                                                        action:@selector(playSceneAction:)];
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                           target:self
                                                                           action:nil];

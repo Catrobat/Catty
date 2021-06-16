@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -95,5 +95,33 @@ final class AppDelegateTests: XCTestCase {
         appDelegate.applicationDidBecomeActive(UIApplication.shared)
 
         expect(self.scenePresenterViewController.methodCalls).toNot(contain("resumeAction"))
+    }
+
+    func testDisabledOrientation() {
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.all)
+
+        appDelegate.disabledOrientation = true
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.portrait)
+
+        appDelegate.disabledOrientation = false
+        XCTAssertEqual(appDelegate.application(UIApplication.shared, supportedInterfaceOrientationsFor: appDelegate.window), UIInterfaceOrientationMask.all)
+
+    }
+
+    func testApplicationAppOpenUrlMethod() {
+        let xmlPath = Bundle.init(for: self.classForCoder).path(forResource: "817", ofType: "catrobat")
+        let sumProjectNamesBefore = Project.allProjectNames().count
+
+        let canOpen = appDelegate.application(UIApplication.shared, open: URL(fileURLWithPath: xmlPath!))
+
+        let sumProjectNamesAfter = Project.allProjectNames().count
+
+        XCTAssertEqual(sumProjectNamesBefore + 1, sumProjectNamesAfter)
+        XCTAssertTrue(canOpen)
+    }
+
+    func testApplicationAppOpenUrlMethodWithInvalidUrl() {
+        let canOpen = appDelegate.application(UIApplication.shared, open: URL(string: "invalid")!)
+        XCTAssertFalse(canOpen)
     }
 }

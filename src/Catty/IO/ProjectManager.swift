@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,13 +21,13 @@
  */
 
 @objc(ProjectManager)
-@objcMembers class ProjectManager: NSObject {
+class ProjectManager: NSObject {
 
-    static func createProject(name: String, projectId: String?) -> Project {
-        ProjectManager.createProject(name: name, projectId: projectId, fileManager: CBFileManager.shared())
+    @objc static func createProject(name: String, projectId: String?) -> Project {
+        ProjectManager.createProject(name: name, projectId: projectId, fileManager: CBFileManager.shared(), imageCache: RuntimeImageCache.shared())
     }
 
-    static func createProject(name: String, projectId: String?, fileManager: CBFileManager) -> Project {
+    static func createProject(name: String, projectId: String?, fileManager: CBFileManager, imageCache: RuntimeImageCache) -> Project {
 
         let project = Project()
         let projectName = Util.uniqueName(name, existingNames: Project.allProjectNames())
@@ -72,8 +72,108 @@
         }
 
         fileManager.writeData(data, path: filePath)
-        fileManager.imageCache.clear()
+        imageCache.clear()
         return project
     }
 
+    @objc static func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: projectLoadingInfo, fileManager: CBFileManager.shared(), imageCache: RuntimeImageCache.shared(), completion: completion)
+    }
+
+    static func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, fileManager: CBFileManager,
+                                         imageCache: RuntimeImageCache,
+                                         completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
+
+        let fallbackPaths = [
+            projectLoadingInfo.basePath + kScreenshotFilename,
+            projectLoadingInfo.basePath + kScreenshotManualFilename,
+            projectLoadingInfo.basePath + kScreenshotAutoFilename
+        ]
+
+        for imagePath in fallbackPaths {
+            let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize)
+            if image != nil {
+                completion(image, imagePath)
+                return
+            }
+        }
+
+        DispatchQueue.global(qos: .default).async {
+            for imagePath in fallbackPaths {
+                if fileManager.fileExists(imagePath as String) {
+                    imageCache.loadImageFromDisk(
+                        withPath: imagePath,
+                        andSize: UIDefines.previewImageSize,
+                        onCompletion: { image, path in completion(image, path) })
+
+                    return
+                }
+            }
+            completion(UIImage(named: "catrobat"), nil)
+        }
+
+        return
+    }
+
+    static func projectNames(for projectID: String, fileManager: CBFileManager = CBFileManager.shared()) -> [String]? {
+        if projectID.isEmpty {
+            return nil
+        }
+
+        var projectNames = [String]()
+        let allProjectLoadingInfos = Project.allProjectLoadingInfos()
+        for case let projectLoadingInfo as ProjectLoadingInfo in allProjectLoadingInfos where projectLoadingInfo.projectID == projectID {
+            projectNames.append(projectLoadingInfo.visibleName)
+        }
+
+        if projectNames.isEmpty {
+            return nil
+        }
+
+        return projectNames
+    }
+
+    static func addProjectFromFile(url: URL) -> Project? {
+        let fileManager = CBFileManager.shared()
+        let tempProjectName = String(Date().timeIntervalSinceReferenceDate) + url.lastPathComponent
+        let path = url.path
+        var newProject: NSData?
+
+        if url.startAccessingSecurityScopedResource() {
+            newProject = NSData.init(contentsOfFile: path)
+            url.stopAccessingSecurityScopedResource()
+        }
+
+        if newProject == nil {
+            Util.alert(text: kLocalizedUnableToImportProject)
+            return nil
+        }
+
+        fileManager?.unzipAndStore(newProject as Data?, withProjectID: nil, withName: tempProjectName)
+
+        return getProjectNameAndRename(tempProjectName: tempProjectName)
+    }
+
+    private static func getProjectNameAndRename(tempProjectName: String) -> Project? {
+        guard let projectLoadingInfo = ProjectLoadingInfo(forProjectWithName: tempProjectName, projectID: kNoProjectIDYetPlaceholder) else {
+            Project.removeProjectFromDisk(withProjectName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
+            Util.alert(text: kLocalizedUnableToImportProject)
+            return nil
+        }
+        projectLoadingInfo.useOriginalName = true
+
+        guard let projectObject = Project(loadingInfo: projectLoadingInfo),
+              let newProjectName = Util.uniqueName(projectObject.header.programName, existingNames: Project.allProjectNames()) else {
+            Project.removeProjectFromDisk(withProjectName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
+            Util.alert(text: kLocalizedUnableToImportProject)
+            return nil
+        }
+
+        projectLoadingInfo.useOriginalName = false
+
+        let project = Project(loadingInfo: projectLoadingInfo)
+        project?.rename(toProjectName: newProjectName, andShowSaveNotification: false)
+
+        return project
+    }
 }

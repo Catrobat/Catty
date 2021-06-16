@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ final class TouchManagerMock: TouchManagerProtocol {
 
     var touchRecognizer: UILongPressGestureRecognizer?
     var stage: Stage?
-    var isScreenTouched: Bool = false
+    var isScreenTouched = false
     var touches: [CGPoint] = []
     var lastTouch: CGPoint?
 

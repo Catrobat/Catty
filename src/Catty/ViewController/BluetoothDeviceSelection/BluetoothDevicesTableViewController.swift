@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -76,7 +76,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
             if deviceArray[0] == BluetoothDeviceID.phiro.rawValue {
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     DispatchQueue.main.async {
-                        Util.alert(withTitle: klocalizedBluetoothConnectionNotPossible, andText: klocalizedBluetoothConnectionTryResetting )
+                        Util.alert(title: klocalizedBluetoothConnectionNotPossible, text: klocalizedBluetoothConnectionTryResetting )
                         self.delegate?.dismissAndDisconnect()
                     }
                     return
@@ -85,7 +85,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
             } else if deviceArray[0] == BluetoothDeviceID.arduino.rawValue {
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     DispatchQueue.main.async {
-                        Util.alert(withTitle: klocalizedBluetoothConnectionNotPossible, andText: klocalizedBluetoothConnectionTryResetting)
+                        Util.alert(title: klocalizedBluetoothConnectionNotPossible, text: klocalizedBluetoothConnectionTryResetting)
                         self.delegate?.dismissAndDisconnect()
                     }
                     return
@@ -113,10 +113,10 @@ class BluetoothDevicesTableViewController: UITableViewController {
 
     func startScan() {
 
-        let afterPeripheralDiscovered = {(peripheral: Peripheral) -> Void in
+        let afterPeripheralDiscovered = {(_: Peripheral) -> Void in
             self.updateWhenActive()
         }
-        let afterTimeout = {(error: NSError) -> Void in
+        let afterTimeout = {(_: NSError) -> Void in
         }
         let future: FutureStream<Peripheral> = CentralManager.sharedInstance.startScan()
         future.onSuccess(afterPeripheralDiscovered)
@@ -165,7 +165,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
         delegate!.rightButton.isEnabled = false
         DispatchQueue.main.async {
             self.loadingView?.hide()
-            self.stagePresenterVC.checkResourcesAndPushViewControllerTo(navigationController: self.navigationController!)
+            self.stagePresenterVC.checkResourcesAndPushViewController(to: self.navigationController!)
         }
     }
 

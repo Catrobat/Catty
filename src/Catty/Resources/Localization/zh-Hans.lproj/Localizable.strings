@@ -14,13 +14,16 @@
 "About Pocket Code" = "关于口袋编程";
 
 /* No comment provided by engineer. */
-"acceleration x" = "x方向加速度";
+"absolute value" = "绝对值";
 
 /* No comment provided by engineer. */
-"acceleration y" = "y方向加速度";
+"acceleration x" = "gia tốc x";
 
 /* No comment provided by engineer. */
-"acceleration z" = "z方向加速度";
+"acceleration y" = "加速度y";
+
+/* No comment provided by engineer. */
+"acceleration z" = "gia tốc_z";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "加速度传感器";
@@ -29,7 +32,7 @@
 "Actors and objects" = "对象和物体";
 
 /* No comment provided by engineer. */
-"Add" = "添加";
+"Add" = "Thêm";
 
 /* No comment provided by engineer. */
 "Add actor or object" = "添加演员或对象";
@@ -48,6 +51,9 @@
 
 /* No comment provided by engineer. */
 "Agree" = "同意";
+
+/* No comment provided by engineer. */
+"all around" = "所有周围区域";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "已经成功断开所有的蓝牙设备";
@@ -83,6 +89,9 @@
 "and" = "与";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "并存储写的答案 ";
+
+/* No comment provided by engineer. */
 "and wait" = "并等待";
 
 /* No comment provided by engineer. */
@@ -93,6 +102,15 @@
 
 /* No comment provided by engineer. */
 "April" = "&#x56DB;&#x6708;";
+
+/* No comment provided by engineer. */
+"arccosine" = "芒果苷";
+
+/* No comment provided by engineer. */
+"arcsine" = "弧弦";
+
+/* No comment provided by engineer. */
+"arctangent" = "正切";
 
 /* No comment provided by engineer. */
 "Arduino" = "Arduino";
@@ -107,10 +125,13 @@
 "Arduino extension" = "Arduino积木";
 
 /* No comment provided by engineer. */
+"Ask " = "询问 ";
+
+/* No comment provided by engineer. */
 "at " = "在 ";
 
 /* No comment provided by engineer. */
-"at position" = "位置为";
+"at position" = "ở vị trí";
 
 /* paint */
 "Attributes:" = "属性：";
@@ -149,16 +170,22 @@
 "Backgrounds" = "背景";
 
 /* No comment provided by engineer. */
+"Bass" = "低音";
+
+/* No comment provided by engineer. */
+"Bassoon" = "巴索恩州";
+
+/* No comment provided by engineer. */
 "becomes true" = "为真";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "在您开始编码之前，请阅读并接受我们的隐私 策略来使用应用程序：";
 
-/* paint */
-"Blue" = "蓝色";
-
 /* No comment provided by engineer. */
 "blue" = "蓝色";
+
+/* paint */
+"Blue" = "蓝色";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "蓝牙不可用。原因是您的设备不支持蓝牙 4.0 或蓝牙芯片已损坏。请在设置中将它连接到另一个蓝牙设备进行检查。";
@@ -215,7 +242,10 @@
 "Catrobat community" = "Catrobat社区";
 
 /* No comment provided by engineer. */
-"ceil" = "向上取整";
+"ceiling" = "向上取整";
+
+/* No comment provided by engineer. */
+"Cello" = "大提琴";
 
 /* No comment provided by engineer. */
 "Change brightness " = "增加亮度 ";
@@ -225,6 +255,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "将大小增加";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "更改为横屏模式";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "更改为肖像";
 
 /* No comment provided by engineer. */
 "Change transparency " = "增加透明度 ";
@@ -248,10 +284,16 @@
 "Changes saved." = "已保存更改！";
 
 /* No comment provided by engineer. */
+"Choir" = "合唱团";
+
+/* No comment provided by engineer. */
 "Choose" = "选择";
 
 /* No comment provided by engineer. */
 "Choose image" = "选择图像";
+
+/* No comment provided by engineer. */
+"Clarinet" = "单簧管";
 
 /* No comment provided by engineer. */
 "Clear" = "清空";
@@ -267,6 +309,9 @@
 
 /* No comment provided by engineer. */
 "color" = "颜色";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "比较运算符";
 
 /* No comment provided by engineer. */
 "compass" = "罗盘";
@@ -311,6 +356,9 @@
 "Copy" = "复制";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "复制演员或对象";
+
+/* No comment provided by engineer. */
 "Copy brick" = "复制积木";
 
 /* No comment provided by engineer. */
@@ -320,7 +368,19 @@
 "Copy project" = "复制项目";
 
 /* No comment provided by engineer. */
+"cosine" = "cosine";
+
+/* No comment provided by engineer. */
 "Create account" = "创造帐户";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "创建刻录机图案";
+
+/* No comment provided by engineer. */
+"Data" = "Dữ liệu";
+
+/* No comment provided by engineer. */
+"Date and time" = "日期与时间";
 
 /* No comment provided by engineer. */
 "day" = "日";
@@ -333,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "&#x5341;&#x4E8C;&#x6708;";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "小数对数";
 
 /* No comment provided by engineer. */
 "degrees" = "度";
@@ -353,7 +416,7 @@
 "Delete condition" = "删除条件";
 
 /* No comment provided by engineer. */
-"Delete item from list" = "从列表中删除项，在列表";
+"Delete item from list" = "Xoá khỏi danh sách";
 
 /* No comment provided by engineer. */
 "Delete looks" = "删除外观";
@@ -428,6 +491,9 @@
 "device motion-sensor" = "选择运动传感器";
 
 /* No comment provided by engineer. */
+"Device sensors" = "设备传感器";
+
+/* No comment provided by engineer. */
 "direction" = "方向";
 
 /* No comment provided by engineer. */
@@ -446,6 +512,9 @@
 "Disagree" = "不同意";
 
 /* No comment provided by engineer. */
+"Discard changes" = "丢弃变化";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "断开所有设备";
 
 /* No comment provided by engineer. */
@@ -455,16 +524,16 @@
 "Do you really want to delete the current drawing?" = "你真的想要删除当前绘制的图像？";
 
 /* paint */
-"Do you want to save the changes" = "您要保存这些更改吗？";
+"Do you want to save your changes?" = "Bạn có muốn lưu thay đổi của mình?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "不要旋转";
 
 /* No comment provided by engineer. */
 "Done" = "已完成";
 
 /* No comment provided by engineer. */
 "Download" = "&#x5448;&#x62A5;&#x4E3A;&#x4E0D;&#x9002;&#x5F53;&#x7684;&#x5185;&#x5BB9;";
-
-/* No comment provided by engineer. */
-"Download successful" = "下载完成";
 
 /* No comment provided by engineer. */
 "Downloads" = "下载";
@@ -515,6 +584,12 @@
 "Edit sounds" = "编辑声音";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "电吉他";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "电子琴";
+
+/* No comment provided by engineer. */
 "element" = "列表项";
 
 /* paint */
@@ -525,6 +600,12 @@
 
 /* No comment provided by engineer. */
 "Email" = "电子邮件";
+
+/* No comment provided by engineer. */
+"Embroidery" = "刺绣";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "刺绣扩展";
 
 /* No comment provided by engineer. */
 "Empty input!" = "清空输入！";
@@ -542,7 +623,7 @@
 "Enable script" = "启用脚本";
 
 /* No comment provided by engineer. */
-"End if" = "如果结束";
+"End if" = "Kết thúc nếu";
 
 /* No comment provided by engineer. */
 "End of Loop" = "重复执行结束";
@@ -581,10 +662,19 @@
 "Error" = "错误";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "报告项目时发生错误。请稍后再试。";
+
+/* No comment provided by engineer. */
 "Error saving file" = "存储文件时发生错误";
 
 /* No comment provided by engineer. */
-"FA" = "FA";
+"Event" = "事件";
+
+/* No comment provided by engineer. */
+"exponent" = "指数值";
+
+/* No comment provided by engineer. */
+"FA" = "FA型";
 
 /* No comment provided by engineer. */
 "face detected" = "人脸识别";
@@ -638,6 +728,9 @@
 "floor" = "向下取整";
 
 /* No comment provided by engineer. */
+"Flute" = "长笛";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "此项目中使用的以下功能与此版本的Pocket Code不兼容：";
 
 /* No comment provided by engineer. */
@@ -654,6 +747,9 @@
 
 /* No comment provided by engineer. */
 "Forgot password" = "忘记密码";
+
+/* No comment provided by engineer. */
+"Formula Editor" = "公式编辑器";
 
 /* No comment provided by engineer. */
 "Formula too long!" = "公式太长！";
@@ -677,6 +773,12 @@
 "Front camera" = "前置摄像头";
 
 /* No comment provided by engineer. */
+"Functions" = "函数";
+
+/* No comment provided by engineer. */
+"General properties" = "常用属性";
+
+/* No comment provided by engineer. */
 "Glide" = "滑行";
 
 /* No comment provided by engineer. */
@@ -688,17 +790,20 @@
 /* No comment provided by engineer. */
 "Go to front" = "移至最上层";
 
+/* No comment provided by engineer. */
+"green" = "绿色";
+
 /* paint */
 "Green" = "绿色";
 
 /* No comment provided by engineer. */
-"green" = "绿色";
+"Guitar" = "吉他";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "陀螺仪传感器";
 
 /* No comment provided by engineer. */
-"Hello!" = "您好！";
+"Hello!" = "Xin chào!";
 
 /* No comment provided by engineer. */
 "Help" = "帮助";
@@ -740,22 +845,22 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "为了获权使用口袋编程和Catrobat提供的其他可执行文件，当您使用我们的应用程序和其他可执行文件时，您必须同意我们的使用条款并严格遵循它们。请参阅下面的链接获取详细的条款 \n\n";
 
 /* No comment provided by engineer. */
-"inclination x" = "x轴倾角";
+"inclination x" = "nghiêng x";
 
 /* No comment provided by engineer. */
-"inclination y" = "y轴倾角";
+"inclination y" = "倾角";
 
 /* No comment provided by engineer. */
 "Information" = "信息";
 
 /* No comment provided by engineer. */
-"Insert" = "插入";
+"Insert" = "Chèn";
 
 /* paint */
 "Inserted" = "已插入";
 
 /* No comment provided by engineer. */
-"into list" = "到列表中";
+"into list" = "vào danh sách";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "无效的输入，请重试。";
@@ -774,6 +879,9 @@
 
 /* paint */
 "italic" = "斜体";
+
+/* No comment provided by engineer. */
+"item" = "yếu tố";
 
 /* No comment provided by engineer. */
 "Jan" = "一月";
@@ -800,7 +908,7 @@
 "Known devices" = "已知的设备";
 
 /* No comment provided by engineer. */
-"LA" = "LA";
+"LA" = "洛杉矶";
 
 /* No comment provided by engineer. */
 "Last access" = "上次访问时间";
@@ -824,10 +932,13 @@
 "Left" = "左移";
 
 /* No comment provided by engineer. */
-"Length" = "长度";
+"left-right only" = "水平翻转";
 
 /* No comment provided by engineer. */
 "length" = "长度";
+
+/* No comment provided by engineer. */
+"Length" = "长度";
 
 /* No comment provided by engineer. */
 "letter" = "字母";
@@ -845,6 +956,12 @@
 "Lists" = "列表";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "所有演员和对象列表";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "仅用于此演员或对象的列表";
+
+/* No comment provided by engineer. */
 "Loading" = "正在加载...";
 
 /* No comment provided by engineer. */
@@ -855,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "逻辑";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "逻辑 (布尔) 运算符";
 
 /* No comment provided by engineer. */
 "Login" = "登录";
@@ -868,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "经度";
 
-/* No comment provided by engineer. */
-"Look" = "外观";
-
 /* LOOK */
 "look" = "外观";
+
+/* No comment provided by engineer. */
+"Look" = "外观";
 
 /* No comment provided by engineer. */
 "look name" = "外观名称";
@@ -896,7 +1016,16 @@
 "March" = "&#x4E09;&#x6708;";
 
 /* No comment provided by engineer. */
-"Math" = "数学";
+"Marimba" = "马林巴";
+
+/* No comment provided by engineer. */
+"Maths" = "数学";
+
+/* No comment provided by engineer. */
+"Maximize" = "最大化";
+
+/* No comment provided by engineer. */
+"maximum of" = "tối đa";
 
 /* No comment provided by engineer. */
 "May" = "&#x4E94;&#x6708;";
@@ -920,6 +1049,12 @@
 "MI" = "周三";
 
 /* No comment provided by engineer. */
+"Minimize" = "尽量减少";
+
+/* No comment provided by engineer. */
+"minimum of" = "tối thiểu";
+
+/* No comment provided by engineer. */
 "minute" = "分钟";
 
 /* paint */
@@ -927,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "周一";
+
+/* No comment provided by engineer. */
+"modulo" = "模数";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "鼹鼠";
@@ -953,6 +1091,9 @@
 "Motion" = "运动";
 
 /* No comment provided by engineer. */
+"Motion properties" = "运动属性";
+
+/* No comment provided by engineer. */
 "Move" = "移动";
 
 /* No comment provided by engineer. */
@@ -973,6 +1114,9 @@
 /* No comment provided by engineer. */
 "Move sounds" = "移动声音";
 
+/* No comment provided by engineer. */
+"Music Box" = "八音盒";
+
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "我的第一个程序";
 
@@ -989,25 +1133,28 @@
 "Name already exists." = "名称早已存在.";
 
 /* No comment provided by engineer. */
+"natural logarithm" = "自然对数";
+
+/* No comment provided by engineer. */
 "New" = "新变量";
 
 /* paint */
 "New canvas" = "新建画板";
 
 /* No comment provided by engineer. */
-"New list" = "新建列表";
+"New list" = "Danh sách mới";
 
 /* No comment provided by engineer. */
-"New message" = "新消息";
+"New message" = "Tin nhắn mới";
 
 /* No comment provided by engineer. */
 "New project" = "新建";
 
 /* No comment provided by engineer. */
-"New text" = "新文本";
+"New text" = "Văn bản mới";
 
 /* No comment provided by engineer. */
-"New variable" = "新建变量";
+"New variable" = "Biến mới";
 
 /* No comment provided by engineer. */
 "New..." = "新建…";
@@ -1052,9 +1199,6 @@
 "not available. Continue anyway?" = "无法访问，是否继续？";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "没有足够的可用内存下载此项目。请删除您的一些项目";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "内存不足";
 
 /* No comment provided by engineer. */
@@ -1070,7 +1214,7 @@
 "November" = "&#x5341;&#x4E00;&#x6708;";
 
 /* No comment provided by engineer. */
-"number of items" = "数据项数量";
+"number of items" = "số_các_mục";
 
 /* No comment provided by engineer. */
 "Numbers" = "数字";
@@ -1079,13 +1223,7 @@
 "Object" = "对象";
 
 /* No comment provided by engineer. */
-"Object lists:" = "对象列表：";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "对象或演员名称";
-
-/* No comment provided by engineer. */
-"Object variables:" = "对象变量：";
 
 /* No comment provided by engineer. */
 "Oct" = "十月";
@@ -1112,10 +1250,13 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "不允许只输入特殊字符，请输入至少 %lu个其他字符。";
 
 /* No comment provided by engineer. */
-"Open" = "打开 ";
+"Open" = "Mở ";
 
 /* No comment provided by engineer. */
 "or" = "或";
+
+/* No comment provided by engineer. */
+"Organ" = "风琴";
 
 /* No comment provided by engineer. */
 "Password" = "密码";
@@ -1151,16 +1292,28 @@
 "phiro front right" = "弘前右";
 
 /* No comment provided by engineer. */
-"phiro side left" = "phiro side left";
+"phiro side left" = "左旁phiro";
 
 /* No comment provided by engineer. */
-"phiro side right" = "phiro side right";
+"phiro side right" = "右旁phiro";
+
+/* No comment provided by engineer. */
+"pi" = "圆周率";
+
+/* No comment provided by engineer. */
+"Piano" = "钢琴";
 
 /* paint */
 "Pipette" = "吸管";
 
 /* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
+
+/* No comment provided by engineer. */
 "Place at " = "放在 ";
+
+/* No comment provided by engineer. */
+"Play" = "Chơi";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "播放Phiro音乐\n";
@@ -1226,10 +1379,13 @@
 "Pointer" = "指针";
 
 /* No comment provided by engineer. */
-"position x" = "x轴坐标";
+"position x" = "vị trí x";
 
 /* No comment provided by engineer. */
-"position y" = "y轴坐标";
+"position y" = "阵地";
+
+/* No comment provided by engineer. */
+"power" = "求幂";
 
 /* No comment provided by engineer. */
 "Preview" = "预览";
@@ -1247,31 +1403,31 @@
 "Project" = "项目";
 
 /* No comment provided by engineer. */
-"Project lists:" = "项目列表：";
-
-/* No comment provided by engineer. */
 "Project name" = "项目名称";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "项目名称是必需的 ！";
 
 /* No comment provided by engineer. */
-"Project variables:" = "项目变量：";
+"Projects" = "Các chương trình";
 
 /* No comment provided by engineer. */
-"Projects" = "程序";
+"Projects on device" = "Các chương trình";
 
 /* No comment provided by engineer. */
-"Projects on device" = "程序";
+"Properties" = "Đối tượng";
 
 /* No comment provided by engineer. */
 "random position" = "随机位置";
 
 /* No comment provided by engineer. */
+"random value from to" = "ngẫu nhiên";
+
+/* No comment provided by engineer. */
 "Rate Us" = "幫我們評分";
 
 /* No comment provided by engineer. */
-"RE" = "RE";
+"RE" = "可选的";
 
 /* No comment provided by engineer. */
 "Recording" = "正在录音";
@@ -1279,11 +1435,11 @@
 /* paint */
 "Rectangle / Square" = "矩形/方形";
 
-/* No comment provided by engineer. */
-"red" = "红色";
-
 /* paint */
 "Red" = "红色";
+
+/* No comment provided by engineer. */
+"red" = "红色";
 
 /* No comment provided by engineer. */
 "Register" = "注册";
@@ -1292,19 +1448,22 @@
 "Registration successful" = "註册成功";
 
 /* No comment provided by engineer. */
+"regular expression" = "正则表达式";
+
+/* No comment provided by engineer. */
 "Remove known devices" = "删除已知设备";
 
 /* No comment provided by engineer. */
 "Rename" = "重命名";
 
 /* No comment provided by engineer. */
-"Rename actor or object" = "重命名对象";
+"Rename actor or object" = "Đổi tên đối tượng";
 
 /* No comment provided by engineer. */
 "Rename image" = "重命名图片";
 
 /* No comment provided by engineer. */
-"Rename project" = "重命名项目";
+"Rename project" = "Đổi tên chương trình";
 
 /* No comment provided by engineer. */
 "Rename sound" = "重命名声音";
@@ -1316,7 +1475,7 @@
 "Repeat until" = "重复执行直到";
 
 /* No comment provided by engineer. */
-"Replace item in list" = "替换项目在列表";
+"Replace item in list" = "Thay thế các khoản mục trong danh sách";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "举报为不适当";
@@ -1345,14 +1504,17 @@
 /* No comment provided by engineer. */
 "Saturday" = "星期六";
 
+/* No comment provided by engineer. */
+"Save changes" = "保存更改";
+
 /* paint */
 "Save to Photos" = "保存到照片";
 
 /* No comment provided by engineer. */
-"Save to PocketCode" = "保存到口袋编程";
+"Saved" = "已保存";
 
 /* No comment provided by engineer. */
-"Saved" = "已保存";
+"Saxophone" = "萨克管";
 
 /* No comment provided by engineer. */
 "Say" = "说";
@@ -1403,7 +1565,7 @@
 "Select option:" = "选择选项:";
 
 /* bluetooth */
-"Select Phiro" = "Select Phiro";
+"Select Phiro" = "选择 Phiro";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "发送匿名故障报告";
@@ -1442,6 +1604,9 @@
 "Set description" = "设置描述";
 
 /* No comment provided by engineer. */
+"Set Instrument to" = "设置乐器为";
+
+/* No comment provided by engineer. */
 "Set pen color to" = "把画笔的颜色设定为";
 
 /* No comment provided by engineer. */
@@ -1451,7 +1616,13 @@
 "Set Phiro light" = "设置Phiro灯光";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "设置旋转方式 ";
+
+/* No comment provided by engineer. */
 "Set size to" = "设置大小为";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "设置节奏为";
 
 /* No comment provided by engineer. */
 "Set transparency " = "设置透明度 ";
@@ -1481,6 +1652,9 @@
 "Show variable" = "显示变量";
 
 /* No comment provided by engineer. */
+"sine" = "正则体";
+
+/* No comment provided by engineer. */
 "size" = "大小";
 
 /* No comment provided by engineer. */
@@ -1493,7 +1667,7 @@
 "SO" = "星期天";
 
 /* No comment provided by engineer. */
-"Something went wrong while uploading the project." = "在上传程序的时候发生了一个错误。";
+"Something went wrong while uploading the project." = "Lỗi xảy ra trong khi tải lên chương trình.";
 
 /* No comment provided by engineer. */
 "Sound" = "声音";
@@ -1510,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "速度";
 
-/* No comment provided by engineer. */
-"sqrt" = "平方根";
-
 /* paint */
 "square" = "方形";
+
+/* No comment provided by engineer. */
+"square root" = "sqrt";
 
 /* No comment provided by engineer. */
 "stage is touched" = "屏幕被点击";
@@ -1538,10 +1712,16 @@
 "Start sound and wait" = "播放声音并等待";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "钢箱";
+
+/* No comment provided by engineer. */
 "step" = "步";
 
 /* No comment provided by engineer. */
 "steps" = "步";
+
+/* No comment provided by engineer. */
+"Stitch" = "纹理";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "停止所有声音";
@@ -1550,7 +1730,7 @@
 "Stop Phiro motor" = "停止Phiro马达";
 
 /* No comment provided by engineer. */
-"Su" = "Su";
+"Su" = "苏文";
 
 /* No comment provided by engineer. */
 "Sunday" = "星期天 ";
@@ -1559,7 +1739,19 @@
 "Switch to look" = "切换为外观";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "切换外观至编号";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "语法错误！";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "合成潜在客户";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "合成板";
+
+/* No comment provided by engineer. */
+"tangent" = "切线";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "点击 \"+\" 添加演员或对象";
@@ -1568,13 +1760,16 @@
 "Tap \"+\" to add backgrounds" = "点击 \"+\" 来添加背景";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add looks" = "按“+”添加外观";
+"Tap \"+\" to add looks" = "Bấm vào \"+\" để thêm giao diện";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add scripts" = "点击\"+\"来添加脚本";
+"Tap \"+\" to add scripts" = "Bấm vào \"+\" để thêm kịch bản";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add sounds" = "按“+”添加声音";
+"Tap \"+\" to add sounds" = "Bấm vào \"+\" để thêm âm thanh";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "点击 \"+\" 添加变量和列表";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "使用与服务条例";
@@ -1608,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "无法加载最近的项目";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "找不到请求的项目。请选择另一个。";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "无法加载请求的项目。请稍后再试。";
@@ -1652,19 +1844,22 @@
 "to" = "为";
 
 /* No comment provided by engineer. */
-"to list" = "到列表中";
+"to list" = "vào danh sách";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "为了向您提供我们的服务和相关账户的所有好处，有必要向您收集某些数据。\n\n\u{2022} 为了维护和改进我们的服务（应用程序和网站），并对ICT和STEM/STEAM教育进行科学研究，我们使用Google LLC（美国）的Google Analytics、Crashlytics和Firebase，以及Dynatrace LLC（美国）的Dynatrace获取有关我们服务使用情况的元数据，例如，崩溃信息、时间戳、访问过的页面/屏幕、我们的应用程序和服务的使用情况、使用过的操作系统和网络供应商的信息。这种分析和收集到的数据不会链接到您的个人资料，也不包含任何个人信息（IP地址的最后几位会被匿名化）。但是，收集到的数据将被传送给服务提供商（Google LLC, USA 和 Dynatrace LLC, USA）。数据处理是基于与Google LLC和Dynatrace LLC的协议。这种与服务提供商的关系符合欧盟的《通用数据保护条例》（EU GDPR）和欧盟与美国的 \"隐私保护 \"协议。\n\n\u{2022} 为了在我们的系统中创建和使用一个账户，并通过电子邮件通知您关于您的账户的必要更改，例如，更新或违反我们的使用和服务条款、我们的社区规则或我们的政策，我们将存储您的用户名，以及您提供的电子邮件地址。如果您通过您的谷歌或Facebook账户连接了您的账户，我们会额外存储一个连接到您在这些服务上的账户的识别密钥。我们不会将这些数据用于任何其他目的（如营销），除非您明确允许我们这样做。\n\n\u{2022} 在自愿的基础上，你可以通过你在分享网站上的账户页面向我们提供你的居住国。这将会显示在你的公开资料上，并且只会被我们用于统计和研究目的。您可以在您的个人资料设置中随时删除该信息。\n\n\u{2022} 您可以在任何时候通过您在https://share.catrob.at 上的个人资料页面删除您的账户，从而撤销对属于您账户的个人资料的使用。删除您的账户后，您仍可使用所提供的服务，但不能通过上传节目、评论或点赞等方式进行合作。同时，所有与您的账户相关联的提供内容，如上传的程序、评论等都将被删除。\n\n\u{2022} 为了避免滥用我们的服务，例如，通过用户贡献的上传或评论用于非法目的，所有用户生成的公共数据（上传、评论）将被内部存储在数据库中，并附有时间戳和使用的互联网地址。这些数据将不会被任何机构使用或转发，除非有足够的非法行为被合理怀疑，并且官方有权的法律机构根据适用的法律提出要求。我们将首先对每个案例进行彻底的个别检查。\n\n\u{2022} 您可以自愿订阅我们通过 MailChimp 服务（The Rocket Science Group LLC d/b/a MailChimp, USA）提供的 https://catrob.at/newsletter 上的 Catrobat 通讯。届时，您将通过您提供的电子邮件地址收到有关Catrobat项目及其服务的最新信息。您可以在任何时候通过使用每期简讯页脚的 \"取消订阅 \"链接来撤回简讯。本电子报由 MailChimp 提供，我们与 MailChimp 签订了数据处理协议，并承诺遵守欧盟通用数据保护条例和欧盟-美国 \"隐私保护盾\"。有关MailChimp的更多细节，请查看MailChimp的隐私政策和使用条款。\n\n\u{2022} 所有服务均由免费开源的 Catrobat 项目提供，该项目隶属于国际 Catrobat 协会 - Verein zur Förderung freier Software，一个在奥地利格拉茨（欧盟）注册的非营利性非政府组织。我们的政策尊重欧盟和奥地利的数据保护法（GDPR）。若要与我们联系，请发送电子邮件至 contact@catrobat.org 或邮寄给 Catrobat。\nc/o\n软件技术研究所。\n格拉茨理工大学。\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(欧盟)。\n\n如果您未满14岁，本政策必须由法定监护人（通常是父母）接受。\n\nCatrobat\\的官方英文隐私政策可在网站https://catrob.at/privacypolicy。\n\n2.2版本，2019年10月17日\n\n在这里找到我们以前的、过时的隐私政策(2.0)版本： http://developer.catrobat.org/privacy_policy_2-0";
 
 /* No comment provided by engineer. */
 "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "要使用我们的应用，必须接受我们的隐私政策。 但是，如果你不觉得这样做不舒服，你可以在 share.catrob.at 上使用我们的免费网络服务。";
 
 /* No comment provided by engineer. */
-"to x:" = "到 X:";
+"to x:" = "để X:";
 
 /* No comment provided by engineer. */
 "Today" = "今天";
+
+/* No comment provided by engineer. */
+"Touch detection" = "触碰检测";
 
 /* No comment provided by engineer. */
 "touch position" = "触摸位置";
@@ -1673,7 +1868,10 @@
 "transparency" = "透明度";
 
 /* No comment provided by engineer. */
-"true" = "真";
+"Trombone" = "特罗姆蒙文";
+
+/* No comment provided by engineer. */
+"true" = "Đúng";
 
 /* No comment provided by engineer. */
 "Tu" = "星期二";
@@ -1692,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "右转";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "无法导入项目!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "无法加载项目！";
@@ -1739,7 +1940,7 @@
 "Unsupported Script:" = "不支持的脚本：";
 
 /* No comment provided by engineer. */
-"Upload project" = "上传程序";
+"Upload project" = "Tải lên chương trình";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "上传选定的项目";
@@ -1763,12 +1964,6 @@
 "Username must not be blank" = "用户名不能为空";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/List";
-
-/* No comment provided by engineer. */
-"Variable" = "变量";
-
-/* No comment provided by engineer. */
 "Variable name:" = "变量名:";
 
 /* No comment provided by engineer. */
@@ -1781,7 +1976,16 @@
 "Variables" = "变量";
 
 /* No comment provided by engineer. */
+"Variables for all actors and objects" = "所有演员和对象的变量";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "仅此演员或对象的变量";
+
+/* No comment provided by engineer. */
 "Version" = "版本";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "震动";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "震动，持续";
@@ -1790,7 +1994,13 @@
 "vibration" = "振动";
 
 /* No comment provided by engineer. */
+"View" = "查看";
+
+/* No comment provided by engineer. */
 "Views" = "查看";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "视觉传感器";
 
 /* No comment provided by engineer. */
 "Wait" = "等待";
@@ -1811,13 +2021,16 @@
 "Welcome!" = "欢迎!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "您的名字是什么？";
+
+/* No comment provided by engineer. */
 "When" = "当";
 
 /* No comment provided by engineer. */
 "When background changes to" = "当背景更改为";
 
 /* No comment provided by engineer. */
-"When project starts" = "项目启动时";
+"When project starts" = "当项目启动时";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "当屏幕被点击";
@@ -1829,10 +2042,13 @@
 "When you receive" = "当接收到";
 
 /* paint */
-"Width selection" = "Width selection";
+"Width selection" = "宽度选择";
 
 /* No comment provided by engineer. */
-"with" = "以";
+"with" = "với";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "木制流体";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";
@@ -1850,10 +2066,19 @@
 "Yesterday" = "昨天";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "您已经下载了这个项目！";
+
+/* No comment provided by engineer. */
+"Your answer" = "您的答案";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "您的电子邮件是无效的";
 
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "您的项目已上传到 Catrobat 社区，其他人可以在那里使用并下载它。";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "您的报告已成功发送！";
+
 /* paint */
-"Zoom" = "Zoom";
+"Zoom" = "缩放";

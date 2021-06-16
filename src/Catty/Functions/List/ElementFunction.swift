@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 class ElementFunction: DoubleParameterFunction {
     static var tag = "LIST_ITEM"
-    static var name = "element"
+    static var name = kUIFEFunctionItem
     static var defaultValue = "" as AnyObject
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
@@ -55,6 +55,6 @@ class ElementFunction: DoubleParameterFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        [.math(position: (type(of: self).position))]
+        [.functions(position: type(of: self).position, subsection: .lists)]
     }
 }

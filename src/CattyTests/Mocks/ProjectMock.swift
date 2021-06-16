@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,8 +23,8 @@
 class ProjectMock: Project {
 
     private var mockedRequiredResources: Int = 0
-    public var saveNotificationShown: Bool = false
-    public var saved: Bool = false
+    public var saveNotificationShown = false
+    public var saved = false
     public var isLastUsedProject = false
 
     override convenience init() {

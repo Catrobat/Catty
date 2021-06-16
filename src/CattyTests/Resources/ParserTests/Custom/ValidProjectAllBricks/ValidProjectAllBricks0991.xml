@@ -247,6 +247,15 @@
                       <brick type="NextLookBrick">
                           <commentedOut>false</commentedOut>
                       </brick>
+                      <brick type="SetLookByIndexBrick">
+                        <commentedOut>false</commentedOut>
+                        <formulaList>
+                          <formula category="LOOK_INDEX">
+                            <type>NUMBER</type>
+                            <value>1</value>
+                          </formula>
+                        </formulaList>
+                      </brick>
                       <brick type="SetSizeToBrick">
                         <commentedOut>false</commentedOut>
                         <formulaList>
@@ -646,6 +655,24 @@
             <brick type="GoToBrick">
               <commentedOut>false</commentedOut>
               <spinnerSelection>80</spinnerSelection>
+            </brick>
+            <brick type="SetBackgroundByIndexBrick">
+              <commentedOut>false</commentedOut>
+              <formulaList>
+                <formula category="BACKGROUND_INDEX">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetBackgroundByIndexBrick">
+              <commentedOut>false</commentedOut>
+              <formulaList>
+                <formula category="LOOK_INDEX">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
             </brick>
           </brickList>
           <commentedOut>false</commentedOut>

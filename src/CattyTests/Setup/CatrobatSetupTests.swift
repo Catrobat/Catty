@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -45,17 +45,26 @@ final class CatrobatSetupTests: XCTestCase {
     func testRegisteredBrickCategories() {
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
+        UserDefaults.standard.set(false, forKey: kUseEmbroideryBricks)
 
-        let categories = CatrobatSetup.registeredBrickCategories()
+        var categories = CatrobatSetup.registeredBrickCategories()
 
         UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
 
         let categoriesPhiroEnabled = CatrobatSetup.registeredBrickCategories()
-        XCTAssertTrue(categoriesPhiroEnabled.count > categories.count)
+        XCTAssertEqual(categoriesPhiroEnabled.count, categories.count + 1)
+
+        for category in categories where category.name == kLocalizedCategoryEmbroidery || category.name == kLocalizedCategoryArduino {
+            XCTAssertEqual(category.enabled, false)
+        }
 
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
+        UserDefaults.standard.set(true, forKey: kUseEmbroideryBricks)
 
-        let categoriesArduinoEnabled = CatrobatSetup.registeredBrickCategories()
-        XCTAssertTrue(categoriesArduinoEnabled.count > categoriesPhiroEnabled.count)
+        categories = CatrobatSetup.registeredBrickCategories()
+
+        for category in categories where category.name == kLocalizedCategoryEmbroidery || category.name == kLocalizedCategoryArduino {
+            XCTAssertEqual(category.enabled, true)
+        }
     }
 }

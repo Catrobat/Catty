@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,14 +25,12 @@ import XCTest
 class CattyUISnapshots: XCTestCase {
 
     let app = XCUIApplication()
-    let mediaLibraryImageName = "Panda-5"
+    let mediaLibraryImageName = "Penguin"
 
     override func setUp() {
         setupSnapshot(app)
         app.launch()
-
         dismissPrivacyPolicyScreenIfShown()
-        restoreDefaultProject()
     }
 
     func testUIScreenshots() {
@@ -45,13 +43,15 @@ class CattyUISnapshots: XCTestCase {
         toolbar.buttons[kLocalizedSelectAllItems].tap()
         toolbar.buttons[kLocalizedDelete].tap()
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        snapshot("Catrobat landing page screenshot")
+        snapshot("01-Landing page")
+
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         let tablesQuery = XCUIApplication().tables
         tablesQuery.staticTexts[kLocalizedMyFirstProject].tap()
         tablesQuery.staticTexts[kLocalizedMole + " 1"].tap()
         tablesQuery.staticTexts[kLocalizedScripts].tap()
-        snapshot("Mole 1 script screenshot")
+        snapshot("02-Mole 1 script")
 
         app.navigationBars[kLocalizedScripts].buttons[kLocalizedMole + " 1"].tap()
 
@@ -65,7 +65,7 @@ class CattyUISnapshots: XCTestCase {
             loadMediaLibraryExpectation.fulfill()
         }
         wait(for: [loadMediaLibraryExpectation], timeout: 5.1)
-        snapshot("Media library screenshot")
+        snapshot("04-Media library")
 
         let imageCell = app.collectionViews.children(matching: .cell)[mediaLibraryImageName].children(matching: .other).element
         let exists = NSPredicate(format: "exists == 1")
@@ -74,13 +74,14 @@ class CattyUISnapshots: XCTestCase {
         imageCell.tap()
 
         tablesQuery.staticTexts[mediaLibraryImageName].tap()
-        snapshot("Pocket Paint screenshot with Penguin")
+        snapshot("05-Paint with Penguin")
     }
 
-    func testRunningProjectScreenshot() {
+    func testMyFirstProjectScreenshot() {
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
 
-        app.toolbars["Toolbar"].buttons[kLocalizedPlay].tap()
+        app.toolbars["Toolbar"].buttons["Play"].tap()
 
         let projectLoadExpectation = XCTestExpectation(description: "Arbitrarily wait till the project loads")
 
@@ -89,7 +90,7 @@ class CattyUISnapshots: XCTestCase {
         }
 
         wait(for: [projectLoadExpectation], timeout: 3.1)
-        snapshot("My first project stage screenshot")
+        snapshot("06-My first project stage")
     }
 
     func testCatrobatCommunityScreenshot() {
@@ -103,6 +104,12 @@ class CattyUISnapshots: XCTestCase {
         }
 
         wait(for: [loadCompleteExpectation], timeout: 2.1)
-        snapshot("Catrobat community 'charts' tab screenshot")
+        snapshot("03-Catrobat community charts")
+    }
+
+    private func dismissPrivacyPolicyScreenIfShown() {
+        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
+            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
+        }
     }
 }

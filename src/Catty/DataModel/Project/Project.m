@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -78,10 +78,10 @@
         if (notify) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-                [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
+                [notificationCenter postNotificationName:NotificationName.showSaved object:self];
             });
         }
-        // TODO: find correct serializer class dynamically
+
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProjectCodeFileName];
         id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath fileManager:fileManager];
         [serializer serializeProject:self];
@@ -91,8 +91,8 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToUpload object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.hideLoadingView object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.readyToUpload object:self];
         });
     });
 }
@@ -156,10 +156,9 @@
     return self.scene.objects;
 }
 
-- (void)updateDescriptionWithText:(NSString*)descriptionText
+- (void)setDescription:(NSString*)description
 {
-    self.header.programDescription = descriptionText;
-    [self saveToDiskWithNotification:YES];
+    self.header.programDescription = description;
 }
 
 - (void)removeReferences
@@ -213,6 +212,20 @@
     return [ret copy];
 }
 
+- (void)updateReferences
+{
+    NSArray <SpriteObject*> *allObjects = [[NSMutableArray alloc] initWithArray: self.allObjects];
+    for (SpriteObject *sprite in allObjects) {
+        sprite.scene.project = self;
+        for (Script *script in sprite.scriptList) {
+            script.object = sprite;
+            for (Brick *brick in script.brickList) {
+                brick.script = script;
+            }
+        }
+    }
+}
+
 #pragma mark - Manager
 
 + (NSString*)projectDirectoryNameForProjectName:(NSString*)projectName projectID:(NSString*)projectID
@@ -231,20 +244,6 @@
     NSString *projectID = (NSString*)directoryNameParts.lastObject;
     NSString *projectName = [directoryName substringToIndex:directoryName.length - projectID.length - 1];
     return [ProjectLoadingInfo projectLoadingInfoForProjectWithName:projectName projectID:projectID];
-}
-
-+ (nullable NSString *)projectNameForProjectID:(NSString*)projectID
-{
-    if ((! projectID) || (! [projectID length])) {
-        return nil;
-    }
-    NSArray *allProjectLoadingInfos = [[self class] allProjectLoadingInfos];
-    for (ProjectLoadingInfo *projectLoadingInfo in allProjectLoadingInfos) {
-        if ([projectLoadingInfo.projectID isEqualToString:projectID]) {
-            return projectLoadingInfo.visibleName;
-        }
-    }
-    return nil;
 }
 
 // returns true if either same projectID and/or same projectName already exists
@@ -287,11 +286,6 @@
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProjectCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
 
-    //    //######### FIXME remove that later!! {
-    //        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    //        xmlPath = [bundle pathForResource:@"ValidProjectAllBricks093" ofType:@"xml"];
-    //    // }
-
     Project *project = nil;
     CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
 
@@ -309,16 +303,17 @@
     } else {
         project = [catrobatParser parseAndCreateProject];
     }
-    project.header.programName = loadingInfo.visibleName;
+    
     project.header.programID = loadingInfo.projectID;
+    if (!loadingInfo.useOriginalName) {
+        project.header.programName = loadingInfo.visibleName;
+    }
 
     if (! project) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectInvalidXml object:loadingInfo];
         return nil;
     }
 
-    NSDebug(@"%@", [project description]);
-    NSDebug(@"ProjectResolution: width/height:  %f / %f", project.header.screenWidth.floatValue, project.header.screenHeight.floatValue);
     [self updateLastModificationTimeForProjectWithName:loadingInfo.visibleName projectID:loadingInfo.projectID];
     
     CBFileManager *fileManager = [[CBFileManager alloc] init];

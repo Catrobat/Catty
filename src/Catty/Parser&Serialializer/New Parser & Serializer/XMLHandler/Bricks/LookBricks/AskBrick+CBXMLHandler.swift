@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,14 +22,17 @@
 
 extension AskBrick: CBXMLNodeProtocol {
     static func parse(from xmlElement: GDataXMLElement, with context: CBXMLParserContext) -> Self {
-        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 2, andFormulaListWithTotalNumberOfFormulas: 1)
-        let formula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "ASK_QUESTION", with: context)
-        let xmlVariable = xmlElement.child(withElementName: "userVariable")
-        let userVariable = context.parse(from: xmlVariable, withClass: UserVariable.self)
+        CBXMLParserHelper.validate(xmlElement, forFormulaListWithTotalNumberOfFormulas: 1)
 
         let brick = self.init()
+        let formula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "ASK_QUESTION", with: context)
         brick.question = formula
-        brick.userVariable = userVariable as? UserVariable
+
+        let xmlVariable = xmlElement.child(withElementName: "userVariable")
+        if xmlVariable != nil {
+            let userVariable = context.parse(from: xmlVariable, withClass: UserVariable.self)
+            brick.userVariable = userVariable as? UserVariable
+        }
 
         return brick
     }

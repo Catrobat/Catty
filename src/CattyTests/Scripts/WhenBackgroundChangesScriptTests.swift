@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -60,8 +60,8 @@ final class WhenBackgroundChangesScriptTests: XCTestCase {
 
     func testConditionOfWhenBackgroundChangesScript() {
 
-        let look1 = Look(name: "testLook1", andPath: "testPath1")!
-        let look2 = Look(name: "testLook2", andPath: "testPath2")!
+        let look1 = Look(name: "testLook1", filePath: "testPath1")
+        let look2 = Look(name: "testLook2", filePath: "testPath2")
 
         object.add(look1, andSaveToDisk: false)
         object.add(look2, andSaveToDisk: false)
@@ -76,8 +76,8 @@ final class WhenBackgroundChangesScriptTests: XCTestCase {
 
     func testMethodCallNotifyBackgroundChanges() {
 
-        let look1 = Look(name: "testLook1", andPath: "testPath1")!
-        let look2 = Look(name: "testLook2", andPath: "testPath2")!
+        let look1 = Look(name: "testLook1", filePath: "testPath1")
+        let look2 = Look(name: "testLook2", filePath: "testPath2")
 
         object.add(look1, andSaveToDisk: false)
         object.add(look2, andSaveToDisk: false)
@@ -102,8 +102,8 @@ final class WhenBackgroundChangesScriptTests: XCTestCase {
         scene.add(object: secondObject)
         script.object = secondObject
 
-        let look1 = Look(name: "testLook1", andPath: "testPath1")!
-        let look2 = Look(name: "testLook2", andPath: "testPath2")!
+        let look1 = Look(name: "testLook1", filePath: "testPath1")
+        let look2 = Look(name: "testLook2", filePath: "testPath2")
 
         secondObject.add(look1, andSaveToDisk: false)
         secondObject.add(look2, andSaveToDisk: false)

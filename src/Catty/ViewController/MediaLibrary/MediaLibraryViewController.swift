@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,6 +43,7 @@ final class MediaLibraryViewController: UICollectionViewController {
 
     private var audioPlayer: AVAudioPlayer?
     private var audioPlayerFinishPlayingCompletionBlock: AudioPlayerFinishPlayingCompletionBlock?
+    private var silentDetector: SharkfoodMuteSwitchDetector?
 
     // MARK: - Initializers
 
@@ -50,6 +51,12 @@ final class MediaLibraryViewController: UICollectionViewController {
         self.dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: mediaType)
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         self.dataSource.delegate = self
+        self.silentDetector = SharkfoodMuteSwitchDetector.shared()
+        silentDetector?.silentNotify = { silent in
+            if silent {
+                self.audioPlayer?.stop()
+            }
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -74,12 +81,10 @@ final class MediaLibraryViewController: UICollectionViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        enableSoundInSilentMode()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        undoEnableSoundInSilentMode()
     }
 
     override func didReceiveMemoryWarning() {
@@ -169,6 +174,16 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
         self.audioPlayerFinishPlayingCompletionBlock?.completion?()
         self.audioPlayerFinishPlayingCompletionBlock = nil
 
+        if silentDetector?.isMute == true {
+            Util.alert(
+            text: (Util.isPhone()
+                ? kLocalizedDeviceIsInMutedStateIPhoneDescription
+                : kLocalizedDeviceIsInMutedStateIPadDescription))
+
+            completion?()
+            return
+        }
+
         do {
             audioPlayerFinishPlayingCompletionBlock = AudioPlayerFinishPlayingCompletionBlock(completion)
             let audioPlayer = try AVAudioPlayer(data: data)
@@ -220,21 +235,5 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
             self?.navigationController?.popViewController(animated: true)
         }
         self.present(alertController, animated: true, completion: nil)
-    }
-}
-
-extension MediaLibraryViewController {
-    private func enableSoundInSilentMode() {
-        let sharedAudioSession = AVAudioSession.sharedInstance()
-        self.originalAudioSessionCategory = sharedAudioSession.category
-        self.originalAudioSessionCategoryOptions = sharedAudioSession.categoryOptions
-        try? sharedAudioSession.setCategoryWrapper(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
-    }
-
-    private func undoEnableSoundInSilentMode() {
-        if let category = self.originalAudioSessionCategory, let options = self.originalAudioSessionCategoryOptions {
-            let sharedAudioSession = AVAudioSession.sharedInstance()
-            try? sharedAudioSession.setCategoryWrapper(category, mode: .default, options: options)
-        }
     }
 }

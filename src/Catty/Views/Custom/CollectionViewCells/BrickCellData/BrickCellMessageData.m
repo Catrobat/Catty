@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,8 +29,6 @@
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 
-NSString *const ACCESSIBILITY_LABEL = @"MessageView_%@";
-
 @implementation BrickCellMessageData
 
 static NSMutableArray *messages = nil;
@@ -49,7 +47,7 @@ static NSMutableArray *messages = nil;
             if ([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
                 Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brickCell.scriptOrBrick;
                 NSString *currentMessage = [messageBrick messageForLineNumber:line andParameterNumber:parameter];
-                NSMutableOrderedSet *messages;
+                NSOrderedSet *messages;
                 if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
                     messages = [Util allMessagesForProject: ((Script*)brickCell.scriptOrBrick).object.scene.project];
                 } else {
@@ -73,7 +71,7 @@ static NSMutableArray *messages = nil;
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
-        self.accessibilityLabel = [NSString stringWithFormat:ACCESSIBILITY_LABEL, options[currentOptionIndex]];
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@_%@", UIDefines.messagePickerAccessibilityLabel, options[currentOptionIndex]];
     }
     return self;
 }

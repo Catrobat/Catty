@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ final class XMLParserBrickTests095: XMLAbstractTest {
             try ConvertExceptionToError.catchException {
                 SetVariableBrick.parse(from: xmlElement, with: self.parserContext)
             }) { error in
-            XCTAssertTrue(error.localizedDescription.contains(NSStringFromClass(CBXMLParserHelper.self)))
+            XCTAssertTrue(error.localizedDescription.contains("Invalid number of formulas found"))
         }
     }
 
@@ -86,7 +86,7 @@ final class XMLParserBrickTests095: XMLAbstractTest {
 
             }
             ) { error in
-            XCTAssertTrue(error.localizedDescription.contains(NSStringFromClass(CBXMLParserHelper.self)))
+            XCTAssertTrue(error.localizedDescription.contains("Invalid number of formulas found"))
         }
     }
 

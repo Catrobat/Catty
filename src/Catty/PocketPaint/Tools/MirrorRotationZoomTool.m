@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "MirrorRotationZoomTool.h"
 #import "UIImage+Rotate.h"
 #import "UndoManager.h"
+#import "Pocket_Code-Swift.h"
 
 #define kMaxZoomScale 5.0f
 #define kMinZoomScale 0.25f
@@ -98,28 +99,20 @@
 - (void)rotateRight
 {
   self.canvas.degrees += 90;
-    UIImage *image = [self.canvas.saveView.image imageRotatedByDegrees:90];
-    CGFloat zoomScale = self.canvas.scrollView.zoomScale;
-    self.canvas.scrollView.zoomScale = 1.0;
+  UIImage *image = [self.canvas.saveView.image imageRotatedByDegrees:90];
+  CGFloat zoomScale = self.canvas.scrollView.zoomScale;
+  self.canvas.scrollView.zoomScale = 1.0;
 
-    self.canvas.saveView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
-    self.canvas.drawView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
-    self.canvas.helper.frame = CGRectMake(self.canvas.helper.frame.origin.x, self.canvas.helper.frame.origin.y, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+  self.canvas.saveView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+  self.canvas.drawView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+  self.canvas.helper.frame = CGRectMake(self.canvas.helper.frame.origin.x, self.canvas.helper.frame.origin.y, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
 
-    self.canvas.scrollView.zoomScale = zoomScale;
-    
-    CGSize imageSize = CGSizeMake(floor(self.canvas.helper.frame.size.width), floor(self.canvas.helper.frame.size.height));
-    
-    UIGraphicsBeginImageContext(imageSize);
-    UIImage *tempImage = [image copy];
-    [tempImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-    tempImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+  self.canvas.scrollView.zoomScale = zoomScale;
 
-    //UNDO-Manager
-    UndoManager* manager = [self.canvas getUndoManager];
-    [manager setImage:self.canvas.saveView.image];
-  self.canvas.saveView.image = tempImage;
+  //UNDO-Manager
+  UndoManager* manager = [self.canvas getUndoManager];
+  [manager setImage:self.canvas.saveView.image];
+  self.canvas.saveView.image = image;
 }
 
 - (void)rotateLeft
@@ -133,18 +126,10 @@
   self.canvas.helper.frame = CGRectMake(self.canvas.helper.frame.origin.x, self.canvas.helper.frame.origin.y, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
   self.canvas.scrollView.zoomScale = zoomScale;
     
-    CGSize imageSize = CGSizeMake(floor(self.canvas.helper.frame.size.width), floor(self.canvas.helper.frame.size.height));
-    
-    UIGraphicsBeginImageContext(imageSize);
-    UIImage *tempImage = [image copy];
-    [tempImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-    tempImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    //UNDO-Manager
-    UndoManager* manager = [self.canvas getUndoManager];
-    [manager setImage:self.canvas.saveView.image];
-  self.canvas.saveView.image = tempImage;
+  //UNDO-Manager
+  UndoManager* manager = [self.canvas getUndoManager];
+  [manager setImage:self.canvas.saveView.image];
+  self.canvas.saveView.image = image;
 }
 
 - (void)zoomIn

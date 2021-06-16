@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,7 +36,8 @@ final class BrickCategoryTest: XCTestCase {
         let category = BrickCategory(type: kBrickCategoryType.controlBrick,
                                      name: kLocalizedCategoryControl,
                                      color: UIColor.controlBrickOrange,
-                                     strokeColor: UIColor.controlBrickStroke)
+                                     strokeColor: UIColor.controlBrickStroke,
+                                     enabled: true)
 
         XCTAssertEqual(expectedDisabledColor, category.colorDisabled())
     }
@@ -51,7 +52,8 @@ final class BrickCategoryTest: XCTestCase {
         let category = BrickCategory(type: kBrickCategoryType.controlBrick,
                                      name: kLocalizedCategoryControl,
                                      color: UIColor.controlBrickOrange,
-                                     strokeColor: UIColor.controlBrickStroke)
+                                     strokeColor: UIColor.controlBrickStroke,
+                                     enabled: true)
 
         XCTAssertEqual(expectedDisabledStrokeColor, category.strokeColorDisabled())
     }

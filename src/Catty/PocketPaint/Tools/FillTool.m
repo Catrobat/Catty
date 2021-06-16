@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "FillTool.h"
 #import "UIImage+FloodFill.h"
 #import "UndoManager.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation FillTool
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas

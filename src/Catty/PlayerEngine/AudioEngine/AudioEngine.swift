@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,8 @@ import Foundation
     var engineOutputMixer = AKMixer()
     var postProcessingMixer = AKMixer()
 
+    var tempo = Int()
+
     var subtrees = [String: AudioSubtree]()
     let subtreeCreationQueue = DispatchQueue(label: "SubtreeCreationQueue")
     let audioPlayerFactory: AudioPlayerFactory
@@ -42,10 +44,10 @@ import Foundation
     @objc func start() {
         AKSettings.disableAVAudioSessionCategoryManagement = true
         audioEngineHelper.activateAudioSession()
-        AudioKit.output = postProcessingMixer
+        AKManager.output = postProcessingMixer
         engineOutputMixer.connect(to: postProcessingMixer)
         do {
-            try AudioKit.start()
+            try AKManager.start()
         } catch {
             print("COULD NOT START AUDIO ENGINE! MAKE SURE TO ALWAYS SHUT DOWN AUDIO ENGINE BEFORE" +
                 "INSTANTIATING IT AGAIN (AFTER EVERY TEST CASE)! USE AN AUDIOENGINEMOCK IN TESTS" +
@@ -55,12 +57,12 @@ import Foundation
 
     @objc func pause() {
         pauseAllAudioSources()
-        AudioKit.engine.pause()
+        AKManager.engine.pause()
     }
 
     @objc func resume() {
         do {
-            try AudioKit.engine.start()
+            try AKManager.engine.start()
         } catch let error as NSError {
             print("Could not resume audio engine.")
             print(error)
@@ -73,8 +75,8 @@ import Foundation
         stopAllAudioSources()
 
         do {
-            try AudioKit.stop()
-            try AudioKit.shutdown()
+            try AKManager.stop()
+            try AKManager.shutdown()
         } catch {
             print("Something went wrong when stopping the audio engine!")
         }
@@ -134,6 +136,17 @@ import Foundation
 
     func getSpeechSynth() -> SpeechSynthesizer {
         speechSynth
+    }
+
+    func setInstrument(_ instrument: Instrument, key: String) {
+        let subtree = getSubtree(key: key)
+        subtree.setInstrument(instrument)
+    }
+
+    func setTempo(tempo: Int) {
+        self.tempo = tempo
+        if self.tempo < 20 { self.tempo = 20 }
+        if self.tempo > 500 { self.tempo = 500 }
     }
 
     private func getSubtree(key: String) -> AudioSubtree {

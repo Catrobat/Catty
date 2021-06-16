@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 import AVFoundation
+import Chromaprint
 
 class ChromaprintFingerprinter {
 
@@ -33,7 +34,7 @@ class ChromaprintFingerprinter {
          pass it to chromaprint_get_raw_fingerprint without errors.
          The defer ensures it is not leaked if we drop out early.
          */
-        var rawFingerprint: UnsafeMutableRawPointer? = UnsafeMutableRawPointer.allocate(byteCount: 4, alignment: 1)
+        var rawFingerprint: UnsafeMutablePointer<UInt32>? = UnsafeMutablePointer<UInt32>.allocate(capacity: 1)
         var fingerprintSize = Int32(bigEndian: 0)
         var simHash = UInt32(bigEndian: 0)
 
@@ -65,7 +66,7 @@ class ChromaprintFingerprinter {
         var simHashString = String(simHash, radix: 2)
         simHashString = pad(string: simHashString, toSize: 32)
 
-        chromaprint_dealloc(chromaprintContext)
+        chromaprint_free(chromaprintContext)
         return (String(describing: simHashString), duration)
     }
 

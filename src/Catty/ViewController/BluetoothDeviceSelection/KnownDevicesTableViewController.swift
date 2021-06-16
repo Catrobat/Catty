@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -56,7 +56,7 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { knownDevices.count }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = UITableViewCell()
         cell.textLabel?.textColor = UIColor.globalTint
         cell.isUserInteractionEnabled = true
 

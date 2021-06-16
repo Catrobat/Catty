@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -52,5 +52,21 @@ class XMLParserFormulaTests093: XMLAbstractTest {
         let formula = setVariableBrick.variableFormula
         // formula value should be: (1 * (-2)) + (3 / 4) = -1,25
         XCTAssertEqual(self.formulaManager.interpretDouble(formula!, for: SpriteObject()), -1.25, accuracy: 0.00001, "Formula not correctly parsed")
+    }
+
+    func testUnknownType() {
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidFormulaList"))
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[4]/scriptList/script[1]/brickList/brick[4]")
+        XCTAssertEqual(brickElement!.count, 1)
+
+        let brickXMLElement = brickElement!.first
+        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: WaitBrick.self as? CBXMLNodeProtocol.Type) as! Brick
+
+        XCTAssertTrue(brick.isKind(of: WaitBrick.self), "Invalid brick class")
+
+        let waitBrick = brick as! WaitBrick
+        let formula = waitBrick.timeToWaitInSeconds
+
+        XCTAssertEqual(ElementType.UNKNOWN_TYPE, formula.formulaTree.type)
     }
 }

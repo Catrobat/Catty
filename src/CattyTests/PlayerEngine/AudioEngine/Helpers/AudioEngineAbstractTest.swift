@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,8 @@ class AudioEngineAbstractTest: XMLAbstractTest {
     override func setUp() {
         super.setUp()
         do {
-            tape = try AKAudioFile()
+            // FIXME: Use proper default initializer when migrating to AudioKit 5
+            tape = try AKAudioFile(writeIn: AKAudioFile.BaseDirectory.temp, name: nil, settings: [:])
             audioEngine = AudioEngineFingerprintingStub(audioPlayerFactory: FingerprintingAudioPlayerFactory())
             recorder = audioEngine.addNodeRecorderAtEngineOut(tape: tape)
 

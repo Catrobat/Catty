@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,18 +26,57 @@ import XCTest
 
 final class EmbroideryDSTServiceTests: XCTestCase {
 
-    func testGenerateOutput() {
+    private let width: CGFloat = 100
+    private let height: CGFloat = 200
 
+    func testGenerateOutputInterpolation() {
         let bundlePath = Bundle(for: type(of: self)).path(forResource: "stitch", ofType: "dst")
         let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
 
         let DSTService = EmbroideryDSTService()
-        let stream = EmbroideryStream(withName: "stitch")
-        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
-        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 250, y: 0)))
+        let stream = EmbroideryStream(projectWidth: width, projectHeight: height, withName: "stitch")
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 250, y: 0)))
 
         let out = DSTService.generateOutput(embroideryStream: stream)
         XCTAssertEqual(out, reference)
+    }
 
+    func testGenerateOutputColorChange() {
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "color_change", ofType: "dst")
+        let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
+
+        let DSTService = EmbroideryDSTService()
+        let stream = EmbroideryStream(projectWidth: width, projectHeight: height, withName: "EmbroideryStitc")
+
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 250, y: 0)))
+        stream.addColorChange()
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 250)))
+
+        let out = DSTService.generateOutput(embroideryStream: stream)
+        XCTAssertEqual(out, reference)
+    }
+
+    func testGenerateInitWithStreams() {
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "color_change", ofType: "dst")
+        let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
+
+        let DSTService = EmbroideryDSTService()
+
+        let stream = EmbroideryStream(projectWidth: width, projectHeight: height)
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 250, y: 0)))
+
+        let streamTwo = EmbroideryStream(projectWidth: width, projectHeight: height)
+        streamTwo.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        streamTwo.add(Stitch(atPosition: CGPoint(x: 0, y: 250)))
+
+        let streamArray = [stream, streamTwo]
+        let mergedStream = EmbroideryStream(streams: streamArray, withName: "EmbroideryStitc")
+
+        let out = DSTService.generateOutput(embroideryStream: mergedStream)
+        XCTAssertEqual(out, reference)
     }
 }

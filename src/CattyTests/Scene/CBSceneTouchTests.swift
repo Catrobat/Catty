@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -71,8 +71,7 @@ final class CBSceneTouchTests: XCTestCase {
         stage = StageBuilder(project: ProjectMock(width: 400, andHeight: 800)).build()
         stage.scheduler.running = true
 
-        let look = Look()
-        look.name = "Look"
+        let look = Look(name: "Look", filePath: "Look")
 
         let scene = Scene(name: "testScene")
         let spriteObjectA = SpriteObject()

@@ -250,6 +250,15 @@
                           <brick type="NextLookBrick">
                             <commentedOut>false</commentedOut>
                           </brick>
+                          <brick type="SetLookByIndexBrick">
+                            <commentedOut>false</commentedOut>
+                            <formulaList>
+                              <formula category="LOOK_INDEX">
+                                <type>NUMBER</type>
+                                <value>1</value>
+                              </formula>
+                            </formulaList>
+                          </brick>
                           <brick type="SetSizeToBrick">
                             <commentedOut>false</commentedOut>
                             <formulaList>
@@ -674,6 +683,13 @@
                   <commentedOut>false</commentedOut>
                   <selection>2</selection>
                 </brick>
+                <brick type="StitchBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="SetBackgroundAndWaitBrick">
+                  <commentedOut>false</commentedOut>
+                  <look reference="../../../../../lookList/look"/>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
@@ -725,6 +741,37 @@
                      </formulaList>
                  <userVariable>globale</userVariable>
                </brick>
+                <brick type="SetInstrumentBrick">
+                    <commentedOut>false</commentedOut>
+                    <instrumentSelection>PIANO</instrumentSelection>
+                </brick>
+                <brick type="SetBackgroundByIndexBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="LOOK_INDEX">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetBackgroundByIndexBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="BACKGROUND_INDEX">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetTempoToBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TEMPO">
+                      <type>NUMBER</type>
+                      <value>60</value>
+                    </formula>
+                  </formulaList>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>

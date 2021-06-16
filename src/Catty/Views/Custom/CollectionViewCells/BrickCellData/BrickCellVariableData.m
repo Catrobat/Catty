@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,9 +28,6 @@
 #import "Brick.h"
 #import "Util.h"
 #import "BrickVariableProtocol.h"
-
-NSString *const ACCESSABILITY_LABEL = @"VariableView_%@";
-
 
 @implementation BrickCellVariableData
 
@@ -65,7 +62,7 @@ NSString *const ACCESSABILITY_LABEL = @"VariableView_%@";
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
-        self.accessibilityLabel = [NSString stringWithFormat:ACCESSABILITY_LABEL, options[currentOptionIndex]];
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@_%@", UIDefines.variablePickerAccessibilityLabel, options[currentOptionIndex]];
     }
     return self;
 }

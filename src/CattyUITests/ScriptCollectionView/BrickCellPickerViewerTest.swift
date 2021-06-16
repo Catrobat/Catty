@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,14 +26,11 @@ class BrickCellPickerViewerTests: XCTestCase {
 
     var app: XCUIApplication!
     var variableBrickHasValues: Bool!
-    var ACCESSABILITY_LABEL_VARIABLE = "VariableView_"
-    var ACCESSABILITY_LABEL_MESSAGE = "MessageView_"
-    var PROJECT_NAME = "Test Project"
-    var testValues = ["testVariable1", "testVariable2", "testVariable3"]
+    var testValues = ["testValue1", "testValue2"]
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
         app.staticTexts[kLocalizedContinueProject].tap()
         variableBrickHasValues = false
     }
@@ -47,7 +44,7 @@ class BrickCellPickerViewerTests: XCTestCase {
 
     private func addValuesForVariableBrick(brick: String, category: String) {
         for variable in testValues {
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnVariablePicker(of: brick, in: app)
             app.pickerWheels.firstMatch.swipeDown()
             app.buttons[kLocalizedDone].tap()
 
@@ -57,7 +54,7 @@ class BrickCellPickerViewerTests: XCTestCase {
             let alert = app.alerts[kUIFENewVar]
             alert.textFields[kLocalizedEnterYourVariableNameHere].typeText(variable)
             alert.buttons[kLocalizedOK].tap()
-            XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_VARIABLE + variable]).exists)
+            XCTAssert(waitForElementToAppear(app.otherElements[type(of: self).accessibilityLabelVariable + variable]).exists)
         }
     }
 
@@ -66,7 +63,7 @@ class BrickCellPickerViewerTests: XCTestCase {
         addBrick(label: brick, section: category, in: app)
 
         for variable in testValues {
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnMessagePicker(of: brick, in: app)
             app.pickerWheels.firstMatch.swipeDown()
             app.buttons[kLocalizedDone].tap()
 
@@ -88,30 +85,30 @@ class BrickCellPickerViewerTests: XCTestCase {
 
         for brick in bricks {
             clearScript()
-            addBrick(label: brick, section: kLocalizedCategoryVariable, in: app)
+            addBrick(label: brick, section: kLocalizedCategoryData, in: app)
 
             if variableBrickHasValues == false {
-                addValuesForVariableBrick(brick: brick, category: kLocalizedCategoryVariable)
+                addValuesForVariableBrick(brick: brick, category: kLocalizedCategoryData)
                 variableBrickHasValues = true
             }
 
-            XCTAssertFalse(app.otherElements[ACCESSABILITY_LABEL_VARIABLE + testValues[0]].exists, "Brick: " + brick + " has wrong initial value")
+            XCTAssertFalse(app.otherElements[type(of: self).accessibilityLabelVariable + testValues[0]].exists, "Brick: " + brick + " has wrong initial value")
 
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnVariablePicker(of: brick, in: app)
 
-            app.pickerWheels.element.adjust(toPickerWheelValue: testValues[0])
+            waitForElementToAppear(app.pickerWheels.element).adjust(toPickerWheelValue: testValues[0])
             app.buttons[kLocalizedDone].tap()
-            XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_VARIABLE + testValues[0]]).exists, "Error while changing variable for Brick: " + brick)
+            XCTAssert(waitForElementToAppear(app.otherElements[type(of: self).accessibilityLabelVariable + testValues[0]]).exists, "Error while changing variable for Brick: " + brick)
 
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnVariablePicker(of: brick, in: app)
 
-            app.pickerWheels.element.adjust(toPickerWheelValue: testValues[2])
+            app.pickerWheels.element.adjust(toPickerWheelValue: testValues.last!)
             app.buttons[kLocalizedCancel].tap()
-            XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_VARIABLE + testValues[0]]).exists, "Error while changing variable for Brick and cancel: " + brick)
+            XCTAssert(waitForElementToAppear(app.otherElements[type(of: self).accessibilityLabelVariable + testValues[0]]).exists, "Error while changing variable for Brick and cancel: " + brick)
         }
     }
 
-    func testChangeControlDoneAndCancel() {
+    func testChangeBroadcastMessageDoneAndCancel() {
         let bricks: [String] = [
             kLocalizedBroadcast,
             kLocalizedBroadcastAndWait,
@@ -122,18 +119,19 @@ class BrickCellPickerViewerTests: XCTestCase {
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         for brick in bricks {
-            addControlBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryControl)
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            addControlBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryEvent)
+            tapOnMessagePicker(of: brick, in: app)
 
-            app.pickerWheels.element.adjust(toPickerWheelValue: testValues[2])
+            app.pickerWheels.element.adjust(toPickerWheelValue: testValues.last!)
             app.buttons[kLocalizedDone].tap()
-            XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_MESSAGE + testValues[2]]).exists, "Error while changing variable for Brick: " + brick)
+            XCTAssert(waitForElementToAppear(app.otherElements[type(of: self).accessibilityLabelMessage + testValues.last!]).exists, "Error while changing broadcast message for Brick: " + brick)
 
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnMessagePicker(of: brick, in: app)
 
             app.pickerWheels.firstMatch.swipeDown()
             app.buttons[kLocalizedCancel].tap()
-            XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_MESSAGE + testValues[2]]).exists, "Error while changing variable for Brick and cancel: " + brick)
+            XCTAssert(waitForElementToAppear(app.otherElements[type(of: self).accessibilityLabelMessage + testValues.last!]).exists,
+                      "Error while changing broadcast message for Brick and cancel: " + brick)
         }
     }
 }

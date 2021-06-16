@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -117,6 +117,6 @@ final class TransparencySensorTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = sensor.formulaEditorSections(for: spriteObject)
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.object(position: type(of: sensor).position), sections.first)
+        XCTAssertEqual(.object(position: type(of: sensor).position, subsection: .general), sections.first)
     }
 }

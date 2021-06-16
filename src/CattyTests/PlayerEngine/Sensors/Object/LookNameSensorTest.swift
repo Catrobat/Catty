@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -54,9 +54,9 @@ final class LookNameSensorTest: XCTestCase {
     }
 
     func testRawValue() {
-        spriteObject.lookList = [Look(name: "first", andPath: "test1.png")!,
-                                 Look(name: "second", andPath: "test2.png")!,
-                                 Look(name: "third", andPath: "test3.png")!]
+        spriteObject.lookList = [Look(name: "first", filePath: "test1.png"),
+                                 Look(name: "second", filePath: "test2.png"),
+                                 Look(name: "third", filePath: "test3.png")]
 
         spriteNode.currentLook = (spriteObject.lookList[0] as! Look)
         XCTAssertEqual("first", type(of: sensor).rawValue(for: spriteObject))
@@ -90,6 +90,6 @@ final class LookNameSensorTest: XCTestCase {
 
         let sections = sensor.formulaEditorSections(for: spriteObject)
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.object(position: type(of: sensor).position), sections.first)
+        XCTAssertEqual(.object(position: type(of: sensor).position, subsection: .general), sections.first)
     }
 }

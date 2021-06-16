@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ class PrivacyPolicyViewController: UIViewController {
     }
 
     @IBAction private func disagreeButtonAction(_ sender: UIButton) {
-        Util.alert(withText: kLocalizedPrivacyPolicyDenyText)
+        Util.alert(text: kLocalizedPrivacyPolicyDenyText)
     }
 
     @IBAction private func acceptButtonAction(_ sender: UIButton) {
@@ -81,19 +81,11 @@ fileprivate extension PrivacyPolicyViewController {
            safeArea.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
         ])
 
-        if #available(iOS 11, *) {
-          let guide = view.safeAreaLayoutGuide
-          NSLayoutConstraint.activate([
-            safeArea.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
-            safeArea.bottomAnchor.constraint(equalToSystemSpacingBelow: guide.bottomAnchor, multiplier: 1.0)
-          ])
-        } else {
-           let standardSpacing: CGFloat = 8.0
-           NSLayoutConstraint.activate([
-            safeArea.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: standardSpacing),
-            safeArea.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: standardSpacing)
-           ])
-        }
+        let guide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+           safeArea.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
+           safeArea.bottomAnchor.constraint(equalToSystemSpacingBelow: guide.bottomAnchor, multiplier: 1.0)
+        ])
     }
 
     func setupImage() {

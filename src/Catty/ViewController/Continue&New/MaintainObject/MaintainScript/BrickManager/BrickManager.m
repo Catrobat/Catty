@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -80,13 +80,13 @@
     NSArray *selectableBricks = [self selectableBricks];
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
     
-    if (categoryType == kFavouriteBricks) {
-        NSArray *favouriteBricks = [Util getSubsetOfTheMostFavoriteChosenBricks:kMaxFavouriteBrickSize];
+    if (categoryType == kRecentlyUsedBricks) {
+        NSArray *recentlyUsedBricks = [RecentlyUsedBricksManager getRecentlyUsedBricks];
         
-        for(NSString* favouriteBrick in favouriteBricks) {
+        for(NSString* recentlyUsedBrick in recentlyUsedBricks) {
             for(id<BrickProtocol> scriptOrBrick in selectableBricks) {
                 NSString *wrappedBrickType = NSStringFromClass([scriptOrBrick class]);
-                if([wrappedBrickType isEqualToString:favouriteBrick] && !([scriptOrBrick isDisabledForBackground] && inBackground)) {
+                if([wrappedBrickType isEqualToString:recentlyUsedBrick] && !([scriptOrBrick isDisabledForBackground] && inBackground)) {
                     [selectableBricksForCategoryMutable addObject:scriptOrBrick];
                 }
             }

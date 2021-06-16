@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -60,11 +60,11 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(hideLoadingView)
-                               name:kHideLoadingViewNotification
+                               name:NotificationName.hideLoadingView
                              object:nil];
     [notificationCenter addObserver:self
                            selector:@selector(showSavedView)
-                               name:kShowSavedViewNotification
+                               name:NotificationName.showSaved
                              object:nil];
   
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint
@@ -323,6 +323,21 @@
     self.editing = YES;
 }
 
+- (void)changeToCopyMode:(id)sender
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.navigationItem.hidesBackButton = YES;
+    self.normalModeRightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    self.editing = YES;
+}
+
 - (void)changeToMoveMode:(id)sender
 {
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
@@ -399,7 +414,6 @@
 
 - (void)showLoadingView
 {
-    self.loadingView.alpha = 1.0;
     self.tableView.userInteractionEnabled = NO;
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     self.navigationController.toolbar.userInteractionEnabled = NO;

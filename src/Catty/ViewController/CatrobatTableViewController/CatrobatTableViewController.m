@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -124,6 +124,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     self.tableView.alwaysBounceVertical = NO;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[UploadViewController class]]) {
+        ((UploadViewController*) segue.destinationViewController).delegate = self;
+    }
+}
+
 #pragma mark init
 - (void)initTableView
 {
@@ -155,6 +162,12 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 #pragma mark - privacy policy
 - (void)presentPrivacyPolicyIfNeeded
 {
+    #if DEBUG
+    if ([[[NSProcessInfo processInfo] arguments] containsObject:LaunchArguments.skipPrivacyPolicy]) {
+        return;
+    }
+    #endif
+
     if (!PrivacyPolicyViewController.hasBeenShown || PrivacyPolicyViewController.showOnEveryLaunch) {
         UIViewController *viewController = [PrivacyPolicyViewController new];
         viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
@@ -332,14 +345,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
     if (indexPath.row == 0) {
         
-        CBFileManager *fileManager = [CBFileManager sharedManager];
-        [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
+        [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
             
-            if(image) {
-                cell.iconImageView.image = image;
-                cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+            if(image && cell) {
                 dispatch_queue_main_t queue = dispatch_get_main_queue();
                 dispatch_async(queue, ^{
+                    cell.iconImageView.image = image;
+                    cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
                     [self.tableView endUpdates];
                 });
             }

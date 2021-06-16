@@ -14,6 +14,9 @@
 "About Pocket Code" = "درباره پاکت کد";
 
 /* No comment provided by engineer. */
+"absolute value" = "absolute value";
+
+/* No comment provided by engineer. */
 "acceleration x" = "شتاب x";
 
 /* No comment provided by engineer. */
@@ -50,6 +53,9 @@
 "Agree" = "Agree";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
 
 /* No comment provided by engineer. */
@@ -83,6 +89,9 @@
 "and" = "و";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "and wait";
 
 /* No comment provided by engineer. */
@@ -95,6 +104,15 @@
 "April" = "آوریل";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccosine";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsine";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctangent";
+
+/* No comment provided by engineer. */
 "Arduino" = "\"آردوینو\"";
 
 /* No comment provided by engineer. */
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino extension";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "در ";
@@ -149,16 +170,22 @@
 "Backgrounds" = "پس‌زمینه‌ها";
 
 /* No comment provided by engineer. */
+"Bass" = "Bass";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
 "becomes true" = "becomes true";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
-/* paint */
-"Blue" = "آبی";
-
 /* No comment provided by engineer. */
 "blue" = "blue";
+
+/* paint */
+"Blue" = "آبی";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
@@ -215,7 +242,10 @@
 "Catrobat community" = "Catrobat community";
 
 /* No comment provided by engineer. */
-"ceil" = "گرد کردن عدد رو به بالا";
+"ceiling" = "ceiling";
+
+/* No comment provided by engineer. */
+"Cello" = "Cello";
 
 /* No comment provided by engineer. */
 "Change brightness " = "تغییر روشنایی ";
@@ -225,6 +255,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "تغییر اندازه از";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "تغییر شفافیت ";
@@ -248,10 +284,16 @@
 "Changes saved." = "تغییرات ذخیره شد!";
 
 /* No comment provided by engineer. */
+"Choir" = "Choir";
+
+/* No comment provided by engineer. */
 "Choose" = "Choose";
 
 /* No comment provided by engineer. */
 "Choose image" = "انتخاب تصویر";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "Clear";
@@ -267,6 +309,9 @@
 
 /* No comment provided by engineer. */
 "color" = "color";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "Comparison operators";
 
 /* No comment provided by engineer. */
 "compass" = "قطب نما";
@@ -311,6 +356,9 @@
 "Copy" = "کپی کردن";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Copy actors or objects";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
@@ -320,7 +368,19 @@
 "Copy project" = "Copy project";
 
 /* No comment provided by engineer. */
+"cosine" = "cosine";
+
+/* No comment provided by engineer. */
 "Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Create patterns for stiching machines";
+
+/* No comment provided by engineer. */
+"Data" = "داده‌";
+
+/* No comment provided by engineer. */
+"Date and time" = "Date and time";
 
 /* No comment provided by engineer. */
 "day" = "day";
@@ -333,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "دسامبر";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "decimal logarithm";
 
 /* No comment provided by engineer. */
 "degrees" = "درجات";
@@ -428,6 +491,9 @@
 "device motion-sensor" = "device motion-sensor";
 
 /* No comment provided by engineer. */
+"Device sensors" = "Device sensors";
+
+/* No comment provided by engineer. */
 "direction" = "جهت";
 
 /* No comment provided by engineer. */
@@ -446,6 +512,9 @@
 "Disagree" = "Disagree";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Discard changes";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "Disconnect all devices";
 
 /* No comment provided by engineer. */
@@ -455,16 +524,16 @@
 "Do you really want to delete the current drawing?" = "آیا واقعا می خواهی نقاشی فعلی را حذف کنی؟";
 
 /* paint */
-"Do you want to save the changes" = "آیا می خواهی تغییرات  انجام شده را ذخیره کنی";
+"Do you want to save your changes?" = "آیا مایلی تغییرات را ذخیره کنی؟";
+
+/* No comment provided by engineer. */
+"don't rotate" = "don't rotate";
 
 /* No comment provided by engineer. */
 "Done" = "ﺍﻧﺠﺎﻡ شد";
 
 /* No comment provided by engineer. */
 "Download" = "دانلود";
-
-/* No comment provided by engineer. */
-"Download successful" = "بارگيري با موفقیت انجام شد";
 
 /* No comment provided by engineer. */
 "Downloads" = "دانلود ها";
@@ -515,6 +584,12 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Electric Guitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Electric Piano";
+
+/* No comment provided by engineer. */
 "element" = "عنصر";
 
 /* paint */
@@ -525,6 +600,12 @@
 
 /* No comment provided by engineer. */
 "Email" = "رایانامه";
+
+/* No comment provided by engineer. */
+"Embroidery" = "Embroidery";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "Embroidery extension";
 
 /* No comment provided by engineer. */
 "Empty input!" = "Empty input!";
@@ -581,7 +662,16 @@
 "Error" = "خطا";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Event" = "رویداد";
+
+/* No comment provided by engineer. */
+"exponent" = "exponent";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -638,6 +728,9 @@
 "floor" = "گرد کردن عدد رو به پایین";
 
 /* No comment provided by engineer. */
+"Flute" = "Flute";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -654,6 +747,9 @@
 
 /* No comment provided by engineer. */
 "Forgot password" = "رمزعبور را فراموش کردی";
+
+/* No comment provided by engineer. */
+"Formula Editor" = "Formula Editor";
 
 /* No comment provided by engineer. */
 "Formula too long!" = "فرمول بسیار طولانی است!";
@@ -677,6 +773,12 @@
 "Front camera" = "Front camera";
 
 /* No comment provided by engineer. */
+"Functions" = "Functions";
+
+/* No comment provided by engineer. */
+"General properties" = "General properties";
+
+/* No comment provided by engineer. */
 "Glide" = "سر بخور";
 
 /* No comment provided by engineer. */
@@ -688,11 +790,14 @@
 /* No comment provided by engineer. */
 "Go to front" = "برو به جلو";
 
+/* No comment provided by engineer. */
+"green" = "green";
+
 /* paint */
 "Green" = "سبز";
 
 /* No comment provided by engineer. */
-"green" = "green";
+"Guitar" = "Guitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
@@ -776,6 +881,9 @@
 "italic" = "italic";
 
 /* No comment provided by engineer. */
+"item" = "عنصر";
+
+/* No comment provided by engineer. */
 "Jan" = "ژانویه";
 
 /* No comment provided by engineer. */
@@ -824,10 +932,13 @@
 "Left" = "پرواز به چپ";
 
 /* No comment provided by engineer. */
-"Length" = "طول";
+"left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
 "length" = "طول";
+
+/* No comment provided by engineer. */
+"Length" = "طول";
 
 /* No comment provided by engineer. */
 "letter" = "نامه";
@@ -845,6 +956,12 @@
 "Lists" = "لیست ها";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "Lists for all actors and objects";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "Lists for this actor or object only";
+
+/* No comment provided by engineer. */
 "Loading" = "در حال بارگذاری";
 
 /* No comment provided by engineer. */
@@ -855,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "منطق";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "Logical (Boolean) operators and constants";
 
 /* No comment provided by engineer. */
 "Login" = "ورود به سیستم";
@@ -868,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "longitude";
 
-/* No comment provided by engineer. */
-"Look" = "شکل";
-
 /* LOOK */
 "look" = "شکل";
+
+/* No comment provided by engineer. */
+"Look" = "شکل";
 
 /* No comment provided by engineer. */
 "look name" = "look name";
@@ -896,7 +1016,16 @@
 "March" = "مارس";
 
 /* No comment provided by engineer. */
-"Math" = "ریاضی";
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
+"Maths" = "Maths";
+
+/* No comment provided by engineer. */
+"Maximize" = "Maximize";
+
+/* No comment provided by engineer. */
+"maximum of" = "بیشینه";
 
 /* No comment provided by engineer. */
 "May" = "مِی";
@@ -920,6 +1049,12 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
+"Minimize" = "Minimize";
+
+/* No comment provided by engineer. */
+"minimum of" = "کمینه";
+
+/* No comment provided by engineer. */
 "minute" = "minute";
 
 /* paint */
@@ -927,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "دوشنبه";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "موش کور";
@@ -953,6 +1091,9 @@
 "Motion" = "حرکت";
 
 /* No comment provided by engineer. */
+"Motion properties" = "Motion properties";
+
+/* No comment provided by engineer. */
 "Move" = "حرکت بده";
 
 /* No comment provided by engineer. */
@@ -973,6 +1114,9 @@
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
 
+/* No comment provided by engineer. */
+"Music Box" = "Music Box";
+
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "اولین برنامه من";
 
@@ -987,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "natural logarithm";
 
 /* No comment provided by engineer. */
 "New" = "جدید";
@@ -1052,9 +1199,6 @@
 "not available. Continue anyway?" = "not available. Continue anyway?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "حافظه کافی نیست";
 
 /* No comment provided by engineer. */
@@ -1079,13 +1223,7 @@
 "Object" = "شی";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Object lists:";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "متغیرهای شی:";
 
 /* No comment provided by engineer. */
 "Oct" = "اکتبر";
@@ -1116,6 +1254,9 @@
 
 /* No comment provided by engineer. */
 "or" = "يا";
+
+/* No comment provided by engineer. */
+"Organ" = "Organ";
 
 /* No comment provided by engineer. */
 "Password" = "رمز عبور";
@@ -1156,11 +1297,23 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"pi" = "pi";
+
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "انتخاب رنگ با قطره چکان";
 
 /* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
+
+/* No comment provided by engineer. */
 "Place at " = "موقعیت در";
+
+/* No comment provided by engineer. */
+"Play" = "اجرا";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
@@ -1232,6 +1385,9 @@
 "position y" = "موقعیت y";
 
 /* No comment provided by engineer. */
+"power" = "power";
+
+/* No comment provided by engineer. */
 "Preview" = "Preview";
 
 /* No comment provided by engineer. */
@@ -1247,16 +1403,10 @@
 "Project" = "پروژه";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
-
-/* No comment provided by engineer. */
 "Project name" = "Project name";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Project Name is necessary!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
 
 /* No comment provided by engineer. */
 "Projects" = "برنامه ها";
@@ -1265,7 +1415,13 @@
 "Projects on device" = "برنامه ها";
 
 /* No comment provided by engineer. */
+"Properties" = "شی";
+
+/* No comment provided by engineer. */
 "random position" = "random position";
+
+/* No comment provided by engineer. */
+"random value from to" = "تصادفی";
 
 /* No comment provided by engineer. */
 "Rate Us" = "ما را ارزیابی کنید";
@@ -1279,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "Rectangle / Square";
 
-/* No comment provided by engineer. */
-"red" = "red";
-
 /* paint */
 "Red" = "قرمز";
+
+/* No comment provided by engineer. */
+"red" = "red";
 
 /* No comment provided by engineer. */
 "Register" = "ثبت نام";
 
 /* No comment provided by engineer. */
 "Registration successful" = "ثبت نام موفقیت آمیز";
+
+/* No comment provided by engineer. */
+"regular expression" = "regular expression";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Remove known devices";
@@ -1345,14 +1504,17 @@
 /* No comment provided by engineer. */
 "Saturday" = "شنبه";
 
+/* No comment provided by engineer. */
+"Save changes" = "Save changes";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
-"Save to PocketCode" = "ذخیره در پاکت کد";
+"Saved" = "ذخیره شد";
 
 /* No comment provided by engineer. */
-"Saved" = "ذخیره شد";
+"Saxophone" = "Saxophone";
 
 /* No comment provided by engineer. */
 "Say" = "Say";
@@ -1442,6 +1604,9 @@
 "Set description" = "قرار دادن توضیح";
 
 /* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
+
+/* No comment provided by engineer. */
 "Set pen color to" = "Set pen color to";
 
 /* No comment provided by engineer. */
@@ -1451,7 +1616,13 @@
 "Set Phiro light" = "تنظیم نور Phiro";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "Set rotation style";
+
+/* No comment provided by engineer. */
 "Set size to" = "تنظیم اندازه به";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "Set tempo to";
 
 /* No comment provided by engineer. */
 "Set transparency " = "تنظیم شفافیت ";
@@ -1479,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "نشان دادن متغیر";
+
+/* No comment provided by engineer. */
+"sine" = "sine";
 
 /* No comment provided by engineer. */
 "size" = "اندازه";
@@ -1510,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "سرعت";
 
-/* No comment provided by engineer. */
-"sqrt" = "جذر";
-
 /* paint */
 "square" = "مربع";
+
+/* No comment provided by engineer. */
+"square root" = "جذر";
 
 /* No comment provided by engineer. */
 "stage is touched" = "stage is touched";
@@ -1538,10 +1712,16 @@
 "Start sound and wait" = "Start sound and wait";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Steel Drum";
+
+/* No comment provided by engineer. */
 "step" = "step";
 
 /* No comment provided by engineer. */
 "steps" = "مرحله";
+
+/* No comment provided by engineer. */
+"Stitch" = "Stitch";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "توقف همه صداها";
@@ -1559,7 +1739,19 @@
 "Switch to look" = "تغییر شکل بده";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "Switch to look with number";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "خطای ساختاری!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
+
+/* No comment provided by engineer. */
+"tangent" = "tangent";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
@@ -1575,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "برای اضافه کردن صدا روی \"+\" ضربه بزن";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "Terms of Use and Service";
@@ -1608,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "The recent projects cannot be loaded";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
@@ -1667,10 +1859,16 @@
 "Today" = "امروز";
 
 /* No comment provided by engineer. */
+"Touch detection" = "Touch detection";
+
+/* No comment provided by engineer. */
 "touch position" = "touch position";
 
 /* No comment provided by engineer. */
 "transparency" = "شفافیت";
+
+/* No comment provided by engineer. */
+"Trombone" = "Trombone";
 
 /* No comment provided by engineer. */
 "true" = "درست";
@@ -1692,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "بپیچ به راست";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Unable to import project!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Unable to load project!";
@@ -1763,12 +1964,6 @@
 "Username must not be blank" = "نام کاربری نباید خالی باشد";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/List";
-
-/* No comment provided by engineer. */
-"Variable" = "متغیر";
-
-/* No comment provided by engineer. */
 "Variable name:" = "نام متغیر:";
 
 /* No comment provided by engineer. */
@@ -1781,7 +1976,16 @@
 "Variables" = "متغیرها";
 
 /* No comment provided by engineer. */
+"Variables for all actors and objects" = "Variables for all actors and objects";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "Variables for this actor or object only";
+
+/* No comment provided by engineer. */
 "Version" = "نسخه";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "Vibraphone";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "لرزیدن برای";
@@ -1790,7 +1994,13 @@
 "vibration" = "vibration";
 
 /* No comment provided by engineer. */
+"View" = "View";
+
+/* No comment provided by engineer. */
 "Views" = "بازدیدها";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Visual sensors";
 
 /* No comment provided by engineer. */
 "Wait" = "صبر کن";
@@ -1809,6 +2019,9 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Welcome!";
+
+/* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
 
 /* No comment provided by engineer. */
 "When" = "When";
@@ -1835,6 +2048,9 @@
 "with" = "با";
 
 /* No comment provided by engineer. */
+"Wooden Flute" = "Wooden Flute";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
 
 /* No comment provided by engineer. */
@@ -1853,7 +2069,16 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "به نظر می رسه که آدرس ایمیلت نا معتبره";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "گزارشت با موفقیت ارسال شد!";
 
 /* paint */
 "Zoom" = "Zoom";

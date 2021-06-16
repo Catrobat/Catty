@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -78,7 +78,7 @@ extension AudioManager: AudioManagerProtocol {
 
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setActive(true)
-        try? audioSession.setCategoryWrapper(.playAndRecord, mode: .default)
+        try? audioSession.setCategory(.playAndRecord, mode: .default)
         try? audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
         try? self.recorder = AVAudioRecorder(url: url, settings: settings)
     }

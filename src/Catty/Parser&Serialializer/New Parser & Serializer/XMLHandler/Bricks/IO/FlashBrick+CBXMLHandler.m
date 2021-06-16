@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import "FlashBrick+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLParserContext.h"
@@ -41,7 +42,16 @@
     } else if([brickType rangeOfString:@"LedOnBrick"].location != NSNotFound){
         flashBrick.flashChoice = 1;
     } else if([brickType rangeOfString:@"FlashBrick"].location != NSNotFound){
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
+        NSUInteger childCount = [[xmlElement childrenWithoutCommentsAndCommentedOutTag] count];
+
+        if (childCount != 1 && childCount != 2) {
+            [XMLError exceptionWithMessage:@"Wrong number of child elements for FlashBrick"];
+        } else if (childCount == 2) {
+            GDataXMLElement *spinnerValuesElement = [xmlElement childWithElementName:@"spinnerValues"];
+            [XMLError exceptionIfNil:spinnerValuesElement
+                             message:@"FlashBrick element does not contain a spinnerValues child element!"];
+        }
+
         GDataXMLElement *flashChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
         [XMLError exceptionIfNil:flashChoiceElement
                          message:@"FlashBrick element does not contain a spinnerSelectionID child element!"];
@@ -69,14 +79,8 @@
     
     GDataXMLElement *brick = [super xmlElementForBrickType:@"FlashBrick" withContext:context];
     GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
-    GDataXMLElement *offString = [GDataXMLElement elementWithName:@"string" stringValue:@"off" context:context];
-    GDataXMLElement *onString = [GDataXMLElement elementWithName:@"string" stringValue:@"on" context:context];
-    GDataXMLElement *spinnerValues = [GDataXMLElement elementWithName:@"spinnerValues" context:context];
     
-    [spinnerValues addChild:offString context:context];
-    [spinnerValues addChild:onString context:context];
     [brick addChild:spinnerID context:context];
-    [brick addChild:spinnerValues context:context];
     return brick;
 }
 

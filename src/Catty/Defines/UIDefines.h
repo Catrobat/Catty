@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,28 +43,19 @@
 #define kMenuImageNameExplore @"explore"
 #define kMenuImageNameUpload @"upload"
 
-// view tags
-#define kPlaceHolderTag        99994
-#define kLoadingViewTag        99995
+// view tag
 #define kSavedViewTag          99996
-#define kRegistrationViewTag   99997
-#define kLoginViewTag          99998
-#define kUploadViewTag         99999
-
-#define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
 #define kBrickCellDeleteButtonWidthHeight 55.0f
 #define kSelectButtonOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
-#define kScriptCollectionViewInset 5.0f
 
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
 static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
 static NSString *const kRecordAddedNotification = @"RecordAddedNotification";
 static NSString *const kBrickDetailViewDismissed = @"BrickDetailViewDismissed";
-static NSString *const kProjectDownloadedNotification = @"ProjectDownloadedNotification";
 static NSString *const kHideLoadingViewNotification = @"HideLoadingViewNotification";
 static NSString *const kShowSavedViewNotification = @"ShowSavedViewNotification";
 static NSString *const kReadyToUpload = @"ReadyToUploadProject";
@@ -76,11 +67,7 @@ static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 static NSString *const kUserInfoSound = @"UserInfoSound";
 
 // UI Elements
-#define kNavigationbarHeight 64.0f
 #define kToolbarHeight 44.0f
-#define kHandleImageHeight 15.0f
-#define kHandleImageWidth 40.0f
-#define kOffsetTopBrickSelectionView 70.0f
 
 //BDKNotifyHUD
 #define kBDKNotifyHUDDestinationOpacity 0.3f
@@ -96,20 +83,19 @@ static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
-    kControlBrick              = 1,
-    kMotionBrick               = 2,
-    kLookBrick                 = 3,
-    kSoundBrick                = 4,
-    kVariableBrick             = 5,
-    kArduinoBrick              = 6,
-    kPhiroBrick                = 7,
-    kPenBrick                  = 8,
-    kInvisible                = 99,
-    kFavouriteBricks           = 0
+    kEventBrick                = 1,
+    kControlBrick              = 2,
+    kMotionBrick               = 3,
+    kLookBrick                 = 4,
+    kSoundBrick                = 5,
+    kDataBrick                 = 6,
+    kArduinoBrick              = 7,
+    kPhiroBrick                = 8,
+    kPenBrick                  = 9,
+    kEmbroideryBrick           = 10,
+    kInvisible                 = 99,
+    kRecentlyUsedBricks        = 0
 };
-
-#define kMinFavouriteBrickSize 5
-#define kMaxFavouriteBrickSize 10
 
 #define WRAP_UINT_IN_NSNUMBER(number) ([NSNumber numberWithUnsignedInteger:number])
 #define kNSNumberZero WRAP_UINT_IN_NSNUMBER(0)
@@ -139,15 +125,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickShapeNormalMarginHeightDeduction 14.0f
 #define kBrickShapeRoundedSmallMarginHeightDeduction 27.0f
 #define kBrickShapeRoundedBigMarginHeightDeduction 47.0f
-#define kBrickPatternImageViewOffsetX 0.0f
-#define kBrickPatternImageViewOffsetY 0.0f
-#define kBrickPatternBackgroundImageViewOffsetX 54.0f
-#define kBrickPatternBackgroundImageViewOffsetY 0.0f
-#define kBrickLabelOffsetX 0.0f
-#define kBrickLabelOffsetY 5.0f
 #define kBrickInlineViewCanvasOffsetX 0.0f
 #define kBrickInlineViewCanvasOffsetY 0.0f
-#define kBrickBackgroundImageNameSuffix @"_bg"
 
 #define kBrickLabelFontSize 15.0f
 #define kBrickTextFieldFontSize 15.0f

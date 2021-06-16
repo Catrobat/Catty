@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ class AudioPlayer: NSDiscardableContent {
             return
         }
 
-        _ = playingQueue.sync {
+        playingQueue.sync {
             soundCompletionHandler()
             if !self.isDiscarded {
                 if akPlayer.isPlaying {
@@ -65,7 +65,7 @@ class AudioPlayer: NSDiscardableContent {
     }
 
     func remove() {
-        _ = playingQueue.sync {
+        playingQueue.sync {
             self.isDiscarded = true
             self.stop()
             if !akPlayer.connectionPoints.isEmpty {

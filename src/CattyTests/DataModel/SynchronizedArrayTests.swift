@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -61,6 +61,27 @@ final class SynchronizedArrayTests: XCTestCase {
         array.remove(at: array.startIndex)
         XCTAssertEqual(0, array.startIndex)
         XCTAssertEqual(6, array[array.startIndex])
+    }
+
+    func testEndIndex() {
+        let array = SynchronizedArray<Int>()
+
+        array.append(1)
+        XCTAssertEqual(1, array.endIndex)
+
+        array.append(2)
+        XCTAssertEqual(2, array.endIndex)
+    }
+
+    func testIndexAfter() {
+        let array = SynchronizedArray<Int>()
+        array.append(1)
+
+        let indexAfterStart = array.index(after: array.startIndex)
+        XCTAssertEqual(1, indexAfterStart)
+
+        let indexAfterEnd = array.index(after: array.endIndex)
+        XCTAssertEqual(2, indexAfterEnd)
     }
 
     func testFirst() {

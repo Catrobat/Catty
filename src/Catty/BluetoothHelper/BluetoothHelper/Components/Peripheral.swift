@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 import CoreBluetooth
 import UIKit
 
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
@@ -36,7 +35,6 @@ private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
@@ -155,28 +153,22 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
     open func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         guard let ownCharacteristic = self.ownCharacteristics[characteristic] else {
-            NSLog("Error")
             return
         }
-        NSLog("uuid=\(ownCharacteristic.uuid.uuidString), name=\(ownCharacteristic.name)")
         ownCharacteristic.didUpdateNotificationState(error as NSError?)
     }
 
     open func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let ownCharacteristic = self.ownCharacteristics[characteristic] else {
-            NSLog("Error")
             return
         }
-        NSLog("uuid=\(ownCharacteristic.uuid.uuidString), name=\(ownCharacteristic.name)")
         ownCharacteristic.didUpdate(error as NSError?)
     }
 
     open func peripheral(_:CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let ownCharacteristic = self.ownCharacteristics[characteristic] else {
-            NSLog("Error")
             return
         }
-        NSLog("uuid=\(ownCharacteristic.uuid.uuidString), name=\(ownCharacteristic.name)")
         ownCharacteristic.didWrite(error as NSError?)
     }
 
@@ -242,7 +234,6 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
             }
             let bcService = Service(ownService: ownService, peripheral: self)
             self.ownServices[bcService.uuid] = bcService
-            NSLog("uuid=\(bcService.uuid.uuidString), name=\(bcService.name)")
         }
     }
 
@@ -258,7 +249,7 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 // MARK: Peripheral Helper
 open class PeripheralHelper<P> where P: PeripheralWrapper,
-P.ServiceWrap: ServiceWrapper {
+                                     P.ServiceWrap: ServiceWrapper {
 
     private var connectionPromise: StreamPromise<(P, ConnectionEvent)>?
     private var servicesDiscoveredPromise = Promise<P>()
@@ -278,7 +269,6 @@ P.ServiceWrap: ServiceWrapper {
     // MARK: Connection
     open func connectPeripheral(_ peripheral: P) {
         if peripheral.state == .disconnected {
-            NSLog("reconnect peripheral \(peripheral.name)")
             peripheral.connect()
             self.forcedDisconnect = false
             self.connectionSequence += 1
@@ -292,7 +282,6 @@ P.ServiceWrap: ServiceWrapper {
         self.timeoutRetries = timeoutRetries
         self.disconnectRetries = disconnectRetries
         self.connectionTimeout = connectionTimeout
-        NSLog("connect peripheral \(peripheral.name)")
         self.connectPeripheral(peripheral)
         return connectionPromise.future
     }
@@ -300,7 +289,6 @@ P.ServiceWrap: ServiceWrapper {
     open func disconnect(_ peripheral: P) {
         self.forcedDisconnect = true
         if peripheral.state == .connected {
-            NSLog("disconnect peripheral \(peripheral.name)")
             peripheral.cancel()
         } else {
             self.didDisconnectPeripheral(peripheral)
@@ -319,7 +307,6 @@ P.ServiceWrap: ServiceWrapper {
 
     // MARK: discover Service
     open func discoverServices(_ peripheral: P, services: [CBUUID]?) -> Future<P> {
-        NSLog("peripheral: \(peripheral.name)")
         CentralQueue.sync {
             self.servicesDiscoveredPromise = Promise<P>()
             if peripheral.state == .connected {
@@ -333,7 +320,6 @@ P.ServiceWrap: ServiceWrapper {
 
     open func discoverPeripheralServices(_ peripheral: P, services: [CBUUID]?) -> Future<P> {
         let peripheralDiscoveredPromise = Promise<P>()
-        NSLog("peripheral: \(peripheral.name)")
         let servicesDiscoveredFuture = self.discoverServices(peripheral, services: services)
         servicesDiscoveredFuture.onSuccess {_ in
             if peripheral.services.count > 1 {
@@ -362,7 +348,6 @@ P.ServiceWrap: ServiceWrapper {
     }
     internal func discoverService(_ peripheral: P, head: P.ServiceWrap, tail: [P.ServiceWrap], promise: Promise<P>) {
         let discoveryFuture = head.discoverAllCharacteristics()
-        NSLog("service name \(head.name) count \(tail.count + 1)")
         if !tail.isEmpty {
             discoveryFuture.onSuccess {_ in
                 self.discoverService(peripheral, head: tail[0], tail: Array(tail[1..<tail.count]), promise: promise)
@@ -424,7 +409,6 @@ P.ServiceWrap: ServiceWrapper {
 
     open func didFailToConnectPeripheral(_ peripheral: P, error: NSError?) {
         if let error = error {
-            NSLog("connection failed '\(error.localizedDescription)'")
             self.connectionPromise?.failure(error)
         } else {
             self.connectionPromise?.success((peripheral, ConnectionEvent.failed))

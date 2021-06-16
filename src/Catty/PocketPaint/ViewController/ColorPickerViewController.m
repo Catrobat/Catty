@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -89,13 +89,8 @@
   self.viewChanger.translatesAutoresizingMaskIntoConstraints = false;
   [self.view addSubview:self.viewChanger];
   
-  if (@available(iOS 11.0, *)) {
-      [self.viewChanger.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
-      [self.viewChanger.topAnchor constraintEqualToAnchor:self.toolBar.bottomAnchor].active = YES;
-  } else {
-      [self.viewChanger.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
-      [self.viewChanger.topAnchor constraintEqualToAnchor:self.toolBar.bottomAnchor].active = YES;
-  }
+  [self.viewChanger.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
+  [self.viewChanger.topAnchor constraintEqualToAnchor:self.toolBar.bottomAnchor].active = YES;
 
   self.viewChanger.selectedSegmentIndex = 0;
   self.viewChanger.layer.cornerRadius = 0.0;

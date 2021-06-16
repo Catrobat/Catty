@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -57,7 +57,7 @@ final class CBXMLParserHelperTests: XCTestCase {
         object.scriptList.add(startScript)
 
         let lookBrick = SetLookBrick()
-        let look = Look(name: "lookResource", andPath: "look")
+        let look = Look(name: "lookResource", filePath: "look")
         lookBrick.look = look
         object.add(look, andSaveToDisk: false)
         startScript.add(lookBrick, at: 0)

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -164,9 +164,8 @@
                                                                          target:self
                                                                          action:@selector(showBrickPickerAction:)];
     add.enabled = (! self.editing);
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
+    UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
+                                                        action:@selector(playSceneAction:)];
     play.enabled = (! self.editing);
     if (self.editing) {
         self.toolbarItems = @[selectAllRowsButtonItem,flex,delete];
@@ -178,7 +177,6 @@
 
 - (void)showLoadingView
 {
-    self.loadingView.alpha = 1.0;
     self.collectionView.scrollEnabled = NO;
     self.collectionView.userInteractionEnabled = NO;
     self.navigationController.navigationBar.userInteractionEnabled = NO;

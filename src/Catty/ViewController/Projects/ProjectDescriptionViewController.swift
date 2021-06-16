@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ import UIKit
         header.textColor = UIColor.globalTint
         var navTopAnchor = view.safeTopAnchor
         if self.navigationController != nil {
-            navTopAnchor = topLayoutGuide.bottomAnchor
+            navTopAnchor = view.safeAreaLayoutGuide.topAnchor
         }
         header.setAnchors(top: navTopAnchor,
                           left: view.safeLeftAnchor,
@@ -164,7 +164,8 @@ import UIKit
     }
 
     @objc func doneAction(sender: UIBarButtonItem) {
-        delegate?.setDescription(descriptionTextView.text)
-        dismiss(animated: true)
+        dismiss(animated: true, completion: {
+            self.delegate?.setDescription(self.descriptionTextView.text)
+        })
     }
 }

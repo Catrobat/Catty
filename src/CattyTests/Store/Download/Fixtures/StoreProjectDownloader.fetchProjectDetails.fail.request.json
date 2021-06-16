@@ -1,55 +1,52 @@
 {
   "interactions" : [
     {
-      "response" : {
-        "status" : 404,
-        "headers" : {
-          "Content-Type" : "application\/json",
-          "Set-Cookie" : "PHPSESSID=se5r3qic873objadhhmd8p1996; path=\/",
-          "Expires" : "-1",
-          "Pragma" : "no-cache",
-          "Strict-Transport-Security" : "max-age=15768000",
-          "Server" : "nginx",
-          "Date" : "Thu, 23 Aug 2018 08:43:18 GMT",
-          "Cache-Control" : "private, must-revalidate"
-        },
-        "body" : {
-          "CatrobatInformation" : {
-            "BaseUrl" : "https:\/\/web-test.catrob.at\/",
-            "TotalProjects" : 1,
-            "ProjectsExtension" : ".catrobat"
-          },
-          "completeTerm" : "",
-          "preHeaderMessages" : "",
-          "CatrobatProjects" : [
-            {
-              "Author" : "VesnaK",
-              "Private" : false,
-              "Description" : "",
-              "UploadedString" : "more than one year ago",
-              "Version" : "0.7.1beta",
-              "Views" : 6758,
-              "ProjectUrl" : "pocketcode\/program\/821",
-              "Uploaded" : 1366835078,
-              "ScreenshotBig" : "resources\/screenshots\/screen_821.png",
-              "Downloads" : 6857,
-              "ScreenshotSmall" : "resources\/thumbnails\/screen_821.png",
-              "ProjectNameShort" : "Whack A Mole",
-              "DownloadUrl" : "pocketcode\/download\/821.catrobat",
-              "ProjectName" : "Whack A Mole",
-              "FileSize" : 0.67617511749268,
-              "ProjectId" : "821"
-            }
-          ]
-        },
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"
-      },
-      "recorded_at" : 1535013798.8338809,
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"
+        "url" : "https:\/\/web-test.catrob.at\/api\/project\/821"
+      },
+      "recorded_at" : 1620301872.8381901,
+      "response" : {
+        "status" : 404,
+        "url" : "https:\/\/web-test.catrob.at\/api\/project\/821",
+        "body" : {
+          "id" : "821",
+          "description" : "",
+          "private" : false,
+          "version" : "0.7.1beta",
+          "flavor" : "pocketcode",
+          "author" : "VesnaK",
+          "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_821.png?t=1598163728",
+          "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/821.catrobat",
+          "tags" : [
+
+          ],
+          "filesize" : 0.67617511749267578,
+          "uploaded_string" : "more than one year ago",
+          "download" : 8416,
+          "uploaded" : 1366835078,
+          "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/821",
+          "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_821.png?t=1598101054",
+          "name" : "Whack A Mole",
+          "views" : 7891
+        },
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "x-response-hash" : "99914b932bd37a50b983c5e7c90ae93b",
+          "Cache-Control" : "private, must-revalidate",
+          "x-openapi-message" : "Valid request",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Date" : "Thu, 06 May 2021 11:51:12 GMT",
+          "Set-Cookie" : "dtCookie=v_4_srv_8_sn_0D39EB700A0781F0B515AF5A00E2CDE3_perc_100000_ol_0_mul_1; Path=\/; Domain=.catrob.at",
+          "Pragma" : "no-cache",
+          "Expires" : "-1",
+          "server-timing" : "dtRpid;desc=\"377017079\"",
+          "Content-Language" : "en",
+          "Server" : "nginx",
+          "Content-Encoding" : "gzip"
+        }
       }
     }
   ],
-  "name" : "StoreProjectDownloader.downloadData.fail.request"
+  "name" : "StoreProjectDownloader.fetchProjectDetails.IntegerId.success"
 }

@@ -14,6 +14,9 @@
 "About Pocket Code" = "পকেট কোড সম্পর্কে";
 
 /* No comment provided by engineer. */
+"absolute value" = "absolute value";
+
+/* No comment provided by engineer. */
 "acceleration x" = "ত্বরণ x";
 
 /* No comment provided by engineer. */
@@ -50,6 +53,9 @@
 "Agree" = "একমত";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "সমস্ত ব্লোটুথ ডিভাইস সফলভাবে সংযোগ বিচ্ছিন্ন হয়েছে";
 
 /* No comment provided by engineer. */
@@ -83,6 +89,9 @@
 "and" = "এবং";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "এবং অপেক্ষা করুন";
 
 /* No comment provided by engineer. */
@@ -95,6 +104,15 @@
 "April" = "এপ্রিল";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccosine";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsine";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctangent";
+
+/* No comment provided by engineer. */
 "Arduino" = "আরডুইনো";
 
 /* No comment provided by engineer. */
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "আরডুইনো এক্সটেনশন";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "সম্পর্কে";
@@ -149,16 +170,22 @@
 "Backgrounds" = "ব্যাকগ্রাউন্ড";
 
 /* No comment provided by engineer. */
+"Bass" = "Bass";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
 "becomes true" = "সত্য হয়";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
-/* paint */
-"Blue" = "নীল";
-
 /* No comment provided by engineer. */
 "blue" = "নীল";
+
+/* paint */
+"Blue" = "নীল";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "ব্লোটুথ পাওয়া যায় নি। হয় আপনার ডিভাইস ব্লোটুথ 4.0 সমর্থন করে না বা আপনার ব্লোটুথ চিপ ক্ষতিগ্রস্থ হয়েছে। সেটিংসে অন্য ব্লোটুথ ডিভাইসের সাথে সংযোগ করে এটি পরীক্ষা করুন।";
@@ -215,7 +242,10 @@
 "Catrobat community" = "ক্যাট্রোব্যাট সম্প্রদায়";
 
 /* No comment provided by engineer. */
-"ceil" = "সেইল";
+"ceiling" = "ছাদ";
+
+/* No comment provided by engineer. */
+"Cello" = "Cello";
 
 /* No comment provided by engineer. */
 "Change brightness " = "উজ্জ্বলতা পরিবর্তন করুন";
@@ -225,6 +255,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "আকার পরিবর্তন করুন";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "স্বচ্ছতা পরিবর্তন করুন";
@@ -248,10 +284,16 @@
 "Changes saved." = "পরিবর্তনগুলি সংরক্ষিত!";
 
 /* No comment provided by engineer. */
+"Choir" = "Choir";
+
+/* No comment provided by engineer. */
 "Choose" = "পছন্দ করুন";
 
 /* No comment provided by engineer. */
 "Choose image" = "ছবি নির্বাচন করুন";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "পরিষ্কার";
@@ -267,6 +309,9 @@
 
 /* No comment provided by engineer. */
 "color" = "রং";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "তুলনা অপারেটর";
 
 /* No comment provided by engineer. */
 "compass" = "কম্পাস";
@@ -311,6 +356,9 @@
 "Copy" = "অনুলিপি";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Copy actors or objects";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
@@ -320,7 +368,19 @@
 "Copy project" = "প্রজেক্ট অনুলিপি করুন";
 
 /* No comment provided by engineer. */
+"cosine" = "cosine";
+
+/* No comment provided by engineer. */
 "Create account" = "অ্যাকাউন্ট তৈরি করুন";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Create patterns for stiching machines";
+
+/* No comment provided by engineer. */
+"Data" = "তথ্য";
+
+/* No comment provided by engineer. */
+"Date and time" = "তারিখ এবং সময়";
 
 /* No comment provided by engineer. */
 "day" = "দিন";
@@ -333,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "ডিসেম্বর";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "decimal logarithm";
 
 /* No comment provided by engineer. */
 "degrees" = "ডিগ্রী";
@@ -428,6 +491,9 @@
 "device motion-sensor" = "ডিভাইস গতি সেন্সর";
 
 /* No comment provided by engineer. */
+"Device sensors" = "ডিভাইস সেন্সর";
+
+/* No comment provided by engineer. */
 "direction" = "গতিপথ";
 
 /* No comment provided by engineer. */
@@ -446,6 +512,9 @@
 "Disagree" = "রাজি না";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Discard changes";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "সমস্ত ডিভাইস সংযোগ বিচ্ছিন্ন করুন";
 
 /* No comment provided by engineer. */
@@ -455,16 +524,16 @@
 "Do you really want to delete the current drawing?" = "আপনি কি সত্যিই বর্তমান অঙ্কনটি মুছতে চান?";
 
 /* paint */
-"Do you want to save the changes" = "আপনি কি পরিবর্তনগুলি সংরক্ষণ করতে চান?";
+"Do you want to save your changes?" = "আপনি কি আপনার পরিবর্তনগুলি সংরক্ষণ করতে চান?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "ঘোরাবেন না";
 
 /* No comment provided by engineer. */
 "Done" = "করা হয়েছে";
 
 /* No comment provided by engineer. */
 "Download" = "ডাউনলোড";
-
-/* No comment provided by engineer. */
-"Download successful" = "ডাউনলোড সফল";
 
 /* No comment provided by engineer. */
 "Downloads" = "ডাউনলোডসমূহ";
@@ -515,6 +584,12 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Electric Guitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Electric Piano";
+
+/* No comment provided by engineer. */
 "element" = "উপাদান";
 
 /* paint */
@@ -525,6 +600,12 @@
 
 /* No comment provided by engineer. */
 "Email" = "ই-মেইল";
+
+/* No comment provided by engineer. */
+"Embroidery" = "সূচিকর্ম";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "এমব্রয়ডারি এক্সটেনশন";
 
 /* No comment provided by engineer. */
 "Empty input!" = "খালি ইনপুট!";
@@ -581,7 +662,16 @@
 "Error" = "ভুল";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "ফাইল সংরক্ষণে ভুল";
+
+/* No comment provided by engineer. */
+"Event" = "ঘটনা";
+
+/* No comment provided by engineer. */
+"exponent" = "exponent";
 
 /* No comment provided by engineer. */
 "FA" = "এফএ";
@@ -638,6 +728,9 @@
 "floor" = "মেঝে";
 
 /* No comment provided by engineer. */
+"Flute" = "Flute";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "এই প্রজেক্টে ব্যবহৃত নিম্নলিখিত বৈশিষ্ট্যগুলি পকেট কোডের এই সংস্করণটির সাথে সামঞ্জস্যপূর্ণ নয়:";
 
 /* No comment provided by engineer. */
@@ -654,6 +747,9 @@
 
 /* No comment provided by engineer. */
 "Forgot password" = "পাসওয়ার্ড ভুলে গেছেন ";
+
+/* No comment provided by engineer. */
+"Formula Editor" = "Formula Editor";
 
 /* No comment provided by engineer. */
 "Formula too long!" = "সূত্রটি অনেক দীর্ঘ!";
@@ -677,6 +773,12 @@
 "Front camera" = "সামনের ক্যামেরা";
 
 /* No comment provided by engineer. */
+"Functions" = "ক্রিয়াকলাপ";
+
+/* No comment provided by engineer. */
+"General properties" = "সাধারণ বৈশিষ্ট্য";
+
+/* No comment provided by engineer. */
 "Glide" = "ধীরে ভাসিয়া চলা";
 
 /* No comment provided by engineer. */
@@ -688,11 +790,14 @@
 /* No comment provided by engineer. */
 "Go to front" = "সামনে যান";
 
+/* No comment provided by engineer. */
+"green" = "সবুজ";
+
 /* paint */
 "Green" = "সবুজ";
 
 /* No comment provided by engineer. */
-"green" = "সবুজ";
+"Guitar" = "Guitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "জাইরো সেন্সর";
@@ -776,6 +881,9 @@
 "italic" = "ইটালিক";
 
 /* No comment provided by engineer. */
+"item" = "বস্তু";
+
+/* No comment provided by engineer. */
 "Jan" = "জানুয়ারি";
 
 /* No comment provided by engineer. */
@@ -824,10 +932,13 @@
 "Left" = "বাম দিক";
 
 /* No comment provided by engineer. */
-"Length" = "দৈর্ঘ্য";
+"left-right only" = "শুধুমাত্র বাম-ডান";
 
 /* No comment provided by engineer. */
 "length" = "দৈর্ঘ্য";
+
+/* No comment provided by engineer. */
+"Length" = "দৈর্ঘ্য";
 
 /* No comment provided by engineer. */
 "letter" = "চিঠি";
@@ -845,6 +956,12 @@
 "Lists" = "তালিকা";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "সমস্ত অভিনেতা এবং অবজেক্টের জন্য তালিকা";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "কেবল এই অভিনেতা বা অবজেক্টের জন্য তালিকা";
+
+/* No comment provided by engineer. */
 "Loading" = "লোড হচ্ছে...";
 
 /* No comment provided by engineer. */
@@ -855,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "যুক্তিবিদ্যা";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "লজিকাল (বুলিয়ান) অপারেটর এবং ধ্রুবক";
 
 /* No comment provided by engineer. */
 "Login" = "প্রবেশ করুন";
@@ -868,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "দ্রাঘিমাংশ";
 
-/* No comment provided by engineer. */
-"Look" = "চেহারা";
-
 /* LOOK */
 "look" = "চেহারা";
+
+/* No comment provided by engineer. */
+"Look" = "চেহারা";
 
 /* No comment provided by engineer. */
 "look name" = "নাম দেখুন";
@@ -896,7 +1016,16 @@
 "March" = "মার্চ";
 
 /* No comment provided by engineer. */
-"Math" = "গণিত";
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
+"Maths" = "গণিত";
+
+/* No comment provided by engineer. */
+"Maximize" = "Maximize";
+
+/* No comment provided by engineer. */
+"maximum of" = "সর্বাধিক";
 
 /* No comment provided by engineer. */
 "May" = "মে";
@@ -920,6 +1049,12 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
+"Minimize" = "Minimize";
+
+/* No comment provided by engineer. */
+"minimum of" = "সর্বনিম্ন";
+
+/* No comment provided by engineer. */
 "minute" = "মিনিট";
 
 /* paint */
@@ -927,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Mo";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "অণু";
@@ -953,6 +1091,9 @@
 "Motion" = "গতি";
 
 /* No comment provided by engineer. */
+"Motion properties" = "গতি বৈশিষ্ট্য";
+
+/* No comment provided by engineer. */
 "Move" = "স্থানান্তর";
 
 /* No comment provided by engineer. */
@@ -973,6 +1114,9 @@
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
 
+/* No comment provided by engineer. */
+"Music Box" = "Music Box";
+
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "আমার প্রথম প্রজেক্ট";
 
@@ -987,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "নামটি ইতিমধ্যেই বিদ্যমান।.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "natural logarithm";
 
 /* No comment provided by engineer. */
 "New" = "নতুন";
@@ -1052,9 +1199,6 @@
 "not available. Continue anyway?" = "পাওয়া যায় না. তাহলেও চালিয়ে যেতে চান?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "এই প্রজেক্টটি ডাউনলোড করার জন্য পর্যাপ্ত জায়গা নেই। আপনার কিছু প্রজেক্ট মুছুন";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "পর্যাপ্ত মেমরি নেই";
 
 /* No comment provided by engineer. */
@@ -1079,13 +1223,7 @@
 "Object" = "অবজেক্ট";
 
 /* No comment provided by engineer. */
-"Object lists:" = "অবজেক্টের তালিকা:";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "অবজেক্ট ভেরিয়েবল:";
 
 /* No comment provided by engineer. */
 "Oct" = "অক্টোবর";
@@ -1116,6 +1254,9 @@
 
 /* No comment provided by engineer. */
 "or" = "অথবা";
+
+/* No comment provided by engineer. */
+"Organ" = "Organ";
 
 /* No comment provided by engineer. */
 "Password" = "পাসওয়ার্ড";
@@ -1156,11 +1297,23 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"pi" = "pi";
+
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "পিপেট";
 
 /* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
+
+/* No comment provided by engineer. */
 "Place at " = "এ স্থান";
+
+/* No comment provided by engineer. */
+"Play" = "খেলুন";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "ফিরো সংগীত বাজান";
@@ -1232,6 +1385,9 @@
 "position y" = "অবস্থান y";
 
 /* No comment provided by engineer. */
+"power" = "ক্ষমতা";
+
+/* No comment provided by engineer. */
 "Preview" = "পূর্বরূপ";
 
 /* No comment provided by engineer. */
@@ -1247,16 +1403,10 @@
 "Project" = "প্রজেক্ট";
 
 /* No comment provided by engineer. */
-"Project lists:" = "প্রজেক্টের তালিকা:";
-
-/* No comment provided by engineer. */
 "Project name" = "প্রজেক্টের নাম";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "প্রজেক্টের নাম প্রয়োজন!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "প্রজেক্টের ভেরিয়েবলসমূহ";
 
 /* No comment provided by engineer. */
 "Projects" = "প্রজেক্টসমূহ";
@@ -1265,7 +1415,13 @@
 "Projects on device" = "ডিভাইসে প্রজেক্টগুলি";
 
 /* No comment provided by engineer. */
+"Properties" = "বিশিষ্টতাসমূহ";
+
+/* No comment provided by engineer. */
 "random position" = "এলোমেলো অবস্থান";
+
+/* No comment provided by engineer. */
+"random value from to" = "থেকে এলোমেলো মান";
 
 /* No comment provided by engineer. */
 "Rate Us" = "আমাদের মতামত দিন";
@@ -1279,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "আয়তক্ষেত্র / স্কোয়ার";
 
-/* No comment provided by engineer. */
-"red" = "লাল";
-
 /* paint */
 "Red" = "লাল";
+
+/* No comment provided by engineer. */
+"red" = "লাল";
 
 /* No comment provided by engineer. */
 "Register" = "নিবন্ধন";
 
 /* No comment provided by engineer. */
 "Registration successful" = "নিবন্ধন সফল";
+
+/* No comment provided by engineer. */
+"regular expression" = "নিয়মিত অভিব্যক্তি";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "পরিচিত ডিভাইসগুলি সরান";
@@ -1345,14 +1504,17 @@
 /* No comment provided by engineer. */
 "Saturday" = "শনিবার";
 
+/* No comment provided by engineer. */
+"Save changes" = "Save changes";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
-"Save to PocketCode" = "পকেট কোড সংরক্ষণ করুন";
+"Saved" = "সংরক্ষিত";
 
 /* No comment provided by engineer. */
-"Saved" = "সংরক্ষিত";
+"Saxophone" = "Saxophone";
 
 /* No comment provided by engineer. */
 "Say" = "বলা";
@@ -1442,6 +1604,9 @@
 "Set description" = "বর্ণনা করুন";
 
 /* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
+
+/* No comment provided by engineer. */
 "Set pen color to" = "এতে কলমের রঙ সেট করুন";
 
 /* No comment provided by engineer. */
@@ -1451,7 +1616,13 @@
 "Set Phiro light" = "ফিরো আলো সেট করুন";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "ঘূর্ণন ধরন সেট করুন";
+
+/* No comment provided by engineer. */
 "Set size to" = "আকার সেট করুন";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "টেম্পো সেট করুন";
 
 /* No comment provided by engineer. */
 "Set transparency " = "স্বচ্ছতা সেট করুন";
@@ -1479,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "ভেরিয়েবল দেখান";
+
+/* No comment provided by engineer. */
+"sine" = "sine";
 
 /* No comment provided by engineer. */
 "size" = "আকার";
@@ -1510,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "গতি";
 
-/* No comment provided by engineer. */
-"sqrt" = "বর্গমূল";
-
 /* paint */
 "square" = "বর্গক্ষেত্র";
+
+/* No comment provided by engineer. */
+"square root" = "বর্গমূল";
 
 /* No comment provided by engineer. */
 "stage is touched" = "মঞ্চ স্পর্শ করা হয়";
@@ -1538,10 +1712,16 @@
 "Start sound and wait" = "শব্দ শুরু করুন এবং অপেক্ষা করুন";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Steel Drum";
+
+/* No comment provided by engineer. */
 "step" = "ধাপ";
 
 /* No comment provided by engineer. */
 "steps" = "ধাপসমূহ";
+
+/* No comment provided by engineer. */
+"Stitch" = "সেলাই";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "সমস্ত শব্দ বন্ধ করুন";
@@ -1559,7 +1739,19 @@
 "Switch to look" = "চেহারা পরিবর্তন করুন";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "নম্বর সহ চেহারা পরিবর্তন করুন";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "ব্যাকরণগত ভুল";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
+
+/* No comment provided by engineer. */
+"tangent" = "tangent";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "স্ক্রিপ্টগুলি যুক্ত করতে \"+\" আলতো চাপুন";
@@ -1575,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "শব্দ যোগ করতে \"+\" আলতো চাপুন";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "ব্যবহার এবং সেবার শর্তাদি";
@@ -1608,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "সাম্প্রতিক প্রজেক্টগুলি লোড করা যায় না";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "অনুরোধ করা প্রজেক্টটি পাওয়া যাবে না। দয়া করে অন্য একটি নির্বাচন করুন ।";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "অনুরোধ করা প্রজেক্টটি লোড করা যায় না। পরে আবার চেষ্টা করুন.";
@@ -1667,10 +1859,16 @@
 "Today" = "আজ";
 
 /* No comment provided by engineer. */
+"Touch detection" = "স্পর্শ সনাক্তকরণ";
+
+/* No comment provided by engineer. */
 "touch position" = "স্পর্শ অবস্থান";
 
 /* No comment provided by engineer. */
 "transparency" = "স্বচ্ছতা";
+
+/* No comment provided by engineer. */
+"Trombone" = "Trombone";
 
 /* No comment provided by engineer. */
 "true" = "সত্য";
@@ -1692,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "ডান দিকে ঘুরুন";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Unable to import project!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "প্রজেক্ট লোড করতে অক্ষম!";
@@ -1763,12 +1964,6 @@
 "Username must not be blank" = "ব্যবহারকারীর নাম শূন্য থাকবে না ।";
 
 /* No comment provided by engineer. */
-"Var/List" = "ভেরিয়েবল / তালিকা";
-
-/* No comment provided by engineer. */
-"Variable" = "ভেরিয়েবল";
-
-/* No comment provided by engineer. */
 "Variable name:" = "ভেরিয়েবল নাম";
 
 /* No comment provided by engineer. */
@@ -1781,7 +1976,16 @@
 "Variables" = "ভেরিয়েবল";
 
 /* No comment provided by engineer. */
+"Variables for all actors and objects" = "সমস্ত অভিনেতা এবং অবজেক্টের জন্য ভেরিয়েবল";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "কেবল এই অভিনেতা এবং অবজেক্টের জন্য ভেরিয়েবল";
+
+/* No comment provided by engineer. */
 "Version" = "সংস্করণ";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "Vibraphone";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "জন্য কম্পন";
@@ -1790,7 +1994,13 @@
 "vibration" = "কম্পন";
 
 /* No comment provided by engineer. */
+"View" = "View";
+
+/* No comment provided by engineer. */
 "Views" = "দেখুনঃ";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Visual sensors";
 
 /* No comment provided by engineer. */
 "Wait" = "অপেক্ষা করুন";
@@ -1811,13 +2021,16 @@
 "Welcome!" = "স্বাগতম";
 
 /* No comment provided by engineer. */
+"What's your name?" = "তোমার নাম কি?";
+
+/* No comment provided by engineer. */
 "When" = "কখন";
 
 /* No comment provided by engineer. */
 "When background changes to" = "যখন ব্যাকগ্রাউন্ডে পরিবর্তন হয়";
 
 /* No comment provided by engineer. */
-"When project starts" = "যখন প্রজেক্ট শুরু";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "যখন পর্যায়টি টেপ করা হয়";
@@ -1833,6 +2046,9 @@
 
 /* No comment provided by engineer. */
 "with" = "সাথে";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "Wooden Flute";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";
@@ -1853,7 +2069,16 @@
 "You have already downloaded this project!" = "আপনি ইতিমধ্যে এই প্রজেক্টটি ডাউনলোড করেছেন!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "আপনার ইমেলটি অবৈধ বলে মনে হচ্ছে";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "আপনার প্রতিবেদনটি সফলভাবে পাঠানো হয়েছে";
 
 /* paint */
 "Zoom" = "দৃশ্যমান";

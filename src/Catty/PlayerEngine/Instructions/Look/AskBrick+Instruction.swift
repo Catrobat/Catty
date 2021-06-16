@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,8 +47,7 @@ extension AskBrick: CBInstructionProtocol {
     }
 
     func callbackSubmit(with input: String, scheduler: CBSchedulerProtocol) {
-        guard let userVariable = self.userVariable else { fatalError("Unexpected found nil.") }
-        if input.isNotEmpty {
+        if let userVariable = self.userVariable, input.isNotEmpty {
             userVariable.value = input
         }
         scheduler.resume()

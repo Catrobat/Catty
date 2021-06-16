@@ -14,10 +14,13 @@
 "About Pocket Code" = "Cep kodu hakkında";
 
 /* No comment provided by engineer. */
-"acceleration x" = "x_ivmesi";
+"absolute value" = "abs";
 
 /* No comment provided by engineer. */
-"acceleration y" = "y_ivmesi";
+"acceleration x" = "x ivmesi";
+
+/* No comment provided by engineer. */
+"acceleration y" = "y ivmesi";
 
 /* No comment provided by engineer. */
 "acceleration z" = "z_ivmesi";
@@ -48,6 +51,9 @@
 
 /* No comment provided by engineer. */
 "Agree" = "Kabul ediyorum";
+
+/* No comment provided by engineer. */
+"all around" = "her yerde";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Tüm Bluetooth cihazların başarıyla bağlantısı kesildi";
@@ -83,6 +89,9 @@
 "and" = "ve";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "ve yazılı cevabı şurada saklayın ";
+
+/* No comment provided by engineer. */
 "and wait" = "ve bekleyin";
 
 /* No comment provided by engineer. */
@@ -93,6 +102,15 @@
 
 /* No comment provided by engineer. */
 "April" = "Nisan";
+
+/* No comment provided by engineer. */
+"arccosine" = "arccos";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsin";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctan";
 
 /* No comment provided by engineer. */
 "Arduino" = "Arduino";
@@ -107,10 +125,13 @@
 "Arduino extension" = "Arduino tuğlaları";
 
 /* No comment provided by engineer. */
+"Ask " = "Sor ";
+
+/* No comment provided by engineer. */
 "at " = "en ";
 
 /* No comment provided by engineer. */
-"at position" = "pozisyon\n";
+"at position" = "pozisyon";
 
 /* paint */
 "Attributes:" = "Özellikler:";
@@ -149,16 +170,22 @@
 "Backgrounds" = "Arka planlar";
 
 /* No comment provided by engineer. */
+"Bass" = "Bas";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Fagot";
+
+/* No comment provided by engineer. */
 "becomes true" = "Olurşa";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Lütfen başlamadan önce, uygulamayı kullanmak için Gizlilik Politikamızı okuyun ve kabul edin:";
 
-/* paint */
-"Blue" = "Mavi";
-
 /* No comment provided by engineer. */
 "blue" = "Mavi";
+
+/* paint */
+"Blue" = "Mavi";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth kullanılamaz. Cihazınız Bluetooth 4.0 teknolojisi desteklemiyor veya Bluetooth çipi zarar görmüş. Lütfen başka bir cihazda kontrol edin.";
@@ -215,7 +242,10 @@
 "Catrobat community" = "Catrobat topluluğu";
 
 /* No comment provided by engineer. */
-"ceil" = "tavan yapmak";
+"ceiling" = "tavan";
+
+/* No comment provided by engineer. */
+"Cello" = "Çello";
 
 /* No comment provided by engineer. */
 "Change brightness " = "Parlaklığı değiştir";
@@ -225,6 +255,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Boyutu buna göre değiştir";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Manzaraya geç";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Portreye geç";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Şeffaflığı değiştir";
@@ -248,10 +284,16 @@
 "Changes saved." = "Değişiklikler kaydedildi!";
 
 /* No comment provided by engineer. */
+"Choir" = "Koro";
+
+/* No comment provided by engineer. */
 "Choose" = "Seç";
 
 /* No comment provided by engineer. */
 "Choose image" = "Resim seç";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Klarnet";
 
 /* No comment provided by engineer. */
 "Clear" = "Temizle";
@@ -267,6 +309,9 @@
 
 /* No comment provided by engineer. */
 "color" = "renk";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "Karşılaştırma Operatörleri";
 
 /* No comment provided by engineer. */
 "compass" = "pusula";
@@ -311,6 +356,9 @@
 "Copy" = "Kopyala";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Oyuncuları veya nesneleri kopyala";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Tuğlayı kopyala";
 
 /* No comment provided by engineer. */
@@ -320,7 +368,19 @@
 "Copy project" = "Projeyi kopyala";
 
 /* No comment provided by engineer. */
+"cosine" = "Cos";
+
+/* No comment provided by engineer. */
 "Create account" = "Hesap açmak";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Dikiş makinaları için tasarım oluştur";
+
+/* No comment provided by engineer. */
+"Data" = "Veri";
+
+/* No comment provided by engineer. */
+"Date and time" = "Tarih ve zaman";
 
 /* No comment provided by engineer. */
 "day" = "gün";
@@ -333,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "Aralık";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "log";
 
 /* No comment provided by engineer. */
 "degrees" = "derece";
@@ -428,6 +491,9 @@
 "device motion-sensor" = "cihaz hareket sensörü";
 
 /* No comment provided by engineer. */
+"Device sensors" = "Aygıt sensörleri";
+
+/* No comment provided by engineer. */
 "direction" = "yön";
 
 /* No comment provided by engineer. */
@@ -446,6 +512,9 @@
 "Disagree" = "Kabul etmiyorum";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Değişiklikleri gözardı et";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "Tüm cihazların bağlantısını kesin";
 
 /* No comment provided by engineer. */
@@ -455,16 +524,16 @@
 "Do you really want to delete the current drawing?" = "Mevcut çizimi gerçekten silmek istiyor musunuz?";
 
 /* paint */
-"Do you want to save the changes" = "Değişiklikleri kaydetmek istiyor musunuz";
+"Do you want to save your changes?" = "Değişiklikleri kaydetmek istiyor musunuz?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "Döndürme";
 
 /* No comment provided by engineer. */
 "Done" = "Tamam";
 
 /* No comment provided by engineer. */
 "Download" = "indir";
-
-/* No comment provided by engineer. */
-"Download successful" = "İndirme başarılı oldu";
 
 /* No comment provided by engineer. */
 "Downloads" = "İndirilenler";
@@ -494,7 +563,7 @@
 "Edit formula" = "Formülü düzenleyin";
 
 /* Action sheet menu title */
-"Edit look" = "Görüntüyü düzenle";
+"Edit look" = "Görünümü düzenle";
 
 /* Action sheet menu title */
 "Edit looks" = "Görüntüyü düzenle";
@@ -515,6 +584,12 @@
 "Edit sounds" = "Sesi düzenle";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Elektrikli gitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Elektrikli Piano";
+
+/* No comment provided by engineer. */
 "element" = "öğeler";
 
 /* paint */
@@ -525,6 +600,12 @@
 
 /* No comment provided by engineer. */
 "Email" = "E-posta";
+
+/* No comment provided by engineer. */
+"Embroidery" = "Nakış";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "Nakış uzantısı";
 
 /* No comment provided by engineer. */
 "Empty input!" = "Boş giriş!";
@@ -581,7 +662,16 @@
 "Error" = "Hata";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Proje bildirilirken hata oluştu. Lütfen daha sonra tekrar deneyiniz.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "Dosya kaydedilirken hata oluştu";
+
+/* No comment provided by engineer. */
+"Event" = "Etkinlik";
+
+/* No comment provided by engineer. */
+"exponent" = "üs";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -638,6 +728,9 @@
 "floor" = "zemin";
 
 /* No comment provided by engineer. */
+"Flute" = "Flüt";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Bu projede kullanılan aşağıdaki özellikler, Cep Kodunun bu sürümü ile uyumlu değildir:";
 
 /* No comment provided by engineer. */
@@ -654,6 +747,9 @@
 
 /* No comment provided by engineer. */
 "Forgot password" = "Parolamı unuttum";
+
+/* No comment provided by engineer. */
+"Formula Editor" = "Formül Düzenleyici";
 
 /* No comment provided by engineer. */
 "Formula too long!" = "Formül çok uzun!";
@@ -677,6 +773,12 @@
 "Front camera" = "Ön kamera";
 
 /* No comment provided by engineer. */
+"Functions" = "Fonksiyonlar";
+
+/* No comment provided by engineer. */
+"General properties" = "Genel özellikler";
+
+/* No comment provided by engineer. */
 "Glide" = "Kay";
 
 /* No comment provided by engineer. */
@@ -688,11 +790,14 @@
 /* No comment provided by engineer. */
 "Go to front" = "Ön tarafa git";
 
+/* No comment provided by engineer. */
+"green" = "Yeşil";
+
 /* paint */
 "Green" = "Yeşil";
 
 /* No comment provided by engineer. */
-"green" = "Yeşil";
+"Guitar" = "Gitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro sensörü";
@@ -740,10 +845,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Cep Kodunu ve Catrobat projesi tarafından sunulan diğer yürütülebilir dosyaları kullanmaya izin verilmesi için Kullanım Kodları'nı kabul etmeniz veya Cep Kodunu ve diğer yürütülebilir dosyalarınızı kullanırken bunlara kesinlikle uymanız gerekmekte. Kesin formülasyon için lütfen aşağıdaki bağlantıya bakınız.";
 
 /* No comment provided by engineer. */
-"inclination x" = "x_eğim açısı";
+"inclination x" = "x eğim açısı";
 
 /* No comment provided by engineer. */
-"inclination y" = "y_eğim açısı";
+"inclination y" = "y eğim açısı";
 
 /* No comment provided by engineer. */
 "Information" = "Bilgi";
@@ -774,6 +879,9 @@
 
 /* paint */
 "italic" = "italik";
+
+/* No comment provided by engineer. */
+"item" = "öğeler";
 
 /* No comment provided by engineer. */
 "Jan" = "Ocak";
@@ -824,10 +932,13 @@
 "Left" = "Sol";
 
 /* No comment provided by engineer. */
-"Length" = "Uzunluk";
+"left-right only" = "sadece sağdan sola";
 
 /* No comment provided by engineer. */
 "length" = "Uzunluk";
+
+/* No comment provided by engineer. */
+"Length" = "Uzunluk";
 
 /* No comment provided by engineer. */
 "letter" = "mektup";
@@ -845,6 +956,12 @@
 "Lists" = "Listeler";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "Tüm Objeler için listeler";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "Yalnızca bu Obje için listeler";
+
+/* No comment provided by engineer. */
 "Loading" = "Yükleniyor";
 
 /* No comment provided by engineer. */
@@ -855,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "Mantık";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "Mantıksal (Boolean) operatörler ve sabitler";
 
 /* No comment provided by engineer. */
 "Login" = "Oturum aç";
@@ -868,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "boylam";
 
-/* No comment provided by engineer. */
-"Look" = "Görüntü";
-
 /* LOOK */
 "look" = "Görüntü";
+
+/* No comment provided by engineer. */
+"Look" = "Görüntü";
 
 /* No comment provided by engineer. */
 "look name" = "görüntü adı";
@@ -896,7 +1016,16 @@
 "March" = "Mart";
 
 /* No comment provided by engineer. */
-"Math" = "Matematik";
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
+"Maths" = "Matematik";
+
+/* No comment provided by engineer. */
+"Maximize" = "Büyüt";
+
+/* No comment provided by engineer. */
+"maximum of" = "maksimum";
 
 /* No comment provided by engineer. */
 "May" = "Mayıs";
@@ -920,6 +1049,12 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
+"Minimize" = "Küçült";
+
+/* No comment provided by engineer. */
+"minimum of" = "minimum";
+
+/* No comment provided by engineer. */
 "minute" = "dakika";
 
 /* paint */
@@ -927,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Pzt";
+
+/* No comment provided by engineer. */
+"modulo" = "mod";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Köstebek";
@@ -953,6 +1091,9 @@
 "Motion" = "Hareket";
 
 /* No comment provided by engineer. */
+"Motion properties" = "Hareket özellikleri";
+
+/* No comment provided by engineer. */
 "Move" = "Taşı";
 
 /* No comment provided by engineer. */
@@ -973,6 +1114,9 @@
 /* No comment provided by engineer. */
 "Move sounds" = "Sesi taşı";
 
+/* No comment provided by engineer. */
+"Music Box" = "Müzik kutusu";
+
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "İlk projem";
 
@@ -987,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "Bu isim zaten var.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "Içinde";
 
 /* No comment provided by engineer. */
 "New" = "Yeni";
@@ -1052,9 +1199,6 @@
 "not available. Continue anyway?" = "müsait değil. Her halükarda devam et?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Bu projeyi indirmek için yeterli alan yok. Lütfen projelerinizden bazılarını silin";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "Yeterli hafıza yok";
 
 /* No comment provided by engineer. */
@@ -1079,13 +1223,7 @@
 "Object" = "Obje";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Obje listesi:";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "Obje ismi";
-
-/* No comment provided by engineer. */
-"Object variables:" = "Obje değişkenleri:";
 
 /* No comment provided by engineer. */
 "Oct" = "Ekim";
@@ -1112,10 +1250,13 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Yalnızca özel karakterlere izin verilmez. Lütfen en az %lu diğer karakter (ler) girin.";
 
 /* No comment provided by engineer. */
-"Open" = "Açık ";
+"Open" = "Aç";
 
 /* No comment provided by engineer. */
 "or" = "veya";
+
+/* No comment provided by engineer. */
+"Organ" = "Org";
 
 /* No comment provided by engineer. */
 "Password" = "Şifre";
@@ -1156,11 +1297,23 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro sağ tarafı";
 
+/* No comment provided by engineer. */
+"pi" = "pi";
+
+/* No comment provided by engineer. */
+"Piano" = "Piyano";
+
 /* paint */
 "Pipette" = "Renk Seçici";
 
 /* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
+
+/* No comment provided by engineer. */
 "Place at " = "Yerleştirin ";
+
+/* No comment provided by engineer. */
+"Play" = "Oynat";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Phiro müzik çal\n";
@@ -1226,10 +1379,13 @@
 "Pointer" = "Işaretçi";
 
 /* No comment provided by engineer. */
-"position x" = "konum_x";
+"position x" = "konum x";
 
 /* No comment provided by engineer. */
-"position y" = "konum_y";
+"position y" = "konum y";
+
+/* No comment provided by engineer. */
+"power" = "güç";
 
 /* No comment provided by engineer. */
 "Preview" = "Önizleme";
@@ -1247,16 +1403,10 @@
 "Project" = "Proje";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Proje listeleri:";
-
-/* No comment provided by engineer. */
 "Project name" = "Proje ismi";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Proje Adı gerekli!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Proje değişkenleri:";
 
 /* No comment provided by engineer. */
 "Projects" = "Projeler";
@@ -1265,7 +1415,13 @@
 "Projects on device" = "Projelerin";
 
 /* No comment provided by engineer. */
+"Properties" = "Nesne";
+
+/* No comment provided by engineer. */
 "random position" = "Rastgele pozisyon";
+
+/* No comment provided by engineer. */
+"random value from to" = "rastgele";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Tavsiye et";
@@ -1279,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "Dikdörtgen / kare";
 
-/* No comment provided by engineer. */
-"red" = "Kırmızı";
-
 /* paint */
 "Red" = "Kırmızı";
+
+/* No comment provided by engineer. */
+"red" = "Kırmızı";
 
 /* No comment provided by engineer. */
 "Register" = "Kayıt olmak";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Kayıt başarılı";
+
+/* No comment provided by engineer. */
+"regular expression" = "Düzenli ifade";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Bilinen cihazları kaldır";
@@ -1304,7 +1463,7 @@
 "Rename image" = "Görüntüyü yeniden adlandır";
 
 /* No comment provided by engineer. */
-"Rename project" = "Programı yeniden adlandır";
+"Rename project" = "Projeyi yeniden adlandır";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Sesi yeniden adlandır";
@@ -1345,14 +1504,17 @@
 /* No comment provided by engineer. */
 "Saturday" = "Cumartesi";
 
+/* No comment provided by engineer. */
+"Save changes" = "Değişiklikleri Kaydet";
+
 /* paint */
 "Save to Photos" = "Fotoğraflara Kaydet";
 
 /* No comment provided by engineer. */
-"Save to PocketCode" = "Cep Koduna Kaydet";
+"Saved" = "Kaydedilmiş";
 
 /* No comment provided by engineer. */
-"Saved" = "Kaydedilmiş";
+"Saxophone" = "Saksafon";
 
 /* No comment provided by engineer. */
 "Say" = "Söylemek";
@@ -1442,6 +1604,9 @@
 "Set description" = "Açıklayınız";
 
 /* No comment provided by engineer. */
+"Set Instrument to" = "Enstrümanı şuna ayarla";
+
+/* No comment provided by engineer. */
 "Set pen color to" = "Kalem rengini şuna ayarla:";
 
 /* No comment provided by engineer. */
@@ -1451,7 +1616,13 @@
 "Set Phiro light" = "Phiro ışığını ayarla";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "Rotasyon stilini ayarla";
+
+/* No comment provided by engineer. */
 "Set size to" = "Boyutu buna değiştir";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "Tempoyu şuna ayarlayın:";
 
 /* No comment provided by engineer. */
 "Set transparency " = "Şeffaflığı düzenle ";
@@ -1479,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "Değişkeni göster";
+
+/* No comment provided by engineer. */
+"sine" = "günah";
 
 /* No comment provided by engineer. */
 "size" = "boyut";
@@ -1510,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "Hız";
 
-/* No comment provided by engineer. */
-"sqrt" = "karekök";
-
 /* paint */
 "square" = "kare";
+
+/* No comment provided by engineer. */
+"square root" = "karekök";
 
 /* No comment provided by engineer. */
 "stage is touched" = "sahne'ye dokundu";
@@ -1538,10 +1712,16 @@
 "Start sound and wait" = "Sesi başlat ve bekle";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Çelik Varil";
+
+/* No comment provided by engineer. */
 "step" = "adım";
 
 /* No comment provided by engineer. */
 "steps" = "adım\nadımlar";
+
+/* No comment provided by engineer. */
+"Stitch" = "Dikiş";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Tüm sesleri durdur";
@@ -1559,7 +1739,19 @@
 "Switch to look" = "Görüntü'ye geç";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "Görüntü'yü numarayla değiştir";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "Yazım Hatası!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Kurşun";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
+
+/* No comment provided by engineer. */
+"tangent" = "ten rengi";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Obje eklemek için \"+\" simgesine dokunun";
@@ -1575,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "Ses eklemek için buraya \"+\" dokunun";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Değişkenler ve listeler eklemek için \"+\" ya dokunun";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "Kullanım Koşulları ve Hizmetleri";
@@ -1608,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "Son projeler yüklenemiyor";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "İstenilen proje bulunamıyor. Lütfen farklı bir tane seçin.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "İstenilen proje yüklenemiyor. Lütfen daha sonra tekrar deneyiniz.";
@@ -1667,10 +1859,16 @@
 "Today" = "Bugün";
 
 /* No comment provided by engineer. */
+"Touch detection" = "Dokunmatiği tanıma";
+
+/* No comment provided by engineer. */
 "touch position" = "Dokunma pozisyonu";
 
 /* No comment provided by engineer. */
 "transparency" = "Şeffaflık";
+
+/* No comment provided by engineer. */
+"Trombone" = "Trombon";
 
 /* No comment provided by engineer. */
 "true" = "doğru";
@@ -1692,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "Sağa dön";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Proje içe aktarılamıyor!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Proje yüklenemiyor!";
@@ -1763,12 +1964,6 @@
 "Username must not be blank" = "Kullanıcı adı boş olmamalıdır";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/Liste";
-
-/* No comment provided by engineer. */
-"Variable" = "Değişken";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Değişkenin adı:";
 
 /* No comment provided by engineer. */
@@ -1781,7 +1976,16 @@
 "Variables" = "Değişkenler";
 
 /* No comment provided by engineer. */
+"Variables for all actors and objects" = "Tüm Objeler için değişkenler";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "Yalnızca bu Obje için değişkenler";
+
+/* No comment provided by engineer. */
 "Version" = "Sürüm";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "Vibrafon";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "Titreşim için";
@@ -1790,7 +1994,13 @@
 "vibration" = "titreşim";
 
 /* No comment provided by engineer. */
+"View" = "Görüntüle";
+
+/* No comment provided by engineer. */
 "Views" = "Görünümler";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Görsel sensörler";
 
 /* No comment provided by engineer. */
 "Wait" = "Bekleyin";
@@ -1809,6 +2019,9 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Hoşgeldiniz!";
+
+/* No comment provided by engineer. */
+"What's your name?" = "Adınız ne?";
 
 /* No comment provided by engineer. */
 "When" = "Ne zaman";
@@ -1835,6 +2048,9 @@
 "with" = "ile";
 
 /* No comment provided by engineer. */
+"Wooden Flute" = "Ahşap Flüt";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
 
 /* No comment provided by engineer. */
@@ -1853,7 +2069,16 @@
 "You have already downloaded this project!" = "Bu projeyi zaten indirdiniz!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Senin cevabın";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "E-posta adresiniz geçersiz görünüyor";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Projeniz, diğerleri tarafından kullanılıp indirilebileceği Catrobat topluluğuna yüklendi. ";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "Raporunuz başarıyla gönderildi!";
 
 /* paint */
 "Zoom" = "yakınlaştırma";

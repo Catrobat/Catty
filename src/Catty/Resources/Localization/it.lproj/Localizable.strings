@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "Esiste già un'immagine con lo stesso nome; riprovare, grazie.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "Esiste già un programma con lo stesso nome, riprova con uno nuovo.";
+"A project with the same name already exists, try again." = "Esiste già un progetto con lo stesso nome, riprova con uno nuovo.";
 
 /* No comment provided by engineer. */
 "Abc" = "Abc";
@@ -14,10 +14,13 @@
 "About Pocket Code" = "Su Pocket Code";
 
 /* No comment provided by engineer. */
-"acceleration x" = "accelerazione_X";
+"absolute value" = "valoreassoluto";
 
 /* No comment provided by engineer. */
-"acceleration y" = "accelerazione_y";
+"acceleration x" = "accelerazione x";
+
+/* No comment provided by engineer. */
+"acceleration y" = "accelerazione y";
 
 /* No comment provided by engineer. */
 "acceleration z" = "accelerazione_z";
@@ -48,6 +51,9 @@
 
 /* No comment provided by engineer. */
 "Agree" = "Acconsento";
+
+/* No comment provided by engineer. */
+"all around" = "tutto intorno";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Sono stati sconnessi tutti i dispositivi Bluetooth";
@@ -83,6 +89,9 @@
 "and" = "e";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "e memorizza la risposta scritta in ";
+
+/* No comment provided by engineer. */
 "and wait" = "e aspetta";
 
 /* No comment provided by engineer. */
@@ -95,6 +104,15 @@
 "April" = "Aprile";
 
 /* No comment provided by engineer. */
+"arccosine" = "arcocoseno";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcoseno";
+
+/* No comment provided by engineer. */
+"arctangent" = "arcotangente";
+
+/* No comment provided by engineer. */
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Mattoncini Arduino";
+
+/* No comment provided by engineer. */
+"Ask " = "Chiedi";
 
 /* No comment provided by engineer. */
 "at " = "a ";
@@ -149,16 +170,22 @@
 "Backgrounds" = "Sfondi";
 
 /* No comment provided by engineer. */
+"Bass" = "Basso";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Fagotto";
+
+/* No comment provided by engineer. */
 "becomes true" = "diventa vero";
 
 /* No comment provided by engineer. */
-"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
-
-/* paint */
-"Blue" = "Blu";
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Prima di iniziare a scrivere programmi, leggi e accetta la nostra informativa \n        sulla privacy per utilizzare l'app:";
 
 /* No comment provided by engineer. */
 "blue" = "blu";
+
+/* paint */
+"Blue" = "Blu";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth non disponibile. Il dispositivo non supporta Bluetooth 4.0 oppure il chip Bluetooth è danneggiato. Verificarlo collegandosi ad un altro dispositivo Bluetooth usando le Impostazioni di sistema.";
@@ -215,7 +242,10 @@
 "Catrobat community" = "Comunità di Catrobat";
 
 /* No comment provided by engineer. */
-"ceil" = "tetto";
+"ceiling" = "tetto";
+
+/* No comment provided by engineer. */
+"Cello" = "Violoncello";
 
 /* No comment provided by engineer. */
 "Change brightness " = "Modifica luminosità ";
@@ -225,6 +255,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Cambia la dimensione di";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Cambia in orizzontale";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Cambia in verticale";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Modifica trasparenza ";
@@ -248,10 +284,16 @@
 "Changes saved." = "Modifiche salvate!";
 
 /* No comment provided by engineer. */
+"Choir" = "Coro";
+
+/* No comment provided by engineer. */
 "Choose" = "Scegli";
 
 /* No comment provided by engineer. */
 "Choose image" = "Scegli immagine";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinetto";
 
 /* No comment provided by engineer. */
 "Clear" = "Ripulisci";
@@ -267,6 +309,9 @@
 
 /* No comment provided by engineer. */
 "color" = "colore";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "operatori di confronto";
 
 /* No comment provided by engineer. */
 "compass" = "bussola";
@@ -311,6 +356,9 @@
 "Copy" = "Copiare";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Copia attori o oggetti";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Copia mattoncino";
 
 /* No comment provided by engineer. */
@@ -320,7 +368,19 @@
 "Copy project" = "Copia progetto";
 
 /* No comment provided by engineer. */
+"cosine" = "coseno";
+
+/* No comment provided by engineer. */
 "Create account" = "Crea account";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Crea modelli per macchine da cucire";
+
+/* No comment provided by engineer. */
+"Data" = "Dati";
+
+/* No comment provided by engineer. */
+"Date and time" = "Data e ora";
 
 /* No comment provided by engineer. */
 "day" = "giorno";
@@ -333,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "Dicembre";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "log";
 
 /* No comment provided by engineer. */
 "degrees" = "gradi";
@@ -374,46 +437,46 @@
 "Delete sounds" = "Elimina suoni";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "Delete these bricks?";
+"Delete these bricks?" = "Eliminare questi mattoncini?";
 
 /* No comment provided by engineer. */
-"Delete these conditions?" = "Delete these conditions?";
+"Delete these conditions?" = "Eliminare queste coordinate?";
 
 /* No comment provided by engineer. */
-"Delete these loops?" = "Delete these loops?";
+"Delete these loops?" = "Eliminare questi cicli?";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "Delete these scripts?";
+"Delete these scripts?" = "Eliminare questi script?";
 
 /* No comment provided by engineer. */
-"Delete this actor or object" = "Delete this actor or object";
+"Delete this actor or object" = "Elimina quest'attore o oggetto";
 
 /* No comment provided by engineer. */
 "Delete this background" = "Elimina questo sfondo";
 
 /* No comment provided by engineer. */
-"Delete this brick?" = "Delete this brick?";
+"Delete this brick?" = "Eliminare questo mattoncino?";
 
 /* No comment provided by engineer. */
-"Delete this condition?" = "Delete this condition?";
+"Delete this condition?" = "Eliminare questa condizione?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "Elimina questo aspetto";
 
 /* No comment provided by engineer. */
-"Delete this loop?" = "Delete this loop?";
+"Delete this loop?" = "Eliminare questo ciclo?";
 
 /* No comment provided by engineer. */
 "Delete this project" = "Elimina questo progetto";
 
 /* No comment provided by engineer. */
-"Delete this script?" = "Delete this script?";
+"Delete this script?" = "Eliminare questo script?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Elimina questo suono";
 
 /* No comment provided by engineer. */
-"Deletion mode" = "Deletion mode";
+"Deletion mode" = "Modalità eliminazione";
 
 /* No comment provided by engineer. */
 "Description" = "Descrizione";
@@ -428,22 +491,28 @@
 "device motion-sensor" = "sensore di movimento del dispositivo";
 
 /* No comment provided by engineer. */
+"Device sensors" = "Sensori del dispositivo";
+
+/* No comment provided by engineer. */
 "direction" = "direzione";
 
 /* No comment provided by engineer. */
 "Disable brick" = "Disabilita mattoncino";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "Disabilita condizione";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "Disabilita ciclo";
 
 /* No comment provided by engineer. */
 "Disable script" = "Disabilita script";
 
 /* No comment provided by engineer. */
 "Disagree" = "Non sono d'accordo";
+
+/* No comment provided by engineer. */
+"Discard changes" = "Scartare le modifiche";
 
 /* No comment provided by engineer. */
 "Disconnect all devices" = "Scollega tutti i dispositivi";
@@ -455,16 +524,16 @@
 "Do you really want to delete the current drawing?" = "Sei sicuro di voler eliminare il disegno attuale?";
 
 /* paint */
-"Do you want to save the changes" = "Desideri salvare le modifiche";
+"Do you want to save your changes?" = "Si desidera salvare le modifiche?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "non ruotare";
 
 /* No comment provided by engineer. */
 "Done" = "Fatto";
 
 /* No comment provided by engineer. */
 "Download" = "Scarica";
-
-/* No comment provided by engineer. */
-"Download successful" = "Download completato";
 
 /* No comment provided by engineer. */
 "Downloads" = "Download";
@@ -479,40 +548,46 @@
 "Edit" = "Modifica";
 
 /* No comment provided by engineer. */
-"Edit actor or object" = "Edit actor or object";
+"Edit actor or object" = "Modifica attore o oggetto";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "Modifica sfondo";
 
 /* Action sheet menu title */
-"Edit backgrounds" = "Edit backgrounds";
+"Edit backgrounds" = "Modifica sfondi";
 
 /* Action sheet menu title */
-"Edit brick" = "Edit brick";
+"Edit brick" = "Modifica mattoncino";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "Modifica formula";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "Modifica aspetto";
 
 /* Action sheet menu title */
-"Edit looks" = "Edit looks";
+"Edit looks" = "Modifica aspetti";
 
 /* No comment provided by engineer. */
-"Edit project" = "Edit project";
+"Edit project" = "Modifica progetto";
 
 /* No comment provided by engineer. */
-"Edit projects" = "Edit projects";
+"Edit projects" = "Modifica progetti";
 
 /* Action sheet menu title */
-"Edit script" = "Edit script";
+"Edit script" = "Modifica script";
 
 /* Action sheet menu title */
-"Edit sound" = "Edit sound";
+"Edit sound" = "Modifica suono";
 
 /* Action sheet menu title */
-"Edit sounds" = "Edit sounds";
+"Edit sounds" = "Modifica suoni";
+
+/* No comment provided by engineer. */
+"Electric Guitar" = "Chitarra elettrica";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Piano Elettrico";
 
 /* No comment provided by engineer. */
 "element" = "elemento";
@@ -527,16 +602,22 @@
 "Email" = "E-mail";
 
 /* No comment provided by engineer. */
+"Embroidery" = "Ricamo";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "Ricamo";
+
+/* No comment provided by engineer. */
 "Empty input!" = "Input vuoto!";
 
 /* No comment provided by engineer. */
 "Enable brick" = "Abilita mattoncino";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Enable condition" = "Abilita condizione";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable loop" = "Abilita ciclo";
 
 /* No comment provided by engineer. */
 "Enable script" = "Abilita script";
@@ -581,19 +662,28 @@
 "Error" = "Errore";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "C'è stato un errore durante la segnalazione del progetto. Riprova più tardi.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "Errore durante il salvataggio del file";
+
+/* No comment provided by engineer. */
+"Event" = "Evento";
+
+/* No comment provided by engineer. */
+"exponent" = "exp";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
+"face detected" = "viso rilevato";
 
 /* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
+"faceposition x" = "posizione viso x";
 
 /* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
+"faceposition y" = "posizione viso y";
 
 /* No comment provided by engineer. */
 "facesize" = "dimensionefaccia";
@@ -617,7 +707,7 @@
 "false" = "falso";
 
 /* No comment provided by engineer. */
-"Featured projects" = "Featured projects";
+"Featured projects" = "Progetti in Evidenza";
 
 /* No comment provided by engineer. */
 "Feb" = "Feb";
@@ -638,16 +728,19 @@
 "floor" = "parteintera";
 
 /* No comment provided by engineer. */
+"Flute" = "Flauto";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Le seguenti funzionalità, utilizzate in questo progetto, non sono compatibili con la versione in uso di Pocket Code:";
 
 /* No comment provided by engineer. */
 "for" = "per";
 
 /* No comment provided by engineer. */
-"for all actors or objects" = "for all actors or objects";
+"for all actors or objects" = "per tutti gli attori o oggetti";
 
 /* No comment provided by engineer. */
-"for this actor or object" = "for this actor or object";
+"for this actor or object" = "per quest'attore od oggetto";
 
 /* No comment provided by engineer. */
 "Forever" = "Per sempre";
@@ -656,25 +749,34 @@
 "Forgot password" = "Password dimenticata";
 
 /* No comment provided by engineer. */
+"Formula Editor" = "Editor di formule";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "Formula troppo lunga!";
 
 /* No comment provided by engineer. */
 "Fr" = "Ve";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
+"Frequently used" = "Usato frequentemente";
 
 /* No comment provided by engineer. */
 "Friday" = "Venerdì";
 
 /* No comment provided by engineer. */
-"From camera" = "From camera";
+"From camera" = "Dalla fotocamera";
 
 /* No comment provided by engineer. */
 "front" = "anteriore";
 
 /* No comment provided by engineer. */
 "Front camera" = "Fotocamera frontale";
+
+/* No comment provided by engineer. */
+"Functions" = "Funzioni";
+
+/* No comment provided by engineer. */
+"General properties" = "proprietà generali";
 
 /* No comment provided by engineer. */
 "Glide" = "Scivola";
@@ -688,11 +790,14 @@
 /* No comment provided by engineer. */
 "Go to front" = "Sposta avanti";
 
+/* No comment provided by engineer. */
+"green" = "verde";
+
 /* paint */
 "Green" = "Verde";
 
 /* No comment provided by engineer. */
-"green" = "verde";
+"Guitar" = "Chitarra";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "sensore giroscopico";
@@ -740,10 +845,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Per usare Pocket Code e altri programmi offerti dal progetto Catrobat, si deve prendere visione e accettare i nostri Termini d'uso e di Servizio e seguirli rigorosamente. Seguire il link sotto-riportato per leggere i dettagli.";
 
 /* No comment provided by engineer. */
-"inclination x" = "inclinazione_x";
+"inclination x" = "inclinazione x";
 
 /* No comment provided by engineer. */
-"inclination y" = "inclinazione_y";
+"inclination y" = "inclinazione y";
 
 /* No comment provided by engineer. */
 "Information" = "Informazioni";
@@ -774,6 +879,9 @@
 
 /* paint */
 "italic" = "corsivo";
+
+/* No comment provided by engineer. */
+"item" = "elemento";
 
 /* No comment provided by engineer. */
 "Jan" = "Gen";
@@ -824,10 +932,13 @@
 "Left" = "Sinistra";
 
 /* No comment provided by engineer. */
-"Length" = "Lunghezza";
+"left-right only" = "solo sinistra/destra";
 
 /* No comment provided by engineer. */
 "length" = "lunghezza";
+
+/* No comment provided by engineer. */
+"Length" = "Lunghezza";
 
 /* No comment provided by engineer. */
 "letter" = "lettera";
@@ -842,7 +953,13 @@
 "List type" = "Tipo di lista";
 
 /* No comment provided by engineer. */
-"Lists" = "Elenchi";
+"Lists" = "Liste";
+
+/* No comment provided by engineer. */
+"Lists for all actors and objects" = "Liste per tutti gli oggetti";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "Lista per solo questo oggetto";
 
 /* No comment provided by engineer. */
 "Loading" = "Sto caricando";
@@ -857,6 +974,9 @@
 "Logic" = "Logica";
 
 /* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "Operatori logici (booleani)";
+
+/* No comment provided by engineer. */
 "Login" = "Login";
 
 /* No comment provided by engineer. */
@@ -868,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "longitudine";
 
-/* No comment provided by engineer. */
-"Look" = "Aspetto";
-
 /* LOOK */
 "look" = "Aspetto";
+
+/* No comment provided by engineer. */
+"Look" = "Aspetto";
 
 /* No comment provided by engineer. */
 "look name" = "nome_aspetto";
@@ -896,7 +1016,16 @@
 "March" = "Marzo";
 
 /* No comment provided by engineer. */
-"Math" = "Matematica";
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
+"Maths" = "Matematica";
+
+/* No comment provided by engineer. */
+"Maximize" = "Ingrandisci";
+
+/* No comment provided by engineer. */
+"maximum of" = "massimo";
 
 /* No comment provided by engineer. */
 "May" = "Maggio";
@@ -920,6 +1049,12 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
+"Minimize" = "Riduci";
+
+/* No comment provided by engineer. */
+"minimum of" = "minimo";
+
+/* No comment provided by engineer. */
 "minute" = "minuto";
 
 /* paint */
@@ -927,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Lu";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Talpa";
@@ -953,16 +1091,19 @@
 "Motion" = "Movimento";
 
 /* No comment provided by engineer. */
+"Motion properties" = "proprietà del movimento";
+
+/* No comment provided by engineer. */
 "Move" = "Muovi";
 
 /* No comment provided by engineer. */
-"Move actors or objects" = "Move actors or objects";
+"Move actors or objects" = "Sposta attori o oggetti";
 
 /* No comment provided by engineer. */
-"Move brick" = "Move brick";
+"Move brick" = "Sposta mattoncino";
 
 /* No comment provided by engineer. */
-"Move looks" = "Move looks";
+"Move looks" = "Sposta aspetti";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "Muovi indietro il motore di Phiro";
@@ -971,16 +1112,19 @@
 "Move Phiro motor forward" = "Muovi in avanti il motore di Phiro";
 
 /* No comment provided by engineer. */
-"Move sounds" = "Move sounds";
+"Move sounds" = "Sposta suoni";
+
+/* No comment provided by engineer. */
+"Music Box" = "Box Musicale";
 
 /* Name of the default catrobat project (used as filename!!) */
-"My first project" = "Il mio primo programma";
+"My first project" = "Il mio primo progetto";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My image" = "My image";
+"My image" = "Mia immagine";
 
 /* Title for first (default) object */
-"My object" = "My object";
+"My object" = "Mio oggetto";
 
 /* No comment provided by engineer. */
 "Name" = "Nome";
@@ -989,13 +1133,16 @@
 "Name already exists." = "Il nome esiste già.";
 
 /* No comment provided by engineer. */
+"natural logarithm" = "ln";
+
+/* No comment provided by engineer. */
 "New" = "Nuovo";
 
 /* paint */
-"New canvas" = "New canvas";
+"New canvas" = "Nuova tela";
 
 /* No comment provided by engineer. */
-"New list" = "Nuovo elenco";
+"New list" = "Nuova lista";
 
 /* No comment provided by engineer. */
 "New message" = "Nuovo messaggio";
@@ -1025,13 +1172,13 @@
 "No" = "No";
 
 /* No comment provided by engineer. */
-"No camera available" = "No camera available";
+"No camera available" = "Nessuna fotocamera disponibile";
 
 /* No comment provided by engineer. */
-"No categories selected" = "No categories selected";
+"No categories selected" = "Nessuna categoria selezionata";
 
 /* No comment provided by engineer. */
-"No description available" = "No description available";
+"No description available" = "Nessuna descrizione disponibile";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Nome dell'immagine mancante o non valido; riprova.";
@@ -1050,9 +1197,6 @@
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "non disponibile. Continuare comunque?";
-
-/* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Non c'è abbastanza memoria libera per scaricare questo programma. Si consiglia di eliminare alcuni dei tuoi progetti";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Memoria insufficiente";
@@ -1079,13 +1223,7 @@
 "Object" = "Oggetto";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Lista di oggetti:";
-
-/* No comment provided by engineer. */
-"Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "Variabili dell'oggetto:";
+"Object or actor name" = "Nome dell'oggetto o attore";
 
 /* No comment provided by engineer. */
 "Oct" = "Ott";
@@ -1118,6 +1256,9 @@
 "or" = "oppure";
 
 /* No comment provided by engineer. */
+"Organ" = "Organo";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
 
 /* No comment provided by engineer. */
@@ -1139,28 +1280,40 @@
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
-"phiro bottom left" = "phiro bottom left";
+"phiro bottom left" = "phiro in basso a sinistra";
 
 /* No comment provided by engineer. */
-"phiro bottom right" = "phiro bottom right";
+"phiro bottom right" = "phiro in basso a destra";
 
 /* No comment provided by engineer. */
-"phiro front left" = "phiro front left";
+"phiro front left" = "phiro davanti a sinistra";
 
 /* No comment provided by engineer. */
-"phiro front right" = "phiro front right";
+"phiro front right" = "phiro davanti a destra";
 
 /* No comment provided by engineer. */
-"phiro side left" = "phiro side left";
+"phiro side left" = "phiro lato sinistro";
 
 /* No comment provided by engineer. */
-"phiro side right" = "phiro side right";
+"phiro side right" = "phiro lato destro";
+
+/* No comment provided by engineer. */
+"pi" = "pi";
+
+/* No comment provided by engineer. */
+"Piano" = "Piano";
 
 /* paint */
 "Pipette" = "Pipetta";
 
 /* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
+
+/* No comment provided by engineer. */
 "Place at " = "Posiziona a ";
+
+/* No comment provided by engineer. */
+"Play" = "Gioca";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Riproduci musica con Phiro\n";
@@ -1172,13 +1325,13 @@
 "Please choose up to three categories" = "Scegli fino a tre categorie";
 
 /* paint */
-"Please enter a text." = "Please enter a text.";
+"Please enter a text." = "Sei pregato di inserire un testo.";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
+"Please enter at least %lu character(s)." = "Sei pregato di inserire almeno %lu caratteri.";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Effettua il login per poter segnalare questo programma come inappropriato";
+"Please log in to report this project as inappropriate" = "Effettua il login per poter segnalare questo progetto come inappropriato";
 
 /* paint */
 "Please pick a tool" = "Scegli uno strumento";
@@ -1226,10 +1379,13 @@
 "Pointer" = "Puntatore";
 
 /* No comment provided by engineer. */
-"position x" = "posizione_x";
+"position x" = "posizione x";
 
 /* No comment provided by engineer. */
-"position y" = "posizione_y";
+"position y" = "posizione y";
+
+/* No comment provided by engineer. */
+"power" = "potenza";
 
 /* No comment provided by engineer. */
 "Preview" = "Anteprima";
@@ -1247,25 +1403,25 @@
 "Project" = "Progetto";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Elenco progetti:";
-
-/* No comment provided by engineer. */
-"Project name" = "Nome del programma";
+"Project name" = "Nome del progetto";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Il nome del progetto è necessario!";
 
 /* No comment provided by engineer. */
-"Project variables:" = "Variabili del progetto:";
+"Projects" = "Progetti";
 
 /* No comment provided by engineer. */
-"Projects" = "Programmi";
+"Projects on device" = "Progetti sul dispositivo";
 
 /* No comment provided by engineer. */
-"Projects on device" = "Programmi";
+"Properties" = "Oggetto";
 
 /* No comment provided by engineer. */
 "random position" = "Posizione casuale";
+
+/* No comment provided by engineer. */
+"random value from to" = "casuale";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Votaci";
@@ -1279,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "Rettangolo / quadrato";
 
-/* No comment provided by engineer. */
-"red" = "rosso";
-
 /* paint */
 "Red" = "Rosso";
+
+/* No comment provided by engineer. */
+"red" = "rosso";
 
 /* No comment provided by engineer. */
 "Register" = "Registrati";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Registrazione effettuata con successo";
+
+/* No comment provided by engineer. */
+"regular expression" = "espressione regolare";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Rimuovi dispositivi conosciuti";
@@ -1304,7 +1463,7 @@
 "Rename image" = "Rinomina l'immagine";
 
 /* No comment provided by engineer. */
-"Rename project" = "Rinomina il programma";
+"Rename project" = "Rinomina il progetto";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Rinomina suono";
@@ -1345,20 +1504,23 @@
 /* No comment provided by engineer. */
 "Saturday" = "Sabato";
 
-/* paint */
-"Save to Photos" = "Save to Photos";
-
 /* No comment provided by engineer. */
-"Save to PocketCode" = "Salva in PocketCode";
+"Save changes" = "Salvare le modifiche";
+
+/* paint */
+"Save to Photos" = "Salva in Foto";
 
 /* No comment provided by engineer. */
 "Saved" = "Salvato";
 
 /* No comment provided by engineer. */
+"Saxophone" = "Sassofono";
+
+/* No comment provided by engineer. */
 "Say" = "Dire";
 
 /* No comment provided by engineer. */
-"Scene" = "Scene";
+"Scene" = "Scena";
 
 /* No comment provided by engineer. */
 "Script" = "Script";
@@ -1388,10 +1550,10 @@
 "Select Arduino" = "Seleziona Arduino";
 
 /* No comment provided by engineer. */
-"Select brick category" = "Select brick category";
+"Select brick category" = "Seleziona categoria del mattoncino";
 
 /* No comment provided by engineer. */
-"Select categories" = "Select categories";
+"Select categories" = "Seleziona categorie";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Selezionare l'operatore logico";
@@ -1442,6 +1604,9 @@
 "Set description" = "Imposta descrizione";
 
 /* No comment provided by engineer. */
+"Set Instrument to" = "Imposta strumento a";
+
+/* No comment provided by engineer. */
 "Set pen color to" = "Imposta il colore della penna a";
 
 /* No comment provided by engineer. */
@@ -1451,7 +1616,13 @@
 "Set Phiro light" = "Imposta la luce di Phiro";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "Imposta stile di rotazione ";
+
+/* No comment provided by engineer. */
 "Set size to" = "Imposta dimensione a";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "Imposta tempo a";
 
 /* No comment provided by engineer. */
 "Set transparency " = "Imposta trasparenza ";
@@ -1463,10 +1634,10 @@
 "Set volume to" = "Imposta volume a";
 
 /* No comment provided by engineer. */
-"Set x to " = "Set x to ";
+"Set x to " = "Imposta x a ";
 
 /* No comment provided by engineer. */
-"Set y to " = "Set y to ";
+"Set y to " = "Imposta y a ";
 
 /* No comment provided by engineer. */
 "Settings" = "Impostazioni";
@@ -1481,6 +1652,9 @@
 "Show variable" = "Visualizza la variabile";
 
 /* No comment provided by engineer. */
+"sine" = "seno";
+
+/* No comment provided by engineer. */
 "size" = "dimensione";
 
 /* No comment provided by engineer. */
@@ -1493,7 +1667,7 @@
 "SO" = "SO";
 
 /* No comment provided by engineer. */
-"Something went wrong while uploading the project." = "Errore durante il caricamento del programma.";
+"Something went wrong while uploading the project." = "Errore durante il caricamento del progetto.";
 
 /* No comment provided by engineer. */
 "Sound" = "Suono";
@@ -1510,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "Velocità";
 
-/* No comment provided by engineer. */
-"sqrt" = "radicequadrata";
-
 /* paint */
 "square" = "quadrato";
+
+/* No comment provided by engineer. */
+"square root" = "radicequadrata";
 
 /* No comment provided by engineer. */
 "stage is touched" = "schermo_toccato";
@@ -1538,10 +1712,16 @@
 "Start sound and wait" = "Avvia suono e attendi";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Tamburo d'acciaio";
+
+/* No comment provided by engineer. */
 "step" = "passo";
 
 /* No comment provided by engineer. */
 "steps" = "passi";
+
+/* No comment provided by engineer. */
+"Stitch" = "Stitch";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Interrompi tutti i suoni";
@@ -1559,13 +1739,25 @@
 "Switch to look" = "Passa all'aspetto";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "Passa all'aspetto numero";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "Errore di sintassi!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
+
+/* No comment provided by engineer. */
+"tangent" = "tangente";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Tocca \"+\" per aggiungere oggetti";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+"Tap \"+\" to add backgrounds" = "Tocca \"+\" per aggiungere gli sfondi";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add looks" = "Fare clic su \"+\" per creare un nuovo aspetto";
@@ -1575,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "Fare clic su \"+\" per aggiungere suoni";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Tocca \"+\" per aggiungere variabili e liste";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "Condizioni d'uso e servizio";
@@ -1598,7 +1793,7 @@
 "The featured projects cannot be loaded" = "I progetti in evidenza non possono essere caricati";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
+"The following item could not be imported from the media library:" = "Non è stato possibile importare il seguente elemento dalla libreria multimediale:";
 
 /* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "Input troppo lungo. Inserisci al più %lu caratteri.";
@@ -1608,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "I progetti recenti non possono essere caricati";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "Impossibile trovare il programma richiesto. Scegli un altro.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "Il progetto richiesto non può essere caricato. Riprova più tardi.";
@@ -1631,7 +1823,7 @@
 "This feature is coming soon!" = "Questa funzionalità non è ancora attiva, arriverà presto!";
 
 /* No comment provided by engineer. */
-"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
+"This list can not be deleted because it is still in use." = "Questa lista non è eliminabile perché è ancora in uso.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Questa variabile non può essere eliminata perché è ancora in uso.";
@@ -1655,10 +1847,10 @@
 "to list" = "alla lista";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "Per offrirti tutti i benefici dei nostri servizi e il profilo associato, è necessario raccogliere certi dati da te.\n\n\u{2022} Per mantenere e migliorare i nostri servizi (app e siti web) e fare ricerca scientifica su ICT e l'istruzione STEM/STEAM, usiamo Google Analytics, Crashlytics e Firebase, tutti di Google LLC (USA), così come Dynatrace di Dynatrace LLC (USA) per ottenere i metadati sull'uso dei nostri servizi, es., informazioni di crash, orari, pagine/schermate visitate, uso delle nostre app e servizi, sistema operativo usato, e informazioni sul fornitore di rete. Queste analisi e i dati raccolti non sono collegati al tuo profilo e non contengono alcuna informazione personale (gli ultimi bit dell'indirizzo IP sono anonimizzati). Tuttavia, i dati raccolti saranno trasferiti al provider del servizio (Google LLC, USA e Dynatrace LLC, USA). L'elaborazione dei dati si basa sugli accordi con Google LLC e Dynatrace LLC. Questa relazione con il fornitore dei servizi è conforme al Regolamento Generale per la Protezione dei Dati dell'Unione Europea (UE/GDPR) e l'accordo \"Privacy Shield\" dell'EU-USA.\n\n\u{2022} Per creare ed usare un profilo nei nostri sistemi e per informarti sulle modifiche necessarie sul tuo profilo per l'email, es., aggiornamenti o violazioni dei nostri Termini d'Uso e Servizio, le nostre regole comunitarie, o le nostre politiche, memorizzeremo il tuo nome utente e, se da te fornito, il tuo indirizzo email. Se hai connesso il tuo profilo tramite il tuo profilo di Google o Facebook, memorizziamo inoltre una chiave di identificazione connessa al tuo profilo su questi servizi. Non utilizzeremo questi dati per alcun altro scopo (es., marketing), a meno che tu non ci abbia esplicitamente consentito di farlo.\n\n\u{2022} Su base volontaria, puoi darci il tuo paese di residenza tramite la pagina del tuo profilo sul sito di condivisione. Questo sarà mostrato sul tuo profilo pubblico ed usato solo per scopi statistici e di ricerca da noi. Può essere rimosso quando vuoi nelle impostazioni del tuo profilo.\n\n\u{2022} Puoi revocare l'uso dei dati personali appartenenti al tuo profilo quando vuoi, eliminando il tuo profilo tramite la pagina del tuo profilo a https://share.catrob.at. Dopo l'eliminazione del tuo profilo potrai ancora usare i servizi forniti, ma non potrai collaborare, es., tramite il caricamento di programmi, commentando o mettendo mi piace. Inoltre, tutto il contenuto fornito collegato al tuo profilo, es., i programmi caricati, i commenti, etc. saranno eliminati.\n\n\u{2022} Per evitare un uso scorretto dei nostri servizi, es., tramite caricamenti o commenti contribuiti dagli utenti per scopi illegali, tutti i dati pubblici generati dall'utente (caricamenti, commenti) saranno memorizzati internamente in un database, con un orario e l'indirizzo internet usato. Questi dati non saranno usati per o inviati ad alcuna istituzione, a meno che azioni sufficientemente illegali non siano ragionevolmente sospette e che istituzioni legali ufficiali le richiedano su base della legge applicabile. In ogni caso sarà controllato su base individuale da noi per primi.\n\n\u{2022} Puoi iscriverti volontariamente alla Newsletter di Catrobat, su https://catrob.at/newsletter fornita da noi tramite il servizio di MailChimp (The Rocket Science Group LLC d/b/a MailChimp, USA). Allora riceverai aggiornamenti sul progetto di Catrobat e i suoi servizi al tuo indirizzo email fornito. Puoi revocare la newsletter quando vuoi usando il collegamento \"disiscriviti\" nel piè di pagina di ogni newsletter. Questa newsletter è fornita da MailChimp con il quale abbiamo un accordo di elaborazione dei dati e che ha acconsentito al Regolamento Generale della Protezione dei Dati dell'UE ed il \"Privacy Shield\" UE-USA. Per ulteriori dettagli su MailChimp sei pregato di dare un'occhiata anche alla Politica della Privacy e i Termini d'Utilizzo di MailChimp.\n\n\u{2022} Tutti i Servizi sono forniti dal progetto open source gratuito di Catrobat sotto l'ombrello dell'Associazione Internazionale Catrobat - Verein zur Förderung freier Software, un'OGN non-profit di Graz, Austria (Unione Europea). Le nostre politiche rispettano le leggi di protezione dei dati dell'UE e Austria (GDPR). Per contattarci, sei pregato di inviare un'email a contact@catrobat.org o scriverci a,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(Unione Europea).\n\nNel caso tu abbia meno di 14 anni, questa politica deve essere accettata da un guardiano legale (di solito un genitore).\n\nLa politica della privacy ufficiale in lingua inglese di Catrobat è disponibile sul web a https://catrob.at/privacypolicy.\n\nVersione 2.2, 17 Ottobre 2019\n\nTrova la nostra precedente, obsoleta, versione della politica della privacy (2.0) qui:\nhttp://developer.catrobat.org/privacy_policy_2-0";
 
 /* No comment provided by engineer. */
-"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "Per usare la nostra app, è necessario accettare la nostra Politica della Privacy. Tuttavia, se non sei sicuro di volerlo fare, puoi usare i nostri servizi web gratuiti su share.catrob.at";
 
 /* No comment provided by engineer. */
 "to x:" = "Verso X:";
@@ -1667,10 +1859,16 @@
 "Today" = "Oggi";
 
 /* No comment provided by engineer. */
+"Touch detection" = "Rilevamento tocco";
+
+/* No comment provided by engineer. */
 "touch position" = "Posizione del tocco";
 
 /* No comment provided by engineer. */
 "transparency" = "trasparenza";
+
+/* No comment provided by engineer. */
+"Trombone" = "Trombone";
 
 /* No comment provided by engineer. */
 "true" = "true";
@@ -1692,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "Gira a destra";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Impossibile importare il progetto!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Impossibile caricare il progetto!";
@@ -1727,7 +1928,7 @@
 "Unknown Element" = "Elemento sconosciuto";
 
 /* No comment provided by engineer. */
-"Unselect all" = "Unselect all";
+"Unselect all" = "Deseleziona tutto";
 
 /* No comment provided by engineer. */
 "Unsupported Brick:" = "Mattoncino non supportato:";
@@ -1739,7 +1940,7 @@
 "Unsupported Script:" = "Script non supportato:";
 
 /* No comment provided by engineer. */
-"Upload project" = "Carica programma";
+"Upload project" = "Carica progetto";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "Carica progetto selezionato";
@@ -1763,16 +1964,10 @@
 "Username must not be blank" = "Il nome utente non può essere vuoto";
 
 /* No comment provided by engineer. */
-"Var/List" = "Variabile/Lista";
-
-/* No comment provided by engineer. */
-"Variable" = "Variabile";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Nome variabile:";
 
 /* No comment provided by engineer. */
-"Variable or list" = "Variable or list";
+"Variable or list" = "Variabile o lista";
 
 /* No comment provided by engineer. */
 "Variable type" = "Tipo di variabile";
@@ -1781,7 +1976,16 @@
 "Variables" = "Variabili";
 
 /* No comment provided by engineer. */
+"Variables for all actors and objects" = "Variabili per tutti gli oggetti";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "Variabili per solo questo oggetto";
+
+/* No comment provided by engineer. */
 "Version" = "Versione";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "Vibrafono";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "Vibra per";
@@ -1790,7 +1994,13 @@
 "vibration" = "vibrazione";
 
 /* No comment provided by engineer. */
+"View" = "Mostra";
+
+/* No comment provided by engineer. */
 "Views" = "Visualizzazioni";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Sensori visivi";
 
 /* No comment provided by engineer. */
 "Wait" = "Attendi";
@@ -1811,13 +2021,16 @@
 "Welcome!" = "Benvenuto!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "Come ti chiami?";
+
+/* No comment provided by engineer. */
 "When" = "Quando";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Quando lo sfondo impostato a";
 
 /* No comment provided by engineer. */
-"When project starts" = "Quando il progetto è iniziato";
+"When project starts" = "Quando il progetto inizia";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Quando lo schermo viene toccato";
@@ -1835,6 +2048,9 @@
 "with" = "con";
 
 /* No comment provided by engineer. */
+"Wooden Flute" = "Flauto Di Legno";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
 
 /* No comment provided by engineer. */
@@ -1850,10 +2066,19 @@
 "Yesterday" = "Ieri";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "Hai già scaricato questo programma!";
+"You have already downloaded this project!" = "Hai già scaricato questo progetto!";
+
+/* No comment provided by engineer. */
+"Your answer" = "La tua risposta";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "La tua e-mail sembra non essere valida";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Il tuo progetto è stato caricato nella Catrobat Community  dove altri possono usarlo e scaricarlo.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "La tua segnalazione è stata inviata con successo!";
 
 /* paint */
 "Zoom" = "Zoom";

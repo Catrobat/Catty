@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,27 +24,39 @@ import Firebase
 
 final class CrashlyticsMock: Crashlytics {
 
-    public var logs: [String]
-    public var records: [Error]
-    var collectionEnabled: Bool
+    private static var logStorage = [CrashlyticsMock: [String]]()
+    private static var recordStorage = [CrashlyticsMock: [Error]]()
+    private static var collectionEnabled = [CrashlyticsMock: Bool]()
 
-    init(collectionEnabled: Bool) {
-        self.collectionEnabled = collectionEnabled
-        self.logs = []
-        self.records = []
+    static func create(collectionEnabled: Bool) -> CrashlyticsMock {
+        let crashlytics = ForceInit.createInstance(ofClass: "FIRCrashlytics") as! Crashlytics
+        object_setClass(crashlytics, CrashlyticsMock.self)
+        let crashlyticsMock = crashlytics as! CrashlyticsMock
+        CrashlyticsMock.collectionEnabled[crashlyticsMock] = collectionEnabled
+        CrashlyticsMock.logStorage[crashlyticsMock] = [String]()
+        CrashlyticsMock.recordStorage[crashlyticsMock] = [Error]()
+        return crashlyticsMock
     }
 
-    override func isCrashlyticsCollectionEnabled() -> Bool { collectionEnabled }
+    override func isCrashlyticsCollectionEnabled() -> Bool { CrashlyticsMock.collectionEnabled[self]! }
 
     override func setCrashlyticsCollectionEnabled(_ enabled: Bool) {
-        collectionEnabled = enabled
+        CrashlyticsMock.collectionEnabled[self] = enabled
     }
 
     override func log(_ msg: String) {
-        logs.append(msg)
+        CrashlyticsMock.logStorage[self]!.append(msg)
     }
 
     override func record(error: Error) {
-        records.append(error)
+        CrashlyticsMock.recordStorage[self]!.append(error)
+    }
+
+    var logs: [String] {
+        CrashlyticsMock.logStorage[self]!
+    }
+
+    var records: [Error] {
+        CrashlyticsMock.recordStorage[self]!
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -84,8 +84,6 @@
         GDataXMLDocument *document = [[self class] xmlDocumentForProject:project];
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];
-
-        NSDebug(@"Generated XML output:\n%@", xmlString);
         NSError *error = nil;
 
         if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {

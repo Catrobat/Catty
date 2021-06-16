@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -60,4 +60,28 @@ final class GlideToBrickTests: XCTestCase {
         XCTAssertFalse(brick.yDestination === copiedBrick.yDestination)
     }
 
+    func testGetFormulas() {
+        let brick = GlideToBrick()
+        let durationIndex = 0
+        let xDestinationIndex = 1
+        let yDestinationIndex = 2
+        brick.durationInSeconds = Formula(double: 3)
+        brick.xDestination = Formula(double: 2)
+        brick.yDestination = Formula(double: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 3)
+        XCTAssertEqual(brick.durationInSeconds, formulas?[durationIndex])
+        XCTAssertEqual(brick.xDestination, formulas?[xDestinationIndex])
+        XCTAssertEqual(brick.yDestination, formulas?[yDestinationIndex])
+
+        brick.durationInSeconds = Formula(double: 1)
+        brick.xDestination = Formula(double: 2)
+        brick.yDestination = Formula(double: 3)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.durationInSeconds, formulas?[durationIndex])
+        XCTAssertEqual(brick.xDestination, formulas?[xDestinationIndex])
+        XCTAssertEqual(brick.yDestination, formulas?[yDestinationIndex])
+    }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -168,7 +168,7 @@ final class UtilTests: XCTestCase {
 
         let messages = Util.allMessages(for: project)
 
-        XCTAssertEqual(messages?.count, 0)
+        XCTAssertEqual(messages.count, 0)
     }
 
     func testAllMessagesForProjectWithValues() {
@@ -194,7 +194,7 @@ final class UtilTests: XCTestCase {
 
         let messages = Util.allMessages(for: project)
 
-        XCTAssertEqual(messages?.count, 4)
+        XCTAssertEqual(messages.count, 4)
     }
 
     func testAllMessagesForProjectWithDuplicatedValues() {
@@ -204,5 +204,47 @@ final class UtilTests: XCTestCase {
         project.allBroadcastMessages?.add("duplicate")
 
         XCTAssertEqual(project.allBroadcastMessages?.count, 1)
+    }
+
+    func testStatusBarHeight() {
+        let statusBarFrame = UIApplication.shared.statusBarFrame.size
+
+        if statusBarFrame.width <= statusBarFrame.height {
+            XCTAssertEqual(statusBarFrame.width, Util.statusBarHeight())
+        } else {
+            XCTAssertEqual(statusBarFrame.height, Util.statusBarHeight())
+        }
+    }
+
+    func testLookWithNameForObject() {
+        let look = Look(name: "TestLook", filePath: "/test/path")
+        spriteObject = SpriteObject()
+        project.scene.add(object: spriteObject!)
+        spriteObject.lookList.add(look)
+
+        let utilLook = Util.look(with: "TestLook", for: spriteObject)
+
+        XCTAssertEqual(utilLook, look)
+    }
+
+    func testObjectWithNameForScene() {
+        spriteObject = SpriteObject()
+        spriteObject.name = "TestSpriteObject"
+        project.scene.add(object: spriteObject!)
+
+        let utilSpriteObject = Util.object(with: "TestSpriteObject", for: project.scene)
+
+        XCTAssertEqual(utilSpriteObject, spriteObject)
+    }
+
+    func testSoundWithNameForObject() {
+        let sound = Sound(name: "TestSound", fileName: "/test/path")
+        spriteObject = SpriteObject()
+        project.scene.add(object: spriteObject!)
+        spriteObject.soundList.add(sound)
+
+        let utilSound = Util.sound(with: "TestSound", for: spriteObject)
+
+        XCTAssertEqual(utilSound, sound)
     }
 }

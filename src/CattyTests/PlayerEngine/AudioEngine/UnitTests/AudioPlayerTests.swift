@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,9 +43,9 @@ final class AudioPlayerTests: XCTestCase {
         player = AudioPlayer(soundFile: file!)
 
         player.akPlayer = akPlayer
-        AudioKit.output = player.akPlayer
+        AKManager.output = player.akPlayer
         do {
-            try AudioKit.start()
+            try AKManager.start()
         } catch {
             print("could not start audio engine")
         }
@@ -53,7 +53,7 @@ final class AudioPlayerTests: XCTestCase {
     }
 
     override func tearDown() {
-        try? AudioKit.stop()
+        try? AKManager.stop()
     }
 
     func testPlayDiscardedPlayerExpectPlayerNotToPlay() {
@@ -69,7 +69,7 @@ final class AudioPlayerTests: XCTestCase {
         XCTAssertTrue(player.akPlayer.isPlaying)
         player.stop()
 
-        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: 3)
+        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
         expect(self.player.akPlayer.isPlaying) == false
     }
 
@@ -100,7 +100,7 @@ final class AudioPlayerTests: XCTestCase {
         player.play(expectation: soundIsFinishedExpectation)
         expect(self.player.akPlayer.isPlaying) == true
         player.remove()
-        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: 3)
+        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
         expect(self.player.akPlayer.isPlaying) == false
         expect(self.player.akPlayer.connectionPoints.count) == 0
     }

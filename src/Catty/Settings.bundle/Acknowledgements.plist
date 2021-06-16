@@ -16,6 +16,12 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
+                <string>Catty/Resources/Licenses/ActiveLabel</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/AudioKit</string>
             </dict>
             <dict>
@@ -118,6 +124,12 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
+                <string>Catty/Resources/Licenses/ScratchSampleInstruments</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/SharkfoodMuteSwitchDetector</string>
             </dict>
             <dict>
@@ -125,12 +137,6 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/Siren</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
-                <string>Catty/Resources/Licenses/TTTAttributedLabel</string>
             </dict>
             <dict>
                 <key>Type</key>

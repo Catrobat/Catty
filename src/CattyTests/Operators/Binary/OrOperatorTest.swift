@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -60,6 +60,6 @@ class OrOperatorTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = op.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
-        XCTAssertTrue(sections.contains(.logic(position: type(of: op).position)))
+        XCTAssertTrue(sections.contains(.logic(position: type(of: op).position, subsection: .logical)))
     }
 }

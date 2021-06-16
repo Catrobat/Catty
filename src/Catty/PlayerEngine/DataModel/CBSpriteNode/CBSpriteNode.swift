@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@ class CBSpriteNode: SKSpriteNode {
     var rotationStyle: RotationStyle
     var rotationDegreeOffset = 90.0
     var penConfiguration: PenConfiguration
+    var embroideryStream: EmbroideryStream
 
     @objc var filterDict = ["brightness": false, "color": false]
     @objc var ciBrightness = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
@@ -52,6 +53,8 @@ class CBSpriteNode: SKSpriteNode {
         let color = UIColor.clear
         self.spriteObject = spriteObject
         self.rotationStyle = SpriteKitDefines.defaultRotationStyle
+        self.embroideryStream = EmbroideryStream(projectWidth: self.spriteObject.scene.project?.header.screenWidth as? CGFloat,
+                                                 projectHeight: self.spriteObject.scene.project?.header.screenHeight as? CGFloat)
 
         self.penConfiguration = PenConfiguration(projectWidth: self.spriteObject.scene.project?.header.screenWidth as? CGFloat,
                                                  projectHeight: self.spriteObject.scene.project?.header.screenHeight as? CGFloat)
@@ -80,6 +83,7 @@ class CBSpriteNode: SKSpriteNode {
 
     @objc func update(_ currentTime: TimeInterval) {
         self.drawPenLine()
+        self.drawEmbroidery()
 
         for script in self.spriteObject.scriptList where ((script as? WhenConditionScript) != nil) {
             guard let stage = self.scene as? StageProtocol else { return }
@@ -166,6 +170,17 @@ class CBSpriteNode: SKSpriteNode {
         index -= 1
         index = index < 0 ? spriteObject.lookList.count - 1 : index
         return spriteObject.lookList[index] as? Look
+    }
+
+    @objc func getLookList() -> NSMutableArray? {
+        spriteObject.lookList
+    }
+
+    @objc func look(for index: Int) -> Look? {
+        if  index < 1 || index > spriteObject.lookList.count {
+            return nil
+        }
+        return spriteObject.lookList[index - 1] as? Look
     }
 
     @objc func changeLook(_ look: Look?) {

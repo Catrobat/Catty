@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -48,11 +48,12 @@
 - (void)translateDefaultProject;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName andShowSaveNotification:(BOOL)showSaveNotification;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName andProjectId:(NSString* _Nonnull)projectId andShowSaveNotification:(BOOL)showSaveNotification;
-- (void)updateDescriptionWithText:(NSString* _Nonnull)descriptionText;
+- (void)setDescription:(NSString* _Nonnull)description;
 - (NSArray<SpriteObject*>* _Nonnull)allObjects;
 - (BOOL)isEqualToProject:(Project* _Nonnull)project;
 - (NSInteger)getRequiredResources;
--(void)changeProjectOrientation;
+- (void)changeProjectOrientation;
+- (void)updateReferences;
 
 + (instancetype _Nonnull)lastUsedProject;
 + (void)updateLastModificationTimeForProjectWithName:(NSString* _Nonnull)projectName
@@ -75,6 +76,5 @@
 + (NSString* _Nonnull)projectDirectoryNameForProjectName:(NSString* _Nonnull)projectName
                                                projectID:(NSString* _Nullable)projectID;
 + (nullable ProjectLoadingInfo *)projectLoadingInfoForProjectDirectoryName:(NSString* _Nonnull)projectDirectoryName;
-+ (nullable NSString *)projectNameForProjectID:(NSString* _Nonnull)projectID;
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -88,8 +88,6 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
     }
 
     func testHeaderViewTitle() {
-        guard #available(iOS 11, *) else { return }
-
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource

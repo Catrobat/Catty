@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,73 +26,143 @@ import XCTest
 
 final class SetBackgroundBrickTests: AbstractBrickTest {
 
-    var object: SpriteObject!
-    var project: Project!
+    var lookA: Look!
+    var lookB: Look!
+    var image: UIImage!
+
+    var scene: Scene!
     var spriteNode: CBSpriteNode!
     var script: Script!
+    var context: CBScriptContextProtocol!
 
     override func setUp() {
-        object = SpriteObject()
-        project = ProjectManager.createProject(name: "a", projectId: "1")
-        object.scene = project.scene
-        spriteNode = CBSpriteNode(spriteObject: object)
-        object.spriteNode = spriteNode
+        super.setUp()
 
-        script = WhenScript()
-        script.object = object
+        let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
+        image = UIImage(contentsOfFile: filePath)
 
-    }
+        lookA = LookMock(name: "LookA", absolutePath: filePath)
+        lookB = LookMock(name: "LookB", absolutePath: filePath)
+        scene = Scene(name: "scene")
 
-    func testSetBackgroundBrick() {
+        scene.project = Project()
 
-        let backgroundObject = project.scene.objects().first!
-        XCTAssertNotNil(backgroundObject)
+        let backgroundObject = SpriteObject()
+        scene.add(object: backgroundObject)
 
-        let bgSpriteNode = CBSpriteNode(spriteObject: object)
-        backgroundObject.spriteNode = bgSpriteNode
+        backgroundObject.lookList.add(lookA!)
+        backgroundObject.lookList.add(lookB!)
 
-        let bundle = Bundle(for: type(of: self))
-        let filePath = bundle.path(forResource: "test.png", ofType: nil)
-        let imageData = UIImage(contentsOfFile: filePath!)!.pngData()
+        spriteNode = CBSpriteNode(spriteObject: backgroundObject)
+        backgroundObject.spriteNode = spriteNode
 
-        var look: Look!
-        var look1: Look!
-        do {
-            look = Look(name: "test", andPath: "test.png")
-            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
-            look1 = Look(name: "test2", andPath: "test2.png")
-            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test2.png"))
-        } catch {
-            XCTFail("Error when writing image data")
-        }
+        script = Script()
+        script.object = backgroundObject
 
-        let brick = SetBackgroundBrick()
-        brick.script = script
-        brick.look = look1
-
-        object.lookList.add(look!)
-        object.lookList.add(look1!)
-
-        let action = brick.actionBlock()
-        action()
-
-        XCTAssertEqual(backgroundObject.spriteNode.currentLook, look1, "SetBackgroundBrick not correct")
-        Project.removeProjectFromDisk(withProjectName: project.header.programName, projectID: project.header.programID)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: formulaInterpreter.touchManager)
     }
 
     func testMutableCopy() {
-
         let brick = SetBackgroundBrick()
-        let look = Look(name: "backgroundToCopy", andPath: "background")
+        let look = Look(name: "backgroundToCopy", filePath: "background")
         brick.look = look
 
         let copiedBrick: SetBackgroundBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetBackgroundBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
         XCTAssertFalse(brick === copiedBrick)
-        XCTAssertTrue(brick.look.isEqual(to: copiedBrick.look))
-        XCTAssertTrue(copiedBrick.look.isEqual(to: look))
+        XCTAssertTrue(brick.look!.isEqual(copiedBrick.look))
+        XCTAssertTrue(copiedBrick.look!.isEqual(look))
         XCTAssertTrue(copiedBrick.look === brick.look)
     }
 
+    func testInstructionWithCache() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [:],
+                                                   cachedImages: [CachedImage(path: lookB.path(for: scene)!, image: image)])
+
+        let brick = SetBackgroundBrick()
+        brick.script = script
+        brick.look = lookB
+
+        spriteNode.currentLook = lookA
+
+        let instruction = brick.actionBlock(imageCache: imageCacheMock)
+        instruction()
+
+        XCTAssertEqual(lookB, spriteNode.currentLook)
+        XCTAssertEqual(0, imageCacheMock.loadImageFromDiskCalledPaths.count)
+    }
+
+    func testInstructionWithoutCache() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [lookB.path(for: scene)!: image],
+                                                   cachedImages: [])
+
+        let brick = SetBackgroundBrick()
+        brick.script = script
+        brick.look = lookB
+
+        spriteNode.currentLook = lookA
+
+        let instruction = brick.actionBlock(imageCache: imageCacheMock)
+        instruction()
+
+        XCTAssertEqual(lookB, spriteNode.currentLook)
+        XCTAssertEqual(1, imageCacheMock.loadImageFromDiskCalledPaths.count)
+        XCTAssertEqual(lookB.path(for: scene), imageCacheMock.loadImageFromDiskCalledPaths.first!)
+    }
+
+    func testInstructionWithoutLook() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [lookB.path(for: scene)!: image],
+                                                   cachedImages: [])
+
+        let brick = SetBackgroundBrick()
+        brick.script = script
+        brick.look = nil
+
+        spriteNode.currentLook = lookA
+
+        let instruction = brick.actionBlock(imageCache: imageCacheMock)
+        instruction()
+
+        XCTAssertEqual(lookA, spriteNode.currentLook)
+        XCTAssertEqual(0, imageCacheMock.loadImageFromDiskCalledPaths.count)
+    }
+
+    func testInstructionInvalidImage() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [])
+        let lookWithInvalidPath = LookMock(name: "LookWithInvalidPath", absolutePath: "invalidPath")
+
+        let brick = SetBackgroundBrick()
+        brick.script = script
+        brick.look = lookWithInvalidPath
+
+        spriteNode.currentLook = lookA
+
+        let instruction = brick.actionBlock(imageCache: imageCacheMock)
+        instruction()
+
+        XCTAssertEqual(lookA, spriteNode.currentLook)
+        XCTAssertEqual(1, imageCacheMock.loadImageFromDiskCalledPaths.count)
+        XCTAssertEqual(lookWithInvalidPath.path(for: scene), imageCacheMock.loadImageFromDiskCalledPaths.first!)
+    }
+
+    func testIsEqualReturnTrue() {
+        let brick1 = SetBackgroundBrick()
+        brick1.look = lookA
+
+        let brick2 = SetBackgroundBrick()
+        brick2.look = lookA
+
+        XCTAssertTrue(brick1.isEqual(to: brick2))
+    }
+
+    func testIsEqualReturnFalse() {
+        let brick1 = SetBackgroundBrick()
+        brick1.look = lookA
+
+        let brick2 = SetLookBrick()
+        brick2.look = lookA
+
+        XCTAssertFalse(brick1.isEqual(to: brick2))
+    }
 }

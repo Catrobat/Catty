@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ final class BrickCategoryViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let brickCategory = BrickCategory(type: kBrickCategoryType.controlBrick, name: "testCategory", color: UIColor.clear, strokeColor: UIColor.clear)
+        let brickCategory = BrickCategory(type: kBrickCategoryType.controlBrick, name: "testCategory", color: UIColor.clear, strokeColor: UIColor.clear, enabled: true)
         let spiteObject = SpriteObject()
 
         controller = BrickCategoryViewController(brickCategory: brickCategory, andObject: spiteObject)

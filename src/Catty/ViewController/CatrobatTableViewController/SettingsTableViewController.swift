@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,6 +47,21 @@ class SettingsTableViewController: BOTableViewController {
                 }))
             }
 
+            if Util.isEmbroideryActivated() {
+                section?.addCell(BOSwitchTableViewCell(title: kLocalizedEmbroideryBricks, key: kUseEmbroideryBricks, handler: { cell in
+                    if let embroideryBricksCellSwitch = cell as? BOSwitchTableViewCell {
+                        embroideryBricksCellSwitch.backgroundColor = UIColor.background
+                        embroideryBricksCellSwitch.mainColor = UIColor.globalTint
+                        embroideryBricksCellSwitch.toggleSwitch.tintColor = UIColor.globalTint
+                        embroideryBricksCellSwitch.toggleSwitch.onTintColor = UIColor.globalTint
+                        embroideryBricksCellSwitch.onFooterTitle = kLocalizedEmbroideryBricksDescription
+                        embroideryBricksCellSwitch.offFooterTitle = kLocalizedEmbroideryBricksDescription
+                    }
+                }))
+            }
+        }))
+
+        addSection(BOTableViewSection(headerTitle: "", handler: { section in
             if Util.isArduinoActivated() {
                 section?.addCell(BOSwitchTableViewCell(title: kLocalizedArduinoBricks, key: kUseArduinoBricks, handler: { cell in
                     if let arduinoBricksCellSwitch = cell as? BOSwitchTableViewCell {
@@ -181,29 +196,29 @@ class SettingsTableViewController: BOTableViewController {
     }
 
     fileprivate func presentAlertController(withTitle title: String?, message: String?) {
-        Util.alert(withTitle: title, andText: message)
+        Util.alert(title: title!, text: message!)
     }
 
     fileprivate func openRateUsURL() {
         if let url = URL(string: NetworkDefines.appStoreUrl) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 
     fileprivate func openPrivacySettings() {
         if let url = URL(string: UIApplication.openSettingsURLString) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 
     fileprivate func disconnect() {
         BluetoothService.sharedInstance().disconnect()
-        Util.alert(withText: kLocalizedDisconnectBluetoothDevices)
+        Util.alert(text: kLocalizedDisconnectBluetoothDevices)
     }
 
     fileprivate func removeKnownDevices() {
         BluetoothService.sharedInstance().removeKnownDevices()
-        Util.alert(withText: kLocalizedRemovedKnownBluetoothDevices)
+        Util.alert(text: kLocalizedRemovedKnownBluetoothDevices)
     }
 
     fileprivate func logoutUser() {

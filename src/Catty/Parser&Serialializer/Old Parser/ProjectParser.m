@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,6 @@
 #import "GDataXMLNode.h"
 #import "Project.h"
 #import <objc/runtime.h>
-#import "Sound.h"
 #import "Formula.h"
 #import "Script.h"
 #import "XMLObjectReference.h"
@@ -136,6 +135,20 @@
     if ([className isEqualToString:@"UserVariable"]) {
         NSString *userVariableName = [node stringValue];
         object = [[UserVariable alloc] initWithName:userVariableName];
+    } else if ([className isEqualToString:@"Look"]) {
+        GDataXMLElement *lookName = [node childWithElementName:@"name"];
+        GDataXMLElement *lookFileName = [node childWithElementName:@"fileName"];
+        
+        if (lookName && lookFileName) {
+            object = [[Look alloc] initWithName:[lookName stringValue] andPath:[lookFileName stringValue]];
+        }
+    } else if ([className isEqualToString:@"Sound"]) {
+        GDataXMLElement *soundName = [node childWithElementName:@"name"];
+        GDataXMLElement *soundFileName = [node childWithElementName:@"fileName"];
+        
+        if (soundName && soundFileName) {
+            object = [[Sound alloc] initWithName:[soundName stringValue] andFileName:[soundFileName stringValue]];
+        }
     } else {
         object = [[NSClassFromString(className) alloc] init];
     }

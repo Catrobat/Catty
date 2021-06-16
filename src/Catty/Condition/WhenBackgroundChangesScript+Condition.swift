@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ extension WhenBackgroundChangesScript: CBConditionProtocol {
         guard let backgroundObject = self.object.scene.objects().first else { return false }
         guard let currentLook = backgroundObject.spriteNode.currentLook else { return false }
 
-        if currentLook.isEqual(to: self.look) {
+        if currentLook.isEqual(self.look) {
             return true
         }
         return false

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -172,6 +172,14 @@ extension UIColor {
         self.background
     }
 
+    static var navBarButton: UIColor {
+        self.light
+    }
+
+    static var navBarButtonHighlighted: UIColor {
+        self.light.withAlphaComponent(0.45)
+    }
+
     static var toolBar: UIColor {
         self.navBar
     }
@@ -225,24 +233,17 @@ extension UIColor {
 
     // MARK: FormulaEditor
 
-    static var formulaEditorOperator: UIColor {
-        self.buttonTint
+    static var formulaEditorNumericButtons: UIColor {
+        UIColor(red: 199, green: 199, blue: 204)
     }
 
-    static var formulaEditorHighlight: UIColor {
-        self.buttonTint
+    static var formulaEditorOperatorButtons: UIColor {
+        UIColor(red: 175, green: 175, blue: 179)
     }
 
-    static var formulaEditorOperand: UIColor {
-        self.buttonTint
-    }
+    static var formulaEditorLargeButtons: UIColor {
+        UIColor(red: 137, green: 137, blue: 140)
 
-    static var formulaEditorBorder: UIColor {
-        self.light
-    }
-
-    static var formulaButtonText: UIColor {
-        self.light
     }
 
     // MARK: IDE
@@ -276,6 +277,14 @@ extension UIColor {
         UIColor(red: 247.0 / 255.0, green: 208.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0)
     }
 
+    static var eventBrick: UIColor {
+        UIColor(red: 207.0 / 255.0, green: 87.0 / 255.0, blue: 23.0 / 255.0, alpha: 1.0)
+    }
+
+    static var eventBrickStroke: UIColor {
+        UIColor(red: 241.0 / 255.0, green: 167.0 / 255.0, blue: 126.0 / 255.0, alpha: 1.0)
+    }
+
     static var variableBrickRed: UIColor {
         UIColor(red: 234.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }
@@ -301,11 +310,19 @@ extension UIColor {
     }
 
     static var arduinoBrick: UIColor {
-        UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+        UIColor(red: 38.0 / 255.0, green: 166.0 / 255.0, blue: 174.0 / 255.0, alpha: 1.0)
     }
 
     static var arduinoBrickStroke: UIColor {
-        UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        UIColor(red: 120.0 / 255.0, green: 220.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
+    }
+
+    static var recentlyUsedBricks: UIColor {
+        UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+    }
+
+    static var recentlyUsedBricksStroke: UIColor {
+        UIColor(red: 240.0 / 255.0, green: 240.0 / 255.0, blue: 150.0 / 255.0, alpha: 1.0)
     }
 
     static var penBrickGreen: UIColor {
@@ -316,4 +333,11 @@ extension UIColor {
         UIColor(red: 208 / 255.0, green: 218 / 255.0, blue: 203 / 255.0, alpha: 1.0)
     }
 
+    static var embroideryBrickPink: UIColor {
+        UIColor(red: 207 / 255.0, green: 122 / 255.0, blue: 166 / 255.0, alpha: 1.0)
+    }
+
+    static var embroideryBrickStroke: UIColor {
+        UIColor(red: 228 / 255.0, green: 143 / 255.0, blue: 187 / 255.0, alpha: 1.0)
+    }
 }

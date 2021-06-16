@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -67,4 +67,11 @@ final class StitchTests: XCTestCase {
         XCTAssertEqual(first.maxDistanceInEmbroideryDimensions(stitch: second), 500)
     }
 
+    func testGetPosition() {
+        let first = Stitch(atPosition: CGPoint(x: -100, y: -100))
+        let second = Stitch(atPosition: CGPoint(x: 200, y: 200))
+
+        XCTAssertEqual(first.getPosition(), CGPoint(x: -100, y: -100))
+        XCTAssertEqual(second.getPosition(), CGPoint(x: 200, y: 200))
+    }
 }

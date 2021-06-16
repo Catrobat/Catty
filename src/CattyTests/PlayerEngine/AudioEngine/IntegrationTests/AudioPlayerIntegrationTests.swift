@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
-        expect(similarity) >= 0.8
+        expect(similarity) >= 0.85
     }
 
     func testPlaySoundSameSoundTwiceFromDifferentObjectsExpectSameSoundsToPlaySimultaneously() {
@@ -88,7 +88,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         let recordedTape = self.runAndRecord(duration: 4, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
-        expect(similarity) >= 0.85
+        expect(similarity) >= 0.75
     }
 
     func testPlaySoundAndWaitExpectScriptToContinueWhenSoundFinished() {
@@ -99,6 +99,6 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
-        expect(similarity) >= 0.85
+        expect(similarity) >= 0.75
     }
 }

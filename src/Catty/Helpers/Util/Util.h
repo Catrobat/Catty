@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
-#define IS_IPHONEPLUS (([Util screenHeight] - kIphone6PScreenHeight) ? NO : YES)
 
 #define SAFE_BLOCK_CALL(__functor, ...)   \
 do {    \
@@ -56,10 +55,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (UIViewController* _Nonnull)topmostViewController;
 
-+ (void)alertWithText:(NSString* _Nullable)text;
-
-+ (void)alertWithTitle:(NSString* _Nullable)title andText:(NSString* _Nullable)text;
-
 + (void)askUserForVariableNameAndPerformAction:(SEL _Nullable)action
                                         target:(id _Nullable)target
                                    promptTitle:(NSString* _Nullable)title
@@ -69,23 +64,6 @@ if (__functor) __functor(__VA_ARGS__);  \
                                         isList:(BOOL)isList
                                   andTextField:(FormulaEditorTextView* _Nullable)textView
                                    initialText:(NSString* _Nullable)initialText;
-
-/* Returns the screen size in pixel or points */
-+ (CGSize)screenSize:(BOOL)inPixel;
-
-/* Returns the screen height in pixel or points */
-+ (CGFloat)screenHeight:(BOOL)inPixel;
-
-/* Returns the screen width in pixel or points */
-+ (CGFloat)screenWidth:(BOOL)inPixel;
-
-/* Returns the screen height in points */
-+ (CGFloat)screenHeight;
-
-/* Returns the screen width in points */
-+ (CGFloat)screenWidth;
-
-+ (CGFloat)statusBarHeight;
 
 + (CATransition* _Nonnull)getPushCATransition;
 
@@ -133,10 +111,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSString* _Nullable)uniqueName:(NSString* _Nullable)nameToCheck existingNames:(NSArray* _Nullable)existingNames;
 
-+ (void)showNotificationWithMessage:(NSString* _Nullable)message;
-
-+ (void)showNotificationForSaveAction;
-
 + (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString* _Nullable)xmlPath;
 
 + (double)radiansToDegree:(double)rad;
@@ -147,19 +121,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (BOOL)isEqual:(id _Nullable)object toObject:(id _Nullable)objectToCompare;
 
-+ (SpriteObject* _Nullable)objectWithName:(NSString* _Nullable)objectName forScene:(Scene* _Nullable)scene;
-
-+ (Sound* _Nullable)soundWithName:(NSString* _Nullable)objectName forObject:(SpriteObject* _Nullable)object;
-
-+ (Look* _Nullable)lookWithName:(NSString* _Nullable)objectName forObject:(SpriteObject* _Nullable)object;
-
-+ (NSMutableOrderedSet* _Nullable)allMessagesForProject:(Project* _Nonnull)project;
-
 + (BOOL)isNetworkError:(NSError* _Nullable)error;
-
-+ (void)defaultAlertForNetworkError;
-
-+ (void)defaultAlertForUnknownError;
 
 + (NSDictionary* _Nullable)getBrickInsertionDictionaryFromUserDefaults;
 
@@ -188,6 +150,8 @@ if (__functor) __functor(__VA_ARGS__);  \
 + (void)setNetworkActivityIndicator:(BOOL)enabled;
 
 + (BOOL)isArduinoActivated;
+
++ (BOOL)isEmbroideryActivated;
 
 + (BOOL)isPhiroActivated;
 

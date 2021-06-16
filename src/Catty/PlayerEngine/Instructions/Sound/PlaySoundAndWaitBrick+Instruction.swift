@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,13 +29,13 @@
             else { fatalError("This should never happen!") }
 
         guard let sound = self.sound,
-            let fileName = sound.fileName,
             let filePath = scene.soundsPath()
             else { return .invalidInstruction }
 
         return CBInstruction.waitExecClosure { _, scheduler in
             let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let soundIsFinishedExpectation = CBExpectation()
+            let fileName = sound.fileName
 
             DispatchQueue.main.async {
                 audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, expectation: soundIsFinishedExpectation)

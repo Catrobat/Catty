@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,10 +24,10 @@
 #import "BrickCellLookData.h"
 #import "BrickCell.h"
 #import "Script.h"
-#import "Look.h"
 #import "Brick.h"
 #import "BrickLookProtocol.h"
 #import "RuntimeImageCache.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BrickCellLookData
 
@@ -89,6 +89,7 @@
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@_%@", UIDefines.lookPickerAccessibilityLabel, options[currentOptionIndex]];
     }
     return self;
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -82,7 +82,7 @@ class Firmata: FirmataProtocol {
     private var portMasks = [UInt8](repeating: 0, count: 3)
     weak var delegate: FirmataDelegate?
     private var sysexData = NSMutableData()
-    private var seenStartSysex: Bool = false
+    private var seenStartSysex = false
 
     // MARK: WRITE
     /* PINMODE
@@ -197,7 +197,7 @@ class Firmata: FirmataProtocol {
      */
     func servoConfig(_ pin: UInt8, minPulse: UInt8, maxPulse: UInt8) {
         let data0: UInt8 = kSTART_SYSEX
-        let data1: UInt8 = kSERVO_CONFIG //TODO: check with PIN
+        let data1: UInt8 = kSERVO_CONFIG
         let data2: UInt8 = pin
         let data3: UInt8 = minPulse & 0x7F
         let data4: UInt8 = minPulse >> 7
@@ -740,8 +740,6 @@ class Firmata: FirmataProtocol {
         //        [ports insertObject:[NSNumber numberWithUnsignedChar:value<<(pin % 8)] atIndex:port];
         //    }
 
-        //   TODO:
-        //    [peripheralDelegate didUpdatePin:pin currentMode:(PINMODE)currentMode value:value];
     }
 
     /* analog mapping response

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,8 +31,8 @@ final class CBXMLSerializerHelperTests: XCTestCase {
 
         let object = SpriteObject()
         object.lookList = [
-            Look(name: "lookA", andPath: "path") as Any,
-            Look(name: "lookB", andPath: "path") as Any
+            Look(name: "lookA", filePath: "path") as Any,
+            Look(name: "lookB", filePath: "path") as Any
         ]
 
         XCTAssertEqual(expectedXPath, CBXMLSerializerHelper.relativeXPath(toBackground: object.lookList![1] as? Look, forBackgroundObject: object, withDepth: 2))

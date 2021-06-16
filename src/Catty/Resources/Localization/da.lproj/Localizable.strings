@@ -14,6 +14,9 @@
 "About Pocket Code" = "Om Pocket Code";
 
 /* No comment provided by engineer. */
+"absolute value" = "absolute value";
+
+/* No comment provided by engineer. */
 "acceleration x" = "acceleration x";
 
 /* No comment provided by engineer. */
@@ -50,6 +53,9 @@
 "Agree" = "Agree";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
 
 /* No comment provided by engineer. */
@@ -83,6 +89,9 @@
 "and" = "OG";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "and wait";
 
 /* No comment provided by engineer. */
@@ -95,6 +104,15 @@
 "April" = "April";
 
 /* No comment provided by engineer. */
+"arccosine" = "arccosine";
+
+/* No comment provided by engineer. */
+"arcsine" = "arcsine";
+
+/* No comment provided by engineer. */
+"arctangent" = "arctangent";
+
+/* No comment provided by engineer. */
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino extension";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -149,16 +170,22 @@
 "Backgrounds" = "Baggrunde";
 
 /* No comment provided by engineer. */
+"Bass" = "Bass";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
 "becomes true" = "becomes true";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
-/* paint */
-"Blue" = "Blue";
-
 /* No comment provided by engineer. */
 "blue" = "blue";
+
+/* paint */
+"Blue" = "Blue";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
@@ -215,7 +242,10 @@
 "Catrobat community" = "Catrobat community";
 
 /* No comment provided by engineer. */
-"ceil" = "ceil";
+"ceiling" = "ceiling";
+
+/* No comment provided by engineer. */
+"Cello" = "Cello";
 
 /* No comment provided by engineer. */
 "Change brightness " = "Skift lysstyrke";
@@ -225,6 +255,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Skift størrelse ved";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Skift gennemsigtighed";
@@ -248,10 +284,16 @@
 "Changes saved." = "Ændringer gemt!";
 
 /* No comment provided by engineer. */
+"Choir" = "Choir";
+
+/* No comment provided by engineer. */
 "Choose" = "Choose";
 
 /* No comment provided by engineer. */
 "Choose image" = "Choose image";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "Clear";
@@ -267,6 +309,9 @@
 
 /* No comment provided by engineer. */
 "color" = "color";
+
+/* No comment provided by engineer. */
+"Comparison operators" = "Comparison operators";
 
 /* No comment provided by engineer. */
 "compass" = "compass";
@@ -311,6 +356,9 @@
 "Copy" = "Kopiér";
 
 /* No comment provided by engineer. */
+"Copy actors or objects" = "Copy actors or objects";
+
+/* No comment provided by engineer. */
 "Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
@@ -320,7 +368,19 @@
 "Copy project" = "Copy project";
 
 /* No comment provided by engineer. */
+"cosine" = "cosine";
+
+/* No comment provided by engineer. */
 "Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Create patterns for stiching machines";
+
+/* No comment provided by engineer. */
+"Data" = "Data";
+
+/* No comment provided by engineer. */
+"Date and time" = "Date and time";
 
 /* No comment provided by engineer. */
 "day" = "day";
@@ -333,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "December" = "December";
+
+/* No comment provided by engineer. */
+"decimal logarithm" = "decimal logarithm";
 
 /* No comment provided by engineer. */
 "degrees" = "degrees";
@@ -428,6 +491,9 @@
 "device motion-sensor" = "device motion-sensor";
 
 /* No comment provided by engineer. */
+"Device sensors" = "Device sensors";
+
+/* No comment provided by engineer. */
 "direction" = "retning";
 
 /* No comment provided by engineer. */
@@ -446,6 +512,9 @@
 "Disagree" = "Disagree";
 
 /* No comment provided by engineer. */
+"Discard changes" = "Discard changes";
+
+/* No comment provided by engineer. */
 "Disconnect all devices" = "Disconnect all devices";
 
 /* No comment provided by engineer. */
@@ -455,16 +524,16 @@
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
 
 /* paint */
-"Do you want to save the changes" = "Do you want to save the changes";
+"Do you want to save your changes?" = "Ønsker du at gemme ændringerne?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "don't rotate";
 
 /* No comment provided by engineer. */
 "Done" = "Done";
 
 /* No comment provided by engineer. */
 "Download" = "Download";
-
-/* No comment provided by engineer. */
-"Download successful" = "Download succesfuld";
 
 /* No comment provided by engineer. */
 "Downloads" = "Downloads";
@@ -515,6 +584,12 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Electric Guitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Electric Piano";
+
+/* No comment provided by engineer. */
 "element" = "element";
 
 /* paint */
@@ -525,6 +600,12 @@
 
 /* No comment provided by engineer. */
 "Email" = "Email";
+
+/* No comment provided by engineer. */
+"Embroidery" = "Embroidery";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "Embroidery extension";
 
 /* No comment provided by engineer. */
 "Empty input!" = "Empty input!";
@@ -581,7 +662,16 @@
 "Error" = "Fejl";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Event" = "Event";
+
+/* No comment provided by engineer. */
+"exponent" = "exponent";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -638,6 +728,9 @@
 "floor" = "floor";
 
 /* No comment provided by engineer. */
+"Flute" = "Flute";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -654,6 +747,9 @@
 
 /* No comment provided by engineer. */
 "Forgot password" = "Forgot password";
+
+/* No comment provided by engineer. */
+"Formula Editor" = "Formula Editor";
 
 /* No comment provided by engineer. */
 "Formula too long!" = "Formel for lang!";
@@ -677,6 +773,12 @@
 "Front camera" = "Front camera";
 
 /* No comment provided by engineer. */
+"Functions" = "Functions";
+
+/* No comment provided by engineer. */
+"General properties" = "General properties";
+
+/* No comment provided by engineer. */
 "Glide" = "Glid";
 
 /* No comment provided by engineer. */
@@ -688,11 +790,14 @@
 /* No comment provided by engineer. */
 "Go to front" = "Gå til forsiden";
 
+/* No comment provided by engineer. */
+"green" = "green";
+
 /* paint */
 "Green" = "Green";
 
 /* No comment provided by engineer. */
-"green" = "green";
+"Guitar" = "Guitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
@@ -776,6 +881,9 @@
 "italic" = "italic";
 
 /* No comment provided by engineer. */
+"item" = "item";
+
+/* No comment provided by engineer. */
 "Jan" = "Jan";
 
 /* No comment provided by engineer. */
@@ -824,10 +932,13 @@
 "Left" = "Venstre";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
 "length" = "længde";
+
+/* No comment provided by engineer. */
+"Length" = "Length";
 
 /* No comment provided by engineer. */
 "letter" = "bogstav";
@@ -845,6 +956,12 @@
 "Lists" = "Lists";
 
 /* No comment provided by engineer. */
+"Lists for all actors and objects" = "Lists for all actors and objects";
+
+/* No comment provided by engineer. */
+"Lists for this actor or object only" = "Lists for this actor or object only";
+
+/* No comment provided by engineer. */
 "Loading" = "Loading";
 
 /* No comment provided by engineer. */
@@ -855,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "Logic" = "Logik";
+
+/* No comment provided by engineer. */
+"Logical (Boolean) operators and constants" = "Logical (Boolean) operators and constants";
 
 /* No comment provided by engineer. */
 "Login" = "Log på";
@@ -868,11 +988,11 @@
 /* No comment provided by engineer. */
 "longitude" = "longitude";
 
-/* No comment provided by engineer. */
-"Look" = "Udseende";
-
 /* LOOK */
 "look" = "udseende";
+
+/* No comment provided by engineer. */
+"Look" = "Udseende";
 
 /* No comment provided by engineer. */
 "look name" = "look name";
@@ -896,7 +1016,16 @@
 "March" = "March";
 
 /* No comment provided by engineer. */
-"Math" = "Math";
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
+"Maths" = "Maths";
+
+/* No comment provided by engineer. */
+"Maximize" = "Maximize";
+
+/* No comment provided by engineer. */
+"maximum of" = "maks";
 
 /* No comment provided by engineer. */
 "May" = "May";
@@ -920,6 +1049,12 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
+"Minimize" = "Minimize";
+
+/* No comment provided by engineer. */
+"minimum of" = "minimum of";
+
+/* No comment provided by engineer. */
 "minute" = "minute";
 
 /* paint */
@@ -927,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Mo" = "Mo";
+
+/* No comment provided by engineer. */
+"modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Muldvarp";
@@ -953,6 +1091,9 @@
 "Motion" = "Bevægelse";
 
 /* No comment provided by engineer. */
+"Motion properties" = "Motion properties";
+
+/* No comment provided by engineer. */
 "Move" = "Bevæg";
 
 /* No comment provided by engineer. */
@@ -973,6 +1114,9 @@
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
 
+/* No comment provided by engineer. */
+"Music Box" = "Music Box";
+
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Mit første program";
 
@@ -987,6 +1131,9 @@
 
 /* No comment provided by engineer. */
 "Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
+"natural logarithm" = "natural logarithm";
 
 /* No comment provided by engineer. */
 "New" = "Ny";
@@ -1052,9 +1199,6 @@
 "not available. Continue anyway?" = "not available. Continue anyway?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "Not enough Memory";
 
 /* No comment provided by engineer. */
@@ -1079,13 +1223,7 @@
 "Object" = "Objekt";
 
 /* No comment provided by engineer. */
-"Object lists:" = "Object lists:";
-
-/* No comment provided by engineer. */
 "Object or actor name" = "Object or actor name";
-
-/* No comment provided by engineer. */
-"Object variables:" = "Object variables:";
 
 /* No comment provided by engineer. */
 "Oct" = "Oct";
@@ -1116,6 +1254,9 @@
 
 /* No comment provided by engineer. */
 "or" = "ELLER";
+
+/* No comment provided by engineer. */
+"Organ" = "Organ";
 
 /* No comment provided by engineer. */
 "Password" = "Password";
@@ -1156,11 +1297,23 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"pi" = "pi";
+
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "Pipette";
 
 /* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
+
+/* No comment provided by engineer. */
 "Place at " = "Placér ved";
+
+/* No comment provided by engineer. */
+"Play" = "Play";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
@@ -1232,6 +1385,9 @@
 "position y" = "position y";
 
 /* No comment provided by engineer. */
+"power" = "power";
+
+/* No comment provided by engineer. */
 "Preview" = "Preview";
 
 /* No comment provided by engineer. */
@@ -1247,16 +1403,10 @@
 "Project" = "Project";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
-
-/* No comment provided by engineer. */
 "Project name" = "Project name";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Project Name is necessary!";
-
-/* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
 
 /* No comment provided by engineer. */
 "Projects" = "Programmer";
@@ -1265,7 +1415,13 @@
 "Projects on device" = "Programmer";
 
 /* No comment provided by engineer. */
+"Properties" = "Objekt";
+
+/* No comment provided by engineer. */
 "random position" = "random position";
+
+/* No comment provided by engineer. */
+"random value from to" = "tilfældig";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
@@ -1279,17 +1435,20 @@
 /* paint */
 "Rectangle / Square" = "Rectangle / Square";
 
-/* No comment provided by engineer. */
-"red" = "red";
-
 /* paint */
 "Red" = "Red";
+
+/* No comment provided by engineer. */
+"red" = "red";
 
 /* No comment provided by engineer. */
 "Register" = "Register";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Registration successful";
+
+/* No comment provided by engineer. */
+"regular expression" = "regular expression";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Remove known devices";
@@ -1345,14 +1504,17 @@
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
 
+/* No comment provided by engineer. */
+"Save changes" = "Save changes";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
-"Save to PocketCode" = "Save to PocketCode";
+"Saved" = "Saved";
 
 /* No comment provided by engineer. */
-"Saved" = "Saved";
+"Saxophone" = "Saxophone";
 
 /* No comment provided by engineer. */
 "Say" = "Say";
@@ -1442,6 +1604,9 @@
 "Set description" = "Sæt beskrivelse";
 
 /* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
+
+/* No comment provided by engineer. */
 "Set pen color to" = "Set pen color to";
 
 /* No comment provided by engineer. */
@@ -1451,7 +1616,13 @@
 "Set Phiro light" = "Set Phiro light";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "Set rotation style";
+
+/* No comment provided by engineer. */
 "Set size to" = "Indstil størrelse til";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "Set tempo to";
 
 /* No comment provided by engineer. */
 "Set transparency " = "Set gennemsigtighed";
@@ -1479,6 +1650,9 @@
 
 /* No comment provided by engineer. */
 "Show variable" = "Show variable";
+
+/* No comment provided by engineer. */
+"sine" = "sine";
 
 /* No comment provided by engineer. */
 "size" = "størrelse";
@@ -1510,11 +1684,11 @@
 /* No comment provided by engineer. */
 "Speed" = "Hastighed";
 
-/* No comment provided by engineer. */
-"sqrt" = "sqrt";
-
 /* paint */
 "square" = "square";
+
+/* No comment provided by engineer. */
+"square root" = "square root";
 
 /* No comment provided by engineer. */
 "stage is touched" = "stage is touched";
@@ -1538,10 +1712,16 @@
 "Start sound and wait" = "Start sound and wait";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Steel Drum";
+
+/* No comment provided by engineer. */
 "step" = "step";
 
 /* No comment provided by engineer. */
 "steps" = "steps";
+
+/* No comment provided by engineer. */
+"Stitch" = "Stitch";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Stop alle lyde";
@@ -1559,7 +1739,19 @@
 "Switch to look" = "Skift til udseende";
 
 /* No comment provided by engineer. */
+"Switch to look with number" = "Switch to look with number";
+
+/* No comment provided by engineer. */
 "Syntax Error!" = "Syntaksfejl!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
+
+/* No comment provided by engineer. */
+"tangent" = "tangent";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
@@ -1575,6 +1767,9 @@
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "Tryk på \"+\" for at tilføje Lyde";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "Terms of Use and Service";
@@ -1608,9 +1803,6 @@
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "The recent projects cannot be loaded";
-
-/* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
 
 /* No comment provided by engineer. */
 "The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
@@ -1667,10 +1859,16 @@
 "Today" = "I dag";
 
 /* No comment provided by engineer. */
+"Touch detection" = "Touch detection";
+
+/* No comment provided by engineer. */
 "touch position" = "touch position";
 
 /* No comment provided by engineer. */
 "transparency" = "gennemsigtighed";
+
+/* No comment provided by engineer. */
+"Trombone" = "Trombone";
 
 /* No comment provided by engineer. */
 "true" = "Sandt";
@@ -1692,6 +1890,9 @@
 
 /* No comment provided by engineer. */
 "Turn right" = "Drej til højre";
+
+/* No comment provided by engineer. */
+"Unable to import project!" = "Unable to import project!";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Unable to load project!";
@@ -1763,12 +1964,6 @@
 "Username must not be blank" = "Username must not be blank";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/List";
-
-/* No comment provided by engineer. */
-"Variable" = "Variable";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
 
 /* No comment provided by engineer. */
@@ -1781,7 +1976,16 @@
 "Variables" = "Variabler";
 
 /* No comment provided by engineer. */
+"Variables for all actors and objects" = "Variables for all actors and objects";
+
+/* No comment provided by engineer. */
+"Variables for this actor or object only" = "Variables for this actor or object only";
+
+/* No comment provided by engineer. */
 "Version" = "Version";
+
+/* No comment provided by engineer. */
+"Vibraphone" = "Vibraphone";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "Vibrér for";
@@ -1790,7 +1994,13 @@
 "vibration" = "vibration";
 
 /* No comment provided by engineer. */
+"View" = "View";
+
+/* No comment provided by engineer. */
 "Views" = "Views";
+
+/* No comment provided by engineer. */
+"Visual sensors" = "Visual sensors";
 
 /* No comment provided by engineer. */
 "Wait" = "Vent";
@@ -1809,6 +2019,9 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Welcome!";
+
+/* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
 
 /* No comment provided by engineer. */
 "When" = "When";
@@ -1835,6 +2048,9 @@
 "with" = "with";
 
 /* No comment provided by engineer. */
+"Wooden Flute" = "Wooden Flute";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
 
 /* No comment provided by engineer. */
@@ -1853,7 +2069,16 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "Your report was successfully sent!";
 
 /* paint */
 "Zoom" = "Zoom";

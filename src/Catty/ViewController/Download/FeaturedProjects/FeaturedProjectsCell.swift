@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,14 +22,14 @@
 
 import UIKit
 
-protocol FeaturedProjectsCellProtocol: AnyObject {
-    func selectedCell(dataSource datasource: FeaturedProjectsStoreTableDataSource, didSelectCellWith cell: FeaturedProjectsCell)
+protocol FeaturedProjectsCellDelegate: AnyObject {
+    func openProject(_ project: StoreProject)
 }
 
 class FeaturedProjectsCell: UITableViewCell {
 
-    weak var delegete: FeaturedProjectsCellProtocol?
-    var project: StoreProject?
+    weak var delegete: FeaturedProjectsCellDelegate?
+    var project: StoreFeaturedProject?
 
     @IBOutlet private weak var featuredImageView: UIImageView!
 

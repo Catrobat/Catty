@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -121,6 +121,113 @@ final class PaintViewControllerTests: XCTestCase {
         let verticalDistanceLowerEdge = boundsHeight - (verticalDistanceUpperEdge + controller!.helper.frame.size.height)
 
         XCTAssertTrue(Double(verticalDistanceUpperEdge - verticalDistanceLowerEdge) <= Double.epsilon)
+    }
+
+    func testUndoDoNotRotateImage() {
+        let size = CGSize(width: CGFloat(100), height: CGFloat(150))
+        let image = createImage(size)
+        let frame = CGRect(x: 0, y: 0, width: floor(size.width), height: floor(size.height))
+
+        guard let paintViewControllerMock = PaintViewControllerMock(editingImage: image, navigationController: navigationController) else { return }
+        guard let undoManager = paintViewControllerMock.manager else { return }
+
+        paintViewControllerMock.saveView.frame = frame
+        paintViewControllerMock.drawView.frame = frame
+        paintViewControllerMock.helper.frame = frame
+
+        undoManager.setImage(image)
+
+        XCTAssertEqual(paintViewControllerMock.saveView.frame, frame)
+        XCTAssertEqual(paintViewControllerMock.drawView.frame, frame)
+        XCTAssertEqual(paintViewControllerMock.helper.frame, frame)
+    }
+
+    func testUndoVerticalRotateImage() {
+        let size = CGSize(width: CGFloat(100), height: CGFloat(150))
+        let image = createImage(size)
+
+        let frameHorizontal = CGRect(x: 0, y: 0, width: floor(size.height), height: floor(size.width))
+        let frameVertical = CGRect(x: 0, y: 0, width: floor(size.width), height: floor(size.height))
+
+        guard let paintViewControllerMock = PaintViewControllerMock(editingImage: image, navigationController: navigationController) else { return }
+        guard let undoManager = paintViewControllerMock.manager else { return }
+
+        paintViewControllerMock.saveView.frame = frameHorizontal
+        paintViewControllerMock.drawView.frame = frameHorizontal
+        paintViewControllerMock.helper.frame = frameHorizontal
+
+        undoManager.setImage(image)
+
+        XCTAssertEqual(paintViewControllerMock.saveView.frame, frameVertical)
+        XCTAssertEqual(paintViewControllerMock.drawView.frame, frameVertical)
+        XCTAssertEqual(paintViewControllerMock.helper.frame, frameVertical)
+    }
+
+    func testUndoHorizontalRotateImage() {
+        let size = CGSize(width: CGFloat(150), height: CGFloat(100))
+        let image = createImage(size)
+
+        let frameVertical = CGRect(x: 0, y: 0, width: floor(size.height), height: floor(size.width))
+        let frameHorizontal = CGRect(x: 0, y: 0, width: floor(size.width), height: floor(size.height))
+
+        guard let paintViewControllerMock = PaintViewControllerMock(editingImage: image, navigationController: navigationController) else { return }
+        guard let undoManager = paintViewControllerMock.manager else { return }
+
+        paintViewControllerMock.saveView.frame = frameVertical
+        paintViewControllerMock.drawView.frame = frameVertical
+        paintViewControllerMock.helper.frame = frameVertical
+
+        undoManager.setImage(image)
+
+        XCTAssertEqual(paintViewControllerMock.saveView.frame, frameHorizontal)
+        XCTAssertEqual(paintViewControllerMock.drawView.frame, frameHorizontal)
+        XCTAssertEqual(paintViewControllerMock.helper.frame, frameHorizontal)
+    }
+
+    func testRotateRight() {
+        let size = CGSize(width: CGFloat(100), height: CGFloat(150))
+        let image = createImage(size)
+
+        let frame = CGRect(x: 0, y: 0, width: floor(size.height), height: floor(size.width))
+        let frameRotate = CGRect(x: 0, y: 0, width: floor(size.width), height: floor(size.height))
+
+        guard let paintViewControllerMock = PaintViewControllerMock(editingImage: image, navigationController: navigationController) else { return }
+        guard let mirrorRotationZoomTool = paintViewControllerMock.mirrorRotationZoomTool else { return }
+
+        paintViewControllerMock.saveView.frame = frame
+        paintViewControllerMock.drawView.frame = frame
+        paintViewControllerMock.helper.frame = frame
+        paintViewControllerMock.saveView.image = image
+
+        mirrorRotationZoomTool.rotateRight()
+
+        XCTAssertEqual(paintViewControllerMock.saveView.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.drawView.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.helper.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.degrees, 90)
+    }
+
+    func testRotateLeft() {
+        let size = CGSize(width: CGFloat(100), height: CGFloat(150))
+        let image = createImage(size)
+
+        let frame = CGRect(x: 0, y: 0, width: floor(size.height), height: floor(size.width))
+        let frameRotate = CGRect(x: 0, y: 0, width: floor(size.width), height: floor(size.height))
+
+        guard let paintViewControllerMock = PaintViewControllerMock(editingImage: image, navigationController: navigationController) else { return }
+        guard let mirrorRotationZoomTool = paintViewControllerMock.mirrorRotationZoomTool else { return }
+
+        paintViewControllerMock.saveView.frame = frame
+        paintViewControllerMock.drawView.frame = frame
+        paintViewControllerMock.helper.frame = frame
+        paintViewControllerMock.saveView.image = image
+
+        mirrorRotationZoomTool.rotateLeft()
+
+        XCTAssertEqual(paintViewControllerMock.saveView.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.drawView.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.helper.frame, frameRotate)
+        XCTAssertEqual(paintViewControllerMock.degrees, -90)
     }
 
     private func createImage(_ size: CGSize) -> UIImage {

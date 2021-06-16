@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -198,15 +198,6 @@
     [self renameOldProjectWithName:projectLoadingInfo.visibleName
                          projectID:projectLoadingInfo.projectID
                   toNewProjectName:project.header.programName];
-    [self reloadTableView];
-    [self hideLoadingView];
-}
-
-- (void)updateProjectDescriptionActionWithText:(NSString*)descriptionText
-                                 sourceProject:(Project*)project
-{
-    [self showLoadingView];
-    [project updateDescriptionWithText:descriptionText];
     [self reloadTableView];
     [self hideLoadingView];
 }
@@ -458,8 +449,7 @@
     cell.indexPath = indexPath;
     [cell setNeedsLayout];
     
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
+    [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
       
         if(image) {
             if ([cell.indexPath isEqual:indexPath]) {
@@ -679,10 +669,19 @@
 }
 
 #pragma mark - description delegate
-
--(void) setDescription:(NSString *)description
+- (void)setDescription:(NSString *)description
 {
-    [self updateProjectDescriptionActionWithText:description sourceProject:self.selectedProject];
+    [self showLoadingView];
+    [self.selectedProject setDescription:description];
+    [self.selectedProject saveToDiskWithNotification:NO andCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadTableView];
+            [self hideLoadingView];
+            [Util showNotificationForSaveAction];
+        });
+    }];
 }
+
+
 
 @end

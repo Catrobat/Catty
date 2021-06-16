@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -96,6 +96,20 @@ final class AskBrickTests: XCTestCase {
         let variableAfter = brick.userVariable?.value as? String
 
         XCTAssertEqual(variableBefore, variableAfter)
+    }
+
+    func testAnswerNoUserVariable() {
+        brick.userVariable = nil
+
+        switch brick.instruction() {
+        case let .waitExecClosure(closure):
+            closure(context, scheduler)
+            brick.callbackSubmit(with: "an answer", scheduler: scheduler)
+        default:
+            XCTFail("Fatal Error")
+        }
+
+        XCTAssertEqual(brick.userVariable, nil)
     }
 
     func testSchedulerPaused() {

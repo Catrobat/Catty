@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -784,5 +784,11 @@ final class FormulaManagerInterpreterTests: XCTestCase {
                                  value: userList.name)
         formula = Formula(formulaElement: element)!
         XCTAssertEqual("12.3 testValue", interpreter.interpretString(formula, for: object))
+    }
+
+    func testUnknownType() {
+        let formulaElement = FormulaElement(elementType: ElementType.UNKNOWN_TYPE, value: "unknown")!
+        let formula = Formula(formulaElement: formulaElement)!
+        XCTAssertEqual(0, interpreter.interpretDouble(formula, for: object))
     }
 }

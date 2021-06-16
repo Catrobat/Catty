@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,15 +36,13 @@
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"look"];
     GDataXMLNode *nameAttribute = [xmlElement attributeForName:@"name"];
     [XMLError exceptionIfNil:nameAttribute message:@"Look must contain a name attribute"];
-    Look *look = [self new];
-    look.name = [nameAttribute stringValue];
     NSArray *lookChildElements = [xmlElement children];
     [XMLError exceptionIf:[lookChildElements count] notEquals:1
                   message:@"Look must contain a filename child node"];
     GDataXMLNode *fileNameElement = [lookChildElements firstObject];
     [XMLError exceptionIfString:fileNameElement.name isNotEqualToString:@"fileName"
                         message:@"Look contains wrong child node"];
-    look.fileName = [fileNameElement stringValue];
+    Look *look = [[Look alloc] initWithName:[nameAttribute stringValue] andPath:[fileNameElement stringValue]];
     return look;
 }
 

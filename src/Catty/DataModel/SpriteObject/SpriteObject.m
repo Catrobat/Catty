@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,8 +22,6 @@
 
 #import "SpriteObject.h"
 #import "StartScript.h"
-#import "Look.h"
-#import "Sound.h"
 #import "Util.h"
 #import "Brick.h"
 #import "CBFileManager.h"
@@ -377,7 +375,7 @@
         Look *firstLook = [self.lookList objectAtIndex:index];
         Look *secondLook = [spriteObject.lookList objectAtIndex:index];
 
-        if (! [firstLook isEqualToLook:secondLook])
+        if (! [firstLook isEqual:secondLook])
             return NO;
     }
 
@@ -389,7 +387,7 @@
         Sound *firstSound = [self.soundList objectAtIndex:index];
         Sound *secondSound = [spriteObject.soundList objectAtIndex:index];
         
-        if (! [firstSound isEqualToSound:secondSound])
+        if (! [firstSound isEqual:secondSound])
             return NO;
     }
     

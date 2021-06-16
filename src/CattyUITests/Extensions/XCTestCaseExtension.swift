@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,36 +24,28 @@ import XCTest
 
 extension XCTestCase {
 
-    private func defaultApp() -> XCUIApplication {
+    static let defaultLaunchArguments = ["UITests", "skipPrivacyPolicy", "restoreDefaultProject"]
+    static var accessibilityLabelVariable = "VariableView_"
+    static var accessibilityLabelMessage = "MessageView_"
+    static var accessibilityLabelList = "ListView_"
+    static var accessibilityLabelBackground = "BackgroundView_"
+
+    private func defaultApp(with launchArguments: [String]) -> XCUIApplication {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["UITests"]
+        app.launchArguments = launchArguments
         return app
     }
 
-    func launchApp() -> XCUIApplication {
-        let app = defaultApp()
+    func launchApp(with launchArguments: [String] = defaultLaunchArguments) -> XCUIApplication {
+        let app = defaultApp(with: launchArguments)
         app.launch()
-
-        dismissPrivacyPolicyScreenIfShown()
-        return app
-    }
-
-    func launchAppWithDefaultProject() -> XCUIApplication {
-        let app = launchApp()
-
-        restoreDefaultProject()
         return app
     }
 
     func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval = 5) -> XCUIElement {
-        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true"), object: element)
-
-        let result = XCTWaiter().wait(for: [expectation], timeout: timeout)
-
-        XCTAssert(result == .completed, "waitForElementToAppear failed for \(element.label) ")
-
+        XCTAssertTrue(element.waitForExistence(timeout: timeout), "waitForElementToAppear failed for \(element.label) ")
         return element
     }
 
@@ -88,9 +80,9 @@ extension XCTestCase {
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
 
         app.tap()
-        app.navigationBars.buttons[kLocalizedLooks].tap()
+        app.navigationBars.buttons[kLocalizedBack].tap()
 
-        waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode]).buttons[kLocalizedYes].tap()
+        waitForElementToAppear(app.sheets.firstMatch).buttons[kLocalizedSaveChanges].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[kLocalizedPocketCode]))
     }
 
@@ -104,12 +96,14 @@ extension XCTestCase {
         XCTAssertNotNil(app.staticTexts[kLocalizedScripts])
 
         waitForElementToAppear(app.toolbars.buttons[kLocalizedUserListAdd]).tap()
+
         findBrickSection(section, in: app)
 
         XCTAssertTrue(app.navigationBars[section].exists)
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[section]))
 
         for _ in 0..<maxPageLengthTries {
-            if let cell = findCell(with: labels, in: app.collectionViews.element(boundBy: 1)) {
+            if let cell = findCell(with: labels, in: app) {
                 cell.tap()
 
                 XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
@@ -120,41 +114,51 @@ extension XCTestCase {
     }
 
     func findBrickSection(_ name: String, in app: XCUIApplication) {
-        let maxTries = 8
-
-        for _ in 0..<maxTries {
-            if app.navigationBars[name].exists {
-                return
+        if (app.navigationBars[name]).exists {
+            return
+        } else if (app.navigationBars[kLocalizedCategories]).exists {
+            if let cell = findCell(with: [name], in: app) {
+                cell.tap()
             }
-            app.swipeLeft()
+            return
+        } else if (app.navigationBars.buttons[kLocalizedCategories]).exists {
+            app.navigationBars.buttons[kLocalizedCategories].tap()
+            if let cell = findCell(with: [name], in: app) {
+                cell.tap()
+            }
+            return
+        } else {
+            XCTFail("no valid View open")
         }
     }
 
-    func restoreDefaultProject() {
-        let app = XCUIApplication()
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
-        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
-        let toolbarsQuery = app.toolbars
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
-        XCTAssert(app.tables.cells.count == 1)
-        // finally go back to main menu, because this method is used by other tests
-        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+    func tapOnVariablePicker(of brick: String, in app: XCUIApplication) {
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick)
+            .children(matching: .other).element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelVariable + "'")).tap()
     }
 
-    func dismissPrivacyPolicyScreenIfShown() {
-        let app = XCUIApplication()
+    func tapOnMessagePicker(of brick: String, in app: XCUIApplication) {
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick)
+            .children(matching: .other).element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelMessage + "'")).tap()
+    }
 
-        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
-            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
-        }
+    func tapOnListPicker(of brick: String, in app: XCUIApplication) {
+        app.collectionViews.cells.otherElements.identifierTextBeginsWith(brick)
+            .children(matching: .other)
+            .element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelList + "'"))
+            .tap()
+    }
+
+    func tapOnBackgroundPicker(for brick: String, in app: XCUIApplication) {
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick)
+            .children(matching: .other)
+            .element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelBackground + "'"))
+            .tap()
     }
 
     private func findCell(with labels: [String], in collectionView: XCUIElement) -> XCUIElement? {
         for cellIndex in 0...collectionView.cells.count {
             let cell = collectionView.cells.element(boundBy: cellIndex)
-
             if cell.staticTexts.count >= labels.count {
                 var allLabelsPresent = true
 

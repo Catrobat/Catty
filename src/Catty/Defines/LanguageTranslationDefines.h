@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@
 #define kLocalizedUndoTypingDescription NSLocalizedString(@"Undo Typing?", @"Description text in alert view if user shakes the device")
 #define kLocalizedSelectAllItems NSLocalizedString(@"Select all", nil)
 #define kLocalizedUnselectAllItems NSLocalizedString(@"Unselect all", nil)
-#define kLocalizedSaveToPocketCode NSLocalizedString(@"Save to PocketCode", nil)
+#define kLocalizedSaveToPocketCode NSLocalizedString(@"Pocket Paint", nil)
 #define kLocalizedEditSounds NSLocalizedString(@"Edit sounds",@"Action sheet menu title")
 #define kLocalizedEditSound NSLocalizedString(@"Edit sound",@"Action sheet menu title")
 #define kLocalizedEditLooks NSLocalizedString(@"Edit looks", @"Action sheet menu title")
@@ -184,6 +184,7 @@
 #define kLocalizedCopy NSLocalizedString(@"Copy", nil)
 #define kLocalizedDeleteObjects NSLocalizedString(@"Delete actors or objects", nil)
 #define kLocalizedMoveObjects NSLocalizedString(@"Move actors or objects",nil)
+#define kLocalizedCopyObjects NSLocalizedString(@"Copy actors or objects",nil)
 #define kLocalizedDeleteProjects NSLocalizedString(@"Delete projects", nil)
 #define kLocalizedPocketCodeRecorder NSLocalizedString(@"Pocket Code Recorder", nil)
 #define kLocalizedOpen NSLocalizedString(@"Open", nil)
@@ -215,13 +216,18 @@
 #define kLocalizedNo NSLocalizedString(@"No", nil)
 #define kLocalizedDeleteProject NSLocalizedString(@"Delete project", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
+#define kLocalizedSaveChanges NSLocalizedString(@"Save changes", nil)
+#define kLocalizedDiscardChanges NSLocalizedString(@"Discard changes", nil)
 #define kLocalizedSaved NSLocalizedString(@"Saved", nil)
+#define kLocalizedProjectUploaded NSLocalizedString(@"Upload successful", nil)
+#define kLocalizedProjectUploadedBody NSLocalizedString(@"Your project was uploaded to the Catrobat community where others can use and download it.", nil)
 #define kLocalizedSaveError NSLocalizedString(@"Error saving file", nil)
 #define kLocalizedAuthor NSLocalizedString(@"Author", nil)
 #define kLocalizedDownloads NSLocalizedString(@"Downloads", nil)
 #define kLocalizedUploaded NSLocalizedString(@"Uploaded", nil)
 #define kLocalizedVersion NSLocalizedString(@"Version", nil)
 #define kLocalizedViews NSLocalizedString(@"Views", nil)
+#define kLocalizedView NSLocalizedString(@"View", nil)
 #define kLocalizedInformation NSLocalizedString(@"Information", nil)
 #define kLocalizedMeasure NSLocalizedString(@"Measure", nil)
 #define kLocalizedSize NSLocalizedString(@"Size", nil)
@@ -237,6 +243,8 @@
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
 #define kLocalizedPreview NSLocalizedString(@"Preview", nil)
 #define kLocalizedAxes NSLocalizedString(@"Axes", @"Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
+#define kLocalizedMaximize NSLocalizedString(@"Maximize", nil)
+#define kLocalizedMinimize NSLocalizedString(@"Minimize", nil)
 #define kLocalizedMostDownloaded NSLocalizedString(@"Most downloaded", nil)
 #define kLocalizedMostViewed NSLocalizedString(@"Most viewed", nil)
 #define kLocalizedNewest NSLocalizedString(@"Newest", nil)
@@ -244,6 +252,7 @@
 #define kLocalizedLists NSLocalizedString(@"Lists", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
 #define kLocalizedArduinoBricks NSLocalizedString(@"Arduino extension", nil)
+#define kLocalizedEmbroideryBricks NSLocalizedString(@"Embroidery extension", nil)
 #define kLocalizedSendCrashReports NSLocalizedString(@"Sending anonymous crash reports", nil)
 #define kLocalizedSendCrashReportsDescription NSLocalizedString(@"Allow the app to send crash reports automatically", nil)
 #define kLocalizedFrontCamera NSLocalizedString(@"Front camera", nil)
@@ -253,10 +262,11 @@
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
 #define kLocalizedReportProject NSLocalizedString(@"Report as inappropriate", nil)
+#define kLocalizedReportedProject NSLocalizedString(@"Your report was successfully sent!", nil)
+#define kLocalizedProjectNotReported NSLocalizedString(@"Error occurred while reporting the project. Please try again later.", nil)
 #define kLocalizedEnterReason NSLocalizedString(@"Enter a reason", nil)
 #define kLocalizedLoginToReport NSLocalizedString(@"Please log in to report this project as inappropriate", nil)
 #define kLocalizedName NSLocalizedString(@"Name", nil)
-#define kLocalizedDownloaded NSLocalizedString(@"Download successful", nil)
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)
 #define kLocalizedOff NSLocalizedString(@"off", nil)
 #define kLocalizedOn NSLocalizedString(@"on", nil)
@@ -274,6 +284,7 @@
 #define kLocalizedNoDescriptionAvailable NSLocalizedString(@"No description available", nil)
 #define kLocalizedNoSearchResults NSLocalizedString(@"No search results", nil)
 #define kLocalizedUnableToLoadProject NSLocalizedString(@"Unable to load project!", nil)
+#define kLocalizedUnableToImportProject NSLocalizedString(@"Unable to import project!", nil)
 #define kLocalizedThisActionCannotBeUndone NSLocalizedString(@"This action can not be undone!", nil)
 #define kLocalizedErrorInternetConnection NSLocalizedString(@"An unknown error occurred. Check your Internet connection.", nil)
 #define kLocalizedErrorUnknown NSLocalizedString(@"An unknown error occurred. Please try again later.", nil)
@@ -285,6 +296,7 @@
 #define kLocalizedDisconnectBluetoothDevices NSLocalizedString(@"All Bluetooth devices successfully disconnected", nil)
 #define kLocalizedRemovedKnownBluetoothDevices NSLocalizedString(@"All known Bluetooth devices successfully removed", nil)
 #define kLocalizedArduinoBricksDescription NSLocalizedString(@"Allow the app to control Arduino boards", nil)
+#define kLocalizedEmbroideryBricksDescription NSLocalizedString(@"Create patterns for stiching machines", nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -292,8 +304,6 @@
 
 #define kLocalizedAboutPocketCodeDescription NSLocalizedString(@"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:", nil)
 #define kLocalizedTermsOfUseDescription NSLocalizedString(@"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", nil)
-#define kLocalizedNotEnoughFreeMemoryDescription NSLocalizedString(@"Not enough free memory to download this project. Please delete some of your projects", nil)
-#define kLocalizedProjectNotFound NSLocalizedString(@"The requested project can not be found. Please choose a different one.", nil)
 #define kLocalizedInvalidZip NSLocalizedString(@"The requested project can not be loaded. Please try again later.", nil)
 #define kLocalizedEnterYourProjectNameHere NSLocalizedString(@"Enter your project name here...", @"Placeholder for project-name input field")
 #define kLocalizedEnterNameForImportedProjectTitle NSLocalizedString(@"Import File", @"Title of prompt shown when a *.catrobat file is imported from a third-party app.")
@@ -329,6 +339,9 @@
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
+
+// embroidery bricks
+#define kLocalizedStitch NSLocalizedString(@"Stitch", nil)
 
 // control bricks
 #define kLocalizedScript NSLocalizedString(@"Script", nil)
@@ -394,6 +407,7 @@
 #define kLocalizedLook NSLocalizedString(@"Look", nil)
 #define kLocalizedSetLook NSLocalizedString(@"Switch to look", nil)
 #define kLocalizedSetBackground NSLocalizedString(@"Set background", nil)
+#define kLocalizedSetBackgroundAndWait NSLocalizedString(@"Set background and wait", nil)
 #define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
 #define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
 #define kLocalizedPreviousLook NSLocalizedString(@"Previous look", nil)
@@ -421,6 +435,8 @@
 #define kLocalizedAndStoreWrittenAnswerIn NSLocalizedString(@"and store written answer in ", nil)
 #define kLocalizedDefaultAskBrickQuestion NSLocalizedString(@"What's your name?", nil)
 #define kLocalizedAskBrickAnswer NSLocalizedString(@"Your answer", nil)
+#define kLocalizedSwitchToLookWithNumber NSLocalizedString(@"Switch to look with number", nil)
+#define kLocalizedSetBackgroundByIndex NSLocalizedString(@"Set background to number", nil)
 
 // pen bricks
 #define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)
@@ -440,6 +456,8 @@
 #define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeBy NSLocalizedString(@"Change volume by", nil)
+#define kLocalizedSetInstrumentTo NSLocalizedString(@"Set Instrument to", nil)
+#define kLocalizedSetTempoTo NSLocalizedString(@"Set tempo to", nil)
 #define kLocalizedSay NSLocalizedString(@"Say", nil)
 #define kLocalizedThink NSLocalizedString(@"Think", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
@@ -451,6 +469,8 @@
 #define kLocalizedShowVariable NSLocalizedString(@"Show variable", nil)
 #define kLocalizedHideVariable NSLocalizedString(@"Hide variable", nil)
 #define kLocalizedAt NSLocalizedString(@"at ", nil)
+#define kLocalizedSendWebRequestTo NSLocalizedString(@"Send web request to", nil)
+#define kLocalizedAndStoreAnswerIn NSLocalizedString(@"and store answer in", nil)
 
 //userlist
 #define kLocalizedUserListAdd NSLocalizedString(@"Add", nil)
@@ -552,7 +572,7 @@
 #define kLocalizedPaintZoom NSLocalizedString(@"Zoom", @"paint")
 #define kLocalizedPaintPointer NSLocalizedString(@"Pointer", @"paint")
 #define kLocalizedPaintTextTool NSLocalizedString(@"Text", @"paint")
-#define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", @"paint")
+#define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save your changes?", @"paint")
 #define kLocalizedPaintMenuButtonTitle NSLocalizedString(@"Menu", @"paint")
 #define kLocalizedPaintSelect NSLocalizedString(@"Select option:", @"paint")
 #define kLocalizedPaintSave NSLocalizedString(@"Save to Photos", @"paint")
@@ -577,6 +597,7 @@
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************
 
+#define kUIFormulaEditorTitle NSLocalizedString(@"Formula Editor", nil)
 #define kUIActionSheetTitleSelectLogicalOperator NSLocalizedString(@"Select logical operator", nil)
 #define kUIActionSheetTitleSelectMathematicalFunction NSLocalizedString(@"Select mathematical function", nil)
 #define kUIFENumbers NSLocalizedString(@"Numbers", nil)
@@ -584,11 +605,12 @@
 #define kUIFEVar NSLocalizedString(@"New", nil)
 #define kUIFETake NSLocalizedString(@"Choose", nil)
 #define kUIFEDelete NSLocalizedString(@"Delete", nil)
-#define kUIFEMath NSLocalizedString(@"Math", nil)
+#define kUIFEFunctions NSLocalizedString(@"Functions", nil)
 #define kUIFEObject NSLocalizedString(@"Object", nil)
 #define kUIFESensor NSLocalizedString(@"Sensors", nil)
 #define kUIFEVariable NSLocalizedString(@"Variables", nil)
-#define kUIFEVariableList NSLocalizedString(@"Var/List", nil)
+#define kUIFEData NSLocalizedString(@"Data", nil)
+#define kUIFEProperties NSLocalizedString(@"Properties", nil)
 #define kUIFECompute NSLocalizedString(@"Compute", nil)
 #define kUIFEDone NSLocalizedString(@"Done", nil)
 #define kUIFEError NSLocalizedString(@"Error", nil)
@@ -605,11 +627,23 @@
 #define kUIFEListName NSLocalizedString(@"List name:", nil)
 #define kUIFEOtherName NSLocalizedString(@"Please choose another name:", nil)
 #define kUIFEAddNewText NSLocalizedString(@"Abc", nil)
+#define kUIFEProjectVariables NSLocalizedString(@"Variables for all actors and objects", nil)
+#define kUIFEObjectVariables NSLocalizedString(@"Variables for this actor or object only", nil)
+#define kUIFEProjectLists NSLocalizedString(@"Lists for all actors and objects", nil)
+#define kUIFEObjectLists NSLocalizedString(@"Lists for this actor or object only", nil)
+#define kUIFESubsectionMaths NSLocalizedString(@"Maths", nil)
+#define kUIFESubsectionTexts NSLocalizedString(@"Text", nil)
+#define kUIFESubsectionLists NSLocalizedString(@"Lists", nil)
+#define kUIFESubsectionLogical NSLocalizedString(@"Logical (Boolean) operators and constants", nil)
+#define kUIFESubsectionComprison NSLocalizedString(@"Comparison operators", nil)
+#define kUIFESubsectionDeviceSensors NSLocalizedString(@"Device sensors", nil)
+#define kUIFESubsectionTouchDetection NSLocalizedString(@"Touch detection", nil)
+#define kUIFESubsectionVisualSensors NSLocalizedString(@"Visual sensors", nil)
+#define kUIFESubsectionDataAndTime NSLocalizedString(@"Date and time", nil)
+#define kUIFESubsectionGeneral NSLocalizedString(@"General properties", nil)
+#define kUIFESubsectionMotion NSLocalizedString(@"Motion properties", nil)
+#define kUIFEAddVariablesAndLists NSLocalizedString(@"Tap \"+\" to add variables and lists", nil)
 
-#define kUIFEProjectVars NSLocalizedString(@"Project variables:", nil)
-#define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
-#define kUIFEProjectLists NSLocalizedString(@"Project lists:", nil)
-#define kUIFEObjectLists NSLocalizedString(@"Object lists:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
 #define kUIFEDeleteListBeingUsed NSLocalizedString(@"This list can not be deleted because it is still in use.", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
@@ -623,14 +657,34 @@
 
 #define kUIFEVarOrList NSLocalizedString(@"Variable or list", nil)
 
-#define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
+#define kUIFEFunctionSine NSLocalizedString(@"sine", nil)
+#define kUIFEFunctionCosine NSLocalizedString(@"cosine", nil)
+#define kUIFEFunctionTan NSLocalizedString(@"tangent", nil)
+#define kUIFEFunctionPower NSLocalizedString(@"power", nil)
+#define kUIFEFunctionLn NSLocalizedString(@"natural logarithm", nil)
+#define kUIFEFunctionLog NSLocalizedString(@"decimal logarithm", nil)
+#define kUIFEFunctionPi NSLocalizedString(@"pi", nil)
+#define kUIFEFunctionMod NSLocalizedString(@"modulo", nil)
+#define kUIFEFunctionAbs NSLocalizedString(@"absolute value", nil)
+#define kUIFEFunctionAsin NSLocalizedString(@"arcsine", nil)
+#define kUIFEFunctionAcos NSLocalizedString(@"arccosine", nil)
+#define kUIFEFunctionAtan NSLocalizedString(@"arctangent", nil)
+#define kUIFEFunctionExp NSLocalizedString(@"exponent", nil)
+#define kUIFEFunctionMax NSLocalizedString(@"maximum of", nil)
+#define kUIFEFunctionMin NSLocalizedString(@"minimum of", nil)
+#define kUIFEFunctionRound NSLocalizedString(@"round", nil)
+#define kUIFEFunctionRand NSLocalizedString(@"random value from to", nil)
+#define kUIFEFunctionItem NSLocalizedString(@"item", nil)
+#define kUIFEFunctionRegularExpression NSLocalizedString(@"regular expression", nil)
+
+#define kUIFEFunctionSqrt NSLocalizedString(@"square root", nil)
 #define kUIFEFunctionTrue NSLocalizedString(@"true", nil)
 #define kUIFEFunctionFalse NSLocalizedString(@"false", nil)
 #define kUIFEFunctionLetter NSLocalizedString(@"letter", nil)
 #define kUIFEFunctionJoin NSLocalizedString(@"join", nil)
 #define kUIFEFunctionLength NSLocalizedString(@"length", nil)
 #define kUIFEFunctionFloor NSLocalizedString(@"floor", nil)
-#define kUIFEFunctionCeil NSLocalizedString(@"ceil", nil)
+#define kUIFEFunctionCeil NSLocalizedString(@"ceiling", nil)
 #define kUIFEFunctionNumberOfItems NSLocalizedString(@"number of items", nil)
 #define kUIFEFunctionElement NSLocalizedString(@"element", nil)
 #define kUIFEFunctionContains NSLocalizedString(@"contains", nil)
@@ -699,6 +753,7 @@
 #define kLocalizedVibration NSLocalizedString(@"vibration", nil)
 #define kLocalizedSensorLoudness NSLocalizedString(@"loudness", nil)
 #define kLocalizedSensorLED NSLocalizedString(@"LED", nil)
+#define kLocalizedInternet NSLocalizedString(@"Internet", nil)
 #define kLocalizedNotAvailable NSLocalizedString(@"not available. Continue anyway?", nil)
 
 #define kUIFESensorFaceDetected NSLocalizedString(@"face detected", nil)
@@ -715,15 +770,17 @@
 //************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
-#define kLocalizedCategoryFrequentlyUsed NSLocalizedString(@"Frequently used", @"Title of View where the user can see the frequently used bricks.")
+#define kLocalizedCategoryRecentlyUsed NSLocalizedString(@"Recently used", @"Title of brick category where the user can see his or her recently used bricks.")
+#define kLocalizedCategoryEvent NSLocalizedString(@"Event", nil)
 #define kLocalizedCategoryControl NSLocalizedString(@"Control", nil)
 #define kLocalizedCategoryMotion NSLocalizedString(@"Motion", nil)
 #define kLocalizedCategoryLook NSLocalizedString(@"Look", nil)
 #define kLocalizedCategorySound NSLocalizedString(@"Sound", nil)
-#define kLocalizedCategoryVariable NSLocalizedString(@"Variable", nil)
+#define kLocalizedCategoryData NSLocalizedString(@"Data", nil)
 #define kLocalizedCategoryArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedCategoryPen NSLocalizedString(@"Pen", nil)
+#define kLocalizedCategoryEmbroidery NSLocalizedString(@"Embroidery", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
@@ -789,7 +846,33 @@
 #define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
 #define kLocalizedUnexpectedErrorTitle NSLocalizedString(@"Unexpected Error", nil)
 #define kLocalizedUnexpectedErrorMessage NSLocalizedString(@"Unexpected Error, please try again later.", nil)
+#define kLocalizedDownloadSizeErrorMessage NSLocalizedString(@"Download too big", nil)
 
+//************************************************************************************************************
+//**************************************       Audio Engine        *********************************************
+//************************************************************************************************************
+
+#define kLocalizedPiano NSLocalizedString(@"Piano", nil)
+#define kLocalizedElectricPiano NSLocalizedString(@"Electric Piano", nil)
+#define kLocalizedCello NSLocalizedString(@"Cello", nil)
+#define kLocalizedFlute NSLocalizedString(@"Flute", nil)
+#define kLocalizedVibraphone NSLocalizedString(@"Vibraphone", nil)
+#define kLocalizedOrgan NSLocalizedString(@"Organ", nil)
+#define kLocalizedGuitar NSLocalizedString(@"Guitar", nil)
+#define kLocalizedElectricGuitar NSLocalizedString(@"Electric Guitar", nil)
+#define kLocalizedBass NSLocalizedString(@"Bass", nil)
+#define kLocalizedPizzicato NSLocalizedString(@"Pizzicato", nil)
+#define kLocalizedSynthPad NSLocalizedString(@"Synth Pad", nil)
+#define kLocalizedChoir NSLocalizedString(@"Choir", nil)
+#define kLocalizedSynthLead NSLocalizedString(@"Synth Lead", nil)
+#define kLocalizedWoodenFlute NSLocalizedString(@"Wooden Flute", nil)
+#define kLocalizedTrombone NSLocalizedString(@"Trombone", nil)
+#define kLocalizedSaxophone NSLocalizedString(@"Saxophone", nil)
+#define kLocalizedBassoon NSLocalizedString(@"Bassoon", nil)
+#define kLocalizedClarinet NSLocalizedString(@"Clarinet", nil)
+#define kLocalizedMusicBox NSLocalizedString(@"Music Box", nil)
+#define kLocalizedSteelDrum NSLocalizedString(@"Steel Drum", nil)
+#define kLocalizedMarimba NSLocalizedString(@"Marimba", nil)
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************

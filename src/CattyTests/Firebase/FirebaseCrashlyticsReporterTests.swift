@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        crashlytics = CrashlyticsMock(collectionEnabled: false)
+        crashlytics = CrashlyticsMock.create(collectionEnabled: false)
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
         reporter = FirebaseCrashlyticsReporter(crashlytics: crashlytics!)
     }
@@ -46,7 +46,7 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
     func testSetupCrashReportsDisabled() {
         UserDefaults.standard.set(false, forKey: kFirebaseSendCrashReports)
 
-        crashlytics = CrashlyticsMock(collectionEnabled: false)
+        crashlytics = CrashlyticsMock.create(collectionEnabled: false)
         _ = FirebaseCrashlyticsReporter(crashlytics: crashlytics!)
         XCTAssertFalse(crashlytics!.isCrashlyticsCollectionEnabled())
     }
@@ -247,5 +247,16 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
         XCTAssertEqual(1, crashlytics!.records.count)
         XCTAssertEqual(error.domain, (crashlytics!.records.first as NSError?)?.domain)
         XCTAssertEqual(error.userInfo as NSDictionary, (crashlytics!.records.first! as NSError).userInfo as NSDictionary)
+    }
+
+    func testFormulaSavedNotification() {
+        let formula = Formula(string: "1234")!
+
+        XCTAssertEqual(0, crashlytics!.logs.count)
+
+        NotificationCenter.default.post(name: .formulaSaved, object: formula)
+
+        XCTAssertEqual(1, crashlytics!.logs.count)
+        XCTAssertTrue(crashlytics!.logs.first!.contains(formula.getDisplayString()))
     }
 }

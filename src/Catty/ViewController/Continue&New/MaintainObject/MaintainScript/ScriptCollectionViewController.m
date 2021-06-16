@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,6 @@
 #import "StartScript.h"
 #import "CatrobatReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
-#import "BrickTransition.h"
 #import "PlaceHolderView.h"
 #import "BroadcastScriptCell.h"
 #import "LoopBeginBrick.h"
@@ -36,7 +35,6 @@
 #import "IfLogicEndBrick.h"
 #import "BrickCellFormulaData.h"
 #import "NoteBrick.h"
-#import "BrickSelectionViewController.h"
 #import "BrickLookProtocol.h"
 #import "BrickSoundProtocol.h"
 #import "BrickObjectProtocol.h"
@@ -55,8 +53,6 @@
 #import "SoundsTableViewController.h"
 #import "SceneTableViewController.h"
 #import "ViewControllerDefines.h"
-#import "Look.h"
-#import "Sound.h"
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
 #import "OrderedMapTable.h"
@@ -80,18 +76,15 @@
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
-                                             UIViewControllerTransitioningDelegate,
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
                                              UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic, assign) BOOL batchUpdateMutex;
-@property (nonatomic, strong) BrickCategory *lastSelectedCategory;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
@@ -157,47 +150,14 @@
 
 - (void)showBrickPickerAction:(id)sender
 {
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-
-        BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
-                                              initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                              navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                              options:@{
-                                                        UIPageViewControllerOptionInterPageSpacingKey : @20.f
-                                                        }];
-        BrickCategory *selectedCategory = self.lastSelectedCategory == nil ? [bsvc.categories firstObject] : self.lastSelectedCategory;
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:selectedCategory andObject:self.object];
-        bcvc.delegate = self;
+    if ([sender isKindOfClass:[UIBarButtonItem class]])
+    {
+        BrickCategoryOverviewController *bcoc = [[BrickCategoryOverviewController alloc] init:self];
         
-        [bsvc setViewControllers:@[bcvc]
-                       direction:UIPageViewControllerNavigationDirectionForward
-                        animated:NO
-                      completion:NULL];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bcoc];
         
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bsvc];
         [self presentViewController:navController animated:YES completion:NULL];
     }
-}
-
-#pragma mark - UIViewControllerAnimatedTransitioning delegate
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController*)presented
-                                                                  presentingController:(UIViewController*)presenting
-                                                                      sourceController:(UIViewController*)source
-{
-    if ([presented isKindOfClass:[FormulaEditorViewController class]]) {
-        self.brickScaleTransition.transitionMode = TransitionModePresent;
-        return self.brickScaleTransition;
-    }
-    return nil;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController*)dismissed
-{
-    if ([dismissed isKindOfClass:[FormulaEditorViewController class]]) {
-        self.brickScaleTransition.transitionMode = TransitionModeDismiss;
-        return self.brickScaleTransition;
-    }
-    return nil;
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView
@@ -222,7 +182,7 @@
                         layout:(UICollectionViewLayout*)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+    return UIEdgeInsetsMake(UIDefines.brickCategorySectionInset, 0.0f, UIDefines.brickCategorySectionInset, 0.0f);
 }
 
 - (CGFloat)collectionView:(UICollectionView*)collectionView
@@ -519,6 +479,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        Brick *brick;
+        
+        if (indexPath.item != 0) {
+            brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        }
+        return (script.animateInsertBrick || brick.animateMoveBrick || brick.animateInsertBrick);
+    }
     BOOL editable = ((self.isEditing || indexPath.item == 0) ? NO : YES);
     return ((editable || [[BrickInsertManager sharedInstance] isBrickInsertionMode]) ? YES : editable);
 }
@@ -623,7 +592,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self dismissViewControllerAnimated:YES completion:NULL];
     scriptOrBrick = [scriptOrBrick mutableCopyWithContext:[CBMutableCopyContext new]];
     [scriptOrBrick setDefaultValuesForObject:self.object];
-    self.lastSelectedCategory = brickCategoryViewController.category;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
     BrickInsertManager* manager = [BrickInsertManager sharedInstance];
@@ -714,7 +682,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     [self turnOnInsertingBrickMode];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.brickSelected object:scriptOrBrick];
 }
 
 
@@ -744,15 +711,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (self.isEditingBrickMode && event) {
         return;
     }
-    if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
-        FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-        BOOL forceChange = NO;
-        if (event != nil && ((UITouch*)[[event allTouches] anyObject]).tapCount == 2)
-            forceChange = YES;
-        [formulaEditorViewController changeBrickCellFormulaData:formulaData andForce:forceChange];
-        return;
-    }
-
+    
     // Check if already presenting a view controller.
     if (self.presentedViewController.isViewLoaded && self.presentedViewController.view.window) {
         [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
@@ -760,13 +719,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaData:formulaData andFormulaManager:self.formulaManager];
     formulaEditorViewController.object = self.object;
-    formulaEditorViewController.transitioningDelegate = self;
-    formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
+    
+    if (@available(iOS 13.0, *)) {
+        formulaEditorViewController.modalInPresentation = true;
+    } else {
+        formulaEditorViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
 
-    [self.brickScaleTransition updateAnimationViewWithView:formulaData.brickCell];
-    [self presentViewController:formulaEditorViewController animated:YES completion:^{
-        [formulaEditorViewController setBrickCellFormulaData:formulaData];
-    }];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:formulaEditorViewController];
+    [self presentViewController:navController animated:YES completion:NULL];
 }
 
 #pragma mark - Helpers
@@ -1057,7 +1018,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
     self.navigationItem.rightBarButtonItem = deleteButton;
     [self changeDeleteBarButtonState];
-    self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     [[BrickSelectionManager sharedInstance] reset];
     
     NSArray *allBricks = [[CatrobatSetup class] registeredBricks];
@@ -1066,7 +1026,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.collectionView registerClass:brickCell forCellWithReuseIdentifier:NSStringFromClass([brick class])];
     }
 }
-
 
 #pragma mark - BrickCellData Delegate
 - (void)addMessageWithName:(NSString*)messageName andCompletion:(id)completion
@@ -1169,7 +1128,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else
     if ([brickCellData isKindOfClass:[BrickCellFormulaData class]] && [brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)value forLineNumber:line andParameterNumber:parameter];
-        [self.object.scene.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:NO];
+        [self reloadData];
         return;
     } else
     if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {

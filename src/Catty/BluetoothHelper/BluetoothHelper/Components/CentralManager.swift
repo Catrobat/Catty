@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ import UIKit
 
     private let cbCentralManager: CBCentralManager
 
-    internal var ownPeripherals   = [CBPeripheral: Peripheral]()
+    internal var ownPeripherals = [CBPeripheral: Peripheral]()
 
     @objc open class var sharedInstance: CentralManager {
         self.instance = self.instance ?? CentralManager()
@@ -113,18 +113,14 @@ import UIKit
 
     // MARK: CBCentralManagerDelegate
     open func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        NSLog("peripheral: \(String(describing: peripheral.name))")
         guard let ownPeripheral = self.ownPeripherals[peripheral] else {
-            NSLog("error")
             return
         }
         ownPeripheral.didConnectPeripheral()
     }
 
     open func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        NSLog("peripheral: \(String(describing: peripheral.name))")
         guard let ownPeripheral = self.self.ownPeripherals[peripheral] else {
-            NSLog("error")
             return
         }
         ownPeripheral.didDisconnectPeripheral()
@@ -134,7 +130,6 @@ import UIKit
         if self.ownPeripherals[peripheral] == nil {
 
             let ownPeripheral = Peripheral(cbPeripheral: peripheral, advertisements: self.unpackAdvertisements(advertisementData as [String: AnyObject]), rssi: RSSI.intValue)
-            NSLog("peripheral: \(ownPeripheral.name)")
             self.ownPeripherals[peripheral] = ownPeripheral
             self.helper.didDiscoverPeripheral(ownPeripheral)
         }
@@ -142,7 +137,6 @@ import UIKit
 
     open func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         guard let bcPeripheral = self.ownPeripherals[peripheral] else {
-            NSLog("error")
             return
         }
         bcPeripheral.didFailToConnectPeripheral(error as NSError?)
@@ -257,7 +251,7 @@ import UIKit
 
 // MARK: Helper
 open class CentralManagerHelper<CM> where CM: CMWrapper,
-CM.PeripheralWrap: PeripheralWrapper {
+                                          CM.PeripheralWrap: PeripheralWrapper {
 
     private var afterStartingPromise = Promise<Void>()
     private var afterStoppingPromise = Promise<Void>()
@@ -278,7 +272,6 @@ CM.PeripheralWrap: PeripheralWrapper {
 
     open func startScanningForServiceUUIDs(_ central: CM, uuids: [CBUUID]!, capacity: Int? = nil) -> FutureStream<CM.PeripheralWrap> {
         if !self._isScanning {
-            NSLog("UUIDs \(String(describing: uuids))")
             if let capacity = capacity {
                 self.afterPeripheralDiscoveredPromise = StreamPromise<CM.PeripheralWrap>(capacity: capacity)
             } else {
@@ -338,25 +331,18 @@ CM.PeripheralWrap: PeripheralWrapper {
     // MARK: State
     open func didUpdateState(_ central: CM) {
         switch central.state {
-        case .unauthorized:
-            NSLog("Unauthorized")
-        case .unknown:
-            NSLog("Unknown")
-        case .unsupported:
-            NSLog("Unsupported")
-        case .resetting:
-            NSLog("Resetting")
         case .poweredOff:
-            NSLog("PoweredOff")
             if !self.afterStoppingPromise.completed {
                 self.afterStoppingPromise.success(())
             }
         case .poweredOn:
-            NSLog("PoweredOn")
             if !self.afterStartingPromise.completed {
                 self.afterStartingPromise.success(())
             }
+        default:
+            return
         }
+
     }
 
     // MARK: did discover Peripheral

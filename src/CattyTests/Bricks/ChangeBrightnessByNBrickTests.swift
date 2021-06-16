@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
         let imageData = UIImage(contentsOfFile: filePath!)!.pngData()
-        let look = Look(name: "test", andPath: "test.png")
+        let look = Look(name: "test", filePath: "test.png")
 
         do {
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
@@ -54,8 +54,8 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
             XCTFail("Error when writing image data")
         }
 
-        object.lookList.add(look!)
-        object.lookList.add(look!)
+        object.lookList.add(look)
+        object.lookList.add(look)
         object.spriteNode.currentLook = look
         object.spriteNode.currentUIImageLook = UIImage(contentsOfFile: filePath!)
 
@@ -116,14 +116,14 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
         XCTAssertFalse(brick === copiedBrick)
 
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: copiedBrick.changeBrightness))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: copiedBrick.changeBrightness))
         XCTAssertFalse(brick.changeBrightness === copiedBrick.changeBrightness)
 
         brick.changeBrightness = Formula(integer: 50)
 
         copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeBrightnessByNBrick
 
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: copiedBrick.changeBrightness))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: copiedBrick.changeBrightness))
         XCTAssertFalse(brick.changeBrightness === copiedBrick.changeBrightness)
     }
 
@@ -131,15 +131,15 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         brick.changeBrightness = Formula(integer: 1)
         var formulas = brick.getFormulas()
 
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: formulas?[0]))
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: Formula(integer: 1)))
-        XCTAssertFalse(brick.changeBrightness.isEqual(to: Formula(integer: -22)))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: Formula(integer: 1)))
+        XCTAssertFalse(brick.changeBrightness!.isEqual(to: Formula(integer: -22)))
 
         brick.changeBrightness = Formula(integer: -22)
         formulas = brick.getFormulas()
 
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: formulas?[0]))
-        XCTAssertTrue(brick.changeBrightness.isEqual(to: Formula(integer: -22)))
-        XCTAssertFalse(brick.changeBrightness.isEqual(to: Formula(integer: 1)))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeBrightness!.isEqual(to: Formula(integer: -22)))
+        XCTAssertFalse(brick.changeBrightness!.isEqual(to: Formula(integer: 1)))
     }
 }

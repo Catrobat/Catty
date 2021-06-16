@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -76,5 +76,17 @@ final class TurnLeftBrickTests: AbstractBrickTest {
         formulas = brick.getFormulas()
 
         XCTAssertEqual(brick.degrees, formulas?[0])
+    }
+
+    func testMutableCopy() {
+        let brick = TurnLeftBrick()
+        brick.degrees = Formula(double: 2)
+
+        let copiedBrick: TurnLeftBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! TurnLeftBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.degrees.isEqual(to: copiedBrick.degrees))
+        XCTAssertFalse(brick.degrees === copiedBrick.degrees)
     }
 }

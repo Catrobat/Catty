@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -154,5 +154,22 @@ final class AudioEngineTests: XCTestCase {
         audioSubtree2.audioPlayerCache.setObject(player3, forKey: "player3")
         audioEngine.subtrees["object1"] = audioSubtree1
         audioEngine.subtrees["object2"] = audioSubtree2
+    }
+
+    func testSetTempo() {
+        let minTempo = 20
+        let maxTempo = 500
+
+        var tempo = 5
+        audioEngine.setTempo(tempo: tempo)
+        XCTAssertEqual(minTempo, audioEngine.tempo)
+
+        tempo = 700
+        audioEngine.setTempo(tempo: tempo)
+        XCTAssertEqual(maxTempo, audioEngine.tempo)
+
+        tempo = 400
+        audioEngine.setTempo(tempo: tempo)
+        XCTAssertEqual(tempo, audioEngine.tempo)
     }
 }

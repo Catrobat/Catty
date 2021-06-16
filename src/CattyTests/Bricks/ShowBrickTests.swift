@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -46,5 +46,14 @@ final class ShowBrickTests: AbstractBrickTest {
         action()
 
         XCTAssertFalse(spriteNode.isHidden, "ShowBrick is not correctly calculated")
+    }
+
+    func testMutableCopy() {
+        let brick = ShowBrick()
+
+        let copiedBrick: ShowBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ShowBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
     }
 }

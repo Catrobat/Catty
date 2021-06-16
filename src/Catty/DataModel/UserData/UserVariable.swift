@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@
             variableLocker.lock()
             if let value = newValue as? NSString {
                 _value = value
-                textLabel?.text = value as String
+                textLabel?.text = truncateIfLengthExceeded(value: value as String)
             } else if let value = newValue as? NSNumber {
                 _value = value
                 textLabel?.text = value.stringValue
@@ -88,5 +88,13 @@
             textLabel?.text = (newValue as NSNumber).stringValue
         }
         variableLocker.unlock()
+    }
+
+    // Truncate to prevent MTLTextureDescriptor maximum allowed size error
+    func truncateIfLengthExceeded(value: String?) -> String? {
+        if let value = value, value.count > SpriteKitDefines.maxLengthSKLabelNode {
+            return value[..<String.Index(utf16Offset: SpriteKitDefines.maxLengthSKLabelNode, in: value)] + "..."
+        }
+        return value
     }
 }

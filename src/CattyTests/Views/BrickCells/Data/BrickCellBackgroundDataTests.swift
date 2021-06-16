@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,15 +41,15 @@ class BrickCellBackgroundDataTests: XCTestCase {
         backgroundObject = SpriteObject()
         backgroundObject.scene = scene
         backgroundObject.lookList = [
-            Look(name: "backgroundLookA", andPath: "path") as Any,
-            Look(name: "backgroundLookB", andPath: "path") as Any
+            Look(name: "backgroundLookA", filePath: "path") as Any,
+            Look(name: "backgroundLookB", filePath: "path") as Any
         ]
 
         scene.add(object: backgroundObject)
 
         spriteObject = SpriteObject()
         spriteObject.scene = scene
-        spriteObject.lookList = [ Look(name: "objectLook", andPath: "path") as Any ]
+        spriteObject.lookList = [ Look(name: "objectLook", filePath: "path") as Any ]
 
         scene.add(object: spriteObject)
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ class ListTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     private func createProjectAndAddAddToListBrick(name: String) {
@@ -36,20 +36,20 @@ class ListTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedUserListAdd, section: kLocalizedCategoryVariable, in: app)
+        addBrick(label: kLocalizedUserListAdd, section: kLocalizedCategoryData, in: app)
     }
 
     func testDontShowVListPickerWhenNoListsDefinedForObject() {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
+        tapOnListPicker(of: kLocalizedUserListAdd, in: app)
         XCTAssert(app.sheets[kUIFEActionList].exists)
     }
 
     func testCreateListWithMaxLength() {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
+        tapOnListPicker(of: kLocalizedUserListAdd, in: app)
         XCTAssert(app.sheets[kUIFEActionList].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
@@ -61,7 +61,7 @@ class ListTests: XCTestCase {
     func testCreateListWithMaxLengthPlusOne() {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
+        tapOnListPicker(of: kLocalizedUserListAdd, in: app)
         XCTAssert(app.sheets[kUIFEActionList].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
@@ -71,30 +71,7 @@ class ListTests: XCTestCase {
     }
 
     func testCreateAndSelectList() {
-        let listName = "TestList"
-
-        createProjectAndAddAddToListBrick(name: "Test Project")
-
-        app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
-
-        app.buttons[kLocalizedEditFormula].tap()
-        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
-
-        app.buttons[kUIFEVariableList].tap()
-        app.buttons[kLocalizedNew].tap()
-        waitForElementToAppear(app.buttons[kUIFENewList]).tap()
-        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
-
-        let alert = waitForElementToAppear(app.alerts[kUIFENewList])
-        alert.textFields.firstMatch.typeText(listName)
-        alert.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
-
-        XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + listName + "* "]).exists)
-    }
-
-    func testCreateVariableAndTapChooseButton() {
-        let listName = "TestList"
+        let testLists = ["testList1", "testList2"]
 
         createProjectAndAddAddToListBrick(name: "Test Project")
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
@@ -102,36 +79,9 @@ class ListTests: XCTestCase {
         app.buttons[kLocalizedEditFormula].tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons[kUIFEVariableList].tap()
-        app.buttons[kLocalizedNew].tap()
-        waitForElementToAppear(app.buttons[kUIFENewList]).tap()
-        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
-
-        let alert = waitForElementToAppear(app.alerts[kUIFENewList])
-        alert.textFields.firstMatch.typeText(listName)
-        alert.buttons[kLocalizedOK].tap()
-
-        app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
-        app.buttons["Lists"].tap()
-        app.buttons[kUIFETake].tap()
-        app.buttons[kUIFEDone].tap()
-
-        XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + listName + "* "]).exists)
-    }
-
-    func testCreateListAndTapSelectedRowInPickerView() {
-        let testLists = ["testList1", "testList2", "testList3"]
-
-        createProjectAndAddAddToListBrick(name: "Test Project")
-        app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
-
-        app.buttons[kLocalizedEditFormula].tap()
-        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
-
+        app.buttons[kUIFEData].tap()
         for variable in testLists {
-            app.buttons[kUIFEVariableList].tap()
-            app.buttons[kLocalizedNew].tap()
+            app.navigationBars.buttons[kLocalizedAdd].tap()
             waitForElementToAppear(app.buttons[kUIFENewList]).tap()
             waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
 
@@ -140,13 +90,8 @@ class ListTests: XCTestCase {
             alert.buttons[kLocalizedOK].tap()
         }
 
-        app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
-        app.buttons["Lists"].tap()
-        app.pickerWheels.element.adjust(toPickerWheelValue: testLists[2])
-        app.pickerWheels[testLists[2]].tap()
-
-        XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + testLists[2] + "* "]).exists)
+        app.tables.staticTexts[testLists[1]].tap()
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + testLists[1] + "* "]).exists)
     }
 
     func testEditMarkedTextListInFormularEditor() {
@@ -162,11 +107,11 @@ class ListTests: XCTestCase {
         let alert = waitForElementToAppear(app.alerts[kUIFENewText])
         alert.textFields.firstMatch.typeText(listName)
         app.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
 
         app.buttons[kLocalizedEditFormula].tap()
-        app.buttons[kUIFEAddNewText].tap()
+        waitForElementToAppear(app.buttons[kUIFEAddNewText]).tap()
         XCTAssertEqual(alert.textFields.firstMatch.value as! String, listName)
     }
 
@@ -183,12 +128,12 @@ class ListTests: XCTestCase {
         let newTextAlert = waitForElementToAppear(app.alerts[kUIFENewText])
         newTextAlert.textFields.firstMatch.typeText(listName)
         app.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
 
         app.buttons[kLocalizedEditFormula].tap()
-        app.buttons[kUIFEVariableList].tap()
-        app.buttons[kUIFEVar].tap()
+        waitForElementToAppear(app.buttons[kUIFEData]).tap()
+        waitForElementToAppear(app.navigationBars.buttons[kLocalizedAdd]).tap()
         waitForElementToAppear(app.buttons[kUIFENewList]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
         let newVarAlert = waitForElementToAppear(app.alerts[kUIFENewList])
@@ -196,7 +141,7 @@ class ListTests: XCTestCase {
     }
 
     func testDeleteListInFormulaEditor() {
-        let testLists = ["testList1", "testList2", "testList3"]
+        let testLists = ["testList1", "testList2"]
 
         createProjectAndAddAddToListBrick(name: "Test Project")
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
@@ -204,9 +149,10 @@ class ListTests: XCTestCase {
         app.buttons[kLocalizedEditFormula].tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
+        app.buttons[kUIFEData].tap()
+
         for variable in testLists {
-            app.buttons[kUIFEVariableList].tap()
-            app.buttons[kLocalizedNew].tap()
+            app.navigationBars.buttons[kLocalizedAdd].tap()
             waitForElementToAppear(app.buttons[kUIFENewList]).tap()
             waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
 
@@ -215,12 +161,12 @@ class ListTests: XCTestCase {
             alert.buttons[kLocalizedOK].tap()
         }
 
-        app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
-        app.buttons["Lists"].tap()
-        app.scrollViews.firstMatch.buttons["Delete"].tap()
-        app.buttons[kUIFETake].tap()
-        app.buttons[kUIFEDone].tap()
+        app.tables.staticTexts[testLists[0]].swipeLeft()
+        app.tables.buttons[kLocalizedDelete].tap()
+
+        XCTAssertTrue(app.tables.staticTexts[testLists[1]].exists)
+        XCTAssertFalse(app.tables.staticTexts[testLists[0]].exists)
+        app.tables.staticTexts[testLists[1]].tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + testLists[1] + "* "]).exists)
     }

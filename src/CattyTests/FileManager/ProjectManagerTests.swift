@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ final class ProjectManagerTests: XCTestCase {
 
     override func setUp() {
         imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [])
-        fileManager = CBFileManagerMock(imageCache: imageCache)
+        fileManager = CBFileManagerMock()
     }
 
     func testCreateProject() {
@@ -56,7 +56,7 @@ final class ProjectManagerTests: XCTestCase {
         XCTAssertFalse(fileManager.fileExists(automaticScreenshotPath))
         XCTAssertFalse(imageCache.cleared)
 
-        _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager)
+        _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager, imageCache: imageCache)
 
         XCTAssertTrue(fileManager.directoryExists(expectedProjectPath))
         XCTAssertTrue(fileManager.directoryExists(expectedImageDir))
@@ -90,7 +90,7 @@ final class ProjectManagerTests: XCTestCase {
             }
 
             let automaticScreenshotPath = info.basePath + kScreenshotAutoFilename
-            _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager)
+            _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager, imageCache: imageCache)
 
             let automaticScreenshot = fileManager.dataWritten[automaticScreenshotPath]
             XCTAssertTrue(projectIconImages.contains(automaticScreenshot!))
@@ -105,5 +105,231 @@ final class ProjectManagerTests: XCTestCase {
         }
 
         XCTAssertTrue(differentScreenshots)
+    }
+
+    func testLoadPreviewImageAndCacheWhenScreenshotCached() {
+        guard let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder) else {
+            XCTFail("ProjectLoadingInfo nil for the default project")
+            return
+        }
+
+        let screenshotPath = info.basePath + kScreenshotFilename
+        let screenshot = UIImage(color: UIColor.green)!
+
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [CachedImage(path: screenshotPath, image: screenshot, size: UIDefines.previewImageSize)])
+        let fileManager = CBFileManagerMock()
+
+        let expectation = XCTestExpectation(description: "Load image from cache - Screenshot")
+
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+            XCTAssertEqual(screenshotPath, path)
+            XCTAssertEqual(screenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenManualScreenshotCached() {
+        guard let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder) else {
+            XCTFail("ProjectLoadingInfo nil for the default project")
+            return
+        }
+
+        let manualScreenshotPath = info.basePath + kScreenshotManualFilename
+        let manualScreenshot = UIImage(color: UIColor.green)!
+
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [CachedImage(path: manualScreenshotPath, image: manualScreenshot, size: UIDefines.previewImageSize)])
+        let fileManager = CBFileManagerMock()
+
+        let expectation = XCTestExpectation(description: "Load image from cache - Manual Screenshot")
+
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+            XCTAssertEqual(manualScreenshotPath, path)
+            XCTAssertEqual(manualScreenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenAutomaticScreenshotCached() {
+        guard let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder) else {
+            XCTFail("ProjectLoadingInfo nil for the default project")
+            return
+        }
+
+        let automaticScreenshotPath = info.basePath + kScreenshotAutoFilename
+        let automaticScreenshot = UIImage(color: UIColor.blue)!
+
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [CachedImage(path: automaticScreenshotPath, image: automaticScreenshot, size: UIDefines.previewImageSize)])
+        let fileManager = CBFileManagerMock()
+
+        let expectation = XCTestExpectation(description: "Load image from cache - Automatic Screenshot")
+
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+            XCTAssertEqual(automaticScreenshotPath, path)
+            XCTAssertEqual(automaticScreenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenAutomaticScreenshotNotCached() {
+        guard let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder) else {
+            XCTFail("ProjectLoadingInfo nil for the default project")
+            return
+        }
+
+        let automaticScreenshotPath = info.basePath + kScreenshotAutoFilename
+        let automaticScreenshot = UIImage(color: UIColor.red)!
+
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [automaticScreenshotPath: automaticScreenshot], cachedImages: [])
+        let fileManager = CBFileManagerMock(filePath: [automaticScreenshotPath], directoryPath: [])
+
+        let expectation = XCTestExpectation(description: "Load image from disk - Automatic Screenshot")
+
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+            XCTAssertEqual(automaticScreenshotPath, path)
+            XCTAssertEqual(automaticScreenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenManualScreenshotNotCached() {
+        guard let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder) else {
+            XCTFail("ProjectLoadingInfo nil for the default project")
+            return
+        }
+
+        let manualScreenshotPath = info.basePath + kScreenshotManualFilename
+        let manualScreenshot = UIImage(color: UIColor.green)!
+
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [manualScreenshotPath: manualScreenshot], cachedImages: [])
+        let fileManager = CBFileManagerMock(filePath: [manualScreenshotPath], directoryPath: [])
+
+        let expectation = XCTestExpectation(description: "Load image from disk - Manual Screenshot")
+
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+            XCTAssertEqual(manualScreenshotPath, path)
+            XCTAssertEqual(manualScreenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenScreenshotNotCached() {
+        guard let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder) else {
+            XCTFail("ProjectLoadingInfo nil for the default project")
+            return
+        }
+
+        let screenshotPath = info.basePath + kScreenshotFilename
+        let screenshot = UIImage(color: UIColor.orange)!
+
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [screenshotPath: screenshot], cachedImages: [])
+        let fileManager = CBFileManagerMock(filePath: [screenshotPath], directoryPath: [])
+
+        let expectation = XCTestExpectation(description: "Load image from disk - Screenshot")
+
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+            XCTAssertEqual(screenshotPath, path)
+            XCTAssertEqual(screenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenNoScreenshotOnDisk() {
+        guard let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder) else {
+            XCTFail("ProjectLoadingInfo nil for the default project")
+            return
+        }
+
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [])
+        let fileManager = CBFileManagerMock()
+
+        let expectedImage = UIImage(named: "catrobat")
+
+        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+            XCTAssertEqual(expectedImage, image)
+            XCTAssertNil(path)
+        }
+        fileManager.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
+    }
+
+    func testProjectNamesForID() {
+        // TODO: Remove this once Project.allProjectLoadingInfos() has been moved to ProjectManager and can use CBFileManagerMock
+        let fileManager = CBFileManager.shared()!
+        for loadingInfo in Project.allProjectLoadingInfos() as! [ProjectLoadingInfo] {
+            fileManager.deleteDirectory(loadingInfo.basePath!)
+        }
+
+        var projectNames = ProjectManager.projectNames(for: "")
+        XCTAssertNil(projectNames)
+
+        projectNames = ProjectManager.projectNames(for: "invalid")
+        XCTAssertNil(projectNames)
+
+        let project = ProjectManager.createProject(name: "projectName", projectId: "1234", fileManager: fileManager, imageCache: imageCache)
+
+        projectNames = ProjectManager.projectNames(for: project.header.programID)
+        XCTAssertNotNil(projectNames)
+        XCTAssertEqual(1, projectNames?.count)
+        XCTAssertEqual(projectNames?.first!, project.header.programName)
+
+        let anotherProject = ProjectManager.createProject(name: project.header.programName + " (1)", projectId: project.header.programID, fileManager: fileManager, imageCache: imageCache)
+
+        projectNames = ProjectManager.projectNames(for: project.header.programID)
+        XCTAssertNotNil(projectNames)
+        XCTAssertEqual(2, projectNames?.count)
+
+        project.rename(toProjectName: project.header.programName, andProjectId: project.header.programID + "5", andShowSaveNotification: true)
+
+        projectNames = ProjectManager.projectNames(for: anotherProject.header.programID)
+        XCTAssertNotNil(projectNames)
+        XCTAssertEqual(1, projectNames?.count)
+        XCTAssertEqual(projectNames?.first!, anotherProject.header.programName)
+    }
+
+    func testAddProjectFromFileWithValidUrl() {
+        let bundle = Bundle.init(for: self.classForCoder)
+        guard let xmlPath = bundle.path(forResource: "817", ofType: "catrobat") else {
+            XCTAssertFalse(false)
+            return
+        }
+
+        let sumProjectNamesBefore = Project.allProjectNames().count
+
+        let project = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: xmlPath))
+        XCTAssertNotNil(project)
+
+        let sumProjectNamesAfter = Project.allProjectNames().count
+
+        XCTAssertEqual(sumProjectNamesBefore + 1, sumProjectNamesAfter)
+
+        XCTAssertTrue((Project.allProjectNames() as! [String]).contains("Tic-Tac-Toe Master"))
+    }
+
+    func testAddProjectFromFileWithInvalidUrl() {
+        let sumProjectNamesBefor = Project.allProjectNames().count
+
+        let project = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: "test"))
+        XCTAssertNil(project)
+
+        let sumProjectNamesAfter = Project.allProjectNames().count
+
+        XCTAssertEqual(sumProjectNamesBefor, sumProjectNamesAfter)
     }
 }

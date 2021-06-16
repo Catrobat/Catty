@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,8 @@
         return YES;
     }
     @catch (NSException *exception) {
-        *error = [[NSError alloc] initWithDomain:exception.name code:0 userInfo:exception.userInfo];
+        NSString *domain = [[NSString alloc] initWithFormat:@"%@ - %@", exception.name, exception.description];
+        *error = [[NSError alloc] initWithDomain:domain code:0 userInfo:exception.userInfo];
         return NO;
     }
 }

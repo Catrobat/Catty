@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
 #import "Project+CBXMLHandler.h"
-#import "Project+CustomExtensions.h"
 #import "CBXMLParserContext.h"
 #import "Util.h"
 #import "Pocket_Code-Swift.h"

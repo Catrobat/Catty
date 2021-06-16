@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -76,11 +76,16 @@
     }
     
     self.selectedRow = self.fontType;
-    
     self.toolBar.translucent = false;
+    
+    if (@available(iOS 13.0, *)) {
+        return;
+    }
+    
     CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
     statusBarView.backgroundColor  =  UIColor.navBar;
+    statusBarView.accessibilityLabel = UIDefines.iOS12OrLessAccessibilityLabel;
     [self.view addSubview:statusBarView];
 }
 

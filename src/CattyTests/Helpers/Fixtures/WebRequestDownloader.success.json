@@ -1,0 +1,52 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "body" : [
+          {
+            "id" : "61376",
+            "description" : "",
+            "private" : false,
+            "version" : "0.9.34",
+            "flavor" : "pocketcode",
+            "author" : "Mc-Game",
+            "screenshot_small" : "https:\/\/share.catrob.at\/resources\/thumbnails\/screen_61376.png?t=1598163717",
+            "download_url" : "https:\/\/share.catrob.at\/app\/download\/61376.catrobat",
+            "tags" : [
+              "Game"
+            ],
+            "filesize" : 0.093548774719238281,
+            "uploaded_string" : "more than one year ago",
+            "download" : 22,
+            "uploaded" : 1532523028,
+            "project_url" : "https:\/\/share.catrob.at\/app\/project\/61376",
+            "screenshot_large" : "https:\/\/share.catrob.at\/resources\/screenshots\/screen_61376.png?t=1598101012",
+            "name" : "Антистресс-Кораблик",
+            "views" : 8
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/share.catrob.at\/api\/projects?category=random&limit=1",
+        "headers" : {
+          "x-response-hash" : "a21cafb4c405e6997671a02e578b9b1e",
+          "Expires" : "-1",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Cache-Control" : "private, must-revalidate",
+          "x-openapi-message" : "OK",
+          "Content-Encoding" : "gzip",
+          "Pragma" : "no-cache",
+          "Date" : "Wed, 24 Feb 2021 10:05:56 GMT",
+          "Content-Type" : "application\/json",
+          "Server" : "nginx"
+        }
+      },
+      "request" : {
+        "url" : "https:\/\/share.catrob.at\/api\/projects?category=random&limit=1",
+        "method" : "GET"
+      },
+      "recorded_at" : 1614161156.393332
+    }
+  ],
+  "name" : "WebRequestDownloader.success"
+}
+

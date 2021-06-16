@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ final class ChangeColorByNBrickTests: AbstractBrickTest {
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
         let imageData = UIImage(contentsOfFile: filePath!)!.pngData()
-        let look = Look(name: "test", andPath: "test.png")
+        let look = Look(name: "test", filePath: "test.png")
 
         do {
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
@@ -54,8 +54,8 @@ final class ChangeColorByNBrickTests: AbstractBrickTest {
             XCTFail("Error when writing image data")
         }
 
-        object.lookList.add(look!)
-        object.lookList.add(look!)
+        object.lookList.add(look)
+        object.lookList.add(look)
         object.spriteNode.currentLook = look
         object.spriteNode.currentUIImageLook = UIImage(contentsOfFile: filePath!)
 

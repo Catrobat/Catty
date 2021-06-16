@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ class CreateProjectTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     func testCanCreateProjectWithDrawNewImage() {
@@ -63,9 +63,9 @@ class CreateProjectTests: XCTestCase {
         //Draw image
         app.tap()
 
-        app.navigationBars.buttons[kLocalizedBackgrounds].tap()
-        XCTAssert(app.alerts[kLocalizedSaveToPocketCode].exists)
-        app.alerts[kLocalizedSaveToPocketCode].buttons[kLocalizedYes].tap()
+        app.navigationBars.buttons[kLocalizedBack].tap()
+        XCTAssert(app.sheets.firstMatch.exists)
+        app.sheets.firstMatch.buttons[kLocalizedSaveChanges].tap()
 
         let addImageAlert = waitForElementToAppear(app.alerts[kLocalizedAddImage])
         addImageAlert.buttons[kLocalizedOK].tap()
@@ -78,7 +78,7 @@ class CreateProjectTests: XCTestCase {
         app.tables.staticTexts[testObject].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryControl, in: app)
+        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryEvent, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
 
         addBrick(label: kLocalizedSetLook, section: kLocalizedCategoryLook, in: app)
@@ -90,7 +90,7 @@ class CreateProjectTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryControl, in: app)
+        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryEvent, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
 
         addBrick(label: kLocalizedNextBackground, section: kLocalizedCategoryLook, in: app)

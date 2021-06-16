@@ -1,0 +1,34 @@
+{
+  "name" : "StoreProjectReporter.reportProject.unexpectedError",
+  "interactions" : [
+    {
+      "request" : {
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/reportProject\/reportProject.json",
+        "method" : "POST",
+        "body" : "cHJvZ3JhbT04MTcmbm90ZT1Ob3QgYXBwcm9wcmlhdGUgY29udGVudCZjYXRlZ29yeT1JbmFwcHJvcHJpYXRl",
+        "headers" : {
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98551263596598746108249098092---------------------------",
+          "Content-Length" : "63",
+          "Authorization" : "validToken"
+        }
+      },
+      "recorded_at" : 1601895610.8899698,
+      "response" : {
+        "status" : 404,
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/reportProject\/reportProject.json",
+        "headers" : {
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/f8100f",
+          "Content-Type" : "gzip",
+          "Set-Cookie" : "PHPSESSID=483tdulq4rhtviv557b0ei7546; path=\/",
+          "Expires" : "-1",
+          "Pragma" : "no-cache",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Server" : "nginx",
+          "Date" : "Sat, 10 Oct 2020 14:41:27 GMT",
+          "Cache-Control" : "private, must-revalidate"
+        }
+      }
+    }
+  ]
+}
+

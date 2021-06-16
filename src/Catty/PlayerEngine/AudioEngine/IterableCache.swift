@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ public class IterableCache<ObjectType: AnyObject>: NSObject, NSCacheDelegate {
     }
 
     func setObject(_ obj: ObjectType, forKey: String) {
-        _ = cacheQueue.sync {
+        cacheQueue.sync {
             cache.setObject(obj, forKey: forKey as NSString)
             keySet.insert(forKey)
         }
@@ -42,7 +42,7 @@ public class IterableCache<ObjectType: AnyObject>: NSObject, NSCacheDelegate {
 
     func object(forKey: String) -> ObjectType? {
         var object: ObjectType?
-        _ = cacheQueue.sync {
+        cacheQueue.sync {
             object = cache.object(forKey: forKey as NSString)
         }
         return object

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,6 @@
  */
 
 #import "SRViewController.h"
-#import "Sound.h"
 #import "UIDefines.h"
 #import "CBFileManager.h"
 #import "TimerLabel.h"
@@ -95,8 +94,7 @@
     CBFileManager *fileManager = [CBFileManager sharedManager];
     NSString *fileName =[[NSString uuid] stringByAppendingString:@".m4a"];
     self.filePath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, fileName];
-    self.sound = [[Sound alloc] init];
-    self.sound.fileName = fileName;
+    self.sound = [[Sound alloc] initWithName:fileName andFileName:fileName];
     NSURL* outputFileUrl = [NSURL fileURLWithPath:self.filePath isDirectory:NO];
     self.session = [AVAudioSession sharedInstance];
     NSError *err = NULL;

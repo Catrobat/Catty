@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -100,7 +100,6 @@ enum CBBroadcastType: String {
 }
 
 // MARK: - Protocol extensions
-// TODO: simplify and remove duplicate...
 extension Collection where Iterator.Element == CBScriptContextProtocol {
 
     func contains(_ e: Iterator.Element) -> Bool {
