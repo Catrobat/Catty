@@ -1,0 +1,36 @@
+{
+  "interactions" : [
+    {
+      "request" : {
+        "body" : {
+          "username" : "username",
+          "password" : "password"
+        },
+        "headers" : {
+          "Content-Type" : "application\/json"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication"
+      },
+      "recorded_at" : 1624002913.289885,
+      "response" : {
+        "headers" : {
+          "x-robots-tag" : "noindex",
+          "Www-Authenticate" : "Bearer",
+          "Content-Type" : "text/plain",
+          "Date" : "Fri, 18 Jun 2021 07:55:12 GMT",
+          "Server" : "nginx",
+          "x-debug-token" : "727e33",
+          "x-debug-token-link" : "https:\/\/web-test.catrob.at\/_profiler\/727e33",
+          "Expires" : "-1",
+          "Pragma" : "no-cache",
+          "Cache-Control" : "private, must-revalidate"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication",
+        "body" : "Invalid response",
+        "status" : 200
+      }
+    }
+  ],
+  "name" : "URLSession.jsonDataTask.fail"
+}
