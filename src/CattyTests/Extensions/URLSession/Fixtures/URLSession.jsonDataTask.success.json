@@ -1,0 +1,38 @@
+{
+  "interactions" : [
+    {
+      "request" : {
+        "headers" : {
+          "Content-Type" : "application\/json"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication",
+        "body" : {
+          "username" : "username",
+          "password" : "password"
+        },
+        "method" : "POST"
+      },
+      "recorded_at" : 1623850660.212079,
+      "response" : {
+        "status" : 401,
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication",
+        "body" : {
+          "message" : "Invalid credentials.",
+          "code" : 401
+        },
+        "headers" : {
+          "Server" : "nginx",
+          "Expires" : "-1",
+          "Content-Type" : "application\/json",
+          "Pragma" : "no-cache",
+          "Set-Cookie" : "dtCookie=v_4_srv_11_sn_A619F5E037CAAAD64315AC1907D62A28_perc_100000_ol_0_mul_1; Path=\/; Domain=.catrob.at",
+          "server-timing" : "dtRpid;desc=\"2040254617\"",
+          "Cache-Control" : "private, must-revalidate",
+          "Date" : "Wed, 16 Jun 2021 13:37:39 GMT",
+          "Www-Authenticate" : "Bearer"
+        }
+      }
+    }
+  ],
+  "name" : "URLSession.jsonDataTask.success"
+}
