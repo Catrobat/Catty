@@ -729,6 +729,7 @@ let kUIFESensorLatitude = NSLocalizedString("latitude", bundle: Bundle(for: Lang
 let kUIFESensorLongitude = NSLocalizedString("longitude", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorLocationAccuracy = NSLocalizedString("location accuracy", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorAltitude = NSLocalizedString("altitude", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorUserLanguage = NSLocalizedString("user language", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorFingerTouched = NSLocalizedString("stage is touched", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorFingerX = NSLocalizedString("stage touch x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorFingerY = NSLocalizedString("stage touch y", bundle: Bundle(for: LanguageTranslation.self), comment: "")

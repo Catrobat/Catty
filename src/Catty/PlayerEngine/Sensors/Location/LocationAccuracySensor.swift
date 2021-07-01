@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LocationAccuracySensor: NSObject, DeviceSensor {
+class LocationAccuracySensor: DeviceDoubleSensor {
 
-    @objc static let tag = "LOCATION_ACCURACY"
+    static let tag = "LOCATION_ACCURACY"
     static let name = kUIFESensorLocationAccuracy
     static let defaultRawValue = 0.0
     static let position = 260

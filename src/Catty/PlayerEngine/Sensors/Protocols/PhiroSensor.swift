@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol PhiroSensor: DeviceSensor {
+protocol PhiroSensor: DeviceDoubleSensor {
 
     static var tag: String { get }
     static var pinNumber: Int { get }

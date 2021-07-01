@@ -20,40 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FacePositionXSensor: DeviceDoubleSensor {
+class UserLanguageSensor: DeviceStringSensor {
 
-    static let tag = "FACE_X_POSITION"
-    static let name = kUIFESensorFaceX
+    static let tag = "USER_LANGUAGE"
+    static let name = kUIFESensorUserLanguage
     static let defaultRawValue = 0.0
-    static let position = 230
-    static let requiredResource = ResourceType.faceDetection
-
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
-    let stageWidth: Double?
-
-    init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
-        self.stageWidth = Double(stageSize.width)
-    }
+    static let position = 300
+    static let requiredResource = ResourceType.noResources
 
     func tag() -> String {
         type(of: self).tag
     }
 
-    func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionX = self.getFaceDetectionManager()?.facePositionRatioFromLeft else { return type(of: self).defaultRawValue }
-        return positionX
+    func rawValue(landscapeMode: Bool) -> String {
+        Locale.preferredLanguages[0]
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
-        if rawValue == type(of: self).defaultRawValue {
-            return rawValue
-        }
-        guard let stageWidth = self.stageWidth else { return type(of: self).defaultRawValue }
-        return stageWidth * rawValue - stageWidth / 2.0
+    func convertToStandardized(rawValue: String) -> String {
+        rawValue
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        [.sensors(position: type(of: self).position, subsection: .visual)]
+        [.sensors(position: type(of: self).position, subsection: .device)]
     }
 }

@@ -22,16 +22,4 @@
 
 protocol DeviceSensor: Sensor {
 
-    // The iOS device specific value of the sensor
-    func rawValue(landscapeMode: Bool) -> Double
-
-    // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
-    func convertToStandardized(rawValue: Double) -> Double
-}
-
-extension DeviceSensor {
-    // The Pocket Code standardized sensor value
-    func standardizedValue(landscapeMode: Bool) -> Double {
-        convertToStandardized(rawValue: self.rawValue(landscapeMode: landscapeMode))
-    }
 }

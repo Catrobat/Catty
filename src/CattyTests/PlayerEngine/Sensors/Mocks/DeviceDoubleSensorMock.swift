@@ -22,7 +22,7 @@
 
 @testable import Pocket_Code
 
-final class DeviceSensorMock: SensorMock, DeviceSensor {
+final class DeviceDoubleSensorMock: SensorMock, DeviceDoubleSensor {
 
     private let mockedValue: Double
 

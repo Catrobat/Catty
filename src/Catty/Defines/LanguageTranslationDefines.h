@@ -729,6 +729,7 @@
 #define kUIFESensorLongitude NSLocalizedString(@"longitude", nil)
 #define kUIFESensorLocationAccuracy NSLocalizedString(@"location accuracy", nil)
 #define kUIFESensorAltitude NSLocalizedString(@"altitude", nil)
+#define kUIFESensorUserLanguage NSLocalizedString(@"user language", nil)
 #define kUIFESensorFingerTouched NSLocalizedString(@"stage is touched", nil)
 #define kUIFESensorFingerX NSLocalizedString(@"stage touch x", nil)
 #define kUIFESensorFingerY NSLocalizedString(@"stage touch y", nil)

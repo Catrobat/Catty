@@ -20,34 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LoudnessSensor: DeviceDoubleSensor {
+protocol DeviceDoubleSensor: DeviceSensor {
 
-    static let tag = "LOUDNESS"
-    static let name = kUIFESensorLoudness
-    static let defaultRawValue = -160.0
-    static let position = 170
-    static let requiredResource = ResourceType.loudness
+    // The iOS device specific value of the sensor
+    func rawValue(landscapeMode: Bool) -> Double
 
-    let getAudioManager: () -> AudioManagerProtocol?
+    // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
+    func convertToStandardized(rawValue: Double) -> Double
+}
 
-    init(audioManagerGetter: @escaping () -> AudioManagerProtocol?) {
-        self.getAudioManager = audioManagerGetter
-    }
-
-    func tag() -> String {
-        type(of: self).tag
-    }
-
-    func rawValue(landscapeMode: Bool) -> Double {
-        self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue
-    }
-
-    func convertToStandardized(rawValue: Double) -> Double {
-        let rawValueConverted = pow(10, 0.05 * rawValue)
-        return rawValueConverted * 100
-    }
-
-    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        [.sensors(position: type(of: self).position, subsection: .device)]
+extension DeviceDoubleSensor {
+    // The Pocket Code standardized sensor value
+    func standardizedValue(landscapeMode: Bool) -> Double {
+        convertToStandardized(rawValue: self.rawValue(landscapeMode: landscapeMode))
     }
 }

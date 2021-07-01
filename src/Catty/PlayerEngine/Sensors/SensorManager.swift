@@ -78,7 +78,9 @@ import CoreMotion
             }
         } else if let sensor = sensor as? TouchSensor, let spriteObject = spriteObject {
             rawValue = sensor.standardizedValue(for: spriteObject) as AnyObject
-        } else if let sensor = sensor as? DeviceSensor {
+        } else if let sensor = sensor as? DeviceDoubleSensor {
+            rawValue = sensor.standardizedValue(landscapeMode: landscapeMode) as AnyObject
+        } else if let sensor = sensor as? DeviceStringSensor {
             rawValue = sensor.standardizedValue(landscapeMode: landscapeMode) as AnyObject
         }
         return rawValue

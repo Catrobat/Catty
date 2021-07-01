@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class AccelerationZSensor: NSObject, DeviceSensor {
+class AccelerationZSensor: DeviceDoubleSensor {
 
     @objc static let tag = "Z_ACCELERATION"
     static let name = kUIFESensorAccelerationZ

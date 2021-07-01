@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FacePositionYSensor: DeviceSensor {
+class FacePositionYSensor: DeviceDoubleSensor {
 
     static let tag = "FACE_Y_POSITION"
     static let name = kUIFESensorFaceY
