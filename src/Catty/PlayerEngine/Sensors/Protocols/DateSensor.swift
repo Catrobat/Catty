@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol DateSensor: DeviceSensor {
+protocol DateSensor: DeviceDoubleSensor {
     /* This function should return the current date */
     func date() -> Date
 }

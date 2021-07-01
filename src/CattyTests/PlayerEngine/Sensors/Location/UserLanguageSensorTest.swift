@@ -47,29 +47,10 @@ final class UserLanguageTest: XCTestCase {
     }
 
     func testRawValue() {
-        UserDefaults.standard.set(["de-AT"], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
+        let expectedLanguage = Locale.preferredLanguages[0]
 
-        XCTAssertEqual("de-AT", sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual("de-AT", sensor.rawValue(landscapeMode: true))
-
-        UserDefaults.standard.set(["ja-JP"], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
-
-        XCTAssertEqual("ja-JP", sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual("ja-JP", sensor.rawValue(landscapeMode: true))
-
-        UserDefaults.standard.set(["zh-HK"], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
-
-        XCTAssertEqual("zh-HK", sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual("zh-HK", sensor.rawValue(landscapeMode: true))
-
-        UserDefaults.standard.set(["en-GB"], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
-
-        XCTAssertEqual("en-GB", sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual("en-GB", sensor.rawValue(landscapeMode: true))
+        XCTAssertEqual(expectedLanguage, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(expectedLanguage, sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {

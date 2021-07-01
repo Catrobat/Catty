@@ -20,31 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class UserLanguageSensor: LanguageSensor {
+protocol DeviceStringSensor: DeviceSensor {
 
-    static let tag = "USER_LANGUAGE"
-    static let name = kUIFESensorUserLanguage
-    static let defaultRawValue = 0.0
-    static let position = 300
-    static let requiredResource = ResourceType.noResources
+    func rawValue(landscapeMode: Bool) -> String
 
-    func language() -> String {
-        Locale.preferredLanguages[0]
-    }
+    func convertToStandardized(rawValue: String) -> String
+}
 
-    func tag() -> String {
-        type(of: self).tag
-    }
+extension DeviceStringSensor {
 
-    func rawValue(landscapeMode: Bool) -> String {
-        language()
-    }
-
-    func convertToStandardized(rawValue: String) -> String {
-        rawValue
-    }
-
-    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        [.sensors(position: type(of: self).position, subsection: .device)]
+    func standardizedValue(landscapeMode: Bool) -> String {
+        convertToStandardized(rawValue: self.rawValue(landscapeMode: landscapeMode))
     }
 }

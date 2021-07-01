@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LongitudeSensor: NSObject, DeviceSensor {
+class LongitudeSensor: DeviceDoubleSensor {
 
-    @objc static let tag = "LONGITUDE"
+    static let tag = "LONGITUDE"
     static let name = kUIFESensorLongitude
     static let defaultRawValue = 0.0
     static let position = 270
