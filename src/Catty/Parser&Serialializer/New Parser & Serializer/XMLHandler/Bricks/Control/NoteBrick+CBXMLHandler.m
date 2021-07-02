@@ -48,12 +48,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    Formula *speakFormula = [Formula new];
-    FormulaElement *formulaElement = [FormulaElement new];
-    formulaElement.type = STRING;
-    formulaElement.value = self.note;
-    speakFormula.formulaTree = formulaElement;
-
+    Formula *speakFormula = [[Formula alloc] initWithString:self.note];
+    
     GDataXMLElement *brick = [super xmlElementForBrickType:@"NoteBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [speakFormula xmlElementWithContext:context];

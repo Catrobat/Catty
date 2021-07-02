@@ -27,6 +27,8 @@
 #import "CBXMLSerializerContext.h"
 #import "SpriteObject.h"
 
+#define kAdditionalChildFormulaElementTag @"org.catrobat.catroid.formulaeditor.FormulaElement"
+
 @implementation FormulaElement (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
@@ -58,6 +60,20 @@
         formulaTree.leftChild = leftChildFormula;
     }
     
+    GDataXMLElement *additionalChildrenContainer = [xmlElement childWithElementName:@"additionalChildren"];
+    if (additionalChildrenContainer) {
+        NSMutableArray<FormulaElement*> *additionalChildren = [NSMutableArray new];
+        NSArray<GDataXMLElement*> *additionaChildrenElements = [additionalChildrenContainer childrenWithElementName:kAdditionalChildFormulaElementTag];
+        
+        for (GDataXMLElement *additionalChild in additionaChildrenElements) {
+            FormulaElement *additionalChildFormula = [context parseFromElement:additionalChild withClass:[self class]];
+            additionalChildFormula.parent = formulaTree;
+            
+            [additionalChildren addObject:additionalChildFormula];
+        }
+        formulaTree.additionalChildren = additionalChildren;
+    }
+    
     return formulaTree;
 }
 
@@ -71,6 +87,7 @@
         }
         [formulaElement addChild:leftChild context:context];
     }
+    
     if (self.rightChild != nil) {
         GDataXMLElement *rightChild = [GDataXMLElement elementWithName:@"rightChild" context:context];
         for(GDataXMLNode *node in [self.rightChild xmlElementWithContext:context].children) {
@@ -78,6 +95,20 @@
         }
         [formulaElement addChild:rightChild context:context];
     }
+    
+    if (self.additionalChildren != nil && self.additionalChildren.count > 0) {
+        GDataXMLElement *additionalChildrenContainer = [GDataXMLElement elementWithName:@"additionalChildren" context:context];
+        for (FormulaElement *additionalChildFormula in self.additionalChildren) {
+            
+            GDataXMLElement *additionalChildElement = [GDataXMLElement elementWithName:kAdditionalChildFormulaElementTag context:context];
+            for(GDataXMLNode *node in [additionalChildFormula xmlElementWithContext:context].children) {
+                [additionalChildElement addChild:node context:context];
+            }
+            [additionalChildrenContainer addChild:additionalChildElement context:context];
+        }
+        [formulaElement addChild:additionalChildrenContainer context:context];
+    }
+    
     GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:[self stringForElementType:self.type] context:context];
     [formulaElement addChild:type context:context];
     if (self.value) {

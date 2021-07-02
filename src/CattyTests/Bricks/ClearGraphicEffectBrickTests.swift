@@ -93,13 +93,7 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
     }
 
     func testClearGraphicEffectBrick2() {
-        let transparency = Formula()
-        let formulaTree = FormulaElement()
-        formulaTree.type = ElementType.NUMBER
-        formulaTree.value = "-20"
-        transparency.formulaTree = formulaTree
-
-        brick.transparency = transparency
+        brick.transparency = Formula(integer: -20)
 
         XCTAssertNotEqual(Double(spriteNode.alpha), TransparencySensor.defaultRawValue, accuracy: 0.001)
         XCTAssertNotEqual(Double(spriteNode.ciBrightness), BrightnessSensor.defaultRawValue, accuracy: 0.001)

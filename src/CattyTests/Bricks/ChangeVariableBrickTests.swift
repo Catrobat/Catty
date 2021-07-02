@@ -59,11 +59,7 @@ final class ChangeVariableBrickTests: XCTestCase {
     func testChangeVariableBrickUserVariablesNil() {
         spriteNode.position = CGPoint(x: 0, y: 0)
 
-        let formula = Formula()
-        let formulaTree = FormulaElement()
-        formulaTree.type = ElementType.NUMBER
-        formulaTree.value = "0"
-        formula.formulaTree = formulaTree
+        let formula = Formula(integer: 0)
 
         let userDataContainer = UserDataContainer()
         spriteObject.scene.project!.userData = userDataContainer

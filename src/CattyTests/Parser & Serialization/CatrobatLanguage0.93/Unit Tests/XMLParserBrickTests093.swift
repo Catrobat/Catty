@@ -282,11 +282,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         XCTAssertEqual(formula!.formulaTree.value, "lokal", "Invalid formula value")
 
         let secondBrick = SetXBrick()
-        let secondFormula = Formula()
-        let formulaTree = FormulaElement()
-        formulaTree.type = ElementType.USER_VARIABLE
-        formulaTree.value = "lokal"
-        secondFormula.formulaTree = formulaTree
+        let secondFormula = Formula(formulaElement: FormulaElement(elementType: .USER_VARIABLE, value: "lokal"))!
         secondBrick.xPosition = secondFormula
 
         XCTAssertTrue(secondFormula.isEqual(to: formula), "Formulas not equal")

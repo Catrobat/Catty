@@ -382,4 +382,24 @@ class XMLParserTests0993: XMLAbstractTest {
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(askBrick.isKind(of: AskBrick.self), "Invalid brick type")
     }
+
+    func testJoinThreeFunction() {
+        let project = self.getProjectForXML(xmlFile: "Functions_0993")
+
+        XCTAssertEqual(2, project.scene.objects().count, "Invalid object list")
+
+        let object = project.scene.object(at: 1)!
+        XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
+
+        let script = object.scriptList.object(at: 0) as! Script
+        XCTAssertEqual(1, script.brickList.count, "Invalid brick list")
+
+        let sayForBubbleBrick = script.brickList.object(at: 0) as! SayForBubbleBrick
+        let formula = sayForBubbleBrick.stringFormula
+
+        XCTAssertEqual(formula!.formulaTree.value, "JOIN3")
+        XCTAssertEqual(ElementType.FUNCTION, formula!.formulaTree.type)
+
+        XCTAssertEqual(formula!.formulaTree.value as String, "JOIN3")
+    }
 }

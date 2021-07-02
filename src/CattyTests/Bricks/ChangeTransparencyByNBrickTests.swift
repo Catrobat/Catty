@@ -31,7 +31,6 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTest {
     var project: Project!
     var object: SpriteObject!
     var script: WhenScript!
-    var formulaTree: FormulaElement!
 
     override func setUp() {
         super.setUp()
@@ -42,20 +41,16 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTest {
         object.spriteNode = spriteNode
         self.stage.addChild(spriteNode)
 
-        let transparency = Formula()
-        formulaTree = FormulaElement()
-        formulaTree.type = ElementType.NUMBER
-        transparency.formulaTree = formulaTree
         script = WhenScript()
         script.object = object
         brick = ChangeTransparencyByNBrick()
         brick.script = script
-        brick.changeTransparency = transparency
+        brick.changeTransparency = Formula(integer: 0)
     }
 
     func testChangeTransparencyByNBrickPositive() {
         spriteNode.catrobatTransparency = 0.0
-        formulaTree.value = "20"
+        brick.changeTransparency = Formula(integer: 20)
 
         let action = brick.actionBlock(self.formulaInterpreter)
         action()
@@ -65,7 +60,7 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTest {
 
     func testChangeTransparencyByNBrickNegative() {
         spriteNode.catrobatTransparency = 30.0
-        formulaTree.value = "-20"
+        brick.changeTransparency = Formula(integer: -20)
 
         let action = brick.actionBlock(self.formulaInterpreter)
         action()
@@ -75,8 +70,7 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTest {
 
     func testChangeTransparencyByNBrickOutOfRange() {
         spriteNode.catrobatTransparency = 0.0
-
-        formulaTree.value = "150"
+        brick.changeTransparency = Formula(integer: 150)
 
         let action = brick.actionBlock(self.formulaInterpreter)
         action()
@@ -86,7 +80,7 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTest {
 
     func testChangeTransparencyByNBrickWrongInput() {
         spriteNode.catrobatTransparency = 0.0
-        formulaTree.value = "a"
+        brick.changeTransparency = Formula(string: "a")
 
         let action = brick.actionBlock(self.formulaInterpreter)
         action()

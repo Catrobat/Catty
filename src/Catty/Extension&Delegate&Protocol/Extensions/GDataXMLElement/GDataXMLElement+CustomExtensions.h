@@ -34,6 +34,7 @@
 - (GDataXMLElement*)childWithElementName:(NSString*)elementName
                      containingAttribute:(NSString*)attributeName
                                withValue:(NSString*)attributeValue;
+- (NSArray<GDataXMLElement*>*)childrenWithElementName:(NSString*)elementName;
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath;
 + (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLSerializerContext*)context;
 + (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex

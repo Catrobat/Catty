@@ -1319,6 +1319,7 @@
 		972622DD25F51A8F00ABCC7A /* ChangeBrightnessByNBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972622DC25F51A8F00ABCC7A /* ChangeBrightnessByNBrick+CBXMLHandler.swift */; };
 		972622E225F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972622E125F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift */; };
 		9728AE9E25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */; };
+		9767BAFA26668ECD009794E8 /* JoinThreeStringsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767BAF926668ECD009794E8 /* JoinThreeStringsFunctionTest.swift */; };
 		97770B8825E5A88C00F51EFA /* SetBrightnessBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */; };
 		97770B8F25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */; };
 		9797CB8325AF7A6000A50444 /* SceneTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */; };
@@ -1722,11 +1723,13 @@
 		BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6F52113188700BE57BF /* MyFirstProjectTests.swift */; };
 		BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */; };
 		C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B8C0B21945B560F7272 /* AlertController.swift */; };
+		C85A5CA0267A218F009BA454 /* Functions_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = C85A5C9F267A218F009BA454 /* Functions_0993.xml */; };
 		C8A0338326064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0338226064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift */; };
 		C8CD7DD425E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD7DD325E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift */; };
 		C8DCC43B2672430000D1FC9E /* UserLanguageSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DCC43A2672430000D1FC9E /* UserLanguageSensor.swift */; };
 		C8DCC43F26724BE400D1FC9E /* DeviceStringSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DCC43E26724BE400D1FC9E /* DeviceStringSensor.swift */; };
 		C8DCC446267391F900D1FC9E /* UserLanguageSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DCC445267391F900D1FC9E /* UserLanguageSensorTest.swift */; };
+		C8D010C4264BD2B700896DEB /* JoinThreeStringsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D010C3264BD2B700896DEB /* JoinThreeStringsFunction.swift */; };
 		C8E037482605E745008F39D0 /* SetTempoToBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E037472605E745008F39D0 /* SetTempoToBrickCell.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -3515,6 +3518,7 @@
 		972622DC25F51A8F00ABCC7A /* ChangeBrightnessByNBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeBrightnessByNBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		972622E125F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetBrightnessBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerReportExtension.swift; sourceTree = "<group>"; };
+		9767BAF926668ECD009794E8 /* JoinThreeStringsFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinThreeStringsFunctionTest.swift; sourceTree = "<group>"; };
 		97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBrightnessBrick.swift; sourceTree = "<group>"; };
 		97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBrightnessByNBrick.swift; sourceTree = "<group>"; };
 		9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTVCTests.swift; sourceTree = "<group>"; };
@@ -4168,11 +4172,13 @@
 		BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTVCTests.swift; sourceTree = "<group>"; };
 		C286B2695528549DC9B2916D /* af */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C42D117BCEADFF7368CA3159 /* bn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C85A5C9F267A218F009BA454 /* Functions_0993.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Functions_0993.xml; sourceTree = "<group>"; };
 		C8A0338226064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SetTempoToBrick+CBXMLHandler.swift"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Sound/SetTempoToBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
 		C8CD7DD325E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewControllerTests.swift; sourceTree = "<group>"; };
 		C8DCC43A2672430000D1FC9E /* UserLanguageSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLanguageSensor.swift; sourceTree = "<group>"; };
 		C8DCC43E26724BE400D1FC9E /* DeviceStringSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStringSensor.swift; sourceTree = "<group>"; };
 		C8DCC445267391F900D1FC9E /* UserLanguageSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLanguageSensorTest.swift; sourceTree = "<group>"; };
+		C8D010C3264BD2B700896DEB /* JoinThreeStringsFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinThreeStringsFunction.swift; sourceTree = "<group>"; };
 		C8E037472605E745008F39D0 /* SetTempoToBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTempoToBrickCell.swift; sourceTree = "<group>"; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
 		CA2D44421B12305400A3B53D /* Swell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Swell.plist; sourceTree = "<group>"; };
@@ -5069,6 +5075,7 @@
 		2ED4175F241120AF00AFE2FD /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				C8076A26267A0B2000801AF6 /* Functions */,
 				9E384934256191DC002D8F28 /* SamplerBricks */,
 				D3EBE87C2488E6A90026F51A /* GoToBricks */,
 				D3AF5C1C243F81FC00B04BC6 /* DisabledBricks */,
@@ -6294,6 +6301,7 @@
 				4C6FE159212D2D2E0067B7D5 /* LengthFunctionTest.swift */,
 				4C6FE15A212D2D2E0067B7D5 /* JoinFunctionTest.swift */,
 				6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */,
+				9767BAF926668ECD009794E8 /* JoinThreeStringsFunctionTest.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -10441,6 +10449,14 @@
 			path = Constraints;
 			sourceTree = "<group>";
 		};
+		C8076A26267A0B2000801AF6 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				C85A5C9F267A218F009BA454 /* Functions_0993.xml */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
 		CA02C5E81B14386E00233FB0 /* CBSpriteNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -10721,6 +10737,7 @@
 				6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */,
 				F4A2AFB62110D49900C53234 /* LetterFunction.swift */,
 				F4A2AFB82110D4A800C53234 /* LengthFunction.swift */,
+				C8D010C3264BD2B700896DEB /* JoinThreeStringsFunction.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -11209,6 +11226,7 @@
 				2ED417EF241120AF00AFE2FD /* Rock_paper_scissors_0991.xml in Resources */,
 				2ED41824241120AF00AFE2FD /* Compass_0.1_098.xml in Resources */,
 				2ED41801241120AF00AFE2FD /* Pong_Starter_095.xml in Resources */,
+				C85A5CA0267A218F009BA454 /* Functions_0993.xml in Resources */,
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C3285FB2546CFA300C31F9D /* ValidHeader0993.xml in Resources */,
 				2ED417E2241120AF00AFE2FD /* Memory_096.xml in Resources */,
@@ -11676,6 +11694,7 @@
 				4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */,
 				4C3A5CAD21D3BAB9008FD83F /* GreaterThanOperatorTest.swift in Sources */,
 				4C6FE165212D2D2E0067B7D5 /* PiFunctionTest.swift in Sources */,
+				9767BAFA26668ECD009794E8 /* JoinThreeStringsFunctionTest.swift in Sources */,
 				188746BC24DA91EB003F5E81 /* ProjectManagerTests.swift in Sources */,
 				9ECDCB112328548800EBDA63 /* SetBackgroundBrickTests.swift in Sources */,
 				4C7182DC23EEB22B00195BC7 /* PaintViewControllerTests.swift in Sources */,
@@ -12469,6 +12488,7 @@
 				AA74EE2D1BC0541E00D1E954 /* MoveNStepsBrick+Instruction.swift in Sources */,
 				9218B2091CC4AB75007B4C60 /* UIImage+Rotate.m in Sources */,
 				971C6F1A26051ED800AD4857 /* SetTempoToBrick.swift in Sources */,
+				C8D010C4264BD2B700896DEB /* JoinThreeStringsFunction.swift in Sources */,
 				4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */,
 				C8E037482605E745008F39D0 /* SetTempoToBrickCell.swift in Sources */,
 				9EC5174224FBD7ED0029CD0E /* SetInstrumentBrick.swift in Sources */,

@@ -249,4 +249,9 @@ final class XMLParserBlackBoxTests0993: XMLAbstractTest {
         self.compareProject(firstProjectName: "UserVariables_091", withProject: "UserVariables_0993")
         self.compareProject(firstProjectName: "UserVariables_0991", withProject: "UserVariables_0993")
     }
+
+    func testFunctions() {
+        let project = self.getProjectForXML(xmlFile: "Functions_0993")
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
 }

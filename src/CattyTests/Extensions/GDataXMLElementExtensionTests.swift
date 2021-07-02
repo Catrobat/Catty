@@ -165,4 +165,42 @@ class GDataXMLElementExtensionTests: XCTestCase {
         XCTAssertEqual("stringValue1", self.rootElement.stringValue())
         XCTAssertEqual("stringValue2", testRootElement!.stringValue())
     }
+
+    func testChildWithElementName() {
+        let root = self.createGDXMLElementWith(xmlString: "root")
+        let firstChild = self.createGDXMLElementWith(xmlString: "child")
+        let secondChild = self.createGDXMLElementWith(xmlString: "secondChild")
+        let thirdChild = self.createGDXMLElementWith(xmlString: "child")
+
+        root?.addChild(firstChild)
+        root?.addChild(secondChild)
+        root?.addChild(thirdChild)
+
+        let child = root?.child(withElementName: "child")
+        XCTAssertEqual(firstChild, child)
+    }
+
+    func testChildWithElementNameUnknown() {
+        let root = self.createGDXMLElementWith(xmlString: "root")
+        let firstChild = self.createGDXMLElementWith(xmlString: "child")
+
+        root?.addChild(firstChild)
+        XCTAssertNil(root?.child(withElementName: "unknown"))
+    }
+
+    func testChildrenWithElementName() {
+        let root = self.createGDXMLElementWith(xmlString: "root")
+        let firstChild = self.createGDXMLElementWith(xmlString: "child")
+        let secondChild = self.createGDXMLElementWith(xmlString: "secondChild")
+        let thirdChild = self.createGDXMLElementWith(xmlString: "child")
+
+        root?.addChild(firstChild)
+        root?.addChild(secondChild)
+        root?.addChild(thirdChild)
+
+        let children = root?.children(withElementName: "child")
+        XCTAssertEqual(2, children?.count)
+        XCTAssertEqual(firstChild, children?.first)
+        XCTAssertEqual(thirdChild, children?.last)
+    }
 }

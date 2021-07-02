@@ -36,22 +36,12 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    Formula *speakFormula = [Formula new];
-    FormulaElement *formulaElement = [FormulaElement new];
-    formulaElement.type = STRING;
-    formulaElement.value = kLocalizedHello;
-    speakFormula.formulaTree = formulaElement;
-    self.formula = speakFormula;
+    self.formula = [[Formula alloc] initWithString:kLocalizedHello];
 }
 
 - (void)setText:(NSString*)text
 {
-    Formula *speakFormula = [Formula new];
-    FormulaElement *formulaElement = [FormulaElement new];
-    formulaElement.type = STRING;
-    formulaElement.value = text;
-    speakFormula.formulaTree = formulaElement;
-    self.formula = speakFormula;
+    self.formula = [[Formula alloc] initWithString:text];
 }
 
 - (NSString*)text

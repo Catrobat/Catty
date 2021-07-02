@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>47</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.6.19</applicationVersion>
+    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>iPhone11,2</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>14.6</platformVersion>
+    <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Join Three Test</programName>
+    <remixOf/>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>2436</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1125</screenWidth>
+    <tags/>
+    <url>/pocketcode/project/ceb7f265-ce8d-11eb-ae11-005056a36f47</url>
+    <userHandle>CodeTester</userHandle>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Szene 1</name>
+      <objectList>
+        <object type="SingleSprite" name="Hintergrund">
+          <lookList/>
+          <nfcTagList/>
+          <scriptList/>
+          <soundList/>
+          <userBricks/>
+        </object>
+        <object type="SingleSprite" name="animal">
+          <lookList>
+            <look name="Lynx">
+              <fileName>A29BCC0D04461BCDC0E75414B5ABAE59_Lynx.png</fileName>
+            </look>
+          </lookList>
+          <nfcTagList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="SayForBubbleBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>3</value>
+                    </formula>
+                    <formula category="STRING">
+                      <leftChild>
+                        <type>STRING</type>
+                        <value>hello </value>
+                      </leftChild>
+                      <rightChild>
+                        <type>STRING</type>
+                        <value>world</value>
+                      </rightChild>
+                      <additionalChildren>
+                        <org.catrobat.catroid.formulaeditor.FormulaElement>
+                          <type>STRING</type>
+                          <value>!</value>
+                        </org.catrobat.catroid.formulaeditor.FormulaElement>
+                      </additionalChildren>
+                      <type>FUNCTION</type>
+                      <value>JOIN3</value>
+                    </formula>
+                  </formulaList>
+                  <type>0</type>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+          </scriptList>
+          <soundList/>
+          <userBricks/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList>
+          <entry>
+            <object reference="../../../../objectList/object"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
+            <list/>
+          </entry>
+        </objectListOfList>
+        <objectVariableList>
+          <entry>
+            <object reference="../../../../objectList/object"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
+            <list/>
+          </entry>
+        </objectVariableList>
+        <userBrickVariableList/>
+      </data>
+      <originalWidth>1125</originalWidth>
+      <originalHeight>2436</originalHeight>
+    </scene>
+  </scenes>
+  <programVariableList/>
+  <programListOfLists/>
+</program>
