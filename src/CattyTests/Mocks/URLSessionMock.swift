@@ -28,6 +28,7 @@ class URLSessionMock: URLSession {
     var bytesReceived: Int64?
     var bytesSent: Int64?
     var bytesTotal: Int64?
+    var dataTasksCreated = 0
 
     init(response: URLResponse? = nil, error: Error? = nil, bytesSent: Int64? = nil, bytesReceived: Int64? = nil, bytesTotal: Int64? = nil) {
         self.response = response
@@ -39,15 +40,18 @@ class URLSessionMock: URLSession {
     }
 
     override func dataTask(with url: URL) -> URLSessionDataTask {
-        URLSessionDataTaskMock(nil, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
+        dataTasksCreated += 1
+        return URLSessionDataTaskMock(nil, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
     }
 
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-         URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
+        dataTasksCreated += 1
+        return URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
     }
 
     override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
+        dataTasksCreated += 1
+        return URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
     }
 
     class URLSessionDataTaskMock: URLSessionDataTask {

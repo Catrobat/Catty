@@ -47,8 +47,10 @@ public class WebRequestDownloader: NSObject {
         guard let url = URL(string: url) else { completion(nil, WebRequestDownloaderError.invalidURL); return }
 
         guard let trustedDomains = trustedDomains else { completion(nil, WebRequestDownloaderError.unexpectedError); return }
+
         if !trustedDomains.isUrlInTrustedDomains(url: self.url) {
-            completion(nil, WebRequestDownloaderError.notTrusted); return
+            completion(nil, WebRequestDownloaderError.notTrusted)
+            return
         }
 
         task = session?.dataTask(with: url)

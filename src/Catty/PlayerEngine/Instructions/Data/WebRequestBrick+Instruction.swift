@@ -103,7 +103,7 @@ extension WebRequestBrick: CBInstructionProtocol {
     private func sendRequest(downloader: WebRequestDownloader, completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
         downloader.download { response, error in
             if let error = error {
-                completion(nil, WebRequestDownloaderError(downloaderError: error))
+                completion(nil, error)
             } else {
                 completion(response, nil)
             }

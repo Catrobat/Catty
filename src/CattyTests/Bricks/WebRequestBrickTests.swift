@@ -31,7 +31,6 @@ final class WebRequestBrickTests: XCTestCase {
     var brick: WebRequestBrick!
     var downloaderMock: WebRequestDownloaderMock!
     var downloaderFactoryMock: WebRequestDownloaderFactoryMock!
-    var trustedDomainManager: TrustedDomainManager!
 
     override func setUp() {
         let scene = Scene()
@@ -42,11 +41,6 @@ final class WebRequestBrickTests: XCTestCase {
         let url = "http://catrob.at/joke"
         let formula = Formula(string: url)
         let userVariable = UserVariable(name: "var")
-
-        trustedDomainManager = TrustedDomainManager()
-        let error = trustedDomainManager!.add(url: url)
-        XCTAssertNil(error)
-        XCTAssertTrue(trustedDomainManager!.isUrlInTrustedDomains(url: url))
 
         brick = WebRequestBrick(request: formula!, userVariable: userVariable, script: script)
 
@@ -131,16 +125,7 @@ final class WebRequestBrickTests: XCTestCase {
     }
 
     func testUrlIsNotInTrustedDomains() {
-        let url = "https://catrob.at/test"
-        brick.request = Formula(string: url)
-
-        _ = trustedDomainManager!.clear()
-        XCTAssertFalse(trustedDomainManager!.isUrlInTrustedDomains(url: url))
-
-        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-        expect(Util.topViewController(in: rootViewController!)!.isKind(of: UINavigationController.self)).toEventually(beTruthy())
-
-        let navigationController = Util.topViewController(in: rootViewController) as! UINavigationController
+        downloaderMock.expectedError = .notTrusted
 
         switch brick.instruction() {
         case let .waitExecClosure(closure):
@@ -149,25 +134,18 @@ final class WebRequestBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        expect(navigationController.visibleViewController?.isKind(of: UIAlertController.self)).toEventually(beTruthy())
+        expect(Util.topmostViewController().isKind(of: UIAlertController.self)).toEventually(beTruthy(), timeout: .seconds(3))
 
-        let alertController = navigationController.visibleViewController as! UIAlertController
+        let alertController = Util.topmostViewController() as! UIAlertController
         let actions = alertController.actions
 
         XCTAssertEqual(2, actions.count)
         XCTAssertEqual(kLocalizedNo, actions.first?.title)
         XCTAssertEqual(kLocalizedYes, actions.last?.title)
-
-        XCTAssertEqual(0, downloaderMock.downloadMethodCalls)
     }
 
     func testUrlInTrustedDomains() {
-        let url = "https://catrob.at/test"
-        brick.request = Formula(string: url)
-
-        let error = trustedDomainManager!.add(url: url)
-        XCTAssertNil(error)
-        XCTAssertTrue(trustedDomainManager!.isUrlInTrustedDomains(url: url))
+        downloaderMock.expectedError = .none
         XCTAssertTrue(scheduler.running)
 
         switch brick.instruction() {
