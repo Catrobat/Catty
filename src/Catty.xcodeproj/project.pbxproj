@@ -482,7 +482,6 @@
 		4C20487B2671DF7000AE2E1B /* CBScriptContextMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */; };
 		4C2048802671F17F00AE2E1B /* WebRequestDownloaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */; };
 		4C2048822671F18F00AE2E1B /* WebRequestDownloaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */; };
-		4C2048852671F7A600AE2E1B /* WebRequestBrickError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048842671F7A600AE2E1B /* WebRequestBrickError.swift */; };
 		4C214C1E26200D3600E70B22 /* FormulaEditorViewControllerAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C214C1B26200D3500E70B22 /* FormulaEditorViewControllerAlertExtension.swift */; };
 		4C245CAC244481F3004C941C /* NimbleMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C245CA9244481F3004C941C /* NimbleMatcher.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
@@ -2439,7 +2438,6 @@
 		4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBScriptContextMock.swift; sourceTree = "<group>"; };
 		4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderFactory.swift; sourceTree = "<group>"; };
 		4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderError.swift; sourceTree = "<group>"; };
-		4C2048842671F7A600AE2E1B /* WebRequestBrickError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestBrickError.swift; sourceTree = "<group>"; };
 		4C214C1B26200D3500E70B22 /* FormulaEditorViewControllerAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerAlertExtension.swift; sourceTree = "<group>"; };
 		4C245CA9244481F3004C941C /* NimbleMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleMatcher.swift; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
@@ -5460,15 +5458,6 @@
 			path = Paint;
 			sourceTree = "<group>";
 		};
-		4C2048832671F78700AE2E1B /* WebRequestBrick */ = {
-			isa = PBXGroup;
-			children = (
-				4C2048842671F7A600AE2E1B /* WebRequestBrickError.swift */,
-				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
-			);
-			path = WebRequestBrick;
-			sourceTree = "<group>";
-		};
 		4C2650671A6538470050775B /* CBCopyContext */ = {
 			isa = PBXGroup;
 			children = (
@@ -7091,7 +7080,7 @@
 				E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */,
 				971C6F20260526ED00AD4857 /* SetTempoToBrickTests.swift */,
 				83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */,
-				4C2048832671F78700AE2E1B /* WebRequestBrick */,
+				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -11616,7 +11605,6 @@
 				18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */,
 				4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
-				4C2048852671F7A600AE2E1B /* WebRequestBrickError.swift in Sources */,
 				6F4B2FB92466706B00B5F0ED /* ProjectMigratorTest.swift in Sources */,
 				E579F10F253DAF20009107C8 /* SayBubbleBrickTests.swift in Sources */,
 				4C822681213FA7A400F3D750 /* TransparencySensorTest.swift in Sources */,
