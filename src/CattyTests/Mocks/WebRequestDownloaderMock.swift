@@ -28,14 +28,14 @@ class WebRequestDownloaderMock: WebRequestDownloader {
     var expectedResponse: String?
     var expectedError: WebRequestDownloaderError?
 
-    required init(url: String, session: URLSession?) {
-        super.init(url: url, session: session)
+    required init(url: String, session: URLSession?, trustedDomainManager: TrustedDomainManager?) {
+        super.init(url: url, session: session, trustedDomainManager: nil)
     }
 
     required init(expectedResponse: String? = nil, expectedError: WebRequestDownloaderError? = nil) {
         self.expectedResponse = expectedResponse
         self.expectedError = expectedError
-        super.init(url: "", session: nil)
+        super.init(url: "", session: nil, trustedDomainManager: nil)
     }
 
     override func download(completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
@@ -53,7 +53,7 @@ class WebRequestDownloaderFactoryMock: WebRequestDownloaderFactory {
         self.downloaderMock = downloaderMock
     }
 
-    override func create(url: String, session: URLSession? = nil) -> WebRequestDownloader {
+    override func create(url: String, session: URLSession? = nil, trustedDomainManager: TrustedDomainManager? = nil) -> WebRequestDownloader {
         self.latestUrl = url
         return downloaderMock
     }

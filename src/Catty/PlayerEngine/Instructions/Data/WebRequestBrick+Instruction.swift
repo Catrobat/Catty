@@ -26,32 +26,39 @@ extension WebRequestBrick: CBInstructionProtocol {
         if WebRequestBrick.isWebRequestBrickEnabled() {
             guard let request = self.request else { fatalError("Unexpected found nil.") }
             guard let trustedDomains = TrustedDomainManager() else { return CBInstruction.invalidInstruction }
+            _ = trustedDomains.clear() // TODO: Remove in CATTY-600
 
             return CBInstruction.waitExecClosure { context, scheduler in
                 let displayString = context.formulaInterpreter.interpretString(request, for: self.script.object)
                 let requestString = self.prepareRequestString(input: displayString)
-                let downloader = self.downloaderFactory.create(url: requestString)
+                let downloader = self.downloaderFactory.create(url: requestString, trustedDomainManager: trustedDomains)
 
-                if !trustedDomains.isUrlInTrustedDomains(url: requestString) {
-                    DispatchQueue.main.async {
-                        AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
-                            .addCancelAction(title: kLocalizedNo) {
-                                self.callbackSubmit(with: nil, error: .blacklisted, scheduler: scheduler)
-                                return
-                            }
-                            .addDefaultAction(title: kLocalizedYes) {
-                                self.sendRequest(downloader: downloader) { response, error in
-                                    self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                self.sendRequest(downloader: downloader) { response, error in
+                    if let error = error, case WebRequestDownloaderError.notTrusted = error {
+                        DispatchQueue.main.async {
+                            AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
+                                .addCancelAction(title: kLocalizedNo) {
+                                    self.callbackSubmit(with: nil, error: .notTrusted, scheduler: scheduler)
+                                    return
                                 }
-                            }
-                            .build()
-                            .showWithController(Util.topmostViewController())
-                    }
-                } else {
-                    self.sendRequest(downloader: downloader) { response, error in
+                                .addDefaultAction(title: kLocalizedYes) {
+                                    let addError = trustedDomains.add(url: requestString)
+                                    if addError != nil {
+                                        self.callbackSubmit(with: nil, error: .unexpectedError, scheduler: scheduler)
+                                    } else {
+                                        self.sendRequest(downloader: downloader) { response, error in
+                                            self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                                        }
+                                    }
+                                }
+                                .build()
+                                .showWithController(Util.topmostViewController())
+                        }
+                    } else {
                         self.callbackSubmit(with: response, error: error, scheduler: scheduler)
                     }
                 }
+
                 scheduler.pause()
             }
         } else {
@@ -59,7 +66,7 @@ extension WebRequestBrick: CBInstructionProtocol {
         }
     }
 
-    func callbackSubmit(with input: String?, error: WebRequestBrickError?, scheduler: CBSchedulerProtocol) {
+    func callbackSubmit(with input: String?, error: WebRequestDownloaderError?, scheduler: CBSchedulerProtocol) {
         if let userVariable = self.userVariable {
             userVariable.value = extractMessage(input: input, error: error)
         }
@@ -83,7 +90,7 @@ extension WebRequestBrick: CBInstructionProtocol {
         return requestString
     }
 
-    private func extractMessage(input: String?, error: WebRequestBrickError?) -> String {
+    private func extractMessage(input: String?, error: WebRequestDownloaderError?) -> String {
         guard let input = input else {
             guard let error = error else {
                 return kLocalizedUnexpectedErrorTitle
@@ -93,10 +100,10 @@ extension WebRequestBrick: CBInstructionProtocol {
         return input
     }
 
-    private func sendRequest(downloader: WebRequestDownloader, completion: @escaping (String?, WebRequestBrickError?) -> Void) {
+    private func sendRequest(downloader: WebRequestDownloader, completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
         downloader.download { response, error in
             if let error = error {
-                completion(nil, WebRequestBrickError(downloaderError: error))
+                completion(nil, WebRequestDownloaderError(downloaderError: error))
             } else {
                 completion(response, nil)
             }

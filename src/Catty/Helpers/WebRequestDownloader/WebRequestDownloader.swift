@@ -22,15 +22,17 @@
 
 public class WebRequestDownloader: NSObject {
     var completion: ((String?, WebRequestDownloaderError?) -> Void)?
+    private var trustedDomains: TrustedDomainManager?
     private var data = Data()
     private var task: URLSessionDataTask?
     private var url = String()
     var session: URLSession?
 
-    required init(url: String, session: URLSession?) {
+    required init(url: String, session: URLSession?, trustedDomainManager: TrustedDomainManager?) {
         super.init()
         self.url = url
         self.session = session != nil ? session : self.defaultSession()
+        self.trustedDomains = trustedDomainManager != nil ? trustedDomainManager : TrustedDomainManager()
     }
 
     private func defaultSession() -> URLSession {
@@ -42,7 +44,13 @@ public class WebRequestDownloader: NSObject {
     func download(completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
         self.data = Data()
         self.completion = completion
-        guard let url = URL(string: url) else { completion(nil, WebRequestDownloaderError.invalidUrl); return }
+        guard let url = URL(string: url) else { completion(nil, WebRequestDownloaderError.invalidURL); return }
+
+        guard let trustedDomains = trustedDomains else { completion(nil, WebRequestDownloaderError.unexpectedError); return }
+        if !trustedDomains.isUrlInTrustedDomains(url: self.url) {
+            completion(nil, WebRequestDownloaderError.notTrusted); return
+        }
+
         task = session?.dataTask(with: url)
         task?.resume()
     }
@@ -69,7 +77,15 @@ extension WebRequestDownloader: URLSessionDataDelegate {
                 data.removeAll()
                 completion(nil, WebRequestDownloaderError.unexpectedError)
             } else {
-                completion(String(decoding: data, as: UTF8.self), nil)
+                guard let response = task.response as? HTTPURLResponse else {
+                    completion(nil, WebRequestDownloaderError.unexpectedError)
+                    return
+                }
+                if response.statusCode != 200 {
+                    completion(nil, WebRequestDownloaderError.request(error: error, statusCode: response.statusCode))
+                } else {
+                    completion(String(decoding: data, as: UTF8.self), nil)
+                }
             }
         }
     }

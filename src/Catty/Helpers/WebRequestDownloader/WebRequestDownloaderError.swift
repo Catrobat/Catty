@@ -20,10 +20,48 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-enum WebRequestDownloaderError: Error, CaseIterable {
-    case invalidUrl
+enum WebRequestDownloaderError: Error {
     /// Indicates a download bigger than kWebRequestMaxDownloadSizeInBytes
     case downloadSize
+    case invalidURL
     case noInternet
+    /// Indicates an untrusted domain download request
+    case notTrusted
+    /// Indicates an error with the URLRequest
+    case request(error: Error?, statusCode: Int)
     case unexpectedError
+
+    init(downloaderError: WebRequestDownloaderError) {
+        switch downloaderError {
+        case .downloadSize:
+            self = .downloadSize
+        case .invalidURL:
+            self = .invalidURL
+        case .noInternet:
+            self = .noInternet
+        case .notTrusted:
+            self = .notTrusted
+        case .request(error: _, statusCode: _):
+            self = .request(error: nil, statusCode: 200)
+        case .unexpectedError:
+            self = .unexpectedError
+        }
+    }
+
+    func message() -> String {
+        switch self {
+        case .downloadSize:
+            return kLocalizedDownloadSizeErrorMessage
+        case .invalidURL:
+            return kLocalizedInvalidURLGiven
+        case .noInternet:
+            return "500"
+        case .notTrusted:
+            return "511"
+        case .request(error: _, statusCode: let statusCode):
+            return String(statusCode)
+        case .unexpectedError:
+            return kLocalizedUnexpectedErrorTitle
+        }
+    }
 }

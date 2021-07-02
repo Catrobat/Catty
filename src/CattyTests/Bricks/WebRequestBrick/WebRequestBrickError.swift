@@ -26,22 +26,22 @@ import XCTest
 final class WebRequestBrickErrorTests: XCTestCase {
 
     func testDownloaderErrorDownloadSize() {
-        let error = WebRequestBrickError(downloaderError: WebRequestDownloaderError.downloadSize)
-        XCTAssertEqual(WebRequestBrickError.downloadSize.message(), error.message())
+        let error = WebRequestDownloaderError(downloaderError: WebRequestDownloaderError.downloadSize)
+        XCTAssertEqual(WebRequestDownloaderError.downloadSize.message(), error.message())
     }
 
     func testDownloaderErrorInvalidUrl() {
-        let error = WebRequestBrickError(downloaderError: WebRequestDownloaderError.invalidUrl)
-        XCTAssertEqual(WebRequestBrickError.invalidURL.message(), error.message())
+        let error = WebRequestDownloaderError(downloaderError: WebRequestDownloaderError.invalidURL)
+        XCTAssertEqual(WebRequestDownloaderError.invalidURL.message(), error.message())
     }
 
     func testDownloaderErrorNoInternet() {
-        let error = WebRequestBrickError(downloaderError: WebRequestDownloaderError.noInternet)
-        XCTAssertEqual(WebRequestBrickError.noInternet.message(), error.message())
+        let error = WebRequestDownloaderError(downloaderError: WebRequestDownloaderError.noInternet)
+        XCTAssertEqual(WebRequestDownloaderError.noInternet.message(), error.message())
     }
 
     func testDownloaderErrorUnexpectedError() {
-        let error = WebRequestBrickError(downloaderError: WebRequestDownloaderError.unexpectedError)
-        XCTAssertEqual(WebRequestBrickError.unexpectedError.message(), error.message())
+        let error = WebRequestDownloaderError(downloaderError: WebRequestDownloaderError.unexpectedError)
+        XCTAssertEqual(WebRequestDownloaderError.unexpectedError.message(), error.message())
     }
 }

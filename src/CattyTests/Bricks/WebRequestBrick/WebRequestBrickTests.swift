@@ -196,11 +196,11 @@ final class WebRequestBrickTests: XCTestCase {
 
         expect(self.downloaderMock.downloadMethodCalls).toEventually(equal(1))
         expect(self.scheduler.running).toEventually(beTrue())
-        expect(self.brick.userVariable?.value as? String).toEventually(equal(WebRequestBrickError.unexpectedError.message()))
+        expect(self.brick.userVariable?.value as? String).toEventually(equal(WebRequestDownloaderError.unexpectedError.message()))
     }
 
     func testWebRequestDownloaderErrorInvalidURL() {
-        downloaderMock.expectedError = .invalidUrl
+        downloaderMock.expectedError = .invalidURL
 
         switch brick.instruction() {
         case let .waitExecClosure(closure):
@@ -209,7 +209,7 @@ final class WebRequestBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        expect(self.brick.userVariable?.value as? String).toEventually(equal(WebRequestBrickError.invalidURL.message()))
+        expect(self.brick.userVariable?.value as? String).toEventually(equal(WebRequestDownloaderError.invalidURL.message()))
     }
 
     func testSuccessfulDownload() {

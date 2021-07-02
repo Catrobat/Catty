@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class WebRequestDownloaderFactory {
-    func create(url: String, session: URLSession? = nil, trustedDomainManager: TrustedDomainManager? = nil) -> WebRequestDownloader {
-        WebRequestDownloader(url: url, session: session, trustedDomainManager: trustedDomainManager)
+class URLSessionTaskMock: URLSessionTask {
+    var mockResponse: URLResponse?
+
+    override var response: URLResponse? {
+        mockResponse
+    }
+
+    init(response: URLResponse?) {
+        mockResponse = response
     }
 }
