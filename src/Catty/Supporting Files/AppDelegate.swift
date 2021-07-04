@@ -60,6 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
             Util.setLastProjectWithName(nil, projectID: nil)
         }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.disableAnimations) {
+            UIView.setAnimationsEnabled(false)
+        }
         #endif
 
         return true

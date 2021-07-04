@@ -26,5 +26,6 @@ class LaunchArguments: NSObject {
     static let UITests = "UITests"
     static let restoreDefaultProject = "restoreDefaultProject"
     @objc static let skipPrivacyPolicy = "skipPrivacyPolicy"
+    static let disableAnimations = "disableAnimations"
 
 }
