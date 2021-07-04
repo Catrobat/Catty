@@ -489,28 +489,20 @@
 		4C2CBB4725A5AA8400C1C143 /* XMLParserObjectTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB0C25A5AA8400C1C143 /* XMLParserObjectTests093.swift */; };
 		4C2CBB4825A5AA8400C1C143 /* XMLParserFormulaTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB0D25A5AA8400C1C143 /* XMLParserFormulaTests093.swift */; };
 		4C2CBB4925A5AA8400C1C143 /* XMLParserBrickTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB0E25A5AA8400C1C143 /* XMLParserBrickTests093.swift */; };
-		4C2CBB4A25A5AA8400C1C143 /* XMLParserBlackBoxTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB1025A5AA8400C1C143 /* XMLParserBlackBoxTests093.swift */; };
 		4C2CBB4B25A5AA8400C1C143 /* XMLParserHeaderTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB1425A5AA8400C1C143 /* XMLParserHeaderTests095.swift */; };
 		4C2CBB4C25A5AA8400C1C143 /* XMLParserObjectTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB1525A5AA8400C1C143 /* XMLParserObjectTests095.swift */; };
 		4C2CBB4D25A5AA8400C1C143 /* XMLParserFormulaTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB1625A5AA8400C1C143 /* XMLParserFormulaTests095.swift */; };
 		4C2CBB4E25A5AA8400C1C143 /* XMLParserBrickTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB1725A5AA8400C1C143 /* XMLParserBrickTests095.swift */; };
 		4C2CBB4F25A5AA8400C1C143 /* XMLParserUserVariableTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB1825A5AA8400C1C143 /* XMLParserUserVariableTests095.swift */; };
-		4C2CBB5025A5AA8400C1C143 /* XMLParserBlackBoxTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB1A25A5AA8400C1C143 /* XMLParserBlackBoxTests095.swift */; };
 		4C2CBB5125A5AA8400C1C143 /* XMLParserTests092.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB1C25A5AA8400C1C143 /* XMLParserTests092.swift */; };
 		4C2CBB5225A5AA8400C1C143 /* XMLParserTests0991.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB2025A5AA8400C1C143 /* XMLParserTests0991.swift */; };
-		4C2CBB5325A5AA8400C1C143 /* XMLParserBlackBoxTests0991.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB2225A5AA8400C1C143 /* XMLParserBlackBoxTests0991.swift */; };
-		4C2CBB5425A5AA8400C1C143 /* XMLParserBlackBoxTests097.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB2625A5AA8400C1C143 /* XMLParserBlackBoxTests097.swift */; };
 		4C2CBB5525A5AA8400C1C143 /* XMLParserTests098.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB2A25A5AA8400C1C143 /* XMLParserTests098.swift */; };
-		4C2CBB5625A5AA8400C1C143 /* XMLParserBlackBoxTests098.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB2C25A5AA8400C1C143 /* XMLParserBlackBoxTests098.swift */; };
-		4C2CBB5725A5AA8400C1C143 /* XMLParserBlackBoxTests096.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB3025A5AA8400C1C143 /* XMLParserBlackBoxTests096.swift */; };
 		4C2CBB5825A5AA8400C1C143 /* CBXMLSerializerHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB3225A5AA8400C1C143 /* CBXMLSerializerHelperTests.swift */; };
 		4C2CBB5925A5AA8400C1C143 /* CBXMLParserHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB3325A5AA8400C1C143 /* CBXMLParserHelperTests.swift */; };
 		4C2CBB5A25A5AA8400C1C143 /* XMLParserTests0992.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB3725A5AA8400C1C143 /* XMLParserTests0992.swift */; };
-		4C2CBB5B25A5AA8400C1C143 /* XMLParserBlackBoxTests0992.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB3925A5AA8400C1C143 /* XMLParserBlackBoxTests0992.swift */; };
 		4C2CBB5C25A5AA8400C1C143 /* XMLSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB3C25A5AA8400C1C143 /* XMLSerializerTests.swift */; };
 		4C2CBB5D25A5AA8400C1C143 /* XMLSerializerBlackBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB3D25A5AA8400C1C143 /* XMLSerializerBlackBoxTests.swift */; };
 		4C2CBB5E25A5AA8400C1C143 /* XMLParserTests0993.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB4025A5AA8400C1C143 /* XMLParserTests0993.swift */; };
-		4C2CBB5F25A5AA8400C1C143 /* XMLParserBlackBoxTests0993.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CBB4225A5AA8400C1C143 /* XMLParserBlackBoxTests0993.swift */; };
 		4C2DDEE825834A1B00728306 /* LookMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DDEE525834A1A00728306 /* LookMock.swift */; };
 		4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4171B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m */; };
 		4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */; };
@@ -1793,6 +1785,7 @@
 		E57E6D89254041BE00E775DF /* SpeakAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */; };
 		E57E6D8B2540427000E775DF /* SpeakBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */; };
 		E57E6D8F2540552F00E775DF /* AddItemToUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */; };
+		E59108A2268F1682008D254A /* XMLParserBlackBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */; };
 		E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */; };
 		E592D15A2539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */; };
 		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
@@ -2447,28 +2440,20 @@
 		4C2CBB0C25A5AA8400C1C143 /* XMLParserObjectTests093.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserObjectTests093.swift; sourceTree = "<group>"; };
 		4C2CBB0D25A5AA8400C1C143 /* XMLParserFormulaTests093.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserFormulaTests093.swift; sourceTree = "<group>"; };
 		4C2CBB0E25A5AA8400C1C143 /* XMLParserBrickTests093.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBrickTests093.swift; sourceTree = "<group>"; };
-		4C2CBB1025A5AA8400C1C143 /* XMLParserBlackBoxTests093.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests093.swift; sourceTree = "<group>"; };
 		4C2CBB1425A5AA8400C1C143 /* XMLParserHeaderTests095.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserHeaderTests095.swift; sourceTree = "<group>"; };
 		4C2CBB1525A5AA8400C1C143 /* XMLParserObjectTests095.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserObjectTests095.swift; sourceTree = "<group>"; };
 		4C2CBB1625A5AA8400C1C143 /* XMLParserFormulaTests095.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserFormulaTests095.swift; sourceTree = "<group>"; };
 		4C2CBB1725A5AA8400C1C143 /* XMLParserBrickTests095.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBrickTests095.swift; sourceTree = "<group>"; };
 		4C2CBB1825A5AA8400C1C143 /* XMLParserUserVariableTests095.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserUserVariableTests095.swift; sourceTree = "<group>"; };
-		4C2CBB1A25A5AA8400C1C143 /* XMLParserBlackBoxTests095.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests095.swift; sourceTree = "<group>"; };
 		4C2CBB1C25A5AA8400C1C143 /* XMLParserTests092.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests092.swift; sourceTree = "<group>"; };
 		4C2CBB2025A5AA8400C1C143 /* XMLParserTests0991.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests0991.swift; sourceTree = "<group>"; };
-		4C2CBB2225A5AA8400C1C143 /* XMLParserBlackBoxTests0991.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests0991.swift; sourceTree = "<group>"; };
-		4C2CBB2625A5AA8400C1C143 /* XMLParserBlackBoxTests097.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests097.swift; sourceTree = "<group>"; };
 		4C2CBB2A25A5AA8400C1C143 /* XMLParserTests098.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests098.swift; sourceTree = "<group>"; };
-		4C2CBB2C25A5AA8400C1C143 /* XMLParserBlackBoxTests098.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests098.swift; sourceTree = "<group>"; };
-		4C2CBB3025A5AA8400C1C143 /* XMLParserBlackBoxTests096.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests096.swift; sourceTree = "<group>"; };
 		4C2CBB3225A5AA8400C1C143 /* CBXMLSerializerHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBXMLSerializerHelperTests.swift; sourceTree = "<group>"; };
 		4C2CBB3325A5AA8400C1C143 /* CBXMLParserHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBXMLParserHelperTests.swift; sourceTree = "<group>"; };
 		4C2CBB3725A5AA8400C1C143 /* XMLParserTests0992.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests0992.swift; sourceTree = "<group>"; };
-		4C2CBB3925A5AA8400C1C143 /* XMLParserBlackBoxTests0992.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests0992.swift; sourceTree = "<group>"; };
 		4C2CBB3C25A5AA8400C1C143 /* XMLSerializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLSerializerTests.swift; sourceTree = "<group>"; };
 		4C2CBB3D25A5AA8400C1C143 /* XMLSerializerBlackBoxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLSerializerBlackBoxTests.swift; sourceTree = "<group>"; };
 		4C2CBB4025A5AA8400C1C143 /* XMLParserTests0993.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests0993.swift; sourceTree = "<group>"; };
-		4C2CBB4225A5AA8400C1C143 /* XMLParserBlackBoxTests0993.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests0993.swift; sourceTree = "<group>"; };
 		4C2DDEE525834A1A00728306 /* LookMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookMock.swift; sourceTree = "<group>"; };
 		4C2EE4161B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLOpenedNestingBricksStack.h; sourceTree = "<group>"; };
 		4C2EE4171B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLOpenedNestingBricksStack.m; sourceTree = "<group>"; };
@@ -4264,6 +4249,7 @@
 		E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakBrickTests.swift; sourceTree = "<group>"; };
 		E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToUserListBrickTests.swift; sourceTree = "<group>"; };
+		E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests.swift; sourceTree = "<group>"; };
 		E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendDigitalValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendPWMValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
@@ -5455,24 +5441,17 @@
 			name = Copying;
 			sourceTree = "<group>";
 		};
-		4C2CBB0425A5AA8400C1C143 /* Parser & Serialization */ = {
+		4C2CBB0425A5AA8400C1C143 /* XML */ = {
 			isa = PBXGroup;
 			children = (
+				E59108A4268F3466008D254A /* Serializer */,
+				E59108A3268F3428008D254A /* Parser */,
 				4C2CBB0525A5AA8400C1C143 /* Abstract */,
 				4C2CBB3125A5AA8400C1C143 /* Helper */,
-				4C2CBB1B25A5AA8400C1C143 /* CatrobatLanguage0.92 */,
-				4C2CBB0925A5AA8400C1C143 /* CatrobatLanguage0.93 */,
-				4C2CBB1125A5AA8400C1C143 /* CatrobatLanguage0.95 */,
-				4C2CBB2D25A5AA8400C1C143 /* CatrobatLanguage0.96 */,
-				4C2CBB2325A5AA8400C1C143 /* CatrobatLanguage0.97 */,
-				4C2CBB2725A5AA8400C1C143 /* CatrobatLanguage0.98 */,
-				4C2CBB1D25A5AA8400C1C143 /* CatrobatLanguage0.991 */,
-				4C2CBB3425A5AA8400C1C143 /* CatrobatLanguage0.992 */,
-				4C2CBB3A25A5AA8400C1C143 /* CatrobatLanguage0.993 */,
 				4C2CBB0825A5AA8400C1C143 /* UserListXMLHandlerTests.m */,
 				4C2CBB0725A5AA8400C1C143 /* SceneXMLHandlerTest.m */,
 			);
-			path = "Parser & Serialization";
+			path = XML;
 			sourceTree = "<group>";
 		};
 		4C2CBB0525A5AA8400C1C143 /* Abstract */ = {
@@ -5486,49 +5465,15 @@
 		4C2CBB0925A5AA8400C1C143 /* CatrobatLanguage0.93 */ = {
 			isa = PBXGroup;
 			children = (
-				4C2CBB0F25A5AA8400C1C143 /* BlackBox Tests */,
-				4C2CBB0A25A5AA8400C1C143 /* Unit Tests */,
-			);
-			path = CatrobatLanguage0.93;
-			sourceTree = "<group>";
-		};
-		4C2CBB0A25A5AA8400C1C143 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
 				4C2CBB0B25A5AA8400C1C143 /* XMLParserHeaderTests093.swift */,
 				4C2CBB0C25A5AA8400C1C143 /* XMLParserObjectTests093.swift */,
 				4C2CBB0D25A5AA8400C1C143 /* XMLParserFormulaTests093.swift */,
 				4C2CBB0E25A5AA8400C1C143 /* XMLParserBrickTests093.swift */,
 			);
-			path = "Unit Tests";
-			sourceTree = "<group>";
-		};
-		4C2CBB0F25A5AA8400C1C143 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB1025A5AA8400C1C143 /* XMLParserBlackBoxTests093.swift */,
-			);
-			path = "BlackBox Tests";
+			path = CatrobatLanguage0.93;
 			sourceTree = "<group>";
 		};
 		4C2CBB1125A5AA8400C1C143 /* CatrobatLanguage0.95 */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB1225A5AA8400C1C143 /* XMLParserTests */,
-			);
-			path = CatrobatLanguage0.95;
-			sourceTree = "<group>";
-		};
-		4C2CBB1225A5AA8400C1C143 /* XMLParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB1925A5AA8400C1C143 /* BlackBox Tests */,
-				4C2CBB1325A5AA8400C1C143 /* Unit Tests */,
-			);
-			path = XMLParserTests;
-			sourceTree = "<group>";
-		};
-		4C2CBB1325A5AA8400C1C143 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				4C2CBB1425A5AA8400C1C143 /* XMLParserHeaderTests095.swift */,
@@ -5537,15 +5482,7 @@
 				4C2CBB1725A5AA8400C1C143 /* XMLParserBrickTests095.swift */,
 				4C2CBB1825A5AA8400C1C143 /* XMLParserUserVariableTests095.swift */,
 			);
-			path = "Unit Tests";
-			sourceTree = "<group>";
-		};
-		4C2CBB1925A5AA8400C1C143 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB1A25A5AA8400C1C143 /* XMLParserBlackBoxTests095.swift */,
-			);
-			path = "BlackBox Tests";
+			path = CatrobatLanguage0.95;
 			sourceTree = "<group>";
 		};
 		4C2CBB1B25A5AA8400C1C143 /* CatrobatLanguage0.92 */ = {
@@ -5559,115 +5496,17 @@
 		4C2CBB1D25A5AA8400C1C143 /* CatrobatLanguage0.991 */ = {
 			isa = PBXGroup;
 			children = (
-				4C2CBB1E25A5AA8400C1C143 /* XMLParserTests */,
-			);
-			path = CatrobatLanguage0.991;
-			sourceTree = "<group>";
-		};
-		4C2CBB1E25A5AA8400C1C143 /* XMLParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2125A5AA8400C1C143 /* BlackBox Tests */,
-				4C2CBB1F25A5AA8400C1C143 /* Unit Tests */,
-			);
-			path = XMLParserTests;
-			sourceTree = "<group>";
-		};
-		4C2CBB1F25A5AA8400C1C143 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
 				4C2CBB2025A5AA8400C1C143 /* XMLParserTests0991.swift */,
 			);
-			path = "Unit Tests";
-			sourceTree = "<group>";
-		};
-		4C2CBB2125A5AA8400C1C143 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2225A5AA8400C1C143 /* XMLParserBlackBoxTests0991.swift */,
-			);
-			path = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		4C2CBB2325A5AA8400C1C143 /* CatrobatLanguage0.97 */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2425A5AA8400C1C143 /* XMLParserTests */,
-			);
-			path = CatrobatLanguage0.97;
-			sourceTree = "<group>";
-		};
-		4C2CBB2425A5AA8400C1C143 /* XMLParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2525A5AA8400C1C143 /* BlackBox Tests */,
-			);
-			path = XMLParserTests;
-			sourceTree = "<group>";
-		};
-		4C2CBB2525A5AA8400C1C143 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2625A5AA8400C1C143 /* XMLParserBlackBoxTests097.swift */,
-			);
-			path = "BlackBox Tests";
+			path = CatrobatLanguage0.991;
 			sourceTree = "<group>";
 		};
 		4C2CBB2725A5AA8400C1C143 /* CatrobatLanguage0.98 */ = {
 			isa = PBXGroup;
 			children = (
-				4C2CBB2825A5AA8400C1C143 /* XMLParserTests */,
-			);
-			path = CatrobatLanguage0.98;
-			sourceTree = "<group>";
-		};
-		4C2CBB2825A5AA8400C1C143 /* XMLParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2B25A5AA8400C1C143 /* BlackBox Tests */,
-				4C2CBB2925A5AA8400C1C143 /* Unit Tests */,
-			);
-			path = XMLParserTests;
-			sourceTree = "<group>";
-		};
-		4C2CBB2925A5AA8400C1C143 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
 				4C2CBB2A25A5AA8400C1C143 /* XMLParserTests098.swift */,
 			);
-			path = "Unit Tests";
-			sourceTree = "<group>";
-		};
-		4C2CBB2B25A5AA8400C1C143 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2C25A5AA8400C1C143 /* XMLParserBlackBoxTests098.swift */,
-			);
-			path = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		4C2CBB2D25A5AA8400C1C143 /* CatrobatLanguage0.96 */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2E25A5AA8400C1C143 /* XMLParserTests */,
-			);
-			path = CatrobatLanguage0.96;
-			sourceTree = "<group>";
-		};
-		4C2CBB2E25A5AA8400C1C143 /* XMLParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB2F25A5AA8400C1C143 /* BlackBox Tests */,
-			);
-			path = XMLParserTests;
-			sourceTree = "<group>";
-		};
-		4C2CBB2F25A5AA8400C1C143 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB3025A5AA8400C1C143 /* XMLParserBlackBoxTests096.swift */,
-			);
-			path = "BlackBox Tests";
+			path = CatrobatLanguage0.98;
 			sourceTree = "<group>";
 		};
 		4C2CBB3125A5AA8400C1C143 /* Helper */ = {
@@ -5682,77 +5521,17 @@
 		4C2CBB3425A5AA8400C1C143 /* CatrobatLanguage0.992 */ = {
 			isa = PBXGroup;
 			children = (
-				4C2CBB3525A5AA8400C1C143 /* XMLParserTests */,
-			);
-			path = CatrobatLanguage0.992;
-			sourceTree = "<group>";
-		};
-		4C2CBB3525A5AA8400C1C143 /* XMLParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB3825A5AA8400C1C143 /* BlackBox Tests */,
-				4C2CBB3625A5AA8400C1C143 /* Unit Tests */,
-			);
-			path = XMLParserTests;
-			sourceTree = "<group>";
-		};
-		4C2CBB3625A5AA8400C1C143 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
 				4C2CBB3725A5AA8400C1C143 /* XMLParserTests0992.swift */,
 			);
-			path = "Unit Tests";
-			sourceTree = "<group>";
-		};
-		4C2CBB3825A5AA8400C1C143 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB3925A5AA8400C1C143 /* XMLParserBlackBoxTests0992.swift */,
-			);
-			path = "BlackBox Tests";
+			path = CatrobatLanguage0.992;
 			sourceTree = "<group>";
 		};
 		4C2CBB3A25A5AA8400C1C143 /* CatrobatLanguage0.993 */ = {
 			isa = PBXGroup;
 			children = (
-				4C2CBB3E25A5AA8400C1C143 /* XMLParserTests */,
-				4C2CBB3B25A5AA8400C1C143 /* XMLSerializerTests */,
-			);
-			path = CatrobatLanguage0.993;
-			sourceTree = "<group>";
-		};
-		4C2CBB3B25A5AA8400C1C143 /* XMLSerializerTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB3C25A5AA8400C1C143 /* XMLSerializerTests.swift */,
-				4C2CBB3D25A5AA8400C1C143 /* XMLSerializerBlackBoxTests.swift */,
-			);
-			path = XMLSerializerTests;
-			sourceTree = "<group>";
-		};
-		4C2CBB3E25A5AA8400C1C143 /* XMLParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB4125A5AA8400C1C143 /* BlackBox Tests */,
-				4C2CBB3F25A5AA8400C1C143 /* Unit Tests */,
-			);
-			path = XMLParserTests;
-			sourceTree = "<group>";
-		};
-		4C2CBB3F25A5AA8400C1C143 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
 				4C2CBB4025A5AA8400C1C143 /* XMLParserTests0993.swift */,
 			);
-			path = "Unit Tests";
-			sourceTree = "<group>";
-		};
-		4C2CBB4125A5AA8400C1C143 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C2CBB4225A5AA8400C1C143 /* XMLParserBlackBoxTests0993.swift */,
-			);
-			path = "BlackBox Tests";
+			path = CatrobatLanguage0.993;
 			sourceTree = "<group>";
 		};
 		4C2EE4141B555B55006DE9B8 /* Parser & Serializer */ = {
@@ -10383,7 +10162,7 @@
 				4C665F62253EEB0900A84BB6 /* ImageCache */,
 				59A58D81202C712F008B1A8F /* MediaLibrary */,
 				599E649C202D9F85009494B5 /* Mocks */,
-				4C2CBB0425A5AA8400C1C143 /* Parser & Serialization */,
+				4C2CBB0425A5AA8400C1C143 /* XML */,
 				4CE5C56C1E0AD71800FD021C /* Project */,
 				4C1E33A725DA5A0F00F44F13 /* Paint */,
 				4C1608A31A095480002C7032 /* Resources */,
@@ -10719,6 +10498,30 @@
 			name = Button;
 			path = Catty/Views/Custom/Button;
 			sourceTree = SOURCE_ROOT;
+		};
+		E59108A3268F3428008D254A /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				4C2CBB1B25A5AA8400C1C143 /* CatrobatLanguage0.92 */,
+				4C2CBB0925A5AA8400C1C143 /* CatrobatLanguage0.93 */,
+				4C2CBB1125A5AA8400C1C143 /* CatrobatLanguage0.95 */,
+				4C2CBB2725A5AA8400C1C143 /* CatrobatLanguage0.98 */,
+				4C2CBB1D25A5AA8400C1C143 /* CatrobatLanguage0.991 */,
+				4C2CBB3425A5AA8400C1C143 /* CatrobatLanguage0.992 */,
+				4C2CBB3A25A5AA8400C1C143 /* CatrobatLanguage0.993 */,
+				E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		E59108A4268F3466008D254A /* Serializer */ = {
+			isa = PBXGroup;
+			children = (
+				4C2CBB3C25A5AA8400C1C143 /* XMLSerializerTests.swift */,
+				4C2CBB3D25A5AA8400C1C143 /* XMLSerializerBlackBoxTests.swift */,
+			);
+			path = Serializer;
+			sourceTree = "<group>";
 		};
 		F470A2DF2129DAE1005EC9A3 /* List */ = {
 			isa = PBXGroup;
@@ -11733,7 +11536,6 @@
 				4C82265A213FA7A400F3D750 /* TouchManagerMock.swift in Sources */,
 				4CBF96BF2351B3EC0063D5FC /* ProjectTests.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
-				4C2CBB5625A5AA8400C1C143 /* XMLParserBlackBoxTests098.swift in Sources */,
 				4C3A5CA921D3B7EF008FD83F /* NotEqualOperatorTest.swift in Sources */,
 				9E4D5CB322B845F100848584 /* IterableCacheTests.swift in Sources */,
 				4CF80276231D4E2400426396 /* SayForBubbleBrickCellTests.swift in Sources */,
@@ -11760,7 +11562,6 @@
 				591FCF0324EFB81500E5DD6B /* WhenBackgroundChangesScriptTests.swift in Sources */,
 				9ED30C9D2573EB35008D0197 /* SamplerTests.swift in Sources */,
 				4C2CBB4C25A5AA8400C1C143 /* XMLParserObjectTests095.swift in Sources */,
-				4C2CBB5325A5AA8400C1C143 /* XMLParserBlackBoxTests0991.swift in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
 				971C6F252605286800AD4857 /* SetTempoToBrickTests.swift in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
@@ -11853,13 +11654,13 @@
 				4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */,
 				4C6FE166212D2D2E0067B7D5 /* MinFunctionTest.swift in Sources */,
 				4C6FE16F212D2D2E0067B7D5 /* SinFunctionTest.swift in Sources */,
+				E59108A2268F1682008D254A /* XMLParserBlackBoxTests.swift in Sources */,
 				4C82267A213FA7A400F3D750 /* LookNumberSensorTest.swift in Sources */,
 				4C82267C213FA7A400F3D750 /* BackgroundNameSensorTest.swift in Sources */,
 				4C38B3762371529600F33721 /* GlideToBrickCellTests.swift in Sources */,
 				4C2CBB5D25A5AA8400C1C143 /* XMLSerializerBlackBoxTests.swift in Sources */,
 				E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */,
 				6F954C6824D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift in Sources */,
-				4C2CBB4A25A5AA8400C1C143 /* XMLParserBlackBoxTests093.swift in Sources */,
 				9EBCBD8B2329C3BF0074C2D9 /* PreviousLookBrickTests.swift in Sources */,
 				4C38B3742371522200F33721 /* BrickManagerTests.swift in Sources */,
 				9E22CC932323FFEF00BA4CBA /* ChromaprintAudioDecoder.swift in Sources */,
@@ -11912,7 +11713,6 @@
 				9EBCBD852329B73D0074C2D9 /* PlaceAtBrickTests.swift in Sources */,
 				4C4778F9267C83F500CAF398 /* InternFormulaUtilsTest.m in Sources */,
 				4C822652213FA7A400F3D750 /* LocationManagerMock.swift in Sources */,
-				4C2CBB5725A5AA8400C1C143 /* XMLParserBlackBoxTests096.swift in Sources */,
 				6F4B2FC12466F58500B5F0ED /* CBFileManagerMock.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
 				4C2CBB4525A5AA8400C1C143 /* UserListXMLHandlerTests.m in Sources */,
@@ -11942,7 +11742,6 @@
 				E579F118253DCC65009107C8 /* ThinkForBubbleBrickTests.swift in Sources */,
 				186AA34924830491001E38FD /* PenDownBrickTests.swift in Sources */,
 				4C822683213FA7A400F3D750 /* SensorManagerTests.swift in Sources */,
-				4C2CBB5B25A5AA8400C1C143 /* XMLParserBlackBoxTests0992.swift in Sources */,
 				180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */,
 				9E3AF79A2326F4D100AB16F1 /* IfOnEdgeBounceBrickTests.swift in Sources */,
 				05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */,
@@ -11977,7 +11776,6 @@
 				9EBCBD832329B44E0074C2D9 /* NextLookBrickTests.swift in Sources */,
 				46C5D9F4254FF637003D58D9 /* SpriteObjectTest.swift in Sources */,
 				4CEE86542653963A002BC7ED /* EmbroideryServiceMock.swift in Sources */,
-				4C2CBB5425A5AA8400C1C143 /* XMLParserBlackBoxTests097.swift in Sources */,
 				4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */,
 				9E05FAAC247FF356008951DE /* AppDelegateTests.swift in Sources */,
 				4C2CBB4825A5AA8400C1C143 /* XMLParserFormulaTests093.swift in Sources */,
@@ -11993,7 +11791,6 @@
 				4C822688213FAC3C00F3D750 /* MultiFingerXFunctionTests.swift in Sources */,
 				9E2D47CB232846AD00917D92 /* ChangeSizeByNBrickTests.swift in Sources */,
 				4C53E39221D525F800F2EC76 /* OperatorManagerTest.swift in Sources */,
-				4C2CBB5025A5AA8400C1C143 /* XMLParserBlackBoxTests095.swift in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				6F17FA1824B7579000885E07 /* UploadViewControllerTests.swift in Sources */,
 				17A8AC6F2644E79B00DDD480 /* BluetoothMocks.swift in Sources */,
@@ -12001,7 +11798,6 @@
 				4C4778D3267C82B100CAF398 /* ProjectDetailStoreViewControllerExtensionTests.swift in Sources */,
 				186E991D2488FBDB00627E36 /* PenUpBrickTests.swift in Sources */,
 				5921F2AB24F51F3B0044D936 /* BrickCellLookDataTests.swift in Sources */,
-				4C2CBB5F25A5AA8400C1C143 /* XMLParserBlackBoxTests0993.swift in Sources */,
 				9ECDCB0F2328528D00EBDA63 /* ComeToFrontBrickTests.swift in Sources */,
 				4C4778E3267C82B100CAF398 /* NSDataExtensionTests.swift in Sources */,
 				4C822676213FA7A400F3D750 /* LookNameSensorTest.swift in Sources */,
