@@ -41,16 +41,8 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Airplane_with_shadow_0993")
     }
 
-    func testCompass01() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Compass_0.1_0993")
-    }
-
     func testDemonstration() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Demonstration_0993")
-    }
-
-    func testDrinkMoreWater() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Drink_more_water_0993")
     }
 
     func testEncapsulated() {
@@ -65,48 +57,20 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Flappy_v3.0_0993")
     }
 
-    func testGossipGirl() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Gossip_Girl_0993")
-    }
-
     func testMemory() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Memory_0993")
-    }
-
-    func testMinecraftWorkInProgress() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Minecraft_Work_In_Progress_0993")
-    }
-
-    func testMinions() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Minions__0993")
     }
 
     func testPongStarter() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Pong_Starter_0993")
     }
 
-    func testRockPaperScissors() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Rock_paper_scissors_0993")
-    }
-
     func testTicTacToeMaster() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Tic_Tac_Toe_Master_0993")
     }
 
-    func testWordBalloonDemo() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Word_balloon_demo_0993")
-    }
-
-    func testXRayPhone() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "X_Ray_phone_0993")
-    }
-
     func testGalaxyWar() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Galaxy_War_0993")
-    }
-
-    func testSkydivingSteve() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Skydiving_Steve_0993")
     }
 
     func testPythagoreanTheorem() {
