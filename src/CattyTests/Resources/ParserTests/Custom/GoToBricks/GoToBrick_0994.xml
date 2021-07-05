@@ -5,16 +5,17 @@
     <applicationBuildNumber>41</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.6.15</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>x86_64</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
     <platform>iOS</platform>
     <platformVersion>13.3</platformVersion>
     <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>test1401</programName>
+    <programName>GoToBrick</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1792</screenHeight>
@@ -31,14 +32,14 @@
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList/>
-          <nfcTagList/>
-          <scriptList/>
           <soundList/>
+          <scriptList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="object 1">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -46,7 +47,7 @@
                   <commentedOut>false</commentedOut>
                   <destinationSprite type="SingleSprite" name="object 2">
                     <lookList/>
-                    <nfcTagList/>
+                    <soundList/>
                     <scriptList>
                       <script type="StartScript">
                         <brickList>
@@ -59,8 +60,8 @@
                         <isUserScript>false</isUserScript>
                       </script>
                     </scriptList>
-                    <soundList/>
                     <userBricks/>
+                    <nfcTagList/>
                   </destinationSprite>
                   <spinnerSelection>82</spinnerSelection>
                 </brick>
@@ -69,13 +70,13 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object reference="../object[2]/scriptList/script/brickList/brick/destinationSprite"/>
         <object type="SingleSprite" name="object 3">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -93,8 +94,8 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>

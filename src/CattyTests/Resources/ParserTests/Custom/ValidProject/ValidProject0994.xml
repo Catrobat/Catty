@@ -5,16 +5,17 @@
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.9.14</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description>A visual proof of the famous theorem, adapted from Chou pei suan ching, author unknown, circa B.C. 200? [Slightly corrected version] </description>
     <deviceName>SM-N9005</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
     <platform>Android</platform>
     <platformVersion>21.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>Valid Program</programName>
+    <programName>ValidProject</programName>
     <remixOf>http://pocketcode.org/details/0</remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1184</screenHeight>
@@ -35,7 +36,7 @@
               <fileName>6B90F505F45A621DFD6CB284826F6E14_background.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList/>
@@ -159,8 +160,8 @@
               <receivedMessage>start</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Triangle">
           <lookList>
@@ -168,7 +169,7 @@
               <fileName>0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -230,13 +231,13 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1.0</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>NUMBER</type>
                       <value>76</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>1.0</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <type>NUMBER</type>
@@ -249,8 +250,8 @@
               <receivedMessage>go to the upper right</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Right triangle in the lower left">
           <lookList>
@@ -258,7 +259,7 @@
               <fileName>0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -349,10 +350,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1.5</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -360,6 +357,10 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>1.5</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <rightChild>
@@ -376,8 +377,8 @@
               <receivedMessage>go to the lower left</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Rectangle">
           <lookList>
@@ -385,7 +386,7 @@
               <fileName>E3E11C70822ACD677E4F2D5C371FF58A_r8a75x3.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -475,8 +476,8 @@
               <receivedMessage>two triangles, come</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Square">
           <lookList>
@@ -484,7 +485,7 @@
               <fileName>A6284DF3F888012B62A4A7BC25337746_r153g0b0_528x528.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -570,8 +571,8 @@
               <receivedMessage>square, come</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Right triangle in the upper left">
           <lookList>
@@ -579,7 +580,7 @@
               <fileName>0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -644,13 +645,13 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1.5</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>NUMBER</type>
                       <value>189</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>1.5</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <rightChild>
@@ -671,8 +672,8 @@
               <receivedMessage>go to the top and right</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Right triangle in the lower right">
           <lookList>
@@ -680,7 +681,7 @@
               <fileName>0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -745,10 +746,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1.5</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -756,6 +753,10 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>1.5</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <type>NUMBER</type>
@@ -768,8 +769,8 @@
               <receivedMessage>go to the top and right</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="a">
           <lookList>
@@ -777,7 +778,7 @@
               <fileName>2537220F16D33281C296D06C3DBECE7A_a.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -865,13 +866,13 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1.0</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>NUMBER</type>
                       <value>326</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>1.0</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <type>NUMBER</type>
@@ -983,8 +984,8 @@
               <receivedMessage>ab, hide</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="a2">
           <lookList>
@@ -992,7 +993,7 @@
               <fileName>EE10E546A8CE706EB18F61300DCC67B6_a2.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -1119,8 +1120,8 @@
               <receivedMessage>a2b2, appear</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="a second">
           <lookList>
@@ -1128,7 +1129,7 @@
               <fileName>2537220F16D33281C296D06C3DBECE7A_a.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -1258,8 +1259,8 @@
               <receivedMessage>ab, hide</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="b">
           <lookList>
@@ -1267,7 +1268,7 @@
               <fileName>034B4A7C2361B5107AD5C54E3702A43F_b.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -1355,13 +1356,13 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1.0</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>NUMBER</type>
                       <value>106</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>1.0</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <type>NUMBER</type>
@@ -1508,8 +1509,8 @@
               <receivedMessage>ab, hide</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="b2">
           <lookList>
@@ -1517,7 +1518,7 @@
               <fileName>F79A7EFEA82AC58297FE32C50FA4E7EE_b2.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -1644,8 +1645,8 @@
               <receivedMessage>a2b2, appear</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="b second">
           <lookList>
@@ -1653,7 +1654,7 @@
               <fileName>034B4A7C2361B5107AD5C54E3702A43F_b.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -1773,8 +1774,8 @@
               <receivedMessage>ab, hide</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="c">
           <lookList>
@@ -1785,7 +1786,7 @@
               <fileName>2D03F4EA01C0813693F53EF304225D37_rc.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -1976,13 +1977,13 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1.0</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>NUMBER</type>
                       <value>66</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>1.0</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <type>NUMBER</type>
@@ -2004,8 +2005,8 @@
               <receivedMessage>two triangles, come</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="c2">
           <lookList>
@@ -2013,7 +2014,7 @@
               <fileName>6D7A4389F21D3EF895993E391723E02C_c2.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -2139,8 +2140,8 @@
               <receivedMessage>c2, appear</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="c second">
           <lookList>
@@ -2148,7 +2149,7 @@
               <fileName>2D03F4EA01C0813693F53EF304225D37_rc.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -2263,8 +2264,8 @@
               <receivedMessage>go to the lower left</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>

@@ -5,16 +5,17 @@
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.9.24</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>Samsung Galaxy S6 - 6.0.0 - API 23 - 1440x2560</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense></mediaLicense>
     <platform>Android</platform>
     <platformVersion>23.0</platformVersion>
     <programLicense></programLicense>
-    <programName>ElementOfUserListTest</programName>
+    <programName>ElementOfListFunction</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>2560</screenHeight>
@@ -31,7 +32,7 @@
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -57,8 +58,8 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>

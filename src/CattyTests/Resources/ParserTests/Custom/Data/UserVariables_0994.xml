@@ -5,16 +5,17 @@
     <applicationBuildNumber>39</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.6.13</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>x86_64</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
     <platform>iOS</platform>
     <platformVersion>13.3</platformVersion>
     <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>UserVariable</programName>
+    <programName>UserVariables</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1792</screenHeight>
@@ -31,7 +32,7 @@
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -70,12 +71,12 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="A">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -104,12 +105,12 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="B">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -138,17 +139,18 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>
         <objectListOfList/>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object[3]"/>
+            <object reference="../../../../objectList/object"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[3]/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
             </list>
           </entry>
           <entry>
@@ -158,10 +160,9 @@
             </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object"/>
+            <object reference="../../../../objectList/object[3]"/>
             <list>
-              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick/userVariable"/>
-              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[3]/scriptList/script/brickList/brick/userVariable"/>
             </list>
           </entry>
         </objectVariableList>

@@ -5,10 +5,11 @@
     <applicationBuildNumber>24</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.6.9</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description>Hello, this is an escaping char test: @ &amp; € „ ‚ ? # ~ £ ¥ 🍺 🎉 🔬</description>
     <deviceName>iPhone9,3</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
     <platform>iOS</platform>
@@ -31,7 +32,7 @@
       <objectList>
         <object type="SingleSprite" name="Hintergrund">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -91,8 +92,8 @@
               <receivedMessage>&amp;€@45</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>

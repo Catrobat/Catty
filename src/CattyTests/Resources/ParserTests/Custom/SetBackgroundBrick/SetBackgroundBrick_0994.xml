@@ -5,16 +5,17 @@
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>v0.9.10-111-geb1b919 master</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>Nexus 4</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense></mediaLicense>
     <platform>Android</platform>
     <platformVersion>19.0</platformVersion>
     <programLicense></programLicense>
-    <programName>Alle Bricks</programName>
+    <programName>SetBackgroundBrick</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1184</screenHeight>
@@ -35,14 +36,14 @@
               <fileName>5235c2eecb956adf8c3ff3e3e9f295e9_automatic_screenshot.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
-          <scriptList/>
           <soundList/>
+          <scriptList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Object with valid background reference">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -55,8 +56,8 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Object with invalid background reference">
           <lookList>
@@ -64,7 +65,7 @@
               <fileName>123452eecb956adf8c3ff3e3e9f295e9_unused_look.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -77,8 +78,8 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>

@@ -5,16 +5,17 @@
     <applicationBuildNumber>123</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>applicationVersion</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload>2014-11-0211:00:00</dateTimeUpload>
     <description>description</description>
     <deviceName>Android SDK built for x86</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>mediaLicense</mediaLicense>
     <platform>Android</platform>
     <platformVersion>19.0</platformVersion>
     <programLicense>programLicense</programLicense>
-    <programName>programName</programName>
+    <programName>ValidHeader</programName>
     <remixOf>remixOf</remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1184</screenHeight>
@@ -31,7 +32,12 @@
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList/>
-          <nfcTagList/>
+          <soundList>
+            <sound>
+              <fileName>a49fd671df65fb1c1b5f93bb56b53c85_record.mp3</fileName>
+              <name>shot</name>
+            </sound>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -165,20 +171,15 @@
               <brickList>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound>
-                    <fileName>a49fd671df65fb1c1b5f93bb56b53c85_record.mp3</fileName>
-                    <name>shot</name>
-                  </sound>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <receivedMessage>Shoot!</receivedMessage>
             </script>
           </scriptList>
-          <soundList>
-            <sound reference="../../scriptList/script[2]/brickList/brick/sound"/>
-          </soundList>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Airplane">
           <lookList>
@@ -186,7 +187,12 @@
               <fileName>6BC61066A43990301DB003201BD71ED1_look.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList>
+            <sound>
+              <fileName>e47dbee99c20968043bcf8b5858c33e1_record.mp3</fileName>
+              <name>motor sound</name>
+            </sound>
+          </soundList>
           <scriptList>
             <script type="WhenScript">
               <brickList>
@@ -235,10 +241,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound>
-                    <fileName>e47dbee99c20968043bcf8b5858c33e1_record.mp3</fileName>
-                    <name>motor sound</name>
-                  </sound>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -262,7 +265,7 @@
                   <commentedOut>false</commentedOut>
                   <pointedObject type="SingleSprite" name="Pointer">
                     <lookList/>
-                    <nfcTagList/>
+                    <soundList/>
                     <scriptList>
                       <script type="StartScript">
                         <brickList>
@@ -353,10 +356,6 @@
                           <brick type="GlideToBrick">
                             <commentedOut>false</commentedOut>
                             <formulaList>
-                              <formula category="DURATION_IN_SECONDS">
-                                <type>NUMBER</type>
-                                <value>1</value>
-                              </formula>
                               <formula category="Y_DESTINATION">
                                 <leftChild>
                                   <type>USER_VARIABLE</type>
@@ -368,6 +367,10 @@
                                 </rightChild>
                                 <type>OPERATOR</type>
                                 <value>MULT</value>
+                              </formula>
+                              <formula category="DURATION_IN_SECONDS">
+                                <type>NUMBER</type>
+                                <value>1</value>
                               </formula>
                               <formula category="X_DESTINATION">
                                 <leftChild>
@@ -388,8 +391,8 @@
                         <receivedMessage>Pointer,  move!</receivedMessage>
                       </script>
                     </scriptList>
-                    <soundList/>
                     <userBricks/>
+                    <nfcTagList/>
                   </pointedObject>
                 </brick>
                 <brick type="SetVariableBrick">
@@ -407,10 +410,8 @@
               <receivedMessage>Move!</receivedMessage>
             </script>
           </scriptList>
-          <soundList>
-            <sound reference="../../scriptList/script[2]/brickList/brick[6]/sound"/>
-          </soundList>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object reference="../object[2]/scriptList/script[3]/brickList/brick/pointedObject"/>
         <object type="SingleSprite" name="Shadow">
@@ -419,7 +420,7 @@
               <fileName>139843B4866929D6E32C91DEFC627378_look.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="BroadcastScript">
               <brickList>
@@ -681,8 +682,8 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Lower left tile">
           <lookList>
@@ -690,7 +691,7 @@
               <fileName>0FE096333242A2A86C4F09C3A6634C15_tiles.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="WhenScript">
               <brickList>
@@ -1059,8 +1060,8 @@
               <receivedMessage>Move!</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Lower right tile">
           <lookList>
@@ -1068,7 +1069,7 @@
               <fileName>0FE096333242A2A86C4F09C3A6634C15_tiles.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="WhenScript">
               <brickList>
@@ -1453,8 +1454,8 @@
               <receivedMessage>Move!</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Upper left tile">
           <lookList>
@@ -1462,7 +1463,7 @@
               <fileName>0FE096333242A2A86C4F09C3A6634C15_tiles.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="WhenScript">
               <brickList>
@@ -1847,8 +1848,8 @@
               <receivedMessage>Move!</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Upper right tile">
           <lookList>
@@ -1856,7 +1857,7 @@
               <fileName>0FE096333242A2A86C4F09C3A6634C15_tiles.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="WhenScript">
               <brickList>
@@ -2249,8 +2250,8 @@
               <receivedMessage>Move!</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 1">
           <lookList>
@@ -2258,7 +2259,7 @@
               <fileName>1d5585df43abf806fcb7d38d343eab71_Aussehen.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -2643,8 +2644,8 @@
               <receivedMessage>Shooting bullet 1</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 2">
           <lookList>
@@ -2652,7 +2653,7 @@
               <fileName>1d5585df43abf806fcb7d38d343eab71_Aussehen.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -3037,8 +3038,8 @@
               <receivedMessage>Shooting bullet 2</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 3">
           <lookList>
@@ -3046,7 +3047,7 @@
               <fileName>1d5585df43abf806fcb7d38d343eab71_Aussehen.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -3431,8 +3432,8 @@
               <receivedMessage>Shooting bullet 3</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 4">
           <lookList>
@@ -3440,7 +3441,7 @@
               <fileName>1d5585df43abf806fcb7d38d343eab71_Aussehen.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -3825,8 +3826,8 @@
               <receivedMessage>Shooting bullet 4</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 5">
           <lookList>
@@ -3834,7 +3835,7 @@
               <fileName>1d5585df43abf806fcb7d38d343eab71_Aussehen.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -4219,8 +4220,8 @@
               <receivedMessage>Shooting bullet 5</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 6">
           <lookList>
@@ -4228,7 +4229,7 @@
               <fileName>1d5585df43abf806fcb7d38d343eab71_Aussehen.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -4613,8 +4614,8 @@
               <receivedMessage>Shooting bullet 6</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 7">
           <lookList>
@@ -4622,7 +4623,7 @@
               <fileName>1d5585df43abf806fcb7d38d343eab71_Aussehen.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -5007,8 +5008,8 @@
               <receivedMessage>Shooting bullet 7</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 8">
           <lookList>
@@ -5016,7 +5017,7 @@
               <fileName>1d5585df43abf806fcb7d38d343eab71_Aussehen.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -5401,8 +5402,8 @@
               <receivedMessage>Shooting bullet 8</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Opponent">
           <lookList>
@@ -5494,7 +5495,12 @@
               <fileName>c466ff7ef4e9d07b526dfb3c6de91860_31.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList>
+            <sound>
+              <fileName>5952a60f91ed000cf2c46f645698c018_record.mp3</fileName>
+              <name>explosion</name>
+            </sound>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -5866,13 +5872,13 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>0.02</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>Opponent&apos;s y</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>0.02</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <type>USER_VARIABLE</type>
@@ -5910,10 +5916,7 @@
               <brickList>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound>
-                    <fileName>5952a60f91ed000cf2c46f645698c018_record.mp3</fileName>
-                    <name>explosion</name>
-                  </sound>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -6137,10 +6140,8 @@
               <receivedMessage>Move!</receivedMessage>
             </script>
           </scriptList>
-          <soundList>
-            <sound reference="../../scriptList/script[2]/brickList/brick/sound"/>
-          </soundList>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Shadow and charcoaled hull of opponent">
           <lookList>
@@ -6151,7 +6152,7 @@
               <fileName>3b7ef2ab33281115bc50c14afd3e7205_biplane.png</fileName>
             </look>
           </lookList>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -6219,10 +6220,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="DURATION_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>0.02</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <leftChild>
                         <type>USER_VARIABLE</type>
@@ -6234,6 +6231,10 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>0.02</value>
                     </formula>
                     <formula category="X_DESTINATION">
                       <leftChild>
@@ -6346,22 +6347,13 @@
               <receivedMessage>Move!</receivedMessage>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>
         <objectListOfList/>
         <objectVariableList>
-          <entry>
-            <object reference="../../../../objectList/object[9]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick/userVariable"/>
-            </list>
-          </entry>
           <entry>
             <object reference="../../../../objectList/object[13]"/>
             <list>
@@ -6372,28 +6364,16 @@
             </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[7]"/>
-            <list/>
-          </entry>
-          <entry>
             <object reference="../../../../objectList/object"/>
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[12]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick/userVariable"/>
-            </list>
+            <object reference="../../../../objectList/object[4]"/>
+            <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[17]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[17]/scriptList/script/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[17]/scriptList/script/brickList/brick[7]/userVariable"/>
-            </list>
+            <object reference="../../../../objectList/object[6]"/>
+            <list/>
           </entry>
           <entry>
             <object reference="../../../../objectList/object[10]"/>
@@ -6405,45 +6385,13 @@
             </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[11]"/>
+            <object reference="../../../../objectList/object[12]"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[11]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[11]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[11]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[11]/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick/userVariable"/>
             </list>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[6]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[5]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[15]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[15]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[15]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[15]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[15]/scriptList/script/brickList/brick/userVariable"/>
-            </list>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[2]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[2]/scriptList/script[3]/brickList/brick/pointedObject"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[3]/brickList/brick/pointedObject/scriptList/script/brickList/brick/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[3]/brickList/brick/pointedObject/scriptList/script/brickList/brick[2]/userVariable"/>
-            </list>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[4]"/>
-            <list/>
           </entry>
           <entry>
             <object reference="../../../../objectList/object[16]"/>
@@ -6465,6 +6413,59 @@
           </entry>
           <entry>
             <object reference="../../../../objectList/object[18]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[7]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[17]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[17]/scriptList/script/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[17]/scriptList/script/brickList/brick[7]/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[5]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[15]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[15]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[15]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[15]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[15]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[11]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[11]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[11]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[11]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[11]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[9]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]/scriptList/script[3]/brickList/brick/pointedObject"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[3]/brickList/brick/pointedObject/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[3]/brickList/brick/pointedObject/scriptList/script/brickList/brick[2]/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
             <list/>
           </entry>
           <entry>

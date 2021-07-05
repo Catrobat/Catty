@@ -5,16 +5,17 @@
     <applicationBuildNumber>5</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.1</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>iPhone Simulator</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>iOS</platform>
     <platformVersion>10.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>AddItemToUserListTest</programName>
+    <programName>AddItemToUserList</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>568</screenHeight>
@@ -31,7 +32,7 @@
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -64,8 +65,8 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>

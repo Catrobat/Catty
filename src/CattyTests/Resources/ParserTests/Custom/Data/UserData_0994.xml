@@ -5,16 +5,17 @@
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.9.24</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>Google Nexus 4 API 22</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense></mediaLicense>
     <platform>Android</platform>
     <platformVersion>22.0</platformVersion>
     <programLicense></programLicense>
-    <programName>data</programName>
+    <programName>UserData</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1184</screenHeight>
@@ -31,7 +32,7 @@
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -50,12 +51,12 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Object 1">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -63,7 +64,7 @@
                   <commentedOut>false</commentedOut>
                   <pointedObject type="SingleSprite" name="Object 2">
                     <lookList/>
-                    <nfcTagList/>
+                    <soundList/>
                     <scriptList>
                       <script type="StartScript">
                         <brickList>
@@ -82,8 +83,8 @@
                         <isUserScript>false</isUserScript>
                       </script>
                     </scriptList>
-                    <soundList/>
                     <userBricks/>
+                    <nfcTagList/>
                   </pointedObject>
                 </brick>
                 <brick type="SetVariableBrick">
@@ -101,19 +102,19 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
         <object reference="../object[2]/scriptList/script/brickList/brick/pointedObject"/>
       </objectList>
       <data>
         <objectListOfList>
           <entry>
-            <object reference="../../../../objectList/object[2]"/>
+            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/pointedObject"/>
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/pointedObject"/>
+            <object reference="../../../../objectList/object[2]"/>
             <list/>
           </entry>
           <entry>
@@ -123,15 +124,15 @@
         </objectListOfList>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object[2]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
-            </list>
-          </entry>
-          <entry>
             <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/pointedObject"/>
             <list>
               <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
             </list>
           </entry>
           <entry>

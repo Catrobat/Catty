@@ -5,16 +5,17 @@
     <applicationBuildNumber>6</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.1</applicationVersion>
-    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>iPhone Simulator</deviceName>
+    <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>iOS</platform>
     <platformVersion>10.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>InsertItemIntoUserListTest</programName>
+    <programName>InsertItemIntoUserListBrick</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>736</screenHeight>
@@ -31,20 +32,20 @@
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList/>
-          <nfcTagList/>
+          <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="InsertItemIntoUserListBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
-                      <type>NUMBER</type>
-                      <value>1</value>
-                    </formula>
                     <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
                       <type>NUMBER</type>
                       <value>55</value>
+                    </formula>
+                    <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
+                      <type>NUMBER</type>
+                      <value>1</value>
                     </formula>
                   </formulaList>
                   <userList>
@@ -54,13 +55,13 @@
                 <brick type="InsertItemIntoUserListBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
-                      <type>NUMBER</type>
-                      <value>2</value>
-                    </formula>
                     <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
                       <type>STRING</type>
                       <value>test</value>
+                    </formula>
+                    <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
+                      <type>NUMBER</type>
+                      <value>2</value>
                     </formula>
                   </formulaList>
                   <userList reference="../../brick/userList"/>
@@ -70,8 +71,8 @@
               <isUserScript>false</isUserScript>
             </script>
           </scriptList>
-          <soundList/>
           <userBricks/>
+          <nfcTagList/>
         </object>
       </objectList>
       <data>
