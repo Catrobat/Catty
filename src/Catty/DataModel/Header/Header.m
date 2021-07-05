@@ -38,7 +38,6 @@
     header.dateTimeUpload = nil;
     header.programDescription = nil;
     header.deviceName = [Util deviceName];
-    header.isCastProject = false;
     header.mediaLicense = [Util catrobatMediaLicense];
     header.platform = [Util platformName];
     header.platformVersion = [Util platformVersionWithoutPatch];
@@ -98,8 +97,6 @@
     if (self.landscapeMode != header.landscapeMode)
         return NO;
     if (self.scenesEnabled != header.scenesEnabled)
-        return NO;
-    if (self.isCastProject != header.isCastProject)
         return NO;
     return YES;
 }

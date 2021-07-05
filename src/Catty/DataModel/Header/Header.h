@@ -53,7 +53,6 @@
 @property (nonatomic, assign) BOOL isArduinoProject;
 @property (nonatomic, assign) BOOL landscapeMode;
 @property (nonatomic, assign) BOOL scenesEnabled;
-@property (nonatomic, assign) BOOL isCastProject;
 
 // do not persist following properties
 @property (nonatomic, strong) NSString *programID;

@@ -26,78 +26,78 @@ import XCTest
 
 final class XMLSerializerBlackBoxTests: XMLAbstractTest {
     func testAirFight() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Air_fight_0.5_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Air_fight_0.5_0993")
     }
 
     func testInvalidAirFight() {
         let project095 = self.getProjectForXML(xmlFile: "Air_fight_0.5_095")
         let background = project095.scene.object(at: 0)!
         background.name = "Invalid"
-        let equal = self.isProject(firstProject: project095, equalToXML: "Air_fight_0.5_0994")
+        let equal = self.isProject(firstProject: project095, equalToXML: "Air_fight_0.5_0993")
         XCTAssertFalse(equal, "Serialized project and XML are not equal")
     }
 
     func testAirplaneWithShadow06() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Airplane_with_shadow_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Airplane_with_shadow_0993")
     }
 
     func testDemonstration() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Demonstration_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Demonstration_0993")
     }
 
     func testEncapsulated() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Encapsulated_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Encapsulated_0993")
     }
 
     func testFlapPacMan() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Flap_Pac_Man_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Flap_Pac_Man_0993")
     }
 
     func testFlappy30() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Flappy_v3.0_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Flappy_v3.0_0993")
     }
 
     func testMemory() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Memory_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Memory_0993")
     }
 
     func testPongStarter() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Pong_Starter_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Pong_Starter_0993")
     }
 
     func testTicTacToeMaster() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Tic_Tac_Toe_Master_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Tic_Tac_Toe_Master_0993")
     }
 
     func testGalaxyWar() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Galaxy_War_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Galaxy_War_0993")
     }
 
     func testPythagoreanTheorem() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Pythagorean_Theorem_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Pythagorean_Theorem_0993")
     }
 
     func testValidProjectAllBricks() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "ValidProjectAllBricks0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "ValidProjectAllBricks0993")
     }
 
     func testLogicBricks() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "LogicBricks_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "LogicBricks_0993")
     }
 
     func testDisabledBricks() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "DisabledBricks_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "DisabledBricks_0993")
     }
 
     func testUserData() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "UserData_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "UserData_0993")
     }
 
     func testGoToBrickWithNotYetSerializedSpriteObject() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "GoToBrick_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "GoToBrick_0993")
     }
 
     func testFunctions() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Functions_0994")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Functions_0993")
     }
 }

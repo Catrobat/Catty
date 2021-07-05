@@ -186,10 +186,6 @@
                                                     stringValue:self.deviceName
                                                         context:context]
                        context:context];
-    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"isCastProject"
-                                                    stringValue:self.isCastProject ? @"true" : @"false"
-                                                        context:context]
-                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"landscapeMode"
                                                     stringValue:self.landscapeMode ? @"true" : @"false"
                                                         context:context]

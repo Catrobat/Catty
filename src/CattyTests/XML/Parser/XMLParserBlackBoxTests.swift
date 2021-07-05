@@ -35,7 +35,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Air_fight_0.5_098", withProject: "Air_fight_0.5_0991")
         self.compareProject(firstProjectName: "Air_fight_0.5_0991", withProject: "Air_fight_0.5_0992")
         self.compareProject(firstProjectName: "Air_fight_0.5_0992", withProject: "Air_fight_0.5_0993")
-        self.compareProject(firstProjectName: "Air_fight_0.5_0993", withProject: "Air_fight_0.5_0994")
     }
 
     func testAirplaneWithShadow() {
@@ -47,7 +46,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Airplane_with_shadow_098", withProject: "Airplane_with_shadow_0991")
         self.compareProject(firstProjectName: "Airplane_with_shadow_0991", withProject: "Airplane_with_shadow_0992")
         self.compareProject(firstProjectName: "Airplane_with_shadow_0992", withProject: "Airplane_with_shadow_0993")
-        self.compareProject(firstProjectName: "Airplane_with_shadow_0993", withProject: "Airplane_with_shadow_0994")
     }
 
     func testDemonstration() {
@@ -59,7 +57,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Demonstration_098", withProject: "Demonstration_0991")
         self.compareProject(firstProjectName: "Demonstration_0991", withProject: "Demonstration_0992")
         self.compareProject(firstProjectName: "Demonstration_0992", withProject: "Demonstration_0993")
-        self.compareProject(firstProjectName: "Demonstration_0993", withProject: "Demonstration_0994")
     }
 
     func testFlapPacMan() {
@@ -71,7 +68,7 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Flap_Pac_Man_098", withProject: "Flap_Pac_Man_0991")
         self.compareProject(firstProjectName: "Flap_Pac_Man_0991", withProject: "Flap_Pac_Man_0992")
         self.compareProject(firstProjectName: "Flap_Pac_Man_0992", withProject: "Flap_Pac_Man_0993")
-        self.compareProject(firstProjectName: "Flap_Pac_Man_0993", withProject: "Flap_Pac_Man_0994")    }
+    }
 
     func testFlappy() {
         self.compareProject(firstProjectName: "Flappy_v3.0_092", withProject: "Flappy_v3.0_093")
@@ -82,7 +79,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Flappy_v3.0_098", withProject: "Flappy_v3.0_0991")
         self.compareProject(firstProjectName: "Flappy_v3.0_0991", withProject: "Flappy_v3.0_0992")
         self.compareProject(firstProjectName: "Flappy_v3.0_0992", withProject: "Flappy_v3.0_0993")
-        self.compareProject(firstProjectName: "Flappy_v3.0_0993", withProject: "Flappy_v3.0_0994")
     }
 
     func testGalaxyWar() {
@@ -94,7 +90,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Galaxy_War_098", withProject: "Galaxy_War_0991")
         self.compareProject(firstProjectName: "Galaxy_War_0991", withProject: "Galaxy_War_0992")
         self.compareProject(firstProjectName: "Galaxy_War_0992", withProject: "Galaxy_War_0993")
-        self.compareProject(firstProjectName: "Galaxy_War_0993", withProject: "Galaxy_War_0994")
     }
 
     func testMemory() {
@@ -106,7 +101,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Memory_098", withProject: "Memory_0991")
         self.compareProject(firstProjectName: "Memory_0991", withProject: "Memory_0992")
         self.compareProject(firstProjectName: "Memory_0992", withProject: "Memory_0993")
-        self.compareProject(firstProjectName: "Memory_0993", withProject: "Memory_0994")
     }
 
     func testPiano() {
@@ -117,7 +111,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Piano_098", withProject: "Piano_0991")
         self.compareProject(firstProjectName: "Piano_0991", withProject: "Piano_0992")
         self.compareProject(firstProjectName: "Piano_0992", withProject: "Piano_0993")
-        self.compareProject(firstProjectName: "Piano_0993", withProject: "Piano_0994")
     }
 
     func testPongStarter() {
@@ -129,7 +122,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Pong_Starter_098", withProject: "Pong_Starter_0991")
         self.compareProject(firstProjectName: "Pong_Starter_0991", withProject: "Pong_Starter_0992")
         self.compareProject(firstProjectName: "Pong_Starter_0992", withProject: "Pong_Starter_0993")
-        self.compareProject(firstProjectName: "Pong_Starter_0993", withProject: "Pong_Starter_0994")
     }
 
     func testPythagoreanTheorem() {
@@ -141,7 +133,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Pythagorean_Theorem_098", withProject: "Pythagorean_Theorem_0991")
         self.compareProject(firstProjectName: "Pythagorean_Theorem_0991", withProject: "Pythagorean_Theorem_0992")
         self.compareProject(firstProjectName: "Pythagorean_Theorem_0992", withProject: "Pythagorean_Theorem_0993")
-        self.compareProject(firstProjectName: "Pythagorean_Theorem_0993", withProject: "Pythagorean_Theorem_0994")
     }
 
     func testTicTacToeMaster() {
@@ -153,18 +144,15 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Tic_Tac_Toe_Master_098", withProject: "Tic_Tac_Toe_Master_0991")
         self.compareProject(firstProjectName: "Tic_Tac_Toe_Master_0991", withProject: "Tic_Tac_Toe_Master_0992")
         self.compareProject(firstProjectName: "Tic_Tac_Toe_Master_0992", withProject: "Tic_Tac_Toe_Master_0993")
-        self.compareProject(firstProjectName: "Tic_Tac_Toe_Master_0993", withProject: "Tic_Tac_Toe_Master_0994")
     }
 
     func testAddItemToUserListBrick() {
         self.compareProject(firstProjectName: "AddItemToUserListBrick098", withProject: "AddItemToUserListBrick0991")
         self.compareProject(firstProjectName: "AddItemToUserListBrick0991", withProject: "AddItemToUserListBrick0993")
-        self.compareProject(firstProjectName: "AddItemToUserListBrick0993", withProject: "AddItemToUserListBrick0994")
     }
 
     func testUserVariables() {
         self.compareProject(firstProjectName: "UserVariables_091", withProject: "UserVariables_0991")
         self.compareProject(firstProjectName: "UserVariables_0991", withProject: "UserVariables_0993")
-        self.compareProject(firstProjectName: "UserVariables_0993", withProject: "UserVariables_0994")
     }
 }
