@@ -655,24 +655,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)textButtonTapped {
     
-    [self.formulaEditorTextView resignFirstResponder];
-    
-    NSString *fullFormula = [self.formulaEditorTextView getFullFormulaText];
-    
-    if([fullFormula containsString:kUIFEObjectActorObjectTouch])
-    {
-        return;
-    }else{
-        [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:)
-                                              target:self
-                                         promptTitle:kUIFENewText
-                                       promptMessage:kUIFETextMessage
-                                      minInputLength:0
-                                      maxInputLength:0
-                                              isList:NO
-                                        andTextField:self.formulaEditorTextView
-                                         initialText:[self.formulaEditorTextView getHighlightedText]];
-    }
+    [self.formulaEditorTextView resignFirstResponder];    
+    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:)
+                                          target:self
+                                     promptTitle:kUIFENewText
+                                   promptMessage:kUIFETextMessage
+                                  minInputLength:0
+                                  maxInputLength:0
+                                          isList:NO
+                                    andTextField:self.formulaEditorTextView
+                                     initialText:[self.formulaEditorTextView getHighlightedText]];
 }
 
 - (void)handleNewTextInput:(NSString*)text
@@ -695,4 +687,3 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 @end
-

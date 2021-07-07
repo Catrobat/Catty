@@ -34,6 +34,7 @@ class SpriteKitDefines: NSObject {
     static let stampedSpriteNodeName = "stampedSpriteNode"
     static let physicsNodeName = "physicsNodeName"
     static let physicsSubnodeSize = 200
+    @objc static let physicsShowBody = false
 
     static let defaultValueShowVariable = "0"
 

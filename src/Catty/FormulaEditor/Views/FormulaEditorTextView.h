@@ -29,6 +29,5 @@
 - (void)update;
 - (void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex;
 - (NSString*)getHighlightedText;
-- (NSString*)getFullFormulaText;
 
 @end

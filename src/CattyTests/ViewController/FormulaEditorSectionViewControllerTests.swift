@@ -145,33 +145,6 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         XCTAssertEqual(expectedItems.count, itemsInTableView)
     }
 
-    func testObjectSectionCollisionFunction() {
-        let expectedItems = formulaManager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
-        var itemsInTableView = 0
-
-        viewController = FormulaEditorSectionViewController(type: .object, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
-        viewController.reloadData()
-
-        XCTAssertEqual(viewController.numberOfSections, 2)
-
-        for section in 0..<viewController.numberOfSections {
-            for row in 0..<viewController.numberOfRowsInSection[section] {
-
-                let internFormula = InternFormula()
-                formulaEditorViewController.internFormula = internFormula
-                XCTAssertEqual(0, internFormula.getInternTokenList()?.count)
-
-                viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: row, section: section))
-
-                assertThatInputIsValid(for: internFormula, having: expectedItems)
-                itemsInTableView += 1
-            }
-        }
-
-        XCTAssertEqual(expectedItems.count, itemsInTableView)
-
-    }
-
     private func assertThatInputIsValid(for internFormula: InternFormula, having expectedItems: [FormulaEditorItem]) {
         let tokens = internFormula.getInternTokenList()!
         XCTAssertFalse(tokens.isEmpty)
