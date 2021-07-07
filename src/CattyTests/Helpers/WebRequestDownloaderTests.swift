@@ -35,6 +35,7 @@ final class WebRequestDownloaderTests: XCTestCase {
 
     func testWebRequestSucceeds() {
         let url = "https://share.catrob.at/api/projects?category=random&limit=1"
+        _ = trustedDomainManager?.add(url: url)
 
         let downloader = WebRequestDownloader(url: url, session: nil, trustedDomainManager: trustedDomainManager)
 

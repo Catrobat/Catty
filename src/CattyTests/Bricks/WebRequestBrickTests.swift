@@ -64,7 +64,7 @@ final class WebRequestBrickTests: XCTestCase {
         let expectedValue = "RequestResponse"
         XCTAssertNotEqual(expectedValue, brick.userVariable?.value as? String)
 
-        brick.callbackSubmit(with: expectedValue, error: nil, scheduler: scheduler)
+        brick.callbackSubmit(with: expectedValue, error: nil, expectation: CBExpectation())
 
         XCTAssertEqual(expectedValue, brick.userVariable?.value as? String)
     }
@@ -72,7 +72,7 @@ final class WebRequestBrickTests: XCTestCase {
     func testCallbackSubmitSuccessNoUserVariable() {
         brick.userVariable = nil
 
-        brick.callbackSubmit(with: "request", error: nil, scheduler: scheduler)
+        brick.callbackSubmit(with: "request", error: nil, expectation: CBExpectation())
 
         XCTAssertEqual(brick.userVariable, nil)
     }

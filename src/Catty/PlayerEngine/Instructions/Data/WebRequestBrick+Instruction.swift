@@ -33,21 +33,27 @@ extension WebRequestBrick: CBInstructionProtocol {
                 let requestString = self.prepareRequestString(input: displayString)
                 let downloader = self.downloaderFactory.create(url: requestString, trustedDomainManager: trustedDomains)
 
+                let downloadIsFinishedExpectation = CBExpectation()
+
                 self.sendRequest(downloader: downloader) { response, error in
                     if let error = error, case WebRequestDownloaderError.notTrusted = error {
+                        scheduler.pause()
+
                         DispatchQueue.main.async {
                             AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
                                 .addCancelAction(title: kLocalizedNo) {
-                                    self.callbackSubmit(with: nil, error: .notTrusted, scheduler: scheduler)
+                                    scheduler.resume()
+                                    self.callbackSubmit(with: nil, error: .notTrusted, expectation: downloadIsFinishedExpectation)
                                     return
                                 }
                                 .addDefaultAction(title: kLocalizedYes) {
+                                    scheduler.resume()
                                     let addError = trustedDomains.add(url: requestString)
                                     if addError != nil {
-                                        self.callbackSubmit(with: nil, error: .unexpectedError, scheduler: scheduler)
+                                        self.callbackSubmit(with: nil, error: .unexpectedError, expectation: downloadIsFinishedExpectation)
                                     } else {
                                         self.sendRequest(downloader: downloader) { response, error in
-                                            self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                                            self.callbackSubmit(with: response, error: error, expectation: downloadIsFinishedExpectation)
                                         }
                                     }
                                 }
@@ -55,24 +61,24 @@ extension WebRequestBrick: CBInstructionProtocol {
                                 .showWithController(Util.topmostViewController())
                         }
                     } else {
-                        self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                        self.callbackSubmit(with: response, error: error, expectation: downloadIsFinishedExpectation)
                     }
                 }
 
-                scheduler.pause()
+                downloadIsFinishedExpectation.wait()
             }
         } else {
             return CBInstruction.invalidInstruction
         }
     }
 
-    func callbackSubmit(with input: String?, error: WebRequestDownloaderError?, scheduler: CBSchedulerProtocol) {
+    func callbackSubmit(with input: String?, error: WebRequestDownloaderError?, expectation: CBExpectation) {
         if let userVariable = self.userVariable {
             userVariable.value = extractMessage(input: input, error: error)
         }
 
         DispatchQueue.main.async {
-          scheduler.resume()
+            expectation.fulfill()
         }
     }
 
