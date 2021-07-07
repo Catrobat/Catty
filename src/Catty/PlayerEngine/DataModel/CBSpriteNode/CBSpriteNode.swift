@@ -273,12 +273,8 @@ class CBSpriteNode: SKSpriteNode {
             node.removeFromParent()
         }
 
-        let start = NSDate()
-
         let originalTexture = self.texture!
-
         let size = originalTexture.size()
-
         let physicsSubnodesPerDimension = Int((size.height > size.width ?
                                                             size.height / CGFloat(SpriteKitDefines.physicsSubnodeSize) :
                                                             size.width / CGFloat(SpriteKitDefines.physicsSubnodeSize)
@@ -326,9 +322,6 @@ class CBSpriteNode: SKSpriteNode {
         }
 
         self.addChild(superNode)
-
-        let end = NSDate()
-        print("Executed in " + String(end.timeIntervalSince(start as Date)))
     }
 
     private func isPhysicsObject() -> Bool {

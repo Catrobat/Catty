@@ -217,6 +217,37 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertTrue(logicItems.contains { $0.title == type(of: op).name })
     }
 
+    func testFormulaEditorItemsForCollisionFunctionExcludeCurrentObject() {
+        let collisionFunction = CollisionFunction()
+        let backgroundName = "Background"
+        let objectNameA = "ObjectA"
+        let objectNameB = "ObjectB"
+
+        let scene = Scene()
+
+        let backgroundObject = SpriteObjectMock(name: backgroundName, scene: scene)
+        scene.add(object: backgroundObject)
+
+        let objectA = SpriteObjectMock(name: objectNameA, scene: scene)
+        scene.add(object: objectA)
+
+        let objectB = SpriteObjectMock(name: objectNameB, scene: scene)
+        scene.add(object: objectB)
+
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [], landscapeMode: false),
+                                     functionManager: FunctionManager(functions: [collisionFunction]),
+                                     operatorManager: OperatorManager(operators: []))
+
+        var items = manager.formulaEditorItemsForObjectSection(spriteObject: objectA)
+        XCTAssertEqual(2, items.count)
+        XCTAssertEqual((kUIFEObjectActorObjectTouch + "(\'" + backgroundName + "\')"), items[0].title)
+        XCTAssertEqual((kUIFEObjectActorObjectTouch + "(\'" + objectNameB + "\')"), items[1].title)
+
+        items = manager.formulaEditorItemsForObjectSection(spriteObject: objectB)
+        XCTAssertEqual(2, items.count)
+        XCTAssertEqual((kUIFEObjectActorObjectTouch + "(\'" + objectNameA + "\')"), items[1].title)
+    }
+
     func testFunctionExists() {
         let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
                                                         value: 1.0,

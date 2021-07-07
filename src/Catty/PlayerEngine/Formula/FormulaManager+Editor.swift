@@ -63,20 +63,17 @@ extension FormulaManager {
                 case let .object(position, _):
 
                     if objectSection {
-                        if item.function?.tag() == "COLLISION_FORMULA" {
-                            if spriteObject.scene.objects().count < 3 {
-                                continue
-                            }
-                            var physicsObjects = spriteObject.scene.objects()
-                            if physicsObjects.contains(spriteObject) {
-                                physicsObjects.remove(at: 0)
-                                physicsObjects.removeObject(spriteObject)
+                        if item.function?.tag() == CollisionFunction.tag {
+                            var objects = spriteObject.scene.objects()
+
+                            if objects.contains(spriteObject) {
+                                objects.removeObject(spriteObject)
                             }
 
-                            for i in 0...(physicsObjects.count - 1) {
+                            for i in 0...(objects.count - 1) {
                                 let newItem = FormulaEditorItem.init(function: CollisionFunction.init() as Function)
-                                newItem.title = (kUIFEObjectActorObjectTouch + "(\'" + physicsObjects[i].name + "\')")
-                                (newItem.function as! CollisionFunction).addParameter(param: physicsObjects[i].name)
+                                newItem.title = (kUIFEObjectActorObjectTouch + "(\'" + objects[i].name + "\')")
+                                (newItem.function as! CollisionFunction).addParameter(param: objects[i].name)
 
                                 items += (position + (i * 10), newItem)
                             }

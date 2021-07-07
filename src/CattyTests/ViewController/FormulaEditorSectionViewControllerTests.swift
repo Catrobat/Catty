@@ -93,7 +93,6 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
     }
 
     func testInitAndSelectObjectSection() {
-
         let expectedItems = formulaManager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
         var itemsInTableView = 0
 
@@ -121,7 +120,6 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
     }
 
     func testInitAndSelectSensorsSection() {
-
         let expectedItems = formulaManager.formulaEditorItemsForSensorsSection(spriteObject: spriteObject)
         var itemsInTableView = 0
 
@@ -129,6 +127,32 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         viewController.reloadData()
 
         XCTAssertEqual(viewController.numberOfSections, 4)
+
+        for section in 0..<viewController.numberOfSections {
+            for row in 0..<viewController.numberOfRowsInSection[section] {
+
+                let internFormula = InternFormula()
+                formulaEditorViewController.internFormula = internFormula
+                XCTAssertEqual(0, internFormula.getInternTokenList()?.count)
+
+                viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: row, section: section))
+
+                assertThatInputIsValid(for: internFormula, having: expectedItems)
+                itemsInTableView += 1
+            }
+        }
+
+        XCTAssertEqual(expectedItems.count, itemsInTableView)
+    }
+
+    func testObjectSectionCollisionFunction() {
+        let expectedItems = formulaManager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
+        var itemsInTableView = 0
+
+        viewController = FormulaEditorSectionViewController(type: .object, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
+        viewController.reloadData()
+
+        XCTAssertEqual(viewController.numberOfSections, 2)
 
         for section in 0..<viewController.numberOfSections {
             for row in 0..<viewController.numberOfRowsInSection[section] {

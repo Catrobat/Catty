@@ -38,24 +38,6 @@ protocol Function {
     func formulaEditorSections() -> [FormulaEditorSection]
 }
 
-protocol MultiFunction {
-
-    // Display name (e.g. for formula editor)
-    static var name: String { get }
-
-    // Resources required in order to get value of this function (e.g. Accelerometer)
-    static var requiredResource: ResourceType { get }
-
-    // True if the value does not change when executed multiple times (e.g. sin(0)) or false if the value changes (e.g. random(0, 1))
-    static var isIdempotent: Bool { get }
-
-    // Tag for serialization
-    func tag() -> String
-
-    // Sections to show in formula editor and the position within each section
-    func formulaEditorSections(spriteObject: SpriteObject) -> [FormulaEditorSection]
-}
-
 extension Function {
     static var parameterDelimiter: String { ", " }
     static var bracketOpen: String { "(" }
@@ -149,10 +131,6 @@ protocol SingleParameterFunctionProtocol: Function {
     func firstParameter() -> FunctionParameter
 }
 
-protocol SingleParameterMultiFunctionProtocol: MultiFunction {
-    func firstParameter() -> FunctionParameter
-}
-
 protocol DoubleParameterFunctionProtocol: Function {
     func firstParameter() -> FunctionParameter
     func secondParameter() -> FunctionParameter
@@ -185,10 +163,6 @@ protocol ZeroParameterDoubleObjectFunction: DoubleFunction {
 }
 
 protocol SingleParameterDoubleObjectFunction: DoubleFunction, SingleParameterFunctionProtocol {
-    func value(parameter: AnyObject?, spriteObject: SpriteObject) -> Double
-}
-
-protocol SingleParameterDoubleObjectMultiFunction: DoubleFunction, SingleParameterMultiFunctionProtocol {
     func value(parameter: AnyObject?, spriteObject: SpriteObject) -> Double
 }
 
