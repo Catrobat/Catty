@@ -51,7 +51,7 @@ import UIKit
             return 0.0
         }
 
-        for obj in spriteObject.scene.objects() where obj.name == value && obj.spriteNode.catrobatTransparency == 100 {
+        for obj in spriteObject.scene.objects() where obj.name == value && (obj.spriteNode == nil || obj.spriteNode.catrobatTransparency == 100) {
             return 0.0
         }
         if spriteObject.spriteNode.catrobatTransparency == 100 {
