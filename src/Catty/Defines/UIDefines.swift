@@ -85,12 +85,6 @@ class UIDefines: NSObject {
     @objc static let bdkNotifyHUDCheckmarkImageName = "checkmark.png"
 
     // ---------------------- BRICK CONFIG ---------------------------------------
-    // brick categories
-    @objc static let minFavouriteBrickSize = 5
-    @objc static let maxFavouriteBrickSize = 10
-
-    @objc static let nsNumberZero = NSNumber(value: UInt(0))
-
     @objc static let whenScriptDefaultAction = "Tapped" // at the moment Catrobat only supports this type of action for WhenScripts
 
     // brick heights

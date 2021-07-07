@@ -553,23 +553,6 @@
              usedBricksInDictionary:[self getBrickInsertionDictionaryFromUserDefaults]];
 }
 
-+ (void)resetBrickStatistics
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[self defaultBrickStatisticDictionary] forKey:kUserDefaultsBrickSelectionStatisticsMap];
-    [userDefaults synchronize];
-}
-
-+ (NSDictionary*)defaultBrickStatisticDictionary
-{
-    NSArray* defautArray = [NSArray new];
-    OrderedDictionary * dict = [[OrderedDictionary alloc] initWithCapacity:defautArray.count];
-    for (NSString * brick in defautArray.reverseObjectEnumerator) {
-        [dict insertObject:UIDefines.nsNumberZero forKey:brick atIndex:0];
-    }
-    return dict;
-}
-
 + (NSString*)replaceBlockedCharactersForString:(NSString*)string
 {
     string = [string stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
