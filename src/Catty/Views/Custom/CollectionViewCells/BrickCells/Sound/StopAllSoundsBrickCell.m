@@ -21,6 +21,7 @@
  */
 
 #import "StopAllSoundsBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface StopAllSoundsBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight1h;
+    return UIDefines.brickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

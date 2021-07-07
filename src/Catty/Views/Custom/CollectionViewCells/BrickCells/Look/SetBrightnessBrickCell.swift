@@ -34,7 +34,7 @@ class SetBrightnessBrickCell: BrickCell, BrickCellProtocol {
     }
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeight2h)
+        UIDefines.brickHeight2h
     }
 
     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {

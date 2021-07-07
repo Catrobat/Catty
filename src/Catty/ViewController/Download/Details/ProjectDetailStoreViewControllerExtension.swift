@@ -96,7 +96,7 @@ import ActiveLabel
 
         let maximumLabelSize = CGSize(width: view.frame.size.width / 100 * (100 - type(of: self).marginLeftPercentage * 2), height: CGFloat(Int.max))
         var attributes: [AnyHashable: Any]?
-        if height == CGFloat(kIpadScreenHeight) {
+        if height == UIDefines.iPadScreenHeight {
             attributes = [descriptionTitleLabel.font: UIFont.systemFont(ofSize: 20)]
         } else {
             attributes = [descriptionTitleLabel.font: UIFont.systemFont(ofSize: 14)]
@@ -297,7 +297,7 @@ import ActiveLabel
 
     private func configureTitleLabel(_ label: UILabel?, andHeight height: CGFloat) {
         label?.backgroundColor = UIColor.clear
-        if height == CGFloat(kIpadScreenHeight) {
+        if height == UIDefines.iPadScreenHeight {
             label?.font = UIFont.boldSystemFont(ofSize: 24)
         } else {
             label?.font = UIFont.boldSystemFont(ofSize: 17)
@@ -309,7 +309,7 @@ import ActiveLabel
 
     private func configureTextLabel(_ label: UILabel?, andHeight height: CGFloat) {
         label?.backgroundColor = UIColor.clear
-        if height == CGFloat(kIpadScreenHeight) {
+        if height == UIDefines.iPadScreenHeight {
             label?.font = UIFont.boldSystemFont(ofSize: 18)
         } else {
             label?.font = UIFont.boldSystemFont(ofSize: 12)
@@ -321,7 +321,7 @@ import ActiveLabel
 
     private func configureAuthorLabel(_ label: UILabel?, andHeight height: CGFloat) {
         label?.backgroundColor = UIColor.clear
-        if height == CGFloat(kIpadScreenHeight) {
+        if height == UIDefines.iPadScreenHeight {
             label?.font = UIFont.boldSystemFont(ofSize: 18)
         } else {
             label?.font = UIFont.boldSystemFont(ofSize: 12)
@@ -347,7 +347,7 @@ import ActiveLabel
         let detailInformationLabel = UILabel(frame: CGRect(x: xPosition, y: yPosition, width: 155, height: 25))
         detailInformationLabel.text = title?.stringByEscapingHTMLEntities()
         detailInformationLabel.textColor = UIColor.textTint
-        if height == CGFloat(kIpadScreenHeight) {
+        if height == UIDefines.iPadScreenHeight {
             detailInformationLabel.font = UIFont.systemFont(ofSize: 18.0)
         } else {
             detailInformationLabel.font = UIFont.systemFont(ofSize: 14.0)

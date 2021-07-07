@@ -21,6 +21,7 @@
  */
 
 #import "SetVolumeToBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface SetVolumeToBrickCell ()
 @property (nonatomic, strong) UILabel *rightTextLabel;
@@ -31,7 +32,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight1h;
+    return UIDefines.brickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

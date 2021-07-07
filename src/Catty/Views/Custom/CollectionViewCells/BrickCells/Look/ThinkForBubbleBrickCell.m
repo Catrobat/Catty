@@ -22,6 +22,7 @@
 
 #import "ThinkForBubbleBrickCell.h"
 #import "ThinkForBubbleBrick.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ThinkForBubbleBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -33,7 +34,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight2h;
+    return UIDefines.brickHeight2h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

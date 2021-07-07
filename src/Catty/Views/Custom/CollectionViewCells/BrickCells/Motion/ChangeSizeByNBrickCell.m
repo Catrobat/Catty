@@ -21,6 +21,7 @@
  */
 
 #import "ChangeSizeByNBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ChangeSizeByNBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -31,7 +32,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight1h;
+    return UIDefines.brickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

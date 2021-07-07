@@ -37,7 +37,7 @@ class WhenBackgroundChangesScriptCell: BrickCell, BrickCellProtocol {
     }
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeightControl2h)
+        UIDefines.brickHeightControl2h
     }
 
     override func brickShapeType() -> kBrickShapeType {

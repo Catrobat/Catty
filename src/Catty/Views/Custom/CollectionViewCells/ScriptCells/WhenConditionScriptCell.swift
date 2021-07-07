@@ -38,7 +38,7 @@ class WhenConditionScriptCell: BrickCell, BrickCellProtocol {
     }
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeightControl1h)
+        UIDefines.brickHeightControl1h
     }
 
     override func brickShapeType() -> kBrickShapeType {

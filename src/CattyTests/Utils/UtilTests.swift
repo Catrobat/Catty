@@ -73,7 +73,7 @@ final class UtilTests: XCTestCase {
     private func mainScreenSizeInPixel() -> CGSize {
         var screenSizeInPixel = UIScreen.main.nativeBounds.size
 
-        if UIScreen.main.bounds.height == CGFloat(kIphone6PScreenHeight) {
+        if UIScreen.main.bounds.height == UIDefines.iPhone6PScreenHeight {
             let iPhonePlusDownsamplingFactor = CGFloat(1.15)
             screenSizeInPixel.height /= iPhonePlusDownsamplingFactor
             screenSizeInPixel.width /= iPhonePlusDownsamplingFactor

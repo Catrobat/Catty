@@ -21,6 +21,7 @@
  */
 
 #import "PhiroRGBLightBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PhiroRGBLightBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -33,7 +34,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight3h;
+    return UIDefines.brickHeight3h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

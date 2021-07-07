@@ -21,6 +21,7 @@
  */
 
 #import "InsertItemIntoUserListBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InsertItemIntoUserListBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel1;
@@ -32,7 +33,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight3h;
+    return UIDefines.brickHeight3h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

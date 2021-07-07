@@ -131,7 +131,7 @@ final class TextFieldAlertController: BaseAlertController, TextFieldAlertDefinin
 
     func defaultCharacterValidator() -> TextFieldInputValidating {
         characterValidator = { (input: String) -> Bool in
-            guard let _ = input.rangeOfCharacter(from: CharacterSet.init(charactersIn: kTextFieldBlockedCharacters)) else {
+            guard let _ = input.rangeOfCharacter(from: CharacterSet.init(charactersIn: UIDefines.textFieldBlockedCharacters)) else {
                 return true
             }
             return false

@@ -137,10 +137,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSArray* _Nullable)getSubsetOfTheMostFavoriteChosenBricks:(NSUInteger) amount;
 
-+ (void)resetBrickStatistics;
-
-+ (NSDictionary* _Nullable)defaultBrickStatisticDictionary;
-
 + (NSString* _Nullable)replaceBlockedCharactersForString:(NSString* _Nullable)string;
 
 + (NSString* _Nullable)enableBlockedCharactersForString:(NSString* _Nullable)string;

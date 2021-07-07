@@ -26,7 +26,7 @@ class SetPenSizeBrickCell: BrickCell, BrickCellProtocol {
     var textField: UITextField?
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeight1h)
+        UIDefines.brickHeight1h
     }
 
     func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {

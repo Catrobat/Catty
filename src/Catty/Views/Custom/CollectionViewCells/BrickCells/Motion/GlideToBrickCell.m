@@ -22,6 +22,7 @@
 
 #import "GlideToBrick.h"
 #import "GlideToBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface GlideToBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowLeftLabel;
@@ -34,7 +35,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight3h;
+    return UIDefines.brickHeight3h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

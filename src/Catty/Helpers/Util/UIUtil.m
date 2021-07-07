@@ -50,7 +50,7 @@
 }
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame {
-    return [self newDefaultBrickLabelWithFrame:frame AndText:nil andRemainingSpace:kBrickInputFieldMaxWidth];
+    return [self newDefaultBrickLabelWithFrame:frame AndText:nil andRemainingSpace:UIDefines.brickInputFieldMaxWidth];
 }
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text
@@ -58,7 +58,7 @@
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.textColor = UIColor.whiteColor;
-    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:kBrickLabelFontSize];
+    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:UIDefines.brickLabelFontSize];
     if (text) {
         label.text = text;
         // adapt size to fit text

@@ -343,7 +343,7 @@ final class CBBackendTests: XCTestCase {
         let project = ProjectManager.createProject(name: "ProjectName", projectId: "123")
 
         let whenScript = WhenScript()
-        whenScript.action = kWhenScriptDefaultAction
+        whenScript.action = UIDefines.whenScriptDefaultAction
         spriteObject.scene.project = project
         whenScript.object = spriteObject
 

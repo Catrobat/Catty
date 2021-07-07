@@ -127,9 +127,9 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         super.viewWillLayoutSubviews()
 
         touchHelperView?.frame = CGRect(x: CGFloat(0.0),
-                                        y: view.bounds.height - CGFloat(kToolbarHeight),
+                                        y: view.bounds.height - UIDefines.toolbarHeight,
                                         width: view.bounds.width,
-                                        height: CGFloat(kToolbarHeight))
+                                        height: UIDefines.toolbarHeight)
     }
 
     // MARK: - WebViewDelegate

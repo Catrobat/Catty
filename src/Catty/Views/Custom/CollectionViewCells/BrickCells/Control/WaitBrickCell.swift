@@ -37,7 +37,7 @@ import Foundation
     }
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeight1h)
+        UIDefines.brickHeight1h
     }
 
     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {

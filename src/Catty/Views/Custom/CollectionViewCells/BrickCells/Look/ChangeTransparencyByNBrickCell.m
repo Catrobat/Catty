@@ -21,6 +21,7 @@
  */
 
 #import "ChangeTransparencyByNBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ChangeTransparencyByNBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -32,7 +33,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight2h;
+    return UIDefines.brickHeight2h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
