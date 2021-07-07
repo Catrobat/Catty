@@ -25,7 +25,7 @@ class PositionXSensor: ObjectDoubleSensor {
     static let tag = "OBJECT_X"
     static let name = kUIFEObjectPositionX
     static let defaultRawValue = 0.0
-    static let position = 20
+    static let position = 10
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

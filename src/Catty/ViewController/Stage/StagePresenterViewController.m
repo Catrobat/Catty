@@ -72,6 +72,12 @@
         _skView.showsDrawCount = YES;
     #endif
     
+    bool showPhysics = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"Show physics body"] intValue];
+    if(showPhysics == 1 && DEBUG == 1)
+    {
+        _skView.showsPhysics = YES;
+    }
+    
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.background;
 }

@@ -164,7 +164,7 @@
 
         self.numberOfRowsInSection = self.groupSubsectionWiseAndGetSize(items.first?.sections.first?.subsection() as? ObjectSubsection, items: &items)
         self.numberOfSections = numberOfRowsInSection.count
-        self.titlesOfSections = [ObjectSubsection.general.title, ObjectSubsection.motion.title]
+        self.titlesOfSections = [ObjectSubsection.general.title, ObjectSubsection.motion.title, ObjectSubsection.touchesActorOrObject.title]
 
     }
 

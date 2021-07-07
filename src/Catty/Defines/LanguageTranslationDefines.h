@@ -709,6 +709,7 @@
 #define kUIFEObjectLayer NSLocalizedString(@"layer", nil)
 #define kUIFEObjectPositionX NSLocalizedString(@"position x", nil)
 #define kUIFEObjectPositionY NSLocalizedString(@"position y", nil)
+#define kUIFEObjectActorObjectTouch NSLocalizedString(@"touches actor or object", nil)
 
 #define kUIFESensorDateYear NSLocalizedString(@"year", nil)
 #define kUIFESensorDateMonth NSLocalizedString(@"month", nil)

@@ -34,6 +34,7 @@
 @property (nonatomic, strong, nonnull) Scene *scene;
 @property (nonatomic, strong, nonnull) UserDataContainer *userData;
 @property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *unsupportedElements;
+@property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *physicsObjectNames;
 @property (nonatomic) BOOL requiresBluetooth;
 @property (nonatomic, strong, nullable) NSMutableOrderedSet *allBroadcastMessages;
 

@@ -90,10 +90,10 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
         vc.checkResourcesAndPushViewController(to: navigationController)
 
-        expect(self.navigationController.currentViewController).toEventually(equal(vc))
-        expect(self.navigationController.view.subviews.count).toEventually(equal(1))
-        expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
-        expect(self.vc.hideLoadingViewCalls).toEventually(equal(0))
+        expect(self.navigationController.currentViewController).toEventually(equal(vc), timeout: .seconds(3))
+        expect(self.navigationController.view.subviews.count).toEventually(equal(1), timeout: .seconds(3))
+        expect(self.vc.showLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
+        expect(self.vc.hideLoadingViewCalls).toEventually(equal(0), timeout: .seconds(3))
     }
 
     func testCheckResourcesAndPushViewControllerInvalidProject() {

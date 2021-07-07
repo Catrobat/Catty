@@ -112,6 +112,7 @@
                                              initWithLanguageVersion:languageVersion andRootElement: xmlDocument.rootElement];
         project = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Project class]];
         project.unsupportedElements = parserContext.unsupportedElements;
+        project.physicsObjectNames = parserContext.physicsObjectNames;
         NSInfo(@"Parsing finished...");
     } @catch(NSException *exception) {
         NSError(@"Project could not be loaded! %@", [exception description]);

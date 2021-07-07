@@ -206,6 +206,11 @@
     }
 }
 
+- (NSString*)getFullFormulaText
+{
+    return self.attributedText.string;
+}
+
 - (BOOL)hasApostropheAtBeginAndEnd:(NSString *)text
 {
     BOOL containsFirstApostrophe = [[text substringWithRange:NSMakeRange(0, 1)]  isEqual: @"'"];

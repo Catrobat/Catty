@@ -839,6 +839,7 @@
 		4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */; };
 		4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB93392132753A00AEB86D /* FormulaManager.swift */; };
 		4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEB26B23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift */; };
+		4CAFDEC426144D4300D31031 /* CBXMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFDEC326144D4300D31031 /* CBXMLParserTests.swift */; };
 		4CB04BE12541618A00D85C31 /* StagePresenterViewControllerScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB04BE02541618900D85C31 /* StagePresenterViewControllerScreenshotTests.swift */; };
 		4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */; };
 		4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */; };
@@ -1766,7 +1767,11 @@
 		E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */; };
 		E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProject.swift */; };
+		E50579C225B0B825003FAEE5 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = E50579BE25B0B6B2003FAEE5 /* square.png */; };
+		E50579C425B0BC68003FAEE5 /* CollisionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C983D825792A8B00AC36C3 /* CollisionFunction.swift */; };
+		E50579C625B1B39F003FAEE5 /* CollisionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50579C525B1B39D003FAEE5 /* CollisionFunctionTest.swift */; };
 		E5103DEE25CAE67300A32DF8 /* StagePresenterSideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */; };
+		E55F4287261335360005DB5A /* CBSpriteNodePhysicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F4286261335360005DB5A /* CBSpriteNodePhysicsTests.swift */; };
 		E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E564EBE0255D60F4001F0CD0 /* PlayButton.swift */; };
 		E577F0462563C5A400368C18 /* BrickCategoryOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */; };
 		E577F04A2563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577F0492563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift */; };
@@ -1789,6 +1794,7 @@
 		E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */; };
 		E592D15A2539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */; };
 		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
+		E5ADEAC125B1E530005E9360 /* collisionTest0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = E5C5D89C25B1E2BB00D96E4B /* collisionTest0993.xml */; };
 		E5E1E5AA25780DA100D2F1BC /* SetLookByIndexBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */; };
 		E5E1E5AE25780E3200D2F1BC /* SetLookByIndexBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */; };
 		E5E1E5B2257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */; };
@@ -2831,6 +2837,7 @@
 		4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTextBrickTests.swift; sourceTree = "<group>"; };
 		4CAB93392132753A00AEB86D /* FormulaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManager.swift; sourceTree = "<group>"; };
 		4CAEB26B23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerTests.swift; sourceTree = "<group>"; };
+		4CAFDEC326144D4300D31031 /* CBXMLParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBXMLParserTests.swift; sourceTree = "<group>"; };
 		4CB04BE02541618900D85C31 /* StagePresenterViewControllerScreenshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StagePresenterViewControllerScreenshotTests.swift; sourceTree = "<group>"; };
 		4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionYSensor.swift; sourceTree = "<group>"; };
 		4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionXSensor.swift; sourceTree = "<group>"; };
@@ -4228,8 +4235,11 @@
 		E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4D3652C8768AA771E9ED4BC /* mk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = mk; path = mk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E4E5599620FCD6AD004B4A08 /* StoreProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProject.swift; sourceTree = "<group>"; };
+		E50579BE25B0B6B2003FAEE5 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = CattyTests/Resources/Images/square.png; sourceTree = SOURCE_ROOT; };
+		E50579C525B1B39D003FAEE5 /* CollisionFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionFunctionTest.swift; sourceTree = "<group>"; };
 		E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePresenterSideMenuView.swift; sourceTree = "<group>"; };
 		E5505707FE2839B02A26E338 /* en-AU */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E55F4286261335360005DB5A /* CBSpriteNodePhysicsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePhysicsTests.swift; sourceTree = "<group>"; };
 		E564EBE0255D60F4001F0CD0 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		E57396A397CC08132F593B32 /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewController.swift; sourceTree = "<group>"; };
@@ -4253,6 +4263,8 @@
 		E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendDigitalValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendPWMValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
+		E5C5D89C25B1E2BB00D96E4B /* collisionTest0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = collisionTest0993.xml; sourceTree = "<group>"; };
+		E5C983D825792A8B00AC36C3 /* CollisionFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionFunction.swift; sourceTree = "<group>"; };
 		E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrick.swift; sourceTree = "<group>"; };
 		E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrickCell.swift; sourceTree = "<group>"; };
 		E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetLookByIndexBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
@@ -5062,6 +5074,7 @@
 			isa = PBXGroup;
 			children = (
 				C8076A26267A0B2000801AF6 /* Functions */,
+				E5C5D89525B1DEAF00D96E4B /* Object */,
 				9E384934256191DC002D8F28 /* SamplerBricks */,
 				D3EBE87C2488E6A90026F51A /* GoToBricks */,
 				D3AF5C1C243F81FC00B04BC6 /* DisabledBricks */,
@@ -5448,6 +5461,16 @@
 				E59108A3268F3428008D254A /* Parser */,
 				4C2CBB0525A5AA8400C1C143 /* Abstract */,
 				4C2CBB3125A5AA8400C1C143 /* Helper */,
+				4C2CBB1B25A5AA8400C1C143 /* CatrobatLanguage0.92 */,
+				4C2CBB0925A5AA8400C1C143 /* CatrobatLanguage0.93 */,
+				4C2CBB1125A5AA8400C1C143 /* CatrobatLanguage0.95 */,
+				4C2CBB2D25A5AA8400C1C143 /* CatrobatLanguage0.96 */,
+				4C2CBB2325A5AA8400C1C143 /* CatrobatLanguage0.97 */,
+				4C2CBB2725A5AA8400C1C143 /* CatrobatLanguage0.98 */,
+				4C2CBB1D25A5AA8400C1C143 /* CatrobatLanguage0.991 */,
+				4C2CBB3425A5AA8400C1C143 /* CatrobatLanguage0.992 */,
+				4C2CBB3A25A5AA8400C1C143 /* CatrobatLanguage0.993 */,
+				4CAFDEC326144D4300D31031 /* CBXMLParserTests.swift */,
 				4C2CBB0825A5AA8400C1C143 /* UserListXMLHandlerTests.m */,
 				4C2CBB0725A5AA8400C1C143 /* SceneXMLHandlerTest.m */,
 			);
@@ -5993,6 +6016,7 @@
 		4C6A64B31AF7CC5A00D04559 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E50579BE25B0B6B2003FAEE5 /* square.png */,
 				4C9F37A81D167630002C3B45 /* transparency_gray_alpha.png */,
 				4C15FE7E1D168C0D009C1A2B /* transparency_rgb.png */,
 				4CFAD3601CFAB9AA0019C636 /* transparency_rgba.png */,
@@ -6900,6 +6924,7 @@
 		4CE67884210C4AE000D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				E5C983D725792A5C00AC36C3 /* Object */,
 				4CE6788C210C503600D90B5D /* FunctionManager.swift */,
 				4C37A09C212DBD990074F417 /* Arduino */,
 				4CE67889210C4E0600D90B5D /* Enums */,
@@ -9498,9 +9523,11 @@
 		AA70F7EF1B866E63003057C6 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
+				E591536F258B8404001CE9E6 /* Object */,
 				D30ECD192440963100FAD17D /* Frontend */,
 				9E8F729B22E12820005CDABE /* AudioEngine */,
 				4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */,
+				E55F4286261335360005DB5A /* CBSpriteNodePhysicsTests.swift */,
 				4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */,
 				4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */,
 				4CE1D434213E5D110014DAF9 /* Formula */,
@@ -10491,6 +10518,30 @@
 			path = Catty/Views/Custom/Button;
 			sourceTree = SOURCE_ROOT;
 		};
+		E591536F258B8404001CE9E6 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				E50579C525B1B39D003FAEE5 /* CollisionFunctionTest.swift */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		E5C5D89525B1DEAF00D96E4B /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				E5C5D89C25B1E2BB00D96E4B /* collisionTest0993.xml */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		E5C983D725792A5C00AC36C3 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				E5C983D825792A8B00AC36C3 /* CollisionFunction.swift */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
 		E59108A3268F3428008D254A /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -10854,6 +10905,7 @@
 				2DCB492E212EA7EC005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json in Resources */,
 				2ED41854241120B000AFE2FD /* VariableMapping3.xml in Resources */,
 				4C55CD1724BF2C7400FB8393 /* ValidProject0992.xml in Resources */,
+				E5ADEAC125B1E530005E9360 /* collisionTest0993.xml in Resources */,
 				4C3286052546D4A000C31F9D /* Compass_0.1_0993.xml in Resources */,
 				2DCB492A212EA547005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json in Resources */,
 				6F954C7624D1E19000E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json in Resources */,
@@ -10878,6 +10930,7 @@
 				4C55CCE724BF2A9900FB8393 /* Minions__0992.xml in Resources */,
 				2ED4184F241120B000AFE2FD /* Flappy_v3.0_0993.xml in Resources */,
 				59B9F633202D8F8500937299 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */,
+				E50579C225B0B825003FAEE5 /* square.png in Resources */,
 				2ED4180A241120AF00AFE2FD /* Flap_Pac_Man_091.xml in Resources */,
 				2ED41814241120AF00AFE2FD /* Drink_more_water_098.xml in Resources */,
 				2ED417D8241120AF00AFE2FD /* Demonstration_098.xml in Resources */,
@@ -11740,6 +11793,7 @@
 				4C82266F213FA7A400F3D750 /* DateMonthSensorTest.swift in Sources */,
 				9E0F741822B55E4D0030CD89 /* MockAudioPlayerFactory.swift in Sources */,
 				4C7182DA23EEAFF600195BC7 /* BaseCollectionViewControllerTests.swift in Sources */,
+				4CAFDEC426144D4300D31031 /* CBXMLParserTests.swift in Sources */,
 				4C2CBB4325A5AA8400C1C143 /* XMLAbstractTest.swift in Sources */,
 				4C822670213FA7A400F3D750 /* AccelerationYSensorTest.swift in Sources */,
 				591553B724F274C9005BBF75 /* WhenConditionScriptTests.swift in Sources */,
@@ -11869,6 +11923,7 @@
 				4C7054E025DE457900B265DC /* BrickCellFormulaDataTests.swift in Sources */,
 				4C3B151B23F07C7800527D4A /* ErrorMock.swift in Sources */,
 				4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */,
+				E55F4287261335360005DB5A /* CBSpriteNodePhysicsTests.swift in Sources */,
 				4C822666213FA7A400F3D750 /* LongitudeSensorTest.swift in Sources */,
 				4C2CBB4625A5AA8400C1C143 /* XMLParserHeaderTests093.swift in Sources */,
 				4C822665213FA7A400F3D750 /* AltitudeSensorTest.swift in Sources */,
@@ -11890,6 +11945,7 @@
 				187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */,
 				05E68026255B5DEE00D1E295 /* StitchTests.swift in Sources */,
 				4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */,
+				E50579C625B1B39F003FAEE5 /* CollisionFunctionTest.swift in Sources */,
 				4C3A5CA721D3B687008FD83F /* EqualOperatorTest.swift in Sources */,
 				4C3A5CA321D3B542008FD83F /* MultOperator.swift in Sources */,
 				4C4778D8267C82B100CAF398 /* CGVectorExtentionsTests.swift in Sources */,
@@ -12542,6 +12598,7 @@
 				F4E6E588210DFE8800D86FE6 /* LogFunction.swift in Sources */,
 				9218B1FF1CC4AB75007B4C60 /* NKOColorPickerView.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
+				E50579C425B0BC68003FAEE5 /* CollisionFunction.swift in Sources */,
 				F4E6E58C210DFEFE00D86FE6 /* PiFunction.swift in Sources */,
 				4CF0729220D6697300F93AB5 /* LocationAccuracySensor.swift in Sources */,
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,

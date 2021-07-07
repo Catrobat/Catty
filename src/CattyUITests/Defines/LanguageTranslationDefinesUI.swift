@@ -709,6 +709,7 @@ let kUIFEObjectDirection = NSLocalizedString("direction", bundle: Bundle(for: La
 let kUIFEObjectLayer = NSLocalizedString("layer", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEObjectPositionX = NSLocalizedString("position x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEObjectPositionY = NSLocalizedString("position y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEObjectActorObjectTouch = NSLocalizedString("touches actor or object", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFESensorDateYear = NSLocalizedString("year", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorDateMonth = NSLocalizedString("month", bundle: Bundle(for: LanguageTranslation.self), comment: "")

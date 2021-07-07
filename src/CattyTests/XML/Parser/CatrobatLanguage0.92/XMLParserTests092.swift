@@ -26,54 +26,6 @@ import XCTest
 
 class XMLParserTests092: XMLAbstractTest {
 
-    func testConvertUnsupportedBrickToNoteBrick() {
-        let project = getProjectForXML(xmlFile: "InvalidBricksAndScripts")
-        XCTAssertNotNil(project, "Project should not be nil")
-        XCTAssertEqual(1, project.scene.objects().count)
-
-        let object = project.scene.object(at: 0)!
-        XCTAssertEqual(3, object.scriptList.count)
-
-        let startScript = object.scriptList[0] as! StartScript
-        XCTAssertEqual(3, startScript.brickList.count)
-
-        let waitBrick = startScript.brickList[0] as AnyObject
-        XCTAssertTrue(waitBrick.isKind(of: WaitBrick.self))
-
-        let unknownBrick = startScript.brickList[1] as AnyObject
-        XCTAssertTrue(unknownBrick.isKind(of: NoteBrick.self))
-
-        let noteBrick = unknownBrick as! NoteBrick
-        XCTAssertTrue(noteBrick.note.starts(with: kLocalizedUnsupportedBrick))
-    }
-
-    func testConvertUnsupportedScriptToBroadcastBrick() {
-        let project = getProjectForXML(xmlFile: "InvalidBricksAndScripts")
-        XCTAssertNotNil(project, "Project should not be nil")
-        XCTAssertEqual(1, project.scene.objects().count)
-
-        let object = project.scene.object(at: 0)!
-        XCTAssertEqual(3, object.scriptList.count)
-
-        let unknownScript = object.scriptList[1] as AnyObject
-        XCTAssertTrue(unknownScript.isKind(of: BroadcastScript.self))
-
-        let broadcastScript = unknownScript as! BroadcastScript
-        XCTAssertEqual(1, broadcastScript.brickList.count)
-        XCTAssertTrue(broadcastScript.receivedMessage.starts(with: kLocalizedUnsupportedScript))
-
-        let secondWaitBrick = broadcastScript.brickList[0] as AnyObject
-        XCTAssertTrue(secondWaitBrick.isKind(of: WaitBrick.self))
-    }
-
-    func testUnsupportedElements() {
-        let project = self.getProjectForXML(xmlFile: "InvalidBricksAndScripts")
-
-        XCTAssertEqual(2, project.unsupportedElements.count)
-        XCTAssertTrue(project.unsupportedElements.contains("InvalidScript"))
-        XCTAssertTrue(project.unsupportedElements.contains("InvalidBrick"))
-    }
-
     func testWhackAMole() {
         let project = getProjectForXML(xmlFile: "Whack_A_Mole_092")
         XCTAssertNotNil(project, "Project should not be nil")
