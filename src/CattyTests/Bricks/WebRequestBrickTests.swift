@@ -60,6 +60,17 @@ final class WebRequestBrickTests: XCTestCase {
         UserDefaults.standard.setValue(true, forKey: kUseWebRequestBrick)
     }
 
+    private func callInstructionAndWaitExecClosure() {
+        DispatchQueue.global().async {
+            switch self.brick.instruction() {
+            case let .waitExecClosure(closure):
+                closure(self.context, self.scheduler)
+            default:
+                XCTFail("Fatal Error")
+            }
+        }
+    }
+
     func testCallbackSubmitSuccess() {
         let expectedValue = "RequestResponse"
         XCTAssertNotEqual(expectedValue, brick.userVariable?.value as? String)
@@ -101,38 +112,25 @@ final class WebRequestBrickTests: XCTestCase {
 
         XCTAssertNil(downloaderFactoryMock.latestUrl)
 
-        switch brick.instruction() {
-        case let .waitExecClosure(closure):
-            closure(context, scheduler)
-        default:
-            XCTFail("Fatal Error")
-        }
+        callInstructionAndWaitExecClosure()
 
         expect(self.downloaderFactoryMock.latestUrl).toEventually(equal(expectedUrl))
     }
 
     func testSchedulerPaused() {
+        downloaderMock.expectedError = .notTrusted
+
         XCTAssertTrue(scheduler.running)
 
-        switch brick.instruction() {
-        case let .waitExecClosure(closure):
-            closure(context, scheduler)
-        default:
-            XCTFail("Fatal Error")
-        }
+        callInstructionAndWaitExecClosure()
 
-        XCTAssertFalse(scheduler.running)
+        expect(self.scheduler.running).toEventually(beFalse(), timeout: .seconds(3))
     }
 
     func testUrlIsNotInTrustedDomains() {
         downloaderMock.expectedError = .notTrusted
 
-        switch brick.instruction() {
-        case let .waitExecClosure(closure):
-            closure(context, scheduler)
-        default:
-            XCTFail("Fatal Error")
-        }
+        callInstructionAndWaitExecClosure()
 
         expect(Util.topmostViewController().isKind(of: UIAlertController.self)).toEventually(beTruthy(), timeout: .seconds(3))
 
@@ -148,12 +146,7 @@ final class WebRequestBrickTests: XCTestCase {
         downloaderMock.expectedError = .none
         XCTAssertTrue(scheduler.running)
 
-        switch brick.instruction() {
-        case let .waitExecClosure(closure):
-            closure(context, scheduler)
-        default:
-            XCTFail("Fatal Error")
-        }
+        callInstructionAndWaitExecClosure()
 
         expect(self.downloaderMock.downloadMethodCalls).toEventually(equal(1))
         expect(self.scheduler.running).toEventually(beTrue())
@@ -165,12 +158,7 @@ final class WebRequestBrickTests: XCTestCase {
         XCTAssertTrue(scheduler.running)
         XCTAssertNil(brick.userVariable?.value)
 
-        switch brick.instruction() {
-        case let .waitExecClosure(closure):
-            closure(context, scheduler)
-        default:
-            XCTFail("Fatal Error")
-        }
+        callInstructionAndWaitExecClosure()
 
         expect(self.downloaderMock.downloadMethodCalls).toEventually(equal(1))
         expect(self.scheduler.running).toEventually(beTrue())
@@ -180,12 +168,7 @@ final class WebRequestBrickTests: XCTestCase {
     func testWebRequestDownloaderErrorInvalidURL() {
         downloaderMock.expectedError = .invalidURL
 
-        switch brick.instruction() {
-        case let .waitExecClosure(closure):
-            closure(context, scheduler)
-        default:
-            XCTFail("Fatal Error")
-        }
+        callInstructionAndWaitExecClosure()
 
         expect(self.brick.userVariable?.value as? String).toEventually(equal(WebRequestDownloaderError.invalidURL.message()))
     }
@@ -194,12 +177,7 @@ final class WebRequestBrickTests: XCTestCase {
         let expectedResponse = "Response"
         downloaderMock.expectedResponse = expectedResponse
 
-        switch brick.instruction() {
-        case let .waitExecClosure(closure):
-            closure(context, scheduler)
-        default:
-            XCTFail("Fatal Error")
-        }
+        callInstructionAndWaitExecClosure()
 
         expect(self.downloaderMock.downloadMethodCalls).toEventually(equal(1))
         expect(self.scheduler.running).toEventually(beTrue())
