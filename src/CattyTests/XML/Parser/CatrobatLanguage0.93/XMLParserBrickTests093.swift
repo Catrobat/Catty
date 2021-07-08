@@ -142,7 +142,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         XCTAssertEqual(brickElement!.count, 1)
 
         let brickXMLElement = brickElement!.first
-        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PlaceAtBrick.self as? CBXMLNodeProtocol.Type) as! Brick
+        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PlaceAtBrick.self as CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertTrue(brick.isKind(of: PlaceAtBrick.self), "Invalid brick class")
 

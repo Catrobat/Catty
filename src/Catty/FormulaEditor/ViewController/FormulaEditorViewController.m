@@ -654,15 +654,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)textButtonTapped {
-    [self.formulaEditorTextView resignFirstResponder];
     
+    [self.formulaEditorTextView resignFirstResponder];    
     [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:)
                                           target:self
                                      promptTitle:kUIFENewText
                                    promptMessage:kUIFETextMessage
                                   minInputLength:0
                                   maxInputLength:0
-										  isList:NO
+                                          isList:NO
                                     andTextField:self.formulaEditorTextView
                                      initialText:[self.formulaEditorTextView getHighlightedText]];
 }
@@ -687,4 +687,3 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 @end
-

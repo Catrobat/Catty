@@ -26,6 +26,7 @@
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "SpriteObject.h"
+#import "Pocket_Code-Swift.h"
 
 #define kAdditionalChildFormulaElementTag @"org.catrobat.catroid.formulaeditor.FormulaElement"
 
@@ -36,6 +37,10 @@
     GDataXMLElement *typeElement = [xmlElement childWithElementName:@"type"];
     [XMLError exceptionIfNil:xmlElement message:@"No type element found..."];
     NSString *type = [typeElement stringValue];
+    
+    if ([CollisionFunction.tag isEqualToString:type]) {
+        return [[CollisionFunction class] parseFromElement:xmlElement withContext:context];
+    }
     
     GDataXMLElement *valueElement = [xmlElement childWithElementName:@"value"];
     NSString *stringValue = [valueElement stringValue];
@@ -80,6 +85,11 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     GDataXMLElement *formulaElement = [GDataXMLElement elementWithName:@"formulaElement" context:context];
+    
+    if (FUNCTION == self.type && [CollisionFunction.tag isEqualToString:self.value]) {
+        return [[CollisionFunction class] xmlElementForFormula:self withContext:context];
+    }
+    
     if (self.leftChild != nil) {
         GDataXMLElement *leftChild = [GDataXMLElement elementWithName:@"leftChild" context:context];
         for(GDataXMLNode *node in [self.leftChild xmlElementWithContext:context].children) {
@@ -115,6 +125,7 @@
         GDataXMLElement *value = [GDataXMLElement elementWithName:@"value" stringValue:self.value context:context];
         [formulaElement addChild:value context:context];
     }
+    
     return formulaElement;
 }
 

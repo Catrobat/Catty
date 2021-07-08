@@ -93,7 +93,6 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
     }
 
     func testInitAndSelectObjectSection() {
-
         let expectedItems = formulaManager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
         var itemsInTableView = 0
 
@@ -121,7 +120,6 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
     }
 
     func testInitAndSelectSensorsSection() {
-
         let expectedItems = formulaManager.formulaEditorItemsForSensorsSection(spriteObject: spriteObject)
         var itemsInTableView = 0
 
@@ -145,7 +143,6 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         }
 
         XCTAssertEqual(expectedItems.count, itemsInTableView)
-
     }
 
     private func assertThatInputIsValid(for internFormula: InternFormula, having expectedItems: [FormulaEditorItem]) {

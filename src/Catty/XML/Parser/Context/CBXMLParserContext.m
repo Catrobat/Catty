@@ -75,6 +75,15 @@
     return _unsupportedElements;
 }
 
+- (NSMutableSet<NSString*>*)physicsObjectNames
+{
+    if (! _physicsObjectNames) {
+        _physicsObjectNames = [[NSMutableSet alloc] init];
+    }
+    return _physicsObjectNames;
+}
+
+
 - (void)setLanguageVersion:(CGFloat)languageVersion
 {
     _languageVersion = languageVersion;

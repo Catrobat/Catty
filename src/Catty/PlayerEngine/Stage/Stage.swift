@@ -187,6 +187,7 @@ final class Stage: SKScene, StageProtocol {
             spriteNode.start(CGFloat(zPosition))
             spriteNode.setLook()
             spriteNode.isUserInteractionEnabled = true
+
             scheduler.registerSpriteNode(spriteNode)
 
             for script in scriptList {
@@ -318,6 +319,5 @@ final class Stage: SKScene, StageProtocol {
         self.enumerateChildNodes(withName: SpriteKitDefines.stampedSpriteNodeName) { node, _ in
             node.removeFromParent()
         }
-
     }
 }

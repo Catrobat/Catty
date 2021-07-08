@@ -44,6 +44,7 @@
 @property (nonatomic, strong) NSMutableArray *programListOfLists; // (used for parsing only)
 
 @property (nonatomic, strong) NSMutableSet<NSString*> *unsupportedElements; // (used for parsing only)
+@property (nonatomic, strong) NSMutableSet<NSString*> *physicsObjectNames;
 
 - (instancetype)initWithLanguageVersion:(CGFloat)languageVersion andRootElement:(GDataXMLElement *)rootElement NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;

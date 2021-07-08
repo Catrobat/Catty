@@ -63,7 +63,23 @@ extension FormulaManager {
                 case let .object(position, _):
 
                     if objectSection {
-                        items += (position, item)
+                        if item.function?.tag() == CollisionFunction.tag {
+                            var objects = spriteObject.scene.objects()
+
+                            if objects.contains(spriteObject) {
+                                objects.removeObject(spriteObject)
+                            }
+
+                            for i in 0...(objects.count - 1) {
+                                let newItem = FormulaEditorItem.init(function: CollisionFunction.init() as Function)
+                                newItem.title = (kUIFEObjectActorObjectTouch + "(\'" + objects[i].name + "\')")
+                                (newItem.function as! CollisionFunction).addParameter(param: objects[i].name)
+
+                                items += (position + (i * 10), newItem)
+                            }
+                        } else {
+                            items += (position, item)
+                        }
                     }
 
                 case let .sensors(position, _):

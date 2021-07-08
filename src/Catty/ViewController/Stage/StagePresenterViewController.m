@@ -70,6 +70,10 @@
         _skView.showsFPS = YES;
         _skView.showsNodeCount = YES;
         _skView.showsDrawCount = YES;
+    
+        if (SpriteKitDefines.physicsShowBody) {
+            _skView.showsPhysics = YES;
+        }
     #endif
     
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];

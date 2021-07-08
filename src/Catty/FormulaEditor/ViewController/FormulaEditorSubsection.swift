@@ -51,11 +51,15 @@ enum ObjectSubsection: FormulaEditorSubsection, CaseIterable {
 
         case .motion:
             return kUIFESubsectionMotion
+
+        case .touchesActorOrObject:
+            return kUIFEObjectActorObjectTouch
         }
     }
 
     case general
     case motion
+    case touchesActorOrObject
 }
 
 enum LogicSubsection: FormulaEditorSubsection, CaseIterable {

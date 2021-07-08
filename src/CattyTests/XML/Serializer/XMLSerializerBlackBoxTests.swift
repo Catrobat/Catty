@@ -136,4 +136,8 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
     func testFunctions() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "Functions_0993")
     }
+
+    func testCollisionFormulaSerialization() {
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "collisionTest0993")
+    }
 }
