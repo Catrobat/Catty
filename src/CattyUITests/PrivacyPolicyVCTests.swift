@@ -28,7 +28,7 @@ class PrivacyPolicyTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchApp(with: ["UITests"])
+        app = launchApp(with: ["UITests", "alwaysShowPrivacyPolicy"])
     }
 
     func testPrivacyPolicy() {

@@ -21,16 +21,18 @@
  */
 
 public class WebRequestDownloader: NSObject {
-    var completion: ((String?, Error?) -> Void)?
+    var completion: ((String?, WebRequestDownloaderError?) -> Void)?
+    private var trustedDomains: TrustedDomainManager?
     private var data = Data()
     private var task: URLSessionDataTask?
     private var url = String()
     var session: URLSession?
 
-    required init(url: String, session: URLSession?) {
+    required init(url: String, session: URLSession?, trustedDomainManager: TrustedDomainManager?) {
         super.init()
         self.url = url
         self.session = session != nil ? session : self.defaultSession()
+        self.trustedDomains = trustedDomainManager != nil ? trustedDomainManager : TrustedDomainManager()
     }
 
     private func defaultSession() -> URLSession {
@@ -39,10 +41,18 @@ public class WebRequestDownloader: NSObject {
         return URLSession(configuration: config, delegate: self, delegateQueue: nil)
     }
 
-    func download(completion: @escaping (String?, Error?) -> Void) {
+    func download(completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
         self.data = Data()
         self.completion = completion
-        guard let url = URL(string: url) else { completion(nil, WebRequestDownloadError.invalidUrl); return }
+        guard let url = URL(string: url) else { completion(nil, WebRequestDownloaderError.invalidURL); return }
+
+        guard let trustedDomains = trustedDomains else { completion(nil, WebRequestDownloaderError.unexpectedError); return }
+
+        if !trustedDomains.isUrlInTrustedDomains(url: self.url) {
+            completion(nil, WebRequestDownloaderError.notTrusted)
+            return
+        }
+
         task = session?.dataTask(with: url)
         task?.resume()
     }
@@ -61,27 +71,24 @@ extension WebRequestDownloader: URLSessionDataDelegate {
         if let completion = self.completion {
             if (error as NSError?)?.code == NSURLErrorCancelled || self.data.count > NetworkDefines.kWebRequestMaxDownloadSizeInBytes {
                 data.removeAll()
-                completion(nil, WebRequestDownloadError.downloadSize)
+                completion(nil, WebRequestDownloaderError.downloadSize)
             } else if (error as NSError?)?.code == NSURLErrorNotConnectedToInternet {
                 data.removeAll()
-                completion(nil, WebRequestDownloadError.noInternet)
+                completion(nil, WebRequestDownloaderError.noInternet)
             } else if error != nil {
                 data.removeAll()
-                completion(nil, WebRequestDownloadError.unexpectedError)
+                completion(nil, WebRequestDownloaderError.unexpectedError)
             } else {
-                completion(String(decoding: data, as: UTF8.self), nil)
+                guard let response = task.response as? HTTPURLResponse else {
+                    completion(nil, WebRequestDownloaderError.unexpectedError)
+                    return
+                }
+                if response.statusCode != 200 {
+                    completion(nil, WebRequestDownloaderError.request(error: error, statusCode: response.statusCode))
+                } else {
+                    completion(String(decoding: data, as: UTF8.self), nil)
+                }
             }
         }
     }
-}
-
-enum WebRequestDownloadError: Error {
-    /// Indicates an invalid URL
-    case invalidUrl
-    /// Indicates a download bigger than kWebRequestMaxDownloadSizeInBytes
-    case downloadSize
-    /// Indicates that no internet connection is present
-    case noInternet
-    /// Indicates an unexpected error
-    case unexpectedError
 }

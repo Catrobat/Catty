@@ -127,9 +127,13 @@
 		2E0E25D525E265840020CD9D /* WebRequestDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */; };
 		2E25F6E1262040550044B2DF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E25F6E0262040550044B2DF /* Reachability.swift */; };
 		2E5E767B260DEB9400D4DEBD /* WebRequestDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E767A260DEB9400D4DEBD /* WebRequestDownloaderMock.swift */; };
+		2E5FDF1F2685A89F004CBCB5 /* URLSessionTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FDF1E2685A89F004CBCB5 /* URLSessionTaskMock.swift */; };
+		2E6FB13926525EB100A57ED7 /* TrustedDomainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FB13826525EB100A57ED7 /* TrustedDomainManagerTests.swift */; };
 		2E7ED10625E38E1A0009F17F /* WebRequestDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7ED10525E38E1A0009F17F /* WebRequestDownloaderTests.swift */; };
 		2E7ED11425E3AAFA0009F17F /* WebRequestDownloader.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E7ED11325E3AAFA0009F17F /* WebRequestDownloader.success.json */; };
 		2E8780A82542BCE200816B52 /* WebRequestBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */; };
+		2E88D620263161D80063D573 /* TrustedDomains.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E88D61F263161D80063D573 /* TrustedDomains.plist */; };
+		2E88D627263194E40063D573 /* TrustedDomainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E88D626263194E40063D573 /* TrustedDomainManager.swift */; };
 		2EBD8456253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD8455253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift */; };
 		2EBD845B253FEEA1009BFED5 /* WebRequestBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */; };
 		2EBD845D253FEF57009BFED5 /* WebRequestBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD845C253FEF57009BFED5 /* WebRequestBrickCell.swift */; };
@@ -475,6 +479,9 @@
 		4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */; };
 		4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */; };
 		4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */; };
+		4C20487B2671DF7000AE2E1B /* CBScriptContextMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */; };
+		4C2048802671F17F00AE2E1B /* WebRequestDownloaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */; };
+		4C2048822671F18F00AE2E1B /* WebRequestDownloaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */; };
 		4C214C1E26200D3600E70B22 /* FormulaEditorViewControllerAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C214C1B26200D3500E70B22 /* FormulaEditorViewControllerAlertExtension.swift */; };
 		4C245CAC244481F3004C941C /* NimbleMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C245CA9244481F3004C941C /* NimbleMatcher.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
@@ -2028,9 +2035,13 @@
 		2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestDownloader.swift; sourceTree = "<group>"; };
 		2E25F6E0262040550044B2DF /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		2E5E767A260DEB9400D4DEBD /* WebRequestDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderMock.swift; sourceTree = "<group>"; };
+		2E5FDF1E2685A89F004CBCB5 /* URLSessionTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionTaskMock.swift; sourceTree = "<group>"; };
+		2E6FB13826525EB100A57ED7 /* TrustedDomainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedDomainManagerTests.swift; sourceTree = "<group>"; };
 		2E7ED10525E38E1A0009F17F /* WebRequestDownloaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderTests.swift; sourceTree = "<group>"; };
 		2E7ED11325E3AAFA0009F17F /* WebRequestDownloader.success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WebRequestDownloader.success.json; sourceTree = "<group>"; };
 		2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrickTests.swift; sourceTree = "<group>"; };
+		2E88D61F263161D80063D573 /* TrustedDomains.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TrustedDomains.plist; sourceTree = "<group>"; };
+		2E88D626263194E40063D573 /* TrustedDomainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedDomainManager.swift; sourceTree = "<group>"; };
 		2EBD8455253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebRequestBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrick.swift; sourceTree = "<group>"; };
 		2EBD845C253FEF57009BFED5 /* WebRequestBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrickCell.swift; sourceTree = "<group>"; };
@@ -2429,6 +2440,9 @@
 		4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptCollectionVCTests.swift; sourceTree = "<group>"; };
 		4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleParameterStringFunctionMock.swift; sourceTree = "<group>"; };
 		4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
+		4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBScriptContextMock.swift; sourceTree = "<group>"; };
+		4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderFactory.swift; sourceTree = "<group>"; };
+		4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderError.swift; sourceTree = "<group>"; };
 		4C214C1B26200D3500E70B22 /* FormulaEditorViewControllerAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerAlertExtension.swift; sourceTree = "<group>"; };
 		4C245CA9244481F3004C941C /* NimbleMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleMatcher.swift; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
@@ -4628,6 +4642,8 @@
 			isa = PBXGroup;
 			children = (
 				2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */,
+				4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */,
+				4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */,
 			);
 			path = WebRequestDownloader;
 			sourceTree = "<group>";
@@ -4640,9 +4656,18 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		2E6FB13526525E9300A57ED7 /* TrustedDomainManager */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FB13826525EB100A57ED7 /* TrustedDomainManagerTests.swift */,
+			);
+			path = TrustedDomainManager;
+			sourceTree = "<group>";
+		};
 		2E7ED10425E38DF50009F17F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2E6FB13526525E9300A57ED7 /* TrustedDomainManager */,
 				2E7ED11225E3AAC10009F17F /* Fixtures */,
 				2E7ED10525E38E1A0009F17F /* WebRequestDownloaderTests.swift */,
 				17D5F5BF265EAEF700C678FF /* KeychainTests.swift */,
@@ -4657,6 +4682,15 @@
 				2E7ED11325E3AAFA0009F17F /* WebRequestDownloader.success.json */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		2E88D62B263194E80063D573 /* TrustedDomainManager */ = {
+			isa = PBXGroup;
+			children = (
+				2E88D61F263161D80063D573 /* TrustedDomains.plist */,
+				2E88D626263194E40063D573 /* TrustedDomainManager.swift */,
+			);
+			path = TrustedDomainManager;
 			sourceTree = "<group>";
 		};
 		2ED41693241120AE00AFE2FD /* UserProjects */ = {
@@ -7058,8 +7092,8 @@
 				E579F11B253DCE2C009107C8 /* ChangeYByNBrickTests.swift */,
 				E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */,
 				971C6F20260526ED00AD4857 /* SetTempoToBrickTests.swift */,
-				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
 				83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */,
+				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -7284,6 +7318,8 @@
 			isa = PBXGroup;
 			children = (
 				4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */,
+				6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */,
+				4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */,
 				4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */,
 				4CEE86512653963A002BC7ED /* EmbroideryServiceMock.swift */,
 				4C3B151A23F07C7800527D4A /* ErrorMock.swift */,
@@ -7306,7 +7342,7 @@
 				4C7182E023EEF47500195BC7 /* UICollectionViewMock.swift */,
 				4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
-				6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */,
+				2E5FDF1E2685A89F004CBCB5 /* URLSessionTaskMock.swift */,
 				6FCC9CC524B89D2B000DB08F /* StoreProjectUploaderMock.swift */,
 				6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */,
 				6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */,
@@ -8179,6 +8215,7 @@
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
 				92FF2E851A24C7D800093DA7 /* Utils */,
 				2E0E25D125E265480020CD9D /* WebRequestDownloader */,
+				2E88D62B263194E80063D573 /* TrustedDomainManager */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -8478,6 +8515,7 @@
 		92FF310A1A24DEB300093DA7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				91FC81FA01E91B5CF3266F79 /* AlertController */,
 				4647D55823D8AF9F001A67F6 /* PrivacyPolicy */,
 				92FF310B1A24DEB300093DA7 /* BaseViewController */,
 				92C631831BC502CB00486958 /* BluetoothDeviceSelection */,
@@ -8660,7 +8698,6 @@
 			isa = PBXGroup;
 			children = (
 				E564EBDF255D60F4001F0CD0 /* Button */,
-				91FC81FA01E91B5CF3266F79 /* AlertController */,
 				593E4DDC1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout */,
 				928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */,
 				92FF31A91A24E2F400093DA7 /* CollectionViewCells */,
@@ -11306,6 +11343,7 @@
 				9E5DFD06250574380049265C /* 10-wood-block.wv in Resources */,
 				9EC5208624FC04EA0029CD0E /* cello.sfz in Resources */,
 				9EC5208C24FC04EA0029CD0E /* bass-48.wv in Resources */,
+				2E88D620263161D80063D573 /* TrustedDomains.plist in Resources */,
 				9EC5208824FC04EA0029CD0E /* trombo-60.wv in Resources */,
 				9E5DFD0F250574380049265C /* 14-conga.wv in Resources */,
 				CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */,
@@ -11549,6 +11587,7 @@
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
 				9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */,
+				2E5FDF1F2685A89F004CBCB5 /* URLSessionTaskMock.swift in Sources */,
 				4C82265C213FA7A400F3D750 /* FingerXSensorTest.swift in Sources */,
 				4CB3E0A125ADEFFD007F4365 /* StagePresenterViewControllerMock.swift in Sources */,
 				9E2D47C72328428100917D92 /* ChangeColorByNBrickTests.swift in Sources */,
@@ -11708,6 +11747,7 @@
 				9E24D7072326EBC300608203 /* ShowBrickTests.swift in Sources */,
 				4C4778F6267C83F500CAF398 /* FormulaTest.swift in Sources */,
 				18390A7324D0A33D00A07DFD /* StampBrickTests.swift in Sources */,
+				4C20487B2671DF7000AE2E1B /* CBScriptContextMock.swift in Sources */,
 				05E68025255B5DEE00D1E295 /* EmbroideryDSTHeaderTests.swift in Sources */,
 				4C822659213FA7A400F3D750 /* AudioManagerMock.swift in Sources */,
 				9E4D238C232AF688009D0C3C /* SetColorBrickTests.swift in Sources */,
@@ -11781,6 +11821,7 @@
 				4C82266F213FA7A400F3D750 /* DateMonthSensorTest.swift in Sources */,
 				9E0F741822B55E4D0030CD89 /* MockAudioPlayerFactory.swift in Sources */,
 				4C7182DA23EEAFF600195BC7 /* BaseCollectionViewControllerTests.swift in Sources */,
+				2E6FB13926525EB100A57ED7 /* TrustedDomainManagerTests.swift in Sources */,
 				4C2CBB4325A5AA8400C1C143 /* XMLAbstractTest.swift in Sources */,
 				4C822670213FA7A400F3D750 /* AccelerationYSensorTest.swift in Sources */,
 				591553B724F274C9005BBF75 /* WhenConditionScriptTests.swift in Sources */,
@@ -12055,6 +12096,7 @@
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */,
 				4C595F5721CAF6590097D850 /* AndOperator.swift in Sources */,
+				4C2048802671F17F00AE2E1B /* WebRequestDownloaderFactory.swift in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				6F4F8AFF24CF261C002C3814 /* UserDataContainer.swift in Sources */,
 				F45AF701212960B4000F88A6 /* FaceSizeSensor.swift in Sources */,
@@ -12486,6 +12528,7 @@
 				6F4B2FB72466704500B5F0ED /* ProjectMigrator.swift in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Project+CBXMLHandler.m in Sources */,
 				05E6801B255B5DAA00D1E295 /* EmbroideryDefines.swift in Sources */,
+				4C2048822671F18F00AE2E1B /* WebRequestDownloaderError.swift in Sources */,
 				97770B8F25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift in Sources */,
 				6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
@@ -12755,6 +12798,7 @@
 				188AF51A260352BC00FFE0EB /* FormulaEditorKeyboardAccessoryView.swift in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
 				4C5AEF0722F7037200280F8B /* CatrobatSetup+Bricks.swift in Sources */,
+				2E88D627263194E40063D573 /* TrustedDomainManager.swift in Sources */,
 				5907FA96252888DF0042EC5D /* StoreProjectReporter.swift in Sources */,
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
 				4C5076D42578DCB000650440 /* Instrument.swift in Sources */,

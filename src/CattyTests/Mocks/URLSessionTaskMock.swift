@@ -20,12 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc
-class LaunchArguments: NSObject {
+class URLSessionTaskMock: URLSessionTask {
+    var mockResponse: URLResponse?
 
-    static let UITests = "UITests"
-    static let restoreDefaultProject = "restoreDefaultProject"
-    @objc static let skipPrivacyPolicy = "skipPrivacyPolicy"
-    @objc static let alwaysShowPrivacyPolicy = "alwaysShowPrivacyPolicy"
+    override var response: URLResponse? {
+        mockResponse
+    }
 
+    init(response: URLResponse?) {
+        mockResponse = response
+    }
 }

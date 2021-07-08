@@ -25,69 +25,91 @@ extension WebRequestBrick: CBInstructionProtocol {
     @nonobjc func instruction() -> CBInstruction {
         if WebRequestBrick.isWebRequestBrickEnabled() {
             guard let request = self.request else { fatalError("Unexpected found nil.") }
-            guard let displayString = request.getDisplayString() else { fatalError("Unexpected found nil.") }
+            guard let trustedDomains = TrustedDomainManager() else { return CBInstruction.invalidInstruction }
+            _ = trustedDomains.clear() // TODO: Remove in CATTY-600
 
-            var requestString = displayString
-            if requestString.hasPrefix("'") {
-                requestString = String(requestString.dropFirst())
-            }
-            if requestString.hasSuffix("'") {
-                requestString = String(requestString.dropLast())
-            }
+            return CBInstruction.waitExecClosure { context, scheduler in
+                let displayString = context.formulaInterpreter.interpretString(request, for: self.script.object)
+                let requestString = self.prepareRequestString(input: displayString)
+                let downloader = self.downloaderFactory.create(url: requestString, trustedDomainManager: trustedDomains)
 
-            let downloader = WebRequestDownloader(url: requestString, session: nil)
+                let downloadIsFinishedExpectation = CBExpectation()
 
-            return CBInstruction.waitExecClosure { _, scheduler in
                 self.sendRequest(downloader: downloader) { response, error in
-                    self.callbackSubmit(with: response, error: error, scheduler: scheduler)
+                    if let error = error, case WebRequestDownloaderError.notTrusted = error {
+                        scheduler.pause()
+
+                        DispatchQueue.main.async {
+                            AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
+                                .addCancelAction(title: kLocalizedNo) {
+                                    scheduler.resume()
+                                    self.callbackSubmit(with: nil, error: .notTrusted, expectation: downloadIsFinishedExpectation)
+                                    return
+                                }
+                                .addDefaultAction(title: kLocalizedYes) {
+                                    scheduler.resume()
+                                    let addError = trustedDomains.add(url: requestString)
+                                    if addError != nil {
+                                        self.callbackSubmit(with: nil, error: .unexpectedError, expectation: downloadIsFinishedExpectation)
+                                    } else {
+                                        self.sendRequest(downloader: downloader) { response, error in
+                                            self.callbackSubmit(with: response, error: error, expectation: downloadIsFinishedExpectation)
+                                        }
+                                    }
+                                }
+                                .build()
+                                .showWithController(Util.topmostViewController())
+                        }
+                    } else {
+                        self.callbackSubmit(with: response, error: error, expectation: downloadIsFinishedExpectation)
+                    }
                 }
-                scheduler.pause()
+
+                downloadIsFinishedExpectation.wait()
             }
         } else {
             return CBInstruction.invalidInstruction
         }
     }
 
-    func callbackSubmit(with input: String?, error: WebRequestBrickError?, scheduler: CBSchedulerProtocol) {
+    func callbackSubmit(with input: String?, error: WebRequestDownloaderError?, expectation: CBExpectation) {
         if let userVariable = self.userVariable {
             userVariable.value = extractMessage(input: input, error: error)
         }
 
         DispatchQueue.main.async {
-          scheduler.resume()
+            expectation.fulfill()
         }
     }
 
-    private func extractMessage(input: String?, error: WebRequestBrickError?) -> String {
+    func prepareRequestString(input: String) -> String {
+        var requestString = input
+        if requestString.hasPrefix("'") {
+            requestString = String(requestString.dropFirst())
+        }
+        if requestString.hasSuffix("'") {
+            requestString = String(requestString.dropLast())
+        }
+        if !requestString.hasPrefix("https://") && !requestString.hasPrefix("http://") {
+            requestString = "https://" + requestString
+        }
+        return requestString
+    }
+
+    private func extractMessage(input: String?, error: WebRequestDownloaderError?) -> String {
         guard let input = input else {
-            switch error {
-            case .downloadSize:
-                return kLocalizedDownloadSizeErrorMessage
-            case .invalidURL:
-                return kLocalizedInvalidURLGiven
-            case .noInternet, .timeout:
-                return "500"
-            case let .request(error: _, statusCode: statusCode):
-                return String(statusCode)
-            default:
+            guard let error = error else {
                 return kLocalizedUnexpectedErrorTitle
             }
+            return error.message()
         }
         return input
     }
 
-    private func sendRequest(downloader: WebRequestDownloader, completion: @escaping (String?, WebRequestBrickError?) -> Void) {
+    private func sendRequest(downloader: WebRequestDownloader, completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
         downloader.download { response, error in
-            if let error = error as? WebRequestDownloadError {
-                if case WebRequestDownloadError.invalidUrl = error {
-                    completion(nil, .invalidURL)
-                } else if case WebRequestDownloadError.noInternet = error {
-                    completion(nil, .noInternet)
-                } else if case WebRequestDownloadError.downloadSize = error {
-                    completion(nil, .downloadSize)
-                } else {
-                    completion(nil, .unexpectedError)
-                }
+            if let error = error {
+                completion(nil, error)
             } else {
                 completion(response, nil)
             }
@@ -96,20 +118,5 @@ extension WebRequestBrick: CBInstructionProtocol {
 
     private static func isWebRequestBrickEnabled() -> Bool {
          UserDefaults.standard.bool(forKey: kUseWebRequestBrick)
-    }
-
-    enum WebRequestBrickError: Error {
-        /// Indicates a download bigger than kWebRequestMaxDownloadSizeInBytes
-        case downloadSize
-        /// Indicates an invalid URL
-        case invalidURL
-        /// Indicates that no internet connection is present
-        case noInternet
-        /// Indicates an error with the URLRequest
-        case request(error: Error?, statusCode: Int)
-        /// Indicates a request timeout
-        case timeout
-        /// Indicates an unexpected error
-        case unexpectedError
     }
 }

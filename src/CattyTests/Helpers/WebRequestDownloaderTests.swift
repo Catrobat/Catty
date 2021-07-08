@@ -27,9 +27,17 @@ import XCTest
 
 final class WebRequestDownloaderTests: XCTestCase {
 
+    var trustedDomainManager: TrustedDomainManager!
+
+    override func setUp() {
+        trustedDomainManager = TrustedDomainManager()
+    }
+
     func testWebRequestSucceeds() {
         let url = "https://share.catrob.at/api/projects?category=random&limit=1"
-        let downloader = WebRequestDownloader(url: url, session: nil)
+        _ = trustedDomainManager?.add(url: url)
+
+        let downloader = WebRequestDownloader(url: url, session: nil, trustedDomainManager: trustedDomainManager)
 
         let config = downloader.session?.configuration
         let delegate = downloader.session?.delegate
@@ -49,16 +57,15 @@ final class WebRequestDownloaderTests: XCTestCase {
     }
 
     func testWebRequestFailsWithInvalidURL() {
-        let downloader = WebRequestDownloader(url: "", session: nil)
+        let downloader = WebRequestDownloader(url: "", session: nil, trustedDomainManager: nil)
         let expectation = XCTestExpectation(description: "Fetch Fail")
 
         downloader.download { _, error in
-            guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case WebRequestDownloadError.invalidUrl:
+            case .invalidURL:
                 expectation.fulfill()
             default:
-                XCTFail("wrong error received")
+                XCTFail("wrong or no error received")
             }
         }
 
@@ -67,7 +74,9 @@ final class WebRequestDownloaderTests: XCTestCase {
 
     func testWebRequestFailsWithDownloadSize() {
         let url = "https://share.catrob.at/api/projects?category=random&limit=1500"
-        let downloader = WebRequestDownloader(url: url, session: nil)
+        _ = trustedDomainManager?.add(url: url)
+
+        let downloader = WebRequestDownloader(url: url, session: nil, trustedDomainManager: trustedDomainManager)
 
         let config = downloader.session?.configuration
         let delegate = downloader.session?.delegate
@@ -77,13 +86,14 @@ final class WebRequestDownloaderTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Fetch Fail Download Size")
 
-        downloader.download { _, error in
-            guard let error = error else { XCTFail("no error received"); return }
+        downloader.download { data, error in
+            XCTAssertNil(data)
+
             switch error {
-            case WebRequestDownloadError.downloadSize:
+            case .downloadSize:
                 expectation.fulfill()
             default:
-                XCTFail("wrong error received")
+                XCTFail("wrong or no error received")
             }
         }
 
@@ -91,44 +101,106 @@ final class WebRequestDownloaderTests: XCTestCase {
     }
 
     func testWebRequestFailsWithNoInternet() {
-        let mockSession = URLSessionMock()
-        let url = "https://share.catrob.at/api/projects?category=random&limit=5000"
-        let mock = WebRequestDownloaderMock(url: url, session: mockSession)
-
         let error = NSError(domain: "", code: NSURLErrorNotConnectedToInternet, userInfo: nil)
+        let mockSession = URLSessionMock(error: error)
+
+        let url = "https://catrob.at"
+        let trustedDomainManager = TrustedDomainManager()
+        _ = trustedDomainManager?.add(url: url)
+        let downloader = WebRequestDownloader(url: url, session: mockSession, trustedDomainManager: trustedDomainManager)
         let expectation = XCTestExpectation(description: "Fetch Fail Download No Internet")
 
-        mock.downloadWithError(error: error) { data, error in
+        downloader.download { data, error in
             XCTAssertNil(data)
-            switch error as? WebRequestDownloadError {
+
+            switch error {
             case .noInternet:
                 expectation.fulfill()
             default:
-                XCTFail("wrong error received")
+                XCTFail("wrong or no error received")
             }
         }
 
+        downloader.urlSession(mockSession, task: URLSessionDataTask(), didCompleteWithError: error)
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testWebRequestFailsWithRequestError() {
+        let url = "https://catrob.at"
+        let statusCode = 401
+        let response = HTTPURLResponse(url: URL(string: url)!, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: nil)
+        let mockSession = URLSessionMock(response: response, error: nil)
+        let mockTask = URLSessionTaskMock(response: response)
+
+        _ = trustedDomainManager?.add(url: url)
+        let downloader = WebRequestDownloader(url: "https://catrob.at", session: mockSession, trustedDomainManager: trustedDomainManager)
+        let expectation = XCTestExpectation(description: "Fetch Fail Download No Internet")
+
+        downloader.download { data, error in
+            XCTAssertNil(data)
+
+            switch error {
+            case .request(error: let err, statusCode: let status):
+                XCTAssertNil(err)
+                XCTAssertEqual(status, statusCode)
+                expectation.fulfill()
+            default:
+                XCTFail("wrong or no error received")
+            }
+        }
+
+        downloader.urlSession(mockSession, task: mockTask, didCompleteWithError: nil)
         wait(for: [expectation], timeout: 1.0)
     }
 
     func testWebRequestFailsWithUnexpectedError() {
-        let mockSession = URLSessionMock()
-        let url = "https://share.catrob.at/api/projects?category=random"
-        let mock = WebRequestDownloaderMock(url: url, session: mockSession)
-
+        let url = "https://catrob.at"
         let error = NSError(domain: "", code: NSURLErrorUnknown, userInfo: nil)
+        let mockSession = URLSessionMock(error: error)
+
+        _ = trustedDomainManager?.add(url: url)
+        let downloader = WebRequestDownloader(url: url, session: mockSession, trustedDomainManager: trustedDomainManager)
         let expectation = XCTestExpectation(description: "Fetch Fail Download Unxpected")
 
-        mock.downloadWithError(error: error) { data, error in
+        downloader.download { data, error in
             XCTAssertNil(data)
-            switch error as? WebRequestDownloadError {
+
+            switch error {
             case .unexpectedError:
                 expectation.fulfill()
             default:
-                XCTFail("wrong error received")
+                XCTFail("wrong or no error received")
+            }
+        }
+
+        downloader.urlSession(mockSession, task: URLSessionDataTask(), didCompleteWithError: error)
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(1, mockSession.dataTasksCreated)
+    }
+
+    func testWebRequestFailsNotTrusted() {
+        let url = "https://catrob.at/untrusted"
+
+        let mockSession = URLSessionMock()
+        let downloader = WebRequestDownloader(url: url, session: mockSession, trustedDomainManager: trustedDomainManager)
+        let expectation = XCTestExpectation(description: "Fetch Fail Download Unxpected")
+
+        let trusted = trustedDomainManager.isUrlInTrustedDomains(url: url)
+        XCTAssertFalse(trusted)
+
+        downloader.download { data, error in
+            XCTAssertNil(data)
+
+            switch error {
+            case .notTrusted:
+                expectation.fulfill()
+            default:
+                XCTFail("wrong or no error received")
             }
         }
 
         wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(0, mockSession.dataTasksCreated)
     }
 }

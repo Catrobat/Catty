@@ -25,6 +25,8 @@
 final class CBFileManagerMock: CBFileManager {
     var dataWritten: [String: Data]
     var downloadedProjectsStored: [String: String]
+    var readWillFail = false
+    var writeWillFail = false
 
     private var existingFiles: [String]
     private var existingDirectories: [String]
@@ -89,6 +91,17 @@ final class CBFileManagerMock: CBFileManager {
 
     override func storeDownloadedProject(_ data: Data!, withID projectId: String!, andName projectName: String!) -> Bool {
         downloadedProjectsStored[projectId] = projectName
+        return true
+    }
+
+    override func read(_ path: String!) -> Data? {
+        readWillFail == true ? nil : super.read(path)
+    }
+
+    override func write(_ data: Data, toPath: String!) -> Bool {
+        if writeWillFail {
+            return false
+        }
         return true
     }
 }

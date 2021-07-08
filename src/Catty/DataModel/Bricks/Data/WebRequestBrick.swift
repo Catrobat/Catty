@@ -25,9 +25,18 @@
 
     var request: Formula?
     var userVariable: UserVariable?
+    var downloaderFactory: WebRequestDownloaderFactory
 
     override required init() {
+        self.downloaderFactory = WebRequestDownloaderFactory()
         super.init()
+    }
+
+    convenience init(request: Formula, userVariable: UserVariable, script: Script) {
+        self.init()
+        self.request = request
+        self.userVariable = userVariable
+        self.script = script
     }
 
     func category() -> kBrickCategoryType {

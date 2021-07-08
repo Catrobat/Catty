@@ -388,6 +388,22 @@
     return YES;
 }
 
+- (NSArray*)urls:(NSSearchPathDirectory)directory inDomainMask:(NSSearchPathDomainMask)domainMask
+{
+    return NSSearchPathForDirectoriesInDomains(directory, domainMask, YES);
+}
+
+- (NSData*)read:(NSString*)path
+{
+    return [NSData dataWithContentsOfFile:path];
+}
+
+
+- (BOOL)write:(NSData*)data toPath:(NSString*)path
+{
+    return [data writeToFile:path atomically:YES];
+}
+
 -(NSData*)zipProject:(Project*)project
 {
     NSString *targetPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
