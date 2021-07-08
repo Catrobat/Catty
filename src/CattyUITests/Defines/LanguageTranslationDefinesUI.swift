@@ -736,6 +736,7 @@ let kUIFESensorAccelerationY = NSLocalizedString("acceleration y", bundle: Bundl
 let kUIFESensorAccelerationZ = NSLocalizedString("acceleration z", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorInclinationX = NSLocalizedString("inclination x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorInclinationY = NSLocalizedString("inclination y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorTouchesFinger = NSLocalizedString("touches finger", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorLatitude = NSLocalizedString("latitude", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorLongitude = NSLocalizedString("longitude", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorLocationAccuracy = NSLocalizedString("location accuracy", bundle: Bundle(for: LanguageTranslation.self), comment: "")

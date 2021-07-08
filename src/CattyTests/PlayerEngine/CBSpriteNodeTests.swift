@@ -233,4 +233,25 @@ final class CBSpriteNodeTests: XCTestCase {
         XCTAssertEqual(spriteNode.look(for: 2)?.fileName, lookB.fileName)
         XCTAssertNil(spriteNode.look(for: 3))
     }
+
+    func testIsTouched() {
+        let x = 0.0, y = 0.0, width = 30.0, height = 40.0
+
+        let existingPath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)
+        let image = UIImage(contentsOfFile: existingPath!)
+
+        spriteNode.currentUIImageLook = image
+        spriteNode.position = CGPoint(x: x, y: y)
+        spriteNode.size = CGSize(width: width, height: height)
+
+        let axisWidth = width / 2.0
+        let axisHeight = height / 2.0
+
+        XCTAssertTrue(spriteNode.isTouched(at: MockTouch(point: CGPoint(x: x, y: y))))
+        XCTAssertTrue(spriteNode.isTouched(at: MockTouch(point: CGPoint(x: x + axisWidth - epsilon, y: y + axisHeight - epsilon))))
+        XCTAssertTrue(spriteNode.isTouched(at: MockTouch(point: CGPoint(x: x - axisWidth + epsilon, y: y - axisHeight + epsilon))))
+
+        XCTAssertFalse(spriteNode.isTouched(at: MockTouch(point: CGPoint(x: x + axisWidth + 1, y: y + axisHeight + 1))))
+        XCTAssertFalse(spriteNode.isTouched(at: MockTouch(point: CGPoint(x: x - axisWidth - 1, y: y - axisHeight - 1))))
+    }
 }

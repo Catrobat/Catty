@@ -736,6 +736,7 @@
 #define kUIFESensorAccelerationZ NSLocalizedString(@"acceleration z", nil)
 #define kUIFESensorInclinationX NSLocalizedString(@"inclination x", nil)
 #define kUIFESensorInclinationY NSLocalizedString(@"inclination y", nil)
+#define kUIFESensorTouchesFinger NSLocalizedString(@"touches finger", nil)
 #define kUIFESensorLatitude NSLocalizedString(@"latitude", nil)
 #define kUIFESensorLongitude NSLocalizedString(@"longitude", nil)
 #define kUIFESensorLocationAccuracy NSLocalizedString(@"location accuracy", nil)

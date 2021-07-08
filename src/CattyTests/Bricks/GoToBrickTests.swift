@@ -55,7 +55,7 @@ final class GoToBrickTests: AbstractBrickTest {
 
         let touchManager = TouchManagerMock()
         let touch = CGPoint(x: 150, y: 250)
-        touchManager.lastTouch = touch
+        touchManager.lastPosition = touch
         let action = brick.actionBlock(touchManager)
         action()
 

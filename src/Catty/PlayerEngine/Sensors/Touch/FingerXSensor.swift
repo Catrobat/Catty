@@ -38,7 +38,7 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let lastPosition = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
         return Double(lastPosition.x)
     }

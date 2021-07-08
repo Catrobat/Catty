@@ -238,25 +238,15 @@ class CBSpriteNode: SKSpriteNode {
         }
     }
 
-    @objc func touchedWithTouch(_ touch: UITouch, atPosition position: CGPoint) -> Bool {
-        guard let playerStage = (scene as? Stage) else { return false }
+    @objc func isTouched(at touch: UITouch) -> Bool {
+        guard let imageLook = currentUIImageLook else { return false }
 
-        let scheduler = playerStage.scheduler
+        guard spriteObject.name != nil, let scene = spriteObject.spriteNode.scene else { preconditionFailure("Invalid SpriteObject!") }
 
-        guard let imageLook = currentUIImageLook, scheduler.running else { return false }
+        let globalTouchPosition = touch.location(in: scene)
+        let localTouchPosition = touch.location(in: self)
 
-        guard let spriteName = spriteObject.name
-            else { preconditionFailure("Invalid SpriteObject!") }
-        let touchedPoint = touch.location(in: self)
-
-        if imageLook.isTransparentPixel(atScenePoint: touchedPoint) {
-            print("\(spriteName): \"I'm transparent at this point\"")
-            return false
-        }
-
-        scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
-
-        return true
+        return self.contains(globalTouchPosition) && !imageLook.isTransparentPixel(atScenePoint: localTouchPosition)
     }
 
     @objc func isFlipped() -> Bool {

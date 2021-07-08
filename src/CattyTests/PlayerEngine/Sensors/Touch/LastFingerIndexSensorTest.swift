@@ -28,32 +28,35 @@ final class LastFingerIndexSensorTest: XCTestCase {
 
     var touchManager: TouchManagerMock!
     var sensor: LastFingerIndexSensor!
+    var spriteObject: SpriteObject!
 
     override func setUp() {
         super.setUp()
         touchManager = TouchManagerMock()
         sensor = LastFingerIndexSensor { [weak self] in self?.touchManager }
+        spriteObject = SpriteObject()
     }
 
     override func tearDown() {
         sensor = nil
         touchManager = nil
+        spriteObject = nil
         super.tearDown()
     }
 
     func testDefaultRawValue() {
         let sensor = LastFingerIndexSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(for: self.spriteObject), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         touchManager.touches = [CGPoint(x: 10, y: 20),
                                 CGPoint(x: 100, y: 210),
                                 CGPoint(x: -210, y: 40)]
-        XCTAssertEqual(3, sensor.rawValue())
+        XCTAssertEqual(3, sensor.rawValue(for: self.spriteObject))
 
         touchManager.touches = [CGPoint(x: 100, y: 200)]
-        XCTAssertEqual(1, sensor.rawValue())
+        XCTAssertEqual(1, sensor.rawValue(for: self.spriteObject))
     }
 
     func testConvertToStandardized() {

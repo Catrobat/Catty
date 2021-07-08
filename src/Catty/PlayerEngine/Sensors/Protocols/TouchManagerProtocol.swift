@@ -39,6 +39,8 @@ protocol TouchManagerProtocol {
     // Returns a SpriteKit specific position which needs to be converted. (0, 0) is at the bottom left corner
     func lastPositionInScene() -> CGPoint?
 
+    func lastTouch() -> UITouch?
+
     // Returns a SpriteKit specific position which needs to be converted. (0, 0) is at the bottom left corner
     func getPositionInScene(for touchNumber: Int) -> CGPoint?
 }

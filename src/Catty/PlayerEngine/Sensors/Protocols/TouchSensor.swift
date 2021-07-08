@@ -23,7 +23,7 @@
 protocol TouchSensor: Sensor {
 
     // The iOS device specific value of the sensor
-    func rawValue() -> Double
+    func rawValue(for spriteObject: SpriteObject) -> Double
 
     // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double
@@ -32,7 +32,7 @@ protocol TouchSensor: Sensor {
 extension TouchSensor {
     // The Pocket Code standardized sensor value
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        let rawValue = self.rawValue()
+        let rawValue = self.rawValue(for: spriteObject)
         return convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
 
