@@ -111,6 +111,12 @@
         return result
     }
 
+    func firstIndex(where predicate: (Any) -> Bool) -> Int {
+        let result = self.elements.index(where: predicate)
+
+        return result
+    }
+
     func stringRepresentation() -> String {
         var value = ""
         if !self.isEmpty {

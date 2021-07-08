@@ -54,6 +54,7 @@ extension CatrobatSetup {
          NumberOfItemsFunction(),
          ContainsFunction(),
          CollisionFunction(),
+         IndexOfItemFunction(),
          MultiFingerXFunction(touchManagerGetter: { touchManager }),
          MultiFingerYFunction(touchManagerGetter: { touchManager }),
          MultiFingerTouchedFunction(touchManagerGetter: { touchManager }),

@@ -1221,6 +1221,8 @@
 		97770B8F25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */; };
 		9797CB8325AF7A6000A50444 /* SceneTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */; };
 		97AC582125C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json in Resources */ = {isa = PBXBuildFile; fileRef = 97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */; };
+		97ACDD9B268DEB2D007FBAE9 /* IndexOfItemFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ACDD9A268DEB2D007FBAE9 /* IndexOfItemFunction.swift */; };
+		97ACDDA4268E09ED007FBAE9 /* IndexOfItemFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ACDD9F268E092E007FBAE9 /* IndexOfItemFunctionTest.swift */; };
 		97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */; };
 		97BA19DF25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */; };
 		97D015912553392A00B6967D /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D0158E2553392A00B6967D /* RoundedImageView.swift */; };
@@ -3352,6 +3354,8 @@
 		97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBrightnessByNBrick.swift; sourceTree = "<group>"; };
 		9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTVCTests.swift; sourceTree = "<group>"; };
 		97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.fail.invalidToken.json; sourceTree = "<group>"; };
+		97ACDD9A268DEB2D007FBAE9 /* IndexOfItemFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexOfItemFunction.swift; sourceTree = "<group>"; };
+		97ACDD9F268E092E007FBAE9 /* IndexOfItemFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexOfItemFunctionTest.swift; sourceTree = "<group>"; };
 		97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerExtension.swift; sourceTree = "<group>"; };
 		97D0158E2553392A00B6967D /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedImageView.swift; path = Catty/Views/Custom/TableView/Cell/RoundedImageView.swift; sourceTree = SOURCE_ROOT; };
 		97D97BAA257AC141001FF344 /* URLSessionMultipartExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMultipartExtension.swift; sourceTree = "<group>"; };
@@ -4411,6 +4415,7 @@
 				187E07A124E26CED00E652C4 /* CattyUISnapshots */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				97D485032693754C00AE1496 /* Recovered References */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
@@ -5794,6 +5799,7 @@
 				4C6FE154212D2D2E0067B7D5 /* NumberOfItemsFunctionTest.swift */,
 				4C6FE155212D2D2E0067B7D5 /* ElementFunctionTest.swift */,
 				4C6FE156212D2D2E0067B7D5 /* ContainsFunctionTest.swift */,
+				97ACDD9F268E092E007FBAE9 /* IndexOfItemFunctionTest.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -10290,6 +10296,7 @@
 				F470A2E22129DAFB005EC9A3 /* ElementFunction.swift */,
 				F470A2E42129DF42005EC9A3 /* NumberOfItemsFunction.swift */,
 				F470A2E62129DFD5005EC9A3 /* ContainsFunction.swift */,
+				97ACDD9A268DEB2D007FBAE9 /* IndexOfItemFunction.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -11554,6 +11561,7 @@
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
 				9E1BB3CD22BE515800CBC0B6 /* AudioEngineTests.swift in Sources */,
 				6F6EA568248A657400FAFBB6 /* SynchronizedArrayTests.swift in Sources */,
+				97ACDDA4268E09ED007FBAE9 /* IndexOfItemFunctionTest.swift in Sources */,
 				4C82266C213FA7A400F3D750 /* TimeHourSensorTest.swift in Sources */,
 				4C3A5C9D21D3B38A008FD83F /* MinusOperatorTest.swift in Sources */,
 				4CFABF5F24AB0DD40023D581 /* RuntimeImageCacheMock.swift in Sources */,
@@ -12418,6 +12426,7 @@
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
 				4C5AEF0722F7037200280F8B /* CatrobatSetup+Bricks.swift in Sources */,
 				2E88D627263194E40063D573 /* TrustedDomainManager.swift in Sources */,
+				97ACDD9B268DEB2D007FBAE9 /* IndexOfItemFunction.swift in Sources */,
 				5907FA96252888DF0042EC5D /* StoreProjectReporter.swift in Sources */,
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
 				4C5076D42578DCB000650440 /* Instrument.swift in Sources */,

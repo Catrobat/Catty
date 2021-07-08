@@ -689,6 +689,7 @@ let kUIFEFunctionCeil = NSLocalizedString("ceiling", comment: "")
 let kUIFEFunctionNumberOfItems = NSLocalizedString("number of items", comment: "")
 let kUIFEFunctionElement = NSLocalizedString("element", comment: "")
 let kUIFEFunctionContains = NSLocalizedString("contains", comment: "")
+let kUIFEFunctionIndexOfItem = NSLocalizedString("index of item", comment: "")
 
 let kUIFEFunctionScreenIsTouched = NSLocalizedString("stage is touched", comment: "")
 let kUIFEFunctionScreenTouchX = NSLocalizedString("stage touch x", comment: "")

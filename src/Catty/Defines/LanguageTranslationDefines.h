@@ -689,6 +689,7 @@
 #define kUIFEFunctionNumberOfItems NSLocalizedString(@"number of items", nil)
 #define kUIFEFunctionElement NSLocalizedString(@"element", nil)
 #define kUIFEFunctionContains NSLocalizedString(@"contains", nil)
+#define kUIFEFunctionIndexOfItem NSLocalizedString(@"index of item", nil)
 
 #define kUIFEFunctionScreenIsTouched NSLocalizedString(@"stage is touched", nil)
 #define kUIFEFunctionScreenTouchX NSLocalizedString(@"stage touch x", nil)

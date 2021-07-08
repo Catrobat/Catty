@@ -16,7 +16,7 @@
     <platformVersion>14.5</platformVersion>
     <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
     <programName>Functions Test</programName>
-    <remixOf/>
+    <remixOf>/pocketcode/project/ddf94e26-e319-11eb-a7e9-005056a36f47</remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>2532</screenHeight>
     <screenMode>STRETCH</screenMode>
@@ -494,6 +494,23 @@
                       </rightChild>
                       <type>FUNCTION</type>
                       <value>CONTAINS</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ChangeVolumeByNBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VOLUME_CHANGE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>USER_LIST</type>
+                        <value>test list</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>INDEX_OF_ITEM</value>
                     </formula>
                   </formulaList>
                 </brick>
