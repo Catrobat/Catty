@@ -35,8 +35,8 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"STRING" withContext:context];
     Formula *durationFormula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DURATION_IN_SECONDS" withContext:context];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"STRING" withContext:context];
     SayForBubbleBrick *sayBrick = [self new];
     sayBrick.stringFormula = formula;
     sayBrick.intFormula = durationFormula;
@@ -56,8 +56,8 @@
     GDataXMLElement *durationFormula = [self.intFormula xmlElementWithContext:context];
     [durationFormula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION_IN_SECONDS"]];
     
-    [formulaList addChild:durationFormula context:context];
     [formulaList addChild:formula context:context];
+    [formulaList addChild:durationFormula context:context];
     [brick addChild:formulaList context:context];
     
     // Element to produce Catroid equivalent XML

@@ -3,7 +3,7 @@
     {
       "recorded_at" : 1618560814.5251498,
       "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.993&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.994&limit=20&offset=0",
         "method" : "GET"
       },
       "response" : {
@@ -23,7 +23,7 @@
           "Cache-Control" : "private, must-revalidate",
           "Strict-Transport-Security" : "max-age=15768000"
         },
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.993&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.994&limit=20&offset=0",
         "body" : [
           {
             "id" : "2efc5cae-9dfa-11eb-8d86-005056a3ba1c",

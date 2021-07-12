@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <program>
   <header>
-    <applicationBuildName/>
-    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>24</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.30</applicationVersion>
+    <applicationVersion>0.6.9</applicationVersion>
     <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
-    <dateTimeUpload/>
+    <dateTimeUpload></dateTimeUpload>
     <description>Hello, this is an escaping char test: @ &amp; € „ ‚ ? # ~ £ ¥ 🍺 🎉 🔬</description>
-    <deviceName>PRA-LX1</deviceName>
+    <deviceName>iPhone9,3</deviceName>
     <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
-    <platform>Android</platform>
-    <platformVersion>26.0</platformVersion>
+    <platform>iOS</platform>
+    <platformVersion>12.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
     <programName>EscapingChars</programName>
     <remixOf></remixOf>
@@ -21,14 +21,14 @@
     <screenHeight>1334</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>750</screenWidth>
-    <tags>Spiele,Experimentell,Kunst</tags>
+    <tags></tags>
     <url>/pocketcode/program/91168</url>
     <userHandle>gatcodedev</userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
-      <name>Szene 1</name>
+      <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Hintergrund">
           <lookList/>
@@ -44,14 +44,14 @@
                       <value>1</value>
                     </formula>
                   </formulaList>
-                  <userVariable>escape " &amp; &lt;&gt; ⚙️</userVariable>
+                  <userVariable>escape &quot; &amp; &lt;&gt; ⚙️</userVariable>
                 </brick>
                 <brick type="ChangeXByNBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
                     <formula category="X_POSITION_CHANGE">
                       <type>USER_VARIABLE</type>
-                      <value>escape " &amp; &lt;&gt; ⚙️</value>
+                      <value>escape &quot; &amp; &lt;&gt; ⚙️</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -98,12 +98,7 @@
       </objectList>
       <data>
         <objectListOfList/>
-        <objectVariableList>
-          <entry>
-            <object reference="../../../../objectList/object"/>
-            <list/>
-          </entry>
-        </objectVariableList>
+        <objectVariableList/>
         <userBrickVariableList/>
       </data>
       <originalWidth>750</originalWidth>
@@ -115,4 +110,3 @@
   </programVariableList>
   <programListOfLists/>
 </program>
-
