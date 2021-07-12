@@ -34,10 +34,10 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:3];
-    Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement
-                                                      forCategoryName:@"DURATION_IN_SECONDS" withContext:context];
     Formula *formulaXDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
                                                           forCategoryName:@"X_DESTINATION" withContext:context];
+    Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement
+                                                      forCategoryName:@"DURATION_IN_SECONDS" withContext:context];
     Formula *formulaYDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
                                                           forCategoryName:@"Y_DESTINATION" withContext:context];
     GlideToBrick *glideToBrick = [self new];
@@ -51,14 +51,14 @@
 {
     GDataXMLElement *brick = [super xmlElementForBrickType:@"GlideToBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.durationInSeconds xmlElementWithContext:context];;
+    GDataXMLElement *formula = [self.xDestination xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"X_DESTINATION"]];
+    [formulaList addChild:formula context:context];
+    formula = [self.durationInSeconds xmlElementWithContext:context];;
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION_IN_SECONDS"]];
     [formulaList addChild:formula context:context];
     formula = [self.yDestination xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_DESTINATION"]];
-    [formulaList addChild:formula context:context];
-    formula = [self.xDestination xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"X_DESTINATION"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

@@ -26,14 +26,14 @@ extension SetPenColorBrick: CBXMLNodeProtocol {
         CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 1, andFormulaListWithTotalNumberOfFormulas: 3)
         let brick = self.init()
 
-        let redFormula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "PEN_COLOR_RED", with: context)
-        brick.red = redFormula
-
         let greenFormula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "PEN_COLOR_GREEN", with: context)
         brick.green = greenFormula
 
         let blueFormula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "PEN_COLOR_BLUE", with: context)
         brick.blue = blueFormula
+
+        let redFormula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "PEN_COLOR_RED", with: context)
+        brick.red = redFormula
 
         return brick
     }
@@ -42,17 +42,17 @@ extension SetPenColorBrick: CBXMLNodeProtocol {
         let brick = super.xmlElement(for: "SetPenColorBrick", with: context)
         let formulaList = GDataXMLElement(name: "formulaList", context: context)
 
-        let redFormula = self.red?.xmlElement(with: context)
-        redFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_RED", context: nil))
-        formulaList?.addChild(redFormula, context: context)
+        let greenFormula = self.green?.xmlElement(with: context)
+        greenFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_GREEN", context: nil))
+        formulaList?.addChild(greenFormula, context: context)
 
         let blueFormula = self.blue?.xmlElement(with: context)
         blueFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_BLUE", context: nil))
         formulaList?.addChild(blueFormula, context: context)
 
-        let greenFormula = self.green?.xmlElement(with: context)
-        greenFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_GREEN", context: nil))
-        formulaList?.addChild(greenFormula, context: context)
+        let redFormula = self.red?.xmlElement(with: context)
+        redFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_RED", context: nil))
+        formulaList?.addChild(redFormula, context: context)
 
         brick?.addChild(formulaList, context: context)
         return brick

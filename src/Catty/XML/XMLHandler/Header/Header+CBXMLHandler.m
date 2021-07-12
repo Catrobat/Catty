@@ -88,6 +88,13 @@
     return headerProperties;
 }
 
++ (NSMutableArray<CBXMLPropertyMapping*>*)headerPropertiesForLanguageVersion0994
+{
+    NSMutableArray *headerProperties = [self headerPropertiesForLanguageVersion0992];
+    [headerProperties addObject:[[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"isCastProject" andIgnore:NO]];
+    return headerProperties;
+}
+
 #pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
@@ -103,8 +110,10 @@
         headerProperties = [self headerPropertiesForLanguageVersion097];
     } else if (context.languageVersion > 0.97f && context.languageVersion <= 0.991) {
         headerProperties = [self headerPropertiesForLanguageVersion098];
-    } else {
+    } else if (context.languageVersion > 0.991 && context.languageVersion <= 0.993) {
         headerProperties = [self headerPropertiesForLanguageVersion0992];
+    } else {
+        headerProperties = [self headerPropertiesForLanguageVersion0994];
     }
     
     Header *header = [self getHeaderFromElement:xmlElement withContext:context andProperties:headerProperties];
@@ -175,6 +184,10 @@
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"deviceName"
                                                     stringValue:self.deviceName
+                                                        context:context]
+                       context:context];
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"isCastProject"
+                                                    stringValue:self.isCastProject ? @"true" : @"false"
                                                         context:context]
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"landscapeMode"

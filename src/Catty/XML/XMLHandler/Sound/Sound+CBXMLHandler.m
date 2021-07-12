@@ -80,7 +80,9 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound" context:context];
+    
+    NSUInteger indexOfSound = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObject.soundList];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound" xPathIndex:(indexOfSound+1) context:context];    
     
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
     CBXMLPositionStack *positionStackOfSound = context.soundNamePositions[self.name];
@@ -92,10 +94,11 @@
         return xmlElement;
     }
     
-    context.soundNamePositions[self.name] = currentPositionStack;
-    
     [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName context:context] context:context];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name context:context] context:context];
+    
+    context.soundNamePositions[self.name] = currentPositionStack;
+    
     return xmlElement;
 }
 

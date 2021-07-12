@@ -221,8 +221,13 @@
     }
     [xmlElement addChild:lookListXmlElement context:context];
     
-    // add pseudo <nfcTagList/> element to produce a Catroid equivalent XML (unused at the moment)
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"nfcTagList" context:nil]];
+    GDataXMLElement *soundListXmlElement = [GDataXMLElement elementWithName:@"soundList" context:context];
+    for (id sound in self.soundList) {
+        [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
+                      message:@"Invalid sound instance given"];
+        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
+    }
+    [xmlElement addChild:soundListXmlElement context:context];
     
     GDataXMLElement *scriptListXmlElement = [GDataXMLElement elementWithName:@"scriptList" context:context];
     for (id script in self.scriptList) {
@@ -232,20 +237,15 @@
     }
     [xmlElement addChild:scriptListXmlElement context:context];
 
-    GDataXMLElement *soundListXmlElement = [GDataXMLElement elementWithName:@"soundList" context:context];
-    for (id sound in self.soundList) {
-        [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
-                      message:@"Invalid sound instance given"];
-        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
-    }
-    [xmlElement addChild:soundListXmlElement context:context];
-
     //  Unused at the moment => implement this after Catroid has decided to officially activate this!
     //    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
     //    [xmlElement addChild:userBricksXmlElement context:context];
     
     // add pseudo <userBricks/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"userBricks" context:nil]];
+    
+    // add pseudo <nfcTagList/> element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"nfcTagList" context:nil]];
     
     if (asPointedObject) {
         context.spriteObject = previousObject;
