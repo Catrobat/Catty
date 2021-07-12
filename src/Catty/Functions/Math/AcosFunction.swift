@@ -22,7 +22,7 @@
 
 class AcosFunction: SingleParameterDoubleFunction {
 
-    static var tag = "ACOS"
+    static var tag = "ARCCOS"
     static var name = kUIFEFunctionAcos
     static var defaultValue = Double.pi / 2
     static var requiredResource = ResourceType.noResources

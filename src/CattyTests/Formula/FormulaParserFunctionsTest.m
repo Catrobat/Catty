@@ -290,21 +290,21 @@
 
 - (void) testArcsin
 {
-    Formula *formula = [self getFormula:@"ASIN" value:@"1"]; // TODO use Function property
+    Formula *formula = [self getFormula:@"ARCSIN" value:@"1"]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly: arcsin(1)");
     XCTAssertEqualWithAccuracy(90, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
 }
 
 - (void) testArccos
 {
-    Formula *formula = [self getFormula:@"ACOS" value:@"0"]; // TODO use Function property
+    Formula *formula = [self getFormula:@"ARCCOS" value:@"0"]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly: arccos(0)");
     XCTAssertEqualWithAccuracy(90, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
 }
 
 - (void) testArctan
 {
-    Formula *formula = [self getFormula:@"ATAN" value:@"1"]; // TODO use Function property
+    Formula *formula = [self getFormula:@"ARCTAN" value:@"1"]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly: arctan(1)");
     XCTAssertEqualWithAccuracy(45, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
 }
