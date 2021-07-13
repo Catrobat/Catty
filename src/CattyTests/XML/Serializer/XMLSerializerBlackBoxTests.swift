@@ -104,4 +104,8 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
     func testCollisionFormulaSerialization() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "collisionTest0994")
     }
+
+    func testEscapingChars() {
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "EscapingChars_0994")
+    }
 }

@@ -167,4 +167,10 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "UserVariables_0991", withProject: "UserVariables_0993")
         self.compareProject(firstProjectName: "UserVariables_0993", withProject: "UserVariables_0994")
     }
+
+    func testEscapingChars() {
+        self.compareProject(firstProjectName: "EscapingChars_0991", withProject: "EscapingChars_0992")
+        self.compareProject(firstProjectName: "EscapingChars_0992", withProject: "EscapingChars_0993")
+        self.compareProject(firstProjectName: "EscapingChars_0993", withProject: "EscapingChars_0994")
+    }
 }
