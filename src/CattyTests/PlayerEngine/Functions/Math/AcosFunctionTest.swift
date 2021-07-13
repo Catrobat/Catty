@@ -54,7 +54,7 @@ class AcosFunctionTest: XCTestCase {
     }
 
     func testTag() {
-        XCTAssertEqual("ACOS", type(of: function).tag)
+        XCTAssertEqual("ARCCOS", type(of: function).tag)
     }
 
     func testName() {

@@ -22,7 +22,7 @@
 
 class AtanFunction: SingleParameterDoubleFunction {
 
-    static var tag = "ATAN"
+    static var tag = "ARCTAN"
     static var name = kUIFEFunctionAtan
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources

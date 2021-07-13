@@ -54,7 +54,7 @@ class AtanFunctionTest: XCTestCase {
     }
 
     func testTag() {
-        XCTAssertEqual("ATAN", type(of: function).tag)
+        XCTAssertEqual("ARCTAN", type(of: function).tag)
     }
 
     func testName() {

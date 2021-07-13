@@ -105,4 +105,9 @@ class XMLParserTests0994: XMLAbstractTest {
         let playSoundBrick = (project.scene.object(at: 1)!.scriptList.object(at: 1) as! Script).brickList.object(at: 14) as! PlaySoundBrick
         XCTAssertTrue(playSoundBrick.sound.isEqual(sound), "Invalid Sound reference")
     }
+
+    func testFunctions() {
+        let project = self.getProjectForXML(xmlFile: "Functions_0994")
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
 }

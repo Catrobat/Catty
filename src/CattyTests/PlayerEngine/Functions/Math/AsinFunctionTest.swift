@@ -54,7 +54,7 @@ class AsinFunctionTest: XCTestCase {
     }
 
     func testTag() {
-        XCTAssertEqual("ASIN", type(of: function).tag)
+        XCTAssertEqual("ARCSIN", type(of: function).tag)
     }
 
     func testName() {
