@@ -23,17 +23,20 @@ import MobileCoreServices
 
 extension SoundsTableViewController {
 
+    @available(iOS 14.0, *)
+    static var supportedAudioFormats = [UTType.wav, UTType.mp3, UTType.mpeg4Audio]
+    static let supportedAudioFormatsBackwardsCompatibility = ["public.audio", "public.mp3", "public.mpeg4"]
+
     @objc
     func showSoundsSelectFile() {
         var documentPicker: UIDocumentPickerViewController
         if #available(iOS 14.0, *) {
-            let supportedAudioFormats = [UTType.wav, UTType.mp3]
-            documentPicker = UIDocumentPickerViewController.init(forOpeningContentTypes: supportedAudioFormats, asCopy: true)
+            documentPicker = UIDocumentPickerViewController.init(forOpeningContentTypes: type(of: self).supportedAudioFormats, asCopy: true)
         } else {
-            documentPicker = UIDocumentPickerViewController(documentTypes: ["public.audio", "public.mp3"], in: .import)
+            documentPicker = UIDocumentPickerViewController(documentTypes: type(of: self).supportedAudioFormatsBackwardsCompatibility, in: .import)
         }
-        UINavigationBar.appearance(whenContainedInInstancesOf: [UIDocumentBrowserViewController.self]).tintColor = UIColor.navBar
-        documentPicker.allowsMultipleSelection = true
+
+        documentPicker.allowsMultipleSelection = false
         documentPicker.delegate = self
         documentPicker.modalPresentationStyle = .formSheet
         present(documentPicker, animated: true)
