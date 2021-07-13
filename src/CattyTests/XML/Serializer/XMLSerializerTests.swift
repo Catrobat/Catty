@@ -50,12 +50,14 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testRemoveObjectAndSerializeProject() {
-        let projectName = "ValidProject0994"
+        let projectName = "ValidProjectAllBricks0994"
         let referenceProject = self.getProjectForXML(xmlFile: projectName)
         let project = self.getProjectForXML(xmlFile: projectName)
 
-        let moleOne = project.scene.object(at: 1)!
-        project.scene.removeObject(moleOne)
+        XCTAssertTrue(project.scene.objects().count > 1)
+
+        let firstObject = project.scene.object(at: 1)!
+        project.scene.removeObject(firstObject)
 
         let serializerContext = CBXMLSerializerContext(project: project)
 
