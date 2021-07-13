@@ -29,7 +29,7 @@ extension SoundsTableViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
-    private func showImportAlert(itemName: String) {
+    public func showImportAlert(itemName: String) {
         let alertTitle = kLocalizedMediaLibraryImportFailedTitle
         let alertMessage = "\(kLocalizedMediaLibraryImportFailedMessage) \(itemName)"
         let buttonTitle = kLocalizedOK

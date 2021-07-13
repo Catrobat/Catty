@@ -623,7 +623,7 @@
 {
     [self.tableView setEditing:false animated:YES];
     
-    [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddSound]
+    [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddSound]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
      }]
@@ -659,6 +659,12 @@
              [self showSoundsMediaLibrary];
          });
      }]
+    addDefaultActionWithTitle:kLocalizedSelectFile handler:^{
+        self.isAllowed = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showSoundsSelectFile];
+        });
+    }]
      build]
      showWithController:self];
 }
