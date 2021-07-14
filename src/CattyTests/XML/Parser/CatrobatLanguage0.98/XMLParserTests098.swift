@@ -32,6 +32,11 @@ final class XMLParserTests098: XMLAbstractTest {
         formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
     }
 
+    func testAllBricks() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks098")
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
+
     func testFlashBrick() {
         let project = self.getProjectForXML(xmlFile: "LedFlashBrick098")
 

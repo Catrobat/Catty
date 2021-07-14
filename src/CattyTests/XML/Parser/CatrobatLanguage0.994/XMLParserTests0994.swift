@@ -32,6 +32,16 @@ class XMLParserTests0994: XMLAbstractTest {
         formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
     }
 
+    func testAllBricks() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
+
+    func testAllSensors() {
+        let project = self.getProjectForXML(xmlFile: "Sensors_0994")
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
+
     func testSetPenColorBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
         let setPenColorBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 45) as! Brick
