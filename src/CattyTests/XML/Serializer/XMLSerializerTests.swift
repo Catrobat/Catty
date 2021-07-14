@@ -27,14 +27,14 @@ import XCTest
 final class XMLSerializerTests: XMLAbstractTest {
 
     func testHeader() {
-        let project = self.getProjectForXML(xmlFile: "ValidHeader0994")
+        let project = self.getProjectForXML(xmlFile: "ValidHeader0995")
         let header = project.header
-        let equal = self.isXMLElement(xmlElement: header.xmlElement(with: nil), equalToXMLElementForXPath: "//program/header", inProjectForXML: "ValidHeader0994")
+        let equal = self.isXMLElement(xmlElement: header.xmlElement(with: nil), equalToXMLElementForXPath: "//program/header", inProjectForXML: "ValidHeader0995")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
 
     func testInvalidHeader() {
-        let project = self.getProjectForXML(xmlFile: "ValidHeader0994")
+        let project = self.getProjectForXML(xmlFile: "ValidHeader0995")
         let header = project.header
         header.programDescription = "Invalid"
         let equal = self.isXMLElement(xmlElement: header.xmlElement(with: nil), equalToXMLElementForXPath: "//program/header", inProjectForXML: "ValidHeader0993")
@@ -42,15 +42,15 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testFormulaAndMoveNStepsBrick() {
-        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0995")
         let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 5) as! MoveNStepsBrick
-        let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]"
-        let equal = self.isXMLElement(xmlElement: brick.xmlElement(with: nil), equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
+        let xmlElementPath = "//program/scenes/scene/objectList/object[1]/scriptList/script[1]/brickList/brick[6]"
+        let equal = self.isXMLElement(xmlElement: brick.xmlElement(with: nil), equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0994")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
 
     func testRemoveObjectAndSerializeProject() {
-        let projectName = "ValidProjectAllBricks0994"
+        let projectName = "ValidProjectAllBricks0995"
         let referenceProject = self.getProjectForXML(xmlFile: projectName)
         let project = self.getProjectForXML(xmlFile: projectName)
 
@@ -66,7 +66,7 @@ final class XMLSerializerTests: XMLAbstractTest {
         XCTAssertEqual(project.scene.objects().count + 1, referenceProject.scene.objects().count, "Object not properly removed")
         XCTAssertFalse((referenceProject.xmlElement(with: CBXMLSerializerContext(project: Project())).isEqual(to: xmlElement)), "Object not properly removed")
 
-        let parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.994)), andRootElement: xmlElement)
+        let parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.995)), andRootElement: xmlElement)
 
         let parsedProject = parserContext?.parse(from: xmlElement, withClass: Project.self) as! Project
         XCTAssertTrue(parsedProject.isEqual(to: project), "Projects are not equal")
@@ -96,9 +96,9 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testPenDownBrick() {
-        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0995")
 
-        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 41) as! PenDownBrick
+        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 42) as! PenDownBrick
         let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[42]"
 
         guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext(project: Project())) else {
@@ -110,9 +110,9 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testPenUpBrick() {
-        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0995")
 
-        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 42) as! PenUpBrick
+        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 43) as! PenUpBrick
         let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[43]"
 
         guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext(project: Project())) else {
@@ -124,9 +124,9 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testPenClearBrick() {
-        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0995")
 
-        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 43) as! PenClearBrick
+        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 44) as! PenClearBrick
         let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[44]"
 
         guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext(project: Project())) else {
@@ -138,9 +138,9 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testSetPenSizeBrick() {
-        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0995")
 
-        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 44) as! SetPenSizeBrick
+        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 45) as! SetPenSizeBrick
         let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[45]"
 
         guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext(project: Project())) else {
@@ -152,24 +152,24 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testSetPenColorBrick() {
-        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0995")
 
-        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 45) as! SetPenColorBrick
-        let xmlElementPath = "//program/scenes/scene/objectList/object[1]/scriptList/script[1]/brickList/brick[46]"
+        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 46) as! SetPenColorBrick
+        let xmlElementPath = "//program/scenes/scene/objectList/object[1]/scriptList/script[1]/brickList/brick[47]"
 
         guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext(project: project)) else {
             XCTFail("xmlElement is nil")
             return
         }
-        let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0994")
+        let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0995")
         XCTAssertTrue(equal, "XMLElement invalid!")
 
     }
 
     func testStampBrick() {
-        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0994")
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0995")
 
-        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 46) as! StampBrick
+        let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 47) as! StampBrick
         let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[47]"
 
         guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext(project: Project())) else {
@@ -181,7 +181,7 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testAddItemToUserListBrick() {
-        let project = self.getProjectForXML(xmlFile: "AddItemToUserListBrick0994")
+        let project = self.getProjectForXML(xmlFile: "AddItemToUserListBrick0995")
 
         let brick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 0) as! AddItemToUserListBrick
         let xmlElementPath = "//program/scenes/scene[1]/objectList/object[1]/scriptList/script[1]/brickList/brick[1]"
@@ -195,7 +195,7 @@ final class XMLSerializerTests: XMLAbstractTest {
     }
 
     func testUserVariables() {
-        let project = self.getProjectForXML(xmlFile: "UserVariables_0994")
+        let project = self.getProjectForXML(xmlFile: "UserVariables_0995")
 
         let brick = ((project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 2) as! ChangeVariableBrick).userVariable as UserVariable
         let xmlElementPath = "//program/scenes/scene[1]/objectList/object[1]/scriptList/script[1]/brickList/brick[3]/userVariable"

@@ -4,7 +4,7 @@
     {
       "response" : {
         "status" : 200,
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.994&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.995&limit=20&offset=0",
         "body" : [
           {
             "id" : "817",
@@ -453,7 +453,7 @@
       },
       "recorded_at" : 1618491766.46052,
       "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.994&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.995&limit=20&offset=0",
         "method" : "GET"
       }
     }
