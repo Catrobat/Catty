@@ -248,6 +248,22 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertEqual((kUIFEObjectActorObjectTouch + "(\'" + objectNameA + "\')"), items[1].title)
     }
 
+    func testFormulaEditorNoItemsForProjectWithOnlyBackground() {
+        let collisionFunction = CollisionFunction()
+        let backgroundName = "Background"
+
+        let scene = Scene()
+
+        let backgroundObject = SpriteObjectMock(name: backgroundName, scene: scene)
+        scene.add(object: backgroundObject)
+
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [], landscapeMode: false),
+                                     functionManager: FunctionManager(functions: [collisionFunction]),
+                                     operatorManager: OperatorManager(operators: []))
+
+        XCTAssertEqual(0, manager.formulaEditorItemsForObjectSection(spriteObject: backgroundObject).count)
+    }
+
     func testFunctionExists() {
         let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
                                                         value: 1.0,
