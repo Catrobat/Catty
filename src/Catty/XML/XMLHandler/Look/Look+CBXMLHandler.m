@@ -40,14 +40,15 @@
     GDataXMLNode *fileNameAttribute = nil;
     if ([lookChildElements count] == 1) {
         //CBL 0995 or lower
+        
         [XMLError exceptionIf:[lookChildElements count] notEquals:1
                       message:@"Look must contain a filename child node"];
         GDataXMLNode *fileNameAttribute = [lookChildElements firstObject];
         [XMLError exceptionIfString:fileNameAttribute.name isNotEqualToString:@"fileName"
                             message:@"Look contains wrong child node"];
-    } else
-    {
+    } else {
         //CBL 0996 or higher
+        
          fileNameAttribute = [xmlElement attributeForName:@"fileName"];
         [XMLError exceptionIfNil:fileNameAttribute message:@"Look must contain a fileName attribute"];
     }
@@ -61,9 +62,10 @@
 {
     NSUInteger indexOfLook = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObject.lookList];
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"look" xPathIndex:(indexOfLook+1) context:context];
+    
+    [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"fileName" escapedStringValue:self.fileName]];
     [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName
-                                                  context:context] context:context];
+    
     return xmlElement;
 }
 

@@ -214,10 +214,11 @@
     [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
 
     GDataXMLElement *lookListXmlElement = [GDataXMLElement elementWithName:@"lookList" context:context];
-    for (id look in self.lookList) {
+        for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
                       message:@"Invalid look instance given"];
-        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:context] context:context];
+        // vvv LOOKLIST ADD REFERENCE vvv
+       // [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:lookListXmlElement context:context];
     
@@ -225,7 +226,8 @@
     for (id sound in self.soundList) {
         [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
                       message:@"Invalid sound instance given"];
-        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
+    // vvv SOUNDLIST ADD REFERENCE vvv
+      //  [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:soundListXmlElement context:context];
     

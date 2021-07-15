@@ -66,6 +66,8 @@ extension SetLookBrick: CBXMLNodeProtocol {
                 let refPath = CBXMLSerializerHelper.relativeXPath(to: self.look, inLookList: context.spriteObject.lookList as? [Any], withDepth: depthOfResource)
 
                 referenceXMLElement?.addAttribute(GDataXMLElement.attribute(withName: "reference", escapedStringValue: refPath) as? GDataXMLNode)
+
+//                brick?.addChild(self.look.xmlElementWithContext(context),context: context)
                 brick?.addChild(referenceXMLElement, context: context)
             }
         }

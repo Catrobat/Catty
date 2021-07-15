@@ -88,6 +88,8 @@
     NSUInteger indexOfSound = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObject.soundList];
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound" xPathIndex:(indexOfSound+1) context:context];    
     
+    // vvv FIND REFERENCE AND USE PATH TO REFERNECE vvv
+    /*
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
     CBXMLPositionStack *positionStackOfSound = context.soundNamePositions[self.name];
     
@@ -96,12 +98,12 @@
                                                              toDestinationPositionStack:positionStackOfSound];
         [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
         return xmlElement;
-    }
+    } */
     
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName context:context] context:context];
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name context:context] context:context];
+    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
+    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
     
-    context.soundNamePositions[self.name] = currentPositionStack;
+    //context.soundNamePositions[self.name] = currentPositionStack;
     
     return xmlElement;
 }
