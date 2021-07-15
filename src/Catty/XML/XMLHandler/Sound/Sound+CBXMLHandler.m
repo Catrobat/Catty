@@ -45,21 +45,25 @@
         return [self parseSoundWithReferenceForElement:xmlElement withContext:context];
     }
     NSArray *soundChildElements = [xmlElement children];
-    [XMLError exceptionIf:[soundChildElements count] notEquals:2 message:@"Sound must contain two child nodes"];
     
-    GDataXMLNode *nameChildNode = [soundChildElements firstObject];
-    GDataXMLNode *fileNameChildNode = [soundChildElements lastObject];
-    
-    // swap values (if needed)
-    GDataXMLNode *tempChildNode = nil;
-    if ([fileNameChildNode.name isEqualToString:@"name"] && [nameChildNode.name isEqualToString:@"fileName"]) {
-        tempChildNode = nameChildNode;
-        nameChildNode = fileNameChildNode;
-        fileNameChildNode = tempChildNode;
+    GDataXMLNode *nameChildNode = nil;
+    GDataXMLNode *fileNameChildNode = nil;
+        
+    if([soundChildElements count] == 2){
+        //CBL 0995 or lower
+        
+        nameChildNode = [xmlElement childWithElementName:@"name"];
+        fileNameChildNode = [xmlElement childWithElementName:@"fileName"];
+    } else {
+        //CBL 0996 or higher
+        
+        nameChildNode = [xmlElement attributeForName:@"name"];
+        fileNameChildNode = [xmlElement attributeForName:@"fileName"];
     }
     
-    [XMLError exceptionIfString:nameChildNode.name isNotEqualToString:@"name" message:@"Sound contains wrong child node(s)"];
-    [XMLError exceptionIfString:fileNameChildNode.name isNotEqualToString:@"fileName" message:@"Sound contains wrong child node(s)"];
+    [XMLError exceptionIfNil:nameChildNode message:@"Sound name not present"];
+    [XMLError exceptionIfNil:fileNameChildNode message:@"Sound fileName not present"];
+    
     Sound *sound = [[Sound alloc] initWithName:[nameChildNode stringValue] andFileName:[fileNameChildNode stringValue]];
 
     return sound;

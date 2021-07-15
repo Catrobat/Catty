@@ -57,12 +57,24 @@
         sound = [CBXMLParserHelper findSoundInArray:soundList withName:[nameElement stringValue]];
         [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
     } else {
-        // OMG!! a sound has been defined within the brick element...
         GDataXMLElement *soundElement = [xmlElement childWithElementName:@"sound"];
         [XMLError exceptionIfNil:soundElement message:@"sound element not present"];
         
-        GDataXMLElement *soundName = [soundElement childWithElementName:@"name"];
-        [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
+        GDataXMLNode *soundName = nil;
+        
+        NSArray *soundChildElements = [soundElement children];
+        
+        if([soundChildElements count] == 2){
+            //CBL 0995 or lower
+            
+            soundName = [soundElement childWithElementName:@"name"];
+            [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
+        } else {
+            //CBL 0996 or higher
+            
+            soundName = [soundElement attributeForName:@"name"];
+            [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
+        }
         
         sound = [CBXMLParserHelper findSoundInArray:soundList withName:[soundName stringValue]];
         

@@ -56,12 +56,13 @@
         script = [StartScript new];
     } else if ([scriptType isEqualToString:@"WhenScript"]) {
         WhenScript *whenScript = [WhenScript new];
-        NSArray *actionElements = [xmlElement elementsForName:@"action"];
-        [XMLError exceptionIf:[actionElements count] notEquals:1 message:@"Wrong number of action elements given!"];
-        GDataXMLElement *actionElement = [actionElements firstObject];
-        [XMLError exceptionIf:[UIDefines.whenScriptDefaultAction isEqualToString:[actionElement stringValue]] equals:NO
-                      message:@"Invalid action %@ for WhenScript given", [actionElement stringValue]];
-        whenScript.action = [actionElement stringValue];
+//        NSArray *actionElements = [xmlElement elementsForName:@"action"];
+//        [XMLError exceptionIf:[actionElements count] notEquals:1 message:@"Wrong number of action elements given!"];
+//        GDataXMLElement *actionElement = [actionElements firstObject];
+//        [XMLError exceptionIf:[UIDefines.whenScriptDefaultAction isEqualToString:[actionElement stringValue]] equals:NO
+//                      message:@"Invalid action %@ for WhenScript given", [actionElement stringValue]];
+//        whenScript.action = [actionElement stringValue];
+        whenScript.action = [UIDefines whenScriptDefaultAction];
         script = whenScript;
     } else if ([scriptType isEqualToString:@"WhenTouchDownScript"]) {
         script = [WhenTouchDownScript new];
