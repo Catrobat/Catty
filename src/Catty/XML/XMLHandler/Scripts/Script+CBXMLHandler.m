@@ -56,6 +56,13 @@
         script = [StartScript new];
     } else if ([scriptType isEqualToString:@"WhenScript"]) {
         WhenScript *whenScript = [WhenScript new];
+//        NSArray *actionElements = [xmlElement elementsForName:@"action"];
+//        [XMLError exceptionIf:[actionElements count] notEquals:1 message:@"Wrong number of action elements given!"];
+//        GDataXMLElement *actionElement = [actionElements firstObject];
+//        [XMLError exceptionIf:[UIDefines.whenScriptDefaultAction isEqualToString:[actionElement stringValue]] equals:NO
+//                      message:@"Invalid action %@ for WhenScript given", [actionElement stringValue]];
+//        whenScript.action = [actionElement stringValue];
+        whenScript.action = [UIDefines whenScriptDefaultAction];
         script = whenScript;
     } else if ([scriptType isEqualToString:@"WhenTouchDownScript"]) {
         script = [WhenTouchDownScript new];
@@ -269,7 +276,12 @@
             }
         }
     } else if ([self isKindOfClass:[WhenScript class]]) {
-        //Nothing to do
+        WhenScript *whenScript = (WhenScript*)self;
+        [XMLError exceptionIfNil:whenScript.action message:@"WhenScript contains invalid action string"];
+        [XMLError exceptionIf:[UIDefines.whenScriptDefaultAction isEqualToString:whenScript.action] equals:NO
+                      message:@"WhenScript contains invalid action string %@", whenScript.action];
+        GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:whenScript.action context:context];
+        [xmlElement addChild:actionXmlElement context:context];
     } else if ([self isKindOfClass:[WhenTouchDownScript class]]) {
         // Nothing to do
     } else if ([self isKindOfClass:[WhenConditionScript class]]) {

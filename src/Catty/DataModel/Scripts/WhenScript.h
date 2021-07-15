@@ -25,4 +25,6 @@
 
 @interface WhenScript : Script<BrickProtocol>
 
+@property (nonatomic, strong) NSString *action;
+
 @end
