@@ -28,9 +28,6 @@
 
 - (instancetype)init {
     self = [super init];
-    if(self) {
-        self.action = UIDefines.whenScriptDefaultAction;
-    }
     return self;
 }
 
@@ -42,9 +39,6 @@
 - (BOOL)isEqualToScript:(Script *)script
 {
     if ([self class] != [script class]) {
-        return NO;
-    }
-    if ([self isKindOfClass:[WhenScript class]] && ! [Util isEqual:((WhenScript*)self).action toObject:((WhenScript*)script).action]) {
         return NO;
     }
     return [super isEqualToScript:script];

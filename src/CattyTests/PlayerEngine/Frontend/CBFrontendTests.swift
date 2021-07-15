@@ -31,7 +31,6 @@ final class CBFrontendTests: XCTestCase {
     func testComputeOperationSequence() {
         let frontend = CBFrontend(logger: self.logger, project: nil)
         let whenScript = WhenScript()
-        whenScript.action = UIDefines.whenScriptDefaultAction
         let waitBrick = WaitBrick()
         waitBrick.timeToWaitInSeconds = Formula(integer: 2)
         let noteBrick = NoteBrick()
@@ -81,7 +80,6 @@ final class CBFrontendTests: XCTestCase {
    func testComputeIfElseConditionalSequence() {
         let frontend = CBFrontend(logger: self.logger, project: nil)
         let whenScript = WhenScript()
-    whenScript.action = UIDefines.whenScriptDefaultAction
         let waitBrick = WaitBrick()
         waitBrick.timeToWaitInSeconds = Formula(integer: 2)
         let noteBrick = NoteBrick()
@@ -197,7 +195,6 @@ final class CBFrontendTests: XCTestCase {
     func testComputeIfThenConditionalSequence() {
         let frontend = CBFrontend(logger: self.logger, project: nil)
         let whenScript = WhenScript()
-        whenScript.action = UIDefines.whenScriptDefaultAction
         let waitBrick = WaitBrick()
         waitBrick.timeToWaitInSeconds = Formula(integer: 2)
         let noteBrick = NoteBrick()

@@ -70,12 +70,6 @@
     
     Script *copiedScript = [[self class] new];
     
-    if ([self isKindOfClass:[WhenScript class]]) {
-        CBAssert([copiedScript isKindOfClass:[WhenScript class]]);
-        WhenScript *whenScript = (WhenScript*)self;
-        ((WhenScript*)copiedScript).action = [NSString stringWithString:whenScript.action];
-    }
-    
     [context updateReference:self WithReference:copiedScript];
     
     // deep copy
