@@ -39,7 +39,7 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-		   <formula category="X_POSITION">
+                    <formula category="X_POSITION">
                       <type>SENSOR</type>
                       <value>COMPASS_DIRECTION</value>
                     </formula>
