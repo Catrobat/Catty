@@ -39,13 +39,13 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+		   <formula category="X_POSITION">
+                      <type>SENSOR</type>
+                      <value>COMPASS_DIRECTION</value>
+                    </formula>
                     <formula category="Y_POSITION">
                       <type>SENSOR</type>
                       <value>X_INCLINATION</value>
-                    </formula>
-                    <formula category="X_POSITION">
-                      <type>SENSOR</type>
-                      <value>COMPASS_DIRECTION</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -335,6 +335,10 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="X_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>100</value>
+                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>NUMBER</type>
                       <value>200</value>
@@ -342,10 +346,6 @@
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>1.0</value>
-                    </formula>
-                    <formula category="X_DESTINATION">
-                      <type>NUMBER</type>
-                      <value>100</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -627,13 +627,13 @@
                 <brick type="SetPenColorBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="PEN_COLOR_BLUE">
-                      <type>NUMBER</type>
-                      <value>255</value>
-                    </formula>
                     <formula category="PEN_COLOR_GREEN">
                       <type>NUMBER</type>
                       <value>0</value>
+                    </formula>
+                    <formula category="PEN_COLOR_BLUE">
+                      <type>NUMBER</type>
+                      <value>255</value>
                     </formula>
                     <formula category="PEN_COLOR_RED">
                       <type>NUMBER</type>
@@ -673,13 +673,13 @@
                 <brick type="ReplaceItemInUserListBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="REPLACE_ITEM_IN_USERLIST_INDEX">
-                      <type>NUMBER</type>
-                      <value>2</value>
-                    </formula>
                     <formula category="REPLACE_ITEM_IN_USERLIST_VALUE">
                       <type>NUMBER</type>
                       <value>12</value>
+                    </formula>
+                    <formula category="REPLACE_ITEM_IN_USERLIST_INDEX">
+                      <type>NUMBER</type>
+                      <value>2</value>
                     </formula>
                   </formulaList>
                   <userList reference="../../brick[49]/userList"/>
