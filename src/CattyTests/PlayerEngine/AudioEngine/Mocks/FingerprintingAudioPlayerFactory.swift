@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
 import Foundation
 
 @testable import Pocket_Code
@@ -34,7 +33,7 @@ class FingerprintingAudioPlayerFactory: AudioPlayerFactory {
         let audioFileURL = URL.init(fileURLWithPath: path!)
 
         do {
-            let file = try AKAudioFile(forReading: audioFileURL)
+            let file = try AVAudioFile(forReading: audioFileURL)
             audioPlayer = AudioPlayer(soundFile: file)
         } catch {
             print("Could not load audio file with url \(audioFileURL.absoluteString)")

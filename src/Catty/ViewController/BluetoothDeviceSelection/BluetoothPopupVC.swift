@@ -44,7 +44,7 @@ import UIKit
 
         // Segmented Control
         self.segementedControl = UISegmentedControl(items: [klocalizedBluetoothKnown, klocalizedBluetoothSearch])
-        self.segementedControl.frame = CGRect(width: self.view.bounds.width, height: 40)
+        self.segementedControl.frame = CGRect(origin: .zero, size: CGSize(width: self.view.bounds.width, height: 40))
         self.segementedControl.selectedSegmentIndex = 0
 
         self.view.addSubview(self.segementedControl)

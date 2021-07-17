@@ -20,53 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
 import XCTest
 
 @testable import Pocket_Code
 
 class AudioEngineAbstractTest: XMLAbstractTest {
-
-    var tape: AKAudioFile!
     var audioEngine: AudioEngineFingerprintingStub!
-    var recorder: AKNodeRecorder!
 
     override func setUp() {
         super.setUp()
-        do {
-            // FIXME: Use proper default initializer when migrating to AudioKit 5
-            tape = try AKAudioFile(writeIn: AKAudioFile.BaseDirectory.temp, name: nil, settings: [:])
-            audioEngine = AudioEngineFingerprintingStub(audioPlayerFactory: FingerprintingAudioPlayerFactory())
-            recorder = audioEngine.addNodeRecorderAtEngineOut(tape: tape)
-
-        } catch {
-            XCTFail("Could not set up audio engine integration test")
-        }
+        audioEngine = AudioEngineFingerprintingStub(audioPlayerFactory: FingerprintingAudioPlayerFactory())
     }
 
-    override func tearDown() {
-        super.tearDown()
-        audioEngine.stop()
+    func runAndRecord(duration: Double, stage: Stage, muted: Bool) -> AVAudioFile {
+        audioEngine.muted = muted
+
+        _ = stage.startProject()
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: duration))
+        stage.stopProject()
+
+        return audioEngine.tape!
     }
 
-    func runAndRecord(duration: Double, stage: Stage, muted: Bool) -> AKAudioFile {
+    func calculateSimilarity(tape: AVAudioFile, referenceHash: String) -> Double {
+        let readTape: AVAudioFile
         do {
-            audioEngine.postProcessingMixer.volume = muted ? 0.0 : 1.0
-            audioEngine.speechSynth.utteranceVolume = muted ? 0.0 : 1.0
-            try recorder.record()
-            _ = stage.startProject()
-            RunLoop.current.run(until: Date(timeIntervalSinceNow: duration))
-            recorder.stop()
-        } catch {
-            XCTFail("Error occured")
-        }
-        return self.tape
-    }
-
-    func calculateSimilarity(tape: AKAudioFile, referenceHash: String) -> Double {
-        let readTape: AKAudioFile
-        do {
-            readTape = try AKAudioFile(forReading: tape.url)
+            readTape = try AVAudioFile(forReading: tape.url)
         } catch {
             print("Could not read audio file")
             return 0
@@ -93,7 +72,7 @@ class AudioEngineAbstractTest: XMLAbstractTest {
                 matchingDigits += 1
         }
 
-        let similarity: Double = matchingDigits / referenceSimHash.count
+        let similarity = Double(matchingDigits) / Double(referenceSimHash.count)
         print("The similarity is \(similarity)")
 
         return similarity
