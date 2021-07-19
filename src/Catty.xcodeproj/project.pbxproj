@@ -1653,6 +1653,31 @@
 		E50579C225B0B825003FAEE5 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = E50579BE25B0B6B2003FAEE5 /* square.png */; };
 		E50579C425B0BC68003FAEE5 /* CollisionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C983D825792A8B00AC36C3 /* CollisionFunction.swift */; };
 		E50579C625B1B39F003FAEE5 /* CollisionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50579C525B1B39D003FAEE5 /* CollisionFunctionTest.swift */; };
+		E50E8543269EC49500E76CE9 /* Air_fight_0.5_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8540269EC49500E76CE9 /* Air_fight_0.5_0995.xml */; };
+		E50E8545269EC4BB00E76CE9 /* Airplane_with_shadow_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8544269EC4BA00E76CE9 /* Airplane_with_shadow_0995.xml */; };
+		E50E8547269EC4CC00E76CE9 /* Demonstration_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8546269EC4CB00E76CE9 /* Demonstration_0995.xml */; };
+		E50E8549269EC4DE00E76CE9 /* Flap_Pac_Man_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8548269EC4DD00E76CE9 /* Flap_Pac_Man_0995.xml */; };
+		E50E854B269EC4ED00E76CE9 /* Flappy_v3.0_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E854A269EC4ED00E76CE9 /* Flappy_v3.0_0995.xml */; };
+		E50E854D269EC4FA00E76CE9 /* Galaxy_War_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E854C269EC4F900E76CE9 /* Galaxy_War_0995.xml */; };
+		E50E854F269EC50800E76CE9 /* Memory_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E854E269EC50800E76CE9 /* Memory_0995.xml */; };
+		E50E8551269EC51200E76CE9 /* Piano_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8550269EC51200E76CE9 /* Piano_0995.xml */; };
+		E50E8553269EC52600E76CE9 /* Pong_Starter_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8552269EC52600E76CE9 /* Pong_Starter_0995.xml */; };
+		E50E8555269EC53500E76CE9 /* Pythagorean_Theorem_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8554269EC53500E76CE9 /* Pythagorean_Theorem_0995.xml */; };
+		E50E8557269EC54200E76CE9 /* Tic_Tac_Toe_Master_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8556269EC54100E76CE9 /* Tic_Tac_Toe_Master_0995.xml */; };
+		E50E8559269EC5C300E76CE9 /* ValidProjectAllBricks0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8558269EC5C200E76CE9 /* ValidProjectAllBricks0995.xml */; };
+		E50E855B269EC5DA00E76CE9 /* LogicBricks_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E855A269EC5DA00E76CE9 /* LogicBricks_0995.xml */; };
+		E50E855D269EC5FC00E76CE9 /* DisabledBricks_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E855C269EC5FC00E76CE9 /* DisabledBricks_0995.xml */; };
+		E50E855F269EC62200E76CE9 /* UserData_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E855E269EC62200E76CE9 /* UserData_0995.xml */; };
+		E50E8561269EC63800E76CE9 /* GoToBrick_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8560269EC63800E76CE9 /* GoToBrick_0995.xml */; };
+		E50E8563269EC64D00E76CE9 /* collisionTest0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8562269EC64D00E76CE9 /* collisionTest0995.xml */; };
+		E50E8565269EC67000E76CE9 /* EscapingChars_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8564269EC66F00E76CE9 /* EscapingChars_0995.xml */; };
+		E50E8567269ECCD900E76CE9 /* Encapsulated_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8566269ECCD900E76CE9 /* Encapsulated_0995.xml */; };
+		E50E8569269ED52B00E76CE9 /* UserVariables_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8568269ED52B00E76CE9 /* UserVariables_0995.xml */; };
+		E50E856B269ED55400E76CE9 /* AddItemToUserListBrick0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E856A269ED55300E76CE9 /* AddItemToUserListBrick0995.xml */; };
+		E50E856E269ED86700E76CE9 /* XMLParserTests0995.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E856D269ED86600E76CE9 /* XMLParserTests0995.swift */; };
+		E50E8570269EDA6C00E76CE9 /* ValidHeader0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E856F269EDA6C00E76CE9 /* ValidHeader0995.xml */; };
+		E50E8572269EEEC300E76CE9 /* Functions_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8571269EEEC100E76CE9 /* Functions_0995.xml */; };
+		E50E8574269EEF3000E76CE9 /* Sensors_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8573269EEF2F00E76CE9 /* Sensors_0995.xml */; };
 		E5103DEE25CAE67300A32DF8 /* StagePresenterSideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */; };
 		E55F4287261335360005DB5A /* CBSpriteNodePhysicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F4286261335360005DB5A /* CBSpriteNodePhysicsTests.swift */; };
 		E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E564EBE0255D60F4001F0CD0 /* PlayButton.swift */; };
@@ -4027,6 +4052,31 @@
 		E4E5599620FCD6AD004B4A08 /* StoreProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProject.swift; sourceTree = "<group>"; };
 		E50579BE25B0B6B2003FAEE5 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = CattyTests/Resources/Images/square.png; sourceTree = SOURCE_ROOT; };
 		E50579C525B1B39D003FAEE5 /* CollisionFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionFunctionTest.swift; sourceTree = "<group>"; };
+		E50E8540269EC49500E76CE9 /* Air_fight_0.5_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_0995.xml; sourceTree = "<group>"; };
+		E50E8544269EC4BA00E76CE9 /* Airplane_with_shadow_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_0995.xml; sourceTree = "<group>"; };
+		E50E8546269EC4CB00E76CE9 /* Demonstration_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Demonstration_0995.xml; sourceTree = "<group>"; };
+		E50E8548269EC4DD00E76CE9 /* Flap_Pac_Man_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flap_Pac_Man_0995.xml; sourceTree = "<group>"; };
+		E50E854A269EC4ED00E76CE9 /* Flappy_v3.0_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flappy_v3.0_0995.xml; sourceTree = "<group>"; };
+		E50E854C269EC4F900E76CE9 /* Galaxy_War_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Galaxy_War_0995.xml; sourceTree = "<group>"; };
+		E50E854E269EC50800E76CE9 /* Memory_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Memory_0995.xml; sourceTree = "<group>"; };
+		E50E8550269EC51200E76CE9 /* Piano_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano_0995.xml; sourceTree = "<group>"; };
+		E50E8552269EC52600E76CE9 /* Pong_Starter_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pong_Starter_0995.xml; sourceTree = "<group>"; };
+		E50E8554269EC53500E76CE9 /* Pythagorean_Theorem_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_0995.xml; sourceTree = "<group>"; };
+		E50E8556269EC54100E76CE9 /* Tic_Tac_Toe_Master_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_0995.xml; sourceTree = "<group>"; };
+		E50E8558269EC5C200E76CE9 /* ValidProjectAllBricks0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProjectAllBricks0995.xml; sourceTree = "<group>"; };
+		E50E855A269EC5DA00E76CE9 /* LogicBricks_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LogicBricks_0995.xml; sourceTree = "<group>"; };
+		E50E855C269EC5FC00E76CE9 /* DisabledBricks_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DisabledBricks_0995.xml; sourceTree = "<group>"; };
+		E50E855E269EC62200E76CE9 /* UserData_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserData_0995.xml; sourceTree = "<group>"; };
+		E50E8560269EC63800E76CE9 /* GoToBrick_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GoToBrick_0995.xml; sourceTree = "<group>"; };
+		E50E8562269EC64D00E76CE9 /* collisionTest0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = collisionTest0995.xml; sourceTree = "<group>"; };
+		E50E8564269EC66F00E76CE9 /* EscapingChars_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EscapingChars_0995.xml; sourceTree = "<group>"; };
+		E50E8566269ECCD900E76CE9 /* Encapsulated_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_0995.xml; sourceTree = "<group>"; };
+		E50E8568269ED52B00E76CE9 /* UserVariables_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserVariables_0995.xml; sourceTree = "<group>"; };
+		E50E856A269ED55300E76CE9 /* AddItemToUserListBrick0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AddItemToUserListBrick0995.xml; sourceTree = "<group>"; };
+		E50E856D269ED86600E76CE9 /* XMLParserTests0995.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests0995.swift; sourceTree = "<group>"; };
+		E50E856F269EDA6C00E76CE9 /* ValidHeader0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidHeader0995.xml; sourceTree = "<group>"; };
+		E50E8571269EEEC100E76CE9 /* Functions_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Functions_0995.xml; sourceTree = "<group>"; };
+		E50E8573269EEF2F00E76CE9 /* Sensors_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Sensors_0995.xml; sourceTree = "<group>"; };
 		E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePresenterSideMenuView.swift; sourceTree = "<group>"; };
 		E5505707FE2839B02A26E338 /* en-AU */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E55F4286261335360005DB5A /* CBSpriteNodePhysicsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePhysicsTests.swift; sourceTree = "<group>"; };
@@ -4529,6 +4579,7 @@
 				4C55CCF424BF2B2800FB8393 /* Tic_Tac_Toe_Master_0992.xml */,
 				2ED416AE241120AE00AFE2FD /* Tic_Tac_Toe_Master_0993.xml */,
 				2ED416AC241120AE00AFE2FD /* Tic_Tac_Toe_Master_0994.xml */,
+				E50E8556269EC54100E76CE9 /* Tic_Tac_Toe_Master_0995.xml */,
 			);
 			path = Tic_Tac_Toe_Master;
 			sourceTree = "<group>";
@@ -4545,6 +4596,7 @@
 				4C55CCEA24BF2AB400FB8393 /* Piano_0992.xml */,
 				4C3286122546D52000C31F9D /* Piano_0993.xml */,
 				E59108E226931FC7008D254A /* Piano_0994.xml */,
+				E50E8550269EC51200E76CE9 /* Piano_0995.xml */,
 			);
 			path = Piano;
 			sourceTree = "<group>";
@@ -4570,6 +4622,7 @@
 				4C55CCD624BF291200FB8393 /* Air_fight_0.5_0992.xml */,
 				4C3286002546D48500C31F9D /* Air_fight_0.5_0993.xml */,
 				E59108DA26931F79008D254A /* Air_fight_0.5_0994.xml */,
+				E50E8540269EC49500E76CE9 /* Air_fight_0.5_0995.xml */,
 			);
 			path = Air_fight_0.5;
 			sourceTree = "<group>";
@@ -4587,6 +4640,7 @@
 				2ED416CC241120AE00AFE2FD /* Galaxy_War_0992.xml */,
 				2ED416CA241120AE00AFE2FD /* Galaxy_War_0993.xml */,
 				2ED416C9241120AE00AFE2FD /* Galaxy_War_0994.xml */,
+				E50E854C269EC4F900E76CE9 /* Galaxy_War_0995.xml */,
 			);
 			path = Galaxy_War;
 			sourceTree = "<group>";
@@ -4604,6 +4658,7 @@
 				4C55CCDE24BF29C400FB8393 /* Demonstration_0992.xml */,
 				4C3286062546D4A900C31F9D /* Demonstration_0993.xml */,
 				E59108DE26931F87008D254A /* Demonstration_0994.xml */,
+				E50E8546269EC4CB00E76CE9 /* Demonstration_0995.xml */,
 			);
 			path = Demonstration;
 			sourceTree = "<group>";
@@ -4621,6 +4676,7 @@
 				4C55CCDA24BF291D00FB8393 /* Airplane_with_shadow_0992.xml */,
 				4C3286022546D49500C31F9D /* Airplane_with_shadow_0993.xml */,
 				E59108DC26931F80008D254A /* Airplane_with_shadow_0994.xml */,
+				E50E8544269EC4BA00E76CE9 /* Airplane_with_shadow_0995.xml */,
 			);
 			path = Airplane_with_shadow;
 			sourceTree = "<group>";
@@ -4638,6 +4694,7 @@
 				4C55CCE224BF2A7700FB8393 /* Memory_0992.xml */,
 				4C32860A2546D4F900C31F9D /* Memory_0993.xml */,
 				E59108E026931FC0008D254A /* Memory_0994.xml */,
+				E50E854E269EC50800E76CE9 /* Memory_0995.xml */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -4655,6 +4712,7 @@
 				4C55CCEC24BF2AD700FB8393 /* Pythagorean_Theorem_0992.xml */,
 				4C3286142546D53D00C31F9D /* Pythagorean_Theorem_0993.xml */,
 				E59108E426931FD8008D254A /* Pythagorean_Theorem_0994.xml */,
+				E50E8554269EC53500E76CE9 /* Pythagorean_Theorem_0995.xml */,
 			);
 			path = Pythagorean_Theorem;
 			sourceTree = "<group>";
@@ -4672,6 +4730,7 @@
 				2ED41706241120AE00AFE2FD /* Pong_Starter_0992.xml */,
 				2ED41709241120AE00AFE2FD /* Pong_Starter_0993.xml */,
 				2ED4170B241120AE00AFE2FD /* Pong_Starter_0994.xml */,
+				E50E8552269EC52600E76CE9 /* Pong_Starter_0995.xml */,
 			);
 			path = Pong_Starter;
 			sourceTree = "<group>";
@@ -4689,6 +4748,7 @@
 				2ED41715241120AE00AFE2FD /* Flap_Pac_Man_0992.xml */,
 				2ED41716241120AE00AFE2FD /* Flap_Pac_Man_0993.xml */,
 				2ED41717241120AE00AFE2FD /* Flap_Pac_Man_0994.xml */,
+				E50E8548269EC4DD00E76CE9 /* Flap_Pac_Man_0995.xml */,
 			);
 			path = Flap_Pac_Man;
 			sourceTree = "<group>";
@@ -4706,6 +4766,7 @@
 				2ED4175B241120AE00AFE2FD /* Flappy_v3.0_0992.xml */,
 				2ED4175C241120AE00AFE2FD /* Flappy_v3.0_0993.xml */,
 				2ED4175E241120AE00AFE2FD /* Flappy_v3.0_0994.xml */,
+				E50E854A269EC4ED00E76CE9 /* Flappy_v3.0_0995.xml */,
 			);
 			path = Flappy_v3.0;
 			sourceTree = "<group>";
@@ -4766,6 +4827,7 @@
 				4C55CD1224BF2C5700FB8393 /* Sensors_0992.xml */,
 				4C3285F82546CF9400C31F9D /* Sensors_0993.xml */,
 				E59108D026931F34008D254A /* Sensors_0994.xml */,
+				E50E8573269EEF2F00E76CE9 /* Sensors_0995.xml */,
 			);
 			path = Sensors;
 			sourceTree = "<group>";
@@ -4780,6 +4842,7 @@
 				6F7D0C9D24EBEA91008C1D4C /* ValidProjectAllBricks0992.xml */,
 				4C3285FE2546D40700C31F9D /* ValidProjectAllBricks0993.xml */,
 				E59108D826931F65008D254A /* ValidProjectAllBricks0994.xml */,
+				E50E8558269EC5C200E76CE9 /* ValidProjectAllBricks0995.xml */,
 			);
 			path = ValidProjectAllBricks;
 			sourceTree = "<group>";
@@ -4790,6 +4853,7 @@
 				2ED41777241120AF00AFE2FD /* ValidHeader095.xml */,
 				4C3285FA2546CFA300C31F9D /* ValidHeader0993.xml */,
 				E59108D426931F4F008D254A /* ValidHeader0994.xml */,
+				E50E856F269EDA6C00E76CE9 /* ValidHeader0995.xml */,
 			);
 			path = ValidHeader;
 			sourceTree = "<group>";
@@ -4809,6 +4873,7 @@
 				4C55CD0224BF2BCD00FB8393 /* EscapingChars_0992.xml */,
 				4C3285E42546CEF000C31F9D /* EscapingChars_0993.xml */,
 				2ED4177D241120AF00AFE2FD /* EscapingChars_0994.xml */,
+				E50E8564269EC66F00E76CE9 /* EscapingChars_0995.xml */,
 			);
 			path = EscapingChars;
 			sourceTree = "<group>";
@@ -4840,6 +4905,7 @@
 				4C55CD0024BF2BBD00FB8393 /* Encapsulated_0992.xml */,
 				4C3285E02546CE9400C31F9D /* Encapsulated_0993.xml */,
 				E59108BA26931E5B008D254A /* Encapsulated_0994.xml */,
+				E50E8566269ECCD900E76CE9 /* Encapsulated_0995.xml */,
 			);
 			path = Encapsulated;
 			sourceTree = "<group>";
@@ -4862,6 +4928,7 @@
 				4C55CD1024BF2C1800FB8393 /* LogicBricks_0992.xml */,
 				4C3285F62546CF8000C31F9D /* LogicBricks_0993.xml */,
 				E59108CE26931EF8008D254A /* LogicBricks_0994.xml */,
+				E50E855A269EC5DA00E76CE9 /* LogicBricks_0995.xml */,
 			);
 			path = LogicBricks;
 			sourceTree = "<group>";
@@ -4881,6 +4948,7 @@
 				2ED4179E241120AF00AFE2FD /* AddItemToUserListBrick0991.xml */,
 				4C3285EA2546CF4B00C31F9D /* AddItemToUserListBrick0993.xml */,
 				E59108C226931ECA008D254A /* AddItemToUserListBrick0994.xml */,
+				E50E856A269ED55300E76CE9 /* AddItemToUserListBrick0995.xml */,
 				2ED4179B241120AF00AFE2FD /* DeleteItemOfUserListBrick098.xml */,
 				2ED4179C241120AF00AFE2FD /* DeleteItemOfUserListBrick0991.xml */,
 				4C55CD0624BF2BE400FB8393 /* DeleteItemOfUserListBrick0992.xml */,
@@ -5267,10 +5335,12 @@
 				4C7C32B824BDCDFB004716DB /* UserVariables_0991.xml */,
 				4C3286202546D7C900C31F9D /* UserVariables_0993.xml */,
 				E59108B626931E29008D254A /* UserVariables_0994.xml */,
+				E50E8568269ED52B00E76CE9 /* UserVariables_0995.xml */,
 				4C3FB91D2473B7B300D136A4 /* UserData_0991.xml */,
 				4C55CCFE24BF2BAE00FB8393 /* UserData_0992.xml */,
 				4C3285DE2546CE6000C31F9D /* UserData_0993.xml */,
 				E59108B426931E21008D254A /* UserData_0994.xml */,
+				E50E855E269EC62200E76CE9 /* UserData_0995.xml */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -9879,6 +9949,7 @@
 			children = (
 				C85A5C9F267A218F009BA454 /* Functions_0993.xml */,
 				E59108BC26931E86008D254A /* Functions_0994.xml */,
+				E50E8571269EEEC100E76CE9 /* Functions_0995.xml */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -10069,6 +10140,7 @@
 				4C55CCF824BF2B7F00FB8393 /* DisabledBricks_0992.xml */,
 				4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */,
 				E59108B826931E49008D254A /* DisabledBricks_0994.xml */,
+				E50E855C269EC5FC00E76CE9 /* DisabledBricks_0995.xml */,
 			);
 			path = DisabledBricks;
 			sourceTree = "<group>";
@@ -10079,6 +10151,7 @@
 				D3E4865B24766DE9002FAEBA /* GoToBrick_0992.xml */,
 				4C3286222546D80F00C31F9D /* GoToBrick_0993.xml */,
 				E59108BE26931E94008D254A /* GoToBrick_0994.xml */,
+				E50E8560269EC63800E76CE9 /* GoToBrick_0995.xml */,
 			);
 			path = GoToBricks;
 			sourceTree = "<group>";
@@ -10139,6 +10212,14 @@
 			path = FeaturedProjects;
 			sourceTree = "<group>";
 		};
+		E50E856C269ED82B00E76CE9 /* CatrobatLanguage0.995 */ = {
+			isa = PBXGroup;
+			children = (
+				E50E856D269ED86600E76CE9 /* XMLParserTests0995.swift */,
+			);
+			path = CatrobatLanguage0.995;
+			sourceTree = "<group>";
+		};
 		E564EBDF255D60F4001F0CD0 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -10159,6 +10240,7 @@
 				4C2CBB3425A5AA8400C1C143 /* CatrobatLanguage0.992 */,
 				4C2CBB3A25A5AA8400C1C143 /* CatrobatLanguage0.993 */,
 				E59108E626932FAF008D254A /* CatrobatLanguage0.994 */,
+				E50E856C269ED82B00E76CE9 /* CatrobatLanguage0.995 */,
 				E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */,
 			);
 			path = Parser;
@@ -10194,6 +10276,7 @@
 			children = (
 				E5C5D89C25B1E2BB00D96E4B /* collisionTest0993.xml */,
 				E5D62E3C26984D4300C14CB2 /* collisionTest0994.xml */,
+				E50E8562269EC64D00E76CE9 /* collisionTest0995.xml */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -10544,11 +10627,14 @@
 				2DCB4920212EA096005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.success.json in Resources */,
 				2DCB4922212EA251005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json in Resources */,
 				9EE674D123252F510029D153 /* silence.mp3 in Resources */,
+				E50E855D269EC5FC00E76CE9 /* DisabledBricks_0995.xml in Resources */,
 				2ED41857241120B000AFE2FD /* VariableMapping.xml in Resources */,
 				2ED417E1241120AF00AFE2FD /* Memory_097.xml in Resources */,
 				4C3285DD2546CE4300C31F9D /* CameraBricks_0993.xml in Resources */,
 				2ED417C0241120AF00AFE2FD /* SKYPASCAL_093.xml in Resources */,
+				E50E8551269EC51200E76CE9 /* Piano_0995.xml in Resources */,
 				E59108DD26931F80008D254A /* Airplane_with_shadow_0994.xml in Resources */,
+				E50E854D269EC4FA00E76CE9 /* Galaxy_War_0995.xml in Resources */,
 				2ED41874241120B000AFE2FD /* Encapsulated_097.xml in Resources */,
 				2D7BE52021441FAE00F78A10 /* StoreProjectDownloader.searchProjects.fail.request.json in Resources */,
 				4C55CCDF24BF29C500FB8393 /* Demonstration_0992.xml in Resources */,
@@ -10561,6 +10647,7 @@
 				2ED417C7241120AF00AFE2FD /* Air_fight_0.5_097.xml in Resources */,
 				4C47790A267C87DE00CAF398 /* URLSession.jsonDataTask.fail.json in Resources */,
 				2ED417AF241120AF00AFE2FD /* Tic_Tac_Toe_Master_096.xml in Resources */,
+				E50E8570269EDA6C00E76CE9 /* ValidHeader0995.xml in Resources */,
 				4C3286032546D49600C31F9D /* Airplane_with_shadow_0993.xml in Resources */,
 				2ED41812241120AF00AFE2FD /* Flap_Pac_Man_0994.xml in Resources */,
 				E59108D926931F65008D254A /* ValidProjectAllBricks0994.xml in Resources */,
@@ -10573,6 +10660,7 @@
 				4C55CCF524BF2B2800FB8393 /* Tic_Tac_Toe_Master_0992.xml in Resources */,
 				2ED417F5241120AF00AFE2FD /* Pythagorean_Theorem_093.xml in Resources */,
 				2ED417D6241120AF00AFE2FD /* Demonstration_095.xml in Resources */,
+				E50E8549269EC4DE00E76CE9 /* Flap_Pac_Man_0995.xml in Resources */,
 				4C3285F32546CF6E00C31F9D /* NumberOfItemsInListFunction0993.xml in Resources */,
 				9E8176E32389AEAC00A4912B /* SpeakAndWaitBrickWithSoundBrick.xml in Resources */,
 				2ED417CB241120AF00AFE2FD /* Galaxy_War_093.xml in Resources */,
@@ -10583,6 +10671,7 @@
 				9E929E35239D732B002D8F96 /* bling_short.mp3 in Resources */,
 				2DCB4938212EAB36005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */,
 				9E8176E72389C14B00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml in Resources */,
+				E50E854B269EC4ED00E76CE9 /* Flappy_v3.0_0995.xml in Resources */,
 				2ED41856241120B000AFE2FD /* BroadcastMapping.xml in Resources */,
 				6F954C7424D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json in Resources */,
 				E59108BF26931E94008D254A /* GoToBrick_0994.xml in Resources */,
@@ -10591,6 +10680,7 @@
 				9E384938256192AF002D8F28 /* SamplerBricks_0992.xml in Resources */,
 				6F58F0B124ABA59900AB8C99 /* StoreProjectDownloader.uploadProject.fail.invalidChecksum.json in Resources */,
 				E59108BB26931E5C008D254A /* Encapsulated_0994.xml in Resources */,
+				E50E8553269EC52600E76CE9 /* Pong_Starter_0995.xml in Resources */,
 				4C3285EF2546CF5F00C31F9D /* ElementOfListFunction0993.xml in Resources */,
 				2ED4185D241120B000AFE2FD /* ValidProjectAllBricks098.xml in Resources */,
 				9E929E3D239D7E2B002D8F96 /* PlaySoundAndWaitBrickContinueWhenFinished.xml in Resources */,
@@ -10607,8 +10697,10 @@
 				2ED4185A241120B000AFE2FD /* SoundMapping.xml in Resources */,
 				4C55CCE324BF2A7700FB8393 /* Memory_0992.xml in Resources */,
 				2ED417CE241120AF00AFE2FD /* Galaxy_War_095.xml in Resources */,
+				E50E8569269ED52B00E76CE9 /* UserVariables_0995.xml in Resources */,
 				2ED417F6241120AF00AFE2FD /* Pythagorean_Theorem_092.xml in Resources */,
 				2ED4180C241120AF00AFE2FD /* Flap_Pac_Man_096.xml in Resources */,
+				E50E8557269EC54200E76CE9 /* Tic_Tac_Toe_Master_0995.xml in Resources */,
 				4C55CCD924BF291300FB8393 /* Air_fight_0.5_0992.xml in Resources */,
 				2ED41879241120B000AFE2FD /* ElementOfListFunction0991.xml in Resources */,
 				2ED4184C241120B000AFE2FD /* Flappy_v3.0_093.xml in Resources */,
@@ -10621,6 +10713,7 @@
 				2ED41850241120B000AFE2FD /* Flappy_v3.0_0991.xml in Resources */,
 				2ED417DC241120AF00AFE2FD /* Airplane_with_shadow_097.xml in Resources */,
 				4C55CCFF24BF2BAE00FB8393 /* UserData_0992.xml in Resources */,
+				E50E8559269EC5C300E76CE9 /* ValidProjectAllBricks0995.xml in Resources */,
 				4C3286212546D7CA00C31F9D /* UserVariables_0993.xml in Resources */,
 				2ED4186A241120B000AFE2FD /* EscapingChars_0991.xml in Resources */,
 				2ED41860241120B000AFE2FD /* ValidProjectAllBricks095.xml in Resources */,
@@ -10651,7 +10744,9 @@
 				6F4DAE8B24A74ABF0062DA6C /* StoreProjectUpload.uploadProject.success.json in Resources */,
 				D3AF5C1E243F822F00B04BC6 /* DisabledBricks_0991.xml in Resources */,
 				4C3285F12546CF6600C31F9D /* InsertItemIntoUserListBrick0993.xml in Resources */,
+				E50E8563269EC64D00E76CE9 /* collisionTest0995.xml in Resources */,
 				2ED417D1241120AF00AFE2FD /* Galaxy_War_096.xml in Resources */,
+				E50E8567269ECCD900E76CE9 /* Encapsulated_0995.xml in Resources */,
 				2ED41849241120B000AFE2FD /* Flappy_v3.0_096.xml in Resources */,
 				2DCB4930212EA88E005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json in Resources */,
 				4C55CD0D24BF2BFF00FB8393 /* NumberOfItemsInListFunction0992.xml in Resources */,
@@ -10659,6 +10754,7 @@
 				C85A5CA0267A218F009BA454 /* Functions_0993.xml in Resources */,
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C3285FB2546CFA300C31F9D /* ValidHeader0993.xml in Resources */,
+				E50E8565269EC67000E76CE9 /* EscapingChars_0995.xml in Resources */,
 				2ED417E2241120AF00AFE2FD /* Memory_096.xml in Resources */,
 				05501DE7255E106F00C64E58 /* color_change.dst in Resources */,
 				4C55CD1124BF2C1800FB8393 /* LogicBricks_0992.xml in Resources */,
@@ -10675,6 +10771,7 @@
 				4C3285E12546CE9400C31F9D /* Encapsulated_0993.xml in Resources */,
 				6FAAD8B6244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml in Resources */,
 				4C55CD0924BF2BEA00FB8393 /* ElementOfListFunction0992.xml in Resources */,
+				E50E8555269EC53500E76CE9 /* Pythagorean_Theorem_0995.xml in Resources */,
 				2D7BE5222144238C00F78A10 /* StoreProjectDownloader.fetchSearchProjects.fail.parse.json in Resources */,
 				2ED4180B241120AF00AFE2FD /* Flap_Pac_Man_095.xml in Resources */,
 				E59108CD26931EE9008D254A /* ReplaceItemInUserListBrick0994.xml in Resources */,
@@ -10687,6 +10784,8 @@
 				E59108C726931ED6008D254A /* ElementOfListFunction0994.xml in Resources */,
 				E59108E526931FD8008D254A /* Pythagorean_Theorem_0994.xml in Resources */,
 				2ED417CA241120AF00AFE2FD /* Galaxy_War_092.xml in Resources */,
+				E50E856B269ED55400E76CE9 /* AddItemToUserListBrick0995.xml in Resources */,
+				E50E8547269EC4CC00E76CE9 /* Demonstration_0995.xml in Resources */,
 				4C3285F92546CF9400C31F9D /* Sensors_0993.xml in Resources */,
 				2ED41881241120B000AFE2FD /* ReplaceItemInUserListBrick0991.xml in Resources */,
 				2ED41848241120B000AFE2FD /* Flappy_v3.0_098.xml in Resources */,
@@ -10699,6 +10798,7 @@
 				4C55CD0124BF2BBD00FB8393 /* Encapsulated_0992.xml in Resources */,
 				9E8176E52389BA4800A4912B /* SpeakAndWaitInterruptedBySpeak.xml in Resources */,
 				2ED41852241120B000AFE2FD /* InvalidBricksAndScripts.xml in Resources */,
+				E50E8561269EC63800E76CE9 /* GoToBrick_0995.xml in Resources */,
 				4C55CCDB24BF291D00FB8393 /* Airplane_with_shadow_0992.xml in Resources */,
 				2ED417CF241120AF00AFE2FD /* Galaxy_War_0992.xml in Resources */,
 				4C55CCF924BF2B7F00FB8393 /* DisabledBricks_0992.xml in Resources */,
@@ -10707,12 +10807,14 @@
 				2ED417F3241120AF00AFE2FD /* Pythagorean_Theorem_0991.xml in Resources */,
 				4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */,
 				2DCB4924212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */,
+				E50E8543269EC49500E76CE9 /* Air_fight_0.5_0995.xml in Resources */,
 				2DCB4916212E9B56005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */,
 				4C55CD0324BF2BCD00FB8393 /* EscapingChars_0992.xml in Resources */,
 				CAE3E4EC1B4C509800CC88BD /* test2.png in Resources */,
 				9EE674D62325319B0029D153 /* PlaySameSoundTwiceSameObject.xml in Resources */,
 				E59108DF26931F88008D254A /* Demonstration_0994.xml in Resources */,
 				9EE674E32325447C0029D153 /* half_seconds_patchwork.mp3 in Resources */,
+				E50E854F269EC50800E76CE9 /* Memory_0995.xml in Resources */,
 				2ED417D9241120AF00AFE2FD /* Demonstration_09.xml in Resources */,
 				59CC6F7F252E38FA00BF0C3C /* StoreProjectReporter.reportProject.authentication.fail.json in Resources */,
 				2ED4187D241120B000AFE2FD /* AddItemToUserListBrick098.xml in Resources */,
@@ -10737,6 +10839,7 @@
 				2ED417BB241120AF00AFE2FD /* Piano_098.xml in Resources */,
 				4C3286132546D52000C31F9D /* Piano_0993.xml in Resources */,
 				E59108E326931FC7008D254A /* Piano_0994.xml in Resources */,
+				E50E8574269EEF3000E76CE9 /* Sensors_0995.xml in Resources */,
 				2ED417B9241120AF00AFE2FD /* Piano_097.xml in Resources */,
 				E59108C326931ECA008D254A /* AddItemToUserListBrick0994.xml in Resources */,
 				2ED4184E241120B000AFE2FD /* Flappy_v3.0_0992.xml in Resources */,
@@ -10747,8 +10850,10 @@
 				2ED417E0241120AF00AFE2FD /* Airplane_with_shadow_0991.xml in Resources */,
 				2ED41878241120B000AFE2FD /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				2ED417CC241120AF00AFE2FD /* Galaxy_War_0994.xml in Resources */,
+				E50E855B269EC5DA00E76CE9 /* LogicBricks_0995.xml in Resources */,
 				6F61FD8524A8B38800C6C969 /* StoreProjectDownloader.uploadProject.fail.authentication.json in Resources */,
 				2ED417C8241120AF00AFE2FD /* Air_fight_0.5_0991.xml in Resources */,
+				E50E8572269EEEC300E76CE9 /* Functions_0995.xml in Resources */,
 				2ED4185C241120B000AFE2FD /* ValidProjectAllBricks0991.xml in Resources */,
 				4C3286012546D48500C31F9D /* Air_fight_0.5_0993.xml in Resources */,
 				2ED4184D241120B000AFE2FD /* Flappy_v3.0_092.xml in Resources */,
@@ -10769,11 +10874,13 @@
 				E59108C926931EDE008D254A /* InsertItemIntoUserListBrick0994.xml in Resources */,
 				6F87B80D2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json in Resources */,
 				2ED417E6241120AF00AFE2FD /* Memory_09.xml in Resources */,
+				E50E8545269EC4BB00E76CE9 /* Airplane_with_shadow_0995.xml in Resources */,
 				2ED417E4241120AF00AFE2FD /* Memory_0991.xml in Resources */,
 				2ED417DD241120AF00AFE2FD /* Airplane_with_shadow_096.xml in Resources */,
 				2ED417F2241120AF00AFE2FD /* Pythagorean_Theorem_097.xml in Resources */,
 				E59108BD26931E86008D254A /* Functions_0994.xml in Resources */,
 				593F2F5C253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json in Resources */,
+				E50E855F269EC62200E76CE9 /* UserData_0995.xml in Resources */,
 				593F2F582532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json in Resources */,
 				2ED417D3241120AF00AFE2FD /* Demonstration_093.xml in Resources */,
 				4C55CD0B24BF2BF100FB8393 /* InsertItemIntoUserListBrick0992.xml in Resources */,
@@ -11114,6 +11221,7 @@
 				4C2CBB4E25A5AA8400C1C143 /* XMLParserBrickTests095.swift in Sources */,
 				4C4778FB267C83F500CAF398 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */,
+				E50E856E269ED86700E76CE9 /* XMLParserTests0995.swift in Sources */,
 				4C6FE163212D2D2E0067B7D5 /* ModFunctionTest.swift in Sources */,
 				4CF8277224F11542006E562A /* ScriptCollectionViewControllerMock.swift in Sources */,
 				187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */,

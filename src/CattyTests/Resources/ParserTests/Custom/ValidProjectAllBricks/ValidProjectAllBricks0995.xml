@@ -5,9 +5,9 @@
     <applicationBuildNumber>47</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.6.19</applicationVersion>
-    <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
-    <dateTimeUpload/>
-    <description/>
+    <catrobatLanguageVersion>0.995</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
     <deviceName>x86_64</deviceName>
     <isCastProject>false</isCastProject>
     <landscapeMode>false</landscapeMode>
@@ -16,14 +16,14 @@
     <platformVersion>14.5</platformVersion>
     <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
     <programName>ValidProjectAllBricks</programName>
-    <remixOf/>
+    <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1184</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>768</screenWidth>
-    <tags/>
-    <url/>
-    <userHandle/>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
   </header>
   <settings/>
   <scenes>
@@ -349,6 +349,10 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>200</value>
+                    </formula>
                     <formula category="X_DESTINATION">
                       <type>NUMBER</type>
                       <value>100</value>
@@ -356,10 +360,6 @@
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>1.0</value>
-                    </formula>
-                    <formula category="Y_DESTINATION">
-                      <type>NUMBER</type>
-                      <value>200</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -645,13 +645,13 @@
                       <type>NUMBER</type>
                       <value>0</value>
                     </formula>
-                    <formula category="PEN_COLOR_BLUE">
-                      <type>NUMBER</type>
-                      <value>255</value>
-                    </formula>
                     <formula category="PEN_COLOR_RED">
                       <type>NUMBER</type>
                       <value>0</value>
+                    </formula>
+                    <formula category="PEN_COLOR_BLUE">
+                      <type>NUMBER</type>
+                      <value>255</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -799,7 +799,7 @@
       <data>
         <objectListOfList>
           <entry>
-            <object reference="../../../../objectList/object"/>
+            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/destinationSprite"/>
             <list/>
           </entry>
           <entry>
@@ -807,32 +807,31 @@
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object/scriptList/script/brickList/brick[10]/pointedObject"/>
+            <object reference="../../../../objectList/object"/>
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/destinationSprite"/>
+            <object reference="../../../../objectList/object/scriptList/script/brickList/brick[10]/pointedObject"/>
             <list/>
           </entry>
         </objectListOfList>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object"/>
-            <list>
-              <userVariable
-                  reference="../../../../../objectList/object/scriptList/script/brickList/brick[13]/userVariable"/>
-            </list>
+            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/destinationSprite"/>
+            <list/>
           </entry>
           <entry>
             <object reference="../../../../objectList/object[2]"/>
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object/scriptList/script/brickList/brick[10]/pointedObject"/>
-            <list/>
+            <object reference="../../../../objectList/object"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[13]/userVariable"/>
+            </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/destinationSprite"/>
+            <object reference="../../../../objectList/object/scriptList/script/brickList/brick[10]/pointedObject"/>
             <list/>
           </entry>
         </objectVariableList>
@@ -846,7 +845,6 @@
     <userVariable reference="../../scenes/scene/objectList/object/scriptList/script/brickList/brick[14]/userVariable"/>
   </programVariableList>
   <programListOfLists>
-    <userList
-        reference="../../scenes/scene/objectList/object/scriptList/script/brickList/brick[49]/userList"/>
+    <userList reference="../../scenes/scene/objectList/object/scriptList/script/brickList/brick[49]/userList"/>
   </programListOfLists>
 </program>
