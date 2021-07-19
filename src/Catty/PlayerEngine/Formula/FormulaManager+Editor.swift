@@ -70,12 +70,14 @@ extension FormulaManager {
                                 objects.removeObject(spriteObject)
                             }
 
-                            for i in 0...(objects.count - 1) {
-                                let newItem = FormulaEditorItem.init(function: CollisionFunction.init() as Function)
-                                newItem.title = (kUIFEObjectActorObjectTouch + "(\'" + objects[i].name + "\')")
-                                (newItem.function as! CollisionFunction).addParameter(param: objects[i].name)
+                            if !objects.isEmpty {
+                                for i in 0...(objects.count - 1) {
+                                    let newItem = FormulaEditorItem.init(function: CollisionFunction.init() as Function)
+                                    newItem.title = (kUIFEObjectActorObjectTouch + "(\'" + objects[i].name + "\')")
+                                    (newItem.function as! CollisionFunction).addParameter(param: objects[i].name)
 
-                                items += (position + (i * 10), newItem)
+                                    items += (position + (i * 10), newItem)
+                                }
                             }
                         } else {
                             items += (position, item)
