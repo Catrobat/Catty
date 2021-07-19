@@ -168,13 +168,6 @@ final class XMLParserBlackBoxTests: XMLAbstractTest {
         self.compareProject(firstProjectName: "Tic_Tac_Toe_Master_0994", withProject: "Tic_Tac_Toe_Master_0995")
     }
 
-    func testAddItemToUserListBrick() {
-        self.compareProject(firstProjectName: "AddItemToUserListBrick098", withProject: "AddItemToUserListBrick0991")
-        self.compareProject(firstProjectName: "AddItemToUserListBrick0991", withProject: "AddItemToUserListBrick0993")
-        self.compareProject(firstProjectName: "AddItemToUserListBrick0993", withProject: "AddItemToUserListBrick0994")
-        self.compareProject(firstProjectName: "AddItemToUserListBrick0994", withProject: "AddItemToUserListBrick0995")
-    }
-
     func testUserVariables() {
         self.compareProject(firstProjectName: "UserVariables_091", withProject: "UserVariables_0991")
         self.compareProject(firstProjectName: "UserVariables_0991", withProject: "UserVariables_0993")
