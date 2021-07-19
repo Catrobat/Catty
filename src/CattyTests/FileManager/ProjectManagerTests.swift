@@ -28,10 +28,13 @@ final class ProjectManagerTests: XCTestCase {
 
     var imageCache: RuntimeImageCacheMock!
     var fileManager: CBFileManagerMock!
+    var project: Project!
+    var projectManager: ProjectManager!
 
     override func setUp() {
         imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [])
         fileManager = CBFileManagerMock()
+        projectManager = ProjectManager()
     }
 
     func testCreateProject() {
@@ -56,7 +59,7 @@ final class ProjectManagerTests: XCTestCase {
         XCTAssertFalse(fileManager.fileExists(automaticScreenshotPath))
         XCTAssertFalse(imageCache.cleared)
 
-        _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager, imageCache: imageCache)
+        self.project = projectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager, imageCache: imageCache)
 
         XCTAssertTrue(fileManager.directoryExists(expectedProjectPath))
         XCTAssertTrue(fileManager.directoryExists(expectedImageDir))
@@ -90,7 +93,7 @@ final class ProjectManagerTests: XCTestCase {
             }
 
             let automaticScreenshotPath = info.basePath + kScreenshotAutoFilename
-            _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager, imageCache: imageCache)
+            _ = projectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager, imageCache: imageCache)
 
             let automaticScreenshot = fileManager.dataWritten[automaticScreenshotPath]
             XCTAssertTrue(projectIconImages.contains(automaticScreenshot!))
@@ -121,7 +124,7 @@ final class ProjectManagerTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Load image from cache - Screenshot")
 
-        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+        projectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
             XCTAssertEqual(screenshotPath, path)
             XCTAssertEqual(screenshot, image)
 
@@ -145,7 +148,7 @@ final class ProjectManagerTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Load image from cache - Manual Screenshot")
 
-        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+        projectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
             XCTAssertEqual(manualScreenshotPath, path)
             XCTAssertEqual(manualScreenshot, image)
 
@@ -169,7 +172,7 @@ final class ProjectManagerTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Load image from cache - Automatic Screenshot")
 
-        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+        projectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
             XCTAssertEqual(automaticScreenshotPath, path)
             XCTAssertEqual(automaticScreenshot, image)
 
@@ -193,7 +196,7 @@ final class ProjectManagerTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Load image from disk - Automatic Screenshot")
 
-        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+        projectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
             XCTAssertEqual(automaticScreenshotPath, path)
             XCTAssertEqual(automaticScreenshot, image)
 
@@ -217,7 +220,7 @@ final class ProjectManagerTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Load image from disk - Manual Screenshot")
 
-        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+        projectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
             XCTAssertEqual(manualScreenshotPath, path)
             XCTAssertEqual(manualScreenshot, image)
 
@@ -241,7 +244,7 @@ final class ProjectManagerTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Load image from disk - Screenshot")
 
-        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+        projectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
             XCTAssertEqual(screenshotPath, path)
             XCTAssertEqual(screenshot, image)
 
@@ -262,7 +265,7 @@ final class ProjectManagerTests: XCTestCase {
 
         let expectedImage = UIImage(named: "catrobat")
 
-        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
+        projectManager.loadPreviewImageAndCache(projectLoadingInfo: info, fileManager: fileManager, imageCache: imageCache) { image, path in
             XCTAssertEqual(expectedImage, image)
             XCTAssertNil(path)
         }
@@ -276,28 +279,28 @@ final class ProjectManagerTests: XCTestCase {
             fileManager.deleteDirectory(loadingInfo.basePath!)
         }
 
-        var projectNames = ProjectManager.projectNames(for: "")
+        var projectNames = projectManager.projectNames(for: "")
         XCTAssertNil(projectNames)
 
-        projectNames = ProjectManager.projectNames(for: "invalid")
+        projectNames = projectManager.projectNames(for: "invalid")
         XCTAssertNil(projectNames)
 
-        let project = ProjectManager.createProject(name: "projectName", projectId: "1234", fileManager: fileManager, imageCache: imageCache)
+        let project = projectManager.createProject(name: "projectName", projectId: "1234", fileManager: fileManager, imageCache: imageCache)
 
-        projectNames = ProjectManager.projectNames(for: project.header.programID)
+        projectNames = projectManager.projectNames(for: project.header.programID)
         XCTAssertNotNil(projectNames)
         XCTAssertEqual(1, projectNames?.count)
         XCTAssertEqual(projectNames?.first!, project.header.programName)
 
-        let anotherProject = ProjectManager.createProject(name: project.header.programName + " (1)", projectId: project.header.programID, fileManager: fileManager, imageCache: imageCache)
+        let anotherProject = projectManager.createProject(name: project.header.programName + " (1)", projectId: project.header.programID, fileManager: fileManager, imageCache: imageCache)
 
-        projectNames = ProjectManager.projectNames(for: project.header.programID)
+        projectNames = projectManager.projectNames(for: project.header.programID)
         XCTAssertNotNil(projectNames)
         XCTAssertEqual(2, projectNames?.count)
 
         project.rename(toProjectName: project.header.programName, andProjectId: project.header.programID + "5", andShowSaveNotification: true)
 
-        projectNames = ProjectManager.projectNames(for: anotherProject.header.programID)
+        projectNames = projectManager.projectNames(for: anotherProject.header.programID)
         XCTAssertNotNil(projectNames)
         XCTAssertEqual(1, projectNames?.count)
         XCTAssertEqual(projectNames?.first!, anotherProject.header.programName)
@@ -312,7 +315,7 @@ final class ProjectManagerTests: XCTestCase {
 
         let sumProjectNamesBefore = Project.allProjectNames().count
 
-        let project = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: xmlPath))
+        let project = projectManager.addProjectFromFile(url: URL(fileURLWithPath: xmlPath))
         XCTAssertNotNil(project)
 
         let sumProjectNamesAfter = Project.allProjectNames().count
@@ -325,11 +328,36 @@ final class ProjectManagerTests: XCTestCase {
     func testAddProjectFromFileWithInvalidUrl() {
         let sumProjectNamesBefor = Project.allProjectNames().count
 
-        let project = ProjectManager.addProjectFromFile(url: URL(fileURLWithPath: "test"))
+        let project = projectManager.addProjectFromFile(url: URL(fileURLWithPath: "test"))
         XCTAssertNil(project)
 
         let sumProjectNamesAfter = Project.allProjectNames().count
 
         XCTAssertEqual(sumProjectNamesBefor, sumProjectNamesAfter)
+    }
+
+    func testRemoveObjects() {
+        let project = projectManager.createProject(name: "projectName", projectId: "1234", fileManager: fileManager, imageCache: imageCache)
+        let scene = Scene(name: "testScene")
+
+        let object1 = SpriteObject()
+        object1.name = "testObject1"
+        scene.add(object: object1)
+
+        let object2 = SpriteObject()
+        object2.name = "testObject2"
+        scene.add(object: object2)
+
+        let object3 = SpriteObject()
+        object3.name = "testObject3"
+        scene.add(object: object3)
+        project.scene = scene
+
+        XCTAssertEqual(3, scene.objects().count)
+
+        projectManager.removeObjects(project, objects: [object1, object2])
+
+        XCTAssertEqual(1, project.scene.objects().count)
+        XCTAssertEqual(object3, scene.objects()[0])
     }
 }

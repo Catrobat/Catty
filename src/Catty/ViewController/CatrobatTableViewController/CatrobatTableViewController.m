@@ -49,6 +49,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) Project *lastUsedProject;
 @property (nonatomic, strong) Project *defaultProject;
+@property (nonatomic, strong) ProjectManager *projectManager;
 @property (nonatomic, assign) BOOL freshLogin;
 @property (nonatomic, assign) CGFloat dynamicStatusBarHeight;
 @property (nonatomic, assign) CGFloat fixedStatusBarHeight;
@@ -74,6 +75,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     self.freshLogin = false;
     self.lastUsedProject = nil;
     self.defaultProject = nil;
+    self.projectManager = [[ProjectManager alloc] init];;
     CBFileManager *fileManager = [CBFileManager sharedManager];
     if (! [fileManager directoryExists:[Project basePath]]) {
         [fileManager createDirectory:[Project basePath]];
@@ -186,7 +188,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)createAndOpenProjectWithName:(NSString*)projectName
 {
     [self showLoadingView];
-    self.defaultProject = [ProjectManager createProjectWithName:projectName projectId:nil];
+    self.defaultProject = [self.projectManager createProjectWithName:projectName projectId:nil];
     if (self.defaultProject) {
         [self hideLoadingView];
         [self openProject:self.defaultProject];
@@ -345,7 +347,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
     if (indexPath.row == 0) {
         
-        [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
+        [self.projectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
             
             if(image && cell) {
                 dispatch_queue_main_t queue = dispatch_get_main_queue();

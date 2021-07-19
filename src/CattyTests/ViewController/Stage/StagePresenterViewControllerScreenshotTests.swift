@@ -30,13 +30,14 @@ final class StagePresenterViewControllerScreenshotTest: XCTestCase {
     var vc: StagePresenterViewController!
     var skView: SKView!
     var project: Project!
+    var projectManager: ProjectManager!
 
     override func setUp() {
         super.setUp()
         vc = StagePresenterViewController()
         skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
-
-        project = ProjectManager.createProject(name: "testProject", projectId: "")
+        projectManager = ProjectManager()
+        project = projectManager.createProject(name: "testProject", projectId: "")
     }
 
     func testAutomaticScreenshot() {

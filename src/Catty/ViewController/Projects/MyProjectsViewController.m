@@ -41,6 +41,7 @@
 @property (nonatomic, strong) NSArray *sectionTitles;
 @property (nonatomic, strong) NSMutableDictionary *projectLoadingInfoDict;
 @property (nonatomic, strong) Project *defaultProject;
+@property (nonatomic, strong) ProjectManager *projectManager;
 @end
 
 @implementation MyProjectsViewController
@@ -63,6 +64,8 @@
     [self initNavigationBar];
     self.defaultProject = nil;
     self.selectedProject = nil;
+    self.projectManager = [[ProjectManager alloc] init];;
+
     [self setupToolBar];
     
     [self setSectionHeaders];
@@ -148,7 +151,7 @@
 - (void)createAndOpenProjectWithName:(NSString*)projectName
 {
     projectName = [Util uniqueName:projectName existingNames:[Project allProjectNames]];
-    self.defaultProject = [ProjectManager createProjectWithName:projectName projectId:nil];
+    self.defaultProject = [self.projectManager createProjectWithName:projectName projectId:nil];
     
     if (self.defaultProject) {
         [self addProject:self.defaultProject.header.programName];
@@ -449,7 +452,7 @@
     cell.indexPath = indexPath;
     [cell setNeedsLayout];
     
-    [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
+    [self.projectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
       
         if(image) {
             if ([cell.indexPath isEqual:indexPath]) {

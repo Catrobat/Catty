@@ -32,6 +32,7 @@ final class CBBackendTests: XCTestCase {
     var frontend: CBFrontend!
     var backend: CBBackend!
     var scene: Scene!
+    var projectManager: ProjectManager!
 
     override func setUp() {
         scene = Scene(name: "testScene")
@@ -41,6 +42,7 @@ final class CBBackendTests: XCTestCase {
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
+        projectManager = ProjectManager()
 
         frontend = CBFrontend(logger: logger, project: nil)
         backend = CBBackend(logger: logger)
@@ -340,7 +342,7 @@ final class CBBackendTests: XCTestCase {
     }
 
     func testIfElseConditionalInstruction() {
-        let project = ProjectManager.createProject(name: "ProjectName", projectId: "123")
+        let project = projectManager.createProject(name: "ProjectName", projectId: "123")
 
         let whenScript = WhenScript()
         whenScript.action = UIDefines.whenScriptDefaultAction
