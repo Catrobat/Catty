@@ -284,4 +284,22 @@ final class UserListTest: XCTestCase {
         list.add(element: "itemB")
         XCTAssertEqual("itemA itemB", list.stringRepresentation())
     }
+
+    func testFirstIndex() {
+        let list = UserList(name: "newTestList")
+        list.add(element: "itemA")
+        list.add(element: "Bitem")
+        list.add(element: "itemB")
+        list.add(element: "Bitem")
+
+        let index = list.firstIndex(where: { ($0 as AnyObject).hasPrefix("B") })
+        XCTAssertEqual(1, index)
+    }
+
+    func testFirstIndexNotAvailable() {
+        let list = UserList(name: "newEmptyList")
+
+        let index = list.firstIndex(where: { ($0 as AnyObject).hasPrefix("Not available") })
+        XCTAssertNil(index)
+    }
 }

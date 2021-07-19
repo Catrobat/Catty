@@ -107,13 +107,13 @@ public class SynchronizedArray<Element> {
         }
     }
 
-    public func index( i: Int, offsetBy distance: Int) -> Int {
-        var result = 0
+    public func firstIndex(where predicate: (Element) -> Bool) -> Int? {
+        var result: Int?
         queue.sync {
-            result = self.array.index(i, offsetBy: distance)
+            result = self.array.firstIndex(where: predicate)
         }
         return result
-    }
+     }
 
     public func index(after index: Array<Element>.Index) -> Array<Element>.Index {
         var result = 0
@@ -122,6 +122,14 @@ public class SynchronizedArray<Element> {
         }
         return result
     }
+
+    public func index( i: Int, offsetBy distance: Int) -> Int {
+         var result = 0
+         queue.sync {
+             result = self.array.index(i, offsetBy: distance)
+         }
+         return result
+     }
 
     public func enumerated() -> EnumeratedSequence<[Element]> {
         var result: EnumeratedSequence<[Element]>?

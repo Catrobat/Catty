@@ -689,6 +689,7 @@ let kUIFEFunctionCeil = NSLocalizedString("ceiling", bundle: Bundle(for: Languag
 let kUIFEFunctionNumberOfItems = NSLocalizedString("number of items", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionElement = NSLocalizedString("element", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionContains = NSLocalizedString("contains", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionIndexOfItem = NSLocalizedString("index of item", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEFunctionScreenIsTouched = NSLocalizedString("stage is touched", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionScreenTouchX = NSLocalizedString("stage touch x", bundle: Bundle(for: LanguageTranslation.self), comment: "")

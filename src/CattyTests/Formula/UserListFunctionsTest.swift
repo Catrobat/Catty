@@ -114,4 +114,27 @@ final class UserListFunctionsTest: XCTestCase {
 
         XCTAssertTrue(contains)
     }
+
+    func testIndexOfItem() {
+        let project = Project()
+        let scene = Scene(name: "testScene")
+        let object = SpriteObject()
+        object.scene = scene
+        object.scene.project = project
+
+        let userList = UserList(name: "TestList")
+        userList.add(element: 0)
+        userList.add(element: 4)
+        userList.add(element: 8)
+        project.userData.add(userList)
+
+        let leftChild = FormulaElement(elementType: ElementType.NUMBER, value: "4", leftChild: nil, rightChild: nil, parent: nil)
+        let rightChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)
+        let formulaTree = FormulaElement(elementType: ElementType.FUNCTION, value: IndexOfItemFunction.tag, leftChild: leftChild, rightChild: rightChild, parent: nil)
+
+        let formula = Formula(formulaElement: formulaTree)
+        let indexOfItem: Double = formulaManager.interpretDouble(formula!, for: object)
+
+        XCTAssertEqual(indexOfItem, 2)
+    }
 }

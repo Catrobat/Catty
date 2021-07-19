@@ -386,4 +386,22 @@ final class SynchronizedArrayTests: XCTestCase {
         XCTAssertEqual(1, array.count)
         XCTAssertEqual(7, array[0])
     }
+
+    func testFirstIndex() {
+        let array = SynchronizedArray<String>()
+        array.append("Abc")
+        array.append("Bac")
+        array.append("Bca")
+
+        let index = array.firstIndex(where: { ($0 as AnyObject).hasPrefix("B") })
+        XCTAssertEqual(1, index)
+    }
+
+    func testFirstIndexNotAvailable() {
+        let array = SynchronizedArray<String>()
+        array.append("Abc")
+
+        let index = array.firstIndex(where: { ($0 as AnyObject).hasPrefix("Not available") })
+        XCTAssertNil(index)
+    }
 }
