@@ -73,7 +73,7 @@
         
         GDataXMLNode *soundName = nil;
         
-        if([context languageVersion] >= 0.996)
+        if([context languageVersion] > 0.995)
         {
             soundName = [soundElement attributeForName:@"name"];
         } else

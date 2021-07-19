@@ -10751,7 +10751,6 @@
 				4C3285F52546CF7300C31F9D /* ReplaceItemInUserListBrick0993.xml in Resources */,
 				2ED4186B241120B000AFE2FD /* ValidProject.xml in Resources */,
 				2ED417B3241120AF00AFE2FD /* Tic_Tac_Toe_Master_098.xml in Resources */,
-				E598BBD226A02B6900D4825F /* AddItemToUserListBrick0996.xml in Resources */,
 				2ED41809241120AF00AFE2FD /* Flap_Pac_Man_093.xml in Resources */,
 				2ED417F7241120AF00AFE2FD /* Pythagorean_Theorem_098.xml in Resources */,
 				598E6553252A338B009F7C83 /* StoreProjectReporter.reportProject.success.json in Resources */,
