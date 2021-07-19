@@ -43,15 +43,12 @@ class IndexOfItemFunction: DoubleParameterDoubleFunction {
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
         guard let list = secondParameter as? UserList else {
-                return type(of: self).defaultValue
+            return type(of: self).defaultValue
         }
-
-        var index = list.firstIndex(where: { self.parameterMatch(firstParam: $0 as AnyObject, secondParam: firstParameter) })
-        if index != 0 {
-            index += 1
+        guard let index = list.firstIndex(where: { self.parameterMatch(firstParam: $0 as AnyObject, secondParam: firstParameter) }) else {
+            return type(of: self).defaultValue
         }
-        return Double(index)
-
+        return Double(index + 1)
     }
 
     private func parameterMatch(firstParam: AnyObject?, secondParam: AnyObject?) -> Bool {

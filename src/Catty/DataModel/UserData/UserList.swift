@@ -111,10 +111,8 @@
         return result
     }
 
-    func firstIndex(where predicate: (Any) -> Bool) -> Int {
-        let result = self.elements.index(where: predicate)
-
-        return result
+    func firstIndex(where predicate: (Any) -> Bool) -> Int? {
+        self.elements.firstIndex(where: predicate)
     }
 
     func stringRepresentation() -> String {

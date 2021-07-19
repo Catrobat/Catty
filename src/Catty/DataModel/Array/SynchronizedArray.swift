@@ -107,14 +107,12 @@ public class SynchronizedArray<Element> {
         }
     }
 
-    public func index(where predicate: (Element) -> Bool) -> Int {
-        var result = 0
-
-           queue.sync {
-                result = self.array.firstIndex(where: predicate) ?? 0
-           }
-
-       return result
+    public func firstIndex(where predicate: (Element) -> Bool) -> Int? {
+        var result: Int?
+        queue.sync {
+            result = self.array.firstIndex(where: predicate)
+        }
+        return result
      }
 
     public func index(after index: Array<Element>.Index) -> Array<Element>.Index {
@@ -199,12 +197,4 @@ extension SynchronizedArray where Element: Equatable {
             self.array.removeObject(element)
         }
     }
-}
-
-extension SynchronizedArray where Element: Equatable {
-    func index(element: (Element) -> Bool) -> Int {
-          var result = 0
-        queue.sync { result = self.array.firstIndex(where: element) ?? 0 }
-          return result
-      }
 }
