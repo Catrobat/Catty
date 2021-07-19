@@ -36,7 +36,9 @@ REMIX TIPS:
       <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
+          <lookList>
+            <look fileName="f26cbf79372f08620945708906287207_grassland.jpg" name="grassland"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -52,7 +54,7 @@ REMIX TIPS:
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f26cbf79372f08620945708906287207_grassland.jpg" name="grassland"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -63,14 +65,16 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Paddle">
-          <lookList/>
+          <lookList>
+            <look fileName="be40e5993d4bc69eb14711dbebe7fd75_look.png" name="Paddle"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="be40e5993d4bc69eb14711dbebe7fd75_look.png" name="Paddle"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SetYBrick">
                   <commentedOut>false</commentedOut>
@@ -136,7 +140,9 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Ball">
-          <lookList/>
+          <lookList>
+            <look fileName="d0b546fa3e67cc14a49dc2a639045a2a_tennisball.png" name="tennisball"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -165,7 +171,7 @@ REMIX TIPS:
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="d0b546fa3e67cc14a49dc2a639045a2a_tennisball.png" name="tennisball"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ForeverBrick">
                   <commentedOut>false</commentedOut>

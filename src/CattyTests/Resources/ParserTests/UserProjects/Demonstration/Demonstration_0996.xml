@@ -31,14 +31,25 @@
       <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
+          <lookList>
+            <look fileName="17cb6ccc2e4ebf95dbe647356685d5cb_Screenshot_2013-08-09-21-18-47.png" name="one"/>
+            <look fileName="a8b65e45eebf7a6c640d5da178e63bd6_Screenshot_2013-08-09-21-18-54.png" name="two"/>
+            <look fileName="608452a1e28c0694772563a9ff458c75_Screenshot_2013-08-09-21-19-06.png" name="three"/>
+            <look fileName="8a4c271f937cd6ddf0a12274aee8442d_Screenshot_2013-08-09-21-19-14.png" name="four"/>
+            <look fileName="26c235ef4df4e92fa86e017729f245bd_Screenshot_2013-08-09-21-19-29.png" name="five"/>
+            <look fileName="051a52129780ed5ad52e2e0921819fd0_Screenshot_2013-08-09-21-19-38.png" name="six"/>
+            <look fileName="464548115eb06414dc5ae7d438ce5c81_Screenshot_2013-08-09-21-19-45.png" name="seven"/>
+            <look fileName="358732f93c3bd7a37b2296d164715251_Screenshot_2013-08-09-21-19-55.png" name="eight"/>
+            <look fileName="9a4170b21e330848f87ddb8bfbdab8ac_Screenshot_2013-08-09-21-20-03.png" name="nine"/>
+            <look fileName="9a4170b21e330848f87ddb8bfbdab8ac_Screenshot_2013-08-09-21-20-03.png" name="ten"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="17cb6ccc2e4ebf95dbe647356685d5cb_Screenshot_2013-08-09-21-18-47.png" name="one"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -48,7 +59,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="a8b65e45eebf7a6c640d5da178e63bd6_Screenshot_2013-08-09-21-18-54.png" name="two"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="BroadcastBrick">
                   <commentedOut>false</commentedOut>
@@ -62,7 +73,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="608452a1e28c0694772563a9ff458c75_Screenshot_2013-08-09-21-19-06.png" name="three"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
                 <brick type="BroadcastBrick">
                   <commentedOut>false</commentedOut>
@@ -76,7 +87,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="8a4c271f937cd6ddf0a12274aee8442d_Screenshot_2013-08-09-21-19-14.png" name="four"/>
+                  <look reference="../../../../../lookList/look[4]"/>
                 </brick>
                 <brick type="BroadcastBrick">
                   <commentedOut>false</commentedOut>
@@ -90,7 +101,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="26c235ef4df4e92fa86e017729f245bd_Screenshot_2013-08-09-21-19-29.png" name="five"/>
+                  <look reference="../../../../../lookList/look[5]"/>
                 </brick>
                 <brick type="BroadcastBrick">
                   <commentedOut>false</commentedOut>
@@ -104,7 +115,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="051a52129780ed5ad52e2e0921819fd0_Screenshot_2013-08-09-21-19-38.png" name="six"/>
+                  <look reference="../../../../../lookList/look[6]"/>
                 </brick>
                 <brick type="BroadcastBrick">
                   <commentedOut>false</commentedOut>
@@ -118,7 +129,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="464548115eb06414dc5ae7d438ce5c81_Screenshot_2013-08-09-21-19-45.png" name="seven"/>
+                  <look reference="../../../../../lookList/look[7]"/>
                 </brick>
                 <brick type="BroadcastBrick">
                   <commentedOut>false</commentedOut>
@@ -132,7 +143,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="358732f93c3bd7a37b2296d164715251_Screenshot_2013-08-09-21-19-55.png" name="eight"/>
+                  <look reference="../../../../../lookList/look[8]"/>
                 </brick>
                 <brick type="BroadcastBrick">
                   <commentedOut>false</commentedOut>
@@ -146,7 +157,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9a4170b21e330848f87ddb8bfbdab8ac_Screenshot_2013-08-09-21-20-03.png" name="nine"/>
+                  <look reference="../../../../../lookList/look[9]"/>
                 </brick>
                 <brick type="BroadcastBrick">
                   <commentedOut>false</commentedOut>
@@ -161,7 +172,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="menubar">
-          <lookList/>
+          <lookList>
+            <look fileName="85c8993b1f136205890e26795e91d829_menu.png" name="menu"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -177,7 +190,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="85c8993b1f136205890e26795e91d829_menu.png" name="menu"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SetSizeToBrick">
                   <commentedOut>false</commentedOut>
@@ -258,7 +271,10 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="finger">
-          <lookList/>
+          <lookList>
+            <look fileName="faa36f56a1326ce3dc5888bf2db4c583_finger.png" name="finger"/>
+            <look fileName="ae6e8f234f2a87abe908e517eda1ee07_fingerTouch.png" name="fingerTouch"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -274,7 +290,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="faa36f56a1326ce3dc5888bf2db4c583_finger.png" name="finger"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SetSizeToBrick">
                   <commentedOut>false</commentedOut>
@@ -345,7 +361,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="ae6e8f234f2a87abe908e517eda1ee07_fingerTouch.png" name="fingerTouch"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -368,7 +384,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -414,7 +430,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick[9]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -437,7 +453,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -458,7 +474,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick[9]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -481,7 +497,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -506,7 +522,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick[9]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -529,7 +545,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -558,7 +574,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick[9]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -581,7 +597,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -606,7 +622,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick[9]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -629,7 +645,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -650,7 +666,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick[9]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -673,7 +689,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -698,7 +714,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick[9]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -721,7 +737,7 @@
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -782,14 +798,16 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="posX">
-          <lookList/>
+          <lookList>
+            <look fileName="8d622284b503ae40e29bb059c7f6af52_position.png" name="position"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="8d622284b503ae40e29bb059c7f6af52_position.png" name="position"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
@@ -835,7 +853,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="mask changes saved">
-          <lookList/>
+          <lookList>
+            <look fileName="ceccce11838ee21a2b1f783b85feb46d_center.png" name="mask"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -864,7 +884,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="ceccce11838ee21a2b1f783b85feb46d_center.png" name="mask"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>

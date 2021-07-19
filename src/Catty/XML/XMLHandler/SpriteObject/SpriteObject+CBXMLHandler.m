@@ -217,8 +217,7 @@
         for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
                       message:@"Invalid look instance given"];
-        // vvv LOOKLIST ADD REFERENCE vvv
-       // [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:context] context:context];
+        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:lookListXmlElement context:context];
     
@@ -226,8 +225,7 @@
     for (id sound in self.soundList) {
         [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
                       message:@"Invalid sound instance given"];
-    // vvv SOUNDLIST ADD REFERENCE vvv
-      //  [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
+        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:soundListXmlElement context:context];
     

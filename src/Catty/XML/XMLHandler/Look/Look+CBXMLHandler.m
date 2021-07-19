@@ -38,21 +38,19 @@
     [XMLError exceptionIfNil:nameAttribute message:@"Look must contain a name attribute"];
     NSArray *lookChildElements = [xmlElement children];
     GDataXMLNode *fileNameAttribute = nil;
-    if ([lookChildElements count] == 1) {
-        //CBL 0995 or lower
-        
+    
+    if([context languageVersion] > 0.995)
+    {
+        fileNameAttribute = [xmlElement attributeForName:@"fileName"];
+        [XMLError exceptionIfNil:fileNameAttribute message:@"Look must contain a fileName attribute"];
+    } else {
         [XMLError exceptionIf:[lookChildElements count] notEquals:1
                       message:@"Look must contain a filename child node"];
         GDataXMLNode *fileNameAttribute = [lookChildElements firstObject];
         [XMLError exceptionIfString:fileNameAttribute.name isNotEqualToString:@"fileName"
                             message:@"Look contains wrong child node"];
-    } else {
-        //CBL 0996 or higher
-        
-         fileNameAttribute = [xmlElement attributeForName:@"fileName"];
-        [XMLError exceptionIfNil:fileNameAttribute message:@"Look must contain a fileName attribute"];
     }
-
+    
     Look *look = [[Look alloc] initWithName:[nameAttribute stringValue] andPath:[fileNameAttribute stringValue]];
     return look;
 }

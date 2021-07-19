@@ -61,15 +61,15 @@ extension SetLookBrick: CBXMLNodeProtocol {
             if CBXMLSerializerHelper.index(ofElement: self.look, in: context.spriteObject.lookList as? [Any]) == NSNotFound {
                 self.look = nil
             } else {
-                //let referenceXMLElement = GDataXMLElement.init(name: "look", context: context)
-                //let depthOfResource = CBXMLSerializerHelper.getDepthOfResource(self, for: context.spriteObject)
-                //let refPath = CBXMLSerializerHelper.relativeXPath(to: self.look, inLookList: context.spriteObject.lookList as? [Any], withDepth: depthOfResource)
+                let referenceXMLElement = GDataXMLElement.init(name: "look", context: context)
+                let depthOfResource = CBXMLSerializerHelper.getDepthOfResource(self, for: context.spriteObject)
+                let refPath = CBXMLSerializerHelper.relativeXPath(to: self.look, inLookList: context.spriteObject.lookList as? [Any], withDepth: depthOfResource)
 
-                //referenceXMLElement?.addAttribute(GDataXMLElement.attribute(withName: "reference", escapedStringValue: refPath) as? GDataXMLNode)
+                referenceXMLElement?.addAttribute(GDataXMLElement.attribute(withName: "reference", escapedStringValue: refPath) as? GDataXMLNode)
 
-                brick?.addChild((self.look as? CBXMLNodeProtocol)?.xmlElement(with: context),context: context)
+                //brick?.addChild((self.look as? CBXMLNodeProtocol)?.xmlElement(with: context),context: context)
 
-                //brick?.addChild(referenceXMLElement, context: context)
+                brick?.addChild(referenceXMLElement, context: context)
             }
         }
         return brick

@@ -84,12 +84,15 @@
 {
     GDataXMLElement *brick = [super xmlElementForBrickType:@"ShowTextBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.yFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_POSITION"]];
-    [formulaList addChild:formula context:context];
-    formula = [self.xFormula xmlElementWithContext:context];
+
+    GDataXMLElement *formula = [self.xFormula xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"X_POSITION"]];
     [formulaList addChild:formula context:context];
+    
+    formula = [self.yFormula xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_POSITION"]];
+    [formulaList addChild:formula context:context];
+
     [brick addChild:formulaList context:context];
 
     if (self.userVariable) {

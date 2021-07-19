@@ -31,7 +31,9 @@
       <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
+          <lookList>
+            <look fileName="6B90F505F45A621DFD6CB284826F6E14_background.png" name="background"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -160,7 +162,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Triangle">
-          <lookList/>
+          <lookList>
+            <look fileName="0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png" name="t8a75x3"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -189,7 +193,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png" name="t8a75x3"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -246,7 +250,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Right triangle in the lower left">
-          <lookList/>
+          <lookList>
+            <look fileName="0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png" name="t8a75x3"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -284,7 +290,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png" name="t8a75x3"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -369,7 +375,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Rectangle">
-          <lookList/>
+          <lookList>
+            <look fileName="E3E11C70822ACD677E4F2D5C371FF58A_r8a75x3.png" name="r8a75x3"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -411,7 +419,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="E3E11C70822ACD677E4F2D5C371FF58A_r8a75x3.png" name="r8a75x3"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -464,7 +472,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Square">
-          <lookList/>
+          <lookList>
+            <look fileName="A6284DF3F888012B62A4A7BC25337746_r153g0b0_528x528.png" name="528x528"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -507,7 +517,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="A6284DF3F888012B62A4A7BC25337746_r153g0b0_528x528.png" name="528x528"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -554,7 +564,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Right triangle in the upper left">
-          <lookList/>
+          <lookList>
+            <look fileName="0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png" name="t8a75x3"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -600,7 +612,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png" name="t8a75x3"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -651,7 +663,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Right triangle in the lower right">
-          <lookList/>
+          <lookList>
+            <look fileName="0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png" name="t8a75x3"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -697,7 +711,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png" name="t8a75x3"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -744,7 +758,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="a">
-          <lookList/>
+          <lookList>
+            <look fileName="2537220F16D33281C296D06C3DBECE7A_a.png" name="a"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -791,7 +807,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="2537220F16D33281C296D06C3DBECE7A_a.png" name="a"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -955,7 +971,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="a2">
-          <lookList/>
+          <lookList>
+            <look fileName="EE10E546A8CE706EB18F61300DCC67B6_a2.png" name="a2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1045,7 +1063,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="EE10E546A8CE706EB18F61300DCC67B6_a2.png" name="a2"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -1087,7 +1105,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="a second">
-          <lookList/>
+          <lookList>
+            <look fileName="2537220F16D33281C296D06C3DBECE7A_a.png" name="a"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1147,7 +1167,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="2537220F16D33281C296D06C3DBECE7A_a.png" name="a"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -1222,7 +1242,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="b">
-          <lookList/>
+          <lookList>
+            <look fileName="034B4A7C2361B5107AD5C54E3702A43F_b.png" name="b"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1269,7 +1291,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="034B4A7C2361B5107AD5C54E3702A43F_b.png" name="b"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -1411,7 +1433,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[2]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -1468,7 +1490,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="b2">
-          <lookList/>
+          <lookList>
+            <look fileName="F79A7EFEA82AC58297FE32C50FA4E7EE_b2.png" name="b2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1558,7 +1582,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="F79A7EFEA82AC58297FE32C50FA4E7EE_b2.png" name="b2"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -1600,7 +1624,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="b second">
-          <lookList/>
+          <lookList>
+            <look fileName="034B4A7C2361B5107AD5C54E3702A43F_b.png" name="b"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1659,7 +1685,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="034B4A7C2361B5107AD5C54E3702A43F_b.png" name="b"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -1725,7 +1751,10 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="c">
-          <lookList/>
+          <lookList>
+            <look fileName="A1930F1A7A32131BAC0C46E1BC1E6057_c.png" name="c"/>
+            <look fileName="2D03F4EA01C0813693F53EF304225D37_rc.png" name="rc"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1866,7 +1895,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="A1930F1A7A32131BAC0C46E1BC1E6057_c.png" name="c"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -1949,7 +1978,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="c2">
-          <lookList/>
+          <lookList>
+            <look fileName="6D7A4389F21D3EF895993E391723E02C_c2.png" name="c2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -2008,7 +2039,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="6D7A4389F21D3EF895993E391723E02C_c2.png" name="c2"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -2080,7 +2111,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="c second">
-          <lookList/>
+          <lookList>
+            <look fileName="2D03F4EA01C0813693F53EF304225D37_rc.png" name="rc"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -2158,7 +2191,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="2D03F4EA01C0813693F53EF304225D37_rc.png" name="rc"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>

@@ -31,14 +31,18 @@
       <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="827829F8866ACCF1050373EC6DFBAD98_Space_Background_bigger.gif" name="Space_Background_bigger"/>
+          </lookList>
+          <soundList>
+            <sound fileName="34631984F52E51EDD974F0130D6F46A2_8-Bit Betty - Spooky Loop_cut.mp3" name="8-Bit Betty - Spooky Loop"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="827829F8866ACCF1050373EC6DFBAD98_Space_Background_bigger.gif" name="Space_Background_bigger"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SetSizeToBrick">
                   <commentedOut>false</commentedOut>
@@ -51,7 +55,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="34631984F52E51EDD974F0130D6F46A2_8-Bit Betty - Spooky Loop_cut.mp3" name="8-Bit Betty - Spooky Loop"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -177,14 +181,18 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Spaceship">
-          <lookList/>
+          <lookList>
+            <look fileName="0ADBFB7858B144CBF268F64D807F60B3_ship_default.png" name="ship_default"/>
+            <look fileName="5A95239B6A85E986B047C8FCE446F01E_ship_right.png" name="ship_right"/>
+            <look fileName="4E3D93893ADD9E694D64221C2D0D6AD5_ship_left.png" name="ship_left"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0ADBFB7858B144CBF268F64D807F60B3_ship_default.png" name="ship_default"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SetSizeToBrick">
                   <commentedOut>false</commentedOut>
@@ -266,7 +274,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="5A95239B6A85E986B047C8FCE446F01E_ship_right.png" name="ship_right"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
@@ -331,7 +339,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script/brickList/brick/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
@@ -370,7 +378,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="4E3D93893ADD9E694D64221C2D0D6AD5_ship_left.png" name="ship_left"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
@@ -498,8 +506,12 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Laser beam">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="0C4D13C8DF21C1A849972227C4743594_laser_beam.png" name="laser_beam"/>
+          </lookList>
+          <soundList>
+            <sound fileName="B5C52D60568A416924CC601731F7EA74_zap.mp3" name="zap"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -585,11 +597,11 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0C4D13C8DF21C1A849972227C4743594_laser_beam.png" name="laser_beam"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="B5C52D60568A416924CC601731F7EA74_zap.mp3" name="zap"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
@@ -649,8 +661,21 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Enemy1">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="6AE15615E84C6EA587EF1CCC8308F075_enemy1.png" name="enemy1"/>
+            <look fileName="941E21431FE47DF1415B7B94AC175066_enemy2.png" name="enemy2"/>
+            <look fileName="50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png" name="explosion1"/>
+            <look fileName="5F3C4906D49694EC3ACE8D76AEA2EDBB_explosion2.png" name="explosion2"/>
+            <look fileName="5E1E67C1512AFDEC1F1D8A3FEE7DED29_explosion3.png" name="explosion3"/>
+            <look fileName="B614C1D375CEE4492337E182F521249A_explosion4.png" name="explosion4"/>
+            <look fileName="4B64BEA67EFAD5943BC087D35C07B49A_explosion5.png" name="explosion5"/>
+            <look fileName="A189888BA2005349801C9455CDC42E7B_explosion6.png" name="explosion6"/>
+            <look fileName="79F752FC400F14D30BDF623ACC5EDD36_explosion7.png" name="explosion7"/>
+            <look fileName="C7C93E1597712BCACD6E75DCCFD1931A_explosion8.png" name="explosion8"/>
+          </lookList>
+          <soundList>
+            <sound fileName="E13E0F5F2E34969E8514F121BC45D645_explode4.mp3" name="explode4"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -672,7 +697,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="6AE15615E84C6EA587EF1CCC8308F075_enemy1.png" name="enemy1"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -914,11 +939,11 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="E13E0F5F2E34969E8514F121BC45D645_explode4.mp3" name="explode4"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png" name="explosion1"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
                 <brick type="RepeatBrick">
                   <commentedOut>false</commentedOut>
@@ -986,8 +1011,21 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Enemy2">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="6AE15615E84C6EA587EF1CCC8308F075_enemy1.png" name="enemy1"/>
+            <look fileName="941E21431FE47DF1415B7B94AC175066_enemy2.png" name="enemy2"/>
+            <look fileName="50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png" name="explosion1"/>
+            <look fileName="5F3C4906D49694EC3ACE8D76AEA2EDBB_explosion2.png" name="explosion2"/>
+            <look fileName="5E1E67C1512AFDEC1F1D8A3FEE7DED29_explosion3.png" name="explosion3"/>
+            <look fileName="B614C1D375CEE4492337E182F521249A_explosion4.png" name="explosion4"/>
+            <look fileName="4B64BEA67EFAD5943BC087D35C07B49A_explosion5.png" name="explosion5"/>
+            <look fileName="A189888BA2005349801C9455CDC42E7B_explosion6.png" name="explosion6"/>
+            <look fileName="79F752FC400F14D30BDF623ACC5EDD36_explosion7.png" name="explosion7"/>
+            <look fileName="C7C93E1597712BCACD6E75DCCFD1931A_explosion8.png" name="explosion8"/>
+          </lookList>
+          <soundList>
+            <sound fileName="E13E0F5F2E34969E8514F121BC45D645_explode4.mp3" name="explode4"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -1009,7 +1047,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="6AE15615E84C6EA587EF1CCC8308F075_enemy1.png" name="enemy1"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -1251,11 +1289,11 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="E13E0F5F2E34969E8514F121BC45D645_explode4.mp3" name="explode4"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png" name="explosion1"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
                 <brick type="RepeatBrick">
                   <commentedOut>false</commentedOut>
@@ -1323,8 +1361,21 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Enemy3">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="6AE15615E84C6EA587EF1CCC8308F075_enemy1.png" name="enemy1"/>
+            <look fileName="941E21431FE47DF1415B7B94AC175066_enemy2.png" name="enemy2"/>
+            <look fileName="50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png" name="explosion1"/>
+            <look fileName="5F3C4906D49694EC3ACE8D76AEA2EDBB_explosion2.png" name="explosion2"/>
+            <look fileName="5E1E67C1512AFDEC1F1D8A3FEE7DED29_explosion3.png" name="explosion3"/>
+            <look fileName="B614C1D375CEE4492337E182F521249A_explosion4.png" name="explosion4"/>
+            <look fileName="4B64BEA67EFAD5943BC087D35C07B49A_explosion5.png" name="explosion5"/>
+            <look fileName="A189888BA2005349801C9455CDC42E7B_explosion6.png" name="explosion6"/>
+            <look fileName="79F752FC400F14D30BDF623ACC5EDD36_explosion7.png" name="explosion7"/>
+            <look fileName="C7C93E1597712BCACD6E75DCCFD1931A_explosion8.png" name="explosion8"/>
+          </lookList>
+          <soundList>
+            <sound fileName="E13E0F5F2E34969E8514F121BC45D645_explode4.mp3" name="explode4"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -1346,7 +1397,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="6AE15615E84C6EA587EF1CCC8308F075_enemy1.png" name="enemy1"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -1588,11 +1639,11 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="E13E0F5F2E34969E8514F121BC45D645_explode4.mp3" name="explode4"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png" name="explosion1"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
                 <brick type="RepeatBrick">
                   <commentedOut>false</commentedOut>
@@ -1660,8 +1711,21 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Enemy4">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="6AE15615E84C6EA587EF1CCC8308F075_enemy1.png" name="enemy1"/>
+            <look fileName="941E21431FE47DF1415B7B94AC175066_enemy2.png" name="enemy2"/>
+            <look fileName="50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png" name="explosion1"/>
+            <look fileName="5F3C4906D49694EC3ACE8D76AEA2EDBB_explosion2.png" name="explosion2"/>
+            <look fileName="5E1E67C1512AFDEC1F1D8A3FEE7DED29_explosion3.png" name="explosion3"/>
+            <look fileName="B614C1D375CEE4492337E182F521249A_explosion4.png" name="explosion4"/>
+            <look fileName="4B64BEA67EFAD5943BC087D35C07B49A_explosion5.png" name="explosion5"/>
+            <look fileName="A189888BA2005349801C9455CDC42E7B_explosion6.png" name="explosion6"/>
+            <look fileName="79F752FC400F14D30BDF623ACC5EDD36_explosion7.png" name="explosion7"/>
+            <look fileName="C7C93E1597712BCACD6E75DCCFD1931A_explosion8.png" name="explosion8"/>
+          </lookList>
+          <soundList>
+            <sound fileName="E13E0F5F2E34969E8514F121BC45D645_explode4.mp3" name="explode4"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -1683,7 +1747,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="6AE15615E84C6EA587EF1CCC8308F075_enemy1.png" name="enemy1"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -1925,11 +1989,11 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="E13E0F5F2E34969E8514F121BC45D645_explode4.mp3" name="explode4"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png" name="explosion1"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
                 <brick type="RepeatBrick">
                   <commentedOut>false</commentedOut>
@@ -1997,7 +2061,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="End screen">
-          <lookList/>
+          <lookList>
+            <look fileName="469817C6324C625001A140CAC36D1E4E_end_screen.png" name="end_screen"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -2010,7 +2076,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="469817C6324C625001A140CAC36D1E4E_end_screen.png" name="end_screen"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SetSizeToBrick">
                   <commentedOut>false</commentedOut>

@@ -147,13 +147,6 @@
         <objectListOfList/>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick/userVariable"/>
-              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
-            </list>
-          </entry>
-          <entry>
             <object reference="../../../../objectList/object[3]"/>
             <list>
               <userVariable reference="../../../../../objectList/object[3]/scriptList/script/brickList/brick/userVariable"/>
@@ -163,6 +156,13 @@
             <object reference="../../../../objectList/object[2]"/>
             <list>
               <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
             </list>
           </entry>
         </objectVariableList>

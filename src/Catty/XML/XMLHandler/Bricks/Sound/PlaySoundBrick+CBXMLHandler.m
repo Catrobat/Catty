@@ -52,8 +52,17 @@
         NSString *xPath = [referenceAttribute stringValue];
         soundElement = [soundElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNil:soundElement message:@"Invalid reference in PlaySoundBrick. No or too many sounds found!"];
-        GDataXMLNode *nameElement = [soundElement childWithElementName:@"name"];
-        [XMLError exceptionIfNil:nameElement message:@"Sound element does not contain a name child element!"];
+        
+        GDataXMLNode *nameElement = nil;
+        if([context languageVersion] > 0.995)
+        {
+            nameElement = [soundElement attributeForName:@"name"];
+        } else
+        {
+            nameElement = [soundElement childWithElementName:@"name"];
+        }
+        [XMLError exceptionIfNil:nameElement message:@"Sound name not present"];
+        
         sound = [CBXMLParserHelper findSoundInArray:soundList withName:[nameElement stringValue]];
         [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
     } else {
@@ -62,20 +71,15 @@
         
         GDataXMLNode *soundName = nil;
         
-        NSArray *soundChildElements = [soundElement children];
-        
-        if([soundChildElements count] == 2){
-            //CBL 0995 or lower
-            
-            soundName = [soundElement childWithElementName:@"name"];
-            [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
-        } else {
-            //CBL 0996 or higher
-            
+        if([context languageVersion] >= 0.996)
+        {
             soundName = [soundElement attributeForName:@"name"];
-            [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
-        }
-        
+        } else
+        {
+            soundName = [soundElement childWithElementName:@"name"];
+        }        
+        [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
+
         sound = [CBXMLParserHelper findSoundInArray:soundList withName:[soundName stringValue]];
         
         if (sound == nil) {

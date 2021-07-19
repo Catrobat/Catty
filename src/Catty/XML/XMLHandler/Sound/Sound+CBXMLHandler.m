@@ -44,21 +44,18 @@
     if ([CBXMLParserHelper isReferenceElement: xmlElement]) {
         return [self parseSoundWithReferenceForElement:xmlElement withContext:context];
     }
-    NSArray *soundChildElements = [xmlElement children];
     
     GDataXMLNode *nameChildNode = nil;
     GDataXMLNode *fileNameChildNode = nil;
-        
-    if([soundChildElements count] == 2){
-        //CBL 0995 or lower
-        
-        nameChildNode = [xmlElement childWithElementName:@"name"];
-        fileNameChildNode = [xmlElement childWithElementName:@"fileName"];
-    } else {
-        //CBL 0996 or higher
-        
+    
+    if([context languageVersion] > 0.995)
+    {
         nameChildNode = [xmlElement attributeForName:@"name"];
         fileNameChildNode = [xmlElement attributeForName:@"fileName"];
+    } else
+    {
+        nameChildNode = [xmlElement childWithElementName:@"name"];
+        fileNameChildNode = [xmlElement childWithElementName:@"fileName"];
     }
     
     [XMLError exceptionIfNil:nameChildNode message:@"Sound name not present"];
@@ -88,8 +85,6 @@
     NSUInteger indexOfSound = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObject.soundList];
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound" xPathIndex:(indexOfSound+1) context:context];    
     
-    // vvv FIND REFERENCE AND USE PATH TO REFERNECE vvv
-    /*
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
     CBXMLPositionStack *positionStackOfSound = context.soundNamePositions[self.name];
     
@@ -98,12 +93,12 @@
                                                              toDestinationPositionStack:positionStackOfSound];
         [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
         return xmlElement;
-    } */
+    }
     
     [xmlElement addAttribute:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
     [xmlElement addAttribute:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
     
-    //context.soundNamePositions[self.name] = currentPositionStack;
+    context.soundNamePositions[self.name] = currentPositionStack;
     
     return xmlElement;
 }

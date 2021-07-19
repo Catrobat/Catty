@@ -32,7 +32,9 @@
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList/>
-          <soundList/>
+          <soundList>
+            <sound fileName="a49fd671df65fb1c1b5f93bb56b53c85_record.mp3" name="shot"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -166,7 +168,7 @@
               <brickList>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="a49fd671df65fb1c1b5f93bb56b53c85_record.mp3" name="shot"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -308,8 +310,12 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Airplane">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="6BC61066A43990301DB003201BD71ED1_look.png" name="look1"/>
+          </lookList>
+          <soundList>
+            <sound fileName="e47dbee99c20968043bcf8b5858c33e1_record.mp3" name="motor sound"/>
+          </soundList>
           <scriptList>
             <script type="WhenScript">
               <brickList>
@@ -357,7 +363,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="e47dbee99c20968043bcf8b5858c33e1_record.mp3" name="motor sound"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -400,7 +406,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Lower left tile">
-          <lookList/>
+          <lookList>
+            <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="WhenScript">
@@ -773,7 +781,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Shadow">
-          <lookList/>
+          <lookList>
+            <look fileName="139843B4866929D6E32C91DEFC627378_look.png" name="shadow"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1040,7 +1050,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Lower right tile">
-          <lookList/>
+          <lookList>
+            <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="WhenScript">
@@ -1429,7 +1441,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Upper left tile">
-          <lookList/>
+          <lookList>
+            <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="WhenScript">
@@ -1818,7 +1832,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Upper right tile">
-          <lookList/>
+          <lookList>
+            <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="WhenScript">
@@ -2215,7 +2231,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 1">
-          <lookList/>
+          <lookList>
+            <look fileName="1d5585df43abf806fcb7d38d343eab71_Aussehen.png" name="Bullet"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -2605,7 +2623,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 2">
-          <lookList/>
+          <lookList>
+            <look fileName="1d5585df43abf806fcb7d38d343eab71_Aussehen.png" name="Bullet"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -2995,7 +3015,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 3">
-          <lookList/>
+          <lookList>
+            <look fileName="1d5585df43abf806fcb7d38d343eab71_Aussehen.png" name="Bullet"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -3385,7 +3407,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 4">
-          <lookList/>
+          <lookList>
+            <look fileName="1d5585df43abf806fcb7d38d343eab71_Aussehen.png" name="Bullet"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -3775,7 +3799,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 5">
-          <lookList/>
+          <lookList>
+            <look fileName="1d5585df43abf806fcb7d38d343eab71_Aussehen.png" name="Bullet"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -4165,7 +4191,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 6">
-          <lookList/>
+          <lookList>
+            <look fileName="1d5585df43abf806fcb7d38d343eab71_Aussehen.png" name="Bullet"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -4555,7 +4583,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 7">
-          <lookList/>
+          <lookList>
+            <look fileName="1d5585df43abf806fcb7d38d343eab71_Aussehen.png" name="Bullet"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -4945,7 +4975,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Bullet 8">
-          <lookList/>
+          <lookList>
+            <look fileName="1d5585df43abf806fcb7d38d343eab71_Aussehen.png" name="Bullet"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -5335,8 +5367,40 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Opponent">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="8207cef1853f2216fba338520551073d_biplane.png" name="biplane"/>
+            <look fileName="49722412593944406ec5a9cfe7507e18_1.png" name="1"/>
+            <look fileName="bef864f1dda155cc239435cb96deddb8_2.png" name="2"/>
+            <look fileName="22c0b05a957a710db5b067104106a6a5_3.png" name="3"/>
+            <look fileName="8a6a60fb6a567c9c093865bd6b683e93_4.png" name="4"/>
+            <look fileName="b1f14807e1e6a7abdc14e2dd2e435228_5.png" name="5"/>
+            <look fileName="ae5dd939eeb629adcee13d71d0888b37_6.png" name="6"/>
+            <look fileName="19f1e2a71bb1887f060f063128b0e65d_7.png" name="7"/>
+            <look fileName="9d2ca7c3cff57c5b0843cb0b68b74c7c_8.png" name="8"/>
+            <look fileName="ff7020146d8469a70ffc18d65a7b4146_9.png" name="9"/>
+            <look fileName="0bc085bf5c4ec166923ff5263a8009c8_10.png" name="10"/>
+            <look fileName="a9145d4b4232a589fababbdeb5604d58_11.png" name="11"/>
+            <look fileName="83c9ccc4a3003176697501eaed23655e_12.png" name="12"/>
+            <look fileName="7edd613963ca27d1c38f3edbb7440b1b_13.png" name="13"/>
+            <look fileName="ba94d1931bb9455a0a8026e73a84c5d3_14.png" name="14"/>
+            <look fileName="0aa70faaec64a5f8663b587f836ea416_15.png" name="15"/>
+            <look fileName="67239fbb8168b7808e5cd847771eae12_16.png" name="16"/>
+            <look fileName="fc10d3cc626582b684da2f50a41d26f5_20.png" name="20"/>
+            <look fileName="999863fbe1d9d5f65015139f077c75e9_21.png" name="21"/>
+            <look fileName="21f8ff6741f646bf5d0d6bbb11190a55_22.png" name="22"/>
+            <look fileName="3987253f90eb1c3519590c8c3552630a_23.png" name="23"/>
+            <look fileName="257da6a68deee8147f26e42e6c5d2da9_24.png" name="24"/>
+            <look fileName="a0e39f1a26e868a48cae96f9d933292b_25.png" name="25"/>
+            <look fileName="115842ec861b6cd6669b7f63fbaee9a0_26.png" name="26"/>
+            <look fileName="f8273ed2883926c57532421a213c1b36_27.png" name="27"/>
+            <look fileName="8cdea0c57bfc7167381442f7ce56dbf6_28.png" name="28"/>
+            <look fileName="516639a82abc5f3ee149ca49a9f0dfc8_29.png" name="29"/>
+            <look fileName="44555f9a909124833c42f22f4d0a357f_30.png" name="30"/>
+            <look fileName="c466ff7ef4e9d07b526dfb3c6de91860_31.png" name="31"/>
+          </lookList>
+          <soundList>
+            <sound fileName="5952a60f91ed000cf2c46f645698c018_record.mp3" name="explosion"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -5752,7 +5816,7 @@
               <brickList>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="5952a60f91ed000cf2c46f645698c018_record.mp3" name="explosion"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -5816,7 +5880,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="49722412593944406ec5a9cfe7507e18_1.png" name="1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -5980,7 +6044,10 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Shadow and charcoaled hull of opponent">
-          <lookList/>
+          <lookList>
+            <look fileName="147b8c3820e368444896e5cb7cd1d26e_biplane.png" name="The biplane&apos;s shadow"/>
+            <look fileName="3b7ef2ab33281115bc50c14afd3e7205_biplane.png" name="The biplane&apos;s charcoaled hull"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -6105,7 +6172,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="3b7ef2ab33281115bc50c14afd3e7205_biplane.png" name="The biplane&apos;s charcoaled hull"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="PointInDirectionBrick">
                   <commentedOut>false</commentedOut>
@@ -6193,53 +6260,10 @@
             </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[13]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[13]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[13]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[13]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[13]/scriptList/script/brickList/brick/userVariable"/>
-            </list>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[9]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick/userVariable"/>
-            </list>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[2]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
-            </list>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[16]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[16]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[16]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[16]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[16]/scriptList/script/brickList/brick/userVariable"/>
-            </list>
-          </entry>
-          <entry>
             <object reference="../../../../objectList/object[17]"/>
             <list>
               <userVariable reference="../../../../../objectList/object[17]/scriptList/script/brickList/brick[3]/userVariable"/>
               <userVariable reference="../../../../../objectList/object[17]/scriptList/script/brickList/brick[7]/userVariable"/>
-            </list>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[12]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick/userVariable"/>
             </list>
           </entry>
           <entry>
@@ -6252,12 +6276,30 @@
             </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[10]"/>
+            <object reference="../../../../objectList/object[9]"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[10]/scriptList/script/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[10]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[10]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[10]/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[16]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[16]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[16]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[16]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[16]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[12]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick/userVariable"/>
             </list>
           </entry>
           <entry>
@@ -6267,6 +6309,31 @@
               <userVariable reference="../../../../../objectList/object[11]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
               <userVariable reference="../../../../../objectList/object[11]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
               <userVariable reference="../../../../../objectList/object[11]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[13]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[13]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[13]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[13]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[13]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[10]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[10]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[10]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[10]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[10]/scriptList/script/brickList/brick/userVariable"/>
             </list>
           </entry>
         </objectVariableList>
