@@ -30,12 +30,14 @@
 
 @class CatrobatProject;
 @class StoreProjectDownloader;
+@class ProjectManager;
 
 @interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
 @property (nonatomic, strong) StoreProjectDownloader *storeProjectDownloader;
+@property (nonatomic, strong) ProjectManager *projectManager;
 @property (nonatomic, strong) UIView *projectView;
 
 - (void)showLoadingView;

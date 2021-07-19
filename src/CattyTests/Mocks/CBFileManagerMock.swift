@@ -28,8 +28,8 @@ final class CBFileManagerMock: CBFileManager {
     var readWillFail = false
     var writeWillFail = false
 
-    private var existingFiles: [String]
-    private var existingDirectories: [String]
+    var existingFiles: [String]
+    var existingDirectories: [String]
     private var zipData: Data?
 
     init(filePath: [String], directoryPath: [String]) {

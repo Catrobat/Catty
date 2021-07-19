@@ -130,15 +130,6 @@
             }
             index += 1
         }
-    }
-
-    @objc(removeObjects:)
-    func removeObjects(_ objects: [SpriteObject]) {
-        for object in objects {
-            if self.objects().contains(object) {
-                self.removeObject(object)
-            }
-        }
         project?.saveToDisk(withNotification: true)
     }
 

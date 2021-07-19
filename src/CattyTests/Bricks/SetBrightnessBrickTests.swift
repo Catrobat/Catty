@@ -38,7 +38,7 @@ final class SetBrightnessBrickTests: AbstractBrickTest {
         script = WhenScript()
 
         object = SpriteObject()
-        project = ProjectManager.createProject(name: "a", projectId: "1")
+        project = ProjectManager.shared.createProject(name: "a", projectId: "1")
         object.scene = project.scene
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode

@@ -39,7 +39,7 @@ final class SetBackgroundByIndexBrickTest: XCTestCase {
     var look4: Look!
 
     override func setUp() {
-        project = ProjectManager.createProject(name: "setBackgroundByIndexTest", projectId: "1")
+        project = ProjectManager.shared.createProject(name: "setBackgroundByIndexTest", projectId: "1")
         spriteObject = project.scene.object(at: 0)
         spriteObject.scene = project.scene
         spriteObject.name = "SpriteObjectName"
