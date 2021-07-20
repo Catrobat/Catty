@@ -46,7 +46,7 @@
     } else {
         [XMLError exceptionIf:[lookChildElements count] notEquals:1
                       message:@"Look must contain a filename child node"];
-        GDataXMLNode *fileNameAttribute = [lookChildElements firstObject];
+        fileNameAttribute = [lookChildElements firstObject];
         [XMLError exceptionIfString:fileNameAttribute.name isNotEqualToString:@"fileName"
                             message:@"Look contains wrong child node"];
     }
