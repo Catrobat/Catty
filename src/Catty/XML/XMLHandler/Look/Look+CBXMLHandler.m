@@ -39,7 +39,7 @@
     NSArray *lookChildElements = [xmlElement children];
     GDataXMLNode *fileNameAttribute = nil;
     
-    if([context languageVersion] > 0.995)
+    if(round([context languageVersion] * 1000) > 995)
     {
         fileNameAttribute = [xmlElement attributeForName:@"fileName"];
         [XMLError exceptionIfNil:fileNameAttribute message:@"Look must contain a fileName attribute"];

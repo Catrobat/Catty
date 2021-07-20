@@ -48,7 +48,7 @@
     GDataXMLNode *nameChildNode = nil;
     GDataXMLNode *fileNameChildNode = nil;
     
-    if([context languageVersion] > 0.995)
+    if(round([context languageVersion] * 1000) > 995)
     {
         nameChildNode = [xmlElement attributeForName:@"name"];
         fileNameChildNode = [xmlElement attributeForName:@"fileName"];

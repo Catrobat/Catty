@@ -54,7 +54,8 @@
         [XMLError exceptionIfNil:soundElement message:@"Invalid reference in PlaySoundBrick. No or too many sounds found!"];
         
         GDataXMLNode *nameElement = nil;
-        if([context languageVersion] > 0.995)
+        
+        if(round([context languageVersion] * 1000) > 995)
         {
             nameElement = [soundElement attributeForName:@"name"];
         } else
@@ -71,7 +72,7 @@
         
         GDataXMLNode *soundName = nil;
         
-        if([context languageVersion] >= 0.996)
+        if(round([context languageVersion] * 1000) > 995)
         {
             soundName = [soundElement attributeForName:@"name"];
         } else
