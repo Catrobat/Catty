@@ -31,13 +31,15 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
     var project: Project!
     var object: SpriteObject!
     var script: WhenScript!
+    var projectManager: ProjectManager!
 
     override func setUp() {
         super.setUp()
         brick = ChangeBrightnessByNBrick()
         script = WhenScript()
         object = SpriteObject()
-        project = ProjectManager.createProject(name: "a", projectId: "1")
+        projectManager = ProjectManager()
+        project = projectManager.createProject(name: "a", projectId: "1")
         object.scene = project.scene
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode

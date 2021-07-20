@@ -143,26 +143,6 @@ final class SceneTest: XCTestCase {
         XCTAssertEqual(object3, scene.objects()[1])
     }
 
-    func testRemoveObjets() {
-        let object1 = SpriteObject()
-        object1.name = "testObject1"
-        scene.add(object: object1)
-
-        let object2 = SpriteObject()
-        object2.name = "testObject2"
-        scene.add(object: object2)
-
-        let object3 = SpriteObject()
-        object3.name = "testObject3"
-        scene.add(object: object3)
-
-        XCTAssertEqual(3, scene.objects().count)
-
-        scene.removeObjects([object1, object2])
-        XCTAssertEqual(1, scene.objects().count)
-        XCTAssertEqual(object3, scene.objects()[0])
-    }
-
     func testObjectExists() {
         let object1 = SpriteObject()
         object1.name = "testObject1"

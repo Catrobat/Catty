@@ -40,6 +40,7 @@
 @interface SceneTableViewController () <UINavigationBarDelegate, SetProjectDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
+@property (nonatomic, strong) ProjectManager *projectManager;
 @end
 
 @implementation SceneTableViewController
@@ -66,6 +67,7 @@
     [self.tableView registerClass:[ProjectTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.editableSections = @[@(kObjectSectionIndex)];
+    self.projectManager = [[ProjectManager alloc] init];;
     if (self.scene.project.header.programName) {
         self.navigationItem.title = self.scene.project.header.programName;
         self.title = self.scene.project.header.programName;
@@ -345,7 +347,7 @@
         SpriteObject *object = (SpriteObject*)[self.scene.objects objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
         [objectsToRemove addObject:object];
     }
-    [self.scene removeObjects:objectsToRemove];
+    [self.projectManager removeObjects:self.scene.project objects:objectsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.scene numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
     [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
