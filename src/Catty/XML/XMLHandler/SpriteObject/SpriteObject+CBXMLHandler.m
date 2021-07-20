@@ -214,7 +214,7 @@
     [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
 
     GDataXMLElement *lookListXmlElement = [GDataXMLElement elementWithName:@"lookList" context:context];
-    for (id look in self.lookList) {
+        for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
                       message:@"Invalid look instance given"];
         [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:context] context:context];

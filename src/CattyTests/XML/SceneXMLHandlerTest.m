@@ -108,7 +108,7 @@
 {
     self.scene = [[SceneMock alloc] initWithName:@"testMockScene"];
     
-    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList><object type=\"SingleSprite\" name=\"testObject\"><lookList/><soundList/><scriptList/><userBricks/><nfcTagList/></object></objectList><data><objectListOfList><entry><object reference=\"../../../../objectList/object\"/><list/></entry></objectListOfList><objectVariableList><entry><object reference=\"../../../../objectList/object\"/><list/></entry></objectVariableList><userBrickVariableList/></data><originalWidth>750</originalWidth><originalHeight>1334</originalHeight></scene>";
+    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList><object type=\"SingleSprite\" name=\"testObject\"><lookList/><soundList/><scriptList/><userBricks/><nfcTagList/></object></objectList><data><objectListOfList/><objectVariableList/><userBrickVariableList/></data></scene>";
     
     SpriteObject *object = [[SpriteObject alloc] init];
     object.name = @"testObject";
@@ -121,17 +121,17 @@
     
     GDataXMLElement *xmlElemet = [self.scene xmlElementWithContext:self.serializerContext];
     
-    XCTAssertEqual([xmlElemet childCount], 5);
+    XCTAssertEqual([xmlElemet childCount], 3);
     XCTAssertTrue([[xmlElemet XMLString] isEqualToString:expectedXml]);
 }
 
 - (void)testXmlElementWithContextWithOutObject
 {
     self.scene = [[SceneMock alloc] initWithName:@"testMockScene"];
-    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList/><data><objectListOfList/><objectVariableList/><userBrickVariableList/></data><originalWidth>750</originalWidth><originalHeight>1334</originalHeight></scene>";
+    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList/><data><objectListOfList/><objectVariableList/><userBrickVariableList/></data></scene>";
     GDataXMLElement *xmlElemet = [self.scene xmlElementWithContext:self.serializerContext];
     
-    XCTAssertEqual([xmlElemet childCount], 5);
+    XCTAssertEqual([xmlElemet childCount], 3);
     XCTAssertTrue([[xmlElemet XMLString] isEqualToString:expectedXml]);
 }
 

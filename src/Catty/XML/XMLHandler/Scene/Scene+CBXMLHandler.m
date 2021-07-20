@@ -142,14 +142,6 @@
     GDataXMLElement *userDataXmlElement = [userData serializeForObject:context];
     [sceneXmlElement addChild:userDataXmlElement context:context];
     
-    [XMLError exceptionIfNil:self.width message:@"Original Width not present"];
-    GDataXMLElement *originalWidth = [GDataXMLElement elementWithName:@"originalWidth" stringValue:self.width context:context];
-    [sceneXmlElement addChild:originalWidth context:context];
-    
-    [XMLError exceptionIfNil:self.height message:@"Original Hight not present"];
-    GDataXMLElement *originalHeight = [GDataXMLElement elementWithName:@"originalHeight" stringValue:self.height context:context];
-    [sceneXmlElement addChild:originalHeight context:context];
-    
     return sceneXmlElement;
 }
 

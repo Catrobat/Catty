@@ -46,7 +46,7 @@ extension SetBackgroundAndWaitBrick: CBXMLNodeProtocol {
             }
             setBackgroundAndWaitBrick.look = CBXMLParserHelper.findLook(in: lookList as? [Any], withName: nameAttribute.stringValue())
         } else {
-            guard let look = context.parse(from: xmlElement, withClass: Look.self as? CBXMLNodeProtocol.Type) as? Look else {
+            guard let look = context.parse(from: lookElement, withClass: Look.self as? CBXMLNodeProtocol.Type) as? Look else {
                     fatalError("Unable to parse look...")
                 }
             lookList?.add(look)

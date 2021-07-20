@@ -47,12 +47,15 @@
 {
     GDataXMLElement *brick = [super xmlElementForBrickType:@"PlaceAtBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.yPosition xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_POSITION"]];
-    [formulaList addChild:formula context:context];
-    formula = [self.xPosition xmlElementWithContext:context];
+    
+    GDataXMLElement *formula = [self.xPosition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"X_POSITION"]];
     [formulaList addChild:formula context:context];
+    
+    formula = [self.yPosition xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_POSITION"]];
+    [formulaList addChild:formula context:context];
+    
     [brick addChild:formulaList context:context];
     return brick;
 }

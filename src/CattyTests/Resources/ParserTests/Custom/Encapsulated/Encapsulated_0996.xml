@@ -39,7 +39,9 @@
                 <brick type="PointToBrick">
                   <commentedOut>false</commentedOut>
                   <pointedObject type="SingleSprite" name="test1">
-                    <lookList/>
+                    <lookList>
+                      <look fileName="1ac87f222ba4a7fc071b6bdb6b8729cc_automatic_screenshot.png" name="test1"/>
+                    </lookList>
                     <soundList/>
                     <scriptList>
                       <script type="StartScript">
@@ -47,7 +49,9 @@
                           <brick type="PointToBrick">
                             <commentedOut>false</commentedOut>
                             <pointedObject type="SingleSprite" name="test2">
-                              <lookList/>
+                              <lookList>
+                                <look fileName="035d2cf8aff4aef232c495e25e4cac41_automatic_screenshot.png" name="test2"/>
+                              </lookList>
                               <soundList/>
                               <scriptList>
                                 <script type="StartScript">
@@ -59,7 +63,9 @@
                                     <brick type="PointToBrick">
                                       <commentedOut>false</commentedOut>
                                       <pointedObject type="SingleSprite" name="test3">
-                                        <lookList/>
+                                        <lookList>
+                                          <look fileName="1118e901aac857c901d662d5f2830bf3_automatic_screenshot.png" name="test3"/>
+                                        </lookList>
                                         <soundList/>
                                         <scriptList>
                                           <script type="StartScript">

@@ -31,14 +31,16 @@
       <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
+          <lookList>
+            <look fileName="5A71C6F41035979503BA294F78A09336_background" name="background"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="5A71C6F41035979503BA294F78A09336_background" name="background"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -275,7 +277,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Airplane">
-          <lookList/>
+          <lookList>
+            <look fileName="6BC61066A43990301DB003201BD71ED1_look.png" name="look1"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -317,7 +321,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="6BC61066A43990301DB003201BD71ED1_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="WaitBrick">
                   <commentedOut>false</commentedOut>
@@ -401,7 +405,9 @@
         </object>
         <object reference="../object[2]/scriptList/script[2]/brickList/brick/pointedObject"/>
         <object type="SingleSprite" name="Shadow">
-          <lookList/>
+          <lookList>
+            <look fileName="139843B4866929D6E32C91DEFC627378_look.png" name="look1"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -448,7 +454,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="139843B4866929D6E32C91DEFC627378_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ComeToFrontBrick">
                   <commentedOut>false</commentedOut>
@@ -627,7 +633,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Lower left tile">
-          <lookList/>
+          <lookList>
+            <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -664,7 +672,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -995,7 +1003,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Lower right tile">
-          <lookList/>
+          <lookList>
+            <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1040,7 +1050,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1379,7 +1389,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Upper left tile">
-          <lookList/>
+          <lookList>
+            <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1424,7 +1436,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1763,7 +1775,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Upper right tile">
-          <lookList/>
+          <lookList>
+            <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -1816,7 +1830,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0FE096333242A2A86C4F09C3A6634C15_tiles.png" name="tiles"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>

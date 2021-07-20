@@ -300,6 +300,7 @@
     //------------------
     // Object Lists
     //------------------
+    /*
     GDataXMLElement *objectListOfListXmlElement = [GDataXMLElement elementWithName:@"objectListOfList" context:context];
     NSUInteger totalNumOfObjectLists = [context.spriteObjectList count];
     
@@ -335,11 +336,14 @@
         [entryXmlElement addChild:listXmlElement context:context];
         [objectListOfListXmlElement addChild:entryXmlElement context:context];
     }
-    [xmlElement addChild:objectListOfListXmlElement context:context];
+    [xmlElement addChild:objectListOfListXmlElement context:context]; */
+    
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"objectListOfList" context:context] context:context];
     
     //------------------
     // Object Variables
     //------------------
+    
     GDataXMLElement *objectVariableListXmlElement = [GDataXMLElement elementWithName:@"objectVariableList" context:context];
     NSUInteger totalNumOfObjectVariables = [context.spriteObjectList count];
     
@@ -354,7 +358,13 @@
         
         context.spriteObject = spriteObject;
         
+        NSArray *variables = ((SpriteObject*)spriteObject).userData.variables;
+        if ([variables count] == 0 ) {
+            continue;
+        }
+        
         GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
+        
         GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
         CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
@@ -365,7 +375,7 @@
         [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
 
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
-        NSArray *variables = ((SpriteObject*)spriteObject).userData.variables;
+        
         for (id variable in variables) {
             [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
                           message:@"Invalid user variable instance given"];
@@ -375,7 +385,7 @@
         [entryXmlElement addChild:listXmlElement context:context];
         [objectVariableListXmlElement addChild:entryXmlElement context:context];
     }
-    [xmlElement addChild:objectVariableListXmlElement context:context];
+    [xmlElement addChild:objectVariableListXmlElement context:context]; 
     
     [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
     
