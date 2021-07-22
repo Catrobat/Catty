@@ -108,4 +108,12 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
     func testEscapingChars() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "EscapingChars_0996")
     }
+
+    func testUserVariables() {
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "UserVariables_0996")
+    }
+
+    func testUserLists() {
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "UserLists_0996")
+    }
 }

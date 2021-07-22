@@ -434,6 +434,7 @@
 		4C3286152546D53D00C31F9D /* Pythagorean_Theorem_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3286142546D53D00C31F9D /* Pythagorean_Theorem_0993.xml */; };
 		4C3286212546D7CA00C31F9D /* UserVariables_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3286202546D7C900C31F9D /* UserVariables_0993.xml */; };
 		4C3286232546D81000C31F9D /* GoToBrick_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3286222546D80F00C31F9D /* GoToBrick_0993.xml */; };
+		4C33512426A9A32100FE961A /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33512326A9A32100FE961A /* 817.catrobat */; };
 		4C33F210214BC0200014044C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F20F214BC01F0014044C /* Default-568h@2x.png */; };
 		4C33F212214BC0390014044C /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F211214BC0390014044C /* My first project.catrobat */; };
 		4C33F214214BC0680014044C /* Document-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F213214BC0680014044C /* Document-Icon.png */; };
@@ -791,7 +792,6 @@
 		4CE05756266E2287008AD7FF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE05755266E2287008AD7FF /* FirebaseCrashlytics */; };
 		4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */; };
 		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
-		4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AD2660C39D007221DA /* 817.catrobat */; };
 		4CE3C4B02660E455007221DA /* CBSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */; };
 		4CE3C4B22660F388007221DA /* SetBackgroundAndWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B12660F387007221DA /* SetBackgroundAndWaitBrick+Instruction.swift */; };
 		4CE3C4B42660F3AC007221DA /* SetInstrumentBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */; };
@@ -843,6 +843,7 @@
 		4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */; };
 		4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */; };
 		4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */; };
+		4CF3C92926A9A90800F94FF1 /* UserLists_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CF3C92826A9A90800F94FF1 /* UserLists_0996.xml */; };
 		4CF429ED213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429EC213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift */; };
 		4CF429EF213A858D00B78897 /* CBConditionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429EE213A858D00B78897 /* CBConditionProtocol.swift */; };
 		4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F0213A876000B78897 /* RepeatBrick+Condition.swift */; };
@@ -2347,6 +2348,7 @@
 		4C3286142546D53D00C31F9D /* Pythagorean_Theorem_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_0993.xml; sourceTree = "<group>"; };
 		4C3286202546D7C900C31F9D /* UserVariables_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserVariables_0993.xml; sourceTree = "<group>"; };
 		4C3286222546D80F00C31F9D /* GoToBrick_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GoToBrick_0993.xml; sourceTree = "<group>"; };
+		4C33512326A9A32100FE961A /* 817.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = 817.catrobat; sourceTree = "<group>"; };
 		4C33F20F214BC01F0014044C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C33F211214BC0390014044C /* My first project.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = "My first project.catrobat"; path = "Resources/My first project.catrobat"; sourceTree = "<group>"; };
 		4C33F213214BC0680014044C /* Document-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Document-Icon.png"; path = "Resources/Document-Icon.png"; sourceTree = "<group>"; };
@@ -2744,7 +2746,6 @@
 		4CE0574B266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SetBackgroundByIndexBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeMock.swift; sourceTree = "<group>"; };
 		4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
-		4CE3C4AD2660C39D007221DA /* 817.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = 817.catrobat; path = CattyTests/Resources/ParserTests/ZipProjects/817.catrobat; sourceTree = SOURCE_ROOT; };
 		4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulerTests.swift; path = PlayerEngine/CBSchedulerTests.swift; sourceTree = "<group>"; };
 		4CE3C4B12660F387007221DA /* SetBackgroundAndWaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetBackgroundAndWaitBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetBackgroundAndWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetInstrumentBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetInstrumentBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -2798,6 +2799,7 @@
 		4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerXSensor.swift; sourceTree = "<group>"; };
 		4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerTouchedSensor.swift; sourceTree = "<group>"; };
 		4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateYearSensor.swift; sourceTree = "<group>"; };
+		4CF3C92826A9A90800F94FF1 /* UserLists_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserLists_0996.xml; sourceTree = "<group>"; };
 		4CF429EC213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IfThenLogicBeginBrick+Condition.swift"; sourceTree = "<group>"; };
 		4CF429EE213A858D00B78897 /* CBConditionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CBConditionProtocol.swift; path = PlayerEngine/Protocols/CBConditionProtocol.swift; sourceTree = "<group>"; };
 		4CF429F0213A876000B78897 /* RepeatBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatBrick+Condition.swift"; sourceTree = "<group>"; };
@@ -5060,14 +5062,6 @@
 			path = Embroidery;
 			sourceTree = "<group>";
 		};
-		4635B25525E82C5E00970CCA /* ZipProjects */ = {
-			isa = PBXGroup;
-			children = (
-				4CE3C4AD2660C39D007221DA /* 817.catrobat */,
-			);
-			path = ZipProjects;
-			sourceTree = "<group>";
-		};
 		4647D55823D8AF9F001A67F6 /* PrivacyPolicy */ = {
 			isa = PBXGroup;
 			children = (
@@ -5172,7 +5166,7 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				4635B25525E82C5E00970CCA /* ZipProjects */,
+				4C33512226A9A32100FE961A /* Archives */,
 				2ED4175F241120AF00AFE2FD /* Custom */,
 				2ED41693241120AE00AFE2FD /* UserProjects */,
 			);
@@ -5335,6 +5329,15 @@
 			path = CBXMLPropertyMapping;
 			sourceTree = "<group>";
 		};
+		4C33512226A9A32100FE961A /* Archives */ = {
+			isa = PBXGroup;
+			children = (
+				4C33512326A9A32100FE961A /* 817.catrobat */,
+			);
+			name = Archives;
+			path = CattyTests/Resources/ParserTests/Archives;
+			sourceTree = SOURCE_ROOT;
+		};
 		4C3746E622FC7AC3007B2BE1 /* BrickManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -5387,6 +5390,7 @@
 				E59108B626931E29008D254A /* UserVariables_0994.xml */,
 				E50E8568269ED52B00E76CE9 /* UserVariables_0995.xml */,
 				E598BBBB26A0299700D4825F /* UserVariables_0996.xml */,
+				4CF3C92826A9A90800F94FF1 /* UserLists_0996.xml */,
 				4C3FB91D2473B7B300D136A4 /* UserData_0991.xml */,
 				4C55CCFE24BF2BAE00FB8393 /* UserData_0992.xml */,
 				4C3285DE2546CE6000C31F9D /* UserData_0993.xml */,
@@ -10780,6 +10784,7 @@
 				2ED41879241120B000AFE2FD /* ElementOfListFunction0991.xml in Resources */,
 				2ED4184C241120B000AFE2FD /* Flappy_v3.0_093.xml in Resources */,
 				4C55CD1324BF2C5700FB8393 /* Sensors_0992.xml in Resources */,
+				4CF3C92926A9A90800F94FF1 /* UserLists_0996.xml in Resources */,
 				2ED417F4241120AF00AFE2FD /* Pythagorean_Theorem_095.xml in Resources */,
 				2ED41805241120AF00AFE2FD /* Pong_Starter_0993.xml in Resources */,
 				4C7C32BD24BDD086004716DB /* UserVariables_091.xml in Resources */,
@@ -10881,7 +10886,6 @@
 				2ED41851241120B000AFE2FD /* Flappy_v3.0_0994.xml in Resources */,
 				59B17E69252B362800F30695 /* StoreProjectReporter.reportProject.unexpectedError.json in Resources */,
 				2ED417F3241120AF00AFE2FD /* Pythagorean_Theorem_0991.xml in Resources */,
-				4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */,
 				2DCB4924212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */,
 				E50E8543269EC49500E76CE9 /* Air_fight_0.5_0995.xml in Resources */,
 				2DCB4916212E9B56005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */,
@@ -10901,6 +10905,7 @@
 				2ED417C2241120AF00AFE2FD /* Air_fight_0.5_098.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency_rgb.png in Resources */,
 				2D7BE51E21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json in Resources */,
+				4C33512426A9A32100FE961A /* 817.catrobat in Resources */,
 				4C55CD0F24BF2C0600FB8393 /* ReplaceItemInUserListBrick0992.xml in Resources */,
 				E598BBB026A0270300D4825F /* Memory_0996.xml in Resources */,
 				2DCB4928212EA477005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json in Resources */,

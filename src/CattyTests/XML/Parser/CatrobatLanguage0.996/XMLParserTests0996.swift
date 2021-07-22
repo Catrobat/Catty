@@ -92,4 +92,24 @@ class XMLParserTests0996: XMLAbstractTest {
         XCTAssertEqual(sound.name, "Aufnahme")
         XCTAssertEqual(sound.fileName, "6fa66a339e846455f1061d76e1c079df_Aufnahme.m4a")
     }
+
+    func testParseLocalLists() {
+        let project = self.getProjectForXML(xmlFile: "UserLists_0996")
+        let objects = project.scene.objects()
+        XCTAssertEqual(3, objects.count)
+
+        let backgroundObject = project.scene.object(at: 0)
+        XCTAssertEqual("Background", backgroundObject?.name)
+
+        let localLists = backgroundObject?.userData.lists()
+        XCTAssertEqual(1, localLists?.count)
+        XCTAssertEqual("localListBackground", localLists?[0].name)
+
+        let object = project.scene.object(at: 1)
+        XCTAssertEqual("Object1", object?.name)
+
+        let localListsObject = object?.userData.lists()
+        XCTAssertEqual(1, localListsObject?.count)
+        XCTAssertEqual("localListObject1", localListsObject?[0].name)
+    }
 }
