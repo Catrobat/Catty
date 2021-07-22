@@ -111,9 +111,9 @@
         <objectListOfList/>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object[2]"/>
+            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/pointedObject"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick/userVariable"/>
             </list>
           </entry>
           <entry>
@@ -123,9 +123,9 @@
             </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/pointedObject"/>
+            <object reference="../../../../objectList/object[2]"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
             </list>
           </entry>
         </objectVariableList>

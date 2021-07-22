@@ -45,9 +45,9 @@ extension SetLookBrick: CBXMLNodeProtocol {
             }
             setLookBrick.look = CBXMLParserHelper.findLook(in: lookList as? [Any], withName: nameAttribute.stringValue())
         } else {
-            guard let look = context.parse(from: xmlElement, withClass: Look.self as? CBXMLNodeProtocol.Type) as? Look else {
-                    fatalError("Unable to parse look...")
-                }
+            guard let look = context.parse(from: lookElement, withClass: Look.self as? CBXMLNodeProtocol.Type) as? Look else {
+                fatalError("Unable to parse look...")
+            }
             lookList?.add(look)
             setLookBrick.look = look
         }
@@ -66,6 +66,7 @@ extension SetLookBrick: CBXMLNodeProtocol {
                 let refPath = CBXMLSerializerHelper.relativeXPath(to: self.look, inLookList: context.spriteObject.lookList as? [Any], withDepth: depthOfResource)
 
                 referenceXMLElement?.addAttribute(GDataXMLElement.attribute(withName: "reference", escapedStringValue: refPath) as? GDataXMLNode)
+
                 brick?.addChild(referenceXMLElement, context: context)
             }
         }

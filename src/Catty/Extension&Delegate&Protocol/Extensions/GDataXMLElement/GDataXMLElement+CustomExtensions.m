@@ -302,7 +302,7 @@
         }
 
         for (GDataXMLElement *nodeChild in nodeChildren) {
-            if (![self isElementOrNode:child equalToElementOrNode:nodeChild]) {
+            if ([self isElementOrNode:child equalToElementOrNode:nodeChild]) {
                 found = true;
                 break;
             }

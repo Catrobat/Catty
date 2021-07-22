@@ -300,46 +300,13 @@
     //------------------
     // Object Lists
     //------------------
-    GDataXMLElement *objectListOfListXmlElement = [GDataXMLElement elementWithName:@"objectListOfList" context:context];
-    NSUInteger totalNumOfObjectLists = [context.spriteObjectList count];
     
-    for (NSUInteger index = 0; index < totalNumOfObjectLists; ++index) {
-        id spriteObject = [context.spriteObjectList objectAtIndex: index];
-        [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
-                      message:@"Instance in objectListOfLists at index: %lu is no SpriteObject", (unsigned long)index];
-        if (![context.spriteObjectList containsObject:spriteObject]) {
-            NSWarn(@"Error while serializing object list for object '%@': object does not exists!", ((SpriteObject*)spriteObject).name);
-            continue;
-        }
-        
-        context.spriteObject = spriteObject;
-        
-        GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
-        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
-        CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
-        CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
-                                                             toDestinationPositionStack:positionStackOfSpriteObject];
-        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference"
-                                                                              stringValue:refPath]];
-        [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
-        
-        GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
-        NSArray *lists = ((SpriteObject*)spriteObject).userData.lists;
-        for (id list in lists) {
-            [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
-                          message:@"Invalid user List instance given"];
-            GDataXMLElement *userListXmlElement = [(UserList*)list xmlElementWithContext:context];
-            [listXmlElement addChild:userListXmlElement context:context];
-        }
-        [entryXmlElement addChild:listXmlElement context:context];
-        [objectListOfListXmlElement addChild:entryXmlElement context:context];
-    }
-    [xmlElement addChild:objectListOfListXmlElement context:context];
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"objectListOfList" context:context] context:context];
     
     //------------------
     // Object Variables
     //------------------
+    
     GDataXMLElement *objectVariableListXmlElement = [GDataXMLElement elementWithName:@"objectVariableList" context:context];
     NSUInteger totalNumOfObjectVariables = [context.spriteObjectList count];
     
@@ -354,7 +321,13 @@
         
         context.spriteObject = spriteObject;
         
+        NSArray *variables = ((SpriteObject*)spriteObject).userData.variables;
+        if ([variables count] == 0 ) {
+            continue;
+        }
+        
         GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
+        
         GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
         CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
@@ -365,7 +338,7 @@
         [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
 
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
-        NSArray *variables = ((SpriteObject*)spriteObject).userData.variables;
+        
         for (id variable in variables) {
             [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
                           message:@"Invalid user variable instance given"];
@@ -375,7 +348,7 @@
         [entryXmlElement addChild:listXmlElement context:context];
         [objectVariableListXmlElement addChild:entryXmlElement context:context];
     }
-    [xmlElement addChild:objectVariableListXmlElement context:context];
+    [xmlElement addChild:objectVariableListXmlElement context:context]; 
     
     [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
     

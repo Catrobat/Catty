@@ -52,5 +52,10 @@
 
 - (id)parseFromElement:(GDataXMLElement*)xmlElement withClass:(Class<CBXMLNodeProtocol>)modelClass;
 - (id)mutableCopy;
+- (bool)isEqualToLanguageVersion:(CGFloat)languageVersion;
+- (bool)isGreaterThanOrEqualToLanguageVersion:(CGFloat)languageVersion;
+- (bool)isGreaterThanLanguageVersion:(CGFloat)languageVersion;
+- (bool)isSmallerThanOrEqualToLanguageVersion:(CGFloat)languageVersion;
+- (bool)isSmallerThanLanguageVersion:(CGFloat)languageVersion;
 
 @end

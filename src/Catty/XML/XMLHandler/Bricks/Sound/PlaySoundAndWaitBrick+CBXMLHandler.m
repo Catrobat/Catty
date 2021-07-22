@@ -54,17 +54,34 @@
         NSString *xPath = [referenceAttribute stringValue];
         soundElement = [soundElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNil:soundElement message:@"Invalid reference in PlaySoundAndWaitBrick. No or too many sounds found!"];
-        GDataXMLNode *nameElement = [soundElement childWithElementName:@"name"];
-        [XMLError exceptionIfNil:nameElement message:@"Sound element does not contain a name child element!"];
+        
+        GDataXMLNode *nameElement = nil;
+        if([context isGreaterThanLanguageVersion:0.995])
+        {
+            nameElement = [soundElement attributeForName:@"name"];
+        } else
+        {
+            nameElement = [soundElement childWithElementName:@"name"];
+        }
+        [XMLError exceptionIfNil:nameElement message:@"Sound name not present"];
+
         sound = [CBXMLParserHelper findSoundInArray:soundList withName:[nameElement stringValue]];
         [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
     } else {
         GDataXMLElement *soundElement = [xmlElement childWithElementName:@"sound"];
         [XMLError exceptionIfNil:soundElement message:@"sound element not present"];
         
-        GDataXMLElement *soundName = [soundElement childWithElementName:@"name"];
-        [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
+        GDataXMLNode *soundName = nil;
         
+        if([context isGreaterThanLanguageVersion:0.995])
+        {
+            soundName = [soundElement attributeForName:@"name"];
+        } else
+        {
+            soundName = [soundElement childWithElementName:@"name"];
+        }
+        [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
+
         sound = [CBXMLParserHelper findSoundInArray:soundList withName:[soundName stringValue]];
         
         if (sound == nil) {

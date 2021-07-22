@@ -38,7 +38,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Math Functions Test">
-          <lookList/>
+          <lookList>
+            <look fileName="6765E0879AD94DF0A56E63B480629239_Penguin.png" name="Penguin"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -316,7 +318,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Text Functions Test">
-          <lookList/>
+          <lookList>
+            <look fileName="A0408E76B8F7451C2BB95A25F25FCEE2_Panda.png" name="Panda"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -420,7 +424,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="List Functions Tests">
-          <lookList/>
+          <lookList>
+            <look fileName="DC5E6D6E91682D8F76BF935F4469B6C0_Luna Cat.png" name="Luna Cat"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">

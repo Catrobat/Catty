@@ -33,14 +33,20 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
       <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
+          <lookList>
+            <look fileName="badef45002a417da2beff83467fa129d_1384766224-picsay.png" name="Grid"/>
+          </lookList>
           <soundList/>
           <scriptList/>
           <userBricks/>
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="upper left">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="120DE1948877BB3465B66029A21220C0_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -86,7 +92,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="120DE1948877BB3465B66029A21220C0_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -164,14 +170,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -265,14 +271,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -305,7 +311,9 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Human starts">
-          <lookList/>
+          <lookList>
+            <look fileName="7BBC2E9502BB61FC1C9CE9DC0B2A8FAF_human starts.png" name="human starts"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -329,7 +337,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="7BBC2E9502BB61FC1C9CE9DC0B2A8FAF_human starts.png" name="human starts"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -414,7 +422,9 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Computer starts">
-          <lookList/>
+          <lookList>
+            <look fileName="79D35188C8A3E01703CAEBBA9EE989A3_computer starts.png" name="computer starts"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -438,7 +448,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="79D35188C8A3E01703CAEBBA9EE989A3_computer starts.png" name="computer starts"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -5341,7 +5351,11 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="upper middle">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="120DE1948877BB3465B66029A21220C0_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -5383,7 +5397,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="120DE1948877BB3465B66029A21220C0_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -5461,14 +5475,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -5562,14 +5576,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -5602,7 +5616,10 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Game Master">
-          <lookList/>
+          <lookList>
+            <look fileName="C6BA95858F9E1A36364022A4CD3B8462_catroidTemp.png" name="Tie!"/>
+            <look fileName="4A9E6C18C1EBB0089BD2362106E1D7DF_look.png" name="won!"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="WhenScript">
@@ -5813,7 +5830,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="C6BA95858F9E1A36364022A4CD3B8462_catroidTemp.png" name="Tie!"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -5944,7 +5961,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="4A9E6C18C1EBB0089BD2362106E1D7DF_look.png" name="won!"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -6708,7 +6725,11 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="upper right">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -6750,7 +6771,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -6828,14 +6849,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -6929,14 +6950,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -6969,7 +6990,11 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="middle left">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -7015,7 +7040,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -7093,14 +7118,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -7194,14 +7219,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -7234,7 +7259,11 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="middle">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -7276,7 +7305,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -7354,14 +7383,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -7455,14 +7484,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -7495,7 +7524,11 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="middle right">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -7537,7 +7570,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -7615,14 +7648,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -7716,14 +7749,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -7756,7 +7789,11 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="lower left">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -7806,7 +7843,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -7884,14 +7921,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -7985,14 +8022,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -8025,7 +8062,11 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="lower middle">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -8071,7 +8112,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="213C47E92373F364DB132EE1E0009E17_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -8149,14 +8190,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -8250,14 +8291,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -8290,7 +8331,11 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="lower right">
-          <lookList/>
+          <lookList>
+            <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+            <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+            <look fileName="E446D2EFC5EF3D4730D97C95A3AC1350_Aussehen.png" name="empty"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="BroadcastScript">
@@ -8336,7 +8381,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="E446D2EFC5EF3D4730D97C95A3AC1350_Aussehen.png" name="empty"/>
+                  <look reference="../../../../../lookList/look[3]"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -8414,14 +8459,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="9EAEAE9DFE0D26795BF649A9A34B543C_Aussehen.png" name="x"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="CB2F1C27A1C49E4F8D906D739B4FDC2E_Aussehen.png" name="o"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -8515,14 +8560,14 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[4]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="IfLogicElseBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../../../script[3]/brickList/brick[6]/look"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -8555,7 +8600,9 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="restart">
-          <lookList/>
+          <lookList>
+            <look fileName="1ccf20bba61c3fef6dcaabab0ea76cbd_2013-11-18_08-43-25.png" name="Restart"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
