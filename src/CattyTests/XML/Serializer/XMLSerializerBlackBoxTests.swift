@@ -89,10 +89,6 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "DisabledBricks_0996")
     }
 
-    func testUserData() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "UserData_0996")
-    }
-
     func testGoToBrickWithNotYetSerializedSpriteObject() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "GoToBrick_0996")
     }
