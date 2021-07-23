@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>45</applicationBuildNumber>
+    <applicationName>PR-1559#17</applicationName>
+    <applicationVersion>0.6.18</applicationVersion>
+    <catrobatLanguageVersion>0.998</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
+    <deviceName>iPhone9,3</deviceName>
+    <isCastProject>false</isCastProject>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>14.3</platformVersion>
+    <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>2-collisionFunctionTest0993</programName>
+    <remixOf></remixOf>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>1334</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>750</screenWidth>
+    <tags>Experimentell</tags>
+    <url></url>
+    <userHandle></userHandle>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Szene 1</name>
+      <objectList>
+        <object type="SingleSprite" name="Hintergrund">
+          <lookList/>
+          <soundList/>
+          <scriptList/>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+        <object type="SingleSprite" name="obj1">
+          <lookList>
+            <look fileName="1D7B2AA4911878B16BEB181724552A1F_coin-gold.png" name="coin-gold"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>collisionVar</userVariable>
+                </brick>
+                <brick type="ShowTextBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>100</value>
+                    </formula>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>200</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick/userVariable"/>
+                </brick>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="IfLogicBeginBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="IF_CONDITION">
+                      <type>COLLISION_FORMULA</type>
+                      <value>obj2</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick/userVariable"/>
+                </brick>
+                <brick type="IfLogicElseBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>2</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick/userVariable"/>
+                </brick>
+                <brick type="IfLogicEndBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+        <object type="SingleSprite" name="obj2">
+          <lookList>
+            <look fileName="F4852BB86549CCDC2D9F866F3AA321C6_coin-bronze.png" name="coin-bronze"/>
+          </lookList>
+          <soundList/>
+          <scriptList/>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+        <object type="SingleSprite" name="obj3">
+          <lookList>
+            <look fileName="F1852BB86549CCDC2D9F866F3AA321C6_unused-look.png" name="unused-look"/>
+          </lookList>
+          <soundList/>
+          <scriptList/>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <userBrickVariableList/>
+      </data>
+    </scene>
+  </scenes>
+  <programVariableList>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
+  </programVariableList>
+  <programListOfLists/>
+</program>
