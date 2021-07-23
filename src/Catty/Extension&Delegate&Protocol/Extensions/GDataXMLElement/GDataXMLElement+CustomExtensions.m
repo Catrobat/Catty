@@ -287,6 +287,10 @@
 
     NSArray *nodeChildren = [node childrenWithoutComments];
     NSUInteger nodeDataCount = 0;
+    
+    if (children.count != nodeChildren.count) {
+        return false;
+    }
 
     for (GDataXMLElement *nodeChild in nodeChildren) {
         nodeDataCount += [nodeChild childWithElementName:@"list"].childCount;
