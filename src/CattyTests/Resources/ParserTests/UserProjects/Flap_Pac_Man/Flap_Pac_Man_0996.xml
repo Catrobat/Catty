@@ -31,14 +31,17 @@
       <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
+          <lookList>
+            <look fileName="051195b0e4b30af4f23eea7e6e0c33ce_PacTunnel2-small.png" name="PacTunnel2-small"/>
+            <look fileName="dcd67133f3e176357e4c9b21dfbc0441_pantunnel3-small.png" name="pantunnel3-small"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="dcd67133f3e176357e4c9b21dfbc0441_pantunnel3-small.png" name="pantunnel3-small"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="SetSizeToBrick">
                   <commentedOut>false</commentedOut>
@@ -175,8 +178,14 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="FlaPacMan">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="5507c93676ade40a946fff42f65d06ba_pacman fly2-small.png" name="pacman fly2-small"/>
+            <look fileName="5babed09eaa5c6fd2b8d254b143fcf63_pacman fly3-small.png" name="pacman fly3-small"/>
+          </lookList>
+          <soundList>
+            <sound fileName="9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav" name="Evolution FX4"/>
+            <sound fileName="cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav" name="Evo2MinusScore2"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -376,7 +385,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav" name="Evo2MinusScore2"/>
+                  <sound reference="../../../../../soundList/sound[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -563,7 +572,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav" name="Evolution FX4"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="RepeatBrick">
                   <commentedOut>false</commentedOut>
@@ -613,7 +622,10 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="ghost">
-          <lookList/>
+          <lookList>
+            <look fileName="c955a9c72ba1586233c0340d1bbdb0d0_pacghost1-small.png" name="ghost"/>
+            <look fileName="bd84cae5c25994fbd6b4f96bfbc08380_pacghost2-small.png" name="pacghost2-small"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -745,7 +757,17 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="Text">
-          <lookList/>
+          <lookList>
+            <look fileName="cde847f616b8ddc6b26f1efe9b16a76a_FlapPac.png" name="FlapPac"/>
+            <look fileName="2407816992a8db03c20ff0d4c07fae35_Measly.png" name="Measly"/>
+            <look fileName="7f0a00899636f0ce0f86529eef0ad054_Sluggish.png" name="Sluggish"/>
+            <look fileName="350feb87a13c06d5612f08c246dc3186_Focused.png" name="Focused"/>
+            <look fileName="abcd93cf4f00bb2b4347acc9df1a171a_Eager.png" name="Eager"/>
+            <look fileName="ef3f8170e2f48888402afe83e05ed736_Dynamic.png" name="Dynamic"/>
+            <look fileName="4ef1585289c08a04d6da8c8cb0d1423d_Go-Go.png" name="Go-Go"/>
+            <look fileName="df4cf452f89b3a13456484a33c7f7c9a_Mega.png" name="Mega"/>
+            <look fileName="6f7e2c0549e9346f7157972d8f45b4aa_Fantastic.png" name="Fantastic"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -800,7 +822,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="cde847f616b8ddc6b26f1efe9b16a76a_FlapPac.png" name="FlapPac"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -856,7 +878,7 @@
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../brick[3]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="RepeatBrick">
                   <commentedOut>false</commentedOut>
@@ -972,8 +994,14 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="FlaPacMan_Copy">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="5507c93676ade40a946fff42f65d06ba_pacman fly2-small.png" name="pacman fly2-small"/>
+            <look fileName="5babed09eaa5c6fd2b8d254b143fcf63_pacman fly3-small.png" name="pacman fly3-small"/>
+          </lookList>
+          <soundList>
+            <sound fileName="9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav" name="Evolution FX4"/>
+            <sound fileName="cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav" name="Evo2MinusScore2"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -1175,7 +1203,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav" name="Evo2MinusScore2"/>
+                  <sound reference="../../../../../soundList/sound[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1362,7 +1390,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav" name="Evolution FX4"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="RepeatBrick">
                   <commentedOut>false</commentedOut>
@@ -1412,8 +1440,14 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="FlaPacMan_Copy1">
-          <lookList/>
-          <soundList/>
+          <lookList>
+            <look fileName="5507c93676ade40a946fff42f65d06ba_pacman fly2-small.png" name="pacman fly2-small"/>
+            <look fileName="5babed09eaa5c6fd2b8d254b143fcf63_pacman fly3-small.png" name="pacman fly3-small"/>
+          </lookList>
+          <soundList>
+            <sound fileName="9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav" name="Evolution FX4"/>
+            <sound fileName="cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav" name="Evo2MinusScore2"/>
+          </soundList>
           <scriptList>
             <script type="StartScript">
               <brickList>
@@ -1619,7 +1653,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav" name="Evo2MinusScore2"/>
+                  <sound reference="../../../../../soundList/sound[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1806,7 +1840,7 @@
                 </brick>
                 <brick type="PlaySoundBrick">
                   <commentedOut>false</commentedOut>
-                  <sound fileName="9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav" name="Evolution FX4"/>
+                  <sound reference="../../../../../soundList/sound"/>
                 </brick>
                 <brick type="RepeatBrick">
                   <commentedOut>false</commentedOut>
@@ -1860,6 +1894,14 @@
         <objectListOfList/>
         <objectVariableList>
           <entry>
+            <object reference="../../../../objectList/object[5]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[10]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+            </list>
+          </entry>
+          <entry>
             <object reference="../../../../objectList/object[2]"/>
             <list>
               <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
@@ -1873,14 +1915,6 @@
               <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
               <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[10]/userVariable"/>
               <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
-            </list>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[5]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[10]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
             </list>
           </entry>
         </objectVariableList>

@@ -3,7 +3,7 @@
   "interactions" : [
     {
       "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=Galaxy&max_version=0.995&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=Galaxy&max_version=0.996&limit=20&offset=0",
         "method" : "GET"
       },
       "recorded_at" : 1619948134.750174,
@@ -23,7 +23,7 @@
           "server-timing" : "dtRpid;desc=\"-1699487694\"",
           "Pragma" : "no-cache"
         },
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=Galaxy&max_version=0.995&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=Galaxy&max_version=0.996&limit=20&offset=0",
         "body" : [
           {
             "id" : "20320",

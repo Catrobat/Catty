@@ -287,6 +287,10 @@
 
     NSArray *nodeChildren = [node childrenWithoutComments];
     NSUInteger nodeDataCount = 0;
+    
+    if (children.count != nodeChildren.count) {
+        return false;
+    }
 
     for (GDataXMLElement *nodeChild in nodeChildren) {
         nodeDataCount += [nodeChild childWithElementName:@"list"].childCount;
@@ -302,7 +306,7 @@
         }
 
         for (GDataXMLElement *nodeChild in nodeChildren) {
-            if (![self isElementOrNode:child equalToElementOrNode:nodeChild]) {
+            if ([self isElementOrNode:child equalToElementOrNode:nodeChild]) {
                 found = true;
                 break;
             }

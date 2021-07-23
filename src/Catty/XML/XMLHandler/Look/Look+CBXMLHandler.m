@@ -37,12 +37,21 @@
     GDataXMLNode *nameAttribute = [xmlElement attributeForName:@"name"];
     [XMLError exceptionIfNil:nameAttribute message:@"Look must contain a name attribute"];
     NSArray *lookChildElements = [xmlElement children];
-    [XMLError exceptionIf:[lookChildElements count] notEquals:1
-                  message:@"Look must contain a filename child node"];
-    GDataXMLNode *fileNameElement = [lookChildElements firstObject];
-    [XMLError exceptionIfString:fileNameElement.name isNotEqualToString:@"fileName"
-                        message:@"Look contains wrong child node"];
-    Look *look = [[Look alloc] initWithName:[nameAttribute stringValue] andPath:[fileNameElement stringValue]];
+    GDataXMLNode *fileNameAttribute = nil;
+    
+    if([context isGreaterThanLanguageVersion:0.995])
+    {
+        fileNameAttribute = [xmlElement attributeForName:@"fileName"];
+        [XMLError exceptionIfNil:fileNameAttribute message:@"Look must contain a fileName attribute"];
+    } else {
+        [XMLError exceptionIf:[lookChildElements count] notEquals:1
+                      message:@"Look must contain a filename child node"];
+        fileNameAttribute = [lookChildElements firstObject];
+        [XMLError exceptionIfString:fileNameAttribute.name isNotEqualToString:@"fileName"
+                            message:@"Look contains wrong child node"];
+    }
+    
+    Look *look = [[Look alloc] initWithName:[nameAttribute stringValue] andPath:[fileNameAttribute stringValue]];
     return look;
 }
 
@@ -51,9 +60,13 @@
 {
     NSUInteger indexOfLook = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObject.lookList];
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"look" xPathIndex:(indexOfLook+1) context:context];
+    
+    [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"fileName" escapedStringValue:self.fileName]];
     [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName
-                                                  context:context] context:context];
+    
+    //[xmlElement addAttribute:[GDataXMLElement attributeWithName:@"fileName" escapedStringValue:self.fileName]];
+    //[xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
+    
     return xmlElement;
 }
 

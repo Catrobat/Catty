@@ -413,7 +413,6 @@
 		4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */; };
 		4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */; };
 		4C3285DD2546CE4300C31F9D /* CameraBricks_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285DC2546CE4300C31F9D /* CameraBricks_0993.xml */; };
-		4C3285DF2546CE6000C31F9D /* UserData_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285DE2546CE6000C31F9D /* UserData_0993.xml */; };
 		4C3285E12546CE9400C31F9D /* Encapsulated_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285E02546CE9400C31F9D /* Encapsulated_0993.xml */; };
 		4C3285E52546CEF000C31F9D /* EscapingChars_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285E42546CEF000C31F9D /* EscapingChars_0993.xml */; };
 		4C3285E92546CF3B00C31F9D /* LedFlashBrick0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285E82546CF3B00C31F9D /* LedFlashBrick0993.xml */; };
@@ -434,6 +433,7 @@
 		4C3286152546D53D00C31F9D /* Pythagorean_Theorem_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3286142546D53D00C31F9D /* Pythagorean_Theorem_0993.xml */; };
 		4C3286212546D7CA00C31F9D /* UserVariables_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3286202546D7C900C31F9D /* UserVariables_0993.xml */; };
 		4C3286232546D81000C31F9D /* GoToBrick_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3286222546D80F00C31F9D /* GoToBrick_0993.xml */; };
+		4C33512426A9A32100FE961A /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33512326A9A32100FE961A /* 817.catrobat */; };
 		4C33F210214BC0200014044C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F20F214BC01F0014044C /* Default-568h@2x.png */; };
 		4C33F212214BC0390014044C /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F211214BC0390014044C /* My first project.catrobat */; };
 		4C33F214214BC0680014044C /* Document-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F213214BC0680014044C /* Document-Icon.png */; };
@@ -457,7 +457,6 @@
 		4C3A5CAB21D3B967008FD83F /* SmallerThanOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CAA21D3B967008FD83F /* SmallerThanOperatorTest.swift */; };
 		4C3A5CAD21D3BAB9008FD83F /* GreaterThanOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CAC21D3BAB9008FD83F /* GreaterThanOperatorTest.swift */; };
 		4C3B151B23F07C7800527D4A /* ErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B151A23F07C7800527D4A /* ErrorMock.swift */; };
-		4C3FB9202473B7B300D136A4 /* UserData_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3FB91D2473B7B300D136A4 /* UserData_0991.xml */; };
 		4C4778B0267C7B2400CAF398 /* URLSessionJsonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778AF267C7B2300CAF398 /* URLSessionJsonExtension.swift */; };
 		4C4778B7267C7FC800CAF398 /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778B2267C7FC800CAF398 /* StageTests.swift */; };
 		4C4778B8267C7FC800CAF398 /* LineShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778B3267C7FC800CAF398 /* LineShapeNodeTests.swift */; };
@@ -528,7 +527,6 @@
 		4C55CCF524BF2B2800FB8393 /* Tic_Tac_Toe_Master_0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C55CCF424BF2B2800FB8393 /* Tic_Tac_Toe_Master_0992.xml */; };
 		4C55CCF924BF2B7F00FB8393 /* DisabledBricks_0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C55CCF824BF2B7F00FB8393 /* DisabledBricks_0992.xml */; };
 		4C55CCFB24BF2B9300FB8393 /* CameraBricks_0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C55CCFA24BF2B9300FB8393 /* CameraBricks_0992.xml */; };
-		4C55CCFF24BF2BAE00FB8393 /* UserData_0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C55CCFE24BF2BAE00FB8393 /* UserData_0992.xml */; };
 		4C55CD0124BF2BBD00FB8393 /* Encapsulated_0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C55CD0024BF2BBD00FB8393 /* Encapsulated_0992.xml */; };
 		4C55CD0324BF2BCD00FB8393 /* EscapingChars_0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C55CD0224BF2BCD00FB8393 /* EscapingChars_0992.xml */; };
 		4C55CD0524BF2BD900FB8393 /* LedFlashBrick0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C55CD0424BF2BD900FB8393 /* LedFlashBrick0992.xml */; };
@@ -791,7 +789,6 @@
 		4CE05756266E2287008AD7FF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE05755266E2287008AD7FF /* FirebaseCrashlytics */; };
 		4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */; };
 		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
-		4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AD2660C39D007221DA /* 817.catrobat */; };
 		4CE3C4B02660E455007221DA /* CBSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */; };
 		4CE3C4B22660F388007221DA /* SetBackgroundAndWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B12660F387007221DA /* SetBackgroundAndWaitBrick+Instruction.swift */; };
 		4CE3C4B42660F3AC007221DA /* SetInstrumentBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */; };
@@ -843,6 +840,7 @@
 		4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */; };
 		4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */; };
 		4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */; };
+		4CF3C92926A9A90800F94FF1 /* UserLists_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CF3C92826A9A90800F94FF1 /* UserLists_0996.xml */; };
 		4CF429ED213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429EC213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift */; };
 		4CF429EF213A858D00B78897 /* CBConditionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429EE213A858D00B78897 /* CBConditionProtocol.swift */; };
 		4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F0213A876000B78897 /* RepeatBrick+Condition.swift */; };
@@ -1668,7 +1666,6 @@
 		E50E8559269EC5C300E76CE9 /* ValidProjectAllBricks0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8558269EC5C200E76CE9 /* ValidProjectAllBricks0995.xml */; };
 		E50E855B269EC5DA00E76CE9 /* LogicBricks_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E855A269EC5DA00E76CE9 /* LogicBricks_0995.xml */; };
 		E50E855D269EC5FC00E76CE9 /* DisabledBricks_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E855C269EC5FC00E76CE9 /* DisabledBricks_0995.xml */; };
-		E50E855F269EC62200E76CE9 /* UserData_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E855E269EC62200E76CE9 /* UserData_0995.xml */; };
 		E50E8561269EC63800E76CE9 /* GoToBrick_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8560269EC63800E76CE9 /* GoToBrick_0995.xml */; };
 		E50E8563269EC64D00E76CE9 /* collisionTest0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8562269EC64D00E76CE9 /* collisionTest0995.xml */; };
 		E50E8565269EC67000E76CE9 /* EscapingChars_0995.xml in Resources */ = {isa = PBXBuildFile; fileRef = E50E8564269EC66F00E76CE9 /* EscapingChars_0995.xml */; };
@@ -1681,6 +1678,7 @@
 		E5103DEE25CAE67300A32DF8 /* StagePresenterSideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */; };
 		E55F4287261335360005DB5A /* CBSpriteNodePhysicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F4286261335360005DB5A /* CBSpriteNodePhysicsTests.swift */; };
 		E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E564EBE0255D60F4001F0CD0 /* PlayButton.swift */; };
+		E57789D626A6FA8F00C51520 /* XMLParserTests0996.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57789D526A6FA8F00C51520 /* XMLParserTests0996.swift */; };
 		E577F0462563C5A400368C18 /* BrickCategoryOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */; };
 		E577F04A2563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577F0492563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift */; };
 		E579F105253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */; };
@@ -1699,7 +1697,6 @@
 		E57E6D8B2540427000E775DF /* SpeakBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */; };
 		E57E6D8F2540552F00E775DF /* AddItemToUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */; };
 		E59108A2268F1682008D254A /* XMLParserBlackBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */; };
-		E59108B526931E21008D254A /* UserData_0994.xml in Resources */ = {isa = PBXBuildFile; fileRef = E59108B426931E21008D254A /* UserData_0994.xml */; };
 		E59108B726931E29008D254A /* UserVariables_0994.xml in Resources */ = {isa = PBXBuildFile; fileRef = E59108B626931E29008D254A /* UserVariables_0994.xml */; };
 		E59108B926931E49008D254A /* DisabledBricks_0994.xml in Resources */ = {isa = PBXBuildFile; fileRef = E59108B826931E49008D254A /* DisabledBricks_0994.xml */; };
 		E59108BB26931E5C008D254A /* Encapsulated_0994.xml in Resources */ = {isa = PBXBuildFile; fileRef = E59108BA26931E5B008D254A /* Encapsulated_0994.xml */; };
@@ -1731,7 +1728,6 @@
 		E598BBB426A0272100D4825F /* Pong_Starter_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = E598BBB326A0272100D4825F /* Pong_Starter_0996.xml */; };
 		E598BBB626A0272E00D4825F /* Pythagorean_Theorem_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = E598BBB526A0272D00D4825F /* Pythagorean_Theorem_0996.xml */; };
 		E598BBB826A0273B00D4825F /* Tic_Tac_Toe_Master_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = E598BBB726A0273B00D4825F /* Tic_Tac_Toe_Master_0996.xml */; };
-		E598BBBA26A0298E00D4825F /* UserData_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = E598BBB926A0298E00D4825F /* UserData_0996.xml */; };
 		E598BBBC26A0299700D4825F /* UserVariables_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = E598BBBB26A0299700D4825F /* UserVariables_0996.xml */; };
 		E598BBBE26A029A900D4825F /* DisabledBricks_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = E598BBBD26A029A900D4825F /* DisabledBricks_0996.xml */; };
 		E598BBC026A029B800D4825F /* Encapsulated_0996.xml in Resources */ = {isa = PBXBuildFile; fileRef = E598BBBF26A029B700D4825F /* Encapsulated_0996.xml */; };
@@ -1749,6 +1745,7 @@
 		E5E1E5AE25780E3200D2F1BC /* SetLookByIndexBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */; };
 		E5E1E5B2257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */; };
 		E5E1E5B42578117400D2F1BC /* SetLookByIndexBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */; };
+		E5E6D84626A83FDD0073C010 /* CBXMLParserContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6D84526A83FDC0073C010 /* CBXMLParserContextTests.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
 		F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* TimeHourSensor.swift */; };
@@ -2324,7 +2321,6 @@
 		4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLPropertyMapping.m; sourceTree = "<group>"; };
 		4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DisabledBricks_0993.xml; sourceTree = "<group>"; };
 		4C3285DC2546CE4300C31F9D /* CameraBricks_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CameraBricks_0993.xml; sourceTree = "<group>"; };
-		4C3285DE2546CE6000C31F9D /* UserData_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserData_0993.xml; sourceTree = "<group>"; };
 		4C3285E02546CE9400C31F9D /* Encapsulated_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_0993.xml; sourceTree = "<group>"; };
 		4C3285E42546CEF000C31F9D /* EscapingChars_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EscapingChars_0993.xml; sourceTree = "<group>"; };
 		4C3285E82546CF3B00C31F9D /* LedFlashBrick0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LedFlashBrick0993.xml; sourceTree = "<group>"; };
@@ -2345,6 +2341,7 @@
 		4C3286142546D53D00C31F9D /* Pythagorean_Theorem_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_0993.xml; sourceTree = "<group>"; };
 		4C3286202546D7C900C31F9D /* UserVariables_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserVariables_0993.xml; sourceTree = "<group>"; };
 		4C3286222546D80F00C31F9D /* GoToBrick_0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GoToBrick_0993.xml; sourceTree = "<group>"; };
+		4C33512326A9A32100FE961A /* 817.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = 817.catrobat; sourceTree = "<group>"; };
 		4C33F20F214BC01F0014044C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C33F211214BC0390014044C /* My first project.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = "My first project.catrobat"; path = "Resources/My first project.catrobat"; sourceTree = "<group>"; };
 		4C33F213214BC0680014044C /* Document-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Document-Icon.png"; path = "Resources/Document-Icon.png"; sourceTree = "<group>"; };
@@ -2370,7 +2367,6 @@
 		4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickCellDataProtocol.h; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3B151A23F07C7800527D4A /* ErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMock.swift; sourceTree = "<group>"; };
-		4C3FB91D2473B7B300D136A4 /* UserData_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserData_0991.xml; sourceTree = "<group>"; };
 		4C4778AF267C7B2300CAF398 /* URLSessionJsonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionJsonExtension.swift; sourceTree = "<group>"; };
 		4C4778B2267C7FC800CAF398 /* StageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageTests.swift; sourceTree = "<group>"; };
 		4C4778B3267C7FC800CAF398 /* LineShapeNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineShapeNodeTests.swift; sourceTree = "<group>"; };
@@ -2454,7 +2450,6 @@
 		4C55CCF424BF2B2800FB8393 /* Tic_Tac_Toe_Master_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_0992.xml; sourceTree = "<group>"; };
 		4C55CCF824BF2B7F00FB8393 /* DisabledBricks_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DisabledBricks_0992.xml; sourceTree = "<group>"; };
 		4C55CCFA24BF2B9300FB8393 /* CameraBricks_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CameraBricks_0992.xml; sourceTree = "<group>"; };
-		4C55CCFE24BF2BAE00FB8393 /* UserData_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserData_0992.xml; sourceTree = "<group>"; };
 		4C55CD0024BF2BBD00FB8393 /* Encapsulated_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_0992.xml; sourceTree = "<group>"; };
 		4C55CD0224BF2BCD00FB8393 /* EscapingChars_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EscapingChars_0992.xml; sourceTree = "<group>"; };
 		4C55CD0424BF2BD900FB8393 /* LedFlashBrick0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LedFlashBrick0992.xml; sourceTree = "<group>"; };
@@ -2742,7 +2737,6 @@
 		4CE0574B266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SetBackgroundByIndexBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeMock.swift; sourceTree = "<group>"; };
 		4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
-		4CE3C4AD2660C39D007221DA /* 817.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = 817.catrobat; path = CattyTests/Resources/ParserTests/ZipProjects/817.catrobat; sourceTree = SOURCE_ROOT; };
 		4CE3C4AF2660E455007221DA /* CBSchedulerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulerTests.swift; path = PlayerEngine/CBSchedulerTests.swift; sourceTree = "<group>"; };
 		4CE3C4B12660F387007221DA /* SetBackgroundAndWaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetBackgroundAndWaitBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetBackgroundAndWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4CE3C4B32660F3AC007221DA /* SetInstrumentBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetInstrumentBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetInstrumentBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -2796,6 +2790,7 @@
 		4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerXSensor.swift; sourceTree = "<group>"; };
 		4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerTouchedSensor.swift; sourceTree = "<group>"; };
 		4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateYearSensor.swift; sourceTree = "<group>"; };
+		4CF3C92826A9A90800F94FF1 /* UserLists_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserLists_0996.xml; sourceTree = "<group>"; };
 		4CF429EC213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IfThenLogicBeginBrick+Condition.swift"; sourceTree = "<group>"; };
 		4CF429EE213A858D00B78897 /* CBConditionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CBConditionProtocol.swift; path = PlayerEngine/Protocols/CBConditionProtocol.swift; sourceTree = "<group>"; };
 		4CF429F0213A876000B78897 /* RepeatBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatBrick+Condition.swift"; sourceTree = "<group>"; };
@@ -4085,7 +4080,6 @@
 		E50E8558269EC5C200E76CE9 /* ValidProjectAllBricks0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProjectAllBricks0995.xml; sourceTree = "<group>"; };
 		E50E855A269EC5DA00E76CE9 /* LogicBricks_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LogicBricks_0995.xml; sourceTree = "<group>"; };
 		E50E855C269EC5FC00E76CE9 /* DisabledBricks_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DisabledBricks_0995.xml; sourceTree = "<group>"; };
-		E50E855E269EC62200E76CE9 /* UserData_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserData_0995.xml; sourceTree = "<group>"; };
 		E50E8560269EC63800E76CE9 /* GoToBrick_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GoToBrick_0995.xml; sourceTree = "<group>"; };
 		E50E8562269EC64D00E76CE9 /* collisionTest0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = collisionTest0995.xml; sourceTree = "<group>"; };
 		E50E8564269EC66F00E76CE9 /* EscapingChars_0995.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EscapingChars_0995.xml; sourceTree = "<group>"; };
@@ -4100,6 +4094,7 @@
 		E55F4286261335360005DB5A /* CBSpriteNodePhysicsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePhysicsTests.swift; sourceTree = "<group>"; };
 		E564EBE0255D60F4001F0CD0 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		E57396A397CC08132F593B32 /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E57789D526A6FA8F00C51520 /* XMLParserTests0996.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests0996.swift; sourceTree = "<group>"; };
 		E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewController.swift; sourceTree = "<group>"; };
 		E577F0492563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveBackwardBrickTests.swift; sourceTree = "<group>"; };
@@ -4118,7 +4113,6 @@
 		E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakBrickTests.swift; sourceTree = "<group>"; };
 		E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToUserListBrickTests.swift; sourceTree = "<group>"; };
 		E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests.swift; sourceTree = "<group>"; };
-		E59108B426931E21008D254A /* UserData_0994.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserData_0994.xml; sourceTree = "<group>"; };
 		E59108B626931E29008D254A /* UserVariables_0994.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserVariables_0994.xml; sourceTree = "<group>"; };
 		E59108B826931E49008D254A /* DisabledBricks_0994.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DisabledBricks_0994.xml; sourceTree = "<group>"; };
 		E59108BA26931E5B008D254A /* Encapsulated_0994.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_0994.xml; sourceTree = "<group>"; };
@@ -4150,7 +4144,6 @@
 		E598BBB326A0272100D4825F /* Pong_Starter_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pong_Starter_0996.xml; sourceTree = "<group>"; };
 		E598BBB526A0272D00D4825F /* Pythagorean_Theorem_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_0996.xml; sourceTree = "<group>"; };
 		E598BBB726A0273B00D4825F /* Tic_Tac_Toe_Master_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_0996.xml; sourceTree = "<group>"; };
-		E598BBB926A0298E00D4825F /* UserData_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserData_0996.xml; sourceTree = "<group>"; };
 		E598BBBB26A0299700D4825F /* UserVariables_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UserVariables_0996.xml; sourceTree = "<group>"; };
 		E598BBBD26A029A900D4825F /* DisabledBricks_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DisabledBricks_0996.xml; sourceTree = "<group>"; };
 		E598BBBF26A029B700D4825F /* Encapsulated_0996.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_0996.xml; sourceTree = "<group>"; };
@@ -4169,6 +4162,7 @@
 		E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrickCell.swift; sourceTree = "<group>"; };
 		E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetLookByIndexBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrickTests.swift; sourceTree = "<group>"; };
+		E5E6D84526A83FDC0073C010 /* CBXMLParserContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBXMLParserContextTests.swift; sourceTree = "<group>"; };
 		EACB63B95D9C0A7F1388E4F3 /* id */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC696D21025B1BA13FAA0039 /* he */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ED43A997870B76068912C26D /* pt-BR */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -5056,14 +5050,6 @@
 			path = Embroidery;
 			sourceTree = "<group>";
 		};
-		4635B25525E82C5E00970CCA /* ZipProjects */ = {
-			isa = PBXGroup;
-			children = (
-				4CE3C4AD2660C39D007221DA /* 817.catrobat */,
-			);
-			path = ZipProjects;
-			sourceTree = "<group>";
-		};
 		4647D55823D8AF9F001A67F6 /* PrivacyPolicy */ = {
 			isa = PBXGroup;
 			children = (
@@ -5168,7 +5154,7 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				4635B25525E82C5E00970CCA /* ZipProjects */,
+				4C33512226A9A32100FE961A /* Archives */,
 				2ED4175F241120AF00AFE2FD /* Custom */,
 				2ED41693241120AE00AFE2FD /* UserProjects */,
 			);
@@ -5331,6 +5317,15 @@
 			path = CBXMLPropertyMapping;
 			sourceTree = "<group>";
 		};
+		4C33512226A9A32100FE961A /* Archives */ = {
+			isa = PBXGroup;
+			children = (
+				4C33512326A9A32100FE961A /* 817.catrobat */,
+			);
+			name = Archives;
+			path = CattyTests/Resources/ParserTests/Archives;
+			sourceTree = SOURCE_ROOT;
+		};
 		4C3746E622FC7AC3007B2BE1 /* BrickManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -5383,12 +5378,7 @@
 				E59108B626931E29008D254A /* UserVariables_0994.xml */,
 				E50E8568269ED52B00E76CE9 /* UserVariables_0995.xml */,
 				E598BBBB26A0299700D4825F /* UserVariables_0996.xml */,
-				4C3FB91D2473B7B300D136A4 /* UserData_0991.xml */,
-				4C55CCFE24BF2BAE00FB8393 /* UserData_0992.xml */,
-				4C3285DE2546CE6000C31F9D /* UserData_0993.xml */,
-				E59108B426931E21008D254A /* UserData_0994.xml */,
-				E50E855E269EC62200E76CE9 /* UserData_0995.xml */,
-				E598BBB926A0298E00D4825F /* UserData_0996.xml */,
+				4CF3C92826A9A90800F94FF1 /* UserLists_0996.xml */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -10281,6 +10271,14 @@
 			path = Catty/Views/Custom/Button;
 			sourceTree = SOURCE_ROOT;
 		};
+		E57789D226A6FA6500C51520 /* CatrobatLanguage0.996 */ = {
+			isa = PBXGroup;
+			children = (
+				E57789D526A6FA8F00C51520 /* XMLParserTests0996.swift */,
+			);
+			path = CatrobatLanguage0.996;
+			sourceTree = "<group>";
+		};
 		E59108A3268F3428008D254A /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -10293,7 +10291,9 @@
 				4C2CBB3A25A5AA8400C1C143 /* CatrobatLanguage0.993 */,
 				E59108E626932FAF008D254A /* CatrobatLanguage0.994 */,
 				E50E856C269ED82B00E76CE9 /* CatrobatLanguage0.995 */,
+				E57789D226A6FA6500C51520 /* CatrobatLanguage0.996 */,
 				E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */,
+				E5E6D84526A83FDC0073C010 /* CBXMLParserContextTests.swift */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -10735,7 +10735,6 @@
 				E598BBAE26A026F800D4825F /* Galaxy_War_0996.xml in Resources */,
 				E59108BF26931E94008D254A /* GoToBrick_0994.xml in Resources */,
 				6F58F0C224AC956000AB8C99 /* StoreProjectUpload.uploadProject.fail.invalidBody.json in Resources */,
-				E59108B526931E21008D254A /* UserData_0994.xml in Resources */,
 				9E384938256192AF002D8F28 /* SamplerBricks_0992.xml in Resources */,
 				6F58F0B124ABA59900AB8C99 /* StoreProjectDownloader.uploadProject.fail.invalidChecksum.json in Resources */,
 				E59108BB26931E5C008D254A /* Encapsulated_0994.xml in Resources */,
@@ -10766,6 +10765,7 @@
 				2ED41879241120B000AFE2FD /* ElementOfListFunction0991.xml in Resources */,
 				2ED4184C241120B000AFE2FD /* Flappy_v3.0_093.xml in Resources */,
 				4C55CD1324BF2C5700FB8393 /* Sensors_0992.xml in Resources */,
+				4CF3C92926A9A90800F94FF1 /* UserLists_0996.xml in Resources */,
 				2ED417F4241120AF00AFE2FD /* Pythagorean_Theorem_095.xml in Resources */,
 				2ED41805241120AF00AFE2FD /* Pong_Starter_0993.xml in Resources */,
 				4C7C32BD24BDD086004716DB /* UserVariables_091.xml in Resources */,
@@ -10773,7 +10773,6 @@
 				2ED41807241120AF00AFE2FD /* Pong_Starter_0994.xml in Resources */,
 				2ED41850241120B000AFE2FD /* Flappy_v3.0_0991.xml in Resources */,
 				2ED417DC241120AF00AFE2FD /* Airplane_with_shadow_097.xml in Resources */,
-				4C55CCFF24BF2BAE00FB8393 /* UserData_0992.xml in Resources */,
 				E50E8559269EC5C300E76CE9 /* ValidProjectAllBricks0995.xml in Resources */,
 				4C3286212546D7CA00C31F9D /* UserVariables_0993.xml in Resources */,
 				2ED4186A241120B000AFE2FD /* EscapingChars_0991.xml in Resources */,
@@ -10789,7 +10788,6 @@
 				4C7C32BB24BDCDFB004716DB /* UserVariables_0991.xml in Resources */,
 				2ED41853241120B000AFE2FD /* ValidFormulaList.xml in Resources */,
 				2ED41867241120B000AFE2FD /* WaitUntilBrick0991.xml in Resources */,
-				4C3285DF2546CE6000C31F9D /* UserData_0993.xml in Resources */,
 				2DCB4934212EA9BF005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */,
 				E59108D526931F4F008D254A /* ValidHeader0994.xml in Resources */,
 				4C6A196324F2691500FC4618 /* SetBackgroundBrick_0991.xml in Resources */,
@@ -10842,7 +10840,6 @@
 				2ED41802241120AF00AFE2FD /* Pong_Starter_0992.xml in Resources */,
 				2ED41800241120AF00AFE2FD /* Pong_Starter_0991.xml in Resources */,
 				2ED417D5241120AF00AFE2FD /* Demonstration_096.xml in Resources */,
-				4C3FB9202473B7B300D136A4 /* UserData_0991.xml in Resources */,
 				2ED417FF241120AF00AFE2FD /* Pong_Starter_09.xml in Resources */,
 				E59108C726931ED6008D254A /* ElementOfListFunction0994.xml in Resources */,
 				E59108E526931FD8008D254A /* Pythagorean_Theorem_0994.xml in Resources */,
@@ -10867,7 +10864,6 @@
 				2ED41851241120B000AFE2FD /* Flappy_v3.0_0994.xml in Resources */,
 				59B17E69252B362800F30695 /* StoreProjectReporter.reportProject.unexpectedError.json in Resources */,
 				2ED417F3241120AF00AFE2FD /* Pythagorean_Theorem_0991.xml in Resources */,
-				4CE3C4AE2660C39E007221DA /* 817.catrobat in Resources */,
 				2DCB4924212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */,
 				E50E8543269EC49500E76CE9 /* Air_fight_0.5_0995.xml in Resources */,
 				2DCB4916212E9B56005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */,
@@ -10887,6 +10883,7 @@
 				2ED417C2241120AF00AFE2FD /* Air_fight_0.5_098.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency_rgb.png in Resources */,
 				2D7BE51E21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json in Resources */,
+				4C33512426A9A32100FE961A /* 817.catrobat in Resources */,
 				4C55CD0F24BF2C0600FB8393 /* ReplaceItemInUserListBrick0992.xml in Resources */,
 				E598BBB026A0270300D4825F /* Memory_0996.xml in Resources */,
 				2DCB4928212EA477005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json in Resources */,
@@ -10915,7 +10912,6 @@
 				2ED41868241120B000AFE2FD /* EscapingChars_0994.xml in Resources */,
 				4C9852D02563CCDD000D9C10 /* Whack_A_Mole_092.xml in Resources */,
 				2ED417E0241120AF00AFE2FD /* Airplane_with_shadow_0991.xml in Resources */,
-				E598BBBA26A0298E00D4825F /* UserData_0996.xml in Resources */,
 				2ED41878241120B000AFE2FD /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				2ED417CC241120AF00AFE2FD /* Galaxy_War_0994.xml in Resources */,
 				E50E855B269EC5DA00E76CE9 /* LogicBricks_0995.xml in Resources */,
@@ -10950,7 +10946,6 @@
 				2ED417F2241120AF00AFE2FD /* Pythagorean_Theorem_097.xml in Resources */,
 				E59108BD26931E86008D254A /* Functions_0994.xml in Resources */,
 				593F2F5C253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json in Resources */,
-				E50E855F269EC62200E76CE9 /* UserData_0995.xml in Resources */,
 				593F2F582532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json in Resources */,
 				2ED417D3241120AF00AFE2FD /* Demonstration_093.xml in Resources */,
 				4C55CD0B24BF2BF100FB8393 /* InsertItemIntoUserListBrick0992.xml in Resources */,
@@ -11316,6 +11311,7 @@
 				4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */,
 				4CBDF1A921CF830E00325338 /* UnaryOperatorMock.swift in Sources */,
 				4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */,
+				E57789D626A6FA8F00C51520 /* XMLParserTests0996.swift in Sources */,
 				4CB412202198635900FC4594 /* UserDataContainerTest.swift in Sources */,
 				4C4778BF267C801100CAF398 /* CircleShapeNodeTests.swift in Sources */,
 				4C5AEEFB22F6F92B00280F8B /* ArduinoBrickTests.swift in Sources */,
@@ -11328,6 +11324,7 @@
 				4C2CBB4C25A5AA8400C1C143 /* XMLParserObjectTests095.swift in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
 				971C6F252605286800AD4857 /* SetTempoToBrickTests.swift in Sources */,
+				E5E6D84626A83FDD0073C010 /* CBXMLParserContextTests.swift in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				4C4778FC267C83F500CAF398 /* FormulaParserOperatorsTest.m in Sources */,

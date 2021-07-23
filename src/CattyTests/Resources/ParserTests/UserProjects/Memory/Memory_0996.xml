@@ -41,7 +41,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card1">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="8be73d32cea7ef34c5cf73e7580c7531_look.png" name="look1"/>
+            <look fileName="466142e7c6567d024a31f8a8b7e06b2f_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -90,7 +94,7 @@ REMIX TIPS:
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="8be73d32cea7ef34c5cf73e7580c7531_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -109,7 +113,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -129,7 +133,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card2">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="4dc922f0fa6bb5e42aecd2c856a8e99f_look.png" name="look1"/>
+            <look fileName="f57593d3b0bab001c45710c002301dad_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -164,7 +172,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="4dc922f0fa6bb5e42aecd2c856a8e99f_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -193,7 +201,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -887,7 +895,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card3">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="88cd035cb6b3e138a861ddc967fe5454_look.png" name="look1"/>
+            <look fileName="466142e7c6567d024a31f8a8b7e06b2f_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -932,7 +944,7 @@ REMIX TIPS:
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="88cd035cb6b3e138a861ddc967fe5454_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -951,7 +963,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -971,7 +983,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card4">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="5e649cd8a76645b1dabc95e1f8e801d5_look.png" name="look1"/>
+            <look fileName="f57593d3b0bab001c45710c002301dad_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1010,7 +1026,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="5e649cd8a76645b1dabc95e1f8e801d5_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1039,7 +1055,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1059,7 +1075,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card5">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="cb3b7d88befbe989152922830fffbd84_look.png" name="look1"/>
+            <look fileName="466142e7c6567d024a31f8a8b7e06b2f_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1104,7 +1124,7 @@ REMIX TIPS:
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="cb3b7d88befbe989152922830fffbd84_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1123,7 +1143,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1143,7 +1163,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card6">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="e886abb1c28af9cfdb0cc69f0477a88c_look.png" name="look1"/>
+            <look fileName="f57593d3b0bab001c45710c002301dad_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1178,7 +1202,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="e886abb1c28af9cfdb0cc69f0477a88c_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1207,7 +1231,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1227,7 +1251,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card7">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="e72e83bdbbbe53bf5a979d71acc05b1a_look.png" name="look1"/>
+            <look fileName="466142e7c6567d024a31f8a8b7e06b2f_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1280,7 +1308,7 @@ REMIX TIPS:
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="e72e83bdbbbe53bf5a979d71acc05b1a_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1299,7 +1327,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1319,7 +1347,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card8">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="0a1056e4899ee1b8fe7f278bb02ff18d_look.png" name="look1"/>
+            <look fileName="f57593d3b0bab001c45710c002301dad_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1358,7 +1390,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="0a1056e4899ee1b8fe7f278bb02ff18d_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1387,7 +1419,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1407,7 +1439,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card9">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="6e2ff7b98bbf877cba17191e7f381854_look.png" name="look1"/>
+            <look fileName="466142e7c6567d024a31f8a8b7e06b2f_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1456,7 +1492,7 @@ REMIX TIPS:
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="6e2ff7b98bbf877cba17191e7f381854_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1475,7 +1511,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1495,7 +1531,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card10">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="1e27e1f90f8fcfa102cc6bd72fa8ac43_look.png" name="look1"/>
+            <look fileName="f57593d3b0bab001c45710c002301dad_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1538,7 +1578,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="1e27e1f90f8fcfa102cc6bd72fa8ac43_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1567,7 +1607,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1587,7 +1627,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card11">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="c2b5182402305e816dd79f9208199b4a_look.png" name="look1"/>
+            <look fileName="466142e7c6567d024a31f8a8b7e06b2f_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1636,7 +1680,7 @@ REMIX TIPS:
                 </brick>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="c2b5182402305e816dd79f9208199b4a_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1655,7 +1699,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -1675,7 +1719,11 @@ REMIX TIPS:
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="card12">
-          <lookList/>
+          <lookList>
+            <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+            <look fileName="5b19c8131d2d9caf815ec4e95742499b_look.png" name="look1"/>
+            <look fileName="f57593d3b0bab001c45710c002301dad_look.png" name="look2"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -1714,7 +1762,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="5b19c8131d2d9caf815ec4e95742499b_look.png" name="look1"/>
+                  <look reference="../../../../../lookList/look[2]"/>
                 </brick>
                 <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
@@ -1743,7 +1791,7 @@ REMIX TIPS:
               <brickList>
                 <brick type="SetLookBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="f03f41269b978e1bf9d61207ec18156d_look.png" name="look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>

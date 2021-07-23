@@ -50,6 +50,51 @@
     return nil;
 }
 
+- (bool)isEqualToLanguageVersion:(CGFloat)languageVersion
+{
+    if (round(self.languageVersion * 10000) == round(languageVersion * 10000)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (bool)isGreaterThanOrEqualToLanguageVersion:(CGFloat)languageVersion
+{
+    if (round(self.languageVersion * 10000) >= round(languageVersion * 10000)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (bool)isGreaterThanLanguageVersion:(CGFloat)languageVersion
+{
+    if (round(self.languageVersion * 10000) > round(languageVersion * 10000)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (bool)isSmallerThanOrEqualToLanguageVersion:(CGFloat)languageVersion
+{
+    if (round(self.languageVersion * 10000) <= round(languageVersion * 10000)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (bool)isSmallerThanLanguageVersion:(CGFloat)languageVersion
+{
+    if (round(self.languageVersion * 10000) < round(languageVersion * 10000)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 #pragma mark - Getters and Setters
 - (NSMutableArray*)programVariableList
 {

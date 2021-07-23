@@ -38,7 +38,9 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="obj1">
-          <lookList/>
+          <lookList>
+            <look fileName="1D7B2AA4911878B16BEB181724552A1F_coin-gold.png" name="coin-gold"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -117,14 +119,18 @@
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="obj2">
-          <lookList/>
+          <lookList>
+            <look fileName="F4852BB86549CCDC2D9F866F3AA321C6_coin-bronze.png" name="coin-bronze"/>
+          </lookList>
           <soundList/>
           <scriptList/>
           <userBricks/>
           <nfcTagList/>
         </object>
         <object type="SingleSprite" name="obj3">
-          <lookList/>
+          <lookList>
+            <look fileName="F1852BB86549CCDC2D9F866F3AA321C6_unused-look.png" name="unused-look"/>
+          </lookList>
           <soundList/>
           <scriptList/>
           <userBricks/>

@@ -31,7 +31,9 @@
       <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
+          <lookList>
+            <look fileName="d842e119ceee69833b8db40d96d42a26_IMG_20141005_171500.jpg" name="testLook"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -39,13 +41,13 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="Y_POSITION">
-                      <type>SENSOR</type>
-                      <value>X_INCLINATION</value>
-                    </formula>
                     <formula category="X_POSITION">
                       <type>SENSOR</type>
                       <value>COMPASS_DIRECTION</value>
+                    </formula>
+                    <formula category="Y_POSITION">
+                      <type>SENSOR</type>
+                      <value>X_INCLINATION</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -132,14 +134,18 @@
                 <brick type="PointToBrick">
                   <commentedOut>false</commentedOut>
                   <pointedObject type="SingleSprite" name="stickers">
-                    <lookList/>
-                    <soundList/>
+                    <lookList>
+                      <look fileName="d842e119ceee69833b8db40d96d42a26_IMG_20141005_171500.jpg" name="stickers"/>
+                    </lookList>
+                    <soundList>
+                      <sound fileName="6fa66a339e846455f1061d76e1c079df_Aufnahme.m4a" name="Aufnahme"/>
+                    </soundList>
                     <scriptList>
                       <script type="BroadcastScript">
                         <brickList>
                           <brick type="PlaySoundBrick">
                             <commentedOut>false</commentedOut>
-                            <sound fileName="6fa66a339e846455f1061d76e1c079df_Aufnahme.m4a" name="Aufnahme"/>
+                            <sound reference="../../../../../soundList/sound"/>
                           </brick>
                           <brick type="StopAllSoundsBrick">
                             <commentedOut>false</commentedOut>
@@ -235,7 +241,7 @@
                           </brick>
                           <brick type="SetLookBrick">
                             <commentedOut>false</commentedOut>
-                            <look fileName="d842e119ceee69833b8db40d96d42a26_IMG_20141005_171500.jpg" name="stickers"/>
+                            <look reference="../../../../../lookList/look"/>
                           </brick>
                           <brick type="NextLookBrick">
                             <commentedOut>false</commentedOut>
@@ -335,6 +341,10 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="X_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>100</value>
+                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>NUMBER</type>
                       <value>200</value>
@@ -342,10 +352,6 @@
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>1.0</value>
-                    </formula>
-                    <formula category="X_DESTINATION">
-                      <type>NUMBER</type>
-                      <value>100</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -407,13 +413,13 @@
                 <brick type="ShowTextBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>200</value>
-                    </formula>
                     <formula category="X_POSITION">
                       <type>NUMBER</type>
                       <value>100</value>
+                    </formula>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>200</value>
                     </formula>
                   </formulaList>
                   <userVariable reference="../../brick[14]/userVariable"/>
@@ -503,11 +509,11 @@
                 </brick>
                 <brick type="SetBackgroundBrick">
                   <commentedOut>false</commentedOut>
-                  <look fileName="d842e119ceee69833b8db40d96d42a26_IMG_20141005_171500.jpg" name="testLook"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SetBackgroundAndWaitBrick">
                   <commentedOut>false</commentedOut>
-                  <look reference="../../brick[30]/look"/>
+                  <look reference="../../../../../lookList/look"/>
                 </brick>
                 <brick type="SpeakAndWaitBrick">
                   <commentedOut>false</commentedOut>
@@ -586,11 +592,11 @@
                 <brick type="HideTextBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="Y_POSITION">
+                    <formula category="X_POSITION">
                       <type>NUMBER</type>
                       <value>0</value>
                     </formula>
-                    <formula category="X_POSITION">
+                    <formula category="Y_POSITION">
                       <type>NUMBER</type>
                       <value>0</value>
                     </formula>
@@ -627,17 +633,17 @@
                 <brick type="SetPenColorBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="PEN_COLOR_BLUE">
+                    <formula category="PEN_COLOR_RED">
                       <type>NUMBER</type>
-                      <value>255</value>
+                      <value>0</value>
                     </formula>
                     <formula category="PEN_COLOR_GREEN">
                       <type>NUMBER</type>
                       <value>0</value>
                     </formula>
-                    <formula category="PEN_COLOR_RED">
+                    <formula category="PEN_COLOR_BLUE">
                       <type>NUMBER</type>
-                      <value>0</value>
+                      <value>255</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -659,13 +665,13 @@
                 <brick type="InsertItemIntoUserListBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
-                      <type>NUMBER</type>
-                      <value>2</value>
-                    </formula>
                     <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
                       <type>STRING</type>
                       <value>hello</value>
+                    </formula>
+                    <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
+                      <type>NUMBER</type>
+                      <value>2</value>
                     </formula>
                   </formulaList>
                   <userList reference="../../brick[49]/userList"/>
@@ -673,13 +679,13 @@
                 <brick type="ReplaceItemInUserListBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="REPLACE_ITEM_IN_USERLIST_INDEX">
-                      <type>NUMBER</type>
-                      <value>2</value>
-                    </formula>
                     <formula category="REPLACE_ITEM_IN_USERLIST_VALUE">
                       <type>NUMBER</type>
                       <value>12</value>
+                    </formula>
+                    <formula category="REPLACE_ITEM_IN_USERLIST_INDEX">
+                      <type>NUMBER</type>
+                      <value>2</value>
                     </formula>
                   </formulaList>
                   <userList reference="../../brick[49]/userList"/>
@@ -709,7 +715,7 @@
             <script type="WhenBackgroundChangesScript">
               <brickList/>
               <commentedOut>false</commentedOut>
-              <look reference="../../script/brickList/brick[30]/look"/>
+              <look reference="../../../lookList/look"/>
             </script>
             <script type="WhenConditionScript">
               <brickList/>

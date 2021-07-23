@@ -54,12 +54,15 @@
     
     Formula *formulaForCatroidCompatibility = [[Formula alloc] initWithZero];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
+    
     GDataXMLElement *formula = [formulaForCatroidCompatibility xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_POSITION"]];
-    [formulaList addChild:formula context:context];
-    formula = [formulaForCatroidCompatibility xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"X_POSITION"]];
     [formulaList addChild:formula context:context];
+    
+    formula = [formulaForCatroidCompatibility xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_POSITION"]];
+    [formulaList addChild:formula context:context];
+    
     [brick addChild:formulaList context:context];
 
     if (self.userVariable) {

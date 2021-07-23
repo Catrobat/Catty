@@ -44,22 +44,23 @@
     if ([CBXMLParserHelper isReferenceElement: xmlElement]) {
         return [self parseSoundWithReferenceForElement:xmlElement withContext:context];
     }
-    NSArray *soundChildElements = [xmlElement children];
-    [XMLError exceptionIf:[soundChildElements count] notEquals:2 message:@"Sound must contain two child nodes"];
     
-    GDataXMLNode *nameChildNode = [soundChildElements firstObject];
-    GDataXMLNode *fileNameChildNode = [soundChildElements lastObject];
+    GDataXMLNode *nameChildNode = nil;
+    GDataXMLNode *fileNameChildNode = nil;
     
-    // swap values (if needed)
-    GDataXMLNode *tempChildNode = nil;
-    if ([fileNameChildNode.name isEqualToString:@"name"] && [nameChildNode.name isEqualToString:@"fileName"]) {
-        tempChildNode = nameChildNode;
-        nameChildNode = fileNameChildNode;
-        fileNameChildNode = tempChildNode;
+    if([context isGreaterThanLanguageVersion:0.995])
+    {
+        nameChildNode = [xmlElement attributeForName:@"name"];
+        fileNameChildNode = [xmlElement attributeForName:@"fileName"];
+    } else
+    {
+        nameChildNode = [xmlElement childWithElementName:@"name"];
+        fileNameChildNode = [xmlElement childWithElementName:@"fileName"];
     }
     
-    [XMLError exceptionIfString:nameChildNode.name isNotEqualToString:@"name" message:@"Sound contains wrong child node(s)"];
-    [XMLError exceptionIfString:fileNameChildNode.name isNotEqualToString:@"fileName" message:@"Sound contains wrong child node(s)"];
+    [XMLError exceptionIfNil:nameChildNode message:@"Sound name not present"];
+    [XMLError exceptionIfNil:fileNameChildNode message:@"Sound fileName not present"];
+    
     Sound *sound = [[Sound alloc] initWithName:[nameChildNode stringValue] andFileName:[fileNameChildNode stringValue]];
 
     return sound;
@@ -94,8 +95,8 @@
         return xmlElement;
     }
     
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName context:context] context:context];
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name context:context] context:context];
+    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
+    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
     
     context.soundNamePositions[self.name] = currentPositionStack;
     
