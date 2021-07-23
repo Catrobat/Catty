@@ -314,6 +314,11 @@
         }
 
         context.spriteObject = spriteObject;
+        
+        NSArray *lists = ((SpriteObject*)spriteObject).userData.lists;
+        if ([lists count] == 0 ) {
+            continue;
+        }
 
         GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
         GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
@@ -326,7 +331,7 @@
         [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
 
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
-        NSArray *lists = ((SpriteObject*)spriteObject).userData.lists;
+        
         for (id list in lists) {
             [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
                           message:@"Invalid user List instance given"];
