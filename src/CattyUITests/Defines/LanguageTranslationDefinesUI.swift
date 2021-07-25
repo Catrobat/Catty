@@ -107,6 +107,7 @@ let kLocalizedProject = NSLocalizedString("Project", bundle: Bundle(for: Languag
 let kLocalizedHelp = NSLocalizedString("Help", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCatrobatCommunity = NSLocalizedString("Catrobat community", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeletionMenu = NSLocalizedString("Deletion mode", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedWebAccess = NSLocalizedString("Web access", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAboutPocketCode = NSLocalizedString("About Pocket Code", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedTermsOfUse = NSLocalizedString("Terms of Use and Service", bundle: Bundle(for: LanguageTranslation.self), comment: "Button title at the settings screen to get to the terms of use and service.")
 let kLocalizedForgotPassword = NSLocalizedString("Forgot password", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -214,6 +215,9 @@ let kLocalizedSoundName = NSLocalizedString("Sound name", bundle: Bundle(for: La
 let kLocalizedOK = NSLocalizedString("OK", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedYes = NSLocalizedString("Yes", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNo = NSLocalizedString("No", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAlways = NSLocalizedString("Always", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDeny = NSLocalizedString("Deny", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedOnce = NSLocalizedString("Once", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeleteProject = NSLocalizedString("Delete project", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLoading = NSLocalizedString("Loading", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSaveChanges = NSLocalizedString("Save changes", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -274,6 +278,8 @@ let kLocalizedCameraBack = NSLocalizedString("back", bundle: Bundle(for: Languag
 let kLocalizedCameraFront = NSLocalizedString("front", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMoreInformation = NSLocalizedString("More information", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedScene = NSLocalizedString("Scene", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedEditTrustedDomain = NSLocalizedString("Edit trusted domain", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAddTrustedDomain = NSLocalizedString("Add trusted domain", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -335,6 +341,7 @@ let kLocalizedNoAccesToImagesCheckSettingsDescription = NSLocalizedString("Pocke
 let kLocalizedNoAccesToCameraCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNoAccesToMicrophoneCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following features used in this project are not compatible with this version of Pocket Code:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAlwaysAllowWebRequestDescription = NSLocalizedString("Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
@@ -472,7 +479,7 @@ let kLocalizedAt = NSLocalizedString("at ", bundle: Bundle(for: LanguageTranslat
 let kLocalizedSendWebRequestTo = NSLocalizedString("Send web request to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAndStoreAnswerIn = NSLocalizedString("and store answer in", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAllowWebAccess = NSLocalizedString("Allow web access", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-
+let kLocalizedAlwaysAllowWebAccess = NSLocalizedString("Always allow web access", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 //userlist
 let kLocalizedUserListAdd = NSLocalizedString("Add", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUserListTo = NSLocalizedString("to list", bundle: Bundle(for: LanguageTranslation.self), comment: "")

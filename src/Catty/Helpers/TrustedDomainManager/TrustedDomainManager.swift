@@ -23,51 +23,50 @@
 import Foundation
 
 class TrustedDomainManager {
-    private let defaultTrustedDomainPath: URL?
-    private let deviceTrustedDomainPath: URL
+    private let trustedDomainPath: URL?
+    private let userTrustedDomainPath: URL
     private var trustedDomains = [String]()
+    var userTrustedDomains = [String]()
     private var fileManager: CBFileManager
+    private var trustedDomainRegex = String()
 
     init?(fileManager: CBFileManager = CBFileManager()) {
         self.fileManager = fileManager
 
-        defaultTrustedDomainPath = Bundle.main.url(forResource: "TrustedDomains", withExtension: "plist")
+        trustedDomainPath = Bundle.main.url(forResource: "TrustedDomains", withExtension: "plist")
 
         guard let documentDirectoryUrls = self.fileManager.urls(.documentDirectory, in: .userDomainMask) as? [String] else { return nil }
         guard let documentDirectoryUrl = URL(string: documentDirectoryUrls[0]) else { return nil }
-        deviceTrustedDomainPath = documentDirectoryUrl.appendingPathComponent(kTrustedDomainFilename + ".plist")
+        userTrustedDomainPath = documentDirectoryUrl.appendingPathComponent(kTrustedDomainFilename + ".plist")
 
-        let creationError = createTrustedDomainsOnDeviceIfNotExist()
-        let fetchingError = fetchTrustedDomains()
-
-        if creationError != nil || fetchingError != nil {
+        let tdFetchingError = fetchTrustedDomains()
+        let userTDFetchingError = fetchUserTrustedDomains()
+        if tdFetchingError != nil || userTDFetchingError != nil {
             return nil
         }
-    }
 
-    private func createTrustedDomainsOnDeviceIfNotExist() -> TrustedDomainManagerError? {
-        guard let defaultPath = defaultTrustedDomainPath?.path else { return .plist }
-        let devicePath = deviceTrustedDomainPath.absoluteString
-
-        if !fileManager.fileExists(devicePath) {
-            fileManager.copyExistingFile(atPath: defaultPath, toPath: devicePath, overwrite: true)
-        }
-
-        return nil
+        trustedDomainRegex = generateTrustedDomainRegex()
     }
 
     private func fetchTrustedDomains() -> TrustedDomainManagerError? {
-        guard let data = fileManager.read(deviceTrustedDomainPath.path) else { return .unexpectedError }
+        guard let data = fileManager.read(trustedDomainPath?.path) else { return .unexpectedError }
         guard let domains = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String] else { return .unexpectedError }
         trustedDomains = domains
         return nil
     }
 
-    private func storeTrustedDomains() -> TrustedDomainManagerError? {
+    private func fetchUserTrustedDomains() -> TrustedDomainManagerError? {
+        guard let data = fileManager.read(userTrustedDomainPath.path) else { return nil } // empty
+        guard let domains = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String] else { return .unexpectedError }
+        userTrustedDomains = domains
+        return nil
+    }
+
+    func storeUserTrustedDomains() -> TrustedDomainManagerError? {
         let encoder = PropertyListEncoder()
 
-        if let data = try? encoder.encode(trustedDomains) {
-            let success = fileManager.write(data, toPath: deviceTrustedDomainPath.path)
+        if let data = try? encoder.encode(userTrustedDomains) {
+            let success = fileManager.write(data, toPath: userTrustedDomainPath.path)
             if !success {
                 return .unexpectedError
             }
@@ -90,18 +89,39 @@ class TrustedDomainManager {
         return requestedURL
     }
 
+    private func generateTrustedDomainRegex() -> String {
+        let firstLevel = #"^https?://((www\.)?|[a-zA-Z]+.:(@|[a-zA-Z]+.)(www\.)?)?([a-zA-Z]+\.)?("#
+        let domains = trustedDomains.joined(separator: "|").replacingOccurrences(of: ".", with: "\\.")
+        let topLevel = ")(:[0-9]{1,5})?(/[a-zA-Z0-9-()@:%_\\\\+~#.?&/=]*)?$"
+        return firstLevel + domains + topLevel
+    }
+
     func isUrlInTrustedDomains(url: String) -> Bool {
-        trustedDomains.contains(standardizeUrl(url: url))
+        let result = url.range(
+            of: trustedDomainRegex,
+            options: .regularExpression
+        )
+
+        if result != nil {
+            return true
+        }
+
+        return userTrustedDomains.contains(standardizeUrl(url: url))
     }
 
     func add(url: String) -> TrustedDomainManagerError? {
-        trustedDomains.append(standardizeUrl(url: url))
-        return storeTrustedDomains()
+        userTrustedDomains.append(standardizeUrl(url: url))
+        return storeUserTrustedDomains()
+    }
+
+    func remove(url: String) -> TrustedDomainManagerError? {
+        userTrustedDomains.removeObject(standardizeUrl(url: url))
+        return storeUserTrustedDomains()
     }
 
     func clear() -> TrustedDomainManagerError? {
-        trustedDomains.removeAll()
-        return storeTrustedDomains()
+        userTrustedDomains.removeAll()
+        return storeUserTrustedDomains()
     }
 }
 

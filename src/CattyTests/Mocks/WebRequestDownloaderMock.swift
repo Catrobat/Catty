@@ -38,7 +38,7 @@ class WebRequestDownloaderMock: WebRequestDownloader {
         super.init(url: "", session: nil, trustedDomainManager: nil)
     }
 
-    override func download(completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
+    override func download(force: Bool, completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
         downloadMethodCalls += 1
         completion(expectedResponse, expectedError)
     }

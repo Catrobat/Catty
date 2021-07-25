@@ -26,7 +26,6 @@ extension WebRequestBrick: CBInstructionProtocol {
         if WebRequestBrick.isWebRequestBrickEnabled() {
             guard let request = self.request else { fatalError("Unexpected found nil.") }
             guard let trustedDomains = TrustedDomainManager() else { return CBInstruction.invalidInstruction }
-            _ = trustedDomains.clear() // TODO: Remove in CATTY-600
 
             return CBInstruction.waitExecClosure { context, scheduler in
                 let displayString = context.formulaInterpreter.interpretString(request, for: self.script.object)
@@ -41,21 +40,34 @@ extension WebRequestBrick: CBInstructionProtocol {
 
                         DispatchQueue.main.async {
                             AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
-                                .addCancelAction(title: kLocalizedNo) {
+                                .addDefaultAction(title: kLocalizedOnce) {
+                                    scheduler.resume()
+                                    self.allowedOnceAction(downloader: downloader, url: requestString, trustedDomains: trustedDomains, expectation: downloadIsFinishedExpectation)
+                                }
+                                .addDefaultAction(title: kLocalizedAlways) {
+                                    AlertControllerBuilder.alert(title: kLocalizedAlwaysAllowWebAccess + "?", message: requestString + "\n\n" + kLocalizedAlwaysAllowWebRequestDescription)
+                                        .addDefaultAction(title: kLocalizedAlways) {
+                                            scheduler.resume()
+                                            self.allowedAlwaysAction(downloader: downloader, url: requestString, trustedDomains: trustedDomains, expectation: downloadIsFinishedExpectation)
+                                        }
+                                        .addDefaultAction(title: kLocalizedMoreInformation) {
+                                            scheduler.resume()
+                                            if let url = URL(string: NetworkDefines.kWebRequestWikiURL), UIApplication.shared.canOpenURL(url) {
+                                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                            }
+                                        }
+                                        .addDestructiveAction(title: kLocalizedCancel) {
+                                            scheduler.resume()
+                                            self.callbackSubmit(with: nil, error: .notTrusted, expectation: downloadIsFinishedExpectation)
+                                            return
+                                        }
+                                        .build()
+                                        .showWithController(Util.topmostViewController())
+                                }
+                                .addDestructiveAction(title: kLocalizedDeny) {
                                     scheduler.resume()
                                     self.callbackSubmit(with: nil, error: .notTrusted, expectation: downloadIsFinishedExpectation)
                                     return
-                                }
-                                .addDefaultAction(title: kLocalizedYes) {
-                                    scheduler.resume()
-                                    let addError = trustedDomains.add(url: requestString)
-                                    if addError != nil {
-                                        self.callbackSubmit(with: nil, error: .unexpectedError, expectation: downloadIsFinishedExpectation)
-                                    } else {
-                                        self.sendRequest(downloader: downloader) { response, error in
-                                            self.callbackSubmit(with: response, error: error, expectation: downloadIsFinishedExpectation)
-                                        }
-                                    }
                                 }
                                 .build()
                                 .showWithController(Util.topmostViewController())
@@ -69,6 +81,23 @@ extension WebRequestBrick: CBInstructionProtocol {
             }
         } else {
             return CBInstruction.invalidInstruction
+        }
+    }
+
+    func allowedOnceAction(downloader: WebRequestDownloader, url: String, trustedDomains: TrustedDomainManager, expectation: CBExpectation) {
+        self.sendRequest(downloader: downloader, force: true) { response, error in
+            self.callbackSubmit(with: response, error: error, expectation: expectation)
+        }
+    }
+
+    func allowedAlwaysAction(downloader: WebRequestDownloader, url: String, trustedDomains: TrustedDomainManager, expectation: CBExpectation) {
+        let addError = trustedDomains.add(url: url)
+        if addError != nil {
+            self.callbackSubmit(with: nil, error: .unexpectedError, expectation: expectation)
+        } else {
+            self.sendRequest(downloader: downloader) { response, error in
+                self.callbackSubmit(with: response, error: error, expectation: expectation)
+            }
         }
     }
 
@@ -106,8 +135,8 @@ extension WebRequestBrick: CBInstructionProtocol {
         return input
     }
 
-    private func sendRequest(downloader: WebRequestDownloader, completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
-        downloader.download { response, error in
+    private func sendRequest(downloader: WebRequestDownloader, force: Bool = false, completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
+        downloader.download(force: force) { response, error in
             if let error = error {
                 completion(nil, error)
             } else {

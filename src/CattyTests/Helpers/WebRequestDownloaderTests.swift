@@ -180,7 +180,7 @@ final class WebRequestDownloaderTests: XCTestCase {
     }
 
     func testWebRequestFailsNotTrusted() {
-        let url = "https://catrob.at/untrusted"
+        let url = "https://catrob.at.malicious"
 
         let mockSession = URLSessionMock()
         let downloader = WebRequestDownloader(url: url, session: mockSession, trustedDomainManager: trustedDomainManager)

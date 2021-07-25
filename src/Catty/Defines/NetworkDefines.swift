@@ -104,4 +104,7 @@ class NetworkDefines: NSObject {
     // MARK: WebRequestDownloader
 
     static let kWebRequestMaxDownloadSizeInBytes = 1000000 // = 1MB
+
+    // MARK: Wiki
+    static let kWebRequestWikiURL = "https://wiki.catrobat.org/bin/view/Documentation/Web%20requests/"
 }

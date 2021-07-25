@@ -134,6 +134,9 @@
 		2E8780A82542BCE200816B52 /* WebRequestBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */; };
 		2E88D620263161D80063D573 /* TrustedDomains.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E88D61F263161D80063D573 /* TrustedDomains.plist */; };
 		2E88D627263194E40063D573 /* TrustedDomainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E88D626263194E40063D573 /* TrustedDomainManager.swift */; };
+		2EB9FAED26995F3900DBC4FB /* TrustedDomainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB9FAEC26995F3900DBC4FB /* TrustedDomainTableViewController.swift */; };
+		2EB9FAF226995FF500DBC4FB /* TrustedDomainTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB9FAF026995F7100DBC4FB /* TrustedDomainTableViewControllerTests.swift */; };
+		2EB9FAF4269967FF00DBC4FB /* TrustedDomainTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB9FAF3269967FF00DBC4FB /* TrustedDomainTVCTests.swift */; };
 		2EBD8456253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD8455253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift */; };
 		2EBD845B253FEEA1009BFED5 /* WebRequestBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */; };
 		2EBD845D253FEF57009BFED5 /* WebRequestBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD845C253FEF57009BFED5 /* WebRequestBrickCell.swift */; };
@@ -2042,6 +2045,9 @@
 		2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrickTests.swift; sourceTree = "<group>"; };
 		2E88D61F263161D80063D573 /* TrustedDomains.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TrustedDomains.plist; sourceTree = "<group>"; };
 		2E88D626263194E40063D573 /* TrustedDomainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedDomainManager.swift; sourceTree = "<group>"; };
+		2EB9FAEC26995F3900DBC4FB /* TrustedDomainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedDomainTableViewController.swift; sourceTree = "<group>"; };
+		2EB9FAF026995F7100DBC4FB /* TrustedDomainTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedDomainTableViewControllerTests.swift; sourceTree = "<group>"; };
+		2EB9FAF3269967FF00DBC4FB /* TrustedDomainTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedDomainTVCTests.swift; sourceTree = "<group>"; };
 		2EBD8455253FEDD4009BFED5 /* WebRequestBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebRequestBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		2EBD845A253FEEA1009BFED5 /* WebRequestBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrick.swift; sourceTree = "<group>"; };
 		2EBD845C253FEF57009BFED5 /* WebRequestBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestBrickCell.swift; sourceTree = "<group>"; };
@@ -5816,6 +5822,7 @@
 				6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */,
 				182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */,
 				18BF581625D183F600ADD92C /* FormulaEditorSectionViewControllerTests.swift */,
+				2EB9FAF026995F7100DBC4FB /* TrustedDomainTableViewControllerTests.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -8548,6 +8555,7 @@
 				92B46F881BC7958C004980C1 /* SettingsViewController */,
 				92FF31131A24DEB300093DA7 /* CatrobatTableViewController.h */,
 				92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */,
+				2EB9FAEC26995F3900DBC4FB /* TrustedDomainTableViewController.swift */,
 			);
 			path = CatrobatTableViewController;
 			sourceTree = "<group>";
@@ -10149,6 +10157,7 @@
 				1801591D25E4D5CE00E5B673 /* FormulaEditorSectionViewController.swift */,
 				9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */,
 				18E908A72624995900EF57D6 /* FormulaEditorComputeDialogTest.swift */,
+				2EB9FAF3269967FF00DBC4FB /* TrustedDomainTVCTests.swift */,
 			);
 			path = CattyUITests;
 			sourceTree = "<group>";
@@ -11556,6 +11565,7 @@
 				4CB1FB741BC2D74F0000A2FE /* XCTestCaseExtension.swift in Sources */,
 				BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */,
 				BCFED6ED2111C04000BE57BF /* BackgroundsTests.swift in Sources */,
+				2EB9FAF4269967FF00DBC4FB /* TrustedDomainTVCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11866,6 +11876,7 @@
 				9E2D47CB232846AD00917D92 /* ChangeSizeByNBrickTests.swift in Sources */,
 				4C53E39221D525F800F2EC76 /* OperatorManagerTest.swift in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
+				2EB9FAF226995FF500DBC4FB /* TrustedDomainTableViewControllerTests.swift in Sources */,
 				6F17FA1824B7579000885E07 /* UploadViewControllerTests.swift in Sources */,
 				17A8AC6F2644E79B00DDD480 /* BluetoothMocks.swift in Sources */,
 				4C477906267C849100CAF398 /* FormulaEditorItemTest.swift in Sources */,
@@ -12760,6 +12771,7 @@
 				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				4420ACB3250929DA00951328 /* AskBrickCell.swift in Sources */,
+				2EB9FAED26995F3900DBC4FB /* TrustedDomainTableViewController.swift in Sources */,
 				1882475524C84B8100B01653 /* SetPenColorBrick.swift in Sources */,
 				4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */,
 				F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */,

@@ -41,14 +41,14 @@ public class WebRequestDownloader: NSObject {
         return URLSession(configuration: config, delegate: self, delegateQueue: nil)
     }
 
-    func download(completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
+    func download(force: Bool = false, completion: @escaping (String?, WebRequestDownloaderError?) -> Void) {
         self.data = Data()
         self.completion = completion
         guard let url = URL(string: url) else { completion(nil, WebRequestDownloaderError.invalidURL); return }
 
         guard let trustedDomains = trustedDomains else { completion(nil, WebRequestDownloaderError.unexpectedError); return }
 
-        if !trustedDomains.isUrlInTrustedDomains(url: self.url) {
+        if !force && !trustedDomains.isUrlInTrustedDomains(url: self.url) {
             completion(nil, WebRequestDownloaderError.notTrusted)
             return
         }
