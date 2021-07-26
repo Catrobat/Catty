@@ -72,10 +72,6 @@ extension XCTestCase {
     func addObjectAndDrawNewImage(name: String, in app: XCUIApplication) {
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
-        let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
-        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(name)
-        alert.buttons[kLocalizedOK].tap()
-
         waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
 
@@ -83,6 +79,14 @@ extension XCTestCase {
         app.navigationBars.buttons[kLocalizedBack].tap()
 
         waitForElementToAppear(app.sheets.firstMatch).buttons[kLocalizedSaveChanges].tap()
+        let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
+        alert.textFields[kLocalizedEnterYourObjectNameHere].tap()
+
+        let stringValue = alert.textFields[kLocalizedEnterYourObjectNameHere].value as? String
+        let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: stringValue!.count)
+        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(deleteString)
+        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(name)
+        alert.buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[kLocalizedPocketCode]))
     }
 
