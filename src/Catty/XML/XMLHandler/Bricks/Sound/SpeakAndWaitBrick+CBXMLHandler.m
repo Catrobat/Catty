@@ -33,7 +33,12 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
+    if([context isGreaterThanLanguageVersion:0.996]) {
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    } else {
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
+    }
+    
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SPEAK" withContext:context];
     SpeakAndWaitBrick *speakBrick = [self new];
     speakBrick.formula = formula;
@@ -48,9 +53,6 @@
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"SPEAK"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
-    
-    // add pseudo <duration> element to produce a Catroid equivalent XML
-    [brick addChild:[GDataXMLElement elementWithName:@"duration" stringValue:@"0.0" context:context] context:context];
     
     return brick;
 }

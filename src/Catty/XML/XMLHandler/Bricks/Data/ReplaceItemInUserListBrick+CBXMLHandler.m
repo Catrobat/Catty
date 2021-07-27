@@ -72,8 +72,8 @@
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"REPLACE_ITEM_IN_USERLIST_VALUE"]];
     [index addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"REPLACE_ITEM_IN_USERLIST_INDEX"]];
     
-    [formulaList addChild:formula context:context];
     [formulaList addChild:index context:context];
+    [formulaList addChild:formula context:context];
     
     [brick addChild:formulaList context:context];
     

@@ -237,10 +237,8 @@
     
     NSString *commentedOutValue = ((Script*) [self.object.scriptList objectAtIndex:indexOfScript]).isDisabled ? @"true" : @"false";
     [xmlElement addChild:[GDataXMLElement elementWithName:@"commentedOut" stringValue: commentedOutValue context:context] context:context];
-    
-    if ([self isKindOfClass:[StartScript class]]) {
-       [xmlElement addChild:[GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context] context:context];
-    } else if ([self isKindOfClass:[BroadcastScript class]]) {
+        
+    if ([self isKindOfClass:[BroadcastScript class]]) {
         BroadcastScript *broadcastScript = (BroadcastScript*)self;
         [XMLError exceptionIfNil:broadcastScript.receivedMessage
                          message:@"BroadcastScript contains invalid receivedMessage string"];
@@ -269,10 +267,6 @@
                 [xmlElement addChild:referenceXMLElement context:context];
             }
         }
-    } else if ([self isKindOfClass:[WhenScript class]]) {
-        // Nothing to do
-    } else if ([self isKindOfClass:[WhenTouchDownScript class]]) {
-        // Nothing to do
     } else if ([self isKindOfClass:[WhenConditionScript class]]) {
         WhenConditionScript *whenConditionScript = (WhenConditionScript*)self;
         GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaMap" context:context];
@@ -280,11 +274,12 @@
         [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_CONDITION"]];
         [formulaList addChild:formula context:context];
         [xmlElement addChild:formulaList context:context];
+    } else {
+        if(![self isKindOfClass:[WhenScript class]] && ![self isKindOfClass:[StartScript class]] && ![self isKindOfClass:[WhenTouchDownScript class]]) {
+            [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
+        }
     }
-    else {
-        [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
-    }
-
+    
     return xmlElement;
 }
 

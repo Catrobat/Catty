@@ -42,6 +42,10 @@ extension SetPenColorBrick: CBXMLNodeProtocol {
         let brick = super.xmlElement(for: "SetPenColorBrick", with: context)
         let formulaList = GDataXMLElement(name: "formulaList", context: context)
 
+        let blueFormula = self.blue?.xmlElement(with: context)
+        blueFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_BLUE", context: nil))
+        formulaList?.addChild(blueFormula, context: context)
+
         let redFormula = self.red?.xmlElement(with: context)
         redFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_RED", context: nil))
         formulaList?.addChild(redFormula, context: context)
@@ -49,10 +53,6 @@ extension SetPenColorBrick: CBXMLNodeProtocol {
         let greenFormula = self.green?.xmlElement(with: context)
         greenFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_GREEN", context: nil))
         formulaList?.addChild(greenFormula, context: context)
-
-        let blueFormula = self.blue?.xmlElement(with: context)
-        blueFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "PEN_COLOR_BLUE", context: nil))
-        formulaList?.addChild(blueFormula, context: context)
 
         brick?.addChild(formulaList, context: context)
         return brick

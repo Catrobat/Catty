@@ -1763,6 +1763,7 @@
 		E5BEC73B26AAEB160063D7F0 /* Sensors_0998.xml in Resources */ = {isa = PBXBuildFile; fileRef = E5BEC73A26AAEB160063D7F0 /* Sensors_0998.xml */; };
 		E5BEC73D26AAEB220063D7F0 /* ValidHeader0998.xml in Resources */ = {isa = PBXBuildFile; fileRef = E5BEC73C26AAEB220063D7F0 /* ValidHeader0998.xml */; };
 		E5BEC73F26AAEB2D0063D7F0 /* ValidProjectAllBricks0998.xml in Resources */ = {isa = PBXBuildFile; fileRef = E5BEC73E26AAEB2D0063D7F0 /* ValidProjectAllBricks0998.xml */; };
+		E5BEC74226AB0E730063D7F0 /* XMLParserTests0998.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BEC74126AB0E730063D7F0 /* XMLParserTests0998.swift */; };
 		E5D62E3D26984D4300C14CB2 /* collisionTest0994.xml in Resources */ = {isa = PBXBuildFile; fileRef = E5D62E3C26984D4300C14CB2 /* collisionTest0994.xml */; };
 		E5E1E5AA25780DA100D2F1BC /* SetLookByIndexBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */; };
 		E5E1E5AE25780E3200D2F1BC /* SetLookByIndexBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */; };
@@ -4201,6 +4202,7 @@
 		E5BEC73A26AAEB160063D7F0 /* Sensors_0998.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Sensors_0998.xml; sourceTree = "<group>"; };
 		E5BEC73C26AAEB220063D7F0 /* ValidHeader0998.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidHeader0998.xml; sourceTree = "<group>"; };
 		E5BEC73E26AAEB2D0063D7F0 /* ValidProjectAllBricks0998.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProjectAllBricks0998.xml; sourceTree = "<group>"; };
+		E5BEC74126AB0E730063D7F0 /* XMLParserTests0998.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests0998.swift; sourceTree = "<group>"; };
 		E5C5D89C25B1E2BB00D96E4B /* collisionTest0993.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = collisionTest0993.xml; sourceTree = "<group>"; };
 		E5C983D825792A8B00AC36C3 /* CollisionFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionFunction.swift; sourceTree = "<group>"; };
 		E5D62E3C26984D4300C14CB2 /* collisionTest0994.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = collisionTest0994.xml; sourceTree = "<group>"; };
@@ -10360,6 +10362,7 @@
 				E59108E626932FAF008D254A /* CatrobatLanguage0.994 */,
 				E50E856C269ED82B00E76CE9 /* CatrobatLanguage0.995 */,
 				E57789D226A6FA6500C51520 /* CatrobatLanguage0.996 */,
+				E5BEC74026AB0E440063D7F0 /* CatrobatLanguage0.998 */,
 				E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */,
 				E5E6D84526A83FDC0073C010 /* CBXMLParserContextTests.swift */,
 			);
@@ -10389,6 +10392,14 @@
 				E50579C525B1B39D003FAEE5 /* CollisionFunctionTest.swift */,
 			);
 			path = Object;
+			sourceTree = "<group>";
+		};
+		E5BEC74026AB0E440063D7F0 /* CatrobatLanguage0.998 */ = {
+			isa = PBXGroup;
+			children = (
+				E5BEC74126AB0E730063D7F0 /* XMLParserTests0998.swift */,
+			);
+			path = CatrobatLanguage0.998;
 			sourceTree = "<group>";
 		};
 		E5C5D89525B1DEAF00D96E4B /* Object */ = {
@@ -11763,6 +11774,7 @@
 				22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */,
 				4C82268F213FB2C600F3D750 /* MultiFingerYFunctionTests.swift in Sources */,
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
+				E5BEC74226AB0E730063D7F0 /* XMLParserTests0998.swift in Sources */,
 				4C6FE160212D2D2E0067B7D5 /* RandFunctionTest.swift in Sources */,
 				4C6FE173212D2D2E0067B7D5 /* NumberOfItemsFunctionTest.swift in Sources */,
 			);

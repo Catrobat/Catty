@@ -34,12 +34,16 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
+    if([context isGreaterThanLanguageVersion:0.996]) {
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    } else {
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
+        [XMLError exceptionIfNil:[xmlElement childWithElementName:@"type"] message:@"Parsed type-attribute is invalid or empty!"];
+    }
+    
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"STRING" withContext:context];
     ThinkBubbleBrick *thinkBrick = [self new];
     thinkBrick.formula = formula;
-    
-    [XMLError exceptionIfNil:[xmlElement childWithElementName:@"type"] message:@"Parsed type-attribute is invalid or empty!"];
     
     return thinkBrick;
 }
@@ -51,11 +55,7 @@
     GDataXMLElement *formula = [self.formula xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"STRING"]];
     [formulaList addChild:formula context:context];
-    [brick addChild:formulaList context:context];
-    
-    // Element to produce Catroid equivalent XML
-    [brick addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"1" context:context] context:context];
-    
+    [brick addChild:formulaList context:context];;
     
     return brick;
 }
