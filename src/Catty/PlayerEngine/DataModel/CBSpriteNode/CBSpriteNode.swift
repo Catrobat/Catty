@@ -314,6 +314,18 @@ class CBSpriteNode: SKSpriteNode {
         self.addChild(superNode)
     }
 
+    func makePhysicsObject(setBody: Bool = true) {
+        guard let objectName = self.spriteObject.name else { return }
+
+        if !isPhysicsObject() {
+            self.spriteObject.scene.project?.physicsObjectNames.add(objectName)
+        }
+
+        if setBody, self.childNode(withName: SpriteKitDefines.physicsNodeName) == nil {
+            setPhyicsBody()
+        }
+    }
+
     private func isPhysicsObject() -> Bool {
         guard let objectName = self.spriteObject.name else { return false }
         return self.spriteObject.scene.project?.physicsObjectNames.contains(objectName) ?? false
