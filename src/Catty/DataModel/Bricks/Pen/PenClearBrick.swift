@@ -43,4 +43,10 @@
         PenClearBrickCell.self as BrickCellProtocol.Type
     }
 
+    override func clone(with script: Script!) -> Brick! {
+        let clone = PenClearBrick()
+        clone.script = script
+
+        return clone
+    }
 }

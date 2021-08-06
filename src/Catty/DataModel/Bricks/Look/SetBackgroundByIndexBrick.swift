@@ -70,4 +70,12 @@
     func path(for look: Look?) -> String? {
         look?.path(for: script.object.scene)
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = SetBackgroundByIndexBrick()
+        clone.script = script
+        clone.backgroundIndex = self.backgroundIndex
+
+        return clone
+    }
 }

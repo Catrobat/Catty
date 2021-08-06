@@ -1220,6 +1220,11 @@
 		972622DD25F51A8F00ABCC7A /* ChangeBrightnessByNBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972622DC25F51A8F00ABCC7A /* ChangeBrightnessByNBrick+CBXMLHandler.swift */; };
 		972622E225F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972622E125F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift */; };
 		9728AE9E25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */; };
+		973F1D3226B1923F0043108A /* CloneBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973F1D3126B1923F0043108A /* CloneBrick+CBXMLHandler.swift */; };
+		9740489026B04FAE0047DEBB /* CloneBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9740488F26B04FAE0047DEBB /* CloneBrick.swift */; };
+		9740489426B052950047DEBB /* CloneBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9740489326B052950047DEBB /* CloneBrickCell.swift */; };
+		9740489626B0547D0047DEBB /* CloneBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9740489526B0547D0047DEBB /* CloneBrick+Instruction.swift */; };
+		9740489E26B097500047DEBB /* CloneBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9740489D26B097500047DEBB /* CloneBrickTests.swift */; };
 		97417A9B265284400079A2A2 /* SoundsTableViewController+SelectFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97417A9A265284400079A2A2 /* SoundsTableViewController+SelectFile.swift */; };
 		9742DC5B269A2EC600980DE8 /* TouchesFingerSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9742DC5A269A2EC600980DE8 /* TouchesFingerSensorTest.swift */; };
 		9767BAFA26668ECD009794E8 /* JoinThreeStringsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767BAF926668ECD009794E8 /* JoinThreeStringsFunctionTest.swift */; };
@@ -3491,6 +3496,11 @@
 		972622DC25F51A8F00ABCC7A /* ChangeBrightnessByNBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeBrightnessByNBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		972622E125F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetBrightnessBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerReportExtension.swift; sourceTree = "<group>"; };
+		973F1D3126B1923F0043108A /* CloneBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CloneBrick+CBXMLHandler.swift"; path = "CattyTests/Bricks/CloneBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
+		9740488F26B04FAE0047DEBB /* CloneBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloneBrick.swift; sourceTree = "<group>"; };
+		9740489326B052950047DEBB /* CloneBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloneBrickCell.swift; sourceTree = "<group>"; };
+		9740489526B0547D0047DEBB /* CloneBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CloneBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9740489D26B097500047DEBB /* CloneBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloneBrickTests.swift; sourceTree = "<group>"; };
 		97417A9A265284400079A2A2 /* SoundsTableViewController+SelectFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundsTableViewController+SelectFile.swift"; sourceTree = "<group>"; };
 		9742DC5A269A2EC600980DE8 /* TouchesFingerSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchesFingerSensorTest.swift; sourceTree = "<group>"; };
 		9767BAF926668ECD009794E8 /* JoinThreeStringsFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinThreeStringsFunctionTest.swift; sourceTree = "<group>"; };
@@ -4152,6 +4162,7 @@
 		C82FC8DC26964F4A008DFBB8 /* TouchesFingerSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchesFingerSensor.swift; sourceTree = "<group>"; };
 		C84B21702714A2690077CF70 /* TouchesEdgeSensor.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TouchesEdgeSensor.xml; sourceTree = "<group>"; };
 		C85A5C9F267A218F009BA454 /* Functions_0993.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Functions_0993.xml; sourceTree = "<group>"; };
+		C88FFF5D26B830E100D381D8 /* BrickObjectWithOutBackgroundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectWithOutBackgroundProtocol.h; sourceTree = "<group>"; };
 		C8A0338226064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SetTempoToBrick+CBXMLHandler.swift"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Sound/SetTempoToBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
 		C8CD7DD325E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewControllerTests.swift; sourceTree = "<group>"; };
 		C8D010C3264BD2B700896DEB /* JoinThreeStringsFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinThreeStringsFunction.swift; sourceTree = "<group>"; };
@@ -5970,6 +5981,7 @@
 				9990BB6C1D89D89A0088357A /* BrickStaticChoiceProtocol.h */,
 				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
 				4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */,
+				C88FFF5D26B830E100D381D8 /* BrickObjectWithOutBackgroundProtocol.h */,
 			);
 			path = BrickData;
 			sourceTree = "<group>";
@@ -6325,6 +6337,7 @@
 				AA74EEDA1BC057B900D1E954 /* WaitBrick+CBXMLHandler.m */,
 				BA987D042194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.h */,
 				BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */,
+				973F1D3126B1923F0043108A /* CloneBrick+CBXMLHandler.swift */,
 			);
 			name = Control;
 			path = ControlBricks;
@@ -7169,6 +7182,7 @@
 				83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */,
 				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
 				0580514826EF734F00F719E0 /* StartRunningStitchBrickTests.swift */,
+				9740489D26B097500047DEBB /* CloneBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -9655,6 +9669,7 @@
 				AA74EE1F1BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift */,
 				AA74EE201BC053FD00D1E954 /* WaitBrick+Instruction.swift */,
 				BA987D0E2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift */,
+				9740489526B0547D0047DEBB /* CloneBrick+Instruction.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -9788,6 +9803,7 @@
 				AA74EF951BC05B5F00D1E954 /* WaitBrick.m */,
 				BA987D072194E158002DAA05 /* WaitUntilBrick.h */,
 				BA987D062194E157002DAA05 /* WaitUntilBrick.m */,
+				9740488F26B04FAE0047DEBB /* CloneBrick.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -10028,6 +10044,7 @@
 				9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */,
 				BA987D0A2194E25A002DAA05 /* WaitUntilBrickCell.h */,
 				BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */,
+				9740489326B052950047DEBB /* CloneBrickCell.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -11950,6 +11967,7 @@
 				9E24D7032326E8E600608203 /* TurnLeftBrickTests.swift in Sources */,
 				E57E6D872540414700E775DF /* SetVolumeToBrickTests.swift in Sources */,
 				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
+				9740489E26B097500047DEBB /* CloneBrickTests.swift in Sources */,
 				E579F10B253D98B0009107C8 /* PhiroPlayToneBrickTests.swift in Sources */,
 				E579F114253DCA96009107C8 /* ThinkBubbleBrickTests.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
@@ -12293,6 +12311,7 @@
 				AA74F0BD1BC05FCE00D1E954 /* PlaceAtBrickCell.m in Sources */,
 				18390A6924D0576100A07DFD /* StampBrick.swift in Sources */,
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
+				9740489426B052950047DEBB /* CloneBrickCell.swift in Sources */,
 				AA74EFFE1BC05B5F00D1E954 /* ComeToFrontBrick.m in Sources */,
 				057B182A26DC8B6A00C47E60 /* StartRunningStitchBrick.swift in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
@@ -12312,6 +12331,7 @@
 				2D6E3F3B210A0AB700FB8139 /* ChartProjectsStoreViewController.swift in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
+				973F1D3226B1923F0043108A /* CloneBrick+CBXMLHandler.swift in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				4C822693213FBC4400F3D750 /* MultiFingerTouchedFunction.swift in Sources */,
 				4420ACB1250929AE00951328 /* AskBrick+CBXMLHandler.swift in Sources */,
@@ -12319,10 +12339,12 @@
 				4C0F9F9E204BD2B100E71B2D /* SayBubbleBrickCell.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */,
+				9740489626B0547D0047DEBB /* CloneBrick+Instruction.swift in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
 				4CE3D68F2107B68600005629 /* FaceDetectionManagerProtocol.swift in Sources */,
 				929CC0EF1BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m in Sources */,
 				4C0F9F64204BD18600E71B2D /* SayForBubbleBrick+CBXMLHandler.m in Sources */,
+				9740489026B04FAE0047DEBB /* CloneBrick.swift in Sources */,
 				92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */,
 				92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */,
 				AA74F0A41BC05FCE00D1E954 /* LoopEndBrickCell.m in Sources */,

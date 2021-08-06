@@ -52,6 +52,25 @@
     
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    IfThenLogicEndBrick *clone = [[IfThenLogicEndBrick alloc] init];
+    clone.script = script;
+    
+    for (Brick *brick in script.brickList.reverseObjectEnumerator) {
+        if ([brick isKindOfClass: [IfThenLogicBeginBrick class]]) {
+            IfThenLogicBeginBrick *beginBrick = (IfThenLogicBeginBrick*) brick;
+            if (beginBrick.ifEndBrick == nil) {
+                beginBrick.ifEndBrick = clone;
+                clone.ifBeginBrick = beginBrick;
+                break;
+            }
+        }
+    }
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

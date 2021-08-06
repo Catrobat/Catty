@@ -78,6 +78,11 @@
         self._objects
     }
 
+    func objectsWithoutBackground() -> [SpriteObject] {
+        let backgroundObjects = self.numberOfBackgroundObjects()
+        return [SpriteObject](self._objects[backgroundObjects...])
+    }
+
     @objc(objectAtIndex:)
     func object(at index: Int) -> SpriteObject? {
         if index >= 0 && index < self._objects.count {

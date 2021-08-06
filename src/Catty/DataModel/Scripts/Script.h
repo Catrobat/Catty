@@ -55,5 +55,6 @@
 
 - (NSInteger)getRequiredResources;
 - (Class<BrickCellProtocol>)brickCell;
+- (Script*) cloneWithObject: (SpriteObject *) object;
 
 @end

@@ -53,6 +53,19 @@
     }
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    HideTextBrick *clone = [[HideTextBrick alloc] init];
+    clone.script = script;
+    for (UserVariable *variable in script.object.userData.variables) {
+        if (variable.name == self.userVariable.name) {
+            clone.userVariable = variable;
+        }
+    }
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

@@ -55,6 +55,15 @@
     return NO;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    VibrationBrick *clone = [[VibrationBrick alloc] init];
+    clone.script = script;
+    clone.durationInSeconds = self.durationInSeconds;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

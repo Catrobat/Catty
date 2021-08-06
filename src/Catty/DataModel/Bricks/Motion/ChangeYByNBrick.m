@@ -56,6 +56,15 @@
     self.yMovement = [[Formula alloc] initWithInteger:10];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ChangeYByNBrick *clone = [[ChangeYByNBrick alloc] init];
+    clone.script = script;
+    clone.yMovement = self.yMovement;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

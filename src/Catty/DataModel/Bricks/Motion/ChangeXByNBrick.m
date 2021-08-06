@@ -56,6 +56,15 @@
     return kMotionBrick;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ChangeXByNBrick *clone = [[ChangeXByNBrick alloc] init];
+    clone.script = script;
+    clone.xMovement = self.xMovement;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

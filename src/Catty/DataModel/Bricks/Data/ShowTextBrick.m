@@ -81,6 +81,21 @@
     return kDataBrick;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ShowTextBrick *clone = [[ShowTextBrick alloc] init];
+    clone.script = script;
+    for (UserVariable *variable in script.object.userData.variables) {
+        if (variable.name == self.userVariable.name) {
+            clone.userVariable = variable;
+        }
+    }
+    clone.xFormula = self.xFormula;
+    clone.yFormula = self.yFormula;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

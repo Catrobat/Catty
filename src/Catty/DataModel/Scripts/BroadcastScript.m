@@ -56,4 +56,13 @@
     return self.receivedMessage;
 }
 
+- (Script*)cloneWithObject:(SpriteObject *)object
+{
+    BroadcastScript *clone = [[BroadcastScript alloc] init];
+    clone.object = object;
+    clone.receivedMessage = self.receivedMessage;
+    
+    return clone;
+}
+
 @end

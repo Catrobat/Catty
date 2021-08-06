@@ -30,6 +30,14 @@
     return kLookBrick;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ShowBrick *clone = [[ShowBrick alloc] init];
+    clone.script = script;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

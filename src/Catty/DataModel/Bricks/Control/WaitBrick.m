@@ -56,6 +56,15 @@
     self.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    WaitBrick *clone = [[WaitBrick alloc] init];
+    clone.script = script;
+    clone.timeToWaitInSeconds = self.timeToWaitInSeconds;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

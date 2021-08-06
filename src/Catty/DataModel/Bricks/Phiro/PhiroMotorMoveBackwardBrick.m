@@ -78,6 +78,16 @@
     return NO;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    PhiroMotorMoveBackwardBrick *clone = [[PhiroMotorMoveBackwardBrick alloc] init];
+    clone.script = script;
+    clone.motor = self.motor;
+    clone.formula = self.formula;
+    
+    return clone;
+}
+
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {

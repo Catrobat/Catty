@@ -99,6 +99,33 @@
     return endBrick;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    IfLogicEndBrick *clone = [[IfLogicEndBrick alloc] init];
+    clone.script = script;
+    
+    for (Brick *brick in script.brickList.reverseObjectEnumerator) {
+        if ([brick isKindOfClass: [IfLogicBeginBrick class]]) {
+            IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick*) brick;
+            if (beginBrick.ifEndBrick == nil && beginBrick.ifElseBrick != nil) {
+                beginBrick.ifEndBrick = clone;
+                clone.ifBeginBrick = beginBrick;
+                break;
+            }
+        }
+        
+        if ([brick isKindOfClass: [IfLogicElseBrick class]]) {
+            IfLogicElseBrick *elseBrick = (IfLogicElseBrick*) brick;
+            if (elseBrick.ifEndBrick == nil && elseBrick.ifBeginBrick != nil) {
+                elseBrick.ifEndBrick = clone;
+                clone.ifElseBrick = elseBrick;
+            }
+        }
+    }
+    
+    return clone;
+}
+
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

@@ -91,4 +91,15 @@
     override func isDisabledForBackground() -> Bool {
         false
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = WebRequestBrick()
+        clone.script = script
+        clone.request = self.request
+        clone.userVariable = script.object.userData.variables().first(where: { $0.name == self.userVariable?.name })
+        clone.downloaderFactory = self.downloaderFactory
+        clone.alertControllerBuilder = self.alertControllerBuilder
+
+        return clone
+    }
 }

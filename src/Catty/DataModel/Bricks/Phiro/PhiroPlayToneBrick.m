@@ -74,6 +74,16 @@
     self.tone = tone;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    PhiroPlayToneBrick *clone = [[PhiroPlayToneBrick alloc] init];
+    clone.script = script;
+    clone.durationFormula = self.durationFormula;
+    clone.tone = self.tone;
+    
+    return clone;
+}
+
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {

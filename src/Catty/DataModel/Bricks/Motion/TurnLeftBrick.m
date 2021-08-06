@@ -55,6 +55,15 @@
     self.degrees = [[Formula alloc] initWithInteger:15];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    TurnLeftBrick *clone = [[TurnLeftBrick alloc] init];
+    clone.script = script;
+    clone.degrees = self.degrees;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

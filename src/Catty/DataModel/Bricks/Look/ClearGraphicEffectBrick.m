@@ -36,6 +36,14 @@
     return [look pathForScene:self.script.object.scene];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ClearGraphicEffectBrick *clone = [[ClearGraphicEffectBrick alloc] init];
+    clone.script = script;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

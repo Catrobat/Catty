@@ -55,6 +55,15 @@
     self.degrees = [[Formula alloc] initWithInteger:90];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    PointInDirectionBrick *clone = [[PointInDirectionBrick alloc] init];
+    clone.script = script;
+    clone.degrees = self.degrees;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

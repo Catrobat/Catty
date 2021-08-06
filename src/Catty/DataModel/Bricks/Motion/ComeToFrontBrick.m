@@ -36,6 +36,14 @@
     return YES;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ComeToFrontBrick *clone = [[ComeToFrontBrick alloc] init];
+    clone.script = script;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

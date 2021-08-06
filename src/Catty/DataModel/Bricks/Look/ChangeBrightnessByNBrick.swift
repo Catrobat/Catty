@@ -70,4 +70,12 @@
     override func brickCell() -> BrickCellProtocol.Type! {
         ChangeBrightnessByNBrickCell.self as BrickCellProtocol.Type
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = ChangeBrightnessByNBrick()
+        clone.script = script
+        clone.changeBrightness = self.changeBrightness
+
+        return clone
+    }
 }

@@ -50,6 +50,15 @@
     return nil;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    SpeakAndWaitBrick *clone = [[SpeakAndWaitBrick alloc] init];
+    clone.script = script;
+    clone.formula = self.formula;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

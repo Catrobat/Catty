@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc(SetPenSizeBrick)
-@objcMembers class SetPenSizeBrick: Brick, BrickFormulaProtocol {
+@objc(CloneBrick)
+@objcMembers class CloneBrick: Brick, BrickObjectWithOutBackgroundProtocol {
 
-    var penSize: Formula?
+    var objectToClone: SpriteObject?
+    static var nameCounter: Int = 1
 
     override required init() {
         super.init()
     }
 
     func category() -> kBrickCategoryType {
-        kBrickCategoryType.penBrick
+        kBrickCategoryType.eventBrick
     }
 
     override class func description() -> String {
-        "PenBrick"
+        "CloneBrick"
     }
 
     override func getRequiredResources() -> Int {
@@ -42,37 +43,48 @@
     }
 
     override func brickCell() -> BrickCellProtocol.Type! {
-        SetPenSizeBrickCell.self as BrickCellProtocol.Type
+        CloneBrickCell.self as BrickCellProtocol.Type
     }
 
-    func formula(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> Formula! {
-        self.penSize
+    func setObject(_ object: SpriteObject?, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
+        if let object = object {
+            objectToClone = object
+        }
     }
 
-    func setFormula(_ formula: Formula!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
-        self.penSize = formula
+    func object(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> SpriteObject? {
+        self.objectToClone
     }
 
     override func setDefaultValuesFor(_ spriteObject: SpriteObject!) {
-        self.penSize = Formula(float: Float(SpriteKitDefines.defaultCatrobatPenSize))
-    }
-
-    func getFormulas() -> [Formula]! {
-        [penSize!]
-    }
-
-    func allowsStringFormula() -> Bool {
-        false
+        if spriteObject != nil {
+            objectToClone = spriteObject
+        } else {
+            objectToClone = self.script.object
+        }
     }
 
     override func isDisabledForBackground() -> Bool {
         true
     }
 
+    @objc(mutableCopyWithContext:)
+    override func mutableCopy(with context: CBMutableCopyContext) -> Any {
+        let brick = CloneBrick()
+        if self.objectToClone != nil {
+            brick.objectToClone = self.objectToClone
+        }
+        return brick
+    }
+
     override func clone(with script: Script!) -> Brick! {
-        let clone = SetPenSizeBrick()
+        let clone = CloneBrick()
         clone.script = script
-        clone.penSize = self.penSize
+        if self.objectToClone == self.script.object {
+            clone.objectToClone = clone.script.object
+        } else {
+            clone.objectToClone = self.objectToClone
+        }
 
         return clone
     }

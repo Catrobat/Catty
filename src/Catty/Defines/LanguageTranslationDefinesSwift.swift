@@ -382,6 +382,7 @@ let kLocalizedTimes = NSLocalizedString("times", comment: "")
 let kLocalizedEndOfLoop = NSLocalizedString("End of Loop", comment: "")
 let kLocalizedWhen = NSLocalizedString("When", comment: "")
 let kLocalizedBecomesTrue = NSLocalizedString("becomes true", comment: "")
+let kLocalizedCreateCloneOf = NSLocalizedString("Create clone of", comment: "")
 
 // motion bricks
 let kLocalizedPlaceAt = NSLocalizedString("Place at ", comment: "")

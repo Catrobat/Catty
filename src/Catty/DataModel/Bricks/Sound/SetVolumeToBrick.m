@@ -55,6 +55,15 @@
     self.volume = [[Formula alloc] initWithInteger:60];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    SetVolumeToBrick *clone = [[SetVolumeToBrick alloc] init];
+    clone.script = script;
+    clone.volume = self.volume;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

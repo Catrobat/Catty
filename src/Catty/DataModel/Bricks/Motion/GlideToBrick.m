@@ -78,6 +78,16 @@
     self.yDestination = [[Formula alloc] initWithInteger:200];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    GlideToBrick *clone = [[GlideToBrick alloc] init];
+    clone.script = script;
+    clone.durationInSeconds = self.durationInSeconds;
+    clone.xDestination = self.xDestination;
+    clone.yDestination = self.yDestination;
+    
+    return clone;
+}
 
 #pragma mark - Description
 - (NSString*)description

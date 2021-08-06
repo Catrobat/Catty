@@ -772,6 +772,13 @@
                     </formula>
                   </formulaList>
                 </brick>
+                <brick type="CloneBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="CloneBrick">
+                  <commentedOut>false</commentedOut>
+                  <objectToClone reference="../../../../../../object[1]"/>
+              </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
@@ -805,6 +812,10 @@
             <object reference="../../../../objectList/object[3]/scriptList/script/brickList/brick/destinationSprite"/>
             <list/>
           </entry>
+          <entry>
+            <object reference="../../../../objectList/object[3]/scriptList/script/brickList/brick[8]/objectToClone"/>
+            <list/>
+          </entry>
         </objectListOfList>
         <objectVariableList>
           <entry>
@@ -827,6 +838,10 @@
           </entry>
           <entry>
             <object reference="../../../../objectList/object[3]/scriptList/script/brickList/brick/destinationSprite"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[3]/scriptList/script/brickList/brick[8]/objectToClone"/>
             <list/>
           </entry>
         </objectVariableList>

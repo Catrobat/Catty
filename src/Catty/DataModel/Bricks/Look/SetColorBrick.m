@@ -63,6 +63,15 @@
     return [look pathForScene:self.script.object.scene];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    SetColorBrick *clone = [[SetColorBrick alloc] init];
+    clone.script = script;
+    clone.color = self.color;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

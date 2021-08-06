@@ -74,4 +74,12 @@
     func pathForLook(look: Look?) -> String? {
         look?.path(for: script.object.scene)
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = SetLookByIndexBrick()
+        clone.script = script
+        clone.lookIndex = self.lookIndex
+
+        return clone
+    }
 }

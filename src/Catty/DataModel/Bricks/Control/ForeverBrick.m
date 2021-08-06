@@ -34,6 +34,13 @@
     return YES;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ForeverBrick *clone = [[ForeverBrick alloc] init];
+    clone.script = script;
+    
+    return clone;
+}
 #pragma mark - Description
 - (NSString*)description
 {

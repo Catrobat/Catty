@@ -94,6 +94,18 @@
         self.light = light;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    PhiroRGBLightBrick *clone = [[PhiroRGBLightBrick alloc] init];
+    clone.script = script;
+    clone.light = self.light;
+    clone.redFormula = self.redFormula;
+    clone.greenFormula = self.greenFormula;
+    clone.blueFormula = self.blueFormula;
+    
+    return clone;
+}
+
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {

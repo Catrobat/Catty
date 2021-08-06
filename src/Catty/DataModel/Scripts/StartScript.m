@@ -29,4 +29,12 @@
     return kEventBrick;
 }
 
+- (Script*)cloneWithObject:(SpriteObject *)object
+{
+    StartScript *clone = [[StartScript alloc] init];
+    clone.object = object;
+    
+    return clone;
+}
+
 @end

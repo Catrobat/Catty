@@ -75,6 +75,20 @@
     return YES;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    DeleteItemOfUserListBrick *clone = [[DeleteItemOfUserListBrick alloc] init];
+    clone.script = script;
+    for (UserList *userList in script.object.userData.lists) {
+        if (userList.name == self.userList.name) {
+            clone.userList = userList;
+        }
+    }
+    clone.listFormula = self.listFormula;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

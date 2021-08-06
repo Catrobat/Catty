@@ -73,6 +73,20 @@
     return YES;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ChangeVariableBrick *clone = [[ChangeVariableBrick alloc] init];
+    clone.script = script;
+    for (UserVariable *variable in script.object.userData.variables) {
+        if (variable.name == self.userVariable.name) {
+            clone.userVariable = variable;
+        }
+    }
+    clone.variableFormula = self.variableFormula;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

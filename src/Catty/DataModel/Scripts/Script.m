@@ -100,6 +100,15 @@
     return copiedScript;
 }
 
+- (Script*)cloneWithObject:(SpriteObject *)object {
+    
+    // Override this method in Script implementation
+    WhenScript *clone = [[WhenScript alloc] init];
+    clone.object = object;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

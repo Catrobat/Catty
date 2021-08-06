@@ -58,6 +58,15 @@
     self.transparency = [[Formula alloc] initWithInteger:50];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    SetTransparencyBrick *clone = [[SetTransparencyBrick alloc] init];
+    clone.script = script;
+    clone.transparency = self.transparency;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

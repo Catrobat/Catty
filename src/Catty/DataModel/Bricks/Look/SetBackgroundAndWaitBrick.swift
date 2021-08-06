@@ -111,4 +111,12 @@
 
         return brick
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = SetBackgroundAndWaitBrick()
+        clone.script = script
+        clone.look = self.look
+
+        return clone
+    }
 }

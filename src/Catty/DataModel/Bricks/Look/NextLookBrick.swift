@@ -45,4 +45,11 @@
     override func getRequiredResources() -> Int {
         ResourceType.noResources.rawValue
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = NextLookBrick()
+        clone.script = script
+
+        return clone
+    }
 }

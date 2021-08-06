@@ -23,7 +23,7 @@
 @objc(SetTempoToBrick)
 @objcMembers class SetTempoToBrick: Brick, BrickFormulaProtocol {
 
-    private var tempo: Formula
+    var tempo: Formula
 
     override required init() {
         self.tempo = Formula(integer: Int32(AudioEngineDefines.defaultTempo))
@@ -82,5 +82,13 @@
         let brick = SetTempoToBrick()
         brick.tempo = self.tempo
         return brick
+    }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = SetTempoToBrick()
+        clone.script = script
+        clone.tempo = self.tempo
+
+        return clone
     }
 }

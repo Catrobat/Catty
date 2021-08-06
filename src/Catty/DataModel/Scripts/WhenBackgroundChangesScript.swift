@@ -95,4 +95,12 @@ class WhenBackgroundChangesScript: Script, BrickLookProtocol {
 
         return brick
     }
+
+    override func clone(with object: SpriteObject!) -> Script! {
+        let clone = WhenBackgroundChangesScript()
+        clone.object = object
+        clone.look = self.look
+
+        return clone
+    }
 }

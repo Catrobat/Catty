@@ -48,6 +48,15 @@
     return brick;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    PlaySoundAndWaitBrick *clone = [[PlaySoundAndWaitBrick alloc] init];
+    clone.script = script;
+    clone.sound = self.sound;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

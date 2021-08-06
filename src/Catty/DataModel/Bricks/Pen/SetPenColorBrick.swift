@@ -114,4 +114,13 @@
         true
     }
 
+    override func clone(with script: Script!) -> Brick! {
+        let clone = SetPenColorBrick()
+        clone.script = script
+        clone.red = self.red
+        clone.blue = self.blue
+        clone.green = self.green
+
+        return clone
+    }
 }

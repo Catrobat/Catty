@@ -48,4 +48,10 @@
         true
     }
 
+    override func clone(with script: Script!) -> Brick! {
+        let clone = PenUpBrick()
+        clone.script = script
+
+        return clone
+    }
 }

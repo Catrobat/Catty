@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -19,34 +19,35 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+import Foundation
 
-#import "HideBrick.h"
+@objc(CloneBrickCell) class CloneBrickCell: BrickCell, BrickCellProtocol {
 
-@implementation HideBrick
+    public var textLabel: UILabel?
+    public var objectComboBoxView: iOSCombobox?
 
-- (kBrickCategoryType)category
-{
-    return kLookBrick;
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        UIDefines.brickHeight2h
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.objectComboBoxView = inlineViewSubViews[1] as? iOSCombobox
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+         kLocalizedCreateCloneOf.appending("\n%@")
+    }
+
+    override func parameters() -> [String] {
+        ["{OBJECT}"]
+    }
 }
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Hidebrick"];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return kNoResources;
-}
-
-- (Brick*)cloneWithScript:(Script *)script
-{
-    HideBrick *clone = [[HideBrick alloc] init];
-    clone.script = script;
-    
-    return clone;
-}
-
-@end

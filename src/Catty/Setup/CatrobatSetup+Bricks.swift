@@ -33,6 +33,7 @@
             BroadcastBrick(),
             BroadcastWaitBrick(),
             WhenBackgroundChangesScript(),
+            CloneBrick(),
             // control bricks
             WaitBrick(),
             IfThenLogicBeginBrick(),

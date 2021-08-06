@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,33 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "HideBrick.h"
+#import <Foundation/Foundation.h>
 
-@implementation HideBrick
+@class Brick;
+@class SpriteObject;
 
-- (kBrickCategoryType)category
-{
-    return kLookBrick;
-}
+@protocol BrickObjectWithOutBackgroundProtocol <BrickProtocol>
 
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Hidebrick"];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return kNoResources;
-}
-
-- (Brick*)cloneWithScript:(Script *)script
-{
-    HideBrick *clone = [[HideBrick alloc] init];
-    clone.script = script;
-    
-    return clone;
-}
+- (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setObject:(SpriteObject*)object forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

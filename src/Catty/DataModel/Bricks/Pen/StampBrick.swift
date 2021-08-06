@@ -47,4 +47,10 @@
         true
     }
 
+    override func clone(with script: Script!) -> Brick! {
+        let clone = StampBrick()
+        clone.script = script
+
+        return clone
+    }
 }

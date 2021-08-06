@@ -38,6 +38,7 @@
 #import "BrickLookProtocol.h"
 #import "BrickSoundProtocol.h"
 #import "BrickObjectProtocol.h"
+#import "BrickObjectWithOutBackgroundProtocol.h"
 #import "BrickMessageProtocol.h"
 #import "BrickStaticChoiceProtocol.h"
 #import "BrickVariableProtocol.h"
@@ -1111,7 +1112,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [soundBrick setSound:[Util soundWithName:(NSString*)value forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     } else
-    if ([brickCellData isKindOfClass:[BrickCellObjectData class]] && [brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
+    if (([brickCellData isKindOfClass:[BrickCellObjectData class]] && [brick conformsToProtocol:@protocol(BrickObjectProtocol)]) || ([brickCellData isKindOfClass:[BrickCellObjectData class]] && [brick conformsToProtocol:@protocol(BrickObjectWithOutBackgroundProtocol)])) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             SceneTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kSceneTableViewControllerIdentifier];
@@ -1125,7 +1126,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self.navigationController pushViewController:ptvc animated:YES];
             return;
         } else {
-            [objectBrick setObject:[Util objectWithName:(NSString*)value forScene:self.object.scene] forLineNumber:line andParameterNumber:parameter];
+            if ([value isEqualToString:@"yourself"])
+                [objectBrick setObject:objectBrick.script.object forLineNumber:line andParameterNumber:parameter];
+            else
+                [objectBrick setObject:[Util objectWithName:(NSString*)value forScene:self.object.scene] forLineNumber:line andParameterNumber:parameter];
         }
     } else
     if ([brickCellData isKindOfClass:[BrickCellFormulaData class]] && [brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
