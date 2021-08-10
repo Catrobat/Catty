@@ -52,16 +52,16 @@
     GDataXMLElement *brick = [super xmlElementForBrickType:@"GlideToBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     
-    GDataXMLElement *formula = [self.durationInSeconds xmlElementWithContext:context];;
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION_IN_SECONDS"]];
-    [formulaList addChild:formula context:context];
-    
-    formula = [self.xDestination xmlElementWithContext:context];
+    GDataXMLElement *formula = [self.xDestination xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"X_DESTINATION"]];
     [formulaList addChild:formula context:context];
     
     formula = [self.yDestination xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_DESTINATION"]];
+    [formulaList addChild:formula context:context];
+    
+    formula = [self.durationInSeconds xmlElementWithContext:context];;
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION_IN_SECONDS"]];
     [formulaList addChild:formula context:context];
     
     [brick addChild:formulaList context:context];
