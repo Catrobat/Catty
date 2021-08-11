@@ -89,7 +89,7 @@
             "views" : 1
           }
         ],
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_viewed&max_version=0.998&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_viewed&max_version=0.999&limit=20&offset=0",
         "headers" : {
           "x-robots-tag" : "noindex",
           "Strict-Transport-Security" : "max-age=15768000",
@@ -109,7 +109,7 @@
         "status" : 404
       },
       "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_viewed&max_version=0.998&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_viewed&max_version=0.999&limit=20&offset=0",
         "method" : "GET"
       },
       "recorded_at" : 1618560131.406004

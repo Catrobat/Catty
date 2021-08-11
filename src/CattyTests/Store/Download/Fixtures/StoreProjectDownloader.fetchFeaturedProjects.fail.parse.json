@@ -4,11 +4,11 @@
     {
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.998&limit=20&offset=0"
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.999&limit=20&offset=0"
       },
       "recorded_at" : 1616508147.6064649,
       "response" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.998&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.999&limit=20&offset=0",
         "headers" : {
           "Content-Type" : "application\/json",
           "Strict-Transport-Security" : "max-age=15768000",
