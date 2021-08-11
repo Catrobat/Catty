@@ -139,9 +139,6 @@
         }
     }
     
-    GDataXMLElement *userDataXmlElement = [userData serializeForObject:context];
-    [sceneXmlElement addChild:userDataXmlElement context:context];
-    
     return sceneXmlElement;
 }
 

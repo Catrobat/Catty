@@ -1738,6 +1738,7 @@
 		E59108E326931FC7008D254A /* Piano_0994.xml in Resources */ = {isa = PBXBuildFile; fileRef = E59108E226931FC7008D254A /* Piano_0994.xml */; };
 		E59108E526931FD8008D254A /* Pythagorean_Theorem_0994.xml in Resources */ = {isa = PBXBuildFile; fileRef = E59108E426931FD8008D254A /* Pythagorean_Theorem_0994.xml */; };
 		E59108E826932FE6008D254A /* XMLParserTests0994.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59108E726932FE5008D254A /* XMLParserTests0994.swift */; };
+		E592064B26B3EF8700962477 /* XMLParserTests09993.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592064A26B3EF8700962477 /* XMLParserTests09993.swift */; };
 		E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */; };
 		E592D15A2539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */; };
 		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
@@ -4225,6 +4226,7 @@
 		E59108E226931FC7008D254A /* Piano_0994.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano_0994.xml; sourceTree = "<group>"; };
 		E59108E426931FD8008D254A /* Pythagorean_Theorem_0994.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_0994.xml; sourceTree = "<group>"; };
 		E59108E726932FE5008D254A /* XMLParserTests0994.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests0994.swift; sourceTree = "<group>"; };
+		E592064A26B3EF8700962477 /* XMLParserTests09993.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests09993.swift; sourceTree = "<group>"; };
 		E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendDigitalValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendPWMValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
@@ -10510,6 +10512,7 @@
 				E57789D226A6FA6500C51520 /* CatrobatLanguage0.996 */,
 				E5BEC74026AB0E440063D7F0 /* CatrobatLanguage0.998 */,
 				E57D5B4E26AEBAAC003A1457 /* CatrobatLanguage0.999 */,
+				E592064726B3EF5700962477 /* CatrobatLanguage0.9993 */,
 				E59108A1268F1682008D254A /* XMLParserBlackBoxTests.swift */,
 				E5E6D84526A83FDC0073C010 /* CBXMLParserContextTests.swift */,
 			);
@@ -10539,6 +10542,14 @@
 				E50579C525B1B39D003FAEE5 /* CollisionFunctionTest.swift */,
 			);
 			path = Object;
+			sourceTree = "<group>";
+		};
+		E592064726B3EF5700962477 /* CatrobatLanguage0.9993 */ = {
+			isa = PBXGroup;
+			children = (
+				E592064A26B3EF8700962477 /* XMLParserTests09993.swift */,
+			);
+			path = CatrobatLanguage0.9993;
 			sourceTree = "<group>";
 		};
 		E5BEC74026AB0E440063D7F0 /* CatrobatLanguage0.998 */ = {
@@ -11706,6 +11717,7 @@
 				4CBDF1AA21CF830E00325338 /* BinaryOperatorMock.swift in Sources */,
 				4C4778E0267C82B100CAF398 /* DataExtensionTests.swift in Sources */,
 				9E22CC8D2323FC6700BA4CBA /* AudioEngineFingerprintingStub.swift in Sources */,
+				E592064B26B3EF8700962477 /* XMLParserTests09993.swift in Sources */,
 				9E2C2D8A23256901004B66C6 /* AudioEngineMock.swift in Sources */,
 				E57E6D8B2540427000E775DF /* SpeakBrickTests.swift in Sources */,
 				4C822668213FA7A400F3D750 /* CompassDirectionSensorTest.swift in Sources */,
