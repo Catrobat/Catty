@@ -368,7 +368,9 @@
     [self showLoadingView];
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.scene.objects objectAtIndex:index];
-    [self.scene removeObject:object];
+    
+    [self.projectManager removeObjects:self.scene.project objects:[NSMutableArray arrayWithObject:object]];
+    
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
     [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
     [self hideLoadingView];

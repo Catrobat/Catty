@@ -177,19 +177,6 @@
     return;
 }
 
-- (void)removeFromScene
-{
-    NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.scene.objects) {
-        if (spriteObject == self) {
-            [self.scene removeObjectAtIndex:index];
-            self.scene = nil;
-            break;
-        }
-        ++index;
-    }
-}
-
 - (void)removeLookFromList:(Look*)look
 {
     // do not use NSArray's removeObject here

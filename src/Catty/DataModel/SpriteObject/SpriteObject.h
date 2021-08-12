@@ -62,7 +62,6 @@
 
 // actions
 - (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save;
-- (void)removeFromScene;
 - (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save;
 - (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save;
 - (void)removeSounds:(NSArray*)sounds AndSaveToDisk:(BOOL)save;

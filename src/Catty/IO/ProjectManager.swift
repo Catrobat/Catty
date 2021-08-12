@@ -180,5 +180,6 @@
                 scene.removeObject(object)
             }
         }
+        project.saveToDisk(withNotification: true)
     }
 }

@@ -130,7 +130,6 @@
             }
             index += 1
         }
-        project?.saveToDisk(withNotification: true)
     }
 
     func objectExists(withName objectName: String) -> Bool {
