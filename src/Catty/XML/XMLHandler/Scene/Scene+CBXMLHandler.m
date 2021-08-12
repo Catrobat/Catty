@@ -125,20 +125,6 @@
     GDataXMLElement *objectListXmlElement = [self xmlElementForObjectListWithContext:context];
     [sceneXmlElement addChild:objectListXmlElement context:context];
     
-    UserDataContainer *userData = [[UserDataContainer alloc] init];
-    
-    for (id object in self.objects) {
-        [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
-                      message:@"Invalid sprite object instance given"];
-        
-        for (UserVariable *variable in ((SpriteObject*)object).userData.variables) {
-            [userData addVariable:variable];
-        }
-        for (UserList *list in ((SpriteObject*)object).userData.lists) {
-            [userData addList:list];
-        }
-    }
-    
     return sceneXmlElement;
 }
 

@@ -246,10 +246,8 @@
     //------------------
     GDataXMLElement *userVariableListXmlElement = [GDataXMLElement elementWithName:@"userVariables"
                                                                               context:context];
-    for (id variable in self.userData.variables) {
-        [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
-                      message:@"Invalid user variable instance given"];
-        GDataXMLElement *userVariableXmlElement = [(UserVariable*)variable xmlElementWithContext:context];
+    for (UserVariable *variable in self.userData.variables) {
+        GDataXMLElement *userVariableXmlElement = [variable xmlElementWithContext:context];
         [userVariableListXmlElement addChild:userVariableXmlElement context:context];
     }
     [xmlElement addChild:userVariableListXmlElement context:context];
@@ -259,11 +257,8 @@
     //------------------
     GDataXMLElement *userListListXmlElement = [GDataXMLElement elementWithName:@"userLists"
                                                                               context:context];
-    for (id list in self.userData.lists) {
-        [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
-                      message:@"Invalid user list instance given"];
-        
-        GDataXMLElement *userListXmlElement = [(UserList*)list xmlElementWithContext:context];
+    for (UserList *list in self.userData.lists) {
+        GDataXMLElement *userListXmlElement = [list xmlElementWithContext:context];
         [userListListXmlElement addChild:userListXmlElement context:context];
     }
     [xmlElement addChild:userListListXmlElement context:context];

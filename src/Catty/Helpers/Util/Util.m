@@ -453,6 +453,11 @@
 {
     if(object == nil && objectToCompare == nil)
         return YES;
+    if(object == nil && objectToCompare != nil)
+        return NO;
+    if(object != nil && objectToCompare == nil)
+        return NO;
+    
     if([object isKindOfClass:[NSString class]]) {
         if([(NSString*)object isEqualToString:(NSString*)objectToCompare])
             return YES;

@@ -64,7 +64,7 @@
         guard let userVariable = object as? UserVariable else {
             return false
         }
-        if (name == userVariable.name) && Util.isEqual(value, to: userVariable.value) {
+        if name == userVariable.name && ((value == nil && userVariable.value == nil) || Util.isEqual(value, to: userVariable.value)) {
             return true
         }
         return false
