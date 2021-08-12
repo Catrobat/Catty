@@ -419,7 +419,7 @@
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.scene = self.scene;
     newObject.name = [NSString stringWithString:self.name];
-    newObject.userData = [self.userData mutableCopy];
+    newObject.userData = [self.userData mutableCopyWithContext:context];
     [context updateReference:self WithReference:newObject];
 
     // deep copy

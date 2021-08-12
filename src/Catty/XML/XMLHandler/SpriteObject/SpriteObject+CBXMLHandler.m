@@ -32,6 +32,7 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLPositionStack.h"
+#import "UserList+CBXMLHandler.h"
 
 @implementation SpriteObject (CBXMLHandler)
 
@@ -236,16 +237,32 @@
         [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:scriptListXmlElement context:context];
-
-    //  Unused at the moment => implement this after Catroid has decided to officially activate this!
-    //    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
-    //    [xmlElement addChild:userBricksXmlElement context:context];
-    
-    // add pseudo <userBricks/> element to produce a Catroid equivalent XML (unused at the moment)
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"userBricks" context:nil]];
     
     // add pseudo <nfcTagList/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"nfcTagList" context:nil]];
+    
+    //------------------
+    // User Variables
+    //------------------
+    GDataXMLElement *userVariableListXmlElement = [GDataXMLElement elementWithName:@"userVariables"
+                                                                              context:context];
+    for (UserVariable *variable in self.userData.variables) {
+        GDataXMLElement *userVariableXmlElement = [variable xmlElementWithContext:context];
+        [userVariableListXmlElement addChild:userVariableXmlElement context:context];
+    }
+    [xmlElement addChild:userVariableListXmlElement context:context];
+    
+    //------------------
+    // User Lists
+    //------------------
+    GDataXMLElement *userListListXmlElement = [GDataXMLElement elementWithName:@"userLists"
+                                                                              context:context];
+    for (UserList *list in self.userData.lists) {
+        GDataXMLElement *userListXmlElement = [list xmlElementWithContext:context];
+        [userListListXmlElement addChild:userListXmlElement context:context];
+    }
+    [xmlElement addChild:userListListXmlElement context:context];
+    
     
     if (asPointedObject) {
         context.spriteObject = previousObject;

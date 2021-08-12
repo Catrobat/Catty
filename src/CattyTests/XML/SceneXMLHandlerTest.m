@@ -108,7 +108,7 @@
 {
     self.scene = [[SceneMock alloc] initWithName:@"testMockScene"];
     
-    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList><object type=\"SingleSprite\" name=\"testObject\"><lookList/><soundList/><scriptList/><userBricks/><nfcTagList/></object></objectList><data><objectListOfList/><objectVariableList/><userBrickVariableList/></data></scene>";
+    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList><object type=\"SingleSprite\" name=\"testObject\"><lookList/><soundList/><scriptList/><nfcTagList/><userVariables/><userLists/></object></objectList></scene>";
     
     SpriteObject *object = [[SpriteObject alloc] init];
     object.name = @"testObject";
@@ -121,18 +121,18 @@
     
     GDataXMLElement *xmlElement = [self.scene xmlElementWithContext:self.serializerContext];
     
-    XCTAssertEqual([xmlElement childCount], 3);
+    XCTAssertEqual([xmlElement childCount], 2);
     XCTAssertTrue([[xmlElement XMLString] isEqualToString:expectedXml]);
 }
 
 - (void)testXmlElementWithContextWithOutObject
 {
     self.scene = [[SceneMock alloc] initWithName:@"testMockScene"];
-    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList/><data><objectListOfList/><objectVariableList/><userBrickVariableList/></data></scene>";
-    GDataXMLElement *xmlElemet = [self.scene xmlElementWithContext:self.serializerContext];
+    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList/></scene>";
+    GDataXMLElement *xmlElement = [self.scene xmlElementWithContext:self.serializerContext];
     
-    XCTAssertEqual([xmlElemet childCount], 3);
-    XCTAssertTrue([[xmlElemet XMLString] isEqualToString:expectedXml]);
+    XCTAssertEqual([xmlElement childCount], 2);
+    XCTAssertTrue([[xmlElement XMLString] isEqualToString:expectedXml]);
 }
 
 @end

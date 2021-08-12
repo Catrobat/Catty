@@ -64,9 +64,6 @@
     [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"fileName" escapedStringValue:self.fileName]];
     [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
     
-    //[xmlElement addAttribute:[GDataXMLElement attributeWithName:@"fileName" escapedStringValue:self.fileName]];
-    //[xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
-    
     return xmlElement;
 }
 

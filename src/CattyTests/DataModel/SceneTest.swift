@@ -237,6 +237,25 @@ final class SceneTest: XCTestCase {
         XCTAssertEqual(copyObject?.name, "testObject")
     }
 
+    func testCopyObjectWithLocalVariables() {
+        let localVariable = UserVariable(name: "localVariable")
+
+        let object = SpriteObject()
+        object.name = "testObject"
+        object.userData = UserDataContainer()
+        object.userData.add(localVariable)
+
+        scene.add(object: object)
+
+        let copiedObject = scene.copy(object, withNameForCopiedObject: "copiedObject")
+        XCTAssertEqual(copiedObject!.name, "copiedObject")
+
+        let copiedVariables = copiedObject!.userData.variables()
+        XCTAssertEqual(1, copiedVariables.count)
+        XCTAssertEqual(localVariable.name, copiedVariables[0].name)
+        XCTAssertFalse(localVariable === copiedVariables[0])
+    }
+
     func testImagesPath() {
         let project = Project()
         let expectedPath = project.projectPath() + scene.name + "/\(kProjectImagesDirName)"

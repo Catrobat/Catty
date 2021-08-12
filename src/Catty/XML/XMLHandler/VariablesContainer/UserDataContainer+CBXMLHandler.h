@@ -30,6 +30,5 @@
 + (instancetype)parseForSpriteObject:(GDataXMLElement*)objectXmlElement withContext:(CBXMLParserContext *)context;
 
 -(GDataXMLElement *)serializeForProject:(CBXMLSerializerContext*)context;
--(GDataXMLElement *)serializeForObject:(CBXMLSerializerContext*)context;
 
 @end
