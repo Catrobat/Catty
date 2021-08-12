@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>47</applicationBuildNumber>
+    <applicationBuildType>debug</applicationBuildType>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.6.19</applicationVersion>
+    <catrobatLanguageVersion>0.9997</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
+    <deviceName>x86_64</deviceName>
+    <isCastProject>false</isCastProject>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>14.5</platformVersion>
+    <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Functions Test</programName>
+    <remixOf></remixOf>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>2532</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1170</screenWidth>
+    <tags></tags>
+    <url>/pocketcode/project/ddf94e26-e319-11eb-a7e9-005056a36f47</url>
+    <userHandle>amica</userHandle>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Scene 1</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList/>
+          <soundList/>
+          <scriptList/>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="Math Functions Test">
+          <lookList>
+            <look fileName="6765E0879AD94DF0A56E63B480629239_Penguin.png" name="Penguin"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="WaitBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TIME_TO_WAIT_IN_SECONDS">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>6</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>RAND</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="RepeatBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TIMES_TO_REPEAT">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>3</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>2</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>MOD</value>
+                    </formula>
+                  </formulaList>
+                  <loopBricks/>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>ABS</value>
+                    </formula>
+                    <formula category="Y_POSITION">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1.6</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>ROUND</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="GlideToBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="X_DESTINATION">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>4</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>SQRT</value>
+                    </formula>
+                    <formula category="DURATION_IN_SECONDS">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>2</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>3</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>POWER</value>
+                    </formula>
+                    <formula category="Y_DESTINATION">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>90</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>SIN</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ChangeXByNBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="X_POSITION_CHANGE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>360</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>COS</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ChangeYByNBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION_CHANGE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>45</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>TAN</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetXBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>0.5</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>ARCSIN</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetYBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>0</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>ARCCOS</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="MoveNStepsBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="STEPS">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>ARCTAN</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="PointInDirectionBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="DEGREES">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>0.7</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>FLOOR</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="TurnLeftBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TURN_LEFT_DEGREES">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>5</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>4</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>MAX</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="TurnRightBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TURN_RIGHT_DEGREES">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>7</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>2</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>MIN</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="VibrationBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VIBRATE_DURATION_IN_SECONDS">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>0.3</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>CEIL</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetSizeToBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="SIZE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>10</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>LOG</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetTransparencyBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="TRANSPARENCY">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>2.718281828459</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>LN</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetBrightnessBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="BRIGHTNESS">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>EXP</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ChangeSizeByNBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="SIZE_CHANGE">
+                      <type>FUNCTION</type>
+                      <value>PI</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="Text Functions Test">
+          <lookList>
+            <look fileName="A0408E76B8F7451C2BB95A25F25FCEE2_Panda.png" name="Panda"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="SayForBubbleBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="DURATION_IN_SECONDS">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                    <formula category="STRING">
+                      <leftChild>
+                        <type>STRING</type>
+                        <value>hello </value>
+                      </leftChild>
+                      <rightChild>
+                        <type>STRING</type>
+                        <value>world</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>JOIN</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SayBubbleBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="STRING">
+                      <leftChild>
+                        <type>STRING</type>
+                        <value>hello </value>
+                      </leftChild>
+                      <rightChild>
+                        <type>STRING</type>
+                        <value>world</value>
+                      </rightChild>
+                      <additionalChildren>
+                        <org.catrobat.catroid.formulaeditor.FormulaElement>
+                          <type>STRING</type>
+                          <value>!</value>
+                        </org.catrobat.catroid.formulaeditor.FormulaElement>
+                      </additionalChildren>
+                      <type>FUNCTION</type>
+                      <value>JOIN3</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ThinkForBubbleBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="DURATION_IN_SECONDS">
+                      <leftChild>
+                        <type>STRING</type>
+                        <value>hello world</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>LENGTH</value>
+                    </formula>
+                    <formula category="STRING">
+                      <leftChild>
+                        <type>STRING</type>
+                        <value> an? ([^ .]+)</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>STRING</type>
+                        <value>I am a panda</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>REGEX</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ThinkBubbleBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="STRING">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>STRING</type>
+                        <value>hello world</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>LETTER</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="List Functions Tests">
+          <lookList>
+            <look fileName="DC5E6D6E91682D8F76BF935F4469B6C0_Luna Cat.png" name="Luna Cat"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="AddItemToUserListBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="LIST_ADD_ITEM">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userList>
+                    <name>test list</name>
+                  </userList>
+                </brick>
+                <brick type="SetPenSizeBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="PEN_SIZE">
+                      <leftChild>
+                        <type>USER_LIST</type>
+                        <value>test list</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>NUMBER_OF_ITEMS</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="AskBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="ASK_QUESTION">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>USER_LIST</type>
+                        <value>test list</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>LIST_ITEM</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable type="UserVariable" serialization="custom">
+                    <userVariable>
+                      <default>
+                        <deviceValueKey>29205f82-c902-4706-9c70-9fe66781131f</deviceValueKey>
+                        <name>test variable</name>
+                      </default>
+                    </userVariable>
+                  </userVariable>
+                </brick>
+                <brick type="SetPenSizeBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="PEN_SIZE">
+                      <leftChild>
+                        <type>USER_LIST</type>
+                        <value>test list</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </rightChild>
+                      <type>FUNCTION</type>
+                      <value>CONTAINS</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+      </objectList>
+    </scene>
+  </scenes>
+  <programVariableList>
+    <userVariable type="UserVariable" serialization="custom">
+      <userVariable>
+        <default>
+          <deviceValueKey>79d0161a-25aa-41c8-95d3-e5fdc79c4f5c</deviceValueKey>
+          <name>test variable</name>
+        </default>
+      </userVariable>
+    </userVariable>
+  </programVariableList>
+  <programListOfLists>
+    <userList reference="../../scenes/scene/objectList/object[4]/scriptList/script/brickList/brick/userList"/>
+  </programListOfLists>
+</program>
