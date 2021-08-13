@@ -31,17 +31,19 @@ final class StagePresenterViewControllerTest: XCTestCase {
     var skView: SKView!
     var project: Project!
     var navigationController: NavigationControllerMock!
+    var projectManager: ProjectManager!
 
     override func setUp() {
         super.setUp()
 
         vc = StagePresenterViewControllerMock()
+        projectManager = ProjectManager.shared
 
         navigationController = NavigationControllerMock()
         navigationController.view = UIView()
 
         skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
-        project = ProjectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
+        project = projectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
     }
 
     func testNotification() {
@@ -52,7 +54,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewPortraitMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
+        stagePresenterViewController!.project = projectManager.createProject(name: "testProject", projectId: "")
         stagePresenterViewController!.project.header.landscapeMode = false
 
         stagePresenterViewController!.setUpGridView()
@@ -67,7 +69,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewLandscapeMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
+        stagePresenterViewController!.project = projectManager.createProject(name: "testProject", projectId: "")
         stagePresenterViewController!.project.header.landscapeMode = true
 
         stagePresenterViewController!.setUpGridView()

@@ -40,9 +40,19 @@
 @interface SceneTableViewController () <UINavigationBarDelegate, SetProjectDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
+@property (nonatomic, strong) ProjectManager *projectManager;
 @end
 
 @implementation SceneTableViewController
+
+#pragma mark - getters and setters
+- (ProjectManager*)projectManager
+{
+    if (! _projectManager) {
+        _projectManager = [ProjectManager shared];
+    }
+    return _projectManager;
+}
 
 #pragma mark - initialization
 - (void)initNavigationBar
@@ -66,6 +76,7 @@
     [self.tableView registerClass:[ProjectTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.editableSections = @[@(kObjectSectionIndex)];
+    
     if (self.scene.project.header.programName) {
         self.navigationItem.title = self.scene.project.header.programName;
         self.title = self.scene.project.header.programName;
@@ -345,7 +356,7 @@
         SpriteObject *object = (SpriteObject*)[self.scene.objects objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
         [objectsToRemove addObject:object];
     }
-    [self.scene removeObjects:objectsToRemove];
+    [self.projectManager removeObjects:self.scene.project objects:objectsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.scene numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
     [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
@@ -357,7 +368,9 @@
     [self showLoadingView];
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.scene.objects objectAtIndex:index];
-    [self.scene removeObject:object];
+    
+    [self.projectManager removeObjects:self.scene.project objects:[NSMutableArray arrayWithObject:object]];
+    
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
     [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
     [self hideLoadingView];

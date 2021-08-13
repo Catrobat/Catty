@@ -403,7 +403,7 @@ import ActiveLabel
     }
 
     func openButtonPressed() {
-        guard let localProjectNames = ProjectManager.projectNames(for: project.projectID) else {
+        guard let localProjectNames = self.projectManager.projectNames(for: project.projectID) else {
             Util.alert(text: kLocalizedUnableToLoadProject)
             return
         }

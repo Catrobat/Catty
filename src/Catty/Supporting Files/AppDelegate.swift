@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var firebaseAnalyticsReporter: FirebaseAnalyticsReporter?
     var firebaseCrashlyticsReporter: FirebaseCrashlyticsReporter?
     var audioEngineHelper = AudioEngineHelper()
+    var projectManager = ProjectManager.shared
 
     @objc var disabledOrientation = false
 
@@ -164,7 +165,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc?.popToRootViewController(animated: true)
 
         guard let topViewController = vc?.topViewController,
-              let project = ProjectManager.addProjectFromFile(url: url) else {
+              let project = self.projectManager.addProjectFromFile(url: url) else {
             return false
         }
 

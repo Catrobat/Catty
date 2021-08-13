@@ -42,6 +42,23 @@
 
 @implementation ProjectDetailStoreViewController
 
+#pragma mark - getters and setters
+- (ProjectManager*)projectManager
+{
+    if (! _projectManager) {
+        _projectManager = [ProjectManager shared];
+    }
+    return _projectManager;
+}
+
+- (StoreProjectDownloader*)storeProjectDownloader
+{
+    if (_storeProjectDownloader == nil) {
+        _storeProjectDownloader = [[StoreProjectDownloader alloc] initWithSession:[StoreProjectDownloader defaultSession] fileManager:[CBFileManager sharedManager]];
+    }
+    return _storeProjectDownloader;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -59,14 +76,6 @@
     self.view.backgroundColor = UIColor.background;
     NSDebug(@"%@",self.project.author);
     [self loadProject:self.project];
-}
-
-- (StoreProjectDownloader*)storeProjectDownloader
-{
-    if (_storeProjectDownloader == nil) {
-        _storeProjectDownloader = [[StoreProjectDownloader alloc] initWithSession:[StoreProjectDownloader defaultSession] fileManager:[CBFileManager sharedManager]];
-    }
-    return _storeProjectDownloader;
 }
 
 - (void)initNavigationBar

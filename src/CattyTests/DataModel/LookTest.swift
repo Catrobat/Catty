@@ -26,12 +26,18 @@ import XCTest
 
 final class LookTest: XCTestCase {
 
-    func testPathForScene() {
-        let project = Project()
-        let scene = Scene(name: "testScene")
+    var project: Project!
+    var scene: Scene!
+
+    override func setUp() {
+        project = Project()
+        scene = Scene(name: "testScene")
+
         project.scene = scene
         scene.project = project
+    }
 
+    func testPathForScene() {
         let look = Look(name: "testLook", filePath: "testLookFile")
 
         let expectedPath = project.projectPath() + "testScene/images/testLookFile"
@@ -39,11 +45,6 @@ final class LookTest: XCTestCase {
     }
 
     func testIsEqual() {
-        let project = Project()
-        let scene = Scene(name: "testScene")
-        project.scene = scene
-        scene.project = project
-
         let look = Look(name: "testLook", filePath: "testLookFile")
         let equalLook = Look(name: "testLook", filePath: "testLookFile")
 
@@ -63,11 +64,10 @@ final class LookTest: XCTestCase {
 
     func testInitWithPath() {
         let object = SpriteObject()
-        let project = ProjectManager.createProject(name: "a", projectId: "1")
-        object.scene = project.scene
-        let spriteNode = CBSpriteNode.init(spriteObject: object)
+        object.scene = scene
+
+        let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        object.scene.project = project
 
         let bundle = Bundle(for: type(of: self))
         let param = "test.png"
@@ -82,11 +82,10 @@ final class LookTest: XCTestCase {
 
     func testInitWithName() {
         let object = SpriteObject()
-        let project = ProjectManager.createProject(name: "a", projectId: "1")
-        object.scene = project.scene
-        let spriteNode = CBSpriteNode.init(spriteObject: object)
+        object.scene = scene
+
+        let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        object.scene.project = project
 
         let bundle = Bundle(for: type(of: self))
         let param1 = "test.png"
