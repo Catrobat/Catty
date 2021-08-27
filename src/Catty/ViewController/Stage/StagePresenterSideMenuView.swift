@@ -36,8 +36,8 @@ import UIKit
 
 enum SideMenuButtonType {
     case portrait
-    case landscapeFirstColumn
-    case landscapeSecondColumn
+    case landscapeLarge
+    case landscapeSmall
 }
 
 @objc class StagePresenterSideMenuView: UIView {
@@ -46,9 +46,14 @@ enum SideMenuButtonType {
     @objc static let widthProportionalLandscape = 4
     @objc static let buttonInitialWidthAndHeight = 100.0
     @objc static let labelInitialWidthAndHeight = 100.0
+    @objc static let buttonLandscapeSmallInitialWidthAndHeight = 40.0
+    @objc static let labelLandscapeSmallInitialWidthAndHeight = 40.0
+    @objc static let buttonLandscapeLargeInitialWidthAndHeight = 240.0
+    @objc static let labelLandscapeLargeInitialWidthAndHeight = 240.0
     let font = SpriteKitDefines.defaultFont
     let fontSize = 14.0
     let marginTopBottom = CGFloat(20.0)
+    let marginLabel = CGFloat(5.0)
     let insetsLabelTop = CGFloat(10.0)
     let minimumPaddingTopAndBottom = CGFloat(365.0)
 
@@ -58,7 +63,9 @@ enum SideMenuButtonType {
     let numberOfButtons: Int
     var aspectRatioButton: UIButton?
     var aspectRatioLabel: UIButton?
+    var aspectRatioLabelLandscape: String?
     var embroidery: Bool
+    var landscapeMultiplier: Double
 
     @objc(initWithFrame:andStagePresenterViewController_:)
     init(frame: CGRect, delegate: StagePresenterSideMenuDelegate) {
@@ -66,6 +73,7 @@ enum SideMenuButtonType {
         self.landscape = delegate.project.header.landscapeMode
         self.project = delegate.project
         self.embroidery = self.project.getRequiredResources() & ResourceType.embroidery.rawValue > 0
+        self.landscapeMultiplier = 2.0
 
         if embroidery {
             self.numberOfButtons = 7
@@ -75,7 +83,11 @@ enum SideMenuButtonType {
 
         super.init(frame: frame)
         setupView()
-        setupAspectRatio()
+        if self.landscape {
+            setupAspectRatioLandscape()
+        } else {
+            setupAspectRatio()
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -86,7 +98,11 @@ enum SideMenuButtonType {
     func restart(with project: Project) {
         self.landscape = project.header.landscapeMode
         self.project = project
-        setupAspectRatio()
+        if self.landscape {
+            setupAspectRatioLandscape()
+        } else {
+            setupAspectRatio()
+        }
     }
 
     private func setupView() {
@@ -156,43 +172,77 @@ enum SideMenuButtonType {
     }
 
     private func setUpButtonsLandscape() {
-        let backButton = setupButton(imageName: "stage_dialog_button_back", selector: #selector(delegate?.stopAction), type: .landscapeFirstColumn)
-        backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
+        if embroidery {
+            self.landscapeMultiplier = 1.7
+        }
+        let backButton = setupButton(imageName: "stage_dialog_button_back", selector: #selector(delegate?.stopAction), type: .landscapeLarge)
+        if #available(iOS 11.0, *) {
+            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
+        } else {
+            backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: marginTopBottom).isActive = true
+        }
 
-        let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction), type: .landscapeFirstColumn)
-        backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 0).isActive = true
+        let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction), type: .landscapeLarge)
+        backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor).isActive = true
 
-        let continueButton = setupButton(imageName: "stage_dialog_button_continue", selector: #selector(delegate?.continueAction), type: .landscapeSecondColumn)
-        continueButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
+        let continueButton = setupButton(imageName: "stage_dialog_button_continue", selector: #selector(delegate?.continueAction), type: .landscapeLarge)
 
-        let continueLabel = setupLabel(title: kLocalizedContinue, selector: #selector(delegate?.continueAction), type: .landscapeSecondColumn)
-        continueLabel.topAnchor.constraint(equalTo: continueButton.bottomAnchor, constant: 0).isActive = true
+        let continueLabel = setupLabel(title: kLocalizedContinue, selector: #selector(delegate?.continueAction), type: .landscapeLarge)
 
-        let restartButton = setupButton(imageName: "stage_dialog_button_restart", selector: #selector(delegate?.restartAction), type: .landscapeFirstColumn)
-        restartButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: (marginTopBottom) * -1).isActive = true
+        let restartButton = setupButton(imageName: "stage_dialog_button_restart", selector: #selector(delegate?.restartAction), type: .landscapeLarge)
 
-        let restartLabel = setupLabel(title: kLocalizedRestart, selector: #selector(delegate?.restartAction), type: .landscapeFirstColumn)
-        restartLabel.topAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: 0).isActive = true
+        let restartLabel = setupLabel(title: kLocalizedRestart, selector: #selector(delegate?.restartAction), type: .landscapeLarge)
 
-        let screenshotButton = setupButton(imageName: "stage_dialog_button_screenshot", selector: #selector(delegate?.takeScreenshotAction), type: .landscapeSecondColumn)
-        screenshotButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: marginTopBottom * -1).isActive = true
+        if embroidery {
+            continueLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: marginLabel * -7).isActive = true
+            continueButton.bottomAnchor.constraint(equalTo: continueLabel.topAnchor, constant: 0).isActive = true
+            restartButton.topAnchor.constraint(equalTo: self.centerYAnchor, constant: marginTopBottom * -1).isActive = true
+            restartLabel.topAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: 0).isActive = true
 
-        let screenshotLabel = setupLabel(title: kLocalizedPreview, selector: #selector(delegate?.takeScreenshotAction), type: .landscapeSecondColumn)
-        screenshotLabel.topAnchor.constraint(equalTo: screenshotButton.bottomAnchor, constant: 0).isActive = true
+            let shareButton = setupButton(imageName: "square.and.arrow.up.reg", selector: #selector(delegate?.shareDSTAction), type: .landscapeLarge)
+            shareButton.topAnchor.constraint(equalTo: restartLabel.bottomAnchor, constant: marginLabel * 3).isActive = true
 
-        let axesLabel = setupLabel(title: kLocalizedAxes, selector: #selector(delegate?.showHideAxisAction), type: .landscapeFirstColumn)
-        axesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginTopBottom * -1).isActive = true
+            let shareLabel = setupLabel(title: kLocalizedCategoryEmbroidery, selector: #selector(delegate?.shareDSTAction), type: .landscapeLarge)
+            shareLabel.topAnchor.constraint(equalTo: shareButton.bottomAnchor, constant: 0).isActive = true
+        } else {
+            continueLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: marginLabel * -1).isActive = true
+            continueButton.bottomAnchor.constraint(equalTo: continueLabel.topAnchor, constant: marginLabel * -1).isActive = true
+            restartButton.topAnchor.constraint(equalTo: self.centerYAnchor, constant: marginTopBottom).isActive = true
+            restartLabel.topAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: marginLabel).isActive = true
+        }
 
-        let axesButton = setupButton(imageName: "stage_dialog_button_toggle_axis", selector: #selector(delegate?.showHideAxisAction), type: .landscapeFirstColumn)
-        axesButton.bottomAnchor.constraint(equalTo: axesLabel.topAnchor, constant: 0).isActive = true
+        let axesButton = setupButton(imageName: "stage_dialog_button_toggle_axis", selector: #selector(delegate?.showHideAxisAction), type: .landscapeSmall)
+        axesButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginLabel * 5).isActive = true
 
-        let aspectRatioLabel = setupLabel(title: kLocalizedMaximize, selector: #selector(self.aspectRatioAction), target: self, type: .landscapeSecondColumn)
-        aspectRatioLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginTopBottom * -1).isActive = true
-        self.aspectRatioLabel = aspectRatioLabel
+        if hideAspectRatio() {
+            axesButton.leftAnchor.constraint(equalTo: self.centerXAnchor, constant: marginLabel * 2).isActive = true
+        } else {
+            axesButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        }
 
-        let aspectRatioButton = setupButton(imageName: "stage_dialog_button_aspect_ratio", selector: #selector(self.aspectRatioAction), target: self, type: .landscapeSecondColumn)
-        aspectRatioButton.bottomAnchor.constraint(equalTo: aspectRatioLabel.topAnchor, constant: 0).isActive = true
+        let screenshotButton = setupButton(imageName: "stage_dialog_button_screenshot", selector: #selector(delegate?.takeScreenshotAction), type: .landscapeSmall)
+        screenshotButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginLabel * 5).isActive = true
+        screenshotButton.rightAnchor.constraint(equalTo: axesButton.leftAnchor, constant: marginTopBottom * -1).isActive = true
+
+        let aspectRatioButton = setupButton(imageName: "stage_dialog_button_aspect_ratio", selector: #selector(self.aspectRatioActionLandscape), target: self, type: .landscapeSmall)
+        aspectRatioButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginLabel * 5).isActive = true
+        aspectRatioButton.leftAnchor.constraint(equalTo: axesButton.rightAnchor, constant: marginTopBottom * 1).isActive = true
         self.aspectRatioButton = aspectRatioButton
+        self.aspectRatioLabelLandscape = kLocalizedMaximize
+    }
+
+    @objc private func aspectRatioActionLandscape() {
+        guard let aspectRatioButton = self.aspectRatioButton else { return }
+
+        if self.aspectRatioLabelLandscape == kLocalizedMaximize {
+            self.aspectRatioLabelLandscape = kLocalizedMinimize
+            changeImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
+         } else {
+            self.aspectRatioLabelLandscape = kLocalizedMaximize
+            changeImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
+         }
+
+        self.delegate?.aspectRatioAction()
     }
 
     @objc private func aspectRatioAction() {
@@ -209,6 +259,25 @@ enum SideMenuButtonType {
         self.delegate?.aspectRatioAction()
     }
 
+    private func setupAspectRatioLandscape() {
+        guard let aspectRatioButton = self.aspectRatioButton else { return }
+        self.aspectRatioLabel = nil
+        self.aspectRatioLabel?.removeFromSuperview()
+        if project.header.screenMode == kCatrobatHeaderScreenModeMaximize {
+            self.aspectRatioLabelLandscape = kLocalizedMinimize
+            setupImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
+        } else {
+            self.aspectRatioLabelLandscape = kLocalizedMaximize
+            setupImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
+        }
+
+        if hideAspectRatio() {
+            aspectRatioButton.isHidden = true
+        } else {
+            aspectRatioButton.isHidden = false
+        }
+    }
+
     private func setupAspectRatio() {
         guard let aspectRatioButton = self.aspectRatioButton, let aspectRatioLabel = self.aspectRatioLabel else { return }
 
@@ -220,13 +289,7 @@ enum SideMenuButtonType {
             setupImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
         }
 
-        let screenHeight = Util.screenHeight(true)
-        let screenWidth = Util.screenWidth(true)
-        let projectWidth = CGFloat(project.header.screenWidth.floatValue)
-        let projectHeight = CGFloat(project.header.screenHeight.floatValue)
-        let hideAspectRatio = landscape ? (projectWidth == screenHeight && projectHeight == screenWidth) : (projectWidth == screenWidth && projectHeight == screenHeight)
-
-        if hideAspectRatio {
+        if hideAspectRatio() {
             aspectRatioLabel.isHidden = true
             aspectRatioButton.isHidden = true
         } else {
@@ -235,8 +298,25 @@ enum SideMenuButtonType {
         }
     }
 
+    private func hideAspectRatio() -> Bool {
+        let screenHeight = Util.screenHeight(true)
+        let screenWidth = Util.screenWidth(true)
+        let projectWidth = CGFloat(project.header.screenWidth.floatValue)
+        let projectHeight = CGFloat(project.header.screenHeight.floatValue)
+        return landscape ? (projectWidth == screenHeight && projectHeight == screenWidth) : (projectWidth == screenWidth && projectHeight == screenHeight)
+    }
+
     private func setupButton(imageName: String, selector: Selector, target: Any? = nil, type: SideMenuButtonType = .portrait) -> UIButton {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: StagePresenterSideMenuView.buttonInitialWidthAndHeight, height: StagePresenterSideMenuView.buttonInitialWidthAndHeight))
+        var widthAndHeight = StagePresenterSideMenuView.buttonInitialWidthAndHeight
+        if type == .landscapeLarge {
+            widthAndHeight = StagePresenterSideMenuView.buttonLandscapeLargeInitialWidthAndHeight
+        }
+
+        if type == .landscapeSmall {
+            widthAndHeight = StagePresenterSideMenuView.buttonLandscapeSmallInitialWidthAndHeight
+        }
+
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: widthAndHeight, height: widthAndHeight))
 
         self.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -244,18 +324,21 @@ enum SideMenuButtonType {
         let target = target == nil ? self.delegate : target
         button.addTarget(target, action: selector, for: .touchUpInside)
 
-        self.setupImage(imageName, for: button)
+        self.setupImage(imageName, for: button, type: type)
 
         switch type {
         case .portrait:
             button.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
             button.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        case .landscapeFirstColumn:
-            button.rightAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-            button.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        case .landscapeSecondColumn:
+        case .landscapeLarge:
             button.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-            button.leftAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            button.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        case .landscapeSmall:
+            if #available(iOS 11.0, *) {
+                button.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: marginTopBottom * -1).isActive = true
+            } else {
+                button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginTopBottom * -1).isActive = true
+            }
         }
 
         return button
@@ -284,27 +367,31 @@ enum SideMenuButtonType {
         case .portrait:
             label.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
             label.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        case .landscapeFirstColumn:
-            label.rightAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-            label.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        case .landscapeSecondColumn:
+        case .landscapeLarge:
             label.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-            label.leftAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            label.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        case .landscapeSmall:
+            label.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         }
 
         return label
     }
 
-    private func setupImage(_ imageName: String, for button: UIButton) {
+    private func setupImage(_ imageName: String, for button: UIButton, type: SideMenuButtonType = .portrait) {
         let sizeFactor = landscape ? 1 : 2
         var dividingConstant = self.frame.size.width / (self.frame.size.height / (CGFloat(sizeFactor * (numberOfButtons + 2))))
 
         button.frame.size.width = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight)
         button.frame.size.height = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight)
 
-        let availableSpace = self.frame.size.height - (button.frame.size.height / dividingConstant) * CGFloat(numberOfButtons)
-        if availableSpace < minimumPaddingTopAndBottom {
-            dividingConstant *= 1.4
+        if type == .landscapeLarge && self.landscape == true {
+            button.frame.size.width = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight * landscapeMultiplier)
+            button.frame.size.height = CGFloat(StagePresenterSideMenuView.buttonInitialWidthAndHeight * landscapeMultiplier)
+        } else if self.landscape == false {
+            let availableSpace = self.frame.size.height - (button.frame.size.height / dividingConstant) * CGFloat(numberOfButtons)
+            if availableSpace < minimumPaddingTopAndBottom {
+                dividingConstant *= 1.4
+            }
         }
 
         UIGraphicsBeginImageContextWithOptions(CGSize(width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant), false, 0.0)
