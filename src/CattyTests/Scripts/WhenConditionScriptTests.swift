@@ -68,6 +68,17 @@
         XCTAssertTrue(script.checkCondition(formulaInterpreter: formulaInterpreter))
     }
 
+    func testConditionOfWhenConditionScriptFirstExecution() {
+        script.condition = Formula(float: 1)
+        XCTAssertTrue(script.checkCondition(formulaInterpreter: formulaInterpreter))
+
+        script.condition = Formula(float: 0)
+        XCTAssertFalse(script.checkCondition(formulaInterpreter: formulaInterpreter))
+
+        script.condition = Formula(float: 1)
+        XCTAssertTrue(script.checkCondition(formulaInterpreter: formulaInterpreter))
+   }
+
     func testConditionOfWhenConditionScript() {
         let userVariable = UserVariable(name: "userVariable")
         let formulaTree = FormulaElement(elementType: .OPERATOR, value: AndOperator.tag)!
