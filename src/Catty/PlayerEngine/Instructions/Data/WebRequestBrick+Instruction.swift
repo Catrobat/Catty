@@ -22,6 +22,8 @@
 
 extension WebRequestBrick: CBInstructionProtocol {
 
+    static let alertSemaphore = DispatchSemaphore(value: 1)
+
     @nonobjc func instruction() -> CBInstruction {
         if WebRequestBrick.isWebRequestBrickEnabled() {
             guard let request = self.request else { fatalError("Unexpected found nil.") }
@@ -36,28 +38,28 @@ extension WebRequestBrick: CBInstructionProtocol {
 
                 self.sendRequest(downloader: downloader) { response, error in
                     if let error = error, case WebRequestDownloaderError.notTrusted = error {
-                        scheduler.pause()
+                        self.pause(scheduler)
 
                         DispatchQueue.main.async {
                             AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
                                 .addDefaultAction(title: kLocalizedOnce) {
-                                    scheduler.resume()
+                                    self.resume(scheduler)
                                     self.allowedOnceAction(downloader: downloader, url: requestString, trustedDomains: trustedDomains, expectation: downloadIsFinishedExpectation)
                                 }
                                 .addDefaultAction(title: kLocalizedAlways) {
                                     AlertControllerBuilder.alert(title: kLocalizedAlwaysAllowWebAccess + "?", message: requestString + "\n\n" + kLocalizedAlwaysAllowWebRequestDescription)
                                         .addDefaultAction(title: kLocalizedAlways) {
-                                            scheduler.resume()
+                                            self.resume(scheduler)
                                             self.allowedAlwaysAction(downloader: downloader, url: requestString, trustedDomains: trustedDomains, expectation: downloadIsFinishedExpectation)
                                         }
                                         .addDefaultAction(title: kLocalizedMoreInformation) {
-                                            scheduler.resume()
+                                            self.resume(scheduler)
                                             if let url = URL(string: NetworkDefines.kWebRequestWikiURL), UIApplication.shared.canOpenURL(url) {
                                                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                             }
                                         }
                                         .addDestructiveAction(title: kLocalizedCancel) {
-                                            scheduler.resume()
+                                            self.resume(scheduler)
                                             self.callbackSubmit(with: nil, error: .notTrusted, expectation: downloadIsFinishedExpectation)
                                             return
                                         }
@@ -65,7 +67,7 @@ extension WebRequestBrick: CBInstructionProtocol {
                                         .showWithController(Util.topmostViewController())
                                 }
                                 .addDestructiveAction(title: kLocalizedDeny) {
-                                    scheduler.resume()
+                                    self.resume(scheduler)
                                     self.callbackSubmit(with: nil, error: .notTrusted, expectation: downloadIsFinishedExpectation)
                                     return
                                 }
@@ -81,6 +83,19 @@ extension WebRequestBrick: CBInstructionProtocol {
             }
         } else {
             return CBInstruction.invalidInstruction
+        }
+    }
+
+    func pause(_ scheduler: CBSchedulerProtocol) {
+        scheduler.pause()
+        type(of: self).alertSemaphore.wait()
+    }
+
+    func resume(_ scheduler: CBSchedulerProtocol) {
+        scheduler.resume()
+
+        DispatchQueue.main.async {
+            type(of: self).alertSemaphore.signal()
         }
     }
 

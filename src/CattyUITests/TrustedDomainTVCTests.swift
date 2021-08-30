@@ -31,14 +31,15 @@ class TrustedDomainTVCTests: XCTestCase {
         app = launchApp()
     }
 
-    func testAddTrustedDomain() {
+    func testAddAndDeleteTrustedDomain() {
         app.navigationBars.buttons[PocketCodeMainScreenTests.settingsButtonLabel].tap()
 
         XCTAssert(app.staticTexts[kLocalizedWebAccess].exists)
         app.staticTexts[kLocalizedWebAccess].tap()
+        XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedWebAccess]).exists)
 
         let url = "https://www.test.com"
-        let numberOfTrustedDomains = app.staticTexts.count
+        let numberOfTrustedDomains = app.tables.cells.count
 
         XCTAssertFalse(app.staticTexts[url].exists)
         XCTAssertTrue(app.navigationBars.buttons[kLocalizedAdd].exists)
@@ -48,25 +49,14 @@ class TrustedDomainTVCTests: XCTestCase {
         XCTAssertTrue(app.alerts.element.buttons[kLocalizedAdd].exists)
         app.alerts.element.buttons[kLocalizedAdd].tap()
 
-        XCTAssertGreaterThan(app.staticTexts.count, numberOfTrustedDomains)
-    }
-
-    func testDeleteTrustedDomain() {
-        app.navigationBars.buttons[PocketCodeMainScreenTests.settingsButtonLabel].tap()
-
-        XCTAssert(app.staticTexts[kLocalizedWebAccess].exists)
-        app.staticTexts[kLocalizedWebAccess].tap()
-
-        let url = "https://catrob.at"
-        let numberOfTrustedDomains = app.staticTexts.count
-        XCTAssertGreaterThan(numberOfTrustedDomains, 1)
-
         XCTAssertTrue(app.staticTexts[url].exists)
+        XCTAssertEqual(app.tables.cells.count, numberOfTrustedDomains + 1)
+
         app.staticTexts[url].swipeLeft()
 
         XCTAssertTrue(app.buttons[kLocalizedDelete].exists)
         app.buttons[kLocalizedDelete].tap()
 
-        XCTAssertLessThan(app.staticTexts.count, numberOfTrustedDomains)
+        XCTAssertEqual(app.tables.cells.count, numberOfTrustedDomains)
     }
 }
