@@ -400,6 +400,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
     if (!Project.lastUsedProject.header.landscapeMode) {
         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
         [UINavigationController attemptRotationToDeviceOrientation];

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var audioEngineHelper = AudioEngineHelper()
     var projectManager = ProjectManager.shared
 
-    @objc var disabledOrientation = false
+    @objc var enabledOrientation = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.setupFirebase()
@@ -156,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        self.disabledOrientation ? UIInterfaceOrientationMask.portrait : UIInterfaceOrientationMask.all
+        self.enabledOrientation ? UIInterfaceOrientationMask.all : UIInterfaceOrientationMask.portrait
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
