@@ -22,50 +22,29 @@
 
 import Foundation
 
-public extension CGVector {
+public extension CGPoint {
 
-    init(fromPoint point: CGPoint) {
-      self.init(dx: point.x, dy: point.y)
+    static func + (lhs: CGPoint, rhs: CGVector) -> CGPoint {
+        CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
 
-    init(head B: CGPoint, tail A: CGPoint) {
-        self.init(dx: B.x - A.x, dy: B.y - A.y)
-    }
-
-    init(from A: CGPoint, to B: CGPoint) {
-        self.init(dx: B.x - A.x, dy: B.y - A.y)
-    }
-
-    static func + (lhs: CGVector, rhs: CGVector) -> CGVector {
-        CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
-    }
-
-    static func += (lhs: inout CGVector, rhs: CGVector) { //swiftlint:disable shorthand_operator
+    static func += (lhs: inout CGPoint, rhs: CGVector) { //swiftlint:disable shorthand_operator
         lhs = lhs + rhs                                   //this is a known limitation of swiftlint
     }
 
-    static func - (lhs: CGVector, rhs: CGVector) -> CGVector {
-        CGVector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
+    static func - (lhs: CGPoint, rhs: CGVector) -> CGPoint {
+        CGPoint(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)
     }
 
-    static func -= (lhs: inout CGVector, rhs: CGVector) { //swiftlint:disable shorthand_operator
+    static func -= (lhs: inout CGPoint, rhs: CGVector) { //swiftlint:disable shorthand_operator
         lhs = lhs - rhs                                   //this is a known limitation of swiftlint
     }
 
-    static func * (lhs: CGVector, rhs: CGFloat) -> CGVector {
-        CGVector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
+    static func squaredDistance(from: CGPoint, to: CGPoint) -> CGFloat {
+        (from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y)
     }
 
-    func toCGPoint() -> CGPoint {
-        CGPoint(x: dx, y: dy)
-    }
-
-    func magnitude() -> CGFloat {
-        sqrt((self.dx * self.dx) + (self.dy * self.dy))
-    }
-
-    func normalized() -> CGVector {
-        let l = self.magnitude()
-        return CGVector(dx: self.dx / l, dy: self.dy / l)
+    static func distance(from: CGPoint, to: CGPoint) -> CGFloat {
+        sqrt(squaredDistance(from: from, to: to))
     }
 }

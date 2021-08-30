@@ -349,6 +349,7 @@
 
 // embroidery bricks
 #define kLocalizedStitch NSLocalizedString(@"Stitch", nil)
+#define kLocalizedStartRunningStitch NSLocalizedString(@"Start running stitch with length", nil)
 
 // control bricks
 #define kLocalizedScript NSLocalizedString(@"Script", nil)

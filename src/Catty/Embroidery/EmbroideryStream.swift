@@ -32,8 +32,14 @@ class EmbroideryStream: Collection {
     var name: String?
     var nextStitchIsColorChange: Bool
 
+    var activePattern: StitchPatternProtocol?
+
     var stitches = SynchronizedArray<Stitch>()
     var drawEmbroideryQueue = SynchronizedArray<Stitch>()
+
+    var last: Stitch? {
+        stitches.last
+    }
 
     private(set) var size: CGFloat
 
@@ -53,6 +59,10 @@ class EmbroideryStream: Collection {
 
         let screenRatio = creatorDiagonalPixel / deviceDiagonalPixel
         size *= screenRatio
+    }
+
+    convenience init() {
+        self.init(projectWidth: nil, projectHeight: nil)
     }
 
     convenience init(streams: [EmbroideryStream], withName name: String? = nil) {

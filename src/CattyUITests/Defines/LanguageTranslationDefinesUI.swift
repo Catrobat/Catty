@@ -349,6 +349,7 @@ let kLocalizedAlwaysAllowWebRequestDescription = NSLocalizedString("Be very care
 
 // embroidery bricks
 let kLocalizedStitch = NSLocalizedString("Stitch", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStartRunningStitch = NSLocalizedString("Start running stitch with length", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // control bricks
 let kLocalizedScript = NSLocalizedString("Script", bundle: Bundle(for: LanguageTranslation.self), comment: "")
