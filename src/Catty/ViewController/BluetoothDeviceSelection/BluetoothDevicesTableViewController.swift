@@ -165,8 +165,12 @@ class BluetoothDevicesTableViewController: UITableViewController {
         delegate!.rightButton.isEnabled = false
         DispatchQueue.main.async {
             self.loadingView?.hide()
-            self.stagePresenterVC.checkResourcesAndPushViewController(to: self.navigationController!)
+
+            if let presentingNavigationController = self.navigationController?.presentingViewController as? UINavigationController {
+                self.dismiss(animated: true) {
+                    self.stagePresenterVC.checkResourcesAndPushViewController(to: presentingNavigationController)
+                }
+            }
         }
     }
-
 }
