@@ -33,17 +33,13 @@ final class TrustedDomainManagerTests: XCTestCase {
         fileManager = CBFileManagerMock(filePath: [trustedDomains], directoryPath: [])
     }
 
-    func testCreateTrustedDomainFile() {
-        let deviceTrustedDomainPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(kTrustedDomainFilename + ".plist")
-        XCTAssertFalse(fileManager.fileExists(deviceTrustedDomainPath.path))
-
-        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
-
-        XCTAssertNotNil(trustedDomain)
-        XCTAssertTrue(fileManager.fileExists(deviceTrustedDomainPath.path))
+    override func tearDown() {
+        let trustedDomains = TrustedDomainManager(fileManager: fileManager)
+        _ = trustedDomains?.clear()
+        _ = trustedDomains?.storeUserTrustedDomains()
     }
 
-    func testAddAndIsUrlInTrustedDomainSuccess() {
+    func testAddAndIsUrlInUserTrustedDomainSuccess() {
         let trustedDomain = TrustedDomainManager(fileManager: fileManager)
         let error = trustedDomain?.add(url: "catrob.at")
         XCTAssertNil(error)
@@ -51,12 +47,44 @@ final class TrustedDomainManagerTests: XCTestCase {
         XCTAssertTrue(res!)
     }
 
-    func testAddAndIsUrlInTrustedDomainFail() {
+    func testAddAndIsUrlInUserTrustedDomainFail() {
         let trustedDomain = TrustedDomainManager(fileManager: fileManager)
         let error = trustedDomain?.add(url: "")
         XCTAssertNil(error)
         let res = trustedDomain?.isUrlInTrustedDomains(url: "catrob.at/test")
         XCTAssertFalse(res!)
+    }
+
+    func testAddAndIsUrlInTrustedDomainSuccess() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        let res = trustedDomain?.isUrlInTrustedDomains(url: "catrob.at")
+        XCTAssertFalse(res!)
+        let res2 = trustedDomain?.isUrlInTrustedDomains(url: "https://catrob.at")
+        XCTAssertTrue(res2!)
+    }
+
+    func testAddAndIsUrlInTrustedDomainFail() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        let res = trustedDomain?.isUrlInTrustedDomains(url: "https://atrob.at/test")
+        XCTAssertFalse(res!)
+    }
+
+    func testRemoveAndIsUrlInTrustedDomainSuccess() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        let error = trustedDomain?.add(url: "https://remove.at")
+        XCTAssertNil(error)
+        let error2 = trustedDomain?.remove(url: "https://remove.at")
+        XCTAssertNil(error2)
+        let res = trustedDomain?.isUrlInTrustedDomains(url: "https://remove.at")
+        XCTAssertFalse(res!)
+    }
+
+    func testRemoveTrustedDomainFail() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        let trustedDomainsBefore = trustedDomain?.userTrustedDomains
+        let error = trustedDomain?.remove(url: "https://remove2.at")
+        XCTAssertNil(error)
+        XCTAssertEqual(trustedDomainsBefore, trustedDomain?.userTrustedDomains)
     }
 
     func testFetchTrustedDomainsSuccess() {
@@ -85,6 +113,14 @@ final class TrustedDomainManagerTests: XCTestCase {
         fileManager.writeWillFail = false
     }
 
+    func testFetchUserTrustedDomainsSuccess() {
+        var userTrustedDomain = TrustedDomainManager(fileManager: fileManager)
+        let error = userTrustedDomain?.add(url: "test.com")
+        XCTAssertNil(error)
+        userTrustedDomain = TrustedDomainManager(fileManager: fileManager)
+        XCTAssertNotNil(userTrustedDomain?.userTrustedDomains)
+    }
+
     func testStandardizeUrl() {
         let testUrl1 = "'https://catrob.at'"
         let testUrl2 = "'https://catrob.at/'"
@@ -109,5 +145,46 @@ final class TrustedDomainManagerTests: XCTestCase {
         XCTAssertNil(error)
 
         XCTAssertFalse(trustedDomain!.isUrlInTrustedDomains(url: url))
+    }
+
+    func testNoProtocol() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "https://www.tugraz.at"))!)
+        XCTAssertFalse((trustedDomain?.isUrlInTrustedDomains(url: "www.tugraz.at"))!)
+    }
+
+    func testEnding() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "https://www.wikipedia.org/blabla"))!)
+        XCTAssertFalse((trustedDomain?.isUrlInTrustedDomains(url: "https://something.org.com/blabla"))!)
+    }
+
+    func testCommonInternetScheme() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "http://myaccount:@www.ist.tugraz.at/blablabla"))!)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "http://myaccount:mypassword@www.ist.tugraz.at/blablabla"))!)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "http://www.ist.tugraz.at:8080/blablabla"))!)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "http://www.ist.tugraz.at:8080/"))!)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "http://myaccount:mypassword@www.ist.tugraz.at:8080/blablabla"))!)
+        XCTAssertFalse((trustedDomain?.isUrlInTrustedDomains(url: "http://www.tugraz.at:/"))!)
+    }
+
+    func testDomainEndsWithEntry() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "https://www.wikipedia.org/hallo"))!)
+        XCTAssertFalse((trustedDomain?.isUrlInTrustedDomains(url: "https://wikipedia.org.dark.net/trallala"))!)
+        XCTAssertFalse((trustedDomain?.isUrlInTrustedDomains(url: "https://wikipedia.orgxxx/trallala"))!)
+        XCTAssertFalse((trustedDomain?.isUrlInTrustedDomains(url: "https://www.dark.net/wikipedia.org/"))!)
+    }
+
+    func testDomainExtension() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        XCTAssertFalse((trustedDomain?.isUrlInTrustedDomains(url: "https://wwwwikipedia.org/hallo"))!)
+    }
+
+    func testEscapedDots() {
+        let trustedDomain = TrustedDomainManager(fileManager: fileManager)
+        XCTAssertTrue((trustedDomain?.isUrlInTrustedDomains(url: "https://www.tugraz.ac.at/hallo"))!)
+        XCTAssertFalse((trustedDomain?.isUrlInTrustedDomains(url: "https://www.tugraz.acbat/hallo"))!)
     }
 }

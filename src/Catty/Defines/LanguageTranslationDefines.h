@@ -107,6 +107,7 @@
 #define kLocalizedHelp NSLocalizedString(@"Help", nil)
 #define kLocalizedCatrobatCommunity NSLocalizedString(@"Catrobat community", nil)
 #define kLocalizedDeletionMenu NSLocalizedString(@"Deletion mode", nil)
+#define kLocalizedWebAccess NSLocalizedString(@"Web access", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use and Service", @"Button title at the settings screen to get to the terms of use and service.")
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
@@ -214,6 +215,9 @@
 #define kLocalizedOK NSLocalizedString(@"OK", nil)
 #define kLocalizedYes NSLocalizedString(@"Yes", nil)
 #define kLocalizedNo NSLocalizedString(@"No", nil)
+#define kLocalizedAlways NSLocalizedString(@"Always", nil)
+#define kLocalizedDeny NSLocalizedString(@"Deny", nil)
+#define kLocalizedOnce NSLocalizedString(@"Once", nil)
 #define kLocalizedDeleteProject NSLocalizedString(@"Delete project", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
 #define kLocalizedSaveChanges NSLocalizedString(@"Save changes", nil)
@@ -274,6 +278,8 @@
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
 #define kLocalizedMoreInformation NSLocalizedString(@"More information", nil)
 #define kLocalizedScene NSLocalizedString(@"Scene", nil)
+#define kLocalizedEditTrustedDomain NSLocalizedString(@"Edit trusted domain", nil)
+#define kLocalizedAddTrustedDomain NSLocalizedString(@"Add trusted domain", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -335,6 +341,7 @@
 #define kLocalizedNoAccesToCameraCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.", nil)
 #define kLocalizedNoAccesToMicrophoneCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", nil)
 #define kLocalizedUnsupportedElementsDescription NSLocalizedString(@"Following features used in this project are not compatible with this version of Pocket Code:", nil)
+#define kLocalizedAlwaysAllowWebRequestDescription NSLocalizedString(@"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.", nil)
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
@@ -472,7 +479,7 @@
 #define kLocalizedSendWebRequestTo NSLocalizedString(@"Send web request to", nil)
 #define kLocalizedAndStoreAnswerIn NSLocalizedString(@"and store answer in", nil)
 #define kLocalizedAllowWebAccess NSLocalizedString(@"Allow web access", nil)
-
+#define kLocalizedAlwaysAllowWebAccess NSLocalizedString(@"Always allow web access", nil)
 //userlist
 #define kLocalizedUserListAdd NSLocalizedString(@"Add", nil)
 #define kLocalizedUserListTo NSLocalizedString(@"to list", nil)

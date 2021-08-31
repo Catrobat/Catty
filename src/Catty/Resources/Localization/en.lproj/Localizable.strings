@@ -50,6 +50,9 @@
 "Add sound" = "Add sound";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "Add trusted domain";
+
+/* No comment provided by engineer. */
 "Agree" = "Agree";
 
 /* No comment provided by engineer. */
@@ -75,6 +78,12 @@
 
 /* No comment provided by engineer. */
 "altitude" = "altitude";
+
+/* No comment provided by engineer. */
+"Always" = "Always";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Always allow web access";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
@@ -180,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
 
 /* No comment provided by engineer. */
 "becomes true" = "becomes true";
@@ -485,6 +497,9 @@
 "Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
+"Deny" = "Deny";
+
+/* No comment provided by engineer. */
 "Description" = "Description";
 
 /* No comment provided by engineer. */
@@ -591,6 +606,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "Edit sounds";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "Edit trusted domain";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "Electric Guitar";
@@ -1251,6 +1269,9 @@
 
 /* No comment provided by engineer. */
 "on" = "on";
+
+/* No comment provided by engineer. */
+"Once" = "Once";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "only 15 characters allowed";
@@ -2043,6 +2064,9 @@
 
 /* No comment provided by engineer. */
 "We" = "We";
+
+/* No comment provided by engineer. */
+"Web access" = "Web access";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Wednesday";

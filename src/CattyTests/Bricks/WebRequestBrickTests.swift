@@ -137,9 +137,9 @@ final class WebRequestBrickTests: XCTestCase {
         let alertController = Util.topmostViewController() as! UIAlertController
         let actions = alertController.actions
 
-        XCTAssertEqual(2, actions.count)
-        XCTAssertEqual(kLocalizedNo, actions.first?.title)
-        XCTAssertEqual(kLocalizedYes, actions.last?.title)
+        XCTAssertEqual(3, actions.count)
+        XCTAssertEqual(kLocalizedOnce, actions.first?.title)
+        XCTAssertEqual(kLocalizedDeny, actions.last?.title)
     }
 
     func testUrlInTrustedDomains() {

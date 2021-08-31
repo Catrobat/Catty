@@ -26,6 +26,7 @@ class SettingsTableViewController: BOTableViewController {
 
     static let unusedKey = "unused"
 
+    let trustedDomainViewController = TrustedDomainTableViewController()
     let aboutPocketCodeViewController = AboutPocketCodeOptionTableViewController()
     let termsOfUseViewController = TermsOfUseOptionTableViewController()
 
@@ -118,6 +119,18 @@ class SettingsTableViewController: BOTableViewController {
                         }
                     }))
                 }
+            }))
+        }
+
+        if UserDefaults.standard.bool(forKey: kUseWebRequestBrick) {
+            addSection(BOTableViewSection(headerTitle: "", handler: { section in
+                section?.addCell(BOChoiceTableViewCell(title: kLocalizedWebAccess, key: type(of: self).unusedKey, handler: { cell in
+                    if let aboutPocketCodeCellChoice = cell as? BOChoiceTableViewCell {
+                        aboutPocketCodeCellChoice.destinationViewController = self.trustedDomainViewController
+                        aboutPocketCodeCellChoice.backgroundColor = UIColor.background
+                        aboutPocketCodeCellChoice.mainColor = UIColor.globalTint
+                    }
+                }))
             }))
         }
 
