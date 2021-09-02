@@ -22,6 +22,7 @@
 
 public class WebRequestDownloader: NSObject {
     var completion: ((String?, WebRequestDownloaderError?) -> Void)?
+    private static let semaphore = DispatchSemaphore(value: NetworkDefines.kNumberOfConcurrentDownloads)
     private var trustedDomains: TrustedDomainManager?
     private var data = Data()
     private var task: URLSessionDataTask?
@@ -53,6 +54,7 @@ public class WebRequestDownloader: NSObject {
             return
         }
 
+        WebRequestDownloader.semaphore.wait()
         task = session?.dataTask(with: url)
         task?.resume()
     }
@@ -68,6 +70,7 @@ extension WebRequestDownloader: URLSessionDataDelegate {
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        WebRequestDownloader.semaphore.signal()
         if let completion = self.completion {
             if (error as NSError?)?.code == NSURLErrorCancelled || self.data.count > NetworkDefines.kWebRequestMaxDownloadSizeInBytes {
                 data.removeAll()
