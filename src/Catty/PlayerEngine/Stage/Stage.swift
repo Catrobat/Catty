@@ -296,7 +296,9 @@ final class Stage: SKScene, StageProtocol {
     @objc func stopProject() {
         view?.isPaused = true
         scheduler.shutdown() // stops all script contexts of all objects and removes all ressources
-        removeAllChildren() // remove all CBSpriteNodes from Scene
+        DispatchQueue.main.async {
+            self.removeAllChildren() // remove all CBSpriteNodes from Scene
+        }
         frontend.project?.removeReferences() // remove all references in project hierarchy
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
