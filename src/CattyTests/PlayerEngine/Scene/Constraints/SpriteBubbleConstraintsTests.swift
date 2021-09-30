@@ -76,44 +76,4 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
         bubbleConstraint.apply()
         XCTAssertEqual(child.xScale, 1)
     }
-
-    func testTopYCollision() {
-        bubbleConstraint.apply()
-        XCTAssertEqual(0, CGFloat(child.position.y), accuracy: 1)
-        parent.position.y = 100000
-        bubbleConstraint.apply()
-        let topEdge = parent.scene.size.height - parent.yScale * child.frame.size.height
-        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
-            XCTAssert(false)
-            return
-        }
-        XCTAssertEqual(topEdge, CGFloat(yCollision), accuracy: 200)
-    }
-
-    func testBottomYCollision() {
-        parent.position.y = 100000
-        bubbleConstraint.apply()
-        parent.position.y = -100000
-        bubbleConstraint.apply()
-        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
-            XCTAssert(false)
-            return
-        }
-        XCTAssertEqual(0, yCollision, accuracy: 1)
-    }
-
-    func testRotationCollision() {
-        bubbleConstraint.apply()
-        XCTAssertEqual(0, CGFloat(child.position.y), accuracy: 1)
-        parent.zRotation = .pi
-        parent.position.y = 10000
-        bubbleConstraint.apply()
-
-        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
-            XCTAssert(false)
-            return
-        }
-        let topEdge = parent.scene.size.height - parent.yScale * child.frame.size.height
-        XCTAssertEqual(topEdge, CGFloat(yCollision), accuracy: 200)
-    }
 }

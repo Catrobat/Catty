@@ -26,14 +26,14 @@ final class SpriteBubbleConstraint: SKConstraint {
     private let bubble: SKNode
     private let bubbleWidth: CGFloat
     private let bubbleHeight: CGFloat
-    private let bubbleInitialePosition: CGPoint
+    private let bubbleInitialPosition: CGPoint
 
     @objc init(bubble: SKNode, parent: SKNode, width: CGFloat, height: CGFloat, position: CGPoint, bubbleTailHeight: CGFloat) {
         self.bubble = bubble
         self.parent = parent
         self.bubbleWidth = width
         self.bubbleHeight = height + bubbleTailHeight
-        self.bubbleInitialePosition = position
+        self.bubbleInitialPosition = position
 
         super.init()
         self.enabled = true
@@ -61,50 +61,24 @@ final class SpriteBubbleConstraint: SKConstraint {
             return
         }
 
-        let leftBubbleBorder = parent.position.x - bubbleInitialePosition.x - bubbleWidth
-        let rightBubbleBorder = parent.position.x + bubbleInitialePosition.x + bubbleWidth
+        let isBubbleInverted = bubble.xScale < 0
+        var leftBubbleBorder = parent.position.x + bubbleInitialPosition.x
+        var rightBubbleBorder = parent.position.x + bubbleInitialPosition.x
+
+        leftBubbleBorder -= isBubbleInverted ? bubbleWidth : 0
+        rightBubbleBorder += isBubbleInverted ? 0 : bubbleWidth
 
         let rightSceneEdge = scene.size.width
         let leftSceneEdge = CGFloat(0)
 
-        if rightBubbleBorder > rightSceneEdge && bubble.xScale > 0 && leftBubbleBorder > leftSceneEdge {
-            bubble.position.x = -parent.convert(bubbleInitialePosition, from: parent).x
+        bubble.position.x = bubbleInitialPosition.x
+
+        if (rightBubbleBorder > rightSceneEdge && !isBubbleInverted && leftBubbleBorder > leftSceneEdge) ||
+            (leftBubbleBorder < leftSceneEdge && isBubbleInverted && rightBubbleBorder < rightSceneEdge) {
+
             bubble.xScale *= -1
             bubbleLabel.xScale *= -1
-
-        } else if  leftBubbleBorder < leftSceneEdge && bubble.xScale < 0 && rightBubbleBorder < rightSceneEdge {
-            bubble.position.x = parent.convert(bubbleInitialePosition, from: parent).x
-            bubble.xScale *= -1
-            bubbleLabel.xScale *= -1
         }
-
-    }
-
-    private func handleYCollision() {
-        guard let scene = parent.scene else {
-            return
-        }
-
-        let topEdge = scene.size.height
-        let bottomEdge = CGFloat(0)
-
-        let topBubblePosition = CGFloat(parent.position.y + parent.yScale * bubbleInitialePosition.y + bubbleHeight)
-        let botBubblePosition = CGFloat(parent.position.y + parent.yScale * bubbleInitialePosition.y)
-
-        let xCollisionPosition = scene.convert(bubble.position, from: parent).x
-        let yTopCollisionPosition = CGFloat(topEdge - bubbleHeight)
-
-        if scene.intersects(parent) {
-            bubble.position.y = parent.convert(bubbleInitialePosition, from: parent).y
-            bubble.position.x = copysign(1.0, bubble.xScale) * parent.convert(bubbleInitialePosition, from: parent).x
-        }
-
-        if topBubblePosition >= topEdge {
-            bubble.position = scene.convert(CGPoint(x: xCollisionPosition, y: yTopCollisionPosition), to: parent)
-        } else if botBubblePosition <= bottomEdge {
-            bubble.position = scene.convert(CGPoint(x: xCollisionPosition, y: CGFloat(0)), to: parent)
-        }
-
     }
 
     private func calcRelativeSizeToParent() {
@@ -118,7 +92,6 @@ final class SpriteBubbleConstraint: SKConstraint {
     public func apply() {
         calcRelativeSizeToParent()
         calcRelativeRotationToParent()
-        handleYCollision()
         handleXCollision()
     }
 }
