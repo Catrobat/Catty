@@ -194,9 +194,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    ((AppDelegate*)[UIApplication sharedApplication].delegate).disabledOrientation = true;
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = UIColor.background;
     
@@ -313,8 +310,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
-    
-    ((AppDelegate*)[UIApplication sharedApplication].delegate).disabledOrientation = false;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer

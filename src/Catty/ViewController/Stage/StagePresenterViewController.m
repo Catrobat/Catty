@@ -114,7 +114,6 @@
     } else {
         self.menuViewRightConstraint = [self.menuView.rightAnchor constraintEqualToAnchor:self.view.leftAnchor constant:self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalPortrait];
     }
-    
     self.menuViewRightConstraint.active = YES;
     self.menuViewLeadingConstraint = [self.menuView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor];
     self.menuViewLeadingConstraint.active = YES;
@@ -130,6 +129,14 @@
 {
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.stagePresenterViewControllerDidAppear object:self];
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
+     if (!Project.lastUsedProject.header.landscapeMode) {
+         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+         [UINavigationController attemptRotationToDeviceOrientation];
+     } else {
+         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+         [UINavigationController attemptRotationToDeviceOrientation];
+     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -237,7 +244,6 @@
 {
     // Initialize scene
     Stage *stage = [[[[StageBuilder alloc] initWithProject:self.project] andFormulaManager:self.formulaManager] build];
-    
     if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         stage.scaleMode = SKSceneScaleModeFill;
     } else if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
@@ -341,6 +347,9 @@
     });
     
     [self.navigationController popViewControllerAnimated:YES];
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = false;
+    [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+    [UINavigationController attemptRotationToDeviceOrientation];
 }
 
 - (void)restartAction
