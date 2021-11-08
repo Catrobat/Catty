@@ -81,6 +81,14 @@ class EmbroideryStream: Collection {
         }
     }
 
+    convenience init(fromArray stitches: [Stitch], withName name: String? = nil) {
+        self.init(projectWidth: nil, projectHeight: nil, withName: name)
+
+        for stitch in stitches {
+            self.add(stitch)
+        }
+    }
+
     subscript(index: IndexType) -> Stitch {
         guard let stitch = stitches[index] else {
             fatalError("Array index out of bounds")
@@ -103,6 +111,23 @@ class EmbroideryStream: Collection {
 
     func addColorChange() {
         nextStitchIsColorChange = true
+    }
+
+    func sewUp(at position: CGPoint, inDirectionInDegree angleInDegree: CGFloat) {
+        sewUp(at: position, inDirectionInRadians: (angleInDegree * .pi) / 180)
+    }
+
+    func sewUp(at position: CGPoint, inDirectionInRadians angleInRadians: CGFloat) {
+        enum StitichingDirection: CGFloat {
+            case ahead = 1
+            case center = 0
+            case behind = -1
+        }
+        let e = CGVector(dx: cos(angleInRadians), dy: sin(angleInRadians))
+
+        for dir in [StitichingDirection.ahead, .center, .behind, .center] {
+            add(Stitch(atPosition: position + e * dir.rawValue * CGFloat(EmbroideryDefines.sewUpSteps)))
+        }
     }
 
     private func addInterpolatedStiches(stitch: Stitch) {

@@ -16,6 +16,12 @@
 		057B182C26DC903500C47E60 /* StartRunningStitchBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B182B26DC903500C47E60 /* StartRunningStitchBrickCell.swift */; };
 		057B183026DD0A3400C47E60 /* StartRunningStitchBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B182F26DD0A3400C47E60 /* StartRunningStitchBrick+CBXMLHandler.swift */; };
 		0580514926EF734F00F719E0 /* StartRunningStitchBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580514826EF734F00F719E0 /* StartRunningStitchBrickTests.swift */; };
+		0594CE5C275E54AE007DC3F9 /* SewUpBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594CE59275E54AE007DC3F9 /* SewUpBrick+Instruction.swift */; };
+		0594CE5E275E54C6007DC3F9 /* SewUpBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594CE5D275E54C6007DC3F9 /* SewUpBrick.swift */; };
+		0594CE60275E5568007DC3F9 /* SewUpBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594CE5F275E5568007DC3F9 /* SewUpBrick+CBXMLHandler.swift */; };
+		0594CE62275E55B0007DC3F9 /* SewUpBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594CE61275E55B0007DC3F9 /* SewUpBrickCell.swift */; };
+		0594CE64275E55CD007DC3F9 /* SewUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594CE63275E55CD007DC3F9 /* SewUpTests.swift */; };
+		0594CE66275E567E007DC3F9 /* SewUpBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594CE65275E567D007DC3F9 /* SewUpBrickTests.swift */; };
 		05A3CE6D24F5164A0051DB39 /* CatrobatTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */; };
 		05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46724F517220051DB39 /* StoreProjectTests.swift */; };
 		05CD095F26FA980600B25D72 /* StitchPatternProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD095E26FA980600B25D72 /* StitchPatternProtocol.swift */; };
@@ -1962,6 +1968,12 @@
 		057B182B26DC903500C47E60 /* StartRunningStitchBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunningStitchBrickCell.swift; sourceTree = "<group>"; };
 		057B182F26DD0A3400C47E60 /* StartRunningStitchBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartRunningStitchBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		0580514826EF734F00F719E0 /* StartRunningStitchBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunningStitchBrickTests.swift; sourceTree = "<group>"; };
+		0594CE59275E54AE007DC3F9 /* SewUpBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SewUpBrick+Instruction.swift"; sourceTree = "<group>"; };
+		0594CE5D275E54C6007DC3F9 /* SewUpBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SewUpBrick.swift; sourceTree = "<group>"; };
+		0594CE5F275E5568007DC3F9 /* SewUpBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SewUpBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		0594CE61275E55B0007DC3F9 /* SewUpBrickCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SewUpBrickCell.swift; sourceTree = "<group>"; };
+		0594CE63275E55CD007DC3F9 /* SewUpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SewUpTests.swift; sourceTree = "<group>"; };
+		0594CE65275E567D007DC3F9 /* SewUpBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SewUpBrickTests.swift; sourceTree = "<group>"; };
 		05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtension.swift; sourceTree = "<group>"; };
 		05A3D46724F517220051DB39 /* StoreProjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectTests.swift; sourceTree = "<group>"; };
 		05CD095E26FA980600B25D72 /* StitchPatternProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StitchPatternProtocol.swift; sourceTree = "<group>"; };
@@ -4500,6 +4512,7 @@
 		05E68020255B5DED00D1E295 /* Embroidery */ = {
 			isa = PBXGroup;
 			children = (
+				0594CE63275E55CD007DC3F9 /* SewUpTests.swift */,
 				05E68021255B5DED00D1E295 /* EmbroideryDSTHeaderTests.swift */,
 				05E68022255B5DED00D1E295 /* StitchTests.swift */,
 				05E68023255B5DED00D1E295 /* EmbroideryStreamTests.swift */,
@@ -5330,6 +5343,7 @@
 		4614B1CE2560856B004174AD /* Embroidery */ = {
 			isa = PBXGroup;
 			children = (
+				0594CE5D275E54C6007DC3F9 /* SewUpBrick.swift */,
 				4614B1CF2560856B004174AD /* StitchBrick.swift */,
 				057B182926DC8B6A00C47E60 /* StartRunningStitchBrick.swift */,
 			);
@@ -5339,6 +5353,7 @@
 		4614B1D725608DB3004174AD /* Embroidery */ = {
 			isa = PBXGroup;
 			children = (
+				0594CE61275E55B0007DC3F9 /* SewUpBrickCell.swift */,
 				4614B1DC25608E8B004174AD /* StitchBrickCell.swift */,
 				057B182B26DC903500C47E60 /* StartRunningStitchBrickCell.swift */,
 			);
@@ -5357,6 +5372,7 @@
 		46B472B92560946E007972DB /* Embroidery */ = {
 			isa = PBXGroup;
 			children = (
+				0594CE59275E54AE007DC3F9 /* SewUpBrick+Instruction.swift */,
 				46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */,
 				0570883D2739CC6F00622D84 /* StartRunningStitchBrick+Instruction.swift */,
 			);
@@ -5367,6 +5383,7 @@
 		46B472BE2560950D007972DB /* Embroidery */ = {
 			isa = PBXGroup;
 			children = (
+				0594CE5F275E5568007DC3F9 /* SewUpBrick+CBXMLHandler.swift */,
 				46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */,
 				057B182F26DD0A3400C47E60 /* StartRunningStitchBrick+CBXMLHandler.swift */,
 			);
@@ -7025,6 +7042,7 @@
 		4CEB222C1B95E47500B3BE2F /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				0594CE65275E567D007DC3F9 /* SewUpBrickTests.swift */,
 				4C16042D1F0025F6004525A5 /* Abstract */,
 				4C3746E622FC7AC3007B2BE1 /* BrickManager */,
 				4CEB222D1B95E47500B3BE2F /* BrickMoveManager */,
@@ -11720,6 +11738,7 @@
 				E50E856E269ED86700E76CE9 /* XMLParserTests0995.swift in Sources */,
 				4C6FE163212D2D2E0067B7D5 /* ModFunctionTest.swift in Sources */,
 				4CF8277224F11542006E562A /* ScriptCollectionViewControllerMock.swift in Sources */,
+				0594CE66275E567E007DC3F9 /* SewUpBrickTests.swift in Sources */,
 				187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */,
 				4C4778FE267C83F500CAF398 /* InternFormulaKeyboardAdapterTests.swift in Sources */,
 				4C1A596823FE9997001A78D2 /* CrashlyticsMock.swift in Sources */,
@@ -12043,6 +12062,7 @@
 				22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
 				4C4778BD267C7FF800CAF398 /* CBSpriteNodeStitchExtensionTests.swift in Sources */,
+				0594CE64275E55CD007DC3F9 /* SewUpTests.swift in Sources */,
 				9E3AF7982326F21300AB16F1 /* SetXBrickTests.swift in Sources */,
 				4C4B4CDF23EE98C80054C861 /* CustomAlertControllerTests.swift in Sources */,
 				4C822678213FA7A400F3D750 /* ColorSensorTest.swift in Sources */,
@@ -12141,6 +12161,7 @@
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
 				594E7DD4257D5B6A0053D6E9 /* URLExtension.swift in Sources */,
 				E4668B4220FE02F40021FA0B /* FeaturedProjectsCell.swift in Sources */,
+				0594CE60275E5568007DC3F9 /* SewUpBrick+CBXMLHandler.swift in Sources */,
 				4CDF7BB62138735700FFF7F4 /* StageBuilder.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
@@ -12266,6 +12287,7 @@
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */,
 				4C1E33A125DA570D00F44F13 /* PaintImageView.swift in Sources */,
+				0594CE5C275E54AE007DC3F9 /* SewUpBrick+Instruction.swift in Sources */,
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
 				2EBD845F253FEFB6009BFED5 /* WebRequestBrick+Instruction.swift in Sources */,
 				4C724E5F1B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m in Sources */,
@@ -12647,6 +12669,7 @@
 				4C595F4F21CAEBEE0097D850 /* GreaterThanOperator.swift in Sources */,
 				92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */,
 				4CF0728120D6577500F93AB5 /* PhiroSensor.swift in Sources */,
+				0594CE5E275E54C6007DC3F9 /* SewUpBrick.swift in Sources */,
 				4C82268B213FAE0200F3D750 /* MultiFingerXFunction.swift in Sources */,
 				4CE67896210C668C00D90B5D /* FormulaEditorKeyboardButton.swift in Sources */,
 				BA1FA9A21F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift in Sources */,
@@ -12673,6 +12696,7 @@
 				4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */,
 				4CF429F3213A88A600B78897 /* RepeatUntilBrick+Condition.swift in Sources */,
 				2D6E3F39210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift in Sources */,
+				0594CE62275E55B0007DC3F9 /* SewUpBrickCell.swift in Sources */,
 				4C0F9F76204BD1D600E71B2D /* PreviousLookBrick+Instruction.swift in Sources */,
 				927F79E31BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */,

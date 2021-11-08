@@ -1690,6 +1690,9 @@
 /* No comment provided by engineer. */
 "Settings" = "Settings";
 
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Sew up";
+
 /* No comment provided by engineer. */
 "Show" = "Show";
 

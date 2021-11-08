@@ -59,4 +59,6 @@ enum EmbroideryDefines {
     static let sizeConversionFactor = CGFloat(0.634)
 
     static let defaultRunningStitchLength = 10
+
+    static let sewUpSteps = 3
 }
