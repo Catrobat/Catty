@@ -26,5 +26,6 @@
 
 - (void)setPlusIconVisibility:(BOOL)show;
 - (id)initWithFrame:(CGRect)frame andBorder:(BOOL)visibleBorder;
+- (id)initWithFrame:(CGRect)frame andInvertedColor:(BOOL)invertedColor;
 
 @end

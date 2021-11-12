@@ -190,6 +190,7 @@ let kLocalizedDeleteProjects = NSLocalizedString("Delete projects", bundle: Bund
 let kLocalizedPocketCodeRecorder = NSLocalizedString("Pocket Code Recorder", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedOpen = NSLocalizedString("Open", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDownload = NSLocalizedString("Download", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDownloadAgain = NSLocalizedString("Download again", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMore = NSLocalizedString("More", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDelete = NSLocalizedString("Delete", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAddObject = NSLocalizedString("Add actor or object", bundle: Bundle(for: LanguageTranslation.self), comment: "")

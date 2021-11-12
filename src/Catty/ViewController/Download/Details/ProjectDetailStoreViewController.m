@@ -134,7 +134,7 @@
     [self downloadButtonPressed];
 }
 
-- (void) reportProject:(id)sender;
+- (void)reportProject:(id)sender;
 {
     [self reportProject];
 }
