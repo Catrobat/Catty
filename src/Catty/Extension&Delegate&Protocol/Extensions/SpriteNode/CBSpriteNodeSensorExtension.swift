@@ -30,6 +30,9 @@ extension CBSpriteNode {
             if self.penConfiguration.penDown {
                 self.penConfiguration.previousPositions.append(CGPoint(x: self.position.x, y: self.position.y))
             }
+            if let activePattern = embroideryStream.activePattern {
+                activePattern.spriteDidMove(to: CGPoint(x: self.position.x, y: self.position.y))
+            }
         }
 
         get {
