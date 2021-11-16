@@ -94,14 +94,24 @@ import Foundation
         subtree.playSound(fileName: fileName, filePath: filePath, expectation: expectation)
     }
 
-    func setVolumeTo(percent: Double, key: String) {
-        let subtree = getSubtree(key: key)
-        subtree.setVolumeTo(percent: percent)
+    func setVolumeTo(percent: Double, key: String?) {
+        if let key = key {
+            let subtree = getSubtree(key: key)
+            subtree.setVolumeTo(percent: percent)
+        } else {
+            let volume = percent / 100
+            engineOutputMixer.volume = AudioKit.AUValue(MathUtil.moveValueIntoRange(volume, min: 0, max: 1))
+        }
     }
 
-    func changeVolumeBy(percent: Double, key: String) {
-        let subtree = getSubtree(key: key)
-        subtree.changeVolumeBy(percent: percent)
+    func changeVolumeBy(percent: Double, key: String?) {
+        if let key = key {
+            let subtree = getSubtree(key: key)
+            subtree.changeVolumeBy(percent: percent)
+        } else {
+            let newVolume = Double(engineOutputMixer.volume) + (percent / 100)
+            engineOutputMixer.volume = AudioKit.AUValue(MathUtil.moveValueIntoRange(newVolume, min: 0, max: 1))
+        }
     }
 
     func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?) {

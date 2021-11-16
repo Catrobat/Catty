@@ -40,9 +40,9 @@ import Foundation
 
     func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?) {}
 
-    func setVolumeTo(percent: Double, key: String) {}
+    func setVolumeTo(percent: Double, key: String?) {}
 
-    func changeVolumeBy(percent: Double, key: String) {}
+    func changeVolumeBy(percent: Double, key: String?) {}
 
     func stopAllAudioPlayers() {}
 
