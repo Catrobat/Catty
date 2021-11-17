@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "AudioKit",
+        "repositoryURL": "https://github.com/AudioKit/AudioKit",
+        "state": {
+          "branch": null,
+          "revision": "fca2966f95440760c6264aa6368dfb5bf829b2dd",
+          "version": "5.2.2"
+        }
+      },
+      {
         "package": "BoringSSL-GRPC",
         "repositoryURL": "https://github.com/firebase/boringssl-SwiftPM.git",
         "state": {
@@ -44,6 +53,15 @@
           "branch": null,
           "revision": "02b7a39a99c4da27abe03cab2053a9034379639f",
           "version": "2.0.0"
+        }
+      },
+      {
+        "package": "DunneAudioKit",
+        "repositoryURL": "https://github.com/AudioKit/DunneAudioKit",
+        "state": {
+          "branch": null,
+          "revision": "ae73e34c16d33bfd7a91b0906a72fb7473487690",
+          "version": "5.2.2"
         }
       },
       {
@@ -116,6 +134,15 @@
           "branch": null,
           "revision": "d0d669fba45e16b0669ce4986725b71da41c4049",
           "version": "6.0.1"
+        }
+      },
+      {
+        "package": "KissFFT",
+        "repositoryURL": "https://github.com/AudioKit/KissFFT",
+        "state": {
+          "branch": null,
+          "revision": "dd0636e151724b8ba2e0908eba4d99a6ff24d00c",
+          "version": "1.0.0"
         }
       },
       {

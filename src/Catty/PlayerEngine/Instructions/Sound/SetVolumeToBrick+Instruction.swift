@@ -26,16 +26,12 @@
 
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
 
-        let spriteObjectName = spriteObject.name
-
         return CBInstruction.execClosure { context, scheduler in
             let audioEngine = scheduler.getAudioEngine()
             let volume = context.formulaInterpreter.interpretDouble(self.volume, for: spriteObject)
 
-            if let name = spriteObjectName {
-                audioEngine.setVolumeTo(percent: volume, key: name)
-                context.state = .runnable
-            }
+            audioEngine.setVolumeTo(percent: volume, key: nil)
+            context.state = .runnable
         }
     }
 }
