@@ -263,9 +263,10 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     }
 
     private func setupToolbarItems() {
-        let refreshOrStopButton: UIBarButtonItem? = webView?.isLoading ?? false ? stopButton : refreshButton
         urlTitleLabel.text = "\(url?.host ?? "")\(url?.relativePath ?? "")"
-        navigationItem.rightBarButtonItems = [refreshOrStopButton] as? [UIBarButtonItem]
+        if let refreshOrStopButton = webView?.isLoading ?? false ? stopButton : refreshButton {
+            navigationItem.rightBarButtonItems = [refreshOrStopButton]
+        }
 
         setupToolBar()
     }
