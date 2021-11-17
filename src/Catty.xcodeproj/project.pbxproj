@@ -753,7 +753,6 @@
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
 		4CB73A9023FC1F0400D5E9A7 /* CatrobatTableViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */; };
 		4CB73A9223FC1F1300D5E9A7 /* NavigationControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB73A9123FC1F1300D5E9A7 /* NavigationControllerMock.swift */; };
-		4CBB5F0925EFCB8100DD08B2 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 4CBB5F0825EFCB8100DD08B2 /* Quick */; };
 		4CBDF1A621CF82F100325338 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A521CF82F000325338 /* Operator.swift */; };
 		4CBDF1A921CF830E00325338 /* UnaryOperatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A721CF830E00325338 /* UnaryOperatorMock.swift */; };
 		4CBDF1AA21CF830E00325338 /* BinaryOperatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A821CF830E00325338 /* BinaryOperatorMock.swift */; };
@@ -4446,7 +4445,6 @@
 				4CFAC28D25ADCD8100AF0DD1 /* Nimble in Frameworks */,
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
-				4CBB5F0925EFCB8100DD08B2 /* Quick in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10769,7 +10767,6 @@
 			packageProductDependencies = (
 				4CFAC28C25ADCD8100AF0DD1 /* Nimble */,
 				4CFAC2CC25ADD12100AF0DD1 /* DVR */,
-				4CBB5F0825EFCB8100DD08B2 /* Quick */,
 			);
 			productName = CattyTests;
 			productReference = CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */;
@@ -10932,7 +10929,6 @@
 				4CFAC2CB25ADD12100AF0DD1 /* XCRemoteSwiftPackageReference "DVR" */,
 				4CFAC2F625ADD6C200AF0DD1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4CFAC30625ADD89E00AF0DD1 /* XCRemoteSwiftPackageReference "Siren" */,
-				4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */,
 				970F1BDA25FC399500558A3A /* XCRemoteSwiftPackageReference "ActiveLabel" */,
 				17D5F5CC266A819000C678FF /* XCRemoteSwiftPackageReference "ZipArchive" */,
 				4CE05752266E2287008AD7FF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
@@ -13721,20 +13717,12 @@
 				minimumVersion = 2.4.2;
 			};
 		};
-		4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Quick/Quick";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.2;
-			};
-		};
 		4CE05752266E2287008AD7FF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.1.0;
+				minimumVersion = 8.9.1;
 			};
 		};
 		4CFAC28B25ADCD8100AF0DD1 /* XCRemoteSwiftPackageReference "Nimble" */ = {
@@ -13742,7 +13730,7 @@
 			repositoryURL = "https://github.com/Quick/Nimble";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 9.2.1;
 			};
 		};
 		4CFAC2CB25ADD12100AF0DD1 /* XCRemoteSwiftPackageReference "DVR" */ = {
@@ -13758,7 +13746,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.1;
+				minimumVersion = 7.1.1;
 			};
 		};
 		4CFAC30625ADD89E00AF0DD1 /* XCRemoteSwiftPackageReference "Siren" */ = {
@@ -13794,11 +13782,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 17D5F5CC266A819000C678FF /* XCRemoteSwiftPackageReference "ZipArchive" */;
 			productName = ZipArchive;
-		};
-		4CBB5F0825EFCB8100DD08B2 /* Quick */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4CBB5F0725EFCB8100DD08B2 /* XCRemoteSwiftPackageReference "Quick" */;
-			productName = Quick;
 		};
 		4CE05753266E2287008AD7FF /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
