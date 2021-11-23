@@ -24,9 +24,10 @@
 
 @objcMembers class SetBackgroundByIndexBrick: Brick, BrickProtocol, BrickFormulaProtocol {
 
-    var backgroundIndex: Formula?
+    var backgroundIndex: Formula
 
     override required init() {
+        self.backgroundIndex = Formula(integer: 1)
         super.init()
     }
 
@@ -39,7 +40,7 @@
     }
 
     override func getRequiredResources() -> Int {
-        backgroundIndex?.getRequiredResources() ?? ResourceType.noResources.rawValue
+        backgroundIndex.getRequiredResources()
     }
 
     override func brickCell() -> BrickCellProtocol.Type! {
@@ -55,7 +56,7 @@
     }
 
     func getFormulas() -> [Formula]! {
-        [backgroundIndex!]
+        [backgroundIndex]
     }
 
     override func setDefaultValuesFor(_ spriteObject: SpriteObject!) {

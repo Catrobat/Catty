@@ -28,12 +28,11 @@ extension SetLookByIndexBrick: CBInstructionProtocol {
 
     func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
-            let formula = self.lookIndex
+            let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
 
         return {
-            let lookIndex = formulaInterpreter.interpretInteger(formula, for: object)
+            let lookIndex = formulaInterpreter.interpretInteger(self.lookIndex, for: object)
             guard let lookAtIndex = spriteNode.look(for: lookIndex) else { return }
 
             let cache = RuntimeImageCache.shared()

@@ -24,9 +24,10 @@
 
 @objcMembers class SetLookByIndexBrick: Brick, BrickProtocol, BrickFormulaProtocol {
 
-    var lookIndex: Formula?
+    var lookIndex: Formula
 
     override required init() {
+        self.lookIndex = Formula(integer: kBackgroundObjects)
         super.init()
     }
 
@@ -55,7 +56,7 @@
     }
 
     func getFormulas() -> [Formula]! {
-        [lookIndex!]
+        [lookIndex]
     }
 
     override func setDefaultValuesFor(_ spriteObject: SpriteObject!) {

@@ -42,7 +42,7 @@ extension SetBackgroundByIndexBrick: CBXMLNodeProtocol {
     func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
         let brick = super.xmlElement(for: "SetBackgroundByIndexBrick", with: context)
         let formulaList = GDataXMLElement(name: "formulaList", context: context)
-        let formula = self.backgroundIndex?.xmlElement(with: context)
+        let formula = self.backgroundIndex.xmlElement(with: context)
         formula?.addAttribute(GDataXMLElement(name: "category", stringValue: "BACKGROUND_INDEX", context: nil))
         formulaList?.addChild(formula, context: context)
         brick?.addChild(formulaList, context: context)

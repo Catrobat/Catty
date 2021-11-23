@@ -26,14 +26,14 @@ extension SetLookByIndexBrick: CBXMLNodeProtocol {
         CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 1, andFormulaListWithTotalNumberOfFormulas: 1)
         let formula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "LOOK_INDEX", with: context)
         let brick = self.init()
-        brick.lookIndex = formula
+        brick.setFormula(formula, forLineNumber: 0, andParameterNumber: 0)
         return brick
     }
 
     func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
         let brick = super.xmlElement(for: "SetLookByIndexBrick", with: context)
         let formulaList = GDataXMLElement(name: "formulaList", context: context)
-        let formula = self.lookIndex?.xmlElement(with: context)
+        let formula = self.lookIndex.xmlElement(with: context)
         formula?.addAttribute(GDataXMLElement(name: "category", stringValue: "LOOK_INDEX", context: nil))
         formulaList?.addChild(formula, context: context)
         brick?.addChild(formulaList, context: context)

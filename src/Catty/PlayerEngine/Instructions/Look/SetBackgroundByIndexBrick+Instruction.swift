@@ -33,8 +33,7 @@
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
         return {
-            guard let backgroundIndex = self.backgroundIndex else { return }
-            let index = formulaInterpreter.interpretInteger(backgroundIndex, for: object)
+            let index = formulaInterpreter.interpretInteger(self.backgroundIndex, for: object)
             guard let look = spriteNode.look(for: index) else { return }
             var image = imageCache.cachedImage(forPath: self.path(for: look))
 
