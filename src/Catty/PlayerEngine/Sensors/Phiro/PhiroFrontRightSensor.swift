@@ -26,7 +26,7 @@
     static let name = kUIFESensorPhiroFrontRight
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
-    static let pinNumber = 1
+    static let pinNumber = PhiroDevice.pinSensorFrontRight
     static let position = 350
 
     let getBluetoothService: () -> BluetoothService?
