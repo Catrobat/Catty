@@ -119,6 +119,7 @@ platform :ios do
     result = multi_scan(devices: ["iPhone 11"],
       project: File.absolute_path('../Catty.xcodeproj'),
       try_count: 3,
+      parallel_testrun_count: 4,
       fail_build: true,
       collate_reports: true,
       output_types: "junit",
