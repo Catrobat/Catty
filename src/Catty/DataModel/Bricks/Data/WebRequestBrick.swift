@@ -26,9 +26,11 @@
     var request: Formula?
     var userVariable: UserVariable?
     var downloaderFactory: WebRequestDownloaderFactory
+    var alertControllerBuilder: AlertControllerBuilderProtocol
 
     override required init() {
         self.downloaderFactory = WebRequestDownloaderFactory()
+        self.alertControllerBuilder = AlertControllerBuilder()
         super.init()
     }
 

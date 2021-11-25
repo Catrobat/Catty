@@ -50,6 +50,7 @@ final class WebRequestBrickTests: XCTestCase {
 
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         scheduler.running = true
+        brick.resume(scheduler)
 
         context = CBScriptContextMock(object: object, script: script, formulaManager: formulaInterpreter)
 
@@ -130,11 +131,16 @@ final class WebRequestBrickTests: XCTestCase {
     func testUrlIsNotInTrustedDomains() {
         downloaderMock.expectedError = .notTrusted
 
+        let builderMock = AlertControllerBuilderMock()
+        brick.alertControllerBuilder = builderMock
+
+        XCTAssertEqual(0, type(of: builderMock).alertBuilders.count)
+
         callInstructionAndWaitExecClosure()
 
-        expect(Util.topmostViewController().isKind(of: UIAlertController.self)).toEventually(beTruthy(), timeout: .seconds(3))
+        expect(type(of: builderMock).alertBuilders.count).toEventually(equal(1), timeout: .seconds(300))
 
-        let alertController = Util.topmostViewController() as! UIAlertController
+        let alertController = type(of: builderMock).alertBuilders.first!.alertController
         let actions = alertController.actions
 
         XCTAssertEqual(3, actions.count)

@@ -41,13 +41,14 @@ extension WebRequestBrick: CBInstructionProtocol {
                         self.pause(scheduler)
 
                         DispatchQueue.main.async {
-                            AlertControllerBuilder.alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
+                            type(of: self.alertControllerBuilder).alert(title: kLocalizedAllowWebAccess + "?", message: requestString)
                                 .addDefaultAction(title: kLocalizedOnce) {
                                     self.resume(scheduler)
                                     self.allowedOnceAction(downloader: downloader, url: requestString, trustedDomains: trustedDomains, expectation: downloadIsFinishedExpectation)
                                 }
                                 .addDefaultAction(title: kLocalizedAlways) {
-                                    AlertControllerBuilder.alert(title: kLocalizedAlwaysAllowWebAccess + "?", message: requestString + "\n\n" + kLocalizedAlwaysAllowWebRequestDescription)
+                                    type(of: self.alertControllerBuilder)
+                                        .alert(title: kLocalizedAlwaysAllowWebAccess + "?", message: requestString + "\n\n" + kLocalizedAlwaysAllowWebRequestDescription)
                                         .addDefaultAction(title: kLocalizedAlways) {
                                             self.resume(scheduler)
                                             self.allowedAlwaysAction(downloader: downloader, url: requestString, trustedDomains: trustedDomains, expectation: downloadIsFinishedExpectation)
