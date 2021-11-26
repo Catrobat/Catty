@@ -32,7 +32,7 @@ class LooksTVCTests: XCTestCase {
     }
 
     func testLengthOfLook() {
-        let lookName = String(repeating: "a", count: 250)
+        let lookName = String(repeating: "a", count: 25)
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
@@ -57,7 +57,9 @@ class LooksTVCTests: XCTestCase {
 
         alert.buttons["Clear text"].tap()
         textField.typeText(lookName + "b")
+
         alert.buttons[kLocalizedOK].tap()
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
 
     func testLooksCanEnterLooksOfAllMoles() {

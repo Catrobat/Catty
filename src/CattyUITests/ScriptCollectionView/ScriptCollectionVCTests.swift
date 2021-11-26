@@ -60,7 +60,7 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testLengthOfBroadcastMessage() {
-        let message = String(repeating: "a", count: 250)
+        let message = String(repeating: "a", count: 25)
 
         createProject(name: "testProject", in: app)
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
