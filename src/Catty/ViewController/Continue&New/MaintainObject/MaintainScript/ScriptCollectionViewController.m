@@ -277,7 +277,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         if (brick.isFormulaBrick) {
             [actionSheet addDefaultActionWithTitle:kLocalizedEditFormula handler:^{
-                [self openFormulaEditorWithFormulaAtIndexPath:indexPath withEvent:nil];
+                [self openFormulaEditorForBrickCell:brickCell withEvent:nil];
             }];
         }
     } else {
@@ -698,9 +698,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 
-- (void)openFormulaEditorWithFormulaAtIndexPath:(NSIndexPath*)indexPath withEvent:(UIEvent*)event
+- (void)openFormulaEditorForBrickCell:(BrickCell*)brickCell withEvent:(UIEvent*)event
 {
-    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
     [self openFormulaEditor:formulaData withEvent:event];
 }
