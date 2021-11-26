@@ -81,7 +81,7 @@ class MyFirstProjectTests: XCTestCase {
         XCTAssert(app.buttons[kLocalizedMakeItLandscape].exists)
         app.buttons[kLocalizedMakeItLandscape].tap()
 
-        XCTAssertFalse(waitForElementToDisappear(app.staticTexts["\(kLocalizedLoading)..."]).exists)
+        XCTAssertFalse(waitForElementToDisappear(app.staticTexts["\(kLocalizedLoading)..."], timeout: 10).exists)
 
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedMakeItPortrait]).exists)
