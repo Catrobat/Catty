@@ -23,6 +23,17 @@
 import Foundation
 import UIKit
 
+@objc public protocol AlertControllerBuilderProtocol {
+    @objc(alertWithTitle:message:)
+    static func alert(title: String?, message: String?) -> AlertActionAdding
+
+    @objc(actionSheetWithTitle:)
+    static func actionSheet(title: String?) -> AlertActionAdding
+
+    @objc(textFieldAlertWithTitle:message:)
+    static func textFieldAlert(title: String?, message: String?) -> TextFieldAlertDefining
+}
+
 @objc public protocol AlertActionAdding {
     @discardableResult
     @objc(addDefaultActionWithTitle:handler:)

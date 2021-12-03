@@ -54,7 +54,7 @@ class VariableTests: XCTestCase {
         XCTAssert(app.sheets[kUIFEActionVar].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
-        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 250))
+        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 25))
         app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
         XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedWhenProjectStarted]).exists)
     }
@@ -66,7 +66,7 @@ class VariableTests: XCTestCase {
         XCTAssert(app.sheets[kUIFEActionVar].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
-        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 250 + 1))
+        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 25 + 1))
         app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
         XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }

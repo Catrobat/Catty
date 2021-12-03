@@ -53,7 +53,7 @@ class ListTests: XCTestCase {
         XCTAssert(app.sheets[kUIFEActionList].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
-        app.alerts[kUIFENewList].textFields[kLocalizedEnterYourListNameHere].typeText(String(repeating: "i", count: 250))
+        app.alerts[kUIFENewList].textFields[kLocalizedEnterYourListNameHere].typeText(String(repeating: "i", count: 25))
         app.alerts[kUIFENewList].buttons[kLocalizedOK].tap()
         XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedWhenProjectStarted]).exists)
     }
@@ -65,7 +65,7 @@ class ListTests: XCTestCase {
         XCTAssert(app.sheets[kUIFEActionList].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
-        app.alerts[kUIFENewList].textFields[kLocalizedEnterYourListNameHere].typeText(String(repeating: "i", count: 250 + 1))
+        app.alerts[kUIFENewList].textFields[kLocalizedEnterYourListNameHere].typeText(String(repeating: "i", count: 25 + 1))
         app.alerts[kUIFENewList].buttons[kLocalizedOK].tap()
         XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedPocketCode]).exists)
     }

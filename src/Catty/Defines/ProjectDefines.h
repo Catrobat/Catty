@@ -34,18 +34,48 @@
 #define kMinNumOfObjects 0
 #define kDefaultNumOfObjects 0
 #define kBackgroundObjects 1
+
 #define kMinNumOfProjectNameCharacters 1
+#if DEBUG
+#define kMaxNumOfProjectNameCharacters 25
+#else
 #define kMaxNumOfProjectNameCharacters 250
+#endif
+
 #define kMinNumOfObjectNameCharacters 1
+#if DEBUG
+#define kMaxNumOfObjectNameCharacters 25
+#else
 #define kMaxNumOfObjectNameCharacters 250
-#define kMinNumOfLookNameCharacters 1
+#endif
+
+#define kMinNumOfLookNameCharacters 1 
+#if DEBUG
+#define kMaxNumOfLookNameCharacters 25
+#else
 #define kMaxNumOfLookNameCharacters 250
+#endif
+
 #define kMinNumOfSoundNameCharacters 1
+#if DEBUG
+#define kMaxNumOfSoundNameCharacters 25
+#else
 #define kMaxNumOfSoundNameCharacters 250
+#endif
+
 #define kMinNumOfMessageNameCharacters 1
+#if DEBUG
+#define kMaxNumOfMessageNameCharacters 25
+#else
 #define kMaxNumOfMessageNameCharacters 250
+#endif
+
 #define kMinNumOfVariableNameCharacters 1
+#if DEBUG
+#define kMaxNumOfVariableNameCharacters 25
+#else
 #define kMaxNumOfVariableNameCharacters 250
+#endif
 
 #define kNoProjectIDYetPlaceholder @"x"
 #define kProjectIDSeparator @"_"

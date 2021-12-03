@@ -66,9 +66,7 @@ class PocketCodeMainScreenTests: XCTestCase {
 
     func testNewInvalidNames() {
         let progNamesErrorMsgMap = ["": "No input. Please enter at least 1 character.",
-                                    "i am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am "
-                                        + "tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo "
-                                        + "looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooog": "The input is too long. Please enter maximal 250 character(s).",
+                                    String(repeating: "i", count: 25 + 1): "The input is too long. Please enter maximal 25 character(s).",
                                     ".": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "/": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "./": "Only special characters are not allowed. Please enter at least 1 other character.",

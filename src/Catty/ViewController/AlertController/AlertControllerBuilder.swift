@@ -23,7 +23,7 @@
 import Foundation
 
 @objc
-public final class AlertControllerBuilder: NSObject {
+public final class AlertControllerBuilder: NSObject, AlertControllerBuilderProtocol {
     @objc(alertWithTitle:message:)
     public static func alert(title: String?, message: String?) -> AlertActionAdding {
         AlertController(title: title, message: message, style: .alert)

@@ -395,6 +395,7 @@
 		4C2048802671F17F00AE2E1B /* WebRequestDownloaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */; };
 		4C2048822671F18F00AE2E1B /* WebRequestDownloaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */; };
 		4C214C1E26200D3600E70B22 /* FormulaEditorViewControllerAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C214C1B26200D3500E70B22 /* FormulaEditorViewControllerAlertExtension.swift */; };
+		4C21C8C3274FB1CF009F7C7F /* AlertControllerBuilderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21C8C0274FB1CE009F7C7F /* AlertControllerBuilderMock.swift */; };
 		4C245CAC244481F3004C941C /* NimbleMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C245CA9244481F3004C941C /* NimbleMatcher.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */; };
@@ -2401,6 +2402,7 @@
 		4C20487F2671F17F00AE2E1B /* WebRequestDownloaderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderFactory.swift; sourceTree = "<group>"; };
 		4C2048812671F18F00AE2E1B /* WebRequestDownloaderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderError.swift; sourceTree = "<group>"; };
 		4C214C1B26200D3500E70B22 /* FormulaEditorViewControllerAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerAlertExtension.swift; sourceTree = "<group>"; };
+		4C21C8C0274FB1CE009F7C7F /* AlertControllerBuilderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerBuilderMock.swift; sourceTree = "<group>"; };
 		4C245CA9244481F3004C941C /* NimbleMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleMatcher.swift; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
@@ -4445,7 +4447,6 @@
 				4CFAC2CD25ADD12100AF0DD1 /* DVR in Frameworks */,
 				4CFAC28D25ADCD8100AF0DD1 /* Nimble in Frameworks */,
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
-				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7329,6 +7330,7 @@
 		599E649C202D9F85009494B5 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				4C21C8C0274FB1CE009F7C7F /* AlertControllerBuilderMock.swift */,
 				4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */,
 				6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */,
 				4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */,
@@ -11932,6 +11934,7 @@
 				186AA34924830491001E38FD /* PenDownBrickTests.swift in Sources */,
 				4C822683213FA7A400F3D750 /* SensorManagerTests.swift in Sources */,
 				180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */,
+				4C21C8C3274FB1CF009F7C7F /* AlertControllerBuilderMock.swift in Sources */,
 				9E3AF79A2326F4D100AB16F1 /* IfOnEdgeBounceBrickTests.swift in Sources */,
 				05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */,
 				4C82266F213FA7A400F3D750 /* DateMonthSensorTest.swift in Sources */,

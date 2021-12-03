@@ -165,6 +165,8 @@ class ObjectTVCTests: XCTestCase {
 
         sheet.buttons[kLocalizedCopy].tap()
 
+        XCTAssertTrue(waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).exists)
+
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[projectName].tap()
