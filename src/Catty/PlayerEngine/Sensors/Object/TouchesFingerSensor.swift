@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class FingerYSensor: NSObject, TouchSensor {
+@objc class TouchesFingerSensor: NSObject, TouchSensor {
 
-    @objc static let tag = "FINGER_Y"
-    static let name = kUIFESensorFingerY
+    @objc static let tag = "COLLIDES_WITH_FINGER"
+    static let name = kUIFESensorTouchesFinger
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
-    static let position = 30
+    static let position = 20
 
     let getTouchManager: () -> TouchManagerProtocol?
 
@@ -39,17 +39,17 @@
     }
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        guard let lastPosition = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
-        return Double(lastPosition.y)
+        guard let touchManager = getTouchManager(), let lastTouch = touchManager.lastTouch() else { return type(of: self).defaultRawValue }
+
+        let touchesFinger = touchManager.screenTouched() && spriteObject.spriteNode.isTouched(at: lastTouch)
+        return touchesFinger ? 1 : 0
     }
 
-    // We have to move (0, 0) from bottom left to the center
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        guard let _ = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
-        return PositionYSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
+        rawValue
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        [.sensors(position: type(of: self).position, subsection: .touch)]
+        [.object(position: type(of: self).position, subsection: .motion)]
     }
 }

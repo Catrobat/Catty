@@ -223,6 +223,16 @@
                   </formulaList>
                   <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
                 </brick>
+                <brick type="SetVariableBrick">
+                   <commentedOut>false</commentedOut>
+                   <formulaList>
+                     <formula category="VARIABLE">
+                       <type>SENSOR</type>
+                       <value>COLLIDES_WITH_FINGER</value>
+                     </formula>
+                   </formulaList>
+                   <userVariable>random to</userVariable>
+                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
             </script>

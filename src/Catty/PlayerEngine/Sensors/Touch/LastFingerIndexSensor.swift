@@ -38,7 +38,7 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let numberOfTouches = getTouchManager()?.numberOfTouches() else { return type(of: self).defaultRawValue }
         return Double(numberOfTouches)
     }

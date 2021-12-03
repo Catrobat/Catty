@@ -45,6 +45,7 @@ extension CatrobatSetup {
          FingerXSensor(touchManagerGetter: { touchManager }),
          FingerYSensor(touchManagerGetter: { touchManager }),
          LastFingerIndexSensor(touchManagerGetter: { touchManager }),
+         TouchesFingerSensor(touchManagerGetter: { touchManager }),
 
          DateYearSensor(),
          DateMonthSensor(),

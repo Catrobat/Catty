@@ -120,16 +120,15 @@ final class Stage: SKScene, StageProtocol {
         for node in nodes {
             guard let currentNode = node as? CBSpriteNode
                 else { fatalError("This should not happen!") }
-            if currentNode.name == nil {
-                return false
-            }
+            guard let currentNodeName = currentNode.name else { return false }
+
             print("Current node: \(currentNode)")
             logger.debug("Current node: \(currentNode)")
             if currentNode.isHidden { continue }
 
-            let newPosition = touch.location(in: currentNode)
-            if currentNode.touchedWithTouch(touch, atPosition: newPosition) {
+            if currentNode.isTouched(at: touch) {
                 print("Found sprite node: \(String(describing: currentNode.name)) with zPosition: \(currentNode.zPosition)")
+                scheduler.startWhenContextsOfSpriteNodeWithName(currentNodeName)
                 return true
             } else {
                 var zPosition = currentNode.zPosition

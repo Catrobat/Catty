@@ -21,6 +21,7 @@
  */
 
 @testable import Pocket_Code
+import UIKit
 
 final class TouchManagerMock: TouchManagerProtocol {
 
@@ -28,7 +29,8 @@ final class TouchManagerMock: TouchManagerProtocol {
     var stage: Stage?
     var isScreenTouched = false
     var touches: [CGPoint] = []
-    var lastTouch: CGPoint?
+    var lastPosition: CGPoint?
+    var lastTouchMock: UITouch?
 
     var isStarted = false
 
@@ -56,7 +58,7 @@ final class TouchManagerMock: TouchManagerProtocol {
     }
 
     func lastPositionInScene() -> CGPoint? {
-        lastTouch
+        lastPosition
     }
 
     func getPositionInScene(for touchNumber: Int) -> CGPoint? {
@@ -64,5 +66,9 @@ final class TouchManagerMock: TouchManagerProtocol {
             return nil
         }
         return touches[touchNumber - 1]
+    }
+
+    func lastTouch() -> UITouch? {
+        lastTouchMock
     }
 }
