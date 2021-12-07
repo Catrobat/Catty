@@ -16,7 +16,7 @@
           "Expires" : "-1",
           "Server" : "nginx"
         },
-        "url" : "https:\/\/share.catrob.at\/api\/projects\/search?query=K%C3%B6nigin%20Schloss&max_version=0.9993&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=K%C3%B6nigin%20Schloss&max_version=0.9993&limit=20&offset=0",
         "status" : 200,
         "body" : [
           {
@@ -26,8 +26,8 @@
             "version" : "0.9.23",
             "flavor" : "pocketcode",
             "author" : "kidscraft",
-            "screenshot_small" : "https:\/\/share.catrob.at\/resources\/thumbnails\/screen_11990.png?t=1598163718",
-            "download_url" : "https:\/\/share.catrob.at\/app\/download\/11990.catrobat",
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_11990.png?t=1598163718",
+            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/11990.catrobat",
             "tags" : [
 
             ],
@@ -35,15 +35,15 @@
             "uploaded_string" : "more than one year ago",
             "download" : 30,
             "uploaded" : 1469779255,
-            "project_url" : "https:\/\/share.catrob.at\/app\/project\/11990",
-            "screenshot_large" : "https:\/\/share.catrob.at\/resources\/screenshots\/screen_11990.png?t=1598101014",
+            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/11990",
+            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_11990.png?t=1598101014",
             "name" : "königin schloss",
             "views" : 18
           }
         ]
       },
       "request" : {
-        "url" : "https:\/\/share.catrob.at\/api\/projects\/search?query=K%C3%B6nigin%20Schloss&max_version=0.9993&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=K%C3%B6nigin%20Schloss&max_version=0.9993&limit=20&offset=0",
         "method" : "GET"
       }
     }
