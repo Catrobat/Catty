@@ -29,6 +29,9 @@
 @property(nonatomic, assign) BOOL visibleBorder;
 @property(nonatomic, assign) BOOL invertedColor;
 
+#define INSET_HORIZONTAL 12
+#define INSET_VERTICAL 6
+
 @end
 
 @implementation RoundBorderedButton
@@ -100,8 +103,9 @@
     }
     
     [self.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-    [self.titleLabel setMinimumScaleFactor:0.4];
+    [self.titleLabel setMinimumScaleFactor:0.6];
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.contentEdgeInsets = UIEdgeInsetsMake(INSET_VERTICAL, INSET_HORIZONTAL, INSET_VERTICAL, INSET_HORIZONTAL);
     
     if (self.visibleBorder) {
         self.layer.cornerRadius = 5;
@@ -144,12 +148,6 @@
     [UIView animateWithDuration:0.05f animations:^{
         self.layer.backgroundColor = highlighted ? self.tintColor.CGColor : defaultBackgroundColor.CGColor;
     }];
-}
-
-- (CGSize)sizeThatFits:(CGSize)size
-{
-    CGSize org = [super sizeThatFits:self.bounds.size];
-    return CGSizeMake(org.width + 20, org.height - 2);
 }
 
 @end
