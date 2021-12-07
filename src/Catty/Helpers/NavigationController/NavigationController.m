@@ -21,9 +21,6 @@
  */
 
 #import "NavigationController.h"
-#import "PaintViewController.h"
-#import "ScriptCollectionViewController.h"
-#import "CatrobatTableViewController.h"
 
 @implementation NavigationController
 
@@ -38,27 +35,5 @@
 {
     return UIStatusBarStyleLightContent;
 }
-
-- (BOOL)shouldAutorotate
-{
-    id currentViewController = self.topViewController;
-    
-    if ([currentViewController isKindOfClass:[PaintViewController class]])
-        return NO;
-    if ([currentViewController isKindOfClass:[StagePresenterViewController class]])
-        return NO;
-    if ([currentViewController isKindOfClass:[CatrobatTableViewController class]]){
-        CatrobatTableViewController *ctvc = (CatrobatTableViewController*)currentViewController;
-        return ctvc.tableView.scrollEnabled;
-    }
-    
-    if ([currentViewController isKindOfClass:[ScriptCollectionViewController class]]) {
-        ScriptCollectionViewController *scv = (ScriptCollectionViewController*)currentViewController;
-        return ![scv.presentedViewController isKindOfClass:[FormulaEditorViewController class]];
-    }
-
-    return YES;
-}
-
 
 @end
