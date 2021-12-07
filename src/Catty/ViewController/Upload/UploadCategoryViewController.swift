@@ -44,7 +44,7 @@ class UploadCategoryViewController: UIViewController {
 
         self.view.backgroundColor = UIColor.background
         if let tags = tags {
-            for tag in tags.components(separatedBy: ", ") {
+            for tag in tags.components(separatedBy: ",") {
                 if let tagIndex = categories.firstIndex(of: tag) {
                     selectedCategoryTag.append(tagIndex)
                 }
