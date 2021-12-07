@@ -536,8 +536,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [brickCell insertAnimate:brickCell.scriptOrBrick.isAnimatedInsertBrick];
     }
     if (self.isEditing) {
-        brickCell.center = CGPointMake(brickCell.center.x + UIDefines.selectButtonTranslationOffsetX, brickCell.center.y);
-        brickCell.selectButton.alpha = 1.0f;
+        if (brickCell.frame.origin.x == 0.0f) {
+            brickCell.center = CGPointMake(brickCell.center.x + UIDefines.selectButtonTranslationOffsetX, brickCell.center.y);
+            brickCell.selectButton.alpha = 1.0f;
+        }
         if(!brickCell.isScriptBrick)
         {
             Brick *selectBrick = (Brick*)brickCell.scriptOrBrick;
