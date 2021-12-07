@@ -111,17 +111,9 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
-    BOOL lockIphoneEnabeled = [self shouldLockIphoneInAppWithoutScenePresenter];
-    [[UIApplication sharedApplication] setIdleTimerDisabled:(lockIphoneEnabeled)];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    self.tableView.scrollEnabled = YES;
+    self.tableView.scrollEnabled = NO;
     [self initNavigationBar];
-}
-
-- (BOOL)shouldLockIphoneInAppWithoutScenePresenter
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return (! [defaults boolForKey:@"lockiphone"]);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -229,21 +221,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     }
     if (indexPath.row == 0) {
         [self configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*) cell];
-    } else {
-        
-        DarkBlueGradientImageCell *imageCell = (DarkBlueGradientImageCell*) cell;
-        if (([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) || ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)) {
-            
-            imageCell.imageViewBottomConstraint.constant = 0;
-            imageCell.imageViewTopConstraint.constant = 0;
-            
-        } else {
-            
-            imageCell.imageViewBottomConstraint.constant = -10;
-            imageCell.imageViewTopConstraint.constant = 10;
-            
-        }
-        
     }
     
     if (indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {

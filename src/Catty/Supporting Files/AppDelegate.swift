@@ -46,9 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initNavigationBar()
         ThemesHelper.changeAppearance()
         let defaults = UserDefaults.standard
-        let appDefaults = NSDictionary.init(dictionary: ["lockiphone": "YES"]) as! [String: Any]
-        defaults.register(defaults: appDefaults)
-
         self.setDefaultUserDefaults(defaults: defaults)
         defaults.synchronize()
 
