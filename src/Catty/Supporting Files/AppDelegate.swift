@@ -99,6 +99,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func initNavigationBar() {
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = UIColor.navBar
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.navTint]
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
         UINavigationBar.appearance().barTintColor = UIColor.navBar
         UINavigationBar.appearance().tintColor = UIColor.navTint
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navText]

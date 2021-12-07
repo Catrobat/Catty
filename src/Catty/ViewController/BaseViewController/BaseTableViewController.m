@@ -275,6 +275,12 @@
 #pragma mark - helpers
 - (void)setupToolBar
 {
+    if (@available(iOS 15.0, *)) {
+        UIToolbarAppearance *toolBarAppearance = [[UIToolbarAppearance alloc] init];
+        toolBarAppearance.backgroundColor = UIColor.toolBar;
+        self.navigationController.toolbar.standardAppearance = toolBarAppearance;
+        self.navigationController.toolbar.scrollEdgeAppearance = toolBarAppearance;
+    }
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
     self.navigationController.toolbar.tintColor = UIColor.toolTint;
