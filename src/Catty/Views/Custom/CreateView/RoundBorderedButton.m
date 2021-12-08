@@ -21,11 +21,16 @@
  */
 
 #import "RoundBorderedButton.h"
+#import "Pocket_Code-Swift.h"
 
 @interface RoundBorderedButton()
 
 @property(nonatomic, assign) BOOL plusIconVisible;
 @property(nonatomic, assign) BOOL visibleBorder;
+@property(nonatomic, assign) BOOL invertedColor;
+
+#define INSET_HORIZONTAL 12
+#define INSET_VERTICAL 6
 
 @end
 
@@ -36,6 +41,7 @@
     self = [super init];
     if (self) {
         self.visibleBorder = YES;
+        self.invertedColor = NO;
         [self setup];
     }
     return self;
@@ -45,6 +51,19 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        self.visibleBorder = YES;
+        self.invertedColor = NO;
+        [self setup];
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame andInvertedColor:(BOOL)invertedColor
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.visibleBorder = YES;
+        self.invertedColor = invertedColor;
         [self setup];
     }
     return self;
@@ -54,21 +73,44 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.invertedColor = NO;
         self.visibleBorder = visibleBorder;
         [self setup];
     }
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame
+{
+    return [self initWithFrame:frame andBorder:YES];
+}
+
 - (void)setup
 {
-    [self setTitleColor:[self tintColor] forState:UIControlStateNormal];
-    [self setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
-    [self setTitleColor:UIColor.grayColor forState:UIControlStateDisabled];
-    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:13]];
+    if (self.invertedColor) {
+        [self setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [self setTitleColor:UIColor.buttonTint forState:UIControlStateHighlighted];
+        [self setTitleColor:UIColor.buttonTint forState:UIControlStateSelected];
+        [self setTitleColor:UIColor.grayColor forState:UIControlStateDisabled];
+        [self setBackgroundColor:UIColor.buttonTint];
+         self.tintColor = UIColor.whiteColor;
+    } else {
+        [self setTitleColor:UIColor.buttonTint forState:UIControlStateNormal];
+        [self setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
+        [self setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+        [self setTitleColor:UIColor.grayColor forState:UIControlStateDisabled];
+        self.tintColor = UIColor.buttonTint;
+    }
+    
+    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+    [self.titleLabel setMinimumScaleFactor:0.6];
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.contentEdgeInsets = UIEdgeInsetsMake(INSET_VERTICAL, INSET_HORIZONTAL, INSET_VERTICAL, INSET_HORIZONTAL);
+    
     if (self.visibleBorder) {
-        self.layer.cornerRadius = 3.5;
+        self.layer.cornerRadius = 5;
         self.layer.borderWidth = 1.0;
+        self.layer.borderColor = UIColor.buttonTint.CGColor;
     }
     [self refreshBorderColor];
 }
@@ -88,28 +130,24 @@
 - (void)setEnabled:(BOOL)enabled
 {
     [super setEnabled:enabled];
-    
     [self refreshBorderColor];
 }
 
 - (void)refreshBorderColor
 {
-    self.layer.borderColor = [self isEnabled] ? self.tintColor.CGColor : UIColor.grayColor.CGColor;
+    self.layer.borderColor = [self isEnabled] ? UIColor.buttonTint.CGColor : UIColor.grayColor.CGColor;
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
+    [self refreshBorderColor];
+    
+    UIColor *defaultBackgroundColor = self.invertedColor ? UIColor.buttonTint : UIColor.clearColor;
     
     [UIView animateWithDuration:0.05f animations:^{
-        self.layer.backgroundColor = highlighted ? self.tintColor.CGColor : UIColor.clearColor.CGColor;
+        self.layer.backgroundColor = highlighted ? self.tintColor.CGColor : defaultBackgroundColor.CGColor;
     }];
-}
-
-- (CGSize)sizeThatFits:(CGSize)size
-{
-    CGSize org = [super sizeThatFits:self.bounds.size];
-    return CGSizeMake(org.width + 20, org.height - 2);
 }
 
 @end

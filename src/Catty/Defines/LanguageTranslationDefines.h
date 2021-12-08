@@ -190,6 +190,7 @@
 #define kLocalizedPocketCodeRecorder NSLocalizedString(@"Pocket Code Recorder", nil)
 #define kLocalizedOpen NSLocalizedString(@"Open", nil)
 #define kLocalizedDownload NSLocalizedString(@"Download", nil)
+#define kLocalizedDownloadAgain NSLocalizedString(@"Download again", nil)
 #define kLocalizedMore NSLocalizedString(@"More", nil)
 #define kLocalizedDelete NSLocalizedString(@"Delete", nil)
 #define kLocalizedAddObject NSLocalizedString(@"Add actor or object", nil)
