@@ -142,7 +142,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(performSearch), object: nil)
-        self.perform(#selector(performSearch), with: nil, afterDelay: 0.5)
+        self.perform(#selector(performSearch), with: nil, afterDelay: NetworkDefines.searchLookupDelayInSeconds)
     }
 
     @objc func performSearch() {

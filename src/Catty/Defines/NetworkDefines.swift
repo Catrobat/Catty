@@ -95,6 +95,9 @@ class NetworkDefines: NSObject {
     static let chartProjectsMaxResults = 10
     static let recentProjectsMaxResults = 20
     static let searchStoreMaxResults = 50
+
+    static let searchLookupDelayInSeconds = 0.3
+
     static let currentPlatform = "ios"
 
     @objc static let reportProjectNoteMaxLength = 100
