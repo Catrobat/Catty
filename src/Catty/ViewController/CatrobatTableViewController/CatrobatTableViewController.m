@@ -223,10 +223,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         [self configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*) cell];
     }
     
-    if (indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {
-        cell.separatorInset = UIEdgeInsetsMake(0.f, MAX([Util screenHeight],[Util screenWidth]), 0.f, 0.f);
-    }
-    
     cell.layoutMargins = UIEdgeInsetsZero;
     cell.preservesSuperviewLayoutMargins = NO;
     
