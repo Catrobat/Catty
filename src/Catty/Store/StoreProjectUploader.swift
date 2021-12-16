@@ -144,7 +144,14 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
     }
 
     func fetchTags(for language: String, completion: @escaping ([String], StoreProjectUploaderError?) -> Void) {
-        guard let tagUrl = URL(string: "\(NetworkDefines.tagUrl)?\(NetworkDefines.tagLanguage + language)") else { return }
+        var tagUrlComponents = URLComponents(string: NetworkDefines.tagUrl)
+        tagUrlComponents?.queryItems = [
+            URLQueryItem(name: NetworkDefines.tagLanguage, value: language)
+        ]
+
+        guard let tagUrl = tagUrlComponents?.url else {
+            return
+        }
 
         self.session.dataTask(with: tagUrl) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (availableTags: [String], error: StoreProjectUploaderError?)

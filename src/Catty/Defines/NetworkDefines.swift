@@ -66,13 +66,13 @@ class NetworkDefines: NSObject {
     static let connectionUpload = "upload.json"
     static let connectionIDQuery = "getInfoById.json"
 
-    static let projectsOffset = "offset="
-    static let projectsLimit = "limit="
-    static let maxVersion = "max_version="
-    static let tagLanguage = "language="
-    static let projectQuery = "query="
-    static let projectCategory = "category="
-    static let featuredPlatform = "platform=ios"
+    static let projectsOffset = "offset"
+    static let projectsLimit = "limit"
+    static let maxVersion = "max_version"
+    static let tagLanguage = "language"
+    static let projectQuery = "query"
+    static let projectCategory = "category"
+    static let featuredPlatform = "platform"
 
     // MARK: MediaLibrary
 
@@ -95,6 +95,11 @@ class NetworkDefines: NSObject {
     static let chartProjectsMaxResults = 10
     static let recentProjectsMaxResults = 20
     static let searchStoreMaxResults = 50
+
+    static let searchLookupDelayInSeconds = 0.3
+
+    static let currentPlatform = "ios"
+
     @objc static let reportProjectNoteMaxLength = 100
     @objc static let reportProjectNoteMinLength = 3
 
