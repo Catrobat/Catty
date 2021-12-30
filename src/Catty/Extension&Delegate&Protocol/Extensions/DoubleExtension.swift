@@ -24,4 +24,8 @@ import Foundation
 
 extension Double {
     static let epsilon = 0.0001
+
+    var displayString: String {
+        (self as NSNumber).stringValue
+    }
 }
