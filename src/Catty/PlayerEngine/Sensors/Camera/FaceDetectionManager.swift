@@ -76,9 +76,11 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         self.previewLayer = previewLayer
 
         let detectorOptions = [ CIDetectorAccuracy: CIDetectorAccuracyLow ]
-        self.faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: detectorOptions)
 
-        session.startRunning()
+        DispatchQueue.main.async {
+            self.faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: detectorOptions)
+            session.startRunning()
+        }
     }
 
     func stop() {
