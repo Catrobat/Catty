@@ -26,7 +26,7 @@
 "acceleration z" = "تسارع z";
 
 /* No comment provided by engineer. */
-"acceleration-sensor" = "جهاز استشعار لتسريع";
+"acceleration-sensor" = "جهاز استشعار التسارع";
 
 /* No comment provided by engineer. */
 "Actors and objects" = "أشكال و عناصر";
@@ -56,13 +56,13 @@
 "all around" = "في جميع أنحاء";
 
 /* No comment provided by engineer. */
-"All Bluetooth devices successfully disconnected" = "جميع أجهزة Bluetooth التي تم قطع الاتصال بنجاح";
+"All Bluetooth devices successfully disconnected" = "تم فصل جميع أجهزة البلوتوث بنجاح";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "كلها معروفة لأجهزة Bluetooth بنجاح إزالة";
+"All known Bluetooth devices successfully removed" = "تمت إزالة كل أجهزة البلوتوث المعروفة";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "السماح للتطبيق بالتحكم في لوحات الاردوينو";
+"Allow the app to control Arduino boards" = "السماح للتطبيق بالتحكم في لوحات الأردوينو";
 
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "السماح للتطبيق بإرسال تقارير الأعطال تلقائياً";
@@ -113,10 +113,10 @@
 "arctangent" = "ظل الزاوية القوسي";
 
 /* No comment provided by engineer. */
-"Arduino" = "الاردوينو";
+"Arduino" = "الأردوينو";
 
 /* No comment provided by engineer. */
-"arduino analog" = "تناظري الكاردينو";
+"arduino analog" = "أردوينو تناظري";
 
 /* No comment provided by engineer. */
 "arduino digital" = "أردوينو رقمي";
@@ -281,13 +281,13 @@
 "Changes discarded." = "تم تجاهل التغييرات.";
 
 /* No comment provided by engineer. */
-"Changes saved." = "تم حفظ التغييرات!";
+"Changes saved." = "تم حفظ التغييرات.";
 
 /* No comment provided by engineer. */
 "Choir" = "جوقة";
 
 /* No comment provided by engineer. */
-"Choose" = "إختيار";
+"Choose" = "اختيار";
 
 /* No comment provided by engineer. */
 "Choose image" = "اختر الصورة";
@@ -338,7 +338,7 @@
 "Connection lost" = "تم فقدان الاتصال";
 
 /* bluetooth */
-"Connection not possible" = "الإتصال غير ممكن";
+"Connection not possible" = "الاتصال غير ممكن";
 
 /* No comment provided by engineer. */
 "contains" = "يحتوي على";
@@ -389,13 +389,13 @@
 "debug" = "التصحيح";
 
 /* No comment provided by engineer. */
-"Dec" = "كانون الأول‏ (ديسمبر)";
+"Dec" = "كانون الأول (ديسمبر)";
 
 /* No comment provided by engineer. */
 "December" = "كانون أول / ديسمبر";
 
 /* No comment provided by engineer. */
-"decimal logarithm" = "لوغاريثم";
+"decimal logarithm" = "اللوغاريتم العشري";
 
 /* No comment provided by engineer. */
 "degrees" = "درجة";
@@ -1133,7 +1133,7 @@
 "Name already exists." = "هذا الاسم موجود مسبقاً.";
 
 /* No comment provided by engineer. */
-"natural logarithm" = "اللوغاريثم الطبيعي";
+"natural logarithm" = "اللوغاريتم الطبيعي";
 
 /* No comment provided by engineer. */
 "New" = "جديد";
