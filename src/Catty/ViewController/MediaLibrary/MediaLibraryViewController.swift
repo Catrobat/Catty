@@ -77,6 +77,7 @@ final class MediaLibraryViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         setupCollectionViewLayout()
         fetchData()
+        self.navigationController?.isToolbarHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -85,6 +86,7 @@ final class MediaLibraryViewController: UICollectionViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.navigationController?.isToolbarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
