@@ -35,9 +35,8 @@
     @objc func actionBlock(_ object: SpriteObject, _ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void { {
             var speakText = formulaInterpreter.interpretString(self.stringFormula, for: object)
 
-            if Double(speakText) != nil {
-                let num = (speakText as NSString).doubleValue
-                speakText = (num as NSNumber).stringValue
+            if let number = Double(speakText) {
+                speakText = number.displayString
             }
             BubbleBrickHelper.addBubble(to: object.spriteNode, withText: speakText, andType: CBBubbleType.speech)
         }

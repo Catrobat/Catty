@@ -26,9 +26,8 @@ import Foundation
 
     class func stringFormulaToUtterance(text: Formula, volume: Float, spriteObject: SpriteObject, context: CBScriptContextProtocol) -> AVSpeechUtterance {
         var speakText = context.formulaInterpreter.interpretString(text, for: spriteObject)
-        if Double(speakText) != nil {
-            let num = (speakText as NSString).doubleValue
-            speakText = (num as NSNumber).stringValue
+        if let number = Double(speakText) {
+            speakText = number.displayString
         }
 
         let utterance = AVSpeechUtterance(string: speakText)
