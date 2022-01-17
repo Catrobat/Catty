@@ -123,7 +123,8 @@
             // embroidery brick
             StitchBrick(),
             StartRunningStitchBrick(),
-            SewUpBrick()
+            SewUpBrick(),
+            StopCurrentStitchBrick()
         ]
 
         if isPhiroEnabled() {
