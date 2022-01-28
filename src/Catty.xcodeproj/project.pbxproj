@@ -13689,7 +13689,7 @@
 			repositoryURL = "https://github.com/AudioKit/AudioKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.2;
+				minimumVersion = 5.3.1;
 			};
 		};
 		17A0218B2726F3C500F0489E /* XCRemoteSwiftPackageReference "DunneAudioKit" */ = {
@@ -13697,7 +13697,7 @@
 			repositoryURL = "https://github.com/AudioKit/DunneAudioKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.2;
+				minimumVersion = 5.3.1;
 			};
 		};
 		17D5F5CC266A819000C678FF /* XCRemoteSwiftPackageReference "ZipArchive" */ = {

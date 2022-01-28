@@ -59,37 +59,35 @@ final class AudioPlayerTests: XCTestCase {
     func testPlayDiscardedPlayerExpectPlayerNotToPlay() {
         audioPlayer.isDiscarded = true
         audioPlayer.play(expectation: nil)
-        expect(self.audioPlayer.player.isPlaying) == false
+        expect(self.audioPlayer.isPlaying) == false
     }
 
     func testStopExpectWaitExpectationToBeFulfilled() {
         let soundIsFinishedExpectation = CBExpectation()
 
         audioPlayer.play(expectation: soundIsFinishedExpectation)
-        XCTAssertTrue(audioPlayer.player.isPlaying)
+        XCTAssertTrue(audioPlayer.isPlaying)
         audioPlayer.stop()
 
         expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
-        expect(self.audioPlayer.player.isPlaying) == false
+        expect(self.audioPlayer.isPlaying) == false
     }
 
     func testPause() {
         audioPlayer.play(expectation: nil)
-        expect(self.audioPlayer.player.isPlaying) == true
+        expect(self.audioPlayer.isPlaying) == true
         audioPlayer.pause()
-        expect(self.audioPlayer.player.isPaused) == true
         expect(self.audioPlayer.isPaused) == true
         audioPlayer.stop()
     }
 
     func testResume() {
         audioPlayer.play(expectation: nil)
-        expect(self.audioPlayer.player.isPlaying) == true
+        expect(self.audioPlayer.isPlaying) == true
         audioPlayer.pause()
-        expect(self.audioPlayer.player.isPaused) == true
         expect(self.audioPlayer.isPaused) == true
         audioPlayer.resume()
-        expect(self.audioPlayer.player.isPlaying) == true
+        expect(self.audioPlayer.isPlaying) == true
         audioPlayer.stop()
     }
 
@@ -98,10 +96,10 @@ final class AudioPlayerTests: XCTestCase {
 
         expect(self.testMixer.hasInput(self.audioPlayer.player)) == true
         audioPlayer.play(expectation: soundIsFinishedExpectation)
-        expect(self.audioPlayer.player.isPlaying) == true
+        expect(self.audioPlayer.isPlaying) == true
         audioPlayer.remove()
         expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
-        expect(self.audioPlayer.player.isPlaying) == false
+        expect(self.audioPlayer.isPlaying) == false
         expect(self.testMixer.hasInput(self.audioPlayer.player)) == false
     }
 }
