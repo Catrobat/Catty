@@ -50,7 +50,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) Project *lastUsedProject;
 @property (nonatomic, strong) Project *defaultProject;
 @property (nonatomic, strong) ProjectManager *projectManager;
-@property (nonatomic, assign) BOOL freshLogin;
 @property (nonatomic, assign) CGFloat dynamicStatusBarHeight;
 @property (nonatomic, assign) CGFloat fixedStatusBarHeight;
 @end
@@ -80,7 +79,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     [super viewDidLoad];
     [self initTableView];
 
-    self.freshLogin = false;
     self.lastUsedProject = nil;
     self.defaultProject = nil;
     
@@ -274,7 +272,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             } else {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
                 LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-                vc.catTVC = self;
+                vc.delegate = self;
                 [self.navigationController pushViewController:vc animated:YES];
             }
 
@@ -288,20 +286,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
--(void)afterSuccessfulLogin
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([[[NSUserDefaults standardUserDefaults] valueForKey: NetworkDefines.kUserIsLoggedIn] boolValue]) {
-            static NSString *segueToUploadIdentifier = kSegueToUpload;
-            
-            if ([self shouldPerformSegueWithIdentifier:segueToUploadIdentifier sender:self]) {
-                self.freshLogin = true;
-                [self performSegueWithIdentifier:segueToUploadIdentifier sender:self];
-            }
-        }
-    });
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

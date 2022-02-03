@@ -25,6 +25,4 @@
 
 @interface CatrobatTableViewController : BaseTableViewController
 
--(void)afterSuccessfulLogin;
-
 @end

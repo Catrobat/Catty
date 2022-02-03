@@ -321,6 +321,7 @@
 		46F0D30625E59273002252E6 /* SetLookBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F0D30525E59273002252E6 /* SetLookBrickCell.swift */; };
 		46F0D30E25E593F5002252E6 /* SetLookBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F0D30D25E593F5002252E6 /* SetLookBrick+CBXMLHandler.swift */; };
 		46F1754E24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */; };
+		4926233C27AA8A2800866183 /* SceneTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4926233B27AA8A2800866183 /* SceneTableViewControllerExtension.swift */; };
 		4C0076DA25F6AF79002D754D /* StagePresenterSideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0076D725F6AF79002D754D /* StagePresenterSideMenuViewTests.swift */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
@@ -2287,6 +2288,7 @@
 		46F0D30D25E593F5002252E6 /* SetLookBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetLookBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		481639B0D938C88A5E2E6963 /* ms */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4926233B27AA8A2800866183 /* SceneTableViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewControllerExtension.swift; sourceTree = "<group>"; };
 		4997640FD2AB79927E45C4EF /* ca */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C0076D725F6AF79002D754D /* StagePresenterSideMenuViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StagePresenterSideMenuViewTests.swift; sourceTree = "<group>"; };
 		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
@@ -7435,6 +7437,7 @@
 				5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */,
 				05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */,
 				9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */,
+				4926233B27AA8A2800866183 /* SceneTableViewControllerExtension.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -12487,6 +12490,7 @@
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */,
 				46B472C225609573007972DB /* StitchBrick+CBXMLHandler.swift in Sources */,
+				4926233C27AA8A2800866183 /* SceneTableViewControllerExtension.swift in Sources */,
 				AA74F0C61BC05FCE00D1E954 /* SetVolumeToBrickCell.m in Sources */,
 				18E83F832493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift in Sources */,
 				4C0F9F42204ADC6600E71B2D /* ThinkForBubbleBrick.m in Sources */,

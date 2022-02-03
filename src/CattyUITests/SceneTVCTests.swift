@@ -28,10 +28,10 @@ class SceneTVCTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchApp()
     }
 
     func testCopySelectedObjects() {
+        app = launchApp()
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
         app.tables.staticTexts[kLocalizedContinueProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
@@ -42,5 +42,23 @@ class SceneTVCTests: XCTestCase {
         for object in projectObjects {
             XCTAssert(app.tables.staticTexts[object + " (1)"].exists)
         }
+    }
+
+    func testUploadProject() {
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["-userIsLoggedIn", "true"])
+        tapOnUpload()
+        XCTAssert(waitForElementToAppear(app.navigationBars.buttons[kLocalizedUploadProject]).exists)
+    }
+
+    func testUploadProjectRedirectLogin() {
+        app = launchApp()
+        tapOnUpload()
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedLogin]).exists)
+    }
+
+    func tapOnUpload() {
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        waitForElementToAppear(app.buttons[kLocalizedUploadProject]).tap()
     }
 }

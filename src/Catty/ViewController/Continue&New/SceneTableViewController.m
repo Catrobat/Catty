@@ -277,7 +277,7 @@
     
     NSString *changeOrientation = self.scene.project.header.landscapeMode ? kLocalizedMakeItPortrait : kLocalizedMakeItLandscape;
     
-    [[[[[actionSheet
+    [[[[[[actionSheet
          addDefaultActionWithTitle:changeOrientation handler:^{
         [self changeProjectOrientationAction:self.scene.project];
     }]
@@ -298,6 +298,16 @@
     }]
        addDefaultActionWithTitle:detailActionTitle handler:^{
         [self toggleDetailCellsMode];
+    }]
+       addDefaultActionWithTitle:kLocalizedUploadProject handler:^{
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey:NetworkDefines.kUserIsLoggedIn] boolValue]) {
+            [self performSegueWithIdentifier:kSegueToUpload sender:self];
+        } else {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+            LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
+            vc.delegate = self;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }]
       build]
      showWithController:self];
@@ -633,6 +643,8 @@
                 }
             }
         }
+    } else if ([destController isKindOfClass:[UploadViewController class]]) {
+        ((UploadViewController*) destController).delegate = self;
     }
 }
 
