@@ -167,6 +167,7 @@
 #define kLocalizedDisableCondition NSLocalizedString(@"Disable condition", nil)
 #define kLocalizedEnableCondition NSLocalizedString(@"Enable condition", nil)
 #define kLocalizedEditFormula NSLocalizedString(@"Edit formula", nil)
+#define kLocalizedPlaceVisually NSLocalizedString(@"Place visually", nil)
 #define kLocalizedMoveBrick NSLocalizedString(@"Move brick", nil)
 #define kLocalizedDeleteSounds NSLocalizedString(@"Delete sounds", nil)
 #define kLocalizedMoveSounds NSLocalizedString(@"Move sounds",nil)

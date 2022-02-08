@@ -79,7 +79,7 @@
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
-                                             UIGestureRecognizerDelegate>
+                                             UIGestureRecognizerDelegate, VisualPlacementViewControllerDelegate>
 
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
@@ -118,6 +118,7 @@
     
     // do not call super to prevent automatic scrolling when opening a UIPickerView
     [super hideLoadingView];
+    [self reloadData];
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
     
     if (self.isEditingBrickMode) {
@@ -279,6 +280,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [actionSheet addDefaultActionWithTitle:kLocalizedEditFormula handler:^{
                 [self openFormulaEditorForBrickCell:brickCell withEvent:nil];
             }];
+        }
+        if (brick.isVisualPlacementBrick) {
+            Brick<BrickVisualPlacementProtocol> *visualPlacementBrick = (Brick<BrickVisualPlacementProtocol> *) brick;
+            if([visualPlacementBrick doVisualPlacementBrickCellsContainOnlyValues]) {
+                [actionSheet addDefaultActionWithTitle:kLocalizedPlaceVisually handler:^{
+                    [self openVisualPlacementEditor:(Brick<BrickVisualPlacementProtocol> *) brick];
+                }];
+            }
         }
     } else {
         Script *script = (Script*)scriptOrBrick;
@@ -731,6 +740,52 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:formulaEditorViewController];
     [self presentViewController:navController animated:YES completion:NULL];
 }
+
+- (void)openFormulaAndVisualPlacementActionSheet:(BrickCellFormulaData *)formulaData withEvent:(UIEvent *)event
+{
+    Brick* brick = formulaData.brickCell.scriptOrBrick;
+    Brick<BrickVisualPlacementProtocol> *visualPlacementBrick;
+       
+    if ([brick isVisualPlacementBrick]) {
+       visualPlacementBrick = (Brick<BrickVisualPlacementProtocol> *) brick;
+        if (!([visualPlacementBrick isVisualPlacementFormula:formulaData.formula])) {
+            [self openFormulaEditor:formulaData withEvent:event];
+            return;
+        }
+        
+        [[[[[[AlertControllerBuilder actionSheetWithTitle:nil]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedEditFormula handler:^{
+            [self openFormulaEditor:formulaData withEvent:event];
+         }]
+         addDefaultActionWithTitle:kLocalizedPlaceVisually handler:^{
+            [self openVisualPlacementEditor:visualPlacementBrick];
+         }]
+         build]
+         showWithController:[Util topmostViewController]];
+    }
+}
+
+-(void)openVisualPlacementEditor:(Brick<BrickVisualPlacementProtocol> *)visualPlacementBrick
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+    VisualPlacementViewController *visualPlacementViewController = [storyboard instantiateViewControllerWithIdentifier:@"VisualPlacementViewController"];
+    [visualPlacementViewController initWithBrick:visualPlacementBrick andObject:self.object];
+    visualPlacementViewController.delegate = self;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:visualPlacementViewController];
+
+    navController.modalPresentationStyle = UIModalPresentationFullScreen;
+
+    [self presentViewController:navController animated:YES completion:NULL];
+}
+
+- (void)doneVisualPlacement
+{
+    [self reloadData];
+}
+
+- (void)cancelVisualPlacement {}
 
 #pragma mark - Helpers
 -(NSIndexPath*)findLastIndexPath{

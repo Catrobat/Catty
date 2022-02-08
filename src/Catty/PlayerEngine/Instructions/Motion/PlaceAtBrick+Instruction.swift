@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension PlaceAtBrick: CBInstructionProtocol {
+extension PlaceAtBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
         .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }

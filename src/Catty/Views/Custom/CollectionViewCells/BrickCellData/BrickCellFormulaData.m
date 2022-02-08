@@ -67,8 +67,13 @@
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;
         
-        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:withEvent:) forControlEvents:UIControlEventTouchUpInside];
-        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:withEvent:) forControlEvents:UIControlEventTouchDownRepeat];
+        if ([formulaBrick conformsToProtocol:@protocol(BrickVisualPlacementProtocol)]) {
+            [self addTarget:brickCell.delegate action:@selector(openFormulaAndVisualPlacementActionSheet:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+            [self addTarget:brickCell.delegate action:@selector(openFormulaAndVisualPlacementActionSheet:withEvent:) forControlEvents:UIControlEventTouchDownRepeat];
+        } else {
+            [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+            [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:withEvent:) forControlEvents:UIControlEventTouchDownRepeat];
+        }
         [self drawBorder:NO];
     }
     return self;

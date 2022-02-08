@@ -27,6 +27,7 @@
 #import "BroadcastScript.h"
 #import "CBMutableCopyContext.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Brick
 
@@ -50,6 +51,11 @@
 - (BOOL)isFormulaBrick
 {
     return ([self conformsToProtocol:@protocol(BrickFormulaProtocol)]);
+}
+
+- (BOOL)isVisualPlacementBrick
+{
+    return ([self conformsToProtocol:@protocol(BrickVisualPlacementProtocol)]);
 }
 
 - (BOOL)isIfLogicBrick

@@ -44,6 +44,8 @@
 
 - (BOOL)isFormulaBrick;
 
+- (BOOL)isVisualPlacementBrick;
+
 - (BOOL)isIfLogicBrick;
 
 - (BOOL)isLoopBrick;

@@ -359,6 +359,7 @@
 - (void)stopAction
 {
     Stage *previousStage = self.stage;
+    [self takeAutomaticVisualPlacementScreenshotForSKView:self.skView andProject:self.project.scene];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         self.menuView.userInteractionEnabled = NO;

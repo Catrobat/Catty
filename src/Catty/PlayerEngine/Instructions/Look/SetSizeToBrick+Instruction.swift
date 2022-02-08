@@ -34,6 +34,11 @@
         return {
             let sizeInPercent = formulaInterpreter.interpretDouble(self.size, for: object)
             spriteNode.catrobatSize = sizeInPercent
+            if let currentLook = spriteNode.currentLook, let firstLook = object.lookList.firstObject {
+                if currentLook.isEqual(firstLook) {
+                    VisualPlacementViewController.lookScalingDictionary[object.name] = sizeInPercent / 100
+                }
+            }
         }
     }
 }

@@ -119,6 +119,7 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kScreenshotFilename @"screenshot.png"
 #define kScreenshotManualFilename @"manual_screenshot.png"
 #define kScreenshotAutoFilename @"automatic_screenshot.png"
+#define kScreenshotAutoFullScreenFilename @"automatic_full_screen_screenshot.png"
 
 #define kUserDefaultsBrickSelectionStatisticsMap @"BrickSelectionStatisticsMap"
 

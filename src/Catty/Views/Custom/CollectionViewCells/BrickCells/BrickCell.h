@@ -36,6 +36,7 @@
 @protocol BrickCellDelegate<NSObject>
 - (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event;
 @optional
+- (void)openFormulaAndVisualPlacementActionSheet:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*) event;
 - (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end
 

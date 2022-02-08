@@ -25,10 +25,17 @@
     // MARK: - Operations (Helpers)
     @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, stageSize: CGSize) -> CGPoint {
         let screenSize = Util.screenSize(false)
-        var x = (coordinate.x - screenSize.width / 2.0)
-        x *= (stageSize.width / screenSize.width)
-        var y = (screenSize.height / 2.0 - coordinate.y)
-        y *= (stageSize.height / screenSize.height)
+        let scaling = stageSize.width / screenSize.width
+        let x = (coordinate.x - screenSize.width / 2.0) * scaling
+        let y = (screenSize.height / 2.0 - coordinate.y) * scaling
+        return CGPoint(x: x, y: y)
+    }
+
+    @objc class func convertPointToTouchCoordinate(point: CGPoint, stageSize: CGSize) -> CGPoint {
+        let screenSize = Util.screenSize(false)
+        let scaling = screenSize.width / stageSize.width
+        let x = point.x * scaling + screenSize.width / 2.0
+        let y = screenSize.height / 2.0 - point.y * scaling
         return CGPoint(x: x, y: y)
     }
 }

@@ -97,6 +97,9 @@ class BrickCellTests: XCTestCase {
                                  .children(matching: .button).element(boundBy: 0)
         firstParameterTextView.tap()
 
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedEditFormula]).exists)
+        app.buttons[kLocalizedEditFormula].tap()
+
         for i in 1...8 {
             app.buttons["\(String(i))"].staticTexts["\(String(i))"].doubleTap()
         }
@@ -107,6 +110,9 @@ class BrickCellTests: XCTestCase {
         secondParameterTextView = app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedPlaceAt)
                                   .children(matching: .button).element(boundBy: 1)
         secondParameterTextView.tap()
+
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedEditFormula]).exists)
+        app.buttons[kLocalizedEditFormula].tap()
 
         for i in 1...8 {
             app.buttons["\(String(i))"].staticTexts["\(String(i))"].doubleTap()

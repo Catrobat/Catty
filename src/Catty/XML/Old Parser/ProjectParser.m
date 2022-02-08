@@ -185,6 +185,15 @@
             continue;
         }
         
+        if([propertyName isEqualToString:@"xDestination"])
+        {
+            propertyName = @"xPosition";
+        }
+        if([propertyName isEqualToString:@"yDestination"])
+        {
+            propertyName = @"yPosition";
+        }
+        
         objc_property_t property = class_getProperty([object class], [propertyName UTF8String]);
         
         if (property) {

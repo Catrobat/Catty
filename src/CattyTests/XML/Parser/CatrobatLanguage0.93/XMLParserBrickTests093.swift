@@ -142,7 +142,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         XCTAssertEqual(brickElement!.count, 1)
 
         let brickXMLElement = brickElement!.first
-        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PlaceAtBrick.self as CBXMLNodeProtocol.Type) as! Brick
+        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PlaceAtBrick.self) as! Brick
 
         XCTAssertTrue(brick.isKind(of: PlaceAtBrick.self), "Invalid brick class")
 
@@ -152,8 +152,8 @@ class XMLParserBrickTests093: XMLAbstractTest {
         XCTAssertNotNil(xPosition, "Invalid formula for xPosition")
         XCTAssertNotNil(yPosition, "Invalid formula for yPosition")
 
-        XCTAssertEqual(self.formulaManager.interpretDouble(xPosition!, for: SpriteObject()), -170, accuracy: 0.00001, "Formula not correctly parsed")
-        XCTAssertEqual(self.formulaManager.interpretDouble(yPosition!, for: SpriteObject()), -115, accuracy: 0.00001, "Formula not correctly parsed")
+        XCTAssertEqual(self.formulaManager.interpretDouble(xPosition, for: SpriteObject()), -170, accuracy: 0.00001, "Formula not correctly parsed")
+        XCTAssertEqual(self.formulaManager.interpretDouble(yPosition, for: SpriteObject()), -115, accuracy: 0.00001, "Formula not correctly parsed")
     }
 
     func testValidWaitBrick() {
@@ -191,7 +191,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         XCTAssertEqual(brickElement!.count, 1)
 
         let brickXMLElement = brickElement!.first
-        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: GlideToBrick.self as? CBXMLNodeProtocol.Type) as! Brick
+        let brick = self.parserContext!.parse(from: brickXMLElement, withClass: GlideToBrick.self) as! Brick
 
         XCTAssertTrue(brick.isKind(of: GlideToBrick.self), "Invalid brick class")
 
@@ -199,15 +199,15 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
         let durationInSeconds = glideToBrick.durationInSeconds
         XCTAssertNotNil(durationInSeconds, "Invalid formula")
-        XCTAssertEqual(self.formulaManager.interpretDouble(durationInSeconds!, for: SpriteObject()), 0.1, accuracy: 0.00001, "Formula not correctly parsed")
+        XCTAssertEqual(self.formulaManager.interpretDouble(durationInSeconds, for: SpriteObject()), 0.1, accuracy: 0.00001, "Formula not correctly parsed")
 
-        let xDestination = glideToBrick.xDestination
+        let xDestination = glideToBrick.xPosition
         XCTAssertNotNil(xDestination, "Invalid formula")
-        XCTAssertEqual(self.formulaManager.interpretDouble(xDestination!, for: SpriteObject()), -170, accuracy: 0.00001, "Formula not correctly parsed")
+        XCTAssertEqual(self.formulaManager.interpretDouble(xDestination, for: SpriteObject()), -170, accuracy: 0.00001, "Formula not correctly parsed")
 
-        let yDestination = glideToBrick.yDestination
+        let yDestination = glideToBrick.yPosition
         XCTAssertNotNil(yDestination, "Invalid formula")
-        XCTAssertEqual(self.formulaManager.interpretDouble(yDestination!, for: SpriteObject()), -100, accuracy: 0.00001, "Formula not correctly parsed")
+        XCTAssertEqual(self.formulaManager.interpretDouble(yDestination, for: SpriteObject()), -100, accuracy: 0.00001, "Formula not correctly parsed")
     }
 
     func testValidHideBrick() {
