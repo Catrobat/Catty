@@ -351,7 +351,7 @@ let kLocalizedAlwaysAllowWebRequestDescription = NSLocalizedString("Be very care
 // embroidery bricks
 let kLocalizedStitch = NSLocalizedString("Stitch", comment: "")
 let kLocalizedStartRunningStitch = NSLocalizedString("Start running stitch with length", comment: "")
-
+let kLocalizedSewUp = NSLocalizedString("Sew up", comment: "literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric.")
 // control bricks
 let kLocalizedScript = NSLocalizedString("Script", comment: "")
 let kLocalizedWhenProjectStarted = NSLocalizedString("When project starts", comment: "")

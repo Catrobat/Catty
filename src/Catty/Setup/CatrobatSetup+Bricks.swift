@@ -122,7 +122,8 @@
             ArduinoSendPWMValueBrick(),
             // embroidery brick
             StitchBrick(),
-            StartRunningStitchBrick()
+            StartRunningStitchBrick(),
+            SewUpBrick()
         ]
 
         if isPhiroEnabled() {
