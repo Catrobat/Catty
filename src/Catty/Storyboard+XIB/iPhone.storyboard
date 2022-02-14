@@ -664,10 +664,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Pocket Code" id="vGJ-82-iau">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="yUY-xB-KT0">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bnx-Gw-xQI">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="Bnx-Gw-xQI">
                                 <rect key="frame" x="16" y="0.0" width="64" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="appsettings"/>
+                                <state key="highlighted" image="appsettings_highlighted"/>
                                 <connections>
                                     <action selector="openSettings:" destination="oKj-cD-XDS" eventType="touchUpInside" id="7tt-2b-ZWO"/>
                                 </connections>
@@ -2180,6 +2181,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="appsettings" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="appsettings_highlighted" width="21.333333969116211" height="21.333333969116211"/>
         <image name="micro" width="144.66667175292969" height="144.66667175292969"/>
         <image name="micro_active" width="144.66667175292969" height="144.66667175292969"/>
         <image name="top_charts" width="25.5" height="23"/>
