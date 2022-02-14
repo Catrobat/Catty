@@ -107,7 +107,7 @@ static Logger* instance;
     if(level >= self.logLevel) {
         NSString* callerClass = [self classNameForCaller];
         if ([self loggingEnabledForClass:callerClass logLevel:level]) {
-            NSLog(@"[%@] %@: %@" ,[self stringForLogLevel:level], callerClass, [[NSString alloc] initWithFormat:format arguments:args]);
+            NSLog(@"[%@] %@" ,[self stringForLogLevel:level], callerClass);
         }
         if(level == LERROR && kAbortAtError) {
             NSDebug(@"----------FAIILLL------------");
