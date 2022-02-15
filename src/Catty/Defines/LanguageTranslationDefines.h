@@ -352,6 +352,8 @@
 #define kLocalizedStitch NSLocalizedString(@"Stitch", nil)
 #define kLocalizedStartRunningStitch NSLocalizedString(@"Start running stitch with length", nil)
 #define kLocalizedSewUp NSLocalizedString(@"Sew up", @"literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric.")
+#define kLocalizedStopCurrentStitch NSLocalizedString(@"Stop current stitch", nil)
+
 // control bricks
 #define kLocalizedScript NSLocalizedString(@"Script", nil)
 #define kLocalizedWhenProjectStarted NSLocalizedString(@"When project starts", nil)
