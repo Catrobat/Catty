@@ -30,8 +30,13 @@ class AudioPlayer: NSDiscardableContent {
     var playerIsFinishedExpectation: CBExpectation?
     var fileName: String
     var soundCompletionHandler: (() -> Void)!
-    var isPaused = false
     var isDiscarded = false
+    var isPlaying: Bool {
+        player.status == .playing
+    }
+    var isPaused: Bool {
+        player.status == .paused
+    }
 
     let playingQueue = DispatchQueue(label: "PlayingQueue")
 
@@ -52,7 +57,7 @@ class AudioPlayer: NSDiscardableContent {
         playingQueue.sync {
             soundCompletionHandler()
             if !self.isDiscarded {
-                if player.isPlaying {
+                if self.isPlaying {
                     player.stop()
                 }
                 addExpectation(expectation)
@@ -76,16 +81,14 @@ class AudioPlayer: NSDiscardableContent {
     }
 
     func pause() {
-        if player.isPlaying {
+        if self.isPlaying {
             player.pause()
-            self.isPaused = true
         }
     }
 
     func resume() {
         if self.isPaused {
             player.resume()
-            self.isPaused = false
         }
     }
 
@@ -95,10 +98,6 @@ class AudioPlayer: NSDiscardableContent {
         }
         mixer.addInput(player)
         outputMixer = mixer
-    }
-
-    func isPlaying() -> Bool {
-        player.isPlaying
     }
 
     func getFileName() -> String {
