@@ -28,7 +28,7 @@ class TrustedDomainTVCTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchApp()
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["-useWebRequestBrick", "true"])
     }
 
     func testAddAndDeleteTrustedDomain() {
