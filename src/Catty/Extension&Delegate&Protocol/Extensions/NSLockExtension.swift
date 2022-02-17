@@ -22,46 +22,11 @@
 
 import Foundation
 
-class FormulaCache {
-
-    private var cachedResults = [FormulaElement: AnyObject]()
-    private let cacheLock = NSLock()
-
-    func insert(object: AnyObject, forKey key: FormulaElement) {
-        cacheLock.perform {
-            cachedResults[key] = object
-        }
-    }
-
-    func retrieve(forKey key: FormulaElement) -> AnyObject? {
-        var result: AnyObject?
-
-        cacheLock.perform {
-            result = cachedResults[key]
-        }
-
-        return result
-    }
-
-    func remove(forKey key: FormulaElement) {
-        _ = cacheLock.perform {
-            cachedResults.removeValue(forKey: key)
-        }
-    }
-
-    func clear() {
-        cacheLock.perform {
-            cachedResults.removeAll()
-        }
-    }
-
-    func count() -> Int {
-        var result = Int()
-
-        cacheLock.perform {
-            result = cachedResults.count
-        }
-
-        return result
+extension NSLock {
+    @discardableResult
+    func perform<T>(_ block: () throws -> T) rethrows -> T {
+        lock()
+        defer { unlock() }
+        return try block()
     }
 }

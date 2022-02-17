@@ -21,49 +21,49 @@
  */
 
 public class SynchronizedArray<Element> {
-    private let queue = DispatchQueue(label: "SynchronizedArray", attributes: .concurrent)
+    private let arrayLock = NSLock()
     private var array = [Element]()
 
     var count: Int {
         var result = 0
-        queue.sync { result = self.array.count }
+        arrayLock.perform { result = self.array.count }
         return result
     }
 
     var isEmpty: Bool {
         var result = false
-        queue.sync { result = self.array.isEmpty }
+        arrayLock.perform { result = self.array.isEmpty }
         return result
     }
 
     var startIndex: Int {
         var result = 0
-        queue.sync { result = self.array.startIndex }
+        arrayLock.perform { result = self.array.startIndex }
         return result
     }
 
     var endIndex: Int {
         var result = 0
-        queue.sync { result = self.array.endIndex }
+        arrayLock.perform { result = self.array.endIndex }
         return result
     }
 
     var first: Element? {
         var result: Element?
-        queue.sync { result = self.array.first }
+        arrayLock.perform { result = self.array.first }
         return result
     }
 
     var last: Element? {
         var result: Element?
-        queue.sync { result = self.array.last }
+        arrayLock.perform { result = self.array.last }
         return result
     }
 
     subscript(index: Int) -> Element? {
          get {
              var result: Element?
-             queue.sync {
+             arrayLock.perform {
                  guard self.array.startIndex..<self.array.endIndex ~= index else { return }
                  result = self.array[index]
              }
@@ -71,45 +71,45 @@ public class SynchronizedArray<Element> {
          }
          set {
              guard let newValue = newValue else { return }
-             queue.async(flags: .barrier) {
+             arrayLock.perform {
                  self.array[index] = newValue
              }
          }
     }
 
     public func append(_ element: Element) {
-        queue.async(flags: .barrier) {
+        arrayLock.perform {
             self.array.append(element)
         }
     }
 
     public func remove(at index: Int) {
-        queue.async(flags: .barrier) {
+        arrayLock.perform {
             self.array.remove(at: index)
         }
     }
 
     public func removeAll() {
-        queue.async(flags: .barrier) {
+        arrayLock.perform {
             self.array.removeAll()
         }
     }
 
     public func removeSubrange(_ bounds: Range<Int>) {
-        queue.async(flags: .barrier) {
+        arrayLock.perform {
             self.array.removeSubrange(bounds)
         }
     }
 
     public func insert(_ element: Element, at index: Int) {
-        queue.async(flags: .barrier) {
+        arrayLock.perform {
             self.array.insert(element, at: index)
         }
     }
 
     public func firstIndex(where predicate: (Element) -> Bool) -> Int? {
         var result: Int?
-        queue.sync {
+        arrayLock.perform {
             result = self.array.firstIndex(where: predicate)
         }
         return result
@@ -117,7 +117,7 @@ public class SynchronizedArray<Element> {
 
     public func index(after index: Array<Element>.Index) -> Array<Element>.Index {
         var result = 0
-        queue.sync {
+        arrayLock.perform {
             result = self.array.index(after: index)
         }
         return result
@@ -125,7 +125,7 @@ public class SynchronizedArray<Element> {
 
     public func index( i: Int, offsetBy distance: Int) -> Int {
          var result = 0
-         queue.sync {
+         arrayLock.perform {
              result = self.array.index(i, offsetBy: distance)
          }
          return result
@@ -133,7 +133,7 @@ public class SynchronizedArray<Element> {
 
     public func enumerated() -> EnumeratedSequence<[Element]> {
         var result: EnumeratedSequence<[Element]>?
-        queue.sync {
+        arrayLock.perform {
             result = self.array.enumerated()
         }
         return result!
@@ -142,7 +142,7 @@ public class SynchronizedArray<Element> {
     public func contains(where predicate: (Element) throws -> Bool) rethrows -> Bool {
         var result = false
          do {
-            try queue.sync {
+            try arrayLock.perform {
                 do {
                     result = try self.array.contains(where: predicate)
                 } catch {
@@ -157,7 +157,7 @@ public class SynchronizedArray<Element> {
 
     func isEqual(_ object: SynchronizedArray) -> Bool {
         var result = true
-        queue.sync {
+        arrayLock.perform {
             let count = self.array.count
             if count == object.count {
                 for index in 0..<count where !Util.isEqual(self.array[index], to: object[index]) {
@@ -175,14 +175,14 @@ public class SynchronizedArray<Element> {
 public extension SynchronizedArray where Element: Equatable {
     func contains(_ element: Element) -> Bool {
         var result = false
-        queue.sync { result = self.array.contains(element) }
+        arrayLock.perform { result = self.array.contains(element) }
         return result
     }
 }
 
 extension SynchronizedArray where Element: UserDataProtocol {
     func remove(name: String) {
-        queue.async(flags: .barrier) {
+        arrayLock.perform {
             for index in 0..<self.array.count where name == self.array[index].name {
                 self.array.remove(at: index)
                 break
@@ -193,7 +193,7 @@ extension SynchronizedArray where Element: UserDataProtocol {
 
 extension SynchronizedArray where Element: Equatable {
     func remove(element: Element) {
-        queue.async(flags: .barrier) {
+        arrayLock.perform {
             self.array.removeObject(element)
         }
     }
