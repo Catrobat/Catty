@@ -1006,6 +1006,9 @@
 		6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD28D0924702CAD0035F606 /* NSDateExtension.swift */; };
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
 		6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */; };
+		7B53C94F27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */; };
+		7B53C95027BECAF900E86A72 /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
+		7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
 		7B5726C8275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B5726C5275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */; };
 		7BD8A7D127456D1A000DAAB4 /* Bohr.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */; };
 		7BD8A7D227456D1A000DAAB4 /* Bohr.xcframework in Copy Files */ = {isa = PBXBuildFile; fileRef = 7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -2069,7 +2072,6 @@
 		18AAC23824A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenSizeBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
 		18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickTests.swift; sourceTree = "<group>"; };
-		18BF581625D183F600ADD92C /* FormulaEditorSectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrickTests.swift; sourceTree = "<group>"; };
 		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
@@ -3098,6 +3100,7 @@
 		758FD262053C04755851BC4D /* ml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77A836DDE7C46D9275CE4812 /* ar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		7B5726C5275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.success.specialCharacters.json; sourceTree = "<group>"; };
 		7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Bohr.xcframework; path = Carthage/Build/Bohr.xcframework; sourceTree = "<group>"; };
 		7DF7515CF295B6E738B88031 /* fa */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -5884,7 +5887,7 @@
 				6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */,
 				6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */,
 				182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */,
-				18BF581625D183F600ADD92C /* FormulaEditorSectionViewControllerTests.swift */,
+				7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */,
 				2EB9FAF026995F7100DBC4FB /* TrustedDomainTableViewControllerTests.swift */,
 			);
 			path = ViewController;
@@ -11997,6 +12000,7 @@
 				4C5AEEF122F6F1A300280F8B /* GoNStepsBackBrickCellTests.swift in Sources */,
 				4CF4CB7721E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift in Sources */,
 				4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */,
+				7B53C95027BECAF900E86A72 /* FormulaEditorSectionViewControllerTests.swift in Sources */,
 				4C7182DF23EEF21800195BC7 /* BrickCategoryViewControllerTests.swift in Sources */,
 				4C6FE164212D2D2E0067B7D5 /* TrueFunctionTest.swift in Sources */,
 				4C38B372237151FB00F33721 /* CatrobatSetupTests.swift in Sources */,
@@ -12100,6 +12104,7 @@
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				5907FA9C252905C90042EC5D /* StoreProjectReporterTests.swift in Sources */,
 				59B7A8D32504E83F001C736A /* StageMock.swift in Sources */,
+				7B53C94F27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift in Sources */,
 				4C4778BB267C7FC800CAF398 /* CBStageTouchTests.swift in Sources */,
 				4C4778B7267C7FC800CAF398 /* StageTests.swift in Sources */,
 				18E83F852493C978003295DA /* PenClearBrickTests.swift in Sources */,
@@ -12108,6 +12113,7 @@
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
 				4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
+				7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */,
 				22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
 				4C4778BD267C7FF800CAF398 /* CBSpriteNodeStitchExtensionTests.swift in Sources */,

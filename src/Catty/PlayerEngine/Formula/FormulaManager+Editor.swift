@@ -64,7 +64,9 @@ extension FormulaManager {
 
                     if objectSection {
                         if item.function?.tag() == CollisionFunction.tag {
-                            var objects = spriteObject.scene.objects()
+                            guard let scene = spriteObject.scene else { continue }
+
+                            var objects = scene.objects()
 
                             if objects.contains(spriteObject) {
                                 objects.removeObject(spriteObject)
