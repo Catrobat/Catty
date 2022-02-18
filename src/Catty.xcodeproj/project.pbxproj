@@ -944,6 +944,7 @@
 		59EA52BB24FD468900AC6E8D /* WhenConditionScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52BA24FD468900AC6E8D /* WhenConditionScript.swift */; };
 		59EA52BF24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52BE24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift */; };
 		59F5C2AF23F2E36D00D95016 /* BrickCellPickerViewerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */; };
+		59F76C5825D293CA00C3FD93 /* BrickMovementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F76C5725D293CA00C3FD93 /* BrickMovementTests.swift */; };
 		5E0B361E220A55BB0056EB12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */; };
 		5E18A81221A547AA00541536 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */; };
@@ -3025,6 +3026,7 @@
 		59EA52BA24FD468900AC6E8D /* WhenConditionScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenConditionScript.swift; sourceTree = "<group>"; };
 		59EA52BE24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenConditionScriptCell.swift; sourceTree = "<group>"; };
 		59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellPickerViewerTest.swift; sourceTree = "<group>"; };
+		59F76C5725D293CA00C3FD93 /* BrickMovementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickMovementTests.swift; sourceTree = "<group>"; };
 		5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationDefinesUI.swift; sourceTree = "<group>"; };
 		5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		5E219F2521C8B46A000439BA /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
@@ -7466,6 +7468,7 @@
 				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
 				BA6805AD21303B48004F004F /* VariableTests.swift */,
 				6F38BF65247536F70052C692 /* ListTests.swift */,
+				59F76C5725D293CA00C3FD93 /* BrickMovementTests.swift */,
 			);
 			path = ScriptCollectionView;
 			sourceTree = "<group>";
@@ -11710,6 +11713,7 @@
 				BCFED6F12111CA5D00BE57BF /* PocketCodeMainScreenTests.swift in Sources */,
 				59F5C2AF23F2E36D00D95016 /* BrickCellPickerViewerTest.swift in Sources */,
 				4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */,
+				59F76C5825D293CA00C3FD93 /* BrickMovementTests.swift in Sources */,
 				4C48E5CE23FD7F4B004C6E6A /* SettingsTVCTests.swift in Sources */,
 				BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */,
 				4C7F50FC21E62B0E0010AC36 /* ProjectsTVCTests.swift in Sources */,
