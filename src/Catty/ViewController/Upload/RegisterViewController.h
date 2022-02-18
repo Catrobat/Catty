@@ -21,12 +21,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseLoginViewController.h"
-#import "CatrobatTableViewController.h"
+#import "LoginViewController.h"
 
 @interface RegisterViewController : BaseLoginViewController<UITextFieldDelegate>
 
-@property (nonatomic, weak) CatrobatTableViewController * catTVC;
+@property (nonatomic, weak) id<LoginViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 

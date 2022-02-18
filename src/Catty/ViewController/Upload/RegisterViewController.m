@@ -374,8 +374,11 @@
         [Keychain saveValue: token forKey: NetworkDefines.kUserLoginToken];
         
         [self hideLoadingView];
-        [self.navigationController popToRootViewControllerAnimated:NO];
-        
+        if (self.delegate != nil && [self.delegate isKindOfClass:[UIViewController class]]) {
+            [self.navigationController popToViewController:(UIViewController *)self.delegate animated:NO];
+        } else {
+            [self.navigationController popToRootViewControllerAnimated:NO];            
+        }
     } else {
         self.registerButton.enabled = YES;
         [self hideLoadingView];

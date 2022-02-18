@@ -172,7 +172,9 @@
 -(void)willMoveToParentViewController:(UIViewController *)parent
 {
     if (!parent) {
-        [self.catTVC afterSuccessfulLogin];
+        if (self.delegate != nil) {
+            [self.delegate afterSuccessfulLogin];
+        }
     }
 }
 
@@ -248,7 +250,7 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
     RegisterViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"RegisterController"];
-    vc.catTVC = self.catTVC;
+    vc.delegate = self.delegate;
     vc.userName = self.usernameField.text;
     vc.password = self.passwordField.text;
     

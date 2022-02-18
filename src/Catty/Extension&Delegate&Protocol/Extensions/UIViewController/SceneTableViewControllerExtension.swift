@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 import Foundation
 
-@objc extension CatrobatTableViewController: LoginViewControllerDelegate {
+@objc extension SceneTableViewController: LoginViewControllerDelegate {
     public func afterSuccessfulLogin() {
         DispatchQueue.main.async {
             if UserDefaults().bool(forKey: NetworkDefines.kUserIsLoggedIn) {
@@ -34,7 +34,7 @@ import Foundation
     }
 }
 
-@objc extension CatrobatTableViewController: UploadViewControllerDelegate {
+@objc extension SceneTableViewController: UploadViewControllerDelegate {
     func uploadSuccessful(project: Project, projectId: String) {
         DispatchQueue.main.async(execute: {
             AlertControllerBuilder.alert(title: kLocalizedProjectUploaded, message: kLocalizedProjectUploadedBody)

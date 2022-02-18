@@ -22,11 +22,14 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseLoginViewController.h"
-#import "CatrobatTableViewController.h"
+
+@protocol LoginViewControllerDelegate <NSObject>
+-(void)afterSuccessfulLogin;
+@end
 
 @interface LoginViewController : BaseLoginViewController<UITextFieldDelegate>
 
-@property (nonatomic, weak) CatrobatTableViewController * catTVC;
+@property (nonatomic, weak) id<LoginViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 
