@@ -723,6 +723,7 @@ let kUIFEObjectLayer = NSLocalizedString("layer", comment: "")
 let kUIFEObjectPositionX = NSLocalizedString("position x", comment: "")
 let kUIFEObjectPositionY = NSLocalizedString("position y", comment: "")
 let kUIFEObjectActorObjectTouch = NSLocalizedString("touches actor or object", comment: "")
+let kUIFESensorTouchesEdge = NSLocalizedString("touches edge", comment: "")
 
 let kUIFESensorDateYear = NSLocalizedString("year", comment: "")
 let kUIFESensorDateMonth = NSLocalizedString("month", comment: "")

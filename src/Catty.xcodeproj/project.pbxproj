@@ -1623,7 +1623,10 @@
 		BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6F52113188700BE57BF /* MyFirstProjectTests.swift */; };
 		BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */; };
 		C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B8C0B21945B560F7272 /* AlertController.swift */; };
+		C808F26E26B04BA0008A349A /* TouchesEdgeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808F26D26B04BA0008A349A /* TouchesEdgeSensor.swift */; };
+		C808F27326B0544C008A349A /* TouchesEdgeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808F27126B05420008A349A /* TouchesEdgeSensorTest.swift */; };
 		C82FC8DD26964F4A008DFBB8 /* TouchesFingerSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82FC8DC26964F4A008DFBB8 /* TouchesFingerSensor.swift */; };
+		C84B21712714A2690077CF70 /* TouchesEdgeSensor.xml in Resources */ = {isa = PBXBuildFile; fileRef = C84B21702714A2690077CF70 /* TouchesEdgeSensor.xml */; };
 		C85A5CA0267A218F009BA454 /* Functions_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = C85A5C9F267A218F009BA454 /* Functions_0993.xml */; };
 		C8A0338326064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0338226064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift */; };
 		C8CD7DD425E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD7DD325E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift */; };
@@ -4140,7 +4143,10 @@
 		BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTVCTests.swift; sourceTree = "<group>"; };
 		C286B2695528549DC9B2916D /* af */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C42D117BCEADFF7368CA3159 /* bn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C808F26D26B04BA0008A349A /* TouchesEdgeSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchesEdgeSensor.swift; sourceTree = "<group>"; };
+		C808F27126B05420008A349A /* TouchesEdgeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchesEdgeSensorTest.swift; sourceTree = "<group>"; };
 		C82FC8DC26964F4A008DFBB8 /* TouchesFingerSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchesFingerSensor.swift; sourceTree = "<group>"; };
+		C84B21702714A2690077CF70 /* TouchesEdgeSensor.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TouchesEdgeSensor.xml; sourceTree = "<group>"; };
 		C85A5C9F267A218F009BA454 /* Functions_0993.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Functions_0993.xml; sourceTree = "<group>"; };
 		C8A0338226064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SetTempoToBrick+CBXMLHandler.swift"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Sound/SetTempoToBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
 		C8CD7DD325E63D0A0018C655 /* BrickCategoryOverviewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewControllerTests.swift; sourceTree = "<group>"; };
@@ -5178,6 +5184,7 @@
 				E57D5B4826AEAAD3003A1457 /* Sensors_0999.xml */,
 				E5EC6D7126B010C40031F13A /* Sensors_09993.xml */,
 				E5DAAD5D26C5485400C2457F /* Sensors_09997.xml */,
+				C84B21702714A2690077CF70 /* TouchesEdgeSensor.xml */,
 			);
 			path = Sensors;
 			sourceTree = "<group>";
@@ -6698,6 +6705,7 @@
 				4C82264D213FA7A300F3D750 /* BrightnessSensorTest.swift */,
 				4C82264E213FA7A300F3D750 /* TransparencySensorTest.swift */,
 				9742DC5A269A2EC600980DE8 /* TouchesFingerSensorTest.swift */,
+				C808F27126B05420008A349A /* TouchesEdgeSensorTest.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -7314,6 +7322,7 @@
 				4CB0F9F120A1739400D1BE2F /* SizeSensor.swift */,
 				4CB0F9EB20A1731700D1BE2F /* TransparencySensor.swift */,
 				C82FC8DC26964F4A008DFBB8 /* TouchesFingerSensor.swift */,
+				C808F26D26B04BA0008A349A /* TouchesEdgeSensor.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -11371,6 +11380,7 @@
 				E5DAAD6026C5486000C2457F /* ValidHeader09997.xml in Resources */,
 				E598BBC226A029C900D4825F /* EscapingChars_0996.xml in Resources */,
 				E598BBA426A026B000D4825F /* Air_fight_0.5_0996.xml in Resources */,
+				C84B21712714A2690077CF70 /* TouchesEdgeSensor.xml in Resources */,
 				4C3285E92546CF3B00C31F9D /* LedFlashBrick0993.xml in Resources */,
 				E598BBB226A0271200D4825F /* Piano_0996.xml in Resources */,
 				E57D5B3D26AEAA61003A1457 /* DisabledBricks_0999.xml in Resources */,
@@ -11753,6 +11763,7 @@
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
 				9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */,
 				2E5FDF1F2685A89F004CBCB5 /* URLSessionTaskMock.swift in Sources */,
+				C808F27326B0544C008A349A /* TouchesEdgeSensorTest.swift in Sources */,
 				4C82265C213FA7A400F3D750 /* FingerXSensorTest.swift in Sources */,
 				4CB3E0A125ADEFFD007F4365 /* StagePresenterViewControllerMock.swift in Sources */,
 				9E2D47C72328428100917D92 /* ChangeColorByNBrickTests.swift in Sources */,
@@ -12968,6 +12979,7 @@
 				922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */,
 				4CF0729920D66C4800F93AB5 /* BackgroundNameSensor.swift in Sources */,
 				AA74EEE01BC057B900D1E954 /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
+				C808F26E26B04BA0008A349A /* TouchesEdgeSensor.swift in Sources */,
 				4CF0728E20D659F700F93AB5 /* PhiroBottomRightSensor.swift in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,
 				4CF429F5213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift in Sources */,

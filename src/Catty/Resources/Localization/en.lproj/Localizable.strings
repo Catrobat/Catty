@@ -1928,6 +1928,9 @@
 "touches actor or object" = "touches actor or object";
 
 /* No comment provided by engineer. */
+"touches edge" = "touches edge";
+
+/* No comment provided by engineer. */
 "touches finger" = "touches finger";
 
 /* No comment provided by engineer. */

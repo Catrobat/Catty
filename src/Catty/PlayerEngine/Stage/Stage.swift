@@ -53,6 +53,10 @@ final class Stage: SKScene, StageProtocol {
         self.frameCounter = 0
         super.init(size: size)
         backgroundColor = UIColor.white
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.categoryBitMask = 1
+        self.physicsBody?.contactTestBitMask = 1
     }
 
     @objc required init?(coder aDecoder: NSCoder) {
