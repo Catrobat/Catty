@@ -98,8 +98,6 @@ let licenseCheckExcludeFiles = [
     "MXPagerView-umbrella.[mh]",
     "SwellAll.swift",
     "license-validator.swift",
-    "ChromaprintAudioDecoder.swift",
-    "chromaprint.h",
     "SnapshotHelper.swift"
 ]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 

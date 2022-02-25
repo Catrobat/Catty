@@ -34,6 +34,12 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
+                <string>Catty/Resources/Licenses/ChromaSwift</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/DVR</string>
             </dict>
             <dict>
@@ -41,12 +47,6 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/EVCircularProgressView</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
-                <string>Catty/Resources/Licenses/FingerprinterChromaprint</string>
             </dict>
             <dict>
                 <key>Type</key>
@@ -155,12 +155,6 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/YKImageCropperView</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
-                <string>Catty/Resources/Licenses/chromaprint</string>
             </dict>
         </array>
 </dict>
