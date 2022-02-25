@@ -43,11 +43,11 @@ class BrickMovementTests: XCTestCase {
         addBrick(label: kLocalizedWhenTapped, section: kLocalizedCategoryEvent, in: app)
         app.staticTexts[kLocalizedWhenTapped].tap()
 
+        XCTAssertEqual(app.collectionViews.cells.count, 5)
+
         let firstBrick = app.collectionViews.cells.element(boundBy: 1)
         let secondBrick = app.collectionViews.cells.element(boundBy: 2)
         let thirdBrick = app.collectionViews.cells.element(boundBy: 3)
-
-        XCTAssertEqual(app.collectionViews.cells.count, 5)
 
         XCTAssertTrue(firstBrick.staticTextEquals(kLocalizedHide, ignoreLeadingWhiteSpace: true).exists)
         XCTAssertTrue(secondBrick.staticTextEquals(kLocalizedSetX, ignoreLeadingWhiteSpace: true).exists)
@@ -55,15 +55,15 @@ class BrickMovementTests: XCTestCase {
     }
 
     func testBrickMovementWithinScript() {
-        let setYBrick = app.collectionViews.children(matching: .cell).element(boundBy: 3)
+        let setYBrick = app.collectionViews.cells.element(boundBy: 3)
         setYBrick.tap()
 
         let moveBrickButton = app.sheets[kLocalizedEditBrick].scrollViews.otherElements.buttons[kLocalizedMoveBrick]
         moveBrickButton.tap()
 
-        setYBrick.press(forDuration: 0.5, thenDragTo: app.collectionViews.cells.element(boundBy: 1))
+        setYBrick.press(forDuration: 1, thenDragTo: app.collectionViews.cells.element(boundBy: 1))
 
-        app.navigationBars[kLocalizedScripts].buttons[kLocalizedBackground].tap()
+        waitForElementToAppear(app.navigationBars[kLocalizedScripts].buttons[kLocalizedBackground]).tap()
         app.navigationBars[kLocalizedBackground].buttons[projectName].tap()
         app.navigationBars[projectName].buttons[kLocalizedPocketCode].tap()
 
@@ -71,11 +71,11 @@ class BrickMovementTests: XCTestCase {
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
+        XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedWhenProjectStarted]).exists)
+
         let firstBrick = app.collectionViews.cells.element(boundBy: 1)
         let secondBrick = app.collectionViews.cells.element(boundBy: 2)
         let lastBrick = app.collectionViews.cells.element(boundBy: 3)
-
-        XCTAssertTrue(app.staticTexts[kLocalizedWhenProjectStarted].waitForExistence(timeout: 2))
 
         XCTAssertTrue(firstBrick.staticTextEquals(kLocalizedSetY, ignoreLeadingWhiteSpace: true).exists)
         XCTAssertTrue(secondBrick.staticTextEquals(kLocalizedHide, ignoreLeadingWhiteSpace: true).exists)
@@ -83,15 +83,15 @@ class BrickMovementTests: XCTestCase {
     }
 
     func testBrickMovementToOtherScript() {
-        let hideBrick = app.collectionViews.children(matching: .cell).element(boundBy: 1)
+        let hideBrick = app.collectionViews.cells.element(boundBy: 1)
         hideBrick.tap()
 
         let moveBrickButton = app.sheets[kLocalizedEditBrick].scrollViews.otherElements.buttons[kLocalizedMoveBrick]
         moveBrickButton.tap()
 
-        hideBrick.press(forDuration: 0.5, thenDragTo: app.collectionViews.cells.element(boundBy: 4))
+        hideBrick.press(forDuration: 1, thenDragTo: app.collectionViews.cells.element(boundBy: 4))
 
-        app.navigationBars[kLocalizedScripts].buttons[kLocalizedBackground].tap()
+        waitForElementToAppear(app.navigationBars[kLocalizedScripts].buttons[kLocalizedBackground]).tap()
         app.navigationBars[kLocalizedBackground].buttons[projectName].tap()
         app.navigationBars[projectName].buttons[kLocalizedPocketCode].tap()
 
@@ -99,12 +99,12 @@ class BrickMovementTests: XCTestCase {
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
+        XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedWhenProjectStarted]).exists)
+
         let firstBrick = app.collectionViews.cells.element(boundBy: 1)
         let secondBrick = app.collectionViews.cells.element(boundBy: 2)
         let scriptBrick = app.collectionViews.cells.element(boundBy: 3)
         let lastBrick = app.collectionViews.cells.element(boundBy: 4)
-
-        XCTAssertTrue(app.staticTexts[kLocalizedWhenProjectStarted].waitForExistence(timeout: 2))
 
         XCTAssertTrue(firstBrick.staticTextEquals(kLocalizedSetX, ignoreLeadingWhiteSpace: true).exists)
         XCTAssertTrue(secondBrick.staticTextEquals(kLocalizedSetY, ignoreLeadingWhiteSpace: true).exists)
