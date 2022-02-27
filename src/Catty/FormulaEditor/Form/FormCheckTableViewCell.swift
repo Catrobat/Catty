@@ -20,25 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@class BrickCell;
-@class Brick;
+import Foundation
+import UIKit
 
-@protocol BrickCellDataProtocol <NSObject>
+class FormCheckTableViewCell: FormTableViewCell {
 
-@required
-- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
+    override class var id: String {
+        "FormCheckTableViewCell"
+    }
 
-@property (nonatomic, weak) BrickCell *brickCell;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
+    private var selectAction: (() -> Void)?
 
-@end
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            selectAction?()
+            self.accessoryType = .checkmark
+        } else {
+            self.accessoryType = .none
+        }
+    }
 
-@protocol BrickCellDataDelegate <NSObject>
+    override func configure(with formItem: FormItem) {
+        super.configure(with: formItem)
 
-@required
-- (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value;
-- (void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom;
-- (void)enableUserInteractionAndResetHighlight;
-@end
-
+        if let item = formItem as? FormCheckItem {
+            selectAction = item.selectAction
+        }
+    }
+}

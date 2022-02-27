@@ -636,7 +636,9 @@
 #define kUIFENewVarExists NSLocalizedString(@"Name already exists.", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
+#define kUIFEVariableName NSLocalizedString(@"Variable name", nil)
 #define kUIFEListName NSLocalizedString(@"List name:", nil)
+#define kUIFEListNameForm NSLocalizedString(@"List name", nil)
 #define kUIFEOtherName NSLocalizedString(@"Please choose another name:", nil)
 #define kUIFEAddNewText NSLocalizedString(@"Abc", nil)
 #define kUIFEProjectVariables NSLocalizedString(@"Variables for all actors and objects", nil)
@@ -668,6 +670,7 @@
 #define kUIFEEmptyInput NSLocalizedString(@"Empty input!", nil)
 
 #define kUIFEVarOrList NSLocalizedString(@"Variable or list", nil)
+#define kUIFECreateAsList NSLocalizedString(@"Create as list", nil)
 
 #define kUIFEFunctionSine NSLocalizedString(@"sine", nil)
 #define kUIFEFunctionCosine NSLocalizedString(@"cosine", nil)

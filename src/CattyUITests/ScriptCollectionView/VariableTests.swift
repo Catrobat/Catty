@@ -44,18 +44,19 @@ class VariableTests: XCTestCase {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
         tapOnVariablePicker(of: kLocalizedSetVariable, in: app)
-        XCTAssert(app.sheets[kUIFEActionVar].exists)
+        XCTAssert(app.navigationBars[kUIFENewVar].exists)
     }
 
     func testCreateVariableWithMaxLength() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
         tapOnVariablePicker(of: kLocalizedSetVariable, in: app)
-        XCTAssert(app.sheets[kUIFEActionVar].exists)
+        XCTAssert(app.navigationBars[kUIFENewVar].exists)
 
-        app.buttons[kUIFEActionVarPro].tap()
-        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 25))
-        app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
+        let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+        textField.tap()
+        textField.typeText(String(repeating: "i", count: 25))
+        app.navigationBars[kUIFENewVar].buttons[kUIFEDone].tap()
         XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedWhenProjectStarted]).exists)
     }
 
@@ -63,34 +64,35 @@ class VariableTests: XCTestCase {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
         tapOnVariablePicker(of: kLocalizedSetVariable, in: app)
-        XCTAssert(app.sheets[kUIFEActionVar].exists)
+        XCTAssert(app.navigationBars[kUIFENewVar].exists)
 
-        app.buttons[kUIFEActionVarPro].tap()
-        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 25 + 1))
-        app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
-        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
+        let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+        textField.tap()
+        textField.typeText(String(repeating: "i", count: 25 + 1))
+        app.navigationBars[kUIFENewVar].buttons[kUIFEDone].tap()
+
+        XCTAssert(waitForElementToAppear(app.sheets[kLocalizedPocketCode]).exists)
     }
 
     func testCreateAndSelectVariable() {
-        let testVariable = ["testVariable1", "testVariable2"]
+        let testVariables = ["testVariable1", "testVariable2"]
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         app.buttons[kUIFEData].tap()
-        for variable in testVariable {
+        for variable in testVariables {
             app.navigationBars.buttons[kLocalizedAdd].tap()
-            waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
-            waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
 
-            let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
-            alert.textFields.firstMatch.typeText(variable)
-            alert.buttons[kLocalizedOK].tap()
+            let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+            textField.tap()
+            textField.typeText(variable)
+            app.navigationBars[kUIFENewVar].buttons[kUIFEDone].tap()
         }
 
-        app.tables.staticTexts[testVariable[1]].tap()
-        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[1] + "\" "]).exists)
+        app.tables.staticTexts[testVariables[1]].tap()
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariables[1] + "\" "]).exists)
     }
 
     func testEditMarkedTextVariableInFormularEditor() {
@@ -127,14 +129,13 @@ class VariableTests: XCTestCase {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         waitForElementToAppear(app.buttons[kUIFEData]).tap()
         waitForElementToAppear(app.navigationBars.buttons[kLocalizedAdd]).tap()
-        waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
-        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
-        let newVarAlert = waitForElementToAppear(app.alerts[kUIFENewVar])
-        XCTAssertEqual(newVarAlert.textFields.firstMatch.value as! String, "")
+
+        let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+        XCTAssertEqual(textField.value as! String, kLocalizedName)
     }
 
     func testDeleteVariableInFormulaEditor() {
-        let testVariable = ["testVariable1", "testVariable2"]
+        let testVariables = ["testVariable1", "testVariable2"]
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
@@ -142,23 +143,22 @@ class VariableTests: XCTestCase {
 
         app.buttons[kUIFEData].tap()
 
-        for variable in testVariable {
+        for variable in testVariables {
             app.navigationBars.buttons[kLocalizedAdd].tap()
-            waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
-            waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
 
-            let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
-            alert.textFields.firstMatch.typeText(variable)
-            alert.buttons[kLocalizedOK].tap()
+            let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+            textField.tap()
+            textField.typeText(variable)
+            app.navigationBars[kUIFENewVar].buttons[kUIFEDone].tap()
         }
 
-        app.tables.staticTexts[testVariable[0]].swipeLeft()
+        app.tables.staticTexts[testVariables[0]].swipeLeft()
         app.tables.buttons[kLocalizedDelete].tap()
 
-        XCTAssertTrue(app.tables.staticTexts[testVariable[1]].exists)
-        XCTAssertFalse(app.tables.staticTexts[testVariable[0]].exists)
-        app.tables.staticTexts[testVariable[1]].tap()
+        XCTAssertTrue(app.tables.staticTexts[testVariables[1]].exists)
+        XCTAssertFalse(app.tables.staticTexts[testVariables[0]].exists)
+        app.tables.staticTexts[testVariables[1]].tap()
 
-        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[1] + "\" "]).exists)
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariables[1] + "\" "]).exists)
     }
 }

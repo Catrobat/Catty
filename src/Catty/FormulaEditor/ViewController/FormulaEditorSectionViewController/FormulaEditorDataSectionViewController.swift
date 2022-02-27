@@ -81,14 +81,18 @@
     }
 
     @objc func addButtonTapped() {
-        AlertController(title: kUIFEVarOrList, message: nil, style: .actionSheet)
-        .addCancelAction(title: kLocalizedCancel, handler: nil)
-        .addDefaultAction(title: kUIFENewVar) {
-            self.askProjectOrObject(isList: false)
+        let cvlvc = CreateVariableOrListViewController(spriteObject: self.spriteObject, addedCompletion: { _ in
+            self.reloadData()
+        })
+
+        if #available(iOS 13.0, *) {
+            cvlvc.isModalInPresentation = true
+        } else {
+            cvlvc.modalPresentationStyle = .fullScreen
         }
-        .addDefaultAction(title: kUIFENewList) {
-        self.askProjectOrObject(isList: true)
-        }.build().showWithController(self)
+
+        let nav = UINavigationController(rootViewController: cvlvc)
+        self.present(nav, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -229,121 +233,6 @@
         self.variableSourceObject = UserDataContainer.objectVariables(for: self.spriteObject)
         self.listSourceObject = UserDataContainer.objectLists(for: self.spriteObject)
 
-    }
-
-    func askProjectOrObject(isList: Bool) {
-        let promptTitle = isList ? kUIFEActionList : kUIFEActionVar
-
-        AlertController(title: promptTitle, message: nil, style: .actionSheet)
-            .addCancelAction(title: kLocalizedCancel, handler: nil)
-            .addDefaultAction(title: kUIFEActionVarPro) {
-                if isList {
-                    self.addNewList(isProjectList: true)
-                } else {
-                    self.addNewVariable(isProjectVariable: true)
-                }
-            }
-            .addDefaultAction(title: kUIFEActionVarObj) {
-            if isList {
-                self.addNewList(isProjectList: false)
-                } else {
-                self.addNewVariable(isProjectVariable: false)
-                }
-            }.build().showWithController(self)
-    }
-
-    private func addNewList(isProjectList: Bool) {
-        self.newVarIsForProject = isProjectList
-        Util.askUser(forVariableNameAndPerformAction: #selector(saveList(name:)),
-                     target: self,
-                     promptTitle: kUIFENewList,
-                     promptMessage: kUIFEListName,
-                     minInputLength: UInt(kMinNumOfVariableNameCharacters),
-                     maxInputLength: UInt(kMaxNumOfVariableNameCharacters),
-                     isList: true,
-                     andTextField: nil,
-                     initialText: "")
-    }
-
-    private func addNewVariable(isProjectVariable: Bool) {
-        self.newVarIsForProject = isProjectVariable
-        Util.askUser(forVariableNameAndPerformAction: #selector(saveVariable(name:)),
-                     target: self,
-                     promptTitle: kUIFENewVar,
-                     promptMessage: kUIFEVarName,
-                     minInputLength: UInt(kMinNumOfVariableNameCharacters),
-                     maxInputLength: UInt(kMaxNumOfVariableNameCharacters),
-                     isList: false,
-                     andTextField: nil,
-                     initialText: "")
-
-    }
-
-    private func askForNewVariableName() {
-        Util.askUser(forVariableNameAndPerformAction: #selector(saveVariable(name:)),
-                     target: self,
-                     promptTitle: kUIFENewVarExists,
-                     promptMessage: kUIFEOtherName,
-                     minInputLength: UInt(kMinNumOfVariableNameCharacters),
-                     maxInputLength: UInt(kMaxNumOfVariableNameCharacters),
-                     isList: false,
-                     andTextField: nil,
-                     initialText: "")
-    }
-
-    @objc private func saveVariable(name: String) {
-        if self.newVarIsForProject {
-            if let project = self.spriteObject.scene.project {
-                for variable in UserDataContainer.allVariables(for: project) where variable.name == name {
-                    self.askForNewVariableName()
-                    return
-                }
-            }
-        } else {
-            for variable in UserDataContainer.objectAndProjectVariables(for: spriteObject) where variable.name == name {
-                self.askForNewVariableName()
-                return
-            }
-        }
-
-        let userVariable = UserVariable(name: name)
-        userVariable.value = Int(0)
-
-        if self.newVarIsForProject {
-            self.spriteObject.scene.project?.userData.add(userVariable)
-        } else {
-            self.spriteObject.userData.add(userVariable)
-        }
-
-        self.spriteObject.scene.project?.saveToDisk(withNotification: false)
-        self.reloadData()
-    }
-
-    @objc private func saveList(name: String) {
-        if self.newVarIsForProject {
-            if let project = self.spriteObject.scene.project {
-                for variable in UserDataContainer.allLists(for: project) where variable.name == name {
-                    self.askForNewVariableName()
-                    return
-                }
-            }
-        } else {
-            for variable in UserDataContainer.objectAndProjectLists(for: spriteObject) where variable.name == name {
-                self.askForNewVariableName()
-                return
-            }
-        }
-
-        let userList = UserList(name: name)
-
-        if self.newVarIsForProject {
-            self.spriteObject.scene.project?.userData.add(userList)
-        } else {
-            self.spriteObject.userData.add(userList)
-        }
-
-        self.spriteObject.scene.project?.saveToDisk(withNotification: false)
-        self.reloadData()
     }
 
     private func getAllBricks(for object: SpriteObject) -> [Brick] {

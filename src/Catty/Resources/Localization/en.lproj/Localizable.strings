@@ -392,6 +392,9 @@
 "Create account" = "Create account";
 
 /* No comment provided by engineer. */
+"Create as list" = "Create as list";
+
+/* No comment provided by engineer. */
 "Create patterns for stiching machines" = "Create patterns for stiching machines";
 
 /* No comment provided by engineer. */
@@ -978,6 +981,9 @@
 
 /* paint */
 "Line" = "Line";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "List name:";
@@ -2034,6 +2040,9 @@
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "Username must not be blank";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";

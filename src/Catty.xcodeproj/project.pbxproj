@@ -1618,6 +1618,13 @@
 		BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BA1F165C6E00F06741 /* ReplaceItemInUserListBrick.m */; };
 		BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */; };
 		BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BF1F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift */; };
+		BB9EC0E327D62CBA009FF8CE /* FormCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0DA27D62CBA009FF8CE /* FormCheckTableViewCell.swift */; };
+		BB9EC0E427D62CBA009FF8CE /* FormTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0DD27D62CBA009FF8CE /* FormTableViewController.swift */; };
+		BB9EC0E527D62CBA009FF8CE /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0DE27D62CBA009FF8CE /* FormTableViewCell.swift */; };
+		BB9EC0E627D62CBA009FF8CE /* FormTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0DF27D62CBA009FF8CE /* FormTextFieldTableViewCell.swift */; };
+		BB9EC0E727D62CBA009FF8CE /* FormSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0E027D62CBA009FF8CE /* FormSwitchTableViewCell.swift */; };
+		BB9EC0E827D62CBA009FF8CE /* CreateVariableOrListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0E127D62CBA009FF8CE /* CreateVariableOrListViewController.swift */; };
+		BB9EC0E927D62CBA009FF8CE /* FormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0E227D62CBA009FF8CE /* FormItem.swift */; };
 		BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19327E21186504009DE43A /* CreateProjectTests.swift */; };
 		BC35168C231D00B90090872A /* SpriteBubbleConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC35168B231D00B90090872A /* SpriteBubbleConstraintsTests.swift */; };
 		BCF2787F22F4354200B6D337 /* BubbleBrickHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2787E22F4354200B6D337 /* BubbleBrickHelper.swift */; };
@@ -4136,6 +4143,13 @@
 		BAEE49BC1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ReplaceItemInUserListBrick+CBXMLHandler.h"; path = "Catty/XML/XMLHandler/Bricks/Data/ReplaceItemInUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ReplaceItemInUserListBrick+CBXMLHandler.m"; path = "Catty/XML/XMLHandler/Bricks/Data/ReplaceItemInUserListBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		BAEE49BF1F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ReplaceItemInUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/ReplaceItemInUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
+		BB9EC0DA27D62CBA009FF8CE /* FormCheckTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormCheckTableViewCell.swift; sourceTree = "<group>"; };
+		BB9EC0DD27D62CBA009FF8CE /* FormTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTableViewController.swift; sourceTree = "<group>"; };
+		BB9EC0DE27D62CBA009FF8CE /* FormTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
+		BB9EC0DF27D62CBA009FF8CE /* FormTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		BB9EC0E027D62CBA009FF8CE /* FormSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		BB9EC0E127D62CBA009FF8CE /* CreateVariableOrListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVariableOrListViewController.swift; sourceTree = "<group>"; };
+		BB9EC0E227D62CBA009FF8CE /* FormItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormItem.swift; sourceTree = "<group>"; };
 		BC19327E21186504009DE43A /* CreateProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectTests.swift; sourceTree = "<group>"; };
 		BC35168B231D00B90090872A /* SpriteBubbleConstraintsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteBubbleConstraintsTests.swift; sourceTree = "<group>"; };
 		BCF2787E22F4354200B6D337 /* BubbleBrickHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleBrickHelper.swift; sourceTree = "<group>"; };
@@ -4660,6 +4674,7 @@
 		18E3497C25DF8411008B9D6E /* FormulaEditorSectionViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BB9EC0E127D62CBA009FF8CE /* CreateVariableOrListViewController.swift */,
 				181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */,
 				18E3497F25DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift */,
 			);
@@ -8039,6 +8054,7 @@
 		92DFAFE81A38949E00FA9B0F /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
+				BBA6F47027D6C82900AE35D6 /* Form */,
 				4C37A0A8212E7E3D0074F417 /* Dto */,
 				92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */,
 				92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */,
@@ -10334,6 +10350,19 @@
 			path = TestHelpers;
 			sourceTree = "<group>";
 		};
+		BBA6F47027D6C82900AE35D6 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				BB9EC0E227D62CBA009FF8CE /* FormItem.swift */,
+				BB9EC0DE27D62CBA009FF8CE /* FormTableViewCell.swift */,
+				BB9EC0DA27D62CBA009FF8CE /* FormCheckTableViewCell.swift */,
+				BB9EC0E027D62CBA009FF8CE /* FormSwitchTableViewCell.swift */,
+				BB9EC0DF27D62CBA009FF8CE /* FormTextFieldTableViewCell.swift */,
+				BB9EC0DD27D62CBA009FF8CE /* FormTableViewController.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
 		BC351689231D00B90090872A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -12223,6 +12252,7 @@
 				AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */,
 				AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */,
 				BACDF3521F1F9B7E00346167 /* DeleteItemOfUserListBrick.m in Sources */,
+				BB9EC0E527D62CBA009FF8CE /* FormTableViewCell.swift in Sources */,
 				4614B1DD25608E8B004174AD /* StitchBrickCell.swift in Sources */,
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
@@ -12407,6 +12437,7 @@
 				97D97BAB257AC141001FF344 /* URLSessionMultipartExtension.swift in Sources */,
 				59EA52B424FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift in Sources */,
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
+				BB9EC0E427D62CBA009FF8CE /* FormTableViewController.swift in Sources */,
 				AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */,
 				05E6801A255B5DAA00D1E295 /* EmbroideryStream.swift in Sources */,
 				5E84B7A72341FC68009982AA /* UITextFieldExtension.swift in Sources */,
@@ -12495,6 +12526,7 @@
 				4C0D2A84254AA2C100A8637F /* RotationStyle.swift in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				97BA19DF25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift in Sources */,
+				BB9EC0E727D62CBA009FF8CE /* FormSwitchTableViewCell.swift in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				9705D61F262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift in Sources */,
@@ -12618,6 +12650,7 @@
 				9E78D88B22A9B1D400948AC3 /* IterableCache.swift in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
+				BB9EC0E927D62CBA009FF8CE /* FormItem.swift in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
 				4CF8276C24F0E54C006E562A /* BrickCellBackgroundData.swift in Sources */,
@@ -12648,6 +12681,7 @@
 				AA74F0981BC05FCE00D1E954 /* BrickCellTextData.m in Sources */,
 				4CF429EF213A858D00B78897 /* CBConditionProtocol.swift in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
+				BB9EC0E827D62CBA009FF8CE /* CreateVariableOrListViewController.swift in Sources */,
 				AA74EF7E1BC05A3400D1E954 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				4CF429F8213A8DA600B78897 /* LoopBeginBrick.m in Sources */,
 				AA74F00B1BC05B5F00D1E954 /* PlaySoundBrick.m in Sources */,
@@ -12710,6 +12744,7 @@
 				186E99172488F4F400627E36 /* PenUpBrickCell.swift in Sources */,
 				0581B73027BAA5520098BDF8 /* StopCurrentStitchBrick+CBXMLHandler.swift in Sources */,
 				4C82268D213FB29A00F3D750 /* MultiFingerYFunction.swift in Sources */,
+				BB9EC0E627D62CBA009FF8CE /* FormTextFieldTableViewCell.swift in Sources */,
 				BA987D0F2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift in Sources */,
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
@@ -12970,6 +13005,7 @@
 				4C0F9F43204ADC6600E71B2D /* ThinkBubbleBrick.m in Sources */,
 				AAF6D9D81BC0BAF300686849 /* ShowBrick+Instruction.swift in Sources */,
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
+				BB9EC0E327D62CBA009FF8CE /* FormCheckTableViewCell.swift in Sources */,
 				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				4420ACB3250929DA00951328 /* AskBrickCell.swift in Sources */,
