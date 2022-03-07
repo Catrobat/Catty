@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import ChromaSwift
 import XCTest
 
 @testable import Pocket_Code
@@ -43,38 +44,20 @@ class AudioEngineAbstractTest: XMLAbstractTest {
     }
 
     func calculateSimilarity(tape: AVAudioFile, referenceHash: String) -> Double {
-        let readTape: AVAudioFile
-        do {
-            readTape = try AVAudioFile(forReading: tape.url)
-        } catch {
-            print("Could not read audio file")
+        guard let fingerprint = try? AudioFingerprint(from: tape.url) else {
+            print("Could not generate fingerprint")
             return 0
         }
 
-        let fingerprinter = ChromaprintFingerprinter()
-        guard let (simHashString, recordedFileLength) = fingerprinter.generateFingerprint(fromSongAtUrl: readTape.url) else {
-            print("No fingerprint was generated")
+        print("The recorded duration is \(fingerprint.duration)")
+        print("The binary fingerprint is \(fingerprint.hash)")
+
+        guard let similarity = try? fingerprint.similarity(to: referenceHash) else {
+            print("Could not calculate hash similarity")
             return 0
         }
 
-        print("The recorded duration is \(recordedFileLength)")
-        print("The binary fingerprint is: \(simHashString)")
-
-        let currentSimHash = Array(simHashString).map({ Int(String($0))! })
-        let referenceSimHash = Array(referenceHash).map({ Int(String($0))! })
-
-        if referenceSimHash.count != currentSimHash.count {
-            return 0
-        }
-
-        var matchingDigits = 0
-        for i in 0..<referenceSimHash.count where referenceSimHash[i] == currentSimHash[i] {
-                matchingDigits += 1
-        }
-
-        let similarity = Double(matchingDigits) / Double(referenceSimHash.count)
         print("The similarity is \(similarity)")
-
         return similarity
     }
 

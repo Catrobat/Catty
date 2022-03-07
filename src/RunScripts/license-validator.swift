@@ -115,8 +115,6 @@ let license3rdPartyDict: [String: License] = [
     "MXScrollView": .MIT,
     "MXScrollViewController": .MIT,
     "AudioKit": .MIT,
-    "chromaprint": .LGPL,
-    "ChromaprintAudioDecoder": .MIT,
     "SnapshotHelper": .MIT,
     "ScratchSampleInstruments": .BSD
 ]
