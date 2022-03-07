@@ -68,4 +68,12 @@ import Foundation
     func allowsStringFormula() -> Bool {
         false
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = StartRunningStitchBrick()
+        clone.script = script
+        clone.stitchLength = self.stitchLength
+
+        return clone
+    }
 }

@@ -40,11 +40,11 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"The rootElement nil"];
-    if (! [xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"] && ! [xmlElement.name isEqualToString:@"destinationSprite"]) {
+    if (! [xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"] && ! [xmlElement.name isEqualToString:@"destinationSprite"] && ![xmlElement.name isEqualToString:@"objectToClone"]) {
         [XMLError exceptionIfString:xmlElement.name
                  isNotEqualToString:@"object"
                             message:@"The name of the rootElement is '%@' but should be '%@'",
-         xmlElement.name, @"object, pointedObject or destinationSprite"];
+         xmlElement.name, @"object, pointedObject, destinationSprite or objectToClone"];
     }
 
     NSArray *attributes = [xmlElement attributes];
@@ -79,6 +79,8 @@
             [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"object"];
         } else if([referencedObjectElement.name isEqualToString:@"destinationSprite"]) {
             [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"destinationSprite"];
+        } else if ([referencedObjectElement.name isEqualToString:@"objectToClone"]) {
+            [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"objectToClone"];
         } else {
             [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"pointedObject"];
         }
@@ -175,10 +177,15 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    return [self xmlElementWithContext:context asPointedObject:NO asGoToObject:NO];
+    return [self xmlElementWithContext:context asPointedObject:NO asGoToObject:NO asCloneOfObject:NO];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject asGoToObject:(BOOL)asGoToObject
+{
+    return [self xmlElementWithContext:context asPointedObject:asPointedObject asGoToObject:asGoToObject asCloneOfObject:NO];
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject asGoToObject:(BOOL)asGoToObject asCloneOfObject:(BOOL )asCloneOfObject
 {
     SpriteObject *previousObject = context.spriteObject;
     [context.soundNamePositions removeAllObjects];
@@ -188,11 +195,12 @@
 
     // generate xml element for sprite object
     GDataXMLElement *xmlElement = nil;
-    if (! asPointedObject && !asGoToObject) {
+    if (! asPointedObject && !asGoToObject && !asCloneOfObject) {
         NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObjectList];
         xmlElement = [GDataXMLElement elementWithName:@"object" xPathIndex:(indexOfSpriteObject+1) context:context];
     } else {
         NSString* elementName = asGoToObject ? @"destinationSprite" : @"pointedObject";
+        elementName = asCloneOfObject ? @"objectToClone" : elementName;
         xmlElement = [GDataXMLElement elementWithName:elementName context:context];
     }
 

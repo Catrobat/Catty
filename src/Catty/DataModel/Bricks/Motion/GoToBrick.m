@@ -100,6 +100,16 @@ andParameterNumber:(NSInteger)paramNumber
     return choices;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    GoToBrick *clone = [[GoToBrick alloc] init];
+    clone.script = script;
+    clone.spinnerSelection = self.spinnerSelection;
+    clone.goToObject = self.goToObject;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

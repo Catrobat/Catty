@@ -66,6 +66,16 @@
     self.timesToRepeat = [[Formula alloc] initWithInteger:10];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    RepeatBrick *clone = [[RepeatBrick alloc] init];
+    clone.script = script;
+    clone.timesToRepeat = self.timesToRepeat;
+    clone.repetitions = self.repetitions;
+    clone.maxRepetitions = self.maxRepetitions;
+    
+    return clone;
+}
 #pragma mark - Description
 - (NSString*)description
 {

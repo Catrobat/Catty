@@ -411,4 +411,15 @@ class XMLParserTests0992: XMLAbstractTest {
 
         XCTAssertTrue(setTempoToBrick.isKind(of: SetTempoToBrick.self), "Invalid brick type")
     }
+
+    func testCreateCloneOfBrick() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0992")
+        var createCloneOfBrick = (project.scene.object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 6) as! Brick
+
+        XCTAssertTrue(createCloneOfBrick.isKind(of: CloneBrick.self), "Invalid brick type")
+
+        createCloneOfBrick = (project.scene.object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 7) as! Brick
+
+        XCTAssertTrue(createCloneOfBrick.isKind(of: CloneBrick.self), "Invalid brick type")
+    }
 }

@@ -46,4 +46,11 @@
     override func isSelectableForObject() -> Bool {
         UserDefaults.standard.bool(forKey: kUseEmbroideryBricks)
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = StitchBrick()
+        clone.script = script
+
+        return clone
+    }
 }

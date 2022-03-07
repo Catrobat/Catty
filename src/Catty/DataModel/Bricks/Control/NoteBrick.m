@@ -50,6 +50,15 @@
     return self.note;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    NoteBrick *clone = [[NoteBrick alloc] init];
+    clone.script = script;
+    clone.note = self.note;
+    
+    return clone;
+}
+
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

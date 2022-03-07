@@ -55,6 +55,15 @@
     return kMotionBrick;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    SetYBrick *clone = [[SetYBrick alloc] init];
+    clone.script = script;
+    clone.yPosition = self.yPosition;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

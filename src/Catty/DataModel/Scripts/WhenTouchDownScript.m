@@ -29,4 +29,12 @@
     return kEventBrick;
 }
 
+- (Script*)cloneWithObject:(SpriteObject *)object
+{
+    WhenTouchDownScript *clone = [[WhenTouchDownScript alloc] init];
+    clone.object = object;
+    
+    return clone;
+}
+
 @end

@@ -20,20 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc(PenUpBrick)
+@objc(CloneBrick)
+@objcMembers class CloneBrick: Brick, BrickObjectWithOutBackgroundProtocol {
 
-@objcMembers class PenUpBrick: Brick, BrickProtocol {
+    var objectToClone: SpriteObject?
+    static var nameCounter: Int = 1
 
     override required init() {
         super.init()
     }
 
     func category() -> kBrickCategoryType {
-        kBrickCategoryType.penBrick
+        kBrickCategoryType.eventBrick
     }
 
     override class func description() -> String {
-        "PenBrick"
+        "CloneBrick"
     }
 
     override func getRequiredResources() -> Int {
@@ -41,16 +43,48 @@
     }
 
     override func brickCell() -> BrickCellProtocol.Type! {
-        PenUpBrickCell.self as BrickCellProtocol.Type
+        CloneBrickCell.self as BrickCellProtocol.Type
+    }
+
+    func setObject(_ object: SpriteObject?, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
+        if let object = object {
+            objectToClone = object
+        }
+    }
+
+    func object(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> SpriteObject? {
+        self.objectToClone
+    }
+
+    override func setDefaultValuesFor(_ spriteObject: SpriteObject!) {
+        if spriteObject != nil {
+            objectToClone = spriteObject
+        } else {
+            objectToClone = self.script.object
+        }
     }
 
     override func isDisabledForBackground() -> Bool {
         true
     }
 
+    @objc(mutableCopyWithContext:)
+    override func mutableCopy(with context: CBMutableCopyContext) -> Any {
+        let brick = CloneBrick()
+        if self.objectToClone != nil {
+            brick.objectToClone = self.objectToClone
+        }
+        return brick
+    }
+
     override func clone(with script: Script!) -> Brick! {
-        let clone = PenUpBrick()
+        let clone = CloneBrick()
         clone.script = script
+        if self.objectToClone == self.script.object {
+            clone.objectToClone = clone.script.object
+        } else {
+            clone.objectToClone = self.objectToClone
+        }
 
         return clone
     }

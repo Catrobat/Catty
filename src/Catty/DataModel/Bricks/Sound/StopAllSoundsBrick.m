@@ -29,6 +29,14 @@
     return kSoundBrick;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    StopAllSoundsBrick *clone = [[StopAllSoundsBrick alloc] init];
+    clone.script = script;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

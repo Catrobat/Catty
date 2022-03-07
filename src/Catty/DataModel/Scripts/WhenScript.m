@@ -50,4 +50,13 @@
     return [super isEqualToScript:script];
 }
 
+- (Script*)cloneWithObject:(SpriteObject *)object
+{
+    WhenScript *clone = [[WhenScript alloc] init];
+    clone.object = object;
+    clone.action = self.action;
+    
+    return clone;
+}
+
 @end

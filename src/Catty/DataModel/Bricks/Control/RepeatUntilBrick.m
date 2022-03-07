@@ -63,6 +63,15 @@
     self.repeatCondition = [[Formula alloc] initWithInteger:1];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    RepeatUntilBrick *clone = [[RepeatUntilBrick alloc] init];
+    clone.script = script;
+    clone.repeatCondition = self.repeatCondition;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

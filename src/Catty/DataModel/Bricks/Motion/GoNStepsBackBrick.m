@@ -61,6 +61,15 @@
     return kMotionBrick;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    GoNStepsBackBrick *clone = [[GoNStepsBackBrick alloc] init];
+    clone.script = script;
+    clone.steps = self.steps;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

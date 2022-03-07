@@ -67,6 +67,15 @@ andParameterNumber:(NSInteger)paramNumber
     return self.broadcastMessage;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    BroadcastBrick *clone = [[BroadcastBrick alloc] init];
+    clone.script = script;
+    clone.broadcastMessage = self.broadcastMessage;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

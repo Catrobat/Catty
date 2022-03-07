@@ -46,6 +46,16 @@
     return YES;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ThinkForBubbleBrick *clone = [[ThinkForBubbleBrick alloc] init];
+    clone.script = script;
+    clone.stringFormula = self.stringFormula;
+    clone.intFormula = self.intFormula;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

@@ -66,6 +66,15 @@ andParameterNumber:(NSInteger)paramNumber
     return choices;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ChooseCameraBrick *clone = [[ChooseCameraBrick alloc] init];
+    clone.script = script;
+    clone.cameraPosition = self.cameraPosition;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

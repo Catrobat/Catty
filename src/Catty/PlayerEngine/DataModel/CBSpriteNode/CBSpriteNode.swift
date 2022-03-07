@@ -249,6 +249,21 @@ class CBSpriteNode: SKSpriteNode {
         return self.contains(globalTouchPosition) && !imageLook.isTransparentPixel(atScenePoint: localTouchPosition)
     }
 
+    @objc func startAsClone(_ spriteNodeToClone: CBSpriteNode) {
+
+        self.catrobatPosition = CBPosition(x: spriteNodeToClone.catrobatPosition.x, y: spriteNodeToClone.catrobatPosition.y)
+        self.changeLook(spriteNodeToClone.currentLook)
+        self.isHidden = spriteNodeToClone.isHidden
+        self.zRotation = CGFloat(spriteNodeToClone.zRotation)
+        self.xScale = CGFloat(spriteNodeToClone.xScale)
+        self.yScale = CGFloat(spriteNodeToClone.yScale)
+        self.isUserInteractionEnabled = spriteNodeToClone.isUserInteractionEnabled
+        self.ciBrightness = CGFloat(spriteNodeToClone.ciBrightness)
+
+        self.zPosition = spriteNodeToClone.zPosition
+        spriteNodeToClone.zPosition += 1
+    }
+
     @objc func isFlipped() -> Bool {
         if self.xScale < 0 {
             return true

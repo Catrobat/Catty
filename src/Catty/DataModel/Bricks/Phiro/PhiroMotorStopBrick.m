@@ -54,6 +54,15 @@
         self.motor = motor;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    PhiroMotorStopBrick *clone = [[PhiroMotorStopBrick alloc] init];
+    clone.script = script;
+    clone.motor = self.motor;
+    
+    return clone;
+}
+
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {

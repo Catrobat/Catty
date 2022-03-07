@@ -78,4 +78,13 @@
     override func isDisabledForBackground() -> Bool {
         false
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = AskBrick()
+        clone.script = script
+        clone.question = self.question
+        clone.userVariable = script.object.userData.variables().first(where: { $0.name == self.userVariable?.name })
+
+        return clone
+    }
 }

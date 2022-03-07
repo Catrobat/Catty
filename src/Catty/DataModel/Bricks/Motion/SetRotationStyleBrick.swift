@@ -63,4 +63,12 @@
     func possibleChoices(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> [String] {
         RotationStyle.allCases.map { $0.localizedString() }
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = SetRotationStyleBrick()
+        clone.script = script
+        clone.selection = self.selection
+
+        return clone
+    }
 }

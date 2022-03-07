@@ -382,6 +382,7 @@
 #define kLocalizedEndOfLoop NSLocalizedString(@"End of Loop", nil)
 #define kLocalizedWhen NSLocalizedString(@"When", nil)
 #define kLocalizedBecomesTrue NSLocalizedString(@"becomes true", nil)
+#define kLocalizedCreateCloneOf NSLocalizedString(@"Create clone of", nil)
 
 // motion bricks
 #define kLocalizedPlaceAt NSLocalizedString(@"Place at ", nil)

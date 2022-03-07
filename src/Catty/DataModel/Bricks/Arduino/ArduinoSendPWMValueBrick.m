@@ -58,6 +58,16 @@
     return NO;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ArduinoSendPWMValueBrick *clone = [[ArduinoSendPWMValueBrick alloc] init];
+    clone.script = script;
+    clone.pin = self.pin;
+    clone.value = self.value;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

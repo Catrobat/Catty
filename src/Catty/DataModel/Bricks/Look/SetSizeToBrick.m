@@ -55,6 +55,15 @@
     self.size = [[Formula alloc] initWithInteger:60];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    SetSizeToBrick *clone = [[SetSizeToBrick alloc] init];
+    clone.script = script;
+    clone.size = self.size;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

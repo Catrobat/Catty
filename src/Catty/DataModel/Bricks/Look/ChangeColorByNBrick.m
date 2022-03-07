@@ -56,6 +56,15 @@
     self.changeColor = [[Formula alloc] initWithInteger:25];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    ChangeColorByNBrick *clone = [[ChangeColorByNBrick alloc] init];
+    clone.script = script;
+    clone.changeColor = self.changeColor;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

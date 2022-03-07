@@ -94,4 +94,14 @@ class WhenConditionScript: Script, BrickFormulaProtocol {
 
         return brick
     }
+
+    override func clone(with object: SpriteObject!) -> Script! {
+        let clone = WhenConditionScript()
+        clone.object = object
+        clone.condition = self.condition
+        clone.preCondition = self.preCondition
+
+        return clone
+    }
+
 }

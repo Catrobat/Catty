@@ -20,36 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc(NextLookBrick)
-@objcMembers class NextLookBrick: Brick, BrickProtocol {
-    override public required init() {
-        super.init()
-    }
+#import <Foundation/Foundation.h>
 
-    func path(for look: Look) -> String? {
-        look.path(for: script.object.scene)
-    }
+@class Brick;
+@class SpriteObject;
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.lookBrick
-    }
+@protocol BrickObjectWithOutBackgroundProtocol <BrickProtocol>
 
-    override func description() -> String {
-        "Nextlookbrick"
-    }
+- (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setObject:(SpriteObject*)object forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
-    override func brickCell() -> BrickCellProtocol.Type {
-        NextLookBrickCell.self as BrickCellProtocol.Type
-    }
-
-    override func getRequiredResources() -> Int {
-        ResourceType.noResources.rawValue
-    }
-
-    override func clone(with script: Script!) -> Brick! {
-        let clone = NextLookBrick()
-        clone.script = script
-
-        return clone
-    }
-}
+@end

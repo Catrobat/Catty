@@ -44,6 +44,14 @@
     
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    IfOnEdgeBounceBrick *clone = [[IfOnEdgeBounceBrick alloc] init];
+    clone.script = script;
+   
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

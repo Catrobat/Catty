@@ -68,4 +68,12 @@ import Foundation
         brick.instrument = self.instrument
         return brick
     }
+
+    override func clone(with script: Script!) -> Brick! {
+        let clone = SetInstrumentBrick()
+        clone.script = script
+        clone.instrument = self.instrument
+
+        return clone
+    }
 }

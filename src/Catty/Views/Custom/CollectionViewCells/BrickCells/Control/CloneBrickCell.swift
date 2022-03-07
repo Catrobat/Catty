@@ -19,37 +19,35 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+import Foundation
 
-@objc(NextLookBrick)
-@objcMembers class NextLookBrick: Brick, BrickProtocol {
-    override public required init() {
-        super.init()
+@objc(CloneBrickCell) class CloneBrickCell: BrickCell, BrickCellProtocol {
+
+    public var textLabel: UILabel?
+    public var objectComboBoxView: iOSCombobox?
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
-    func path(for look: Look) -> String? {
-        look.path(for: script.object.scene)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.lookBrick
+    static func cellHeight() -> CGFloat {
+        UIDefines.brickHeight2h
     }
 
-    override func description() -> String {
-        "Nextlookbrick"
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.objectComboBoxView = inlineViewSubViews[1] as? iOSCombobox
     }
 
-    override func brickCell() -> BrickCellProtocol.Type {
-        NextLookBrickCell.self as BrickCellProtocol.Type
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+         kLocalizedCreateCloneOf.appending("\n%@")
     }
 
-    override func getRequiredResources() -> Int {
-        ResourceType.noResources.rawValue
-    }
-
-    override func clone(with script: Script!) -> Brick! {
-        let clone = NextLookBrick()
-        clone.script = script
-
-        return clone
+    override func parameters() -> [String] {
+        ["{OBJECT}"]
     }
 }

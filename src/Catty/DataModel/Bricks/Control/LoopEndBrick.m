@@ -52,6 +52,25 @@
     NSDebug(@"Performing: %@", self.description);
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    LoopEndBrick *clone = [[LoopEndBrick alloc] init];
+    clone.script = script;
+    
+    for (Brick *brick in script.brickList.reverseObjectEnumerator) {
+        if ([brick isKindOfClass: [LoopBeginBrick class]]) {
+            LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*) brick;
+            if (loopBeginBrick.loopEndBrick == nil) {
+                loopBeginBrick.loopEndBrick = clone;
+                clone.loopBeginBrick = loopBeginBrick;
+                break;
+            }
+        }
+    }
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

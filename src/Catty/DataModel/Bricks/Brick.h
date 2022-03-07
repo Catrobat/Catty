@@ -24,8 +24,7 @@
 #import "SpriteObject.h"
 #import "UIDefines.h"
 #import "BrickProtocol.h"
-
-@class Script;
+#import "Script.h"
 
 @interface Brick : NSObject
 
@@ -71,5 +70,7 @@
 - (void)setDefaultValuesForObject:(SpriteObject *)spriteObject;
 
 - (Class<BrickCellProtocol>)brickCell;
+
+- (Brick*)cloneWithScript:(Script *) script;
 
 @end

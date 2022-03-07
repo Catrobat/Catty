@@ -69,4 +69,11 @@
         true
     }
 
+    override func clone(with script: Script!) -> Brick! {
+        let clone = SetPenSizeBrick()
+        clone.script = script
+        clone.penSize = self.penSize
+
+        return clone
+    }
 }

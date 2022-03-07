@@ -25,6 +25,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "BrickObjectProtocol.h"
+#import "BrickObjectWithOutBackgroundProtocol.h"
 #import "Pocket_Code-Swift.h"
 
 @implementation BrickCellObjectData
@@ -52,6 +53,22 @@
                 if (currentObject && ![options containsObject:currentObject.name]) {
                     [options addObject:currentObject.name];
                     currentOptionIndex = optionIndex;
+                }
+            }
+            if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectWithOutBackgroundProtocol)]) {
+                Brick<BrickObjectWithOutBackgroundProtocol> *objectBrick = (Brick<BrickObjectWithOutBackgroundProtocol>*)self.brickCell.scriptOrBrick;
+                SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+                for(SpriteObject *object in objectBrick.script.object.scene.objectsWithoutBackground) {
+                    if([objectBrick.script.object.name isEqualToString:object.name]) {
+                        [options addObject:@"yourself"];
+                        if([currentObject.name isEqualToString:objectBrick.script.object.name])
+                            currentOptionIndex = optionIndex;
+                    }
+                    else
+                        [options addObject:object.name];
+                    if([currentObject.name isEqualToString:object.name])
+                        currentOptionIndex = optionIndex;
+                    optionIndex++;
                 }
             }
         }

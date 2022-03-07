@@ -33,6 +33,19 @@
     return _pointedObject;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    PointToBrick *clone = [[PointToBrick alloc] init];
+    clone.script = script;
+    if (self.pointedObject == self.script.object) {
+        clone.pointedObject = clone.script.object;
+    } else {
+        clone.pointedObject = self.pointedObject;
+    }
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

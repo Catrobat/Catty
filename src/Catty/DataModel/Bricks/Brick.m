@@ -126,6 +126,15 @@
     // Override this method in Brick implementation
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    // Override this method in Brick implementation
+    Brick *clone = [[Brick alloc] init];
+    clone.script = script;
+    
+    return clone;
+}
+
 #pragma mark - Copy
 // This function must be overriden by Bricks with references to other Bricks (e.g. ForeverBrick)
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context

@@ -23,6 +23,7 @@
 
 #import "Brick.h"
 #import "BrickObjectProtocol.h"
+#import "BrickObjectWithOutBackgroundProtocol.h"
 
 @class SpriteObject;
 

@@ -64,6 +64,15 @@
     return [NSString stringWithFormat:@"MoveNStepsBrick"];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    MoveNStepsBrick *clone = [[MoveNStepsBrick alloc] init];
+    clone.script = script;
+    clone.steps = self.steps;
+    
+    return clone;
+}
+
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

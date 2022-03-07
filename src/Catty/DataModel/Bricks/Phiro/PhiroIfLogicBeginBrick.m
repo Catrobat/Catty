@@ -50,6 +50,15 @@
         self.sensor = sensor;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    PhiroIfLogicBeginBrick *clone = [[PhiroIfLogicBeginBrick alloc] init];
+    clone.script = script;
+    clone.sensor = self.sensor;
+    
+    return clone;
+}
+
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {

@@ -67,6 +67,15 @@
     self.ifCondition = [[Formula alloc] initWithInteger:1];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    IfThenLogicBeginBrick *clone = [[IfThenLogicBeginBrick alloc] init];
+    clone.script = script;
+    clone.ifCondition = self.ifCondition;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

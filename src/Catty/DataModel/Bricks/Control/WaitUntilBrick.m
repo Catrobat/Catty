@@ -63,6 +63,15 @@
     self.waitCondition = [[Formula alloc] initWithInteger:1];
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    WaitUntilBrick *clone = [[WaitUntilBrick alloc] init];
+    clone.script = script;
+    clone.waitCondition = self.waitCondition;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

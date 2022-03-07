@@ -281,6 +281,92 @@ final class Stage: SKScene, StageProtocol {
         return true
     }
 
+    @objc func addClonedObjecToProject(spriteObject: SpriteObject) {
+        let spriteNode = spriteObject.spriteNode!
+
+        guard let scriptList = spriteObject.scriptList as NSArray? as? [Script]  else {
+            //fatalError
+            debugPrint("!! No script list given in object: \(spriteObject) !!")
+            return
+        }
+        let variableList = UserDataContainer.objectVariables(for: spriteObject)
+        for script in scriptList {
+            let scriptSequence = frontend.computeSequenceListForScript(script)
+            let instructions = backend.instructionsForSequence(scriptSequence.sequenceList)
+
+            logger.info("Generating Context of \(script)")
+            var context: CBScriptContext?
+            switch script {
+            case let startScript as StartScript:
+                context = CBStartScriptContext(
+                    startScript: startScript,
+                    spriteNode: spriteNode,
+                    formulaInterpreter: formulaManager,
+                    touchManager: formulaManager.touchManager,
+                    state: .runnable)
+
+            case let whenScript as WhenScript:
+                context = CBWhenScriptContext(
+                    whenScript: whenScript,
+                    spriteNode: spriteNode,
+                    formulaInterpreter: formulaManager,
+                    touchManager: formulaManager.touchManager,
+                    state: .runnable)
+
+            case let whenTouchDownScript as WhenTouchDownScript:
+                context = CBWhenTouchDownScriptContext(
+                    whenTouchDownScript: whenTouchDownScript,
+                    spriteNode: spriteNode,
+                    formulaInterpreter: formulaManager,
+                    touchManager: formulaManager.touchManager,
+                    state: .runnable)
+
+            case let whenBackgroundChangesScript as WhenBackgroundChangesScript:
+                context = CBWhenBackgroundChangesScriptContext(
+                    whenBackgroundChangesScript: whenBackgroundChangesScript,
+                    spriteNode: spriteNode,
+                    formulaInterpreter: formulaManager,
+                    touchManager: formulaManager.touchManager,
+                    state: .runnable)
+
+            case let bcScript as BroadcastScript:
+                context = CBBroadcastScriptContext(
+                    broadcastScript: bcScript,
+                    spriteNode: spriteNode,
+                    formulaInterpreter: formulaManager,
+                    touchManager: formulaManager.touchManager,
+                    state: .runnable)
+                if let broadcastContext = context as? CBBroadcastScriptContext {
+                    broadcastHandler.subscribeBroadcastContext(broadcastContext)
+                }
+
+            case let whenConditionScript as WhenConditionScript:
+                context = CBWhenConditionScriptContext(
+                    whenConditionScript: whenConditionScript,
+                    spriteNode: spriteNode,
+                    formulaInterpreter: formulaManager,
+                    touchManager: formulaManager.touchManager,
+                    state: .runnable)
+
+            default:
+                break
+            }
+            guard var scriptContext = context else {
+                //fatalError
+                debugPrint("Unknown script! THIS SHOULD NEVER HAPPEN!")
+                return
+            }
+            scriptContext += instructions // generate instructions and add them to script context
+            scheduler.registerContext(scriptContext)
+        }
+
+        for variable: UserVariable in variableList {
+            variable.textLabel?.zPosition = CGFloat(zPosition + 1)
+            addChild(variable.textLabel!)
+        }
+        return
+    }
+
     @objc func pauseScheduler() {
         scheduler.pause()
         formulaManager.pause()

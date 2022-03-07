@@ -66,6 +66,15 @@ andParameterNumber:(NSInteger)paramNumber
     return choices;
 }
 
+- (Brick*)cloneWithScript:(Script *)script
+{
+    FlashBrick *clone = [[FlashBrick alloc] init];
+    clone.script = script;
+    clone.flashChoice = self.flashChoice;
+    
+    return clone;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

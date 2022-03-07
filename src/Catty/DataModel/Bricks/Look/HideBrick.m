@@ -40,4 +40,13 @@
 {
     return kNoResources;
 }
+
+- (Brick*)cloneWithScript:(Script *)script
+{
+    HideBrick *clone = [[HideBrick alloc] init];
+    clone.script = script;
+    
+    return clone;
+}
+
 @end

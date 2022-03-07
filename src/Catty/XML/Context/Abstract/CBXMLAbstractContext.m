@@ -42,6 +42,14 @@
     return _pointedSpriteObjectList;
 }
 
+- (NSMutableArray*)clonedSpriteObjectList
+{
+    if (! _clonedSpriteObjectList) {
+        _clonedSpriteObjectList = [NSMutableArray array];
+    }
+    return _clonedSpriteObjectList;
+}
+
 - (NSMutableArray*)spriteObjectList
 {
     if (! _spriteObjectList) {
