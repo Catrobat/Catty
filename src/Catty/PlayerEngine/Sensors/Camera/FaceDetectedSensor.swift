@@ -39,7 +39,7 @@ class FaceDetectedSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected else { return type(of: self).defaultRawValue }
+        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected[0] else { return type(of: self).defaultRawValue }
         return isFaceDetected ? 1.0 : 0.0
     }
 

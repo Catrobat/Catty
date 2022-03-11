@@ -20,22 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FacePositionXSensor: DeviceDoubleSensor {
+class SecondFaceDetectedSensor: DeviceDoubleSensor {
 
-    static let tag = "FACE_X"
-    static let name = kUIFESensorFaceX
+    static let tag = "SECOND_FACE_DETECTED"
+    static let name = kUIFESensorSecondFaceDetected
     static let defaultRawValue = 0.0
-    static let position = 240
+    static let position = 260
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
-    let stageWidth: Double?
-    let stageHeight: Double?
 
-    init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
+    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
-        self.stageWidth = Double(stageSize.width)
-        self.stageHeight = Double(stageSize.height)
     }
 
     func tag() -> String {
@@ -43,18 +39,12 @@ class FacePositionXSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionX = self.getFaceDetectionManager()?.facePositionRatioFromLeft[0] else { return type(of: self).defaultRawValue }
-        return positionX
+        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected[1] else { return type(of: self).defaultRawValue }
+        return isFaceDetected ? 1.0 : 0.0
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        if rawValue == type(of: self).defaultRawValue {
-            return rawValue
-        }
-        guard let stageWidth = self.stageWidth, let stageHeight = self.stageHeight, let frameHeight = self.getFaceDetectionManager()?.faceDetectionFrameSize?.height else {
-            return type(of: self).defaultRawValue }
-        let scaledPreviewWidthRatio = stageHeight / frameHeight
-        return (stageWidth * rawValue - stageWidth / 2.0) * scaledPreviewWidthRatio
+        rawValue
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

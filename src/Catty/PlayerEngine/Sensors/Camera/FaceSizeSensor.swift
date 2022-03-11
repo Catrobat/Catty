@@ -25,7 +25,7 @@ class FaceSizeSensor: DeviceDoubleSensor {
     static let tag = "FACE_SIZE"
     static let name = kUIFESensorFaceSize
     static let defaultRawValue = 0.0
-    static let position = 250
+    static let position = 230
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
@@ -41,7 +41,7 @@ class FaceSizeSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let faceSize = self.getFaceDetectionManager()?.faceSizeRatio else { return type(of: self).defaultRawValue }
+        guard let faceSize = self.getFaceDetectionManager()?.faceSizeRatio[0] else { return type(of: self).defaultRawValue }
         return Double(faceSize)
     }
 

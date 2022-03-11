@@ -38,4 +38,8 @@ final class FaceDetectionManagerMock: FaceDetectionManager {
     override func available() -> Bool {
         isAvailable
     }
+
+    func setFaceDetectionFrameSize(_ frameSize: CGSize) {
+        self.faceDetectionFrameSize = frameSize
+    }
 }

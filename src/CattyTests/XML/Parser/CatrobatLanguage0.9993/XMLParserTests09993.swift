@@ -47,6 +47,75 @@ class XMLParserTests09993: XMLAbstractTest {
         XCTAssertEqual(0, project.unsupportedElements.count)
     }
 
+    func testBackwardsCompatibleFaceDetectionSensors() {
+        let project = self.getProjectForXML(xmlFile: "BackwardsCompatibleFaceDetectionSensors")
+
+        let objectCount = 2
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        let object = project.scene.object(at: 1)!
+        XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
+        let script = object.scriptList.object(at: 0) as! Script
+        XCTAssertEqual(script.brickList.count, 9, "Invalid brick list")
+
+        let ifLogicBrick = script.brickList.object(at: 1) as! IfLogicBeginBrick
+        let setSizeToBrick = script.brickList.object(at: 2) as! SetSizeToBrick
+        let placeAtBrick = script.brickList.object(at: 3) as! PlaceAtBrick
+
+        XCTAssertEqual(ElementType.SENSOR, ifLogicBrick.ifCondition.formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, setSizeToBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[1].formulaTree.type)
+
+        XCTAssertEqual(FaceDetectedSensor.tag, ifLogicBrick.ifCondition.formulaTree.value)
+        XCTAssertEqual(FaceSizeSensor.tag, setSizeToBrick.getFormulas()[0].formulaTree.value)
+        XCTAssertEqual(FacePositionXSensor.tag, placeAtBrick.getFormulas()[0].formulaTree.value)
+        XCTAssertEqual(FacePositionYSensor.tag, placeAtBrick.getFormulas()[1].formulaTree.value)
+    }
+
+    func testFaceDetectionSensors() {
+        let project = self.getProjectForXML(xmlFile: "FaceDetectionSensors")
+
+        let objectCount = 3
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        var object = project.scene.object(at: 1)!
+        XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
+        var script = object.scriptList.object(at: 0) as! Script
+        XCTAssertEqual(script.brickList.count, 9, "Invalid brick list")
+
+        var ifLogicBrick = script.brickList.object(at: 1) as! IfLogicBeginBrick
+        var setSizeToBrick = script.brickList.object(at: 2) as! SetSizeToBrick
+        var placeAtBrick = script.brickList.object(at: 3) as! PlaceAtBrick
+
+        XCTAssertEqual(ElementType.SENSOR, ifLogicBrick.ifCondition.formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, setSizeToBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[1].formulaTree.type)
+
+        XCTAssertEqual(FaceDetectedSensor.tag, ifLogicBrick.ifCondition.formulaTree.value)
+        XCTAssertEqual(FaceSizeSensor.tag, setSizeToBrick.getFormulas()[0].formulaTree.value)
+        XCTAssertEqual(FacePositionXSensor.tag, placeAtBrick.getFormulas()[0].formulaTree.value)
+        XCTAssertEqual(FacePositionYSensor.tag, placeAtBrick.getFormulas()[1].formulaTree.value)
+
+        object = project.scene.object(at: 2)!
+        XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
+        script = object.scriptList.object(at: 0) as! Script
+        XCTAssertEqual(script.brickList.count, 9, "Invalid brick list")
+
+        ifLogicBrick = script.brickList.object(at: 1) as! IfLogicBeginBrick
+        setSizeToBrick = script.brickList.object(at: 2) as! SetSizeToBrick
+        placeAtBrick = script.brickList.object(at: 3) as! PlaceAtBrick
+
+        XCTAssertEqual(ElementType.SENSOR, ifLogicBrick.ifCondition.formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, setSizeToBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[1].formulaTree.type)
+
+        XCTAssertEqual(SecondFaceDetectedSensor.tag, ifLogicBrick.ifCondition.formulaTree.value)
+        XCTAssertEqual(SecondFaceSizeSensor.tag, setSizeToBrick.getFormulas()[0].formulaTree.value)
+        XCTAssertEqual(SecondFacePositionXSensor.tag, placeAtBrick.getFormulas()[0].formulaTree.value)
+        XCTAssertEqual(SecondFacePositionYSensor.tag, placeAtBrick.getFormulas()[1].formulaTree.value)
+    }
+
     func testGlideToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
         let glideToBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick

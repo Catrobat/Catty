@@ -20,22 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FacePositionXSensor: DeviceDoubleSensor {
+class SecondFaceSizeSensor: DeviceDoubleSensor {
 
-    static let tag = "FACE_X"
-    static let name = kUIFESensorFaceX
+    static let tag = "SECOND_FACE_SIZE"
+    static let name = kUIFESensorSecondFaceSize
     static let defaultRawValue = 0.0
-    static let position = 240
+    static let position = 270
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
     let stageWidth: Double?
-    let stageHeight: Double?
 
     init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
         self.stageWidth = Double(stageSize.width)
-        self.stageHeight = Double(stageSize.height)
     }
 
     func tag() -> String {
@@ -43,18 +41,23 @@ class FacePositionXSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionX = self.getFaceDetectionManager()?.facePositionRatioFromLeft[0] else { return type(of: self).defaultRawValue }
-        return positionX
+        guard let faceSize = self.getFaceDetectionManager()?.faceSizeRatio[1] else { return type(of: self).defaultRawValue }
+        return Double(faceSize)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        if rawValue == type(of: self).defaultRawValue {
-            return rawValue
+        guard let frameSize = self.getFaceDetectionManager()?.faceDetectionFrameSize,
+            let stageWidth = self.stageWidth
+            else { return type(of: self).defaultRawValue }
+
+        let faceSize = rawValue * stageWidth / Double(frameSize.width) * 100
+        if faceSize > 100 {
+            return 100
         }
-        guard let stageWidth = self.stageWidth, let stageHeight = self.stageHeight, let frameHeight = self.getFaceDetectionManager()?.faceDetectionFrameSize?.height else {
-            return type(of: self).defaultRawValue }
-        let scaledPreviewWidthRatio = stageHeight / frameHeight
-        return (stageWidth * rawValue - stageWidth / 2.0) * scaledPreviewWidthRatio
+        if faceSize < 0 {
+            return 0
+        }
+        return faceSize
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

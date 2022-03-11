@@ -778,10 +778,14 @@ let kLocalizedSensorLED = NSLocalizedString("LED", bundle: Bundle(for: LanguageT
 let kLocalizedInternet = NSLocalizedString("Internet", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNotAvailable = NSLocalizedString("not available. Continue anyway?", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
-let kUIFESensorFaceDetected = NSLocalizedString("face detected", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFESensorFaceSize = NSLocalizedString("facesize", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFESensorFaceX = NSLocalizedString("faceposition x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFESensorFaceY = NSLocalizedString("faceposition y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorFaceDetected = NSLocalizedString("first face visible", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorFaceSize = NSLocalizedString("first face size", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorFaceX = NSLocalizedString("first face x position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorFaceY = NSLocalizedString("first face y position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorSecondFaceDetected = NSLocalizedString("second face visible", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorSecondFaceSize = NSLocalizedString("second face size", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorSecondFaceX = NSLocalizedString("second face x position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorSecondFaceY = NSLocalizedString("second face y position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 

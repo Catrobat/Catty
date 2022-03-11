@@ -19,20 +19,21 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+import Vision
 
-protocol FaceDetectionManagerProtocol {
+class VNFaceObservationMock: VNFaceObservation {
+    private let mockedBoundingBox: CGRect
 
-    var isFaceDetected: [Bool] { get }
-    var facePositionRatioFromLeft: [Double?] { get }
-    var facePositionRatioFromBottom: [Double?] { get }
-    var faceSizeRatio: [Double?] { get }
-    var faceDetectionFrameSize: CGSize? { get }
+    init(boundingBox: CGRect) {
+        self.mockedBoundingBox = boundingBox
+        super.init()
+    }
+    required init(coder decoder: NSCoder) {
+        self.mockedBoundingBox = CGRect.zero
+        super.init(coder: decoder)!
+    }
 
-    func start()
-
-    func stop()
-
-    func reset()
-
-    func available() -> Bool
+    override var boundingBox: CGRect {
+        mockedBoundingBox
+    }
 }

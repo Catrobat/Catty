@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FacePositionXSensor: DeviceDoubleSensor {
+class SecondFacePositionXSensor: DeviceDoubleSensor {
 
-    static let tag = "FACE_X"
-    static let name = kUIFESensorFaceX
+    static let tag = "SECOND_FACE_X"
+    static let name = kUIFESensorSecondFaceX
     static let defaultRawValue = 0.0
-    static let position = 240
+    static let position = 280
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
@@ -43,7 +43,7 @@ class FacePositionXSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionX = self.getFaceDetectionManager()?.facePositionRatioFromLeft[0] else { return type(of: self).defaultRawValue }
+        guard let positionX = self.getFaceDetectionManager()?.facePositionRatioFromLeft[1] else { return type(of: self).defaultRawValue }
         return positionX
     }
 
