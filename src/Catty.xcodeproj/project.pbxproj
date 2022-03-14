@@ -800,7 +800,6 @@
 		4CDE4CF1203DBBF500B43034 /* YKImageCropperView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */; };
 		4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */; };
 		4CDE4CF5203DBBF500B43034 /* UIImage+FloodFill.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */; };
-		4CDE4CF6203DBBF500B43034 /* SharkfoodMuteSwitchDetector.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */; };
 		4CDE4CF7203DBBF500B43034 /* EVCircularProgressView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDF203DBBF400B43034 /* EVCircularProgressView.license */; };
 		4CDE4CF8203DBBF500B43034 /* LCTableViewPickerControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */; };
 		4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */; };
@@ -1165,8 +1164,6 @@
 		92FF2E941A24C7D800093DA7 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E641A24C7D800093DA7 /* Logger.m */; };
 		92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E651A24C7D800093DA7 /* LoggerProperties.plist */; };
 		92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E721A24C7D800093DA7 /* NavigationController.m */; };
-		92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */; };
-		92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */; };
 		92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E841A24C7D800093DA7 /* TimerLabel.m */; };
 		92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E871A24C7D800093DA7 /* TableUtil.m */; };
 		92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E891A24C7D800093DA7 /* UIUtil.m */; };
@@ -2876,7 +2873,6 @@
 		4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YKImageCropperView.license; sourceTree = "<group>"; };
 		4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HMSegmentedControl.license; sourceTree = "<group>"; };
 		4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIImage+FloodFill.license"; sourceTree = "<group>"; };
-		4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SharkfoodMuteSwitchDetector.license; sourceTree = "<group>"; };
 		4CDE4CDF203DBBF400B43034 /* EVCircularProgressView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EVCircularProgressView.license; sourceTree = "<group>"; };
 		4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LCTableViewPickerControl.license; sourceTree = "<group>"; };
 		4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MXSegmentedPager.license; sourceTree = "<group>"; };
@@ -3386,9 +3382,6 @@
 		92FF2E651A24C7D800093DA7 /* LoggerProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoggerProperties.plist; sourceTree = "<group>"; };
 		92FF2E711A24C7D800093DA7 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		92FF2E721A24C7D800093DA7 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
-		92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
-		92FF2E7D1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharkfoodMuteSwitchDetector.h; sourceTree = "<group>"; };
-		92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharkfoodMuteSwitchDetector.m; sourceTree = "<group>"; };
 		92FF2E831A24C7D800093DA7 /* TimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerLabel.h; sourceTree = "<group>"; };
 		92FF2E841A24C7D800093DA7 /* TimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerLabel.m; sourceTree = "<group>"; };
 		92FF2E861A24C7D800093DA7 /* TableUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableUtil.h; sourceTree = "<group>"; };
@@ -6835,7 +6828,6 @@
 				4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */,
 				4CDE4CD1203DBBF200B43034 /* OrderedDictionary.license */,
 				9E5DFD8B25057ECF0049265C /* ScratchSampleInstruments.license */,
-				4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */,
 				4CDE4CFB203DBC8100B43034 /* Siren.license */,
 				4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */,
 				4CDE4CD0203DBBF200B43034 /* SSZipArchive.license */,
@@ -8287,7 +8279,6 @@
 				2E25F6DD262040380044B2DF /* Network */,
 				4C0F9F47204ADD0C00E71B2D /* OrderedDictionary */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
-				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
 				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				5E99F2E123442DD2007878C1 /* ThemesHelper */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
@@ -8355,16 +8346,6 @@
 				92FF2E721A24C7D800093DA7 /* NavigationController.m */,
 			);
 			path = NavigationController;
-			sourceTree = "<group>";
-		};
-		92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */,
-				92FF2E7D1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.h */,
-				92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */,
-			);
-			path = SharkfoodMuteSwitchDetector;
 			sourceTree = "<group>";
 		};
 		92FF2E821A24C7D800093DA7 /* TimerLabel */ = {
@@ -11546,7 +11527,6 @@
 				9E5DFD09250574380049265C /* 18-cuica.wv in Resources */,
 				9EBAC31122A9B91C002E198D /* AudioKit.license in Resources */,
 				9EC520B724FC063D0029CD0E /* flute-72.wv in Resources */,
-				92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */,
 				9E5DFD15250574380049265C /* synth-pad.sfz in Resources */,
 				9E5DFD0E250574380049265C /* 5-open-hi-hat.wv in Resources */,
 				9E5DFD0C250574380049265C /* 11-cowbell.wv in Resources */,
@@ -11577,7 +11557,6 @@
 				92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */,
 				9E5DFD13250574380049265C /* music-box.sfz in Resources */,
 				9EC5208224FC04EA0029CD0E /* electric-guitar-60.wv in Resources */,
-				4CDE4CF6203DBBF500B43034 /* SharkfoodMuteSwitchDetector.license in Resources */,
 				9EC5208A24FC04EA0029CD0E /* trombo-36.wv in Resources */,
 				4CDE4CF0203DBBF500B43034 /* SPUserResizableView.license in Resources */,
 				CADBD6F419B0E8C200C62836 /* Settings.bundle in Resources */,
@@ -12877,7 +12856,6 @@
 				184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				6F5B4C6224D412EF00D2D319 /* Scene.swift in Sources */,
-				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
 				59EA52B824FCF9E400AC6E8D /* WhenBackgroundChangesScriptCell.swift in Sources */,
 				186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */,
 				AAAF228A1BC0D0630076F11E /* TurnRightBrick+Instruction.swift in Sources */,

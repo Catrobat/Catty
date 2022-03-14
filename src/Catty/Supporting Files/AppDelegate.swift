@@ -49,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setDefaultUserDefaults(defaults: defaults)
         defaults.synchronize()
 
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.UITests) {
             UIView.setAnimationsEnabled(false)

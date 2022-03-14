@@ -39,7 +39,7 @@ import Foundation
 
     func activateAudioSession() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.soloAmbient, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, options: [.defaultToSpeaker, .allowAirPlay, .allowBluetoothA2DP])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let error as NSError {
             debugPrint("Could not activate audio session.")
@@ -49,7 +49,7 @@ import Foundation
 
     func deactivateAudioSession() {
         do {
-            try AVAudioSession.sharedInstance().setActive(false)
+            try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
         } catch let error as NSError {
             debugPrint("Could not deactivate audio session.")
             debugPrint(error)

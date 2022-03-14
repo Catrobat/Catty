@@ -130,12 +130,6 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
-                <string>Catty/Resources/Licenses/SharkfoodMuteSwitchDetector</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/Siren</string>
             </dict>
             <dict>

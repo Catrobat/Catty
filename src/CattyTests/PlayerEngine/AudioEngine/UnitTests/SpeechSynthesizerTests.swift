@@ -44,9 +44,12 @@ final class SpeechSynthesizerTests: XCTestCase {
         newUtterance = getUtterance(text: "new")
         previousExpectationTuple = (currentUtterance, currentUtteranceExpectation)
 
-        let audioSession = AVAudioSession.sharedInstance()
-        try? audioSession.setActive(true)
-        try? audioSession.setCategory(AVAudioSession.Category.playback)
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+        try? AVAudioSession.sharedInstance().setActive(true)
+    }
+
+    override func tearDown() {
+        try? AVAudioSession.sharedInstance().setActive(false)
     }
 
     func testSpeechSynthStartSpeaking() {

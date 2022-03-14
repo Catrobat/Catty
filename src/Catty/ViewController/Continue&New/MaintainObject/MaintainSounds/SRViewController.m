@@ -96,17 +96,7 @@
     self.filePath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, fileName];
     self.sound = [[Sound alloc] initWithName:fileName andFileName:fileName];
     NSURL* outputFileUrl = [NSURL fileURLWithPath:self.filePath isDirectory:NO];
-    self.session = [AVAudioSession sharedInstance];
-    NSError *err = NULL;
-    [self.session setActive:YES error:&err];
-    [self.session setCategory:AVAudioSessionCategoryPlayAndRecord error:&err];
-    if (err) {
-        NSError(@"There was an error creating the audio session");
-    }
-    [self.session overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:NULL];
-    if (err) {
-        NSError(@"There was an error sending the audio to the speakers");
-    }
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
     
     NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc]init];
     
