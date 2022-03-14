@@ -20,28 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension StartRunningStitchBrick: CBXMLNodeProtocol {
+extension StartZigzagStitchBrick: CBXMLNodeProtocol {
+
     static func parse(from xmlElement: GDataXMLElement, with context: CBXMLParserContext) -> Self {
-        CBXMLParserHelper.validate(xmlElement,
-                                   forNumberOfChildNodes: 1,
-                                   andFormulaListWithTotalNumberOfFormulas: 1)
-        let lengthFormula = CBXMLParserHelper.formula(in: xmlElement,
-                                                      forCategoryName: "LENGTH",
-                                                      with: context)
+        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 1, andFormulaListWithTotalNumberOfFormulas: 2)
+        let lengthFormula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "LENGTH", with: context)
+        let widthFormula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "WIDTH", with: context)
         let brick = self.init()
-        brick.stitchLength = lengthFormula
+        brick.length = lengthFormula
+        brick.width = widthFormula
+
         return brick
     }
 
     func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
-        let brick = super.xmlElement(for: "StartRunningStitchBrick", with: context)
+        let brick = super.xmlElement(for: "StartZigzagStitchBrick", with: context)
         let formulaList = GDataXMLElement(name: "formulaList", context: context)
 
-        let lengthFormula = self.stitchLength?.xmlElement(with: context)
-        lengthFormula?.addAttribute(GDataXMLElement(name: "category",
-                                                    stringValue: "LENGTH",
-                                                    context: nil))
+        let lengthFormula = self.length?.xmlElement(with: context)
+        lengthFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "LENGTH", context: nil))
         formulaList?.addChild(lengthFormula, context: context)
+
+        let widthFormula = self.width?.xmlElement(with: context)
+        widthFormula?.addAttribute(GDataXMLElement(name: "category", stringValue: "WIDTH", context: nil))
+        formulaList?.addChild(widthFormula, context: context)
 
         brick?.addChild(formulaList, context: context)
         return brick

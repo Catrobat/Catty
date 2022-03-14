@@ -57,8 +57,8 @@ enum EmbroideryDefines {
     static let END_OF_FILE: [UInt8] = [0x00, 0x00, 0xF3]
 
     static let sizeConversionFactor = CGFloat(0.634)
-
     static let defaultRunningStitchLength = 10
-
+    static let defaultZigzagStitchLength = 10
+    static let defaultZigzagStitchWidth = 20
     static let sewUpSteps = 3
 }

@@ -110,6 +110,9 @@
 "and wait" = "and wait";
 
 /* No comment provided by engineer. */
+"and width" = "and width";
+
+/* No comment provided by engineer. */
 "Animate brick-parts" = "Animate brick-parts";
 
 /* No comment provided by engineer. */
@@ -1773,6 +1776,9 @@
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Start sound and wait";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Start zigzag stitch with length";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Steel Drum";

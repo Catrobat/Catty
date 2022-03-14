@@ -20,24 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension StartRunningStitchBrick: CBInstructionProtocol {
+import XCTest
 
-    func instruction() -> CBInstruction {
-        .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
-    }
+@testable import Pocket_Code
 
-    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
-        guard let object = self.script?.object, let spriteNode = object.spriteNode else {
-            fatalError("This should never happen!") }
+final class StartZigzagStitchBrickTests: AbstractBrickTest {
 
-        return {
-            if let length = self.stitchLength {
-                spriteNode.embroideryStream.activePattern =
-                RunningStitchPattern(for: spriteNode.embroideryStream,
-                                     at: spriteNode.position,
-                                     with: CGFloat(formulaInterpreter.interpretInteger(
-                                        length, for: object)))
-            }
-        }
+    func testStartZigzagStitchPattern() {
+        super.setUp()
+        let spriteObject = SpriteObject()
+        let scene = Scene(name: "ZigzagStitchTest")
+        spriteObject.scene = scene
+
+        let spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        let script = Script()
+        script.object = spriteObject
+
+        let brick = StartZigzagStitchBrick()
+        brick.script = script
+        brick.length = Formula(integer: 60)
+        brick.width = Formula(integer: 40)
+
+        let action = brick.actionBlock(self.formulaInterpreter)
+        action()
+
+        XCTAssertTrue(spriteNode.embroideryStream.activePattern! is ZigzagStitchPattern)
     }
 }
