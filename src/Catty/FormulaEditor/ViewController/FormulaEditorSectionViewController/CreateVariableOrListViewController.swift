@@ -192,7 +192,7 @@
             return true
         }
 
-        AlertController(title: kLocalizedPocketCode, message: invalidNameMessage, style: .actionSheet)
+        AlertController(title: kLocalizedPocketCode, message: invalidNameMessage, style: .alert)
             .addDefaultAction(title: kLocalizedOK, handler: nil)
             .build().showWithController(self)
 
@@ -222,7 +222,7 @@
     }
 
     private func showNameUniquenessAlert() {
-        AlertController(title: kLocalizedPocketCode, message: kUIFENewVarExists, style: .actionSheet)
+        AlertController(title: kLocalizedPocketCode, message: kUIFENewVarExists, style: .alert)
             .addDefaultAction(title: kLocalizedOK, handler: nil)
             .build().showWithController(self)
     }

@@ -71,7 +71,7 @@ class VariableTests: XCTestCase {
         textField.typeText(String(repeating: "i", count: 25 + 1))
         app.navigationBars[kUIFENewVar].buttons[kUIFEDone].tap()
 
-        XCTAssert(waitForElementToAppear(app.sheets[kLocalizedPocketCode]).exists)
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
 
     func testCreateAndSelectVariable() {
