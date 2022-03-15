@@ -636,7 +636,9 @@ let kUIFENewList = NSLocalizedString("New list", bundle: Bundle(for: LanguageTra
 let kUIFENewVarExists = NSLocalizedString("Name already exists.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEonly15Char = NSLocalizedString("only 15 characters allowed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEVarName = NSLocalizedString("Variable name:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEVariableName = NSLocalizedString("Variable name", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEListName = NSLocalizedString("List name:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEListNameForm = NSLocalizedString("List name", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEOtherName = NSLocalizedString("Please choose another name:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEAddNewText = NSLocalizedString("Abc", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEProjectVariables = NSLocalizedString("Variables for all actors and objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -668,6 +670,7 @@ let kUIFESyntaxError = NSLocalizedString("Syntax Error!", bundle: Bundle(for: La
 let kUIFEEmptyInput = NSLocalizedString("Empty input!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEVarOrList = NSLocalizedString("Variable or list", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFECreateAsList = NSLocalizedString("Create as list", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEFunctionSine = NSLocalizedString("sine", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionCosine = NSLocalizedString("cosine", bundle: Bundle(for: LanguageTranslation.self), comment: "")
