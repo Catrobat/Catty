@@ -26,6 +26,7 @@ class SensorMock: Sensor {
 
     static var tag = "sensorTag"
     static var name = "name"
+    static var position = 0
     static var defaultRawValue: Double = 0
     static var requiredResource = ResourceType.noResources
     private let mockedSections: [FormulaEditorSection]

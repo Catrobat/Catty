@@ -32,7 +32,7 @@ final class RequiredResourcesTests: XCTestCase {
         let sensors = CatrobatSetup.registeredSensors(stageSize: CGSize.zero,
                                                       motionManager: MotionManagerMock(),
                                                       locationManager: LocationManagerMock(),
-                                                      faceDetectionManager: FaceDetectionManagerMock(),
+                                                      visualDetectionManager: VisualDetectionManagerMock(),
                                                       audioManager: AudioManagerMock(),
                                                       touchManager: TouchManagerMock(),
                                                       bluetoothService: BluetoothService.sharedInstance())

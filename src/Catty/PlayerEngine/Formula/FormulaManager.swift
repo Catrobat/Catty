@@ -30,7 +30,7 @@ import CoreMotion
     let operatorManager: OperatorManagerProtocol
     let motionManager: MotionManager
     let locationManager: LocationManager
-    let faceDetectionManager: FaceDetectionManagerProtocol
+    let visualDetectionManager: VisualDetectionManagerProtocol
     let audioManager: AudioManagerProtocol
     let touchManager: TouchManagerProtocol
     let bluetoothService: BluetoothService
@@ -40,7 +40,7 @@ import CoreMotion
     convenience init(stageSize: CGSize, landscapeMode: Bool) {
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()
-        let faceDetectionManager = FaceDetectionManager()
+        let visualDetectionManager = VisualDetectionManager()
         let audioManager = AudioManager.shared()!
         let touchManager = TouchManager()
         let bluetoothService = BluetoothService.sharedInstance()
@@ -49,7 +49,7 @@ import CoreMotion
             FormulaManager.buildSensorManager(stageSize: stageSize,
                                               motionManager: motionManager,
                                               locationManager: locationManager,
-                                              faceDetectionManager: faceDetectionManager,
+                                              visualDetectionManager: visualDetectionManager,
                                               audioManager: audioManager,
                                               touchManager: touchManager,
                                               bluetoothService: bluetoothService,
@@ -66,7 +66,7 @@ import CoreMotion
                   operatorManager: operatorManager,
                   motionManager: motionManager,
                   locationManager: locationManager,
-                  faceDetectionManager: faceDetectionManager,
+                  visualDetectionManager: visualDetectionManager,
                   audioManager: audioManager,
                   touchManager: touchManager,
                   bluetoothService: bluetoothService)
@@ -78,7 +78,7 @@ import CoreMotion
                   operatorManager: operatorManager,
                   motionManager: CMMotionManager(),
                   locationManager: CLLocationManager(),
-                  faceDetectionManager: FaceDetectionManager(),
+                  visualDetectionManager: VisualDetectionManager(),
                   audioManager: AudioManager(),
                   touchManager: TouchManager(),
                   bluetoothService: BluetoothService.sharedInstance())
@@ -89,7 +89,7 @@ import CoreMotion
          operatorManager: OperatorManagerProtocol,
          motionManager: MotionManager,
          locationManager: LocationManager,
-         faceDetectionManager: FaceDetectionManagerProtocol,
+         visualDetectionManager: VisualDetectionManagerProtocol,
          audioManager: AudioManagerProtocol,
          touchManager: TouchManagerProtocol,
          bluetoothService: BluetoothService) {
@@ -100,7 +100,7 @@ import CoreMotion
 
         self.motionManager = motionManager
         self.locationManager = locationManager
-        self.faceDetectionManager = faceDetectionManager
+        self.visualDetectionManager = visualDetectionManager
         self.audioManager = audioManager
         self.touchManager = touchManager
         self.bluetoothService = bluetoothService
@@ -135,7 +135,7 @@ import CoreMotion
     private static func buildSensorManager(stageSize: CGSize,
                                            motionManager: MotionManager,
                                            locationManager: LocationManager,
-                                           faceDetectionManager: FaceDetectionManager,
+                                           visualDetectionManager: VisualDetectionManager,
                                            audioManager: AudioManagerProtocol,
                                            touchManager: TouchManagerProtocol,
                                            bluetoothService: BluetoothService,
@@ -144,7 +144,7 @@ import CoreMotion
         let sensors = CatrobatSetup.registeredSensors(stageSize: stageSize,
                                                       motionManager: motionManager,
                                                       locationManager: locationManager,
-                                                      faceDetectionManager: faceDetectionManager,
+                                                      visualDetectionManager: visualDetectionManager,
                                                       audioManager: audioManager,
                                                       touchManager: touchManager,
                                                       bluetoothService: bluetoothService)

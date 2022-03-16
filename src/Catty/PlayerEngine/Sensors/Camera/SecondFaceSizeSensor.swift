@@ -28,11 +28,11 @@ class SecondFaceSizeSensor: DeviceDoubleSensor {
     static let position = 270
     static let requiredResource = ResourceType.faceDetection
 
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageWidth: Double?
 
-    init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
+    init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
+        self.getVisualDetectionManager = visualDetectionManagerGetter
         self.stageWidth = Double(stageSize.width)
     }
 
@@ -41,12 +41,12 @@ class SecondFaceSizeSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let faceSize = self.getFaceDetectionManager()?.faceSizeRatio[1] else { return type(of: self).defaultRawValue }
+        guard let faceSize = self.getVisualDetectionManager()?.faceSizeRatio[1] else { return type(of: self).defaultRawValue }
         return Double(faceSize)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        guard let frameSize = self.getFaceDetectionManager()?.faceDetectionFrameSize,
+        guard let frameSize = self.getVisualDetectionManager()?.visualDetectionFrameSize,
             let stageWidth = self.stageWidth
             else { return type(of: self).defaultRawValue }
 

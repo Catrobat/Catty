@@ -178,6 +178,7 @@
         self.titlesOfSections = [SensorSubsection.device.title,
                                  SensorSubsection.touch.title,
                                  SensorSubsection.visual.title,
+                                 SensorSubsection.pose.title,
                                  SensorSubsection.dateAndTime.title,
                                  SensorSubsection.arduino.title,
                                  SensorSubsection.phiro.title]

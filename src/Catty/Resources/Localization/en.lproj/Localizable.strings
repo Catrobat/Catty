@@ -713,6 +713,9 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
+"Face detection" = "Face detection";
+
+/* No comment provided by engineer. */
 "Failed to import item" = "Failed to import item";
 
 /* No comment provided by engineer. */
@@ -834,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
+"head top x" = "head top x";
+
+/* No comment provided by engineer. */
+"head top y" = "head top y";
 
 /* No comment provided by engineer. */
 "Hello!" = "Hello!";
@@ -969,6 +978,48 @@
 
 /* No comment provided by engineer. */
 "Left" = "Left";
+
+/* No comment provided by engineer. */
+"left ear x" = "left ear x";
+
+/* No comment provided by engineer. */
+"left ear y" = "left ear y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "left eye center x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "left eye center y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "left eye inner x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "left eye inner y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "left eye outer x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "left eye outer y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
 
 /* No comment provided by engineer. */
 "left-right only" = "left-right only";
@@ -1136,6 +1187,18 @@
 "Motion properties" = "Motion properties";
 
 /* No comment provided by engineer. */
+"mouth left corner x" = "mouth left corner x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "mouth left corner y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "mouth right corner x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "mouth right corner y";
+
+/* No comment provided by engineer. */
 "Move" = "Move";
 
 /* No comment provided by engineer. */
@@ -1233,6 +1296,12 @@
 
 /* No comment provided by engineer. */
 "No whitespace character allowed" = "No whitespace character allowed";
+
+/* No comment provided by engineer. */
+"nose x" = "nose x";
+
+/* No comment provided by engineer. */
+"nose y" = "nose y";
 
 /* No comment provided by engineer. */
 "not" = "not";
@@ -1424,6 +1493,9 @@
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
+"Pose detection" = "Pose detection";
+
+/* No comment provided by engineer. */
 "position x" = "position x";
 
 /* No comment provided by engineer. */
@@ -1539,6 +1611,48 @@
 
 /* No comment provided by engineer. */
 "Right" = "Right";
+
+/* No comment provided by engineer. */
+"right ear x" = "right ear x";
+
+/* No comment provided by engineer. */
+"right ear y" = "right ear y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "right eye center x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "right eye center y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "right eye inner x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "right eye inner y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "right eye outer x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "right eye outer y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
 
 /* paint */
 "Rotate" = "Rotate";
@@ -2097,9 +2211,6 @@
 
 /* No comment provided by engineer. */
 "Views" = "Views";
-
-/* No comment provided by engineer. */
-"Visual sensors" = "Visual sensors";
 
 /* No comment provided by engineer. */
 "Wait" = "Wait";
