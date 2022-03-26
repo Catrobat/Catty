@@ -358,6 +358,7 @@ let kLocalizedStitch = NSLocalizedString("Stitch", bundle: Bundle(for: LanguageT
 let kLocalizedStartRunningStitch = NSLocalizedString("Start running stitch with length", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedStartZigzagStitch = NSLocalizedString("Start zigzag stitch with length", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAndWidth = NSLocalizedString("and width", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStartTripleStitch = NSLocalizedString("Start triple stitch with length", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSewUp = NSLocalizedString("Sew up", bundle: Bundle(for: LanguageTranslation.self), comment: "literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric.")
 let kLocalizedStopCurrentStitch = NSLocalizedString("Stop current stitch", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 

@@ -123,6 +123,7 @@
             // embroidery brick
             StitchBrick(),
             StartRunningStitchBrick(),
+            StartTripleStitchBrick(),
             SewUpBrick(),
             StopCurrentStitchBrick(),
             StartZigzagStitchBrick()
