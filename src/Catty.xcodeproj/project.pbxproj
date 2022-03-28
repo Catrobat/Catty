@@ -1009,6 +1009,7 @@
 		7B53C95027BECAF900E86A72 /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
 		7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
 		7B5726C8275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B5726C5275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */; };
+		7B6FBD0027F1D8B4006E3BD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */; };
 		7B9090E927C931E600B31D04 /* ChromaSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B9090E827C931E600B31D04 /* ChromaSwift */; };
 		7B9090ED27C935D800B31D04 /* ChromaSwift.license in Resources */ = {isa = PBXBuildFile; fileRef = 7B9090EC27C935D800B31D04 /* ChromaSwift.license */; };
 		7BD8A7D127456D1A000DAAB4 /* Bohr.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */; };
@@ -1121,7 +1122,6 @@
 		92C6319E1BC5183D00486958 /* BluetoothHelper.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 92C631991BC5173200486958 /* BluetoothHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C6319F1BC5193B00486958 /* BluetoothDevicesTableViewController.swift */; };
 		92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C95FDA1BD8DBEB00742F7E /* BluetoothService.swift */; };
-		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
 		92D56C301BF202E700A54750 /* BluetoothDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C271BF202E700A54750 /* BluetoothDevice.swift */; };
 		92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C2A1BF202E700A54750 /* ArduinoDevice.swift */; };
 		92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C2B1BF202E700A54750 /* ArduinoHelper.swift */; };
@@ -3106,6 +3106,7 @@
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		7B5726C5275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.success.specialCharacters.json; sourceTree = "<group>"; };
+		7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B9090EC27C935D800B31D04 /* ChromaSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChromaSwift.license; sourceTree = "<group>"; };
 		7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Bohr.xcframework; path = Carthage/Build/Bohr.xcframework; sourceTree = "<group>"; };
 		7DF7515CF295B6E738B88031 /* fa */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3303,7 +3304,6 @@
 		92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BluetoothHelper.xcodeproj; path = Catty/BluetoothHelper/BluetoothHelper.xcodeproj; sourceTree = "<group>"; };
 		92C6319F1BC5193B00486958 /* BluetoothDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesTableViewController.swift; sourceTree = "<group>"; };
 		92C95FDA1BD8DBEB00742F7E /* BluetoothService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothService.swift; path = Bluetooth/BluetoothService.swift; sourceTree = "<group>"; };
-		92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92D56C271BF202E700A54750 /* BluetoothDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDevice.swift; sourceTree = "<group>"; };
 		92D56C2A1BF202E700A54750 /* ArduinoDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoDevice.swift; sourceTree = "<group>"; };
 		92D56C2B1BF202E700A54750 /* ArduinoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoHelper.swift; sourceTree = "<group>"; };
@@ -8923,7 +8923,7 @@
 			isa = PBXGroup;
 			children = (
 				92FF32C21A24E33B00093DA7 /* iPhone.storyboard */,
-				92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */,
+				7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */,
 			);
 			name = "Storyboard+XIB";
 			path = "Catty/Storyboard+XIB";
@@ -11532,7 +11532,6 @@
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				4C33F214214BC0680014044C /* Document-Icon.png in Resources */,
 				9EC5205E24FC03E80029CD0E /* piano-84.wv in Resources */,
-				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
 				4CDE4CE7203DBBF500B43034 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				4CDE4CE6203DBBF500B43034 /* GDataXMLNode.license in Resources */,
 				9E5DFCFF250574380049265C /* 4-crash-cymbal.wv in Resources */,
@@ -11579,6 +11578,7 @@
 				9E5DFD15250574380049265C /* synth-pad.sfz in Resources */,
 				9E5DFD0E250574380049265C /* 5-open-hi-hat.wv in Resources */,
 				9E5DFD0C250574380049265C /* 11-cowbell.wv in Resources */,
+				7B6FBD0027F1D8B4006E3BD5 /* LaunchScreen.storyboard in Resources */,
 				9E5DFD07250574380049265C /* 7-tambourine.wv in Resources */,
 				59697DA3201F46AD00A0071A /* LibraryImageCollectionViewCell.xib in Resources */,
 				4CDE4D00203DBD0C00B43034 /* DVR.license in Resources */,
