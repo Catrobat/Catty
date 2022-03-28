@@ -38,7 +38,8 @@ let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefinesUI.swift",
     "Functions.[hm]",
     "Operators.m",
-    "BSKeyboardControls.m"
+    "BSKeyboardControls.m",
+    "synchronize-localization.swift"
 ]; let localizedStringCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 let localizedStringCheckSeparatedExcludeDirs = [
     "Pods",
@@ -98,7 +99,8 @@ let licenseCheckExcludeFiles = [
     "MXPagerView-umbrella.[mh]",
     "SwellAll.swift",
     "license-validator.swift",
-    "SnapshotHelper.swift"
+    "SnapshotHelper.swift",
+    "synchronize-localization.swift"
 ]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%d The Catrobat Team\n"

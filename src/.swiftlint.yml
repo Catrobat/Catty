@@ -161,3 +161,4 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
  - CattyUISnapshots/Supporting Files/SnapshotHelper.swift
  - RunScripts/license-validator.swift
  - RunScripts/precompile-tests.swift
+ - RunScripts/synchronize-localization.swift
