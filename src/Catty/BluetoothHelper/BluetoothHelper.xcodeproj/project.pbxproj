@@ -199,9 +199,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92EC98B41BC3C32A0003A891 /* Build configuration list for PBXNativeTarget "BluetoothHelper" */;
 			buildPhases = (
+				92EC989D1BC3C32A0003A891 /* Headers */,
 				92EC989B1BC3C32A0003A891 /* Sources */,
 				92EC989C1BC3C32A0003A891 /* Frameworks */,
-				92EC989D1BC3C32A0003A891 /* Headers */,
 				92EC989E1BC3C32A0003A891 /* Resources */,
 			);
 			buildRules = (
