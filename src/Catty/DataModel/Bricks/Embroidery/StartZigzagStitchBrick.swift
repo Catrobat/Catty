@@ -22,13 +22,15 @@
 
 import Foundation
 
-@objc(StartRunningStitchBrick)
-@objcMembers class StartRunningStitchBrick: Brick, BrickProtocol, BrickFormulaProtocol {
+@objc(StartZigzagStitchBrick)
+@objcMembers class StartZigzagStitchBrick: Brick, BrickProtocol, BrickFormulaProtocol {
 
-    var stitchLength: Formula?
+    var length: Formula?
+    var width: Formula?
 
     override required init() {
-        self.stitchLength = Formula(integer: Int32(EmbroideryDefines.defaultRunningStitchLength))
+        self.length = Formula(integer: Int32(EmbroideryDefines.defaultZigzagStitchLength))
+        self.width = Formula(integer: Int32(EmbroideryDefines.defaultZigzagStitchWidth))
         super.init()
     }
 
@@ -37,35 +39,35 @@ import Foundation
     }
 
     override class func description() -> String {
-        "StartRunningStitchBrick"
+        "StartZigzagStitchBrick"
     }
 
     override func getRequiredResources() -> Int {
         ResourceType.embroidery.rawValue
-
     }
 
     override func brickCell() -> BrickCellProtocol.Type! {
-        StartRunningStitchBrickCell.self as BrickCellProtocol.Type
+        StartZigzagStitchBrickCell.self as BrickCellProtocol.Type
     }
 
     func formula(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> Formula! {
-        self.stitchLength
+        (lineNumber == 0) ? self.length : self.width
     }
 
     func setFormula(_ formula: Formula!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
-        self.stitchLength = formula
+        (lineNumber == 0) ? (self.length = formula) : (self.width = formula)
     }
 
     func getFormulas() -> [Formula]? {
-        if let length = stitchLength {
-            return  [length]
+        if let length = length, let width = width {
+            return [length, width]
         }
         return nil
     }
 
     override func setDefaultValuesFor(_ spriteObject: SpriteObject!) {
-        self.stitchLength = Formula(integer: Int32(EmbroideryDefines.defaultRunningStitchLength))
+        self.length = Formula(integer: Int32(EmbroideryDefines.defaultZigzagStitchLength))
+        self.width = Formula(integer: Int32(EmbroideryDefines.defaultZigzagStitchWidth))
     }
 
     func allowsStringFormula() -> Bool {

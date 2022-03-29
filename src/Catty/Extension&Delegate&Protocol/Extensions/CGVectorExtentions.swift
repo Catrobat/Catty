@@ -68,4 +68,8 @@ public extension CGVector {
         let l = self.magnitude()
         return CGVector(dx: self.dx / l, dy: self.dy / l)
     }
+
+    func normals() -> (CGVector, CGVector) {
+        (CGVector(dx: self.dy, dy: -self.dx), CGVector(dx: -self.dy, dy: self.dx))
+    }
 }

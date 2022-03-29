@@ -10,6 +10,13 @@
 		0502CFA826754E570028CF53 /* RecentlyUsedBricksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502CFA726754E570028CF53 /* RecentlyUsedBricksManager.swift */; };
 		0502CFAD26763BCC0028CF53 /* RecentlyUsedBricksManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502CFAB26763B6B0028CF53 /* RecentlyUsedBricksManagerTests.swift */; };
 		05501DE7255E106F00C64E58 /* color_change.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05501DE4255E106F00C64E58 /* color_change.dst */; };
+		056677ED27DBD33E006B4477 /* ZigzagStitchPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056677EC27DBD33E006B4477 /* ZigzagStitchPattern.swift */; };
+		056677F127DD39D8006B4477 /* ZigzagStitchPatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056677F027DD39D8006B4477 /* ZigzagStitchPatternTests.swift */; };
+		056677F327DE9C6B006B4477 /* StartZigzagStitchBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056677F227DE9C6B006B4477 /* StartZigzagStitchBrick.swift */; };
+		056677F527DEA012006B4477 /* StartZigzagStitchBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056677F427DEA012006B4477 /* StartZigzagStitchBrickCell.swift */; };
+		056677F727DEA772006B4477 /* StartZigzagStitchBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056677F627DEA772006B4477 /* StartZigzagStitchBrick+Instruction.swift */; };
+		056677F927DF4C00006B4477 /* StartZigzagStitchBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056677F827DF4C00006B4477 /* StartZigzagStitchBrick+CBXMLHandler.swift */; };
+		056677FB27DF8C4C006B4477 /* StartZigzagStitchBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056677FA27DF8C4C006B4477 /* StartZigzagStitchBrickTests.swift */; };
 		0570883E2739CC6F00622D84 /* StartRunningStitchBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0570883D2739CC6F00622D84 /* StartRunningStitchBrick+Instruction.swift */; };
 		057B182826DC738D00C47E60 /* CGPointExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B182726DC738D00C47E60 /* CGPointExtentions.swift */; };
 		057B182A26DC8B6A00C47E60 /* StartRunningStitchBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B182926DC8B6A00C47E60 /* StartRunningStitchBrick.swift */; };
@@ -1982,6 +1989,13 @@
 		0502CFA726754E570028CF53 /* RecentlyUsedBricksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyUsedBricksManager.swift; sourceTree = "<group>"; };
 		0502CFAB26763B6B0028CF53 /* RecentlyUsedBricksManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyUsedBricksManagerTests.swift; sourceTree = "<group>"; };
 		05501DE4255E106F00C64E58 /* color_change.dst */ = {isa = PBXFileReference; lastKnownFileType = file; path = color_change.dst; sourceTree = "<group>"; };
+		056677EC27DBD33E006B4477 /* ZigzagStitchPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZigzagStitchPattern.swift; sourceTree = "<group>"; };
+		056677F027DD39D8006B4477 /* ZigzagStitchPatternTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZigzagStitchPatternTests.swift; sourceTree = "<group>"; };
+		056677F227DE9C6B006B4477 /* StartZigzagStitchBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartZigzagStitchBrick.swift; sourceTree = "<group>"; };
+		056677F427DEA012006B4477 /* StartZigzagStitchBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartZigzagStitchBrickCell.swift; sourceTree = "<group>"; };
+		056677F627DEA772006B4477 /* StartZigzagStitchBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartZigzagStitchBrick+Instruction.swift"; sourceTree = "<group>"; };
+		056677F827DF4C00006B4477 /* StartZigzagStitchBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartZigzagStitchBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		056677FA27DF8C4C006B4477 /* StartZigzagStitchBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartZigzagStitchBrickTests.swift; sourceTree = "<group>"; };
 		0570883D2739CC6F00622D84 /* StartRunningStitchBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartRunningStitchBrick+Instruction.swift"; sourceTree = "<group>"; };
 		057B182726DC738D00C47E60 /* CGPointExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtentions.swift; sourceTree = "<group>"; };
 		057B182926DC8B6A00C47E60 /* StartRunningStitchBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunningStitchBrick.swift; sourceTree = "<group>"; };
@@ -4527,6 +4541,7 @@
 			children = (
 				05CD095E26FA980600B25D72 /* StitchPatternProtocol.swift */,
 				05CD096226FA989500B25D72 /* RunningStitchPattern.swift */,
+				056677EC27DBD33E006B4477 /* ZigzagStitchPattern.swift */,
 			);
 			path = Pattern;
 			sourceTree = "<group>";
@@ -4554,6 +4569,7 @@
 				05E68023255B5DED00D1E295 /* EmbroideryStreamTests.swift */,
 				05E68024255B5DED00D1E295 /* EmbroideryDSTServiceTests.swift */,
 				05CD096626FAA72700B25D72 /* RunningStitchPatternTests.swift */,
+				056677F027DD39D8006B4477 /* ZigzagStitchPatternTests.swift */,
 			);
 			path = Embroidery;
 			sourceTree = "<group>";
@@ -5392,6 +5408,7 @@
 				0594CE5D275E54C6007DC3F9 /* SewUpBrick.swift */,
 				4614B1CF2560856B004174AD /* StitchBrick.swift */,
 				057B182926DC8B6A00C47E60 /* StartRunningStitchBrick.swift */,
+				056677F227DE9C6B006B4477 /* StartZigzagStitchBrick.swift */,
 			);
 			path = Embroidery;
 			sourceTree = "<group>";
@@ -5403,6 +5420,7 @@
 				0594CE61275E55B0007DC3F9 /* SewUpBrickCell.swift */,
 				4614B1DC25608E8B004174AD /* StitchBrickCell.swift */,
 				057B182B26DC903500C47E60 /* StartRunningStitchBrickCell.swift */,
+				056677F427DEA012006B4477 /* StartZigzagStitchBrickCell.swift */,
 			);
 			path = Embroidery;
 			sourceTree = "<group>";
@@ -5423,6 +5441,7 @@
 				0594CE59275E54AE007DC3F9 /* SewUpBrick+Instruction.swift */,
 				46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */,
 				0570883D2739CC6F00622D84 /* StartRunningStitchBrick+Instruction.swift */,
+				056677F627DEA772006B4477 /* StartZigzagStitchBrick+Instruction.swift */,
 			);
 			name = Embroidery;
 			path = PlayerEngine/Instructions/Embroidery;
@@ -5435,6 +5454,7 @@
 				0594CE5F275E5568007DC3F9 /* SewUpBrick+CBXMLHandler.swift */,
 				46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */,
 				057B182F26DD0A3400C47E60 /* StartRunningStitchBrick+CBXMLHandler.swift */,
+				056677F827DF4C00006B4477 /* StartZigzagStitchBrick+CBXMLHandler.swift */,
 			);
 			path = Embroidery;
 			sourceTree = "<group>";
@@ -7181,6 +7201,7 @@
 				83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */,
 				2E8780A72542BCE200816B52 /* WebRequestBrickTests.swift */,
 				0580514826EF734F00F719E0 /* StartRunningStitchBrickTests.swift */,
+				056677FA27DF8C4C006B4477 /* StartZigzagStitchBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -11790,6 +11811,7 @@
 				4C6FE15C212D2D2E0067B7D5 /* FloorFunctionTest.swift in Sources */,
 				4C5AEEF322F6F22700280F8B /* MoveNStepsBrickCellTests.swift in Sources */,
 				4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */,
+				056677F127DD39D8006B4477 /* ZigzagStitchPatternTests.swift in Sources */,
 				4C4778D6267C82B100CAF398 /* UIViewControllerExtensionTests.swift in Sources */,
 				17A8AC652644E6A900DDD480 /* ForceInit.m in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
@@ -11933,6 +11955,7 @@
 				6F5B4C7124D458AC00D2D319 /* SceneTest.swift in Sources */,
 				4CBDF1AA21CF830E00325338 /* BinaryOperatorMock.swift in Sources */,
 				4C4778E0267C82B100CAF398 /* DataExtensionTests.swift in Sources */,
+				056677FB27DF8C4C006B4477 /* StartZigzagStitchBrickTests.swift in Sources */,
 				9E22CC8D2323FC6700BA4CBA /* AudioEngineFingerprintingStub.swift in Sources */,
 				E592064B26B3EF8700962477 /* XMLParserTests09993.swift in Sources */,
 				9E2C2D8A23256901004B66C6 /* AudioEngineMock.swift in Sources */,
@@ -12433,6 +12456,7 @@
 				4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */,
 				46D0516324F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift in Sources */,
 				E5E1E5AE25780E3200D2F1BC /* SetLookByIndexBrickCell.swift in Sources */,
+				056677F327DE9C6B006B4477 /* StartZigzagStitchBrick.swift in Sources */,
 				BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */,
 				97D97BAB257AC141001FF344 /* URLSessionMultipartExtension.swift in Sources */,
 				59EA52B424FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift in Sources */,
@@ -12576,6 +12600,7 @@
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */,
 				46B472C225609573007972DB /* StitchBrick+CBXMLHandler.swift in Sources */,
+				056677F927DF4C00006B4477 /* StartZigzagStitchBrick+CBXMLHandler.swift in Sources */,
 				4926233C27AA8A2800866183 /* SceneTableViewControllerExtension.swift in Sources */,
 				AA74F0C61BC05FCE00D1E954 /* SetVolumeToBrickCell.m in Sources */,
 				18E83F832493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift in Sources */,
@@ -12621,6 +12646,7 @@
 				181CC10724B750AF004A783E /* CBPosition.swift in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
 				186E99192488F74500627E36 /* PenUpBrick+Instruction.swift in Sources */,
+				056677F727DEA772006B4477 /* StartZigzagStitchBrick+Instruction.swift in Sources */,
 				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,
 				9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */,
 				AA74EEDD1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m in Sources */,
@@ -13014,6 +13040,7 @@
 				4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */,
 				F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
+				056677ED27DBD33E006B4477 /* ZigzagStitchPattern.swift in Sources */,
 				F48E945920D6955E007E782E /* DateSensor.swift in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
 				AA74F09B1BC05FCE00D1E954 /* BrickCell.m in Sources */,
@@ -13102,6 +13129,7 @@
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,
 				83F822FE25EBA15B0093DD9A /* SetBackgroundByIndexBrick+Instruction.swift in Sources */,
 				46E9E4A425AF53A100027D28 /* CircleShapeNode.swift in Sources */,
+				056677F527DEA012006B4477 /* StartZigzagStitchBrickCell.swift in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
 				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension StartRunningStitchBrick: CBInstructionProtocol {
+extension StartZigzagStitchBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
         .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
@@ -31,12 +31,14 @@ extension StartRunningStitchBrick: CBInstructionProtocol {
             fatalError("This should never happen!") }
 
         return {
-            if let length = self.stitchLength {
+            if let length = self.length, let width = self.width {
                 spriteNode.embroideryStream.activePattern =
-                RunningStitchPattern(for: spriteNode.embroideryStream,
-                                     at: spriteNode.position,
-                                     with: CGFloat(formulaInterpreter.interpretInteger(
-                                        length, for: object)))
+                ZigzagStitchPattern(for: spriteNode.embroideryStream,
+                                    at: spriteNode.position,
+                                    withLength: CGFloat(formulaInterpreter.interpretInteger(
+                                        length, for: object)),
+                                    andWidth: CGFloat(formulaInterpreter.interpretInteger(
+                                        width, for: object)))
             }
         }
     }
