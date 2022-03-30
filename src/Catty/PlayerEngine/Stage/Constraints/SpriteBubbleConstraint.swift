@@ -27,13 +27,15 @@ final class SpriteBubbleConstraint: SKConstraint {
     private let bubbleWidth: CGFloat
     private let bubbleHeight: CGFloat
     private let bubbleInitialPosition: CGPoint
+    private let bubbleInvertedInitialPosition: CGPoint
 
-    @objc init(bubble: SKNode, parent: SKNode, width: CGFloat, height: CGFloat, position: CGPoint, bubbleTailHeight: CGFloat) {
+    @objc init(bubble: SKNode, parent: SKNode, width: CGFloat, height: CGFloat, position: CGPoint, invertedPosition: CGPoint, bubbleTailHeight: CGFloat) {
         self.bubble = bubble
         self.parent = parent
         self.bubbleWidth = width
         self.bubbleHeight = height + bubbleTailHeight
         self.bubbleInitialPosition = position
+        self.bubbleInvertedInitialPosition = invertedPosition
 
         super.init()
         self.enabled = true
@@ -62,16 +64,21 @@ final class SpriteBubbleConstraint: SKConstraint {
         }
 
         let isBubbleInverted = bubble.xScale < 0
-        var leftBubbleBorder = parent.position.x + bubbleInitialPosition.x
-        var rightBubbleBorder = parent.position.x + bubbleInitialPosition.x
+        var leftBubbleBorder = parent.position.x
+        var rightBubbleBorder = parent.position.x
 
-        leftBubbleBorder -= isBubbleInverted ? bubbleWidth : 0
-        rightBubbleBorder += isBubbleInverted ? 0 : bubbleWidth
+        if isBubbleInverted {
+            leftBubbleBorder += bubbleInvertedInitialPosition.x - bubbleWidth
+            rightBubbleBorder += bubbleInvertedInitialPosition.x
+            bubble.position.x = bubbleInvertedInitialPosition.x
+        } else {
+            leftBubbleBorder += bubbleInitialPosition.x
+            rightBubbleBorder += bubbleInitialPosition.x + bubbleWidth
+            bubble.position.x = bubbleInitialPosition.x
+        }
 
         let rightSceneEdge = scene.size.width
         let leftSceneEdge = CGFloat(0)
-
-        bubble.position.x = bubbleInitialPosition.x
 
         if (rightBubbleBorder > rightSceneEdge && !isBubbleInverted && leftBubbleBorder > leftSceneEdge) ||
             (leftBubbleBorder < leftSceneEdge && isBubbleInverted && rightBubbleBorder < rightSceneEdge) {

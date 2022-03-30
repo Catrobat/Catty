@@ -94,31 +94,52 @@ let kSentenceLength = 10
         sprite.addChild(bubble)
     }
 
-    private static func getTopRightMostPixel(_ image: UIImage?) -> CGPoint? {
+    private static func getTopLeftAndRightMostPixel(_ image: UIImage?) -> (CGPoint, CGPoint) {
         guard let image = image, let cgImage = image.cgImage, let dataProvider = cgImage.dataProvider else {
-            return nil
+            return (.zero, .zero)
         }
 
         let pixelData = dataProvider.data
         let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
         let imageWidth = Int(image.size.width)
         let imageHeight = Int(image.size.height)
+        let alphaIndexOffset = 3
+        let numberOfValuesPerPixelIndex = 4
 
         for y in 0..<imageHeight {
             for x in 0..<imageWidth {
-                let pixelIndex = ((imageWidth * y) + imageWidth - x) * 4
-                let alpha = data[pixelIndex + 3]
+                let pixelIndex = ((imageWidth * y) + x) * numberOfValuesPerPixelIndex
+                let alpha = data[pixelIndex + alphaIndexOffset]
+
                 if alpha != 0 {
-                    return CGPoint(x: x, y: y)
+                    let topLeftMostPixel = CGPoint(x: x, y: y)
+                    var topRightMostPixel = topLeftMostPixel
+
+                    for reverseX in 0..<imageWidth {
+                        let pixelIndex = ((imageWidth * y) + imageWidth - reverseX) * numberOfValuesPerPixelIndex
+                        let alpha = data[pixelIndex + alphaIndexOffset]
+                        if alpha != 0 {
+                            topRightMostPixel = CGPoint(x: imageWidth - reverseX, y: y)
+                            break
+                        }
+                    }
+
+                    return (topLeftMostPixel, topRightMostPixel)
                 }
             }
         }
 
-        return nil
+        return (.zero, .zero)
     }
 
-    private static func createBubble(with sprite: CBSpriteNode, width: CGFloat, height: CGFloat, type: CBBubbleType)
-        -> SKShapeNode {
+    private static func calculateBubbleOffset(pixel: CGPoint, sprite: CBSpriteNode) -> CGPoint {
+        let offsetX = abs(sprite.size.width / 2 - pixel.x)
+        let offsetY = abs(sprite.size.height / (2 * sprite.yScale) - pixel.y)
+
+        return CGPoint(x: pixel.x > sprite.size.width / 2 ? offsetX : -offsetX, y: offsetY)
+    }
+
+    private static func createBubble(with sprite: CBSpriteNode, width: CGFloat, height: CGFloat, type: CBBubbleType) -> SKShapeNode {
 
         let bubbleTailHeight = CGFloat(48.0)
         let bubble = SKShapeNode(path: bubblePathWith(width: width,
@@ -126,18 +147,22 @@ let kSentenceLength = 10
                                                       bubbleTailHeight: bubbleTailHeight,
                                                       type: type))
 
-        let pixel = getTopRightMostPixel(sprite.currentUIImageLook) ?? .zero
-        let offsetX = abs(sprite.size.width / 2 - pixel.x)
-        let offsetY = abs(sprite.size.height / (2 * sprite.yScale) - pixel.y)
-        let offset = CGPoint(x: pixel.x < sprite.size.width / 2 ? offsetX : -offsetX, y: offsetY)
+        let topMostPixels = getTopLeftAndRightMostPixel(sprite.currentUIImageLook)
+        let leftMostPixel = topMostPixels.0
+        let rightMostPixel = topMostPixels.1
 
-        let bubbleInitialPosition = CGPoint(x: offset.x, y: offset.y)
+        let leftPixelOffset = calculateBubbleOffset(pixel: leftMostPixel, sprite: sprite)
+        let rightPixelOffset = calculateBubbleOffset(pixel: rightMostPixel, sprite: sprite)
+
+        let bubbleInitialPosition = CGPoint(x: rightPixelOffset.x, y: rightPixelOffset.y)
+        let bubbleInvertedInitialPosition = CGPoint(x: leftPixelOffset.x, y: leftPixelOffset.y)
 
         bubble.constraints = [SpriteBubbleConstraint(bubble: bubble,
                                                      parent: sprite,
                                                      width: width,
                                                      height: height,
                                                      position: bubbleInitialPosition,
+                                                     invertedPosition: bubbleInvertedInitialPosition,
                                                      bubbleTailHeight: bubbleTailHeight)]
 
         bubble.name = SpriteKitDefines.bubbleBrickNodeName
