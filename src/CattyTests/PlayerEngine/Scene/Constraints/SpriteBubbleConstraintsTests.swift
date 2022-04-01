@@ -29,6 +29,9 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
     var parent: CBSpriteNodeMock!
     var child: SKNode!
     var bubbleConstraint: SpriteBubbleConstraint!
+    var bubbleInitialPosition: CGPoint!
+    var bubbleInvertedInitialPosition: CGPoint!
+    var bubbleSize: CGSize!
 
     override func setUp() {
         let object = SpriteObject()
@@ -40,11 +43,16 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
         BubbleBrickHelper.addBubble(to: parent, withText: "Hello", andType: CBBubbleType.thought)
         child = parent.children.first!
 
+        bubbleInitialPosition = CGPoint(x: 300, y: 400)
+        bubbleInvertedInitialPosition = CGPoint(x: -300, y: 400)
+        bubbleSize = CGSize(width: 200, height: 200)
+
         bubbleConstraint = SpriteBubbleConstraint(bubble: child,
                                                   parent: parent,
-                                                  width: 200,
-                                                  height: 200,
-                                                  position: CGPoint(x: 300, y: 400),
+                                                  width: bubbleSize.width,
+                                                  height: bubbleSize.height,
+                                                  position: bubbleInitialPosition,
+                                                  invertedPosition: bubbleInvertedInitialPosition,
                                                   bubbleTailHeight: 48)
 
     }
@@ -62,58 +70,34 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
         XCTAssertEqual(-parent.zRotation, child.zRotation, accuracy: 0.000001)
     }
 
-    func testRightXCollision() {
+    func testBubbleCollisionX() {
+        let bubbleOffsetX = bubbleInitialPosition.x
+        let bubbleWidth = bubbleSize.width
+        let sceneWidth = parent.scene.frame.width
+        let delta: CGFloat = 10
+
+        let bubbleIntersectsRightSceneEdge = sceneWidth - bubbleWidth - bubbleOffsetX
+
+        parent.position.x = bubbleIntersectsRightSceneEdge - delta
+        bubbleConstraint.apply()
         XCTAssertEqual(child.xScale, 1)
-        parent.position.x = 1000
+        XCTAssertEqual(child.position.x, bubbleOffsetX, accuracy: delta)
+
+        parent.position.x = bubbleIntersectsRightSceneEdge + delta
         bubbleConstraint.apply()
         XCTAssertEqual(child.xScale, -1)
-    }
+        XCTAssertEqual(child.position.x, bubbleOffsetX, accuracy: delta)
 
-    func testLeftXCollision() {
-        parent.position.x = 1000
+        let bubbleIntersectsLeftSceneEdge = bubbleWidth + bubbleOffsetX
+
+        parent.position.x = bubbleIntersectsLeftSceneEdge + delta
         bubbleConstraint.apply()
-        parent.position.x = -1000
+        XCTAssertEqual(child.xScale, -1)
+        XCTAssertEqual(child.position.x, -bubbleOffsetX, accuracy: delta)
+
+        parent.position.x = bubbleIntersectsLeftSceneEdge - delta
         bubbleConstraint.apply()
         XCTAssertEqual(child.xScale, 1)
-    }
-
-    func testTopYCollision() {
-        bubbleConstraint.apply()
-        XCTAssertEqual(0, CGFloat(child.position.y), accuracy: 1)
-        parent.position.y = 100000
-        bubbleConstraint.apply()
-        let topEdge = parent.scene.size.height - parent.yScale * child.frame.size.height
-        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
-            XCTAssert(false)
-            return
-        }
-        XCTAssertEqual(topEdge, CGFloat(yCollision), accuracy: 200)
-    }
-
-    func testBottomYCollision() {
-        parent.position.y = 100000
-        bubbleConstraint.apply()
-        parent.position.y = -100000
-        bubbleConstraint.apply()
-        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
-            XCTAssert(false)
-            return
-        }
-        XCTAssertEqual(0, yCollision, accuracy: 1)
-    }
-
-    func testRotationCollision() {
-        bubbleConstraint.apply()
-        XCTAssertEqual(0, CGFloat(child.position.y), accuracy: 1)
-        parent.zRotation = .pi
-        parent.position.y = 10000
-        bubbleConstraint.apply()
-
-        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
-            XCTAssert(false)
-            return
-        }
-        let topEdge = parent.scene.size.height - parent.yScale * child.frame.size.height
-        XCTAssertEqual(topEdge, CGFloat(yCollision), accuracy: 200)
+        XCTAssertEqual(child.position.x, -bubbleOffsetX, accuracy: delta)
     }
 }
