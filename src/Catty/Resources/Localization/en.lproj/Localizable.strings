@@ -713,18 +713,6 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
-
-/* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
-
-/* No comment provided by engineer. */
-"facesize" = "facesize";
-
-/* No comment provided by engineer. */
 "Failed to import item" = "Failed to import item";
 
 /* No comment provided by engineer. */
@@ -753,6 +741,18 @@
 
 /* paint */
 "Fill" = "Fill";
+
+/* No comment provided by engineer. */
+"first face size" = "first face size";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "first face x position";
+
+/* No comment provided by engineer. */
+"first face y position" = "first face y position";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Flashlight off";
@@ -1584,6 +1584,18 @@
 
 /* No comment provided by engineer. */
 "second " = "second ";
+
+/* No comment provided by engineer. */
+"second face size" = "second face size";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "second face x position";
+
+/* No comment provided by engineer. */
+"second face y position" = "second face y position";
 
 /* No comment provided by engineer. */
 "seconds" = "seconds";

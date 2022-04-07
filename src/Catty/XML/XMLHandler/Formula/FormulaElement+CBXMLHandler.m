@@ -45,6 +45,14 @@
     GDataXMLElement *valueElement = [xmlElement childWithElementName:@"value"];
     NSString *stringValue = [valueElement stringValue];
     
+    if ([type isEqualToString:@"SENSOR"]) {
+        if ([stringValue isEqualToString:@"FACE_X_POSITION"]) {
+            stringValue = @"FACE_X";
+        } else if ([stringValue isEqualToString:@"FACE_Y_POSITION"]) {
+            stringValue = @"FACE_Y";
+        }
+    }
+    
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:type
                                                                  value:stringValue
                                                              leftChild:nil

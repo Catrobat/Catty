@@ -778,10 +778,14 @@
 #define kLocalizedInternet NSLocalizedString(@"Internet", nil)
 #define kLocalizedNotAvailable NSLocalizedString(@"not available. Continue anyway?", nil)
 
-#define kUIFESensorFaceDetected NSLocalizedString(@"face detected", nil)
-#define kUIFESensorFaceSize NSLocalizedString(@"facesize", nil)
-#define kUIFESensorFaceX NSLocalizedString(@"faceposition x", nil)
-#define kUIFESensorFaceY NSLocalizedString(@"faceposition y", nil)
+#define kUIFESensorFaceDetected NSLocalizedString(@"first face visible", nil)
+#define kUIFESensorFaceSize NSLocalizedString(@"first face size", nil)
+#define kUIFESensorFaceX NSLocalizedString(@"first face x position", nil)
+#define kUIFESensorFaceY NSLocalizedString(@"first face y position", nil)
+#define kUIFESensorSecondFaceDetected NSLocalizedString(@"second face visible", nil)
+#define kUIFESensorSecondFaceSize NSLocalizedString(@"second face size", nil)
+#define kUIFESensorSecondFaceX NSLocalizedString(@"second face x position", nil)
+#define kUIFESensorSecondFaceY NSLocalizedString(@"second face y position", nil)
 
 #define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 

@@ -39,18 +39,22 @@ final class FaceDetectionManagerTest: XCTestCase {
     }
 
     func testReset() {
-        manager.isFaceDetected = true
-        manager.facePositionRatioFromLeft = 0.1
-        manager.facePositionRatioFromBottom = 0.2
-        manager.faceSizeRatio = 1.0
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            manager.isFaceDetected[faceIndex] = true
+            manager.facePositionRatioFromLeft[faceIndex] = 0.1
+            manager.facePositionRatioFromBottom[faceIndex] = 0.2
+            manager.faceSizeRatio[faceIndex] = 1.0
+        }
         manager.faceDetectionFrameSize = CGSize.zero
 
         manager.reset()
 
-        XCTAssertFalse(manager.isFaceDetected)
-        XCTAssertNil(manager.facePositionRatioFromLeft)
-        XCTAssertNil(manager.facePositionRatioFromBottom)
-        XCTAssertNil(manager.faceSizeRatio)
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            XCTAssertFalse(manager.isFaceDetected[faceIndex])
+            XCTAssertNil(manager.facePositionRatioFromLeft[faceIndex])
+            XCTAssertNil(manager.facePositionRatioFromBottom[faceIndex])
+            XCTAssertNil(manager.faceSizeRatio[faceIndex])
+        }
         XCTAssertNil(manager.faceDetectionFrameSize)
     }
 
@@ -66,77 +70,149 @@ final class FaceDetectionManagerTest: XCTestCase {
         XCTAssertEqual(position, manager.cameraPosition())
     }
 
-    func testCaptureFaceDetected() {
-        let invalidFeature = FeatureMock(type: "invalidType", bounds: CGRect.zero)
-
-        manager.captureFace(for: [invalidFeature], in: CGRect.zero)
-        XCTAssertFalse(manager.isFaceDetected)
+    func testNoFaceDetected() {
+        manager.handleDetectedFaceObservations([])
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            XCTAssertFalse(manager.isFaceDetected[faceIndex])
+            XCTAssertNil(manager.facePositionRatioFromLeft[faceIndex])
+            XCTAssertNil(manager.facePositionRatioFromBottom[faceIndex])
+            XCTAssertNil(manager.faceSizeRatio[faceIndex])
+        }
         XCTAssertNil(manager.faceDetectionFrameSize)
-        XCTAssertNil(manager.facePositionRatioFromLeft)
-        XCTAssertNil(manager.facePositionRatioFromBottom)
-        XCTAssertNil(manager.faceSizeRatio)
-        XCTAssertNil(manager.faceDetectionFrameSize)
-
-        let validFeature = FeatureMock(type: CIFeatureTypeFace, bounds: CGRect.zero)
-        manager.captureFace(for: [validFeature], in: CGRect.zero)
-
-        XCTAssertTrue(manager.isFaceDetected)
     }
 
-    func testCaptureFaceSizeRatio() {
-        let faceDimensions = CGRect(x: 10, y: 200, width: 100, height: 150)
+    func testSingleFaceDetected() {
+        let firstFaceDimensions = CGRect(x: 10, y: 200, width: 100, height: 150)
         let imageDimensions = CGRect(x: 0, y: 0, width: 400, height: 900)
+        let faceObservationBoundingBox = computeBoundingBoxInNormalizedCoordinates(faceDimensions: firstFaceDimensions, imageDimensions: imageDimensions)
+        let faceObservation = VNFaceObservationMock(boundingBox: faceObservationBoundingBox)
 
-        let feature = FeatureMock(type: CIFeatureTypeFace, bounds: faceDimensions)
-        manager.captureFace(for: [feature], in: imageDimensions)
+        XCTAssertNil(manager.previousFaceObservations)
 
-        XCTAssertEqual(Double(feature.bounds.width / imageDimensions.width), manager.faceSizeRatio)
+        manager.handleDetectedFaceObservations([faceObservation])
+
+        XCTAssertNotNil(manager.previousFaceObservations)
+        XCTAssertEqual(manager.previousFaceObservations?.count, 1)
+        XCTAssert(manager.isFaceDetected[0])
+        XCTAssertEqual(Double(imageDimensions.width) * manager.faceSizeRatio[0]!, Double(firstFaceDimensions.width))
+        XCTAssertEqual(manager.facePositionRatioFromLeft[0], faceObservationBoundingBox.origin.x + faceObservationBoundingBox.width / 2)
+        XCTAssertEqual(manager.facePositionRatioFromBottom[0], faceObservationBoundingBox.origin.y + faceObservationBoundingBox.height / 2)
     }
 
-    func testCaptureFaceFrameSize() {
-        let imageDimensions = CGRect(x: 0, y: 0, width: 100, height: 300)
-
-        let feature = FeatureMock(type: CIFeatureTypeFace, bounds: CGRect.zero)
-        manager.captureFace(for: [feature], in: imageDimensions)
-
-        XCTAssertEqual(imageDimensions.size, manager.faceDetectionFrameSize!)
-    }
-
-    func testCaptureFacePositionFromBottom() {
-        let faceDimensions = CGRect(x: 90, y: 800, width: 100, height: 150)
+    func testTwoFacesDetected() {
+        let firstFaceDimensions = CGRect(x: 10, y: 200, width: 100, height: 150)
+        let secondFaceDimensions = CGRect(x: 50, y: 50, width: 300, height: 350)
         let imageDimensions = CGRect(x: 0, y: 0, width: 400, height: 900)
-        let feature = FeatureMock(type: CIFeatureTypeFace, bounds: faceDimensions)
+        let firstFaceObservationBoundingBox = computeBoundingBoxInNormalizedCoordinates(faceDimensions: firstFaceDimensions, imageDimensions: imageDimensions)
+        let secondFaceObservationBoundingBox = computeBoundingBoxInNormalizedCoordinates(faceDimensions: secondFaceDimensions, imageDimensions: imageDimensions)
+        let firstFaceObservation = VNFaceObservationMock(boundingBox: firstFaceObservationBoundingBox)
+        let secondFaceObservation = VNFaceObservationMock(boundingBox: secondFaceObservationBoundingBox)
 
-        let centerOfFace = CGPoint(x: faceDimensions.origin.x + faceDimensions.size.width / 2,
-                                   y: faceDimensions.origin.y + faceDimensions.size.height / 2)
+        XCTAssertNil(manager.previousFaceObservations)
 
-        CameraPreviewHandler.shared().switchCameraPosition(to: AVCaptureDevice.Position.back)
+        manager.handleDetectedFaceObservations([firstFaceObservation, secondFaceObservation])
 
-        manager.captureFace(for: [feature], in: imageDimensions)
-        XCTAssertEqual(Double(centerOfFace.y / imageDimensions.height), manager.facePositionRatioFromBottom!)
+        XCTAssertNotNil(manager.previousFaceObservations)
+        XCTAssertEqual(manager.previousFaceObservations?.count, FaceDetectionManager.maxFaceCount)
 
-        CameraPreviewHandler.shared().switchCameraPosition(to: AVCaptureDevice.Position.front)
-
-        manager.captureFace(for: [feature], in: imageDimensions)
-        XCTAssertEqual(Double(centerOfFace.y / imageDimensions.height), manager.facePositionRatioFromBottom!)
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            let faceDimensions = faceIndex == 0 ? firstFaceDimensions : secondFaceDimensions
+            let faceObservationBoundingBox = faceIndex == 0 ? firstFaceObservationBoundingBox : secondFaceObservationBoundingBox
+            XCTAssert(manager.isFaceDetected[faceIndex])
+            XCTAssertEqual(Double(imageDimensions.width) * manager.faceSizeRatio[faceIndex]!, Double(faceDimensions.width))
+            XCTAssertEqual(manager.facePositionRatioFromLeft[faceIndex], faceObservationBoundingBox.origin.x + faceObservationBoundingBox.width / 2)
+            XCTAssertEqual(manager.facePositionRatioFromBottom[faceIndex], faceObservationBoundingBox.origin.y + faceObservationBoundingBox.height / 2)
+        }
     }
 
-    func testCaptureFacePositionFromLeft() {
-        let faceDimensions = CGRect(x: 90, y: 800, width: 200, height: 350)
-        let imageDimensions = CGRect(x: 0, y: 0, width: 500, height: 1920)
-        let feature = FeatureMock(type: CIFeatureTypeFace, bounds: faceDimensions)
+    func testMultipleFacesDetected() {
+        let detectedFacesCount = 5
+        let imageDimensions = CGRect(x: 0, y: 0, width: 400, height: 900)
+        var faceDimensions = [CGRect]()
+        var faceObservationBoundingBoxes = [CGRect]()
+        var faceObservations = [VNFaceObservationMock]()
 
-        let centerOfFace = CGPoint(x: faceDimensions.origin.x + faceDimensions.size.width / 2,
-                                   y: faceDimensions.origin.y + faceDimensions.size.height / 2)
+        for faceIndex in 0..<detectedFacesCount {
+            let faceDimension = CGRect(x: faceIndex * 10, y: faceIndex * 10, width: 100, height: 100)
+            let faceObservationBoundingBox = computeBoundingBoxInNormalizedCoordinates(faceDimensions: faceDimension, imageDimensions: imageDimensions)
+            faceDimensions.append(faceDimension)
+            faceObservationBoundingBoxes.append(faceObservationBoundingBox)
+            faceObservations.append(VNFaceObservationMock(boundingBox: faceObservationBoundingBox))
+        }
 
-        CameraPreviewHandler.shared().switchCameraPosition(to: AVCaptureDevice.Position.back)
+        XCTAssertNil(manager.previousFaceObservations)
 
-        manager.captureFace(for: [feature], in: imageDimensions)
-        XCTAssertEqual(Double(centerOfFace.x / imageDimensions.width), manager.facePositionRatioFromLeft!)
+        manager.handleDetectedFaceObservations(faceObservations)
 
-        CameraPreviewHandler.shared().switchCameraPosition(to: AVCaptureDevice.Position.front)
+        XCTAssertNotNil(manager.previousFaceObservations)
+        XCTAssertEqual(manager.previousFaceObservations?.count, FaceDetectionManager.maxFaceCount)
 
-        manager.captureFace(for: [feature], in: imageDimensions)
-        XCTAssertEqual(1 - Double(centerOfFace.x / imageDimensions.width), manager.facePositionRatioFromLeft!)
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            XCTAssert(manager.isFaceDetected[faceIndex])
+            XCTAssertEqual(Double(imageDimensions.width) * manager.faceSizeRatio[faceIndex]!, Double(faceDimensions[faceIndex].width))
+            XCTAssertEqual(manager.facePositionRatioFromLeft[faceIndex], faceObservationBoundingBoxes[faceIndex].origin.x + faceObservationBoundingBoxes[faceIndex].width / 2)
+            XCTAssertEqual(manager.facePositionRatioFromBottom[faceIndex], faceObservationBoundingBoxes[faceIndex].origin.y + faceObservationBoundingBoxes[faceIndex].height / 2)
+        }
+    }
+
+    func testNoFacesTracked() {
+        let previousFaceObservations = [VNFaceObservationMock(boundingBox: CGRect(x: 0.1, y: 0.1, width: 0.5, height: 0.5)),
+                                        VNFaceObservationMock(boundingBox: CGRect(x: 0.3, y: 0.3, width: 0.5, height: 0.5))]
+        manager.previousFaceObservations = previousFaceObservations
+
+        XCTAssertNotNil(manager.previousFaceObservations)
+        XCTAssertEqual(manager.previousFaceObservations?.count, FaceDetectionManager.maxFaceCount)
+
+        manager.handleDetectedFaceObservations([])
+
+        XCTAssertNil(manager.previousFaceObservations)
+
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            XCTAssertFalse(manager.isFaceDetected[faceIndex])
+        }
+    }
+
+    func testSingleFaceTrackedWithSmallestEuclideanDistance() {
+        let previousFaceObservations = [VNFaceObservationMock(boundingBox: CGRect(x: 0.1, y: 0.1, width: 0.5, height: 0.5)),
+                                        VNFaceObservationMock(boundingBox: CGRect(x: 0.3, y: 0.3, width: 0.5, height: 0.5))]
+        manager.previousFaceObservations = previousFaceObservations
+
+        let currentFaceObservations = [VNFaceObservationMock(boundingBox: CGRect(x: 0.35, y: 0.35, width: 0.5, height: 0.5))]
+
+        XCTAssertNotNil(manager.previousFaceObservations)
+        XCTAssertEqual(manager.previousFaceObservations?.count, FaceDetectionManager.maxFaceCount)
+
+        manager.handleDetectedFaceObservations(currentFaceObservations)
+
+        XCTAssertNotNil(manager.previousFaceObservations)
+        XCTAssertEqual(manager.previousFaceObservations?.count, 1)
+        XCTAssert(manager.isFaceDetected[0])
+    }
+
+    func testTwoFacesTrackedWithSmallestEuclideanDistance() {
+        let previousFaceObservations = [VNFaceObservationMock(boundingBox: CGRect(x: 0.1, y: 0.1, width: 0.5, height: 0.5)),
+                                        VNFaceObservationMock(boundingBox: CGRect(x: 0.3, y: 0.3, width: 0.5, height: 0.5))]
+        manager.previousFaceObservations = previousFaceObservations
+
+        let currentFaceObservations = [VNFaceObservationMock(boundingBox: CGRect(x: 0.35, y: 0.35, width: 0.5, height: 0.5)),
+                                       VNFaceObservationMock(boundingBox: CGRect(x: 0.15, y: 0.15, width: 0.5, height: 0.5))]
+
+        XCTAssertNotNil(manager.previousFaceObservations)
+        XCTAssertEqual(manager.previousFaceObservations?.count, FaceDetectionManager.maxFaceCount)
+
+        manager.handleDetectedFaceObservations(currentFaceObservations)
+
+        XCTAssertNotNil(manager.previousFaceObservations)
+        XCTAssertEqual(manager.previousFaceObservations!.count, 2)
+        XCTAssertEqual(manager.previousFaceObservations![0], currentFaceObservations[1])
+        XCTAssertEqual(manager.previousFaceObservations![1], currentFaceObservations[0])
+    }
+
+    func computeBoundingBoxInNormalizedCoordinates(faceDimensions: CGRect, imageDimensions: CGRect) -> CGRect {
+        CGRect(
+            x: faceDimensions.origin.x / imageDimensions.width,
+            y: faceDimensions.origin.y / imageDimensions.height,
+            width: faceDimensions.width / imageDimensions.width,
+            height: faceDimensions.height / imageDimensions.height)
     }
 }

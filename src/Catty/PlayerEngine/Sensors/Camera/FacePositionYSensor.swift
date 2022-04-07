@@ -22,10 +22,10 @@
 
 class FacePositionYSensor: DeviceDoubleSensor {
 
-    static let tag = "FACE_Y_POSITION"
+    static let tag = "FACE_Y"
     static let name = kUIFESensorFaceY
     static let defaultRawValue = 0.0
-    static let position = 240
+    static let position = 250
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
@@ -41,7 +41,7 @@ class FacePositionYSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionY = self.getFaceDetectionManager()?.facePositionRatioFromBottom else { return type(of: self).defaultRawValue }
+        guard let positionY = self.getFaceDetectionManager()?.facePositionRatioFromBottom[0] else { return type(of: self).defaultRawValue }
         return positionY
     }
 

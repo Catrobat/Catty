@@ -60,6 +60,10 @@ extension CatrobatSetup {
          FaceSizeSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
          FacePositionXSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
          FacePositionYSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
+         SecondFaceDetectedSensor(faceDetectionManagerGetter: { faceDetectionManager }),
+         SecondFaceSizeSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
+         SecondFacePositionXSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
+         SecondFacePositionYSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
 
          PhiroFrontLeftSensor(bluetoothServiceGetter: { bluetoothService }),
          PhiroFrontRightSensor(bluetoothServiceGetter: { bluetoothService }),

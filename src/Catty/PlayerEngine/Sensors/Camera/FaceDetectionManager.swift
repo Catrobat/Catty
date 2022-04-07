@@ -19,19 +19,23 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+import Vision
 
 class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
 
-    var isFaceDetected = false
-    var facePositionRatioFromLeft: Double?
-    var facePositionRatioFromBottom: Double?
-    var faceSizeRatio: Double?
+    static let maxFaceCount = 2
+
+    var isFaceDetected = [false, false]
+    var facePositionRatioFromLeft: [Double?] = [nil, nil]
+    var facePositionRatioFromBottom: [Double?] = [nil, nil]
+    var faceSizeRatio: [Double?] = [nil, nil]
     var faceDetectionFrameSize: CGSize?
 
     private var session: AVCaptureSession?
     private var videoDataOuput: AVCaptureVideoDataOutput?
     private var previewLayer: AVCaptureVideoPreviewLayer?
-    private var faceDetector: CIDetector?
+
+    var previousFaceObservations: [VNFaceObservation]?
 
     func start() {
         self.reset()
@@ -75,10 +79,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         previewLayer.isHidden = true
         self.previewLayer = previewLayer
 
-        let detectorOptions = [ CIDetectorAccuracy: CIDetectorAccuracyLow ]
-
         DispatchQueue.main.async {
-            self.faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: detectorOptions)
             session.startRunning()
         }
     }
@@ -99,7 +100,6 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
 
         self.session?.stopRunning()
         self.session = nil
-        self.faceDetector = nil
         self.videoDataOuput?.connection(with: .video)?.isEnabled = false
         self.videoDataOuput = nil
         self.previewLayer?.removeFromSuperlayer()
@@ -107,11 +107,12 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     }
 
     func reset() {
-        self.isFaceDetected = false
-        self.facePositionRatioFromLeft = nil
-        self.facePositionRatioFromBottom = nil
-        self.faceSizeRatio = nil
+        self.isFaceDetected = [false, false]
+        self.facePositionRatioFromLeft = [nil, nil]
+        self.facePositionRatioFromBottom = [nil, nil]
+        self.faceSizeRatio = [nil, nil]
         self.faceDetectionFrameSize = nil
+        self.previousFaceObservations = nil
     }
 
     func available() -> Bool {
@@ -125,37 +126,92 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
+        let imageSize = CGSize(width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
+        self.faceDetectionFrameSize = imageSize
+
         if connection.isVideoOrientationSupported {
             connection.videoOrientation = .portrait
         }
 
-        let ciImage = CIImage(cvImageBuffer: pixelBuffer)
-        guard let features = self.faceDetector?.features(in: ciImage) else { return }
-
-        captureFace(for: features, in: ciImage.extent)
-    }
-
-    func captureFace(for features: [CIFeature], in imageDimensions: CGRect) {
-        var isFaceDetected = false
-
-        for feature in features where (feature.type == CIFeatureTypeFace) {
-            isFaceDetected = true
-
-            let featureCenterX = feature.bounds.origin.x + feature.bounds.width / 2
-            let featureCenterY = feature.bounds.origin.y + feature.bounds.height / 2
-
-            self.faceDetectionFrameSize = imageDimensions.size
-            self.faceSizeRatio = Double(feature.bounds.width) / Double(imageDimensions.width)
-            self.facePositionRatioFromBottom = Double(featureCenterY / imageDimensions.height)
-
-            var ratioFromLeft = Double(featureCenterX / imageDimensions.width)
-            if cameraPosition() == .front {
-                ratioFromLeft = 1 - ratioFromLeft
-            }
-            self.facePositionRatioFromLeft = ratioFromLeft
+        var orientation = CGImagePropertyOrientation.up
+        if cameraPosition() == .front {
+            orientation = .upMirrored
         }
 
+        let faceDetectionRequest = VNDetectFaceRectanglesRequest { request, _ in
+            if let faceObservations = request.results as? [VNFaceObservation] {
+                DispatchQueue.main.async {
+                    self.handleDetectedFaceObservations(faceObservations)
+                }
+            }
+        }
+
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: orientation, options: [:])
+
+        do {
+            try imageRequestHandler.perform([faceDetectionRequest])
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+
+    func handleDetectedFaceObservations(_ faceObservations: [VNFaceObservation]) {
+        guard !faceObservations.isEmpty else {
+            reset()
+            return
+        }
+
+        var currentFaceObservations = faceObservations
+        var isFaceDetected = [false, false]
+        let facesDetected = min(currentFaceObservations.count, FaceDetectionManager.maxFaceCount)
+
+        if previousFaceObservations == nil {
+            previousFaceObservations = Array(currentFaceObservations[..<facesDetected])
+        } else {
+            for previousFaceIndex in 0..<FaceDetectionManager.maxFaceCount {
+                if currentFaceObservations.isEmpty {
+                    if previousFaceIndex < previousFaceObservations!.count {
+                        previousFaceObservations?.remove(at: previousFaceIndex)
+                    }
+                } else {
+                    var matchingFaceObservation = currentFaceObservations[0]
+                    if previousFaceIndex < previousFaceObservations!.count {
+                        let previousFaceObservation = previousFaceObservations![previousFaceIndex]
+
+                        var minimumEuclideanDistance = Double.greatestFiniteMagnitude
+                        for currentFaceIndex in 0..<currentFaceObservations.count {
+                            let currentFaceObservation = currentFaceObservations[currentFaceIndex]
+                            let euclideanDistance = calculateEuclideanDistance(previousFaceObservation, currentFaceObservation)
+                            if euclideanDistance < minimumEuclideanDistance {
+                                minimumEuclideanDistance = euclideanDistance
+                                matchingFaceObservation = currentFaceObservation
+                            }
+                        }
+                    }
+                    if previousFaceIndex >= previousFaceObservations!.count {
+                        previousFaceObservations?.append(matchingFaceObservation)
+                    } else {
+                        previousFaceObservations![previousFaceIndex] = matchingFaceObservation
+                    }
+                    currentFaceObservations.removeObject(matchingFaceObservation)
+                }
+            }
+        }
+
+        for faceIndex in 0..<previousFaceObservations!.count {
+            let faceObservation = previousFaceObservations![faceIndex]
+            self.facePositionRatioFromLeft[faceIndex] = faceObservation.boundingBox.origin.x + faceObservation.boundingBox.width / 2
+            self.facePositionRatioFromBottom[faceIndex] = faceObservation.boundingBox.origin.y + faceObservation.boundingBox.height / 2
+            self.faceSizeRatio[faceIndex] = max(faceObservation.boundingBox.width, faceObservation.boundingBox.height)
+            isFaceDetected[faceIndex] = true
+        }
         self.isFaceDetected = isFaceDetected
+    }
+
+    func calculateEuclideanDistance(_ previousFaceObservation: VNFaceObservation, _ currentFaceObservation: VNFaceObservation) -> Double {
+        let distanceX = previousFaceObservation.boundingBox.origin.x - currentFaceObservation.boundingBox.origin.x
+        let distanceY = previousFaceObservation.boundingBox.origin.y - currentFaceObservation.boundingBox.origin.y
+        return sqrt(pow(distanceX, 2) + pow(distanceY, 2))
     }
 
     func cameraPosition() -> AVCaptureDevice.Position {

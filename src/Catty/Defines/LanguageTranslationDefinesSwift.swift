@@ -778,10 +778,14 @@ let kLocalizedSensorLED = NSLocalizedString("LED", comment: "")
 let kLocalizedInternet = NSLocalizedString("Internet", comment: "")
 let kLocalizedNotAvailable = NSLocalizedString("not available. Continue anyway?", comment: "")
 
-let kUIFESensorFaceDetected = NSLocalizedString("face detected", comment: "")
-let kUIFESensorFaceSize = NSLocalizedString("facesize", comment: "")
-let kUIFESensorFaceX = NSLocalizedString("faceposition x", comment: "")
-let kUIFESensorFaceY = NSLocalizedString("faceposition y", comment: "")
+let kUIFESensorFaceDetected = NSLocalizedString("first face visible", comment: "")
+let kUIFESensorFaceSize = NSLocalizedString("first face size", comment: "")
+let kUIFESensorFaceX = NSLocalizedString("first face x position", comment: "")
+let kUIFESensorFaceY = NSLocalizedString("first face y position", comment: "")
+let kUIFESensorSecondFaceDetected = NSLocalizedString("second face visible", comment: "")
+let kUIFESensorSecondFaceSize = NSLocalizedString("second face size", comment: "")
+let kUIFESensorSecondFaceX = NSLocalizedString("second face x position", comment: "")
+let kUIFESensorSecondFaceY = NSLocalizedString("second face y position", comment: "")
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 

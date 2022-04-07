@@ -26,61 +26,78 @@ import XCTest
 
 final class FaceDetectionSensorTest: XCTestCase {
 
-    var sensor: FaceDetectedSensor!
+    var faceDetectedSensors = [DeviceDoubleSensor]()
     var cameraManagerMock: FaceDetectionManagerMock!
 
     func testDefaultRawValue() {
-        let sensor = FaceDetectedSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        let firstFaceSensor = FaceDetectedSensor { nil }
+        XCTAssertEqual(type(of: firstFaceSensor).defaultRawValue, firstFaceSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: firstFaceSensor).defaultRawValue, firstFaceSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+
+        let secondFaceSensor = SecondFaceDetectedSensor { nil }
+        XCTAssertEqual(type(of: secondFaceSensor).defaultRawValue, secondFaceSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: secondFaceSensor).defaultRawValue, secondFaceSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     override func setUp() {
         super.setUp()
         self.cameraManagerMock = FaceDetectionManagerMock()
-        self.sensor = FaceDetectedSensor { [ weak self ] in self?.cameraManagerMock }
+        self.faceDetectedSensors.append(FaceDetectedSensor { [ weak self ] in self?.cameraManagerMock })
+        self.faceDetectedSensors.append(SecondFaceDetectedSensor { [ weak self ] in self?.cameraManagerMock })
     }
 
     override func tearDown() {
         self.cameraManagerMock = nil
-        self.sensor = nil
+        self.faceDetectedSensors.removeAll()
         super.tearDown()
     }
 
     func testRawValue() {
-        self.cameraManagerMock.isFaceDetected = true
-        XCTAssertEqual(1, self.sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(1, self.sensor.rawValue(landscapeMode: true))
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            self.cameraManagerMock.isFaceDetected[faceIndex] = true
+            XCTAssertEqual(1, self.faceDetectedSensors[faceIndex].rawValue(landscapeMode: false))
+            XCTAssertEqual(1, self.faceDetectedSensors[faceIndex].rawValue(landscapeMode: true))
 
-        self.cameraManagerMock.isFaceDetected = false
-        XCTAssertEqual(0, self.sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0, self.sensor.rawValue(landscapeMode: true))
+            self.cameraManagerMock.isFaceDetected[faceIndex] = false
+            XCTAssertEqual(0, self.faceDetectedSensors[faceIndex].rawValue(landscapeMode: false))
+            XCTAssertEqual(0, self.faceDetectedSensors[faceIndex].rawValue(landscapeMode: true))
+        }
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            XCTAssertEqual(0, faceDetectedSensors[faceIndex].convertToStandardized(rawValue: 0))
+            XCTAssertEqual(1, faceDetectedSensors[faceIndex].convertToStandardized(rawValue: 1))
+        }
     }
 
     func testStandardizedValue() {
-        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
-        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
-        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            let convertToStandardizedValue = faceDetectedSensors[faceIndex].convertToStandardized(rawValue: faceDetectedSensors[faceIndex].rawValue(landscapeMode: false))
+            let standardizedValue = faceDetectedSensors[faceIndex].standardizedValue(landscapeMode: false)
+            let standardizedValueLandscape = faceDetectedSensors[faceIndex].standardizedValue(landscapeMode: true)
+            XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        }
     }
 
     func testTag() {
-        XCTAssertEqual("FACE_DETECTED", sensor.tag())
+        XCTAssertEqual("FACE_DETECTED", faceDetectedSensors[0].tag())
+        XCTAssertEqual("SECOND_FACE_DETECTED", faceDetectedSensors[1].tag())
     }
 
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.faceDetection, type(of: sensor).requiredResource)
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            XCTAssertEqual(ResourceType.faceDetection, type(of: faceDetectedSensors[faceIndex]).requiredResource)
+        }
     }
 
     func testFormulaEditorSections() {
-        let sections = sensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: sensor).position, subsection: .visual), sections.first)
+        for faceIndex in 0..<FaceDetectionManager.maxFaceCount {
+            let sections = faceDetectedSensors[faceIndex].formulaEditorSections(for: SpriteObject())
+            XCTAssertEqual(1, sections.count)
+            let position = faceIndex == 0 ? FaceDetectedSensor.position : SecondFaceDetectedSensor.position
+            XCTAssertEqual(.sensors(position: position, subsection: .visual), sections.first)
+        }
     }
 }
