@@ -76,10 +76,6 @@ extension AudioManager: AudioManagerProtocol {
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ] as [String: Any]
 
-        let audioSession = AVAudioSession.sharedInstance()
-        try? audioSession.setActive(true)
-        try? audioSession.setCategory(.playAndRecord, mode: .default)
-        try? audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
         try? self.recorder = AVAudioRecorder(url: url, settings: settings)
     }
 

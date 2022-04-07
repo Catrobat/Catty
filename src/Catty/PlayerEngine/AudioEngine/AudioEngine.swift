@@ -72,6 +72,8 @@ import Foundation
     @objc func stop() {
         stopAllAudioSources()
         engine.stop()
+
+        audioEngineHelper.deactivateAudioSession()
     }
 
     private func pauseAllAudioSources() {

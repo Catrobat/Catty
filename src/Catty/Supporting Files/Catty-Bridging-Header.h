@@ -159,8 +159,6 @@
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
 #import "UndoManager.h"
-#import "SharkfoodMuteSwitchDetector.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes

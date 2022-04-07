@@ -38,12 +38,9 @@ final class MediaLibraryViewController: UICollectionViewController {
 
     private let dataSource: MediaLibraryCollectionViewDataSource
     private weak var loadingView: LoadingView!
-    private var originalAudioSessionCategory: AVAudioSession.Category?
-    private var originalAudioSessionCategoryOptions: AVAudioSession.CategoryOptions?
 
     private var audioPlayer: AVAudioPlayer?
     private var audioPlayerFinishPlayingCompletionBlock: AudioPlayerFinishPlayingCompletionBlock?
-    private var silentDetector: SharkfoodMuteSwitchDetector?
 
     // MARK: - Initializers
 
@@ -51,12 +48,6 @@ final class MediaLibraryViewController: UICollectionViewController {
         self.dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: mediaType)
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         self.dataSource.delegate = self
-        self.silentDetector = SharkfoodMuteSwitchDetector.shared()
-        silentDetector?.silentNotify = { silent in
-            if silent {
-                self.audioPlayer?.stop()
-            }
-        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -78,6 +69,7 @@ final class MediaLibraryViewController: UICollectionViewController {
         setupCollectionViewLayout()
         fetchData()
         self.navigationController?.isToolbarHidden = true
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -175,16 +167,6 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
         self.audioPlayer?.stop()
         self.audioPlayerFinishPlayingCompletionBlock?.completion?()
         self.audioPlayerFinishPlayingCompletionBlock = nil
-
-        if silentDetector?.isMute == true {
-            Util.alert(
-            text: (Util.isPhone()
-                ? kLocalizedDeviceIsInMutedStateIPhoneDescription
-                : kLocalizedDeviceIsInMutedStateIPadDescription))
-
-            completion?()
-            return
-        }
 
         do {
             audioPlayerFinishPlayingCompletionBlock = AudioPlayerFinishPlayingCompletionBlock(completion)
