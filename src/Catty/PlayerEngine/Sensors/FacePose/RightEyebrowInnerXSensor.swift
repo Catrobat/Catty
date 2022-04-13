@@ -25,7 +25,7 @@ class RightEyebrowInnerXSensor: DeviceDoubleSensor {
     static let tag = "RIGHT_EYEBROW_INNER_X"
     static let name = kUIFESensorRightEyebrowInnerX
     static let defaultRawValue = 0.0
-    static let position = 510
+    static let position = 530
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

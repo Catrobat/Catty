@@ -25,7 +25,7 @@ class MouthLeftCornerYSensor: DeviceDoubleSensor {
     static let tag = "MOUTH_LEFT_CORNER_Y"
     static let name = kUIFESensorMouthLeftCornerY
     static let defaultRawValue = 0.0
-    static let position = 420
+    static let position = 440
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

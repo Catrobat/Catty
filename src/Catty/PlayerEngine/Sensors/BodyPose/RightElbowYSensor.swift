@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class MouthRightCornerYSensor: DeviceDoubleSensor {
+class RightElbowYSensor: DeviceDoubleSensor {
 
-    static let tag = "MOUTH_RIGHT_CORNER_Y"
-    static let name = kUIFESensorMouthRightCornerY
+    static let tag = "RIGHT_ELBOW_Y"
+    static let name = kUIFESensorRightElbowY
     static let defaultRawValue = 0.0
-    static let position = 460
+    static let position = 660
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
@@ -41,7 +41,7 @@ class MouthRightCornerYSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionY = self.getVisualDetectionManager()?.faceLandmarkPositionRatioDictionary[self.tag()] else { return type(of: self).defaultRawValue }
+        guard let positionY = self.getVisualDetectionManager()?.bodyPosePositionRatioDictionary[self.tag()] else { return type(of: self).defaultRawValue }
         return positionY
     }
 

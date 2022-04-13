@@ -356,6 +356,25 @@
 		4979F41127E85ACA00ABCAD6 /* LeftEyeInnerYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979F41027E85ACA00ABCAD6 /* LeftEyeInnerYSensor.swift */; };
 		4979F41327E85AD900ABCAD6 /* LeftEyeOuterXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979F41227E85AD900ABCAD6 /* LeftEyeOuterXSensor.swift */; };
 		4979F41527E85AE700ABCAD6 /* LeftEyeOuterYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979F41427E85AE700ABCAD6 /* LeftEyeOuterYSensor.swift */; };
+		498C156A2807057B00B81C8E /* WristSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B512806FD380073BF65 /* WristSensorTest.swift */; };
+		498C156B2807057B00B81C8E /* ShoulderSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B4D2806FD1E0073BF65 /* ShoulderSensorTest.swift */; };
+		498C156C2807057B00B81C8E /* ElbowSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B4F2806FD300073BF65 /* ElbowSensorTest.swift */; };
+		498C156D2807057B00B81C8E /* NeckSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B4B2806FD0B0073BF65 /* NeckSensorTest.swift */; };
+		498C1571280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml in Resources */ = {isa = PBXBuildFile; fileRef = 498C1570280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml */; };
+		49949B3A2806EAD20073BF65 /* LeftShoulderYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B2C2806EAD10073BF65 /* LeftShoulderYSensor.swift */; };
+		49949B3B2806EAD20073BF65 /* NeckXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B2D2806EAD10073BF65 /* NeckXSensor.swift */; };
+		49949B3C2806EAD20073BF65 /* LeftElbowXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B2E2806EAD10073BF65 /* LeftElbowXSensor.swift */; };
+		49949B3D2806EAD20073BF65 /* RightWristYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B2F2806EAD10073BF65 /* RightWristYSensor.swift */; };
+		49949B3E2806EAD20073BF65 /* RightElbowXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B302806EAD10073BF65 /* RightElbowXSensor.swift */; };
+		49949B3F2806EAD20073BF65 /* RightShoulderXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B312806EAD10073BF65 /* RightShoulderXSensor.swift */; };
+		49949B402806EAD20073BF65 /* LeftElbowYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B322806EAD10073BF65 /* LeftElbowYSensor.swift */; };
+		49949B412806EAD20073BF65 /* LeftShoulderXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B332806EAD10073BF65 /* LeftShoulderXSensor.swift */; };
+		49949B422806EAD20073BF65 /* LeftWristYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B342806EAD10073BF65 /* LeftWristYSensor.swift */; };
+		49949B432806EAD20073BF65 /* LeftWristXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B352806EAD10073BF65 /* LeftWristXSensor.swift */; };
+		49949B442806EAD20073BF65 /* RightElbowYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B362806EAD10073BF65 /* RightElbowYSensor.swift */; };
+		49949B452806EAD20073BF65 /* RightShoulderYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B372806EAD10073BF65 /* RightShoulderYSensor.swift */; };
+		49949B462806EAD20073BF65 /* RightWristXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B382806EAD10073BF65 /* RightWristXSensor.swift */; };
+		49949B472806EAD20073BF65 /* NeckYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B392806EAD20073BF65 /* NeckYSensor.swift */; };
 		499EBFE127EB07A900897349 /* EyeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDC04327EA26B2007E8B0D /* EyeSensorTest.swift */; };
 		499EBFE427EB0EB600897349 /* EyebrowSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499EBFE327EB0EB600897349 /* EyebrowSensorTest.swift */; };
 		499EBFE627EB17B700897349 /* HeadTopSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499EBFE527EB17B700897349 /* HeadTopSensorTest.swift */; };
@@ -2398,6 +2417,25 @@
 		4979F41027E85ACA00ABCAD6 /* LeftEyeInnerYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEyeInnerYSensor.swift; sourceTree = "<group>"; };
 		4979F41227E85AD900ABCAD6 /* LeftEyeOuterXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEyeOuterXSensor.swift; sourceTree = "<group>"; };
 		4979F41427E85AE700ABCAD6 /* LeftEyeOuterYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEyeOuterYSensor.swift; sourceTree = "<group>"; };
+		498C1570280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UpperBodyPoseDetectionSensors.xml; sourceTree = "<group>"; };
+		49949B2C2806EAD10073BF65 /* LeftShoulderYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftShoulderYSensor.swift; sourceTree = "<group>"; };
+		49949B2D2806EAD10073BF65 /* NeckXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeckXSensor.swift; sourceTree = "<group>"; };
+		49949B2E2806EAD10073BF65 /* LeftElbowXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftElbowXSensor.swift; sourceTree = "<group>"; };
+		49949B2F2806EAD10073BF65 /* RightWristYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightWristYSensor.swift; sourceTree = "<group>"; };
+		49949B302806EAD10073BF65 /* RightElbowXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightElbowXSensor.swift; sourceTree = "<group>"; };
+		49949B312806EAD10073BF65 /* RightShoulderXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightShoulderXSensor.swift; sourceTree = "<group>"; };
+		49949B322806EAD10073BF65 /* LeftElbowYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftElbowYSensor.swift; sourceTree = "<group>"; };
+		49949B332806EAD10073BF65 /* LeftShoulderXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftShoulderXSensor.swift; sourceTree = "<group>"; };
+		49949B342806EAD10073BF65 /* LeftWristYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftWristYSensor.swift; sourceTree = "<group>"; };
+		49949B352806EAD10073BF65 /* LeftWristXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftWristXSensor.swift; sourceTree = "<group>"; };
+		49949B362806EAD10073BF65 /* RightElbowYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightElbowYSensor.swift; sourceTree = "<group>"; };
+		49949B372806EAD10073BF65 /* RightShoulderYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightShoulderYSensor.swift; sourceTree = "<group>"; };
+		49949B382806EAD10073BF65 /* RightWristXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightWristXSensor.swift; sourceTree = "<group>"; };
+		49949B392806EAD20073BF65 /* NeckYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeckYSensor.swift; sourceTree = "<group>"; };
+		49949B4B2806FD0B0073BF65 /* NeckSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeckSensorTest.swift; sourceTree = "<group>"; };
+		49949B4D2806FD1E0073BF65 /* ShoulderSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoulderSensorTest.swift; sourceTree = "<group>"; };
+		49949B4F2806FD300073BF65 /* ElbowSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElbowSensorTest.swift; sourceTree = "<group>"; };
+		49949B512806FD380073BF65 /* WristSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WristSensorTest.swift; sourceTree = "<group>"; };
 		4997640FD2AB79927E45C4EF /* ca */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		499EBFE327EB0EB600897349 /* EyebrowSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyebrowSensorTest.swift; sourceTree = "<group>"; };
 		499EBFE527EB17B700897349 /* HeadTopSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadTopSensorTest.swift; sourceTree = "<group>"; };
@@ -5313,6 +5351,7 @@
 				49530A8327FDDC03003A9E24 /* BackwardsCompatibleFaceDetectionSensors.xml */,
 				49530A8127FDDADC003A9E24 /* FaceDetectionSensors.xml */,
 				49A291A827EB2FE70052EE3B /* FacePoseSensors.xml */,
+				498C1570280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml */,
 			);
 			path = Sensors;
 			sourceTree = "<group>";
@@ -5565,6 +5604,38 @@
 			path = SpriteObject;
 			sourceTree = "<group>";
 		};
+		49949B292806EA500073BF65 /* BodyPose */ = {
+			isa = PBXGroup;
+			children = (
+				49949B2D2806EAD10073BF65 /* NeckXSensor.swift */,
+				49949B392806EAD20073BF65 /* NeckYSensor.swift */,
+				49949B332806EAD10073BF65 /* LeftShoulderXSensor.swift */,
+				49949B2C2806EAD10073BF65 /* LeftShoulderYSensor.swift */,
+				49949B312806EAD10073BF65 /* RightShoulderXSensor.swift */,
+				49949B372806EAD10073BF65 /* RightShoulderYSensor.swift */,
+				49949B2E2806EAD10073BF65 /* LeftElbowXSensor.swift */,
+				49949B322806EAD10073BF65 /* LeftElbowYSensor.swift */,
+				49949B302806EAD10073BF65 /* RightElbowXSensor.swift */,
+				49949B362806EAD10073BF65 /* RightElbowYSensor.swift */,
+				49949B352806EAD10073BF65 /* LeftWristXSensor.swift */,
+				49949B342806EAD10073BF65 /* LeftWristYSensor.swift */,
+				49949B382806EAD10073BF65 /* RightWristXSensor.swift */,
+				49949B2F2806EAD10073BF65 /* RightWristYSensor.swift */,
+			);
+			path = BodyPose;
+			sourceTree = "<group>";
+		};
+		49949B4A2806FCEC0073BF65 /* BodyPose */ = {
+			isa = PBXGroup;
+			children = (
+				49949B4B2806FD0B0073BF65 /* NeckSensorTest.swift */,
+				49949B4D2806FD1E0073BF65 /* ShoulderSensorTest.swift */,
+				49949B4F2806FD300073BF65 /* ElbowSensorTest.swift */,
+				49949B512806FD380073BF65 /* WristSensorTest.swift */,
+			);
+			path = BodyPose;
+			sourceTree = "<group>";
+		};
 		49E494DC27F596630035578D /* FacePose */ = {
 			isa = PBXGroup;
 			children = (
@@ -5592,16 +5663,16 @@
 				49B55F8027E877D0000A95B4 /* MouthLeftCornerYSensor.swift */,
 				49B55F8227E877DE000A95B4 /* MouthRightCornerXSensor.swift */,
 				49B55F8427E877EE000A95B4 /* MouthRightCornerYSensor.swift */,
-				49B55F8D27E88701000A95B4 /* LeftEyebrowCenterXSensor.swift */,
-				49B55F8827E88701000A95B4 /* LeftEyebrowCenterYSensor.swift */,
 				49B55F8E27E88701000A95B4 /* LeftEyebrowInnerXSensor.swift */,
 				49B55F9127E88702000A95B4 /* LeftEyebrowInnerYSensor.swift */,
+				49B55F8D27E88701000A95B4 /* LeftEyebrowCenterXSensor.swift */,
+				49B55F8827E88701000A95B4 /* LeftEyebrowCenterYSensor.swift */,
 				49B55F8C27E88701000A95B4 /* LeftEyebrowOuterXSensor.swift */,
 				49B55F8B27E88701000A95B4 /* LeftEyebrowOuterYSensor.swift */,
-				49B55F9027E88702000A95B4 /* RightEyebrowCenterXSensor.swift */,
-				49B55F8627E88700000A95B4 /* RightEyebrowCenterYSensor.swift */,
 				49B55F8727E88700000A95B4 /* RightEyebrowInnerXSensor.swift */,
 				49B55F8927E88701000A95B4 /* RightEyebrowInnerYSensor.swift */,
+				49B55F9027E88702000A95B4 /* RightEyebrowCenterXSensor.swift */,
+				49B55F8627E88700000A95B4 /* RightEyebrowCenterYSensor.swift */,
 				49B55F8F27E88701000A95B4 /* RightEyebrowOuterXSensor.swift */,
 				49B55F8A27E88701000A95B4 /* RightEyebrowOuterYSensor.swift */,
 			);
@@ -6770,6 +6841,7 @@
 			children = (
 				4C822651213FA7A300F3D750 /* SensorManagerTests.swift */,
 				4C822640213FA7A300F3D750 /* Audio */,
+				49949B4A2806FCEC0073BF65 /* BodyPose */,
 				49E494E927F5993E0035578D /* FacePose */,
 				4C822626213FA7A300F3D750 /* Camera */,
 				4C822632213FA7A300F3D750 /* Date */,
@@ -6947,6 +7019,7 @@
 		4C994DFA207A3D4100C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				49949B292806EA500073BF65 /* BodyPose */,
 				49E494DC27F596630035578D /* FacePose */,
 				4C994E05207A3D4100C415FD /* Audio */,
 				4CE3D6862107A80000005629 /* Camera */,
@@ -11597,6 +11670,7 @@
 				2ED417BB241120AF00AFE2FD /* Piano_098.xml in Resources */,
 				4C3286132546D52000C31F9D /* Piano_0993.xml in Resources */,
 				E57D5B2726AEA990003A1457 /* Flap_Pac_Man_0999.xml in Resources */,
+				498C1571280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml in Resources */,
 				E59108E326931FC7008D254A /* Piano_0994.xml in Resources */,
 				E50E8574269EEF3000E76CE9 /* Sensors_0995.xml in Resources */,
 				2ED417B9241120AF00AFE2FD /* Piano_097.xml in Resources */,
@@ -11961,6 +12035,7 @@
 				4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */,
 				056677F127DD39D8006B4477 /* ZigzagStitchPatternTests.swift in Sources */,
 				4C4778D6267C82B100CAF398 /* UIViewControllerExtensionTests.swift in Sources */,
+				498C156B2807057B00B81C8E /* ShoulderSensorTest.swift in Sources */,
 				17A8AC652644E6A900DDD480 /* ForceInit.m in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
@@ -12134,6 +12209,7 @@
 				4C0A209824CEA46700CC9B04 /* PaintViewControllerMock.swift in Sources */,
 				4C82267B213FA7A400F3D750 /* BackgroundNumberSensorTest.swift in Sources */,
 				59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */,
+				498C156C2807057B00B81C8E /* ElbowSensorTest.swift in Sources */,
 				9E24D7072326EBC300608203 /* ShowBrickTests.swift in Sources */,
 				4C4778F6267C83F500CAF398 /* FormulaTest.swift in Sources */,
 				18390A7324D0A33D00A07DFD /* StampBrickTests.swift in Sources */,
@@ -12171,6 +12247,7 @@
 				46162CBD2544AE5600DF6042 /* SetRotationStyleBrickTests.swift in Sources */,
 				4C4778E1267C82B100CAF398 /* NSDateExtensionTests.swift in Sources */,
 				4C6FE15F212D2D2E0067B7D5 /* FalseFunctionTest.swift in Sources */,
+				498C156A2807057B00B81C8E /* WristSensorTest.swift in Sources */,
 				4C82266D213FA7A400F3D750 /* DateDaySensorTest.swift in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
 				4C4778DE267C82B100CAF398 /* NSStringExtensionTests.swift in Sources */,
@@ -12316,6 +12393,7 @@
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
 				4C4778BD267C7FF800CAF398 /* CBSpriteNodeStitchExtensionTests.swift in Sources */,
 				0594CE64275E55CD007DC3F9 /* SewUpTests.swift in Sources */,
+				498C156D2807057B00B81C8E /* NeckSensorTest.swift in Sources */,
 				9E3AF7982326F21300AB16F1 /* SetXBrickTests.swift in Sources */,
 				4C4B4CDF23EE98C80054C861 /* CustomAlertControllerTests.swift in Sources */,
 				4C822678213FA7A400F3D750 /* ColorSensorTest.swift in Sources */,
@@ -12435,6 +12513,7 @@
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
 				F470A2E52129DF42005EC9A3 /* NumberOfItemsFunction.swift in Sources */,
+				49949B3F2806EAD20073BF65 /* RightShoulderXSensor.swift in Sources */,
 				92B46F9B1BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m in Sources */,
 				4C0F9F31204ADC2E00E71B2D /* ChooseCameraBrick.m in Sources */,
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
@@ -12514,6 +12593,7 @@
 				6F4F8AFF24CF261C002C3814 /* UserDataContainer.swift in Sources */,
 				F45AF701212960B4000F88A6 /* FaceSizeSensor.swift in Sources */,
 				9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */,
+				49949B442806EAD20073BF65 /* RightElbowYSensor.swift in Sources */,
 				4CB0F9F420A173B700D1BE2F /* RotationSensor.swift in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
 				9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */,
@@ -12660,6 +12740,7 @@
 				92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */,
 				92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
+				49949B3D2806EAD20073BF65 /* RightWristYSensor.swift in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
@@ -12713,6 +12794,7 @@
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				44B76EC82476C19600DC30E2 /* FirebaseAnalyticsReporter.swift in Sources */,
+				49949B452806EAD20073BF65 /* RightShoulderYSensor.swift in Sources */,
 				59EA52BF24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				4C0D2A84254AA2C100A8637F /* RotationStyle.swift in Sources */,
@@ -12789,6 +12871,7 @@
 				AA74F09F1BC05FCE00D1E954 /* IfLogicBeginBrickCell.m in Sources */,
 				592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */,
 				F4E6E592210E032000D86FE6 /* AsinFunction.swift in Sources */,
+				49949B412806EAD20073BF65 /* LeftShoulderXSensor.swift in Sources */,
 				AA74EE391BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift in Sources */,
 				AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */,
@@ -12830,6 +12913,7 @@
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
 				6F1911A124E7CE0D00CF1B4F /* SceneMock.swift in Sources */,
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
+				49949B462806EAD20073BF65 /* RightWristXSensor.swift in Sources */,
 				4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */,
 				4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */,
 				46F0D30E25E593F5002252E6 /* SetLookBrick+CBXMLHandler.swift in Sources */,
@@ -12845,7 +12929,9 @@
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				22BEC60425CAD86500AFE1C3 /* StoreFeaturedProject.swift in Sources */,
+				49949B3E2806EAD20073BF65 /* RightElbowXSensor.swift in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
+				49949B402806EAD20073BF65 /* LeftElbowYSensor.swift in Sources */,
 				9E78D88B22A9B1D400948AC3 /* IterableCache.swift in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
@@ -12970,7 +13056,9 @@
 				92FF315B1A24DEB300093DA7 /* ProjectDetailStoreViewController.m in Sources */,
 				AA74EFE91BC05B5F00D1E954 /* NoteBrick.m in Sources */,
 				92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */,
+				49949B432806EAD20073BF65 /* LeftWristXSensor.swift in Sources */,
 				9E2AEA52239888C100CDF58F /* PlaySoundAndWaitBrick+Instruction.swift in Sources */,
+				49949B3B2806EAD20073BF65 /* NeckXSensor.swift in Sources */,
 				92DFB0191A38949E00FA9B0F /* InternToExternGenerator.m in Sources */,
 				AA74EEE31BC057B900D1E954 /* NoteBrick+CBXMLHandler.m in Sources */,
 				49B55F7027E86315000A95B4 /* RightEyeInnerXSensor.swift in Sources */,
@@ -13034,6 +13122,7 @@
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				5EFBD5FC2145AADC003B3CDC /* UIViewExtension.swift in Sources */,
+				49949B472806EAD20073BF65 /* NeckYSensor.swift in Sources */,
 				9728AE9E25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				229DC44F25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift in Sources */,
@@ -13095,6 +13184,7 @@
 				4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
+				49949B3C2806EAD20073BF65 /* LeftElbowXSensor.swift in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				4C595F5521CAF3E60097D850 /* NotOperator.swift in Sources */,
@@ -13214,6 +13304,7 @@
 				18E83F7B2493BEFF003295DA /* PenClearBrick.swift in Sources */,
 				AA74EF4C1BC0586F00D1E954 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
 				5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */,
+				49949B422806EAD20073BF65 /* LeftWristYSensor.swift in Sources */,
 				AA74EF6E1BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				AA74F0C21BC05FCE00D1E954 /* TurnLeftBrickCell.m in Sources */,
 				9E0F741622B55D620030CD89 /* StandardAudioPlayerFactory.swift in Sources */,
@@ -13294,6 +13385,7 @@
 				92FF31611A24DEB300093DA7 /* StagePresenterViewController.m in Sources */,
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
 				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,
+				49949B3A2806EAD20073BF65 /* LeftShoulderYSensor.swift in Sources */,
 				BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */,
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,
 				97417A9B265284400079A2A2 /* SoundsTableViewController+SelectFile.swift in Sources */,

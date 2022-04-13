@@ -788,6 +788,8 @@ let kUIFESensorSecondFaceY = NSLocalizedString("second face y position", comment
 
 let kUIFESensorHeadTopX = NSLocalizedString("head top x", comment: "")
 let kUIFESensorHeadTopY = NSLocalizedString("head top y", comment: "")
+let kUIFESensorNeckX = NSLocalizedString("neck x", comment: "")
+let kUIFESensorNeckY = NSLocalizedString("neck y", comment: "")
 let kUIFESensorNoseX = NSLocalizedString("nose x", comment: "")
 let kUIFESensorNoseY = NSLocalizedString("nose y", comment: "")
 let kUIFESensorLeftEyeInnerX = NSLocalizedString("left eye inner x", comment: "")
@@ -822,6 +824,19 @@ let kUIFESensorRightEyebrowCenterX = NSLocalizedString("right eyebrow center x",
 let kUIFESensorRightEyebrowCenterY = NSLocalizedString("right eyebrow center y", comment: "")
 let kUIFESensorRightEyebrowOuterX = NSLocalizedString("right eyebrow outer x", comment: "")
 let kUIFESensorRightEyebrowOuterY = NSLocalizedString("right eyebrow outer y", comment: "")
+
+let kUIFESensorLeftShoulderX = NSLocalizedString("left shoulder x", comment: "")
+let kUIFESensorLeftShoulderY = NSLocalizedString("left shoulder y", comment: "")
+let kUIFESensorRightShoulderX = NSLocalizedString("right shoulder x", comment: "")
+let kUIFESensorRightShoulderY = NSLocalizedString("right shoulder y", comment: "")
+let kUIFESensorLeftElbowX = NSLocalizedString("left elbow x", comment: "")
+let kUIFESensorLeftElbowY = NSLocalizedString("left elbow y", comment: "")
+let kUIFESensorRightElbowX = NSLocalizedString("right elbow x", comment: "")
+let kUIFESensorRightElbowY = NSLocalizedString("right elbow y", comment: "")
+let kUIFESensorLeftWristX = NSLocalizedString("left wrist x", comment: "")
+let kUIFESensorLeftWristY = NSLocalizedString("left wrist y", comment: "")
+let kUIFESensorRightWristX = NSLocalizedString("right wrist x", comment: "")
+let kUIFESensorRightWristY = NSLocalizedString("right wrist y", comment: "")
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 

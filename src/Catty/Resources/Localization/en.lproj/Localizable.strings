@@ -986,6 +986,12 @@
 "left ear y" = "left ear y";
 
 /* No comment provided by engineer. */
+"left elbow x" = "left elbow x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "left elbow y";
+
+/* No comment provided by engineer. */
 "left eye center x" = "left eye center x";
 
 /* No comment provided by engineer. */
@@ -1020,6 +1026,18 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "left shoulder x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "left shoulder y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "left wrist x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "left wrist y";
 
 /* No comment provided by engineer. */
 "left-right only" = "left-right only";
@@ -1239,6 +1257,12 @@
 
 /* No comment provided by engineer. */
 "natural logarithm" = "natural logarithm";
+
+/* No comment provided by engineer. */
+"neck x" = "neck x";
+
+/* No comment provided by engineer. */
+"neck y" = "neck y";
 
 /* No comment provided by engineer. */
 "New" = "New";
@@ -1619,6 +1643,12 @@
 "right ear y" = "right ear y";
 
 /* No comment provided by engineer. */
+"right elbow x" = "right elbow x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "right elbow y";
+
+/* No comment provided by engineer. */
 "right eye center x" = "right eye center x";
 
 /* No comment provided by engineer. */
@@ -1653,6 +1683,18 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "right shoulder x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "right shoulder y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "right wrist x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "right wrist y";
 
 /* paint */
 "Rotate" = "Rotate";

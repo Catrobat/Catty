@@ -88,4 +88,25 @@ final class VisualDetectionManagerMock: VisualDetectionManager {
         self.faceLandmarkPositionRatioDictionary[MouthRightCornerXSensor.tag] = value
         self.faceLandmarkPositionRatioDictionary[MouthRightCornerYSensor.tag] = value
     }
+
+    func setAllShoulderSensorValueRatios(to value: Double) {
+        self.bodyPosePositionRatioDictionary[LeftShoulderXSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[LeftShoulderYSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[RightShoulderXSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[RightShoulderYSensor.tag] = value
+    }
+
+    func setAllElbowSensorValueRatios(to value: Double) {
+        self.bodyPosePositionRatioDictionary[LeftElbowXSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[LeftElbowYSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[RightElbowXSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[RightElbowYSensor.tag] = value
+    }
+
+    func setAllWristSensorValueRatios(to value: Double) {
+        self.bodyPosePositionRatioDictionary[LeftWristXSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[LeftWristYSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[RightWristXSensor.tag] = value
+        self.bodyPosePositionRatioDictionary[RightWristYSensor.tag] = value
+    }
 }

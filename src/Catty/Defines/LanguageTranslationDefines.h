@@ -788,6 +788,8 @@
 
 #define kUIFESensorHeadTopX NSLocalizedString(@"head top x", nil)
 #define kUIFESensorHeadTopY NSLocalizedString(@"head top y", nil)
+#define kUIFESensorNeckX NSLocalizedString(@"neck x", nil)
+#define kUIFESensorNeckY NSLocalizedString(@"neck y", nil)
 #define kUIFESensorNoseX NSLocalizedString(@"nose x", nil)
 #define kUIFESensorNoseY NSLocalizedString(@"nose y", nil)
 #define kUIFESensorLeftEyeInnerX NSLocalizedString(@"left eye inner x", nil)
@@ -822,6 +824,19 @@
 #define kUIFESensorRightEyebrowCenterY NSLocalizedString(@"right eyebrow center y", nil)
 #define kUIFESensorRightEyebrowOuterX NSLocalizedString(@"right eyebrow outer x", nil)
 #define kUIFESensorRightEyebrowOuterY NSLocalizedString(@"right eyebrow outer y", nil)
+
+#define kUIFESensorLeftShoulderX NSLocalizedString(@"left shoulder x", nil)
+#define kUIFESensorLeftShoulderY NSLocalizedString(@"left shoulder y", nil)
+#define kUIFESensorRightShoulderX NSLocalizedString(@"right shoulder x", nil)
+#define kUIFESensorRightShoulderY NSLocalizedString(@"right shoulder y", nil)
+#define kUIFESensorLeftElbowX NSLocalizedString(@"left elbow x", nil)
+#define kUIFESensorLeftElbowY NSLocalizedString(@"left elbow y", nil)
+#define kUIFESensorRightElbowX NSLocalizedString(@"right elbow x", nil)
+#define kUIFESensorRightElbowY NSLocalizedString(@"right elbow y", nil)
+#define kUIFESensorLeftWristX NSLocalizedString(@"left wrist x", nil)
+#define kUIFESensorLeftWristY NSLocalizedString(@"left wrist y", nil)
+#define kUIFESensorRightWristX NSLocalizedString(@"right wrist x", nil)
+#define kUIFESensorRightWristY NSLocalizedString(@"right wrist y", nil)
 
 #define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 

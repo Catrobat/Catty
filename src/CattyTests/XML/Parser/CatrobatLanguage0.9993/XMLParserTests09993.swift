@@ -149,6 +149,35 @@ class XMLParserTests09993: XMLAbstractTest {
         XCTAssertEqual(0, project.unsupportedElements.count)
     }
 
+    func testUpperBodyPoseSensors() {
+        let project = self.getProjectForXML(xmlFile: "UpperBodyPoseDetectionSensors")
+        let sensorTags: [String] = [LeftShoulderXSensor.tag, LeftShoulderYSensor.tag, RightShoulderXSensor.tag, RightShoulderYSensor.tag,
+                                    LeftElbowXSensor.tag, LeftElbowYSensor.tag, RightElbowXSensor.tag, RightElbowYSensor.tag, LeftWristXSensor.tag,
+                                    LeftWristYSensor.tag, RightWristXSensor.tag, RightWristYSensor.tag, NeckXSensor.tag, NeckYSensor.tag]
+
+        var sensorIndex = 0
+        let objectCount = 8
+
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        for objectIndex in 1..<objectCount {
+            let object = project.scene.object(at: objectIndex)!
+            XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
+            let script = object.scriptList.object(at: 0) as! Script
+            XCTAssertEqual(script.brickList.count, 3, "Invalid brick list")
+
+            let placeAtBrick = script.brickList.object(at: 1) as! PlaceAtBrick
+            XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[0].formulaTree.type)
+            XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[1].formulaTree.type)
+
+            XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+            sensorIndex += 1
+            XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[1].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+            sensorIndex += 1
+        }
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
+
     func testGlideToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
         let glideToBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
