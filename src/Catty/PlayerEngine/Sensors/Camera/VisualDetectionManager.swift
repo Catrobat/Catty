@@ -430,6 +430,42 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
                bodyPosePositionRatioDictionary[RightWristYSensor.tag] = rightWrist.y
            }
         }
+        if let leftHip = try? bodyPoseObservation.recognizedPoint(.leftHip) {
+            if leftHip.confidence > minConfidence {
+                bodyPosePositionRatioDictionary[LeftHipXSensor.tag] = leftHip.x
+                bodyPosePositionRatioDictionary[LeftHipYSensor.tag] = leftHip.y
+            }
+        }
+        if let rightHip = try? bodyPoseObservation.recognizedPoint(.rightHip) {
+            if rightHip.confidence > minConfidence {
+                bodyPosePositionRatioDictionary[RightHipXSensor.tag] = rightHip.x
+                bodyPosePositionRatioDictionary[RightHipYSensor.tag] = rightHip.y
+            }
+        }
+        if let leftKnee = try? bodyPoseObservation.recognizedPoint(.leftKnee) {
+            if leftKnee.confidence > minConfidence {
+                bodyPosePositionRatioDictionary[LeftKneeXSensor.tag] = leftKnee.x
+                bodyPosePositionRatioDictionary[LeftKneeYSensor.tag] = leftKnee.y
+            }
+        }
+        if let rightKnee = try? bodyPoseObservation.recognizedPoint(.rightKnee) {
+            if rightKnee.confidence > minConfidence {
+                bodyPosePositionRatioDictionary[RightKneeXSensor.tag] = rightKnee.x
+                bodyPosePositionRatioDictionary[RightKneeYSensor.tag] = rightKnee.y
+            }
+        }
+        if let leftAnkle = try? bodyPoseObservation.recognizedPoint(.leftAnkle) {
+            if leftAnkle.confidence > minConfidence {
+                bodyPosePositionRatioDictionary[LeftAnkleXSensor.tag] = leftAnkle.x
+                bodyPosePositionRatioDictionary[LeftAnkleYSensor.tag] = leftAnkle.y
+            }
+        }
+        if let rightAnkle = try? bodyPoseObservation.recognizedPoint(.rightAnkle) {
+            if rightAnkle.confidence > minConfidence {
+                bodyPosePositionRatioDictionary[RightAnkleXSensor.tag] = rightAnkle.x
+                bodyPosePositionRatioDictionary[RightAnkleYSensor.tag] = rightAnkle.y
+            }
+        }
     }
 
     func cameraPosition() -> AVCaptureDevice.Position {

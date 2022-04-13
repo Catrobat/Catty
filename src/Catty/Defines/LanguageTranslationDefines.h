@@ -838,6 +838,19 @@
 #define kUIFESensorRightWristX NSLocalizedString(@"right wrist x", nil)
 #define kUIFESensorRightWristY NSLocalizedString(@"right wrist y", nil)
 
+#define kUIFESensorLeftHipX NSLocalizedString(@"left hip x", nil)
+#define kUIFESensorLeftHipY NSLocalizedString(@"left hip y", nil)
+#define kUIFESensorRightHipX NSLocalizedString(@"right hip x", nil)
+#define kUIFESensorRightHipY NSLocalizedString(@"right hip y", nil)
+#define kUIFESensorLeftKneeX NSLocalizedString(@"left knee x", nil)
+#define kUIFESensorLeftKneeY NSLocalizedString(@"left knee y", nil)
+#define kUIFESensorRightKneeX NSLocalizedString(@"right knee x", nil)
+#define kUIFESensorRightKneeY NSLocalizedString(@"right knee y", nil)
+#define kUIFESensorLeftAnkleX NSLocalizedString(@"left ankle x", nil)
+#define kUIFESensorLeftAnkleY NSLocalizedString(@"left ankle y", nil)
+#define kUIFESensorRightAnkleX NSLocalizedString(@"right ankle x", nil)
+#define kUIFESensorRightAnkleY NSLocalizedString(@"right ankle y", nil)
+
 #define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 
 #define kUIFENewText NSLocalizedString(@"New text", nil)

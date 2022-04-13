@@ -138,6 +138,20 @@ extension CatrobatSetup {
             sensorArray.append(LeftWristYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
             sensorArray.append(RightWristXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
             sensorArray.append(RightWristYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+
+            sensorArray.append(LeftHipXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftHipYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightHipXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightHipYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftKneeXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftKneeYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightKneeXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightKneeYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftAnkleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftAnkleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightAnkleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightAnkleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+
         }
 
         return sensorArray
