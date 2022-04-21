@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>47</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.6.19</applicationVersion>
+    <catrobatLanguageVersion>0.9993</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>iPhone11,2</deviceName>
+    <isCastProject>false</isCastProject>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>15.3</platformVersion>
+    <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>HandPoseDetection</programName>
+    <remixOf/>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>2436</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1125</screenWidth>
+    <tags/>
+    <url>/pocketcode/project/6f216dfa-b192-11ec-b953-005056a32daa</url>
+    <userHandle>MStoeg</userHandle>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Scene 1</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList/>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ChooseCameraBrick">
+                  <commentedOut>false</commentedOut>
+                  <spinnerSelectionID>1</spinnerSelectionID>
+                </brick>
+                <brick type="CameraBrick">
+                  <commentedOut>false</commentedOut>
+                  <spinnerSelectionID>1</spinnerSelectionID>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="LeftPinkyKnuckle">
+          <lookList>
+            <look fileName="C4192A1A7D4E0503813E31630A705773_look.png" name="look"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_PINKY_Y</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_PINKY_X</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="LeftIndexKnuckle">
+          <lookList>
+            <look fileName="12EA790CC2370DBAA5CCC27257305292_look.png" name="look"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_INDEX_Y</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_INDEX_X</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="LeftThumbKnuckle">
+          <lookList>
+            <look fileName="AEF86E4A33DDEC0170A01000691CFE42_look.png" name="look"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_THUMB_Y</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_THUMB_X</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="LeftRingFingerKnuckle">
+          <lookList>
+            <look fileName="C4192A1A7D4E0503813E31630A705773_look.png" name="look"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_RING_FINGER_Y</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_RING_FINGER_X</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="LeftMiddleFingetKnuckle">
+          <lookList>
+            <look fileName="C4192A1A7D4E0503813E31630A705773_look.png" name="look"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_MIDDLE_FINGER_Y</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>SENSOR</type>
+                      <value>LEFT_MIDDLE_FINGER_X</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+      </objectList>
+    </scene>
+  </scenes>
+  <programVariableList/>
+  <programListOfLists/>
+</program>
+

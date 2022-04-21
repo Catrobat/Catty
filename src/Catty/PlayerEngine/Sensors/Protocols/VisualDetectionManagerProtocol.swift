@@ -29,6 +29,7 @@ protocol VisualDetectionManagerProtocol {
     var visualDetectionFrameSize: CGSize? { get }
     var faceLandmarkPositionRatioDictionary: [String: Double] { get }
     var bodyPosePositionRatioDictionary: [String: Double] { get }
+    var handPosePositionRatioDictionary: [String: Double] { get }
 
     func start()
 

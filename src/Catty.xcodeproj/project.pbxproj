@@ -342,6 +342,22 @@
 		490F0F3A27DF71CC00D4778B /* LeftEyeCenterYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F0F3927DF71CC00D4778B /* LeftEyeCenterYSensor.swift */; };
 		4926233C27AA8A2800866183 /* SceneTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4926233B27AA8A2800866183 /* SceneTableViewControllerExtension.swift */; };
 		49358BC927DB3A37005F96B4 /* VNFaceObservationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49358BC827DB3A37005F96B4 /* VNFaceObservationMock.swift */; };
+		49402B9028116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B8A28116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift */; };
+		49402B9128116FA2009FCBF8 /* LeftThumbKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B8B28116FA2009FCBF8 /* LeftThumbKnuckleXSensor.swift */; };
+		49402B9228116FA2009FCBF8 /* LeftPinkyKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B8C28116FA2009FCBF8 /* LeftPinkyKnuckleYSensor.swift */; };
+		49402B9328116FA2009FCBF8 /* LeftIndexKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B8D28116FA2009FCBF8 /* LeftIndexKnuckleYSensor.swift */; };
+		49402B9428116FA2009FCBF8 /* LeftThumbKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B8E28116FA2009FCBF8 /* LeftThumbKnuckleYSensor.swift */; };
+		49402B9528116FA2009FCBF8 /* LeftIndexKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B8F28116FA2009FCBF8 /* LeftIndexKnuckleXSensor.swift */; };
+		49402B9A2811742E009FCBF8 /* LeftRingFingerKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B962811742E009FCBF8 /* LeftRingFingerKnuckleYSensor.swift */; };
+		49402B9B2811742E009FCBF8 /* LeftRingFingerKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B972811742E009FCBF8 /* LeftRingFingerKnuckleXSensor.swift */; };
+		49402B9C2811742E009FCBF8 /* LeftMiddleFingerKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B982811742E009FCBF8 /* LeftMiddleFingerKnuckleYSensor.swift */; };
+		49402B9D2811742E009FCBF8 /* LeftMiddleFingerKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B992811742E009FCBF8 /* LeftMiddleFingerKnuckleXSensor.swift */; };
+		49402BA1281178C1009FCBF8 /* PinkySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B9F281178B2009FCBF8 /* PinkySensorTest.swift */; };
+		49402BA3281179AE009FCBF8 /* RingFingerSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BA2281179AE009FCBF8 /* RingFingerSensorTest.swift */; };
+		49402BA528117A63009FCBF8 /* MiddleFingerSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BA428117A63009FCBF8 /* MiddleFingerSensorTest.swift */; };
+		49402BA728117ADE009FCBF8 /* IndexSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BA628117ADE009FCBF8 /* IndexSensorTest.swift */; };
+		49402BA928117B1E009FCBF8 /* ThumbSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BA828117B1E009FCBF8 /* ThumbSensorTest.swift */; };
+		49402BAD28117B9E009FCBF8 /* HandPoseDetectionSensors.xml in Resources */ = {isa = PBXBuildFile; fileRef = 49402BAC28117B9E009FCBF8 /* HandPoseDetectionSensors.xml */; };
 		49519D2F27DCD6B100E32E88 /* SecondFaceDetectedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49519D2E27DCD6B100E32E88 /* SecondFaceDetectedSensor.swift */; };
 		49519D3327DCE0EC00E32E88 /* SecondFacePositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49519D3227DCE0EC00E32E88 /* SecondFacePositionXSensor.swift */; };
 		49519D3527DCE0FE00E32E88 /* SecondFacePositionYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49519D3427DCE0FE00E32E88 /* SecondFacePositionYSensor.swift */; };
@@ -2419,6 +2435,22 @@
 		490F0F3927DF71CC00D4778B /* LeftEyeCenterYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEyeCenterYSensor.swift; sourceTree = "<group>"; };
 		4926233B27AA8A2800866183 /* SceneTableViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewControllerExtension.swift; sourceTree = "<group>"; };
 		49358BC827DB3A37005F96B4 /* VNFaceObservationMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VNFaceObservationMock.swift; sourceTree = "<group>"; };
+		49402B8A28116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftPinkyKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402B8B28116FA2009FCBF8 /* LeftThumbKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftThumbKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402B8C28116FA2009FCBF8 /* LeftPinkyKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftPinkyKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402B8D28116FA2009FCBF8 /* LeftIndexKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftIndexKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402B8E28116FA2009FCBF8 /* LeftThumbKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftThumbKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402B8F28116FA2009FCBF8 /* LeftIndexKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftIndexKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402B962811742E009FCBF8 /* LeftRingFingerKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftRingFingerKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402B972811742E009FCBF8 /* LeftRingFingerKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftRingFingerKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402B982811742E009FCBF8 /* LeftMiddleFingerKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMiddleFingerKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402B992811742E009FCBF8 /* LeftMiddleFingerKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMiddleFingerKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402B9F281178B2009FCBF8 /* PinkySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinkySensorTest.swift; sourceTree = "<group>"; };
+		49402BA2281179AE009FCBF8 /* RingFingerSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingFingerSensorTest.swift; sourceTree = "<group>"; };
+		49402BA428117A63009FCBF8 /* MiddleFingerSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleFingerSensorTest.swift; sourceTree = "<group>"; };
+		49402BA628117ADE009FCBF8 /* IndexSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexSensorTest.swift; sourceTree = "<group>"; };
+		49402BA828117B1E009FCBF8 /* ThumbSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbSensorTest.swift; sourceTree = "<group>"; };
+		49402BAC28117B9E009FCBF8 /* HandPoseDetectionSensors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HandPoseDetectionSensors.xml; sourceTree = "<group>"; };
 		49519D2E27DCD6B100E32E88 /* SecondFaceDetectedSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFaceDetectedSensor.swift; sourceTree = "<group>"; };
 		49519D3227DCE0EC00E32E88 /* SecondFacePositionXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFacePositionXSensor.swift; sourceTree = "<group>"; };
 		49519D3427DCE0FE00E32E88 /* SecondFacePositionYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFacePositionYSensor.swift; sourceTree = "<group>"; };
@@ -5385,6 +5417,7 @@
 				49A291A827EB2FE70052EE3B /* FacePoseSensors.xml */,
 				498C1570280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml */,
 				498C1596280716C000B81C8E /* LowerBodyPoseDetectionSensors.xml */,
+				49402BAC28117B9E009FCBF8 /* HandPoseDetectionSensors.xml */,
 			);
 			path = Sensors;
 			sourceTree = "<group>";
@@ -5635,6 +5668,35 @@
 				46C5D9F0254FF4F9003D58D9 /* RotationStyleTests.swift */,
 			);
 			path = SpriteObject;
+			sourceTree = "<group>";
+		};
+		49402B8728116F5A009FCBF8 /* HandPose */ = {
+			isa = PBXGroup;
+			children = (
+				49402B8A28116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift */,
+				49402B8C28116FA2009FCBF8 /* LeftPinkyKnuckleYSensor.swift */,
+				49402B972811742E009FCBF8 /* LeftRingFingerKnuckleXSensor.swift */,
+				49402B962811742E009FCBF8 /* LeftRingFingerKnuckleYSensor.swift */,
+				49402B992811742E009FCBF8 /* LeftMiddleFingerKnuckleXSensor.swift */,
+				49402B982811742E009FCBF8 /* LeftMiddleFingerKnuckleYSensor.swift */,
+				49402B8F28116FA2009FCBF8 /* LeftIndexKnuckleXSensor.swift */,
+				49402B8D28116FA2009FCBF8 /* LeftIndexKnuckleYSensor.swift */,
+				49402B8B28116FA2009FCBF8 /* LeftThumbKnuckleXSensor.swift */,
+				49402B8E28116FA2009FCBF8 /* LeftThumbKnuckleYSensor.swift */,
+			);
+			path = HandPose;
+			sourceTree = "<group>";
+		};
+		49402B9E28117888009FCBF8 /* HandPose */ = {
+			isa = PBXGroup;
+			children = (
+				49402B9F281178B2009FCBF8 /* PinkySensorTest.swift */,
+				49402BA2281179AE009FCBF8 /* RingFingerSensorTest.swift */,
+				49402BA428117A63009FCBF8 /* MiddleFingerSensorTest.swift */,
+				49402BA628117ADE009FCBF8 /* IndexSensorTest.swift */,
+				49402BA828117B1E009FCBF8 /* ThumbSensorTest.swift */,
+			);
+			path = HandPose;
 			sourceTree = "<group>";
 		};
 		49949B292806EA500073BF65 /* BodyPose */ = {
@@ -6889,6 +6951,7 @@
 			children = (
 				4C822651213FA7A300F3D750 /* SensorManagerTests.swift */,
 				4C822640213FA7A300F3D750 /* Audio */,
+				49402B9E28117888009FCBF8 /* HandPose */,
 				49949B4A2806FCEC0073BF65 /* BodyPose */,
 				49E494E927F5993E0035578D /* FacePose */,
 				4C822626213FA7A300F3D750 /* Camera */,
@@ -7067,6 +7130,7 @@
 		4C994DFA207A3D4100C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				49402B8728116F5A009FCBF8 /* HandPose */,
 				49949B292806EA500073BF65 /* BodyPose */,
 				49E494DC27F596630035578D /* FacePose */,
 				4C994E05207A3D4100C415FD /* Audio */,
@@ -11524,6 +11588,7 @@
 				E5DAAD4026C5475300C2457F /* Galaxy_War_09997.xml in Resources */,
 				598E6553252A338B009F7C83 /* StoreProjectReporter.reportProject.success.json in Resources */,
 				2ED4187B241120B000AFE2FD /* NumberOfItemsInListFunction0991.xml in Resources */,
+				49402BAD28117B9E009FCBF8 /* HandPoseDetectionSensors.xml in Resources */,
 				E57D5B4726AEAAC3003A1457 /* LogicBricks_0999.xml in Resources */,
 				E5EC6D4E26B00FCA0031F13A /* Demonstration_09993.xml in Resources */,
 				7B5726C8275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json in Resources */,
@@ -12105,6 +12170,7 @@
 				4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */,
 				E50E856E269ED86700E76CE9 /* XMLParserTests0995.swift in Sources */,
 				4C6FE163212D2D2E0067B7D5 /* ModFunctionTest.swift in Sources */,
+				49402BA728117ADE009FCBF8 /* IndexSensorTest.swift in Sources */,
 				4CF8277224F11542006E562A /* ScriptCollectionViewControllerMock.swift in Sources */,
 				0594CE66275E567E007DC3F9 /* SewUpBrickTests.swift in Sources */,
 				187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */,
@@ -12251,6 +12317,7 @@
 				4C38B3742371522200F33721 /* BrickManagerTests.swift in Sources */,
 				4C822685213FA7CD00F3D750 /* FunctionManagerTests.swift in Sources */,
 				9E2C2D8E23257387004B66C6 /* AbstractBrickTest.swift in Sources */,
+				49402BA528117A63009FCBF8 /* MiddleFingerSensorTest.swift in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				E57E6D85254040B400E775DF /* ChangeVolumeByNBrickTests.swift in Sources */,
 				2E8780A82542BCE200816B52 /* WebRequestBrickTests.swift in Sources */,
@@ -12278,6 +12345,7 @@
 				499EBFEA27EB1C0D00897349 /* EarSensorTest.swift in Sources */,
 				E579F114253DCA96009107C8 /* ThinkBubbleBrickTests.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
+				49402BA1281178C1009FCBF8 /* PinkySensorTest.swift in Sources */,
 				4C82266B213FA7A400F3D750 /* DateYearSensorTest.swift in Sources */,
 				4C3A5C9921D3B23E008FD83F /* PlusOperatorTest.swift in Sources */,
 				4C4778F7267C83F500CAF398 /* FormulaParserFunctionsTest.m in Sources */,
@@ -12356,6 +12424,7 @@
 				0502CFAD26763BCC0028CF53 /* RecentlyUsedBricksManagerTests.swift in Sources */,
 				4C2CBB4B25A5AA8400C1C143 /* XMLParserHeaderTests095.swift in Sources */,
 				9EA6DCB02329A9E1007E837A /* MoveNStepsBrickTests.swift in Sources */,
+				49402BA3281179AE009FCBF8 /* RingFingerSensorTest.swift in Sources */,
 				4C82267D213FA7A400F3D750 /* PositionYSensorTest.swift in Sources */,
 				9E0F740A22B517A10030CD89 /* AudioSubtreeTests.swift in Sources */,
 				9ECDCB0D23284CBE00EBDA63 /* ClearGraphicEffectBrickTests.swift in Sources */,
@@ -12426,6 +12495,7 @@
 				4C1A596323FD9E79001A78D2 /* SettingsTableViewControllerTests.swift in Sources */,
 				9E05FAB1247FF57F008951DE /* ScenePresenterViewControllerSpy.swift in Sources */,
 				46C5D9F5254FF63D003D58D9 /* SpriteObjectMutableCopyTests.swift in Sources */,
+				49402BA928117B1E009FCBF8 /* ThumbSensorTest.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				5907FA9C252905C90042EC5D /* StoreProjectReporterTests.swift in Sources */,
 				59B7A8D32504E83F001C736A /* StageMock.swift in Sources */,
@@ -12625,6 +12695,7 @@
 				AA74F0B41BC05FCE00D1E954 /* ShowBrickCell.m in Sources */,
 				1875C5BA2457190000F3F276 /* UserVariable.swift in Sources */,
 				9E0F741422B558490030CD89 /* AudioPlayerFactory.swift in Sources */,
+				49402B9C2811742E009FCBF8 /* LeftMiddleFingerKnuckleYSensor.swift in Sources */,
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
 				186AA33C2482D0CA001E38FD /* PenDownBrick.swift in Sources */,
 				AA74F00C1BC05B5F00D1E954 /* SetVolumeToBrick.m in Sources */,
@@ -12748,6 +12819,7 @@
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
 				4CE67888210C4B1D00D90B5D /* Function.swift in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
+				49402B9D2811742E009FCBF8 /* LeftMiddleFingerKnuckleXSensor.swift in Sources */,
 				4691E51D25F2B03F00122891 /* SetBackgroundByIndexBrick.swift in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
 				468EE8D9257F8F94003976DD /* SetBackgroundAndWaitBrick.swift in Sources */,
@@ -12773,6 +12845,7 @@
 				4C595F4721CAEB4F0097D850 /* MultOperator.swift in Sources */,
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.swift in Sources */,
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
+				49402B9228116FA2009FCBF8 /* LeftPinkyKnuckleYSensor.swift in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
 				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
 				2E0E25D525E265840020CD9D /* WebRequestDownloader.swift in Sources */,
@@ -12832,6 +12905,7 @@
 				468EE8DF257F9730003976DD /* SetBackgroundAndWaitBrickCell.swift in Sources */,
 				4CF429ED213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift in Sources */,
 				92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */,
+				49402B9028116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift in Sources */,
 				AA74EEE51BC057B900D1E954 /* WaitBrick+CBXMLHandler.m in Sources */,
 				C82FC8DD26964F4A008DFBB8 /* TouchesFingerSensor.swift in Sources */,
 				4691E52725F2B27B00122891 /* SetBackgroundByIndexBrickCell.swift in Sources */,
@@ -12860,6 +12934,7 @@
 				49B55F9927E88702000A95B4 /* LeftEyebrowCenterXSensor.swift in Sources */,
 				49B55F7F27E877BC000A95B4 /* MouthLeftCornerXSensor.swift in Sources */,
 				9705D61F262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift in Sources */,
+				49402B9428116FA2009FCBF8 /* LeftThumbKnuckleYSensor.swift in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				6F50E54C247907E7007885AA /* UserList+CBXMLHandler.m in Sources */,
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.swift in Sources */,
@@ -12891,6 +12966,7 @@
 				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
 				F4664F9220DD7A1700E1519A /* FormulaEditorViewControllerSectionExtension.swift in Sources */,
 				4C0F9F65204BD18600E71B2D /* PreviousLookBrick+CBXMLHandler.swift in Sources */,
+				49402B9328116FA2009FCBF8 /* LeftIndexKnuckleYSensor.swift in Sources */,
 				5977B2A620298BD0008753ED /* MediaLibraryDownloader.swift in Sources */,
 				18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */,
 				44B76EC72476C19600DC30E2 /* FirebaseCrashlyticsReporter.swift in Sources */,
@@ -12962,6 +13038,7 @@
 				49519D2F27DCD6B100E32E88 /* SecondFaceDetectedSensor.swift in Sources */,
 				59EA52BB24FD468900AC6E8D /* WhenConditionScript.swift in Sources */,
 				4C0F9F22204ADBAF00E71B2D /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */,
+				49402B9A2811742E009FCBF8 /* LeftRingFingerKnuckleYSensor.swift in Sources */,
 				22412CFE26ECE5B70074915C /* PaddingLabel.swift in Sources */,
 				4CF0728C20D659F700F93AB5 /* PhiroSideLeftSensor.swift in Sources */,
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
@@ -12996,6 +13073,7 @@
 				F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */,
 				6F5ADF13247D4703008FC2C5 /* BrickExtension.swift in Sources */,
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
+				49402B9528116FA2009FCBF8 /* LeftIndexKnuckleXSensor.swift in Sources */,
 				59697DA4201F46AD00A0071A /* LibraryImageCollectionViewCell.swift in Sources */,
 				AA74EFF41BC05B5F00D1E954 /* HideBrick.m in Sources */,
 				6F5B4C6E24D4432F00D2D319 /* Scene+CBXMLHandler.m in Sources */,
@@ -13272,6 +13350,7 @@
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
 				184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */,
+				49402B9B2811742E009FCBF8 /* LeftRingFingerKnuckleXSensor.swift in Sources */,
 				49B55F7D27E874EA000A95B4 /* RightEarYSensor.swift in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				6F5B4C6224D412EF00D2D319 /* Scene.swift in Sources */,
@@ -13338,6 +13417,7 @@
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
 				D38F58672441CFCA0079F6EA /* GoToBrickCell.m in Sources */,
 				92D56C3B1BF20B4700A54750 /* PhiroHelper.swift in Sources */,
+				49402B9128116FA2009FCBF8 /* LeftThumbKnuckleXSensor.swift in Sources */,
 				AA74F0C31BC05FCE00D1E954 /* TurnRightBrickCell.m in Sources */,
 				2EBD845D253FEF57009BFED5 /* WebRequestBrickCell.swift in Sources */,
 				AA74F0A01BC05FCE00D1E954 /* IfLogicElseBrickCell.m in Sources */,

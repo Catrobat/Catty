@@ -837,7 +837,6 @@
 #define kUIFESensorLeftWristY NSLocalizedString(@"left wrist y", nil)
 #define kUIFESensorRightWristX NSLocalizedString(@"right wrist x", nil)
 #define kUIFESensorRightWristY NSLocalizedString(@"right wrist y", nil)
-
 #define kUIFESensorLeftHipX NSLocalizedString(@"left hip x", nil)
 #define kUIFESensorLeftHipY NSLocalizedString(@"left hip y", nil)
 #define kUIFESensorRightHipX NSLocalizedString(@"right hip x", nil)
@@ -850,6 +849,17 @@
 #define kUIFESensorLeftAnkleY NSLocalizedString(@"left ankle y", nil)
 #define kUIFESensorRightAnkleX NSLocalizedString(@"right ankle x", nil)
 #define kUIFESensorRightAnkleY NSLocalizedString(@"right ankle y", nil)
+
+#define kUIFESensorLeftPinkyKnuckleX NSLocalizedString(@"left pinky knuckle x", nil)
+#define kUIFESensorLeftPinkyKnuckleY NSLocalizedString(@"left pinky knuckle y", nil)
+#define kUIFESensorLeftRingFingerKnuckleX NSLocalizedString(@"left ring finger knuckle x", nil)
+#define kUIFESensorLeftRingFingerKnuckleY NSLocalizedString(@"left ring finger knuckle y", nil)
+#define kUIFESensorLeftMiddleFingerKnuckleX NSLocalizedString(@"left middle finger knuckle x", nil)
+#define kUIFESensorLeftMiddleFingerKnuckleY NSLocalizedString(@"left middle finger knuckle y", nil)
+#define kUIFESensorLeftIndexKnuckleX NSLocalizedString(@"left index knuckle x", nil)
+#define kUIFESensorLeftIndexKnuckleY NSLocalizedString(@"left index knuckle y", nil)
+#define kUIFESensorLeftThumbKnuckleX NSLocalizedString(@"left thumb knuckle x", nil)
+#define kUIFESensorLeftThumbKnuckleY NSLocalizedString(@"left thumb knuckle y", nil)
 
 #define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 

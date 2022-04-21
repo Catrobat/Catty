@@ -32,6 +32,7 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     var visualDetectionFrameSize: CGSize?
     var faceLandmarkPositionRatioDictionary: [String: Double] = [:]
     var bodyPosePositionRatioDictionary: [String: Double] = [:]
+    var handPosePositionRatioDictionary: [String: Double] = [:]
     let minConfidence: Float = 0.5
 
     private var session: AVCaptureSession?
@@ -112,6 +113,7 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     func reset() {
         self.resetFaceDetection()
         self.resetBodyPoses()
+        self.resetHandPoses()
         self.visualDetectionFrameSize = nil
     }
 
@@ -126,6 +128,10 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
 
     func resetBodyPoses() {
         self.bodyPosePositionRatioDictionary.removeAll()
+    }
+
+    func resetHandPoses() {
+        self.handPosePositionRatioDictionary.removeAll()
     }
 
     func available() -> Bool {
@@ -170,20 +176,27 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         }
 
         if #available(iOS 14.0, *) {
-           let humanBodyPoseRequest = VNDetectHumanBodyPoseRequest { request, _ in
-               if let bodyPoseObservation = request.results as? [VNHumanBodyPoseObservation] {
-                   DispatchQueue.main.async {
-                       self.handleHumanBodyPoseObservations(bodyPoseObservation)
-                   }
-               }
-           }
-           do {
-               try imageRequestHandler.perform([humanBodyPoseRequest])
-           } catch let error as NSError {
-               print(error)
-           }
+            let humanBodyPoseRequest = VNDetectHumanBodyPoseRequest { request, _ in
+                if let bodyPoseObservation = request.results as? [VNHumanBodyPoseObservation] {
+                    DispatchQueue.main.async {
+                        self.handleHumanBodyPoseObservations(bodyPoseObservation)
+                    }
+                }
+            }
+            let humanHandPoseRequest = VNDetectHumanHandPoseRequest { request, _ in
+                if let handPoseObservations = request.results as? [VNHumanHandPoseObservation] {
+                    DispatchQueue.main.async {
+                        self.handleHumanHandPoseObservations(handPoseObservations)
+                    }
+                }
+            }
+            do {
+                try imageRequestHandler.perform([humanBodyPoseRequest, humanHandPoseRequest])
+            } catch let error as NSError {
+                print(error)
+            }
         } else {
-           // Fallback on earlier versions
+            // Fallback on earlier versions
         }
     }
 
@@ -465,6 +478,53 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
                 bodyPosePositionRatioDictionary[RightAnkleXSensor.tag] = rightAnkle.x
                 bodyPosePositionRatioDictionary[RightAnkleYSensor.tag] = rightAnkle.y
             }
+        }
+    }
+
+    @available(iOS 14.0, *)
+    func handleHumanHandPoseObservations(_ handPoseObservations: [VNHumanHandPoseObservation]) {
+        guard self.visualDetectionFrameSize != nil && !handPoseObservations.isEmpty else {
+            resetHandPoses()
+            return
+        }
+        let handPoseObservation = handPoseObservations[0]
+
+        let pinkyPoints = try? handPoseObservation.recognizedPoints(.littleFinger)
+        let ringFingerPoints = try? handPoseObservation.recognizedPoints(.ringFinger)
+        let middleFingerPoints = try? handPoseObservation.recognizedPoints(.middleFinger)
+        let indexPoints = try? handPoseObservation.recognizedPoints(.indexFinger)
+        let thumbPoints = try? handPoseObservation.recognizedPoints(.thumb)
+
+        if let pinkyKnuckle = pinkyPoints?[.littlePIP] {
+            if pinkyKnuckle.confidence > minConfidence {
+                handPosePositionRatioDictionary[LeftPinkyKnuckleXSensor.tag] = pinkyKnuckle.x
+                handPosePositionRatioDictionary[LeftPinkyKnuckleYSensor.tag] = pinkyKnuckle.y
+            }
+        }
+        if let ringFingerPoints = ringFingerPoints?[.ringPIP] {
+            if ringFingerPoints.confidence > minConfidence {
+                handPosePositionRatioDictionary[LeftRingFingerKnuckleXSensor.tag] = ringFingerPoints.x
+                handPosePositionRatioDictionary[LeftRingFingerKnuckleYSensor.tag] = ringFingerPoints.y
+            }
+        }
+        if let middleFingerPoints = middleFingerPoints?[.middlePIP] {
+            if middleFingerPoints.confidence > minConfidence {
+                handPosePositionRatioDictionary[LeftMiddleFingerKnuckleXSensor.tag] = middleFingerPoints.x
+                handPosePositionRatioDictionary[LeftMiddleFingerKnuckleYSensor.tag] = middleFingerPoints.y
+            }
+        }
+        if let indexKnuckle = indexPoints?[.indexPIP] {
+            if indexKnuckle.confidence > minConfidence {
+                handPosePositionRatioDictionary[LeftIndexKnuckleXSensor.tag] = indexKnuckle.x
+                handPosePositionRatioDictionary[LeftIndexKnuckleYSensor.tag] = indexKnuckle.y
+            }
+        }
+        if let thumbKnuckle = thumbPoints?[.thumbIP] {
+            if thumbKnuckle.confidence > minConfidence {
+                handPosePositionRatioDictionary[LeftThumbKnuckleXSensor.tag] = thumbKnuckle.x
+                handPosePositionRatioDictionary[LeftThumbKnuckleYSensor.tag] = thumbKnuckle.y
+            }
+
         }
     }
 
