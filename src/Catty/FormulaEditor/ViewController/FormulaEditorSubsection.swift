@@ -89,6 +89,9 @@ enum SensorSubsection: FormulaEditorSubsection, CaseIterable {
         case .visual:
             return kUIFESubsectionVisualSensors
 
+        case .pose:
+            return kUIFESubsectionPoseDetection
+
         case .dateAndTime:
             return kUIFESubsectionDataAndTime
 
@@ -103,6 +106,7 @@ enum SensorSubsection: FormulaEditorSubsection, CaseIterable {
     case device
     case touch
     case visual
+    case pose
     case dateAndTime
     case arduino
     case phiro

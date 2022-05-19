@@ -28,10 +28,10 @@ class FaceDetectedSensor: DeviceDoubleSensor {
     static let position = 220
     static let requiredResource = ResourceType.faceDetection
 
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
 
-    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
+    init(visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
+        self.getVisualDetectionManager = visualDetectionManagerGetter
     }
 
     func tag() -> String {
@@ -39,7 +39,7 @@ class FaceDetectedSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected[0] else { return type(of: self).defaultRawValue }
+        guard let isFaceDetected = self.getVisualDetectionManager()?.isFaceDetected[0] else { return type(of: self).defaultRawValue }
         return isFaceDetected ? 1.0 : 0.0
     }
 

@@ -126,7 +126,7 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         viewController = FormulaEditorSectionViewController(type: .sensors, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
         viewController.reloadData()
 
-        XCTAssertEqual(viewController.numberOfSections, 4)
+        XCTAssertEqual(viewController.numberOfSections, 5)
 
         for section in 0..<viewController.numberOfSections {
             for row in 0..<viewController.numberOfRowsInSection[section] {

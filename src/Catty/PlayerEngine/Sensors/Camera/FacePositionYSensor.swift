@@ -28,11 +28,11 @@ class FacePositionYSensor: DeviceDoubleSensor {
     static let position = 250
     static let requiredResource = ResourceType.faceDetection
 
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageHeight: Double?
 
-    init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
+    init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
+        self.getVisualDetectionManager = visualDetectionManagerGetter
         self.stageHeight = Double(stageSize.height)
     }
 
@@ -41,7 +41,7 @@ class FacePositionYSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionY = self.getFaceDetectionManager()?.facePositionRatioFromBottom[0] else { return type(of: self).defaultRawValue }
+        guard let positionY = self.getVisualDetectionManager()?.facePositionYRatio[0] else { return type(of: self).defaultRawValue }
         return positionY
     }
 

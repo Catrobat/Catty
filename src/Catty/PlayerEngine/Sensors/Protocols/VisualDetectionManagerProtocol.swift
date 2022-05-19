@@ -20,13 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FaceDetectionManagerProtocol {
+protocol VisualDetectionManagerProtocol {
 
     var isFaceDetected: [Bool] { get }
-    var facePositionRatioFromLeft: [Double?] { get }
-    var facePositionRatioFromBottom: [Double?] { get }
+    var facePositionXRatio: [Double?] { get }
+    var facePositionYRatio: [Double?] { get }
     var faceSizeRatio: [Double?] { get }
-    var faceDetectionFrameSize: CGSize? { get }
+    var visualDetectionFrameSize: CGSize? { get }
+    var faceLandmarkPositionRatioDictionary: [String: Double] { get }
 
     func start()
 

@@ -30,6 +30,8 @@ protocol Sensor {
 
     static var requiredResource: ResourceType { get }
 
+    static var position: Int { get }
+
     // Tag for serialization
     func tag() -> String
 

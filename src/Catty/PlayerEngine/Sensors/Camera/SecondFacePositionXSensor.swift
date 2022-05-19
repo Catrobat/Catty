@@ -28,12 +28,12 @@ class SecondFacePositionXSensor: DeviceDoubleSensor {
     static let position = 280
     static let requiredResource = ResourceType.faceDetection
 
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageWidth: Double?
     let stageHeight: Double?
 
-    init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
+    init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
+        self.getVisualDetectionManager = visualDetectionManagerGetter
         self.stageWidth = Double(stageSize.width)
         self.stageHeight = Double(stageSize.height)
     }
@@ -43,7 +43,7 @@ class SecondFacePositionXSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionX = self.getFaceDetectionManager()?.facePositionRatioFromLeft[1] else { return type(of: self).defaultRawValue }
+        guard let positionX = self.getVisualDetectionManager()?.facePositionXRatio[1] else { return type(of: self).defaultRawValue }
         return positionX
     }
 
@@ -51,7 +51,7 @@ class SecondFacePositionXSensor: DeviceDoubleSensor {
         if rawValue == type(of: self).defaultRawValue {
             return rawValue
         }
-        guard let stageWidth = self.stageWidth, let stageHeight = self.stageHeight, let frameHeight = self.getFaceDetectionManager()?.faceDetectionFrameSize?.height else {
+        guard let stageWidth = self.stageWidth, let stageHeight = self.stageHeight, let frameHeight = self.getVisualDetectionManager()?.visualDetectionFrameSize?.height else {
             return type(of: self).defaultRawValue }
         let scaledPreviewWidthRatio = stageHeight / frameHeight
         return (stageWidth * rawValue - stageWidth / 2.0) * scaledPreviewWidthRatio
