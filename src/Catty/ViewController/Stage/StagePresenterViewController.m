@@ -49,7 +49,9 @@
     [self.stage stopProject];
     
     // TODO remove Singletons
-    [[CameraPreviewHandler shared] stopCamera];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[CameraPreviewHandler shared] stopCamera];
+    });
     
     [[FlashHelper sharedFlashHandler] reset];
     [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
