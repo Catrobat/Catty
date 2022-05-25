@@ -1067,8 +1067,6 @@
 		7B6FBD0027F1D8B4006E3BD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */; };
 		7B9090E927C931E600B31D04 /* ChromaSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B9090E827C931E600B31D04 /* ChromaSwift */; };
 		7B9090ED27C935D800B31D04 /* ChromaSwift.license in Resources */ = {isa = PBXBuildFile; fileRef = 7B9090EC27C935D800B31D04 /* ChromaSwift.license */; };
-		7BD8A7D127456D1A000DAAB4 /* Bohr.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */; };
-		7BD8A7D227456D1A000DAAB4 /* Bohr.xcframework in Copy Files */ = {isa = PBXBuildFile; fileRef = 7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		83F822FE25EBA15B0093DD9A /* SetBackgroundByIndexBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F822FD25EBA15B0093DD9A /* SetBackgroundByIndexBrick+Instruction.swift */; };
 		83F8231325EBAA810093DD9A /* SetBackgroundByIndexBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8230725EBA9610093DD9A /* SetBackgroundByIndexBrickTests.swift */; };
@@ -1711,7 +1709,6 @@
 		CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72E71B0C00A500D6B184 /* CBStack.swift */; };
 		CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */; };
 		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
-		CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
 		CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */; };
 		CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B21B115E6400419A55 /* CBOperationSequence.swift */; };
 		CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B51B115E6400419A55 /* CBSequenceList.swift */; };
@@ -1720,7 +1717,6 @@
 		CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C27425189EF94600827A95 /* Images.xcassets */; };
 		CADBD6F419B0E8C200C62836 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AEF2E198E7EDD00604ABF /* Settings.bundle */; };
 		CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
-		CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
 		CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3C79A1B49FABC00AFE9D7 /* CBSequenceProtocol.swift */; };
 		CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3C79B1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift */; };
 		CAE3E4EB1B4C509800CC88BD /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E4E91B4C509800CC88BD /* test.png */; };
@@ -2025,7 +2021,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7BD8A7D227456D1A000DAAB4 /* Bohr.xcframework in Copy Files */,
 				92C6319E1BC5183D00486958 /* BluetoothHelper.framework in Copy Files */,
 			);
 			name = "Copy Files";
@@ -2524,18 +2519,6 @@
 		4C0F9FD2204BD3B400E71B2D /* SayForBubbleBrickCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayForBubbleBrickCellTests.swift; sourceTree = "<group>"; };
 		4C0F9FD4204BD3C200E71B2D /* ChooseCameraBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCameraBrickTests.swift; sourceTree = "<group>"; };
 		4C0F9FD8204BD3D500E71B2D /* RepeatUntilBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatUntilBrickTests.swift; sourceTree = "<group>"; };
-		4C10D9BD23ED8CDA00EB0C6E /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Carthage/Build/iOS/GoogleUtilities.framework; sourceTree = "<group>"; };
-		4C10D9C023ED8CDA00EB0C6E /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = Carthage/Build/iOS/nanopb.framework; sourceTree = "<group>"; };
-		4C10D9C123ED8CDB00EB0C6E /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Carthage/Build/iOS/FirebaseCore.framework; sourceTree = "<group>"; };
-		4C10D9C223ED8CDB00EB0C6E /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Carthage/Build/iOS/FirebaseAnalytics.framework; sourceTree = "<group>"; };
-		4C10D9C323ED8CDB00EB0C6E /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Carthage/Build/iOS/FirebaseInstanceID.framework; sourceTree = "<group>"; };
-		4C10D9C423ED8CDB00EB0C6E /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Carthage/Build/iOS/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
-		4C10D9C523ED8CDB00EB0C6E /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Carthage/Build/iOS/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
-		4C10D9C623ED8CDB00EB0C6E /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Carthage/Build/iOS/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
-		4C10D9C723ED8CDB00EB0C6E /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = Carthage/Build/iOS/Firebase.framework; sourceTree = "<group>"; };
-		4C10D9DA23ED8D7500EB0C6E /* GoogleDataTransport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleDataTransport.framework; path = Carthage/Build/iOS/GoogleDataTransport.framework; sourceTree = "<group>"; };
-		4C10D9DF23ED8DCF00EB0C6E /* FirebaseInstallations.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstallations.framework; path = Carthage/Build/iOS/FirebaseInstallations.framework; sourceTree = "<group>"; };
-		4C10D9E223ED8DF500EB0C6E /* PromisesObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromisesObjC.framework; path = Carthage/Build/iOS/PromisesObjC.framework; sourceTree = "<group>"; };
 		4C11795020AEBE38006C6E32 /* LongitudeSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongitudeSensor.swift; sourceTree = "<group>"; };
 		4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolConformance.swift; sourceTree = "<group>"; };
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
@@ -2691,7 +2674,6 @@
 		4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLAbstractContext.m; sourceTree = "<group>"; };
 		4C4A719F1B527E2F00BBE32B /* CBXMLParserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParserContext.h; sourceTree = "<group>"; };
 		4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParserContext.m; sourceTree = "<group>"; };
-		4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCrashlytics.framework; path = Carthage/Build/iOS/FirebaseCrashlytics.framework; sourceTree = "<group>"; };
 		4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		4C4B4CDE23EE98C80054C861 /* CustomAlertControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertControllerTests.swift; sourceTree = "<group>"; };
 		4C4B4CE523EEA6BF0054C861 /* BaseTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewControllerTests.swift; sourceTree = "<group>"; };
@@ -3100,13 +3082,8 @@
 		5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundsTableViewController+MediaLibrary.swift"; sourceTree = "<group>"; };
 		593E4DDD1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		593E4DDF1FE11D5F0016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
-		593E4DE31FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LXReorderableCollectionViewFlowLayout.framework; path = Carthage/Build/iOS/LXReorderableCollectionViewFlowLayout.framework; sourceTree = "<group>"; };
 		593F2F572532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json; sourceTree = "<group>"; };
 		593F2F5B253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json; sourceTree = "<group>"; };
-		59473A651F76F05000BD634F /* HMSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HMSegmentedControl.framework; path = Carthage/Build/iOS/HMSegmentedControl.framework; sourceTree = "<group>"; };
-		59473A671F76F05000BD634F /* MXPagerView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXPagerView.framework; path = Carthage/Build/iOS/MXPagerView.framework; sourceTree = "<group>"; };
-		59473A681F76F05000BD634F /* MXParallaxHeader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXParallaxHeader.framework; path = Carthage/Build/iOS/MXParallaxHeader.framework; sourceTree = "<group>"; };
-		59473A691F76F05000BD634F /* MXSegmentedPager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXSegmentedPager.framework; path = Carthage/Build/iOS/MXSegmentedPager.framework; sourceTree = "<group>"; };
 		5947F6D4200CF3C70079DBCE /* MediaLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryViewController.swift; sourceTree = "<group>"; };
 		5947F6D8200D08430079DBCE /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		5947F6DD200D20040079DBCE /* MediaLibraryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -3115,7 +3092,6 @@
 		59697DA1201F46AD00A0071A /* LibraryImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		59697DA2201F46AD00A0071A /* LibraryImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		59697DA7201F4D0400A0071A /* MediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
-		59697DAB201F631700A0071A /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		59697DAD201F855C00A0071A /* LibraryCategoryCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryCategoryCollectionReusableView.xib; sourceTree = "<group>"; };
 		59697DAE201F855C00A0071A /* LibraryCategoryCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCategoryCollectionReusableView.swift; sourceTree = "<group>"; };
 		596E779C24F1266100D449FF /* StageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StageProtocol.swift; path = PlayerEngine/Protocols/StageProtocol.swift; sourceTree = "<group>"; };
@@ -3223,7 +3199,6 @@
 		7B5726C5275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.success.specialCharacters.json; sourceTree = "<group>"; };
 		7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B9090EC27C935D800B31D04 /* ChromaSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChromaSwift.license; sourceTree = "<group>"; };
-		7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Bohr.xcframework; path = Carthage/Build/Bohr.xcframework; sourceTree = "<group>"; };
 		7DE779FED0A3A66F8C9906B7 /* sr-Latn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "sr-Latn"; path = "sr-Latn.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7DF7515CF295B6E738B88031 /* fa */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
@@ -4197,7 +4172,6 @@
 		AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		ABD74577198FBC2984BDDE56 /* hu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B11EA657D0D5E2E348790671 /* ta */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ta; path = ta.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B46B270517703F9400172837 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
 		B46B270717703F9400172837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B46B270B17703F9400172837 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -4340,7 +4314,6 @@
 		D75C98434F494F304C83216B /* en-GB */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D89091EE06D847B3459DA60F /* si */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = si; path = si.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DA5D3B4384AEF2DE30285878 /* zh-Hant */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E405EABA212D4E420074ADDB /* SearchStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreCell.swift; sourceTree = "<group>"; };
 		E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreTableViewController.swift; sourceTree = "<group>"; };
 		E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreTableDataSource.swift; sourceTree = "<group>"; };
@@ -4615,7 +4588,6 @@
 				4CFAC2CD25ADD12100AF0DD1 /* DVR in Frameworks */,
 				7B9090E927C931E600B31D04 /* ChromaSwift in Frameworks */,
 				4CFAC28D25ADCD8100AF0DD1 /* Nimble in Frameworks */,
-				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4625,9 +4597,7 @@
 			files = (
 				970F1BDC25FC399500558A3A /* ActiveLabel in Frameworks */,
 				17A0218D2726F3C600F0489E /* DunneAudioKit in Frameworks */,
-				7BD8A7D127456D1A000DAAB4 /* Bohr.xcframework in Frameworks */,
 				4CE05754266E2287008AD7FF /* FirebaseAnalytics in Frameworks */,
-				CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */,
 				17A0218A2726F36700F0489E /* AudioKit in Frameworks */,
 				4CFAC30825ADD89E00AF0DD1 /* Siren in Frameworks */,
 				4CE05756266E2287008AD7FF /* FirebaseCrashlytics in Frameworks */,
@@ -4865,28 +4835,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7BD8A7D027456D1A000DAAB4 /* Bohr.xcframework */,
-				4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */,
-				4C10D9E223ED8DF500EB0C6E /* PromisesObjC.framework */,
-				4C10D9DF23ED8DCF00EB0C6E /* FirebaseInstallations.framework */,
-				4C10D9DA23ED8D7500EB0C6E /* GoogleDataTransport.framework */,
-				4C10D9C623ED8CDB00EB0C6E /* FIRAnalyticsConnector.framework */,
-				4C10D9C723ED8CDB00EB0C6E /* Firebase.framework */,
-				4C10D9C223ED8CDB00EB0C6E /* FirebaseAnalytics.framework */,
-				4C10D9C123ED8CDB00EB0C6E /* FirebaseCore.framework */,
-				4C10D9C523ED8CDB00EB0C6E /* FirebaseCoreDiagnostics.framework */,
-				4C10D9C323ED8CDB00EB0C6E /* FirebaseInstanceID.framework */,
-				4C10D9C423ED8CDB00EB0C6E /* GoogleAppMeasurement.framework */,
-				4C10D9BD23ED8CDA00EB0C6E /* GoogleUtilities.framework */,
-				4C10D9C023ED8CDA00EB0C6E /* nanopb.framework */,
-				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
-				DE5C4E6D138ED109004892CA /* libz.dylib */,
-				59473A651F76F05000BD634F /* HMSegmentedControl.framework */,
-				59697DAB201F631700A0071A /* Kingfisher.framework */,
-				593E4DE31FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework */,
-				59473A671F76F05000BD634F /* MXPagerView.framework */,
-				59473A681F76F05000BD634F /* MXParallaxHeader.framework */,
-				59473A691F76F05000BD634F /* MXSegmentedPager.framework */,
 				92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */,
 			);
 			name = Frameworks;
@@ -13684,10 +13632,7 @@
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Catty;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -13759,10 +13704,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -13780,7 +13722,6 @@
 		CA7698B31B0E4A97000D0340 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -13804,8 +13745,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
@@ -13817,7 +13756,6 @@
 					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
@@ -13830,7 +13768,6 @@
 		CA7698B41B0E4A97000D0340 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -13854,8 +13791,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
@@ -13867,7 +13802,6 @@
 					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
@@ -13907,9 +13841,8 @@
 				);
 				MARKETING_VERSION = 0.6.20;
 				OTHER_LDFLAGS = (
-					"-lxml2",
 					"$(inherited)",
-					"-lc++",
+					"-lxml2",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.develop;
@@ -13919,7 +13852,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Debug;
 		};
@@ -13955,9 +13887,8 @@
 				MARKETING_VERSION = 0.6.20;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"-lxml2",
 					"$(inherited)",
-					"-lc++",
+					"-lxml2",
 				);
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode;
@@ -13968,7 +13899,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Release;
 		};

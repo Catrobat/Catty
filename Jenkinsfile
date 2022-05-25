@@ -25,16 +25,6 @@ pipeline {
         }
       }
     }
-    stage('Clear Carthage temporary items') {
-      steps {
-        sh 'rm -rf ${TMPDIR}/TemporaryItems/*carthage*'
-      }
-    }
-    stage('Prepare') {
-      steps {
-        sh 'make init'
-      }
-    }
     stage('Build') {
       steps {
         sh 'cd src && fastlane build_catty'
