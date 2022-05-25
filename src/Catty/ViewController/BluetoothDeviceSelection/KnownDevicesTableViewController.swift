@@ -66,15 +66,8 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
     }
 
     func getKnownDevices() {
-        //        let afterPeripheralDiscovered = {(peripherals:[Peripheral]) -> Void in
-        //            self.knownDevices = peripherals
-        //            self.updateWhenActive()
-        //        }
-        //        let afterTimeout = {(error:NSError) -> Void in
-        //
-        //        }
         var knownCBPeripherals: [CBPeripheral]
-        let stringArray = UserDefaults.standard.array(forKey: "KnownBluetoothDevices") as? [String]
+        let stringArray = UserDefaults.standard.array(forKey: kKnownBluetoothDevices) as? [String]
         let uuidArray = stringArray?.compactMap { UUID(uuidString: $0) }
         knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(uuidArray ?? [])
         for peri in knownCBPeripherals {

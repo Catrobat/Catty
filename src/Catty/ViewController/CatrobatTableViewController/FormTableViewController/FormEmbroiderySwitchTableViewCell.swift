@@ -20,8 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Bohr/Bohr.h>
+import Foundation
+import UIKit
 
-@interface AboutPocketCodeOptionTableViewController : BOTableViewController
+class FormEmbroiderySwitchTableViewCell: FormSwitchTableViewCell {
 
-@end
+    override class var id: String {
+        "FormEmbroiderySwitchTableViewCell"
+    }
+
+    override func setupViews() {
+        super.setupViews()
+
+        switchControl.isOn = UserDefaults.standard.bool(forKey: kUseEmbroideryBricks)
+    }
+
+    override func switchControlValueChanged() {
+        super.switchControlValueChanged()
+
+        UserDefaults.standard.set(switchControl.isOn, forKey: kUseEmbroideryBricks)
+    }
+}

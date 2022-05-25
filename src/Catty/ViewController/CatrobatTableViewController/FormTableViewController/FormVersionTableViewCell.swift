@@ -23,46 +23,49 @@
 import Foundation
 import UIKit
 
-class FormSwitchTableViewCell: FormTableViewCell {
+class FormVersionTableViewCell: FormTableViewCell {
 
-    private let switchControl: UISwitch = {
-        let switchControl = UISwitch()
-        switchControl.accessibilityIdentifier = "formSwitch"
-        switchControl.translatesAutoresizingMaskIntoConstraints = false
-        return switchControl
+    let versionLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .gray
+        label.textAlignment = .natural
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
 
-    private var switchAction: ((Bool) -> Void)?
-
     override class var id: String {
-        "FormSwitchTableViewCell"
+        "FormVersionTableViewCell"
     }
 
     override func setupViews() {
         super.setupViews()
 
-        contentView.addSubview(switchControl)
-        switchControl.addTarget(self, action: #selector(switchControlValueChanged), for: .valueChanged)
+        contentView.addSubview(versionLabel)
     }
 
     override func setupConstraints() {
         super.setupConstraints()
 
         NSLayoutConstraint.activate([
-            switchControl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            switchControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+            versionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            versionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
-    }
-
-    @objc private func switchControlValueChanged() {
-        switchAction?(switchControl.isOn)
     }
 
     override func configure(with formItem: FormItem) {
         super.configure(with: formItem)
+        setupVersion()
+    }
 
-        if let item = formItem as? FormSwitchItem {
-            switchAction = item.switchAction
-        }
+    private func setupVersion() {
+        let object = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
+        var version = "\(object!) (\(Util.appBuildVersion()!))"
+
+        #if DEBUG
+            version = "\(String(describing: version)) (DEBUG)"
+        #endif
+
+        versionLabel.text = version
     }
 }

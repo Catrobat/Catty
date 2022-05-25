@@ -21,14 +21,19 @@
  */
 
 import Foundation
+import UIKit
 
 class FormItem {
     var title: String?
-    var type: FormTableViewCell?
+    var titleColor: UIColor = .black
+    var accessoryType: UITableViewCell.AccessoryType = .none
     var action: (() -> Void)?
+    var cellType: FormTableViewCell.Type = FormTableViewCell.self
 
-    init(title: String? = nil, action: (() -> Void)? = nil) {
+    init(title: String? = nil, titleColor: UIColor = .black, accessoryType: UITableViewCell.AccessoryType = .none, action: (() -> Void)? = nil) {
         self.title = title
+        self.titleColor = titleColor
+        self.accessoryType = accessoryType
         self.action = action
     }
 }
@@ -36,10 +41,43 @@ class FormItem {
 class FormSwitchItem: FormItem {
     var switchAction: ((Bool) -> Void)?
 
-    init(title: String? = nil, action: (() -> Void)? = nil, switchAction: ((Bool) -> Void)? = nil) {
-        super.init(title: title, action: action)
+    init(title: String? = nil, switchAction: ((Bool) -> Void)? = nil) {
+        super.init(title: title)
 
         self.switchAction = switchAction
+        self.cellType = FormSwitchTableViewCell.self
+    }
+}
+
+class FormArduinoSwitchItem: FormSwitchItem {
+    init(switchAction: ((Bool) -> Void)? = nil) {
+        super.init(title: kLocalizedCategoryArduino, switchAction: switchAction)
+
+        self.cellType = FormArduinoSwitchTableViewCell.self
+    }
+}
+
+class FormEmbroiderySwitchItem: FormSwitchItem {
+    init() {
+        super.init(title: kLocalizedCategoryEmbroidery)
+
+        self.cellType = FormEmbroiderySwitchTableViewCell.self
+    }
+}
+
+class FormPhiroSwitchItem: FormSwitchItem {
+    init() {
+        super.init(title: kLocalizedCategoryPhiro)
+
+        self.cellType = FormPhiroSwitchTableViewCell.self
+    }
+}
+
+class FormCrashReportsSwitchItem: FormSwitchItem {
+    init(switchAction: ((Bool) -> Void)? = nil) {
+        super.init(title: kLocalizedSendCrashReports, switchAction: switchAction)
+
+        self.cellType = FormCrashReportsSwitchTableViewCell.self
     }
 }
 
@@ -54,6 +92,7 @@ class FormTextFieldItem: FormItem {
         self.placeholder = placeholder
         self.typeAction = typeAction
         self.returnAction = returnAction
+        self.cellType = FormTextFieldTableViewCell.self
     }
 }
 
@@ -64,5 +103,14 @@ class FormCheckItem: FormItem {
         super.init(title: title)
 
         self.selectAction = selectAction
+        self.cellType = FormCheckTableViewCell.self
+    }
+}
+
+class FormVersionItem: FormItem {
+    init() {
+        super.init(title: kLocalizedVersion)
+
+        self.cellType = FormVersionTableViewCell.self
     }
 }
