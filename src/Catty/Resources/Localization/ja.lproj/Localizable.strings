@@ -23,7 +23,7 @@
 "acceleration y" = "加速度Y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "z_加速";
+"acceleration z" = "加速度z";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "加速度センサー";
@@ -50,6 +50,9 @@
 "Add sound" = "サウンドを追加";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "Add trusted domain";
+
+/* No comment provided by engineer. */
 "Agree" = "同意する";
 
 /* No comment provided by engineer. */
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "アプリがクラッシュレポートを自動的に送信できるようにします";
 
+/* No comment provided by engineer. */
+"Allow web access" = "Webアクセスを許可する";
+
 /* paint */
 "Alpha" = "透過度";
 
 /* No comment provided by engineer. */
 "altitude" = "高度";
+
+/* No comment provided by engineer. */
+"Always" = "常に表示";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Always allow web access";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "同じ名前の画像が既に存在します。もう一度やり直してください。";
@@ -89,10 +101,16 @@
 "and" = "かつ";
 
 /* No comment provided by engineer. */
+"and store answer in" = "答えを保存する";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "書かれた答えを保存します ";
 
 /* No comment provided by engineer. */
 "and wait" = "待つ";
+
+/* No comment provided by engineer. */
+"and width" = "と幅";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "レンガパーツをアニメーション化する";
@@ -161,10 +179,10 @@
 "Background" = "背景";
 
 /* No comment provided by engineer. */
-"background name" = "background_name";
+"background name" = "背景名";
 
 /* No comment provided by engineer. */
-"background number" = "background_number";
+"background number" = "バックグラウンド番号";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "背景";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "バスーン";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
 
 /* No comment provided by engineer. */
 "becomes true" = "真になる";
@@ -242,7 +263,7 @@
 "Catrobat community" = "Catrobat コミュニティ";
 
 /* No comment provided by engineer. */
-"ceiling" = "ceil";
+"ceiling" = "天井に";
 
 /* No comment provided by engineer. */
 "Cello" = "チェロ";
@@ -374,6 +395,9 @@
 "Create account" = "アカウントを作成";
 
 /* No comment provided by engineer. */
+"Create as list" = "Create as list";
+
+/* No comment provided by engineer. */
 "Create patterns for stiching machines" = "ステッチマシンのパターンを作成";
 
 /* No comment provided by engineer. */
@@ -479,6 +503,9 @@
 "Deletion mode" = "削除モード";
 
 /* No comment provided by engineer. */
+"Deny" = "拒否";
+
+/* No comment provided by engineer. */
 "Description" = "説明";
 
 /* No comment provided by engineer. */
@@ -536,6 +563,12 @@
 "Download" = "ダウンロード";
 
 /* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "大きすぎるダウンロード";
+
+/* No comment provided by engineer. */
 "Downloads" = "ダウンロード";
 
 /* No comment provided by engineer. */
@@ -582,6 +615,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "サウンドを編集";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "Edit trusted domain";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "エレキギター";
@@ -677,16 +713,7 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "顔が検出されました";
-
-/* No comment provided by engineer. */
-"faceposition x" = "顔の位置x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "顔の位置y";
-
-/* No comment provided by engineer. */
-"facesize" = "facesize";
+"Face detection" = "顔検出";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "アイテムのインポートに失敗しました";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "塗りつぶし";
+
+/* No comment provided by engineer. */
+"first face size" = "最初の顔のサイズ";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "第一面 x 位置";
+
+/* No comment provided by engineer. */
+"first face y position" = "第一面のY位置";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "ライトを消灯する";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "金";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "よく使用されます";
 
 /* No comment provided by engineer. */
 "Friday" = "金曜日";
@@ -801,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "ジャイロセンサー";
+
+/* No comment provided by engineer. */
+"head top x" = "ヘッドトップ x";
+
+/* No comment provided by engineer. */
+"head top y" = "ヘッドトップ y";
 
 /* No comment provided by engineer. */
 "Hello!" = "こんにちは！";
@@ -851,6 +893,9 @@
 "inclination y" = "傾斜Y";
 
 /* No comment provided by engineer. */
+"index of item" = "アイテムのインデックス";
+
+/* No comment provided by engineer. */
 "Information" = "情報";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "挿入された";
+
+/* No comment provided by engineer. */
+"Internet" = "インターネット";
 
 /* No comment provided by engineer. */
 "into list" = "リストに";
@@ -881,7 +929,7 @@
 "italic" = "イタリック";
 
 /* No comment provided by engineer. */
-"item" = "element";
+"item" = "項目";
 
 /* No comment provided by engineer. */
 "Jan" = "1月";
@@ -914,7 +962,7 @@
 "Last access" = "最終アクセス";
 
 /* No comment provided by engineer. */
-"last stage touch index" = "last_screen_touch_index";
+"last stage touch index" = "最後のステージタッチインデックス";
 
 /* No comment provided by engineer. */
 "latitude" = "緯度";
@@ -932,6 +980,48 @@
 "Left" = "左";
 
 /* No comment provided by engineer. */
+"left ear x" = "左耳X";
+
+/* No comment provided by engineer. */
+"left ear y" = "左耳Y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "左目のセンターX";
+
+/* No comment provided by engineer. */
+"left eye center y" = "左目のセンターY";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "左目インナーX";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "左目インナーY";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "左目アウターX";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "左目アウターY";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "左右のみ";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "ライン";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "リスト名:";
@@ -995,10 +1088,10 @@
 "Look" = "外見";
 
 /* No comment provided by engineer. */
-"look name" = "look_name";
+"look name" = "外見名";
 
 /* No comment provided by engineer. */
-"look number" = "look_number";
+"look number" = "外見番号";
 
 /* No comment provided by engineer. */
 "Looks" = "外見";
@@ -1019,7 +1112,7 @@
 "Marimba" = "マリンバ";
 
 /* No comment provided by engineer. */
-"Maths" = "Maths";
+"Maths" = "数学";
 
 /* No comment provided by engineer. */
 "Maximize" = "マキシマイズ";
@@ -1092,6 +1185,18 @@
 
 /* No comment provided by engineer. */
 "Motion properties" = "運動プロパティ";
+
+/* No comment provided by engineer. */
+"mouth left corner x" = "口の中の左コーナー x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "口元の左隅 y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "口の中の右コーナーx";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "口の右隅のY";
 
 /* No comment provided by engineer. */
 "Move" = "移動";
@@ -1193,7 +1298,13 @@
 "No whitespace character allowed" = "空白文字は使用できません";
 
 /* No comment provided by engineer. */
-"not" = "NOT";
+"nose x" = "鼻x";
+
+/* No comment provided by engineer. */
+"nose y" = "鼻Y";
+
+/* No comment provided by engineer. */
+"not" = "いいえ";
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "利用できません。続行しますか？";
@@ -1214,7 +1325,7 @@
 "November" = "11月";
 
 /* No comment provided by engineer. */
-"number of items" = "number_of_items";
+"number of items" = "アイテム数";
 
 /* No comment provided by engineer. */
 "Numbers" = "数値";
@@ -1241,6 +1352,9 @@
 "on" = "オン";
 
 /* No comment provided by engineer. */
+"Once" = "一度だけ";
+
+/* No comment provided by engineer. */
 "only 15 characters allowed" = "許可されているのは15文字だけ";
 
 /* No comment provided by engineer. */
@@ -1253,7 +1367,7 @@
 "Open" = "開く ";
 
 /* No comment provided by engineer. */
-"or" = "OR";
+"or" = "または";
 
 /* No comment provided by engineer. */
 "Organ" = "オルガン";
@@ -1379,13 +1493,16 @@
 "Pointer" = "ポインター";
 
 /* No comment provided by engineer. */
+"Pose detection" = "ポーズ検出";
+
+/* No comment provided by engineer. */
 "position x" = "ポジションX";
 
 /* No comment provided by engineer. */
 "position y" = "ポジションY";
 
 /* No comment provided by engineer. */
-"power" = "power";
+"power" = "パワー";
 
 /* No comment provided by engineer. */
 "Preview" = "プレビュー";
@@ -1421,13 +1538,16 @@
 "random position" = "ランダムな位置";
 
 /* No comment provided by engineer. */
-"random value from to" = "random";
+"random value from to" = "からのランダムな値";
 
 /* No comment provided by engineer. */
 "Rate Us" = "評価してください";
 
 /* No comment provided by engineer. */
 "RE" = "RE";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "最近使用したもの";
 
 /* No comment provided by engineer. */
 "Recording" = "録音中";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "右";
 
+/* No comment provided by engineer. */
+"right ear x" = "右耳X";
+
+/* No comment provided by engineer. */
+"right ear y" = "右耳y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "右目のセンターX";
+
+/* No comment provided by engineer. */
+"right eye center y" = "右目のセンターY";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "右目インナーX";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "右目 インナーY";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "右目アウターX";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "右目アウターY";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
+
 /* paint */
 "Rotate" = "回転";
 
@@ -1538,6 +1700,18 @@
 "second " = "秒 ";
 
 /* No comment provided by engineer. */
+"second face size" = "2つ目の面サイズ";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "2つ目の顔 x 位置";
+
+/* No comment provided by engineer. */
+"second face y position" = "2番目の顔 y位置";
+
+/* No comment provided by engineer. */
 "seconds" = "秒";
 
 /* No comment provided by engineer. */
@@ -1556,6 +1730,9 @@
 "Select categories" = "カテゴリを選択";
 
 /* No comment provided by engineer. */
+"Select file" = "ファイルを選択";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "論理演算子を選択";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "セレクトピロ";
+
+/* No comment provided by engineer. */
+"Send web request to" = "ウェブリクエストを送信";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "匿名のクラッシュ レポートを送信";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "背景を設定する";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "背景を設定して待つ";
+
+/* No comment provided by engineer. */
+"Set background to number" = "番号に背景を設定";
 
 /* No comment provided by engineer. */
 "Set brightness " = "明るさ：";
@@ -1642,6 +1828,9 @@
 /* No comment provided by engineer. */
 "Settings" = "設定";
 
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "縫製する";
+
 /* No comment provided by engineer. */
 "Show" = "表示する";
 
@@ -1688,10 +1877,10 @@
 "square" = "正方形の";
 
 /* No comment provided by engineer. */
-"square root" = "sqrt";
+"square root" = "平方根（平方根）";
 
 /* No comment provided by engineer. */
-"stage is touched" = "screen_is_touched";
+"stage is touched" = "ステージが触れられます";
 
 /* No comment provided by engineer. */
 "stage touch x" = "ステージタッチX";
@@ -1706,10 +1895,16 @@
 "Stamped" = "スタンプ済み";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "長さのステッチを開始する";
+
+/* No comment provided by engineer. */
 "Start sound" = "サウンドの再生";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "サウンドを開始して待つ";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "ジグザグステッチを長さで開始";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "スチールドラム(ドラム)";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "すべてのサウンドを停止";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "現在のステッチを停止";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Phiro モーターを停止";
@@ -1865,6 +2063,15 @@
 "touch position" = "タッチ位置";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "アクターやオブジェクトに さわったら";
+
+/* No comment provided by engineer. */
+"touches edge" = "エッジに さわったら";
+
+/* No comment provided by engineer. */
+"touches finger" = "指に さわったら";
+
+/* No comment provided by engineer. */
 "transparency" = "透明度";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "そのサウンドを再生できません！\nおそらくこれは有効なサウンドではないか、ファイルが破損しています。";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "選択したサウンドを再生できません。デバイスはサイレントモードです。 iPhoneの左側のスイッチを切り替え、もう一度再生をタップして、サイレントモードをオフにしてください。";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "選択したサウンドを再生できません。デバイスはサイレントモードです。 お使いのiPadの右側にあるスイッチを切り替え、もう一度再生をタップして、サイレントモードをオフにしてください。";
 
 /* paint */
 "underline" = "アンダーライン";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "ピロ・ブリックの使用";
 
 /* No comment provided by engineer. */
+"user language" = "ユーザーの言語";
+
+/* No comment provided by engineer. */
 "Username" = "ユーザー名";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "ユーザー名を空白にできません";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "変数名:";
@@ -2000,9 +2207,6 @@
 "Views" = "ビュー";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "ビジュアルセンサー";
-
-/* No comment provided by engineer. */
 "Wait" = " ";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "私たちは";
+
+/* No comment provided by engineer. */
+"Web access" = "Webアクセス";
 
 /* No comment provided by engineer. */
 "Wednesday" = "水曜日";

@@ -1,110 +1,128 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "Повідомлення з таким іменем уже існує, повторіть спробу.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "Проект із таким іменем уже існує, повторіть спробу.";
 
 /* No comment provided by engineer. */
-"Abc" = "Abc";
+"Abc" = "Абв";
 
 /* No comment provided by engineer. */
-"About Catrobat" = "About Catrobat";
+"About Catrobat" = "Про Catrobat";
 
 /* No comment provided by engineer. */
-"About Pocket Code" = "About Pocket Code";
+"About Pocket Code" = "Про програму Pocket Code";
 
 /* No comment provided by engineer. */
-"absolute value" = "absolute value";
+"absolute value" = "абсолютне значення";
 
 /* No comment provided by engineer. */
-"acceleration x" = "acceleration x";
+"acceleration x" = "прискорення x";
 
 /* No comment provided by engineer. */
-"acceleration y" = "acceleration y";
+"acceleration y" = "прискорення y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "acceleration z";
+"acceleration z" = "прискорення z";
 
 /* No comment provided by engineer. */
-"acceleration-sensor" = "acceleration-sensor";
+"acceleration-sensor" = "датчик прискорення";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "Актори та об'єкти";
 
 /* No comment provided by engineer. */
-"Add" = "Add";
+"Add" = "Додати";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "Додати персонажа або об'єкт";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"add comment here..." = "додати коментар тут... ";
 
 /* No comment provided by engineer. */
-"Add image" = "Add image";
+"Add image" = "Додати зображення";
 
 /* Action sheet menu title */
-"Add look" = "Add look";
+"Add look" = "Додати вигляд";
 
 /* Action sheet menu title */
-"Add sound" = "Add sound";
+"Add sound" = "Додати звук";
 
 /* No comment provided by engineer. */
-"Agree" = "Agree";
+"Add trusted domain" = "Додавання надійного домену";
 
 /* No comment provided by engineer. */
-"all around" = "all around";
+"Agree" = "Згоден";
 
 /* No comment provided by engineer. */
-"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+"all around" = "навкруги";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+"All Bluetooth devices successfully disconnected" = "Усі пристрої Bluetooth успішно відключено";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"All known Bluetooth devices successfully removed" = "Всі відомі пристрої Bluetooth успішно видалено";
 
 /* No comment provided by engineer. */
-"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+"Allow the app to control Arduino boards" = "Дозволити програмі керувати дошками Arduino";
+
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "Дозволити програмі автоматично надсилати звіти про аварійне завершення роботи";
+
+/* No comment provided by engineer. */
+"Allow web access" = "Дозволити доступ до Інтернету";
 
 /* paint */
-"Alpha" = "Alpha";
+"Alpha" = "Альфа";
 
 /* No comment provided by engineer. */
-"altitude" = "altitude";
+"altitude" = "висота";
 
 /* No comment provided by engineer. */
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+"Always" = "Завжди";
 
 /* No comment provided by engineer. */
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+"Always allow web access" = "Завжди дозволяти доступ до Інтернету";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Check your Internet connection." = "An unknown error occurred. Check your Internet connection.";
+"An image with the same name already exists, try again." = "Зображення з таким іменем уже існує, повторіть спробу.";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+"An object with the same name already exists, try again." = "Об'єкт з таким іменем уже існує, повторіть спробу.";
 
 /* No comment provided by engineer. */
-"and" = "and";
+"An unknown error occurred. Check your Internet connection." = "Сталася невідома помилка. Перевірте підключення до Інтернету.";
 
 /* No comment provided by engineer. */
-"and store written answer in " = "and store written answer in ";
+"An unknown error occurred. Please try again later." = "Сталася невідома помилка. Повторіть спробу пізніше.";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and" = "і";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Animate brick-parts";
+"and store answer in" = "і зберігати відповідь в";
 
 /* No comment provided by engineer. */
-"Apr" = "Apr";
+"and store written answer in " = "і зберігати письмову відповідь в";
 
 /* No comment provided by engineer. */
-"April" = "April";
+"and wait" = "і зачекати";
 
 /* No comment provided by engineer. */
-"arccosine" = "arccosine";
+"and width" = "і ширина";
+
+/* No comment provided by engineer. */
+"Animate brick-parts" = "Анімація цегляних деталей";
+
+/* No comment provided by engineer. */
+"Apr" = "Кві";
+
+/* No comment provided by engineer. */
+"April" = "Квітень";
+
+/* No comment provided by engineer. */
+"arccosine" = "арккозин";
 
 /* No comment provided by engineer. */
 "arcsine" = "arcsine";
@@ -116,1081 +134,1174 @@
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino analog" = "arduino analog";
+"arduino analog" = "аналог arduino ";
 
 /* No comment provided by engineer. */
-"arduino digital" = "arduino digital";
+"arduino digital" = "arduino цифровий";
 
 /* No comment provided by engineer. */
-"Arduino extension" = "Arduino extension";
+"Arduino extension" = "Розширення Arduino";
 
 /* No comment provided by engineer. */
-"Ask " = "Ask ";
+"Ask " = "Запитати";
 
 /* No comment provided by engineer. */
-"at " = "at ";
+"at " = " при";
 
 /* No comment provided by engineer. */
-"at position" = "at position";
+"at position" = "на позиції";
 
 /* paint */
-"Attributes:" = "Attributes:";
+"Attributes:" = "Атрибути:";
 
 /* No comment provided by engineer. */
-"Aug" = "Aug";
+"Aug" = "Сер";
 
 /* No comment provided by engineer. */
-"August" = "August";
+"August" = "Серпень";
 
 /* No comment provided by engineer. */
-"Authentication failed" = "Authentication failed";
+"Authentication failed" = "Помилка автентифікації";
 
 /* No comment provided by engineer. */
-"Author" = "Author";
+"Author" = "Автор";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
+"Axes" = "Осі";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "назад";
 
 /* No comment provided by engineer. */
-"Back" = "Back";
+"Back" = "Назад";
 
 /* No comment provided by engineer. */
-"Background" = "Background";
+"Background" = "Фон";
 
 /* No comment provided by engineer. */
-"background name" = "background name";
+"background name" = "назва тла";
 
 /* No comment provided by engineer. */
-"background number" = "background number";
+"background number" = "номер тла";
 
 /* No comment provided by engineer. */
-"Backgrounds" = "Backgrounds";
+"Backgrounds" = "Фони";
 
 /* No comment provided by engineer. */
-"Bass" = "Bass";
+"Bass" = "Бас";
 
 /* No comment provided by engineer. */
-"Bassoon" = "Bassoon";
+"Bassoon" = "Фагот";
 
 /* No comment provided by engineer. */
-"becomes true" = "becomes true";
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Будьте дуже обережні, перш ніж дозволити доступ, оскільки посилання може розкрити вашу особисту інформацію, таку як ваше точне географічне розташування або будь-який текст, який ви ввели зловмисним іншим особам або громадськості. Дивіться нашу вікі для отримання додаткової інформації, чому це може бути надзвичайно небезпечно. Завжди дозволяючи доступ, вам більше не буде запропоновано підтвердити веб-адреси з цього домену. Якщо ви хочете відкликати цей дозвіл пізніше, ви можете видалити домен зі списку надійних доменів у налаштуваннях цієї програми.";
 
 /* No comment provided by engineer. */
-"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
+"becomes true" = "стає істинним";
 
 /* No comment provided by engineer. */
-"blue" = "blue";
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Перш ніж почати кодування, будь ласка, прочитайте і прийміть нашу Політику конфіденційності для використання програми:";
+
+/* No comment provided by engineer. */
+"blue" = "синій";
 
 /* paint */
-"Blue" = "Blue";
+"Blue" = "Синій";
 
 /* No comment provided by engineer. */
-"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth недоступний. Пристрій не підтримує Bluetooth 4.0 або пошкоджено чіп Bluetooth. Будь ласка, перевірте його, підключившись до іншого пристрою Bluetooth у Налаштуваннях.";
 
 /* No comment provided by engineer. */
-"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth вимкнено. Увімкніть його, щоб підключитися до пристрою Bluetooth.";
 
 /* paint */
-"bold" = "bold";
+"bold" = "жирний";
 
 /* No comment provided by engineer. */
-"Both" = "Both";
+"Both" = "Обидва";
 
 /* No comment provided by engineer. */
-"Bricks" = "Bricks";
+"Bricks" = "Цегли";
 
 /* No comment provided by engineer. */
-"brightness" = "brightness";
+"brightness" = "яскравість";
 
 /* No comment provided by engineer. */
-"Broadcast" = "Broadcast";
+"Broadcast" = "Сповіщати";
 
 /* No comment provided by engineer. */
-"Broadcast and wait" = "Broadcast and wait";
+"Broadcast and wait" = "Сповіщати й чекати";
 
 /* paint */
-"Brush" = "Brush";
+"Brush" = "Пензель";
 
 /* No comment provided by engineer. */
-"by" = "by";
+"by" = "від";
 
 /* No comment provided by engineer. */
-"By registering you agree to our" = "By registering you agree to our";
+"By registering you agree to our" = "Зареєструвавшись, ви погоджуєтеся з нашим";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "Не вдалося перезапустити проєкт!";
 
 /* No comment provided by engineer. */
-"Cancel" = "Cancel";
+"Cancel" = "Скасувати";
 
 /* bluetooth */
-"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+"Cannot connect to device, please try resetting the device and try again." = "Не вдалося під'єднатися до пристрою, спробуйте скинути настройки пристрою та повторіть спробу.";
 
 /* bluetooth */
-"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+"Cannot connect to device. The device is not responding." = "Не вдалося під'єднатися до пристрою. Пристрій не відповідає.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "Не вдалося під'єднатися до медіатеки. Будь ласка, перевірте ваше підключення до Інтернету.";
 
 /* No comment provided by engineer. */
-"Categories" = "Categories";
+"Categories" = "Категорії";
 
 /* No comment provided by engineer. */
-"Catrobat community" = "Catrobat community";
+"Catrobat community" = "Спільнота Catrobat";
 
 /* No comment provided by engineer. */
-"ceiling" = "ceiling";
+"ceiling" = "округлити до більшого";
 
 /* No comment provided by engineer. */
-"Cello" = "Cello";
+"Cello" = "Віолончель";
 
 /* No comment provided by engineer. */
-"Change brightness " = "Change brightness ";
+"Change brightness " = "Змінити яскравість";
 
 /* No comment provided by engineer. */
-"Change color " = "Change color ";
+"Change color " = "Змінити колір";
 
 /* No comment provided by engineer. */
-"Change size by" = "Change size by";
+"Change size by" = "Змінити розмір на";
 
 /* No comment provided by engineer. */
-"Change to landscape" = "Change to landscape";
+"Change to landscape" = "Перейти на альбомний режим";
 
 /* No comment provided by engineer. */
-"Change to portrait" = "Change to portrait";
+"Change to portrait" = "Змінити на портретний режим";
 
 /* No comment provided by engineer. */
-"Change transparency " = "Change transparency ";
+"Change transparency " = "Змінити прозорість";
 
 /* No comment provided by engineer. */
-"Change variable" = "Change variable";
+"Change variable" = "Змінити змінну";
 
 /* No comment provided by engineer. */
-"Change volume by" = "Change volume by";
+"Change volume by" = "Змінити гучність на";
 
 /* No comment provided by engineer. */
-"Change x by " = "Change x by ";
+"Change x by " = "Змінити x на";
 
 /* No comment provided by engineer. */
-"Change y by " = "Change y by ";
+"Change y by " = "Змінити y на";
 
 /* No comment provided by engineer. */
-"Changes discarded." = "Changes discarded.";
+"Changes discarded." = "Зміни відхилено!";
 
 /* No comment provided by engineer. */
-"Changes saved." = "Changes saved.";
+"Changes saved." = "Зміни збережено!";
 
 /* No comment provided by engineer. */
-"Choir" = "Choir";
+"Choir" = "Хор";
 
 /* No comment provided by engineer. */
-"Choose" = "Choose";
+"Choose" = "Оберіть";
 
 /* No comment provided by engineer. */
-"Choose image" = "Choose image";
+"Choose image" = "Вибрати зображення";
 
 /* No comment provided by engineer. */
-"Clarinet" = "Clarinet";
+"Clarinet" = "Кларнет";
 
 /* No comment provided by engineer. */
-"Clear" = "Clear";
+"Clear" = "Очистити";
 
 /* No comment provided by engineer. */
-"Clear graphic effects" = "Clear graphic effects";
+"Clear graphic effects" = "Очистити графічні ефекти";
 
 /* No comment provided by engineer. */
-"Close" = "Close";
+"Close" = "Закрити";
 
 /* paint */
-"Close Paint" = "Close Paint";
+"Close Paint" = "Закрити малюнок";
 
 /* No comment provided by engineer. */
-"color" = "color";
+"color" = "колір";
 
 /* No comment provided by engineer. */
-"Comparison operators" = "Comparison operators";
+"Comparison operators" = "Оператори порівняння";
 
 /* No comment provided by engineer. */
-"compass" = "compass";
+"compass" = "компас";
 
 /* No comment provided by engineer. */
-"Compute" = "Compute";
+"Compute" = "Обчислити";
 
 /* No comment provided by engineer. */
-"Computed result is %.2f" = "Computed result is %.2f";
+"Computed result is %.2f" = "Обчислений результат : %.2f";
 
 /* No comment provided by engineer. */
-"Computed result is FALSE" = "Computed result is FALSE";
+"Computed result is FALSE" = "Обчислений результат FALSE";
 
 /* No comment provided by engineer. */
-"Computed result is TRUE" = "Computed result is TRUE";
+"Computed result is TRUE" = "Обчислений результат TRUE";
 
 /* No comment provided by engineer. */
-"Confirm password" = "Confirm password";
+"Confirm password" = "Підтвердити пароль";
 
 /* bluetooth */
-"Connection failed" = "Connection failed";
+"Connection failed" = "Помилка з'єднання ";
 
 /* bluetooth */
-"Connection lost" = "Connection lost";
+"Connection lost" = "З'єднання втрачено";
 
 /* bluetooth */
-"Connection not possible" = "Connection not possible";
+"Connection not possible" = "З'єднання неможливе";
 
 /* No comment provided by engineer. */
-"contains" = "contains";
+"contains" = "містить";
 
 /* No comment provided by engineer. */
-"Continue" = "Continue";
+"Continue" = "Продовжити";
 
 /* No comment provided by engineer. */
 "Continue project" = "Продовжити проект";
 
 /* No comment provided by engineer. */
-"Control" = "Control";
+"Control" = "Управління";
 
 /* No comment provided by engineer. */
-"Copy" = "Copy";
+"Copy" = "Копіювати";
 
 /* No comment provided by engineer. */
-"Copy actors or objects" = "Copy actors or objects";
+"Copy actors or objects" = "Копіювання акторів або об'єктів";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy brick" = "Копіювати цеглу";
 
 /* No comment provided by engineer. */
-"Copy looks" = "Copy looks";
+"Copy looks" = "Копіювати вигляд";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy project" = "Копіювати проєкт";
 
 /* No comment provided by engineer. */
 "cosine" = "cosine";
 
 /* No comment provided by engineer. */
-"Create account" = "Create account";
+"Create account" = "Створити обліковий запис";
 
 /* No comment provided by engineer. */
-"Create patterns for stiching machines" = "Create patterns for stiching machines";
+"Create as list" = "Створити новий список";
 
 /* No comment provided by engineer. */
-"Data" = "Data";
+"Create patterns for stiching machines" = "Створення візерунків для жорстких машин";
 
 /* No comment provided by engineer. */
-"Date and time" = "Date and time";
+"Data" = "Дані";
 
 /* No comment provided by engineer. */
-"day" = "day";
+"Date and time" = "Дата і час";
 
 /* No comment provided by engineer. */
-"debug" = "debug";
+"day" = "день";
 
 /* No comment provided by engineer. */
-"Dec" = "Dec";
+"debug" = "налагодження";
 
 /* No comment provided by engineer. */
-"December" = "December";
+"Dec" = "Гру";
 
 /* No comment provided by engineer. */
-"decimal logarithm" = "decimal logarithm";
+"December" = "Грудень";
 
 /* No comment provided by engineer. */
-"degrees" = "degrees";
+"decimal logarithm" = "десятковий логарифм";
 
 /* No comment provided by engineer. */
-"Delete" = "Delete";
+"degrees" = "градусів";
 
 /* No comment provided by engineer. */
-"Delete actors or objects" = "Delete actors or objects";
+"Delete" = "Видалити";
 
 /* No comment provided by engineer. */
-"Delete backgrounds" = "Delete backgrounds";
+"Delete actors or objects" = "Видалити персонажів або об'єктів";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Delete brick";
+"Delete backgrounds" = "Видалити тло";
 
 /* No comment provided by engineer. */
-"Delete condition" = "Delete condition";
+"Delete brick" = "Видалити цеглину";
 
 /* No comment provided by engineer. */
-"Delete item from list" = "Delete item from list";
+"Delete condition" = "Видалити умову";
 
 /* No comment provided by engineer. */
-"Delete looks" = "Delete looks";
+"Delete item from list" = "Видалити елемент зі списку";
 
 /* No comment provided by engineer. */
-"Delete loop" = "Delete loop";
+"Delete looks" = "Видалити вигляд";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete loop" = "Видалити цикл";
 
 /* No comment provided by engineer. */
-"Delete projects" = "Delete projects";
+"Delete project" = "Видалити проєкт";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete projects" = "Видалити проєкти";
 
 /* No comment provided by engineer. */
-"Delete sounds" = "Delete sounds";
+"Delete script" = "Видалити скрипт";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "Delete these bricks?";
+"Delete sounds" = "Видалити звуки";
 
 /* No comment provided by engineer. */
-"Delete these conditions?" = "Delete these conditions?";
+"Delete these bricks?" = "Видалити ці цегли?";
 
 /* No comment provided by engineer. */
-"Delete these loops?" = "Delete these loops?";
+"Delete these conditions?" = "Видалити ці умови?";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "Delete these scripts?";
+"Delete these loops?" = "Видалити ці цикли?";
 
 /* No comment provided by engineer. */
-"Delete this actor or object" = "Delete this actor or object";
+"Delete these scripts?" = "Видалити ці скрипти?";
 
 /* No comment provided by engineer. */
-"Delete this background" = "Delete this background";
+"Delete this actor or object" = "Видалити цього персонажа або об`єкт";
 
 /* No comment provided by engineer. */
-"Delete this brick?" = "Delete this brick?";
+"Delete this background" = "Видалити цей фон";
 
 /* No comment provided by engineer. */
-"Delete this condition?" = "Delete this condition?";
+"Delete this brick?" = "Видалити цю цеглину?";
 
 /* No comment provided by engineer. */
-"Delete this look" = "Delete this look";
+"Delete this condition?" = "Видалити цю умову?";
 
 /* No comment provided by engineer. */
-"Delete this loop?" = "Delete this loop?";
+"Delete this look" = "Видалити цей вигляд";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this loop?" = "Видалити цей цикл?";
 
 /* No comment provided by engineer. */
-"Delete this script?" = "Delete this script?";
+"Delete this project" = "Видалити цей проект";
 
 /* No comment provided by engineer. */
-"Delete this sound" = "Delete this sound";
+"Delete this script?" = "Видалити цей скрипт?";
 
 /* No comment provided by engineer. */
-"Deletion mode" = "Deletion mode";
+"Delete this sound" = "Видалити цей звук";
 
 /* No comment provided by engineer. */
-"Description" = "Description";
+"Deletion mode" = "Режим видалення";
 
 /* No comment provided by engineer. */
-"Details" = "Details";
+"Deny" = "Відмовити";
+
+/* No comment provided by engineer. */
+"Description" = "Опис";
+
+/* No comment provided by engineer. */
+"Details" = "Подробиці";
 
 /* bluetooth */
-"Device disconnected." = "Device disconnected.";
+"Device disconnected." = "Пристрій відключено.";
 
 /* No comment provided by engineer. */
-"device motion-sensor" = "device motion-sensor";
+"device motion-sensor" = "датчик руху пристрою";
 
 /* No comment provided by engineer. */
-"Device sensors" = "Device sensors";
+"Device sensors" = "Датчики пристроїв";
 
 /* No comment provided by engineer. */
-"direction" = "direction";
+"direction" = "напрямок";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "Вимкнути цеглину";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "Вимкнути умову";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "Вимкнути цикл";
 
 /* No comment provided by engineer. */
-"Disable script" = "Disable script";
+"Disable script" = "Вимкнути скрипт";
 
 /* No comment provided by engineer. */
-"Disagree" = "Disagree";
+"Disagree" = "Не згоден";
 
 /* No comment provided by engineer. */
-"Discard changes" = "Discard changes";
+"Discard changes" = "Відхилити зміни";
 
 /* No comment provided by engineer. */
-"Disconnect all devices" = "Disconnect all devices";
+"Disconnect all devices" = "Від'єднати всі пристрої";
 
 /* No comment provided by engineer. */
-"DO" = "DO";
+"DO" = "ДО";
 
 /* paint */
-"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
+"Do you really want to delete the current drawing?" = "Ви дійсно хочете видалити поточний малюнок?";
 
 /* paint */
-"Do you want to save your changes?" = "Do you want to save your changes?";
+"Do you want to save your changes?" = "Бажаєте зберегти свої зміни?";
 
 /* No comment provided by engineer. */
-"don't rotate" = "don't rotate";
+"don't rotate" = "не обертати";
 
 /* No comment provided by engineer. */
-"Done" = "Done";
+"Done" = "Готово";
 
 /* No comment provided by engineer. */
-"Download" = "Download";
+"Download" = "Завантажити";
 
 /* No comment provided by engineer. */
-"Downloads" = "Downloads";
+"Download again" = "Завантажити знову";
 
 /* No comment provided by engineer. */
-"Draw new image" = "Draw new image";
+"Download too big" = "Завантаження занадто велике";
 
 /* No comment provided by engineer. */
-"Duration" = "Duration";
+"Downloads" = "Завантаження";
 
 /* No comment provided by engineer. */
-"Edit" = "Edit";
+"Draw new image" = "Малювати нове зображення";
 
 /* No comment provided by engineer. */
-"Edit actor or object" = "Edit actor or object";
+"Duration" = "Тривалість";
+
+/* No comment provided by engineer. */
+"Edit" = "Редагувати";
+
+/* No comment provided by engineer. */
+"Edit actor or object" = "Редагувати персонажа або об'єкт";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "Редагувати фон";
 
 /* Action sheet menu title */
-"Edit backgrounds" = "Edit backgrounds";
+"Edit backgrounds" = "Редагувати тло";
 
 /* Action sheet menu title */
-"Edit brick" = "Edit brick";
+"Edit brick" = "Редагувати цеглу";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "Редагувати формулу";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "Редагувати вигляд";
 
 /* Action sheet menu title */
-"Edit looks" = "Edit looks";
+"Edit looks" = "Редагувати вигляди";
 
 /* No comment provided by engineer. */
-"Edit project" = "Edit project";
+"Edit project" = "Редагувати проєкт";
 
 /* No comment provided by engineer. */
-"Edit projects" = "Edit projects";
+"Edit projects" = "Редагувати проєкти";
 
 /* Action sheet menu title */
-"Edit script" = "Edit script";
+"Edit script" = "Редагувати скрипт";
 
 /* Action sheet menu title */
-"Edit sound" = "Edit sound";
+"Edit sound" = "Редагувати звук";
 
 /* Action sheet menu title */
-"Edit sounds" = "Edit sounds";
+"Edit sounds" = "Редагувати звуки";
 
 /* No comment provided by engineer. */
-"Electric Guitar" = "Electric Guitar";
+"Edit trusted domain" = "Редагувати надійного домену";
 
 /* No comment provided by engineer. */
-"Electric Piano" = "Electric Piano";
+"Electric Guitar" = "Електрична гітара";
 
 /* No comment provided by engineer. */
-"element" = "element";
+"Electric Piano" = "Електропіаніно";
+
+/* No comment provided by engineer. */
+"element" = "елемент";
 
 /* paint */
-"Ellipse / Circle" = "Ellipse / Circle";
+"Ellipse / Circle" = "Еліпс / коло";
 
 /* No comment provided by engineer. */
-"Else" = "Else";
+"Else" = "Або ж";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "Ел. пошта";
 
 /* No comment provided by engineer. */
-"Embroidery" = "Embroidery";
+"Embroidery" = "Вишивання";
 
 /* No comment provided by engineer. */
-"Embroidery extension" = "Embroidery extension";
+"Embroidery extension" = "Ембріативне розширення";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Empty input!" = "Порожній ввід!";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Enable brick" = "Увімк. цеглину";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Enable condition" = "Увімкнути умову";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable loop" = "Увімкнути цикл";
 
 /* No comment provided by engineer. */
-"Enable script" = "Enable script";
+"Enable script" = "Увімкнути скрипт";
 
 /* No comment provided by engineer. */
-"End if" = "End if";
+"End if" = "Завершити якщо";
 
 /* No comment provided by engineer. */
-"End of Loop" = "End of Loop";
+"End of Loop" = "Кінець циклу";
 
 /* No comment provided by engineer. */
-"Enter a reason" = "Enter a reason";
+"Enter a reason" = "Введіть причину";
 
 /* Placeholder for add image-name input field */
-"Enter your image name here..." = "Enter your image name here...";
+"Enter your image name here..." = "Введіть ім'я зображення тут...";
 
 /* Placeholder for list input field */
-"Enter your list name here..." = "Enter your list name here...";
+"Enter your list name here..." = "Введіть ім'я списку тут...";
 
 /* Placeholder for message input field */
-"Enter your message here..." = "Enter your message here...";
+"Enter your message here..." = "Введіть ваше повідомлення...";
 
 /* Placeholder for add object-name input field */
-"Enter your object name here..." = "Enter your object name here...";
+"Enter your object name here..." = "Введіть ім'я об'єкта тут...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "Введіть опис вашого проєкту тут...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "Введіть назву проєкту тут...";
 
 /* Placeholder for add sound-name input field */
-"Enter your sound name here..." = "Enter your sound name here...";
+"Enter your sound name here..." = "Введіть ім'я звуку...";
 
 /* Placeholder for variable input field */
-"Enter your variable name here..." = "Enter your variable name here...";
+"Enter your variable name here..." = "Введіть ім'я змінної тут...";
 
 /* paint */
-"Eraser" = "Eraser";
+"Eraser" = "Ґумка";
 
 /* No comment provided by engineer. */
-"Error" = "Error";
+"Error" = "Помилка";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+"Error occurred while reporting the project. Please try again later." = "Сталася помилка при відправці повідомлення про проект. Будь ласка, спробуйте ще раз пізніше.";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error saving file" = "Помилка збереження файлу";
 
 /* No comment provided by engineer. */
-"Event" = "Event";
+"Event" = "Подія";
 
 /* No comment provided by engineer. */
-"exponent" = "exponent";
+"exponent" = "експонента";
 
 /* No comment provided by engineer. */
-"FA" = "FA";
+"FA" = "ФА";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
+"Face detection" = "Виявлення облич";
 
 /* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
+"Failed to import item" = "Не вдалося імпортувати елемент";
 
 /* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
+"Failed to load featured projects" = "Не вдалося завантажити виділені проекти";
 
 /* No comment provided by engineer. */
-"facesize" = "facesize";
+"Failed to load recent projects" = "Не вдалося завантажити нещодавні проекти";
 
 /* No comment provided by engineer. */
-"Failed to import item" = "Failed to import item";
+"Failed to load sound" = "Не вдалося завантажити звук";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
+"Failed to play sound" = "Не вдалося відтворити звук";
 
 /* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
+"false" = "хибність";
 
 /* No comment provided by engineer. */
-"Failed to load sound" = "Failed to load sound";
+"Featured projects" = "Рекомендовані проекти";
 
 /* No comment provided by engineer. */
-"Failed to play sound" = "Failed to play sound";
+"Feb" = "Лют";
 
 /* No comment provided by engineer. */
-"false" = "false";
-
-/* No comment provided by engineer. */
-"Featured projects" = "Featured projects";
-
-/* No comment provided by engineer. */
-"Feb" = "Feb";
-
-/* No comment provided by engineer. */
-"February" = "February";
+"February" = "Лютий";
 
 /* paint */
-"Fill" = "Fill";
+"Fill" = "Заливка";
 
 /* No comment provided by engineer. */
-"Flashlight off" = "Flashlight off";
+"first face size" = "face size";
 
 /* No comment provided by engineer. */
-"Flashlight on" = "Flashlight on";
+"first face visible" = "перший вигляд видимий";
 
 /* No comment provided by engineer. */
-"floor" = "floor";
+"first face x position" = "face x position";
 
 /* No comment provided by engineer. */
-"Flute" = "Flute";
+"first face y position" = "face y position";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Flashlight off" = "Вимкнути ліхтарик";
 
 /* No comment provided by engineer. */
-"for" = "for";
+"Flashlight on" = "Ввімкнути ліхтарик";
 
 /* No comment provided by engineer. */
-"for all actors or objects" = "for all actors or objects";
+"floor" = "округлити до меншого";
 
 /* No comment provided by engineer. */
-"for this actor or object" = "for this actor or object";
+"Flute" = "Флейта";
 
 /* No comment provided by engineer. */
-"Forever" = "Forever";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Такі функції, які використовуються в цьому проекті, несумісні з цією версією кишенькового коду:";
 
 /* No comment provided by engineer. */
-"Forgot password" = "Forgot password";
+"for" = "для";
 
 /* No comment provided by engineer. */
-"Formula Editor" = "Formula Editor";
+"for all actors or objects" = "для всіх персонажів або об'єктів";
 
 /* No comment provided by engineer. */
-"Formula too long!" = "Formula too long!";
+"for this actor or object" = "для цього актора або об'єкту";
 
 /* No comment provided by engineer. */
-"Fr" = "Fr";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
+"Forever" = "Повторювати навіки";
 
 /* No comment provided by engineer. */
-"Friday" = "Friday";
+"Forgot password" = "Забули пароль";
 
 /* No comment provided by engineer. */
-"From camera" = "From camera";
+"Formula Editor" = "Редактор Формул";
 
 /* No comment provided by engineer. */
-"front" = "front";
+"Formula too long!" = "Вираз занадто довгий";
 
 /* No comment provided by engineer. */
-"Front camera" = "Front camera";
+"Fr" = "Пт";
 
 /* No comment provided by engineer. */
-"Functions" = "Functions";
+"Friday" = "П'ятниця";
 
 /* No comment provided by engineer. */
-"General properties" = "General properties";
+"From camera" = "З камери";
 
 /* No comment provided by engineer. */
-"Glide" = "Glide";
+"front" = "передній";
 
 /* No comment provided by engineer. */
-"Go back" = "Go back";
+"Front camera" = "Передня камера";
 
 /* No comment provided by engineer. */
-"Go to" = "Go to";
+"Functions" = "Функції";
 
 /* No comment provided by engineer. */
-"Go to front" = "Go to front";
+"General properties" = "Загальні властивості";
 
 /* No comment provided by engineer. */
-"green" = "green";
+"Glide" = "Ковзати";
+
+/* No comment provided by engineer. */
+"Go back" = "Повернутися назад";
+
+/* No comment provided by engineer. */
+"Go to" = "Перейти до";
+
+/* No comment provided by engineer. */
+"Go to front" = "Перейти на передній план";
+
+/* No comment provided by engineer. */
+"green" = "зелений";
 
 /* paint */
-"Green" = "Green";
+"Green" = "Зелений";
 
 /* No comment provided by engineer. */
-"Guitar" = "Guitar";
+"Guitar" = "Гітара";
 
 /* No comment provided by engineer. */
-"gyro-sensor" = "gyro-sensor";
+"gyro-sensor" = "Датчик гіроскопа";
 
 /* No comment provided by engineer. */
-"Hello!" = "Hello!";
+"head top x" = "голова над х";
 
 /* No comment provided by engineer. */
-"Help" = "Help";
+"head top y" = "голова над у";
 
 /* No comment provided by engineer. */
-"Hide" = "Hide";
+"Hello!" = "Привіт!";
 
 /* No comment provided by engineer. */
-"Hide details" = "Hide details";
+"Help" = "Довідка";
 
 /* No comment provided by engineer. */
-"Hide variable" = "Hide variable";
+"Hide" = "Приховати";
 
 /* No comment provided by engineer. */
-"Hmmmm!" = "Hmmmm!";
+"Hide details" = "Приховати деталі";
 
 /* No comment provided by engineer. */
-"hour" = "hour";
+"Hide variable" = "Приховати змінну";
 
 /* No comment provided by engineer. */
-"If" = "If";
+"Hmmmm!" = "Хмммм!";
 
 /* No comment provided by engineer. */
-"If on edge, bounce" = "If on edge, bounce";
+"hour" = "година";
+
+/* No comment provided by engineer. */
+"If" = "Якщо";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Якщо на краю, відскочити";
 
 /* paint */
-"Image" = "Image";
+"Image" = "Зображення";
 
 /* No comment provided by engineer. */
-"Image name" = "Image name";
+"Image name" = "Назва зображення";
 
 /* No comment provided by engineer. */
-"Image source not available" = "Image source not available";
+"Image source not available" = "Джерело зображення недоступний";
 
 /* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
-"Import File" = "Import File";
+"Import File" = "Імпортувати файл";
 
 /* No comment provided by engineer. */
-"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Щоб дозволити використовувати Pocket Code та інші виконувані файли, запропоновані проектом Catrobat, ви повинні погодитися з нашими Умовами використання і строго слідкувати за ними під час використання Pocket Code і наших інших виконуваних файлів. Будь ласка, перегляньте посилання нижче для їх точного формулювання.";
 
 /* No comment provided by engineer. */
-"inclination x" = "inclination x";
+"inclination x" = "нахил х";
 
 /* No comment provided by engineer. */
-"inclination y" = "inclination y";
+"inclination y" = "нахил y";
 
 /* No comment provided by engineer. */
-"Information" = "Information";
+"index of item" = "індекс елемента";
 
 /* No comment provided by engineer. */
-"Insert" = "Insert";
+"Information" = "Докладніше";
+
+/* No comment provided by engineer. */
+"Insert" = "Вставити";
 
 /* paint */
-"Inserted" = "Inserted";
+"Inserted" = "Вставлений";
 
 /* No comment provided by engineer. */
-"into list" = "into list";
+"Internet" = "Інтернет";
 
 /* No comment provided by engineer. */
-"Invalid input entered, try again." = "Invalid input entered, try again.";
+"into list" = "в список";
 
 /* No comment provided by engineer. */
-"Invalid URL given!" = "Invalid URL given!";
+"Invalid input entered, try again." = "Введено некоректний вхід, спробуйте ще раз.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "Вказано некоректний URL!";
 
 /* No comment provided by engineer. */
 "iOS." = "iOS.";
 
 /* No comment provided by engineer. */
-"is true" = "is true";
+"is true" = "це істинна";
 
 /* No comment provided by engineer. */
-"is true then" = "is true then";
+"is true then" = "це істинна тоді";
 
 /* paint */
-"italic" = "italic";
+"italic" = "курсив";
 
 /* No comment provided by engineer. */
-"item" = "item";
+"item" = "елемент";
 
 /* No comment provided by engineer. */
-"Jan" = "Jan";
+"Jan" = "Січ";
 
 /* No comment provided by engineer. */
-"January" = "January";
+"January" = "Січень";
 
 /* No comment provided by engineer. */
-"join" = "join";
+"join" = "приєднатися";
 
 /* No comment provided by engineer. */
-"Jul" = "Jul";
+"Jul" = "Лип";
 
 /* No comment provided by engineer. */
-"July" = "July";
+"July" = "Липень";
 
 /* No comment provided by engineer. */
-"Jun" = "Jun";
+"Jun" = "Чер";
 
 /* No comment provided by engineer. */
-"June" = "June";
+"June" = "Червень";
 
 /* bluetooth */
-"Known devices" = "Known devices";
+"Known devices" = "Відомі пристрої";
 
 /* No comment provided by engineer. */
-"LA" = "LA";
+"LA" = "ЛЯ";
 
 /* No comment provided by engineer. */
-"Last access" = "Last access";
+"Last access" = "Останній доступ";
 
 /* No comment provided by engineer. */
-"last stage touch index" = "last stage touch index";
+"last stage touch index" = "останній індекс дотику на сцені";
 
 /* No comment provided by engineer. */
-"latitude" = "latitude";
+"latitude" = "широта";
 
 /* No comment provided by engineer. */
-"layer" = "layer";
+"layer" = "шар";
 
 /* No comment provided by engineer. */
-"layers" = "layers";
+"layers" = "шари";
 
 /* No comment provided by engineer. */
-"LED" = "LED";
+"LED" = "LED-індикатор";
 
 /* No comment provided by engineer. */
-"Left" = "Left";
+"Left" = "Ліворуч";
 
 /* No comment provided by engineer. */
-"left-right only" = "left-right only";
+"left ear x" = "ліве вухо x";
 
 /* No comment provided by engineer. */
-"length" = "length";
+"left ear y" = "ліве вухо y";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"left eye center x" = "лівий центр ока x ";
 
 /* No comment provided by engineer. */
-"letter" = "letter";
+"left eye center y" = "лівий центр ока y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "ліве око внутрішнє x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "ліве око внутрішнє y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "ліве око зовнішнє x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "ліве око зовнішнє у";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "лівий цент брови x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "лівий цент брови y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "ліве внутрішня брова x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "ліве внутрішня брова y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "ліва зовнішня брова x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "ліва зовнішня брова y";
+
+/* No comment provided by engineer. */
+"left-right only" = "тільки зліва-направо";
+
+/* No comment provided by engineer. */
+"length" = "довжина";
+
+/* No comment provided by engineer. */
+"Length" = "Довжина";
+
+/* No comment provided by engineer. */
+"letter" = "буква";
 
 /* paint */
-"Line" = "Line";
+"Line" = "Лінія";
 
 /* No comment provided by engineer. */
-"List name:" = "List name:";
+"List name" = "Назва списку";
 
 /* No comment provided by engineer. */
-"List type" = "List type";
+"List name:" = "Назва списку:";
 
 /* No comment provided by engineer. */
-"Lists" = "Lists";
+"List type" = "Тип списку";
 
 /* No comment provided by engineer. */
-"Lists for all actors and objects" = "Lists for all actors and objects";
+"Lists" = "Списки";
 
 /* No comment provided by engineer. */
-"Lists for this actor or object only" = "Lists for this actor or object only";
+"Lists for all actors and objects" = "Списки для всіх акторів і об'єктів";
 
 /* No comment provided by engineer. */
-"Loading" = "Loading";
+"Lists for this actor or object only" = "Списки тільки для персонажа або об’єкта";
 
 /* No comment provided by engineer. */
-"location" = "location";
+"Loading" = "Завантаження";
 
 /* No comment provided by engineer. */
-"location accuracy" = "location accuracy";
+"location" = "місцезнаходження";
 
 /* No comment provided by engineer. */
-"Logic" = "Logic";
+"location accuracy" = "точність розташування";
 
 /* No comment provided by engineer. */
-"Logical (Boolean) operators and constants" = "Logical (Boolean) operators and constants";
+"Logic" = "Логіка";
 
 /* No comment provided by engineer. */
-"Login" = "Login";
+"Logical (Boolean) operators and constants" = "Логічні (булеві) оператори та константи";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login" = "Увійти";
 
 /* No comment provided by engineer. */
-"Logout" = "Logout";
+"Login successful" = "Вхід виконано";
 
 /* No comment provided by engineer. */
-"longitude" = "longitude";
+"Logout" = "Вийти";
+
+/* No comment provided by engineer. */
+"longitude" = "довгота";
 
 /* LOOK */
-"look" = "look";
+"look" = "вигляд";
 
 /* No comment provided by engineer. */
-"Look" = "Look";
+"Look" = "Вигляд";
 
 /* No comment provided by engineer. */
-"look name" = "look name";
+"look name" = "назва вигляду";
 
 /* No comment provided by engineer. */
-"look number" = "look number";
+"look number" = "номер вигляду";
 
 /* No comment provided by engineer. */
-"Looks" = "Looks";
+"Looks" = "Вигляди";
 
 /* No comment provided by engineer. */
-"loudness" = "loudness";
+"loudness" = "гучність";
 
 /* No comment provided by engineer. */
-"magnetic-sensor" = "magnetic-sensor";
+"magnetic-sensor" = "магнітний сенсор";
 
 /* No comment provided by engineer. */
-"Mar" = "Mar";
+"Mar" = "Бер";
 
 /* No comment provided by engineer. */
-"March" = "March";
+"March" = "Березень";
 
 /* No comment provided by engineer. */
-"Marimba" = "Marimba";
+"Marimba" = "Маримба";
 
 /* No comment provided by engineer. */
-"Maths" = "Maths";
+"Maths" = "Математика";
 
 /* No comment provided by engineer. */
-"Maximize" = "Maximize";
+"Maximize" = "Максимізувати";
 
 /* No comment provided by engineer. */
-"maximum of" = "maximum of";
+"maximum of" = "максимум";
 
 /* No comment provided by engineer. */
-"May" = "May";
+"May" = "Травень";
 
 /* No comment provided by engineer. */
-"Measure" = "Measure";
+"Measure" = "Вимірювач";
 
 /* No comment provided by engineer. */
-"Media library" = "Media library";
+"Media library" = "Медіа-бібліотека";
 
 /* paint */
-"Menu" = "Menu";
+"Menu" = "Меню";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
+"Message" = "Повідомлення";
 
 /* No comment provided by engineer. */
-"message 1" = "message 1";
+"message 1" = "повідомлення 1";
 
 /* No comment provided by engineer. */
-"MI" = "MI";
+"MI" = "Мі";
 
 /* No comment provided by engineer. */
-"Minimize" = "Minimize";
+"Minimize" = "Мінімізувати";
 
 /* No comment provided by engineer. */
-"minimum of" = "minimum of";
+"minimum of" = "мінімум з";
 
 /* No comment provided by engineer. */
-"minute" = "minute";
+"minute" = "хвилина";
 
 /* paint */
-"Mirror" = "Mirror";
+"Mirror" = "Дзеркало";
 
 /* No comment provided by engineer. */
-"Mo" = "Mo";
+"Mo" = "Пн";
 
 /* No comment provided by engineer. */
 "modulo" = "modulo";
 
 /* Prefix of default catrobat project object names (except background object) */
-"Mole" = "Mole";
+"Mole" = "Кріт";
 
 /* No comment provided by engineer. */
-"Monday" = "Monday";
+"Monday" = "Понеділок";
 
 /* No comment provided by engineer. */
-"month" = "month";
+"month" = "місяць";
 
 /* No comment provided by engineer. */
-"More" = "More";
+"More" = "Більше";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "Додаткова інформація";
 
 /* No comment provided by engineer. */
-"Most downloaded" = "Most downloaded";
+"Most downloaded" = "Найбільш завантажувані";
 
 /* No comment provided by engineer. */
-"Most viewed" = "Most viewed";
+"Most viewed" = "Найбільше переглянуті";
 
 /* No comment provided by engineer. */
-"Motion" = "Motion";
+"Motion" = "Переміщення";
 
 /* No comment provided by engineer. */
-"Motion properties" = "Motion properties";
+"Motion properties" = "властивості руху";
 
 /* No comment provided by engineer. */
-"Move" = "Move";
+"mouth left corner x" = "лівий кут рота х";
 
 /* No comment provided by engineer. */
-"Move actors or objects" = "Move actors or objects";
+"mouth left corner y" = "лівий кут рота y";
 
 /* No comment provided by engineer. */
-"Move brick" = "Move brick";
+"mouth right corner x" = "правий кут рота х";
 
 /* No comment provided by engineer. */
-"Move looks" = "Move looks";
+"mouth right corner y" = "правий кут рота у";
 
 /* No comment provided by engineer. */
-"Move Phiro motor backward" = "Move Phiro motor backward";
+"Move" = "Перемістити";
 
 /* No comment provided by engineer. */
-"Move Phiro motor forward" = "Move Phiro motor forward";
+"Move actors or objects" = "Переміщення персонажів або об’єктів";
 
 /* No comment provided by engineer. */
-"Move sounds" = "Move sounds";
+"Move brick" = "Перемістити цеглину";
 
 /* No comment provided by engineer. */
-"Music Box" = "Music Box";
+"Move looks" = "Перемістити вигляд";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Переміщення двигуна Phiro назад";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Переміщення двигуна Phiro вперед";
+
+/* No comment provided by engineer. */
+"Move sounds" = "Перемістити звуки";
+
+/* No comment provided by engineer. */
+"Music Box" = "Музична скринька";
 
 /* Name of the default catrobat project (used as filename!!) */
-"My first project" = "My first project";
+"My first project" = "Мій перший проект";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My image" = "My image";
+"My image" = "Моє зображення";
 
 /* Title for first (default) object */
-"My object" = "My object";
+"My object" = "Мій об'єкт";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "Ім'я";
 
 /* No comment provided by engineer. */
-"Name already exists." = "Name already exists.";
+"Name already exists." = "Назва вже існує.";
 
 /* No comment provided by engineer. */
-"natural logarithm" = "natural logarithm";
+"natural logarithm" = "натуральний логарифм";
 
 /* No comment provided by engineer. */
-"New" = "New";
+"New" = "Новий";
 
 /* paint */
-"New canvas" = "New canvas";
+"New canvas" = "Нове полотно";
 
 /* No comment provided by engineer. */
-"New list" = "New list";
+"New list" = "Новий список";
 
 /* No comment provided by engineer. */
-"New message" = "New message";
+"New message" = "Нове повідомлення";
 
 /* No comment provided by engineer. */
 "New project" = "Новий проект";
 
 /* No comment provided by engineer. */
-"New text" = "New text";
+"New text" = "Новий текст";
 
 /* No comment provided by engineer. */
-"New variable" = "New variable";
+"New variable" = "Нова змінна";
 
 /* No comment provided by engineer. */
-"New..." = "New...";
+"New..." = "Створити...";
 
 /* No comment provided by engineer. */
-"Newest" = "Newest";
+"Newest" = "Найновіші";
 
 /* No comment provided by engineer. */
-"Next background" = "Next background";
+"Next background" = "Наступний фон";
 
 /* No comment provided by engineer. */
-"Next look" = "Next look";
+"Next look" = "Наступний вигляд";
 
 /* No comment provided by engineer. */
-"No" = "No";
+"No" = "Ні";
 
 /* No comment provided by engineer. */
-"No camera available" = "No camera available";
+"No camera available" = "Немає доступної камери";
 
 /* No comment provided by engineer. */
-"No categories selected" = "No categories selected";
+"No categories selected" = "Жодної категорії не вибрано";
 
 /* No comment provided by engineer. */
-"No description available" = "No description available";
+"No description available" = "Опис відсутній";
 
 /* No comment provided by engineer. */
-"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+"No or invalid image name entered, try again." = "Введено некоректне ім'я зображення. Повторіть спробу.";
 
 /* No comment provided by engineer. */
-"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+"No or invalid sound name entered, try again." = "Введено некоректне ім'я звуку, спробуйте ще раз.";
 
 /* No comment provided by engineer. */
-"No search results" = "No search results";
+"No search results" = "Пошук не дав результатів";
 
 /* No comment provided by engineer. */
 "No whitespace character allowed" = "No whitespace character allowed";
+
+/* No comment provided by engineer. */
+"nose x" = "nose x";
+
+/* No comment provided by engineer. */
+"nose y" = "nose y";
 
 /* No comment provided by engineer. */
 "not" = "not";
@@ -1239,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "on" = "on";
+
+/* No comment provided by engineer. */
+"Once" = "Один раз";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "only 15 characters allowed";
@@ -1304,7 +1418,7 @@
 "Piano" = "Piano";
 
 /* paint */
-"Pipette" = "Pipette";
+"Pipette" = "Піпетка";
 
 /* No comment provided by engineer. */
 "Pizzicato" = "Pizzicato";
@@ -1340,157 +1454,205 @@
 "Please select a project to upload" = "Please select a project to upload";
 
 /* bluetooth */
-"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+"Please try resetting the device and try again." = "Будь ласка, спробуйте скинути пристрій і спробуйте ще раз.";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
 /* No comment provided by engineer. */
-"Pocket Code for iOS" = "Pocket Code for iOS";
+"Pocket Code for iOS" = "Pocket Code для iOS";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code не має доступу до вашої камери. Щоб дозволити доступ, торкніться налаштувань і активуйте камеру. Ваш малюнок буде автоматично збережено в PocketCode для вас.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "У Pocket Code не має доступу до зображень. Щоб надати доступ, торкніться налаштувань та активуйте зображення. Ваш малюнок автоматично буде збережено в PocketCode для вас.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code не має доступу до мікрофона. Щоб дозволити доступ, торкніться налаштувань і активуйте мікрофон.";
 
 /* No comment provided by engineer. */
-"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code - це середовище програмування для iOS для візуальної мови програмування Catrobat. Код Pocket Code в основному знаходиться під ліцензією GNU AGPL v3. Для отримання додаткової інформації до ліцензії, будь ласка, відвідайте наступні посилання:";
 
 /* No comment provided by engineer. */
-"Pocket Code Recorder" = "Pocket Code Recorder";
+"Pocket Code Recorder" = "Pocket Code мікрофон";
 
 /* No comment provided by engineer. */
-"Pocket Code Source Code License" = "Pocket Code Source Code License";
+"Pocket Code Source Code License" = "Ліцензія вихідного коду Pocket Code";
 
 /* paint */
 "Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Point in direction" = "Point in direction";
+"Point in direction" = "Вказати в напрямку";
 
 /* No comment provided by engineer. */
-"Point towards" = "Point towards";
+"Point towards" = "Вказати на";
 
 /* paint */
-"Pointer" = "Pointer";
+"Pointer" = "Вказівник";
 
 /* No comment provided by engineer. */
-"position x" = "position x";
+"Pose detection" = "Визначення пози";
 
 /* No comment provided by engineer. */
-"position y" = "position y";
+"position x" = "позиція х";
 
 /* No comment provided by engineer. */
-"power" = "power";
+"position y" = "позиція y";
 
 /* No comment provided by engineer. */
-"Preview" = "Preview";
+"power" = "степінь";
 
 /* No comment provided by engineer. */
-"Previous background" = "Previous background";
+"Preview" = "Перегляд";
 
 /* No comment provided by engineer. */
-"Previous look" = "Previous look";
+"Previous background" = "Попередній фон";
 
 /* No comment provided by engineer. */
-"Privacy Settings" = "Privacy Settings";
+"Previous look" = "Попередній вигляд";
 
 /* No comment provided by engineer. */
-"Project" = "Project";
+"Privacy Settings" = "Конфіденційність";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
+"Project" = "Проєкт";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
+"Project name" = "Назва проєкту";
 
 /* No comment provided by engineer. */
-"Projects" = "Projects";
+"Project Name is necessary!" = "Назва проекту необхідна!";
 
 /* No comment provided by engineer. */
-"Projects on device" = "Projects on device";
+"Projects" = "Проєкти";
 
 /* No comment provided by engineer. */
-"Properties" = "Properties";
+"Projects on device" = "Проекти на пристрої";
 
 /* No comment provided by engineer. */
-"random position" = "random position";
+"Properties" = "Властивості";
 
 /* No comment provided by engineer. */
-"random value from to" = "random value from to";
+"random position" = "випадкова позиція";
 
 /* No comment provided by engineer. */
-"Rate Us" = "Rate Us";
+"random value from to" = "випадкове значення від до";
 
 /* No comment provided by engineer. */
-"RE" = "RE";
+"Rate Us" = "Оцініть нас";
 
 /* No comment provided by engineer. */
-"Recording" = "Recording";
+"RE" = "РЕ";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "Нещодавно використані";
+
+/* No comment provided by engineer. */
+"Recording" = "Йде запис";
 
 /* paint */
-"Rectangle / Square" = "Rectangle / Square";
+"Rectangle / Square" = "Прямокутник / Квадрат";
 
 /* paint */
-"Red" = "Red";
+"Red" = "Червоний";
 
 /* No comment provided by engineer. */
-"red" = "red";
+"red" = "червоний";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
+"Register" = "Зареєструватися";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "Реєстрація пройшла успішно";
 
 /* No comment provided by engineer. */
-"regular expression" = "regular expression";
+"regular expression" = "регулярний вираз";
 
 /* No comment provided by engineer. */
-"Remove known devices" = "Remove known devices";
+"Remove known devices" = "Видалити відомі пристрої";
 
 /* No comment provided by engineer. */
-"Rename" = "Rename";
+"Rename" = "Перейменувати";
 
 /* No comment provided by engineer. */
-"Rename actor or object" = "Rename actor or object";
+"Rename actor or object" = "Перейменувати персонажа або об'єкт";
 
 /* No comment provided by engineer. */
-"Rename image" = "Rename image";
+"Rename image" = "Перейменувати зображення ";
 
 /* No comment provided by engineer. */
-"Rename project" = "Rename project";
+"Rename project" = "Перейменувати проект";
 
 /* No comment provided by engineer. */
-"Rename sound" = "Rename sound";
+"Rename sound" = "Перейменувати звук";
 
 /* No comment provided by engineer. */
-"Repeat" = "Repeat";
+"Repeat" = "Повторити";
 
 /* No comment provided by engineer. */
-"Repeat until" = "Repeat until";
+"Repeat until" = "Повторювати до тих пір, поки";
 
 /* No comment provided by engineer. */
-"Replace item in list" = "Replace item in list";
+"Replace item in list" = "Замінити елемент у списку";
 
 /* No comment provided by engineer. */
-"Report as inappropriate" = "Report as inappropriate";
+"Report as inappropriate" = "Поскаржитись як недоречно";
 
 /* paint */
-"Resize" = "Resize";
+"Resize" = "Змінити розмір";
 
 /* No comment provided by engineer. */
-"Restart" = "Restart";
+"Restart" = "Перезапустити";
 
 /* No comment provided by engineer. */
-"Result" = "Result";
+"Result" = "Результат";
 
 /* No comment provided by engineer. */
-"Right" = "Right";
+"Right" = "Праворуч";
+
+/* No comment provided by engineer. */
+"right ear x" = "праве вухо х";
+
+/* No comment provided by engineer. */
+"right ear y" = "праве вухо у";
+
+/* No comment provided by engineer. */
+"right eye center x" = "правий центр очей х";
+
+/* No comment provided by engineer. */
+"right eye center y" = "праворуч центр очей y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "right eye inner x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "right eye inner y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "right eye outer x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "right eye outer y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
 
 /* paint */
 "Rotate" = "Rotate";
@@ -1529,13 +1691,25 @@
 "Scripts" = "Scripts";
 
 /* bluetooth */
-"Search" = "Search";
+"Search" = "Шукати";
 
 /* No comment provided by engineer. */
 "second" = "second";
 
 /* No comment provided by engineer. */
 "second " = "second ";
+
+/* No comment provided by engineer. */
+"second face size" = "second face size";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "second face x position";
+
+/* No comment provided by engineer. */
+"second face y position" = "second face y position";
 
 /* No comment provided by engineer. */
 "seconds" = "seconds";
@@ -1556,6 +1730,9 @@
 "Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
+"Select file" = "Select file";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "Select logical operator";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Select Phiro";
+
+/* No comment provided by engineer. */
+"Send web request to" = "Send web request to";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Sending anonymous crash reports";
@@ -1592,145 +1772,163 @@
 "Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
 
 /* No comment provided by engineer. */
-"Set background" = "Set background";
+"Set background" = "Встановити фон екрану";
 
 /* No comment provided by engineer. */
-"Set brightness " = "Set brightness ";
+"Set background and wait" = "Встановити фон і чекати";
 
 /* No comment provided by engineer. */
-"Set color " = "Set color ";
+"Set background to number" = "Встановлення фону за номером";
 
 /* No comment provided by engineer. */
-"Set description" = "Set description";
+"Set brightness " = "Встановити яскравість ";
 
 /* No comment provided by engineer. */
-"Set Instrument to" = "Set Instrument to";
+"Set color " = "Встановити колір ";
 
 /* No comment provided by engineer. */
-"Set pen color to" = "Set pen color to";
+"Set description" = "Додати опис";
 
 /* No comment provided by engineer. */
-"Set pen size to" = "Set pen size to";
+"Set Instrument to" = "Встановити інструмент";
 
 /* No comment provided by engineer. */
-"Set Phiro light" = "Set Phiro light";
+"Set pen color to" = "Встановити колір ручки";
 
 /* No comment provided by engineer. */
-"Set rotation style" = "Set rotation style";
+"Set pen size to" = "Встановити розмір ручки";
 
 /* No comment provided by engineer. */
-"Set size to" = "Set size to";
+"Set Phiro light" = "Встановити Phiro світлий";
 
 /* No comment provided by engineer. */
-"Set tempo to" = "Set tempo to";
+"Set rotation style" = "Встановити стиль обертання";
 
 /* No comment provided by engineer. */
-"Set transparency " = "Set transparency ";
+"Set size to" = "Встановити розмір";
 
 /* No comment provided by engineer. */
-"Set variable" = "Set variable";
+"Set tempo to" = "Встановити темп";
 
 /* No comment provided by engineer. */
-"Set volume to" = "Set volume to";
+"Set transparency " = "Встановити прозорість ";
 
 /* No comment provided by engineer. */
-"Set x to " = "Set x to ";
+"Set variable" = "Встановити змінну";
 
 /* No comment provided by engineer. */
-"Set y to " = "Set y to ";
+"Set volume to" = "Встановити гучність на";
 
 /* No comment provided by engineer. */
-"Settings" = "Settings";
+"Set x to " = "Встановіть x в ";
 
 /* No comment provided by engineer. */
-"Show" = "Show";
+"Set y to " = "Встановити y в ";
 
 /* No comment provided by engineer. */
-"Show details" = "Show details";
+"Settings" = "Параметри";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Вкласти";
 
 /* No comment provided by engineer. */
-"Show variable" = "Show variable";
+"Show" = "Показати";
 
 /* No comment provided by engineer. */
-"sine" = "sine";
+"Show details" = "Показати деталі";
 
 /* No comment provided by engineer. */
-"size" = "size";
+"Show variable" = "Показати змінну";
 
 /* No comment provided by engineer. */
-"Size" = "Size";
+"sine" = "синус";
 
 /* No comment provided by engineer. */
-"Skip" = "Skip";
+"size" = "розмір";
 
 /* No comment provided by engineer. */
-"SO" = "SO";
+"Size" = "Розмір";
 
 /* No comment provided by engineer. */
-"Something went wrong while uploading the project." = "Something went wrong while uploading the project.";
+"Skip" = "Пропустити";
 
 /* No comment provided by engineer. */
-"Sound" = "Sound";
+"SO" = "СО";
 
 /* No comment provided by engineer. */
-"Sound name" = "Sound name";
+"Something went wrong while uploading the project." = "Помилка при завантаженні проекту.";
 
 /* No comment provided by engineer. */
-"Sounds" = "Sounds";
+"Sound" = "Звук";
 
 /* No comment provided by engineer. */
-"Speak" = "Speak";
+"Sound name" = "Назва звуку";
 
 /* No comment provided by engineer. */
-"Speed" = "Speed";
+"Sounds" = "Звуки";
+
+/* No comment provided by engineer. */
+"Speak" = "Говорити";
+
+/* No comment provided by engineer. */
+"Speed" = "Швидкість";
 
 /* paint */
-"square" = "square";
+"square" = "квадрат";
 
 /* No comment provided by engineer. */
-"square root" = "square root";
+"square root" = "квадратний корінь";
 
 /* No comment provided by engineer. */
-"stage is touched" = "stage is touched";
+"stage is touched" = "торкнувся екрану";
 
 /* No comment provided by engineer. */
-"stage touch x" = "stage touch x";
+"stage touch x" = "доторкнувся до екрана x";
 
 /* No comment provided by engineer. */
-"stage touch y" = "stage touch y";
+"stage touch y" = "доторкнувся до екрана y";
 
 /* paint */
-"Stamp" = "Stamp";
+"Stamp" = "Штамп";
 
 /* paint */
-"Stamped" = "Stamped";
+"Stamped" = "Штамп";
 
 /* No comment provided by engineer. */
-"Start sound" = "Start sound";
+"Start running stitch with length" = "Почніть бігти як м'яч з довжиною";
 
 /* No comment provided by engineer. */
-"Start sound and wait" = "Start sound and wait";
+"Start sound" = "Відтворити звук";
 
 /* No comment provided by engineer. */
-"Steel Drum" = "Steel Drum";
+"Start sound and wait" = "Відтворити звук і чекати";
 
 /* No comment provided by engineer. */
-"step" = "step";
+"Start zigzag stitch with length" = "Почніть зигзагоподібний стібок з довжиною";
 
 /* No comment provided by engineer. */
-"steps" = "steps";
+"Steel Drum" = "Сталевий барабан";
 
 /* No comment provided by engineer. */
-"Stitch" = "Stitch";
+"step" = "крок";
 
 /* No comment provided by engineer. */
-"Stop all sounds" = "Stop all sounds";
+"steps" = "кроків";
 
 /* No comment provided by engineer. */
-"Stop Phiro motor" = "Stop Phiro motor";
+"Stitch" = "Стіч";
 
 /* No comment provided by engineer. */
-"Su" = "Su";
+"Stop all sounds" = "Зупинити усі звуки";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "Зупинити поточне завдання";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Зупинити двигун Phiro";
+
+/* No comment provided by engineer. */
+"Su" = "Нд";
 
 /* No comment provided by engineer. */
 "Sunday" = "Sunday";
@@ -1775,7 +1973,7 @@
 "Terms of Use and Service" = "Terms of Use and Service";
 
 /* paint */
-"Text" = "Text";
+"Text" = "Текст";
 
 /* No comment provided by engineer. */
 "Text message:" = "Text message:";
@@ -1865,6 +2063,15 @@
 "touch position" = "touch position";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "touches actor or object";
+
+/* No comment provided by engineer. */
+"touches edge" = "touches edge";
+
+/* No comment provided by engineer. */
+"touches finger" = "touches finger";
+
+/* No comment provided by engineer. */
 "transparency" = "transparency";
 
 /* No comment provided by engineer. */
@@ -1877,40 +2084,34 @@
 "Tu" = "Tu";
 
 /* No comment provided by engineer. */
-"Tuesday" = "Tuesday";
+"Tuesday" = "Вівторок";
 
 /* No comment provided by engineer. */
-"Turn camera" = "Turn camera";
+"Turn camera" = "Увімкнути камеру";
 
 /* No comment provided by engineer. */
-"Turn flashlight" = "Turn flashlight";
+"Turn flashlight" = "Увімкнути ліхтарик";
 
 /* No comment provided by engineer. */
-"Turn left" = "Turn left";
+"Turn left" = "Повернути ліворуч";
 
 /* No comment provided by engineer. */
-"Turn right" = "Turn right";
+"Turn right" = "Повернути праворуч";
 
 /* No comment provided by engineer. */
-"Unable to import project!" = "Unable to import project!";
+"Unable to import project!" = "Не вдалося імпортувати проєкт!";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to load project!" = "Не вдалося завантажити проєкт!";
 
 /* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Не вдається відтворити цей звук!\nМожливо, це неприпустимий звук або файл пошкоджено.";
 
 /* paint */
 "underline" = "underline";
 
 /* Button title of alert view to invoke undo if user shakes device */
-"Undo" = "Undo";
+"Undo" = "Скасувати";
 
 /* Description text in alert view if user shakes the device */
 "Undo Drawing?" = "Undo Drawing?";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "Use Phiro bricks";
 
 /* No comment provided by engineer. */
+"user language" = "user language";
+
+/* No comment provided by engineer. */
 "Username" = "Username";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "Username must not be blank";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
@@ -2000,9 +2207,6 @@
 "Views" = "Views";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "Visual sensors";
-
-/* No comment provided by engineer. */
 "Wait" = "Wait";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "We";
+
+/* No comment provided by engineer. */
+"Web access" = "Web access";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Wednesday";
@@ -2024,7 +2231,7 @@
 "What's your name?" = "What's your name?";
 
 /* No comment provided by engineer. */
-"When" = "When";
+"When" = "Коли";
 
 /* No comment provided by engineer. */
 "When background changes to" = "When background changes to";
@@ -2060,7 +2267,7 @@
 "year" = "year";
 
 /* No comment provided by engineer. */
-"Yes" = "Yes";
+"Yes" = "Так";
 
 /* No comment provided by engineer. */
 "Yesterday" = "Yesterday";

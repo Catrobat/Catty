@@ -5,7 +5,7 @@
 "A project with the same name already exists, try again." = "يوجد مشروع بنفس الاسم مسبقا، حاول مرة أخرى.";
 
 /* No comment provided by engineer. */
-"Abc" = "أ ب ج";
+"Abc" = "أبج";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "حول كاتروبات";
@@ -50,6 +50,9 @@
 "Add sound" = "إضافة صوت";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "إضافة نطاق موثوق";
+
+/* No comment provided by engineer. */
 "Agree" = "موافق";
 
 /* No comment provided by engineer. */
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "السماح للتطبيق بإرسال تقارير الأعطال تلقائياً";
 
+/* No comment provided by engineer. */
+"Allow web access" = "السماح بالوصول إلى الويب";
+
 /* paint */
 "Alpha" = "ألفا";
 
 /* No comment provided by engineer. */
 "altitude" = "الإرتفاع";
+
+/* No comment provided by engineer. */
+"Always" = "دائماً";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "السماح دائماً بالوصول إلى الويب";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "رسالة بنفس الاسم موجود بالفعل، حاول مرة أخرى.";
@@ -89,10 +101,16 @@
 "and" = "و";
 
 /* No comment provided by engineer. */
+"and store answer in" = "وتخزين الإجابة في";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "وتخزين الإجابة المكتوبة في ";
 
 /* No comment provided by engineer. */
 "and wait" = "والانتظار";
+
+/* No comment provided by engineer. */
+"and width" = "و العرض";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "تحريك أجزاء الطوب";
@@ -161,10 +179,10 @@
 "Background" = "خلفية الشاشة";
 
 /* No comment provided by engineer. */
-"background name" = "إسم_خلفية الشاشة";
+"background name" = "إسم خلفية الشاشة";
 
 /* No comment provided by engineer. */
-"background number" = "رقم_خلفية الشاشة";
+"background number" = "رقم خلفية الشاشة";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "خلفيات الشاشة";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "باسون";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "كن حذرًا جدًا قبل السماح بالوصول ، لأن الرابط قد يعرض معلوماتك الشخصية ، مثل موقعك الجغرافي الدقيق أو أي نص أدخلته لأشخاص آخرين ضارين أو للجمهور. راجع موقع ويكي الخاص بنا للحصول على مزيد من المعلومات حول سبب خطورة ذلك. بالسماح دائمًا بالوصول ، لن يُطلب منك مرة أخرى تأكيد عناوين الويب من هذا النطاق. إذا كنت تريد إلغاء هذا الإذن لاحقًا ، فيمكنك إزالة المجال من قائمة النطاقات الموثوقة في إعدادات هذا التطبيق.";
 
 /* No comment provided by engineer. */
 "becomes true" = "يتحقق الشرط";
@@ -374,6 +395,9 @@
 "Create account" = "إنشاء حساب";
 
 /* No comment provided by engineer. */
+"Create as list" = "Create as list";
+
+/* No comment provided by engineer. */
 "Create patterns for stiching machines" = "إنشاء أنماط لصنع الآلات";
 
 /* No comment provided by engineer. */
@@ -479,6 +503,9 @@
 "Deletion mode" = "وضع الحذف";
 
 /* No comment provided by engineer. */
+"Deny" = "رفض";
+
+/* No comment provided by engineer. */
 "Description" = "الوصف";
 
 /* No comment provided by engineer. */
@@ -536,6 +563,12 @@
 "Download" = "تحميل";
 
 /* No comment provided by engineer. */
+"Download again" = "تحميل مرة أخرى";
+
+/* No comment provided by engineer. */
+"Download too big" = "التنزيل كبير جدًا";
+
+/* No comment provided by engineer. */
 "Downloads" = "التنزيلات";
 
 /* No comment provided by engineer. */
@@ -582,6 +615,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "تعديل الأصوات";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "تعديل نطاق الموثوق";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "غيتار كهربائي";
@@ -677,16 +713,7 @@
 "FA" = "فا";
 
 /* No comment provided by engineer. */
-"face detected" = "تم اكتشاف الوجه";
-
-/* No comment provided by engineer. */
-"faceposition x" = "واجهة الوسط x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "واجهة الوسط y";
-
-/* No comment provided by engineer. */
-"facesize" = "حجم الوجه";
+"Face detection" = "الكشف عن الوجه";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "فشلت عملية استيراد العنصر";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "تعبئة";
+
+/* No comment provided by engineer. */
+"first face size" = "حجم الوجه";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "موقع الوجه باتجاه س";
+
+/* No comment provided by engineer. */
+"first face y position" = "موقع الوجه باتجاه y";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "إيقاف ضوء الفلاش";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "الجمعة";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "الاستخدام المتكرر";
 
 /* No comment provided by engineer. */
 "Friday" = "الجمعة";
@@ -801,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "جهاز إستشعار الدوران";
+
+/* No comment provided by engineer. */
+"head top x" = "أعلى رأس x";
+
+/* No comment provided by engineer. */
+"head top y" = "رأس الأعلى ص";
 
 /* No comment provided by engineer. */
 "Hello!" = "مرحباً!";
@@ -851,6 +893,9 @@
 "inclination y" = "زاوية ميل y";
 
 /* No comment provided by engineer. */
+"index of item" = "فهرس العنصر";
+
+/* No comment provided by engineer. */
 "Information" = "معلومات";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "تم الإدخال";
+
+/* No comment provided by engineer. */
+"Internet" = "إنترنت";
 
 /* No comment provided by engineer. */
 "into list" = "في القائمة";
@@ -932,6 +980,48 @@
 "Left" = "اليسار";
 
 /* No comment provided by engineer. */
+"left ear x" = "الأذن اليسرى x";
+
+/* No comment provided by engineer. */
+"left ear y" = "غادر مبكرا";
+
+/* No comment provided by engineer. */
+"left eye center x" = "مركز العين اليسرى x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "مركز العين اليسرى ذ";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "العين اليسرى الداخلية x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "العين اليسرى الداخلية ذ";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "العين اليسرى الخارجية x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "العين اليسرى ذ الخارجي";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "من اليسار-اليمين فقط";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "خط رسم";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "إسم القائمة:";
@@ -995,10 +1088,10 @@
 "Look" = "منظر";
 
 /* No comment provided by engineer. */
-"look name" = "إسم_المنظر";
+"look name" = "إسم المنظر";
 
 /* No comment provided by engineer. */
-"look number" = "رقم_المنظر";
+"look number" = "رقم المنظر";
 
 /* No comment provided by engineer. */
 "Looks" = "المناظر";
@@ -1092,6 +1185,18 @@
 
 /* No comment provided by engineer. */
 "Motion properties" = "خصائص الحركة";
+
+/* No comment provided by engineer. */
+"mouth left corner x" = "الزاوية اليسرى للفم x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "الزاوية اليسرى للفم ذ";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "الزاوية اليمنى للفم x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "الزاوية اليمنى للفم ذ";
 
 /* No comment provided by engineer. */
 "Move" = "تحريك";
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "المسافات البيضاء غير مسموحة";
 
 /* No comment provided by engineer. */
+"nose x" = "أنف x";
+
+/* No comment provided by engineer. */
+"nose y" = "الأنف ذ";
+
+/* No comment provided by engineer. */
 "not" = "لا";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "on" = "تشغيل";
+
+/* No comment provided by engineer. */
+"Once" = "مرة واحدة";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "فقط يسمح بـ 15 رمزاً";
@@ -1379,6 +1493,9 @@
 "Pointer" = "مؤشر";
 
 /* No comment provided by engineer. */
+"Pose detection" = "كشف الوقفة";
+
+/* No comment provided by engineer. */
 "position x" = "الموقع x";
 
 /* No comment provided by engineer. */
@@ -1428,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "RE" = "ري";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "مستخدم مؤخرا";
 
 /* No comment provided by engineer. */
 "Recording" = "تسجيل";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "اليمين";
 
+/* No comment provided by engineer. */
+"right ear x" = "الأذن اليمنى x";
+
+/* No comment provided by engineer. */
+"right ear y" = "ذ الأذن اليمنى";
+
+/* No comment provided by engineer. */
+"right eye center x" = "مركز العين اليمنى x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "مركز العين اليمنى ذ";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "العين اليمنى الداخلية x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "العين اليمنى الداخلية ذ";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "العين اليمنى الخارجي x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "العين اليمنى الخارجي ذ";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
+
 /* paint */
 "Rotate" = "تدوير";
 
@@ -1538,6 +1700,18 @@
 "second " = "ثانية ";
 
 /* No comment provided by engineer. */
+"second face size" = "حجم الوجه الثاني";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "الوجه الثاني X الموضع";
+
+/* No comment provided by engineer. */
+"second face y position" = "موضع الوجه الثاني ص";
+
+/* No comment provided by engineer. */
 "seconds" = "ثوان ";
 
 /* No comment provided by engineer. */
@@ -1556,6 +1730,9 @@
 "Select categories" = "حدد الفئات";
 
 /* No comment provided by engineer. */
+"Select file" = "حدد الملف";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "حدد عامل التشغيل المنطقي";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "حدد روبوت أطفال";
+
+/* No comment provided by engineer. */
+"Send web request to" = "إرسال طلب ويب إلى";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "إرسال تقارير الأعطال الغير معروفة";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "تعيين كـ خلفية شاشة";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "تعيين الخلفية والانتظار";
+
+/* No comment provided by engineer. */
+"Set background to number" = "تعيين خلفية الشاشة الى عدد";
 
 /* No comment provided by engineer. */
 "Set brightness " = "تعيين درجة السطوع ";
@@ -1641,6 +1827,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "إعدادات";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "ابدأ";
 
 /* No comment provided by engineer. */
 "Show" = "إظهار";
@@ -1694,10 +1883,10 @@
 "stage is touched" = "تم لمس الشاشة";
 
 /* No comment provided by engineer. */
-"stage touch x" = "إحداثيات_لمس_الشاشة_س";
+"stage touch x" = "إحداثيات لمس الشاشة س";
 
 /* No comment provided by engineer. */
-"stage touch y" = "إحداثيات_لمس_الشاشة_ص";
+"stage touch y" = "إحداثيات لمس الشاشة ص";
 
 /* paint */
 "Stamp" = "ختم";
@@ -1706,10 +1895,16 @@
 "Stamped" = "مختوم";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "بدء تشغيل الخيط بطول";
+
+/* No comment provided by engineer. */
 "Start sound" = "بدء تشغيل مقطع صوتي";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "بدء تشغيل مقطع صوتي والانتظار";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "ابدأ خياطة zigzag بطول";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "درام فولاذي";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "إيقاف كافة الأصوات";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "إيقاف الخيط الحالي";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "إيقاف محرك روبوت الاطفال";
@@ -1865,6 +2063,15 @@
 "touch position" = "قم بلمس الموقع";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "العناصر_الملموسة";
+
+/* No comment provided by engineer. */
+"touches edge" = "الحواف_الملموسة";
+
+/* No comment provided by engineer. */
+"touches finger" = "الأصابع_الملموسة";
+
+/* No comment provided by engineer. */
 "transparency" = "الشفافية";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "غير قادر على تشغيل هذا الصوت! ربما الصوت غير صالح أو أن الملف لا يعمل.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "لا يمكن تشغيل ملف الصوت المحدد. الجهاز الخاص بك في الوضع الصامت. الرجاء إيقاف تشغيل الوضع الصامت عن طريق تبديل المفتاح الموجود على الجانب الأيسر من أي فون الخاص بك وأنقر على تشغيل مرة أخرى.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "لا يمكن تشغيل ملف الصوت المحدد. الجهاز الخاص بك في الوضع الصامت. الرجاء إيقاف تشغيل الوضع الصامت عن طريق تبديل المفتاح الموجود على الجانب الأيمن من أي باد الخاص بك وأنقر على تشغيل مرة أخرى.";
 
 /* paint */
 "underline" = "تسطير";
@@ -1952,16 +2153,22 @@
 "Uploaded" = "تم التحميل";
 
 /* No comment provided by engineer. */
-"Use camera" = "إستخدام الكاميرا\n ";
+"Use camera" = "إستخدام الكاميرا";
 
 /* No comment provided by engineer. */
 "Use Phiro bricks" = "استخدم لبّنات روبوت الأطفال البرمجية";
+
+/* No comment provided by engineer. */
+"user language" = "لغة المستخدم";
 
 /* No comment provided by engineer. */
 "Username" = "اسم المستخدم";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "يجب أن لا يكون اسم المستخدم فارغ";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "اسم المتغير:";
@@ -2000,9 +2207,6 @@
 "Views" = "عرض";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "أجهزة الاستشعار البصرية";
-
-/* No comment provided by engineer. */
 "Wait" = "انتظر";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "الأربعاء";
+
+/* No comment provided by engineer. */
+"Web access" = "الوصول إلى الويب";
 
 /* No comment provided by engineer. */
 "Wednesday" = "الأربعاء";

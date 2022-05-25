@@ -50,6 +50,9 @@
 "Add sound" = "Ses ekle";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "Güvenilir alan ekle";
+
+/* No comment provided by engineer. */
 "Agree" = "Kabul ediyorum";
 
 /* No comment provided by engineer. */
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "Uygulamanın otomatik olarak kilitlenme raporları göndermesine izin verin";
 
+/* No comment provided by engineer. */
+"Allow web access" = "Web erişimine izin ver";
+
 /* paint */
 "Alpha" = "Alfa";
 
 /* No comment provided by engineer. */
 "altitude" = "yükseklik";
+
+/* No comment provided by engineer. */
+"Always" = "Her zaman";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Web erişimine her zaman izin ver";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "Aynı isme sahip bir resim zaten var, yeniden deneyin.";
@@ -89,10 +101,16 @@
 "and" = "ve";
 
 /* No comment provided by engineer. */
+"and store answer in" = "ve yanıtı saklayın";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "ve yazılı cevabı şurada saklayın ";
 
 /* No comment provided by engineer. */
 "and wait" = "ve bekleyin";
+
+/* No comment provided by engineer. */
+"and width" = "ve genişlik";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Tuğla parcalarıyla animasyon yapın";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "Fagot";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Erişime izin vermeden önce çok dikkatli olun, çünkü bağlantı, kesin coğrafi konumunuz veya girdiğiniz herhangi bir metin gibi kişisel bilgilerinizi kötü niyetli diğer kişilere veya kamuya ifşa edebilir. Bunun neden son derece tehlikeli olabileceği hakkında daha fazla bilgi için wiki'mize bakın. Erişime her zaman izin verdiğinizde, bu alan adındaki web adreslerini onaylamanız tekrar istenmez. Bu izni daha sonra iptal etmek isterseniz, bu uygulamanın ayarlarında etki alanını güvenilir etki alanları listesinden kaldırabilirsiniz.";
 
 /* No comment provided by engineer. */
 "becomes true" = "Olurşa";
@@ -374,6 +395,9 @@
 "Create account" = "Hesap açmak";
 
 /* No comment provided by engineer. */
+"Create as list" = "Liste olarak oluştur";
+
+/* No comment provided by engineer. */
 "Create patterns for stiching machines" = "Dikiş makinaları için tasarım oluştur";
 
 /* No comment provided by engineer. */
@@ -479,6 +503,9 @@
 "Deletion mode" = "Silme modu";
 
 /* No comment provided by engineer. */
+"Deny" = "Reddet";
+
+/* No comment provided by engineer. */
 "Description" = "Açıklama";
 
 /* No comment provided by engineer. */
@@ -536,6 +563,12 @@
 "Download" = "indir";
 
 /* No comment provided by engineer. */
+"Download again" = "Tekrar yükle";
+
+/* No comment provided by engineer. */
+"Download too big" = "İndirilecek içerik çok büyük";
+
+/* No comment provided by engineer. */
 "Downloads" = "İndirilenler";
 
 /* No comment provided by engineer. */
@@ -582,6 +615,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "Sesi düzenle";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "Güvenilir alanı düzenle";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "Elektrikli gitar";
@@ -677,16 +713,7 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "yüz algılandı";
-
-/* No comment provided by engineer. */
-"faceposition x" = "yüz yerleştirme x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "yüz yerleştirme y";
-
-/* No comment provided by engineer. */
-"facesize" = "facesize";
+"Face detection" = "Yüz tanıma";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "Öğe içe aktarılamadı";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "Doldur";
+
+/* No comment provided by engineer. */
+"first face size" = "yüz_boyutlar";
+
+/* No comment provided by engineer. */
+"first face visible" = "ilk yüz görünür";
+
+/* No comment provided by engineer. */
+"first face x position" = "ilk yüzün x pozisyonu";
+
+/* No comment provided by engineer. */
+"first face y position" = "ilk yüzün y konumu";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "El feneri kapalı";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "Cu";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Sıklıkla kullanılan";
 
 /* No comment provided by engineer. */
 "Friday" = "Cuma";
@@ -801,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro sensörü";
+
+/* No comment provided by engineer. */
+"head top x" = "baş üstü x";
+
+/* No comment provided by engineer. */
+"head top y" = "baş üstü y";
 
 /* No comment provided by engineer. */
 "Hello!" = "Merhaba!";
@@ -851,6 +893,9 @@
 "inclination y" = "y eğim açısı";
 
 /* No comment provided by engineer. */
+"index of item" = "öğe dizini";
+
+/* No comment provided by engineer. */
 "Information" = "Bilgi";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "Eklenen";
+
+/* No comment provided by engineer. */
+"Internet" = "İnternet";
 
 /* No comment provided by engineer. */
 "into list" = "listeye eklemek";
@@ -932,6 +980,48 @@
 "Left" = "Sol";
 
 /* No comment provided by engineer. */
+"left ear x" = "sol kulak x";
+
+/* No comment provided by engineer. */
+"left ear y" = "sol kulak y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "sol göz merkezi x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "sol göz merkezi y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "sol göz iç x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "sol göz iç y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "sol göz dış x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "sol göz dış y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "sadece sağdan sola";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "Çizgi";
+
+/* No comment provided by engineer. */
+"List name" = "Liste adı";
 
 /* No comment provided by engineer. */
 "List name:" = "Liste adı:";
@@ -1094,6 +1187,18 @@
 "Motion properties" = "Hareket özellikleri";
 
 /* No comment provided by engineer. */
+"mouth left corner x" = "ağız sol köşe x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "ağız sol köşe y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "ağız sağ köşe x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "ağız sağ köşe y";
+
+/* No comment provided by engineer. */
 "Move" = "Taşı";
 
 /* No comment provided by engineer. */
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "İzin verilen boşluk karakteri yok";
 
 /* No comment provided by engineer. */
+"nose x" = "burun x";
+
+/* No comment provided by engineer. */
+"nose y" = "burun y";
+
+/* No comment provided by engineer. */
 "not" = "değil";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "on" = "açık";
+
+/* No comment provided by engineer. */
+"Once" = "Bir kez";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "sadece 15 karakter kaldı";
@@ -1379,6 +1493,9 @@
 "Pointer" = "Işaretçi";
 
 /* No comment provided by engineer. */
+"Pose detection" = "Poz algılama";
+
+/* No comment provided by engineer. */
 "position x" = "konum x";
 
 /* No comment provided by engineer. */
@@ -1421,13 +1538,16 @@
 "random position" = "Rastgele pozisyon";
 
 /* No comment provided by engineer. */
-"random value from to" = "rastgele";
+"random value from to" = "rasgele değer";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Tavsiye et";
 
 /* No comment provided by engineer. */
 "RE" = "YENİDEN";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "En son kullanılan";
 
 /* No comment provided by engineer. */
 "Recording" = "Kayıt";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "Sağ";
 
+/* No comment provided by engineer. */
+"right ear x" = "sağ kulak x";
+
+/* No comment provided by engineer. */
+"right ear y" = "sağ kulak y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "sağ göz merkezi x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "sağ göz merkezi y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "sağ göz iç x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "sağ göz iç y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "sağ göz dış x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "sağ göz dış y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
+
 /* paint */
 "Rotate" = "Döndür";
 
@@ -1538,6 +1700,18 @@
 "second " = "saniye ";
 
 /* No comment provided by engineer. */
+"second face size" = "ikinci yüz boyutu";
+
+/* No comment provided by engineer. */
+"second face visible" = "ikinci yüz görünür";
+
+/* No comment provided by engineer. */
+"second face x position" = "ikinci yüz x konumu";
+
+/* No comment provided by engineer. */
+"second face y position" = "ikinci yüz y konumu";
+
+/* No comment provided by engineer. */
 "seconds" = "saniye";
 
 /* No comment provided by engineer. */
@@ -1556,6 +1730,9 @@
 "Select categories" = "Kategorileri seçin";
 
 /* No comment provided by engineer. */
+"Select file" = "Dosya seç";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "Mantıksal operatörü seçin";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Phiro'yu seçin";
+
+/* No comment provided by engineer. */
+"Send web request to" = "Web isteği gönder";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Anonim çökme raporları gönder";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "Arkaplanı düzenle";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "Arka planı değiştirin ve bekleyin";
+
+/* No comment provided by engineer. */
+"Set background to number" = "Arka planı numarayla değiştir";
 
 /* No comment provided by engineer. */
 "Set brightness " = "Parlaklığı düzenle ";
@@ -1641,6 +1827,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Ayarlar";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Yukarı dik";
 
 /* No comment provided by engineer. */
 "Show" = "Göster";
@@ -1706,10 +1895,16 @@
 "Stamped" = "Mühürlü";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "Uzunluğunda dikişe başla";
+
+/* No comment provided by engineer. */
 "Start sound" = "Sesi başlat";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Sesi başlat ve bekle";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Zikzak dikişi uzunluğunda başla";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Çelik Varil";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Tüm sesleri durdur";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "Mevcut dikişi durdur";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Phiro motorunu durdur";
@@ -1865,6 +2063,15 @@
 "touch position" = "Dokunma pozisyonu";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "Diğer objeye dokunursa";
+
+/* No comment provided by engineer. */
+"touches edge" = "kenara dokunursa";
+
+/* No comment provided by engineer. */
+"touches finger" = "Objeye eli ile dokunursa";
+
+/* No comment provided by engineer. */
 "transparency" = "Şeffaflık";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "O ses çalınamadı! Belki de bu geçerli bir ses değildir veya dosya bozuktur.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Seçilen ses çalınamadı. Cihazınız sessiz moddadır. Lütfen, iPhone'un solundaki anahtarı devre dışı bırakarak sessiz modunu kapatın ve tekrar oynatmaya dokun.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Seçilen ses çalınamadı. Cihazınız sessiz moddadır. Lütfen iPad'inizin sağ tarafındaki anahtarı değiştirerek sessiz modunu kapatın ve tekrar oynatmaya dokun.";
 
 /* paint */
 "underline" = "altı çizili";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "Phiro duvarını kullan";
 
 /* No comment provided by engineer. */
+"user language" = "kullanıcı dili";
+
+/* No comment provided by engineer. */
 "Username" = "Kullanıcı adı";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "Kullanıcı adı boş olmamalıdır";
+
+/* No comment provided by engineer. */
+"Variable name" = "Değişken adı";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Değişkenin adı:";
@@ -2000,9 +2207,6 @@
 "Views" = "Görünümler";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "Görsel sensörler";
-
-/* No comment provided by engineer. */
 "Wait" = "Bekleyin";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "Biz";
+
+/* No comment provided by engineer. */
+"Web access" = "Web erişimi";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Çarşamba";

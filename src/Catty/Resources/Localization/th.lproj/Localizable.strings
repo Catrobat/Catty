@@ -1,8 +1,8 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "มีข้อความชื่อเดียวกันนี้แล้ว โปรดลองอีกครั้ง";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "มีโปรเจ็กต์ที่มีชื่อเดียวกันนี้แล้ว ลองอีกครั้ง";
 
 /* No comment provided by engineer. */
 "Abc" = "Abc";
@@ -17,16 +17,16 @@
 "absolute value" = "abs";
 
 /* No comment provided by engineer. */
-"acceleration x" = "ความเร่ง_x";
+"acceleration x" = "ความเร่ง x";
 
 /* No comment provided by engineer. */
-"acceleration y" = "ความเร่ง_y";
+"acceleration y" = "ความเร่ง y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "ความเร่ง_z";
+"acceleration z" = "ความเร่ง z";
 
 /* No comment provided by engineer. */
-"acceleration-sensor" = "acceleration-sensor";
+"acceleration-sensor" = "เซ็นเซอร์ความเร่ง";
 
 /* No comment provided by engineer. */
 "Actors and objects" = "นักแสดงและวัตถุ";
@@ -38,7 +38,7 @@
 "Add actor or object" = "เพิ่มนักแสดงหรือวัตถุ";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"add comment here..." = "เพิ่มความคิดเห็นที่นี่...";
 
 /* No comment provided by engineer. */
 "Add image" = "เพิ่มรูปภาพ";
@@ -50,28 +50,40 @@
 "Add sound" = "เพิ่มเสียง";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "เพิ่มโดเมนที่เชื่อถือได้";
+
+/* No comment provided by engineer. */
 "Agree" = "ตกลง";
 
 /* No comment provided by engineer. */
 "all around" = "รอบ ๆ";
 
 /* No comment provided by engineer. */
-"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+"All Bluetooth devices successfully disconnected" = "ยกเลิกการเชื่อมต่ออุปกรณ์ Bluetooth ทั้งหมดเรียบร้อยแล้ว";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+"All known Bluetooth devices successfully removed" = "นำอุปกรณ์บลูทูธที่รู้จักทั้งหมดออกเรียบร้อยแล้ว";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"Allow the app to control Arduino boards" = "อนุญาตให้แอปควบคุมบอร์ด Arduino";
 
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "อนุญาตให้แอปส่งรายงานข้อขัดข้องโดยอัตโนมัติ";
+
+/* No comment provided by engineer. */
+"Allow web access" = "อนุญาตการเข้าถึงเว็บ";
 
 /* paint */
 "Alpha" = "ความโปร่งใส";
 
 /* No comment provided by engineer. */
-"altitude" = "altitude";
+"altitude" = "ระดับความสูง";
+
+/* No comment provided by engineer. */
+"Always" = "ทุกครั้ง";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "อนุญาตการเข้าถึงเว็บเสมอ";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "มีชื่อภาพนี้อยู่แล้ว โปรดลองใหม่อีกครั้ง";
@@ -83,16 +95,22 @@
 "An unknown error occurred. Check your Internet connection." = "เกิดข้อผิดพลาดที่ไม่รู้จักขึ้น กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+"An unknown error occurred. Please try again later." = "เกิดข้อผิดพลาดที่ไม่รู้จัก กรุณาลองใหม่อีกครั้งในภายหลัง.";
 
 /* No comment provided by engineer. */
 "and" = "และ";
 
 /* No comment provided by engineer. */
-"and store written answer in " = "และเก็บคำตอบเป็นลายลักษณ์อักษร";
+"and store answer in" = "และเก็บคำตอบไว้";
+
+/* No comment provided by engineer. */
+"and store written answer in " = "และเก็บคำตอบเป็นลายลักษณ์อักษร ";
 
 /* No comment provided by engineer. */
 "and wait" = "และรอ";
+
+/* No comment provided by engineer. */
+"and width" = "และความกว้าง";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "คำสั่งการเคลื่อนไหว";
@@ -122,19 +140,19 @@
 "arduino digital" = "arduino ขาดิจิตอล";
 
 /* No comment provided by engineer. */
-"Arduino extension" = "Arduino extension";
+"Arduino extension" = "ส่วนขยาย Arduino";
 
 /* No comment provided by engineer. */
-"Ask " = "คำถาม";
+"Ask " = "คำถาม ";
 
 /* No comment provided by engineer. */
-"at " = "at ";
+"at " = "ที่ ";
 
 /* No comment provided by engineer. */
 "at position" = "ที่ตำแหน่ง";
 
 /* paint */
-"Attributes:" = "Attributes:";
+"Attributes:" = "คุณลักษณะ:";
 
 /* No comment provided by engineer. */
 "Aug" = "ส.ค";
@@ -143,16 +161,16 @@
 "August" = "สิงหาคม";
 
 /* No comment provided by engineer. */
-"Authentication failed" = "Authentication failed";
+"Authentication failed" = "รับรองความถูกต้องล้มเหลว";
 
 /* No comment provided by engineer. */
 "Author" = "ผู้เขียน";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
+"Axes" = "แกน";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "กลับ";
 
 /* No comment provided by engineer. */
 "Back" = "ย้อนกลับ";
@@ -176,6 +194,9 @@
 "Bassoon" = "บาสซูน";
 
 /* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "โปรดใช้ความระมัดระวังให้มากก่อนอนุญาตให้เข้าถึง เนื่องจากลิงก์อาจเปิดเผยข้อมูลส่วนบุคคลของคุณ เช่น ตำแหน่งทางภูมิศาสตร์ที่แม่นยำของคุณ หรือข้อความใดๆ ที่คุณป้อนให้กับบุคคลอื่นที่เป็นอันตรายหรือต่อสาธารณะ ดูวิกิของเราสำหรับข้อมูลเพิ่มเติมว่าทำไมสิ่งนี้จึงเป็นอันตรายอย่างยิ่ง การอนุญาตการเข้าถึงทุกครั้งจะไม่ขอให้คุณยืนยันที่อยู่เว็บจากโดเมนนี้อีก หากคุณต้องการเพิกถอนการอนุญาตนี้ในภายหลัง คุณสามารถลบโดเมนออกจากรายการโดเมนที่เชื่อถือได้ในการตั้งค่าของแอพนี้";
+
+/* No comment provided by engineer. */
 "becomes true" = "กลายเป็นจริง";
 
 /* No comment provided by engineer. */
@@ -188,13 +209,13 @@
 "Blue" = "สีน้ำเงิน";
 
 /* No comment provided by engineer. */
-"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "บลูทูธไม่พร้อมใช้งาน อุปกรณ์ของคุณไม่รองรับ Bluetooth 4.0 หรือชิป Bluetooth ของคุณเสียหาย โปรดตรวจสอบโดยเชื่อมต่อกับอุปกรณ์ Bluetooth อื่นในการตั้งค่า";
 
 /* No comment provided by engineer. */
-"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "บลูทูธปิดอยู่ โปรดเปิดเครื่องเพื่อเชื่อมต่อกับอุปกรณ์บลูทูธ";
 
 /* paint */
-"bold" = "bold";
+"bold" = "ตัวหนา";
 
 /* No comment provided by engineer. */
 "Both" = "ทั้งสอง";
@@ -221,16 +242,16 @@
 "By registering you agree to our" = "โดยการลงทะเบียน คุณยอมรับ";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "ไม่สามารถเริ่มโครงการใหม่ได้!";
 
 /* No comment provided by engineer. */
 "Cancel" = "ยกเลิก";
 
 /* bluetooth */
-"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+"Cannot connect to device, please try resetting the device and try again." = "ไม่สามารถเชื่อมต่อกับอุปกรณ์ได้ โปรดลองรีเซ็ตอุปกรณ์แล้วลองอีกครั้ง";
 
 /* bluetooth */
-"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+"Cannot connect to device. The device is not responding." = "ไม่สามารถเชื่อมต่อกับอุปกรณ์ อุปกรณ์ไม่ตอบสนอง";
 
 /* No comment provided by engineer. */
 "Cannot connect to the media library. Please check your internet connection." = "ไม่สามารถเชื่อมต่อกับไลบรารีสื่อ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ";
@@ -251,7 +272,7 @@
 "Change brightness " = "เปลี่ยนแปลงความสว่าง ";
 
 /* No comment provided by engineer. */
-"Change color " = "Change color ";
+"Change color " = "เปลี่ยนสี ";
 
 /* No comment provided by engineer. */
 "Change size by" = "เปลี่ยนขนาดทีละ";
@@ -263,7 +284,7 @@
 "Change to portrait" = "เปลี่ยนเป็นแนวตั้ง";
 
 /* No comment provided by engineer. */
-"Change transparency " = "เปลี่ยนความโปร่งใส";
+"Change transparency " = "เปลี่ยนความโปร่งใส ";
 
 /* No comment provided by engineer. */
 "Change variable" = "เปลี่ยนค่าตัวแปร";
@@ -287,13 +308,13 @@
 "Choir" = "นักร้องประสานเสียง";
 
 /* No comment provided by engineer. */
-"Choose" = "Choose";
+"Choose" = "เลือก";
 
 /* No comment provided by engineer. */
 "Choose image" = "เลือกภาพ";
 
 /* No comment provided by engineer. */
-"Clarinet" = "ปี่ชวา\n";
+"Clarinet" = "ปี่ชวา";
 
 /* No comment provided by engineer. */
 "Clear" = "ลบ";
@@ -305,7 +326,7 @@
 "Close" = "ปิด";
 
 /* paint */
-"Close Paint" = "Close Paint";
+"Close Paint" = "ปิดโปรแกรมระบายสี";
 
 /* No comment provided by engineer. */
 "color" = "สี";
@@ -314,7 +335,7 @@
 "Comparison operators" = "ผู้ประกอบการเปรียบเทียบ";
 
 /* No comment provided by engineer. */
-"compass" = "compass";
+"compass" = "เข็มทิศ";
 
 /* No comment provided by engineer. */
 "Compute" = "คำนวณ";
@@ -332,13 +353,13 @@
 "Confirm password" = "ยืนยันรหัสผ่าน";
 
 /* bluetooth */
-"Connection failed" = "Connection failed";
+"Connection failed" = "การเชื่อมต่อล้มเหลว";
 
 /* bluetooth */
 "Connection lost" = "การเชื่อมต่อขาดหาย";
 
 /* bluetooth */
-"Connection not possible" = "Connection not possible";
+"Connection not possible" = "ไม่สามารถเชื่อมต่อได้";
 
 /* No comment provided by engineer. */
 "contains" = "ประกอบด้วย";
@@ -365,13 +386,16 @@
 "Copy looks" = "คัดลอกรูปลักษณ์";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy project" = "คัดลอกโครงการ";
 
 /* No comment provided by engineer. */
 "cosine" = "cos";
 
 /* No comment provided by engineer. */
-"Create account" = "Create account";
+"Create account" = "สร้างบัญชี";
+
+/* No comment provided by engineer. */
+"Create as list" = "สร้างเป็นรายการ";
 
 /* No comment provided by engineer. */
 "Create patterns for stiching machines" = "สร้างรูปแบบสำหรับเครื่องเย็บ";
@@ -383,7 +407,7 @@
 "Date and time" = "วันและเวลา";
 
 /* No comment provided by engineer. */
-"day" = "day";
+"day" = "วัน";
 
 /* No comment provided by engineer. */
 "debug" = "การแก้ปัญหา";
@@ -437,37 +461,37 @@
 "Delete sounds" = "ลบเสียง";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "ลบคำสั่งเหล่านี้หรือไม่";
+"Delete these bricks?" = "ลบคำสั่งเหล่านี้หรือไม่?";
 
 /* No comment provided by engineer. */
-"Delete these conditions?" = "ลบเงื่อนไขเหล่านี้หรือไม่";
+"Delete these conditions?" = "ลบเงื่อนไขเหล่านี้หรือไม่?";
 
 /* No comment provided by engineer. */
-"Delete these loops?" = "ลบการทำซ้ำเหล่านี้หรือไม่";
+"Delete these loops?" = "ลบการทำซ้ำเหล่านี้หรือไม่?";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "ลบสคริปต์เหล่านี้หรือไม่";
+"Delete these scripts?" = "ลบสคริปต์เหล่านี้หรือไม่?";
 
 /* No comment provided by engineer. */
 "Delete this actor or object" = "ลบนักแสดงหรือวัตถุนี้";
 
 /* No comment provided by engineer. */
-"Delete this background" = "Delete this background";
+"Delete this background" = "ลบพื้นหลังนี้";
 
 /* No comment provided by engineer. */
-"Delete this brick?" = "ลบคำสั่งนี้หรือไม่";
+"Delete this brick?" = "ลบคำสั่งนี้หรือไม่?";
 
 /* No comment provided by engineer. */
-"Delete this condition?" = "ลบเงื่อนไขเหล่านี้หรือไม่";
+"Delete this condition?" = "ลบเงื่อนไขเหล่านี้หรือไม่?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "ลบรูปลักษณ์นี้";
 
 /* No comment provided by engineer. */
-"Delete this loop?" = "ลบการทำซ้ำนี้หรือไม่";
+"Delete this loop?" = "ลบการทำซ้ำนี้หรือไม่?";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "ลบโปรเจ็กต์นี้";
 
 /* No comment provided by engineer. */
 "Delete this script?" = "ลบสคริปต์นี้หรือไม่";
@@ -479,16 +503,19 @@
 "Deletion mode" = "โหมดการลบ";
 
 /* No comment provided by engineer. */
+"Deny" = "ปฏิเสธ";
+
+/* No comment provided by engineer. */
 "Description" = "คำอธิบาย";
 
 /* No comment provided by engineer. */
 "Details" = "รายละเอียด";
 
 /* bluetooth */
-"Device disconnected." = "Device disconnected.";
+"Device disconnected." = "อุปกรณ์ถูกตัดการเชื่อมต่อ";
 
 /* No comment provided by engineer. */
-"device motion-sensor" = "device motion-sensor";
+"device motion-sensor" = "อุปกรณ์ตรวจจับการเคลื่อนไหว";
 
 /* No comment provided by engineer. */
 "Device sensors" = "เซ็นเซอร์อุปกรณ์";
@@ -500,10 +527,10 @@
 "Disable brick" = "ปิดการใช้งาน คำสั่ง";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "เงื่อนไขปิดการใช้งาน";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "ปิดการวนซ้ำ";
 
 /* No comment provided by engineer. */
 "Disable script" = "ปิดการใช้งานสคริปต์";
@@ -515,13 +542,13 @@
 "Discard changes" = "ยกเลิกการเปลี่ยนแปลง";
 
 /* No comment provided by engineer. */
-"Disconnect all devices" = "Disconnect all devices";
+"Disconnect all devices" = "ตัดการเชื่อมต่ออุปกรณ์ทั้งหมด";
 
 /* No comment provided by engineer. */
-"DO" = "DO";
+"DO" = "ทำ";
 
 /* paint */
-"Do you really want to delete the current drawing?" = "คุณต้องการจะลบภาพที่กำลังวาดนี้จริงหรือ";
+"Do you really want to delete the current drawing?" = "คุณต้องการจะลบภาพที่กำลังวาดนี้จริงหรือ?";
 
 /* paint */
 "Do you want to save your changes?" = "คุณต้องบันทึกการเปลี่ยนแปลงหรือไม่?";
@@ -534,6 +561,12 @@
 
 /* No comment provided by engineer. */
 "Download" = "ดาวน์โหลด";
+
+/* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "ดาวน์โหลดใหญ่เกินไป";
 
 /* No comment provided by engineer. */
 "Downloads" = "ดาวน์โหลด";
@@ -584,6 +617,9 @@
 "Edit sounds" = "แก้ไขเสียง";
 
 /* No comment provided by engineer. */
+"Edit trusted domain" = "แก้ไขโดเมนที่เชื่อถือได้";
+
+/* No comment provided by engineer. */
 "Electric Guitar" = "กีต้าร์ไฟฟ้า";
 
 /* No comment provided by engineer. */
@@ -593,13 +629,13 @@
 "element" = "องค์ประกอบ";
 
 /* paint */
-"Ellipse / Circle" = "Ellipse / Circle";
+"Ellipse / Circle" = "วงรี / วงกลม";
 
 /* No comment provided by engineer. */
 "Else" = "มิฉนั้น";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "อีเมล";
 
 /* No comment provided by engineer. */
 "Embroidery" = "การตกแต่ง";
@@ -608,16 +644,16 @@
 "Embroidery extension" = "การต่อเย็บปักถักร้อย";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Empty input!" = "ข้อมูลว่าง!";
 
 /* No comment provided by engineer. */
 "Enable brick" = "เปิดใช้งาน คำสั้ง";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Enable condition" = "เปิดใช้งานเงื่อนไข";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable loop" = "เปิดใช้งานลูป";
 
 /* No comment provided by engineer. */
 "Enable script" = "เปิดใช้งานสคริปต์";
@@ -635,25 +671,25 @@
 "Enter your image name here..." = "ใส่ชื่อภาพของคุณที่นี่...";
 
 /* Placeholder for list input field */
-"Enter your list name here..." = "Enter your list name here...";
+"Enter your list name here..." = "ใส่ชื่อรายการของคุณที่นี่...";
 
 /* Placeholder for message input field */
-"Enter your message here..." = "Enter your message here...";
+"Enter your message here..." = "ใส่ข้อความของคุณที่นี่...";
 
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "ป้อนชื่อวัตถุที่นี่...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "ป้อนรายละเอียดโครงการของคุณที่นี่...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "ใส่ชื่อโครงการของคุณที่นี่...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "ป้อนชื่อของเสียงที่นี่...";
 
 /* Placeholder for variable input field */
-"Enter your variable name here..." = "Enter your variable name here...";
+"Enter your variable name here..." = "ป้อนชื่อตัวแปรของคุณที่นี่...";
 
 /* paint */
 "Eraser" = "ยางลบ";
@@ -665,7 +701,7 @@
 "Error occurred while reporting the project. Please try again later." = "เกิดข้อผิดพลาดขณะรายงานโครงการ กรุณาลองใหม่อีกครั้งในภายหลัง.";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error saving file" = "เกิดข้อผิดพลาดในการบันทึกไฟล์";
 
 /* No comment provided by engineer. */
 "Event" = "เหตุการณ์";
@@ -677,31 +713,22 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "ตรวจจับใบหน้า";
+"Face detection" = "ตรวจจับใบหน้า";
 
 /* No comment provided by engineer. */
-"faceposition x" = "ตำแหน่งใบหน้า X";
+"Failed to import item" = "ไม่สามารถนำเข้ารายการ";
 
 /* No comment provided by engineer. */
-"faceposition y" = "ตำแหน่งใบหน้า Y";
+"Failed to load featured projects" = "ไม่สามารถโหลดโปรเจ็กต์เด่น";
 
 /* No comment provided by engineer. */
-"facesize" = "facesize";
+"Failed to load recent projects" = "โหลดโปรเจ็กต์ล่าสุดไม่สำเร็จ";
 
 /* No comment provided by engineer. */
-"Failed to import item" = "Failed to import item";
+"Failed to load sound" = "โหลดเสียงไม่สำเร็จ";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
-
-/* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
-
-/* No comment provided by engineer. */
-"Failed to load sound" = "Failed to load sound";
-
-/* No comment provided by engineer. */
-"Failed to play sound" = "Failed to play sound";
+"Failed to play sound" = "ไม่สามารถเล่นเสียงได้";
 
 /* No comment provided by engineer. */
 "false" = "เท็จ";
@@ -719,6 +746,18 @@
 "Fill" = "เติม";
 
 /* No comment provided by engineer. */
+"first face size" = "ขนาดใบหน้าแรก";
+
+/* No comment provided by engineer. */
+"first face visible" = "มองเห็นใบหน้าครั้งแรก";
+
+/* No comment provided by engineer. */
+"first face x position" = "ใบหน้า x ตำแหน่งแรก";
+
+/* No comment provided by engineer. */
+"first face y position" = "ใบหน้า y ตำแหน่งแรก";
+
+/* No comment provided by engineer. */
 "Flashlight off" = "ปิดไฟฉาย";
 
 /* No comment provided by engineer. */
@@ -731,7 +770,7 @@
 "Flute" = "ขลุ่ย";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "คุณสมบัติต่อไปนี้ที่ใช้ในโปรเจ็กต์นี้เข้ากันไม่ได้กับ Pocket Code เวอร์ชันนี้:";
 
 /* No comment provided by engineer. */
 "for" = "สำหรับ";
@@ -757,9 +796,6 @@
 /* No comment provided by engineer. */
 "Fr" = "วันศุกร์";
 
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "ใช้งานบ่อย";
-
 /* No comment provided by engineer. */
 "Friday" = "วันศุกร์";
 
@@ -767,10 +803,10 @@
 "From camera" = "จากกล้อง";
 
 /* No comment provided by engineer. */
-"front" = "front";
+"front" = "ด้านหน้า";
 
 /* No comment provided by engineer. */
-"Front camera" = "Front camera";
+"Front camera" = "กล้องหน้า";
 
 /* No comment provided by engineer. */
 "Functions" = "ฟังก์ชัน";
@@ -800,7 +836,13 @@
 "Guitar" = "กีตาร์";
 
 /* No comment provided by engineer. */
-"gyro-sensor" = "gyro-sensor";
+"gyro-sensor" = "ไจโรเซ็นเซอร์";
+
+/* No comment provided by engineer. */
+"head top x" = "หัวด้านบน x";
+
+/* No comment provided by engineer. */
+"head top y" = "หัวด้านบน y";
 
 /* No comment provided by engineer. */
 "Hello!" = "สวัสดี!";
@@ -815,13 +857,13 @@
 "Hide details" = "แก้ไขรายละเอียด";
 
 /* No comment provided by engineer. */
-"Hide variable" = "Hide variable";
+"Hide variable" = "ซ่อนตัวแปร";
 
 /* No comment provided by engineer. */
-"Hmmmm!" = "Hmmmm!";
+"Hmmmm!" = "อืม!";
 
 /* No comment provided by engineer. */
-"hour" = "hour";
+"hour" = "ชั่วโมง";
 
 /* No comment provided by engineer. */
 "If" = "ถ้า";
@@ -830,25 +872,28 @@
 "If on edge, bounce" = "ถ้าติดขอบให้เด้งกลับ";
 
 /* paint */
-"Image" = "Image";
+"Image" = "ภาพ";
 
 /* No comment provided by engineer. */
 "Image name" = "ชื่อรูปภาพ";
 
 /* No comment provided by engineer. */
-"Image source not available" = "Image source not available";
+"Image source not available" = "ไม่มีแหล่งที่มาของรูปภาพ";
 
 /* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
-"Import File" = "Import File";
+"Import File" = "นำเข้าไฟล์";
 
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "ในการเข้าใช้ Pocket Code และโปรแกรมอื่นๆของเรา ที่เสนอด้วยโครงการ Catrobat คุณต้องยอมรับและปฏิบัติตามเงื่อนไขการใช้งานอย่างเคร่งครัดทุกครั้งที่ใช้ Pocket Code และโปรแกรมอื่นๆของเรา โปรดเข้าลิงค์ด้านล่างเพื่อดูกฏเกณฑ์การเข้าใช้แบบลงรายละเอียดของเว็บไซต์";
 
 /* No comment provided by engineer. */
-"inclination x" = "ความลาดเอียง_x";
+"inclination x" = "ความลาดเอียง x";
 
 /* No comment provided by engineer. */
-"inclination y" = "ความลาดเอียง_y";
+"inclination y" = "ความลาดเอียง y";
+
+/* No comment provided by engineer. */
+"index of item" = "ดัชนีของรายการ";
 
 /* No comment provided by engineer. */
 "Information" = "ข้อมูล";
@@ -857,19 +902,22 @@
 "Insert" = "แทรก";
 
 /* paint */
-"Inserted" = "Inserted";
+"Inserted" = "แทรก";
+
+/* No comment provided by engineer. */
+"Internet" = "อินเทอร์เน็ต";
 
 /* No comment provided by engineer. */
 "into list" = "ลงในรายการ";
 
 /* No comment provided by engineer. */
-"Invalid input entered, try again." = "Invalid input entered, try again.";
+"Invalid input entered, try again." = "ป้อนข้อมูลไม่ถูกต้อง ลองอีกครั้ง";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "URL ไม่ถูกต้อง";
 
 /* No comment provided by engineer. */
-"iOS." = "iOS.";
+"iOS." = "ไอโอเอส";
 
 /* No comment provided by engineer. */
 "is true" = "เป็นความจริง";
@@ -878,7 +926,7 @@
 "is true then" = "เป็นจริงแล้ว";
 
 /* paint */
-"italic" = "italic";
+"italic" = "ตัวเอียง";
 
 /* No comment provided by engineer. */
 "item" = "ชิ้น";
@@ -905,10 +953,10 @@
 "June" = "มิถุนายน";
 
 /* bluetooth */
-"Known devices" = "Known devices";
+"Known devices" = "อุปกรณ์ที่รู้จัก";
 
 /* No comment provided by engineer. */
-"LA" = "LA";
+"LA" = "ลา";
 
 /* No comment provided by engineer. */
 "Last access" = "เข้าถึงครั้งสุดท้าย";
@@ -917,7 +965,7 @@
 "last stage touch index" = "ดัชนีการสัมผัสขั้นตอนสุดท้าย";
 
 /* No comment provided by engineer. */
-"latitude" = "latitude";
+"latitude" = "ละติจูด";
 
 /* No comment provided by engineer. */
 "layer" = "ชั้น";
@@ -930,6 +978,48 @@
 
 /* No comment provided by engineer. */
 "Left" = "ซ้าย";
+
+/* No comment provided by engineer. */
+"left ear x" = "หูซ้าย x";
+
+/* No comment provided by engineer. */
+"left ear y" = "หูซ้าย y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "ศูนย์ตาซ้าย x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "ศูนย์ตาซ้าย y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "ตาซ้ายด้านใน x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "ตาซ้ายด้านใน y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "ตาซ้ายด้านนอก x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "ตาซ้ายด้านนอก y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
 
 /* No comment provided by engineer. */
 "left-right only" = "ซ้าย - ขวาเท่านั้น";
@@ -947,10 +1037,13 @@
 "Line" = "เส้น";
 
 /* No comment provided by engineer. */
-"List name:" = "List name:";
+"List name" = "รายชื่อ";
 
 /* No comment provided by engineer. */
-"List type" = "List type";
+"List name:" = "รายชื่อ:";
+
+/* No comment provided by engineer. */
+"List type" = "ประเภทรายการ";
 
 /* No comment provided by engineer. */
 "Lists" = "รายการ";
@@ -962,10 +1055,10 @@
 "Lists for this actor or object only" = "รายการสำหรับนักแสดงหรือวัตถุนี้เท่านั้น";
 
 /* No comment provided by engineer. */
-"Loading" = "กำลังโหลด…";
+"Loading" = "กำลังโหลด";
 
 /* No comment provided by engineer. */
-"location" = "location";
+"location" = "ที่ตั้ง";
 
 /* No comment provided by engineer. */
 "location accuracy" = "ความแม่นยำการระบุตำแหน่ง";
@@ -980,13 +1073,13 @@
 "Login" = "เข้าสู่ระบบ";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "เข้าสู่ระบบสำเร็จ";
 
 /* No comment provided by engineer. */
 "Logout" = "ออกจากระบบ";
 
 /* No comment provided by engineer. */
-"longitude" = "longitude";
+"longitude" = "ลองจิจูด";
 
 /* LOOK */
 "look" = "ดู";
@@ -1007,7 +1100,7 @@
 "loudness" = "ระดับความดัง";
 
 /* No comment provided by engineer. */
-"magnetic-sensor" = "magnetic-sensor";
+"magnetic-sensor" = "เซ็นเซอร์แม่เหล็ก";
 
 /* No comment provided by engineer. */
 "Mar" = "มี.ค";
@@ -1040,7 +1133,7 @@
 "Menu" = "เมนู";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
+"Message" = "ข้อความ";
 
 /* No comment provided by engineer. */
 "message 1" = "ข้อความ 1";
@@ -1055,10 +1148,10 @@
 "minimum of" = "ขั้นต่ำของ";
 
 /* No comment provided by engineer. */
-"minute" = "minute";
+"minute" = "นาที";
 
 /* paint */
-"Mirror" = "Mirror";
+"Mirror" = "กระจกเงา";
 
 /* No comment provided by engineer. */
 "Mo" = "วันจันทร์";
@@ -1073,13 +1166,13 @@
 "Monday" = "วันจันทร์";
 
 /* No comment provided by engineer. */
-"month" = "month";
+"month" = "เดือน";
 
 /* No comment provided by engineer. */
 "More" = "เพิ่มเติม";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "ข้อมูลมากกว่านี้";
 
 /* No comment provided by engineer. */
 "Most downloaded" = "ดาวน์โหลดมากที่สุด";
@@ -1092,6 +1185,18 @@
 
 /* No comment provided by engineer. */
 "Motion properties" = "คุณสมบัติเคลื่อนที่";
+
+/* No comment provided by engineer. */
+"mouth left corner x" = "มุมปากซ้าย x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "มุมปากซ้าย y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "มุมปากขวา x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "มุมปากขวา y";
 
 /* No comment provided by engineer. */
 "Move" = "เคลื่อน";
@@ -1109,7 +1214,7 @@
 "Move Phiro motor backward" = "เลื่อนมอเตอร์ Phiro ไปด้านหลัง";
 
 /* No comment provided by engineer. */
-"Move Phiro motor forward" = "Move Phiro motor forward";
+"Move Phiro motor forward" = "เลื่อนมอเตอร์ไปข้างหน้า";
 
 /* No comment provided by engineer. */
 "Move sounds" = "ย้ายเสียง";
@@ -1127,10 +1232,10 @@
 "My object" = "วัตถุของฉัน";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "ชื่อ";
 
 /* No comment provided by engineer. */
-"Name already exists." = "Name already exists.";
+"Name already exists." = "มีชื่อนี้แล้ว";
 
 /* No comment provided by engineer. */
 "natural logarithm" = "ln";
@@ -1157,7 +1262,7 @@
 "New variable" = "สร้างตัวแปรใหม่";
 
 /* No comment provided by engineer. */
-"New..." = "New...";
+"New..." = "ใหม่...";
 
 /* No comment provided by engineer. */
 "Newest" = "ใหม่ล่าสุด";
@@ -1190,13 +1295,19 @@
 "No search results" = "ไม่มีผลลัพธ์การค้นหา";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "No whitespace character allowed";
+"No whitespace character allowed" = "ไม่อนุญาตให้ใช้อักขระเว้นวรรค";
+
+/* No comment provided by engineer. */
+"nose x" = "จมูก x";
+
+/* No comment provided by engineer. */
+"nose y" = "จมูก y";
 
 /* No comment provided by engineer. */
 "not" = "ไม่";
 
 /* No comment provided by engineer. */
-"not available. Continue anyway?" = "not available. Continue anyway?";
+"not available. Continue anyway?" = "ไม่สามารถใช้ได้ ดำเนินการต่อ?";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "หน่วยความจำไม่เพียงพอ";
@@ -1241,16 +1352,19 @@
 "on" = "เปิด";
 
 /* No comment provided by engineer. */
+"Once" = "ครั้งเดียว";
+
+/* No comment provided by engineer. */
 "only 15 characters allowed" = "อนุญาตให้ใช้เพียง 15 อักขระ";
 
 /* No comment provided by engineer. */
-"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+"Only space is not allowed. Please enter at least %lu other character(s)." = "ไม่อนุญาตให้ใช้พื้นที่เท่านั้น โปรดป้อนอักขระอื่นอย่างน้อย %lu";
 
 /* No comment provided by engineer. */
-"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "ไม่อนุญาตให้ใช้เฉพาะอักขระพิเศษเท่านั้น โปรดป้อนอักขระอื่นอย่างน้อย %lu";
 
 /* No comment provided by engineer. */
-"Open" = "เปิด​ ";
+"Open" = "เปิด​";
 
 /* No comment provided by engineer. */
 "or" = "หรือ";
@@ -1262,10 +1376,10 @@
 "Password" = "รหัสผ่าน";
 
 /* No comment provided by engineer. */
-"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "รหัสผ่านไม่ถูกต้อง! \n ต้องมีอย่างน้อย 6 ตัวอักษร/สัญลักษณ์";
 
 /* No comment provided by engineer. */
-"Passwords do not match" = "Passwords do not match";
+"Passwords do not match" = "รหัสผ่านไม่ตรงกัน";
 
 /* No comment provided by engineer. */
 "Pen" = "ปากกา";
@@ -1277,7 +1391,7 @@
 "Pen up" = "ยกปากกาขึ้น";
 
 /* No comment provided by engineer. */
-"Phiro" = "Phiro";
+"Phiro" = "ฟีโร";
 
 /* No comment provided by engineer. */
 "phiro bottom left" = "phiro เซ็นเซอร์ซ้ายล่าง";
@@ -1307,7 +1421,7 @@
 "Pipette" = "ดูดสี";
 
 /* No comment provided by engineer. */
-"Pizzicato" = "Pizzicato";
+"Pizzicato" = "พิซซ่าica";
 
 /* No comment provided by engineer. */
 "Place at " = "วางที่";
@@ -1316,10 +1430,10 @@
 "Play" = "เล่น";
 
 /* No comment provided by engineer. */
-"Play Phiro music\n" = "Play Phiro music\n";
+"Play Phiro music\n" = "เล่นเพลงฟีโร";
 
 /* No comment provided by engineer. */
-"Please choose another name:" = "Please choose another name:";
+"Please choose another name:" = "โปรดเลือกชื่ออื่น:";
 
 /* No comment provided by engineer. */
 "Please choose up to three categories" = "โปรดเลือกได้สูงสุดสามหมวด";
@@ -1331,16 +1445,16 @@
 "Please enter at least %lu character(s)." = "กรุณากรอกตัวอักษรอย่างน้อย %lu";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+"Please log in to report this project as inappropriate" = "กรุณาเข้าสู่ระบบเพื่อรายงานว่าโครงการนี้ไม่เหมาะสม";
 
 /* paint */
-"Please pick a tool" = "Please pick a tool";
+"Please pick a tool" = "กรุณาเลือกเครื่องมือ";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Please select a project to upload";
+"Please select a project to upload" = "โปรดเลือกโครงการที่จะอัปโหลด";
 
 /* bluetooth */
-"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+"Please try resetting the device and try again." = "โปรดลองรีเซ็ตอุปกรณ์แล้วลองอีกครั้ง";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "พอกเก็ต โค้ด";
@@ -1349,16 +1463,16 @@
 "Pocket Code for iOS" = "Pocket Code สำหรับ IOS";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code ไม่สามารถเข้าถึงกล้องของคุณได้ ในการอนุญาตการเข้าถึง ให้แตะการตั้งค่าและเปิดใช้งานกล้อง ภาพวาดของคุณจะถูกบันทึกลงใน PocketCode ให้คุณโดยอัตโนมัติ";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code ไม่สามารถเข้าถึงรูปภาพของคุณได้ ในการอนุญาตการเข้าถึง ให้แตะการตั้งค่าและเปิดใช้งานรูปภาพ ภาพวาดของคุณจะถูกบันทึกลงใน PocketCode ให้คุณโดยอัตโนมัติ";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code ไม่มีสิทธิ์เข้าถึงไมโครโฟนของคุณ ในการอนุญาตการเข้าถึง ให้แตะการตั้งค่าและเปิดใช้งานไมโครโฟน";
 
 /* No comment provided by engineer. */
-"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code คือสภาพแวดล้อมการเขียนโปรแกรมสำหรับ iOS สำหรับภาษาโปรแกรม Visual Catrobat รหัสของ Pocket Code ส่วนใหญ่อยู่ภายใต้ใบอนุญาต GNU AGPL v3 สำหรับข้อมูลเพิ่มเติมเกี่ยวกับใบอนุญาต โปรดไปที่ลิงก์ต่อไปนี้:";
 
 /* No comment provided by engineer. */
 "Pocket Code Recorder" = "ตัวบันทึกเสียง Pocket Code";
@@ -1376,13 +1490,16 @@
 "Point towards" = "ชี้ไปยัง";
 
 /* paint */
-"Pointer" = "Pointer";
+"Pointer" = "ตัวชี้";
 
 /* No comment provided by engineer. */
-"position x" = "ตำแหน่ง_x";
+"Pose detection" = "การตรวจจับท่าทาง";
 
 /* No comment provided by engineer. */
-"position y" = "ตำแหน่ง_y";
+"position x" = "ตำแหน่ง x";
+
+/* No comment provided by engineer. */
+"position y" = "ตำแหน่ง y";
 
 /* No comment provided by engineer. */
 "power" = "กำลัง";
@@ -1397,7 +1514,7 @@
 "Previous look" = "ดูก่อนหน้า";
 
 /* No comment provided by engineer. */
-"Privacy Settings" = "Privacy Settings";
+"Privacy Settings" = "การตั้งค่าความเป็นส่วนตัว";
 
 /* No comment provided by engineer. */
 "Project" = "โครงการ";
@@ -1406,10 +1523,10 @@
 "Project name" = "ชื่อโครงการ";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
+"Project Name is necessary!" = "ชื่อโครงการจำเป็น!";
 
 /* No comment provided by engineer. */
-"Projects" = "โปรแกรม";
+"Projects" = "โครงการ";
 
 /* No comment provided by engineer. */
 "Projects on device" = "โครงการบนอุปกรณ์​";
@@ -1429,11 +1546,14 @@
 /* No comment provided by engineer. */
 "RE" = "RE";
 
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "ใช้ล่าสุด";
+
 /* No comment provided by engineer. */
 "Recording" = "กำลังบันทึก";
 
 /* paint */
-"Rectangle / Square" = "Rectangle / Square";
+"Rectangle / Square" = "สี่เหลี่ยมผืนผ้า / สี่เหลี่ยมจัตุรัส";
 
 /* paint */
 "Red" = "สีแดง";
@@ -1442,16 +1562,16 @@
 "red" = "สีแดง";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
+"Register" = "ลงทะเบียน";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "ลงทะเบียนสำเร็จ";
 
 /* No comment provided by engineer. */
 "regular expression" = "การแสดงออกปกติ";
 
 /* No comment provided by engineer. */
-"Remove known devices" = "Remove known devices";
+"Remove known devices" = "ลบอุปกรณ์ที่รู้จัก";
 
 /* No comment provided by engineer. */
 "Rename" = "เปลี่ยนชื่อ";
@@ -1481,7 +1601,7 @@
 "Report as inappropriate" = "รายงาน ไม่เหมาะสม";
 
 /* paint */
-"Resize" = "Resize";
+"Resize" = "ปรับขนาด";
 
 /* No comment provided by engineer. */
 "Restart" = "เริ่มต้นใหม่";
@@ -1491,6 +1611,48 @@
 
 /* No comment provided by engineer. */
 "Right" = "ขวา";
+
+/* No comment provided by engineer. */
+"right ear x" = "หูขวา x";
+
+/* No comment provided by engineer. */
+"right ear y" = "หูขวา y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "ศูนย์ตาขวา x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "ศูนย์ตาขวา y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "ตาขวาด้านใน x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "ตาขวาด้านใน y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "ตาขวาด้านนอก x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "ตาขวาด้านนอก y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
 
 /* paint */
 "Rotate" = "หมุน";
@@ -1520,10 +1682,10 @@
 "Say" = "พูด";
 
 /* No comment provided by engineer. */
-"Scene" = "Scene";
+"Scene" = "ฉาก";
 
 /* No comment provided by engineer. */
-"Script" = "Script";
+"Script" = "สคริปต์";
 
 /* No comment provided by engineer. */
 "Scripts" = "สคริปต์";
@@ -1532,10 +1694,22 @@
 "Search" = "ค้นหา";
 
 /* No comment provided by engineer. */
-"second" = "second";
+"second" = "วินาที";
 
 /* No comment provided by engineer. */
-"second " = "second ";
+"second " = "ที่สอง ";
+
+/* No comment provided by engineer. */
+"second face size" = "ขนาดใบหน้าที่สอง";
+
+/* No comment provided by engineer. */
+"second face visible" = "มองเห็นใบหน้าที่สอง";
+
+/* No comment provided by engineer. */
+"second face x position" = "ใบหน้าที่สอง x ตำแหน่ง";
+
+/* No comment provided by engineer. */
+"second face y position" = "ใบหน้าที่สอง y ตำแหน่ง";
 
 /* No comment provided by engineer. */
 "seconds" = "วินาที";
@@ -1547,13 +1721,16 @@
 "Select all" = "เลือก​ทั้ง​หมด";
 
 /* bluetooth */
-"Select Arduino" = "Select Arduino";
+"Select Arduino" = "เลือก Arduino";
 
 /* No comment provided by engineer. */
 "Select brick category" = "เลือกหมวดหมู่คำสั่ง";
 
 /* No comment provided by engineer. */
-"Select categories" = "Select categories";
+"Select categories" = "เลือกหมวดหมู่";
+
+/* No comment provided by engineer. */
+"Select file" = "เลือกไฟล์";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "เลือกตัวดำเนินตรรกะ";
@@ -1565,7 +1742,10 @@
 "Select option:" = "เลือกตัวเลือก:";
 
 /* bluetooth */
-"Select Phiro" = "Select Phiro";
+"Select Phiro" = "เลือก Phiro";
+
+/* No comment provided by engineer. */
+"Send web request to" = "ส่งคำขอทางเว็บไปที่";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "การส่งรายงานข้อผิดพลาดที่ไม่ระบุชื่อ";
@@ -1580,7 +1760,7 @@
 "September" = "กันยายน";
 
 /* No comment provided by engineer. */
-"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+"Server is taking to long to respond, please try again later." = "เซิร์ฟเวอร์ใช้เวลาในการตอบกลับนาน โปรดลองอีกครั้งในภายหลัง";
 
 /* No comment provided by engineer. */
 "Session expired, please log in." = "เซสชันหมดอายุโปรดเข้าสู่ระบบ";
@@ -1595,10 +1775,16 @@
 "Set background" = "ตั้งค่าพื้นหลัง";
 
 /* No comment provided by engineer. */
+"Set background and wait" = "ตั้งค่าพื้นหลังและรอ";
+
+/* No comment provided by engineer. */
+"Set background to number" = "ตั้งค่าพื้นหลังเป็นตัวเลข";
+
+/* No comment provided by engineer. */
 "Set brightness " = "ตั้งค่าความสว่าง ";
 
 /* No comment provided by engineer. */
-"Set color " = "Set color ";
+"Set color " = "กำหนดสี ";
 
 /* No comment provided by engineer. */
 "Set description" = "กำหนดคำอธิบาย";
@@ -1642,6 +1828,9 @@
 /* No comment provided by engineer. */
 "Settings" = "การตั้งค่า";
 
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "เย็บ";
+
 /* No comment provided by engineer. */
 "Show" = "แสดง";
 
@@ -1649,7 +1838,7 @@
 "Show details" = "แสดงรายละเอียด";
 
 /* No comment provided by engineer. */
-"Show variable" = "Show variable";
+"Show variable" = "แสดงตัวแปร";
 
 /* No comment provided by engineer. */
 "sine" = "sin";
@@ -1664,7 +1853,7 @@
 "Skip" = "ข้าม";
 
 /* No comment provided by engineer. */
-"SO" = "SO";
+"SO" = "ดังนั้น";
 
 /* No comment provided by engineer. */
 "Something went wrong while uploading the project." = "ข้อผิดพลาดเกิดขึ้นขณะอัปโหลดโปรแกรม";
@@ -1691,19 +1880,22 @@
 "square root" = "รากที่สอง";
 
 /* No comment provided by engineer. */
-"stage is touched" = "เวทีสัมผัสแล้ว";
+"stage is touched" = "สัมผัสหน้าจอแล้ว";
 
 /* No comment provided by engineer. */
-"stage touch x" = "เวทีสัมผัส x";
+"stage touch x" = "สัมผัสหน้าจอ x";
 
 /* No comment provided by engineer. */
-"stage touch y" = "เวทีสัมผัส y";
+"stage touch y" = "สัมผัสหน้าจอ y";
 
 /* paint */
 "Stamp" = "แสตมป์";
 
 /* paint */
-"Stamped" = "Stamped";
+"Stamped" = "ประทับตรา";
+
+/* No comment provided by engineer. */
+"Start running stitch with length" = "เริ่มใช้ตะเข็บที่มีความยาว";
 
 /* No comment provided by engineer. */
 "Start sound" = "เริ่มเล่นเสียง";
@@ -1712,10 +1904,13 @@
 "Start sound and wait" = "เริ่มเสียงแล้วรอ";
 
 /* No comment provided by engineer. */
+"Start zigzag stitch with length" = "เริ่มเย็บซิกแซกด้วยความยาว";
+
+/* No comment provided by engineer. */
 "Steel Drum" = "กลองเหล็ก";
 
 /* No comment provided by engineer. */
-"step" = "step";
+"step" = "ขั้นตอน";
 
 /* No comment provided by engineer. */
 "steps" = "ก้าว";
@@ -1727,7 +1922,10 @@
 "Stop all sounds" = "หยุดเสียงทั้งหมด";
 
 /* No comment provided by engineer. */
-"Stop Phiro motor" = "Stop Phiro motor";
+"Stop current stitch" = "หยุดตะเข็บปัจจุบัน";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "หยุดมอเตอร์ฟีโร";
 
 /* No comment provided by engineer. */
 "Su" = "วันอาทิตย์";
@@ -1739,13 +1937,13 @@
 "Switch to look" = "เปลี่ยนรูปลักษณ์เป็น";
 
 /* No comment provided by engineer. */
-"Switch to look with number" = "Switch to look with number";
+"Switch to look with number" = "สลับไปมองด้วยตัวเลข";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "ไวยากรณ์ผิดพลาด!";
 
 /* No comment provided by engineer. */
-"Synth Lead" = "Synth Lead";
+"Synth Lead" = "ซินธ์ลีด";
 
 /* No comment provided by engineer. */
 "Synth Pad" = "Synth Pad";
@@ -1769,7 +1967,7 @@
 "Tap \"+\" to add sounds" = "เคาะ \"+\" เพื่อใส่เสียง";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
+"Tap \"+\" to add variables and lists" = "แตะ \"+\" เพื่อเพิ่มตัวแปรและรายการ";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "ข้อกำหนดการใช้งานและบริการ";
@@ -1778,10 +1976,10 @@
 "Text" = "ข้อความ";
 
 /* No comment provided by engineer. */
-"Text message:" = "Text message:";
+"Text message:" = "ข้อความ:";
 
 /* paint */
-"Text:" = "Text:";
+"Text:" = "ข้อความ:";
 
 /* No comment provided by engineer. */
 "Th" = "วันพฤหัสบดี";
@@ -1790,28 +1988,28 @@
 "The description contains invalid characters, try again." = "คำอธิบายมีอักขระที่ไม่ถูกต้อง ลองอีกครั้ง";
 
 /* No comment provided by engineer. */
-"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+"The featured projects cannot be loaded" = "ไม่สามารถโหลดโปรเจ็กต์เด่นได้";
 
 /* No comment provided by engineer. */
 "The following item could not be imported from the media library:" = "ไม่สามารถนำเข้ารายการต่อไปนี้จากไลบรารีสื่อ:";
 
 /* No comment provided by engineer. */
-"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+"The input is too long. Please enter maximal %lu character(s)." = "อินพุตยาวเกินไป โปรดป้อนอักขระ %lu สูงสุด";
 
 /* No comment provided by engineer. */
-"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+"The name contains blocked characters. Please try again!" = "ชื่อนี้มีอักขระที่ถูกบล็อก กรุณาลองอีกครั้ง!";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "ไม่สามารถโหลดโปรเจ็กต์ล่าสุดได้";
 
 /* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The requested project can not be loaded. Please try again later." = "ไม่สามารถโหลดโปรเจ็กต์ที่ร้องขอได้ กรุณาลองใหม่อีกครั้งในภายหลัง.";
 
 /* No comment provided by engineer. */
-"The sound item cannot be loaded" = "The sound item cannot be loaded";
+"The sound item cannot be loaded" = "ไม่สามารถโหลดรายการเสียงได้";
 
 /* No comment provided by engineer. */
-"The sound item cannot be played" = "The sound item cannot be played";
+"The sound item cannot be played" = "ไม่สามารถเล่นรายการเสียงได้";
 
 /* No comment provided by engineer. */
 "Think" = "คิด";
@@ -1823,19 +2021,19 @@
 "This feature is coming soon!" = "ฟีเจอร์นี้กำลังจะมาในเร็วๆ นี้!";
 
 /* No comment provided by engineer. */
-"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
+"This list can not be deleted because it is still in use." = "ไม่สามารถลบรายการนี้ได้เนื่องจากยังใช้งานอยู่";
 
 /* No comment provided by engineer. */
-"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+"This variable can not be deleted because it is still in use." = "ตัวแปรนี้ไม่สามารถลบได้เนื่องจากยังใช้งานอยู่";
 
 /* No comment provided by engineer. */
 "Thursday" = "วันพฤหัสบดี";
 
 /* No comment provided by engineer. */
-"TI" = "TI";
+"TI" = "Ti";
 
 /* No comment provided by engineer. */
-"time" = "time";
+"time" = "เวลา";
 
 /* No comment provided by engineer. */
 "times" = "ครั้ง";
@@ -1847,7 +2045,7 @@
 "to list" = "ไปยังรายการ";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "เพื่อให้คุณได้รับสิทธิประโยชน์ทั้งหมดของบริการของเราและบัญชีที่เกี่ยวข้อง จำเป็นต้องรวบรวมข้อมูลบางอย่างจากคุณ\n\n\u{2022} เพื่อรักษาและปรับปรุงบริการของเรา (แอปและเว็บไซต์) และเพื่อทำการวิจัยทางวิทยาศาสตร์เกี่ยวกับการศึกษา ICT และ STEM/STEAM เราใช้ Google Analytics, Crashlytics และ Firebase ทั้งหมดโดย Google LLC (สหรัฐอเมริกา) รวมถึง Dynatrace โดย Dynatrace LLC (USA) เพื่อรับข้อมูลเมตาเกี่ยวกับการใช้บริการของเรา เช่น ข้อมูลข้อขัดข้อง การประทับเวลา หน้าที่เข้าชม/หน้าจอ การใช้งานแอพและบริการของเรา ระบบปฏิบัติการที่ใช้ และข้อมูลเกี่ยวกับผู้ให้บริการเครือข่าย การวิเคราะห์นี้และข้อมูลที่รวบรวมไม่ได้เชื่อมโยงกับโปรไฟล์ของคุณและไม่มีข้อมูลส่วนบุคคลใด ๆ (บิตสุดท้ายของที่อยู่ IP จะไม่เปิดเผยตัว) อย่างไรก็ตาม ข้อมูลที่เก็บรวบรวมจะถูกโอนไปยังผู้ให้บริการ (Google LLC, USA และ Dynatrace LLC, USA) การประมวลผลข้อมูลเป็นไปตามข้อตกลงกับ Google LLC และ Dynatrace LLC ความสัมพันธ์กับผู้ให้บริการนี้สอดคล้องกับกฎระเบียบให้ความคุ้มครองข้อมูลส่วนบุคคลของผู้บริโภคในสหภาพยุโรป (EU GDPR) และข้อตกลง \"การคุ้มครองความเป็นส่วนตัว\" ของสหภาพยุโรปและสหรัฐอเมริกา\n\n\u{2022} เพื่อสร้างและใช้บัญชีในระบบของเรา และแจ้งให้คุณทราบเกี่ยวกับการเปลี่ยนแปลงที่จำเป็นเกี่ยวกับบัญชีของคุณในแต่ละอีเมล เช่น การอัปเดตหรือการละเมิดข้อกำหนดการใช้งานและบริการ กฎของชุมชน หรือนโยบายของเรา เราจะจัดเก็บชื่อผู้ใช้ของคุณและที่อยู่อีเมลของคุณหากคุณเป็นผู้ให้ หากคุณเชื่อมต่อบัญชีของคุณผ่านบัญชี Google หรือ Facebook เราจะเก็บรหัสประจำตัวที่เชื่อมต่อกับบัญชีของคุณในบริการเหล่านี้เพิ่มเติม เราจะไม่ใช้ข้อมูลนี้เพื่อวัตถุประสงค์อื่น (เช่น การตลาด) เว้นแต่คุณจะอนุญาตให้เราทำอย่างชัดเจน\n\n\u{2022} โดยสมัครใจ คุณสามารถให้ประเทศที่พำนักกับเราผ่านทางหน้าบัญชีของคุณบนไซต์แบ่งปันได้ ข้อมูลนี้จะแสดงในโปรไฟล์สาธารณะของคุณและใช้เพื่อวัตถุประสงค์ทางสถิติและการวิจัยเท่านั้น สามารถลบออกได้ตลอดเวลาในการตั้งค่าโปรไฟล์ของคุณ\n\n\u{2022} คุณสามารถถอนการใช้ข้อมูลส่วนบุคคลที่เป็นของบัญชีของคุณได้ตลอดเวลาโดยการลบบัญชีของคุณผ่านหน้าโปรไฟล์ของคุณใน https://share.catrob.at หลังจากลบบัญชีของคุณแล้ว คุณจะยังสามารถใช้บริการที่มีให้ แต่ไม่สามารถทำงานร่วมกันได้ เช่น ผ่านการอัปโหลดโปรแกรม แสดงความคิดเห็น หรือชอบ นอกจากนี้ เนื้อหาที่ให้ไว้ทั้งหมดที่เชื่อมโยงกับบัญชีของคุณ เช่น โปรแกรมที่อัปโหลด ความคิดเห็น ฯลฯ จะถูกลบออก\n\n\u{2022} เพื่อหลีกเลี่ยงการใช้งานบริการของเราในทางที่ผิด เช่น ผ่านการอัปโหลดที่ผู้ใช้มีส่วนร่วมหรือแสดงความคิดเห็นเพื่อจุดประสงค์ที่ผิดกฎหมาย ข้อมูลสาธารณะที่สร้างโดยผู้ใช้ทั้งหมด (การอัปโหลด ความคิดเห็น) จะถูกจัดเก็บไว้ในฐานข้อมูลภายใน พร้อมกับการประทับเวลาและอินเทอร์เน็ตที่ใช้ ที่อยู่ ข้อมูลนี้จะไม่ถูกนำไปใช้โดยหรือส่งต่อไปยังสถาบันใดๆ เว้นแต่จะมีการดำเนินการที่ผิดกฎหมายอย่างเพียงพอที่น่าสงสัยและสถาบันทางกฎหมายที่มีสิทธิอย่างเป็นทางการร้องขอตามกฎหมายที่บังคับใช้ แต่ละกรณีจะได้รับการตรวจสอบอย่างละเอียดเป็นรายบุคคลโดยเราก่อน\n\n\u{2022} คุณสามารถสมัครรับจดหมายข่าว Catrobat ได้ที่ https://catrob.at/newsletter ที่เราจัดเตรียมไว้ให้ผ่านบริการ MailChimp (The Rocket Science Group LLC d/b/a MailChimp, USA) จากนั้น คุณจะได้รับข้อมูลอัปเดตเกี่ยวกับโครงการ Catrobat และบริการของโครงการไปยังที่อยู่อีเมลที่คุณให้ไว้ คุณสามารถถอนจดหมายข่าวได้ตลอดเวลาโดยใช้ลิงก์ \"ยกเลิกการสมัคร\" ที่ส่วนท้ายของจดหมายข่าวทุกฉบับ จดหมายข่าวนี้จัดทำโดย MailChimp ซึ่งเรามีข้อตกลงในการประมวลผลข้อมูลและผู้ที่ปฏิบัติตามกฎระเบียบให้ความคุ้มครองข้อมูลส่วนบุคคลของผู้บริโภคในสหภาพยุโรปและ \"การคุ้มครองความเป็นส่วนตัว\" สำหรับรายละเอียดเพิ่มเติมเกี่ยวกับ MailChimp โปรดดูนโยบายความเป็นส่วนตัวและข้อกำหนดการใช้งานของ MailChimp\n\n\u{2022} บริการทั้งหมดจัดทำโดยโครงการโอเพ่นซอร์ส Catrobat ฟรีภายใต้ร่มของ International Catrobat Association – Verein zur Förderung freier Software ซึ่งเป็นองค์กรไม่แสวงหาผลกำไรที่จัดตั้งขึ้นในเมืองกราซ ประเทศออสเตรีย นโยบายของเราเคารพกฎหมายคุ้มครองข้อมูลของสหภาพยุโรปและออสเตรีย (GDPR) หากต้องการติดต่อกับเรา โปรดส่งอีเมลมาที่ contact@catrobat.org หรือส่งอีเมลหาเราที่ Catrobat\nค/o\nสถาบันเทคโนโลยีซอฟต์แวร์\nมหาวิทยาลัยเทคโนโลยีกราซ,\nอินฟเฟลด์กาสเซอ 16b,\nA-8010 กราซ ออสเตรีย\n(สหภาพยุโรป).\n\nในกรณีที่คุณอายุต่ำกว่า 14 ปี ผู้ปกครองตามกฎหมายจะต้องยอมรับนโยบายนี้ (โดยปกติคือผู้ปกครอง)\n\nนโยบายความเป็นส่วนตัวภาษาอังกฤษอย่างเป็นทางการของ Catrobat มีอยู่บนเว็บภายใต้ https://catrob.at/privacypolicy\n\nเวอร์ชัน 2.2, 17 ตุลาคม 2019\n\nค้นหานโยบายความเป็นส่วนตัว (2.0) เวอร์ชันก่อนหน้าซึ่งล้าสมัยได้ที่นี่: http://developer.catrobat.org/privacy_policy_2-0\n\n";
 
 /* No comment provided by engineer. */
 "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "ในการใช้แอพของเราจำเป็นต้องยอมรับนโยบายความเป็นส่วนตัวของเรา อย่างไรก็ตามหากคุณไม่สะดวกที่จะทำเช่นนั้นคุณสามารถใช้บริการเว็บฟรีของเราที่ share.catrob.at";
@@ -1865,6 +2063,15 @@
 "touch position" = "ตำแหน่งสัมผัส";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "สัมผัสนักแสดงหรือวัตถุ";
+
+/* No comment provided by engineer. */
+"touches edge" = "สัมผัสขอบ";
+
+/* No comment provided by engineer. */
+"touches finger" = "นิ้วสัมผัส";
+
+/* No comment provided by engineer. */
 "transparency" = "ความโปร่งใส";
 
 /* No comment provided by engineer. */
@@ -1880,7 +2087,7 @@
 "Tuesday" = "วันอังคาร";
 
 /* No comment provided by engineer. */
-"Turn camera" = "Turn camera";
+"Turn camera" = "เปิดกล้อง";
 
 /* No comment provided by engineer. */
 "Turn flashlight" = "เปิดไฟฉาย";
@@ -1895,55 +2102,49 @@
 "Unable to import project!" = "ไม่สามารถนำเข้าโครงการได้";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to load project!" = "โหลดโปรเจ็กต์ไม่ได้!";
 
 /* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "ไม่สามารถเล่นเสียงนั่นได้! อาจเพราะไม่มีไฟล์แล้ว หรือไฟล์เสียหาย";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "ไม่สามารถเล่นเสียงที่เลือกได้ อุปกรณ์ของคุณอาจอยู่ในโหมดเงียบ กรุณาปิดสวิตช์ด้านซ้ายของเครื่อง iPhoneเพื่อยกเลิกโหมดเงียบ และกดเล่นใหม่อีกครั้งหนึ่ง";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "ไม่สามารถเล่นเสียงที่เลือกได้ อุปกรณ์ของคุณอาจอยู่ในโหมดเงียบ กรุณาปิดสวิตช์ด้านขวาของเครื่อง iPad เพื่อยกเลิกโหมดเงียบ และกดเล่นใหม่อีกครั้งหนึ่ง";
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "ไม่สามารถเล่นเสียงนั้นได้!\nบางทีนี่อาจไม่ใช่เสียงที่ถูกต้องหรือไฟล์เสียหาย";
 
 /* paint */
-"underline" = "underline";
+"underline" = "ขีดเส้นใต้";
 
 /* Button title of alert view to invoke undo if user shakes device */
 "Undo" = "เลิกทำ";
 
 /* Description text in alert view if user shakes the device */
-"Undo Drawing?" = "Undo Drawing?";
+"Undo Drawing?" = "เลิกวาด?";
 
 /* Description text in alert view if user shakes the device */
-"Undo Typing?" = "Undo Typing?";
+"Undo Typing?" = "เลิกพิมพ์ดีดไหม?";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Unexpected Error";
+"Unexpected Error" = "ข้อผิดพลาดที่ไม่คาดคิด";
 
 /* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+"Unexpected Error, please try again later." = "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้งในภายหลัง";
 
 /* No comment provided by engineer. */
-"Unknown Element" = "Unknown Element";
+"Unknown Element" = "องค์ประกอบที่ไม่รู้จัก";
 
 /* No comment provided by engineer. */
 "Unselect all" = "ไม่เลือกทั้งหมด";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Unsupported Brick:";
+"Unsupported Brick:" = "คำสั่งที่ไม่รองรับ:";
 
 /* No comment provided by engineer. */
-"Unsupported Elements" = "Unsupported Elements";
+"Unsupported Elements" = "องค์ประกอบที่ไม่รองรับ";
 
 /* No comment provided by engineer. */
-"Unsupported Script:" = "Unsupported Script:";
+"Unsupported Script:" = "สคริปต์ที่ไม่รองรับ:";
 
 /* No comment provided by engineer. */
 "Upload project" = "อัพโหลดโปรแกรม";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Upload selected project";
+"Upload selected project" = "อัปโหลดโครงการที่เลือก";
 
 /* No comment provided by engineer. */
 "Upload successful" = "อัพโหลดเสร็จสิ้น";
@@ -1952,16 +2153,22 @@
 "Uploaded" = "อัพโหลดเรียบร้อยแล้ว";
 
 /* No comment provided by engineer. */
-"Use camera" = "Use camera";
+"Use camera" = "ใช้กล้องถ่ายรูป";
 
 /* No comment provided by engineer. */
-"Use Phiro bricks" = "Use Phiro bricks";
+"Use Phiro bricks" = "ใช้คำสั่ง Phiro";
+
+/* No comment provided by engineer. */
+"user language" = "ภาษาของผู้ใช้";
 
 /* No comment provided by engineer. */
 "Username" = "ชื่อผู้ใช้";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "ชื่อผู้ใช้ต้องไม่ว่างเปล่า";
+
+/* No comment provided by engineer. */
+"Variable name" = "ชื่อตัวแปร";
 
 /* No comment provided by engineer. */
 "Variable name:" = "ชื่อตัวแปร:";
@@ -1991,16 +2198,13 @@
 "Vibrate for" = "สั่นเป็นเวลา";
 
 /* No comment provided by engineer. */
-"vibration" = "vibration";
+"vibration" = "การสั่นสะเทือน";
 
 /* No comment provided by engineer. */
-"View" = "View";
+"View" = "ดู";
 
 /* No comment provided by engineer. */
 "Views" = "มุมมอง";
-
-/* No comment provided by engineer. */
-"Visual sensors" = "เซ็นเซอร์ภาพ";
 
 /* No comment provided by engineer. */
 "Wait" = "รอ";
@@ -2012,10 +2216,13 @@
 "We" = "เรา";
 
 /* No comment provided by engineer. */
+"Web access" = "การเข้าถึงเว็บ";
+
+/* No comment provided by engineer. */
 "Wednesday" = "วันพุธ";
 
 /* No comment provided by engineer. */
-"weekday" = "weekday";
+"weekday" = "วันธรรมดา";
 
 /* No comment provided by engineer. */
 "Welcome!" = "ยินดีต้อนรับ!";
@@ -2027,13 +2234,13 @@
 "When" = "เมื่อ";
 
 /* No comment provided by engineer. */
-"When background changes to" = "When background changes to";
+"When background changes to" = "เมื่อพื้นหลังเปลี่ยนเป็น";
 
 /* No comment provided by engineer. */
 "When project starts" = "เมื่อโครงการเริ่มต้น";
 
 /* No comment provided by engineer. */
-"When stage is tapped" = "เมื่อเวทีถูกทาบทาม";
+"When stage is tapped" = "เมื่อแตะหน้าจอ";
 
 /* No comment provided by engineer. */
 "When tapped" = "เมื่อเคาะ";
@@ -2042,7 +2249,7 @@
 "When you receive" = "เมื่อคุณได้รับ";
 
 /* paint */
-"Width selection" = "Width selection";
+"Width selection" = "การเลือกความกว้าง";
 
 /* No comment provided by engineer. */
 "with" = "แทนด้วย";
@@ -2054,10 +2261,10 @@
 "x: " = "X: ";
 
 /* No comment provided by engineer. */
-"y: " = "Y:";
+"y: " = "Y: ";
 
 /* No comment provided by engineer. */
-"year" = "year";
+"year" = "ปี";
 
 /* No comment provided by engineer. */
 "Yes" = "ใช่";
@@ -2066,7 +2273,7 @@
 "Yesterday" = "เมื่อวานนี้";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "คุณได้ดาวน์โหลดโครงการนี้แล้ว!";
 
 /* No comment provided by engineer. */
 "Your answer" = "คำตอบของคุณ";
@@ -2075,10 +2282,10 @@
 "Your email seems to be invalid" = "อีเมล์ของคุณดูเหมือนจะไม่ถูกต้อง";
 
 /* No comment provided by engineer. */
-"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+"Your project was uploaded to the Catrobat community where others can use and download it." = "โครงการของคุณถูกอัปโหลดไปยังชุมชน Catrobat ซึ่งผู้อื่นสามารถใช้และดาวน์โหลดได้";
 
 /* No comment provided by engineer. */
 "Your report was successfully sent!" = "ส่งรายงานของคุณเรียบร้อยแล้ว!";
 
 /* paint */
-"Zoom" = "Zoom";
+"Zoom" = "ซูม";

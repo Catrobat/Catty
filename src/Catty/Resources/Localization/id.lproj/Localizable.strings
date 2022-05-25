@@ -17,13 +17,13 @@
 "absolute value" = "nilai mutlak";
 
 /* No comment provided by engineer. */
-"acceleration x" = "percepatan_x";
+"acceleration x" = "percepatan x";
 
 /* No comment provided by engineer. */
-"acceleration y" = "percepatan_y";
+"acceleration y" = "percepatan y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "percepatan_z";
+"acceleration z" = "percepatan z";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "akselerasi-sensor";
@@ -50,6 +50,9 @@
 "Add sound" = "Tambahkan suara";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "Add trusted domain";
+
+/* No comment provided by engineer. */
 "Agree" = "Setuju";
 
 /* No comment provided by engineer. */
@@ -67,6 +70,9 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "Izinkan aplikasi mengirim laporan kerusakan secara otomatis";
 
+/* No comment provided by engineer. */
+"Allow web access" = "Izinkan akses web";
+
 /* paint */
 "Alpha" = "Alfa";
 
@@ -74,7 +80,13 @@
 "altitude" = "ketinggian";
 
 /* No comment provided by engineer. */
-"An image with the same name already exists, try again." = "Citra dengan nama yang sama sudah ada, cobalah lagi.";
+"Always" = "Selalu";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Always allow web access";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "Gambar dengan nama yang sama sudah ada, coba lagi.";
 
 /* No comment provided by engineer. */
 "An object with the same name already exists, try again." = "Objek dengan nama yang sama sudah ada, cobalah lagi.";
@@ -89,10 +101,16 @@
 "and" = "dan";
 
 /* No comment provided by engineer. */
+"and store answer in" = "dan simpan jawaban di";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "dan simpan jawaban tertulis di ";
 
 /* No comment provided by engineer. */
 "and wait" = "dan tunggu";
+
+/* No comment provided by engineer. */
+"and width" = "dan lebar";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Menganimasikan bagian bata";
@@ -161,10 +179,10 @@
 "Background" = "Latar belakang";
 
 /* No comment provided by engineer. */
-"background name" = "layarbelakang_nama";
+"background name" = "nama latar belakang";
 
 /* No comment provided by engineer. */
-"background number" = "layarbelakang_nomor";
+"background number" = "nomor latar belakang";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "Latar belakang";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
 
 /* No comment provided by engineer. */
 "becomes true" = "menjadi kenyataan";
@@ -317,7 +338,7 @@
 "compass" = "Kompas";
 
 /* No comment provided by engineer. */
-"Compute" = "Hitung";
+"Compute" = "Menghitung";
 
 /* No comment provided by engineer. */
 "Computed result is %.2f" = "Hasil perhitungan adalah %.2f";
@@ -372,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Membuat akun";
+
+/* No comment provided by engineer. */
+"Create as list" = "Create as list";
 
 /* No comment provided by engineer. */
 "Create patterns for stiching machines" = "Buat pola untuk mesin stiching";
@@ -479,6 +503,9 @@
 "Deletion mode" = "Mode penghapusan";
 
 /* No comment provided by engineer. */
+"Deny" = "Menyangkal";
+
+/* No comment provided by engineer. */
 "Description" = "Keterangan";
 
 /* No comment provided by engineer. */
@@ -536,6 +563,12 @@
 "Download" = "Unduh";
 
 /* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "Unduh terlalu besar";
+
+/* No comment provided by engineer. */
 "Downloads" = "Unduhan";
 
 /* No comment provided by engineer. */
@@ -584,6 +617,9 @@
 "Edit sounds" = "Edit suara";
 
 /* No comment provided by engineer. */
+"Edit trusted domain" = "Edit trusted domain";
+
+/* No comment provided by engineer. */
 "Electric Guitar" = "Gitar elektrik";
 
 /* No comment provided by engineer. */
@@ -623,7 +659,7 @@
 "Enable script" = "Aktifkan skrip";
 
 /* No comment provided by engineer. */
-"End if" = "End If";
+"End if" = "Berakhir jika";
 
 /* No comment provided by engineer. */
 "End of Loop" = "Akhir Ikal";
@@ -677,16 +713,7 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "wajah terdeteksi";
-
-/* No comment provided by engineer. */
-"faceposition x" = "posisi muka x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
-
-/* No comment provided by engineer. */
-"facesize" = "menghadapi";
+"Face detection" = "Deteksi wajah";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "Gagal mengimpor item";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "Isi";
+
+/* No comment provided by engineer. */
+"first face size" = "ukuran wajah pertama";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "wajah pertama x posisi";
+
+/* No comment provided by engineer. */
+"first face y position" = "posisi wajah pertama y";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Senter mati";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "Jum";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Sering digunakan";
 
 /* No comment provided by engineer. */
 "Friday" = "Jumat";
@@ -803,6 +839,12 @@
 "gyro-sensor" = "gyro-sensor";
 
 /* No comment provided by engineer. */
+"head top x" = "kepala atas x";
+
+/* No comment provided by engineer. */
+"head top y" = "kepala atas y";
+
+/* No comment provided by engineer. */
 "Hello!" = "Halo!";
 
 /* No comment provided by engineer. */
@@ -845,10 +887,13 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Untuk menggunakan Pocket Code dan aplikasi lainnya yang ditawarkan oleh proyek Catrobat, Anda harus menyetujui Persyaratan Penggunaan kami dan secara ketat mematuhinya ketika Anda menggunakan Pocket Code dan aplikasi kami lainnya. Silakan simak tautan di bawah ini untuk informasi lebih lanjut.\n\n.";
 
 /* No comment provided by engineer. */
-"inclination x" = "kecenderungan_x";
+"inclination x" = "kecenderungan x";
 
 /* No comment provided by engineer. */
-"inclination y" = "kecenderungan_y";
+"inclination y" = "kecenderungan y";
+
+/* No comment provided by engineer. */
+"index of item" = "indeks barang";
 
 /* No comment provided by engineer. */
 "Information" = "Informasi";
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "Dimasukkan";
+
+/* No comment provided by engineer. */
+"Internet" = "Internet";
 
 /* No comment provided by engineer. */
 "into list" = "ke daftar";
@@ -875,7 +923,7 @@
 "is true" = "benar";
 
 /* No comment provided by engineer. */
-"is true then" = "is true then";
+"is true then" = "benar kalau begitu";
 
 /* paint */
 "italic" = "miring";
@@ -914,7 +962,7 @@
 "Last access" = "Akses terakhir";
 
 /* No comment provided by engineer. */
-"last stage touch index" = "index_layar_sentuh_terakhir";
+"last stage touch index" = "indeks sentuh tahap terakhir";
 
 /* No comment provided by engineer. */
 "latitude" = "lintang";
@@ -932,6 +980,48 @@
 "Left" = "Kiri";
 
 /* No comment provided by engineer. */
+"left ear x" = "telinga kiri x";
+
+/* No comment provided by engineer. */
+"left ear y" = "berangkat lebih awal";
+
+/* No comment provided by engineer. */
+"left eye center x" = "mata kiri tengah x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "mata kiri tengah y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "mata kiri bagian dalam x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "mata kiri bagian dalam y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "mata kiri luar x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "mata kiri luar y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "kiri kanan saja";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "Garis";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "Daftar nama:";
@@ -968,19 +1061,19 @@
 "location" = "lokasi";
 
 /* No comment provided by engineer. */
-"location accuracy" = "akurasi_lokasi";
+"location accuracy" = "akurasi lokasi";
 
 /* No comment provided by engineer. */
 "Logic" = "Logika";
 
 /* No comment provided by engineer. */
-"Logical (Boolean) operators and constants" = "Operator logika (boolean)";
+"Logical (Boolean) operators and constants" = "Operator dan konstanta logis (Boolean)";
 
 /* No comment provided by engineer. */
-"Login" = "Masuk";
+"Login" = "Gabung";
 
 /* No comment provided by engineer. */
-"Login successful" = "Berhasil masuk";
+"Login successful" = "Login berhasil";
 
 /* No comment provided by engineer. */
 "Logout" = "Keluar";
@@ -995,10 +1088,10 @@
 "Look" = "Lihat";
 
 /* No comment provided by engineer. */
-"look name" = "lihat_nama";
+"look name" = "lihat nama";
 
 /* No comment provided by engineer. */
-"look number" = "lihat_nomor";
+"look number" = "lihat nomor";
 
 /* No comment provided by engineer. */
 "Looks" = "Tampilan";
@@ -1052,7 +1145,7 @@
 "Minimize" = "Memperkecil";
 
 /* No comment provided by engineer. */
-"minimum of" = "menit";
+"minimum of" = "minimal";
 
 /* No comment provided by engineer. */
 "minute" = "menit";
@@ -1092,6 +1185,18 @@
 
 /* No comment provided by engineer. */
 "Motion properties" = "Sifat gerak";
+
+/* No comment provided by engineer. */
+"mouth left corner x" = "sudut kiri mulut x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "sudut kiri mulut y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "sudut kanan mulut x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "sudut kanan mulut y";
 
 /* No comment provided by engineer. */
 "Move" = "Pindah";
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "Tidak ada karakter spasi yang diperbolehkan";
 
 /* No comment provided by engineer. */
+"nose x" = "hidung x";
+
+/* No comment provided by engineer. */
+"nose y" = "hidung y";
+
+/* No comment provided by engineer. */
 "not" = "tidak";
 
 /* No comment provided by engineer. */
@@ -1214,7 +1325,7 @@
 "November" = "November";
 
 /* No comment provided by engineer. */
-"number of items" = "jumlah_dari_item";
+"number of items" = "jumlah item";
 
 /* No comment provided by engineer. */
 "Numbers" = "Nomor";
@@ -1239,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "on" = "aktif";
+
+/* No comment provided by engineer. */
+"Once" = "Sekali";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "hanya 15 karakter yang diperbolehkan";
@@ -1379,10 +1493,13 @@
 "Pointer" = "Penunjuk";
 
 /* No comment provided by engineer. */
-"position x" = "posisi_x";
+"Pose detection" = "Deteksi pose";
 
 /* No comment provided by engineer. */
-"position y" = "posisi_y";
+"position x" = "posisi x";
+
+/* No comment provided by engineer. */
+"position y" = "posisi y";
 
 /* No comment provided by engineer. */
 "power" = "kekuasaan";
@@ -1409,25 +1526,28 @@
 "Project Name is necessary!" = "Nama Proyek diperlukan!";
 
 /* No comment provided by engineer. */
-"Projects" = "Program";
+"Projects" = "Proyek";
 
 /* No comment provided by engineer. */
-"Projects on device" = "Program";
+"Projects on device" = "Proyek di perangkat";
 
 /* No comment provided by engineer. */
-"Properties" = "Objek";
+"Properties" = "Properti";
 
 /* No comment provided by engineer. */
 "random position" = "Posisi acak";
 
 /* No comment provided by engineer. */
-"random value from to" = "acak";
+"random value from to" = "nilai acak dari ke";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Beri Peringkat";
 
 /* No comment provided by engineer. */
 "RE" = "KEMBALI";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "Baru - baru ini digunakan";
 
 /* No comment provided by engineer. */
 "Recording" = "Rekam";
@@ -1484,13 +1604,55 @@
 "Resize" = "Ubah ukuran";
 
 /* No comment provided by engineer. */
-"Restart" = "Restart";
+"Restart" = "Mengulang kembali";
 
 /* No comment provided by engineer. */
 "Result" = "Hasil";
 
 /* No comment provided by engineer. */
 "Right" = "Kanan";
+
+/* No comment provided by engineer. */
+"right ear x" = "telinga kanan x";
+
+/* No comment provided by engineer. */
+"right ear y" = "telinga kanan y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "pusat mata kanan x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "pusat mata kanan y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "mata kanan bagian dalam x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "mata kanan batin y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "mata kanan luar x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "mata kanan luar y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
 
 /* paint */
 "Rotate" = "Putar";
@@ -1538,6 +1700,18 @@
 "second " = "kedua ";
 
 /* No comment provided by engineer. */
+"second face size" = "ukuran wajah kedua";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "posisi x wajah kedua";
+
+/* No comment provided by engineer. */
+"second face y position" = "wajah kedua posisi y";
+
+/* No comment provided by engineer. */
 "seconds" = "detik";
 
 /* No comment provided by engineer. */
@@ -1556,6 +1730,9 @@
 "Select categories" = "Pilih kategori";
 
 /* No comment provided by engineer. */
+"Select file" = "Pilih File";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "Pilih operator logika";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Pilih Phiro";
+
+/* No comment provided by engineer. */
+"Send web request to" = "Kirim permintaan web ke";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Mengirim laporan kerusakan anonim";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "Atur Latarbelakang";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "Atur latar belakang dan tunggu";
+
+/* No comment provided by engineer. */
+"Set background to number" = "Tetapkan latar belakang nomor";
 
 /* No comment provided by engineer. */
 "Set brightness " = "Atur kecerahan ";
@@ -1641,6 +1827,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Pengaturan";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Menjahit";
 
 /* No comment provided by engineer. */
 "Show" = "Tampilkan";
@@ -1691,13 +1880,13 @@
 "square root" = "sqrt";
 
 /* No comment provided by engineer. */
-"stage is touched" = "layar_di_sentuh";
+"stage is touched" = "layar di sentuh";
 
 /* No comment provided by engineer. */
-"stage touch x" = "screen_touch_x";
+"stage touch x" = "sentuhan panggung x";
 
 /* No comment provided by engineer. */
-"stage touch y" = "layar_sentuh_y";
+"stage touch y" = "sentuhan panggung y";
 
 /* paint */
 "Stamp" = "Stempel";
@@ -1706,10 +1895,16 @@
 "Stamped" = "Stempel";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "Mulailah menjalankan jahitan dengan panjang";
+
+/* No comment provided by engineer. */
 "Start sound" = "Mulai suara";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Mulai suara dan tunggu";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Mulailah jahitan zigzag dengan panjang";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Drum besi";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Hentikan semua suara";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "Hentikan tusukan saat ini";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Hentikan motor Phiro";
@@ -1865,6 +2063,15 @@
 "touch position" = "Sentuh posisi";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "menyentuh aktor atau objek";
+
+/* No comment provided by engineer. */
+"touches edge" = "menyentuh tepi";
+
+/* No comment provided by engineer. */
+"touches finger" = "menyentuh jari";
+
+/* No comment provided by engineer. */
 "transparency" = "transparansi";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Tidak dapat memutar suara ini!\nMungkin suara tidak valid atau berkas rusak.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Tidak dapat memutar suara yang dipilih. Perangkat Anda sedang dalam modus hening. Harap matikan modus hening dengan mengalihkannya pada sisi kiri iPhone Anda, kemudian ketuk putar.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Tidak dapat memutar suara yang dipilih. Perangkat Anda sedang dalam modus hening. Harap matikan modus hening dengan mengalihkannya pada sisi kanan iPad Anda, kemudian ketuk putar.";
 
 /* paint */
 "underline" = "menggarisbawahi";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "Gunakan batu bata Phiro";
 
 /* No comment provided by engineer. */
+"user language" = "bahasa pengguna";
+
+/* No comment provided by engineer. */
 "Username" = "Nama pengguna";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "Nama pengguna tidak boleh kosong";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Nama variabel:";
@@ -2000,9 +2207,6 @@
 "Views" = "Tampilan";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "Sensor visual";
-
-/* No comment provided by engineer. */
 "Wait" = "Tunggu";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "Rab";
+
+/* No comment provided by engineer. */
+"Web access" = "akses web";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Rabu";

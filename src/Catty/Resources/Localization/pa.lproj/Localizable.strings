@@ -38,7 +38,7 @@
 "Add actor or object" = "ਅਦਾਕਾਰ ਜਾਂ ਆਬਜੈਕਟ ਸ਼ਾਮਲ ਕਰੋ";
 
 /* No comment provided by engineer. */
-"add comment here..." = "ਇੱਥੇ ਟਿੱਪਣੀ ਸ਼ਾਮਲ ਕਰੋ ...";
+"add comment here..." = "ਇੱਥੇ ਟਿੱਪਣੀ ਸ਼ਾਮਲ ਕਰੋ…";
 
 /* No comment provided by engineer. */
 "Add image" = "ਚਿੱਤਰ ਸ਼ਾਮਲ ਕਰੋ";
@@ -47,7 +47,10 @@
 "Add look" = "ਦਿੱਖ ਸ਼ਾਮਲ ਕਰੋ";
 
 /* Action sheet menu title */
-"Add sound" = "ਆਵਾਜ਼ ਸ਼ਾਮਲ ਕਰੋ\n \nਆਵਾਜ਼ ਸ਼ਾਮਲ ਕਰੋ";
+"Add sound" = "ਆਵਾਜ਼ ਸ਼ਾਮਲ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Add trusted domain" = "Add trusted domain";
 
 /* No comment provided by engineer. */
 "Agree" = "ਸਹਿਮਤ";
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "ਐਪ ਨੂੰ ਕਰੈਸ਼ ਰਿਪੋਰਟਾਂ ਆਪਣੇ ਆਪ ਭੇਜਣ ਦੀ ਆਗਿਆ ਦਿਓ";
 
+/* No comment provided by engineer. */
+"Allow web access" = "ਵੈਬ ਐਕਸੈਸ ਦੀ ਆਗਿਆ ਦਿਓ";
+
 /* paint */
 "Alpha" = "ਅਲਫ਼ਾ";
 
 /* No comment provided by engineer. */
 "altitude" = "ਉਚਾਈ";
+
+/* No comment provided by engineer. */
+"Always" = "ਹਮੇਸ਼ਾ";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Always allow web access";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "ਇਕੋ ਨਾਮ ਦੀ ਇਕ ਤਸਵੀਰ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.";
@@ -89,10 +101,16 @@
 "and" = "ਅਤੇ";
 
 /* No comment provided by engineer. */
-"and store written answer in " = "ਅਤੇ ਲਿਖਤੀ ਜਵਾਬ ਅੰਦਰ ਸਟੋਰ ਕਰੋ";
+"and store answer in" = "ਅਤੇ ਲਿਖਤੀ ਜਵਾਬ ਅੰਦਰ ਸਟੋਰ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"and store written answer in " = "ਅਤੇ ਲਿਖਤੀ ਜਵਾਬ ਅੰਦਰ ਸਟੋਰ ਕਰੋ ";
 
 /* No comment provided by engineer. */
 "and wait" = "ਅਤੇ ਇੰਤਜ਼ਾਰ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"and width" = "ਅਤੇ ਚੌੜਾਈ";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "ਇਨੀ-ਹਿੱਸੇ ਐਨੀਮੇਟ ਕਰੋ";
@@ -176,6 +194,9 @@
 "Bassoon" = "ਬਾਸੂਨ";
 
 /* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
+
+/* No comment provided by engineer. */
 "becomes true" = "ਸੱਚ ਬਣ ਜਾਂਦਾ ਹੈ";
 
 /* No comment provided by engineer. */
@@ -248,10 +269,10 @@
 "Cello" = "ਸੇਲੋ";
 
 /* No comment provided by engineer. */
-"Change brightness " = "ਚਮਕ ਬਦਲੋ";
+"Change brightness " = "ਚਮਕ ਬਦਲੋ ";
 
 /* No comment provided by engineer. */
-"Change color " = "ਰੰਗ ਬਦਲੋ";
+"Change color " = "ਰੰਗ ਬਦਲੋ ";
 
 /* No comment provided by engineer. */
 "Change size by" = "ਆਕਾਰ ਬਦਲੋ";
@@ -263,7 +284,7 @@
 "Change to portrait" = "ਪੋਰਟਰੇਟ 'ਤੇ ਬਦਲੋ";
 
 /* No comment provided by engineer. */
-"Change transparency " = "ਪਾਰਦਰਸ਼ਤਾ ਬਦਲੋ";
+"Change transparency " = "ਪਾਰਦਰਸ਼ਤਾ ਬਦਲੋ ";
 
 /* No comment provided by engineer. */
 "Change variable" = "ਪਰਿਵਰਤਨ ਬਦਲੋ";
@@ -272,10 +293,10 @@
 "Change volume by" = "ਦੁਆਰਾ ਵਾਲੀਅਮ ਬਦਲੋ";
 
 /* No comment provided by engineer. */
-"Change x by " = "X ਬਦਲੋ";
+"Change x by " = "X ਬਦਲੋ ";
 
 /* No comment provided by engineer. */
-"Change y by " = "Y ਬਦਲੋ";
+"Change y by " = "Y ਬਦਲੋ ";
 
 /* No comment provided by engineer. */
 "Changes discarded." = "ਤਬਦੀਲੀਆਂ ਰੱਦ ਕੀਤੀਆਂ ਗਈਆਂ.";
@@ -372,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "ਖਾਤਾ ਬਣਾਉ";
+
+/* No comment provided by engineer. */
+"Create as list" = "Create as list";
 
 /* No comment provided by engineer. */
 "Create patterns for stiching machines" = "ਸਿਲਾਈ ਮਸ਼ੀਨ ਲਈ ਪੈਟਰਨ ਬਣਾਓ";
@@ -479,6 +503,9 @@
 "Deletion mode" = "ਹਟਾਉਣ ਢੰਗ";
 
 /* No comment provided by engineer. */
+"Deny" = "ਇਨਕਾਰ ਕਰੋ";
+
+/* No comment provided by engineer. */
 "Description" = "ਵੇਰਵਾ";
 
 /* No comment provided by engineer. */
@@ -536,6 +563,12 @@
 "Download" = "ਡਾ .ਨਲੋਡ";
 
 /* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "ਡਾਉਨਲੋਡ ਕਰੋ ਬਹੁਤ ਵੱਡਾ";
+
+/* No comment provided by engineer. */
 "Downloads" = "ਡਾਉਨਲੋਡਸ";
 
 /* No comment provided by engineer. */
@@ -582,6 +615,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "ਆਵਾਜ਼ਾਂ ਸੋਧੋ";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "Edit trusted domain";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "ਇਲੈਕਟ੍ਰਿਕ ਗਿਟਾਰ";
@@ -632,28 +668,28 @@
 "Enter a reason" = "ਇੱਕ ਕਾਰਨ ਦਰਜ";
 
 /* Placeholder for add image-name input field */
-"Enter your image name here..." = "ਆਪਣੀ ਤਸਵੀਰ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+"Enter your image name here..." = "ਆਪਣੀ ਤਸਵੀਰ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ…";
 
 /* Placeholder for list input field */
-"Enter your list name here..." = "ਆਪਣੀ ਸੂਚੀ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+"Enter your list name here..." = "ਆਪਣੀ ਸੂਚੀ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ…";
 
 /* Placeholder for message input field */
-"Enter your message here..." = "ਆਪਣਾ ਸੁਨੇਹਾ ਇੱਥੇ ਦਰਜ ਕਰੋ ...";
+"Enter your message here..." = "ਆਪਣਾ ਸੁਨੇਹਾ ਇੱਥੇ ਦਰਜ ਕਰੋ…";
 
 /* Placeholder for add object-name input field */
-"Enter your object name here..." = "ਆਪਣੇ ਵਸਤੂ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+"Enter your object name here..." = "ਆਪਣੇ ਵਸਤੂ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ…";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "ਆਪਣੇ ਪ੍ਰੋਜੈਕਟ ਦਾ ਵੇਰਵਾ ਇੱਥੇ ਦਰਜ ਕਰੋ ...";
+"Enter your project description here..." = "ਆਪਣੇ ਪ੍ਰੋਜੈਕਟ ਦਾ ਵੇਰਵਾ ਇੱਥੇ ਦਰਜ ਕਰੋ…";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "ਆਪਣੇ ਪ੍ਰੋਜੈਕਟ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+"Enter your project name here..." = "ਆਪਣੇ ਪ੍ਰੋਜੈਕਟ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ…";
 
 /* Placeholder for add sound-name input field */
-"Enter your sound name here..." = "ਆਪਣੇ ਆਵਾਜ਼ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+"Enter your sound name here..." = "ਆਪਣੇ ਆਵਾਜ਼ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ…";
 
 /* Placeholder for variable input field */
-"Enter your variable name here..." = "ਆਪਣਾ ਵੇਰੀਏਬਲ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ ...";
+"Enter your variable name here..." = "ਆਪਣਾ ਵੇਰੀਏਬਲ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ…";
 
 /* paint */
 "Eraser" = "ਈਰੇਜ਼ਰ";
@@ -677,16 +713,7 @@
 "FA" = "ਐੱਫ";
 
 /* No comment provided by engineer. */
-"face detected" = "ਚਿਹਰਾ ਖੋਜਿਆ";
-
-/* No comment provided by engineer. */
-"faceposition x" = "ਚਿਹਰਾ ਸਥਿਤੀ x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "ਚਿਹਰੇ ਦੀ ਸਥਿਤੀ y";
-
-/* No comment provided by engineer. */
-"facesize" = "ਫੇਸਾਈਜ਼";
+"Face detection" = "ਚਿਹਰੇ ਦੀ ਪਛਾਣ";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "ਆਈਟਮ ਆਯਾਤ ਕਰਨ ਵਿੱਚ ਅਸਫਲ";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "ਭਰੋ";
+
+/* No comment provided by engineer. */
+"first face size" = "ਪਹਿਲੇ ਚਿਹਰੇ ਦਾ ਆਕਾਰ";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "ਪਹਿਲੀ ਚਿਹਰਾ x ਸਥਿਤੀ";
+
+/* No comment provided by engineer. */
+"first face y position" = "ਪਹਿਲੀ ਚਿਹਰਾ y ਸਥਿਤੀ";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "ਫਲੈਸ਼ਲਾਈਟ ਬੰਦ";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "ਫਰ";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "ਅਕਸਰ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ";
 
 /* No comment provided by engineer. */
 "Friday" = "ਸ਼ੁੱਕਰਵਾਰ";
@@ -801,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "ਜਾਇਰੋ ਸੈਂਸਰ";
+
+/* No comment provided by engineer. */
+"head top x" = "ਸਿਰ ਦਾ ਸਿਖਰ x";
+
+/* No comment provided by engineer. */
+"head top y" = "ਸਿਰ ਦਾ ਸਿਖਰ y";
 
 /* No comment provided by engineer. */
 "Hello!" = "ਹੈਲੋ!";
@@ -851,6 +893,9 @@
 "inclination y" = "ਝੁਕਾਅ y";
 
 /* No comment provided by engineer. */
+"index of item" = "ਇਕਾਈ ਦਾ ਇੰਡੈਕਸ";
+
+/* No comment provided by engineer. */
 "Information" = "ਜਾਣਕਾਰੀ";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "ਪਾਈ ਗਈ";
+
+/* No comment provided by engineer. */
+"Internet" = "ਇੰਟਰਨੈੱਟ";
 
 /* No comment provided by engineer. */
 "into list" = "ਸੂਚੀ ਵਿੱਚ ਕਰਨ ਲਈ";
@@ -872,7 +920,7 @@
 "iOS." = "iOS.";
 
 /* No comment provided by engineer. */
-"is true" = "is true";
+"is true" = "ਇਹ ਸੱਚ ਹੈ";
 
 /* No comment provided by engineer. */
 "is true then" = "ਫਿਰ ਸੱਚ ਹੈ";
@@ -932,6 +980,48 @@
 "Left" = "ਖੱਬੇ";
 
 /* No comment provided by engineer. */
+"left ear x" = "ਖੱਬਾ ਕੰਨ x";
+
+/* No comment provided by engineer. */
+"left ear y" = "ਛੇਤੀ ਛੱਡ ਦਿੱਤਾ";
+
+/* No comment provided by engineer. */
+"left eye center x" = "ਖੱਬੀ ਅੱਖ ਦਾ ਕੇਂਦਰ x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "ਖੱਬੀ ਅੱਖ ਦਾ ਕੇਂਦਰ y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "ਖੱਬੀ ਅੱਖ ਦਾ ਅੰਦਰੂਨੀ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "ਖੱਬੀ ਅੱਖ ਅੰਦਰੂਨੀ y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "ਖੱਬੀ ਅੱਖ ਬਾਹਰੀ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "ਖੱਬੀ ਅੱਖ ਬਾਹਰੀ y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "ਸਿਰਫ ਖੱਬੇ-ਸੱਜੇ";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "ਲਾਈਨ";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "ਸੂਚੀ ਦਾ ਨਾਮ:";
@@ -1094,6 +1187,18 @@
 "Motion properties" = "ਗਤੀ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ";
 
 /* No comment provided by engineer. */
+"mouth left corner x" = "ਮੂੰਹ ਦਾ ਖੱਬਾ ਕੋਨਾ x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "ਮੂੰਹ ਦਾ ਖੱਬਾ ਕੋਨਾ y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "ਮੂੰਹ ਦਾ ਸੱਜਾ ਕੋਨਾ x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "ਮੂੰਹ ਦਾ ਸੱਜਾ ਕੋਨਾ y";
+
+/* No comment provided by engineer. */
 "Move" = "ਭੇਜੋ";
 
 /* No comment provided by engineer. */
@@ -1157,7 +1262,7 @@
 "New variable" = "ਨਵਾਂ ਵੇਰੀਏਬਲ";
 
 /* No comment provided by engineer. */
-"New..." = "ਨਵਾਂ ...";
+"New..." = "ਨਵਾਂ…";
 
 /* No comment provided by engineer. */
 "Newest" = "ਨਵੀਨਤਮ";
@@ -1191,6 +1296,12 @@
 
 /* No comment provided by engineer. */
 "No whitespace character allowed" = "ਕੋਈ ਵ੍ਹਾਈਟਸਪੇਸ ਅੱਖਰ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ";
+
+/* No comment provided by engineer. */
+"nose x" = "ਨੱਕ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"nose y" = "ਨੱਕ y";
 
 /* No comment provided by engineer. */
 "not" = "ਨਹੀਂ";
@@ -1241,6 +1352,9 @@
 "on" = "ਚਾਲੂ";
 
 /* No comment provided by engineer. */
+"Once" = "ਇਕ ਵਾਰ";
+
+/* No comment provided by engineer. */
 "only 15 characters allowed" = "ਸਿਰਫ 15 ਅੱਖਰਾਂ ਦੀ ਆਗਿਆ ਹੈ";
 
 /* No comment provided by engineer. */
@@ -1262,7 +1376,7 @@
 "Password" = "ਪਾਸਵਰਡ";
 
 /* No comment provided by engineer. */
-"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "ਪਾਸਵਰਡ ਠੀਕ ਨਹੀਂ ਹੈ!\n ਇਸ ਵਿੱਚ ਘੱਟੋ ਘੱਟ 6 ਅੱਖਰ / ਚਿੰਨ੍ਹ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ";
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "ਪਾਸਵਰਡ ਠੀਕ ਨਹੀਂ ਹੈ! \n ਇਸ ਵਿੱਚ ਘੱਟੋ ਘੱਟ 6 ਅੱਖਰ / ਚਿੰਨ੍ਹ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ";
 
 /* No comment provided by engineer. */
 "Passwords do not match" = "ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ";
@@ -1310,7 +1424,7 @@
 "Pizzicato" = "ਪੀਜ਼ਾਕੈਟੋ";
 
 /* No comment provided by engineer. */
-"Place at " = "'ਤੇ ਰੱਖੋ";
+"Place at " = "'ਤੇ ਰੱਖੋ ";
 
 /* No comment provided by engineer. */
 "Play" = "ਖੇਡੋ";
@@ -1379,6 +1493,9 @@
 "Pointer" = "ਪੁਆਇੰਟਰ";
 
 /* No comment provided by engineer. */
+"Pose detection" = "ਪੋਜ਼";
+
+/* No comment provided by engineer. */
 "position x" = "ਸਥਿਤੀ x";
 
 /* No comment provided by engineer. */
@@ -1428,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "RE" = "RE";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "ਹਾਲ ਹੀ ਵਿੱਚ ਵਰਤੀ ਗਈ";
 
 /* No comment provided by engineer. */
 "Recording" = "ਰਿਕਾਰਡਿੰਗ";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "ਸਹੀ";
 
+/* No comment provided by engineer. */
+"right ear x" = "ਸੱਜਾ ਕੰਨ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"right ear y" = "ਸੱਜੇ ਕੰਨ y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "ਸੱਜੀ ਅੱਖ ਦਾ ਕੇਂਦਰ x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "ਸੱਜੀ ਅੱਖ ਦਾ ਕੇਂਦਰ y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "ਸੱਜੀ ਅੱਖ ਦਾ ਅੰਦਰੂਨੀ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "ਸੱਜੀ ਅੱਖ ਅੰਦਰੂਨੀ ਵਾਈ";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "ਸੱਜੀ ਅੱਖ ਬਾਹਰੀ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "ਸੱਜੀ ਅੱਖ ਬਾਹਰੀ y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
+
 /* paint */
 "Rotate" = "ਘੁੰਮਾਓ";
 
@@ -1535,13 +1697,25 @@
 "second" = "ਦੂਜਾ";
 
 /* No comment provided by engineer. */
-"second " = "ਦੂਜਾ";
+"second " = "ਦੂਜਾ ";
+
+/* No comment provided by engineer. */
+"second face size" = "ਦੂਜਾ ਚਿਹਰਾ ਅਕਾਰ";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "ਦੂਜਾ ਚਿਹਰਾ x ਸਥਿਤੀ";
+
+/* No comment provided by engineer. */
+"second face y position" = "ਦੂਜਾ ਚਿਹਰਾ y ਸਥਿਤੀ";
 
 /* No comment provided by engineer. */
 "seconds" = "ਸਕਿੰਟ";
 
 /* No comment provided by engineer. */
-"seconds " = "ਸਕਿੰਟ";
+"seconds " = "ਸਕਿੰਟ ";
 
 /* No comment provided by engineer. */
 "Select all" = "ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ";
@@ -1556,6 +1730,9 @@
 "Select categories" = "ਸ਼੍ਰੇਣੀਆਂ ਚੁਣੋ";
 
 /* No comment provided by engineer. */
+"Select file" = "ਫਾਈਲ ਚੁਣੋ";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "ਲਾਜ਼ੀਕਲ ਆਪਰੇਟਰ ਚੁਣੋ";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "ਫਿਲੋ ਚੁਣੋ";
+
+/* No comment provided by engineer. */
+"Send web request to" = "ਨੂੰ ਵੈੱਬ ਬੇਨਤੀ ਭੇਜੋ";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "ਅਗਿਆਤ ਕਰੈਸ਼ ਰਿਪੋਰਟਾਂ ਭੇਜ ਰਿਹਾ ਹੈ";
@@ -1595,10 +1775,16 @@
 "Set background" = "ਪਿਛੋਕੜ ਸੈੱਟ ਕਰੋ";
 
 /* No comment provided by engineer. */
-"Set brightness " = "ਚਮਕ ਨਿਰਧਾਰਤ ਕਰੋ";
+"Set background and wait" = "ਪਿਛੋਕੜ ਸੈਟ ਕਰੋ ਅਤੇ ਉਡੀਕ ਕਰੋ";
 
 /* No comment provided by engineer. */
-"Set color " = "ਰੰਗ ਸੈੱਟ ਕਰੋ";
+"Set background to number" = "ਨੰਬਰ ਤੇ ਬੈਕਗ੍ਰਾਉਂਡ ਸੈਟ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Set brightness " = "ਚਮਕ ਨਿਰਧਾਰਤ ਕਰੋ ";
+
+/* No comment provided by engineer. */
+"Set color " = "ਰੰਗ ਸੈੱਟ ਕਰੋ ";
 
 /* No comment provided by engineer. */
 "Set description" = "ਵੇਰਵਾ ਸੈੱਟ ਕਰੋ";
@@ -1625,7 +1811,7 @@
 "Set tempo to" = "ਟੈਂਪੂ ਸੈੱਟ ਕਰੋ";
 
 /* No comment provided by engineer. */
-"Set transparency " = "ਪਾਰਦਰਸ਼ਤਾ ਸੈੱਟ ਕਰੋ";
+"Set transparency " = "ਪਾਰਦਰਸ਼ਤਾ ਸੈੱਟ ਕਰੋ ";
 
 /* No comment provided by engineer. */
 "Set variable" = "ਵੇਰੀਏਬਲ ਸੈੱਟ ਕਰੋ";
@@ -1634,13 +1820,16 @@
 "Set volume to" = "ਵਾਲੀਅਮ ਨੂੰ ਸੈੱਟ ਕਰੋ";
 
 /* No comment provided by engineer. */
-"Set x to " = "X ਨੂੰ ਸੈੱਟ ਕਰੋ";
+"Set x to " = "X ਨੂੰ ਸੈੱਟ ਕਰੋ ";
 
 /* No comment provided by engineer. */
-"Set y to " = "ਨੂੰ y ਸੈੱਟ ਕਰੋ";
+"Set y to " = "ਨੂੰ y ਸੈੱਟ ਕਰੋ ";
 
 /* No comment provided by engineer. */
 "Settings" = "ਸੈਟਿੰਗਜ਼";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "ਸਿਲਾਈ";
 
 /* No comment provided by engineer. */
 "Show" = "ਵਿਖਾਓ";
@@ -1706,10 +1895,16 @@
 "Stamped" = "ਮੋਹਰ ਲੱਗੀ";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "ਲੰਬਾਈ ਦੇ ਨਾਲ ਸਿਲਾਈ ਚਲਾਉਣੀ ਸ਼ੁਰੂ ਕਰੋ";
+
+/* No comment provided by engineer. */
 "Start sound" = "ਆਵਾਜ਼ ਸ਼ੁਰੂ ਕਰੋ";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "ਆਵਾਜ਼ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਉਡੀਕ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "ਲੰਬਾਈ ਦੇ ਨਾਲ ਸਿਲਾਈ ਚਲਾਉਣੀ ਸ਼ੁਰੂ ਕਰੋ";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "ਸਟੀਲ ਡਰੱਮ";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "ਸਾਰੀਆਂ ਆਵਾਜ਼ਾਂ ਰੋਕੋ";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "ਮੌਜੂਦਾ ਟਾਂਕੇ ਨੂੰ ਰੋਕੋ";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "ਫਿਰੋ ਮੋਟਰ ਰੋਕੋ";
@@ -1865,6 +2063,15 @@
 "touch position" = "ਅਹਿਸਾਸ ਸਥਿਤੀ";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "ਅਦਾਕਾਰ ਜਾਂ ਵਸਤੂ ਨੂੰ ਛੂੰਹਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"touches edge" = "ਕਿਨਾਰੇ ਨੂੰ ਛੂਹਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
+"touches finger" = "ਉਂਗਲ ਨੂੰ ਛੂਹਦਾ ਹੈ";
+
+/* No comment provided by engineer. */
 "transparency" = "ਪਾਰਦਰਸ਼ਤਾ";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "ਉਹ ਆਵਾਜ਼ ਵਜਾਉਣ ਵਿੱਚ ਅਸਮਰੱਥ!\nਹੋ ਸਕਦਾ ਹੈ ਕਿ ਇਹ ਸਹੀ ਅਵਾਜ਼ ਨਾ ਹੋਵੇ ਜਾਂ ਫਾਈਲ ਖਰਾਬ ਹੈ.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "ਚੁਣੀ ਆਵਾਜ਼ ਚਲਾਉਣ ਵਿੱਚ ਅਸਮਰੱਥ. ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਸਾਈਲੈਂਟ ਮੋਡ ਵਿੱਚ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਆਈਫੋਨ ਦੇ ਖੱਬੇ ਪਾਸੇ ਸਵਿੱਚ ਟੌਗਲ ਕਰਕੇ ਸਾਈਲੈਂਟ ਮੋਡ ਨੂੰ ਬੰਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਪਲੇ 'ਤੇ ਟੈਪ ਕਰੋ.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "ਚੁਣੀ ਆਵਾਜ਼ ਚਲਾਉਣ ਵਿੱਚ ਅਸਮਰੱਥ. ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਸਾਈਲੈਂਟ ਮੋਡ ਵਿੱਚ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਆਈਪੈਡ ਦੇ ਸੱਜੇ ਪਾਸੇ ਸਵਿੱਚ ਟੌਗਲ ਕਰਕੇ ਸਾਈਲੈਂਟ ਮੋਡ ਨੂੰ ਬੰਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਪਲੇ 'ਤੇ ਟੈਪ ਕਰੋ.";
 
 /* paint */
 "underline" = "ਰੇਖਾ ਲਾਈਨ";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "ਫੀਰੋ ਇੱਟਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ";
 
 /* No comment provided by engineer. */
+"user language" = "ਉਪਭੋਗਤਾ ਭਾਸ਼ਾ";
+
+/* No comment provided by engineer. */
 "Username" = "ਉਪਯੋਗਕਰਤਾ ਨਾਮ";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "ਉਪਯੋਗਕਰਤਾ ਨਾਮ ਖਾਲੀ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "ਪਰਿਵਰਤਨਸ਼ੀਲ ਨਾਮ:";
@@ -2000,9 +2207,6 @@
 "Views" = "ਵਿਚਾਰ";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "ਵਿਜ਼ੂਅਲ ਸੈਂਸਰ";
-
-/* No comment provided by engineer. */
 "Wait" = "ਉਡੀਕ ਕਰੋ";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "ਅਸੀਂ";
+
+/* No comment provided by engineer. */
+"Web access" = "ਵੈੱਬ ਪਹੁੰਚ";
 
 /* No comment provided by engineer. */
 "Wednesday" = "ਬੁੱਧਵਾਰ";
