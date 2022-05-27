@@ -50,6 +50,9 @@
 "Add sound" = "소리 추가";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "Add trusted domain";
+
+/* No comment provided by engineer. */
 "Agree" = "동의";
 
 /* No comment provided by engineer. */
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "충돌 보고서를 자동으로 보내도록 허용";
 
+/* No comment provided by engineer. */
+"Allow web access" = "웹 액세스 허용";
+
 /* paint */
 "Alpha" = "투명도";
 
 /* No comment provided by engineer. */
 "altitude" = "고도";
+
+/* No comment provided by engineer. */
+"Always" = "항상";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Always allow web access";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "이미 같은 이름의 그림이 있습니다, 다시 시도 하십시오.";
@@ -89,10 +101,16 @@
 "and" = "그리고";
 
 /* No comment provided by engineer. */
+"and store answer in" = "답변 저장";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "답변 저장";
 
 /* No comment provided by engineer. */
 "and wait" = "그리고 대기";
+
+/* No comment provided by engineer. */
+"and width" = "폭";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "블록 애니메이션";
@@ -128,7 +146,7 @@
 "Ask " = "질문";
 
 /* No comment provided by engineer. */
-"at " = "  ";
+"at " = "에 ";
 
 /* No comment provided by engineer. */
 "at position" = "번째 위치에서";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "바순";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
 
 /* No comment provided by engineer. */
 "becomes true" = "참이 된다";
@@ -374,6 +395,9 @@
 "Create account" = "계정 만들기";
 
 /* No comment provided by engineer. */
+"Create as list" = "Create as list";
+
+/* No comment provided by engineer. */
 "Create patterns for stiching machines" = "스티칭 머신 용 패턴 생성";
 
 /* No comment provided by engineer. */
@@ -479,6 +503,9 @@
 "Deletion mode" = "삭제 모드";
 
 /* No comment provided by engineer. */
+"Deny" = "거부";
+
+/* No comment provided by engineer. */
 "Description" = "설명";
 
 /* No comment provided by engineer. */
@@ -536,6 +563,12 @@
 "Download" = "다운로드";
 
 /* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "너무 큰 다운로드";
+
+/* No comment provided by engineer. */
 "Downloads" = "다운로드";
 
 /* No comment provided by engineer. */
@@ -582,6 +615,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "소리 편집";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "Edit trusted domain";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "전자 기타";
@@ -677,16 +713,7 @@
 "FA" = "파";
 
 /* No comment provided by engineer. */
-"face detected" = "얼굴 인식";
-
-/* No comment provided by engineer. */
-"faceposition x" = "얼굴의 x좌표";
-
-/* No comment provided by engineer. */
-"faceposition y" = "얼굴의 y좌표";
-
-/* No comment provided by engineer. */
-"facesize" = "얼굴 크기";
+"Face detection" = "얼굴 인식";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "아이템을 가져오는데 실패했습니다. ";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "채우기";
+
+/* No comment provided by engineer. */
+"first face size" = "얼굴의 크기";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "얼굴의 x 좌표";
+
+/* No comment provided by engineer. */
+"first face y position" = "얼굴의 y 좌표";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "플래시 끄기";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "금";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "자주 사용되는";
 
 /* No comment provided by engineer. */
 "Friday" = "금요일";
@@ -803,13 +839,19 @@
 "gyro-sensor" = "자이로 센서";
 
 /* No comment provided by engineer. */
+"head top x" = "헤드 탑 x";
+
+/* No comment provided by engineer. */
+"head top y" = "헤드 탑 y";
+
+/* No comment provided by engineer. */
 "Hello!" = "안녕하세요!";
 
 /* No comment provided by engineer. */
 "Help" = "도움말";
 
 /* No comment provided by engineer. */
-"Hide" = "숨기기";
+"Hide" = "숨는 장소";
 
 /* No comment provided by engineer. */
 "Hide details" = "세부 사항 숨기기";
@@ -851,6 +893,9 @@
 "inclination y" = "y축방향 기울기";
 
 /* No comment provided by engineer. */
+"index of item" = "항목의 색인";
+
+/* No comment provided by engineer. */
 "Information" = "정보";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "삽입";
+
+/* No comment provided by engineer. */
+"Internet" = "인터넷";
 
 /* No comment provided by engineer. */
 "into list" = "리스트로";
@@ -932,6 +980,48 @@
 "Left" = "왼쪽";
 
 /* No comment provided by engineer. */
+"left ear x" = "왼쪽 귀 x";
+
+/* No comment provided by engineer. */
+"left ear y" = "일찍 떠났어";
+
+/* No comment provided by engineer. */
+"left eye center x" = "왼쪽 눈 센터 x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "왼쪽 눈 중심 y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "왼쪽 눈 내부 x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "왼쪽 눈 안쪽 y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "왼쪽 눈 바깥쪽 x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "왼쪽 눈 바깥쪽 y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "왼쪽-오른쪽만";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "선 그리기";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "리스트 이름:";
@@ -1094,6 +1187,18 @@
 "Motion properties" = "운동 속성";
 
 /* No comment provided by engineer. */
+"mouth left corner x" = "입 왼쪽 모서리 x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "입 왼쪽 모서리 y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "입 오른쪽 모서리 x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "입 오른쪽 모서리 y";
+
+/* No comment provided by engineer. */
 "Move" = "이동하기";
 
 /* No comment provided by engineer. */
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "빈 칸은 허용되지 않습니다";
 
 /* No comment provided by engineer. */
+"nose x" = "코 엑스";
+
+/* No comment provided by engineer. */
+"nose y" = "코 y";
+
+/* No comment provided by engineer. */
 "not" = "아님";
 
 /* No comment provided by engineer. */
@@ -1235,10 +1346,13 @@
 "off" = "끄기";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "확인";
 
 /* No comment provided by engineer. */
 "on" = "켜기";
+
+/* No comment provided by engineer. */
+"Once" = "한 번";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "15 문자문자까지 허용합니다";
@@ -1277,7 +1391,7 @@
 "Pen up" = "펜 올리기";
 
 /* No comment provided by engineer. */
-"Phiro" = "Phiro";
+"Phiro" = "피로";
 
 /* No comment provided by engineer. */
 "phiro bottom left" = "피로 왼쪽 아래";
@@ -1361,7 +1475,7 @@
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "포켓 코드는 시각적인 프로그래밍 언어 Catrobat의 iOS를 위한 프로그래밍 도구이다. 포켓코드의 코드는 대부분 GNU AGPL v3 라이센스이다. 라이센스에 대한 자세한 정보는 다음 링크를 이용하세요:";
 
 /* No comment provided by engineer. */
-"Pocket Code Recorder" = "Catroid 녹음기";
+"Pocket Code Recorder" = "포켓 코드 레코더";
 
 /* No comment provided by engineer. */
 "Pocket Code Source Code License" = "포켓 코드 소스 코드 라이센스";
@@ -1377,6 +1491,9 @@
 
 /* paint */
 "Pointer" = "포인터";
+
+/* No comment provided by engineer. */
+"Pose detection" = "포즈 감지";
 
 /* No comment provided by engineer. */
 "position x" = "x좌표";
@@ -1428,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "RE" = "레";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "최근 사용";
 
 /* No comment provided by engineer. */
 "Recording" = "녹음";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "오른쪽";
 
+/* No comment provided by engineer. */
+"right ear x" = "오른쪽 귀 X";
+
+/* No comment provided by engineer. */
+"right ear y" = "오른쪽 귀 y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "오른쪽 눈 센터 x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "오른쪽 눈 중심 y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "오른쪽 눈 내부 x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "오른쪽 눈 안쪽 y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "오른쪽 눈 바깥쪽 x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "오른쪽 눈 바깥쪽 y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
+
 /* paint */
 "Rotate" = "회전하기";
 
@@ -1538,6 +1700,18 @@
 "second " = "초";
 
 /* No comment provided by engineer. */
+"second face size" = "두 번째 얼굴 크기";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "두 번째면 x 위치";
+
+/* No comment provided by engineer. */
+"second face y position" = "두 번째면 y 위치";
+
+/* No comment provided by engineer. */
 "seconds" = "초";
 
 /* No comment provided by engineer. */
@@ -1556,6 +1730,9 @@
 "Select categories" = "카테고리 선택";
 
 /* No comment provided by engineer. */
+"Select file" = "파일 선택";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "논리 연산자를 선택";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Phiro 선택";
+
+/* No comment provided by engineer. */
+"Send web request to" = "웹 요청 보내기";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "익명 충돌 보고서 보내기";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "배경 설정";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "배경으로 설정";
+
+/* No comment provided by engineer. */
+"Set background to number" = "설정된 숫자로 배경 설정";
 
 /* No comment provided by engineer. */
 "Set brightness " = "밝기 설정하기";
@@ -1634,13 +1820,16 @@
 "Set volume to" = "음량 설정하기";
 
 /* No comment provided by engineer. */
-"Set x to " = "X좌표 정하기 :";
+"Set x to " = "x를 다음으로 설정 ";
 
 /* No comment provided by engineer. */
-"Set y to " = "Y좌표 정하기 :";
+"Set y to " = "y를 다음으로 설정 ";
 
 /* No comment provided by engineer. */
 "Settings" = "설정";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "바느질";
 
 /* No comment provided by engineer. */
 "Show" = "보이기";
@@ -1706,10 +1895,16 @@
 "Stamped" = "스탬프";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "길이만큼 스티치 시작";
+
+/* No comment provided by engineer. */
 "Start sound" = "소리 재생";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "소리 재생하고 기다리기";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "길이만큼 지그재그 스티치 시작";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "스틸 드럼";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "모든 소리 멈추기";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "현재 스티치 멈춤";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Phiro 모터 정지";
@@ -1853,7 +2051,7 @@
 "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "이 앱을 사용하려면, 개인보호정책을 따라야 하며, 불편하지 않아야 무료 웹서비스를 사용할 수 있다.";
 
 /* No comment provided by engineer. */
-"to x:" = "X:";
+"to x:" = "x까지:";
 
 /* No comment provided by engineer. */
 "Today" = "오늘";
@@ -1863,6 +2061,15 @@
 
 /* No comment provided by engineer. */
 "touch position" = "터치 위치";
+
+/* No comment provided by engineer. */
+"touches actor or object" = "오브젝트 터치";
+
+/* No comment provided by engineer. */
+"touches edge" = "모서리 터치";
+
+/* No comment provided by engineer. */
+"touches finger" = "손가락 터치";
 
 /* No comment provided by engineer. */
 "transparency" = "투명도";
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "소리를 재생할 수 없습니다! 들을 수 없거나 손상된 파일입니다.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "선택한 소리 파일을 재생할 수 없다. 당신의 폰이 무음 모드이다. 소리를 들으려면 iPhone 측면의 스위치를 이용해 무음 모드를 끄고 재생하세요.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "선택한 소리 파일을 재생할 수 없다. 당신의 폰이 무음 모드이다. 소리를 들으려면 iPad 측면의 스위치를 이용해 무음 모드를 끄고 재생하세요.";
 
 /* paint */
 "underline" = "밑줄";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "Phiro 블록 사용";
 
 /* No comment provided by engineer. */
+"user language" = "사용자 언어";
+
+/* No comment provided by engineer. */
 "Username" = "아이디";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "파일 이름을 반드시 입력해야 합니다.";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "변수 이름:";
@@ -2000,9 +2207,6 @@
 "Views" = "조회수";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "시각 센서";
-
-/* No comment provided by engineer. */
 "Wait" = "기다리기";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "수";
+
+/* No comment provided by engineer. */
+"Web access" = "웹 연결";
 
 /* No comment provided by engineer. */
 "Wednesday" = "수요일";

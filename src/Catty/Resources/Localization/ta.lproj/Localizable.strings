@@ -14,7 +14,7 @@
 "About Pocket Code" = "பற்றி பாக்கெட் குறியீடு";
 
 /* No comment provided by engineer. */
-"absolute value" = "absolute value";
+"absolute value" = "துல்லியமான மதிப்பு";
 
 /* No comment provided by engineer. */
 "acceleration x" = "முடுக்கம் x";
@@ -50,10 +50,13 @@
 "Add sound" = "ஒலி சேர்க்கவும்";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "நம்பகமானச் செயற்களத்தைச் சேர்";
+
+/* No comment provided by engineer. */
 "Agree" = "ஏற்கிறேன்";
 
 /* No comment provided by engineer. */
-"all around" = "all around";
+"all around" = "சுற்றிலும்";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "அனைத்து புளூடூத் சாதனங்களும் வெற்றிகரமாக துண்டிக்கப்பட்டுள்ளன";
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "செயலிழப்பு அறிக்கைகளை தானாக அனுப்ப பயன்பாட்டை அனுமதிக்கவும்";
 
+/* No comment provided by engineer. */
+"Allow web access" = "வலை‌ அணுகலை அனுமதிக்கவும்";
+
 /* paint */
 "Alpha" = "ஆல்ஃபா";
 
 /* No comment provided by engineer. */
 "altitude" = "உயரம்";
+
+/* No comment provided by engineer. */
+"Always" = "எப்போதும்";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "எப்போதும் இணைய அணுகலை அனுமதி";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "அதே பெயரில் ஒரு படம் ஏற்கனவே உள்ளது, மீண்டும் முயற்சிக்கவும்.";
@@ -89,10 +101,16 @@
 "and" = "மற்றும்";
 
 /* No comment provided by engineer. */
-"and store written answer in " = "and store written answer in ";
+"and store answer in" = "மற்றும் பதிலை சேமிக்கவும்";
+
+/* No comment provided by engineer. */
+"and store written answer in " = "மற்றும் எழுதப்பட்ட பதிலை சேமிக்கவும் ";
 
 /* No comment provided by engineer. */
 "and wait" = "காத்திருங்கள்";
+
+/* No comment provided by engineer. */
+"and width" = "and width";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "செங்கல் பாகங்களை அனிமேட் செய்யுங்கள்";
@@ -104,13 +122,13 @@
 "April" = "ஏப்ரல்";
 
 /* No comment provided by engineer. */
-"arccosine" = "arccosine";
+"arccosine" = "ஆர்க்கோசின்";
 
 /* No comment provided by engineer. */
-"arcsine" = "arcsine";
+"arcsine" = "ஆர்க்சைன்";
 
 /* No comment provided by engineer. */
-"arctangent" = "arctangent";
+"arctangent" = "ஆர்க்டாங்கென்ட்";
 
 /* No comment provided by engineer. */
 "Arduino" = "ஆர்டுயினோ";
@@ -125,7 +143,7 @@
 "Arduino extension" = "அர்டினோ நீட்டிப்பு";
 
 /* No comment provided by engineer. */
-"Ask " = "Ask ";
+"Ask " = "கேளுங்கள் ";
 
 /* No comment provided by engineer. */
 "at " = "at";
@@ -170,16 +188,19 @@
 "Backgrounds" = "பின்னணிகள்";
 
 /* No comment provided by engineer. */
-"Bass" = "Bass";
+"Bass" = "பாஸ்";
 
 /* No comment provided by engineer. */
-"Bassoon" = "Bassoon";
+"Bassoon" = "பஸூன்";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "அணுகலை அனுமதிப்பதற்கு முன் மிகவும் கவனமாக இருங்கள், ஏனெனில் இணைப்பு உங்கள் தனிப்பட்ட தகவலான  உங்கள் துல்லியமான புவியியல் இருப்பிடம் அல்லது நீங்கள் உள்ளிட்ட எவ்வுரையைத் தீங்கிழைக்கும் பிற நபர்களுக்கு அல்லது பொதுமக்களுக்கு வெளிப்படுத்தலாம்.  இது ஏன் மிகவும் ஆபத்தானது என்பதைப் பற்றிய கூடுதல் தகவலுக்கு எங்கள் விக்கியைப் பார்க்கவும்.  எப்போதும் அணுகலை அனுமதிப்பதன் மூலம், இந்த செயற்களத்திலிருந்து வலைமுகவரிகளை உறுதிப்படுத்த மீண்டும் கேட்கப்பட மாட்டீர்கள்.  இந்த அனுமதியை நீங்கள் பின்னர் திரும்பப் பெற விரும்பினால், இந்தப் பயன்பாட்டின் அமைப்புகளில் உள்ள நம்பகமான செயற்களங்களின் பட்டியலிலிருந்து செயற்களத்தை அகற்றலாம்.";
 
 /* No comment provided by engineer. */
 "becomes true" = "உண்மை ஆகிறது";
 
 /* No comment provided by engineer. */
-"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "நீங்கள் குறியீட்டைத் தொடங்குவதற்கு முன், தயவுசெய்து பயன்பாட்டைப் பயன்படுத்த எங்கள் தனியுரிமைக் கொள்கையைப் படித்து ஏற்கவும்:";
 
 /* No comment provided by engineer. */
 "blue" = "நீலம்";
@@ -239,13 +260,13 @@
 "Categories" = "வகைகள்";
 
 /* No comment provided by engineer. */
-"Catrobat community" = "கேட்ரோபாட் சமூகம்";
+"Catrobat community" = "கற்றோபாட்டுச் சமூகம்";
 
 /* No comment provided by engineer. */
 "ceiling" = "உட்கூரை";
 
 /* No comment provided by engineer. */
-"Cello" = "Cello";
+"Cello" = "செல்லோ";
 
 /* No comment provided by engineer. */
 "Change brightness " = "ப்ரைட்னசை மாற்று ";
@@ -257,10 +278,10 @@
 "Change size by" = "அளவை மாற்று";
 
 /* No comment provided by engineer. */
-"Change to landscape" = "Change to landscape";
+"Change to landscape" = "நிலப்பரப்புக்கு மாற்றவும்";
 
 /* No comment provided by engineer. */
-"Change to portrait" = "Change to portrait";
+"Change to portrait" = "உருவப்படத்திற்கு மாற்றவும்";
 
 /* No comment provided by engineer. */
 "Change transparency " = "வெளிப்படைத்தன்மையை மாற்றவும் ";
@@ -284,7 +305,7 @@
 "Changes saved." = "மாற்றங்கள் சேமிக்கப்பட்டன.";
 
 /* No comment provided by engineer. */
-"Choir" = "Choir";
+"Choir" = "பாடகர் குழு";
 
 /* No comment provided by engineer. */
 "Choose" = "தேர்வு செய்";
@@ -293,7 +314,7 @@
 "Choose image" = "படத்தைத் தேர்வுசெய்க";
 
 /* No comment provided by engineer. */
-"Clarinet" = "Clarinet";
+"Clarinet" = "கிளாரினெட்";
 
 /* No comment provided by engineer. */
 "Clear" = "அழி";
@@ -347,7 +368,7 @@
 "Continue" = "தொடர்ந்து";
 
 /* No comment provided by engineer. */
-"Continue project" = "தொடர்ந்து";
+"Continue project" = "திட்டப்பணியைத் தொடர்க";
 
 /* No comment provided by engineer. */
 "Control" = "கட்டுப்பாடு";
@@ -356,7 +377,7 @@
 "Copy" = "நகல்";
 
 /* No comment provided by engineer. */
-"Copy actors or objects" = "Copy actors or objects";
+"Copy actors or objects" = "நடிகர்கள் அல்லது பொருட்களை நகலெடுக்கவும்";
 
 /* No comment provided by engineer. */
 "Copy brick" = "செங்கலை நகலெடுக்கவும்";
@@ -368,13 +389,16 @@
 "Copy project" = "திட்டத்தை நகலெடுக்கவும்";
 
 /* No comment provided by engineer. */
-"cosine" = "cosine";
+"cosine" = "கொசைன்";
 
 /* No comment provided by engineer. */
 "Create account" = "கணக்கை உருவாக்கவும்";
 
 /* No comment provided by engineer. */
-"Create patterns for stiching machines" = "Create patterns for stiching machines";
+"Create as list" = "Create as list";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "தைக்கும் இயந்திரங்களுக்கான வடிவங்களை உருவாக்கவும்";
 
 /* No comment provided by engineer. */
 "Data" = "தகவல்கள்";
@@ -395,7 +419,7 @@
 "December" = "டிசம்பர்";
 
 /* No comment provided by engineer. */
-"decimal logarithm" = "decimal logarithm";
+"decimal logarithm" = "தசம மடக்கை";
 
 /* No comment provided by engineer. */
 "degrees" = "டிகிரிக்கள்";
@@ -479,6 +503,9 @@
 "Deletion mode" = "நீக்குதல் முறை";
 
 /* No comment provided by engineer. */
+"Deny" = "மறுத்துவிடு";
+
+/* No comment provided by engineer. */
 "Description" = "விளக்கம்";
 
 /* No comment provided by engineer. */
@@ -497,13 +524,13 @@
 "direction" = "திசை";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "செங்கல் முடக்கு";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "நிலையை முடக்கு";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "சுழற்சியை முடக்கு";
 
 /* No comment provided by engineer. */
 "Disable script" = "ஸ்கிரிப்டை முடக்கு";
@@ -512,7 +539,7 @@
 "Disagree" = "மறுக்கிறேன்";
 
 /* No comment provided by engineer. */
-"Discard changes" = "Discard changes";
+"Discard changes" = "மாற்றங்களை கைவிடலாம்";
 
 /* No comment provided by engineer. */
 "Disconnect all devices" = "எல்லா சாதனங்களையும் துண்டிக்கவும்";
@@ -534,6 +561,12 @@
 
 /* No comment provided by engineer. */
 "Download" = "பதிவிறக்கம்";
+
+/* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "பதிவிறக்கம் மிகவும் பெரியது";
 
 /* No comment provided by engineer. */
 "Downloads" = "பதிவிறக்கங்கள்";
@@ -584,10 +617,13 @@
 "Edit sounds" = "ஒலிகளைத் திருத்து";
 
 /* No comment provided by engineer. */
-"Electric Guitar" = "Electric Guitar";
+"Edit trusted domain" = "நம்பகமானச் செயற்களத்தைத் திருத்தவும்";
 
 /* No comment provided by engineer. */
-"Electric Piano" = "Electric Piano";
+"Electric Guitar" = "மின்சார கிட்டார்";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "மின்சார பியானோ";
 
 /* No comment provided by engineer. */
 "element" = "உறுப்பு";
@@ -611,13 +647,13 @@
 "Empty input!" = "வெற்று உள்ளீடு!";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Enable brick" = "செங்கலை இயக்கவும்";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Enable condition" = "நிலையை இயக்கு";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable loop" = "சுழற்சியை இயக்கு";
 
 /* No comment provided by engineer. */
 "Enable script" = "ஸ்கிரிப்டை இயக்கு";
@@ -662,7 +698,7 @@
 "Error" = "தவறு";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+"Error occurred while reporting the project. Please try again later." = "திட்டத்தைப் புகாரளிக்கும் போது பிழை ஏற்பட்டது. தயவுசெய்து பிறகு முயற்சிக்கவும்.";
 
 /* No comment provided by engineer. */
 "Error saving file" = "கோப்பைச் சேமிப்பதில் பிழை";
@@ -677,16 +713,7 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "முகம் கண்டறியப்பட்டது";
-
-/* No comment provided by engineer. */
-"faceposition x" = "முகம்நிலை x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "முகம்நிலை y";
-
-/* No comment provided by engineer. */
-"facesize" = "முகம் அளவு";
+"Face detection" = "Face detection";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "உருப்படியை இறக்குமதி செய்வதில் தோல்வி";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "நிரப்பு";
+
+/* No comment provided by engineer. */
+"first face size" = "முகம் அளவு";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "முகம் x நிலை";
+
+/* No comment provided by engineer. */
+"first face y position" = "முகம் y நிலை";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "ஃபிளாஷ்லைட் அணை";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "Fr";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "அடிக்கடி பயன்படுத்தப்படுபவை";
 
 /* No comment provided by engineer. */
 "Friday" = "வெள்ளிக்கிழமை";
@@ -801,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "கைரோ-சென்சார்";
+
+/* No comment provided by engineer. */
+"head top x" = "head top x";
+
+/* No comment provided by engineer. */
+"head top y" = "head top y";
 
 /* No comment provided by engineer. */
 "Hello!" = "வணக்கம்!";
@@ -851,6 +893,9 @@
 "inclination y" = "சாய்வு y";
 
 /* No comment provided by engineer. */
+"index of item" = "பொருள் அட்டவணை";
+
+/* No comment provided by engineer. */
 "Information" = "தகவல்";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "செருகு";
+
+/* No comment provided by engineer. */
+"Internet" = "Internet";
 
 /* No comment provided by engineer. */
 "into list" = "பட்டியலில்";
@@ -932,6 +980,48 @@
 "Left" = "இடது";
 
 /* No comment provided by engineer. */
+"left ear x" = "left ear x";
+
+/* No comment provided by engineer. */
+"left ear y" = "left ear y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "left eye center x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "left eye center y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "left eye inner x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "left eye inner y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "left eye outer x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "left eye outer y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "இடது-வலது மட்டும்";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "கோடு";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "பட்டியல் பெயர்:";
@@ -1094,6 +1187,18 @@
 "Motion properties" = "இயக்க பண்புகள்";
 
 /* No comment provided by engineer. */
+"mouth left corner x" = "mouth left corner x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "mouth left corner y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "mouth right corner x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "mouth right corner y";
+
+/* No comment provided by engineer. */
 "Move" = "நகர்த்து";
 
 /* No comment provided by engineer. */
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "எந்த இடைவெளியும் அனுமதிக்கப்படவில்லை";
 
 /* No comment provided by engineer. */
+"nose x" = "nose x";
+
+/* No comment provided by engineer. */
+"nose y" = "nose y";
+
+/* No comment provided by engineer. */
 "not" = "இல்லை";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "on" = "ஆன்";
+
+/* No comment provided by engineer. */
+"Once" = "ஒருமுறை";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "15 எழுத்துக்கள் மட்டுமே அனுமதிக்கப்படுகின்றன";
@@ -1313,7 +1427,7 @@
 "Place at " = "இடத்தில் ";
 
 /* No comment provided by engineer. */
-"Play" = "விளையாடு";
+"Play" = "நிகழ்த்து";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "பைரோ இசையை வாசிக்கவும்\n";
@@ -1379,6 +1493,9 @@
 "Pointer" = "சுட்டிக்காட்டி";
 
 /* No comment provided by engineer. */
+"Pose detection" = "போஸ் கண்டறிதல்";
+
+/* No comment provided by engineer. */
 "position x" = "நிலை x";
 
 /* No comment provided by engineer. */
@@ -1428,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "RE" = "RE";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "Recently used";
 
 /* No comment provided by engineer. */
 "Recording" = "பதிவுசெய்கிறது";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "வலது";
 
+/* No comment provided by engineer. */
+"right ear x" = "right ear x";
+
+/* No comment provided by engineer. */
+"right ear y" = "right ear y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "right eye center x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "right eye center y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "right eye inner x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "right eye inner y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "right eye outer x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "right eye outer y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
+
 /* paint */
 "Rotate" = "சுழற்று";
 
@@ -1538,13 +1700,25 @@
 "second " = "வினாடி ";
 
 /* No comment provided by engineer. */
+"second face size" = "second face size";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "second face x position";
+
+/* No comment provided by engineer. */
+"second face y position" = "second face y position";
+
+/* No comment provided by engineer. */
 "seconds" = "விநாடிகள்";
 
 /* No comment provided by engineer. */
 "seconds " = "விநாடிகள் ";
 
 /* No comment provided by engineer. */
-"Select all" = "அனைத்தையும் தேர்ந்தெடு";
+"Select all" = "எல்லாவற்றையும் தேர்ந்தெடு";
 
 /* bluetooth */
 "Select Arduino" = "Arduino ஐத் தேர்ந்தெடுக்கவும்";
@@ -1554,6 +1728,9 @@
 
 /* No comment provided by engineer. */
 "Select categories" = "Select categories";
+
+/* No comment provided by engineer. */
+"Select file" = "கோப்பு தேர்ந்தெடு";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "தருக்க ஆபரேட்டரைத் தேர்ந்தெடுக்கவும்";
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "ஃபிரோவைத் தேர்ந்தெடுக்கவும்";
+
+/* No comment provided by engineer. */
+"Send web request to" = "வலை கோரிக்கையை அனுப்பவும்";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "அநாமதேய செயலிழப்பு அறிக்கைகளை அனுப்புகிறது";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "பின்னணியை அமைக்கவும்";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "பின்னணியை அமைத்து காத்திருங்கள்";
+
+/* No comment provided by engineer. */
+"Set background to number" = "பின்னணியை எண்ணாக அமைக்கவும்";
 
 /* No comment provided by engineer. */
 "Set brightness " = "பிரகாசத்தை அமைக்கவும்";
@@ -1641,6 +1827,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "அமைவுகள்";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Sew up";
 
 /* No comment provided by engineer. */
 "Show" = "காட்டு";
@@ -1706,10 +1895,16 @@
 "Stamped" = "ஸ்டாம்ப்ட்";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "Start running stitch with length";
+
+/* No comment provided by engineer. */
 "Start sound" = "ஒலியைத் தொடங்குங்கள்";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "ஒலியைத் தொடங்கி காத்திருங்கள்";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Start zigzag stitch with length";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Steel Drum";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "எல்லா ஒலிகளையும் நிறுத்துங்கள்";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "Stop current stitch";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "பைரோ மோட்டாரை நிறுத்துங்கள்";
@@ -1772,7 +1970,7 @@
 "Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
 
 /* Button title at the settings screen to get to the terms of use and service. */
-"Terms of Use and Service" = "பயன்பாட்டு விதிகள் மற்றும் சேவைகள்";
+"Terms of Use and Service" = "பயன்பாட்டு மற்றும் சேவை விதிமுறைகள்";
 
 /* paint */
 "Text" = "உரை";
@@ -1865,6 +2063,15 @@
 "touch position" = "தொடு நிலை";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "நடிகர் அல்லது பொருளைத் கொடுக்கிறது";
+
+/* No comment provided by engineer. */
+"touches edge" = "விளிம்பைத் தொடும்";
+
+/* No comment provided by engineer. */
+"touches finger" = "விரலைத் தொடும்";
+
+/* No comment provided by engineer. */
 "transparency" = "வெளிப்படைத்தன்மை";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "அந்த ஒலியை இயக்க முடியவில்லை!\nஒருவேளை இது சரியான ஒலி இல்லை அல்லது கோப்பு சிதைந்துள்ளது.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "தேர்ந்தெடுக்கப்பட்ட ஒலியை இயக்க முடியவில்லை. உங்கள் சாதனம் அமைதியான பயன்முறையில் உள்ளது. உங்கள் ஐபோனின் இடது பக்கத்தில் உள்ள சுவிட்சை மாற்றுவதன் மூலம் அமைதியான பயன்முறையை அணைத்துவிட்டு மீண்டும் இயக்கத்தைத் தட்டவும்.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "தேர்ந்தெடுக்கப்பட்ட ஒலியை இயக்க முடியவில்லை. உங்கள் சாதனம் அமைதியான பயன்முறையில் உள்ளது. உங்கள் ஐபாட்டின் வலது பக்கத்தில் சுவிட்சை நிலைமாற்றி அமைதியான பயன்முறையை அணைத்துவிட்டு மீண்டும் இயக்கத்தைத் தட்டவும்.";
 
 /* paint */
 "underline" = "அடிக்கோடு";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "பைரோ செங்கற்களைப் பயன்படுத்துங்கள்";
 
 /* No comment provided by engineer. */
+"user language" = "பயனர் மொழி";
+
+/* No comment provided by engineer. */
 "Username" = "பயனர் பெயர்";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "பயனர்பெயர் காலியாக இருக்கக்கூடாது";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "மாறியின் பெயர்:";
@@ -2000,9 +2207,6 @@
 "Views" = "பார்வைகள்";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "Visual sensors";
-
-/* No comment provided by engineer. */
 "Wait" = "காத்திரு";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "நாம்";
+
+/* No comment provided by engineer. */
+"Web access" = "வலை அணுகல்";
 
 /* No comment provided by engineer. */
 "Wednesday" = "புதன்கிழமை";

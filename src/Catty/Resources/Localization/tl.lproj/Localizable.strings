@@ -8,10 +8,10 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
-"About Catrobat" = "About Catrobat";
+"About Catrobat" = "Tungkol sa Catrobat";
 
 /* No comment provided by engineer. */
-"About Pocket Code" = "About Pocket Code";
+"About Pocket Code" = "Tungkol sa Pocket Code";
 
 /* No comment provided by engineer. */
 "absolute value" = "absolute value";
@@ -29,7 +29,7 @@
 "acceleration-sensor" = "acceleration-sensor";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "Aktor at mga bagay";
 
 /* No comment provided by engineer. */
 "Add" = "Add";
@@ -44,10 +44,13 @@
 "Add image" = "Add image";
 
 /* Action sheet menu title */
-"Add look" = "Add look";
+"Add look" = "Magdagdag ng larawan";
 
 /* Action sheet menu title */
-"Add sound" = "Add sound";
+"Add sound" = "Magdagdag ng tunog";
+
+/* No comment provided by engineer. */
+"Add trusted domain" = "Add trusted domain";
 
 /* No comment provided by engineer. */
 "Agree" = "Agree";
@@ -62,16 +65,25 @@
 "All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"Allow the app to control Arduino boards" = "Payagan ang app na kontrolin ang Arduino boards";
 
 /* No comment provided by engineer. */
-"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+"Allow the app to send crash reports automatically" = "Pinapayagan ang app na magpadala ng mga ulat tungkol sa crash ng awtomatiko";
+
+/* No comment provided by engineer. */
+"Allow web access" = "Allow web access";
 
 /* paint */
-"Alpha" = "Alpha";
+"Alpha" = "Alpa";
 
 /* No comment provided by engineer. */
 "altitude" = "altitude";
+
+/* No comment provided by engineer. */
+"Always" = "Palagi";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Always allow web access";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
@@ -89,10 +101,16 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
+"and store answer in" = "and store answer in";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "and store written answer in ";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and wait" = "at maghintay";
+
+/* No comment provided by engineer. */
+"and width" = "and width";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Animate brick-parts";
@@ -155,7 +173,7 @@
 "back" = "back";
 
 /* No comment provided by engineer. */
-"Back" = "Back";
+"Back" = "Bumalik";
 
 /* No comment provided by engineer. */
 "Background" = "Background";
@@ -176,7 +194,10 @@
 "Bassoon" = "Bassoon";
 
 /* No comment provided by engineer. */
-"becomes true" = "becomes true";
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
+
+/* No comment provided by engineer. */
+"becomes true" = "ay naging totoo";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
@@ -185,7 +206,7 @@
 "blue" = "blue";
 
 /* paint */
-"Blue" = "Blue";
+"Blue" = "Bughaw";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
@@ -209,22 +230,22 @@
 "Broadcast" = "Broadcast";
 
 /* No comment provided by engineer. */
-"Broadcast and wait" = "Broadcast and wait";
+"Broadcast and wait" = "I-brodcast at maghintay";
 
 /* paint */
 "Brush" = "Brush";
 
 /* No comment provided by engineer. */
-"by" = "by";
+"by" = "ni";
 
 /* No comment provided by engineer. */
-"By registering you agree to our" = "By registering you agree to our";
+"By registering you agree to our" = "Sa pagrerehistro ikaw sa sumasang-ayon sa aming";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
-"Cancel" = "Cancel";
+"Cancel" = "I-cancel";
 
 /* bluetooth */
 "Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
@@ -236,7 +257,7 @@
 "Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
 
 /* No comment provided by engineer. */
-"Categories" = "Categories";
+"Categories" = "Kategorya";
 
 /* No comment provided by engineer. */
 "Catrobat community" = "Catrobat community";
@@ -254,7 +275,7 @@
 "Change color " = "Change color ";
 
 /* No comment provided by engineer. */
-"Change size by" = "Change size by";
+"Change size by" = "Palitan ang size sa";
 
 /* No comment provided by engineer. */
 "Change to landscape" = "Change to landscape";
@@ -299,10 +320,10 @@
 "Clear" = "Clear";
 
 /* No comment provided by engineer. */
-"Clear graphic effects" = "Clear graphic effects";
+"Clear graphic effects" = "I-Clear ang graphic effects";
 
 /* No comment provided by engineer. */
-"Close" = "Close";
+"Close" = "Isara";
 
 /* paint */
 "Close Paint" = "Close Paint";
@@ -329,7 +350,7 @@
 "Computed result is TRUE" = "Computed result is TRUE";
 
 /* No comment provided by engineer. */
-"Confirm password" = "Confirm password";
+"Confirm password" = "Kumpirmahin ang password";
 
 /* bluetooth */
 "Connection failed" = "Connection failed";
@@ -347,19 +368,19 @@
 "Continue" = "Continue";
 
 /* No comment provided by engineer. */
-"Continue project" = "Continue project";
+"Continue project" = "Ipagpatuloy ang proyekto";
 
 /* No comment provided by engineer. */
-"Control" = "Control";
+"Control" = "Kontrol";
 
 /* No comment provided by engineer. */
-"Copy" = "Copy";
+"Copy" = "Kopyahin";
 
 /* No comment provided by engineer. */
 "Copy actors or objects" = "Copy actors or objects";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy brick" = "Kopyahin ang brick";
 
 /* No comment provided by engineer. */
 "Copy looks" = "Copy looks";
@@ -372,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"Create as list" = "Create as list";
 
 /* No comment provided by engineer. */
 "Create patterns for stiching machines" = "Create patterns for stiching machines";
@@ -401,7 +425,7 @@
 "degrees" = "degrees";
 
 /* No comment provided by engineer. */
-"Delete" = "Delete";
+"Delete" = "Burahin";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "Delete actors or objects";
@@ -410,7 +434,7 @@
 "Delete backgrounds" = "Delete backgrounds";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Delete brick";
+"Delete brick" = "Burahin ang brick";
 
 /* No comment provided by engineer. */
 "Delete condition" = "Delete condition";
@@ -425,13 +449,13 @@
 "Delete loop" = "Delete loop";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete project" = "Burahin ang proyekto";
 
 /* No comment provided by engineer. */
 "Delete projects" = "Delete projects";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete script" = "Burahin ang script";
 
 /* No comment provided by engineer. */
 "Delete sounds" = "Delete sounds";
@@ -446,7 +470,7 @@
 "Delete these loops?" = "Delete these loops?";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "Delete these scripts?";
+"Delete these scripts?" = "Burahin ang mga script na ito?";
 
 /* No comment provided by engineer. */
 "Delete this actor or object" = "Delete this actor or object";
@@ -479,7 +503,10 @@
 "Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
-"Description" = "Description";
+"Deny" = "Itanggi";
+
+/* No comment provided by engineer. */
+"Description" = "Paglalarawan";
 
 /* No comment provided by engineer. */
 "Details" = "Details";
@@ -497,7 +524,7 @@
 "direction" = "direction";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "I-disable ang brick";
 
 /* No comment provided by engineer. */
 "Disable condition" = "Disable condition";
@@ -506,7 +533,7 @@
 "Disable loop" = "Disable loop";
 
 /* No comment provided by engineer. */
-"Disable script" = "Disable script";
+"Disable script" = "I-disable ang script";
 
 /* No comment provided by engineer. */
 "Disagree" = "Disagree";
@@ -524,16 +551,22 @@
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
 
 /* paint */
-"Do you want to save your changes?" = "Do you want to save your changes?";
+"Do you want to save your changes?" = "Gusto mo bang i-save ang mga pagbabago?";
 
 /* No comment provided by engineer. */
 "don't rotate" = "don't rotate";
 
 /* No comment provided by engineer. */
-"Done" = "Done";
+"Done" = "Tapos";
 
 /* No comment provided by engineer. */
 "Download" = "Download";
+
+/* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "Download too big";
 
 /* No comment provided by engineer. */
 "Downloads" = "Downloads";
@@ -551,7 +584,7 @@
 "Edit actor or object" = "Edit actor or object";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "I-edit ang background";
 
 /* Action sheet menu title */
 "Edit backgrounds" = "Edit backgrounds";
@@ -560,10 +593,10 @@
 "Edit brick" = "Edit brick";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "Baguhin ang formula";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "I-edit ang larawan";
 
 /* Action sheet menu title */
 "Edit looks" = "Edit looks";
@@ -584,6 +617,9 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Edit trusted domain" = "Edit trusted domain";
+
+/* No comment provided by engineer. */
 "Electric Guitar" = "Electric Guitar";
 
 /* No comment provided by engineer. */
@@ -602,7 +638,7 @@
 "Email" = "Email";
 
 /* No comment provided by engineer. */
-"Embroidery" = "Embroidery";
+"Embroidery" = "Pagbuburda";
 
 /* No comment provided by engineer. */
 "Embroidery extension" = "Embroidery extension";
@@ -611,7 +647,7 @@
 "Empty input!" = "Empty input!";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Enable brick" = "I-enable ang brick";
 
 /* No comment provided by engineer. */
 "Enable condition" = "Enable condition";
@@ -620,7 +656,7 @@
 "Enable loop" = "Enable loop";
 
 /* No comment provided by engineer. */
-"Enable script" = "Enable script";
+"Enable script" = "I-enable ang script";
 
 /* No comment provided by engineer. */
 "End if" = "End if";
@@ -656,7 +692,7 @@
 "Enter your variable name here..." = "Enter your variable name here...";
 
 /* paint */
-"Eraser" = "Eraser";
+"Eraser" = "Pambura";
 
 /* No comment provided by engineer. */
 "Error" = "Error";
@@ -677,16 +713,7 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
-
-/* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
-
-/* No comment provided by engineer. */
-"facesize" = "facesize";
+"Face detection" = "Face detection";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "Failed to import item";
@@ -716,7 +743,19 @@
 "February" = "February";
 
 /* paint */
-"Fill" = "Fill";
+"Fill" = "Punuin";
+
+/* No comment provided by engineer. */
+"first face size" = "first face size";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "first face x position";
+
+/* No comment provided by engineer. */
+"first face y position" = "first face y position";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Flashlight off";
@@ -757,9 +796,6 @@
 /* No comment provided by engineer. */
 "Fr" = "Fr";
 
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
-
 /* No comment provided by engineer. */
 "Friday" = "Friday";
 
@@ -794,7 +830,7 @@
 "green" = "green";
 
 /* paint */
-"Green" = "Green";
+"Green" = "Berde";
 
 /* No comment provided by engineer. */
 "Guitar" = "Guitar";
@@ -803,16 +839,22 @@
 "gyro-sensor" = "gyro-sensor";
 
 /* No comment provided by engineer. */
+"head top x" = "head top x";
+
+/* No comment provided by engineer. */
+"head top y" = "head top y";
+
+/* No comment provided by engineer. */
 "Hello!" = "Hello!";
 
 /* No comment provided by engineer. */
-"Help" = "Help";
+"Help" = "Tulong";
 
 /* No comment provided by engineer. */
-"Hide" = "Hide";
+"Hide" = "Itago";
 
 /* No comment provided by engineer. */
-"Hide details" = "Hide details";
+"Hide details" = "Itago ang mga detalye";
 
 /* No comment provided by engineer. */
 "Hide variable" = "Hide variable";
@@ -833,7 +875,7 @@
 "Image" = "Image";
 
 /* No comment provided by engineer. */
-"Image name" = "Image name";
+"Image name" = "Pangalan ng imahe";
 
 /* No comment provided by engineer. */
 "Image source not available" = "Image source not available";
@@ -851,13 +893,19 @@
 "inclination y" = "inclination y";
 
 /* No comment provided by engineer. */
-"Information" = "Information";
+"index of item" = "index of item";
+
+/* No comment provided by engineer. */
+"Information" = "Impormasyon";
 
 /* No comment provided by engineer. */
 "Insert" = "Insert";
 
 /* paint */
 "Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"Internet" = "Internet";
 
 /* No comment provided by engineer. */
 "into list" = "into list";
@@ -872,7 +920,7 @@
 "iOS." = "iOS.";
 
 /* No comment provided by engineer. */
-"is true" = "is true";
+"is true" = "ay totoo";
 
 /* No comment provided by engineer. */
 "is true then" = "is true then";
@@ -932,6 +980,48 @@
 "Left" = "Left";
 
 /* No comment provided by engineer. */
+"left ear x" = "left ear x";
+
+/* No comment provided by engineer. */
+"left ear y" = "left ear y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "left eye center x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "left eye center y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "left eye inner x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "left eye inner y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "left eye outer x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "left eye outer y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
@@ -944,7 +1034,10 @@
 "letter" = "letter";
 
 /* paint */
-"Line" = "Line";
+"Line" = "Linya";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "List name:";
@@ -956,10 +1049,10 @@
 "Lists" = "Lists";
 
 /* No comment provided by engineer. */
-"Lists for all actors and objects" = "Lists for all actors and objects";
+"Lists for all actors and objects" = "List para sa lahat ng mga aktor o mga bagay";
 
 /* No comment provided by engineer. */
-"Lists for this actor or object only" = "Lists for this actor or object only";
+"Lists for this actor or object only" = "List para sa aktor o sa bagay na ito lamang";
 
 /* No comment provided by engineer. */
 "Loading" = "Loading";
@@ -977,13 +1070,13 @@
 "Logical (Boolean) operators and constants" = "Logical (Boolean) operators and constants";
 
 /* No comment provided by engineer. */
-"Login" = "Login";
+"Login" = "Mag-Login";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "Tagumpay na nakapag-log in";
 
 /* No comment provided by engineer. */
-"Logout" = "Logout";
+"Logout" = "Mag-Logout";
 
 /* No comment provided by engineer. */
 "longitude" = "longitude";
@@ -1001,7 +1094,7 @@
 "look number" = "look number";
 
 /* No comment provided by engineer. */
-"Looks" = "Looks";
+"Looks" = "Larawan";
 
 /* No comment provided by engineer. */
 "loudness" = "loudness";
@@ -1088,10 +1181,22 @@
 "Most viewed" = "Most viewed";
 
 /* No comment provided by engineer. */
-"Motion" = "Motion";
+"Motion" = "Paggalaw";
 
 /* No comment provided by engineer. */
 "Motion properties" = "Motion properties";
+
+/* No comment provided by engineer. */
+"mouth left corner x" = "mouth left corner x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "mouth left corner y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "mouth right corner x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "mouth right corner y";
 
 /* No comment provided by engineer. */
 "Move" = "Move";
@@ -1127,7 +1232,7 @@
 "My object" = "My object";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "Pangalan";
 
 /* No comment provided by engineer. */
 "Name already exists." = "Name already exists.";
@@ -1145,10 +1250,10 @@
 "New list" = "New list";
 
 /* No comment provided by engineer. */
-"New message" = "New message";
+"New message" = "Bagong mensahe";
 
 /* No comment provided by engineer. */
-"New project" = "New project";
+"New project" = "Bagong proyekto";
 
 /* No comment provided by engineer. */
 "New text" = "New text";
@@ -1163,13 +1268,13 @@
 "Newest" = "Newest";
 
 /* No comment provided by engineer. */
-"Next background" = "Next background";
+"Next background" = "Sumunod na background";
 
 /* No comment provided by engineer. */
-"Next look" = "Next look";
+"Next look" = "Sumunod na larawan";
 
 /* No comment provided by engineer. */
-"No" = "No";
+"No" = "Hindi";
 
 /* No comment provided by engineer. */
 "No camera available" = "No camera available";
@@ -1191,6 +1296,12 @@
 
 /* No comment provided by engineer. */
 "No whitespace character allowed" = "No whitespace character allowed";
+
+/* No comment provided by engineer. */
+"nose x" = "nose x";
+
+/* No comment provided by engineer. */
+"nose y" = "nose y";
 
 /* No comment provided by engineer. */
 "not" = "not";
@@ -1235,10 +1346,13 @@
 "off" = "off";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "SIGE";
 
 /* No comment provided by engineer. */
 "on" = "on";
+
+/* No comment provided by engineer. */
+"Once" = "Isang beses";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "only 15 characters allowed";
@@ -1265,10 +1379,10 @@
 "Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
 
 /* No comment provided by engineer. */
-"Passwords do not match" = "Passwords do not match";
+"Passwords do not match" = "Hindi nagtugma ang password";
 
 /* No comment provided by engineer. */
-"Pen" = "Pen";
+"Pen" = "Panulat";
 
 /* No comment provided by engineer. */
 "Pen down" = "Pen down";
@@ -1313,7 +1427,7 @@
 "Place at " = "Place at ";
 
 /* No comment provided by engineer. */
-"Play" = "Play";
+"Play" = "Laruin";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
@@ -1322,7 +1436,7 @@
 "Please choose another name:" = "Please choose another name:";
 
 /* No comment provided by engineer. */
-"Please choose up to three categories" = "Please choose up to three categories";
+"Please choose up to three categories" = "Pakiusap pumili ng hanggang sa tatlong kategorya";
 
 /* paint */
 "Please enter a text." = "Please enter a text.";
@@ -1379,6 +1493,9 @@
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
+"Pose detection" = "Pose detection";
+
+/* No comment provided by engineer. */
 "position x" = "position x";
 
 /* No comment provided by engineer. */
@@ -1391,10 +1508,10 @@
 "Preview" = "Preview";
 
 /* No comment provided by engineer. */
-"Previous background" = "Previous background";
+"Previous background" = "Nakaraang background";
 
 /* No comment provided by engineer. */
-"Previous look" = "Previous look";
+"Previous look" = "Nakaraang larawan";
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
@@ -1403,16 +1520,16 @@
 "Project" = "Project";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
+"Project name" = "Pangalan ng proyekto";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Project Name is necessary!";
 
 /* No comment provided by engineer. */
-"Projects" = "Projects";
+"Projects" = "Mga Proyekto";
 
 /* No comment provided by engineer. */
-"Projects on device" = "Projects on device";
+"Projects on device" = "Proyekto sa device";
 
 /* No comment provided by engineer. */
 "Properties" = "Properties";
@@ -1429,6 +1546,9 @@
 /* No comment provided by engineer. */
 "RE" = "RE";
 
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "Recently used";
+
 /* No comment provided by engineer. */
 "Recording" = "Recording";
 
@@ -1436,13 +1556,13 @@
 "Rectangle / Square" = "Rectangle / Square";
 
 /* paint */
-"Red" = "Red";
+"Red" = "Pula";
 
 /* No comment provided by engineer. */
 "red" = "red";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
+"Register" = "Magrehistro";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Registration successful";
@@ -1454,25 +1574,25 @@
 "Remove known devices" = "Remove known devices";
 
 /* No comment provided by engineer. */
-"Rename" = "Rename";
+"Rename" = "Pangalanan muli";
 
 /* No comment provided by engineer. */
-"Rename actor or object" = "Rename actor or object";
+"Rename actor or object" = "Pangalanang muli ang aktor o bagay";
 
 /* No comment provided by engineer. */
 "Rename image" = "Rename image";
 
 /* No comment provided by engineer. */
-"Rename project" = "Rename project";
+"Rename project" = "Pangalanang muli ang proyekto";
 
 /* No comment provided by engineer. */
-"Rename sound" = "Rename sound";
+"Rename sound" = "Baguhan ng pangalan ang tunog";
 
 /* No comment provided by engineer. */
-"Repeat" = "Repeat";
+"Repeat" = "Ulitin";
 
 /* No comment provided by engineer. */
-"Repeat until" = "Repeat until";
+"Repeat until" = "Ulitin hanggang";
 
 /* No comment provided by engineer. */
 "Replace item in list" = "Replace item in list";
@@ -1484,13 +1604,55 @@
 "Resize" = "Resize";
 
 /* No comment provided by engineer. */
-"Restart" = "Restart";
+"Restart" = "I-Restart";
 
 /* No comment provided by engineer. */
 "Result" = "Result";
 
 /* No comment provided by engineer. */
 "Right" = "Right";
+
+/* No comment provided by engineer. */
+"right ear x" = "right ear x";
+
+/* No comment provided by engineer. */
+"right ear y" = "right ear y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "right eye center x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "right eye center y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "right eye inner x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "right eye inner y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "right eye outer x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "right eye outer y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
 
 /* paint */
 "Rotate" = "Rotate";
@@ -1517,7 +1679,7 @@
 "Saxophone" = "Saxophone";
 
 /* No comment provided by engineer. */
-"Say" = "Say";
+"Say" = "Magsalita";
 
 /* No comment provided by engineer. */
 "Scene" = "Scene";
@@ -1529,7 +1691,7 @@
 "Scripts" = "Scripts";
 
 /* bluetooth */
-"Search" = "Search";
+"Search" = "Maghanap";
 
 /* No comment provided by engineer. */
 "second" = "second";
@@ -1538,13 +1700,25 @@
 "second " = "second ";
 
 /* No comment provided by engineer. */
-"seconds" = "seconds";
+"second face size" = "second face size";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "second face x position";
+
+/* No comment provided by engineer. */
+"second face y position" = "second face y position";
+
+/* No comment provided by engineer. */
+"seconds" = "mga segundo";
 
 /* No comment provided by engineer. */
 "seconds " = "seconds ";
 
 /* No comment provided by engineer. */
-"Select all" = "Select all";
+"Select all" = "Piliin lahat";
 
 /* bluetooth */
 "Select Arduino" = "Select Arduino";
@@ -1554,6 +1728,9 @@
 
 /* No comment provided by engineer. */
 "Select categories" = "Select categories";
+
+/* No comment provided by engineer. */
+"Select file" = "Pumili ng mga file";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Select logical operator";
@@ -1568,7 +1745,10 @@
 "Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
-"Sending anonymous crash reports" = "Sending anonymous crash reports";
+"Send web request to" = "Send web request to";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "Nagpapadala ng di-kilalang mga ulat tungkol sa mga crash";
 
 /* No comment provided by engineer. */
 "Sensors" = "Sensors";
@@ -1583,7 +1763,7 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
-"Session expired, please log in." = "Session expired, please log in.";
+"Session expired, please log in." = "Nag-expired na ang session. pakiusap mag-log in.";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "Set Arduino digital pin";
@@ -1592,7 +1772,13 @@
 "Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
 
 /* No comment provided by engineer. */
-"Set background" = "Set background";
+"Set background" = "I-set ang background";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "I-set ang background at maghintay";
+
+/* No comment provided by engineer. */
+"Set background to number" = "I-set ang background sa numero";
 
 /* No comment provided by engineer. */
 "Set brightness " = "Set brightness ";
@@ -1601,7 +1787,7 @@
 "Set color " = "Set color ";
 
 /* No comment provided by engineer. */
-"Set description" = "Set description";
+"Set description" = "Mag-set ng description";
 
 /* No comment provided by engineer. */
 "Set Instrument to" = "Set Instrument to";
@@ -1619,7 +1805,7 @@
 "Set rotation style" = "Set rotation style";
 
 /* No comment provided by engineer. */
-"Set size to" = "Set size to";
+"Set size to" = "I-set ang size sa";
 
 /* No comment provided by engineer. */
 "Set tempo to" = "Set tempo to";
@@ -1642,11 +1828,14 @@
 /* No comment provided by engineer. */
 "Settings" = "Settings";
 
-/* No comment provided by engineer. */
-"Show" = "Show";
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Sew up";
 
 /* No comment provided by engineer. */
-"Show details" = "Show details";
+"Show" = "Ipakita";
+
+/* No comment provided by engineer. */
+"Show details" = "Ipakita ang mga detalye";
 
 /* No comment provided by engineer. */
 "Show variable" = "Show variable";
@@ -1670,13 +1859,13 @@
 "Something went wrong while uploading the project." = "Something went wrong while uploading the project.";
 
 /* No comment provided by engineer. */
-"Sound" = "Sound";
+"Sound" = "Tunog";
 
 /* No comment provided by engineer. */
-"Sound name" = "Sound name";
+"Sound name" = "Pangalan ng tunog";
 
 /* No comment provided by engineer. */
-"Sounds" = "Sounds";
+"Sounds" = "Tunog";
 
 /* No comment provided by engineer. */
 "Speak" = "Speak";
@@ -1706,10 +1895,16 @@
 "Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "Start running stitch with length";
+
+/* No comment provided by engineer. */
 "Start sound" = "Start sound";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Start sound and wait";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Start zigzag stitch with length";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Steel Drum";
@@ -1727,6 +1922,9 @@
 "Stop all sounds" = "Stop all sounds";
 
 /* No comment provided by engineer. */
+"Stop current stitch" = "Stop current stitch";
+
+/* No comment provided by engineer. */
 "Stop Phiro motor" = "Stop Phiro motor";
 
 /* No comment provided by engineer. */
@@ -1736,10 +1934,10 @@
 "Sunday" = "Sunday";
 
 /* No comment provided by engineer. */
-"Switch to look" = "Switch to look";
+"Switch to look" = "Lumipat ng larawan";
 
 /* No comment provided by engineer. */
-"Switch to look with number" = "Switch to look with number";
+"Switch to look with number" = "Lumipat ng larawan sa bilang";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Syntax Error!";
@@ -1754,25 +1952,25 @@
 "tangent" = "tangent";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
+"Tap \"+\" to add actors or objects" = "Pindutin ang \"+\" upang magdagdag ng aktor o bagay";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add looks" = "Tap \"+\" to add looks";
+"Tap \"+\" to add looks" = "Pindutin ang \"+\" upang magdagdag ng larawan";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add scripts" = "Tap \"+\" to add scripts";
+"Tap \"+\" to add scripts" = "Pindutin ang \"+\" upang magdagdag ng script ";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add sounds" = "Tap \"+\" to add sounds";
+"Tap \"+\" to add sounds" = "Pindutin ang \"+\" upang magdagdag ng tunog";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
 
 /* Button title at the settings screen to get to the terms of use and service. */
-"Terms of Use and Service" = "Terms of Use and Service";
+"Terms of Use and Service" = "Terms ng Paggamit at Serbisyo";
 
 /* paint */
 "Text" = "Text";
@@ -1814,7 +2012,7 @@
 "The sound item cannot be played" = "The sound item cannot be played";
 
 /* No comment provided by engineer. */
-"Think" = "Think";
+"Think" = "Mag-isip";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
@@ -1841,7 +2039,7 @@
 "times" = "times";
 
 /* No comment provided by engineer. */
-"to" = "to";
+"to" = "sa";
 
 /* No comment provided by engineer. */
 "to list" = "to list";
@@ -1856,13 +2054,22 @@
 "to x:" = "to x:";
 
 /* No comment provided by engineer. */
-"Today" = "Today";
+"Today" = "Ngayong Araw";
 
 /* No comment provided by engineer. */
 "Touch detection" = "Touch detection";
 
 /* No comment provided by engineer. */
 "touch position" = "touch position";
+
+/* No comment provided by engineer. */
+"touches actor or object" = "touches actor or object";
+
+/* No comment provided by engineer. */
+"touches edge" = "touches edge";
+
+/* No comment provided by engineer. */
+"touches finger" = "touches finger";
 
 /* No comment provided by engineer. */
 "transparency" = "transparency";
@@ -1900,17 +2107,11 @@
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
 
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
-
 /* paint */
 "underline" = "underline";
 
 /* Button title of alert view to invoke undo if user shakes device */
-"Undo" = "Undo";
+"Undo" = "Ibalik";
 
 /* Description text in alert view if user shakes the device */
 "Undo Drawing?" = "Undo Drawing?";
@@ -1940,7 +2141,7 @@
 "Unsupported Script:" = "Unsupported Script:";
 
 /* No comment provided by engineer. */
-"Upload project" = "Upload project";
+"Upload project" = "I-upload ang proyekto";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "Upload selected project";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "Use Phiro bricks";
 
 /* No comment provided by engineer. */
-"Username" = "Username";
+"user language" = "user language";
+
+/* No comment provided by engineer. */
+"Username" = "Pangalan ng gumagamit";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "Username must not be blank";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
@@ -1976,10 +2183,10 @@
 "Variables" = "Variables";
 
 /* No comment provided by engineer. */
-"Variables for all actors and objects" = "Variables for all actors and objects";
+"Variables for all actors and objects" = "Variables para sa lahat ng aktor o mga bagay";
 
 /* No comment provided by engineer. */
-"Variables for this actor or object only" = "Variables for this actor or object only";
+"Variables for this actor or object only" = "Variables para sa aktor o bagay lamang na ito";
 
 /* No comment provided by engineer. */
 "Version" = "Version";
@@ -2000,16 +2207,16 @@
 "Views" = "Views";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "Visual sensors";
+"Wait" = "Maghintay";
 
 /* No comment provided by engineer. */
-"Wait" = "Wait";
-
-/* No comment provided by engineer. */
-"Wait until" = "Wait until";
+"Wait until" = "Maghintay hanggang";
 
 /* No comment provided by engineer. */
 "We" = "We";
+
+/* No comment provided by engineer. */
+"Web access" = "Web access";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Wednesday";
@@ -2018,28 +2225,28 @@
 "weekday" = "weekday";
 
 /* No comment provided by engineer. */
-"Welcome!" = "Welcome!";
+"Welcome!" = "Maligayang pagdating!";
 
 /* No comment provided by engineer. */
-"What's your name?" = "What's your name?";
+"What's your name?" = "Ano'ng pangalan mo?";
 
 /* No comment provided by engineer. */
-"When" = "When";
+"When" = "Kapag";
 
 /* No comment provided by engineer. */
-"When background changes to" = "When background changes to";
+"When background changes to" = "Kapag nagpalit ng background sa";
 
 /* No comment provided by engineer. */
 "When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
-"When stage is tapped" = "When stage is tapped";
+"When stage is tapped" = "Kapag ang stage ay pinindot";
 
 /* No comment provided by engineer. */
-"When tapped" = "When tapped";
+"When tapped" = "Kapag pinindot";
 
 /* No comment provided by engineer. */
-"When you receive" = "When you receive";
+"When you receive" = "Kapag natanggap mo";
 
 /* paint */
 "Width selection" = "Width selection";
@@ -2060,7 +2267,7 @@
 "year" = "year";
 
 /* No comment provided by engineer. */
-"Yes" = "Yes";
+"Yes" = "Oo";
 
 /* No comment provided by engineer. */
 "Yesterday" = "Yesterday";

@@ -50,6 +50,9 @@
 "Add sound" = "Añadir sonido";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "Añadir dominio de confianza";
+
+/* No comment provided by engineer. */
 "Agree" = "Acepto";
 
 /* No comment provided by engineer. */
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "Permitir que la aplicación envíe informes de fallos automáticamente";
 
+/* No comment provided by engineer. */
+"Allow web access" = "Permitir el acceso a la web";
+
 /* paint */
 "Alpha" = "Alpha";
 
 /* No comment provided by engineer. */
 "altitude" = "altitud";
+
+/* No comment provided by engineer. */
+"Always" = "Siempre";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Permitir siempre el acceso web";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "Una imagen con el mismo nombre ya existe, vuelva a intentarlo.";
@@ -89,10 +101,16 @@
 "and" = "y ";
 
 /* No comment provided by engineer. */
+"and store answer in" = "y guardar respuesta en";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "y guardar respuesta por escrito en ";
 
 /* No comment provided by engineer. */
 "and wait" = "y esperar";
+
+/* No comment provided by engineer. */
+"and width" = "y ancho";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Animar partes de bloques";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "Bastión";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
 
 /* No comment provided by engineer. */
 "becomes true" = "se convierte en verdadero";
@@ -374,6 +395,9 @@
 "Create account" = "Crear una cuenta";
 
 /* No comment provided by engineer. */
+"Create as list" = "Create as list";
+
+/* No comment provided by engineer. */
 "Create patterns for stiching machines" = "Crear patrones para máquinas de coser";
 
 /* No comment provided by engineer. */
@@ -479,6 +503,9 @@
 "Deletion mode" = "Modo de eliminación";
 
 /* No comment provided by engineer. */
+"Deny" = "Rechazar";
+
+/* No comment provided by engineer. */
 "Description" = "Descripción";
 
 /* No comment provided by engineer. */
@@ -536,6 +563,12 @@
 "Download" = "Descargar";
 
 /* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "Descarga demasiado grande";
+
+/* No comment provided by engineer. */
 "Downloads" = "Descargas";
 
 /* No comment provided by engineer. */
@@ -582,6 +615,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "Editar sonidos";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "Edit trusted domain";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "Guitarra eléctrica";
@@ -677,16 +713,7 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "cara detectada";
-
-/* No comment provided by engineer. */
-"faceposition x" = "posicion facial x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "posicion facial y";
-
-/* No comment provided by engineer. */
-"facesize" = "tamaño_de_cara";
+"Face detection" = "Detección de rostros";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "Error al importar el elemento";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "Llenar";
+
+/* No comment provided by engineer. */
+"first face size" = "primer tamaño de cara";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "primera cara x posición";
+
+/* No comment provided by engineer. */
+"first face y position" = "primera posición de cara y";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Apagar la linterna";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "Vi";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Usado con frecuencia";
 
 /* No comment provided by engineer. */
 "Friday" = "Viernes";
@@ -801,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "sensor-giroscopio";
+
+/* No comment provided by engineer. */
+"head top x" = "cabeza superior x";
+
+/* No comment provided by engineer. */
+"head top y" = "cabeza arriba y";
 
 /* No comment provided by engineer. */
 "Hello!" = "¡Hola!";
@@ -851,6 +893,9 @@
 "inclination y" = "inclinacion y";
 
 /* No comment provided by engineer. */
+"index of item" = "índice del elemento";
+
+/* No comment provided by engineer. */
 "Information" = "Información";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "Insertado";
+
+/* No comment provided by engineer. */
+"Internet" = "Internet";
 
 /* No comment provided by engineer. */
 "into list" = "a la lista";
@@ -932,6 +980,48 @@
 "Left" = "Izquierda";
 
 /* No comment provided by engineer. */
+"left ear x" = "oreja izquierda x";
+
+/* No comment provided by engineer. */
+"left ear y" = "oreja izquierda y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "ojo izquierdo centro x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "ojo izquierdo centro y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "ojo izquierdo interno x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "ojo izquierdo interno y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "ojo izquierdo exterior x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "ojo izquierdo exterior y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "de izquierda a derecha solamente";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "Línea";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "Nombre de lista:";
@@ -1094,6 +1187,18 @@
 "Motion properties" = "propiedades de movimiento";
 
 /* No comment provided by engineer. */
+"mouth left corner x" = "esquina izquierda de la boca x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "esquina izquierda de la boca y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "boca esquina derecha x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "esquina derecha de la boca y";
+
+/* No comment provided by engineer. */
 "Move" = "Mover";
 
 /* No comment provided by engineer. */
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "No se permite el uso de espacios en blanco";
 
 /* No comment provided by engineer. */
+"nose x" = "nariz x";
+
+/* No comment provided by engineer. */
+"nose y" = "nariz y";
+
+/* No comment provided by engineer. */
 "not" = "no";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "on" = "encendido";
+
+/* No comment provided by engineer. */
+"Once" = "Una vez";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "solo se permiten 15 caracteres";
@@ -1379,6 +1493,9 @@
 "Pointer" = "Puntero";
 
 /* No comment provided by engineer. */
+"Pose detection" = "Detección de poses";
+
+/* No comment provided by engineer. */
 "position x" = "posición x";
 
 /* No comment provided by engineer. */
@@ -1428,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "RE" = "RE";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "Usado recientemente";
 
 /* No comment provided by engineer. */
 "Recording" = "Grabando";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "Derecha";
 
+/* No comment provided by engineer. */
+"right ear x" = "oreja derecha x";
+
+/* No comment provided by engineer. */
+"right ear y" = "oreja derecha y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "centro del ojo derecho x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "centro del ojo derecho y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "ojo derecho interior x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "ojo derecho interior y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "ojo derecho exterior x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "ojo derecho exterior y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
+
 /* paint */
 "Rotate" = "Rotar";
 
@@ -1538,6 +1700,18 @@
 "second " = "segundo";
 
 /* No comment provided by engineer. */
+"second face size" = "segundo tamaño de la cara";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "segunda cara x posición";
+
+/* No comment provided by engineer. */
+"second face y position" = "posición de la segunda cara y";
+
+/* No comment provided by engineer. */
 "seconds" = "segundos";
 
 /* No comment provided by engineer. */
@@ -1556,6 +1730,9 @@
 "Select categories" = "Seleccionar categorías";
 
 /* No comment provided by engineer. */
+"Select file" = "Seleccione Archivo";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "Seleccione operador lógico";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Seleccionar Phiro";
+
+/* No comment provided by engineer. */
+"Send web request to" = "Enviar petición web a";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Enviar los informes de errores de manera anónima";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "Establecer una imagen de fondo";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "Establecer fondo y esperar";
+
+/* No comment provided by engineer. */
+"Set background to number" = "Asociar fondo al número";
 
 /* No comment provided by engineer. */
 "Set brightness " = "Ajuste del brillo ";
@@ -1641,6 +1827,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Configuración";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Salvar";
 
 /* No comment provided by engineer. */
 "Show" = "Mostrar";
@@ -1706,10 +1895,16 @@
 "Stamped" = "Estampado";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "Empezar a correr stitch con longitud";
+
+/* No comment provided by engineer. */
 "Start sound" = "Iniciar sonido";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Reproducir sonido y esperar";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Iniciar unión zigzag con la longitud";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Tambor de acero";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Para todos los sonidos";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "Detener stitch actual";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Parar el motor Phiro";
@@ -1865,6 +2063,15 @@
 "touch position" = "posición táctil";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "toca actor u objeto";
+
+/* No comment provided by engineer. */
+"touches edge" = "tocar_bordes";
+
+/* No comment provided by engineer. */
+"touches finger" = "tocar_dedos";
+
+/* No comment provided by engineer. */
 "transparency" = "transparencia";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "No se puede reproducir el sonido! \nPuede que el sonido no sea válido o el archivo esté dañado.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "No se puede reproducir el sonido seleccionado. El dispositivo está en modo silencioso. Por favor, desactivar el modo silencioso basculando el interruptor en el lado izquierdo de su iPhone y toque en el juego otra vez.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "No se puede reproducir el sonido seleccionado. El dispositivo está en modo silencioso. Por favor, desactivar el modo silencioso basculando el interruptor en el lado izquierdo de su iPhone y toque en el juego otra vez.";
 
 /* paint */
 "underline" = "subrayar";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "Usar bloques Phiro";
 
 /* No comment provided by engineer. */
+"user language" = "idioma del usuario";
+
+/* No comment provided by engineer. */
 "Username" = "Usuario";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "El nombre de usuario no debe quedar vacío";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Nombre de la variable:";
@@ -2000,9 +2207,6 @@
 "Views" = "Vistas";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "Sensores visuales";
-
-/* No comment provided by engineer. */
 "Wait" = "Espere";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "Mi";
+
+/* No comment provided by engineer. */
+"Web access" = "Acceso Web";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Miércoles";
