@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,18 +25,30 @@ import XCTest
 
 @testable import Pocket_Code
 
-class AudioEngineFingerprintingStub: AudioEngine {
-    var recorder: AKNodeRecorder?
-    var tape: AKAudioFile?
+class AudioEngineFingerprintingStub: Pocket_Code.AudioEngine {
+    private var recorder: AudioKit.NodeRecorder?
+    var muted = true
 
-    func addNodeRecorderAtEngineOut(tape: AKAudioFile) -> AKNodeRecorder {
-        do {
-            postProcessingMixer.volume = 0
-            recorder = try AKNodeRecorder(node: engineOutputMixer, file: tape)
-        } catch {
-            print("Should not happen")
+    override func start() {
+        super.start()
+        if muted {
+            engine.mainMixerNode?.volume = muted ? 0.0 : 1.0
+            speechSynth.utteranceVolume = muted ? 0.0 : 1.0
         }
 
-        return recorder!
+        let tempFile: AVAudioFile? = AudioKit.NodeRecorder.createTempFile()
+        let file = try? AVAudioFile(forWriting: tempFile!.url, settings: tempFile!.fileFormat.settings)
+
+        recorder = try? AudioKit.NodeRecorder(node: engineOutputMixer, file: file)
+        try? self.recorder?.record()
+    }
+
+    override func stop() {
+        recorder?.stop()
+        super.stop()
+    }
+
+    var tape: AVAudioFile? {
+        recorder?.audioFile
     }
 }

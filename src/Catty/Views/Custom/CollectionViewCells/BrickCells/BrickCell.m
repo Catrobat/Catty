@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@
 {
     [super layoutSubviews];
     self.contentView.frame = CGRectIntegral(self.bounds);
-    self.selectButton.center = CGPointMake(self.bounds.origin.x - kSelectButtonOffset,
+    self.selectButton.center = CGPointMake(self.bounds.origin.x - UIDefines.selectButtonOffset,
                                            CGRectGetMidY(self.bounds));
 }
 
@@ -99,7 +99,7 @@
     [self renderSubViews];
     if (self.editing) {
         if (self.frame.origin.x == 0.0f) {
-            self.center = CGPointMake(self.center.x + kSelectButtonTranslationOffsetX, self.center.y);
+            self.center = CGPointMake(self.center.x + UIDefines.selectButtonTranslationOffsetX, self.center.y);
             self.selectButton.alpha = 1.0f;
         }
     } else {
@@ -148,7 +148,7 @@
 {
     if (!_selectButton) {
         _selectButton = [[SelectButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
-                        kBrickCellDeleteButtonWidthHeight, kBrickCellDeleteButtonWidthHeight)];
+                        UIDefines.brickCellDeleteButtonWidthHeight, UIDefines.brickCellDeleteButtonWidthHeight)];
         _selectButton.alpha = 0.0f;
         [self addSubview:_selectButton];
         [_selectButton addTarget:self action:@selector(selectButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -179,18 +179,18 @@
     kBrickShapeType brickShapeType = [self brickShapeType];
     CGFloat inlineViewOffsetY = 0.0f;
     if (brickShapeType != kBrickShapeRoundedSmall && brickShapeType != kBrickShapeRoundedBig) {
-        inlineViewHeight -= kBrickShapeNormalMarginHeightDeduction;
-        inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
+        inlineViewHeight -= UIDefines.brickShapeNormalMarginHeightDeduction;
+        inlineViewOffsetY = UIDefines.brickShapeNormalInlineViewOffsetY;
     } else if (brickShapeType == kBrickShapeRoundedSmall) {
-        inlineViewHeight -= kBrickShapeRoundedSmallMarginHeightDeduction;
-        inlineViewOffsetY = kBrickShapeRoundedSmallInlineViewOffsetY;
+        inlineViewHeight -= UIDefines.brickShapeRoundedSmallMarginHeightDeduction;
+        inlineViewOffsetY = UIDefines.brickShapeRoundedSmallInlineViewOffsetY;
     } else if (brickShapeType == kBrickShapeRoundedBig) {
-        inlineViewHeight -= kBrickShapeRoundedBigMarginHeightDeduction;
-        inlineViewOffsetY = kBrickShapeRoundedBigInlineViewOffsetY;
+        inlineViewHeight -= UIDefines.brickShapeRoundedBigMarginHeightDeduction;
+        inlineViewOffsetY = UIDefines.brickShapeRoundedBigInlineViewOffsetY;
     } else {
         NSError(@"unknown brick shape type given");
     }
-    CGRect frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), inlineViewHeight);
+    CGRect frame = CGRectMake(UIDefines.brickInlineViewOffsetX, inlineViewOffsetY, (self.frame.size.width - UIDefines.brickInlineViewOffsetX), inlineViewHeight);
     self.inlineView.frame = frame;
     self.inlineView.backgroundColor = UIColor.clearColor;
 
@@ -232,7 +232,7 @@
 #pragma mark - helpers
 - (NSArray*)inlineViewSubviews
 {
-    CGRect canvasFrame = CGRectMake(kBrickInlineViewCanvasOffsetX, kBrickInlineViewCanvasOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
+    CGRect canvasFrame = CGRectMake(UIDefines.brickInlineViewCanvasOffsetX, UIDefines.brickInlineViewCanvasOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
 
     NSString *brickTitle = self.brickTitle;
     NSArray *brickParams = self.parameters;
@@ -273,7 +273,7 @@
         // determine height per line and generate subviews of all lines
         CGFloat totalHeight = canvasFrame.size.height;
         CGFloat averageHeight = totalHeight / (CGFloat)numberOfLines;
-        CGFloat heightForLineWithParams = ((averageHeight > kBrickInputFieldMinRowHeight) ? averageHeight : kBrickInputFieldMinRowHeight);
+        CGFloat heightForLineWithParams = ((averageHeight > UIDefines.brickInputFieldMinRowHeight) ? averageHeight : UIDefines.brickInputFieldMinRowHeight);
         CGFloat remainingTotalHeight = (totalHeight - (heightForLineWithParams * numberOfLinesWithParams));
         CGFloat heightForLineWithNoParams = (remainingTotalHeight / (numberOfLines - numberOfLinesWithParams));
         NSMutableArray *allLinesSubviews = [NSMutableArray array];
@@ -320,7 +320,7 @@
     
     UILabel* textLabel = [UIUtil newDefaultBrickLabelWithFrame:frame AndText:labelTitle andRemainingSpace:frame.size.width];
     
-    self.maxInputFormulaFrameLength = (frame.size.width - ((NSInteger)textLabel.frame.size.width + kBrickInputFieldLeftMargin * [partLabels count]) - kBrickTextFieldFontSize) / formulaCounter;
+    self.maxInputFormulaFrameLength = (frame.size.width - ((NSInteger)textLabel.frame.size.width + UIDefines.brickInputFieldLeftMargin * [partLabels count]) - UIDefines.brickTextFieldFontSize) / formulaCounter;
 }
 
 - (NSMutableArray*)inlineViewSubviewsOfLabel:(NSString*)labelTitle WithParams:(NSArray*)params WithFrame:(CGRect)frame ForLineNumber:(NSInteger)lineNumber
@@ -345,8 +345,8 @@
     for (NSString *partLabelTitle in partLabels) {
         if (partLabelTitle.length) {
             UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle andRemainingSpace:remainingFrame.size.width];
-            remainingFrame.origin.x += (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
-            remainingFrame.size.width -= (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
+            remainingFrame.origin.x += (textLabel.frame.size.width + UIDefines.brickInputFieldLeftMargin);
+            remainingFrame.size.width -= (textLabel.frame.size.width + UIDefines.brickInputFieldLeftMargin);
             [subviews addObject:textLabel];
         }
 
@@ -357,61 +357,61 @@
             // NOTE: * This is only code used for testing purposes. TO BE REFACTORED...
             //       * Pickers, Pluralization, Hook Ups only for inputFields ...
             CGRect inputViewFrame = remainingFrame;
-//            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
-//            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
-            inputViewFrame.origin.y += (inputViewFrame.size.height - kBrickInputFieldHeight)/2 - 0.5;
-            inputViewFrame.size.height = kBrickInputFieldHeight;
-            inputViewFrame.size.width = kBrickInputFieldMinWidth;
+//            inputViewFrame.origin.y += UIDefines.brickInputFieldTopMargin;
+//            inputViewFrame.size.height -= (UIDefines.brickInputFieldTopMargin + UIDefines.brickInputFieldBottomMargin);
+            inputViewFrame.origin.y += (inputViewFrame.size.height - UIDefines.brickInputFieldHeight)/2 - 0.5;
+            inputViewFrame.size.height = UIDefines.brickInputFieldHeight;
+            inputViewFrame.size.width = UIDefines.brickInputFieldMinWidth;
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
                 inputField = [[BrickCellFormulaData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-                inputViewFrame.size.height = kBrickInputFieldHeight;
+                inputViewFrame.size.height = UIDefines.brickInputFieldHeight;
                 inputField = [[BrickCellTextData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellMessageData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellObjectData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellSoundData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellLookData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"BACKGROUND"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellBackgroundData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LIST"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellListData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"STATICCHOICE"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellStaticChoiceData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"MOTOR"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellPhiroMotorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LIGHT"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellPhiroLightData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TONE"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellPhiroToneData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"PHIROIF"].location != NSNotFound) {
-                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellPhiroIfSensorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             }else {
                 NSError(@"unknown data type %@ given", afterLabelParam);
                 abort();
             }
 
-            remainingFrame.origin.x += (inputField.frame.size.width + kBrickInputFieldRightMargin);
-            remainingFrame.size.width -= (inputField.frame.size.width + kBrickInputFieldRightMargin);
+            remainingFrame.origin.x += (inputField.frame.size.width + UIDefines.brickInputFieldRightMargin);
+            remainingFrame.size.width -= (inputField.frame.size.width + UIDefines.brickInputFieldRightMargin);
             [subviews addObject:inputField];
         }
         counter++;

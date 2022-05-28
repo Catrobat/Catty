@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) Project *lastUsedProject;
 @property (nonatomic, strong) Project *defaultProject;
-@property (nonatomic, assign) BOOL freshLogin;
+@property (nonatomic, strong) ProjectManager *projectManager;
 @property (nonatomic, assign) CGFloat dynamicStatusBarHeight;
 @property (nonatomic, assign) CGFloat fixedStatusBarHeight;
 @end
@@ -65,15 +65,23 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     return _lastUsedProject;
 }
 
+- (ProjectManager*)projectManager
+{
+    if (! _projectManager) {
+        _projectManager = [ProjectManager shared];
+    }
+    return _projectManager;
+}
+
 #pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initTableView];
 
-    self.freshLogin = false;
     self.lastUsedProject = nil;
     self.defaultProject = nil;
+    
     CBFileManager *fileManager = [CBFileManager sharedManager];
     if (! [fileManager directoryExists:[Project basePath]]) {
         [fileManager createDirectory:[Project basePath]];
@@ -101,17 +109,9 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
-    BOOL lockIphoneEnabeled = [self shouldLockIphoneInAppWithoutScenePresenter];
-    [[UIApplication sharedApplication] setIdleTimerDisabled:(lockIphoneEnabeled)];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    self.tableView.scrollEnabled = YES;
+    self.tableView.scrollEnabled = NO;
     [self initNavigationBar];
-}
-
-- (BOOL)shouldLockIphoneInAppWithoutScenePresenter
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return (! [defaults boolForKey:@"lockiphone"]);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -145,7 +145,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                   kLocalizedCatrobatCommunity,
                   kLocalizedUploadProject, nil];
 
-    self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNameProjects, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
+    self.imageNames = [[NSArray alloc] initWithObjects:UIDefines.menuImageNameContinue, UIDefines.menuImageNameNew, UIDefines.menuImageNameProjects, UIDefines.menuImageNameHelp, UIDefines.menuImageNameExplore, UIDefines.menuImageNameUpload, nil];
 }
 
 - (void)initNavigationBar
@@ -186,7 +186,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)createAndOpenProjectWithName:(NSString*)projectName
 {
     [self showLoadingView];
-    self.defaultProject = [ProjectManager createProjectWithName:projectName projectId:nil];
+    self.defaultProject = [self.projectManager createProjectWithName:projectName projectId:nil];
     if (self.defaultProject) {
         [self hideLoadingView];
         [self openProject:self.defaultProject];
@@ -219,25 +219,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     }
     if (indexPath.row == 0) {
         [self configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*) cell];
-    } else {
-        
-        DarkBlueGradientImageCell *imageCell = (DarkBlueGradientImageCell*) cell;
-        if (([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) || ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)) {
-            
-            imageCell.imageViewBottomConstraint.constant = 0;
-            imageCell.imageViewTopConstraint.constant = 0;
-            
-        } else {
-            
-            imageCell.imageViewBottomConstraint.constant = -10;
-            imageCell.imageViewTopConstraint.constant = 10;
-            
-        }
-        
-    }
-    
-    if (indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {
-        cell.separatorInset = UIEdgeInsetsMake(0.f, MAX([Util screenHeight],[Util screenWidth]), 0.f, 0.f);
     }
     
     cell.layoutMargins = UIEdgeInsetsZero;
@@ -291,7 +272,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             } else {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
                 LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-                vc.catTVC = self;
+                vc.delegate = self;
                 [self.navigationController pushViewController:vc animated:YES];
             }
 
@@ -305,20 +286,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
--(void)afterSuccessfulLogin
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([[[NSUserDefaults standardUserDefaults] valueForKey: NetworkDefines.kUserIsLoggedIn] boolValue]) {
-            static NSString *segueToUploadIdentifier = kSegueToUpload;
-            
-            if ([self shouldPerformSegueWithIdentifier:segueToUploadIdentifier sender:self]) {
-                self.freshLogin = true;
-                [self performSegueWithIdentifier:segueToUploadIdentifier sender:self];
-            }
-        }
-    });
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -345,7 +312,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
     if (indexPath.row == 0) {
         
-        [ProjectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
+        [self.projectManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
             
             if(image && cell) {
                 dispatch_queue_main_t queue = dispatch_get_main_queue();

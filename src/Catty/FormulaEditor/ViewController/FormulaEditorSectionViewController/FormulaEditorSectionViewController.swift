@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -164,7 +164,7 @@
 
         self.numberOfRowsInSection = self.groupSubsectionWiseAndGetSize(items.first?.sections.first?.subsection() as? ObjectSubsection, items: &items)
         self.numberOfSections = numberOfRowsInSection.count
-        self.titlesOfSections = [ObjectSubsection.general.title, ObjectSubsection.motion.title]
+        self.titlesOfSections = [ObjectSubsection.general.title, ObjectSubsection.motion.title, ObjectSubsection.touchesActorOrObject.title]
 
     }
 
@@ -178,6 +178,7 @@
         self.titlesOfSections = [SensorSubsection.device.title,
                                  SensorSubsection.touch.title,
                                  SensorSubsection.visual.title,
+                                 SensorSubsection.pose.title,
                                  SensorSubsection.dateAndTime.title,
                                  SensorSubsection.arduino.title,
                                  SensorSubsection.phiro.title]

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,53 +38,74 @@
              value:(NSString*)value
          leftChild:(FormulaElement*)leftChild
         rightChild:(FormulaElement*)rightChild
+additionalChildren:(NSArray<FormulaElement*>*)additionalChildren
             parent:(FormulaElement*)parent
 {
     self = [super init];
     if (self) {
-        [self initialize:[self elementTypeForString:type] value:value leftChild:leftChild rightChild:rightChild parent:parent];
+        [self initialize:[self elementTypeForString:type] value:value leftChild:leftChild rightChild:rightChild additionalChildren:additionalChildren parent:parent];
         _idempotenceState = NOT_CHECKED;
     }
     return self;
+}
+
+- (id)initWithType:(NSString*)type
+             value:(NSString*)value
+         leftChild:(FormulaElement*)leftChild
+        rightChild:(FormulaElement*)rightChild
+            parent:(FormulaElement*)parent
+{
+    return [self initWithType:type value:value leftChild:leftChild rightChild:rightChild additionalChildren:nil parent:parent];
 }
 
 - (id)initWithElementType:(ElementType)type
                     value:(NSString*)value
                 leftChild:(FormulaElement*)leftChild
                rightChild:(FormulaElement*)rightChild
+       additionalChildren:(NSArray<FormulaElement*>*)additionalChildren
                    parent:(FormulaElement*)parent
 {
     self = [super init];
     if (self) {
-        [self initialize:type value:value leftChild:leftChild rightChild:rightChild parent:parent];
+        [self initialize:type value:value leftChild:leftChild rightChild:rightChild additionalChildren:additionalChildren parent:parent];
         _idempotenceState = NOT_CHECKED;
     }
     return self;
 }
 
 - (id)initWithElementType:(ElementType)type
+                     value:(NSString*)value
+                 leftChild:(FormulaElement*)leftChild
+                rightChild:(FormulaElement*)rightChild
+                    parent:(FormulaElement*)parent
+{
+    return [self initWithElementType:type value:value leftChild:leftChild rightChild:rightChild additionalChildren:nil parent:parent];
+}
+
+- (id)initWithElementType:(ElementType)type
                     value:(NSString*)value
 {
-    return [self initWithElementType:type value:value leftChild:nil rightChild:nil parent:nil];
+    return [self initWithElementType:type value:value leftChild:nil rightChild:nil additionalChildren:nil parent:nil];
 }
 
 - (id)initWithInteger:(int)value {
-    return [self initWithType:@"NUMBER" value:[NSString stringWithFormat:@"%d", value] leftChild:nil rightChild:nil parent:nil];
+    return [self initWithType:@"NUMBER" value:[NSString stringWithFormat:@"%d", value] leftChild:nil rightChild:nil additionalChildren:nil parent:nil];
 }
 
 
 - (id)initWithDouble:(double)value {
-    return [self initWithType:@"NUMBER" value:[NSString stringWithFormat:@"%f", value] leftChild:nil rightChild:nil parent:nil];
+    return [self initWithType:@"NUMBER" value:[NSString stringWithFormat:@"%f", value] leftChild:nil rightChild:nil additionalChildren:nil parent:nil];
 }
 
 - (id)initWithString:(NSString*)value {
-    return [self initWithType:@"STRING" value:value leftChild:nil rightChild:nil parent:nil];
+    return [self initWithType:@"STRING" value:value leftChild:nil rightChild:nil additionalChildren:nil parent:nil];
 }
 
 - (void)initialize:(ElementType)type
              value:(NSString*)value
          leftChild:(FormulaElement*)leftChild
         rightChild:(FormulaElement*)rightChild
+        additionalChildren:(NSArray<FormulaElement*>*)additionalChildren
             parent:(FormulaElement*)parent
 {
     self.type = type;
@@ -92,6 +113,16 @@
     self.leftChild = leftChild;
     self.rightChild = rightChild;
     self.parent = parent;
+    
+    if (additionalChildren != nil) {
+        self.additionalChildren = [[NSMutableArray alloc] initWithArray:additionalChildren];
+        
+        for (FormulaElement* formulaElement in additionalChildren) {
+            formulaElement.parent = self;
+        }
+    } else {
+        self.additionalChildren = [NSMutableArray new];
+    }
     
     if (self.leftChild != nil) {
         self.leftChild.parent = self;
@@ -165,6 +196,7 @@
     self.parent = current.parent;
     self.leftChild = current.leftChild;
     self.rightChild = current.rightChild;
+    self.additionalChildren = current.additionalChildren;
     self.value = current.value;
     self.type = current.type;
     
@@ -173,6 +205,11 @@
     }
     if (self.rightChild != nil) {
         self.rightChild.parent = self;
+    }
+    if (self.additionalChildren != nil) {
+        for (FormulaElement* additionalChild in self.additionalChildren) {
+            additionalChild.parent = self;
+        }
     }
 }
 
@@ -184,7 +221,7 @@
 
 - (void)replaceWithSubElement:(NSString*) operator rightChild:(FormulaElement*)rightChild
 {
-    FormulaElement *cloneThis = [[FormulaElement alloc] initWithElementType:OPERATOR value:operator leftChild:self rightChild:rightChild parent:self.parent];
+    FormulaElement *cloneThis = [[FormulaElement alloc] initWithElementType:OPERATOR value:operator leftChild:self rightChild:rightChild additionalChildren:self.additionalChildren parent:self.parent];
     
     cloneThis.parent.rightChild = cloneThis;
 }
@@ -223,6 +260,12 @@
             if (self.rightChild != nil) {
                 [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
                 [internTokenList addObjectsFromArray:[self.rightChild getInternTokenList]];
+            }
+            if (self.additionalChildren != nil) {
+                for (FormulaElement* additionalChild in self.additionalChildren) {
+                    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
+                    [internTokenList addObjectsFromArray:[additionalChild getInternTokenList]];
+                }
             }
             if (functionHasParameters) {
                 [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
@@ -283,9 +326,18 @@
 {
     FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild mutableCopyWithContext:context];
     FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild mutableCopyWithContext:context];
+    NSMutableArray<FormulaElement*>* additionalChildren = [NSMutableArray new];
+    
+    if (self.additionalChildren != nil) {
+        for (FormulaElement* additionalChild in self.additionalChildren) {
+            [additionalChildren addObject:additionalChild];
+        }
+    }
+    
     return [[FormulaElement alloc] initWithElementType:self.type value:self.value
                                              leftChild:leftChildClone
                                             rightChild:rightChildClone
+                                    additionalChildren:additionalChildren
                                                 parent:nil];
 }
 
@@ -305,11 +357,23 @@
         return NO;
     if((self.parent != nil && formulaElement.parent == nil) || (self.parent == nil && formulaElement.parent != nil))
         return NO;
+    
     // FIXME: this leads to an endless recursion bug!!!
     //    if(self.parent != nil && ![self.parent isEqualToFormulaElement:formulaElement.parent])
     //        return NO;
     if ((self.parent && (! formulaElement.parent)) || ((! self.parent) && formulaElement.parent))
         return NO;
+    
+    if((self.additionalChildren != nil && formulaElement.additionalChildren == nil) || (self.additionalChildren == nil && formulaElement.additionalChildren != nil))
+        return NO;
+    if(self.additionalChildren.count != formulaElement.additionalChildren.count)
+        return NO;
+    
+    for (NSUInteger index = 0; index < self.additionalChildren.count; index++ ){
+        if (![self.additionalChildren[index] isEqualToFormulaElement:formulaElement.additionalChildren[index]]) {
+            return NO;
+        }
+    }
 
     return YES;
 }
@@ -323,6 +387,11 @@
     }
     if (self.rightChild != nil) {
         resources |= [self.rightChild getRequiredResources];
+    }
+    if (self.additionalChildren != nil) {
+        for (FormulaElement* additionalChild in self.additionalChildren) {
+            resources |= [additionalChild getRequiredResources];
+        }
     }
     if (self.type == SENSOR) {
         resources |= [[SensorManager class] requiredResourceWithTag: self.value];

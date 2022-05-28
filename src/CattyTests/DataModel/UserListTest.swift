@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -283,5 +283,23 @@ final class UserListTest: XCTestCase {
         list.add(element: "itemA")
         list.add(element: "itemB")
         XCTAssertEqual("itemA itemB", list.stringRepresentation())
+    }
+
+    func testFirstIndex() {
+        let list = UserList(name: "newTestList")
+        list.add(element: "itemA")
+        list.add(element: "Bitem")
+        list.add(element: "itemB")
+        list.add(element: "Bitem")
+
+        let index = list.firstIndex(where: { ($0 as AnyObject).hasPrefix("B") })
+        XCTAssertEqual(1, index)
+    }
+
+    func testFirstIndexNotAvailable() {
+        let list = UserList(name: "newEmptyList")
+
+        let index = list.firstIndex(where: { ($0 as AnyObject).hasPrefix("Not available") })
+        XCTAssertNil(index)
     }
 }

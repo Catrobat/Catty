@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -63,19 +63,14 @@ final class UserVariableTests: XCTestCase {
         XCTAssertTrue(userVariableB === userVariableCopy)
     }
 
-    func testIsEqualToUserVariableForEmptyInit() {
+    func testIsEqualToUserVariableWithoutValue() {
         let userVariableA = UserVariable(name: "userVar")
         let userVariableB = UserVariable(name: "userVar")
 
-        userVariableA.value = "NewValue"
-        userVariableB.value = "valueB"
-        XCTAssertFalse(userVariableA.isEqual(userVariableB))
-
-        userVariableB.value = "NewValue"
         XCTAssertTrue(userVariableA.isEqual(userVariableB))
     }
 
-    func testIsEqualToUserVariableForVariable() {
+    func testIsEqualToUserVariable() {
         let userVariableA = UserVariable(name: "userVar")
         let userVariableB = UserVariable(name: "userVar")
 
@@ -87,7 +82,7 @@ final class UserVariableTests: XCTestCase {
         XCTAssertTrue(userVariableB.isEqual(userVariableA))
     }
 
-    func testIsEqualToUserVariableForSameValueTypeDifferentName() {
+    func testIsEqualToUserVariableForSameValueDifferentName() {
         let userVariableA = UserVariable(name: "userVariable")
         let userVariableB = UserVariable(name: "userVariableB")
         let userVariableC = UserVariable(name: "userVariable")
@@ -211,5 +206,21 @@ final class UserVariableTests: XCTestCase {
 
         userVariable.change(by: Double(incrementValue))
         XCTAssertEqual(String(initialValue + incrementValue), userVariable.textLabel?.text)
+    }
+
+    func testTruncateIfTextLabelLengthExceeded() {
+        let userVariable = UserVariable(name: "name")
+        userVariable.textLabel = SKLabelNode()
+
+        var value = ""
+        for _ in 0...(SpriteKitDefines.maxLengthSKLabelNode - 1) {
+            value += "a"
+        }
+        userVariable.value = value
+
+        XCTAssertEqual(value, userVariable.textLabel?.text)
+
+        userVariable.value = value + "a"
+        XCTAssertEqual(value + "...", userVariable.textLabel?.text)
     }
 }

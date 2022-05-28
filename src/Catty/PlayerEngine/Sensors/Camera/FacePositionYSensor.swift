@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FacePositionYSensor: DeviceSensor {
+class FacePositionYSensor: DeviceDoubleSensor {
 
-    static let tag = "FACE_Y_POSITION"
+    static let tag = "FACE_Y"
     static let name = kUIFESensorFaceY
     static let defaultRawValue = 0.0
-    static let position = 240
+    static let position = 250
     static let requiredResource = ResourceType.faceDetection
 
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageHeight: Double?
 
-    init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
+    init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
+        self.getVisualDetectionManager = visualDetectionManagerGetter
         self.stageHeight = Double(stageSize.height)
     }
 
@@ -41,7 +41,7 @@ class FacePositionYSensor: DeviceSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionY = self.getFaceDetectionManager()?.facePositionRatioFromBottom else { return type(of: self).defaultRawValue }
+        guard let positionY = self.getVisualDetectionManager()?.facePositionYRatio[0] else { return type(of: self).defaultRawValue }
         return positionY
     }
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,11 +22,14 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseLoginViewController.h"
-#import "CatrobatTableViewController.h"
+
+@protocol LoginViewControllerDelegate <NSObject>
+-(void)afterSuccessfulLogin;
+@end
 
 @interface LoginViewController : BaseLoginViewController<UITextFieldDelegate>
 
-@property (nonatomic, weak) CatrobatTableViewController * catTVC;
+@property (nonatomic, weak) id<LoginViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
 import Foundation
 
 @testable import Pocket_Code
@@ -41,9 +40,9 @@ import Foundation
 
     func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?) {}
 
-    func setVolumeTo(percent: Double, key: String) {}
+    func setVolumeTo(percent: Double, key: String?) {}
 
-    func changeVolumeBy(percent: Double, key: String) {}
+    func changeVolumeBy(percent: Double, key: String?) {}
 
     func stopAllAudioPlayers() {}
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 import Foundation
 
-class Stitch {
+class Stitch: Equatable {
     let x: CGFloat
     let y: CGFloat
     let isJump: Bool
@@ -48,8 +48,13 @@ class Stitch {
         self.init(x: pos.x, y: pos.y, asJump: isJump, isInterpolated: isInterpolated)
     }
 
+    static func == (lhs: Stitch, rhs: Stitch) -> Bool {
+        lhs.x == rhs.x && lhs.y == rhs.y && lhs.isJump == rhs.isJump
+        && lhs.isColorChange == rhs.isColorChange
+    }
+
     func embroideryDimensions() -> CGPoint {
-        CGPoint(x: x.rounded() * 2, y: y.rounded() * 2)
+        CGPoint(x: (x * 2).rounded(), y: (y * 2).rounded())
     }
 
     func maxDistanceInEmbroideryDimensions(stitch: Stitch) -> Int {

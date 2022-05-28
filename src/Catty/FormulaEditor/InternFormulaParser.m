@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -303,6 +303,12 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
             [self getNextToken];
             functionTree.rightChild = [self termListForSpriteObject:object];
         }
+        
+        while ([self.currentToken isFunctionParameterDelimiter]) {
+            [self getNextToken];
+            [functionTree.additionalChildren addObject:[self termListForSpriteObject:object]];
+        }
+        
         if (![self.currentToken isFunctionParameterBracketClose]) {
             [InternFormulaParserException raise:@"Parse Error" format:@""];
         }

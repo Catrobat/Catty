@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LoudnessSensor: NSObject, DeviceSensor {
-    @objc static let tag = "LOUDNESS"
+class LoudnessSensor: DeviceDoubleSensor {
+
+    static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
     static let defaultRawValue = -160.0
     static let position = 170

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,13 +47,15 @@ class BrickCellPickerViewerTests: XCTestCase {
             tapOnVariablePicker(of: brick, in: app)
             app.pickerWheels.firstMatch.swipeDown()
             app.buttons[kLocalizedDone].tap()
+            XCTAssert(app.navigationBars[kUIFENewVar].exists)
 
-            XCTAssert(app.sheets[kUIFEActionVar].exists)
-            app.buttons[kUIFEActionVarObj].tap()
+            app.tables.cells.element(boundBy: 2).tap()
 
-            let alert = app.alerts[kUIFENewVar]
-            alert.textFields[kLocalizedEnterYourVariableNameHere].typeText(variable)
-            alert.buttons[kLocalizedOK].tap()
+            let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+            textField.tap()
+            textField.typeText(variable)
+
+            app.buttons[kLocalizedDone].firstMatch.tap()
             XCTAssert(waitForElementToAppear(app.otherElements[type(of: self).accessibilityLabelVariable + variable]).exists)
         }
     }

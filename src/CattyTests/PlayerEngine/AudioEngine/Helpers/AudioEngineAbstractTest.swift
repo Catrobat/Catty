@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,81 +20,44 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
+import ChromaSwift
 import XCTest
 
 @testable import Pocket_Code
 
 class AudioEngineAbstractTest: XMLAbstractTest {
-
-    var tape: AKAudioFile!
     var audioEngine: AudioEngineFingerprintingStub!
-    var recorder: AKNodeRecorder!
 
     override func setUp() {
         super.setUp()
-        do {
-            tape = try AKAudioFile()
-            audioEngine = AudioEngineFingerprintingStub(audioPlayerFactory: FingerprintingAudioPlayerFactory())
-            recorder = audioEngine.addNodeRecorderAtEngineOut(tape: tape)
-
-        } catch {
-            XCTFail("Could not set up audio engine integration test")
-        }
+        audioEngine = AudioEngineFingerprintingStub(audioPlayerFactory: FingerprintingAudioPlayerFactory())
     }
 
-    override func tearDown() {
-        super.tearDown()
-        audioEngine.stop()
+    func runAndRecord(duration: Double, stage: Stage, muted: Bool) -> AVAudioFile {
+        audioEngine.muted = muted
+
+        _ = stage.startProject()
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: duration))
+        stage.stopProject()
+
+        return audioEngine.tape!
     }
 
-    func runAndRecord(duration: Double, stage: Stage, muted: Bool) -> AKAudioFile {
-        do {
-            audioEngine.postProcessingMixer.volume = muted ? 0.0 : 1.0
-            audioEngine.speechSynth.utteranceVolume = muted ? 0.0 : 1.0
-            try recorder.record()
-            _ = stage.startProject()
-            RunLoop.current.run(until: Date(timeIntervalSinceNow: duration))
-            recorder.stop()
-        } catch {
-            XCTFail("Error occured")
-        }
-        return self.tape
-    }
-
-    func calculateSimilarity(tape: AKAudioFile, referenceHash: String) -> Double {
-        let readTape: AKAudioFile
-        do {
-            readTape = try AKAudioFile(forReading: tape.url)
-        } catch {
-            print("Could not read audio file")
+    func calculateSimilarity(tape: AVAudioFile, referenceHash: String) -> Double {
+        guard let fingerprint = try? AudioFingerprint(from: tape.url) else {
+            print("Could not generate fingerprint")
             return 0
         }
 
-        let fingerprinter = ChromaprintFingerprinter()
-        guard let (simHashString, recordedFileLength) = fingerprinter.generateFingerprint(fromSongAtUrl: readTape.url) else {
-            print("No fingerprint was generated")
+        print("The recorded duration is \(fingerprint.duration)")
+        print("The binary fingerprint is \(fingerprint.hash)")
+
+        guard let similarity = try? fingerprint.similarity(to: referenceHash) else {
+            print("Could not calculate hash similarity")
             return 0
         }
 
-        print("The recorded duration is \(recordedFileLength)")
-        print("The binary fingerprint is: \(simHashString)")
-
-        let currentSimHash = Array(simHashString).map({ Int(String($0))! })
-        let referenceSimHash = Array(referenceHash).map({ Int(String($0))! })
-
-        if referenceSimHash.count != currentSimHash.count {
-            return 0
-        }
-
-        var matchingDigits = 0
-        for i in 0..<referenceSimHash.count where referenceSimHash[i] == currentSimHash[i] {
-                matchingDigits += 1
-        }
-
-        let similarity: Double = matchingDigits / referenceSimHash.count
         print("The similarity is \(similarity)")
-
         return similarity
     }
 

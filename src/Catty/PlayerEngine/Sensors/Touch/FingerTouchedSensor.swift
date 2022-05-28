@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let isTouched = getTouchManager()?.screenTouched() else { return type(of: self).defaultRawValue }
         return isTouched ? 1.0 : 0.0
     }

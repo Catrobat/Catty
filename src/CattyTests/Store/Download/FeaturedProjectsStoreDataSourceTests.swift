@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -48,23 +48,7 @@ class FeaturedProjectsStoreDataSourceTests: XCTestCase {
     }
 
     func testProjectEmpty() {
-        self.downloaderMock.project =
-            StoreProject(projectId: "",
-                         projectName: "",
-                         projectNameShort: "",
-                         author: "",
-                         description: "",
-                         version: "",
-                         views: 0,
-                         downloads: 0,
-                         uploaded: 0,
-                         uploadedString: "",
-                         screenshotBig: "",
-                         screenshotSmall: "",
-                         projectUrl: "",
-                         downloadUrl: "",
-                         fileSize: 1.0,
-                         featuredImage: "")
+        self.downloaderMock.project = nil
 
         let dataSource = FeaturedProjectsStoreTableDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch items from data source")

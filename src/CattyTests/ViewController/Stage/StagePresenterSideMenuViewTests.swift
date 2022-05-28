@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -89,6 +89,28 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
 
         XCTAssertTrue(view.aspectRatioButton!.isHidden)
         XCTAssertTrue(view.aspectRatioLabel!.isHidden)
+    }
+
+    func testAspectRatioLandscape() {
+        project.header.screenWidth = NSNumber(value: Util.screenWidth(true).doubleValue)
+        project.header.screenHeight = NSNumber(value: Util.screenHeight(true).doubleValue)
+        project.header.landscapeMode = true
+
+        let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
+
+        XCTAssertFalse(view.aspectRatioButton!.isHidden)
+        XCTAssertTrue(view.aspectRatioLabel == nil)
+    }
+
+    func testAspectRatioLandscapeHidden() {
+        project.header.screenWidth = NSNumber(value: Util.screenHeight(true).doubleValue)
+        project.header.screenHeight = NSNumber(value: Util.screenWidth(true).doubleValue)
+        project.header.landscapeMode = true
+
+        let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
+
+        XCTAssertTrue(view.aspectRatioButton!.isHidden)
+        XCTAssertTrue(view.aspectRatioLabel == nil)
     }
 
     func testRestart() {

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FaceDetectedSensor: DeviceSensor {
+class FaceDetectedSensor: DeviceDoubleSensor {
 
     static let tag = "FACE_DETECTED"
     static let name = kUIFESensorFaceDetected
@@ -28,10 +28,10 @@ class FaceDetectedSensor: DeviceSensor {
     static let position = 220
     static let requiredResource = ResourceType.faceDetection
 
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
 
-    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
+    init(visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
+        self.getVisualDetectionManager = visualDetectionManagerGetter
     }
 
     func tag() -> String {
@@ -39,7 +39,7 @@ class FaceDetectedSensor: DeviceSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected else { return type(of: self).defaultRawValue }
+        guard let isFaceDetected = self.getVisualDetectionManager()?.isFaceDetected[0] else { return type(of: self).defaultRawValue }
         return isFaceDetected ? 1.0 : 0.0
     }
 

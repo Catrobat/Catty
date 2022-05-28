@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -340,10 +340,10 @@ final class CBBackendTests: XCTestCase {
     }
 
     func testIfElseConditionalInstruction() {
-        let project = ProjectManager.createProject(name: "ProjectName", projectId: "123")
+        let project = Project()
 
         let whenScript = WhenScript()
-        whenScript.action = kWhenScriptDefaultAction
+        whenScript.action = UIDefines.whenScriptDefaultAction
         spriteObject.scene.project = project
         whenScript.object = spriteObject
 

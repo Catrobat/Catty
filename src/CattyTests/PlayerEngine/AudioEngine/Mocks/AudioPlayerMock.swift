@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
 import Foundation
 import XCTest
 
@@ -31,13 +30,13 @@ class AudioPlayerMock: AudioPlayer {
     private var testExpectations = [String: XCTestExpectation]()
 
     init(testExpectationKey: String? = nil, testExpectation: XCTestExpectation? = nil) {
-        var file: AKAudioFile?
+        var file: AVAudioFile?
         if let key = testExpectationKey, let exp = testExpectation {
             testExpectations[key] = exp
         }
         let audioFileURL = Bundle(for: type(of: self)).url(forResource: "silence", withExtension: "mp3")
         do {
-            file = try AKAudioFile(forReading: audioFileURL!)
+            file = try AVAudioFile(forReading: audioFileURL!)
         } catch {
             print("Could not load audio file with url \(audioFileURL!.absoluteString)")
         }

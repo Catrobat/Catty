@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ class WhenConditionScriptCell: BrickCell, BrickCellProtocol {
     }
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeightControl1h)
+        UIDefines.brickHeightControl1h
     }
 
     override func brickShapeType() -> kBrickShapeType {

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,9 +26,8 @@ import Foundation
 
     class func stringFormulaToUtterance(text: Formula, volume: Float, spriteObject: SpriteObject, context: CBScriptContextProtocol) -> AVSpeechUtterance {
         var speakText = context.formulaInterpreter.interpretString(text, for: spriteObject)
-        if Double(speakText) != nil {
-            let num = (speakText as NSString).doubleValue
-            speakText = (num as NSNumber).stringValue
+        if let number = Double(speakText) {
+            speakText = number.displayString
         }
 
         let utterance = AVSpeechUtterance(string: speakText)
@@ -40,7 +39,7 @@ import Foundation
 
     func activateAudioSession() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.soloAmbient, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, options: [.defaultToSpeaker, .allowAirPlay, .allowBluetoothA2DP])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let error as NSError {
             debugPrint("Could not activate audio session.")
@@ -50,7 +49,7 @@ import Foundation
 
     func deactivateAudioSession() {
         do {
-            try AVAudioSession.sharedInstance().setActive(false)
+            try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
         } catch let error as NSError {
             debugPrint("Could not deactivate audio session.")
             debugPrint(error)

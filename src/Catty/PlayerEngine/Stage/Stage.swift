@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -53,6 +53,10 @@ final class Stage: SKScene, StageProtocol {
         self.frameCounter = 0
         super.init(size: size)
         backgroundColor = UIColor.white
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.categoryBitMask = 1
+        self.physicsBody?.contactTestBitMask = 1
     }
 
     @objc required init?(coder aDecoder: NSCoder) {
@@ -120,16 +124,15 @@ final class Stage: SKScene, StageProtocol {
         for node in nodes {
             guard let currentNode = node as? CBSpriteNode
                 else { fatalError("This should not happen!") }
-            if currentNode.name == nil {
-                return false
-            }
+            guard let currentNodeName = currentNode.name else { return false }
+
             print("Current node: \(currentNode)")
             logger.debug("Current node: \(currentNode)")
             if currentNode.isHidden { continue }
 
-            let newPosition = touch.location(in: currentNode)
-            if currentNode.touchedWithTouch(touch, atPosition: newPosition) {
+            if currentNode.isTouched(at: touch) {
                 print("Found sprite node: \(String(describing: currentNode.name)) with zPosition: \(currentNode.zPosition)")
+                scheduler.startWhenContextsOfSpriteNodeWithName(currentNodeName)
                 return true
             } else {
                 var zPosition = currentNode.zPosition
@@ -187,6 +190,7 @@ final class Stage: SKScene, StageProtocol {
             spriteNode.start(CGFloat(zPosition))
             spriteNode.setLook()
             spriteNode.isUserInteractionEnabled = true
+
             scheduler.registerSpriteNode(spriteNode)
 
             for script in scriptList {
@@ -295,7 +299,9 @@ final class Stage: SKScene, StageProtocol {
     @objc func stopProject() {
         view?.isPaused = true
         scheduler.shutdown() // stops all script contexts of all objects and removes all ressources
-        removeAllChildren() // remove all CBSpriteNodes from Scene
+        DispatchQueue.main.async {
+            self.removeAllChildren() // remove all CBSpriteNodes from Scene
+        }
         frontend.project?.removeReferences() // remove all references in project hierarchy
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
@@ -318,6 +324,5 @@ final class Stage: SKScene, StageProtocol {
         self.enumerateChildNodes(withName: SpriteKitDefines.stampedSpriteNodeName) { node, _ in
             node.removeFromParent()
         }
-
     }
 }

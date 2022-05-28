@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -74,16 +74,31 @@
     self = [super init];
     
     if(self) {
-        FormulaElement *formulaElement = [FormulaElement new];
-        formulaElement.type = STRING;
-        formulaElement.value = value;
-        self.formulaTree = formulaElement;
+        self.formulaTree = [[FormulaElement alloc] initWithString:value];
     }
     return self;
 }
 
 - (id)initWithZero {
     return [self initWithInteger:0];
+}
+
+- (id)initWithUserVariable:(UserVariable *)variable {
+    self = [super init];
+    
+    if(self) {
+        self.formulaTree = [[FormulaElement alloc] initWithElementType:USER_VARIABLE value:variable.name];
+    }
+    return self;
+}
+
+- (id)initWithUserList:(UserList *)list {
+    self = [super init];
+    
+    if(self) {
+        self.formulaTree = [[FormulaElement alloc] initWithElementType:USER_LIST value:list.name];
+    }
+    return self;
 }
 
 - (BOOL)isSingularNumber

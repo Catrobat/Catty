@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        crashlytics = CrashlyticsMock(collectionEnabled: false)
+        crashlytics = CrashlyticsMock.create(collectionEnabled: false)
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
         reporter = FirebaseCrashlyticsReporter(crashlytics: crashlytics!)
     }
@@ -46,7 +46,7 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
     func testSetupCrashReportsDisabled() {
         UserDefaults.standard.set(false, forKey: kFirebaseSendCrashReports)
 
-        crashlytics = CrashlyticsMock(collectionEnabled: false)
+        crashlytics = CrashlyticsMock.create(collectionEnabled: false)
         _ = FirebaseCrashlyticsReporter(crashlytics: crashlytics!)
         XCTAssertFalse(crashlytics!.isCrashlyticsCollectionEnabled())
     }

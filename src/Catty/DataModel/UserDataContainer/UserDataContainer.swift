@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,8 @@
  */
 
 @objc(UserDataContainer)
-@objcMembers class UserDataContainer: NSObject {
+@objcMembers class UserDataContainer: NSObject, CBMutableCopying {
+
     private var _variables: SynchronizedArray<UserVariable>
     private var _lists: SynchronizedArray<UserList>
 
@@ -139,10 +140,19 @@
         return true
     }
 
-    override func mutableCopy() -> Any {
+    func mutableCopy(with context: CBMutableCopyContext) -> Any {
         let copiedUserDataContainer = UserDataContainer()
-        copiedUserDataContainer._variables = self._variables
-        copiedUserDataContainer._lists = self._lists
+
+        for index in 0..<_variables.count {
+            if let variable = _variables[index], let copiedVariable = variable.mutableCopy(with: context) as? UserVariable {
+                copiedUserDataContainer.add(copiedVariable)
+            }
+        }
+        for index in 0..<_lists.count {
+            if let list = _lists[index], let copiedList = list.mutableCopy(with: context) as? UserList {
+                copiedUserDataContainer.add(copiedList)
+            }
+        }
 
         return copiedUserDataContainer
     }

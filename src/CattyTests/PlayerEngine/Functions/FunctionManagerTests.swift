@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@ final class FunctionManagerTests: XCTestCase {
 
         XCTAssertNil(manager.function(tag: SinFunction.tag))
         XCTAssertNil(manager.function(tag: "noFunctionForThisTag"))
-        XCTAssertEqual(defaultValue, manager.value(tag: "noFunctionForThisTag", firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! Double)
+        XCTAssertEqual(defaultValue, manager.value(tag: "noFunctionForThisTag", firstParameter: nil, secondParameter: nil, additionalParameters: [], spriteObject: spriteObject) as! Double)
     }
 
     func testExists() {
@@ -155,6 +155,7 @@ final class FunctionManagerTests: XCTestCase {
                        manager.value(tag: functionA.tag(),
                                      firstParameter: nil,
                                      secondParameter: nil,
+                                     additionalParameters: [],
                                      spriteObject: spriteObject) as! Double)
 
         manager = FunctionManager(functions: [functionA, functionB, functionC, functionD])
@@ -162,21 +163,25 @@ final class FunctionManagerTests: XCTestCase {
                        manager.value(tag: functionA.tag(),
                                      firstParameter: nil,
                                      secondParameter: nil,
+                                     additionalParameters: [],
                                      spriteObject: spriteObject) as! Double)
         XCTAssertEqual(functionB.value(parameter: nil),
                        manager.value(tag: functionB.tag(),
                                      firstParameter: nil,
                                      secondParameter: nil,
+                                     additionalParameters: [],
                                      spriteObject: spriteObject) as! Double)
         XCTAssertEqual(functionC.value(firstParameter: nil, secondParameter: nil),
                        manager.value(tag: functionC.tag(),
                                      firstParameter: nil,
                                      secondParameter: nil,
+                                     additionalParameters: [],
                                      spriteObject: spriteObject) as! Double)
         XCTAssertEqual(functionD.value(parameter: nil),
                        manager.value(tag: functionD.tag(),
                                      firstParameter: nil,
                                      secondParameter: nil,
+                                     additionalParameters: [],
                                      spriteObject: spriteObject) as! String)
     }
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,6 @@
 #import "CBFileManager.h"
 #import "CBFileManager.h"
 #import "RuntimeImageCache.h"
-#import "SharkfoodMuteSwitchDetector.h"
 #import "SRViewController.h"
 #import "PlaceHolderView.h"
 #import "ViewControllerDefines.h"
@@ -44,7 +43,6 @@
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, strong) Sound *sound;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
-@property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
 @property (nonatomic,assign) BOOL isAllowed;
 @property (nonatomic,assign) BOOL deletionMode;
 @end
@@ -62,18 +60,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // automatically stop current playing sound after the user turns
-    // on the silent switcher on the iPhone/iPad (device is in silent state)
-    self.silentDetector = [SharkfoodMuteSwitchDetector shared];
-    // must be weak (!!) since SoundsTableViewController is holding the SharkfoodMuteSwitchDetector
-    // instance strongly!
-    __weak SoundsTableViewController *soundsTableViewController = self;
-    self.silentDetector.silentNotify = ^(BOOL silent){
-        if (silent) {
-            [soundsTableViewController stopAllSounds];
-        }
-    };
 
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
@@ -98,6 +84,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -479,11 +466,6 @@
 {
     // acquire lock
     @synchronized(self) {
-        if (self.silentDetector.isMute) {
-            [Util alertWithText:(IS_IPHONE ? kLocalizedDeviceIsInMutedStateIPhoneDescription
-                                 : kLocalizedDeviceIsInMutedStateIPadDescription)];
-            return;
-        }
         Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
         BOOL isPlaying = sound.isPlaying;
         if (self.currentPlayingSong && self.currentPlayingSongCell) {
@@ -623,7 +605,7 @@
 {
     [self.tableView setEditing:false animated:YES];
     
-    [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddSound]
+    [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddSound]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
      }]
@@ -659,6 +641,12 @@
              [self showSoundsMediaLibrary];
          });
      }]
+    addDefaultActionWithTitle:kLocalizedSelectFile handler:^{
+        self.isAllowed = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showSoundsSelectFile];
+        });
+    }]
      build]
      showWithController:self];
 }

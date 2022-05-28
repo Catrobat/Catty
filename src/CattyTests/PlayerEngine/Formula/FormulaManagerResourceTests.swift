@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     var manager: FormulaManager!
     var motionManager: MotionManagerMock!
     var locationManager: LocationManagerMock!
-    var faceDetectionManager: FaceDetectionManagerMock!
+    var visualDetectionManager: VisualDetectionManagerMock!
     var audioManager: AudioManagerMock!
     var touchManager: TouchManagerMock!
     var bluetoothService: BluetoothService!
@@ -37,7 +37,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     override func setUp() {
         motionManager = MotionManagerMock()
         locationManager = LocationManagerMock()
-        faceDetectionManager = FaceDetectionManagerMock()
+        visualDetectionManager = VisualDetectionManagerMock()
         audioManager = AudioManagerMock()
         touchManager = TouchManagerMock()
         bluetoothService = BluetoothService.sharedInstance()
@@ -47,7 +47,7 @@ final class FormulaManagerResourceTests: XCTestCase {
                                  operatorManager: OperatorManager(operators: []),
                                  motionManager: motionManager,
                                  locationManager: locationManager,
-                                 faceDetectionManager: faceDetectionManager,
+                                 visualDetectionManager: visualDetectionManager,
                                  audioManager: audioManager,
                                  touchManager: touchManager,
                                  bluetoothService: bluetoothService)
@@ -61,7 +61,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
@@ -74,7 +74,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
@@ -87,7 +87,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
@@ -100,7 +100,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
@@ -113,7 +113,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
@@ -127,7 +127,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
@@ -135,7 +135,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     func testSetupForFormulaFaceDetection() {
         manager.setup(for: FormulaMock(requiredResource: .faceDetection))
 
-        XCTAssertTrue(faceDetectionManager.isStarted)
+        XCTAssertTrue(visualDetectionManager.isStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
@@ -150,7 +150,7 @@ final class FormulaManagerResourceTests: XCTestCase {
 
         XCTAssertTrue(audioManager.isStarted)
         XCTAssertFalse(audioManager.isPaused)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
@@ -165,7 +165,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertTrue(motionManager.isAccelerometerUpdateStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(audioManager.isStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
@@ -177,7 +177,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertTrue(motionManager.isAccelerometerUpdateStarted)
         XCTAssertTrue(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(audioManager.isStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
@@ -188,7 +188,7 @@ final class FormulaManagerResourceTests: XCTestCase {
 
         XCTAssertFalse(touchManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
@@ -205,7 +205,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertTrue(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertTrue(locationManager.isHeadingUpdateStarted)
         XCTAssertTrue(motionManager.isAccelerometerUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
@@ -220,7 +220,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
@@ -279,7 +279,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     func testUnavailableResourcesFaceDetection() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.faceDetection.rawValue))
 
-        faceDetectionManager.isAvailable = false
+        visualDetectionManager.isAvailable = false
         XCTAssertEqual(ResourceType.faceDetection.rawValue, manager.unavailableResources(for: ResourceType.faceDetection.rawValue))
     }
 
@@ -289,7 +289,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         motionManager.isMagnetometerUpdateStarted = true
         locationManager.isHeadingUpdateStarted = true
         locationManager.isLocationUpdateStarted = true
-        faceDetectionManager.isStarted = true
+        visualDetectionManager.isStarted = true
         audioManager.isStarted = true
         touchManager.isStarted = true
 
@@ -300,7 +300,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(motionManager.isMagnetometerUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
-        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(audioManager.isPaused)
         XCTAssertFalse(touchManager.isStarted)

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 #import "LoginViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
-#import "JNKeychain.h"
 #import "RegisterViewController.h"
 #import "Pocket_Code-Swift.h"
 
@@ -173,7 +172,9 @@
 -(void)willMoveToParentViewController:(UIViewController *)parent
 {
     if (!parent) {
-        [self.catTVC afterSuccessfulLogin];
+        if (self.delegate != nil) {
+            [self.delegate afterSuccessfulLogin];
+        }
     }
 }
 
@@ -249,7 +250,7 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
     RegisterViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"RegisterController"];
-    vc.catTVC = self.catTVC;
+    vc.delegate = self.delegate;
     vc.userName = self.usernameField.text;
     vc.password = self.passwordField.text;
     
@@ -359,7 +360,7 @@
         [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [JNKeychain saveValue:token forKey: NetworkDefines.kUserLoginToken];
+        [Keychain saveValue:token forKey: NetworkDefines.kUserLoginToken];
         
         [self hideLoadingView];
         [self.navigationController popViewControllerAnimated:NO];

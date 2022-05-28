@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 #import "CBFileManager.h"
 #import "Util.h"
-#import <ZipArchive/ZipArchive.h>
+#import <ZipArchive.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "Pocket_Code-Swift.h"
 
@@ -386,6 +386,22 @@
 
     [self addSkipBackupAttributeToItemAtURL:storePath];
     return YES;
+}
+
+- (NSArray*)urls:(NSSearchPathDirectory)directory inDomainMask:(NSSearchPathDomainMask)domainMask
+{
+    return NSSearchPathForDirectoriesInDomains(directory, domainMask, YES);
+}
+
+- (NSData*)read:(NSString*)path
+{
+    return [NSData dataWithContentsOfFile:path];
+}
+
+
+- (BOOL)write:(NSData*)data toPath:(NSString*)path
+{
+    return [data writeToFile:path atomically:YES];
 }
 
 -(NSData*)zipProject:(Project*)project

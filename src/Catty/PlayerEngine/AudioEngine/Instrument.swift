@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,9 +47,9 @@
     var tag: String { self.data.tag }
     var fileName: String { self.data.folder + ".sfz" }
 
-    var path: String? {
+    var url: URL? {
         if let resourcePath = Bundle.main.resourcePath {
-            return resourcePath + "/Audio Engine/Sample Instruments Compressed/" + self.data.folder
+            return URL(fileURLWithPath: resourcePath + "/Audio Engine/Sample Instruments Compressed/" + self.data.folder + "/" + self.fileName)
         }
         return nil
     }

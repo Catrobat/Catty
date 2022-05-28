@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 - (GDataXMLElement*)childWithElementName:(NSString*)elementName
                      containingAttribute:(NSString*)attributeName
                                withValue:(NSString*)attributeValue;
+- (NSArray<GDataXMLElement*>*)childrenWithElementName:(NSString*)elementName;
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath;
 + (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLSerializerContext*)context;
 + (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex

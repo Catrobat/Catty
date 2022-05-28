@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@
 {
     [super viewWillAppear:animated];
     for (UIView *view in self.view.subviews) {
-        if (view.tag == kSavedViewTag)
+        if (view.tag == UIDefines.savedViewTag)
             [view removeFromSuperview];
     }
     [self hideLoadingView];
@@ -157,8 +157,6 @@
 - (PlaceHolderView*)placeHolderView
 {
     if (! _placeHolderView) {
-//        CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
-//        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
         _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
       
         [self.view insertSubview:_placeHolderView aboveSubview:self.tableView];
@@ -277,6 +275,12 @@
 #pragma mark - helpers
 - (void)setupToolBar
 {
+    if (@available(iOS 15.0, *)) {
+        UIToolbarAppearance *toolBarAppearance = [[UIToolbarAppearance alloc] init];
+        toolBarAppearance.backgroundColor = UIColor.toolBar;
+        self.navigationController.toolbar.standardAppearance = toolBarAppearance;
+        self.navigationController.toolbar.scrollEdgeAppearance = toolBarAppearance;
+    }
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
     self.navigationController.toolbar.tintColor = UIColor.toolTint;
@@ -402,6 +406,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
     if (!Project.lastUsedProject.header.landscapeMode) {
         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
         [UINavigationController attemptRotationToDeviceOrientation];

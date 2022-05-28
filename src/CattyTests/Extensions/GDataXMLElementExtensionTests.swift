@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -164,5 +164,43 @@ class GDataXMLElementExtensionTests: XCTestCase {
         XCTAssertNotEqual(self.rootElement.stringValue(), testRootElement!.stringValue())
         XCTAssertEqual("stringValue1", self.rootElement.stringValue())
         XCTAssertEqual("stringValue2", testRootElement!.stringValue())
+    }
+
+    func testChildWithElementName() {
+        let root = self.createGDXMLElementWith(xmlString: "root")
+        let firstChild = self.createGDXMLElementWith(xmlString: "child")
+        let secondChild = self.createGDXMLElementWith(xmlString: "secondChild")
+        let thirdChild = self.createGDXMLElementWith(xmlString: "child")
+
+        root?.addChild(firstChild)
+        root?.addChild(secondChild)
+        root?.addChild(thirdChild)
+
+        let child = root?.child(withElementName: "child")
+        XCTAssertEqual(firstChild, child)
+    }
+
+    func testChildWithElementNameUnknown() {
+        let root = self.createGDXMLElementWith(xmlString: "root")
+        let firstChild = self.createGDXMLElementWith(xmlString: "child")
+
+        root?.addChild(firstChild)
+        XCTAssertNil(root?.child(withElementName: "unknown"))
+    }
+
+    func testChildrenWithElementName() {
+        let root = self.createGDXMLElementWith(xmlString: "root")
+        let firstChild = self.createGDXMLElementWith(xmlString: "child")
+        let secondChild = self.createGDXMLElementWith(xmlString: "secondChild")
+        let thirdChild = self.createGDXMLElementWith(xmlString: "child")
+
+        root?.addChild(firstChild)
+        root?.addChild(secondChild)
+        root?.addChild(thirdChild)
+
+        let children = root?.children(withElementName: "child")
+        XCTAssertEqual(2, children?.count)
+        XCTAssertEqual(firstChild, children?.first)
+        XCTAssertEqual(thirdChild, children?.last)
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ final class StoreProjectReporter: StoreProjectReporterProtocol {
 
         guard let postData = String(format: "program=%@&note=%@&category=%@", projectId, message, standardCategory).data(using: .utf8, allowLossyConversion: true) else { return }
 
-        if let token = JNKeychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
+        if let token = Keychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
             let tokenString = String(format: "%@", token)
             request.addValue(tokenString, forHTTPHeaderField: authorizationTag)
         }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -215,6 +215,53 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertEqual(2, logicItems.count)
         XCTAssertTrue(logicItems.contains { $0.sensor?.tag() == sensorB.tag() })
         XCTAssertTrue(logicItems.contains { $0.title == type(of: op).name })
+    }
+
+    func testFormulaEditorItemsForCollisionFunctionExcludeCurrentObject() {
+        let collisionFunction = CollisionFunction()
+        let backgroundName = "Background"
+        let objectNameA = "ObjectA"
+        let objectNameB = "ObjectB"
+
+        let scene = Scene()
+
+        let backgroundObject = SpriteObjectMock(name: backgroundName, scene: scene)
+        scene.add(object: backgroundObject)
+
+        let objectA = SpriteObjectMock(name: objectNameA, scene: scene)
+        scene.add(object: objectA)
+
+        let objectB = SpriteObjectMock(name: objectNameB, scene: scene)
+        scene.add(object: objectB)
+
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [], landscapeMode: false),
+                                     functionManager: FunctionManager(functions: [collisionFunction]),
+                                     operatorManager: OperatorManager(operators: []))
+
+        var items = manager.formulaEditorItemsForObjectSection(spriteObject: objectA)
+        XCTAssertEqual(2, items.count)
+        XCTAssertEqual((kUIFEObjectActorObjectTouch + "(\'" + backgroundName + "\')"), items[0].title)
+        XCTAssertEqual((kUIFEObjectActorObjectTouch + "(\'" + objectNameB + "\')"), items[1].title)
+
+        items = manager.formulaEditorItemsForObjectSection(spriteObject: objectB)
+        XCTAssertEqual(2, items.count)
+        XCTAssertEqual((kUIFEObjectActorObjectTouch + "(\'" + objectNameA + "\')"), items[1].title)
+    }
+
+    func testFormulaEditorNoItemsForProjectWithOnlyBackground() {
+        let collisionFunction = CollisionFunction()
+        let backgroundName = "Background"
+
+        let scene = Scene()
+
+        let backgroundObject = SpriteObjectMock(name: backgroundName, scene: scene)
+        scene.add(object: backgroundObject)
+
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [], landscapeMode: false),
+                                     functionManager: FunctionManager(functions: [collisionFunction]),
+                                     operatorManager: OperatorManager(operators: []))
+
+        XCTAssertEqual(0, manager.formulaEditorItemsForObjectSection(spriteObject: backgroundObject).count)
     }
 
     func testFunctionExists() {

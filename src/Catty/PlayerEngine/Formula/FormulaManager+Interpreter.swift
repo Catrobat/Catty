@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -222,8 +222,15 @@ extension FormulaManager {
     private func interpretFunction(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         let leftParam = functionParameter(formulaElement: formulaElement.leftChild, spriteObject: spriteObject)
         let rightParam = functionParameter(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
+        var additionalParameters: [AnyObject] = []
 
-        return functionManager.value(tag: formulaElement.value, firstParameter: leftParam, secondParameter: rightParam, spriteObject: spriteObject)
+        for additionalChild in formulaElement.additionalChildren {
+            if let additionalParameter = functionParameter(formulaElement: additionalChild as? FormulaElement, spriteObject: spriteObject) {
+                additionalParameters.append(additionalParameter)
+            }
+        }
+
+        return functionManager.value(tag: formulaElement.value, firstParameter: leftParam, secondParameter: rightParam, additionalParameters: additionalParameters, spriteObject: spriteObject)
     }
 
     private func interpretOperator(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {

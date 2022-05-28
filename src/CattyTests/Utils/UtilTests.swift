@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ final class UtilTests: XCTestCase {
     private func mainScreenSizeInPixel() -> CGSize {
         var screenSizeInPixel = UIScreen.main.nativeBounds.size
 
-        if UIScreen.main.bounds.height == CGFloat(kIphone6PScreenHeight) {
+        if UIScreen.main.bounds.height == UIDefines.iPhone6PScreenHeight {
             let iPhonePlusDownsamplingFactor = CGFloat(1.15)
             screenSizeInPixel.height /= iPhonePlusDownsamplingFactor
             screenSizeInPixel.width /= iPhonePlusDownsamplingFactor

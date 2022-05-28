@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -63,8 +63,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
                 guard searchTerm == self.lastSearchTerm else { return }
                 guard let collection = items, error == nil else { completion(error); return }
 
-                self.projects = collection.projects
-                self.baseUrl = collection.information.baseUrl
+                self.projects = collection
                 self.delegate?.updateTableView()
                 completion(nil)
                 if self.projects.isEmpty {
@@ -99,7 +98,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
             cell.tag = indexPath.row
             if projects.isEmpty == false && indexPath.row < self.projects.count {
                 cell.searchImage = nil
-                cell.searchTitle = self.projects[indexPath.row].projectName
+                cell.searchTitle = self.projects[indexPath.row].name
                 cell.project = self.projects[indexPath.row]
 
                 DispatchQueue.global().async {
@@ -135,7 +134,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         self.delegate?.showLoadingIndicator()
 
         guard let cellProject = cell?.project else { return }
-        self.downloader.fetchProjectDetails(for: cellProject.projectId) { project, error in
+        self.downloader.fetchProjectDetails(for: cellProject.id) { project, error in
             guard timer.isValid else { return }
             guard let StoreProject = project, error == nil else { return }
             guard let cell = cell else { return }

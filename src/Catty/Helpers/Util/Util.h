@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -109,6 +109,8 @@ if (__functor) __functor(__VA_ARGS__);  \
                         maxInputLength:(NSUInteger)maxInputLength
               invalidInputAlertMessage:(NSString* _Nullable)invalidInputAlertMessage;
 
++ (NSString *_Nullable)normalizedDescriptionWithFormat:(NSString *_Nonnull)descriptionFormat formatParameter:(NSUInteger)formatParameter;
+
 + (NSString* _Nullable)uniqueName:(NSString* _Nullable)nameToCheck existingNames:(NSArray* _Nullable)existingNames;
 
 + (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString* _Nullable)xmlPath;
@@ -136,10 +138,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 + (NSArray* _Nullable)getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary* _Nullable) brickCountDictionary;
 
 + (NSArray* _Nullable)getSubsetOfTheMostFavoriteChosenBricks:(NSUInteger) amount;
-
-+ (void)resetBrickStatistics;
-
-+ (NSDictionary* _Nullable)defaultBrickStatisticDictionary;
 
 + (NSString* _Nullable)replaceBlockedCharactersForString:(NSString* _Nullable)string;
 

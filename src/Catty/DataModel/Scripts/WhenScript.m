@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,13 +22,14 @@
 
 #import "WhenScript.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation WhenScript
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        self.action = kWhenScriptDefaultAction;
+        self.action = UIDefines.whenScriptDefaultAction;
     }
     return self;
 }

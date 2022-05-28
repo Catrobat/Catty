@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -165,8 +165,12 @@ class BluetoothDevicesTableViewController: UITableViewController {
         delegate!.rightButton.isEnabled = false
         DispatchQueue.main.async {
             self.loadingView?.hide()
-            self.stagePresenterVC.checkResourcesAndPushViewController(to: self.navigationController!)
+
+            if let presentingNavigationController = self.navigationController?.presentingViewController as? UINavigationController {
+                self.dismiss(animated: true) {
+                    self.stagePresenterVC.checkResourcesAndPushViewController(to: presentingNavigationController)
+                }
+            }
         }
     }
-
 }

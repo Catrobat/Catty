@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -164,6 +164,8 @@ class ObjectTVCTests: XCTestCase {
         XCTAssertTrue(sheet.exists)
 
         sheet.buttons[kLocalizedCopy].tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).exists)
 
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()

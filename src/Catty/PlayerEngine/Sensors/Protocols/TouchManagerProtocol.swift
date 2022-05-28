@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,8 @@ protocol TouchManagerProtocol {
 
     // Returns a SpriteKit specific position which needs to be converted. (0, 0) is at the bottom left corner
     func lastPositionInScene() -> CGPoint?
+
+    func lastTouch() -> UITouch?
 
     // Returns a SpriteKit specific position which needs to be converted. (0, 0) is at the bottom left corner
     func getPositionInScene(for touchNumber: Int) -> CGPoint?

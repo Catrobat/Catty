@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,18 +26,12 @@
 
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
 
-        let volumeFormula = self.volume
-        let spriteObjectName = spriteObject.name
-
         return CBInstruction.execClosure { context, scheduler in
             let audioEngine = scheduler.getAudioEngine()
-            guard let volumeFormula = volumeFormula else { return }
+            let volumeChange = context.formulaInterpreter.interpretDouble(self.volume, for: spriteObject)
 
-            let volumeChange = context.formulaInterpreter.interpretDouble(volumeFormula, for: spriteObject)
-            if let name = spriteObjectName {
-                audioEngine.changeVolumeBy(percent: volumeChange, key: name)
-                context.state = .runnable
-            }
+            audioEngine.changeVolumeBy(percent: volumeChange, key: nil)
+            context.state = .runnable
         }
     }
 }

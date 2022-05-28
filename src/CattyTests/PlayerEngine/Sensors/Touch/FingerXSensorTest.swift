@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -56,19 +56,19 @@ final class FingerXSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = FingerXSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(for: self.spriteObject), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
-        touchManager.lastTouch = CGPoint(x: 15, y: 20)
-        XCTAssertEqual(15, sensor.rawValue())
+        touchManager.lastPosition = CGPoint(x: 15, y: 20)
+        XCTAssertEqual(15, sensor.rawValue(for: self.spriteObject))
 
-        touchManager.lastTouch = CGPoint(x: -130, y: 29)
-        XCTAssertEqual(-130, sensor.rawValue())
+        touchManager.lastPosition = CGPoint(x: -130, y: 29)
+        XCTAssertEqual(-130, sensor.rawValue(for: self.spriteObject))
     }
 
     func testConvertToStandardized() {
-        touchManager.lastTouch = CGPoint(x: 100, y: 100) // a random point to mock the screen touching
+        touchManager.lastPosition = CGPoint(x: 100, y: 100) // a random point to mock the screen touching
 
         XCTAssertEqual(Double(0 - screenWidth / 2), sensor.convertToStandardized(rawValue: 0, for: spriteObject))
         XCTAssertEqual(Double(100 - screenWidth / 2), sensor.convertToStandardized(rawValue: 100, for: spriteObject))

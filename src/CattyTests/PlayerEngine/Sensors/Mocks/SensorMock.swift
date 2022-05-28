@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@ class SensorMock: Sensor {
 
     static var tag = "sensorTag"
     static var name = "name"
+    static var position = 0
     static var defaultRawValue: Double = 0
     static var requiredResource = ResourceType.noResources
     private let mockedSections: [FormulaEditorSection]

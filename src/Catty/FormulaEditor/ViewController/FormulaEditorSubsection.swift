@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -51,11 +51,15 @@ enum ObjectSubsection: FormulaEditorSubsection, CaseIterable {
 
         case .motion:
             return kUIFESubsectionMotion
+
+        case .touchesActorOrObject:
+            return kUIFEObjectActorObjectTouch
         }
     }
 
     case general
     case motion
+    case touchesActorOrObject
 }
 
 enum LogicSubsection: FormulaEditorSubsection, CaseIterable {
@@ -85,6 +89,9 @@ enum SensorSubsection: FormulaEditorSubsection, CaseIterable {
         case .visual:
             return kUIFESubsectionVisualSensors
 
+        case .pose:
+            return kUIFESubsectionPoseDetection
+
         case .dateAndTime:
             return kUIFESubsectionDataAndTime
 
@@ -99,6 +106,7 @@ enum SensorSubsection: FormulaEditorSubsection, CaseIterable {
     case device
     case touch
     case visual
+    case pose
     case dateAndTime
     case arduino
     case phiro

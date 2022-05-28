@@ -686,6 +686,10 @@
                 <brick type="StitchBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
+                <brick type="SetBackgroundAndWaitBrick">
+                  <commentedOut>false</commentedOut>
+                  <look reference="../../../../../lookList/look"/>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
@@ -740,6 +744,24 @@
                 <brick type="SetInstrumentBrick">
                     <commentedOut>false</commentedOut>
                     <instrumentSelection>PIANO</instrumentSelection>
+                </brick>
+                <brick type="SetBackgroundByIndexBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="LOOK_INDEX">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetBackgroundByIndexBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="BACKGROUND_INDEX">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
                 </brick>
                 <brick type="SetTempoToBrick">
                   <commentedOut>false</commentedOut>

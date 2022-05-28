@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,16 +22,4 @@
 
 protocol DeviceSensor: Sensor {
 
-    // The iOS device specific value of the sensor
-    func rawValue(landscapeMode: Bool) -> Double
-
-    // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
-    func convertToStandardized(rawValue: Double) -> Double
-}
-
-extension DeviceSensor {
-    // The Pocket Code standardized sensor value
-    func standardizedValue(landscapeMode: Bool) -> Double {
-        convertToStandardized(rawValue: self.rawValue(landscapeMode: landscapeMode))
-    }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@ protocol CBSchedulerProtocol: AnyObject {
 
     // queries
     func isContextScheduled(_ context: CBScriptContextProtocol) -> Bool
+    func isWhenBackgroundChangesContextScheduled(look: Look) -> Bool
     func startWhenContextsOfSpriteNodeWithName(_ spriteName: String)
     func startWhenTouchDownContexts()
     func startWhenConditionContexts()

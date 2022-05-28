@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 #import "PhiroIfLogicBeginBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PhiroIfLogicBeginBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -31,7 +32,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight1h;
+    return UIDefines.brickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

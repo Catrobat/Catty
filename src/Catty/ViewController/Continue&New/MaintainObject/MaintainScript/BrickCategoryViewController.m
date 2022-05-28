@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -50,10 +50,7 @@
     self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout new];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    if (@available(iOS 11, *)) {
-        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     [self setupSubviews];
     [self updateTitle];
 }
@@ -126,6 +123,7 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
     NSAssert(cell.scriptOrBrick, @"Error, no brick.");
     
     [Util incrementStatisticCountForBrick:cell.scriptOrBrick];
+    [RecentlyUsedBricksManager updateRecentlyUsedBricksFor: NSStringFromClass([cell.scriptOrBrick class])];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.brickSelected object:cell.scriptOrBrick];
     

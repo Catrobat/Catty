@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,9 @@
 
 import CoreMotion
 
-@objc class InclinationYSensor: NSObject, DeviceSensor {
+class InclinationYSensor: DeviceDoubleSensor {
 
-    @objc static let tag = "Y_INCLINATION"
+    static let tag = "Y_INCLINATION"
     static let name = kUIFESensorInclinationY
     static let defaultRawValue = 0.0
     static let position = 60

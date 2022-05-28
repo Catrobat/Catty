@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,19 +24,14 @@ protocol FeaturedProjectsStoreTableDataSourceDelegate: AnyObject {
     func featuredProjectsStoreTableDataSource(_ dataSource: FeaturedProjectsStoreTableDataSource, didSelectCellWith item: StoreProject)
 }
 
-protocol SelectedFeaturedProjectsDataSource: AnyObject {
-    func selectedCell(dataSource: FeaturedProjectsStoreTableDataSource, didSelectCellWith cell: FeaturedProjectsCell)
-}
-
 class FeaturedProjectsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Properties
 
-    weak var delegate: SelectedFeaturedProjectsDataSource?
+    weak var delegate: FeaturedProjectsCellDelegate?
 
     fileprivate let downloader: StoreProjectDownloaderProtocol
-    fileprivate var projects = [StoreProject]()
-    fileprivate var baseUrl = ""
+    fileprivate var projects = [StoreFeaturedProject]()
 
     // MARK: - Initializer
 
@@ -51,10 +46,9 @@ class FeaturedProjectsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     // MARK: - DataSource
 
     func fetchItems(completion: @escaping (StoreProjectDownloaderError?) -> Void) {
-        self.downloader.fetchProjects(forType: .featured, offset: 0) {items, error in
+        self.downloader.fetchFeaturedProjects(offset: 0) {items, error in
             guard let collection = items, error == nil else { completion(error); return }
-            self.projects = collection.projects
-            self.baseUrl = collection.information.baseUrl
+            self.projects = collection
             completion(nil)
         }
     }
@@ -70,7 +64,7 @@ class FeaturedProjectsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kFeaturedCell, for: indexPath)
         if let cell = cell as? FeaturedProjectsCell {
-            cell.featuredImage = self.baseUrl.appending(projects[indexPath.row].featuredImage!)
+            cell.featuredImage = projects[indexPath.row].featuredImage
             cell.project = projects[indexPath.row]
         }
 
@@ -82,10 +76,9 @@ class FeaturedProjectsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: FeaturedProjectsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProjectsCell
 
-        self.downloader.fetchProjectDetails(for: (cell?.project)!.projectId) { project, error in
-            guard let StoreProject = project, error == nil else { return }
-            cell?.project = StoreProject
-            self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
+        self.downloader.fetchProjectDetails(for: (cell?.project)!.id) { project, error in
+            guard let storeProject = project, error == nil else { return }
+            self.delegate?.openProject(storeProject)
         }
     }
 }

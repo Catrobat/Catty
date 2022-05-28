@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 #import "RegisterViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
-#import "JNKeychain.h"
 #import "Pocket_Code-Swift.h"
 
 #import "KeychainUserDefaultsDefines.h"
@@ -372,11 +371,14 @@
         [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [JNKeychain saveValue:token forKey: NetworkDefines.kUserLoginToken];
+        [Keychain saveValue: token forKey: NetworkDefines.kUserLoginToken];
         
         [self hideLoadingView];
-        [self.navigationController popToRootViewControllerAnimated:NO];
-        
+        if (self.delegate != nil && [self.delegate isKindOfClass:[UIViewController class]]) {
+            [self.navigationController popToViewController:(UIViewController *)self.delegate animated:NO];
+        } else {
+            [self.navigationController popToRootViewControllerAnimated:NO];            
+        }
     } else {
         self.registerButton.enabled = YES;
         [self hideLoadingView];

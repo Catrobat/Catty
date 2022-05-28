@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -85,8 +85,6 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
     func performBroadcastWithMessage(_ message: String, senderContext: CBScriptContextProtocol,
                                      broadcastType: CBBroadcastType) {
         logger.info("Performing \(broadcastType.rawValue) with message '\(message)'")
-        let enqueuedWaitingScripts = _broadcastWaitingContextsQueue[senderContext.id]
-        assert(enqueuedWaitingScripts == nil || enqueuedWaitingScripts!.isEmpty)
 
         var isSelfBroadcast = false
         guard let registeredContexts = _registeredBroadcastContexts[message], !registeredContexts.isEmpty else {

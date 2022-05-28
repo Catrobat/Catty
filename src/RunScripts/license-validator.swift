@@ -1,6 +1,6 @@
 #!/usr/bin/env xcrun swift -I .
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -115,8 +115,6 @@ let license3rdPartyDict: [String: License] = [
     "MXScrollView": .MIT,
     "MXScrollViewController": .MIT,
     "AudioKit": .MIT,
-    "chromaprint": .LGPL,
-    "ChromaprintAudioDecoder": .MIT,
     "SnapshotHelper": .MIT,
     "ScratchSampleInstruments": .BSD
 ]

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -42,6 +42,24 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = kLocalizedCatrobatCommunity;
+    if (@available(iOS 15.0, *)) {
+        UITabBarAppearance *tabBarAppearance = [[UITabBarAppearance alloc] init];
+        tabBarAppearance.backgroundColor = UIColor.tabBar;
+
+        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.tabTint;
+        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = @{
+            NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],
+            NSForegroundColorAttributeName : UIColor.tabTint
+        };
+        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor.whiteGray;
+        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = @{
+            NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],
+            NSForegroundColorAttributeName : UIColor.whiteGray
+        };
+
+        self.tabBar.standardAppearance = tabBarAppearance;
+        self.tabBar.scrollEdgeAppearance = tabBarAppearance;
+    }
     self.tabBar.barTintColor = UIColor.tabBar;
     self.tabBar.barStyle = UIBarStyleDefault;
     self.tabBar.tintColor = UIColor.whiteGray;

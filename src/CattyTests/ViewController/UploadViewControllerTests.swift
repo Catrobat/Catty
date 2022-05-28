@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -71,9 +71,9 @@ class UploadViewControllerTests: XCTestCase {
 
         uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2"])
         XCTAssertNotNil(selectedCategoriesValueLabel.text)
-        XCTAssertEqual(selectedCategoriesValueLabel.text, "testTag1, testTag2")
+        XCTAssertEqual(selectedCategoriesValueLabel.text, "testTag1,testTag2")
         XCTAssertFalse(project.header.tags.isEmpty)
-        XCTAssertEqual(project.header.tags, "testTag1, testTag2")
+        XCTAssertEqual(project.header.tags, "testTag1,testTag2")
     }
 
     func testProjectTag() {
@@ -89,11 +89,11 @@ class UploadViewControllerTests: XCTestCase {
         uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2"])
         uploadViewController.uploadAction()
         XCTAssertFalse(uploaderMock.projectToUpload!.header.tags.isEmpty)
-        XCTAssertEqual(uploaderMock.projectToUpload!.header.tags, "testTag1, testTag2")
+        XCTAssertEqual(uploaderMock.projectToUpload!.header.tags, "testTag1,testTag2")
 
         uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2 with space"])
         uploadViewController.uploadAction()
         XCTAssertFalse(uploaderMock.projectToUpload!.header.tags.isEmpty)
-        XCTAssertEqual(uploaderMock.projectToUpload!.header.tags, "testTag1, testTag2 with space")
+        XCTAssertEqual(uploaderMock.projectToUpload!.header.tags, "testTag1,testTag2 with space")
     }
 }

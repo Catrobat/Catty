@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -75,6 +75,10 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
     func getPositionInScene(for touchNumber: Int) -> CGPoint? {
         guard let stage = self.stage, let touch = self.touch(for: touchNumber) else { return nil }
         return touch.location(in: stage)
+    }
+
+    func lastTouch() -> UITouch? {
+        activeTouches.last
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {

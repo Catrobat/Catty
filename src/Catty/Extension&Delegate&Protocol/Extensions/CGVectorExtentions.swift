@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,14 @@ public extension CGVector {
       self.init(dx: point.x, dy: point.y)
     }
 
+    init(head B: CGPoint, tail A: CGPoint) {
+        self.init(dx: B.x - A.x, dy: B.y - A.y)
+    }
+
+    init(from A: CGPoint, to B: CGPoint) {
+        self.init(dx: B.x - A.x, dy: B.y - A.y)
+    }
+
     static func + (lhs: CGVector, rhs: CGVector) -> CGVector {
         CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
     }
@@ -44,7 +52,24 @@ public extension CGVector {
         lhs = lhs - rhs                                   //this is a known limitation of swiftlint
     }
 
+    static func * (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
+    }
+
     func toCGPoint() -> CGPoint {
         CGPoint(x: dx, y: dy)
+    }
+
+    func magnitude() -> CGFloat {
+        sqrt((self.dx * self.dx) + (self.dy * self.dy))
+    }
+
+    func normalized() -> CGVector {
+        let l = self.magnitude()
+        return CGVector(dx: self.dx / l, dy: self.dy / l)
+    }
+
+    func normals() -> (CGVector, CGVector) {
+        (CGVector(dx: self.dy, dy: -self.dx), CGVector(dx: -self.dy, dy: self.dx))
     }
 }

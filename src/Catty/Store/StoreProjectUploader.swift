@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -84,7 +84,7 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
 
         parameters.append(FormData(name: fileChecksumParameterTag, value: checksum))
 
-        if let token = JNKeychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
+        if let token = Keychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
             parameters.append(FormData(name: tokenParameterTag, value: token))
         }
 
@@ -144,7 +144,14 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
     }
 
     func fetchTags(for language: String, completion: @escaping ([String], StoreProjectUploaderError?) -> Void) {
-        guard let tagUrl = URL(string: "\(NetworkDefines.tagUrl)?\(NetworkDefines.tagLanguage + language)") else { return }
+        var tagUrlComponents = URLComponents(string: NetworkDefines.tagUrl)
+        tagUrlComponents?.queryItems = [
+            URLQueryItem(name: NetworkDefines.tagLanguage, value: language)
+        ]
+
+        guard let tagUrl = tagUrlComponents?.url else {
+            return
+        }
 
         self.session.dataTask(with: tagUrl) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (availableTags: [String], error: StoreProjectUploaderError?)

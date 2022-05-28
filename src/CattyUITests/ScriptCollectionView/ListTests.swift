@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,18 +43,20 @@ class ListTests: XCTestCase {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
         tapOnListPicker(of: kLocalizedUserListAdd, in: app)
-        XCTAssert(app.sheets[kUIFEActionList].exists)
+        XCTAssert(app.navigationBars[kUIFENewList].exists)
     }
 
     func testCreateListWithMaxLength() {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
         tapOnListPicker(of: kLocalizedUserListAdd, in: app)
-        XCTAssert(app.sheets[kUIFEActionList].exists)
+        XCTAssert(app.navigationBars[kUIFENewList].exists)
 
-        app.buttons[kUIFEActionVarPro].tap()
-        app.alerts[kUIFENewList].textFields[kLocalizedEnterYourListNameHere].typeText(String(repeating: "i", count: 250))
-        app.alerts[kUIFENewList].buttons[kLocalizedOK].tap()
+        let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+        textField.tap()
+        textField.typeText(String(repeating: "i", count: 25))
+
+        app.navigationBars[kUIFENewList].buttons[kUIFEDone].tap()
         XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedWhenProjectStarted]).exists)
     }
 
@@ -62,11 +64,13 @@ class ListTests: XCTestCase {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
         tapOnListPicker(of: kLocalizedUserListAdd, in: app)
-        XCTAssert(app.sheets[kUIFEActionList].exists)
+        XCTAssert(app.navigationBars[kUIFENewList].exists)
 
-        app.buttons[kUIFEActionVarPro].tap()
-        app.alerts[kUIFENewList].textFields[kLocalizedEnterYourListNameHere].typeText(String(repeating: "i", count: 250 + 1))
-        app.alerts[kUIFENewList].buttons[kLocalizedOK].tap()
+        let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+        textField.tap()
+        textField.typeText(String(repeating: "i", count: 25 + 1))
+
+        app.navigationBars[kUIFENewList].buttons[kUIFEDone].tap()
         XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedPocketCode]).exists)
     }
 
@@ -82,12 +86,15 @@ class ListTests: XCTestCase {
         app.buttons[kUIFEData].tap()
         for variable in testLists {
             app.navigationBars.buttons[kLocalizedAdd].tap()
-            waitForElementToAppear(app.buttons[kUIFENewList]).tap()
-            waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
 
-            let alert = waitForElementToAppear(app.alerts[kUIFENewList])
-            alert.textFields.firstMatch.typeText(variable)
-            alert.buttons[kLocalizedOK].tap()
+            let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+            textField.tap()
+            textField.typeText(variable)
+
+            let switchControl = app.switches.element(matching: .switch, identifier: "formSwitch")
+            switchControl.tap()
+
+            app.navigationBars[kUIFENewList].buttons[kUIFEDone].tap()
         }
 
         app.tables.staticTexts[testLists[1]].tap()
@@ -134,10 +141,9 @@ class ListTests: XCTestCase {
         app.buttons[kLocalizedEditFormula].tap()
         waitForElementToAppear(app.buttons[kUIFEData]).tap()
         waitForElementToAppear(app.navigationBars.buttons[kLocalizedAdd]).tap()
-        waitForElementToAppear(app.buttons[kUIFENewList]).tap()
-        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
-        let newVarAlert = waitForElementToAppear(app.alerts[kUIFENewList])
-        XCTAssertEqual(newVarAlert.textFields.firstMatch.value as! String, "")
+
+        let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+        XCTAssertEqual(textField.value as! String, kLocalizedName)
     }
 
     func testDeleteListInFormulaEditor() {
@@ -153,12 +159,14 @@ class ListTests: XCTestCase {
 
         for variable in testLists {
             app.navigationBars.buttons[kLocalizedAdd].tap()
-            waitForElementToAppear(app.buttons[kUIFENewList]).tap()
-            waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
+            let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
+            textField.tap()
+            textField.typeText(variable)
 
-            let alert = waitForElementToAppear(app.alerts[kUIFENewList])
-            alert.textFields.firstMatch.typeText(variable)
-            alert.buttons[kLocalizedOK].tap()
+            let switchControl = app.switches.element(matching: .switch, identifier: "formSwitch")
+            switchControl.tap()
+
+            app.navigationBars[kUIFENewList].buttons[kUIFEDone].tap()
         }
 
         app.tables.staticTexts[testLists[0]].swipeLeft()

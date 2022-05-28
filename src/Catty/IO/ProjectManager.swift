@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,15 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc(ProjectManager)
-class ProjectManager: NSObject {
+@objc open class ProjectManager: NSObject {
 
-    @objc static func createProject(name: String, projectId: String?) -> Project {
-        ProjectManager.createProject(name: name, projectId: projectId, fileManager: CBFileManager.shared(), imageCache: RuntimeImageCache.shared())
-    }
+    @objc static let shared = ProjectManager()
 
-    static func createProject(name: String, projectId: String?, fileManager: CBFileManager, imageCache: RuntimeImageCache) -> Project {
+    private let fileManager: CBFileManager
+    private let imageCache: RuntimeImageCache
 
+    public init(fileManager: CBFileManager = CBFileManager.shared(), imageCache: RuntimeImageCache = RuntimeImageCache.shared()) {
+        self.fileManager = fileManager
+        self.imageCache = imageCache
+     }
+
+    @objc func createProject(name: String, projectId: String?) -> Project {
         let project = Project()
         let projectName = Util.uniqueName(name, existingNames: Project.allProjectNames())
         project.scene = Scene(name: Util.defaultSceneName(forSceneNumber: 1))
@@ -76,14 +80,7 @@ class ProjectManager: NSObject {
         return project
     }
 
-    @objc static func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
-        ProjectManager.loadPreviewImageAndCache(projectLoadingInfo: projectLoadingInfo, fileManager: CBFileManager.shared(), imageCache: RuntimeImageCache.shared(), completion: completion)
-    }
-
-    static func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, fileManager: CBFileManager,
-                                         imageCache: RuntimeImageCache,
-                                         completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
-
+    @objc func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
         let fallbackPaths = [
             projectLoadingInfo.basePath + kScreenshotFilename,
             projectLoadingInfo.basePath + kScreenshotManualFilename,
@@ -100,8 +97,8 @@ class ProjectManager: NSObject {
 
         DispatchQueue.global(qos: .default).async {
             for imagePath in fallbackPaths {
-                if fileManager.fileExists(imagePath as String) {
-                    imageCache.loadImageFromDisk(
+                if self.fileManager.fileExists(imagePath as String) {
+                    self.imageCache.loadImageFromDisk(
                         withPath: imagePath,
                         andSize: UIDefines.previewImageSize,
                         onCompletion: { image, path in completion(image, path) })
@@ -115,7 +112,7 @@ class ProjectManager: NSObject {
         return
     }
 
-    static func projectNames(for projectID: String, fileManager: CBFileManager = CBFileManager.shared()) -> [String]? {
+    func projectNames(for projectID: String) -> [String]? {
         if projectID.isEmpty {
             return nil
         }
@@ -133,8 +130,7 @@ class ProjectManager: NSObject {
         return projectNames
     }
 
-    static func addProjectFromFile(url: URL) -> Project? {
-        let fileManager = CBFileManager.shared()
+    func addProjectFromFile(url: URL) -> Project? {
         let tempProjectName = String(Date().timeIntervalSinceReferenceDate) + url.lastPathComponent
         let path = url.path
         var newProject: NSData?
@@ -149,12 +145,12 @@ class ProjectManager: NSObject {
             return nil
         }
 
-        fileManager?.unzipAndStore(newProject as Data?, withProjectID: nil, withName: tempProjectName)
+        self.fileManager.unzipAndStore(newProject as Data?, withProjectID: nil, withName: tempProjectName)
 
         return getProjectNameAndRename(tempProjectName: tempProjectName)
     }
 
-    private static func getProjectNameAndRename(tempProjectName: String) -> Project? {
+    func getProjectNameAndRename(tempProjectName: String) -> Project? {
         guard let projectLoadingInfo = ProjectLoadingInfo(forProjectWithName: tempProjectName, projectID: kNoProjectIDYetPlaceholder) else {
             Project.removeProjectFromDisk(withProjectName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
             Util.alert(text: kLocalizedUnableToImportProject)
@@ -175,5 +171,15 @@ class ProjectManager: NSObject {
         project?.rename(toProjectName: newProjectName, andShowSaveNotification: false)
 
         return project
+    }
+
+    @objc func removeObjects(_ project: Project, objects: [SpriteObject]) {
+        let scene = project.scene
+        for object in objects {
+            if scene.objects().contains(object) {
+                scene.removeObject(object)
+            }
+        }
+        project.saveToDisk(withNotification: true)
     }
 }

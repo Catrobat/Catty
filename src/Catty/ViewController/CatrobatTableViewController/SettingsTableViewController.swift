@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@ class SettingsTableViewController: BOTableViewController {
 
     static let unusedKey = "unused"
 
+    let trustedDomainViewController = TrustedDomainTableViewController()
     let aboutPocketCodeViewController = AboutPocketCodeOptionTableViewController()
     let termsOfUseViewController = TermsOfUseOptionTableViewController()
 
@@ -118,6 +119,18 @@ class SettingsTableViewController: BOTableViewController {
                         }
                     }))
                 }
+            }))
+        }
+
+        if UserDefaults.standard.bool(forKey: kUseWebRequestBrick) {
+            addSection(BOTableViewSection(headerTitle: "", handler: { section in
+                section?.addCell(BOChoiceTableViewCell(title: kLocalizedWebAccess, key: type(of: self).unusedKey, handler: { cell in
+                    if let aboutPocketCodeCellChoice = cell as? BOChoiceTableViewCell {
+                        aboutPocketCodeCellChoice.destinationViewController = self.trustedDomainViewController
+                        aboutPocketCodeCellChoice.backgroundColor = UIColor.background
+                        aboutPocketCodeCellChoice.mainColor = UIColor.globalTint
+                    }
+                }))
             }))
         }
 

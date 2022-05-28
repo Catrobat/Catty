@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ extension FormulaManager {
         if requiredResources & ResourceType.magnetometer.rawValue > 0 && !motionManager.isMagnetometerAvailable {
             unavailableResource |= ResourceType.magnetometer.rawValue
         }
-        if requiredResources & ResourceType.faceDetection.rawValue > 0 && !faceDetectionManager.available() {
+        if requiredResources & ResourceType.faceDetection.rawValue > 0 && !visualDetectionManager.available() {
             unavailableResource |= ResourceType.faceDetection.rawValue
         }
         if requiredResources & ResourceType.loudness.rawValue > 0 && !audioManager.loudnessAvailable() {
@@ -95,7 +95,7 @@ extension FormulaManager {
             locationManager.startUpdatingLocation()
         }
         if ((requiredResources & ResourceType.faceDetection.rawValue) > 0) && (unavailableResource & ResourceType.faceDetection.rawValue) == 0 {
-            faceDetectionManager.start()
+            visualDetectionManager.start()
         }
         if ((requiredResources & ResourceType.loudness.rawValue) > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
             audioManager.startLoudnessRecorder()
@@ -114,7 +114,7 @@ extension FormulaManager {
         motionManager.stopMagnetometerUpdates()
         locationManager.stopUpdatingHeading()
         locationManager.stopUpdatingLocation()
-        faceDetectionManager.stop()
+        visualDetectionManager.stop()
         audioManager.stopLoudnessRecorder()
         touchManager.stopTrackingTouches()
 

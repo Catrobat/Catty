@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ import BluetoothHelper
         return type(of: function).isIdempotent
     }
 
-    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> AnyObject {
+    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?, additionalParameters: [AnyObject], spriteObject: SpriteObject) -> AnyObject {
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
 
@@ -66,6 +66,9 @@ import BluetoothHelper
             value = function.value(parameter: firstParameter) as AnyObject
         } else if let function = function as? DoubleParameterStringFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
+        } else if let function = function as? TripleParameterStringFunction {
+            let thirdParameter = additionalParameters.first
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter, thirdParameter: thirdParameter) as AnyObject
         } else if let function = function as? ZeroParameterFunction {
             value = function.value()
         } else if let function = function as? SingleParameterFunction {

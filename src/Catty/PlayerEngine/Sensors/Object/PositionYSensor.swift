@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ class PositionYSensor: ObjectDoubleSensor {
     static let tag = "OBJECT_Y"
     static let name = kUIFEObjectPositionY
     static let defaultRawValue = 0.0
-    static let position = 10
+    static let position = 20
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 #import "BroadcastScriptCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BroadcastScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -35,7 +36,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeightControl2h;
+    return UIDefines.brickHeightControl2h;
 }
 
 - (void)hookUpSubViews:(NSArray*)inlineViewSubViews

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -107,6 +107,7 @@
 #define kLocalizedHelp NSLocalizedString(@"Help", nil)
 #define kLocalizedCatrobatCommunity NSLocalizedString(@"Catrobat community", nil)
 #define kLocalizedDeletionMenu NSLocalizedString(@"Deletion mode", nil)
+#define kLocalizedWebAccess NSLocalizedString(@"Web access", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use and Service", @"Button title at the settings screen to get to the terms of use and service.")
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
@@ -189,6 +190,7 @@
 #define kLocalizedPocketCodeRecorder NSLocalizedString(@"Pocket Code Recorder", nil)
 #define kLocalizedOpen NSLocalizedString(@"Open", nil)
 #define kLocalizedDownload NSLocalizedString(@"Download", nil)
+#define kLocalizedDownloadAgain NSLocalizedString(@"Download again", nil)
 #define kLocalizedMore NSLocalizedString(@"More", nil)
 #define kLocalizedDelete NSLocalizedString(@"Delete", nil)
 #define kLocalizedAddObject NSLocalizedString(@"Add actor or object", nil)
@@ -214,6 +216,9 @@
 #define kLocalizedOK NSLocalizedString(@"OK", nil)
 #define kLocalizedYes NSLocalizedString(@"Yes", nil)
 #define kLocalizedNo NSLocalizedString(@"No", nil)
+#define kLocalizedAlways NSLocalizedString(@"Always", nil)
+#define kLocalizedDeny NSLocalizedString(@"Deny", nil)
+#define kLocalizedOnce NSLocalizedString(@"Once", nil)
 #define kLocalizedDeleteProject NSLocalizedString(@"Delete project", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
 #define kLocalizedSaveChanges NSLocalizedString(@"Save changes", nil)
@@ -274,6 +279,8 @@
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
 #define kLocalizedMoreInformation NSLocalizedString(@"More information", nil)
 #define kLocalizedScene NSLocalizedString(@"Scene", nil)
+#define kLocalizedEditTrustedDomain NSLocalizedString(@"Edit trusted domain", nil)
+#define kLocalizedAddTrustedDomain NSLocalizedString(@"Add trusted domain", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -328,13 +335,12 @@
 #define kLocalizedInvalidSoundNameDescription NSLocalizedString(@"No or invalid sound name entered, try again.", nil)
 #define kLocalizedImageNameAlreadyExistsDescription NSLocalizedString(@"An image with the same name already exists, try again.", nil)
 #define kLocalizedUnableToPlaySoundDescription NSLocalizedString(@"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.", nil)
-#define kLocalizedDeviceIsInMutedStateIPhoneDescription NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.", nil)
-#define kLocalizedDeviceIsInMutedStateIPadDescription NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.", nil)
 #define kLocalizedProjectAlreadyDownloadedDescription NSLocalizedString(@"You have already downloaded this project!", nil)
 #define kLocalizedNoAccesToImagesCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.", nil)
 #define kLocalizedNoAccesToCameraCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.", nil)
 #define kLocalizedNoAccesToMicrophoneCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", nil)
 #define kLocalizedUnsupportedElementsDescription NSLocalizedString(@"Following features used in this project are not compatible with this version of Pocket Code:", nil)
+#define kLocalizedAlwaysAllowWebRequestDescription NSLocalizedString(@"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.", nil)
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
@@ -342,6 +348,11 @@
 
 // embroidery bricks
 #define kLocalizedStitch NSLocalizedString(@"Stitch", nil)
+#define kLocalizedStartRunningStitch NSLocalizedString(@"Start running stitch with length", nil)
+#define kLocalizedStartZigzagStitch NSLocalizedString(@"Start zigzag stitch with length", nil)
+#define kLocalizedAndWidth NSLocalizedString(@"and width", nil)
+#define kLocalizedSewUp NSLocalizedString(@"Sew up", @"literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric.")
+#define kLocalizedStopCurrentStitch NSLocalizedString(@"Stop current stitch", nil)
 
 // control bricks
 #define kLocalizedScript NSLocalizedString(@"Script", nil)
@@ -407,6 +418,7 @@
 #define kLocalizedLook NSLocalizedString(@"Look", nil)
 #define kLocalizedSetLook NSLocalizedString(@"Switch to look", nil)
 #define kLocalizedSetBackground NSLocalizedString(@"Set background", nil)
+#define kLocalizedSetBackgroundAndWait NSLocalizedString(@"Set background and wait", nil)
 #define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
 #define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
 #define kLocalizedPreviousLook NSLocalizedString(@"Previous look", nil)
@@ -435,6 +447,7 @@
 #define kLocalizedDefaultAskBrickQuestion NSLocalizedString(@"What's your name?", nil)
 #define kLocalizedAskBrickAnswer NSLocalizedString(@"Your answer", nil)
 #define kLocalizedSwitchToLookWithNumber NSLocalizedString(@"Switch to look with number", nil)
+#define kLocalizedSetBackgroundByIndex NSLocalizedString(@"Set background to number", nil)
 
 // pen bricks
 #define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)
@@ -467,7 +480,10 @@
 #define kLocalizedShowVariable NSLocalizedString(@"Show variable", nil)
 #define kLocalizedHideVariable NSLocalizedString(@"Hide variable", nil)
 #define kLocalizedAt NSLocalizedString(@"at ", nil)
-
+#define kLocalizedSendWebRequestTo NSLocalizedString(@"Send web request to", nil)
+#define kLocalizedAndStoreAnswerIn NSLocalizedString(@"and store answer in", nil)
+#define kLocalizedAllowWebAccess NSLocalizedString(@"Allow web access", nil)
+#define kLocalizedAlwaysAllowWebAccess NSLocalizedString(@"Always allow web access", nil)
 //userlist
 #define kLocalizedUserListAdd NSLocalizedString(@"Add", nil)
 #define kLocalizedUserListTo NSLocalizedString(@"to list", nil)
@@ -620,7 +636,9 @@
 #define kUIFENewVarExists NSLocalizedString(@"Name already exists.", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
+#define kUIFEVariableName NSLocalizedString(@"Variable name", nil)
 #define kUIFEListName NSLocalizedString(@"List name:", nil)
+#define kUIFEListNameForm NSLocalizedString(@"List name", nil)
 #define kUIFEOtherName NSLocalizedString(@"Please choose another name:", nil)
 #define kUIFEAddNewText NSLocalizedString(@"Abc", nil)
 #define kUIFEProjectVariables NSLocalizedString(@"Variables for all actors and objects", nil)
@@ -634,7 +652,8 @@
 #define kUIFESubsectionComprison NSLocalizedString(@"Comparison operators", nil)
 #define kUIFESubsectionDeviceSensors NSLocalizedString(@"Device sensors", nil)
 #define kUIFESubsectionTouchDetection NSLocalizedString(@"Touch detection", nil)
-#define kUIFESubsectionVisualSensors NSLocalizedString(@"Visual sensors", nil)
+#define kUIFESubsectionVisualSensors NSLocalizedString(@"Face detection", nil)
+#define kUIFESubsectionPoseDetection NSLocalizedString(@"Pose detection", nil)
 #define kUIFESubsectionDataAndTime NSLocalizedString(@"Date and time", nil)
 #define kUIFESubsectionGeneral NSLocalizedString(@"General properties", nil)
 #define kUIFESubsectionMotion NSLocalizedString(@"Motion properties", nil)
@@ -652,6 +671,7 @@
 #define kUIFEEmptyInput NSLocalizedString(@"Empty input!", nil)
 
 #define kUIFEVarOrList NSLocalizedString(@"Variable or list", nil)
+#define kUIFECreateAsList NSLocalizedString(@"Create as list", nil)
 
 #define kUIFEFunctionSine NSLocalizedString(@"sine", nil)
 #define kUIFEFunctionCosine NSLocalizedString(@"cosine", nil)
@@ -684,6 +704,7 @@
 #define kUIFEFunctionNumberOfItems NSLocalizedString(@"number of items", nil)
 #define kUIFEFunctionElement NSLocalizedString(@"element", nil)
 #define kUIFEFunctionContains NSLocalizedString(@"contains", nil)
+#define kUIFEFunctionIndexOfItem NSLocalizedString(@"index of item", nil)
 
 #define kUIFEFunctionScreenIsTouched NSLocalizedString(@"stage is touched", nil)
 #define kUIFEFunctionScreenTouchX NSLocalizedString(@"stage touch x", nil)
@@ -705,6 +726,8 @@
 #define kUIFEObjectLayer NSLocalizedString(@"layer", nil)
 #define kUIFEObjectPositionX NSLocalizedString(@"position x", nil)
 #define kUIFEObjectPositionY NSLocalizedString(@"position y", nil)
+#define kUIFEObjectActorObjectTouch NSLocalizedString(@"touches actor or object", nil)
+#define kUIFESensorTouchesEdge NSLocalizedString(@"touches edge", nil)
 
 #define kUIFESensorDateYear NSLocalizedString(@"year", nil)
 #define kUIFESensorDateMonth NSLocalizedString(@"month", nil)
@@ -721,10 +744,12 @@
 #define kUIFESensorAccelerationZ NSLocalizedString(@"acceleration z", nil)
 #define kUIFESensorInclinationX NSLocalizedString(@"inclination x", nil)
 #define kUIFESensorInclinationY NSLocalizedString(@"inclination y", nil)
+#define kUIFESensorTouchesFinger NSLocalizedString(@"touches finger", nil)
 #define kUIFESensorLatitude NSLocalizedString(@"latitude", nil)
 #define kUIFESensorLongitude NSLocalizedString(@"longitude", nil)
 #define kUIFESensorLocationAccuracy NSLocalizedString(@"location accuracy", nil)
 #define kUIFESensorAltitude NSLocalizedString(@"altitude", nil)
+#define kUIFESensorUserLanguage NSLocalizedString(@"user language", nil)
 #define kUIFESensorFingerTouched NSLocalizedString(@"stage is touched", nil)
 #define kUIFESensorFingerX NSLocalizedString(@"stage touch x", nil)
 #define kUIFESensorFingerY NSLocalizedString(@"stage touch y", nil)
@@ -749,12 +774,54 @@
 #define kLocalizedVibration NSLocalizedString(@"vibration", nil)
 #define kLocalizedSensorLoudness NSLocalizedString(@"loudness", nil)
 #define kLocalizedSensorLED NSLocalizedString(@"LED", nil)
+#define kLocalizedInternet NSLocalizedString(@"Internet", nil)
 #define kLocalizedNotAvailable NSLocalizedString(@"not available. Continue anyway?", nil)
 
-#define kUIFESensorFaceDetected NSLocalizedString(@"face detected", nil)
-#define kUIFESensorFaceSize NSLocalizedString(@"facesize", nil)
-#define kUIFESensorFaceX NSLocalizedString(@"faceposition x", nil)
-#define kUIFESensorFaceY NSLocalizedString(@"faceposition y", nil)
+#define kUIFESensorFaceDetected NSLocalizedString(@"first face visible", nil)
+#define kUIFESensorFaceSize NSLocalizedString(@"first face size", nil)
+#define kUIFESensorFaceX NSLocalizedString(@"first face x position", nil)
+#define kUIFESensorFaceY NSLocalizedString(@"first face y position", nil)
+#define kUIFESensorSecondFaceDetected NSLocalizedString(@"second face visible", nil)
+#define kUIFESensorSecondFaceSize NSLocalizedString(@"second face size", nil)
+#define kUIFESensorSecondFaceX NSLocalizedString(@"second face x position", nil)
+#define kUIFESensorSecondFaceY NSLocalizedString(@"second face y position", nil)
+
+#define kUIFESensorHeadTopX NSLocalizedString(@"head top x", nil)
+#define kUIFESensorHeadTopY NSLocalizedString(@"head top y", nil)
+#define kUIFESensorNoseX NSLocalizedString(@"nose x", nil)
+#define kUIFESensorNoseY NSLocalizedString(@"nose y", nil)
+#define kUIFESensorLeftEyeInnerX NSLocalizedString(@"left eye inner x", nil)
+#define kUIFESensorLeftEyeInnerY NSLocalizedString(@"left eye inner y", nil)
+#define kUIFESensorLeftEyeCenterX NSLocalizedString(@"left eye center x", nil)
+#define kUIFESensorLeftEyeCenterY NSLocalizedString(@"left eye center y", nil)
+#define kUIFESensorLeftEyeOuterX NSLocalizedString(@"left eye outer x", nil)
+#define kUIFESensorLeftEyeOuterY NSLocalizedString(@"left eye outer y", nil)
+#define kUIFESensorRightEyeInnerX NSLocalizedString(@"right eye inner x", nil)
+#define kUIFESensorRightEyeInnerY NSLocalizedString(@"right eye inner y", nil)
+#define kUIFESensorRightEyeCenterX NSLocalizedString(@"right eye center x", nil)
+#define kUIFESensorRightEyeCenterY NSLocalizedString(@"right eye center y", nil)
+#define kUIFESensorRightEyeOuterX NSLocalizedString(@"right eye outer x", nil)
+#define kUIFESensorRightEyeOuterY NSLocalizedString(@"right eye outer y", nil)
+#define kUIFESensorLeftEarX NSLocalizedString(@"left ear x", nil)
+#define kUIFESensorLeftEarY NSLocalizedString(@"left ear y", nil)
+#define kUIFESensorRightEarX NSLocalizedString(@"right ear x", nil)
+#define kUIFESensorRightEarY NSLocalizedString(@"right ear y", nil)
+#define kUIFESensorMouthLeftCornerX NSLocalizedString(@"mouth left corner x", nil)
+#define kUIFESensorMouthLeftCornerY NSLocalizedString(@"mouth left corner y", nil)
+#define kUIFESensorMouthRightCornerX NSLocalizedString(@"mouth right corner x", nil)
+#define kUIFESensorMouthRightCornerY NSLocalizedString(@"mouth right corner y", nil)
+#define kUIFESensorLeftEyebrowInnerX NSLocalizedString(@"left eyebrow inner x", nil)
+#define kUIFESensorLeftEyebrowInnerY NSLocalizedString(@"left eyebrow inner y", nil)
+#define kUIFESensorLeftEyebrowCenterX NSLocalizedString(@"left eyebrow center x", nil)
+#define kUIFESensorLeftEyebrowCenterY NSLocalizedString(@"left eyebrow center y", nil)
+#define kUIFESensorLeftEyebrowOuterX NSLocalizedString(@"left eyebrow outer x", nil)
+#define kUIFESensorLeftEyebrowOuterY NSLocalizedString(@"left eyebrow outer y", nil)
+#define kUIFESensorRightEyebrowInnerX NSLocalizedString(@"right eyebrow inner x", nil)
+#define kUIFESensorRightEyebrowInnerY NSLocalizedString(@"right eyebrow inner y", nil)
+#define kUIFESensorRightEyebrowCenterX NSLocalizedString(@"right eyebrow center x", nil)
+#define kUIFESensorRightEyebrowCenterY NSLocalizedString(@"right eyebrow center y", nil)
+#define kUIFESensorRightEyebrowOuterX NSLocalizedString(@"right eyebrow outer x", nil)
+#define kUIFESensorRightEyebrowOuterY NSLocalizedString(@"right eyebrow outer y", nil)
 
 #define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 
@@ -765,7 +832,7 @@
 //************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
-#define kLocalizedCategoryFrequentlyUsed NSLocalizedString(@"Frequently used", @"Title of View where the user can see the frequently used bricks.")
+#define kLocalizedCategoryRecentlyUsed NSLocalizedString(@"Recently used", @"Title of brick category where the user can see his or her recently used bricks.")
 #define kLocalizedCategoryEvent NSLocalizedString(@"Event", nil)
 #define kLocalizedCategoryControl NSLocalizedString(@"Control", nil)
 #define kLocalizedCategoryMotion NSLocalizedString(@"Motion", nil)
@@ -810,6 +877,7 @@
 //************************************************************************************************************
 
 #define kLocalizedMediaLibrary NSLocalizedString(@"Media library", nil)
+#define kLocalizedSelectFile NSLocalizedString(@"Select file", nil)
 #define kLocalizedMediaLibraryConnectionIssueTitle NSLocalizedString(@"Connection failed", nil)
 #define kLocalizedMediaLibraryConnectionIssueMessage NSLocalizedString(@"Cannot connect to the media library. Please check your internet connection.", nil)
 #define kLocalizedMediaLibraryImportFailedTitle NSLocalizedString(@"Failed to import item", nil)
@@ -841,6 +909,7 @@
 #define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
 #define kLocalizedUnexpectedErrorTitle NSLocalizedString(@"Unexpected Error", nil)
 #define kLocalizedUnexpectedErrorMessage NSLocalizedString(@"Unexpected Error, please try again later.", nil)
+#define kLocalizedDownloadSizeErrorMessage NSLocalizedString(@"Download too big", nil)
 
 //************************************************************************************************************
 //**************************************       Audio Engine        *********************************************

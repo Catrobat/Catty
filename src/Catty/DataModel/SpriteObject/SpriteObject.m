@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -175,19 +175,6 @@
         [self.scene.project saveToDiskWithNotification:YES];
     }
     return;
-}
-
-- (void)removeFromScene
-{
-    NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.scene.objects) {
-        if (spriteObject == self) {
-            [self.scene removeObjectAtIndex:index];
-            self.scene = nil;
-            break;
-        }
-        ++index;
-    }
 }
 
 - (void)removeLookFromList:(Look*)look
@@ -419,7 +406,7 @@
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.scene = self.scene;
     newObject.name = [NSString stringWithString:self.name];
-    newObject.userData = [self.userData mutableCopy];
+    newObject.userData = [self.userData mutableCopyWithContext:context];
     [context updateReference:self WithReference:newObject];
 
     // deep copy

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -51,6 +51,10 @@ extension Function {
         } else if let function = self as? DoubleParameterFunctionProtocol {
             parameters.append(function.firstParameter())
             parameters.append(function.secondParameter())
+        } else if let function = self as? TripleParameterFunctionProtocol {
+            parameters.append(function.firstParameter())
+            parameters.append(function.secondParameter())
+            parameters.append(function.thirdParameter())
         }
 
         return parameters
@@ -132,6 +136,12 @@ protocol DoubleParameterFunctionProtocol: Function {
     func secondParameter() -> FunctionParameter
 }
 
+protocol TripleParameterFunctionProtocol: Function {
+    func firstParameter() -> FunctionParameter
+    func secondParameter() -> FunctionParameter
+    func thirdParameter() -> FunctionParameter
+}
+
 protocol ZeroParameterDoubleFunction: DoubleFunction {
     func value() -> Double
 }
@@ -166,6 +176,10 @@ protocol SingleParameterStringFunction: StringFunction, SingleParameterFunctionP
 
 protocol DoubleParameterStringFunction: StringFunction, DoubleParameterFunctionProtocol {
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String
+}
+
+protocol TripleParameterStringFunction: StringFunction, TripleParameterFunctionProtocol {
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?, thirdParameter: AnyObject?) -> String
 }
 
 protocol ZeroParameterFunction: AnyFunction {

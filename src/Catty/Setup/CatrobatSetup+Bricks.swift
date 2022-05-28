@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -74,6 +74,8 @@
             NextLookBrick(),
             PreviousLookBrick(),
             SetBackgroundBrick(),
+            SetBackgroundAndWaitBrick(),
+            SetBackgroundByIndexBrick(),
             SetBrightnessBrick(),
             ChangeSizeByNBrick(),
             ChangeTransparencyByNBrick(),
@@ -115,10 +117,15 @@
             InsertItemIntoUserListBrick(),
             ReplaceItemInUserListBrick(),
             DeleteItemOfUserListBrick(),
+            // arduino bricks
             ArduinoSendDigitalValueBrick(),
             ArduinoSendPWMValueBrick(),
             // embroidery brick
-            StitchBrick()
+            StitchBrick(),
+            StartRunningStitchBrick(),
+            SewUpBrick(),
+            StopCurrentStitchBrick(),
+            StartZigzagStitchBrick()
         ]
 
         if isPhiroEnabled() {
@@ -128,6 +135,10 @@
             bricks.append(PhiroPlayToneBrick())
             bricks.append(PhiroRGBLightBrick())
             bricks.append(PhiroIfLogicBeginBrick())
+        }
+
+        if isWebRequestBrickEnabled() {
+            bricks.append(WebRequestBrick())
         }
 
         return bricks
@@ -197,12 +208,12 @@
                                              strokeColor: UIColor.phiroBrickStroke,
                                              enabled: isPhiroEnabled()))
         }
-        if isFavouritesCategoryAvailable() {
-            categories.prepend(BrickCategory(type: kBrickCategoryType.favouriteBricks,
-                                             name: kLocalizedCategoryFrequentlyUsed,
-                                             color: UIColor.frequentlyUsedBricks,
-                                             strokeColor: UIColor.frequentlyUsedBricksStroke,
-                                             enabled: isFavouritesCategoryAvailable()))
+        if isRecentlyUsedAvailable() {
+            categories.prepend(BrickCategory(type: kBrickCategoryType.recentlyUsedBricks,
+                                             name: kLocalizedCategoryRecentlyUsed,
+                                             color: UIColor.recentlyUsedBricks,
+                                             strokeColor: UIColor.recentlyUsedBricksStroke,
+                                             enabled: isRecentlyUsedAvailable()))
         }
 
         return categories
@@ -216,11 +227,15 @@
         UserDefaults.standard.bool(forKey: kUsePhiroBricks)
     }
 
-    private static func isFavouritesCategoryAvailable() -> Bool {
-        Util.getBrickInsertionDictionaryFromUserDefaults()?.count ?? 0 >= kMinFavouriteBrickSize
+    private static func isRecentlyUsedAvailable() -> Bool {
+        RecentlyUsedBricksManager.getRecentlyUsedBricks().count >= UIDefines.recentlyUsedBricksMinSize
     }
 
     private static func isEmbroideryEnabled() -> Bool {
          UserDefaults.standard.bool(forKey: kUseEmbroideryBricks)
+    }
+
+    private static func isWebRequestBrickEnabled() -> Bool {
+         UserDefaults.standard.bool(forKey: kUseWebRequestBrick)
     }
 }

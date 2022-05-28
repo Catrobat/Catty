@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,18 +34,48 @@
 #define kMinNumOfObjects 0
 #define kDefaultNumOfObjects 0
 #define kBackgroundObjects 1
+
 #define kMinNumOfProjectNameCharacters 1
+#if DEBUG
+#define kMaxNumOfProjectNameCharacters 25
+#else
 #define kMaxNumOfProjectNameCharacters 250
+#endif
+
 #define kMinNumOfObjectNameCharacters 1
+#if DEBUG
+#define kMaxNumOfObjectNameCharacters 25
+#else
 #define kMaxNumOfObjectNameCharacters 250
-#define kMinNumOfLookNameCharacters 1
+#endif
+
+#define kMinNumOfLookNameCharacters 1 
+#if DEBUG
+#define kMaxNumOfLookNameCharacters 25
+#else
 #define kMaxNumOfLookNameCharacters 250
+#endif
+
 #define kMinNumOfSoundNameCharacters 1
+#if DEBUG
+#define kMaxNumOfSoundNameCharacters 25
+#else
 #define kMaxNumOfSoundNameCharacters 250
+#endif
+
 #define kMinNumOfMessageNameCharacters 1
+#if DEBUG
+#define kMaxNumOfMessageNameCharacters 25
+#else
 #define kMaxNumOfMessageNameCharacters 250
+#endif
+
 #define kMinNumOfVariableNameCharacters 1
+#if DEBUG
+#define kMaxNumOfVariableNameCharacters 25
+#else
 #define kMaxNumOfVariableNameCharacters 250
+#endif
 
 #define kNoProjectIDYetPlaceholder @"x"
 #define kProjectIDSeparator @"_"
@@ -77,6 +107,7 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kDeviceMotion =         1 << 12,
     kTouchHandler =         1 << 13,
     kEmbroidery =           1 << 14,
+    kInternet =             1 << 15,
     kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion // TODO Pass ResourceType parameters as array (e.g. in "Sensor")
 };
 
@@ -85,3 +116,5 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kScreenshotAutoFilename @"automatic_screenshot.png"
 
 #define kUserDefaultsBrickSelectionStatisticsMap @"BrickSelectionStatisticsMap"
+
+#define kTrustedDomainFilename @"TrustedDomains"

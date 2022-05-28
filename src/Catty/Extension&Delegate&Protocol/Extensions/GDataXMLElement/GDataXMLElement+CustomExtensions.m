@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -126,6 +126,19 @@
         return childElement;
     }
     return nil;
+}
+
+- (NSArray<GDataXMLElement*>*)childrenWithElementName:(NSString*)elementName
+{
+    NSMutableArray<GDataXMLElement*> *children = [NSMutableArray new];
+    NSArray *childElements = [self children];
+    
+    for (GDataXMLElement *childElement in childElements) {
+        if ([[childElement name] isEqualToString:elementName]) {
+            [children addObject:childElement];
+        }
+    }
+    return children;
 }
 
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath
@@ -274,6 +287,10 @@
 
     NSArray *nodeChildren = [node childrenWithoutComments];
     NSUInteger nodeDataCount = 0;
+    
+    if (children.count != nodeChildren.count) {
+        return false;
+    }
 
     for (GDataXMLElement *nodeChild in nodeChildren) {
         nodeDataCount += [nodeChild childWithElementName:@"list"].childCount;
@@ -289,7 +306,7 @@
         }
 
         for (GDataXMLElement *nodeChild in nodeChildren) {
-            if (![self isElementOrNode:child equalToElementOrNode:nodeChild]) {
+            if ([self isElementOrNode:child equalToElementOrNode:nodeChild]) {
                 found = true;
                 break;
             }

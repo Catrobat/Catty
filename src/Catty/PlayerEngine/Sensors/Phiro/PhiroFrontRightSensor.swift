@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@
     static let name = kUIFESensorPhiroFrontRight
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
-    static let pinNumber = 1
+    static let pinNumber = PhiroDevice.pinSensorFrontRight
     static let position = 350
 
     let getBluetoothService: () -> BluetoothService?

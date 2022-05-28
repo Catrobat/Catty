@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -132,16 +132,6 @@
         }
     }
 
-    @objc(removeObjects:)
-    func removeObjects(_ objects: [SpriteObject]) {
-        for object in objects {
-            if self.objects().contains(object) {
-                self.removeObject(object)
-            }
-        }
-        project?.saveToDisk(withNotification: true)
-    }
-
     func objectExists(withName objectName: String) -> Bool {
         for object in self.objects() where object.name == objectName {
             return true
@@ -224,21 +214,22 @@
             context.updateReference(list, withReference: copyList)
         }
 
-        if let copiedObject = sourceObject.mutableCopy(with: context) as? SpriteObject {
-            copiedObject.name = Util.uniqueName(nameOfCopiedObject, existingNames: allObjectNames())
-            _objects.append(copiedObject)
-
-            for variable in copiedVariables {
-                copiedObject.userData.add(variable)
-            }
-            for list in copiedLists {
-                copiedObject.userData.add(list)
-            }
-            project?.saveToDisk(withNotification: true)
-            return copiedObject
+        guard let copiedObject = sourceObject.mutableCopy(with: context) as? SpriteObject else {
+            return nil
         }
 
-        return nil
+        copiedObject.name = Util.uniqueName(nameOfCopiedObject, existingNames: allObjectNames())
+        _objects.append(copiedObject)
+
+        for variable in copiedVariables {
+            copiedObject.userData.add(variable)
+        }
+        for list in copiedLists {
+            copiedObject.userData.add(list)
+        }
+
+        project?.saveToDisk(withNotification: true)
+        return copiedObject
     }
 
     @objc(copyObjects:)
@@ -284,4 +275,5 @@
 
         return true
     }
+
 }

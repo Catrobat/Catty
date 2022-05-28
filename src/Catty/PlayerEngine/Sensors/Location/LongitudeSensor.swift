@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LongitudeSensor: NSObject, DeviceSensor {
+class LongitudeSensor: DeviceDoubleSensor {
 
-    @objc static let tag = "LONGITUDE"
+    static let tag = "LONGITUDE"
     static let name = kUIFESensorLongitude
     static let defaultRawValue = 0.0
     static let position = 270

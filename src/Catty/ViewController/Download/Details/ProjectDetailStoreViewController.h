@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,12 +30,14 @@
 
 @class CatrobatProject;
 @class StoreProjectDownloader;
+@class ProjectManager;
 
 @interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
 @property (nonatomic, strong) StoreProjectDownloader *storeProjectDownloader;
+@property (nonatomic, strong) ProjectManager *projectManager;
 @property (nonatomic, strong) UIView *projectView;
 
 - (void)showLoadingView;

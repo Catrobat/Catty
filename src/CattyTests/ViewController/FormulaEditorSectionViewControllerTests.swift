@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -93,7 +93,6 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
     }
 
     func testInitAndSelectObjectSection() {
-
         let expectedItems = formulaManager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
         var itemsInTableView = 0
 
@@ -121,14 +120,13 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
     }
 
     func testInitAndSelectSensorsSection() {
-
         let expectedItems = formulaManager.formulaEditorItemsForSensorsSection(spriteObject: spriteObject)
         var itemsInTableView = 0
 
         viewController = FormulaEditorSectionViewController(type: .sensors, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
         viewController.reloadData()
 
-        XCTAssertEqual(viewController.numberOfSections, 4)
+        XCTAssertEqual(viewController.numberOfSections, 5)
 
         for section in 0..<viewController.numberOfSections {
             for row in 0..<viewController.numberOfRowsInSection[section] {
@@ -145,7 +143,6 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         }
 
         XCTAssertEqual(expectedItems.count, itemsInTableView)
-
     }
 
     private func assertThatInputIsValid(for internFormula: InternFormula, having expectedItems: [FormulaEditorItem]) {

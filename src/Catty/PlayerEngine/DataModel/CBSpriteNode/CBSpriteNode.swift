@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@ class CBSpriteNode: SKSpriteNode {
     @objc var spriteObject: SpriteObject
     @objc var currentLook: Look? {
         didSet {
+            setPhyicsBody()
+
             guard let stage = self.scene as? StageProtocol else { return }
             if !self.spriteObject.isBackground() { return }
             stage.notifyBackgroundChange()
@@ -66,7 +68,7 @@ class CBSpriteNode: SKSpriteNode {
             let textureSize = texture.size()
             super.init(texture: texture, color: color, size: textureSize)
             self.currentLook = firstLook
-            self.currentLook = firstLook
+
         } else {
             super.init(texture: nil, color: color, size: CGSize.zero)
         }
@@ -74,6 +76,7 @@ class CBSpriteNode: SKSpriteNode {
         self.spriteObject.spriteNode = self
         self.name = spriteObject.name
         self.isUserInteractionEnabled = false
+
         setLook()
     }
 
@@ -176,6 +179,13 @@ class CBSpriteNode: SKSpriteNode {
         spriteObject.lookList
     }
 
+    @objc func look(for index: Int) -> Look? {
+        if  index < 1 || index > spriteObject.lookList.count {
+            return nil
+        }
+        return spriteObject.lookList[index - 1] as? Look
+    }
+
     @objc func changeLook(_ look: Look?) {
         guard let look = look,
             let filePathForLook = look.path(for: spriteObject.scene),
@@ -228,24 +238,15 @@ class CBSpriteNode: SKSpriteNode {
         }
     }
 
-    @objc func touchedWithTouch(_ touch: UITouch, atPosition position: CGPoint) -> Bool {
-        guard let playerStage = (scene as? Stage) else { return false }
-        let scheduler = playerStage.scheduler
+    @objc func isTouched(at touch: UITouch) -> Bool {
+        guard let imageLook = currentUIImageLook else { return false }
 
-        guard let imageLook = currentUIImageLook, scheduler.running else { return false }
+        guard spriteObject.name != nil, let scene = spriteObject.spriteNode.scene else { preconditionFailure("Invalid SpriteObject!") }
 
-        guard let spriteName = spriteObject.name
-            else { preconditionFailure("Invalid SpriteObject!") }
-        let touchedPoint = touch.location(in: self)
+        let globalTouchPosition = touch.location(in: scene)
+        let localTouchPosition = touch.location(in: self)
 
-        if imageLook.isTransparentPixel(atScenePoint: touchedPoint) {
-            print("\(spriteName): \"I'm transparent at this point\"")
-            return false
-        }
-
-        scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
-
-        return true
+        return self.contains(globalTouchPosition) && !imageLook.isTransparentPixel(atScenePoint: localTouchPosition)
     }
 
     @objc func isFlipped() -> Bool {
@@ -255,4 +256,78 @@ class CBSpriteNode: SKSpriteNode {
         return false
     }
 
+    private func setPhyicsBody() {
+        guard let objectName = self.spriteObject.name, isPhysicsObject() else { return }
+
+        self.enumerateChildNodes(withName: SpriteKitDefines.physicsNodeName) { node, _ in
+            node.removeFromParent()
+        }
+
+        let originalTexture = self.texture!
+        let size = originalTexture.size()
+        let physicsSubnodesPerDimension = Int((size.height > size.width ?
+                                                            size.height / CGFloat(SpriteKitDefines.physicsSubnodeSize) :
+                                                            size.width / CGFloat(SpriteKitDefines.physicsSubnodeSize)
+                                                            ).rounded(.up))
+
+        let leftCornerX = (-size.width / 2)
+        let bottomCornerY = (-size.height / 2)
+        let childNodeWidth = (size.width / CGFloat(physicsSubnodesPerDimension))
+        let childNodeHeight = (size.height / CGFloat(physicsSubnodesPerDimension))
+        let childNodeSize = CGSize(width: childNodeWidth, height: childNodeHeight)
+        let childNodeHeightRelative = 1.0 / CGFloat(physicsSubnodesPerDimension)
+        let childNodeWidthRelative = 1.0 / CGFloat(physicsSubnodesPerDimension)
+
+        let superNode = SKSpriteNode(color: .clear, size: size)
+        superNode.name = SpriteKitDefines.physicsNodeName
+
+        for y in 0..<physicsSubnodesPerDimension {
+            for x in 0..<physicsSubnodesPerDimension {
+                let dX = childNodeWidth * CGFloat(x)
+                let dY = childNodeHeight * CGFloat(y)
+
+                let dXRelative = childNodeWidthRelative * CGFloat(x)
+                let dYRelative = childNodeHeightRelative * CGFloat(y)
+
+                let rect = CGRect(x: dXRelative, y: dYRelative, width: childNodeWidthRelative, height: childNodeHeightRelative)
+
+                let texture = SKTexture(rect: rect, in: originalTexture)
+
+                let physicsBodyJoint: SKPhysicsBody? = SKPhysicsBody(texture: texture, size: childNodeSize)
+                guard physicsBodyJoint != nil else { continue }
+
+                let node = SKSpriteNode(color: .clear, size: childNodeSize)
+                node.name = objectName
+                node.position.x = leftCornerX + childNodeWidth / 2 + dX
+                node.position.y = bottomCornerY + childNodeHeight / 2 + dY
+
+                node.physicsBody = physicsBodyJoint
+                node.physicsBody?.collisionBitMask = 0
+                node.physicsBody?.categoryBitMask = 1
+                node.physicsBody?.contactTestBitMask = 1
+                node.physicsBody?.isDynamic = true
+                node.physicsBody?.affectedByGravity = false
+                superNode.addChild(node)
+            }
+        }
+
+        self.addChild(superNode)
+    }
+
+    func makePhysicsObject(setBody: Bool = true) {
+        guard let objectName = self.spriteObject.name else { return }
+
+        if !isPhysicsObject() {
+            self.spriteObject.scene.project?.physicsObjectNames.add(objectName)
+        }
+
+        if setBody, self.childNode(withName: SpriteKitDefines.physicsNodeName) == nil {
+            setPhyicsBody()
+        }
+    }
+
+    private func isPhysicsObject() -> Bool {
+        guard let objectName = self.spriteObject.name else { return false }
+        return self.spriteObject.scene.project?.physicsObjectNames.contains(objectName) ?? false
+    }
 }

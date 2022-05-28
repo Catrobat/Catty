@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 @property (nonatomic, strong, nonnull) Scene *scene;
 @property (nonatomic, strong, nonnull) UserDataContainer *userData;
 @property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *unsupportedElements;
+@property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *physicsObjectNames;
 @property (nonatomic) BOOL requiresBluetooth;
 @property (nonatomic, strong, nullable) NSMutableOrderedSet *allBroadcastMessages;
 

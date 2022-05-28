@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,9 @@ extension CBSpriteNode {
             PositionYSensor.setRawValue(userInput: Double(newValue.y), for: self.spriteObject)
             if self.penConfiguration.penDown {
                 self.penConfiguration.previousPositions.append(CGPoint(x: self.position.x, y: self.position.y))
+            }
+            if let activePattern = embroideryStream.activePattern {
+                activePattern.spriteDidMove(to: CGPoint(x: self.position.x, y: self.position.y))
             }
         }
 

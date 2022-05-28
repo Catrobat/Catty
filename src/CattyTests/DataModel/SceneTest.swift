@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -143,26 +143,6 @@ final class SceneTest: XCTestCase {
         XCTAssertEqual(object3, scene.objects()[1])
     }
 
-    func testRemoveObjets() {
-        let object1 = SpriteObject()
-        object1.name = "testObject1"
-        scene.add(object: object1)
-
-        let object2 = SpriteObject()
-        object2.name = "testObject2"
-        scene.add(object: object2)
-
-        let object3 = SpriteObject()
-        object3.name = "testObject3"
-        scene.add(object: object3)
-
-        XCTAssertEqual(3, scene.objects().count)
-
-        scene.removeObjects([object1, object2])
-        XCTAssertEqual(1, scene.objects().count)
-        XCTAssertEqual(object3, scene.objects()[0])
-    }
-
     func testObjectExists() {
         let object1 = SpriteObject()
         object1.name = "testObject1"
@@ -235,6 +215,25 @@ final class SceneTest: XCTestCase {
         XCTAssertEqual(object1, scene.objects()[0])
         XCTAssertEqual(copyObject, scene.objects()[1])
         XCTAssertEqual(copyObject?.name, "testObject")
+    }
+
+    func testCopyObjectWithLocalVariables() {
+        let localVariable = UserVariable(name: "localVariable")
+
+        let object = SpriteObject()
+        object.name = "testObject"
+        object.userData = UserDataContainer()
+        object.userData.add(localVariable)
+
+        scene.add(object: object)
+
+        let copiedObject = scene.copy(object, withNameForCopiedObject: "copiedObject")
+        XCTAssertEqual(copiedObject!.name, "copiedObject")
+
+        let copiedVariables = copiedObject!.userData.variables()
+        XCTAssertEqual(1, copiedVariables.count)
+        XCTAssertEqual(localVariable.name, copiedVariables[0].name)
+        XCTAssertFalse(localVariable === copiedVariables[0])
     }
 
     func testImagesPath() {

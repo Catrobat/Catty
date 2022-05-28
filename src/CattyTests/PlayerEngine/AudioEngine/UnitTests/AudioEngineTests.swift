@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
 import XCTest
 
 @testable import Pocket_Code
@@ -54,39 +53,57 @@ final class AudioEngineTests: XCTestCase {
     }
 
     func testSetVolumeToInsideBounds_expectCorrectValueInsideBounds() {
+        audioEngine.setVolumeTo(percent: 70, key: nil)
+        XCTAssertEqual(audioEngine.engineOutputMixer.volume, 0.7)
         audioEngine.setVolumeTo(percent: 70, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0.7)
     }
 
     func testSetVolumeToLowerThanMinExpectMin() {
+        audioEngine.setVolumeTo(percent: -20, key: nil)
+        XCTAssertEqual(audioEngine.engineOutputMixer.volume, 0)
         audioEngine.setVolumeTo(percent: -20, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0)
     }
 
     func testSetVolumeToHigherThanMaxExpectMax() {
+        audioEngine.setVolumeTo(percent: 120, key: nil)
+        XCTAssertEqual(audioEngine.engineOutputMixer.volume, 1)
         audioEngine.setVolumeTo(percent: 120, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 1)
     }
 
     func testChangeVolumeByTurnUpVolumeInsideBoundsExpectCorrectValueInsideBounds() {
+        audioEngine.setVolumeTo(percent: 50, key: nil)
+        audioEngine.changeVolumeBy(percent: 20, key: nil)
+        XCTAssertEqual(audioEngine.engineOutputMixer.volume, 0.7)
         audioEngine.setVolumeTo(percent: 50, key: "object1")
         audioEngine.changeVolumeBy(percent: 20, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0.7)
     }
 
     func testChangeVolumeByTurnDownVolumeInsideBoundsExpectCorrectValueInsideBounds() {
+        audioEngine.setVolumeTo(percent: 50, key: nil)
+        audioEngine.changeVolumeBy(percent: -20, key: nil)
+        XCTAssertEqual(audioEngine.engineOutputMixer.volume, 0.3)
         audioEngine.setVolumeTo(percent: 50, key: "object1")
         audioEngine.changeVolumeBy(percent: -20, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0.3)
     }
 
     func testChangeVolumeByTurnUpVolumeOutsideBoundsExpectMax() {
+        audioEngine.setVolumeTo(percent: 50, key: nil)
+        audioEngine.changeVolumeBy(percent: 80, key: nil)
+        XCTAssertEqual(audioEngine.engineOutputMixer.volume, 1)
         audioEngine.setVolumeTo(percent: 50, key: "object1")
         audioEngine.changeVolumeBy(percent: 80, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 1)
     }
 
     func testChangeVolumeByTurnDownVolumeOutsideBoundsExpectMin() {
+        audioEngine.setVolumeTo(percent: 50, key: nil)
+        audioEngine.changeVolumeBy(percent: -80, key: nil)
+        XCTAssertEqual(audioEngine.engineOutputMixer.volume, 0)
         audioEngine.setVolumeTo(percent: 50, key: "object1")
         audioEngine.changeVolumeBy(percent: -80, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0)

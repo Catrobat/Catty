@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -109,7 +109,7 @@ final class SensorManagerTests: XCTestCase {
 
     func testValue() {
         let object = SpriteObject()
-        let sensorA = DeviceSensorMock(tag: "tagA", value: 1.0)
+        let sensorA = DeviceDoubleSensorMock(tag: "tagA", value: 1.0)
         let sensorB = ObjectDoubleSensorMock(tag: "tagB", value: 2.0)
         let sensorC = ObjectStringSensorMock(tag: "tagC", value: "test")
 

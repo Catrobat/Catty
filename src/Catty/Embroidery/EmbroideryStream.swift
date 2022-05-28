@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,14 @@ class EmbroideryStream: Collection {
     var name: String?
     var nextStitchIsColorChange: Bool
 
+    var activePattern: StitchPatternProtocol?
+
     var stitches = SynchronizedArray<Stitch>()
     var drawEmbroideryQueue = SynchronizedArray<Stitch>()
+
+    var last: Stitch? {
+        stitches.last
+    }
 
     private(set) var size: CGFloat
 
@@ -55,6 +61,10 @@ class EmbroideryStream: Collection {
         size *= screenRatio
     }
 
+    convenience init() {
+        self.init(projectWidth: nil, projectHeight: nil)
+    }
+
     convenience init(streams: [EmbroideryStream], withName name: String? = nil) {
         self.init(projectWidth: nil, projectHeight: nil, withName: name)
 
@@ -68,6 +78,14 @@ class EmbroideryStream: Collection {
                 self.add(stitch)
             }
             self.addColorChange()
+        }
+    }
+
+    convenience init(fromArray stitches: [Stitch], withName name: String? = nil) {
+        self.init(projectWidth: nil, projectHeight: nil, withName: name)
+
+        for stitch in stitches {
+            self.add(stitch)
         }
     }
 
@@ -93,6 +111,23 @@ class EmbroideryStream: Collection {
 
     func addColorChange() {
         nextStitchIsColorChange = true
+    }
+
+    func sewUp(at position: CGPoint, inDirectionInDegree angleInDegree: CGFloat) {
+        sewUp(at: position, inDirectionInRadians: (angleInDegree * .pi) / 180)
+    }
+
+    func sewUp(at position: CGPoint, inDirectionInRadians angleInRadians: CGFloat) {
+        enum StitichingDirection: CGFloat {
+            case ahead = 1
+            case center = 0
+            case behind = -1
+        }
+        let e = CGVector(dx: cos(angleInRadians), dy: sin(angleInRadians))
+
+        for dir in [StitichingDirection.ahead, .center, .behind, .center] {
+            add(Stitch(atPosition: position + e * dir.rawValue * CGFloat(EmbroideryDefines.sewUpSteps)))
+        }
     }
 
     private func addInterpolatedStiches(stitch: Stitch) {

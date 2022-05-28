@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,48 +24,46 @@ import AudioKit
 import Foundation
 
 @objc class AudioEngine: NSObject, AudioEngineProtocol {
+    let audioPlayerFactory: AudioPlayerFactory
+
+    var engine = AudioKit.AudioEngine()
+    var engineOutputMixer = AudioKit.Mixer()
+
     var audioEngineHelper = AudioEngineHelper()
     var speechSynth = SpeechSynthesizer()
-
-    var engineOutputMixer = AKMixer()
-    var postProcessingMixer = AKMixer()
 
     var tempo = Int()
 
     var subtrees = [String: AudioSubtree]()
     let subtreeCreationQueue = DispatchQueue(label: "SubtreeCreationQueue")
-    let audioPlayerFactory: AudioPlayerFactory
 
     init(audioPlayerFactory: AudioPlayerFactory = StandardAudioPlayerFactory()) {
         self.audioPlayerFactory = audioPlayerFactory
+        self.engine.output = self.engineOutputMixer
         super.init()
     }
 
     @objc func start() {
-        AKSettings.disableAVAudioSessionCategoryManagement = true
+        AudioKit.Settings.disableAVAudioSessionCategoryManagement = true
         audioEngineHelper.activateAudioSession()
-        AKManager.output = postProcessingMixer
-        engineOutputMixer.connect(to: postProcessingMixer)
+
         do {
-            try AKManager.start()
-        } catch {
-            print("COULD NOT START AUDIO ENGINE! MAKE SURE TO ALWAYS SHUT DOWN AUDIO ENGINE BEFORE" +
-                "INSTANTIATING IT AGAIN (AFTER EVERY TEST CASE)! USE AN AUDIOENGINEMOCK IN TESTS" +
-                "WHEN A SCENE DOES NOT NEED THE AUDIO ENGINE.")
+            try engine.start()
+        } catch let error as NSError {
+            print("Could not start audio engine:", error)
         }
     }
 
     @objc func pause() {
         pauseAllAudioSources()
-        AKManager.engine.pause()
+        engine.pause()
     }
 
     @objc func resume() {
         do {
-            try AKManager.engine.start()
+            try engine.start()
         } catch let error as NSError {
-            print("Could not resume audio engine.")
-            print(error)
+            print("Could not resume audio engine:", error)
         }
 
         resumeAllAudioSources()
@@ -73,13 +71,9 @@ import Foundation
 
     @objc func stop() {
         stopAllAudioSources()
+        engine.stop()
 
-        do {
-            try AKManager.stop()
-            try AKManager.shutdown()
-        } catch {
-            print("Something went wrong when stopping the audio engine!")
-        }
+        audioEngineHelper.deactivateAudioSession()
     }
 
     private func pauseAllAudioSources() {
@@ -102,14 +96,24 @@ import Foundation
         subtree.playSound(fileName: fileName, filePath: filePath, expectation: expectation)
     }
 
-    func setVolumeTo(percent: Double, key: String) {
-        let subtree = getSubtree(key: key)
-        subtree.setVolumeTo(percent: percent)
+    func setVolumeTo(percent: Double, key: String?) {
+        if let key = key {
+            let subtree = getSubtree(key: key)
+            subtree.setVolumeTo(percent: percent)
+        } else {
+            let volume = percent / 100
+            engineOutputMixer.volume = AudioKit.AUValue(MathUtil.moveValueIntoRange(volume, min: 0, max: 1))
+        }
     }
 
-    func changeVolumeBy(percent: Double, key: String) {
-        let subtree = getSubtree(key: key)
-        subtree.changeVolumeBy(percent: percent)
+    func changeVolumeBy(percent: Double, key: String?) {
+        if let key = key {
+            let subtree = getSubtree(key: key)
+            subtree.changeVolumeBy(percent: percent)
+        } else {
+            let newVolume = Double(engineOutputMixer.volume) + (percent / 100)
+            engineOutputMixer.volume = AudioKit.AUValue(MathUtil.moveValueIntoRange(newVolume, min: 0, max: 1))
+        }
     }
 
     func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?) {
@@ -152,16 +156,11 @@ import Foundation
     private func getSubtree(key: String) -> AudioSubtree {
         subtreeCreationQueue.sync {
             if subtrees[key] == nil {
-                _ = createNewAudioSubtree(key: key)
+                let subtree = AudioSubtree(audioPlayerFactory: audioPlayerFactory)
+                subtree.setOutput(engineOutputMixer)
+                subtrees[key] = subtree
             }
         }
         return subtrees[key]!
-    }
-
-    internal func createNewAudioSubtree(key: String) -> AudioSubtree {
-        let subtree = AudioSubtree(audioPlayerFactory: audioPlayerFactory)
-        subtree.setup(engineOut: engineOutputMixer)
-        subtrees[key] = subtree
-        return subtree
     }
 }

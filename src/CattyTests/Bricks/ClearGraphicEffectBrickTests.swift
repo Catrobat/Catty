@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
     override func setUp() {
         super.setUp()
         object = SpriteObject()
-        project = ProjectManager.createProject(name: "a", projectId: "1")
+        project = ProjectManager.shared.createProject(name: "a", projectId: "1")
         object.scene = project.scene
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
@@ -93,13 +93,7 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
     }
 
     func testClearGraphicEffectBrick2() {
-        let transparency = Formula()
-        let formulaTree = FormulaElement()
-        formulaTree.type = ElementType.NUMBER
-        formulaTree.value = "-20"
-        transparency.formulaTree = formulaTree
-
-        brick.transparency = transparency
+        brick.transparency = Formula(integer: -20)
 
         XCTAssertNotEqual(Double(spriteNode.alpha), TransparencySensor.defaultRawValue, accuracy: 0.001)
         XCTAssertNotEqual(Double(spriteNode.ciBrightness), BrightnessSensor.defaultRawValue, accuracy: 0.001)

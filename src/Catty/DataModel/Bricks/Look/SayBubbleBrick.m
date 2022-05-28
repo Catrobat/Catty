@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,12 +36,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    Formula *speakFormula = [Formula new];
-    FormulaElement *formulaElement = [FormulaElement new];
-    formulaElement.type = STRING;
-    formulaElement.value = kLocalizedHello;
-    speakFormula.formulaTree = formulaElement;
-    self.formula = speakFormula;
+    self.formula = [[Formula alloc] initWithString:kLocalizedHello];
 }
 
 -(BOOL)isDisabledForBackground

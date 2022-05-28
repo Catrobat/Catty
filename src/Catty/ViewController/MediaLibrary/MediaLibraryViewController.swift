@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,8 +38,6 @@ final class MediaLibraryViewController: UICollectionViewController {
 
     private let dataSource: MediaLibraryCollectionViewDataSource
     private weak var loadingView: LoadingView!
-    private var originalAudioSessionCategory: AVAudioSession.Category?
-    private var originalAudioSessionCategoryOptions: AVAudioSession.CategoryOptions?
 
     private var audioPlayer: AVAudioPlayer?
     private var audioPlayerFinishPlayingCompletionBlock: AudioPlayerFinishPlayingCompletionBlock?
@@ -70,16 +68,17 @@ final class MediaLibraryViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         setupCollectionViewLayout()
         fetchData()
+        self.navigationController?.isToolbarHidden = true
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        enableSoundInSilentMode()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        undoEnableSoundInSilentMode()
+        self.navigationController?.isToolbarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -220,21 +219,5 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
             self?.navigationController?.popViewController(animated: true)
         }
         self.present(alertController, animated: true, completion: nil)
-    }
-}
-
-extension MediaLibraryViewController {
-    private func enableSoundInSilentMode() {
-        let sharedAudioSession = AVAudioSession.sharedInstance()
-        self.originalAudioSessionCategory = sharedAudioSession.category
-        self.originalAudioSessionCategoryOptions = sharedAudioSession.categoryOptions
-        try? sharedAudioSession.setCategoryWrapper(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
-    }
-
-    private func undoEnableSoundInSilentMode() {
-        if let category = self.originalAudioSessionCategory, let options = self.originalAudioSessionCategoryOptions {
-            let sharedAudioSession = AVAudioSession.sharedInstance()
-            try? sharedAudioSession.setCategoryWrapper(category, mode: .default, options: options)
-        }
     }
 }

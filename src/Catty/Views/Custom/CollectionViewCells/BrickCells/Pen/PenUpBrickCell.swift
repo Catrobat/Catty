@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ class PenUpBrickCell: BrickCell, BrickCellProtocol {
     var textLabel: UILabel?
 
     static func cellHeight() -> CGFloat {
-        CGFloat(kBrickHeight1h)
+        UIDefines.brickHeight1h
     }
 
     func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {

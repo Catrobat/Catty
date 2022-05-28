@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -358,19 +358,45 @@ final class UserDataContainerTest: XCTestCase {
 
         container.add(list)
         container.add(variable)
-        variable.value = 10
 
-        let copyContainer = container.mutableCopy() as! UserDataContainer
-        let copyProject = Project()
-        copyProject.scene = Scene()
-        copyProject.scene.add(object: objectA)
-        copyProject.scene.add(object: objectB)
-        copyProject.userData = copyContainer
-
-        XCTAssertTrue(container.isEqual(copyContainer))
+        let copyContainer = container.mutableCopy(with: CBMutableCopyContext()) as! UserDataContainer
         XCTAssertFalse(container === copyContainer)
-        XCTAssertTrue(UserDataContainer.allVariables(for: project)[0] === UserDataContainer.allVariables(for: copyProject)[0])
-        XCTAssertTrue(UserDataContainer.allLists(for: project)[0] === UserDataContainer.allLists(for: copyProject)[0])
+
+        let copiedVariables = copyContainer.variables()
+        XCTAssertEqual(1, copiedVariables.count)
+        XCTAssertEqual(variable, copiedVariables[0])
+        XCTAssertTrue(copiedVariables[0] === variable)
+
+        let copiedLists = copyContainer.lists()
+        XCTAssertEqual(1, copiedLists.count)
+        XCTAssertEqual(list, copiedLists[0])
+        XCTAssertTrue(copiedLists[0] === list)
+    }
+
+    func testMutableCopyWithUpdatedReferences() {
+        let context = CBMutableCopyContext()
+
+        let list = UserList(name: "testList")
+        let variable = UserVariable(name: "testvariable")
+
+        container.add(list)
+        container.add(variable)
+
+        let copiedList = UserList(name: "testList")
+        let copiedVariable = UserVariable(name: "testvariable")
+
+        context.updateReference(list, withReference: copiedList)
+        context.updateReference(variable, withReference: copiedVariable)
+
+        let copyContainer = container.mutableCopy(with: context) as! UserDataContainer
+        XCTAssertFalse(container === copyContainer)
+
+        let copiedVariables = copyContainer.variables()
+        XCTAssertEqual(1, copiedVariables.count)
+        XCTAssertFalse(copiedVariables[0] === variable)
+
+        let copiedLists = copyContainer.lists()
+        XCTAssertFalse(copiedLists[0] === list)
     }
 
     func testGetUserVariableNamed() {

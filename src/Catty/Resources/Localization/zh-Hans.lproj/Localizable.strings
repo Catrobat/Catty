@@ -5,7 +5,7 @@
 "A project with the same name already exists, try again." = "已存在具有相同名称的程序，请重试。";
 
 /* No comment provided by engineer. */
-"Abc" = "文本";
+"Abc" = "Abc";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "关于 Catrobat";
@@ -17,13 +17,13 @@
 "absolute value" = "绝对值";
 
 /* No comment provided by engineer. */
-"acceleration x" = "gia tốc x";
+"acceleration x" = "加速度 x";
 
 /* No comment provided by engineer. */
 "acceleration y" = "加速度y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "gia tốc_z";
+"acceleration z" = "z方向加速度";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "加速度传感器";
@@ -32,7 +32,7 @@
 "Actors and objects" = "对象和物体";
 
 /* No comment provided by engineer. */
-"Add" = "Thêm";
+"Add" = "添加";
 
 /* No comment provided by engineer. */
 "Add actor or object" = "添加演员或对象";
@@ -48,6 +48,9 @@
 
 /* Action sheet menu title */
 "Add sound" = "添加声音";
+
+/* No comment provided by engineer. */
+"Add trusted domain" = "添加可信域名";
 
 /* No comment provided by engineer. */
 "Agree" = "同意";
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "允许自动发送故障报告";
 
+/* No comment provided by engineer. */
+"Allow web access" = "允许网络访问";
+
 /* paint */
 "Alpha" = "透明度";
 
 /* No comment provided by engineer. */
 "altitude" = "海拔高度";
+
+/* No comment provided by engineer. */
+"Always" = "总是";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "总是允许网络访问";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "已存在具有相同名称的图像，请重试。";
@@ -89,10 +101,16 @@
 "and" = "与";
 
 /* No comment provided by engineer. */
+"and store answer in" = "并存储答案";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "并存储写的答案 ";
 
 /* No comment provided by engineer. */
 "and wait" = "并等待";
+
+/* No comment provided by engineer. */
+"and width" = "和宽度";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "动画积木部件";
@@ -131,7 +149,7 @@
 "at " = "在 ";
 
 /* No comment provided by engineer. */
-"at position" = "ở vị trí";
+"at position" = "位置为";
 
 /* paint */
 "Attributes:" = "属性：";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "巴索恩州";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "在允许访问之前请小心，因为链接可能会将您的个人信息——例如您的准确地理位置或您输入的任何文本——公开暴露给其他不怀好意的人。 请查看我们的维基来了解为什么这可能是极其危险的。 如果选择总是允许访问，则不会再次要求您确认来自此域的网页地址。 如果您想要稍后撤销此权限，您可以在此应用设置中从信任域名列表中删除该域名。";
 
 /* No comment provided by engineer. */
 "becomes true" = "为真";
@@ -374,10 +395,13 @@
 "Create account" = "创造帐户";
 
 /* No comment provided by engineer. */
+"Create as list" = "以列表方式创建";
+
+/* No comment provided by engineer. */
 "Create patterns for stiching machines" = "创建刻录机图案";
 
 /* No comment provided by engineer. */
-"Data" = "Dữ liệu";
+"Data" = "数据";
 
 /* No comment provided by engineer. */
 "Date and time" = "日期与时间";
@@ -416,7 +440,7 @@
 "Delete condition" = "删除条件";
 
 /* No comment provided by engineer. */
-"Delete item from list" = "Xoá khỏi danh sách";
+"Delete item from list" = "从列表中删除项，在列表";
 
 /* No comment provided by engineer. */
 "Delete looks" = "删除外观";
@@ -479,6 +503,9 @@
 "Deletion mode" = "删除模式";
 
 /* No comment provided by engineer. */
+"Deny" = "拒绝";
+
+/* No comment provided by engineer. */
 "Description" = "描述";
 
 /* No comment provided by engineer. */
@@ -524,7 +551,7 @@
 "Do you really want to delete the current drawing?" = "你真的想要删除当前绘制的图像？";
 
 /* paint */
-"Do you want to save your changes?" = "Bạn có muốn lưu thay đổi của mình?";
+"Do you want to save your changes?" = "您要保存这些更改吗？";
 
 /* No comment provided by engineer. */
 "don't rotate" = "不要旋转";
@@ -534,6 +561,12 @@
 
 /* No comment provided by engineer. */
 "Download" = "&#x5448;&#x62A5;&#x4E3A;&#x4E0D;&#x9002;&#x5F53;&#x7684;&#x5185;&#x5BB9;";
+
+/* No comment provided by engineer. */
+"Download again" = "重新下载";
+
+/* No comment provided by engineer. */
+"Download too big" = "下载量过大";
 
 /* No comment provided by engineer. */
 "Downloads" = "下载";
@@ -584,6 +617,9 @@
 "Edit sounds" = "编辑声音";
 
 /* No comment provided by engineer. */
+"Edit trusted domain" = "编辑可信域名";
+
+/* No comment provided by engineer. */
 "Electric Guitar" = "电吉他";
 
 /* No comment provided by engineer. */
@@ -623,7 +659,7 @@
 "Enable script" = "启用脚本";
 
 /* No comment provided by engineer. */
-"End if" = "Kết thúc nếu";
+"End if" = "如果结束";
 
 /* No comment provided by engineer. */
 "End of Loop" = "重复执行结束";
@@ -677,16 +713,7 @@
 "FA" = "FA型";
 
 /* No comment provided by engineer. */
-"face detected" = "人脸识别";
-
-/* No comment provided by engineer. */
-"faceposition x" = "人脸位置 x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "人脸位置 y";
-
-/* No comment provided by engineer. */
-"facesize" = "人脸尺寸";
+"Face detection" = "面部检测";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "导入文件失败。";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "填充";
+
+/* No comment provided by engineer. */
+"first face size" = "第一个面大小";
+
+/* No comment provided by engineer. */
+"first face visible" = "第一个可见的面";
+
+/* No comment provided by engineer. */
+"first face x position" = "第一个面 x 坐标";
+
+/* No comment provided by engineer. */
+"first face y position" = "第一个面 y 坐标";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "闪光灯关闭";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "周五";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "常用的";
 
 /* No comment provided by engineer. */
 "Friday" = "星期五";
@@ -803,7 +839,13 @@
 "gyro-sensor" = "陀螺仪传感器";
 
 /* No comment provided by engineer. */
-"Hello!" = "Xin chào!";
+"head top x" = "头顶 x";
+
+/* No comment provided by engineer. */
+"head top y" = "头顶 y";
+
+/* No comment provided by engineer. */
+"Hello!" = "您好！";
 
 /* No comment provided by engineer. */
 "Help" = "帮助";
@@ -851,16 +893,22 @@
 "inclination y" = "倾角";
 
 /* No comment provided by engineer. */
+"index of item" = "项目的索引";
+
+/* No comment provided by engineer. */
 "Information" = "信息";
 
 /* No comment provided by engineer. */
-"Insert" = "Chèn";
+"Insert" = "插入";
 
 /* paint */
 "Inserted" = "已插入";
 
 /* No comment provided by engineer. */
-"into list" = "vào danh sách";
+"Internet" = "互联网";
+
+/* No comment provided by engineer. */
+"into list" = "到列表中";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "无效的输入，请重试。";
@@ -932,6 +980,48 @@
 "Left" = "左移";
 
 /* No comment provided by engineer. */
+"left ear x" = "左耳x";
+
+/* No comment provided by engineer. */
+"left ear y" = "左耳 y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "左眼中心 x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "左眼中心 y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "左眼内 x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "左眼内 y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "左眼外侧X";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "左眼外侧 y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "水平翻转";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "线条";
+
+/* No comment provided by engineer. */
+"List name" = "列表名";
 
 /* No comment provided by engineer. */
 "List name:" = "列表名称：";
@@ -1025,7 +1118,7 @@
 "Maximize" = "最大化";
 
 /* No comment provided by engineer. */
-"maximum of" = "tối đa";
+"maximum of" = "最大值";
 
 /* No comment provided by engineer. */
 "May" = "&#x4E94;&#x6708;";
@@ -1052,7 +1145,7 @@
 "Minimize" = "尽量减少";
 
 /* No comment provided by engineer. */
-"minimum of" = "tối thiểu";
+"minimum of" = "最小值";
 
 /* No comment provided by engineer. */
 "minute" = "分钟";
@@ -1092,6 +1185,18 @@
 
 /* No comment provided by engineer. */
 "Motion properties" = "运动属性";
+
+/* No comment provided by engineer. */
+"mouth left corner x" = "嘴的左角x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "口腔左角 y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "口右角x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "口右角 y";
 
 /* No comment provided by engineer. */
 "Move" = "移动";
@@ -1142,19 +1247,19 @@
 "New canvas" = "新建画板";
 
 /* No comment provided by engineer. */
-"New list" = "Danh sách mới";
+"New list" = "新建列表";
 
 /* No comment provided by engineer. */
-"New message" = "Tin nhắn mới";
+"New message" = "新消息";
 
 /* No comment provided by engineer. */
 "New project" = "新建";
 
 /* No comment provided by engineer. */
-"New text" = "Văn bản mới";
+"New text" = "新文本";
 
 /* No comment provided by engineer. */
-"New variable" = "Biến mới";
+"New variable" = "新建变量";
 
 /* No comment provided by engineer. */
 "New..." = "新建…";
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "不允许空格字符";
 
 /* No comment provided by engineer. */
+"nose x" = "鼻子x";
+
+/* No comment provided by engineer. */
+"nose y" = "鼻子y";
+
+/* No comment provided by engineer. */
 "not" = "不";
 
 /* No comment provided by engineer. */
@@ -1214,7 +1325,7 @@
 "November" = "&#x5341;&#x4E00;&#x6708;";
 
 /* No comment provided by engineer. */
-"number of items" = "số_các_mục";
+"number of items" = "数据项数量";
 
 /* No comment provided by engineer. */
 "Numbers" = "数字";
@@ -1241,6 +1352,9 @@
 "on" = "开";
 
 /* No comment provided by engineer. */
+"Once" = "一次";
+
+/* No comment provided by engineer. */
 "only 15 characters allowed" = "最多允许15 个字符";
 
 /* No comment provided by engineer. */
@@ -1250,7 +1364,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "不允许只输入特殊字符，请输入至少 %lu个其他字符。";
 
 /* No comment provided by engineer. */
-"Open" = "Mở ";
+"Open" = "打开 ";
 
 /* No comment provided by engineer. */
 "or" = "或";
@@ -1313,7 +1427,7 @@
 "Place at " = "放在 ";
 
 /* No comment provided by engineer. */
-"Play" = "Chơi";
+"Play" = "玩";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "播放Phiro音乐\n";
@@ -1379,7 +1493,10 @@
 "Pointer" = "指针";
 
 /* No comment provided by engineer. */
-"position x" = "vị trí x";
+"Pose detection" = "姿势检测";
+
+/* No comment provided by engineer. */
+"position x" = "位置 x";
 
 /* No comment provided by engineer. */
 "position y" = "阵地";
@@ -1409,25 +1526,28 @@
 "Project Name is necessary!" = "项目名称是必需的 ！";
 
 /* No comment provided by engineer. */
-"Projects" = "Các chương trình";
+"Projects" = "程序";
 
 /* No comment provided by engineer. */
 "Projects on device" = "Các chương trình";
 
 /* No comment provided by engineer. */
-"Properties" = "Đối tượng";
+"Properties" = "对象";
 
 /* No comment provided by engineer. */
 "random position" = "随机位置";
 
 /* No comment provided by engineer. */
-"random value from to" = "ngẫu nhiên";
+"random value from to" = "随机取值";
 
 /* No comment provided by engineer. */
 "Rate Us" = "幫我們評分";
 
 /* No comment provided by engineer. */
 "RE" = "可选的";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "最近使用的";
 
 /* No comment provided by engineer. */
 "Recording" = "正在录音";
@@ -1457,13 +1577,13 @@
 "Rename" = "重命名";
 
 /* No comment provided by engineer. */
-"Rename actor or object" = "Đổi tên đối tượng";
+"Rename actor or object" = "重命名对象";
 
 /* No comment provided by engineer. */
 "Rename image" = "重命名图片";
 
 /* No comment provided by engineer. */
-"Rename project" = "Đổi tên chương trình";
+"Rename project" = "重命名项目";
 
 /* No comment provided by engineer. */
 "Rename sound" = "重命名声音";
@@ -1475,7 +1595,7 @@
 "Repeat until" = "重复执行直到";
 
 /* No comment provided by engineer. */
-"Replace item in list" = "Thay thế các khoản mục trong danh sách";
+"Replace item in list" = "替换项目在列表";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "举报为不适当";
@@ -1491,6 +1611,48 @@
 
 /* No comment provided by engineer. */
 "Right" = "右移";
+
+/* No comment provided by engineer. */
+"right ear x" = "右耳x";
+
+/* No comment provided by engineer. */
+"right ear y" = "右耳 y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "右眼中心X";
+
+/* No comment provided by engineer. */
+"right eye center y" = "右眼中心y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "右眼内侧X";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "右眼内侧 y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "右眼外侧X";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "右眼外侧 y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
 
 /* paint */
 "Rotate" = "旋转";
@@ -1538,6 +1700,18 @@
 "second " = "秒";
 
 /* No comment provided by engineer. */
+"second face size" = "第二个面大小";
+
+/* No comment provided by engineer. */
+"second face visible" = "第二个可见的面";
+
+/* No comment provided by engineer. */
+"second face x position" = "第二个面 x  坐标";
+
+/* No comment provided by engineer. */
+"second face y position" = "第二个面 y 坐标";
+
+/* No comment provided by engineer. */
 "seconds" = "秒";
 
 /* No comment provided by engineer. */
@@ -1556,6 +1730,9 @@
 "Select categories" = "选择类别";
 
 /* No comment provided by engineer. */
+"Select file" = "选择文件";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "选择逻辑运算符";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "选择 Phiro";
+
+/* No comment provided by engineer. */
+"Send web request to" = "发送网络请求到";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "发送匿名故障报告";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "设置背景";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "设置背景并等待";
+
+/* No comment provided by engineer. */
+"Set background to number" = "设置背景为编号";
 
 /* No comment provided by engineer. */
 "Set brightness " = "设置亮度 ";
@@ -1642,6 +1828,9 @@
 /* No comment provided by engineer. */
 "Settings" = "设置";
 
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "上移";
+
 /* No comment provided by engineer. */
 "Show" = "显示";
 
@@ -1667,7 +1856,7 @@
 "SO" = "星期天";
 
 /* No comment provided by engineer. */
-"Something went wrong while uploading the project." = "Lỗi xảy ra trong khi tải lên chương trình.";
+"Something went wrong while uploading the project." = "在上传程序的时候发生了一个错误。";
 
 /* No comment provided by engineer. */
 "Sound" = "声音";
@@ -1688,7 +1877,7 @@
 "square" = "方形";
 
 /* No comment provided by engineer. */
-"square root" = "sqrt";
+"square root" = "平方根";
 
 /* No comment provided by engineer. */
 "stage is touched" = "屏幕被点击";
@@ -1706,10 +1895,16 @@
 "Stamped" = "盖章";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "开始进行缝制，按照长度";
+
+/* No comment provided by engineer. */
 "Start sound" = "播放声音";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "播放声音并等待";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "开始以锯齿线迹缝制，按照长度";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "钢箱";
@@ -1721,10 +1916,13 @@
 "steps" = "步";
 
 /* No comment provided by engineer. */
-"Stitch" = "纹理";
+"Stitch" = "缝制";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "停止所有声音";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "停止当前缝制操作";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "停止Phiro马达";
@@ -1760,13 +1958,13 @@
 "Tap \"+\" to add backgrounds" = "点击 \"+\" 来添加背景";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add looks" = "Bấm vào \"+\" để thêm giao diện";
+"Tap \"+\" to add looks" = "按“+”添加外观";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add scripts" = "Bấm vào \"+\" để thêm kịch bản";
+"Tap \"+\" to add scripts" = "点击\"+\"来添加脚本";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add sounds" = "Bấm vào \"+\" để thêm âm thanh";
+"Tap \"+\" to add sounds" = "按“+”添加声音";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add variables and lists" = "点击 \"+\" 添加变量和列表";
@@ -1844,7 +2042,7 @@
 "to" = "为";
 
 /* No comment provided by engineer. */
-"to list" = "vào danh sách";
+"to list" = "到列表中";
 
 /* No comment provided by engineer. */
 "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "为了向您提供我们的服务和相关账户的所有好处，有必要向您收集某些数据。\n\n\u{2022} 为了维护和改进我们的服务（应用程序和网站），并对ICT和STEM/STEAM教育进行科学研究，我们使用Google LLC（美国）的Google Analytics、Crashlytics和Firebase，以及Dynatrace LLC（美国）的Dynatrace获取有关我们服务使用情况的元数据，例如，崩溃信息、时间戳、访问过的页面/屏幕、我们的应用程序和服务的使用情况、使用过的操作系统和网络供应商的信息。这种分析和收集到的数据不会链接到您的个人资料，也不包含任何个人信息（IP地址的最后几位会被匿名化）。但是，收集到的数据将被传送给服务提供商（Google LLC, USA 和 Dynatrace LLC, USA）。数据处理是基于与Google LLC和Dynatrace LLC的协议。这种与服务提供商的关系符合欧盟的《通用数据保护条例》（EU GDPR）和欧盟与美国的 \"隐私保护 \"协议。\n\n\u{2022} 为了在我们的系统中创建和使用一个账户，并通过电子邮件通知您关于您的账户的必要更改，例如，更新或违反我们的使用和服务条款、我们的社区规则或我们的政策，我们将存储您的用户名，以及您提供的电子邮件地址。如果您通过您的谷歌或Facebook账户连接了您的账户，我们会额外存储一个连接到您在这些服务上的账户的识别密钥。我们不会将这些数据用于任何其他目的（如营销），除非您明确允许我们这样做。\n\n\u{2022} 在自愿的基础上，你可以通过你在分享网站上的账户页面向我们提供你的居住国。这将会显示在你的公开资料上，并且只会被我们用于统计和研究目的。您可以在您的个人资料设置中随时删除该信息。\n\n\u{2022} 您可以在任何时候通过您在https://share.catrob.at 上的个人资料页面删除您的账户，从而撤销对属于您账户的个人资料的使用。删除您的账户后，您仍可使用所提供的服务，但不能通过上传节目、评论或点赞等方式进行合作。同时，所有与您的账户相关联的提供内容，如上传的程序、评论等都将被删除。\n\n\u{2022} 为了避免滥用我们的服务，例如，通过用户贡献的上传或评论用于非法目的，所有用户生成的公共数据（上传、评论）将被内部存储在数据库中，并附有时间戳和使用的互联网地址。这些数据将不会被任何机构使用或转发，除非有足够的非法行为被合理怀疑，并且官方有权的法律机构根据适用的法律提出要求。我们将首先对每个案例进行彻底的个别检查。\n\n\u{2022} 您可以自愿订阅我们通过 MailChimp 服务（The Rocket Science Group LLC d/b/a MailChimp, USA）提供的 https://catrob.at/newsletter 上的 Catrobat 通讯。届时，您将通过您提供的电子邮件地址收到有关Catrobat项目及其服务的最新信息。您可以在任何时候通过使用每期简讯页脚的 \"取消订阅 \"链接来撤回简讯。本电子报由 MailChimp 提供，我们与 MailChimp 签订了数据处理协议，并承诺遵守欧盟通用数据保护条例和欧盟-美国 \"隐私保护盾\"。有关MailChimp的更多细节，请查看MailChimp的隐私政策和使用条款。\n\n\u{2022} 所有服务均由免费开源的 Catrobat 项目提供，该项目隶属于国际 Catrobat 协会 - Verein zur Förderung freier Software，一个在奥地利格拉茨（欧盟）注册的非营利性非政府组织。我们的政策尊重欧盟和奥地利的数据保护法（GDPR）。若要与我们联系，请发送电子邮件至 contact@catrobat.org 或邮寄给 Catrobat。\nc/o\n软件技术研究所。\n格拉茨理工大学。\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(欧盟)。\n\n如果您未满14岁，本政策必须由法定监护人（通常是父母）接受。\n\nCatrobat\\的官方英文隐私政策可在网站https://catrob.at/privacypolicy。\n\n2.2版本，2019年10月17日\n\n在这里找到我们以前的、过时的隐私政策(2.0)版本： http://developer.catrobat.org/privacy_policy_2-0";
@@ -1853,7 +2051,7 @@
 "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "要使用我们的应用，必须接受我们的隐私政策。 但是，如果你不觉得这样做不舒服，你可以在 share.catrob.at 上使用我们的免费网络服务。";
 
 /* No comment provided by engineer. */
-"to x:" = "để X:";
+"to x:" = "到 X:";
 
 /* No comment provided by engineer. */
 "Today" = "今天";
@@ -1863,6 +2061,15 @@
 
 /* No comment provided by engineer. */
 "touch position" = "触摸位置";
+
+/* No comment provided by engineer. */
+"touches actor or object" = "碰到对象";
+
+/* No comment provided by engineer. */
+"touches edge" = "碰到边缘";
+
+/* No comment provided by engineer. */
+"touches finger" = "触摸手指";
 
 /* No comment provided by engineer. */
 "transparency" = "透明度";
@@ -1900,12 +2107,6 @@
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "无法播放声音！\n这可能不是有效的声音或文件已损坏。";
 
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "无法播放选中的声音。您的设备处于静音模式。 请切换您iPhone左侧的开关并再次点击播放，关闭静音模式。";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "无法播放选中的声音。您的设备处于静音模式。 请切换iPad右侧的开关以关闭静音模式并再次点击播放。";
-
 /* paint */
 "underline" = "下划线";
 
@@ -1940,7 +2141,7 @@
 "Unsupported Script:" = "不支持的脚本：";
 
 /* No comment provided by engineer. */
-"Upload project" = "Tải lên chương trình";
+"Upload project" = "上传程序";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "上传选定的项目";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "使用Phiro积木。";
 
 /* No comment provided by engineer. */
+"user language" = "用户语言";
+
+/* No comment provided by engineer. */
 "Username" = "用户名";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "用户名不能为空";
+
+/* No comment provided by engineer. */
+"Variable name" = "变量名称";
 
 /* No comment provided by engineer. */
 "Variable name:" = "变量名:";
@@ -2000,9 +2207,6 @@
 "Views" = "查看";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "视觉传感器";
-
-/* No comment provided by engineer. */
 "Wait" = "等待";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "星期三";
+
+/* No comment provided by engineer. */
+"Web access" = "Web 访问";
 
 /* No comment provided by engineer. */
 "Wednesday" = "星期三";
@@ -2045,7 +2252,7 @@
 "Width selection" = "宽度选择";
 
 /* No comment provided by engineer. */
-"with" = "với";
+"with" = "以";
 
 /* No comment provided by engineer. */
 "Wooden Flute" = "木制流体";

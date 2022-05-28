@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,20 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FacePositionXSensor: DeviceSensor {
+class FacePositionXSensor: DeviceDoubleSensor {
 
-    static let tag = "FACE_X_POSITION"
+    static let tag = "FACE_X"
     static let name = kUIFESensorFaceX
     static let defaultRawValue = 0.0
-    static let position = 230
+    static let position = 240
     static let requiredResource = ResourceType.faceDetection
 
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageWidth: Double?
+    let stageHeight: Double?
 
-    init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
+    init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
+        self.getVisualDetectionManager = visualDetectionManagerGetter
         self.stageWidth = Double(stageSize.width)
+        self.stageHeight = Double(stageSize.height)
     }
 
     func tag() -> String {
@@ -41,7 +43,7 @@ class FacePositionXSensor: DeviceSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionX = self.getFaceDetectionManager()?.facePositionRatioFromLeft else { return type(of: self).defaultRawValue }
+        guard let positionX = self.getVisualDetectionManager()?.facePositionXRatio[0] else { return type(of: self).defaultRawValue }
         return positionX
     }
 
@@ -49,8 +51,10 @@ class FacePositionXSensor: DeviceSensor {
         if rawValue == type(of: self).defaultRawValue {
             return rawValue
         }
-        guard let stageWidth = self.stageWidth else { return type(of: self).defaultRawValue }
-        return stageWidth * rawValue - stageWidth / 2.0
+        guard let stageWidth = self.stageWidth, let stageHeight = self.stageHeight, let frameHeight = self.getVisualDetectionManager()?.visualDetectionFrameSize?.height else {
+            return type(of: self).defaultRawValue }
+        let scaledPreviewWidthRatio = stageHeight / frameHeight
+        return (stageWidth * rawValue - stageWidth / 2.0) * scaledPreviewWidthRatio
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

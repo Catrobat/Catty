@@ -1,8 +1,8 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "已存在同名消息，請重試。";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "已存在同名項目，請重試。";
 
 /* No comment provided by engineer. */
 "Abc" = "字串";
@@ -26,79 +26,97 @@
 "acceleration z" = "加速度感測器z軸";
 
 /* No comment provided by engineer. */
-"acceleration-sensor" = "acceleration-sensor";
+"acceleration-sensor" = "加速度傳感器";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "演員和對象";
 
 /* No comment provided by engineer. */
 "Add" = "新增";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "添加演員或對象";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"add comment here..." = "在此處添加評論...";
 
 /* No comment provided by engineer. */
-"Add image" = "Add image";
+"Add image" = "添加圖片";
 
 /* Action sheet menu title */
 "Add look" = "增加外觀";
 
 /* Action sheet menu title */
-"Add sound" = "Add sound";
+"Add sound" = "添加聲音";
 
 /* No comment provided by engineer. */
-"Agree" = "Agree";
+"Add trusted domain" = "Add trusted domain";
 
 /* No comment provided by engineer. */
-"all around" = "all around";
+"Agree" = "同意";
 
 /* No comment provided by engineer. */
-"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+"all around" = "在周圍";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+"All Bluetooth devices successfully disconnected" = "成功斷開所有藍牙設備";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"All known Bluetooth devices successfully removed" = "已成功移除所有已知藍牙設備";
 
 /* No comment provided by engineer. */
-"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+"Allow the app to control Arduino boards" = "允許應用程序控制 Arduino 板";
+
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "允許應用自動發送崩潰報告";
+
+/* No comment provided by engineer. */
+"Allow web access" = "允許網絡訪問";
 
 /* paint */
 "Alpha" = "透明度";
 
 /* No comment provided by engineer. */
-"altitude" = "altitude";
+"altitude" = "高度";
 
 /* No comment provided by engineer. */
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+"Always" = "總是";
 
 /* No comment provided by engineer. */
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+"Always allow web access" = "Always allow web access";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "已存在同名圖像，請重試。";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "已存在同名對象，請重試。";
 
 /* No comment provided by engineer. */
 "An unknown error occurred. Check your Internet connection." = "發生未知的錯誤。檢查您的網路連線。";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+"An unknown error occurred. Please try again later." = "出現未知錯誤。請稍後再試。";
 
 /* No comment provided by engineer. */
 "and" = "而且";
 
 /* No comment provided by engineer. */
-"and store written answer in " = "and store written answer in ";
+"and store answer in" = "並將答案存儲在";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and store written answer in " = "並將書面答案存儲在 ";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Animate brick-parts";
+"and wait" = "等待";
 
 /* No comment provided by engineer. */
-"Apr" = "Apr";
+"and width" = "和寬度";
+
+/* No comment provided by engineer. */
+"Animate brick-parts" = "動畫磚零件";
+
+/* No comment provided by engineer. */
+"Apr" = "四月";
 
 /* No comment provided by engineer. */
 "April" = "&#x56DB;&#x6708;";
@@ -116,43 +134,43 @@
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino analog" = "arduino analog";
+"arduino analog" = "arduino 模擬";
 
 /* No comment provided by engineer. */
-"arduino digital" = "arduino digital";
+"arduino digital" = "arduino 數字";
 
 /* No comment provided by engineer. */
-"Arduino extension" = "Arduino extension";
+"Arduino extension" = "Arduino 擴展";
 
 /* No comment provided by engineer. */
-"Ask " = "Ask ";
+"Ask " = "問 ";
 
 /* No comment provided by engineer. */
-"at " = "at ";
+"at " = "在 ";
 
 /* No comment provided by engineer. */
 "at position" = "刪除資料在位置";
 
 /* paint */
-"Attributes:" = "Attributes:";
+"Attributes:" = "屬性：";
 
 /* No comment provided by engineer. */
-"Aug" = "Aug";
+"Aug" = "八月";
 
 /* No comment provided by engineer. */
 "August" = "&#x516B;&#x6708;";
 
 /* No comment provided by engineer. */
-"Authentication failed" = "Authentication failed";
+"Authentication failed" = "認證失敗";
 
 /* No comment provided by engineer. */
-"Author" = "Author";
+"Author" = "作者";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
+"Axes" = "軸";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "背部";
 
 /* No comment provided by engineer. */
 "Back" = "返回";
@@ -161,40 +179,43 @@
 "Background" = "背景";
 
 /* No comment provided by engineer. */
-"background name" = "background name";
+"background name" = "背景名稱";
 
 /* No comment provided by engineer. */
-"background number" = "background number";
+"background number" = "背景號碼";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "背景";
 
 /* No comment provided by engineer. */
-"Bass" = "Bass";
+"Bass" = "低音";
 
 /* No comment provided by engineer. */
-"Bassoon" = "Bassoon";
+"Bassoon" = "巴鬆管";
 
 /* No comment provided by engineer. */
-"becomes true" = "becomes true";
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
 
 /* No comment provided by engineer. */
-"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
+"becomes true" = "變成真的";
 
 /* No comment provided by engineer. */
-"blue" = "blue";
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "在您開始編碼之前，請閱讀並接受我們的隱私政策以使用該應用程序：";
+
+/* No comment provided by engineer. */
+"blue" = "藍色的";
 
 /* paint */
 "Blue" = "藍";
 
 /* No comment provided by engineer. */
-"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "藍牙不可用。您的設備不支持藍牙 4.0 或您的藍牙芯片已損壞。請在設置中通過連接到另一個藍牙設備來檢查它。";
 
 /* No comment provided by engineer. */
-"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "藍牙已關閉。請打開它以連接到藍牙設備。";
 
 /* paint */
-"bold" = "bold";
+"bold" = "大膽的";
 
 /* No comment provided by engineer. */
 "Both" = "兩邊";
@@ -221,19 +242,19 @@
 "By registering you agree to our" = "註冊即代表您同意我們的";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "無法重啟項目！";
 
 /* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* bluetooth */
-"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+"Cannot connect to device, please try resetting the device and try again." = "無法連接到設備，請嘗試重置設備並重試。";
 
 /* bluetooth */
-"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+"Cannot connect to device. The device is not responding." = "無法連接到設備。設備沒有響應。";
 
 /* No comment provided by engineer. */
-"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "無法連接到媒體庫。請檢查您的互聯網連接。";
 
 /* No comment provided by engineer. */
 "Categories" = "程式塊分類";
@@ -242,25 +263,25 @@
 "Catrobat community" = "Catrobat社群";
 
 /* No comment provided by engineer. */
-"ceiling" = "ceiling";
+"ceiling" = "天花板";
 
 /* No comment provided by engineer. */
-"Cello" = "Cello";
+"Cello" = "大提琴";
 
 /* No comment provided by engineer. */
 "Change brightness " = "設定亮度增量 ";
 
 /* No comment provided by engineer. */
-"Change color " = "Change color ";
+"Change color " = "換顏色 ";
 
 /* No comment provided by engineer. */
 "Change size by" = "設定大小增量";
 
 /* No comment provided by engineer. */
-"Change to landscape" = "Change to landscape";
+"Change to landscape" = "改為橫向";
 
 /* No comment provided by engineer. */
-"Change to portrait" = "Change to portrait";
+"Change to portrait" = "更改為縱向";
 
 /* No comment provided by engineer. */
 "Change transparency " = "設定透明度增量 ";
@@ -272,31 +293,31 @@
 "Change volume by" = "設定音量增量";
 
 /* No comment provided by engineer. */
-"Change x by " = "Change x by ";
+"Change x by " = "將 x 更改為 ";
 
 /* No comment provided by engineer. */
-"Change y by " = "Change y by ";
+"Change y by " = "改變 y ";
 
 /* No comment provided by engineer. */
-"Changes discarded." = "Changes discarded.";
+"Changes discarded." = "已放棄更改。";
 
 /* No comment provided by engineer. */
 "Changes saved." = "修改儲存完成!";
 
 /* No comment provided by engineer. */
-"Choir" = "Choir";
+"Choir" = "唱詩班";
 
 /* No comment provided by engineer. */
-"Choose" = "Choose";
+"Choose" = "選擇";
 
 /* No comment provided by engineer. */
-"Choose image" = "Choose image";
+"Choose image" = "選擇圖片";
 
 /* No comment provided by engineer. */
-"Clarinet" = "Clarinet";
+"Clarinet" = "單簧管";
 
 /* No comment provided by engineer. */
-"Clear" = "Clear";
+"Clear" = "清除";
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "清除外觀特效";
@@ -305,40 +326,40 @@
 "Close" = "關閉​​​";
 
 /* paint */
-"Close Paint" = "Close Paint";
+"Close Paint" = "關閉油漆";
 
 /* No comment provided by engineer. */
-"color" = "color";
+"color" = "顏色";
 
 /* No comment provided by engineer. */
-"Comparison operators" = "Comparison operators";
+"Comparison operators" = "比較運算符";
 
 /* No comment provided by engineer. */
-"compass" = "compass";
+"compass" = "羅盤";
 
 /* No comment provided by engineer. */
 "Compute" = "計算";
 
 /* No comment provided by engineer. */
-"Computed result is %.2f" = "Computed result is %.2f";
+"Computed result is %.2f" = "計算結果為 %.2f";
 
 /* No comment provided by engineer. */
-"Computed result is FALSE" = "Computed result is FALSE";
+"Computed result is FALSE" = "計算結果為 FALSE";
 
 /* No comment provided by engineer. */
-"Computed result is TRUE" = "Computed result is TRUE";
+"Computed result is TRUE" = "計算結果為真";
 
 /* No comment provided by engineer. */
-"Confirm password" = "Confirm password";
+"Confirm password" = "確認密碼";
 
 /* bluetooth */
-"Connection failed" = "Connection failed";
+"Connection failed" = "連接失敗";
 
 /* bluetooth */
-"Connection lost" = "Connection lost";
+"Connection lost" = "連接丟失";
 
 /* bluetooth */
-"Connection not possible" = "Connection not possible";
+"Connection not possible" = "無法連接";
 
 /* No comment provided by engineer. */
 "contains" = "contains";
@@ -356,40 +377,43 @@
 "Copy" = "複製";
 
 /* No comment provided by engineer. */
-"Copy actors or objects" = "Copy actors or objects";
+"Copy actors or objects" = "複製演員或對象";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy brick" = "抄磚";
 
 /* No comment provided by engineer. */
-"Copy looks" = "Copy looks";
+"Copy looks" = "複製外觀";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy project" = "複製項目";
 
 /* No comment provided by engineer. */
 "cosine" = "cos";
 
 /* No comment provided by engineer. */
-"Create account" = "Create account";
+"Create account" = "創建帳號";
 
 /* No comment provided by engineer. */
-"Create patterns for stiching machines" = "Create patterns for stiching machines";
+"Create as list" = "Create as list";
+
+/* No comment provided by engineer. */
+"Create patterns for stiching machines" = "為縫合機創建圖案";
 
 /* No comment provided by engineer. */
 "Data" = "變數資料";
 
 /* No comment provided by engineer. */
-"Date and time" = "Date and time";
+"Date and time" = "日期和時間";
 
 /* No comment provided by engineer. */
-"day" = "day";
+"day" = "日";
 
 /* No comment provided by engineer. */
-"debug" = "debug";
+"debug" = "調試";
 
 /* No comment provided by engineer. */
-"Dec" = "Dec";
+"Dec" = "十二月";
 
 /* No comment provided by engineer. */
 "December" = "&#x5341;&#x4E8C;&#x6708;";
@@ -404,130 +428,133 @@
 "Delete" = "刪除";
 
 /* No comment provided by engineer. */
-"Delete actors or objects" = "Delete actors or objects";
+"Delete actors or objects" = "刪除角色或對象";
 
 /* No comment provided by engineer. */
-"Delete backgrounds" = "Delete backgrounds";
+"Delete backgrounds" = "刪除背景";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Delete brick";
+"Delete brick" = "刪除磚塊";
 
 /* No comment provided by engineer. */
-"Delete condition" = "Delete condition";
+"Delete condition" = "刪除條件";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "從清單";
 
 /* No comment provided by engineer. */
-"Delete looks" = "Delete looks";
+"Delete looks" = "刪除外觀";
 
 /* No comment provided by engineer. */
-"Delete loop" = "Delete loop";
+"Delete loop" = "刪除循環";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete project" = "刪除項目";
 
 /* No comment provided by engineer. */
-"Delete projects" = "Delete projects";
+"Delete projects" = "刪除項目";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete script" = "刪除腳本";
 
 /* No comment provided by engineer. */
-"Delete sounds" = "Delete sounds";
+"Delete sounds" = "刪除聲音";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "Delete these bricks?";
+"Delete these bricks?" = "刪除這些磚塊？";
 
 /* No comment provided by engineer. */
-"Delete these conditions?" = "Delete these conditions?";
+"Delete these conditions?" = "刪除這些條件？";
 
 /* No comment provided by engineer. */
-"Delete these loops?" = "Delete these loops?";
+"Delete these loops?" = "刪除這些循環？";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "Delete these scripts?";
+"Delete these scripts?" = "刪除這些腳本？";
 
 /* No comment provided by engineer. */
-"Delete this actor or object" = "Delete this actor or object";
+"Delete this actor or object" = "刪除這個角色或對象";
 
 /* No comment provided by engineer. */
-"Delete this background" = "Delete this background";
+"Delete this background" = "刪除此背景";
 
 /* No comment provided by engineer. */
-"Delete this brick?" = "Delete this brick?";
+"Delete this brick?" = "刪除這塊磚？";
 
 /* No comment provided by engineer. */
-"Delete this condition?" = "Delete this condition?";
+"Delete this condition?" = "刪除這個條件？";
 
 /* No comment provided by engineer. */
-"Delete this look" = "Delete this look";
+"Delete this look" = "刪除此外觀";
 
 /* No comment provided by engineer. */
-"Delete this loop?" = "Delete this loop?";
+"Delete this loop?" = "刪除這個循環？";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "刪除這個項目";
 
 /* No comment provided by engineer. */
-"Delete this script?" = "Delete this script?";
+"Delete this script?" = "刪除此腳本？";
 
 /* No comment provided by engineer. */
-"Delete this sound" = "Delete this sound";
+"Delete this sound" = "刪除這個聲音";
 
 /* No comment provided by engineer. */
-"Deletion mode" = "Deletion mode";
+"Deletion mode" = "刪除模式";
+
+/* No comment provided by engineer. */
+"Deny" = "拒绝";
 
 /* No comment provided by engineer. */
 "Description" = "描述";
 
 /* No comment provided by engineer. */
-"Details" = "Details";
+"Details" = "細節";
 
 /* bluetooth */
-"Device disconnected." = "Device disconnected.";
+"Device disconnected." = "設備斷開連接。";
 
 /* No comment provided by engineer. */
-"device motion-sensor" = "device motion-sensor";
+"device motion-sensor" = "設備運動傳感器";
 
 /* No comment provided by engineer. */
-"Device sensors" = "Device sensors";
+"Device sensors" = "設備傳感器";
 
 /* No comment provided by engineer. */
 "direction" = "方向";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "禁用磚塊";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "禁用條件";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "禁用循環";
 
 /* No comment provided by engineer. */
-"Disable script" = "Disable script";
+"Disable script" = "禁用腳本";
 
 /* No comment provided by engineer. */
-"Disagree" = "Disagree";
+"Disagree" = "不同意";
 
 /* No comment provided by engineer. */
-"Discard changes" = "Discard changes";
+"Discard changes" = "放棄更改";
 
 /* No comment provided by engineer. */
-"Disconnect all devices" = "Disconnect all devices";
+"Disconnect all devices" = "斷開所有設備";
 
 /* No comment provided by engineer. */
-"DO" = "DO";
+"DO" = "做";
 
 /* paint */
-"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
+"Do you really want to delete the current drawing?" = "確定要刪除當前圖形嗎？";
 
 /* paint */
 "Do you want to save your changes?" = "你要儲存你的更改嗎?";
 
 /* No comment provided by engineer. */
-"don't rotate" = "don't rotate";
+"don't rotate" = "不要旋轉";
 
 /* No comment provided by engineer. */
 "Done" = "完成";
@@ -536,124 +563,133 @@
 "Download" = "&#x8209;&#x5831;";
 
 /* No comment provided by engineer. */
-"Downloads" = "Downloads";
+"Download again" = "Download again";
 
 /* No comment provided by engineer. */
-"Draw new image" = "Draw new image";
+"Download too big" = "下載太大";
+
+/* No comment provided by engineer. */
+"Downloads" = "下載";
+
+/* No comment provided by engineer. */
+"Draw new image" = "繪製新圖像";
 
 /* No comment provided by engineer. */
 "Duration" = "聲音長度";
 
 /* No comment provided by engineer. */
-"Edit" = "Edit";
+"Edit" = "編輯";
 
 /* No comment provided by engineer. */
-"Edit actor or object" = "Edit actor or object";
+"Edit actor or object" = "編輯演員或對象";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "編輯背景";
 
 /* Action sheet menu title */
-"Edit backgrounds" = "Edit backgrounds";
+"Edit backgrounds" = "編輯背景";
 
 /* Action sheet menu title */
-"Edit brick" = "Edit brick";
+"Edit brick" = "編輯磚";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "編輯公式";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "編輯外觀";
 
 /* Action sheet menu title */
-"Edit looks" = "Edit looks";
+"Edit looks" = "編輯外觀";
 
 /* No comment provided by engineer. */
-"Edit project" = "Edit project";
+"Edit project" = "編輯項目";
 
 /* No comment provided by engineer. */
-"Edit projects" = "Edit projects";
+"Edit projects" = "編輯項目";
 
 /* Action sheet menu title */
-"Edit script" = "Edit script";
+"Edit script" = "編輯腳本";
 
 /* Action sheet menu title */
-"Edit sound" = "Edit sound";
+"Edit sound" = "編輯聲音";
 
 /* Action sheet menu title */
-"Edit sounds" = "Edit sounds";
+"Edit sounds" = "編輯聲音";
 
 /* No comment provided by engineer. */
-"Electric Guitar" = "Electric Guitar";
+"Edit trusted domain" = "Edit trusted domain";
 
 /* No comment provided by engineer. */
-"Electric Piano" = "Electric Piano";
+"Electric Guitar" = "電吉他";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "電鋼琴";
 
 /* No comment provided by engineer. */
 "element" = "element";
 
 /* paint */
-"Ellipse / Circle" = "Ellipse / Circle";
+"Ellipse / Circle" = "橢圓/圓";
 
 /* No comment provided by engineer. */
 "Else" = "不成立執行";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "電子郵件";
 
 /* No comment provided by engineer. */
-"Embroidery" = "Embroidery";
+"Embroidery" = "刺繡";
 
 /* No comment provided by engineer. */
-"Embroidery extension" = "Embroidery extension";
+"Embroidery extension" = "繡花延長線";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Empty input!" = "空輸入！";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Enable brick" = "啟用磚";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Enable condition" = "啟用條件";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable loop" = "啟用循環";
 
 /* No comment provided by engineer. */
-"Enable script" = "Enable script";
+"Enable script" = "啟用腳本";
 
 /* No comment provided by engineer. */
 "End if" = "判斷尾端";
 
 /* No comment provided by engineer. */
-"End of Loop" = "End of Loop";
+"End of Loop" = "循環結束";
 
 /* No comment provided by engineer. */
-"Enter a reason" = "Enter a reason";
+"Enter a reason" = "輸入原因";
 
 /* Placeholder for add image-name input field */
-"Enter your image name here..." = "Enter your image name here...";
+"Enter your image name here..." = "在此處輸入您的圖像名稱...";
 
 /* Placeholder for list input field */
-"Enter your list name here..." = "Enter your list name here...";
+"Enter your list name here..." = "在此處輸入您的列表名稱...";
 
 /* Placeholder for message input field */
-"Enter your message here..." = "Enter your message here...";
+"Enter your message here..." = "在此處輸入您的消息...";
 
 /* Placeholder for add object-name input field */
-"Enter your object name here..." = "Enter your object name here...";
+"Enter your object name here..." = "在此處輸入您的對象名稱...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "在此處輸入您的項目描述...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "在此處輸入您的項目名稱...";
 
 /* Placeholder for add sound-name input field */
-"Enter your sound name here..." = "Enter your sound name here...";
+"Enter your sound name here..." = "在此處輸入您的聲音名稱...";
 
 /* Placeholder for variable input field */
-"Enter your variable name here..." = "Enter your variable name here...";
+"Enter your variable name here..." = "在此處輸入您的變量名稱...";
 
 /* paint */
 "Eraser" = "橡皮擦";
@@ -662,13 +698,13 @@
 "Error" = "錯誤";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+"Error occurred while reporting the project. Please try again later." = "報告項目時出錯。請稍後再試。";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error saving file" = "保存文件時出錯";
 
 /* No comment provided by engineer. */
-"Event" = "Event";
+"Event" = "事件";
 
 /* No comment provided by engineer. */
 "exponent" = "exp";
@@ -677,40 +713,31 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
+"Face detection" = "人臉檢測";
 
 /* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
+"Failed to import item" = "導入項目失敗";
 
 /* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
+"Failed to load featured projects" = "未能加載特色項目";
 
 /* No comment provided by engineer. */
-"facesize" = "facesize";
+"Failed to load recent projects" = "未能加載最近的項目";
 
 /* No comment provided by engineer. */
-"Failed to import item" = "Failed to import item";
+"Failed to load sound" = "無法加載聲音";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
-
-/* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
-
-/* No comment provided by engineer. */
-"Failed to load sound" = "Failed to load sound";
-
-/* No comment provided by engineer. */
-"Failed to play sound" = "Failed to play sound";
+"Failed to play sound" = "無法播放聲音";
 
 /* No comment provided by engineer. */
 "false" = "假";
 
 /* No comment provided by engineer. */
-"Featured projects" = "Featured projects";
+"Featured projects" = "特色項目";
 
 /* No comment provided by engineer. */
-"Feb" = "Feb";
+"Feb" = "二月";
 
 /* No comment provided by engineer. */
 "February" = "&#x4E8C;&#x6708;";
@@ -719,64 +746,73 @@
 "Fill" = "填滿";
 
 /* No comment provided by engineer. */
-"Flashlight off" = "Flashlight off";
+"first face size" = "人臉大小";
 
 /* No comment provided by engineer. */
-"Flashlight on" = "Flashlight on";
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "人臉位置座標_X";
+
+/* No comment provided by engineer. */
+"first face y position" = "人臉位置座標_Y";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "手電筒關閉";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "打開手電筒";
 
 /* No comment provided by engineer. */
 "floor" = "floor";
 
 /* No comment provided by engineer. */
-"Flute" = "Flute";
+"Flute" = "長笛";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "此項目中使用的以下功能與此版本的 Pocket Code 不兼容：";
 
 /* No comment provided by engineer. */
 "for" = "持續";
 
 /* No comment provided by engineer. */
-"for all actors or objects" = "for all actors or objects";
+"for all actors or objects" = "對於所有參與者或對象";
 
 /* No comment provided by engineer. */
-"for this actor or object" = "for this actor or object";
+"for this actor or object" = "對於這個演員或對象";
 
 /* No comment provided by engineer. */
 "Forever" = "永遠重複執行";
 
 /* No comment provided by engineer. */
-"Forgot password" = "Forgot password";
+"Forgot password" = "忘記密碼";
 
 /* No comment provided by engineer. */
-"Formula Editor" = "Formula Editor";
+"Formula Editor" = "公式編輯器";
 
 /* No comment provided by engineer. */
 "Formula too long!" = "公式太長!";
 
 /* No comment provided by engineer. */
-"Fr" = "Fr";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
+"Fr" = "神父";
 
 /* No comment provided by engineer. */
-"Friday" = "Friday";
+"Friday" = "星期五";
 
 /* No comment provided by engineer. */
-"From camera" = "From camera";
+"From camera" = "從相機";
 
 /* No comment provided by engineer. */
-"front" = "front";
+"front" = "正面";
 
 /* No comment provided by engineer. */
-"Front camera" = "Front camera";
+"Front camera" = "前置攝像頭";
 
 /* No comment provided by engineer. */
-"Functions" = "Functions";
+"Functions" = "職能";
 
 /* No comment provided by engineer. */
-"General properties" = "General properties";
+"General properties" = "一般屬性";
 
 /* No comment provided by engineer. */
 "Glide" = "滑動";
@@ -785,22 +821,28 @@
 "Go back" = "回前";
 
 /* No comment provided by engineer. */
-"Go to" = "Go to";
+"Go to" = "去";
 
 /* No comment provided by engineer. */
 "Go to front" = "到最上層";
 
 /* No comment provided by engineer. */
-"green" = "green";
+"green" = "綠色";
 
 /* paint */
 "Green" = "綠";
 
 /* No comment provided by engineer. */
-"Guitar" = "Guitar";
+"Guitar" = "吉他";
 
 /* No comment provided by engineer. */
-"gyro-sensor" = "gyro-sensor";
+"gyro-sensor" = "陀螺傳感器";
+
+/* No comment provided by engineer. */
+"head top x" = "頭頂 x";
+
+/* No comment provided by engineer. */
+"head top y" = "頭頂 y";
 
 /* No comment provided by engineer. */
 "Hello!" = "哈囉!";
@@ -812,7 +854,7 @@
 "Hide" = "隱藏";
 
 /* No comment provided by engineer. */
-"Hide details" = "Hide details";
+"Hide details" = "隱藏細節";
 
 /* No comment provided by engineer. */
 "Hide variable" = "隱藏變數";
@@ -821,7 +863,7 @@
 "Hmmmm!" = "嗯……！";
 
 /* No comment provided by engineer. */
-"hour" = "hour";
+"hour" = "小時";
 
 /* No comment provided by engineer. */
 "If" = "判斷";
@@ -830,19 +872,19 @@
 "If on edge, bounce" = "碰到邊緣反彈";
 
 /* paint */
-"Image" = "Image";
+"Image" = "圖像";
 
 /* No comment provided by engineer. */
-"Image name" = "Image name";
+"Image name" = "圖片名稱";
 
 /* No comment provided by engineer. */
-"Image source not available" = "Image source not available";
+"Image source not available" = "圖片來源不可用";
 
 /* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
-"Import File" = "Import File";
+"Import File" = "導入文件";
 
 /* No comment provided by engineer. */
-"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "為了被允許使用由 Catrobat 項目提供的袖珍代碼和其他可執行文件，您必須同意我們的使用條款，並在您使用袖珍代碼和我們的其他可執行文件時嚴格遵守這些條款。請參閱下面的鏈接以了解其精確配方。";
 
 /* No comment provided by engineer. */
 "inclination x" = "傾斜感測器x軸";
@@ -851,40 +893,46 @@
 "inclination y" = "傾斜感測器y軸";
 
 /* No comment provided by engineer. */
-"Information" = "Information";
+"index of item" = "項目索引";
+
+/* No comment provided by engineer. */
+"Information" = "信息";
 
 /* No comment provided by engineer. */
 "Insert" = "插入資料";
 
 /* paint */
-"Inserted" = "Inserted";
+"Inserted" = "插入";
+
+/* No comment provided by engineer. */
+"Internet" = "互聯網";
 
 /* No comment provided by engineer. */
 "into list" = "到清單";
 
 /* No comment provided by engineer. */
-"Invalid input entered, try again." = "Invalid input entered, try again.";
+"Invalid input entered, try again." = "輸入無效，請重試。";
 
 /* No comment provided by engineer. */
-"Invalid URL given!" = "Invalid URL given!";
+"Invalid URL given!" = "給出的網址無效！";
 
 /* No comment provided by engineer. */
-"iOS." = "iOS.";
+"iOS." = "IOS。";
 
 /* No comment provided by engineer. */
-"is true" = "is true";
+"is true" = "是真的";
 
 /* No comment provided by engineer. */
 "is true then" = "成立執行";
 
 /* paint */
-"italic" = "italic";
+"italic" = "斜體";
 
 /* No comment provided by engineer. */
-"item" = "element";
+"item" = "物品";
 
 /* No comment provided by engineer. */
-"Jan" = "Jan";
+"Jan" = "簡";
 
 /* No comment provided by engineer. */
 "January" = "&#x4E00;&#x6708;";
@@ -893,31 +941,31 @@
 "join" = "join";
 
 /* No comment provided by engineer. */
-"Jul" = "Jul";
+"Jul" = "七月";
 
 /* No comment provided by engineer. */
 "July" = "&#x4E03;&#x6708;";
 
 /* No comment provided by engineer. */
-"Jun" = "Jun";
+"Jun" = "君";
 
 /* No comment provided by engineer. */
 "June" = "&#x516D;&#x6708;";
 
 /* bluetooth */
-"Known devices" = "Known devices";
+"Known devices" = "已知設備";
 
 /* No comment provided by engineer. */
-"LA" = "LA";
+"LA" = "洛杉磯";
 
 /* No comment provided by engineer. */
-"Last access" = "Last access";
+"Last access" = "上次訪問";
 
 /* No comment provided by engineer. */
-"last stage touch index" = "last stage touch index";
+"last stage touch index" = "最後階段接觸指數";
 
 /* No comment provided by engineer. */
-"latitude" = "latitude";
+"latitude" = "緯度";
 
 /* No comment provided by engineer. */
 "layer" = "圖層";
@@ -926,19 +974,61 @@
 "layers" = "圖層";
 
 /* No comment provided by engineer. */
-"LED" = "LED";
+"LED" = "引領";
 
 /* No comment provided by engineer. */
 "Left" = "左";
 
 /* No comment provided by engineer. */
-"left-right only" = "left-right only";
+"left ear x" = "左耳 x";
+
+/* No comment provided by engineer. */
+"left ear y" = "早點離開";
+
+/* No comment provided by engineer. */
+"left eye center x" = "左眼中心 x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "左眼中心y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "左眼內 x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "左眼內y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "左眼外 x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "左眼外y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left-right only" = "僅左右";
 
 /* No comment provided by engineer. */
 "length" = "length";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"Length" = "長度";
 
 /* No comment provided by engineer. */
 "letter" = "letter";
@@ -947,46 +1037,49 @@
 "Line" = "直線";
 
 /* No comment provided by engineer. */
-"List name:" = "List name:";
+"List name" = "List name";
 
 /* No comment provided by engineer. */
-"List type" = "List type";
+"List name:" = "列表名稱：";
+
+/* No comment provided by engineer. */
+"List type" = "列表類型";
 
 /* No comment provided by engineer. */
 "Lists" = "清單";
 
 /* No comment provided by engineer. */
-"Lists for all actors and objects" = "Lists for all actors and objects";
+"Lists for all actors and objects" = "所有演員和對象的列表";
 
 /* No comment provided by engineer. */
-"Lists for this actor or object only" = "Lists for this actor or object only";
+"Lists for this actor or object only" = "僅此參與者或對象的列表";
 
 /* No comment provided by engineer. */
-"Loading" = "Loading";
+"Loading" = "加載中";
 
 /* No comment provided by engineer. */
-"location" = "location";
+"location" = "地點";
 
 /* No comment provided by engineer. */
-"location accuracy" = "location accuracy";
+"location accuracy" = "定位精度";
 
 /* No comment provided by engineer. */
 "Logic" = "邏輯";
 
 /* No comment provided by engineer. */
-"Logical (Boolean) operators and constants" = "Logical (Boolean) operators and constants";
+"Logical (Boolean) operators and constants" = "邏輯（布爾）運算符和常量";
 
 /* No comment provided by engineer. */
 "Login" = "登入";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "登陸成功";
 
 /* No comment provided by engineer. */
 "Logout" = "登出";
 
 /* No comment provided by engineer. */
-"longitude" = "longitude";
+"longitude" = "經度";
 
 /* LOOK */
 "look" = "外觀";
@@ -995,10 +1088,10 @@
 "Look" = "外觀";
 
 /* No comment provided by engineer. */
-"look name" = "look name";
+"look name" = "看名字";
 
 /* No comment provided by engineer. */
-"look number" = "look number";
+"look number" = "看號";
 
 /* No comment provided by engineer. */
 "Looks" = "外觀";
@@ -1007,61 +1100,61 @@
 "loudness" = "聲音響度";
 
 /* No comment provided by engineer. */
-"magnetic-sensor" = "magnetic-sensor";
+"magnetic-sensor" = "磁傳感器";
 
 /* No comment provided by engineer. */
-"Mar" = "Mar";
+"Mar" = "三月";
 
 /* No comment provided by engineer. */
 "March" = "&#x4E09;&#x6708;";
 
 /* No comment provided by engineer. */
-"Marimba" = "Marimba";
+"Marimba" = "馬林巴";
 
 /* No comment provided by engineer. */
-"Maths" = "Maths";
+"Maths" = "數學";
 
 /* No comment provided by engineer. */
-"Maximize" = "Maximize";
+"Maximize" = "最大化";
 
 /* No comment provided by engineer. */
-"maximum of" = "max";
+"maximum of" = "最多";
 
 /* No comment provided by engineer. */
 "May" = "&#x4E94;&#x6708;";
 
 /* No comment provided by engineer. */
-"Measure" = "Measure";
+"Measure" = "措施";
 
 /* No comment provided by engineer. */
-"Media library" = "Media library";
+"Media library" = "媒體庫";
 
 /* paint */
 "Menu" = "&#x4E94;&#x6708;";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
+"Message" = "信息";
 
 /* No comment provided by engineer. */
 "message 1" = "訊息1";
 
 /* No comment provided by engineer. */
-"MI" = "MI";
+"MI" = "米";
 
 /* No comment provided by engineer. */
-"Minimize" = "Minimize";
+"Minimize" = "最小化";
 
 /* No comment provided by engineer. */
-"minimum of" = "min";
+"minimum of" = "最少的";
 
 /* No comment provided by engineer. */
-"minute" = "minute";
+"minute" = "分鐘";
 
 /* paint */
-"Mirror" = "Mirror";
+"Mirror" = "鏡子";
 
 /* No comment provided by engineer. */
-"Mo" = "Mo";
+"Mo" = "莫";
 
 /* No comment provided by engineer. */
 "modulo" = "mod";
@@ -1070,40 +1163,52 @@
 "Mole" = "地鼠";
 
 /* No comment provided by engineer. */
-"Monday" = "Monday";
+"Monday" = "週一";
 
 /* No comment provided by engineer. */
-"month" = "month";
+"month" = "月";
 
 /* No comment provided by engineer. */
 "More" = "更多";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "更多信息";
 
 /* No comment provided by engineer. */
-"Most downloaded" = "Most downloaded";
+"Most downloaded" = "下載次數最多";
 
 /* No comment provided by engineer. */
-"Most viewed" = "Most viewed";
+"Most viewed" = "最受關注";
 
 /* No comment provided by engineer. */
 "Motion" = "動作";
 
 /* No comment provided by engineer. */
-"Motion properties" = "Motion properties";
+"Motion properties" = "運動屬性";
+
+/* No comment provided by engineer. */
+"mouth left corner x" = "嘴左角 x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "嘴左角y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "嘴巴右角 x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "嘴角 y";
 
 /* No comment provided by engineer. */
 "Move" = "移動";
 
 /* No comment provided by engineer. */
-"Move actors or objects" = "Move actors or objects";
+"Move actors or objects" = "移動演員或對象";
 
 /* No comment provided by engineer. */
-"Move brick" = "Move brick";
+"Move brick" = "搬磚";
 
 /* No comment provided by engineer. */
-"Move looks" = "Move looks";
+"Move looks" = "動容";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "Phiro 馬達後退";
@@ -1112,25 +1217,25 @@
 "Move Phiro motor forward" = "Phiro 馬達前進";
 
 /* No comment provided by engineer. */
-"Move sounds" = "Move sounds";
+"Move sounds" = "移動聲音";
 
 /* No comment provided by engineer. */
-"Music Box" = "Music Box";
+"Music Box" = "音樂盒";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "我的程式檔";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My image" = "My image";
+"My image" = "我的形象";
 
 /* Title for first (default) object */
-"My object" = "My object";
+"My object" = "我的對象";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "名稱";
 
 /* No comment provided by engineer. */
-"Name already exists." = "Name already exists.";
+"Name already exists." = "名稱已存在。";
 
 /* No comment provided by engineer. */
 "natural logarithm" = "ln";
@@ -1139,7 +1244,7 @@
 "New" = "新增";
 
 /* paint */
-"New canvas" = "New canvas";
+"New canvas" = "新畫布";
 
 /* No comment provided by engineer. */
 "New list" = "新清單";
@@ -1157,7 +1262,7 @@
 "New variable" = "新變數";
 
 /* No comment provided by engineer. */
-"New..." = "New...";
+"New..." = "新的...";
 
 /* No comment provided by engineer. */
 "Newest" = "&#x4E0B;&#x8F09;&#x6B21;&#x6578;";
@@ -1172,43 +1277,49 @@
 "No" = "否";
 
 /* No comment provided by engineer. */
-"No camera available" = "No camera available";
+"No camera available" = "沒有可用的相機";
 
 /* No comment provided by engineer. */
-"No categories selected" = "No categories selected";
+"No categories selected" = "未選擇類別";
 
 /* No comment provided by engineer. */
-"No description available" = "No description available";
+"No description available" = "沒有可用的描述";
 
 /* No comment provided by engineer. */
-"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+"No or invalid image name entered, try again." = "未輸入或輸入的圖像名稱無效，請重試。";
 
 /* No comment provided by engineer. */
-"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+"No or invalid sound name entered, try again." = "未輸入或輸入的聲音名稱無效，請重試。";
 
 /* No comment provided by engineer. */
-"No search results" = "No search results";
+"No search results" = "沒有搜索結果";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "No whitespace character allowed";
+"No whitespace character allowed" = "不允許空白字符";
 
 /* No comment provided by engineer. */
-"not" = "NOT";
+"nose x" = "鼻子 x";
 
 /* No comment provided by engineer. */
-"not available. Continue anyway?" = "not available. Continue anyway?";
+"nose y" = "鼻子 y";
 
 /* No comment provided by engineer. */
-"Not enough Memory" = "Not enough Memory";
+"not" = "不是";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "無法使用。還是要繼續？";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "內存不足";
 
 /* No comment provided by engineer. */
 "Note" = "備註";
 
 /* paint */
-"Nothing to crop!" = "Nothing to crop!";
+"Nothing to crop!" = "沒有什麼可裁剪的！";
 
 /* No comment provided by engineer. */
-"Nov" = "Nov";
+"Nov" = "十一月";
 
 /* No comment provided by engineer. */
 "November" = "&#x5341;&#x4E00;&#x6708;";
@@ -1217,97 +1328,100 @@
 "number of items" = "清單資料數";
 
 /* No comment provided by engineer. */
-"Numbers" = "Numbers";
+"Numbers" = "數字";
 
 /* No comment provided by engineer. */
 "Object" = "物件";
 
 /* No comment provided by engineer. */
-"Object or actor name" = "Object or actor name";
+"Object or actor name" = "對像或演員名稱";
 
 /* No comment provided by engineer. */
-"Oct" = "Oct";
+"Oct" = "十月";
 
 /* No comment provided by engineer. */
 "October" = "&#x5341;&#x6708;";
 
 /* No comment provided by engineer. */
-"off" = "off";
+"off" = "離開";
 
 /* No comment provided by engineer. */
 "OK" = "確認";
 
 /* No comment provided by engineer. */
-"on" = "on";
+"on" = "上";
 
 /* No comment provided by engineer. */
-"only 15 characters allowed" = "only 15 characters allowed";
+"Once" = "僅此一次";
 
 /* No comment provided by engineer. */
-"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+"only 15 characters allowed" = "只允許 15 個字符";
 
 /* No comment provided by engineer. */
-"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+"Only space is not allowed. Please enter at least %lu other character(s)." = "只有空間是不允許的。請至少輸入 %lu 個其他字符。";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "只允許使用特殊字符。請至少輸入 %lu 個其他字符。";
 
 /* No comment provided by engineer. */
 "Open" = "開啟 ";
 
 /* No comment provided by engineer. */
-"or" = "OR";
+"or" = "或者";
 
 /* No comment provided by engineer. */
-"Organ" = "Organ";
+"Organ" = "器官";
 
 /* No comment provided by engineer. */
 "Password" = "&#x6210;&#x529F;&#x66F4;&#x65B0;&#x60A8;&#x7684;&#x570B;&#x5BB6;&#x3002;";
 
 /* No comment provided by engineer. */
-"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "密碼無效！ \n 它必須包含至少 6 個字符/符號";
 
 /* No comment provided by engineer. */
-"Passwords do not match" = "Passwords do not match";
+"Passwords do not match" = "密碼不匹配";
 
 /* No comment provided by engineer. */
-"Pen" = "Pen";
+"Pen" = "鋼筆";
 
 /* No comment provided by engineer. */
-"Pen down" = "Pen down";
+"Pen down" = "下筆";
 
 /* No comment provided by engineer. */
-"Pen up" = "Pen up";
+"Pen up" = "鋼筆";
 
 /* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
-"phiro bottom left" = "phiro bottom left";
+"phiro bottom left" = "左下角的phiro";
 
 /* No comment provided by engineer. */
-"phiro bottom right" = "phiro bottom right";
+"phiro bottom right" = "phiro 右下角";
 
 /* No comment provided by engineer. */
-"phiro front left" = "phiro front left";
+"phiro front left" = "phiro 左前";
 
 /* No comment provided by engineer. */
-"phiro front right" = "phiro front right";
+"phiro front right" = "phiro 右前";
 
 /* No comment provided by engineer. */
-"phiro side left" = "phiro side left";
+"phiro side left" = "phiro 左側";
 
 /* No comment provided by engineer. */
-"phiro side right" = "phiro side right";
+"phiro side right" = "phiro 右側";
 
 /* No comment provided by engineer. */
 "pi" = "pi";
 
 /* No comment provided by engineer. */
-"Piano" = "Piano";
+"Piano" = "鋼琴";
 
 /* paint */
 "Pipette" = "吸管";
 
 /* No comment provided by engineer. */
-"Pizzicato" = "Pizzicato";
+"Pizzicato" = "撥奏曲";
 
 /* No comment provided by engineer. */
 "Place at " = "放置座標 ";
@@ -1316,49 +1430,49 @@
 "Play" = "開始";
 
 /* No comment provided by engineer. */
-"Play Phiro music\n" = "Play Phiro music\n";
+"Play Phiro music\n" = "播放 Phiro 音樂";
 
 /* No comment provided by engineer. */
-"Please choose another name:" = "Please choose another name:";
+"Please choose another name:" = "請選擇其他名稱：";
 
 /* No comment provided by engineer. */
-"Please choose up to three categories" = "Please choose up to three categories";
+"Please choose up to three categories" = "請最多選擇三個類別";
 
 /* paint */
-"Please enter a text." = "Please enter a text.";
+"Please enter a text." = "請輸入文字。";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
+"Please enter at least %lu character(s)." = "請至少輸入 %lu 個字符。";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+"Please log in to report this project as inappropriate" = "請登錄舉報此項目不當";
 
 /* paint */
-"Please pick a tool" = "Please pick a tool";
+"Please pick a tool" = "請選擇一個工具";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Please select a project to upload";
+"Please select a project to upload" = "請選擇要上傳的項目";
 
 /* bluetooth */
-"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+"Please try resetting the device and try again." = "請嘗試重置設備並重試。";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code 口袋編碼";
 
 /* No comment provided by engineer. */
-"Pocket Code for iOS" = "Pocket Code for iOS";
+"Pocket Code for iOS" = "適用於 iOS 的袖珍代碼";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code 無法訪問您的相機。要允許訪問，請點擊設置並激活相機。您的繪圖將自動保存到 PocketCode 中。";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code 無法訪問您的圖像。要允許訪問，請點擊設置並激活圖像。您的繪圖將自動保存到 PocketCode 中。";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code 無法訪問您的麥克風。要允許訪問，請點擊設置並激活麥克風。";
 
 /* No comment provided by engineer. */
-"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code 是用於 iOS 的可視化編程語言 Catrobat 的編程環境。 Pocket Code 的代碼大多在 GNU AGPL v3 許可下。有關許可證的更多信息，請訪問以下鏈接：";
 
 /* No comment provided by engineer. */
 "Pocket Code Recorder" = "Pocket Code 錄音機";
@@ -1376,7 +1490,10 @@
 "Point towards" = "轉向朝著";
 
 /* paint */
-"Pointer" = "Pointer";
+"Pointer" = "指針";
+
+/* No comment provided by engineer. */
+"Pose detection" = "姿勢檢測";
 
 /* No comment provided by engineer. */
 "position x" = "位置座標_x";
@@ -1385,28 +1502,28 @@
 "position y" = "位置座標_y";
 
 /* No comment provided by engineer. */
-"power" = "power";
+"power" = "力量";
 
 /* No comment provided by engineer. */
-"Preview" = "Preview";
+"Preview" = "預習";
 
 /* No comment provided by engineer. */
-"Previous background" = "Previous background";
+"Previous background" = "以前的背景";
 
 /* No comment provided by engineer. */
-"Previous look" = "Previous look";
+"Previous look" = "以前的樣子";
 
 /* No comment provided by engineer. */
-"Privacy Settings" = "Privacy Settings";
+"Privacy Settings" = "隱私設置";
 
 /* No comment provided by engineer. */
-"Project" = "Project";
+"Project" = "項目";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
+"Project name" = "項目名";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
+"Project Name is necessary!" = "項目名稱是必需的！";
 
 /* No comment provided by engineer. */
 "Projects" = "程式檔";
@@ -1418,40 +1535,43 @@
 "Properties" = "物件";
 
 /* No comment provided by engineer. */
-"random position" = "random position";
+"random position" = "隨機位置";
 
 /* No comment provided by engineer. */
-"random value from to" = "random";
+"random value from to" = "從到的隨機值";
 
 /* No comment provided by engineer. */
-"Rate Us" = "Rate Us";
+"Rate Us" = "評價我們";
 
 /* No comment provided by engineer. */
-"RE" = "RE";
+"RE" = "關於";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "最近使用";
 
 /* No comment provided by engineer. */
-"Recording" = "Recording";
+"Recording" = "記錄";
 
 /* paint */
-"Rectangle / Square" = "Rectangle / Square";
+"Rectangle / Square" = "矩形/正方形";
 
 /* paint */
 "Red" = "紅";
 
 /* No comment provided by engineer. */
-"red" = "red";
+"red" = "紅色的";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
+"Register" = "登記";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "註冊成功";
 
 /* No comment provided by engineer. */
-"regular expression" = "regular expression";
+"regular expression" = "正則表達式";
 
 /* No comment provided by engineer. */
-"Remove known devices" = "Remove known devices";
+"Remove known devices" = "刪除已知設備";
 
 /* No comment provided by engineer. */
 "Rename" = "更名";
@@ -1460,7 +1580,7 @@
 "Rename actor or object" = "物件更名";
 
 /* No comment provided by engineer. */
-"Rename image" = "Rename image";
+"Rename image" = "重命名圖像";
 
 /* No comment provided by engineer. */
 "Rename project" = "程式檔更名";
@@ -1481,16 +1601,58 @@
 "Report as inappropriate" = "不當舉報";
 
 /* paint */
-"Resize" = "Resize";
+"Resize" = "調整大小";
 
 /* No comment provided by engineer. */
 "Restart" = "重新開始";
 
 /* No comment provided by engineer. */
-"Result" = "Result";
+"Result" = "結果";
 
 /* No comment provided by engineer. */
 "Right" = "右";
+
+/* No comment provided by engineer. */
+"right ear x" = "右耳 x";
+
+/* No comment provided by engineer. */
+"right ear y" = "右耳";
+
+/* No comment provided by engineer. */
+"right eye center x" = "右眼中心 x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "右眼中心y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "右眼內 x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "右眼內y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "右眼外 x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "右眼外y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
 
 /* paint */
 "Rotate" = "旋轉";
@@ -1499,31 +1661,31 @@
 "round" = "round";
 
 /* No comment provided by engineer. */
-"Sa" = "Sa";
+"Sa" = "薩";
 
 /* No comment provided by engineer. */
-"Saturday" = "Saturday";
+"Saturday" = "週六";
 
 /* No comment provided by engineer. */
-"Save changes" = "Save changes";
+"Save changes" = "保存更改";
 
 /* paint */
-"Save to Photos" = "Save to Photos";
+"Save to Photos" = "保存到照片";
 
 /* No comment provided by engineer. */
-"Saved" = "Saved";
+"Saved" = "已保存";
 
 /* No comment provided by engineer. */
-"Saxophone" = "Saxophone";
+"Saxophone" = "薩克斯";
 
 /* No comment provided by engineer. */
 "Say" = "說";
 
 /* No comment provided by engineer. */
-"Scene" = "Scene";
+"Scene" = "場景";
 
 /* No comment provided by engineer. */
-"Script" = "Script";
+"Script" = "腳本";
 
 /* No comment provided by engineer. */
 "Scripts" = "腳本";
@@ -1532,10 +1694,22 @@
 "Search" = "搜尋";
 
 /* No comment provided by engineer. */
-"second" = "second";
+"second" = "第二";
 
 /* No comment provided by engineer. */
-"second " = "second ";
+"second " = "第二 ";
+
+/* No comment provided by engineer. */
+"second face size" = "第二個臉型";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "第二面 x 位置";
+
+/* No comment provided by engineer. */
+"second face y position" = "第二面y位置";
 
 /* No comment provided by engineer. */
 "seconds" = "秒";
@@ -1547,43 +1721,49 @@
 "Select all" = "全選";
 
 /* bluetooth */
-"Select Arduino" = "Select Arduino";
+"Select Arduino" = "選擇阿杜諾";
 
 /* No comment provided by engineer. */
-"Select brick category" = "Select brick category";
+"Select brick category" = "選擇磚類別";
 
 /* No comment provided by engineer. */
-"Select categories" = "Select categories";
+"Select categories" = "選擇類別";
 
 /* No comment provided by engineer. */
-"Select logical operator" = "Select logical operator";
+"Select file" = "選擇文件";
 
 /* No comment provided by engineer. */
-"Select mathematical function" = "Select mathematical function";
+"Select logical operator" = "選擇邏輯運算符";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "選擇數學函數";
 
 /* paint */
-"Select option:" = "Select option:";
+"Select option:" = "選擇選項：";
 
 /* bluetooth */
-"Select Phiro" = "Select Phiro";
+"Select Phiro" = "選擇菲羅";
 
 /* No comment provided by engineer. */
-"Sending anonymous crash reports" = "Sending anonymous crash reports";
+"Send web request to" = "發送網絡請求到";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "發送匿名崩潰報告";
 
 /* No comment provided by engineer. */
 "Sensors" = "感應器";
 
 /* No comment provided by engineer. */
-"Sep" = "Sep";
+"Sep" = "九月";
 
 /* No comment provided by engineer. */
 "September" = "&#x4E5D;&#x6708;";
 
 /* No comment provided by engineer. */
-"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+"Server is taking to long to respond, please try again later." = "服務器響應時間過長，請稍後重試。";
 
 /* No comment provided by engineer. */
-"Session expired, please log in." = "Session expired, please log in.";
+"Session expired, please log in." = "會話已過期，請登錄。";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "設定 Arduino 數位腳位資料";
@@ -1595,34 +1775,40 @@
 "Set background" = "設定背景為";
 
 /* No comment provided by engineer. */
+"Set background and wait" = "設置背景並等待";
+
+/* No comment provided by engineer. */
+"Set background to number" = "將背景設置為數字";
+
+/* No comment provided by engineer. */
 "Set brightness " = "設定亮度 ";
 
 /* No comment provided by engineer. */
-"Set color " = "Set color ";
+"Set color " = "設置顏色 ";
 
 /* No comment provided by engineer. */
 "Set description" = "設定描述";
 
 /* No comment provided by engineer. */
-"Set Instrument to" = "Set Instrument to";
+"Set Instrument to" = "將儀器設置為";
 
 /* No comment provided by engineer. */
-"Set pen color to" = "Set pen color to";
+"Set pen color to" = "將筆顏色設置為";
 
 /* No comment provided by engineer. */
-"Set pen size to" = "Set pen size to";
+"Set pen size to" = "將筆大小設置為";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "設定 Phiro 燈號";
 
 /* No comment provided by engineer. */
-"Set rotation style" = "Set rotation style";
+"Set rotation style" = "設置旋轉樣式";
 
 /* No comment provided by engineer. */
 "Set size to" = "設定大小為";
 
 /* No comment provided by engineer. */
-"Set tempo to" = "Set tempo to";
+"Set tempo to" = "將速度設置為";
 
 /* No comment provided by engineer. */
 "Set transparency " = "設定透明度為 ";
@@ -1634,19 +1820,22 @@
 "Set volume to" = "設定音量";
 
 /* No comment provided by engineer. */
-"Set x to " = "Set x to ";
+"Set x to " = "將 x 設置為 ";
 
 /* No comment provided by engineer. */
-"Set y to " = "Set y to ";
+"Set y to " = "將 y 設置為 ";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "縫起來";
 
 /* No comment provided by engineer. */
 "Show" = "顯示";
 
 /* No comment provided by engineer. */
-"Show details" = "Show details";
+"Show details" = "顯示詳細資料";
 
 /* No comment provided by engineer. */
 "Show variable" = "顯示變數";
@@ -1658,13 +1847,13 @@
 "size" = "大小";
 
 /* No comment provided by engineer. */
-"Size" = "Size";
+"Size" = "尺寸";
 
 /* No comment provided by engineer. */
-"Skip" = "Skip";
+"Skip" = "跳過";
 
 /* No comment provided by engineer. */
-"SO" = "SO";
+"SO" = "所以";
 
 /* No comment provided by engineer. */
 "Something went wrong while uploading the project." = "上傳程式檔時出錯。";
@@ -1673,7 +1862,7 @@
 "Sound" = "音效";
 
 /* No comment provided by engineer. */
-"Sound name" = "Sound name";
+"Sound name" = "聲音名稱";
 
 /* No comment provided by engineer. */
 "Sounds" = "音效";
@@ -1685,79 +1874,88 @@
 "Speed" = "速度";
 
 /* paint */
-"square" = "square";
+"square" = "正方形";
 
 /* No comment provided by engineer. */
-"square root" = "sqrt";
+"square root" = "平方根";
 
 /* No comment provided by engineer. */
-"stage is touched" = "stage is touched";
+"stage is touched" = "舞台被觸動";
 
 /* No comment provided by engineer. */
-"stage touch x" = "stage touch x";
+"stage touch x" = "舞台觸摸 x";
 
 /* No comment provided by engineer. */
-"stage touch y" = "stage touch y";
+"stage touch y" = "舞台觸摸y";
 
 /* paint */
 "Stamp" = "圖章";
 
 /* paint */
-"Stamped" = "Stamped";
+"Stamped" = "蓋章";
+
+/* No comment provided by engineer. */
+"Start running stitch with length" = "開始按長度運行針跡";
 
 /* No comment provided by engineer. */
 "Start sound" = "播放音效";
 
 /* No comment provided by engineer. */
-"Start sound and wait" = "Start sound and wait";
+"Start sound and wait" = "啟動聲音並等待";
 
 /* No comment provided by engineer. */
-"Steel Drum" = "Steel Drum";
+"Start zigzag stitch with length" = "以長度開始鋸齒形針跡";
 
 /* No comment provided by engineer. */
-"step" = "step";
+"Steel Drum" = "鋼桶";
+
+/* No comment provided by engineer. */
+"step" = "步";
 
 /* No comment provided by engineer. */
 "steps" = "步";
 
 /* No comment provided by engineer. */
-"Stitch" = "Stitch";
+"Stitch" = "縫";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "停止所有音效";
 
 /* No comment provided by engineer. */
+"Stop current stitch" = "停止當前針跡";
+
+/* No comment provided by engineer. */
 "Stop Phiro motor" = "停止 Phiro 馬達";
 
 /* No comment provided by engineer. */
-"Su" = "Su";
+"Su" = "蘇";
 
 /* No comment provided by engineer. */
-"Sunday" = "Sunday";
+"Sunday" = "星期日";
 
 /* No comment provided by engineer. */
 "Switch to look" = "切換外觀為";
 
 /* No comment provided by engineer. */
-"Switch to look with number" = "Switch to look with number";
+"Switch to look with number" = "切換到數字查看";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "公式錯誤!";
 
 /* No comment provided by engineer. */
-"Synth Lead" = "Synth Lead";
+"Synth Lead" = "合成主管";
 
 /* No comment provided by engineer. */
-"Synth Pad" = "Synth Pad";
+"Synth Pad" = "合成墊";
 
 /* No comment provided by engineer. */
 "tangent" = "tan";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
+"Tap \"+\" to add actors or objects" = "點擊“+”添加演員或對象";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+"Tap \"+\" to add backgrounds" = "點擊“+”添加背景";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add looks" = "按下 \"+\" 增加外觀";
@@ -1769,7 +1967,7 @@
 "Tap \"+\" to add sounds" = "按下 \"+\" 增加音效";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
+"Tap \"+\" to add variables and lists" = "點擊“+”添加變量和列表";
 
 /* Button title at the settings screen to get to the terms of use and service. */
 "Terms of Use and Service" = "使用與服務條款";
@@ -1778,64 +1976,64 @@
 "Text" = "文字";
 
 /* No comment provided by engineer. */
-"Text message:" = "Text message:";
+"Text message:" = "短信：";
 
 /* paint */
-"Text:" = "Text:";
+"Text:" = "文本：";
 
 /* No comment provided by engineer. */
-"Th" = "Th";
+"Th" = "釷";
 
 /* No comment provided by engineer. */
-"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+"The description contains invalid characters, try again." = "描述包含無效字符，請重試。";
 
 /* No comment provided by engineer. */
-"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+"The featured projects cannot be loaded" = "無法加載特色項目";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
+"The following item could not be imported from the media library:" = "無法從媒體庫導入以下項目：";
 
 /* No comment provided by engineer. */
-"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+"The input is too long. Please enter maximal %lu character(s)." = "輸入太長。請輸入最多 %lu 個字符。";
 
 /* No comment provided by engineer. */
-"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+"The name contains blocked characters. Please try again!" = "該名稱包含被阻止的字符。請再試一次！";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "最近的項目無法加載";
 
 /* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The requested project can not be loaded. Please try again later." = "無法加載請求的項目。請稍後再試。";
 
 /* No comment provided by engineer. */
-"The sound item cannot be loaded" = "The sound item cannot be loaded";
+"The sound item cannot be loaded" = "無法加載聲音項";
 
 /* No comment provided by engineer. */
-"The sound item cannot be played" = "The sound item cannot be played";
+"The sound item cannot be played" = "聲音項目無法播放";
 
 /* No comment provided by engineer. */
 "Think" = "思考";
 
 /* No comment provided by engineer. */
-"This action can not be undone!" = "This action can not be undone!";
+"This action can not be undone!" = "此操作無法撤消！";
 
 /* No comment provided by engineer. */
-"This feature is coming soon!" = "This feature is coming soon!";
+"This feature is coming soon!" = "此功能即將推出！";
 
 /* No comment provided by engineer. */
-"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
+"This list can not be deleted because it is still in use." = "無法刪除此列表，因為它仍在使用中。";
 
 /* No comment provided by engineer. */
-"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+"This variable can not be deleted because it is still in use." = "此變量無法刪除，因為它仍在使用中。";
 
 /* No comment provided by engineer. */
-"Thursday" = "Thursday";
+"Thursday" = "週四";
 
 /* No comment provided by engineer. */
 "TI" = "TI";
 
 /* No comment provided by engineer. */
-"time" = "time";
+"time" = "時間";
 
 /* No comment provided by engineer. */
 "times" = "次";
@@ -1847,10 +2045,10 @@
 "to list" = "到清單";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "為了向您提供我們服務和相關帳戶的所有好處，有必要從您那裡收集某些數據。\n\n\u{2022} 為維護和改進我們的服務（應用和網站）以及對 ICT 和 STEM/STEAM 教育進行科學研究，我們使用 Google Analytics、Crashlytics 和 Firebase，全部由 Google LLC（美國）以及Dynatrace LLC（美國）的 Dynatrace，用於獲取有關我們服務使用情況的元數據，例如崩潰信息、時間戳、訪問的頁面/屏幕、我們的應用程序和服務的使用情況、使用的操作系統以及有關網絡提供商的信息。此分析和收集的數據未鏈接到您的個人資料，也不包含任何個人信息（IP 地址的最後一位被匿名化）。但是，收集的數據將傳輸給服務提供商（Google LLC，美國和 Dynatrace LLC，美國）。數據處理基於與 Google LLC 和 Dynatrace LLC 的協議。與服務提供商的這種關係符合歐盟的通用數據保護條例 (EU GDPR) 和歐盟-美國的“隱私保護”協議。\n\n\u{2022} 在我們的系統中創建和使用帳戶，並通過電子郵件通知您帳戶的必要更改，例如更新或違反我們的使用和服務條款、我們的社區規則或我們的政策，我們將存儲您的用戶名以及您的電子郵件地址（如果由您提供）。如果您已通過您的 Google 或 Facebook 帳戶連接您的帳戶，我們還會在這些服務上存儲一個與您的帳戶相關聯的識別密鑰。我們不會將這些數據用於任何其他（例如營銷）目的，除非您明確允許我們這樣做。\n\n\u{2022} 在自願的基礎上，您可以通過共享網站上的帳戶頁面向我們提供您的居住國家/地區。這將顯示在您的公開資料中，並且僅供我們用於統計和研究目的。它可以隨時在您的個人資料設置中刪除。\n\n\u{2022} 您可以隨時通過 https://share.catrob.at 上的個人資料頁面刪除您的帳戶來撤銷對屬於您帳戶的個人數據的使用。刪除您的帳戶後，您仍然可以使用提供的服務，但不能進行協作，例如通過上傳程序、評論或點贊。此外，所有提供的與您的帳戶相關聯的內容，例如上傳的節目、評論等，都將被刪除。\n\n\u{2022} 為避免濫用我們的服務，例如，通過用戶上傳或出於非法目的發表評論，所有用戶生成的公共數據（上傳、評論）將與時間戳和使用的互聯網一起存儲在內部數據庫中地址。這些數據不會被任何機構使用或轉發給任何機構，除非有足夠的非法行為被合理懷疑並且正式授權的合法機構根據適用法律要求提供。我們首先會根據個人情況對每個案例進行徹底檢查。\n\n\u{2022} 您可以在我們通過 MailChimp 服務（The Rocket Science Group LLC d/b/a MailChimp，美國）提供的 https://catrob.at/newsletter 上自願訂閱 Catrobat 時事通訊。然後，您將通過您提供的電子郵件地址收到有關 Catrobat 項目及其服務的更新。您可以隨時使用每個時事通訊頁腳中的“取消訂閱”鏈接撤回時事通訊。本時事通訊由 MailChimp 提供，我們與其簽訂了數據處理協議，並承諾遵守歐盟通用數據保護條例和歐盟-美國“隱私盾”。有關 MailChimp 的更多詳細信息，請同時查看 MailChimp 的隱私政策和使用條款。\n\n\u{2022} 您可以在 https://catrob.at/newsletter 上自願訂閱 Catrobat Newsletter 提供  所有服務均由國際 Catrobat 協會旗下的免費開源 Catrobat 項目提供– Verein zur Förderung freier Software，一家在奧地利格拉茨（歐盟）註冊成立的非營利性非政府組織。我們的政策尊重歐盟和奧地利數據保護法 (GDPR)。要與我們聯繫，請發送電子郵件至 contact@catrobat.org 或郵寄我們至 Catrobat，\n轉交\n軟件技術研究所，\n格拉茨科技大學，\nInffeldgasse 16b，\nA-8010 格拉茨，奧地利\n（歐洲聯盟）。\n\n如果您未滿 14 歲，則此政策必須得到法定監護人（通常是父母）的接受。\n\nCatrobat\\ 的官方英語隱私政策可在 https://catrob.at/privacypolicy 下的網絡上獲得。\n\n2.2 版，2019 年 10 月 17 日\n\n在此處找到我們隱私政策 (2.0) 的先前過時版本：http://developer.catrobat.org/privacy_policy_2-0y 我們通過 MailChimp 服務（The Rocket Science Group LLC d/b/a MailChimp，美國）。然後，您將通過您提供的電子郵件地址收到有關 Catrobat 項目及其服務的更新。您可以隨時使用每個時事通訊頁腳中的“取消訂閱”鏈接撤回時事通訊。本時事通訊由 MailChimp 提供，我們與其簽訂了數據處理協議，並承諾遵守歐盟通用數據保護條例和歐盟-美國“隱私盾”。有關 MailChimp 的更多詳細信息，請同時查看 MailChimp 的隱私政策和使用條款。\n\n";
 
 /* No comment provided by engineer. */
-"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "要使用我們的應用程序，必須接受我們的隱私政策。但是，如果您覺得這樣做不方便，您可以使用我們在 share.catrob.at 上的免費網絡服務";
 
 /* No comment provided by engineer. */
 "to x:" = "到 X:";
@@ -1859,31 +2057,40 @@
 "Today" = "今天";
 
 /* No comment provided by engineer. */
-"Touch detection" = "Touch detection";
+"Touch detection" = "觸摸檢測";
 
 /* No comment provided by engineer. */
-"touch position" = "touch position";
+"touch position" = "觸摸位置";
+
+/* No comment provided by engineer. */
+"touches actor or object" = "碰到物件";
+
+/* No comment provided by engineer. */
+"touches edge" = "觸及邊緣";
+
+/* No comment provided by engineer. */
+"touches finger" = "觸摸手指";
 
 /* No comment provided by engineer. */
 "transparency" = "透明度";
 
 /* No comment provided by engineer. */
-"Trombone" = "Trombone";
+"Trombone" = "長號";
 
 /* No comment provided by engineer. */
 "true" = "真";
 
 /* No comment provided by engineer. */
-"Tu" = "Tu";
+"Tu" = "塗";
 
 /* No comment provided by engineer. */
-"Tuesday" = "Tuesday";
+"Tuesday" = "週二";
 
 /* No comment provided by engineer. */
-"Turn camera" = "Turn camera";
+"Turn camera" = "轉動相機";
 
 /* No comment provided by engineer. */
-"Turn flashlight" = "Turn flashlight";
+"Turn flashlight" = "轉手電筒";
 
 /* No comment provided by engineer. */
 "Turn left" = "左轉";
@@ -1892,145 +2099,145 @@
 "Turn right" = "右轉";
 
 /* No comment provided by engineer. */
-"Unable to import project!" = "Unable to import project!";
+"Unable to import project!" = "無法導入項目！";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to load project!" = "無法加載項目！";
 
 /* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "無法播放那個聲音！\n也許這不是有效的聲音或文件已損壞。";
 
 /* paint */
-"underline" = "underline";
+"underline" = "強調";
 
 /* Button title of alert view to invoke undo if user shakes device */
 "Undo" = "復原";
 
 /* Description text in alert view if user shakes the device */
-"Undo Drawing?" = "Undo Drawing?";
+"Undo Drawing?" = "撤消繪圖？";
 
 /* Description text in alert view if user shakes the device */
-"Undo Typing?" = "Undo Typing?";
+"Undo Typing?" = "撤消打字？";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Unexpected Error";
+"Unexpected Error" = "意外的錯誤";
 
 /* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+"Unexpected Error, please try again later." = "意外錯誤，請稍後重試。";
 
 /* No comment provided by engineer. */
-"Unknown Element" = "Unknown Element";
+"Unknown Element" = "未知元素";
 
 /* No comment provided by engineer. */
-"Unselect all" = "Unselect all";
+"Unselect all" = "全部取消選擇";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Unsupported Brick:";
+"Unsupported Brick:" = "不支持的磚：";
 
 /* No comment provided by engineer. */
-"Unsupported Elements" = "Unsupported Elements";
+"Unsupported Elements" = "不支持的元素";
 
 /* No comment provided by engineer. */
-"Unsupported Script:" = "Unsupported Script:";
+"Unsupported Script:" = "不支持的腳本：";
 
 /* No comment provided by engineer. */
 "Upload project" = "上傳程式檔";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Upload selected project";
+"Upload selected project" = "上傳選定的項目";
 
 /* No comment provided by engineer. */
 "Upload successful" = "上傳成功";
 
 /* No comment provided by engineer. */
-"Uploaded" = "Uploaded";
+"Uploaded" = "已上傳";
 
 /* No comment provided by engineer. */
-"Use camera" = "Use camera";
+"Use camera" = "使用相機";
 
 /* No comment provided by engineer. */
-"Use Phiro bricks" = "Use Phiro bricks";
+"Use Phiro bricks" = "使用 Phiro 磚";
+
+/* No comment provided by engineer. */
+"user language" = "用戶語言";
 
 /* No comment provided by engineer. */
 "Username" = "&#x5EFA;&#x7ACB;&#x65B0;&#x5E33;&#x865F;";
 
 /* No comment provided by engineer. */
-"Username must not be blank" = "Username must not be blank";
+"Username must not be blank" = "用戶名不能為空";
 
 /* No comment provided by engineer. */
-"Variable name:" = "Variable name:";
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
-"Variable or list" = "Variable or list";
+"Variable name:" = "變量名：";
 
 /* No comment provided by engineer. */
-"Variable type" = "Variable type";
+"Variable or list" = "變量或列表";
+
+/* No comment provided by engineer. */
+"Variable type" = "變量類型";
 
 /* No comment provided by engineer. */
 "Variables" = "變數";
 
 /* No comment provided by engineer. */
-"Variables for all actors and objects" = "Variables for all actors and objects";
+"Variables for all actors and objects" = "所有參與者和對象的變量";
 
 /* No comment provided by engineer. */
-"Variables for this actor or object only" = "Variables for this actor or object only";
+"Variables for this actor or object only" = "僅此參與者或對象的變量";
 
 /* No comment provided by engineer. */
-"Version" = "Version";
+"Version" = "版本";
 
 /* No comment provided by engineer. */
-"Vibraphone" = "Vibraphone";
+"Vibraphone" = "顫音琴";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "震動";
 
 /* No comment provided by engineer. */
-"vibration" = "vibration";
+"vibration" = "振動";
 
 /* No comment provided by engineer. */
-"View" = "View";
+"View" = "看法";
 
 /* No comment provided by engineer. */
-"Views" = "Views";
-
-/* No comment provided by engineer. */
-"Visual sensors" = "Visual sensors";
+"Views" = "觀看次數";
 
 /* No comment provided by engineer. */
 "Wait" = "等待";
 
 /* No comment provided by engineer. */
-"Wait until" = "Wait until";
+"Wait until" = "等到";
 
 /* No comment provided by engineer. */
-"We" = "We";
+"We" = "我們";
 
 /* No comment provided by engineer. */
-"Wednesday" = "Wednesday";
+"Web access" = "網站存取";
 
 /* No comment provided by engineer. */
-"weekday" = "weekday";
+"Wednesday" = "週三";
 
 /* No comment provided by engineer. */
-"Welcome!" = "Welcome!";
+"weekday" = "工作日";
 
 /* No comment provided by engineer. */
-"What's your name?" = "What's your name?";
+"Welcome!" = "歡迎！";
 
 /* No comment provided by engineer. */
-"When" = "When";
+"What's your name?" = "你叫什麼名字？";
 
 /* No comment provided by engineer. */
-"When background changes to" = "When background changes to";
+"When" = "什麼時候";
 
 /* No comment provided by engineer. */
-"When project starts" = "When project starts";
+"When background changes to" = "當背景變為";
+
+/* No comment provided by engineer. */
+"When project starts" = "項目啟動時";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "當螢幕被觸碰";
@@ -2042,22 +2249,22 @@
 "When you receive" = "當接收到";
 
 /* paint */
-"Width selection" = "Width selection";
+"Width selection" = "寬度選擇";
 
 /* No comment provided by engineer. */
 "with" = "替換為";
 
 /* No comment provided by engineer. */
-"Wooden Flute" = "Wooden Flute";
+"Wooden Flute" = "木笛";
 
 /* No comment provided by engineer. */
-"x: " = "x: ";
+"x: " = "X： ";
 
 /* No comment provided by engineer. */
-"y: " = "y: ";
+"y: " = "y： ";
 
 /* No comment provided by engineer. */
-"year" = "year";
+"year" = "年";
 
 /* No comment provided by engineer. */
 "Yes" = "是";
@@ -2066,19 +2273,19 @@
 "Yesterday" = "昨天";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "您已經下載了這個項目！";
 
 /* No comment provided by engineer. */
-"Your answer" = "Your answer";
+"Your answer" = "您的答案";
 
 /* No comment provided by engineer. */
-"Your email seems to be invalid" = "Your email seems to be invalid";
+"Your email seems to be invalid" = "您的電子郵件似乎無效";
 
 /* No comment provided by engineer. */
-"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+"Your project was uploaded to the Catrobat community where others can use and download it." = "您的項目已上傳到 Catrobat 社區，其他人可以在該社區使用和下載它。";
 
 /* No comment provided by engineer. */
-"Your report was successfully sent!" = "Your report was successfully sent!";
+"Your report was successfully sent!" = "您的報告已成功發送！";
 
 /* paint */
-"Zoom" = "Zoom";
+"Zoom" = "飛漲";

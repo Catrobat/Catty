@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ final class GoToBrickTests: AbstractBrickTest {
 
         let touchManager = TouchManagerMock()
         let touch = CGPoint(x: 150, y: 250)
-        touchManager.lastTouch = touch
+        touchManager.lastPosition = touch
         let action = brick.actionBlock(touchManager)
         action()
 

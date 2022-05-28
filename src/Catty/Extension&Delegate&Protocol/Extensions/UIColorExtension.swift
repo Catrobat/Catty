@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -317,11 +317,11 @@ extension UIColor {
         UIColor(red: 120.0 / 255.0, green: 220.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
     }
 
-    static var frequentlyUsedBricks: UIColor {
+    static var recentlyUsedBricks: UIColor {
         UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }
 
-    static var frequentlyUsedBricksStroke: UIColor {
+    static var recentlyUsedBricksStroke: UIColor {
         UIColor(red: 240.0 / 255.0, green: 240.0 / 255.0, blue: 150.0 / 255.0, alpha: 1.0)
     }
 

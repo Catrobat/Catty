@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -186,7 +186,7 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     class func screenSize(_ inPixel: Bool) -> CGSize {
         var screenSize = inPixel ? UIScreen.main.nativeBounds.size : UIScreen.main.bounds.size
 
-        if inPixel && UIScreen.main.bounds.height == CGFloat(kIphone6PScreenHeight) {
+        if inPixel && UIScreen.main.bounds.height == UIDefines.iPhone6PScreenHeight {
             let iPhonePlusDownsamplingFactor = CGFloat(1.15)
             screenSize.height /= iPhonePlusDownsamplingFactor
             screenSize.width /= iPhonePlusDownsamplingFactor
@@ -230,12 +230,12 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
             return
         }
 
-        hud.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
+        hud.destinationOpacity = UIDefines.bdkNotifyHUDDestinationOpacity
         hud.center = CGPoint(x: vc.view.center.x, y: vc.view.center.y)
 
         vc.view.addSubview(hud)
-        hud.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
-                    speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
+        hud.present(withDuration: UIDefines.bdkNotifyHUDPresentationDuration,
+                    speed: UIDefines.bdkNotifyHUDPresentationSpeed,
                     in: vc.view,
                     completion: {
                         hud.removeFromSuperview()
@@ -243,7 +243,7 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     }
 
     class func showNotificationForSaveAction() {
-        guard let hud = BDKNotifyHUD(image: UIImage(named: kBDKNotifyHUDCheckmarkImageName), text: kLocalizedSaved) else {
+        guard let hud = BDKNotifyHUD(image: UIImage(named: UIDefines.bdkNotifyHUDCheckmarkImageName), text: kLocalizedSaved) else {
             return
         }
 
@@ -252,14 +252,14 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
             return
         }
 
-        hud.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
+        hud.destinationOpacity = UIDefines.bdkNotifyHUDDestinationOpacity
         hud.center = CGPoint(x: vc.view.center.x,
-                             y: vc.view.center.y + CGFloat(kBDKNotifyHUDCenterOffsetY))
-        hud.tag = Int(kSavedViewTag)
+                             y: vc.view.center.y + UIDefines.bdkNotifyHUDCenterOffsetY)
+        hud.tag = UIDefines.savedViewTag
 
         vc.view.addSubview(hud)
-        hud.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
-                    speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
+        hud.present(withDuration: UIDefines.bdkNotifyHUDPresentationDuration,
+                    speed: UIDefines.bdkNotifyHUDPresentationSpeed,
                     in: vc.view,
                     completion: {
                         hud.removeFromSuperview()
@@ -277,7 +277,48 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
                 return sound
             }
         }
-
         return nil
+    }
+
+    @nonobjc class func openURL(url: URL, delegate: BaseTableViewController, storeProjectDownloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) {
+        guard let projectId = catrobatProjectIdFromURL(url: url) else {
+            Util.alert(text: kLocalizedInvalidURLGiven)
+            return
+        }
+        delegate.showLoadingView()
+
+        storeProjectDownloader.fetchProjectDetails(for: projectId, completion: {project, error in
+            delegate.hideLoadingView()
+
+            guard error == nil else {
+                Util.alert(text: kLocalizedUnableToLoadProject)
+                return
+            }
+            guard let storeProject = project else {
+                Util.alert(text: kLocalizedInvalidZip)
+                return
+            }
+            let catrobatProject = storeProject.toCatrobatProject()
+
+            let storyboard = UIStoryboard(name: "iPhone", bundle: nil)
+            guard let viewController = storyboard.instantiateViewController(withIdentifier: "ProjectDetailStoreViewController") as? ProjectDetailStoreViewController else { return }
+            viewController.project = catrobatProject
+            delegate.navigationController?.pushViewController(viewController, animated: true)
+        })
+    }
+
+    class func catrobatProjectIdFromURL(url: URL) -> String? {
+        let pathComponents = url.pathComponents
+        guard pathComponents.count >= 4 else {
+            return nil
+        }
+        switch pathComponents[2] {
+        case "project":
+            return pathComponents[3]
+        case "download":
+            return String(pathComponents[3].dropLast(9))
+        default:
+            return nil
+        }
     }
 }

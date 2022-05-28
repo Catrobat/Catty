@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -111,6 +111,7 @@
 #import "ThinkBubbleBrick.h"
 #import "ThinkForBubbleBrick.h"
 #import "AddItemToUserListBrick+CBXMLHandler.h"
+#import "PlaceAtBrick+CBXMLHandler.h"
 
 // BrickCells
 #import "RepeatBrickCell.h"
@@ -137,7 +138,6 @@
 
 // User
 #import <CommonCrypto/CommonCrypto.h>
-#import "JNKeychain.h"
 
 //------------------------------------------------------------------------------------------------------------
 // Extension classes
@@ -191,7 +191,6 @@
 //-----------------------------------------------------------------------------------------------------------
 // Headers to sort
 //-----------------------------------------------------------------------------------------------------------
-#import "CatrobatInformation.h"
 #import "CatrobatProject.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -202,6 +201,7 @@
 #import "Parser.h"
 #import "GDataXMLNode.h"
 #import "CBXMLSerializer.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLSerializerContext.h"

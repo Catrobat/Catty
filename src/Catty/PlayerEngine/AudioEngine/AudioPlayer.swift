@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,76 +24,80 @@ import AudioKit
 import Foundation
 
 class AudioPlayer: NSDiscardableContent {
+    var player: AudioKit.AudioPlayer
+    var outputMixer: AudioKit.Mixer?
 
-    var akPlayer: AKPlayer
     var playerIsFinishedExpectation: CBExpectation?
     var fileName: String
     var soundCompletionHandler: (() -> Void)!
-    var isPaused = false
     var isDiscarded = false
+    var isPlaying: Bool {
+        player.status == .playing
+    }
+    var isPaused: Bool {
+        player.status == .paused
+    }
 
     let playingQueue = DispatchQueue(label: "PlayingQueue")
 
     init(soundFile: AVAudioFile) {
-        fileName = soundFile.fileNamePlusExtension
-        akPlayer = AKPlayer(audioFile: soundFile)
-        akPlayer.isLooping = false
+        fileName = soundFile.url.lastPathComponent
+        player = AudioKit.AudioPlayer()
+        player.file = soundFile
+        player.isLooping = false
         soundCompletionHandler = standardSoundCompletionHandler
-        akPlayer.completionHandler = soundCompletionHandler
+        player.completionHandler = soundCompletionHandler
     }
 
     func play(expectation: CBExpectation?) {
-        if !(akPlayer.playerNode.engine?.isRunning ?? false) {
+        if !(player.playerNode.engine?.isRunning ?? false) {
             return
         }
 
         playingQueue.sync {
             soundCompletionHandler()
             if !self.isDiscarded {
-                if akPlayer.isPlaying {
-                    akPlayer.stop()
+                if self.isPlaying {
+                    player.stop()
                 }
                 addExpectation(expectation)
-                akPlayer.play()
+                player.play()
             }
         }
     }
 
     func stop() {
         soundCompletionHandler()
-        akPlayer.stop()
+        player.stop()
     }
 
     func remove() {
         playingQueue.sync {
             self.isDiscarded = true
             self.stop()
-            if !akPlayer.connectionPoints.isEmpty {
-                akPlayer.detach()
-            }
+            outputMixer?.removeInput(player)
+            outputMixer = nil
         }
     }
 
     func pause() {
-        if akPlayer.isPlaying {
-            akPlayer.pause()
-            self.isPaused = true
+        if self.isPlaying {
+            player.pause()
         }
     }
 
     func resume() {
         if self.isPaused {
-            akPlayer.resume()
-            self.isPaused = false
+            player.resume()
         }
     }
 
-    func connect(to node: AKInput) {
-        akPlayer.connect(to: node)
-    }
-
-    func isPlaying() -> Bool {
-        akPlayer.isPlaying
+    func setOutput(_ mixer: AudioKit.Mixer) {
+        if let previousMixer = outputMixer {
+            previousMixer.removeInput(player)
+        }
+        mixer.addInput(player)
+        outputMixer = mixer
     }
 
     func getFileName() -> String {
@@ -102,7 +106,7 @@ class AudioPlayer: NSDiscardableContent {
 
     func setSoundCompletionHandler(_ completionHandler: @escaping () -> Void) {
         soundCompletionHandler = completionHandler
-        akPlayer.completionHandler = completionHandler
+        player.completionHandler = completionHandler
     }
 
     private func standardSoundCompletionHandler() {

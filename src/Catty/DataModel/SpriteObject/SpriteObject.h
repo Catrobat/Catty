@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -62,7 +62,6 @@
 
 // actions
 - (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save;
-- (void)removeFromScene;
 - (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save;
 - (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save;
 - (void)removeSounds:(NSArray*)sounds AndSaveToDisk:(BOOL)save;

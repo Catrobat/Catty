@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,9 @@
     
     //    if (enabled) {
     fingerSwiped = NO;
-    lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+    if ([recognizer numberOfTouches] > 0) {
+        lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+    }
     //    }
     
   }else if (recognizer.state == UIGestureRecognizerStateChanged){

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -50,12 +50,7 @@ final class BrickExtensionTests: XCTestCase {
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
-
-        let formulaElement = FormulaElement()
-        formulaElement.value = userList.name
-        formulaElement.type = ElementType.USER_LIST
-
-        brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 0, andParameterNumber: 1)
+        brick.setFormula(Formula(userList: userList), forLineNumber: 0, andParameterNumber: 1)
 
         XCTAssertTrue(brick.isListUsed(list: userList))
     }
@@ -155,7 +150,7 @@ final class BrickExtensionTests: XCTestCase {
 
     func testIsVariableUsedForBrickWithMultipleFormula() {
         let userVariable = UserVariable(name: "testName")
-        let uservariableB = UserVariable(name: "testNameB")
+        let userVariableB = UserVariable(name: "testNameB")
 
         let brick = SetVariableBrick()
 
@@ -164,21 +159,17 @@ final class BrickExtensionTests: XCTestCase {
         brick.setFormula(Formula(integer: 100), forLineNumber: 2, andParameterNumber: 1)
 
         XCTAssertFalse(brick.isVariableUsed(variable: userVariable))
-        XCTAssertFalse(brick.isVariableUsed(variable: uservariableB))
+        XCTAssertFalse(brick.isVariableUsed(variable: userVariableB))
 
         brick.setVariable(userVariable, forLineNumber: 1, andParameterNumber: 1)
 
         XCTAssertTrue(brick.isVariableUsed(variable: userVariable))
-        XCTAssertFalse(brick.isVariableUsed(variable: uservariableB))
+        XCTAssertFalse(brick.isVariableUsed(variable: userVariableB))
 
-        let formulaElement = FormulaElement()
-        formulaElement.value = uservariableB.name
-        formulaElement.type = ElementType.USER_VARIABLE
-
-        brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 1, andParameterNumber: 1)
+        brick.setFormula(Formula(userVariable: userVariableB), forLineNumber: 1, andParameterNumber: 1)
 
         XCTAssertTrue(brick.isVariableUsed(variable: userVariable))
-        XCTAssertTrue(brick.isVariableUsed(variable: uservariableB))
+        XCTAssertTrue(brick.isVariableUsed(variable: userVariableB))
     }
 
     func testIsVariableUsedWithOnlyFormulaBrick() {
@@ -187,9 +178,7 @@ final class BrickExtensionTests: XCTestCase {
 
         let brick = ArduinoSendDigitalValueBrick()
 
-        let formulaElement = FormulaElement()
-        formulaElement.value = userVariable.name
-        formulaElement.type = ElementType.USER_VARIABLE
+        let formulaElement = FormulaElement(elementType: .USER_VARIABLE, value: userVariable.name)!
 
         brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 0, andParameterNumber: 1)
         brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 1, andParameterNumber: 1)

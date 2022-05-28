@@ -50,6 +50,9 @@
 "Add sound" = "Add sound";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "Add trusted domain";
+
+/* No comment provided by engineer. */
 "Agree" = "راِضي";
 
 /* No comment provided by engineer. */
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
 
+/* No comment provided by engineer. */
+"Allow web access" = "Allow web access";
+
 /* paint */
 "Alpha" = "الفا";
 
 /* No comment provided by engineer. */
 "altitude" = "altitude";
+
+/* No comment provided by engineer. */
+"Always" = "Always";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Always allow web access";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
@@ -89,10 +101,16 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
+"and store answer in" = "and store answer in";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "and store written answer in ";
 
 /* No comment provided by engineer. */
 "and wait" = "and wait";
+
+/* No comment provided by engineer. */
+"and width" = "and width";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Animate brick-parts";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
 
 /* No comment provided by engineer. */
 "becomes true" = "becomes true";
@@ -374,6 +395,9 @@
 "Create account" = "Create account";
 
 /* No comment provided by engineer. */
+"Create as list" = "Create as list";
+
+/* No comment provided by engineer. */
 "Create patterns for stiching machines" = "Create patterns for stiching machines";
 
 /* No comment provided by engineer. */
@@ -479,6 +503,9 @@
 "Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
+"Deny" = "Deny";
+
+/* No comment provided by engineer. */
 "Description" = "تشريح";
 
 /* No comment provided by engineer. */
@@ -536,6 +563,12 @@
 "Download" = "ڊائونلوڊ";
 
 /* No comment provided by engineer. */
+"Download again" = "Download again";
+
+/* No comment provided by engineer. */
+"Download too big" = "Download too big";
+
+/* No comment provided by engineer. */
 "Downloads" = "Downloads";
 
 /* No comment provided by engineer. */
@@ -582,6 +615,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "Edit sounds";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "Edit trusted domain";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "Electric Guitar";
@@ -677,16 +713,7 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
-
-/* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
-
-/* No comment provided by engineer. */
-"facesize" = "facesize";
+"Face detection" = "Face detection";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "Failed to import item";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "ڀريو";
+
+/* No comment provided by engineer. */
+"first face size" = "face size";
+
+/* No comment provided by engineer. */
+"first face visible" = "first face visible";
+
+/* No comment provided by engineer. */
+"first face x position" = "face x position";
+
+/* No comment provided by engineer. */
+"first face y position" = "face y position";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Flashlight off";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "Fr";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
 
 /* No comment provided by engineer. */
 "Friday" = "Friday";
@@ -801,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
+"head top x" = "head top x";
+
+/* No comment provided by engineer. */
+"head top y" = "head top y";
 
 /* No comment provided by engineer. */
 "Hello!" = "Hello!";
@@ -851,6 +893,9 @@
 "inclination y" = "inclination y";
 
 /* No comment provided by engineer. */
+"index of item" = "index of item";
+
+/* No comment provided by engineer. */
 "Information" = "Information";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"Internet" = "Internet";
 
 /* No comment provided by engineer. */
 "into list" = "لسٽ ۾";
@@ -932,6 +980,48 @@
 "Left" = "کاٻي";
 
 /* No comment provided by engineer. */
+"left ear x" = "left ear x";
+
+/* No comment provided by engineer. */
+"left ear y" = "left ear y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "left eye center x";
+
+/* No comment provided by engineer. */
+"left eye center y" = "left eye center y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "left eye inner x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "left eye inner y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "left eye outer x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "left eye outer y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "left eyebrow center x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "left eyebrow center y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "left eyebrow inner x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "left eyebrow inner y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "left eyebrow outer x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
 "left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "ليڪ";
+
+/* No comment provided by engineer. */
+"List name" = "List name";
 
 /* No comment provided by engineer. */
 "List name:" = "List name:";
@@ -1094,6 +1187,18 @@
 "Motion properties" = "Motion properties";
 
 /* No comment provided by engineer. */
+"mouth left corner x" = "mouth left corner x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "mouth left corner y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "mouth right corner x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "mouth right corner y";
+
+/* No comment provided by engineer. */
 "Move" = "منتقل ڪيو";
 
 /* No comment provided by engineer. */
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "No whitespace character allowed";
 
 /* No comment provided by engineer. */
+"nose x" = "nose x";
+
+/* No comment provided by engineer. */
+"nose y" = "nose y";
+
+/* No comment provided by engineer. */
 "not" = "not";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "on" = "on";
+
+/* No comment provided by engineer. */
+"Once" = "Once";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "only 15 characters allowed";
@@ -1379,6 +1493,9 @@
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
+"Pose detection" = "Pose detection";
+
+/* No comment provided by engineer. */
 "position x" = "position x";
 
 /* No comment provided by engineer. */
@@ -1428,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "RE" = "RE";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "Recently used";
 
 /* No comment provided by engineer. */
 "Recording" = "Recording";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "ساڄي";
 
+/* No comment provided by engineer. */
+"right ear x" = "right ear x";
+
+/* No comment provided by engineer. */
+"right ear y" = "right ear y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "right eye center x";
+
+/* No comment provided by engineer. */
+"right eye center y" = "right eye center y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "right eye inner x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "right eye inner y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "right eye outer x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "right eye outer y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "right eyebrow center x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "right eyebrow center y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "right eyebrow inner x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "right eyebrow inner y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "right eyebrow outer x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "right eyebrow outer y";
+
 /* paint */
 "Rotate" = "گھمايو";
 
@@ -1529,13 +1691,25 @@
 "Scripts" = "Scripts";
 
 /* bluetooth */
-"Search" = "Search";
+"Search" = "ڳولهيو…";
 
 /* No comment provided by engineer. */
 "second" = "سيڪينڊ";
 
 /* No comment provided by engineer. */
 "second " = "second ";
+
+/* No comment provided by engineer. */
+"second face size" = "second face size";
+
+/* No comment provided by engineer. */
+"second face visible" = "second face visible";
+
+/* No comment provided by engineer. */
+"second face x position" = "second face x position";
+
+/* No comment provided by engineer. */
+"second face y position" = "second face y position";
 
 /* No comment provided by engineer. */
 "seconds" = "seconds";
@@ -1556,6 +1730,9 @@
 "Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
+"Select file" = "فائيل چونڊيو";
+
+/* No comment provided by engineer. */
 "Select logical operator" = "Select logical operator";
 
 /* No comment provided by engineer. */
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Select Phiro";
+
+/* No comment provided by engineer. */
+"Send web request to" = "Send web request to";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Sending anonymous crash reports";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "Set background";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "Set background and wait";
+
+/* No comment provided by engineer. */
+"Set background to number" = "Set background to number";
 
 /* No comment provided by engineer. */
 "Set brightness " = "روشني ٺاهيو ";
@@ -1641,6 +1827,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "سيٽنگ";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Sew up";
 
 /* No comment provided by engineer. */
 "Show" = "ڏيکار";
@@ -1706,10 +1895,16 @@
 "Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "Start running stitch with length";
+
+/* No comment provided by engineer. */
 "Start sound" = "آواز شروع ڪريو";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Start sound and wait";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Start zigzag stitch with length";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Steel Drum";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "سڀ آواز بند ڪريو";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "Stop current stitch";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Stop Phiro motor";
@@ -1865,6 +2063,15 @@
 "touch position" = "touch position";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "touches actor or object";
+
+/* No comment provided by engineer. */
+"touches edge" = "touches edge";
+
+/* No comment provided by engineer. */
+"touches finger" = "touches finger";
+
+/* No comment provided by engineer. */
 "transparency" = "transparency";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
 
 /* paint */
 "underline" = "underline";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "Use Phiro bricks";
 
 /* No comment provided by engineer. */
+"user language" = "user language";
+
+/* No comment provided by engineer. */
 "Username" = "يُوزرنانءُ";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "Username must not be blank";
+
+/* No comment provided by engineer. */
+"Variable name" = "Variable name";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
@@ -2000,9 +2207,6 @@
 "Views" = "Views";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "Visual sensors";
-
-/* No comment provided by engineer. */
 "Wait" = "انتظار";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "We";
+
+/* No comment provided by engineer. */
+"Web access" = "Web access";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Wednesday";

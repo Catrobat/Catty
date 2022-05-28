@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,5 +24,6 @@
 #define kOpenButtonTag 502
 #define kStopLoadingTag 503
 #define kDownloadAgainButtonTag 504
+#define kReportButtonTag 505
 
 #define kActivityIndicator 228

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,114 +32,7 @@ class FormulaEditorKeyboardTests: XCTestCase {
     }
 
     func testBackspaceAndNumbers() {
-
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
-        app.tables.staticTexts[kLocalizedMole + " 1"].tap()
-        app.tables.staticTexts[kLocalizedScripts].tap()
-
-        app.collectionViews.cells.allElementsBoundByIndex[1].tap()
-        app.buttons[kLocalizedEditFormula].tap()
-
-        if let currentFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-
-            XCTAssertNotEqual(currentFormula.count, 0)
-            waitForElementToAppear(app.buttons["backspaceButton"]).tap()
-
-            guard let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String else {
-                XCTFail("Could not get the updated formula from the text view")
-                return
-            }
-
-            XCTAssertEqual(updatedFormula.count, 0)
-
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["1"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "1")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["2"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "12")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["3"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "123")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["4"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "1234")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["5"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "12345")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["6"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "123456")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["7"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "1234567")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["8"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "12345678")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["9"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "123456789")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["0"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "1234567890")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-    }
-
-    func testOperatorButtons() {
+        let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
@@ -150,81 +43,51 @@ class FormulaEditorKeyboardTests: XCTestCase {
         app.buttons[kLocalizedEditFormula].tap()
 
         waitForElementToAppear(app.buttons["backspaceButton"]).tap()
+        XCTAssertEqual(waitForElementToAppear(app.textViews.firstMatch).value as! String, "")
 
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
+        var expectedFormula = ""
+        for number in numbers {
+            expectedFormula += number
+
+            waitForElementToAppear(app.buttons.staticTexts[number]).tap()
+            XCTAssertEqual(waitForElementToAppear(app.textViews.firstMatch).value as! String, expectedFormula)
         }
+    }
 
-        waitForElementToAppear(app.buttons.staticTexts["("]).tap()
+    func testOperatorButtons() {
+        let operators = ["(": "(",
+                         ")": ")",
+                         "=": "=",
+                         ".": "0.",
+                         "+": "+",
+                         "-": "-",
+                         "x": "×",
+                         "/": "÷"]
 
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "(")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.tables.staticTexts[kLocalizedMole + " 1"].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+
+        app.collectionViews.cells.allElementsBoundByIndex[1].tap()
+        app.buttons[kLocalizedEditFormula].tap()
+
+        waitForElementToAppear(app.buttons["backspaceButton"]).tap()
+        XCTAssertEqual(waitForElementToAppear(app.textViews.firstMatch).value as! String, "")
+
+        var expectedFormula = ""
+        for (operatorButton, formulaDisplayString) in operators {
+            if !expectedFormula.isEmpty {
+                expectedFormula += " "
+            }
+            expectedFormula += formulaDisplayString
+
+            waitForElementToAppear(app.buttons.staticTexts[operatorButton]).tap()
+            XCTAssertEqual(waitForElementToAppear(app.textViews.firstMatch).value as! String, expectedFormula)
         }
-
-        waitForElementToAppear(app.buttons.staticTexts[")"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "( )")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["="]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "( ) =")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["."]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "( ) = 0.")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["+"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "( ) = 0. +")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["-"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "( ) = 0. + -")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["x"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "( ) = 0. + - ×")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
-        waitForElementToAppear(app.buttons.staticTexts["/"]).tap()
-
-        if let updatedFormula = waitForElementToAppear(app.textViews.firstMatch).value as? String {
-            XCTAssertEqual(updatedFormula, "( ) = 0. + - × ÷")
-        } else {
-            XCTFail("Could not get the current formula from the text view")
-        }
-
     }
 
     func testSectionButtons() {
-
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
@@ -252,11 +115,9 @@ class FormulaEditorKeyboardTests: XCTestCase {
         waitForElementToAppear(app.buttons.staticTexts[kUIFEData]).tap()
         XCTAssertTrue(app.navigationBars.staticTexts[kUIFEData].exists)
         app.navigationBars.buttons[kLocalizedBack].tap()
-
     }
 
     func testArrowButton() {
-
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
@@ -265,20 +126,19 @@ class FormulaEditorKeyboardTests: XCTestCase {
         app.collectionViews.cells.allElementsBoundByIndex[1].tap()
         waitForElementToAppear(app.buttons[kLocalizedEditFormula]).tap()
 
-        XCTAssertTrue(app.otherElements["keyboardAccessoryView"].exists)
-        waitForElementToAppear(app.buttons["arrowButton"]).tap()
-        XCTAssertFalse(app.otherElements["keyboardAccessoryView"].exists)
-
-        waitForElementToAppear(app.buttons["arrowButton"]).tap()
-        XCTAssertTrue(app.otherElements["keyboardAccessoryView"].exists)
+        XCTAssertTrue(waitForElementToAppear(app.otherElements["keyboardAccessoryView"]).exists)
 
         waitForElementToAppear(app.buttons["arrowButton"]).tap()
         XCTAssertFalse(app.otherElements["keyboardAccessoryView"].exists)
 
+        waitForElementToAppear(app.buttons["arrowButton"]).tap()
+        XCTAssertTrue(app.otherElements["keyboardAccessoryView"].exists)
+
+        waitForElementToAppear(app.buttons["arrowButton"]).tap()
+        XCTAssertFalse(app.otherElements["keyboardAccessoryView"].exists)
     }
 
     func testTextButton() {
-
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
@@ -298,7 +158,5 @@ class FormulaEditorKeyboardTests: XCTestCase {
         } else {
             XCTFail("Could not get the current formula from the text view")
         }
-
     }
-
 }

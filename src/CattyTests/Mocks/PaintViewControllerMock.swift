@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,13 +32,14 @@ class PaintViewControllerMock: PaintViewController {
 
     init?(editingImage: UIImage, navigationController: UINavigationController) {
         let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWith: data)
+        let archiver = NSKeyedArchiver(requiringSecureCoding: false)
+        archiver.encode(data)
         archiver.finishEncoding()
-        let coder = NSKeyedUnarchiver(forReadingWith: data as Data)
+        let coder = try? NSKeyedUnarchiver(forReadingFrom: archiver.encodedData)
 
         self.navigationControllerMock = navigationController
 
-        super.init(coder: coder)
+        super.init(coder: coder!)
 
         manager = UndoManager.init(drawViewCanvas: self)
         mirrorRotationZoomTool = MirrorRotationZoomTool.init(drawViewCanvas: self)

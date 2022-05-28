@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -44,9 +44,12 @@ final class SpeechSynthesizerTests: XCTestCase {
         newUtterance = getUtterance(text: "new")
         previousExpectationTuple = (currentUtterance, currentUtteranceExpectation)
 
-        let audioSession = AVAudioSession.sharedInstance()
-        try? audioSession.setActive(true)
-        try? audioSession.setCategory(AVAudioSession.Category.playback)
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+        try? AVAudioSession.sharedInstance().setActive(true)
+    }
+
+    override func tearDown() {
+        try? AVAudioSession.sharedInstance().setActive(false)
     }
 
     func testSpeechSynthStartSpeaking() {

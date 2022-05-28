@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,16 +38,8 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
         self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Airplane_with_shadow_093")
     }
 
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForCompass() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Compass_0.1_093")
-    }
-
     func testIfCopiedSpriteObjectsAreEqualToOriginalForDemonstration() {
         self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Demonstration_093")
-    }
-
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForDrinkMoreWater() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Drink_more_water_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForFlappy() {
@@ -58,24 +50,8 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
         self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Galaxy_War_093")
     }
 
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForGossipGirl() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Gossip_Girl_093")
-    }
-
     func testIfCopiedSpriteObjectsAreEqualToOriginalForMemory() {
         self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Memory_093")
-    }
-
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForMinecraftWorkInProgress() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Minecraft_Work_In_Progress_093")
-    }
-
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForMinions() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Minions__093")
-    }
-
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForNyancat() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Nyancat_1.0_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForPiano() {
@@ -90,28 +66,12 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
         self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Pythagorean_Theorem_093")
     }
 
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForRockPaperScissors() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Rock_paper_scissors_093")
-    }
-
     func testIfCopiedSpriteObjectsAreEqualToOriginalForSkyPascal() {
         self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "SKYPASCAL_093")
     }
 
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForSkydivingSteve() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Skydiving_Steve_093")
-    }
-
     func testIfCopiedSpriteObjectsAreEqualToOriginalForTicTacToeMaster() {
         self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Tic_Tac_Toe_Master_093")
-    }
-
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForWordBalloonDemo() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Word_balloon_demo_093")
-    }
-
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForXRayPhone() {
-        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "X_Ray_phone_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForValidFormulaList() {

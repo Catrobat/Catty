@@ -1,6 +1,6 @@
 #!/usr/bin/env xcrun swift -I .
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,7 +38,8 @@ let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefinesUI.swift",
     "Functions.[hm]",
     "Operators.m",
-    "BSKeyboardControls.m"
+    "BSKeyboardControls.m",
+    "synchronize-localization.swift"
 ]; let localizedStringCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 let localizedStringCheckSeparatedExcludeDirs = [
     "Pods",
@@ -98,9 +99,8 @@ let licenseCheckExcludeFiles = [
     "MXPagerView-umbrella.[mh]",
     "SwellAll.swift",
     "license-validator.swift",
-    "ChromaprintAudioDecoder.swift",
-    "chromaprint.h",
-    "SnapshotHelper.swift"
+    "SnapshotHelper.swift",
+    "synchronize-localization.swift"
 ]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%d The Catrobat Team\n"

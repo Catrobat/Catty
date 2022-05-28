@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -453,6 +453,11 @@
 {
     if(object == nil && objectToCompare == nil)
         return YES;
+    if(object == nil && objectToCompare != nil)
+        return NO;
+    if(object != nil && objectToCompare == nil)
+        return NO;
+    
     if([object isKindOfClass:[NSString class]]) {
         if([(NSString*)object isEqualToString:(NSString*)objectToCompare])
             return YES;
@@ -551,23 +556,6 @@
 {
     return [self getSubsetOfTheMost:amount
              usedBricksInDictionary:[self getBrickInsertionDictionaryFromUserDefaults]];
-}
-
-+ (void)resetBrickStatistics
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[self defaultBrickStatisticDictionary] forKey:kUserDefaultsBrickSelectionStatisticsMap];
-    [userDefaults synchronize];
-}
-
-+ (NSDictionary*)defaultBrickStatisticDictionary
-{
-    NSArray* defautArray = [NSArray new];
-    OrderedDictionary * dict = [[OrderedDictionary alloc] initWithCapacity:defautArray.count];
-    for (NSString * brick in defautArray.reverseObjectEnumerator) {
-        [dict insertObject:kNSNumberZero forKey:brick atIndex:0];
-    }
-    return dict;
 }
 
 + (NSString*)replaceBlockedCharactersForString:(NSString*)string

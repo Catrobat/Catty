@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>KEY</string>
+	<string>A-------PLACEHOLDER_FOR_API_KEY--------</string>
 	<key>BUNDLE_ID</key>
 	<string>org.catrobat.pocketcode</string>
 	<key>CLIENT_ID</key>

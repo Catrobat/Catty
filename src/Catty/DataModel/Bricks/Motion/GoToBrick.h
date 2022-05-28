@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,10 @@
 
 #import "Brick.h"
 #import "BrickStaticChoiceProtocol.h"
+
+#define kGoToTouchPosition 80
+#define kGoToRandomPosition 81
+#define kGoToOtherSpritePosition 82
 
 @class SpriteObject;
 

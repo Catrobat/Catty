@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -189,7 +189,7 @@
                    layout:(UICollectionViewLayout*)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return kBrickOverlapHeight;
+    return UIDefines.brickOverlapHeight;
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
@@ -277,7 +277,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         if (brick.isFormulaBrick) {
             [actionSheet addDefaultActionWithTitle:kLocalizedEditFormula handler:^{
-                [self openFormulaEditorWithFormulaAtIndexPath:indexPath withEvent:nil];
+                [self openFormulaEditorForBrickCell:brickCell withEvent:nil];
             }];
         }
     } else {
@@ -451,6 +451,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }else{
             script.animateInsertBrick = NO;
         }
+        [self.object.scene.project saveToDiskWithNotification:NO];
         [self turnOffInsertingBrickMode];
     } else {
         [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
@@ -536,8 +537,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [brickCell insertAnimate:brickCell.scriptOrBrick.isAnimatedInsertBrick];
     }
     if (self.isEditing) {
-        brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
-        brickCell.selectButton.alpha = 1.0f;
+        if (brickCell.frame.origin.x == 0.0f) {
+            brickCell.center = CGPointMake(brickCell.center.x + UIDefines.selectButtonTranslationOffsetX, brickCell.center.y);
+            brickCell.selectButton.alpha = 1.0f;
+        }
         if(!brickCell.isScriptBrick)
         {
             Brick *selectBrick = (Brick*)brickCell.scriptOrBrick;
@@ -698,9 +701,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 
-- (void)openFormulaEditorWithFormulaAtIndexPath:(NSIndexPath*)indexPath withEvent:(UIEvent*)event
+- (void)openFormulaEditorForBrickCell:(BrickCell*)brickCell withEvent:(UIEvent*)event
 {
-    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
     [self openFormulaEditor:formulaData withEvent:event];
 }
@@ -905,108 +907,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 }
 
-#pragma mark - Add new Variable
-- (void)addVariableForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProjectVariable:(BOOL)isProjectVar
-{
-//    Brick<BrickVariableProtocol> *variableBrick;
-//    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-//        variableBrick = (Brick<BrickVariableProtocol>*)brick;
-//    }
-
-    NSMutableArray *allVariableNames = [NSMutableArray new];
-    if (isProjectVar) {
-        for(UserVariable *var in [UserDataContainer allVariablesForProject: self.object.scene.project]) {
-            [allVariableNames addObject:var.name];
-        }
-    } else {
-        for(UserVariable *var in [UserDataContainer objectAndProjectVariablesForObject:self.object]) {
-            [allVariableNames addObject:var.name];
-        }
-    }
-    
-    self.variableIndexPath = indexPath;
-    
-    [Util askUserForUniqueNameAndPerformAction:@selector(addVariableWithName:andCompletion:)
-                                        target:self
-                                  cancelAction:@selector(reloadData)
-                                    withObject:(id) ^(NSString* variableName) {
-                                        UserVariable *variable = [[UserVariable alloc] initWithName:variableName];
-                                        variable.value = [NSNumber numberWithInt:0];
-                                        if (isProjectVar) {
-                                            [self.object.scene.project.userData addVariable:variable];
-                                        } else { // object variable
-                                            [self.object.userData addVariable:variable];
-                                        }
-                                        UserVariable *var = [UserDataContainer objectOrProjectVariableForObject:self.object andName:(NSString*)variableName];
-                                        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
-                                        Brick * brick = (Brick*)brickCell.scriptOrBrick;
-                                        Brick<BrickVariableProtocol> *variableBrick;
-                                        if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-                                            variableBrick = (Brick<BrickVariableProtocol>*)brick;
-                                        }
-                                        
-                                        if(var)
-                                            [variableBrick setVariable:var forLineNumber:self.variableIndexPath.row andParameterNumber:self.variableIndexPath.section];
-                                    }
-                                   promptTitle:kUIFENewVar
-                                 promptMessage:kUIFEOtherName
-                                   promptValue:nil
-                             promptPlaceholder:kLocalizedEnterYourVariableNameHere
-                                minInputLength:kMinNumOfVariableNameCharacters
-                                maxInputLength:kMaxNumOfVariableNameCharacters
-                      invalidInputAlertMessage:kUIFENewVarExists
-                                 existingNames:allVariableNames];
-}
-
-#pragma mark - Add new List
-- (void)addListForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProjectList:(BOOL)isProjectList
-{
-
-    NSMutableArray *allListNames = [NSMutableArray new];
-    if (isProjectList) {
-        for(UserVariable *list in [UserDataContainer allListsForProject: self.object.scene.project]) {
-            [allListNames addObject:list.name];
-        }
-    } else {
-        for(UserVariable *list in [UserDataContainer objectAndProjectListsForObject:self.object]) {
-            [allListNames addObject:list.name];
-        }
-    }
-    
-    self.variableIndexPath = indexPath;
-    
-    [Util askUserForUniqueNameAndPerformAction:@selector(addVariableWithName:andCompletion:)
-                                        target:self
-                                  cancelAction:@selector(reloadData)
-                                    withObject:(id) ^(NSString* listName) {
-                                        UserList *list = [[UserList alloc] initWithName:listName];
-                                        if (isProjectList) {
-                                            [self.object.scene.project.userData addList:list];
-                                        } else { // object list
-                                            [self.object.userData addList:list];
-                                        }
-                                        UserList *listToSet = [UserDataContainer objectOrProjectListForObject:self.object andName:(NSString*)listName];
-                                        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
-                                        Brick * brick = (Brick*)brickCell.scriptOrBrick;
-                                        Brick<BrickListProtocol> *listBrick;
-                                        if ([brick conformsToProtocol:@protocol(BrickListProtocol)]) {
-                                            listBrick = (Brick<BrickListProtocol>*)brick;
-                                        }
-                                        
-                                        if(listToSet)
-                                            [listBrick setList:listToSet forLineNumber:self.variableIndexPath.row andParameterNumber:self.variableIndexPath.section];
-                                    }
-                                   promptTitle:kUIFENewList
-                                 promptMessage:kUIFEOtherName
-                                   promptValue:nil
-                             promptPlaceholder:kLocalizedEnterYourListNameHere
-                                minInputLength:kMinNumOfVariableNameCharacters
-                                maxInputLength:kMaxNumOfVariableNameCharacters
-                      invalidInputAlertMessage:kUIFENewVarExists
-                                 existingNames:allListNames];
-}
-
-
 #pragma mark - Setup
 - (void)setupCollectionView
 {
@@ -1037,16 +937,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self.object.scene.project saveToDiskWithNotification:YES];
     [self enableUserInteractionAndResetHighlight];
     [self.object.scene.project.allBroadcastMessages addObject:messageName];
-}
-
-- (void)addVariableWithName:(NSString*)variableName andCompletion:(id)completion
-{
-    if (completion) {
-        void (^block)(NSString*) = (void (^)(NSString*))completion;
-        block(variableName);
-    }
-    [self.object.scene.project saveToDiskWithNotification:YES];
-    [self enableUserInteractionAndResetHighlight];
 }
 
 - (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value
@@ -1137,7 +1027,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else
     if ([brickCellData isKindOfClass:[BrickCellStaticChoiceData class]] && [brick conformsToProtocol:@protocol(BrickStaticChoiceProtocol)]) {
             [(Brick<BrickStaticChoiceProtocol>*)brick setChoice:(NSString*)value forLineNumber:line andParameterNumber:parameter];
-    }else
+    } else
     if ([brickCellData isKindOfClass:[BrickCellMessageData class]] && [brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
         [self.object.scene.project.allBroadcastMessages addObject:value];
         Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brick;
@@ -1167,18 +1057,37 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             CBAssert([brickCellData.brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
             
             NSIndexPath *path = [self.collectionView indexPathForCell:(UICollectionViewCell*)brickCellData.brickCell];
-            Brick *brick = (Brick*)brickCellData.brickCell.scriptOrBrick;
-            [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEActionVar]
-             addCancelActionWithTitle:kLocalizedCancel handler:nil]
-             addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
-                 [self addVariableForBrick:brick atIndexPath:path andIsProjectVariable:YES];
-             }]
-             addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
-                 [self addVariableForBrick:brick atIndexPath:path andIsProjectVariable:NO];
-             }]
-             build]
-             showWithController:[Util topmostViewController]];
-            
+
+            CreateVariableOrListViewController *cvlvc = [[CreateVariableOrListViewController alloc] initWithSpriteObject:self.object shouldCreateList:NO hideCreateList:YES addedCompletion:^(NSString * _Nonnull variableName) {
+
+                UserVariable *var = [UserDataContainer objectOrProjectVariableForObject:self.object andName:(NSString*)variableName];
+
+                self.variableIndexPath = path;
+
+                BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
+                Brick *brick = (Brick*)brickCell.scriptOrBrick;
+                Brick<BrickVariableProtocol> *variableBrick;
+
+                if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+                    variableBrick = (Brick<BrickVariableProtocol>*)brick;
+                }
+
+                if (var) {
+                    [variableBrick setVariable:var forLineNumber:self.variableIndexPath.row andParameterNumber:self.variableIndexPath.section];
+                }
+
+                [self enableUserInteractionAndResetHighlight];
+            }];
+
+
+            if (@available(iOS 13.0, *)) {
+                cvlvc.modalInPresentation = true;
+            } else {
+                cvlvc.modalPresentationStyle = UIModalPresentationFullScreen;
+            }
+
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cvlvc];
+            [self presentViewController:navController animated:YES completion:NULL];
             [self enableUserInteractionAndResetHighlight];
             return;
         } else {
@@ -1191,20 +1100,39 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellListData class]] && [brick conformsToProtocol:@protocol(BrickListProtocol)]) {
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             CBAssert([brickCellData.brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
-                
+
             NSIndexPath *path = [self.collectionView indexPathForCell:(UICollectionViewCell*)brickCellData.brickCell];
-            Brick *brick = (Brick*)brickCellData.brickCell.scriptOrBrick;
-            [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEActionList]
-             addCancelActionWithTitle:kLocalizedCancel handler:nil]
-             addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
-                 [self addListForBrick:brick atIndexPath:path andIsProjectList:YES];
-             }]
-             addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
-                 [self addListForBrick:brick atIndexPath:path andIsProjectList:NO];
-             }]
-             build]
-             showWithController:[Util topmostViewController]];
-                
+
+            CreateVariableOrListViewController *cvlvc = [[CreateVariableOrListViewController alloc] initWithSpriteObject:self.object shouldCreateList:YES hideCreateList:YES addedCompletion:^(NSString * _Nonnull listName) {
+
+                UserList *list = [UserDataContainer objectOrProjectListForObject:self.object andName:(NSString*)listName];
+
+                self.variableIndexPath = path;
+
+                BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
+                Brick *brick = (Brick*)brickCell.scriptOrBrick;
+                Brick<BrickListProtocol> *listBrick;
+
+                if ([brick conformsToProtocol:@protocol(BrickListProtocol)]) {
+                    listBrick = (Brick<BrickListProtocol>*)brick;
+                }
+
+                if (list) {
+                    [listBrick setList:list forLineNumber:self.variableIndexPath.row andParameterNumber:self.variableIndexPath.section];
+                }
+
+                [self enableUserInteractionAndResetHighlight];
+            }];
+
+
+            if (@available(iOS 13.0, *)) {
+                cvlvc.modalInPresentation = true;
+            } else {
+                cvlvc.modalPresentationStyle = UIModalPresentationFullScreen;
+            }
+
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cvlvc];
+            [self presentViewController:navController animated:YES completion:NULL];
             [self enableUserInteractionAndResetHighlight];
             return;
         } else {
@@ -1369,7 +1297,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     [UIView animateWithDuration:0.5f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
-            brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
+            brickCell.center = CGPointMake(brickCell.center.x + UIDefines.selectButtonTranslationOffsetX, brickCell.center.y);
             brickCell.selectButton.alpha = 1.0f;
         }
     } completion:^(BOOL finished) {

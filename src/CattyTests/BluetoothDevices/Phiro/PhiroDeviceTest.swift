@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ import XCTest
 
 class PhiroDeviceTest: XCTestCase {
 
-    var device = PhiroDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock(test: true), advertisements: [String: String](), rssi: 0))
+    var device = PhiroDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock.create(), advertisements: [String: String](), rssi: 0))
 
     override func setUp() {
         super.setUp()

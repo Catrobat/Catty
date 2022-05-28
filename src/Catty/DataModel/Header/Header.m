@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@
     header.dateTimeUpload = nil;
     header.programDescription = nil;
     header.deviceName = [Util deviceName];
+    header.isCastProject = false;
     header.mediaLicense = [Util catrobatMediaLicense];
     header.platform = [Util platformName];
     header.platformVersion = [Util platformVersionWithoutPatch];
@@ -97,6 +98,8 @@
     if (self.landscapeMode != header.landscapeMode)
         return NO;
     if (self.scenesEnabled != header.scenesEnabled)
+        return NO;
+    if (self.isCastProject != header.isCastProject)
         return NO;
     return YES;
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -63,6 +63,15 @@ final class CBScheduler: CBSchedulerProtocol {
         guard let spriteName = context.spriteNode.name
             else { fatalError("Sprite node has no name!") }
         return _scheduledContexts[spriteName]?.contains(context) == true
+    }
+
+    func isWhenBackgroundChangesContextScheduled(look: Look) -> Bool {
+        for context in _whenBackgroundChangesContexts {
+            if context.background == look && isContextScheduled(context) {
+                return true
+            }
+        }
+        return false
     }
 
     // MARK: - Model methods

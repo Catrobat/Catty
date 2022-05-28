@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -66,9 +66,7 @@ class PocketCodeMainScreenTests: XCTestCase {
 
     func testNewInvalidNames() {
         let progNamesErrorMsgMap = ["": "No input. Please enter at least 1 character.",
-                                    "i am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am "
-                                        + "tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo "
-                                        + "looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooog": "The input is too long. Please enter maximal 250 character(s).",
+                                    String(repeating: "i", count: 25 + 1): "The input is too long. Please enter maximal 25 character(s).",
                                     ".": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "/": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "./": "Only special characters are not allowed. Please enter at least 1 other character.",

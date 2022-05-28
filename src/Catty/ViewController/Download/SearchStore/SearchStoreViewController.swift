@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -141,6 +141,15 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(performSearch), object: nil)
+        self.perform(#selector(performSearch), with: nil, afterDelay: NetworkDefines.searchLookupDelayInSeconds)
+    }
+
+    @objc func performSearch() {
+        guard let searchText = searchBar.text else {
+            return
+        }
+
         if searchText.count > 2 {
             hideNoResultsAlert()
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,9 @@
     [self.stage stopProject];
     
     // TODO remove Singletons
-    [[CameraPreviewHandler shared] stopCamera];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[CameraPreviewHandler shared] stopCamera];
+    });
     
     [[FlashHelper sharedFlashHandler] reset];
     [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
@@ -70,6 +72,10 @@
         _skView.showsFPS = YES;
         _skView.showsNodeCount = YES;
         _skView.showsDrawCount = YES;
+    
+        if (SpriteKitDefines.physicsShowBody) {
+            _skView.showsPhysics = YES;
+        }
     #endif
     
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
@@ -110,7 +116,6 @@
     } else {
         self.menuViewRightConstraint = [self.menuView.rightAnchor constraintEqualToAnchor:self.view.leftAnchor constant:self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalPortrait];
     }
-    
     self.menuViewRightConstraint.active = YES;
     self.menuViewLeadingConstraint = [self.menuView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor];
     self.menuViewLeadingConstraint.active = YES;
@@ -126,6 +131,14 @@
 {
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.stagePresenterViewControllerDidAppear object:self];
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
+     if (!Project.lastUsedProject.header.landscapeMode) {
+         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+         [UINavigationController attemptRotationToDeviceOrientation];
+     } else {
+         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+         [UINavigationController attemptRotationToDeviceOrientation];
+     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -201,12 +214,7 @@
 
     // negativeHeight
     UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
-    UILabel *negativeHeight;
-    if (@available(iOS 11.0, *)) {
-        negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,root.view.safeAreaInsets.top, 40, 15)];
-    } else {
-        negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
-    }
+    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, root.view.safeAreaInsets.top, 40, 15)];
     negativeHeight.textColor = UIColor.redColor;
 
     if (!self.project.header.landscapeMode) {
@@ -238,7 +246,6 @@
 {
     // Initialize scene
     Stage *stage = [[[[StageBuilder alloc] initWithProject:self.project] andFormulaManager:self.formulaManager] build];
-    
     if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         stage.scaleMode = SKSceneScaleModeFill;
     } else if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
@@ -258,7 +265,7 @@
     }
     
     [self hideLoadingView];
-    [self continueActionWithDuration:kFirstSwipeDuration];
+    [self continueActionWithDuration:UIDefines.firstSwipeDuration];
 }
 
 -(void)resaveLooks
@@ -309,7 +316,7 @@
 
 - (void)continueActionWithDuration:(CGFloat)duration
 {
-    if (duration != kFirstSwipeDuration) {
+    if (duration != UIDefines.firstSwipeDuration) {
         [self resumeAction];
     }
     
@@ -317,7 +324,7 @@
     animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
 
     [UIView animateWithDuration:animateDuration
-                          delay:kHideMenuViewDelay
+                          delay:UIDefines.hideMenuViewDelay
                         options: UIViewAnimationOptionTransitionFlipFromRight
                      animations:^{[self hideMenuView];}
                      completion:^(BOOL finished){
@@ -342,6 +349,9 @@
     });
     
     [self.navigationController popViewControllerAnimated:YES];
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = false;
+    [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+    [UINavigationController attemptRotationToDeviceOrientation];
 }
 
 - (void)restartAction
@@ -431,7 +441,7 @@
     }
     
     if (gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.firstGestureTouchPoint.x < kSlidingStartArea && self.menuOpen == NO ) {
+        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.firstGestureTouchPoint.x < UIDefines.slidingStartArea && self.menuOpen == NO ) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -456,7 +466,7 @@
     if (gesture.state == UIGestureRecognizerStateCancelled ||
         gesture.state == UIGestureRecognizerStateEnded ||
         gesture.state == UIGestureRecognizerStateFailed) {
-        if (translate.x > (self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        if (translate.x > (self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < UIDefines.slidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -468,7 +478,7 @@
                                  view.paused=YES;
                                  [self pauseAction];
                              }];
-        } else if(translate.x > 0.0 && translate.x <(self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        } else if(translate.x > 0.0 && translate.x <(self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < UIDefines.slidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut

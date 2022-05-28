@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,19 +24,15 @@ extension AskBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
         guard let question = self.question else { fatalError("Unexpected found nil.") }
-        guard let displayString = question.getDisplayString() else { fatalError("Unexpected found nil.") }
 
-        var questionString = displayString
-        if questionString.hasPrefix("'") {
-            questionString = String(questionString.dropFirst())
-        }
-        if questionString.hasSuffix("'") {
-            questionString = String(questionString.dropLast())
-        }
+        return CBInstruction.waitExecClosure { context, scheduler in
+            var displayString = context.formulaInterpreter.interpretString(question, for: self.script.object)
+            if let number = Double(displayString) {
+                displayString = number.displayString
+            }
 
-        return CBInstruction.waitExecClosure { _, scheduler in
             DispatchQueue.main.async {
-                AlertControllerBuilder.textFieldAlert(title: nil, message: questionString)
+                AlertControllerBuilder.textFieldAlert(title: nil, message: displayString)
                     .placeholder(kLocalizedAskBrickAnswer)
                     .addDefaultActionWithTitle(kLocalizedOK, handler: { answer in self.callbackSubmit(with: answer, scheduler: scheduler) })
                     .build()

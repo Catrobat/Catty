@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -519,9 +519,7 @@
     
     // 1
     Formula *position = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"20";
+    FormulaElement *formulaTree = [[FormulaElement alloc] initWithInteger:20];
     position.formulaTree = formulaTree;
     
     SetXBrick *setXBrickA = [[SetXBrick alloc] init];
@@ -544,15 +542,11 @@
     
     // 4
     Formula* yPosition =[[Formula alloc] init];
-    FormulaElement* formulaTree0  = [[FormulaElement alloc] init];
-    formulaTree0.type = NUMBER;
-    formulaTree0.value = @"20";
+    FormulaElement* formulaTree0  = [[FormulaElement alloc] initWithInteger:20];
     yPosition.formulaTree = formulaTree0;
     
     Formula* xPosition =[[Formula alloc] init];
-    FormulaElement* formulaTree1  = [[FormulaElement alloc] init];
-    formulaTree1.type = NUMBER;
-    formulaTree1.value = @"20";
+    FormulaElement* formulaTree1  = [[FormulaElement alloc] initWithInteger:20];
     xPosition.formulaTree = formulaTree1;
     
     PlaceAtBrick* placeAtXYA = [[PlaceAtBrick alloc]init];
@@ -566,7 +560,6 @@
     WaitBrick *waitBrickC = [[WaitBrick alloc] init];
     [script.brickList addObject:waitBrickC];
     addedBricks++;
-    
 
     return addedBricks;
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -262,5 +262,21 @@ final class FormulaTest: XCTestCase {
         formula.displayString = formattedString as NSString
         let displayString = formula.getDisplayString()
         XCTAssertEqual(displayString, formattedString)
+    }
+
+    func testInitWithUserVariable() {
+        let variable = UserVariable(name: "variableName")
+        let formula = Formula(userVariable: variable)
+
+        XCTAssertEqual(ElementType.USER_VARIABLE, formula?.formulaTree.type)
+        XCTAssertEqual(variable.name, formula?.formulaTree.value)
+    }
+
+    func testInitWithUserList() {
+        let list = UserList(name: "listName")
+        let formula = Formula(userList: list)
+
+        XCTAssertEqual(ElementType.USER_LIST, formula?.formulaTree.type)
+        XCTAssertEqual(list.name, formula?.formulaTree.value)
     }
 }

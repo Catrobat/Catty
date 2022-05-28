@@ -23,7 +23,7 @@
 "acceleration y" = "przyśpieszenie y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "przyspieszenie_z";
+"acceleration z" = "przyspieszenie z";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "czujnik przyspieszenia";
@@ -50,6 +50,9 @@
 "Add sound" = "Dodaj dźwięk";
 
 /* No comment provided by engineer. */
+"Add trusted domain" = "Dodaj zaufaną domenę";
+
+/* No comment provided by engineer. */
 "Agree" = "Zgadzam się";
 
 /* No comment provided by engineer. */
@@ -67,11 +70,20 @@
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "Pozwól aplikacji na automatyczne wysyłanie raportów o awariach";
 
+/* No comment provided by engineer. */
+"Allow web access" = "Zezwalaj na dostęp do sieci";
+
 /* paint */
 "Alpha" = "Alfa";
 
 /* No comment provided by engineer. */
 "altitude" = "wysokość npm";
+
+/* No comment provided by engineer. */
+"Always" = "Zawsze";
+
+/* No comment provided by engineer. */
+"Always allow web access" = "Zawsze zezwalaj na dostęp do sieci";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "Obraz o tej samej nazwie już istnieje, spróbuj ponownie.";
@@ -89,10 +101,16 @@
 "and" = "i";
 
 /* No comment provided by engineer. */
+"and store answer in" = "i przechowaj odpowiedź w";
+
+/* No comment provided by engineer. */
 "and store written answer in " = "i przechowaj zapisaną odpowiedź w";
 
 /* No comment provided by engineer. */
 "and wait" = "i czekaj";
+
+/* No comment provided by engineer. */
+"and width" = "i szerokości";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Animuj bloki";
@@ -174,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Bassoon" = "Fagot";
+
+/* No comment provided by engineer. */
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Bądź bardzo ostrożny przed dopuszczeniem dostępu, ponieważ link może ujawnić Twoje dane osobowe, takie jak dokładna lokalizacja geograficzna lub dowolny tekst, który został wprowadzony do złośliwych innych osób lub do społeczeństwa. Zobacz naszą wiki, aby uzyskać więcej informacji, dlaczego może to być niezwykle niebezpieczne. Zawsze zezwalając na dostęp, nie zostaniesz ponownie poproszony o potwierdzenie adresów internetowych z tej domeny. Jeśli chcesz cofnąć to uprawnienie później, możesz usunąć domenę z listy zaufanych domen w ustawieniach tej aplikacji.";
 
 /* No comment provided by engineer. */
 "becomes true" = "staje się prawdą";
@@ -359,7 +380,7 @@
 "Copy actors or objects" = "Kopiuj aktorów lub obiektów";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Skopiuj klocek";
+"Copy brick" = "Skopiuj bloczek";
 
 /* No comment provided by engineer. */
 "Copy looks" = "Skopiuj wyglądy";
@@ -372,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Utwórz konto";
+
+/* No comment provided by engineer. */
+"Create as list" = "Stwórz jako listę";
 
 /* No comment provided by engineer. */
 "Create patterns for stiching machines" = "Twórz wzory dla maszyn do szycia";
@@ -410,7 +434,7 @@
 "Delete backgrounds" = "Usuń tła";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Usuń klocek";
+"Delete brick" = "Usuń bloczek";
 
 /* No comment provided by engineer. */
 "Delete condition" = "Usuń warunek";
@@ -437,7 +461,7 @@
 "Delete sounds" = "Usuń dźwięki";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "Usunąć te klocki?";
+"Delete these bricks?" = "Usunąć te bloczki?";
 
 /* No comment provided by engineer. */
 "Delete these conditions?" = "Usunąć te warunki?";
@@ -477,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "Deletion mode" = "Tryb usuwania";
+
+/* No comment provided by engineer. */
+"Deny" = "Odmów";
 
 /* No comment provided by engineer. */
 "Description" = "Opis";
@@ -536,6 +563,12 @@
 "Download" = "Pobieranie";
 
 /* No comment provided by engineer. */
+"Download again" = "Pobierz ponownie";
+
+/* No comment provided by engineer. */
+"Download too big" = "Pobieranie za duże";
+
+/* No comment provided by engineer. */
 "Downloads" = "Pobrane";
 
 /* No comment provided by engineer. */
@@ -557,7 +590,7 @@
 "Edit backgrounds" = "Edytuj tła";
 
 /* Action sheet menu title */
-"Edit brick" = "Edytuj klocek";
+"Edit brick" = "Edytuj bloczek";
 
 /* No comment provided by engineer. */
 "Edit formula" = "Edytuj formułę";
@@ -582,6 +615,9 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "Edytuj dźwięki";
+
+/* No comment provided by engineer. */
+"Edit trusted domain" = "Edytuj zaufaną domenę";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "Gitara elektryczna";
@@ -677,16 +713,7 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face detected" = "wykryto twarz";
-
-/* No comment provided by engineer. */
-"faceposition x" = "położenie twarzy x";
-
-/* No comment provided by engineer. */
-"faceposition y" = "położenie twarzy y";
-
-/* No comment provided by engineer. */
-"facesize" = "rozmiar twarzy";
+"Face detection" = "Wykrywanie twarzy";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "Nie można zaimportować elementu";
@@ -717,6 +744,18 @@
 
 /* paint */
 "Fill" = "Zamaluj";
+
+/* No comment provided by engineer. */
+"first face size" = "rozmiar pierwszej twarzy";
+
+/* No comment provided by engineer. */
+"first face visible" = "widoczna pierwsza twarz";
+
+/* No comment provided by engineer. */
+"first face x position" = "pozycja x pierwszej twarzy";
+
+/* No comment provided by engineer. */
+"first face y position" = "pozycja y pierwszej twarzy";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Wyłączenie latarki";
@@ -756,9 +795,6 @@
 
 /* No comment provided by engineer. */
 "Fr" = "Pt";
-
-/* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Często używane";
 
 /* No comment provided by engineer. */
 "Friday" = "Piątek";
@@ -801,6 +837,12 @@
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "czujnik-żyroskop";
+
+/* No comment provided by engineer. */
+"head top x" = "góra głowy x";
+
+/* No comment provided by engineer. */
+"head top y" = "góra głowy y";
 
 /* No comment provided by engineer. */
 "Hello!" = "Cześć!";
@@ -851,6 +893,9 @@
 "inclination y" = "nachylenie y";
 
 /* No comment provided by engineer. */
+"index of item" = "indeks przedmiotu";
+
+/* No comment provided by engineer. */
 "Information" = "Informacje";
 
 /* No comment provided by engineer. */
@@ -858,6 +903,9 @@
 
 /* paint */
 "Inserted" = "Dodano";
+
+/* No comment provided by engineer. */
+"Internet" = "Internet";
 
 /* No comment provided by engineer. */
 "into list" = "do listy";
@@ -914,7 +962,7 @@
 "Last access" = "Ostatni dostęp";
 
 /* No comment provided by engineer. */
-"last stage touch index" = "indeks_ostatniego_dotknięcia_ekranu";
+"last stage touch index" = "indeks ostatniego dotknięcia ekranu";
 
 /* No comment provided by engineer. */
 "latitude" = "szerokość geograficzna";
@@ -932,6 +980,48 @@
 "Left" = "W lewo";
 
 /* No comment provided by engineer. */
+"left ear x" = "lewe ucho x";
+
+/* No comment provided by engineer. */
+"left ear y" = "lewe ucho y";
+
+/* No comment provided by engineer. */
+"left eye center x" = "x środka lewego oka";
+
+/* No comment provided by engineer. */
+"left eye center y" = "y środka lewego oka";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "lewe oko wewnętrzne x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "lewe oko wewnętrzne y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "lewe oko zewnętrzne x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "lewe oko zewnętrzne y";
+
+/* No comment provided by engineer. */
+"left eyebrow center x" = "środkowa lewa brew x";
+
+/* No comment provided by engineer. */
+"left eyebrow center y" = "środkowa lewa brew y";
+
+/* No comment provided by engineer. */
+"left eyebrow inner x" = "wewnętrzna lewa brew x";
+
+/* No comment provided by engineer. */
+"left eyebrow inner y" = "wewnętrzna lewa brew y";
+
+/* No comment provided by engineer. */
+"left eyebrow outer x" = "zewnętrzna lewa brew x";
+
+/* No comment provided by engineer. */
+"left eyebrow outer y" = "zewnętrzna lewa brew y";
+
+/* No comment provided by engineer. */
 "left-right only" = "tylko lewo-prawo";
 
 /* No comment provided by engineer. */
@@ -945,6 +1035,9 @@
 
 /* paint */
 "Line" = "Linia";
+
+/* No comment provided by engineer. */
+"List name" = "Nazwa listy";
 
 /* No comment provided by engineer. */
 "List name:" = "Nazwa listy:";
@@ -968,7 +1061,7 @@
 "location" = "lokalizacja";
 
 /* No comment provided by engineer. */
-"location accuracy" = "dokładność_lokalizacji";
+"location accuracy" = "dokładność lokalizacji";
 
 /* No comment provided by engineer. */
 "Logic" = "Logika";
@@ -1094,13 +1187,25 @@
 "Motion properties" = "Właściwości ruchu";
 
 /* No comment provided by engineer. */
+"mouth left corner x" = "usta lewy róg x";
+
+/* No comment provided by engineer. */
+"mouth left corner y" = "usta lewy róg y";
+
+/* No comment provided by engineer. */
+"mouth right corner x" = "usta prawy róg x";
+
+/* No comment provided by engineer. */
+"mouth right corner y" = "usta prawy róg y";
+
+/* No comment provided by engineer. */
 "Move" = "Przesuń o";
 
 /* No comment provided by engineer. */
 "Move actors or objects" = "Przenieś aktorów lub obiekty";
 
 /* No comment provided by engineer. */
-"Move brick" = "Przenieś klocek";
+"Move brick" = "Przenieś bloczek";
 
 /* No comment provided by engineer. */
 "Move looks" = "Przenieś wyglądy";
@@ -1193,6 +1298,12 @@
 "No whitespace character allowed" = "Znak spacji jest niedozwolony";
 
 /* No comment provided by engineer. */
+"nose x" = "nos x";
+
+/* No comment provided by engineer. */
+"nose y" = "nos y";
+
+/* No comment provided by engineer. */
 "not" = "nie";
 
 /* No comment provided by engineer. */
@@ -1214,7 +1325,7 @@
 "November" = "listopad";
 
 /* No comment provided by engineer. */
-"number of items" = "liczba_elementów";
+"number of items" = "liczba elementów";
 
 /* No comment provided by engineer. */
 "Numbers" = "Liczby";
@@ -1239,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "on" = "włącz";
+
+/* No comment provided by engineer. */
+"Once" = "Tylko raz";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "tylko 15 znaków dozwolonych";
@@ -1379,6 +1493,9 @@
 "Pointer" = "Wskaźnik";
 
 /* No comment provided by engineer. */
+"Pose detection" = "Wykrywanie pozycji";
+
+/* No comment provided by engineer. */
 "position x" = "pozycja x";
 
 /* No comment provided by engineer. */
@@ -1428,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "RE" = "RE";
+
+/* Title of brick category where the user can see his or her recently used bricks. */
+"Recently used" = "Ostatnio używane";
 
 /* No comment provided by engineer. */
 "Recording" = "Nagranie";
@@ -1492,6 +1612,48 @@
 /* No comment provided by engineer. */
 "Right" = "W prawo";
 
+/* No comment provided by engineer. */
+"right ear x" = "prawe ucho x";
+
+/* No comment provided by engineer. */
+"right ear y" = "prawe ucho y";
+
+/* No comment provided by engineer. */
+"right eye center x" = "x środka prawego oka";
+
+/* No comment provided by engineer. */
+"right eye center y" = "y środka prawego oka";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "prawe oko wewnętrzne x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "prawe oko wewnętrzne y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "prawe oko zewnętrzne y";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "prawe oko zewnętrzne y";
+
+/* No comment provided by engineer. */
+"right eyebrow center x" = "środkowa prawa brew x";
+
+/* No comment provided by engineer. */
+"right eyebrow center y" = "środkowa prawa brew y";
+
+/* No comment provided by engineer. */
+"right eyebrow inner x" = "wewnętrzna prawa brew x";
+
+/* No comment provided by engineer. */
+"right eyebrow inner y" = "wewnętrzna prawa brew y";
+
+/* No comment provided by engineer. */
+"right eyebrow outer x" = "zewnętrzna prawa brew x";
+
+/* No comment provided by engineer. */
+"right eyebrow outer y" = "zewnętrzna prawa brew y";
+
 /* paint */
 "Rotate" = "Obróć";
 
@@ -1538,6 +1700,18 @@
 "second " = "s. ";
 
 /* No comment provided by engineer. */
+"second face size" = "rozmiar drugiej twarzy";
+
+/* No comment provided by engineer. */
+"second face visible" = "widoczna druga twarz";
+
+/* No comment provided by engineer. */
+"second face x position" = "pozycja x drugiej twarzy";
+
+/* No comment provided by engineer. */
+"second face y position" = "pozycja y drugiej twarzy";
+
+/* No comment provided by engineer. */
 "seconds" = "s.";
 
 /* No comment provided by engineer. */
@@ -1550,10 +1724,13 @@
 "Select Arduino" = "Wybierz Arduino";
 
 /* No comment provided by engineer. */
-"Select brick category" = "Wybierz kategorię klocka";
+"Select brick category" = "Wybierz kategorię bloczka";
 
 /* No comment provided by engineer. */
 "Select categories" = "Wybierz kategorie";
+
+/* No comment provided by engineer. */
+"Select file" = "Wybierz plik";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Wybierz operator logiczny";
@@ -1566,6 +1743,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Wybierz Phiro";
+
+/* No comment provided by engineer. */
+"Send web request to" = "Wyślij żądanie do strony internetowej";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Wyślij anonimowe raporty o awariach";
@@ -1593,6 +1773,12 @@
 
 /* No comment provided by engineer. */
 "Set background" = "Ustaw tło";
+
+/* No comment provided by engineer. */
+"Set background and wait" = "Ustaw tło i czekaj";
+
+/* No comment provided by engineer. */
+"Set background to number" = "Ustaw tło na numer";
 
 /* No comment provided by engineer. */
 "Set brightness " = "Ustaw jasność ";
@@ -1641,6 +1827,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Ustawienia";
+
+/* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
+"Sew up" = "Szyj";
 
 /* No comment provided by engineer. */
 "Show" = "Pokaż";
@@ -1691,10 +1880,10 @@
 "square root" = "pierwiastek kwadratowy";
 
 /* No comment provided by engineer. */
-"stage is touched" = "dotknięto_ekran";
+"stage is touched" = "dotyka ekranu";
 
 /* No comment provided by engineer. */
-"stage touch x" = "x_dotknięcia_ekranu";
+"stage touch x" = "x dotknięcia ekranu";
 
 /* No comment provided by engineer. */
 "stage touch y" = "y dotknięcia ekranu";
@@ -1706,10 +1895,16 @@
 "Stamped" = "Stempluj";
 
 /* No comment provided by engineer. */
+"Start running stitch with length" = "Szyj szwem o długości";
+
+/* No comment provided by engineer. */
 "Start sound" = "Zagraj dźwięk";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Uruchom dźwięk i czekaj";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Szyj zygzakiem o długości";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Blaszany bęben";
@@ -1725,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Zatrzymaj wszystkie dźwięki";
+
+/* No comment provided by engineer. */
+"Stop current stitch" = "Zakończ bieżący ścieg";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Zatrzymaj silnik Phiro";
@@ -1865,6 +2063,15 @@
 "touch position" = "Dotknięta pozycja";
 
 /* No comment provided by engineer. */
+"touches actor or object" = "dotyka aktora lub obiekt";
+
+/* No comment provided by engineer. */
+"touches edge" = "dotyka krawędzi";
+
+/* No comment provided by engineer. */
+"touches finger" = "dotyka palca";
+
+/* No comment provided by engineer. */
 "transparency" = "przezroczystość";
 
 /* No comment provided by engineer. */
@@ -1899,12 +2106,6 @@
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Nie można zagrać tego dźwięku! \nMoże jest to nieprawidłowy dźwięk lub plik jest uszkodzony.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Nie można zagrać wybranego dźwięku. Twoje urządzenie jest w trybie wyciszenia. Wyłącz tryb wyciszenia przełącznikiem po lewej stronie iPhone'a i naciśnij ponownie graj.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Nie można zagrać wybranego dźwięku. Twoje urządzenie jest w trybie wyciszenia. Wyłącz tryb wyciszenia przełącznikiem po prawej stronie iPhone'a i naciśnij ponownie graj.";
 
 /* paint */
 "underline" = "podkreślony";
@@ -1958,10 +2159,16 @@
 "Use Phiro bricks" = "Użyj bloków Phiro";
 
 /* No comment provided by engineer. */
+"user language" = "język użytkownika";
+
+/* No comment provided by engineer. */
 "Username" = "Nazwa użytkownika";
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "Nazwa użytkownika nie może być pusta";
+
+/* No comment provided by engineer. */
+"Variable name" = "Nazwa zmiennej";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Nazwa zmiennej:";
@@ -2000,9 +2207,6 @@
 "Views" = "Widoki";
 
 /* No comment provided by engineer. */
-"Visual sensors" = "Czujniki widzenia";
-
-/* No comment provided by engineer. */
 "Wait" = "Czekaj";
 
 /* No comment provided by engineer. */
@@ -2010,6 +2214,9 @@
 
 /* No comment provided by engineer. */
 "We" = "Śr";
+
+/* No comment provided by engineer. */
+"Web access" = "Dostęp do sieci";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Środa";
@@ -2045,7 +2252,7 @@
 "Width selection" = "Wybór szerokości";
 
 /* No comment provided by engineer. */
-"with" = "na";
+"with" = "z";
 
 /* No comment provided by engineer. */
 "Wooden Flute" = "Drewniany flet";

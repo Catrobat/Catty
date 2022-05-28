@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class AccelerationZSensor: NSObject, DeviceSensor {
+class AccelerationZSensor: DeviceDoubleSensor {
 
     @objc static let tag = "Z_ACCELERATION"
     static let name = kUIFESensorAccelerationZ

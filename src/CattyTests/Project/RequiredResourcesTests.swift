@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,13 +29,18 @@ final class RequiredResourcesTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let sensors = CatrobatSetup.registeredSensors(stageSize: CGSize.zero,
+                                                      motionManager: MotionManagerMock(),
+                                                      locationManager: LocationManagerMock(),
+                                                      visualDetectionManager: VisualDetectionManagerMock(),
+                                                      audioManager: AudioManagerMock(),
+                                                      touchManager: TouchManagerMock(),
+                                                      bluetoothService: BluetoothService.sharedInstance())
 
-    }
+        let functions = CatrobatSetup.registeredFunctions(touchManager: TouchManagerMock(), bluetoothService: BluetoothService.sharedInstance())
 
-    override func tearDown() {
-        //Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+        _ = SensorManager(sensors: sensors, landscapeMode: false)
+        _ = FunctionManager(functions: functions)
     }
 
     func getProjectWithOneSpriteWithBrick(brick: Brick?) -> Project? {
@@ -320,6 +325,14 @@ final class RequiredResourcesTests: XCTestCase {
 
         let resources = project?.getRequiredResources()
         XCTAssertEqual(resources, ResourceType.loudness.rawValue, "Resourses ChangeVariableBrick not correctly calculated")
+    }
+
+    func testWebRequestBrickResources() {
+        let brick = WebRequestBrick()
+        let project = getProjectWithOneSpriteWithBrick(brick: brick)
+
+        let resources = project?.getRequiredResources()
+        XCTAssertEqual(resources, ResourceType.internet.rawValue, "Resourses WebRequestBrick not correctly calculated")
     }
 
     // MARK: Sound

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ class WhenConditionScript: Script, BrickFormulaProtocol {
 
     init(condition: Formula) {
         self.condition = condition
-        self.preCondition = false
+        self.preCondition = true
         super.init()
     }
 
@@ -39,7 +39,7 @@ class WhenConditionScript: Script, BrickFormulaProtocol {
 
     override public required init() {
         self.condition = Formula(integer: 1)
-        self.preCondition = false
+        self.preCondition = true
         super.init()
     }
 

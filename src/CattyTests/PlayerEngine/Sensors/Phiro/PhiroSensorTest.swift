@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import BluetoothHelper
 import XCTest
 
 @testable import Pocket_Code
@@ -33,8 +34,6 @@ final class PhiroSensorTest: XCTestCase {
     var phiroFrontRight: PhiroFrontRightSensor!
     var phiroBottomLeft: PhiroBottomLeftSensor!
     var phiroBottomRight: PhiroBottomRightSensor!
-
-    // TODO: other tests - raw value and conversions
 
     override func setUp() {
         super.setUp()
@@ -131,5 +130,33 @@ final class PhiroSensorTest: XCTestCase {
         XCTAssertEqual(100, phiroFrontRight.convertToStandardized(rawValue: 100))
         XCTAssertEqual(100, phiroBottomLeft.convertToStandardized(rawValue: 100))
         XCTAssertEqual(100, phiroBottomRight.convertToStandardized(rawValue: 100))
+    }
+
+    func testRawValue() {
+        let device = PhiroDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock.create(), advertisements: [String: String](), rssi: 0))
+        bluetoothService.phiro = device
+
+        XCTAssertEqual(0, phiroSideLeft.rawValue(landscapeMode: false))
+        XCTAssertEqual(0, phiroSideLeft.rawValue(landscapeMode: true))
+
+        bluetoothService.phiro?.didReceiveAnalogMessage(14, value: 1)
+        XCTAssertEqual(1, phiroSideRight.rawValue(landscapeMode: false))
+        XCTAssertEqual(1, phiroSideRight.rawValue(landscapeMode: true))
+
+        bluetoothService.phiro?.didReceiveAnalogMessage(18, value: 2)
+        XCTAssertEqual(2, phiroFrontLeft.rawValue(landscapeMode: false))
+        XCTAssertEqual(2, phiroFrontLeft.rawValue(landscapeMode: true))
+
+        bluetoothService.phiro?.didReceiveAnalogMessage(15, value: 3)
+        XCTAssertEqual(3, phiroFrontRight.rawValue(landscapeMode: false))
+        XCTAssertEqual(3, phiroFrontRight.rawValue(landscapeMode: true))
+
+        bluetoothService.phiro?.didReceiveAnalogMessage(17, value: 4)
+        XCTAssertEqual(4, phiroBottomLeft.rawValue(landscapeMode: false))
+        XCTAssertEqual(4, phiroBottomLeft.rawValue(landscapeMode: true))
+
+        bluetoothService.phiro?.didReceiveAnalogMessage(16, value: 5)
+        XCTAssertEqual(5, phiroBottomRight.rawValue(landscapeMode: false))
+        XCTAssertEqual(5, phiroBottomRight.rawValue(landscapeMode: true))
     }
 }

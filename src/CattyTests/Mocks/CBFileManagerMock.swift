@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,9 +25,11 @@
 final class CBFileManagerMock: CBFileManager {
     var dataWritten: [String: Data]
     var downloadedProjectsStored: [String: String]
+    var readWillFail = false
+    var writeWillFail = false
 
-    private var existingFiles: [String]
-    private var existingDirectories: [String]
+    var existingFiles: [String]
+    var existingDirectories: [String]
     private var zipData: Data?
 
     init(filePath: [String], directoryPath: [String]) {
@@ -89,6 +91,17 @@ final class CBFileManagerMock: CBFileManager {
 
     override func storeDownloadedProject(_ data: Data!, withID projectId: String!, andName projectName: String!) -> Bool {
         downloadedProjectsStored[projectId] = projectName
+        return true
+    }
+
+    override func read(_ path: String!) -> Data? {
+        readWillFail == true ? nil : super.read(path)
+    }
+
+    override func write(_ data: Data, toPath: String!) -> Bool {
+        if writeWillFail {
+            return false
+        }
         return true
     }
 }

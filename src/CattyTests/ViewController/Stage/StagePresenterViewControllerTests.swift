@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,17 +31,19 @@ final class StagePresenterViewControllerTest: XCTestCase {
     var skView: SKView!
     var project: Project!
     var navigationController: NavigationControllerMock!
+    var projectManager: ProjectManager!
 
     override func setUp() {
         super.setUp()
 
         vc = StagePresenterViewControllerMock()
+        projectManager = ProjectManager.shared
 
         navigationController = NavigationControllerMock()
         navigationController.view = UIView()
 
         skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
-        project = ProjectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
+        project = projectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
     }
 
     func testNotification() {
@@ -52,7 +54,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewPortraitMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
+        stagePresenterViewController!.project = projectManager.createProject(name: "testProject", projectId: "")
         stagePresenterViewController!.project.header.landscapeMode = false
 
         stagePresenterViewController!.setUpGridView()
@@ -67,7 +69,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewLandscapeMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
+        stagePresenterViewController!.project = projectManager.createProject(name: "testProject", projectId: "")
         stagePresenterViewController!.project.header.landscapeMode = true
 
         stagePresenterViewController!.setUpGridView()
@@ -82,7 +84,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testCheckResourcesAndPushViewController() {
         CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
-        Util.setLastProjectWithName(kDefaultProjectBundleName, projectID: nil)
+        Util.setLastProjectWithName(kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)
 
         XCTAssertNil(navigationController.currentViewController)
         XCTAssertEqual(0, navigationController.view.subviews.count)
@@ -90,10 +92,10 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
         vc.checkResourcesAndPushViewController(to: navigationController)
 
-        expect(self.navigationController.currentViewController).toEventually(equal(vc))
-        expect(self.navigationController.view.subviews.count).toEventually(equal(1))
-        expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
-        expect(self.vc.hideLoadingViewCalls).toEventually(equal(0))
+        expect(self.navigationController.currentViewController).toEventually(equal(vc), timeout: .seconds(5))
+        expect(self.navigationController.view.subviews.count).toEventually(equal(1), timeout: .seconds(5))
+        expect(self.vc.showLoadingViewCalls).toEventually(equal(1), timeout: .seconds(5))
+        expect(self.vc.hideLoadingViewCalls).toEventually(equal(0), timeout: .seconds(5))
     }
 
     func testCheckResourcesAndPushViewControllerInvalidProject() {
@@ -103,10 +105,10 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
         vc.checkResourcesAndPushViewController(to: navigationController)
 
-        expect(self.navigationController.currentViewController).toEventually(beNil())
-        expect(self.navigationController.view.subviews.count).toEventually(equal(1))
-        expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
-        expect(self.vc.hideLoadingViewCalls).toEventually(equal(1))
+        expect(self.navigationController.currentViewController).toEventually(beNil(), timeout: .seconds(3))
+        expect(self.navigationController.view.subviews.count).toEventually(equal(1), timeout: .seconds(3))
+        expect(self.vc.showLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
+        expect(self.vc.hideLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
     }
 
     func testShareDST() {

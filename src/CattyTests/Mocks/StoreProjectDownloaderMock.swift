@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,8 +27,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloader {
 
     var progress: Float = 0
     var project: StoreProject?
-    var collectionText: StoreProjectCollection.StoreProjectCollectionText?
-    var collectionNumber: StoreProjectCollection.StoreProjectCollectionNumber?
+    var featuredProject: StoreFeaturedProject?
     var projectData: Data?
     var error: StoreProjectDownloaderError?
     var expectation: XCTestExpectation?
@@ -44,16 +43,35 @@ final class StoreProjectDownloaderMock: StoreProjectDownloader {
         }
     }
 
-    override func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchSearchQuery(searchTerm: String, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collectionNumber, self.error)
+            if let project = self.project {
+                completion([project], self.error)
+            } else {
+                completion([StoreProject](), self.error)
+            }
             self.expectation?.fulfill()
         }
     }
 
-    override func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void) {
+    override func fetchProjects(for type: ProjectType, offset: Int, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collectionText, self.error)
+            if let project = self.project {
+                completion([project], self.error)
+            } else {
+                completion([StoreProject](), self.error)
+            }
+            self.expectation?.fulfill()
+        }
+    }
+
+    override func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            if let featuredProject = self.featuredProject {
+                completion([featuredProject], self.error)
+            } else {
+                completion([StoreFeaturedProject](), self.error)
+            }
             self.expectation?.fulfill()
         }
     }

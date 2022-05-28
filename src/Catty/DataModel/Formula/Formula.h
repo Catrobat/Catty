@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
 
 @class FormulaElement;
 @class SpriteObject;
+@class UserList;
 
 @interface Formula : NSObject<CBMutableCopying>
 
@@ -38,6 +39,8 @@
 - (id)initWithDouble:(double)value;
 - (id)initWithFloat:(float)value;
 - (id)initWithString:(NSString*)value;
+- (id)initWithUserVariable:(UserVariable*)variable;
+- (id)initWithUserList:(UserList*)list;
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
 - (BOOL)isSingularNumber;

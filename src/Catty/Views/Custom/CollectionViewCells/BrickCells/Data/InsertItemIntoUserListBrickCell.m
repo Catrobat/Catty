@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 #import "InsertItemIntoUserListBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InsertItemIntoUserListBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel1;
@@ -32,7 +33,7 @@
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight3h;
+    return UIDefines.brickHeight3h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

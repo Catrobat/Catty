@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,9 @@ class SpriteKitDefines: NSObject {
     static let defaultPenColor = UIColor(red: 0, green: 0, blue: 255)
     static let penShapeNodeName = "penShapeNode"
     static let stampedSpriteNodeName = "stampedSpriteNode"
+    static let physicsNodeName = "physicsNodeName"
+    static let physicsSubnodeSize = 200
+    @objc static let physicsShowBody = false
 
     static let defaultValueShowVariable = "0"
 
@@ -44,4 +47,6 @@ class SpriteKitDefines: NSObject {
     static let defaultStitchingZPosition = CGFloat(0)
     static let defaultStitchingColor = UIColor(red: 0, green: 0, blue: 0)
     static let stitchingCircleRadius = CGFloat(3.0)
+
+    static let maxLengthSKLabelNode = 160
 }

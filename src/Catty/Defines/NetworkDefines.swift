@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,16 +24,19 @@
 class NetworkDefines: NSObject {
 
     // MARK: Base
+    static let shareUrlProduction = "https://share.catrob.at/"
+    static let shareUrlTesting = "https://web-test.catrob.at/"
 
-    static let baseUrlProduction = "https://share.catrob.at/pocketcode/"
-    static let baseUrlTesting = "https://web-test.catrob.at/pocketcode/"
-    static var baseUrl: String {
+    static var shareUrl: String {
         #if DEBUG
-        return baseUrlTesting
+        return shareUrlTesting
         #else
-        return baseUrlProduction
+        return shareUrlProduction
         #endif
     }
+
+    static let baseUrl = shareUrl.appending("pocketcode/")
+    static let newApiEndpoint = shareUrl.appending("api/")
 
     // MARK: AppStore
 
@@ -59,20 +62,17 @@ class NetworkDefines: NSObject {
     static var downloadUrl: String { baseUrl.appending("download") }
     static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
     static var helpUrl: String { "https://catrob.at/help" }
-    static var projectDetailsUrlPrefix: String { baseUrlProduction.appending("project/") }
 
-    static let connectionSearch = "search.json"
     static let connectionUpload = "upload.json"
     static let connectionIDQuery = "getInfoById.json"
-    static let connectionMostViewed = "mostViewed.json"
-    static let connectionMostDownloaded = "mostDownloaded.json"
-    static let connectionFeatured = "ios-featured.json"
-    static let connectionRecent = "recent.json"
 
-    static let projectsOffset = "offset="
-    static let projectsLimit = "limit="
-    static let maxVersion = "max_version="
-    static let tagLanguage = "language="
+    static let projectsOffset = "offset"
+    static let projectsLimit = "limit"
+    static let maxVersion = "max_version"
+    static let tagLanguage = "language"
+    static let projectQuery = "query"
+    static let projectCategory = "category"
+    static let featuredPlatform = "platform"
 
     // MARK: MediaLibrary
 
@@ -87,14 +87,30 @@ class NetworkDefines: NSObject {
 
     // MARK: FeaturedProjectStoreViewController
 
-    static var connectionHost: String { baseUrl.appending("api/projects") }
-    static var featuredImageBaseUrl: String { baseUrl.replacingOccurrences(of: "/pocketcode/", with: "/") }
+    static var apiEndpointProjects = newApiEndpoint.appending("projects")
+    static var apiEndpointProjectDetails = newApiEndpoint.appending("project")
+    static var apiEndpointFeatured = apiEndpointProjects.appending("/featured")
+    static var apiEndpointSearch = apiEndpointProjects.appending("/search")
+
     static let chartProjectsMaxResults = 10
     static let recentProjectsMaxResults = 20
     static let searchStoreMaxResults = 50
+
+    static let searchLookupDelayInSeconds = 0.3
+
+    static let currentPlatform = "ios"
+
     @objc static let reportProjectNoteMaxLength = 100
     @objc static let reportProjectNoteMinLength = 3
 
     @objc static let kUserIsLoggedIn = "userIsLoggedIn"
     @objc static let kUserLoginToken = "userLoginToken"
+
+    // MARK: WebRequestDownloader
+
+    static let kWebRequestMaxDownloadSizeInBytes = 1000000 // = 1MB
+    static let kNumberOfConcurrentDownloads = 10
+
+    // MARK: Wiki
+    static let kWebRequestWikiURL = "https://wiki.catrobat.org/bin/view/Documentation/Web%20requests/"
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -59,11 +59,7 @@ final class ChangeVariableBrickTests: XCTestCase {
     func testChangeVariableBrickUserVariablesNil() {
         spriteNode.position = CGPoint(x: 0, y: 0)
 
-        let formula = Formula()
-        let formulaTree = FormulaElement()
-        formulaTree.type = ElementType.NUMBER
-        formulaTree.value = "0"
-        formula.formulaTree = formulaTree
+        let formula = Formula(integer: 0)
 
         let userDataContainer = UserDataContainer()
         spriteObject.scene.project!.userData = userDataContainer

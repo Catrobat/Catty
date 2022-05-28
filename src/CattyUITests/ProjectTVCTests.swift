@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ class ProjectTVCTests: XCTestCase {
 
     func testCreateObjectWithMaxLength() {
         let projectName = "projectName"
-        let objectName = String(repeating: "a", count: 250)
+        let objectName = String(repeating: "a", count: 25)
 
         createProject(name: projectName, in: app)
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
@@ -45,7 +45,7 @@ class ProjectTVCTests: XCTestCase {
 
     func testCreateObjectWithMaxLengthPlusOne() {
         let projectName = "projectName"
-        let objectName = String(repeating: "a", count: 250 + 1)
+        let objectName = String(repeating: "a", count: 25 + 1)
 
         //Create new Project
         app.tables.staticTexts[kLocalizedNewProject].tap()

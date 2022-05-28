@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -509,19 +509,13 @@ UITextFieldDelegate>
                               maxHeight:[Util screenHeight]];
         
         // add image to object now
-        NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
         NSString *mediaType = info[UIImagePickerControllerMediaType];
         NSDebug(@"Writing file to disk");
         if ([mediaType isEqualToString:@"public.image"]) {
             if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary || picker.sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum) {
-                PHFetchResult *result = [PHAsset fetchAssetsWithALAssetURLs:@[assetURL] options:nil];
-                PHAsset *asset;
-                if (result != nil && result.count > 0) {
-                    // get last photo from Photos
-                    asset = [result lastObject];
-                }
+                PHAsset *asset = info[UIImagePickerControllerPHAsset];
                 if (asset) {
-                    // get photo info from this asset IOS8 hack?!
+                    // get photo info from this asset
                     PHImageRequestOptions * imageRequestOptions = [[PHImageRequestOptions alloc] init];
                     imageRequestOptions.synchronous = YES;
                     [[PHImageManager defaultManager]

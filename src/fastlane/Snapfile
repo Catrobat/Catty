@@ -6,7 +6,9 @@ devices([
 languages([
   "en-US",
   "de-DE",
-  "ru-RU"
+  "ru-RU",
+  "pt-BR",
+  "es"
 ])
 
 

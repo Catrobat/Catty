@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,30 +28,33 @@ final class FingerTouchedSensorTest: XCTestCase {
 
     var touchManager: TouchManagerMock!
     var sensor: FingerTouchedSensor!
+    var spriteObject: SpriteObject!
 
     override func setUp() {
         super.setUp()
         touchManager = TouchManagerMock()
         sensor = FingerTouchedSensor { [weak self] in self?.touchManager }
+        spriteObject = SpriteObject()
     }
 
     override func tearDown() {
         sensor = nil
         touchManager = nil
+        spriteObject = nil
         super.tearDown()
     }
 
     func testDefaultRawValue() {
         let sensor = FingerTouchedSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(for: self.spriteObject), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         touchManager.isScreenTouched = true
-        XCTAssertEqual(1.0, sensor.rawValue())
+        XCTAssertEqual(1.0, sensor.rawValue(for: self.spriteObject))
 
         touchManager.isScreenTouched = false
-        XCTAssertEqual(0.0, sensor.rawValue())
+        XCTAssertEqual(0.0, sensor.rawValue(for: self.spriteObject))
     }
 
     func testConvertToStandardized() {

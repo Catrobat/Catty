@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -93,7 +93,7 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         touchHelperView = UIView(frame: CGRect.zero)
         touchHelperView?.backgroundColor = UIColor.clear
         progressView.tintColor = UIColor.navTint
-        automaticallyAdjustsScrollViewInsets = false
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -127,9 +127,9 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         super.viewWillLayoutSubviews()
 
         touchHelperView?.frame = CGRect(x: CGFloat(0.0),
-                                        y: view.bounds.height - CGFloat(kToolbarHeight),
+                                        y: view.bounds.height - UIDefines.toolbarHeight,
                                         width: view.bounds.width,
-                                        height: CGFloat(kToolbarHeight))
+                                        height: UIDefines.toolbarHeight)
     }
 
     // MARK: - WebViewDelegate
@@ -182,7 +182,7 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             return
         }
 
-        if requestUrl.absoluteString.contains(NetworkDefines.projectDetailsUrlPrefix) {
+        if requestUrl.absoluteString.contains(NetworkDefines.apiEndpointProjectDetails) {
             self.openProjectDetails(url: requestUrl)
             decisionHandler(.cancel)
             return
@@ -263,9 +263,10 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     }
 
     private func setupToolbarItems() {
-        let refreshOrStopButton: UIBarButtonItem? = webView?.isLoading ?? false ? stopButton : refreshButton
         urlTitleLabel.text = "\(url?.host ?? "")\(url?.relativePath ?? "")"
-        navigationItem.rightBarButtonItems = [refreshOrStopButton] as? [UIBarButtonItem]
+        if let refreshOrStopButton = webView?.isLoading ?? false ? stopButton : refreshButton {
+            navigationItem.rightBarButtonItems = [refreshOrStopButton]
+        }
 
         setupToolBar()
     }

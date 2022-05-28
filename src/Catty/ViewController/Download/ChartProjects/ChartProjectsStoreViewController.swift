@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -96,8 +96,8 @@ class ChartProjectsStoreViewController: UIViewController, SelectedChartProjectsD
 
     // check iPhone4 or iphone5
     private func checkIphoneScreenSize() -> Bool {
-        let screenHeight = Float(Util.screenHeight())
-        return (((screenHeight - kIphone4ScreenHeight) == 0) || ((screenHeight - kIphone5ScreenHeight) == 0)) ? true : false
+        let screenHeight = Util.screenHeight()
+        return (((screenHeight - UIDefines.iPhone4ScreenHeight) == 0) || ((screenHeight - UIDefines.iPhone5ScreenHeight) == 0)) ? true : false
     }
 
     private func setupTableView() {

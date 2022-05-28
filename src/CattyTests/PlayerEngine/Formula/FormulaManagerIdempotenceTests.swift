@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
     }
 
     func testIsIdempotentDefaultValue() {
-        let formula = Formula(formulaElement: FormulaElement())!
+        let formula = Formula(formulaElement: FormulaElement(elementType: .FUNCTION, value: "unknownFunction"))!
         XCTAssertEqual(IdempotenceState.NOT_CHECKED, formula.formulaTree.idempotenceState)
         XCTAssertFalse(interpreter.isIdempotent(formula))
     }

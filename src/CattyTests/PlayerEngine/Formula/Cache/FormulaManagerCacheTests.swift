@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ final class FormulaManagerCacheTests: XCTestCase {
     }
 
     func testStop() {
-        manager.formulaCache.insert(object: "a" as AnyObject, forKey: FormulaElement())
+        manager.formulaCache.insert(object: "a" as AnyObject, forKey: FormulaElement(integer: 0))
         XCTAssertEqual(1, manager.formulaCache.count())
 
         manager.stop()
@@ -43,7 +43,7 @@ final class FormulaManagerCacheTests: XCTestCase {
     }
 
     func testInvalidateCache() {
-        manager.formulaCache.insert(object: "a" as AnyObject, forKey: FormulaElement())
+        manager.formulaCache.insert(object: "a" as AnyObject, forKey: FormulaElement(integer: 0))
         XCTAssertEqual(1, manager.formulaCache.count())
 
         manager.invalidateCache()
@@ -53,7 +53,11 @@ final class FormulaManagerCacheTests: XCTestCase {
     func testInvalidateCacheForFormula() {
         let leftChild = FormulaElement(integer: 1)!
         let rightChild = FormulaElement(elementType: ElementType.SENSOR, value: DateDaySensor.tag)!
-        let formulaA = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil))!
+        let formulaA = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR,
+                                                              value: PlusOperator.tag,
+                                                              leftChild: leftChild,
+                                                              rightChild: rightChild,
+                                                              parent: nil))!
 
         let formulaB = Formula(integer: 2)!
 
@@ -109,7 +113,11 @@ final class FormulaManagerCacheTests: XCTestCase {
     func testCacheNumberAndSensor() {
         let leftChild = FormulaElement(integer: 1)!
         let rightChild = FormulaElement(elementType: ElementType.SENSOR, value: DateDaySensor.tag)!
-        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil))!
+        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR,
+                                                             value: PlusOperator.tag,
+                                                             leftChild: leftChild,
+                                                             rightChild: rightChild,
+                                                             parent: nil))!
 
         XCTAssertFalse(manager.isIdempotent(formula))
         XCTAssertEqual(0, manager.formulaCache.count())
@@ -149,7 +157,11 @@ final class FormulaManagerCacheTests: XCTestCase {
         let expectedResult = Calendar.current.component(.day, from: Date()) + 1
         let leftChild = FormulaElement(integer: 1)!
         let rightChild = FormulaElement(elementType: ElementType.SENSOR, value: DateDaySensor.tag)!
-        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil))!
+        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR,
+                                                             value: PlusOperator.tag,
+                                                             leftChild: leftChild,
+                                                             rightChild: rightChild,
+                                                             parent: nil))!
 
         XCTAssertFalse(manager.isIdempotent(formula))
 

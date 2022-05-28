@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 #import "BrickShapeFactory.h"
+#import "Pocket_Code-Swift.h"
 
 #define kMarginBetweenLines 4.8
 #define kLineWidth 1
@@ -301,11 +302,11 @@
     CGFloat height = CGRectGetHeight(*frame);
     
     if (shapeType == kBrickShapeSquareSmall) {
-        offsetTop = kBrickShapeNormalInlineViewOffsetY;
+        offsetTop = UIDefines.brickShapeNormalInlineViewOffsetY;
     } else if (shapeType == kBrickShapeRoundedSmall) {
-        offsetTop = kBrickShapeRoundedSmallInlineViewOffsetY;
+        offsetTop = UIDefines.brickShapeRoundedSmallInlineViewOffsetY;
     } else if (shapeType == kBrickShapeRoundedBig) {
-        offsetTop = kBrickShapeRoundedBigInlineViewOffsetY;
+        offsetTop = UIDefines.brickShapeRoundedBigInlineViewOffsetY;
     }
     
     CGFloat yPositionFirstLine = CGRectGetMinY(*frame) + offsetTop + (height - offsetTop) / 2.0f - kMarginBetweenLines - kLineWidth;

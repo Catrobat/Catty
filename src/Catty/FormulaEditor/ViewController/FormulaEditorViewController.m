@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -194,9 +194,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    ((AppDelegate*)[UIApplication sharedApplication].delegate).disabledOrientation = true;
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = UIColor.background;
     
@@ -313,8 +310,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
-    
-    ((AppDelegate*)[UIApplication sharedApplication].delegate).disabledOrientation = false;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
@@ -654,15 +649,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)textButtonTapped {
-    [self.formulaEditorTextView resignFirstResponder];
     
+    [self.formulaEditorTextView resignFirstResponder];    
     [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:)
                                           target:self
                                      promptTitle:kUIFENewText
                                    promptMessage:kUIFETextMessage
                                   minInputLength:0
                                   maxInputLength:0
-										  isList:NO
+                                          isList:NO
                                     andTextField:self.formulaEditorTextView
                                      initialText:[self.formulaEditorTextView getHighlightedText]];
 }
@@ -687,4 +682,3 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 @end
-

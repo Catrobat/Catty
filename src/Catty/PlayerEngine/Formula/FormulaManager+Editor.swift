@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -63,7 +63,27 @@ extension FormulaManager {
                 case let .object(position, _):
 
                     if objectSection {
-                        items += (position, item)
+                        if item.function?.tag() == CollisionFunction.tag {
+                            guard let scene = spriteObject.scene else { continue }
+
+                            var objects = scene.objects()
+
+                            if objects.contains(spriteObject) {
+                                objects.removeObject(spriteObject)
+                            }
+
+                            if !objects.isEmpty {
+                                for i in 0...(objects.count - 1) {
+                                    let newItem = FormulaEditorItem.init(function: CollisionFunction.init() as Function)
+                                    newItem.title = (kUIFEObjectActorObjectTouch + "(\'" + objects[i].name + "\')")
+                                    (newItem.function as! CollisionFunction).addParameter(param: objects[i].name)
+
+                                    items += (position + (i * 10), newItem)
+                                }
+                            }
+                        } else {
+                            items += (position, item)
+                        }
                     }
 
                 case let .sensors(position, _):

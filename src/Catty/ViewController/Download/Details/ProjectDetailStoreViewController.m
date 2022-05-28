@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -42,6 +42,23 @@
 
 @implementation ProjectDetailStoreViewController
 
+#pragma mark - getters and setters
+- (ProjectManager*)projectManager
+{
+    if (! _projectManager) {
+        _projectManager = [ProjectManager shared];
+    }
+    return _projectManager;
+}
+
+- (StoreProjectDownloader*)storeProjectDownloader
+{
+    if (_storeProjectDownloader == nil) {
+        _storeProjectDownloader = [[StoreProjectDownloader alloc] initWithSession:[StoreProjectDownloader defaultSession] fileManager:[CBFileManager sharedManager]];
+    }
+    return _storeProjectDownloader;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -59,14 +76,6 @@
     self.view.backgroundColor = UIColor.background;
     NSDebug(@"%@",self.project.author);
     [self loadProject:self.project];
-}
-
-- (StoreProjectDownloader*)storeProjectDownloader
-{
-    if (_storeProjectDownloader == nil) {
-        _storeProjectDownloader = [[StoreProjectDownloader alloc] initWithSession:[StoreProjectDownloader defaultSession] fileManager:[CBFileManager sharedManager]];
-    }
-    return _storeProjectDownloader;
 }
 
 - (void)initNavigationBar
@@ -125,7 +134,7 @@
     [self downloadButtonPressed];
 }
 
-- (void) reportProject:(id)sender;
+- (void)reportProject:(id)sender;
 {
     [self reportProject];
 }

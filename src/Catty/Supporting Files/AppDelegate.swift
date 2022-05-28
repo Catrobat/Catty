@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,8 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var firebaseAnalyticsReporter: FirebaseAnalyticsReporter?
     var firebaseCrashlyticsReporter: FirebaseCrashlyticsReporter?
     var audioEngineHelper = AudioEngineHelper()
+    var projectManager = ProjectManager.shared
 
-    @objc var disabledOrientation = false
+    @objc var enabledOrientation = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.setupFirebase()
@@ -45,15 +46,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initNavigationBar()
         ThemesHelper.changeAppearance()
         let defaults = UserDefaults.standard
-        let appDefaults = NSDictionary.init(dictionary: ["lockiphone": "YES"]) as! [String: Any]
-        defaults.register(defaults: appDefaults)
-
         self.setDefaultUserDefaults(defaults: defaults)
         defaults.synchronize()
 
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.UITests) {
+            UIView.setAnimationsEnabled(false)
             UIApplication.shared.keyWindow?.layer.speed = 10.0
+        }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.alwaysShowPrivacyPolicy) {
+            PrivacyPolicyViewController.showOnEveryLaunch = true
         }
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.restoreDefaultProject) {
             CBFileManager.shared()?.deleteAllFilesInDocumentsDirectory()
@@ -94,6 +98,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func initNavigationBar() {
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = UIColor.navBar
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.navTint]
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
         UINavigationBar.appearance().barTintColor = UIColor.navBar
         UINavigationBar.appearance().tintColor = UIColor.navTint
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navText]
@@ -116,6 +127,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if defaults.value(forKey: kFirebaseSendCrashReports) == nil {
             defaults.set(kFirebaseSendCrashReportsDefault, forKey: kFirebaseSendCrashReports)
+        }
+
+        if defaults.value(forKey: kUseWebRequestBrick) == nil {
+            defaults.set(kWebRequestBrickActivated, forKey: kUseWebRequestBrick)
         }
     }
 
@@ -148,7 +163,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        self.disabledOrientation ? UIInterfaceOrientationMask.portrait : UIInterfaceOrientationMask.all
+        self.enabledOrientation ? UIInterfaceOrientationMask.all : UIInterfaceOrientationMask.portrait
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
@@ -157,7 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc?.popToRootViewController(animated: true)
 
         guard let topViewController = vc?.topViewController,
-              let project = ProjectManager.addProjectFromFile(url: url) else {
+              let project = self.projectManager.addProjectFromFile(url: url) else {
             return false
         }
 

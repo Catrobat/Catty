@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2022 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -56,5 +56,8 @@
 - (BOOL)unzipAndStore:(NSData*)projectData
         withProjectID:(NSString*)projectID
              withName:(NSString*)name;
+- (NSArray*)urls:(NSSearchPathDirectory)directory inDomainMask:(NSSearchPathDomainMask)domainMask;
+- (NSData*)read:(NSString*)path;
+- (BOOL)write:(NSData*)data toPath:(NSString*)path;
 
 @end
