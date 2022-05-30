@@ -25,7 +25,7 @@ class RightHipXSensor: DeviceDoubleSensor {
     static let tag = "RIGHT_HIP_X"
     static let name = kUIFESensorRightHipX
     static let defaultRawValue = 0.0
-    static let position = 850
+    static let position = 930
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

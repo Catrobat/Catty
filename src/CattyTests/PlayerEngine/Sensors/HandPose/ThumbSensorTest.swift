@@ -26,8 +26,8 @@ import XCTest
 
 final class ThumbSensorTest: XCTestCase {
 
-    var thumbXSensor: LeftThumbKnuckleXSensor!
-    var thumbYSensor: LeftThumbKnuckleYSensor!
+    var thumbXSensors = [DeviceDoubleSensor]()
+    var thumbYSensors = [DeviceDoubleSensor]()
     var visualDetectionManagerMock: VisualDetectionManagerMock!
     var stageSize: CGSize!
 
@@ -36,84 +36,95 @@ final class ThumbSensorTest: XCTestCase {
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
         self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
-        self.thumbXSensor = LeftThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
-        self.thumbYSensor = LeftThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
+        self.thumbXSensors.append(LeftThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.thumbXSensors.append(RightThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.thumbYSensors.append(LeftThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.thumbYSensors.append(RightThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
     }
 
     override func tearDown() {
         self.visualDetectionManagerMock = nil
-        self.thumbXSensor = nil
-        self.thumbYSensor = nil
+        self.thumbXSensors.removeAll()
+        self.thumbYSensors.removeAll()
         super.tearDown()
     }
 
     func testDefaultRawValue() {
-        let thumbXSensor = LeftThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: thumbXSensor).defaultRawValue, thumbXSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: thumbXSensor).defaultRawValue, thumbXSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        var thumbSensors = [DeviceDoubleSensor]()
+        thumbSensors.append(LeftThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        thumbSensors.append(RightThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        thumbSensors.append(LeftThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        thumbSensors.append(RightThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
 
-        let thumbYSensor = LeftThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: thumbYSensor).defaultRawValue, thumbYSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: thumbYSensor).defaultRawValue, thumbYSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        for thumbSensor in thumbSensors {
+            XCTAssertEqual(type(of: thumbSensor).defaultRawValue, thumbSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+            XCTAssertEqual(type(of: thumbSensor).defaultRawValue, thumbSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        }
     }
 
     func testRawValue() {
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftThumbKnuckleXSensor.tag] = 0
-        XCTAssertEqual(0, self.thumbXSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0, self.thumbXSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllThumbSensorValueRatios(to: 0)
+        for thumbSensor in thumbXSensors + thumbYSensors {
+            XCTAssertEqual(0, thumbSensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0, thumbSensor.rawValue(landscapeMode: true))
+        }
 
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftThumbKnuckleYSensor.tag] = 0.95
-        XCTAssertEqual(0.95, self.thumbYSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0.95, self.thumbYSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllThumbSensorValueRatios(to: 0.95)
+        for thumbSensor in thumbXSensors + thumbYSensors {
+            XCTAssertEqual(0.95, thumbSensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0.95, thumbSensor.rawValue(landscapeMode: true))
+        }
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: thumbXSensor).defaultRawValue, thumbXSensor.convertToStandardized(rawValue: 0))
+        for thumbSensor in thumbXSensors {
+            XCTAssertEqual(type(of: thumbSensor).defaultRawValue, thumbSensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), thumbXSensor.convertToStandardized(rawValue: 0.02))
-        XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), thumbXSensor.convertToStandardized(rawValue: 0.45))
-        XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), thumbXSensor.convertToStandardized(rawValue: 0.93))
-        XCTAssertEqual(Double(stageSize.width / 2), thumbXSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), thumbSensor.convertToStandardized(rawValue: 0.02))
+            XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), thumbSensor.convertToStandardized(rawValue: 0.45))
+            XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), thumbSensor.convertToStandardized(rawValue: 0.93))
+            XCTAssertEqual(Double(stageSize.width / 2), thumbSensor.convertToStandardized(rawValue: 1.0))
+        }
 
-        XCTAssertEqual(type(of: thumbYSensor).defaultRawValue, thumbYSensor.convertToStandardized(rawValue: 0))
+        for thumbSensor in thumbYSensors {
+            XCTAssertEqual(type(of: thumbSensor).defaultRawValue, thumbSensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), thumbYSensor.convertToStandardized(rawValue: 0.01))
-        XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), thumbYSensor.convertToStandardized(rawValue: 0.4))
-        XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), thumbYSensor.convertToStandardized(rawValue: 0.95))
-        XCTAssertEqual(Double(stageSize.height / 2), thumbYSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), thumbSensor.convertToStandardized(rawValue: 0.01))
+            XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), thumbSensor.convertToStandardized(rawValue: 0.4))
+            XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), thumbSensor.convertToStandardized(rawValue: 0.95))
+            XCTAssertEqual(Double(stageSize.height / 2), thumbSensor.convertToStandardized(rawValue: 1.0))
+        }
     }
 
     func testStandardizedValue() {
-        var convertToStandardizedValue = thumbXSensor.convertToStandardized(rawValue: thumbXSensor.rawValue(landscapeMode: false))
-        var standardizedValue = thumbXSensor.standardizedValue(landscapeMode: false)
-        var standardizedValueLandscape = thumbXSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
-
-        convertToStandardizedValue = thumbYSensor.convertToStandardized(rawValue: thumbYSensor.rawValue(landscapeMode: false))
-        standardizedValue = thumbYSensor.standardizedValue(landscapeMode: false)
-        standardizedValueLandscape = thumbYSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        for thumbSensor in thumbXSensors + thumbYSensors {
+            let convertToStandardizedValue = thumbSensor.convertToStandardized(rawValue: thumbSensor.rawValue(landscapeMode: false))
+            let standardizedValue = thumbSensor.standardizedValue(landscapeMode: false)
+            let standardizedValueLandscape = thumbSensor.standardizedValue(landscapeMode: true)
+            XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        }
     }
 
     func testTag() {
-        XCTAssertEqual("LEFT_THUMB_X", thumbXSensor.tag())
-        XCTAssertEqual("LEFT_THUMB_Y", thumbYSensor.tag())
+        XCTAssertEqual("LEFT_THUMB_X", thumbXSensors[0].tag())
+        XCTAssertEqual("RIGHT_THUMB_X", thumbXSensors[1].tag())
+
+        XCTAssertEqual("LEFT_THUMB_Y", thumbYSensors[0].tag())
+        XCTAssertEqual("RIGHT_THUMB_Y", thumbYSensors[1].tag())
     }
 
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.faceDetection, type(of: thumbXSensor).requiredResource)
-        XCTAssertEqual(ResourceType.faceDetection, type(of: thumbYSensor).requiredResource)
+        for thumbSensor in thumbXSensors + thumbYSensors {
+            XCTAssertEqual(ResourceType.faceDetection, type(of: thumbSensor).requiredResource)
+        }
     }
 
     func testFormulaEditorSections() {
-        var sections = thumbXSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: thumbXSensor).position, subsection: .pose), sections.first)
-
-        sections = thumbYSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: thumbYSensor).position, subsection: .pose), sections.first)
+        for thumbSensor in thumbXSensors + thumbYSensors {
+            let sections = thumbSensor.formulaEditorSections(for: SpriteObject())
+            XCTAssertEqual(1, sections.count)
+            XCTAssertEqual(.sensors(position: type(of: thumbSensor).position, subsection: .pose), sections.first)
+        }
     }
 }

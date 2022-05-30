@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LeftKneeXSensor: DeviceDoubleSensor {
+class RightPinkyKnuckleXSensor: DeviceDoubleSensor {
 
-    static let tag = "LEFT_KNEE_X"
-    static let name = kUIFESensorLeftKneeX
+    static let tag = "RIGHT_PINKY_X"
+    static let name = kUIFESensorRightPinkyKnuckleX
     static let defaultRawValue = 0.0
-    static let position = 950
+    static let position = 730
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
@@ -43,7 +43,7 @@ class LeftKneeXSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionX = self.getVisualDetectionManager()?.bodyPosePositionRatioDictionary[self.tag()] else { return type(of: self).defaultRawValue }
+        guard let positionX = self.getVisualDetectionManager()?.handPosePositionRatioDictionary[self.tag()] else { return type(of: self).defaultRawValue }
         return positionX
     }
 

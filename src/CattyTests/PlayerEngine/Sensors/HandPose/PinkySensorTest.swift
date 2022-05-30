@@ -26,8 +26,8 @@ import XCTest
 
 final class PinkySensorTest: XCTestCase {
 
-    var pinkyXSensor: LeftPinkyKnuckleXSensor!
-    var pinkyYSensor: LeftPinkyKnuckleYSensor!
+    var pinkyXSensors = [DeviceDoubleSensor]()
+    var pinkyYSensors = [DeviceDoubleSensor]()
     var visualDetectionManagerMock: VisualDetectionManagerMock!
     var stageSize: CGSize!
 
@@ -36,84 +36,95 @@ final class PinkySensorTest: XCTestCase {
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
         self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
-        self.pinkyXSensor = LeftPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
-        self.pinkyYSensor = LeftPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
+        self.pinkyXSensors.append(LeftPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.pinkyXSensors.append(RightPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.pinkyYSensors.append(LeftPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.pinkyYSensors.append(RightPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
     }
 
     override func tearDown() {
         self.visualDetectionManagerMock = nil
-        self.pinkyXSensor = nil
-        self.pinkyYSensor = nil
+        self.pinkyXSensors.removeAll()
+        self.pinkyYSensors.removeAll()
         super.tearDown()
     }
 
     func testDefaultRawValue() {
-        let pinkyXSensor = LeftPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: pinkyXSensor).defaultRawValue, pinkyXSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: pinkyXSensor).defaultRawValue, pinkyXSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        var pinkySensors = [DeviceDoubleSensor]()
+        pinkySensors.append(LeftPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        pinkySensors.append(RightPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        pinkySensors.append(LeftPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        pinkySensors.append(RightPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
 
-        let pinkyYSensor = LeftPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: pinkyYSensor).defaultRawValue, pinkyYSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: pinkyYSensor).defaultRawValue, pinkyYSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        for pinkySensor in pinkySensors {
+            XCTAssertEqual(type(of: pinkySensor).defaultRawValue, pinkySensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+            XCTAssertEqual(type(of: pinkySensor).defaultRawValue, pinkySensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        }
     }
 
     func testRawValue() {
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftPinkyKnuckleXSensor.tag] = 0
-        XCTAssertEqual(0, self.pinkyXSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0, self.pinkyXSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllPinkySensorValueRatios(to: 0)
+        for pinkySensor in pinkyXSensors + pinkyYSensors {
+            XCTAssertEqual(0, pinkySensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0, pinkySensor.rawValue(landscapeMode: true))
+        }
 
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftPinkyKnuckleYSensor.tag] = 0.95
-        XCTAssertEqual(0.95, self.pinkyYSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0.95, self.pinkyYSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllPinkySensorValueRatios(to: 0.95)
+        for pinkySensor in pinkyXSensors + pinkyYSensors {
+            XCTAssertEqual(0.95, pinkySensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0.95, pinkySensor.rawValue(landscapeMode: true))
+        }
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: pinkyXSensor).defaultRawValue, pinkyXSensor.convertToStandardized(rawValue: 0))
+        for pinkySensor in pinkyXSensors {
+            XCTAssertEqual(type(of: pinkySensor).defaultRawValue, pinkySensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), pinkyXSensor.convertToStandardized(rawValue: 0.02))
-        XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), pinkyXSensor.convertToStandardized(rawValue: 0.45))
-        XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), pinkyXSensor.convertToStandardized(rawValue: 0.93))
-        XCTAssertEqual(Double(stageSize.width / 2), pinkyXSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), pinkySensor.convertToStandardized(rawValue: 0.02))
+            XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), pinkySensor.convertToStandardized(rawValue: 0.45))
+            XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), pinkySensor.convertToStandardized(rawValue: 0.93))
+            XCTAssertEqual(Double(stageSize.width / 2), pinkySensor.convertToStandardized(rawValue: 1.0))
+        }
 
-        XCTAssertEqual(type(of: pinkyYSensor).defaultRawValue, pinkyYSensor.convertToStandardized(rawValue: 0))
+        for pinkySensor in pinkyYSensors {
+            XCTAssertEqual(type(of: pinkySensor).defaultRawValue, pinkySensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), pinkyYSensor.convertToStandardized(rawValue: 0.01))
-        XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), pinkyYSensor.convertToStandardized(rawValue: 0.4))
-        XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), pinkyYSensor.convertToStandardized(rawValue: 0.95))
-        XCTAssertEqual(Double(stageSize.height / 2), pinkyYSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), pinkySensor.convertToStandardized(rawValue: 0.01))
+            XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), pinkySensor.convertToStandardized(rawValue: 0.4))
+            XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), pinkySensor.convertToStandardized(rawValue: 0.95))
+            XCTAssertEqual(Double(stageSize.height / 2), pinkySensor.convertToStandardized(rawValue: 1.0))
+        }
     }
 
     func testStandardizedValue() {
-        var convertToStandardizedValue = pinkyXSensor.convertToStandardized(rawValue: pinkyXSensor.rawValue(landscapeMode: false))
-        var standardizedValue = pinkyXSensor.standardizedValue(landscapeMode: false)
-        var standardizedValueLandscape = pinkyXSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
-
-        convertToStandardizedValue = pinkyYSensor.convertToStandardized(rawValue: pinkyYSensor.rawValue(landscapeMode: false))
-        standardizedValue = pinkyYSensor.standardizedValue(landscapeMode: false)
-        standardizedValueLandscape = pinkyYSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        for pinkySensor in pinkyXSensors + pinkyYSensors {
+            let convertToStandardizedValue = pinkySensor.convertToStandardized(rawValue: pinkySensor.rawValue(landscapeMode: false))
+            let standardizedValue = pinkySensor.standardizedValue(landscapeMode: false)
+            let standardizedValueLandscape = pinkySensor.standardizedValue(landscapeMode: true)
+            XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        }
     }
 
     func testTag() {
-        XCTAssertEqual("LEFT_PINKY_X", pinkyXSensor.tag())
-        XCTAssertEqual("LEFT_PINKY_Y", pinkyYSensor.tag())
+        XCTAssertEqual("LEFT_PINKY_X", pinkyXSensors[0].tag())
+        XCTAssertEqual("RIGHT_PINKY_X", pinkyXSensors[1].tag())
+
+        XCTAssertEqual("LEFT_PINKY_Y", pinkyYSensors[0].tag())
+        XCTAssertEqual("RIGHT_PINKY_Y", pinkyYSensors[1].tag())
     }
 
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.faceDetection, type(of: pinkyXSensor).requiredResource)
-        XCTAssertEqual(ResourceType.faceDetection, type(of: pinkyYSensor).requiredResource)
+        for pinkySensor in pinkyXSensors + pinkyYSensors {
+            XCTAssertEqual(ResourceType.faceDetection, type(of: pinkySensor).requiredResource)
+        }
     }
 
     func testFormulaEditorSections() {
-        var sections = pinkyXSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: pinkyXSensor).position, subsection: .pose), sections.first)
-
-        sections = pinkyYSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: pinkyYSensor).position, subsection: .pose), sections.first)
+        for pinkySensor in pinkyXSensors + pinkyYSensors {
+            let sections = pinkySensor.formulaEditorSections(for: SpriteObject())
+            XCTAssertEqual(1, sections.count)
+            XCTAssertEqual(.sensors(position: type(of: pinkySensor).position, subsection: .pose), sections.first)
+        }
     }
 }

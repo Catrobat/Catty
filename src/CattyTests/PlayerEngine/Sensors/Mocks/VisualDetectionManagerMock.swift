@@ -130,4 +130,39 @@ final class VisualDetectionManagerMock: VisualDetectionManager {
         self.bodyPosePositionRatioDictionary[RightAnkleXSensor.tag] = value
         self.bodyPosePositionRatioDictionary[RightAnkleYSensor.tag] = value
     }
+
+    func setAllPinkySensorValueRatios(to value: Double) {
+        self.handPosePositionRatioDictionary[LeftPinkyKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[LeftPinkyKnuckleYSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightPinkyKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightPinkyKnuckleYSensor.tag] = value
+    }
+
+    func setAllRingFingerSensorValueRatios(to value: Double) {
+        self.handPosePositionRatioDictionary[LeftRingFingerKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[LeftRingFingerKnuckleYSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightRingFingerKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightRingFingerKnuckleYSensor.tag] = value
+    }
+
+    func setAllMiddleFingerSensorValueRatios(to value: Double) {
+        self.handPosePositionRatioDictionary[LeftMiddleFingerKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[LeftMiddleFingerKnuckleYSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightMiddleFingerKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightMiddleFingerKnuckleYSensor.tag] = value
+    }
+
+    func setAllIndexSensorValueRatios(to value: Double) {
+        self.handPosePositionRatioDictionary[LeftIndexKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[LeftIndexKnuckleYSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightIndexKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightIndexKnuckleYSensor.tag] = value
+    }
+
+    func setAllThumbSensorValueRatios(to value: Double) {
+        self.handPosePositionRatioDictionary[LeftThumbKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[LeftThumbKnuckleYSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightThumbKnuckleXSensor.tag] = value
+        self.handPosePositionRatioDictionary[RightThumbKnuckleYSensor.tag] = value
+    }
 }
