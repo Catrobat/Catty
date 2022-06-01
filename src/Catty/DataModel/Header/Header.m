@@ -67,7 +67,6 @@
     self.applicationBuildNumber = [Util appBuildVersion];
     self.applicationName = [Util appName];
     self.applicationVersion = [Util appVersion];
-    self.applicationVersion = [Util appVersion];
     self.deviceName = [Util deviceName];
     self.mediaLicense = [Util catrobatMediaLicense]; // always use most recent license!
     self.platform = [Util platformName];

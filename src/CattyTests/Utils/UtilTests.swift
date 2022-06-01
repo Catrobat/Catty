@@ -133,7 +133,9 @@ final class UtilTests: XCTestCase {
 
     func testDeviceName() {
         let utilDeviceName = Util.deviceName()
-        let systemInfoDeviceName = UIDevice.current.modelName
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let systemInfoDeviceName = String(cString: &systemInfo.machine.0)
         XCTAssertEqual(utilDeviceName, systemInfoDeviceName)
     }
 

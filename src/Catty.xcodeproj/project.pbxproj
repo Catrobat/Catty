@@ -120,7 +120,6 @@
 		18E908A82624995900EF57D6 /* FormulaEditorComputeDialogTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E908A72624995900EF57D6 /* FormulaEditorComputeDialogTest.swift */; };
 		2219ED8D2519EB8100EBA379 /* NSMutableArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */; };
 		222A6934247E43AB004BE434 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
-		222A693E247EA490004BE434 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A693D247EA490004BE434 /* UIDeviceExtension.swift */; };
 		22412CFE26ECE5B70074915C /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22412CFD26ECE5B70074915C /* PaddingLabel.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
@@ -2152,7 +2151,6 @@
 		1C035A070A526C061039C146 /* ha */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ha; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C557E56F94895CB30ED2558 /* en-CA */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableArrayExtension.swift; sourceTree = "<group>"; };
-		222A693D247EA490004BE434 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		22412CFD26ECE5B70074915C /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
@@ -8395,7 +8393,6 @@
 				5E7E7F892341CB8100411298 /* UIColorExtension.swift */,
 				594E7DD2257D5B6A0053D6E9 /* URLExtension.swift */,
 				6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */,
-				222A693D247EA490004BE434 /* UIDeviceExtension.swift */,
 				2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */,
 				63D69EBA25E3178F00D662D6 /* CBFileManagerExtension.swift */,
 			);
@@ -13103,7 +13100,6 @@
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				92B46FA71BC7C2A5004980C1 /* ArduinoSendDigitalValueBrick+Instruction.swift in Sources */,
-				222A693E247EA490004BE434 /* UIDeviceExtension.swift in Sources */,
 				AA74EFFC1BC05B5F00D1E954 /* ChangeXByNBrick.m in Sources */,
 				AA74EFE31BC05B5F00D1E954 /* ForeverBrick.m in Sources */,
 				AA74EEFB1BC057C900D1E954 /* HideBrick+CBXMLHandler.m in Sources */,
