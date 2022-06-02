@@ -62,11 +62,10 @@ import Foundation
     @objc func resume() {
         do {
             try engine.start()
+            resumeAllAudioSources()
         } catch let error as NSError {
             print("Could not resume audio engine:", error)
         }
-
-        resumeAllAudioSources()
     }
 
     @objc func stop() {
