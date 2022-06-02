@@ -25,7 +25,7 @@ class LeftEarYSensor: DeviceDoubleSensor {
     static let tag = "LEFT_EAR_Y"
     static let name = kUIFESensorLeftEarY
     static let defaultRawValue = 0.0
-    static let position = 380
+    static let position = 400
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

@@ -28,12 +28,15 @@ protocol VisualDetectionManagerProtocol {
     var faceSizeRatio: [Double?] { get }
     var visualDetectionFrameSize: CGSize? { get }
     var faceLandmarkPositionRatioDictionary: [String: Double] { get }
+    var bodyPosePositionRatioDictionary: [String: Double] { get }
 
     func start()
 
     func stop()
 
     func reset()
+    func resetFaceDetection()
+    func resetBodyPoses()
 
     func available() -> Bool
 }

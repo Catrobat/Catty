@@ -29,6 +29,7 @@ extension CatrobatSetup {
                                   audioManager: AudioManagerProtocol,
                                   touchManager: TouchManagerProtocol,
                                   bluetoothService: BluetoothService) -> [Sensor] {
+        var sensorArray: [Sensor] =
         [LoudnessSensor(audioManagerGetter: { audioManager }),
          InclinationXSensor(motionManagerGetter: { motionManager }),
          InclinationYSensor(motionManagerGetter: { motionManager }),
@@ -121,5 +122,24 @@ extension CatrobatSetup {
          BackgroundNameSensor(),
          LookNumberSensor(),
          LookNameSensor()]
+
+        if #available(iOS 14.0, *) {
+            sensorArray.append(NeckXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(NeckYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftShoulderXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftShoulderYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightShoulderXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightShoulderYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftElbowXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftElbowYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightElbowXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightElbowYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftWristXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftWristYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightWristXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightWristYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        }
+
+        return sensorArray
     }
 }

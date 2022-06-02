@@ -25,7 +25,7 @@ class LeftEyebrowOuterYSensor: DeviceDoubleSensor {
     static let tag = "LEFT_EYEBROW_OUTER_Y"
     static let name = kUIFESensorLeftEyebrowOuterY
     static let defaultRawValue = 0.0
-    static let position = 500
+    static let position = 520
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

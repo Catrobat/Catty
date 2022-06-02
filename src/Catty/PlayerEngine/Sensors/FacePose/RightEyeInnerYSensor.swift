@@ -25,7 +25,7 @@ class RightEyeInnerYSensor: DeviceDoubleSensor {
     static let tag = "RIGHT_EYE_INNER_Y"
     static let name = kUIFESensorRightEyeInnerY
     static let defaultRawValue = 0.0
-    static let position = 320
+    static let position = 340
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

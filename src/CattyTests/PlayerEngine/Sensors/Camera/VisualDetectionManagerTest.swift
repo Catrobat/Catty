@@ -82,7 +82,6 @@ final class VisualDetectionManagerTest: XCTestCase {
             XCTAssertNil(manager.facePositionYRatio[faceIndex])
             XCTAssertNil(manager.faceSizeRatio[faceIndex])
         }
-        XCTAssertNil(manager.visualDetectionFrameSize)
     }
 
     func testSingleFaceDetected() {
@@ -175,7 +174,7 @@ final class VisualDetectionManagerTest: XCTestCase {
 
     func testSingleFaceTrackedWithSmallestEuclideanDistance() {
         let previousFaceObservations = [VNFaceObservationMock(boundingBox: CGRect(x: 0.1, y: 0.1, width: 0.5, height: 0.5)),
-                                        VNFaceObservationMock(boundingBox: CGRect(x: 0.3, y: 0.3, width: 0.5, height: 0.5))]
+                                         VNFaceObservationMock(boundingBox: CGRect(x: 0.3, y: 0.3, width: 0.5, height: 0.5))]
         manager.previousFaceObservations = previousFaceObservations
 
         let currentFaceObservations = [VNFaceObservationMock(boundingBox: CGRect(x: 0.35, y: 0.35, width: 0.5, height: 0.5))]

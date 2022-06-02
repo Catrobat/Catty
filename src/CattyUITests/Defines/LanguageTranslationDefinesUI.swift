@@ -788,6 +788,8 @@ let kUIFESensorSecondFaceY = NSLocalizedString("second face y position", bundle:
 
 let kUIFESensorHeadTopX = NSLocalizedString("head top x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorHeadTopY = NSLocalizedString("head top y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorNeckX = NSLocalizedString("neck x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorNeckY = NSLocalizedString("neck y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorNoseX = NSLocalizedString("nose x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorNoseY = NSLocalizedString("nose y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorLeftEyeInnerX = NSLocalizedString("left eye inner x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -822,6 +824,19 @@ let kUIFESensorRightEyebrowCenterX = NSLocalizedString("right eyebrow center x",
 let kUIFESensorRightEyebrowCenterY = NSLocalizedString("right eyebrow center y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorRightEyebrowOuterX = NSLocalizedString("right eyebrow outer x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorRightEyebrowOuterY = NSLocalizedString("right eyebrow outer y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFESensorLeftShoulderX = NSLocalizedString("left shoulder x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftShoulderY = NSLocalizedString("left shoulder y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightShoulderX = NSLocalizedString("right shoulder x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightShoulderY = NSLocalizedString("right shoulder y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftElbowX = NSLocalizedString("left elbow x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftElbowY = NSLocalizedString("left elbow y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightElbowX = NSLocalizedString("right elbow x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightElbowY = NSLocalizedString("right elbow y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftWristX = NSLocalizedString("left wrist x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftWristY = NSLocalizedString("left wrist y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightWristX = NSLocalizedString("right wrist x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightWristY = NSLocalizedString("right wrist y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 

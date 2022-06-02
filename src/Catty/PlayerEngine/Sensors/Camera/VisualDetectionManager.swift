@@ -31,6 +31,8 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     var faceSizeRatio: [Double?] = [nil, nil]
     var visualDetectionFrameSize: CGSize?
     var faceLandmarkPositionRatioDictionary: [String: Double] = [:]
+    var bodyPosePositionRatioDictionary: [String: Double] = [:]
+    let minConfidence: Float = 0.5
 
     private var session: AVCaptureSession?
     private var videoDataOuput: AVCaptureVideoDataOutput?
@@ -108,13 +110,22 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     }
 
     func reset() {
+        self.resetFaceDetection()
+        self.resetBodyPoses()
+        self.visualDetectionFrameSize = nil
+    }
+
+    func resetFaceDetection() {
         self.isFaceDetected = [false, false]
         self.facePositionXRatio = [nil, nil]
         self.facePositionYRatio = [nil, nil]
         self.faceSizeRatio = [nil, nil]
-        self.visualDetectionFrameSize = nil
         self.previousFaceObservations = nil
         self.faceLandmarkPositionRatioDictionary.removeAll()
+    }
+
+    func resetBodyPoses() {
+        self.bodyPosePositionRatioDictionary.removeAll()
     }
 
     func available() -> Bool {
@@ -142,6 +153,8 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
             orientation = .upMirrored
         }
 
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: orientation, options: [:])
+
         let faceDetectionRequest = VNDetectFaceLandmarksRequest { request, _ in
             if let faceObservations = request.results as? [VNFaceObservation] {
                 DispatchQueue.main.async {
@@ -150,18 +163,33 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
             }
         }
 
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: orientation, options: [:])
-
         do {
             try imageRequestHandler.perform([faceDetectionRequest])
         } catch let error as NSError {
             print(error)
         }
+
+        if #available(iOS 14.0, *) {
+           let humanBodyPoseRequest = VNDetectHumanBodyPoseRequest { request, _ in
+               if let bodyPoseObservation = request.results as? [VNHumanBodyPoseObservation] {
+                   DispatchQueue.main.async {
+                       self.handleHumanBodyPoseObservations(bodyPoseObservation)
+                   }
+               }
+           }
+           do {
+               try imageRequestHandler.perform([humanBodyPoseRequest])
+           } catch let error as NSError {
+               print(error)
+           }
+        } else {
+           // Fallback on earlier versions
+        }
     }
 
     func handleDetectedFaceObservations(_ faceObservations: [VNFaceObservation]) {
         guard self.visualDetectionFrameSize != nil && !faceObservations.isEmpty  else {
-            reset()
+            resetFaceDetection()
             return
         }
 
@@ -352,6 +380,56 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         let distanceX = previousFaceObservation.boundingBox.origin.x - currentFaceObservation.boundingBox.origin.x
         let distanceY = previousFaceObservation.boundingBox.origin.y - currentFaceObservation.boundingBox.origin.y
         return sqrt(pow(distanceX, 2) + pow(distanceY, 2))
+    }
+
+    @available(iOS 14.0, *)
+    func handleHumanBodyPoseObservations(_ bodyPoseObservations: [VNHumanBodyPoseObservation]) {
+        guard self.visualDetectionFrameSize != nil && !bodyPoseObservations.isEmpty, let bodyPoseObservation = bodyPoseObservations.first else {
+           resetBodyPoses()
+           return
+        }
+        if let neck = try? bodyPoseObservation.recognizedPoint(.neck) {
+           if neck.confidence > minConfidence {
+               bodyPosePositionRatioDictionary[NeckXSensor.tag] = neck.x
+               bodyPosePositionRatioDictionary[NeckYSensor.tag] = neck.y
+           }
+        }
+        if let leftShoulder = try? bodyPoseObservation.recognizedPoint(.leftShoulder) {
+           if leftShoulder.confidence > minConfidence {
+               bodyPosePositionRatioDictionary[LeftShoulderXSensor.tag] = leftShoulder.x
+               bodyPosePositionRatioDictionary[LeftShoulderYSensor.tag] = leftShoulder.y
+           }
+        }
+        if let rightShoulder = try? bodyPoseObservation.recognizedPoint(.rightShoulder) {
+           if rightShoulder.confidence > minConfidence {
+               bodyPosePositionRatioDictionary[RightShoulderXSensor.tag] = rightShoulder.x
+               bodyPosePositionRatioDictionary[RightShoulderYSensor.tag] = rightShoulder.y
+           }
+        }
+        if let leftElbow = try? bodyPoseObservation.recognizedPoint(.leftElbow) {
+           if leftElbow.confidence > minConfidence {
+               bodyPosePositionRatioDictionary[LeftElbowXSensor.tag] = leftElbow.x
+               bodyPosePositionRatioDictionary[LeftElbowYSensor.tag] = leftElbow.y
+           }
+        }
+        if let rightElbow = try? bodyPoseObservation.recognizedPoint(.rightElbow) {
+           if rightElbow.confidence > minConfidence {
+               bodyPosePositionRatioDictionary[RightElbowXSensor.tag] = rightElbow.x
+               bodyPosePositionRatioDictionary[RightElbowYSensor.tag] = rightElbow.y
+           }
+        }
+        if let leftWrist = try? bodyPoseObservation.recognizedPoint(.leftWrist) {
+           if leftWrist.confidence > minConfidence {
+               bodyPosePositionRatioDictionary[LeftWristXSensor.tag] = leftWrist.x
+               bodyPosePositionRatioDictionary[LeftWristYSensor.tag] = leftWrist.y
+           }
+        }
+        if let rightWrist = try? bodyPoseObservation.recognizedPoint(.rightWrist) {
+           if rightWrist.confidence > minConfidence {
+               bodyPosePositionRatioDictionary[RightWristXSensor.tag] = rightWrist.x
+               bodyPosePositionRatioDictionary[RightWristYSensor.tag] = rightWrist.y
+           }
+        }
     }
 
     func cameraPosition() -> AVCaptureDevice.Position {

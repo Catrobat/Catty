@@ -25,7 +25,7 @@ class NoseYSensor: DeviceDoubleSensor {
     static let tag = "NOSE_Y"
     static let name = kUIFESensorNoseY
     static let defaultRawValue = 0.0
-    static let position = 240
+    static let position = 260
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
