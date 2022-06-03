@@ -108,8 +108,9 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     }
 
     class func deviceName() -> String {
-        let deviceName = UIDevice.current.modelName as String
-        return deviceName
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        return String(cString: &systemInfo.machine.0)
     }
 
     class func defaultAlertForNetworkError() {
