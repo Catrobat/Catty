@@ -980,6 +980,12 @@
 "Left" = "Left";
 
 /* No comment provided by engineer. */
+"left ankle x" = "left ankle x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "left ankle y";
+
+/* No comment provided by engineer. */
 "left ear x" = "left ear x";
 
 /* No comment provided by engineer. */
@@ -1026,6 +1032,18 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left hip x" = "left hip x";
+
+/* No comment provided by engineer. */
+"left hip y" = "left hip y";
+
+/* No comment provided by engineer. */
+"left knee x" = "left knee x";
+
+/* No comment provided by engineer. */
+"left knee y" = "left knee y";
 
 /* No comment provided by engineer. */
 "left shoulder x" = "left shoulder x";
@@ -1637,6 +1655,12 @@
 "Right" = "Right";
 
 /* No comment provided by engineer. */
+"right ankle x" = "right ankle x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "right ankle y";
+
+/* No comment provided by engineer. */
 "right ear x" = "right ear x";
 
 /* No comment provided by engineer. */
@@ -1683,6 +1707,18 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right hip x" = "right hip x";
+
+/* No comment provided by engineer. */
+"right hip y" = "right hip y";
+
+/* No comment provided by engineer. */
+"right knee x" = "right knee x";
+
+/* No comment provided by engineer. */
+"right knee y" = "right knee y";
 
 /* No comment provided by engineer. */
 "right shoulder x" = "right shoulder x";

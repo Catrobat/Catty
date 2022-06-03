@@ -838,6 +838,19 @@ let kUIFESensorLeftWristY = NSLocalizedString("left wrist y", bundle: Bundle(for
 let kUIFESensorRightWristX = NSLocalizedString("right wrist x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorRightWristY = NSLocalizedString("right wrist y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
+let kUIFESensorLeftHipX = NSLocalizedString("left hip x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftHipY = NSLocalizedString("left hip y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightHipX = NSLocalizedString("right hip x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightHipY = NSLocalizedString("right hip y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftKneeX = NSLocalizedString("left knee x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftKneeY = NSLocalizedString("left knee y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightKneeX = NSLocalizedString("right knee x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightKneeY = NSLocalizedString("right knee y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftAnkleX = NSLocalizedString("left ankle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftAnkleY = NSLocalizedString("left ankle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightAnkleX = NSLocalizedString("right ankle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightAnkleY = NSLocalizedString("right ankle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFENewText = NSLocalizedString("New text", bundle: Bundle(for: LanguageTranslation.self), comment: "")
