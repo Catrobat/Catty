@@ -56,6 +56,7 @@
 - (void)changeProjectOrientation;
 - (void)updateReferences;
 
++ (NSObject* _Nonnull)saveLock;
 + (instancetype _Nonnull)lastUsedProject;
 + (void)updateLastModificationTimeForProjectWithName:(NSString* _Nonnull)projectName
                                            projectID:(NSString* _Nonnull)projectID;

@@ -163,6 +163,9 @@ static CameraPreviewHandler* shared = nil;
     if (self.session.running) {
         [self.session stopRunning];
     }
+    for (AVCaptureDeviceInput* input in self.session.inputs) {
+        [self.session removeInput:input];
+    }
     if ([self.session canAddInput:deviceInput]) {
         [self.session addInput:deviceInput];
     }
