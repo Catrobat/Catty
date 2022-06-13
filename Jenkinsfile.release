@@ -27,12 +27,6 @@ pipeline {
         }
       }
     }
-
-    stage('Carthage') {
-      steps {
-        sh 'make init'
-      }
-    }
     stage('Release') {
       steps {
         sh 'cd src && fastlane release'

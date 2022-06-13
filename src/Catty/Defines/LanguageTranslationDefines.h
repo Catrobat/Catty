@@ -281,6 +281,13 @@
 #define kLocalizedScene NSLocalizedString(@"Scene", nil)
 #define kLocalizedEditTrustedDomain NSLocalizedString(@"Edit trusted domain", nil)
 #define kLocalizedAddTrustedDomain NSLocalizedString(@"Add trusted domain", nil)
+#define kLocalizedExtensions NSLocalizedString(@"Extensions", nil)
+#define kLocalizedPrivacy NSLocalizedString(@"Privacy", nil)
+#define kLocalizedAbout NSLocalizedString(@"About", nil)
+#define kLocalizedAboutUs NSLocalizedString(@"About Us", nil)
+#define kLocalizedCatrobatWebsite NSLocalizedString(@"Catrobat website", nil)
+#define kLocalizedViewTermsOfUse NSLocalizedString(@"View Terms of Use and Service", nil)
+#define kLocalizedTrustedDomains NSLocalizedString(@"Trusted domains", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

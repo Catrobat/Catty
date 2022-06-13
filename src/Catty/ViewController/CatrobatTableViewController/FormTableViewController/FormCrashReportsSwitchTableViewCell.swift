@@ -20,25 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Foundation
+import UIKit
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcEmail @"userEmail"
+class FormCrashReportsSwitchTableViewCell: FormSwitchTableViewCell {
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-#define kUseEmbroideryBricks @"useEmbroideryBricks"
-#define kUseWebRequestBrick @"useWebRequestBrick"
+    override class var id: String {
+        "FormCrashReportsSwitchTableViewCell"
+    }
 
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
+    override func setupViews() {
+        super.setupViews()
 
-#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
+        switchControl.isOn = UserDefaults.standard.bool(forKey: kFirebaseSendCrashReports)
+    }
 
-#define kKnownBluetoothDevices @"KnownBluetoothDevices"
+    override func switchControlValueChanged() {
+        super.switchControlValueChanged()
 
-#define kPhiroActivated 0
-#define kArduinoActivated 1
-#define kEmbroideryActivated 1
-#define kFirebaseSendCrashReportsDefault 1
-#define kWebRequestBrickActivated 0
+        UserDefaults.standard.set(switchControl.isOn, forKey: kFirebaseSendCrashReports)
+    }
+}

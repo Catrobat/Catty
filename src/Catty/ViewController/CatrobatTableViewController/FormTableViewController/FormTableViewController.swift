@@ -45,8 +45,13 @@ class FormTableViewController: UITableViewController {
 
         tableView.register(FormTableViewCell.self, forCellReuseIdentifier: FormTableViewCell.id)
         tableView.register(FormSwitchTableViewCell.self, forCellReuseIdentifier: FormSwitchTableViewCell.id)
+        tableView.register(FormArduinoSwitchTableViewCell.self, forCellReuseIdentifier: FormArduinoSwitchTableViewCell.id)
+        tableView.register(FormEmbroiderySwitchTableViewCell.self, forCellReuseIdentifier: FormEmbroiderySwitchTableViewCell.id)
+        tableView.register(FormPhiroSwitchTableViewCell.self, forCellReuseIdentifier: FormPhiroSwitchTableViewCell.id)
+        tableView.register(FormCrashReportsSwitchTableViewCell.self, forCellReuseIdentifier: FormCrashReportsSwitchTableViewCell.id)
         tableView.register(FormTextFieldTableViewCell.self, forCellReuseIdentifier: FormTextFieldTableViewCell.id)
         tableView.register(FormCheckTableViewCell.self, forCellReuseIdentifier: FormCheckTableViewCell.id)
+        tableView.register(FormVersionTableViewCell.self, forCellReuseIdentifier: FormVersionTableViewCell.id)
     }
 
     // MARK: - TableView
@@ -61,37 +66,19 @@ class FormTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if let switchItem = formItems[indexPath.section][indexPath.row] as? FormSwitchItem,
-            let cell = tableView.dequeueReusableCell(withIdentifier: FormSwitchTableViewCell.id) as? FormSwitchTableViewCell {
-            cell.configure(with: switchItem)
-            cell.needsUpdateConstraints()
-            cell.updateConstraintsIfNeeded()
-            return cell
-        } else if let textFieldItem = formItems[indexPath.section][indexPath.row] as? FormTextFieldItem,
-                  let cell = tableView.dequeueReusableCell(withIdentifier: FormTextFieldTableViewCell.id) as? FormTextFieldTableViewCell {
-            cell.configure(with: textFieldItem)
-            cell.needsUpdateConstraints()
-            cell.updateConstraintsIfNeeded()
-            return cell
-        } else if let checkItem = formItems[indexPath.section][indexPath.row] as? FormCheckItem,
-                  let cell = tableView.dequeueReusableCell(withIdentifier: FormCheckTableViewCell.id) as? FormCheckTableViewCell {
-            cell.configure(with: checkItem)
-            cell.needsUpdateConstraints()
-            cell.updateConstraintsIfNeeded()
-            return cell
-        }
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FormTableViewCell.id) as? FormTableViewCell else {
+        let formItem = formItems[indexPath.section][indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: formItem.cellType.id) as? FormTableViewCell else {
             return FormTableViewCell()
         }
 
-        cell.configure(with: formItems[indexPath.section][indexPath.row])
+        cell.configure(with: formItem)
         cell.needsUpdateConstraints()
         cell.updateConstraintsIfNeeded()
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: true)
+        formItems[indexPath.section][indexPath.row].action?()
     }
 }

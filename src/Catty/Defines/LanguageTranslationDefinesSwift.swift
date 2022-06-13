@@ -281,6 +281,13 @@ let kLocalizedMoreInformation = NSLocalizedString("More information", comment: "
 let kLocalizedScene = NSLocalizedString("Scene", comment: "")
 let kLocalizedEditTrustedDomain = NSLocalizedString("Edit trusted domain", comment: "")
 let kLocalizedAddTrustedDomain = NSLocalizedString("Add trusted domain", comment: "")
+let kLocalizedExtensions = NSLocalizedString("Extensions", comment: "")
+let kLocalizedPrivacy = NSLocalizedString("Privacy", comment: "")
+let kLocalizedAbout = NSLocalizedString("About", comment: "")
+let kLocalizedAboutUs = NSLocalizedString("About Us", comment: "")
+let kLocalizedCatrobatWebsite = NSLocalizedString("Catrobat website", comment: "")
+let kLocalizedViewTermsOfUse = NSLocalizedString("View Terms of Use and Service", comment: "")
+let kLocalizedTrustedDomains = NSLocalizedString("Trusted domains", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

@@ -40,12 +40,6 @@ playground.xcworkspace
 # Package.resolved
 .build/
 
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-
-src/Carthage
-
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the

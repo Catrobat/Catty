@@ -72,5 +72,33 @@ class FormTableViewCell: UITableViewCell {
 
     func configure(with formItem: FormItem) {
         titleLabel.text = formItem.title
+        titleLabel.textColor = formItem.titleColor
+        self.accessoryType = formItem.accessoryType
+
+        if self.accessoryType == .disclosureIndicator {
+            addTintedDisclosureIndicator()
+        } else {
+            removeTintedDisclosureIndicator()
+        }
+
+        if formItem.action != nil {
+            self.selectionStyle = .default
+        }
+    }
+
+    private func addTintedDisclosureIndicator() {
+        if #available(iOS 13.0, *) {
+            let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 12, weight: .bold)
+            let symbolImage = UIImage(systemName: "chevron.right",
+                                      withConfiguration: symbolConfiguration)
+
+            let imageView = UIImageView(image: symbolImage)
+            imageView.tintColor = .globalTint
+            self.accessoryView = imageView
+        }
+    }
+
+    private func removeTintedDisclosureIndicator() {
+        self.accessoryView = nil
     }
 }

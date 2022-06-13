@@ -8,10 +8,16 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"About" = "About";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "About Catrobat";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "About Pocket Code";
+
+/* No comment provided by engineer. */
+"About Us" = "About Us";
 
 /* No comment provided by engineer. */
 "absolute value" = "absolute value";
@@ -261,6 +267,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "Catrobat community";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat website";
 
 /* No comment provided by engineer. */
 "ceiling" = "ceiling";
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "exponent";
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensions";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -1586,6 +1598,9 @@
 "Previous look" = "Previous look";
 
 /* No comment provided by engineer. */
+"Privacy" = "Privacy";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
 
 /* No comment provided by engineer. */
@@ -2189,6 +2204,9 @@
 "true" = "true";
 
 /* No comment provided by engineer. */
+"Trusted domains" = "Trusted domains";
+
+/* No comment provided by engineer. */
 "Tu" = "Tu";
 
 /* No comment provided by engineer. */
@@ -2310,6 +2328,9 @@
 
 /* No comment provided by engineer. */
 "View" = "View";
+
+/* No comment provided by engineer. */
+"View Terms of Use and Service" = "View Terms of Use and Service";
 
 /* No comment provided by engineer. */
 "Views" = "Views";

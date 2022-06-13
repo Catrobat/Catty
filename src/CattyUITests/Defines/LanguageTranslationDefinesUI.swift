@@ -281,6 +281,13 @@ let kLocalizedMoreInformation = NSLocalizedString("More information", bundle: Bu
 let kLocalizedScene = NSLocalizedString("Scene", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEditTrustedDomain = NSLocalizedString("Edit trusted domain", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAddTrustedDomain = NSLocalizedString("Add trusted domain", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedExtensions = NSLocalizedString("Extensions", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPrivacy = NSLocalizedString("Privacy", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAbout = NSLocalizedString("About", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAboutUs = NSLocalizedString("About Us", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCatrobatWebsite = NSLocalizedString("Catrobat website", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedViewTermsOfUse = NSLocalizedString("View Terms of Use and Service", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedTrustedDomains = NSLocalizedString("Trusted domains", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

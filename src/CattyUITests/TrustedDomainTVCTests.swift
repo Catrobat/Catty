@@ -35,7 +35,7 @@ class TrustedDomainTVCTests: XCTestCase {
         app.navigationBars.buttons[PocketCodeMainScreenTests.settingsButtonLabel].tap()
 
         XCTAssert(app.staticTexts[kLocalizedWebAccess].exists)
-        app.staticTexts[kLocalizedWebAccess].tap()
+        app.staticTexts[kLocalizedTrustedDomains].tap()
         XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedWebAccess]).exists)
 
         let url = "https://www.test.com"
