@@ -139,6 +139,17 @@ extension CatrobatSetup {
             sensorArray.append(RightWristXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
             sensorArray.append(RightWristYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
 
+            sensorArray.append(LeftPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+
             sensorArray.append(LeftHipXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
             sensorArray.append(LeftHipYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
             sensorArray.append(RightHipXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
