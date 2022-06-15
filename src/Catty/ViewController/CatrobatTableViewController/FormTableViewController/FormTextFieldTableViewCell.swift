@@ -74,6 +74,9 @@ class FormTextFieldTableViewCell: FormTableViewCell, UITextFieldDelegate {
             typeAction = item.typeAction
             returnAction = item.returnAction
             textField.placeholder = item.placeholder
+            if item.focus {
+                textField.becomeFirstResponder()
+            }
         }
     }
 }
