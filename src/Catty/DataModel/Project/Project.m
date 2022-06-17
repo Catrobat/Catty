@@ -228,6 +228,15 @@
 
 #pragma mark - Manager
 
+static NSObject* saveLock;
++ (NSObject*)saveLock
+{
+    if (!saveLock) {
+        saveLock = [[NSObject alloc] init];
+    }
+    return saveLock;
+}
+
 + (NSString*)projectDirectoryNameForProjectName:(NSString*)projectName projectID:(NSString*)projectID
 {
     return [NSString stringWithFormat:@"%@%@%@", projectName, kProjectIDSeparator,
