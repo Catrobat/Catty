@@ -52,7 +52,6 @@ class BrickCellPickerViewerTests: XCTestCase {
             app.tables.cells.element(boundBy: 2).tap()
 
             let textField = app.textFields.element(matching: .textField, identifier: "formTextField")
-            textField.tap()
             textField.typeText(variable)
 
             app.buttons[kLocalizedDone].firstMatch.tap()

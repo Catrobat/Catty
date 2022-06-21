@@ -85,14 +85,16 @@ class FormTextFieldItem: FormItem {
     var placeholder: String?
     var typeAction: ((String) -> Void)?
     var returnAction: (() -> Void)?
+    var focus = false
 
-    init(typeAction: ((String) -> Void)? = nil, returnAction: (() -> Void)? = nil, placeholder: String?) {
+    init(typeAction: ((String) -> Void)? = nil, returnAction: (() -> Void)? = nil, placeholder: String?, focus: Bool) {
         super.init()
 
         self.placeholder = placeholder
         self.typeAction = typeAction
         self.returnAction = returnAction
         self.cellType = FormTextFieldTableViewCell.self
+        self.focus = focus
     }
 }
 

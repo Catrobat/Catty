@@ -122,7 +122,8 @@
                     self.name = text
                 }, returnAction: {
                     self.view.endEditing(true)
-                }, placeholder: kLocalizedName)
+                }, placeholder: kLocalizedName,
+                   focus: true)
             ],
             [
                 FormCheckItem(title: kUIFEActionVarPro, selectAction: {
