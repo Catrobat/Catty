@@ -4,28 +4,33 @@
     {
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.9993&limit=20&offset=0"
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.9993&limit=20&offset=0&attributes=project_id,featured_image"
       },
-      "recorded_at" : 1616508147.6064649,
+      "recorded_at" : 1666028103.348388,
       "response" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.9993&limit=20&offset=0",
         "headers" : {
-          "Content-Type" : "application\/json",
-          "Strict-Transport-Security" : "max-age=15768000",
-          "x-response-hash" : "7dda09e1c9de3e3e6d68b80632a77743",
-          "Date" : "Tue, 23 Mar 2021 14:02:27 GMT",
           "Cache-Control" : "private, must-revalidate",
-          "x-openapi-message" : "OK",
-          "Expires" : "-1",
-          "Content-Encoding" : "gzip",
+          "Date" : "Mon, 17 Oct 2022 17:35:03 GMT",
+          "Content-Language" : "en",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
           "Pragma" : "no-cache",
-          "Server" : "nginx"
+          "Expires" : "-1",
+          "Content-Type" : "application\/json",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"-128574185\"",
+          "Server" : "cloudflare",
+          "cf-ray" : "75bac9ddccd3c232-VIE",
+          "x-openapi-message" : "OK",
+          "cf-cache-status" : "DYNAMIC",
+          "x-response-hash" : "29a8a5e92422a31e4401d43d887e553c",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=1oKeruRroB4%2FQy56Ckw2V9D6v9EKMBAGXozWz51OelimG66BL7CNIVyGRSDZ5K0SiSP89TkZaC0f4x8JbEBDssT6sEvgdSgoFGdzjdACJxy4%2F5%2FZhcsLMqazsMPAMNDGrLLCY0g3315dy5uI4BA%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Content-Encoding" : "br",
+          "Set-Cookie" : "dtCookie=v_4_srv_15_sn_B0636F4A3062768207DEC7C7C72567CA_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at"
         },
         "status" : 200,
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.9993&limit=20&offset=0&attributes=project_id,featured_image",
         "body" : [
-          {
-          
-          }
+          {}
         ]
       }
     }

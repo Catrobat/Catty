@@ -36,7 +36,7 @@ class NetworkDefines: NSObject {
     }
 
     static let baseUrl = shareUrl.appending("pocketcode/")
-    static let newApiEndpoint = shareUrl.appending("api/")
+    static let apiBaseUrl = shareUrl.appending("api/")
 
     // MARK: AppStore
 
@@ -45,34 +45,24 @@ class NetworkDefines: NSObject {
 
     // MARK: Static content
 
-    @objc static let sourceCodeLicenseUrl = "http://developer.catrobat.org/licenses"
-    @objc static let aboutCatrobatUrl = "http://www.catrobat.org"
+    static let aboutCatrobatUrl = "https://catrobat.org"
+    static let helpUrl = "https://catrob.at/help"
+    static let sourceCodeLicenseUrl = "https://developer.catrobat.org/licenses"
+    @objc static let termsOfUseUrl = shareUrl.appending("app/termsOfUse")
     @objc static let unsupportedElementsUrl = "https://catrob.at/ibuf"
 
-    // MARK: API
-
-    @objc static let connectionTimeout = 15
+    // MARK: Old API
 
     @objc static var loginUrl: String { baseUrl.appending("api/login/Login.json") }
     @objc static var registerUrl: String { baseUrl.appending("api/register/Register.json") }
     @objc static var reportProjectUrl: String { baseUrl.appending("api/reportProject/reportProject.json") }
-    @objc static var termsOfUseUrl: String { baseUrl.appending("termsOfUse") }
     @objc static var recoverPassword: String { baseUrl.appending("resetting/request") }
     static var uploadUrl: String { baseUrl.appending("api/upload") }
-    static var downloadUrl: String { baseUrl.appending("download") }
     static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
-    static var helpUrl: String { "https://catrob.at/help" }
 
     static let connectionUpload = "upload.json"
-    static let connectionIDQuery = "getInfoById.json"
 
-    static let projectsOffset = "offset"
-    static let projectsLimit = "limit"
-    static let maxVersion = "max_version"
     static let tagLanguage = "language"
-    static let projectQuery = "query"
-    static let projectCategory = "category"
-    static let featuredPlatform = "platform"
 
     // MARK: MediaLibrary
 
@@ -81,20 +71,30 @@ class NetworkDefines: NSObject {
     static var mediaLibrarySoundsIndex: String { baseUrl.appending("/api/media/package/Sounds/json") }
     static var mediaLibraryDownloadBaseUrl: String { baseUrl.replacingOccurrences(of: "/pocketcode/", with: "") }
 
-    // MARK: Share
+    // MARK: API
 
-    static var projectDetailsBaseUrl: String { baseUrl.appending("project/") }
+    static var apiEndpointProject = apiBaseUrl.appending("project")
+    static var apiEndpointProjects = apiBaseUrl.appending("projects")
+    static var apiEndpointProjectsFeatured = apiEndpointProjects.appending("/featured")
+    static var apiEndpointProjectsSearch = apiEndpointProjects.appending("/search")
 
-    // MARK: FeaturedProjectStoreViewController
+    static let apiParameterOffset = "offset"
+    static let apiParameterLimit = "limit"
+    static let apiParameterMaxVersion = "max_version"
+    static let apiParameterQuery = "query"
+    static let apiParameterCategory = "category"
+    static let apiParameterPlatform = "platform"
+    static let apiParameterAttributes = "attributes"
 
-    static var apiEndpointProjects = newApiEndpoint.appending("projects")
-    static var apiEndpointProjectDetails = newApiEndpoint.appending("project")
-    static var apiEndpointFeatured = apiEndpointProjects.appending("/featured")
-    static var apiEndpointSearch = apiEndpointProjects.appending("/search")
+    static var apiActionDownload = "catrobat"
 
-    static let chartProjectsMaxResults = 10
-    static let recentProjectsMaxResults = 20
-    static let searchStoreMaxResults = 50
+    // MARK: API Configuration
+
+    @objc static let connectionTimeout = 15
+
+    static let featuredProjectsBatchSize = 20
+    static let chartProjectsBatchSize = 20
+    static let searchProjectsBatchSize = 20
 
     static let searchLookupDelayInSeconds = 0.3
 

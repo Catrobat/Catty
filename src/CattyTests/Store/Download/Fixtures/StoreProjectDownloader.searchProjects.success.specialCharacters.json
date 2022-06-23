@@ -1,52 +1,43 @@
 {
   "interactions" : [
     {
-      "recorded_at" : 1638879476.1081948,
+      "request" : {
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=K%C3%B6nigin%20Schloss&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,author",
+        "method" : "GET"
+      },
+      "recorded_at" : 1666032454.733762,
       "response" : {
-        "headers" : {
-          "Strict-Transport-Security" : "max-age=15768000",
-          "Date" : "Tue, 07 Dec 2021 12:17:56 GMT",
-          "Content-Type" : "application\/json",
-          "x-response-hash" : "ff0de51370681ac8fdafb38e801fbb29",
-          "Cache-Control" : "private, must-revalidate",
-          "Content-Language" : "en",
-          "Content-Encoding" : "gzip",
-          "Pragma" : "no-cache",
-          "x-openapi-message" : "OK",
-          "Expires" : "-1",
-          "Server" : "nginx"
-        },
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=K%C3%B6nigin%20Schloss&max_version=0.9993&limit=20&offset=0",
         "status" : 200,
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=K%C3%B6nigin%20Schloss&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,author",
         "body" : [
           {
             "id" : "11990",
-            "description" : "",
-            "private" : false,
-            "version" : "0.9.23",
-            "flavor" : "pocketcode",
             "author" : "kidscraft",
             "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_11990.png?t=1598163718",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/11990.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 3.8335895538330078,
-            "uploaded_string" : "more than one year ago",
-            "download" : 30,
-            "uploaded" : 1469779255,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/11990",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_11990.png?t=1598101014",
-            "name" : "königin schloss",
-            "views" : 18
+            "name" : "königin schloss"
           }
-        ]
-      },
-      "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=K%C3%B6nigin%20Schloss&max_version=0.9993&limit=20&offset=0",
-        "method" : "GET"
+        ],
+        "headers" : {
+          "Expires" : "-1",
+          "cf-ray" : "75bb341a7f23c31d-VIE",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Content-Type" : "application\/json",
+          "Set-Cookie" : "dtCookie=v_4_srv_13_sn_B2D6F93B7A3DAD603DB056548A5D09FE_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Date" : "Mon, 17 Oct 2022 18:47:34 GMT",
+          "Cache-Control" : "private, must-revalidate",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=rhIE%2BlZ5tstaYqAKbwQBMtKU7PKYiFaLjTJynYqa2K0geDb8qo4rgXZitL0r4bCX%2FpYMXQIbe5pGXGugyba9i7GsjBEk1L5qG30xjFmzP0qUQOAQdw6LStPbUrZJ%2FsfVE%2BwaW2u4G9ojT6C7mCs%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Content-Language" : "en",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"890051135\"",
+          "Server" : "cloudflare",
+          "x-response-hash" : "f32356c4254dcb13f914db1f49d4091a",
+          "Content-Encoding" : "br",
+          "cf-cache-status" : "DYNAMIC",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "x-openapi-message" : "OK",
+          "Pragma" : "no-cache"
+        }
       }
     }
   ],
-  "name" : "StoreProjectDownloader.searchProjects.specialCharacters.success"
+  "name" : "StoreProjectDownloader.searchProjects.success.specialCharacters"
 }

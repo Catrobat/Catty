@@ -286,46 +286,4 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
         }
         return nil
     }
-
-    @nonobjc class func openURL(url: URL, delegate: BaseTableViewController, storeProjectDownloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) {
-        guard let projectId = catrobatProjectIdFromURL(url: url) else {
-            Util.alert(text: kLocalizedInvalidURLGiven)
-            return
-        }
-        delegate.showLoadingView()
-
-        storeProjectDownloader.fetchProjectDetails(for: projectId, completion: {project, error in
-            delegate.hideLoadingView()
-
-            guard error == nil else {
-                Util.alert(text: kLocalizedUnableToLoadProject)
-                return
-            }
-            guard let storeProject = project else {
-                Util.alert(text: kLocalizedInvalidZip)
-                return
-            }
-            let catrobatProject = storeProject.toCatrobatProject()
-
-            let storyboard = UIStoryboard(name: "iPhone", bundle: nil)
-            guard let viewController = storyboard.instantiateViewController(withIdentifier: "ProjectDetailStoreViewController") as? ProjectDetailStoreViewController else { return }
-            viewController.project = catrobatProject
-            delegate.navigationController?.pushViewController(viewController, animated: true)
-        })
-    }
-
-    class func catrobatProjectIdFromURL(url: URL) -> String? {
-        let pathComponents = url.pathComponents
-        guard pathComponents.count >= 4 else {
-            return nil
-        }
-        switch pathComponents[2] {
-        case "project":
-            return pathComponents[3]
-        case "download":
-            return String(pathComponents[3].dropLast(9))
-        default:
-            return nil
-        }
-    }
 }

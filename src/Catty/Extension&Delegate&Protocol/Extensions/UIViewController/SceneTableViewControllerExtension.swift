@@ -39,9 +39,7 @@ import Foundation
         DispatchQueue.main.async(execute: {
             AlertControllerBuilder.alert(title: kLocalizedProjectUploaded, message: kLocalizedProjectUploadedBody)
                 .addDefaultAction(title: kLocalizedView) {
-                    if let projectURL = URL(string: NetworkDefines.projectDetailsBaseUrl + projectId) {
-                        Util.openURL(url: projectURL, delegate: self)
-                    }
+                    self.openProjectDetails(projectId: projectId)
                 }
             .addDefaultAction(title: kLocalizedOK) { }
             .build().showWithController(self)

@@ -182,8 +182,9 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             return
         }
 
-        if requestUrl.absoluteString.contains(NetworkDefines.apiEndpointProjectDetails) {
-            self.openProjectDetails(url: requestUrl)
+        if requestUrl.absoluteString.contains(NetworkDefines.shareUrl),
+           let projectId = requestUrl.catrobatProjectId {
+            self.openProjectDetails(projectId: projectId)
             decisionHandler(.cancel)
             return
         }

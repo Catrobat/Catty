@@ -115,13 +115,13 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
                 switch self.projectType {
                 case .mostDownloaded:
                     self.mostDownloadedProjects.append(contentsOf: collection)
-                    self.mostDownloadedOffset += NetworkDefines.recentProjectsMaxResults
+                    self.mostDownloadedOffset += NetworkDefines.chartProjectsBatchSize
                 case .mostViewed:
                     self.mostViewedProjects.append(contentsOf: collection)
-                    self.mostViewedOffset += NetworkDefines.recentProjectsMaxResults
+                    self.mostViewedOffset += NetworkDefines.chartProjectsBatchSize
                 case .mostRecent:
                     self.mostRecentProjects.append(contentsOf: collection)
-                    self.mostRecentOffset += NetworkDefines.recentProjectsMaxResults
+                    self.mostRecentOffset += NetworkDefines.chartProjectsBatchSize
                 }
                 completion(nil)
 

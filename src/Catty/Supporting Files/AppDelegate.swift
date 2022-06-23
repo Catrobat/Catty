@@ -155,10 +155,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL,
-            let topViewController = vc?.topViewController else {
+            let topViewController = vc?.topViewController,
+            let projectID = url.catrobatProjectId else {
             return false
         }
-        topViewController.openProjectDetails(url: url)
+        topViewController.openProjectDetails(projectId: projectID)
         return true
     }
 

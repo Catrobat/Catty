@@ -41,17 +41,14 @@ extension UIViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func openProjectDetails(url: URL) {
-        self.openProjectDetails(url: url, storeProjectDownloader: StoreProjectDownloader())
-    }
-
-    @nonobjc func openProjectDetails(url: URL, storeProjectDownloader: StoreProjectDownloaderProtocol) {
-        guard let projectId = url.catrobatProjectId() else {
-            Util.alert(text: kLocalizedInvalidURLGiven)
-            return
+    func openProjectDetails(projectId: String, storeProjectDownloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) {
+        if let baseTableViewController = self as? BaseTableViewController {
+            baseTableViewController.showLoadingView()
         }
-
         storeProjectDownloader.fetchProjectDetails(for: projectId, completion: {project, error in
+            if let baseTableViewController = self as? BaseTableViewController {
+                baseTableViewController.hideLoadingView()
+            }
 
             guard error == nil else {
                 Util.alert(text: kLocalizedUnableToLoadProject)
