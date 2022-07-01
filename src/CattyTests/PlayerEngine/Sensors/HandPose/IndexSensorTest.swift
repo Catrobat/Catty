@@ -116,7 +116,7 @@ final class IndexSensorTest: XCTestCase {
 
     func testRequiredResources() {
         for indexSensor in indexXSensors + indexYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: indexSensor).requiredResource)
+            XCTAssertEqual(ResourceType.handPoseDetection, type(of: indexSensor).requiredResource)
         }
     }
 

@@ -1412,6 +1412,9 @@
 "number of items" = "number of items";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "number of text blocks";
+
+/* No comment provided by engineer. */
 "Numbers" = "Numbers";
 
 /* No comment provided by engineer. */
@@ -2129,7 +2132,28 @@
 "Text" = "Text";
 
 /* No comment provided by engineer. */
+"text block from camera" = "text block from camera";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "text block language from camera";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "text block size from camera";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "text block x from camera";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "text block y from camera";
+
+/* No comment provided by engineer. */
+"text from camera" = "text from camera";
+
+/* No comment provided by engineer. */
 "Text message:" = "Text message:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "Text recognition";
 
 /* paint */
 "Text:" = "Text:";

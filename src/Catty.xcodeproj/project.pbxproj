@@ -339,6 +339,8 @@
 		46F1754E24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */; };
 		490F0F3827DF704000D4778B /* LeftEyeCenterXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F0F3727DF704000D4778B /* LeftEyeCenterXSensor.swift */; };
 		490F0F3A27DF71CC00D4778B /* LeftEyeCenterYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F0F3927DF71CC00D4778B /* LeftEyeCenterYSensor.swift */; };
+		4915B18928142821003A8BCD /* TextBlockPositionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4915B18828142821003A8BCD /* TextBlockPositionFunctionTest.swift */; };
+		4923E62E286EFDE7007CA0F3 /* TextBlockSizeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4923E62D286EFDE7007CA0F3 /* TextBlockSizeFunction.swift */; };
 		4926233C27AA8A2800866183 /* SceneTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4926233B27AA8A2800866183 /* SceneTableViewControllerExtension.swift */; };
 		49358BC927DB3A37005F96B4 /* VNFaceObservationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49358BC827DB3A37005F96B4 /* VNFaceObservationMock.swift */; };
 		49402B9028116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402B8A28116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift */; };
@@ -373,6 +375,15 @@
 		49519D3727DCE11700E32E88 /* SecondFaceSizeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49519D3627DCE11700E32E88 /* SecondFaceSizeSensor.swift */; };
 		49530A8227FDDADC003A9E24 /* FaceDetectionSensors.xml in Resources */ = {isa = PBXBuildFile; fileRef = 49530A8127FDDADC003A9E24 /* FaceDetectionSensors.xml */; };
 		49530A8427FDDC04003A9E24 /* BackwardsCompatibleFaceDetectionSensors.xml in Resources */ = {isa = PBXBuildFile; fileRef = 49530A8327FDDC03003A9E24 /* BackwardsCompatibleFaceDetectionSensors.xml */; };
+		4963EB632812C5E100A9B3FA /* TextBlockXFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963EB622812C5E100A9B3FA /* TextBlockXFunction.swift */; };
+		4963EB672812C5EE00A9B3FA /* TextBlockYFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963EB662812C5EE00A9B3FA /* TextBlockYFunction.swift */; };
+		4963EB6C2812CFB800A9B3FA /* TextBlockFromCameraFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963EB6B2812CFB800A9B3FA /* TextBlockFromCameraFunction.swift */; };
+		4963EB6E2812CFD500A9B3FA /* TextBlockLanguageFromCameraFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963EB6D2812CFD500A9B3FA /* TextBlockLanguageFromCameraFunction.swift */; };
+		49725808281282B300CB9A2D /* TextFromCameraSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49725807281282B300CB9A2D /* TextFromCameraSensor.swift */; };
+		4972580A2812A6ED00CB9A2D /* TextBlocksNumberSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497258092812A6ED00CB9A2D /* TextBlocksNumberSensor.swift */; };
+		4974B2BB281A5F6300EEF0D9 /* TextBlockTextFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974B2BA281A5F6300EEF0D9 /* TextBlockTextFunctionTest.swift */; };
+		4974B2BE281A688000EEF0D9 /* TextSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974B2BD281A688000EEF0D9 /* TextSensorTest.swift */; };
+		4974B2C0281A772100EEF0D9 /* TextRecognitionSensors.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4974B2BF281A772100EEF0D9 /* TextRecognitionSensors.xml */; };
 		49774F9728073D6500374655 /* LowerBodyPoseDetectionSensors.xml in Resources */ = {isa = PBXBuildFile; fileRef = 498C1596280716C000B81C8E /* LowerBodyPoseDetectionSensors.xml */; };
 		4979F40527E8541200ABCAD6 /* HeadTopXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979F40427E8541200ABCAD6 /* HeadTopXSensor.swift */; };
 		4979F40927E8542100ABCAD6 /* HeadTopYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979F40827E8542100ABCAD6 /* HeadTopYSensor.swift */; };
@@ -2443,6 +2454,8 @@
 		481639B0D938C88A5E2E6963 /* ms */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		490F0F3727DF704000D4778B /* LeftEyeCenterXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEyeCenterXSensor.swift; sourceTree = "<group>"; };
 		490F0F3927DF71CC00D4778B /* LeftEyeCenterYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEyeCenterYSensor.swift; sourceTree = "<group>"; };
+		4915B18828142821003A8BCD /* TextBlockPositionFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlockPositionFunctionTest.swift; sourceTree = "<group>"; };
+		4923E62D286EFDE7007CA0F3 /* TextBlockSizeFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlockSizeFunction.swift; sourceTree = "<group>"; };
 		4926233B27AA8A2800866183 /* SceneTableViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewControllerExtension.swift; sourceTree = "<group>"; };
 		49358BC827DB3A37005F96B4 /* VNFaceObservationMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VNFaceObservationMock.swift; sourceTree = "<group>"; };
 		49402B8A28116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftPinkyKnuckleXSensor.swift; sourceTree = "<group>"; };
@@ -2477,6 +2490,15 @@
 		49519D3627DCE11700E32E88 /* SecondFaceSizeSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFaceSizeSensor.swift; sourceTree = "<group>"; };
 		49530A8127FDDADC003A9E24 /* FaceDetectionSensors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FaceDetectionSensors.xml; sourceTree = "<group>"; };
 		49530A8327FDDC03003A9E24 /* BackwardsCompatibleFaceDetectionSensors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BackwardsCompatibleFaceDetectionSensors.xml; sourceTree = "<group>"; };
+		4963EB622812C5E100A9B3FA /* TextBlockXFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlockXFunction.swift; sourceTree = "<group>"; };
+		4963EB662812C5EE00A9B3FA /* TextBlockYFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlockYFunction.swift; sourceTree = "<group>"; };
+		4963EB6B2812CFB800A9B3FA /* TextBlockFromCameraFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlockFromCameraFunction.swift; sourceTree = "<group>"; };
+		4963EB6D2812CFD500A9B3FA /* TextBlockLanguageFromCameraFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlockLanguageFromCameraFunction.swift; sourceTree = "<group>"; };
+		49725807281282B300CB9A2D /* TextFromCameraSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFromCameraSensor.swift; sourceTree = "<group>"; };
+		497258092812A6ED00CB9A2D /* TextBlocksNumberSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlocksNumberSensor.swift; sourceTree = "<group>"; };
+		4974B2BA281A5F6300EEF0D9 /* TextBlockTextFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlockTextFunctionTest.swift; sourceTree = "<group>"; };
+		4974B2BD281A688000EEF0D9 /* TextSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSensorTest.swift; sourceTree = "<group>"; };
+		4974B2BF281A772100EEF0D9 /* TextRecognitionSensors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TextRecognitionSensors.xml; sourceTree = "<group>"; };
 		4979F40427E8541200ABCAD6 /* HeadTopXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadTopXSensor.swift; sourceTree = "<group>"; };
 		4979F40827E8542100ABCAD6 /* HeadTopYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadTopYSensor.swift; sourceTree = "<group>"; };
 		4979F40A27E85AA000ABCAD6 /* NoseXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoseXSensor.swift; sourceTree = "<group>"; };
@@ -5396,6 +5418,7 @@
 				498C1570280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml */,
 				498C1596280716C000B81C8E /* LowerBodyPoseDetectionSensors.xml */,
 				49402BAC28117B9E009FCBF8 /* HandPoseDetectionSensors.xml */,
+				4974B2BF281A772100EEF0D9 /* TextRecognitionSensors.xml */,
 			);
 			path = Sensors;
 			sourceTree = "<group>";
@@ -5648,6 +5671,15 @@
 			path = SpriteObject;
 			sourceTree = "<group>";
 		};
+		4915B185281427C4003A8BCD /* TextRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				4915B18828142821003A8BCD /* TextBlockPositionFunctionTest.swift */,
+				4974B2BA281A5F6300EEF0D9 /* TextBlockTextFunctionTest.swift */,
+			);
+			path = TextRecognition;
+			sourceTree = "<group>";
+		};
 		49402B8728116F5A009FCBF8 /* HandPose */ = {
 			isa = PBXGroup;
 			children = (
@@ -5685,6 +5717,35 @@
 				49402BA828117B1E009FCBF8 /* ThumbSensorTest.swift */,
 			);
 			path = HandPose;
+			sourceTree = "<group>";
+		};
+		4963EB682812C83200A9B3FA /* TextRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				4963EB622812C5E100A9B3FA /* TextBlockXFunction.swift */,
+				4963EB662812C5EE00A9B3FA /* TextBlockYFunction.swift */,
+				4923E62D286EFDE7007CA0F3 /* TextBlockSizeFunction.swift */,
+				4963EB6B2812CFB800A9B3FA /* TextBlockFromCameraFunction.swift */,
+				4963EB6D2812CFD500A9B3FA /* TextBlockLanguageFromCameraFunction.swift */,
+			);
+			path = TextRecognition;
+			sourceTree = "<group>";
+		};
+		497258042812822400CB9A2D /* TextRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				49725807281282B300CB9A2D /* TextFromCameraSensor.swift */,
+				497258092812A6ED00CB9A2D /* TextBlocksNumberSensor.swift */,
+			);
+			path = TextRecognition;
+			sourceTree = "<group>";
+		};
+		4974B2BC281A686A00EEF0D9 /* TextRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				4974B2BD281A688000EEF0D9 /* TextSensorTest.swift */,
+			);
+			path = TextRecognition;
 			sourceTree = "<group>";
 		};
 		49949B292806EA500073BF65 /* BodyPose */ = {
@@ -6489,6 +6550,7 @@
 		4C6FE139212D2D2E0067B7D5 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				4915B185281427C4003A8BCD /* TextRecognition */,
 				4C822686213FAC1700F3D750 /* Touch */,
 				4C37A0A1212DBF2C0074F417 /* Arduino */,
 				4C6FE153212D2D2E0067B7D5 /* List */,
@@ -6937,6 +6999,7 @@
 		4C822615213FA7A300F3D750 /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				4974B2BC281A686A00EEF0D9 /* TextRecognition */,
 				4C822651213FA7A300F3D750 /* SensorManagerTests.swift */,
 				4C822640213FA7A300F3D750 /* Audio */,
 				49402B9E28117888009FCBF8 /* HandPose */,
@@ -7118,6 +7181,7 @@
 		4C994DFA207A3D4100C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				497258042812822400CB9A2D /* TextRecognition */,
 				49402B8728116F5A009FCBF8 /* HandPose */,
 				49949B292806EA500073BF65 /* BodyPose */,
 				49E494DC27F596630035578D /* FacePose */,
@@ -7379,6 +7443,7 @@
 		4CE67884210C4AE000D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				4963EB682812C83200A9B3FA /* TextRecognition */,
 				E5C983D725792A5C00AC36C3 /* Object */,
 				4CE6788C210C503600D90B5D /* FunctionManager.swift */,
 				4C37A09C212DBD990074F417 /* Arduino */,
@@ -11460,6 +11525,7 @@
 				590D082D252B8D3E006231AB /* StoreProjectReporter.reportProject.postDataIncorrect.fail.json in Resources */,
 				2ED417DE241120AF00AFE2FD /* Airplane_with_shadow_095.xml in Resources */,
 				2ED417C4241120AF00AFE2FD /* Air_fight_0.5_091.xml in Resources */,
+				4974B2C0281A772100EEF0D9 /* TextRecognitionSensors.xml in Resources */,
 				2ED41803241120AF00AFE2FD /* Pong_Starter_097.xml in Resources */,
 				E5BEC72526AAEA550063D7F0 /* Pythagorean_Theorem_0998.xml in Resources */,
 				2ED41864241120B000AFE2FD /* ValidHeader095.xml in Resources */,
@@ -12162,6 +12228,7 @@
 				4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */,
 				E50E856E269ED86700E76CE9 /* XMLParserTests0995.swift in Sources */,
 				4C6FE163212D2D2E0067B7D5 /* ModFunctionTest.swift in Sources */,
+				4974B2BE281A688000EEF0D9 /* TextSensorTest.swift in Sources */,
 				49402BA728117ADE009FCBF8 /* IndexSensorTest.swift in Sources */,
 				4CF8277224F11542006E562A /* ScriptCollectionViewControllerMock.swift in Sources */,
 				0594CE66275E567E007DC3F9 /* SewUpBrickTests.swift in Sources */,
@@ -12210,6 +12277,7 @@
 				2E7ED10625E38E1A0009F17F /* WebRequestDownloaderTests.swift in Sources */,
 				46C5D9F6254FF641003D58D9 /* RotationStyleTests.swift in Sources */,
 				9E2C2D9023257704004B66C6 /* ChangeBrightnessByNBrickTests.swift in Sources */,
+				4915B18928142821003A8BCD /* TextBlockPositionFunctionTest.swift in Sources */,
 				18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */,
 				4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
@@ -12509,6 +12577,7 @@
 				9E3AF7982326F21300AB16F1 /* SetXBrickTests.swift in Sources */,
 				4C4B4CDF23EE98C80054C861 /* CustomAlertControllerTests.swift in Sources */,
 				4C822678213FA7A400F3D750 /* ColorSensorTest.swift in Sources */,
+				4974B2BB281A5F6300EEF0D9 /* TextBlockTextFunctionTest.swift in Sources */,
 				4C4778DA267C82B100CAF398 /* URLSessionJsonExtensionTests.swift in Sources */,
 				4C82267F213FA7A400F3D750 /* PositionXSensorTest.swift in Sources */,
 				4C0C164921439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift in Sources */,
@@ -12747,6 +12816,7 @@
 				0581B72E27BAA5460098BDF8 /* StopCurrentStitchBrickCell.swift in Sources */,
 				181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */,
 				9218B20F1CC4AB75007B4C60 /* MirrorRotationZoomTool.m in Sources */,
+				4972580A2812A6ED00CB9A2D /* TextBlocksNumberSensor.swift in Sources */,
 				AA74EEF91BC057C900D1E954 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
 				9E78D88722A9AFB400948AC3 /* AudioSubtree.swift in Sources */,
 				4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */,
@@ -12771,6 +12841,7 @@
 				9EDCD22522886FD90040EFE3 /* WaitBrickCell.swift in Sources */,
 				46F0D30625E59273002252E6 /* SetLookBrickCell.swift in Sources */,
 				4C994E23207A56D500C415FD /* AccelerationZSensor.swift in Sources */,
+				4963EB672812C5EE00A9B3FA /* TextBlockYFunction.swift in Sources */,
 				4CB0F9EE20A1731700D1BE2F /* TransparencySensor.swift in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProjectTableHeaderView.m in Sources */,
@@ -12887,6 +12958,7 @@
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,
 				AA74F0961BC05FCE00D1E954 /* BrickCellObjectData.m in Sources */,
 				4C595F6021CAF9050097D850 /* OperatorManagerProtocol.swift in Sources */,
+				4963EB6C2812CFB800A9B3FA /* TextBlockFromCameraFunction.swift in Sources */,
 				929CC0CC1BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m in Sources */,
 				4C6FA80722F17F89000A72F6 /* SpriteBubbleConstraint.swift in Sources */,
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
@@ -12911,6 +12983,7 @@
 				18390A6D24D057E100A07DFD /* StampBrickCell.swift in Sources */,
 				AA74F0A61BC05FCE00D1E954 /* RepeatBrickCell.m in Sources */,
 				99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */,
+				49725808281282B300CB9A2D /* TextFromCameraSensor.swift in Sources */,
 				18237D6B24EC3A9300759854 /* UIDefines.swift in Sources */,
 				AA74F0BA1BC05FCE00D1E954 /* GoNStepsBackBrickCell.m in Sources */,
 				0581B72C27BAA5210098BDF8 /* StopCurrentStitchBrick+Instruction.swift in Sources */,
@@ -13203,6 +13276,7 @@
 				4C2048822671F18F00AE2E1B /* WebRequestDownloaderError.swift in Sources */,
 				97770B8F25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift in Sources */,
 				6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */,
+				4923E62E286EFDE7007CA0F3 /* TextBlockSizeFunction.swift in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */,
 				E5E1E5AA25780DA100D2F1BC /* SetLookByIndexBrick.swift in Sources */,
@@ -13502,6 +13576,7 @@
 				F4201CFB20D7A1060030181B /* TimeMinuteSensor.swift in Sources */,
 				F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */,
 				AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */,
+				4963EB632812C5E100A9B3FA /* TextBlockXFunction.swift in Sources */,
 				9218B2151CC4AB75007B4C60 /* ColorPickerViewController.m in Sources */,
 				D38F58622441B19F0079F6EA /* GoToBrick.m in Sources */,
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
@@ -13548,6 +13623,7 @@
 				6F348C85245499F1000C963B /* AppDelegate.swift in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
+				4963EB6E2812CFD500A9B3FA /* TextBlockLanguageFromCameraFunction.swift in Sources */,
 				929CC0D01BC39B0A0027DEC0 /* PhiroRGBLightBrick.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
 				181E000625B5766700534C24 /* FormulaEditorSectionViewController.swift in Sources */,

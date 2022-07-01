@@ -30,8 +30,18 @@ protocol VisualDetectionManagerProtocol {
     var faceLandmarkPositionRatioDictionary: [String: Double] { get }
     var bodyPosePositionRatioDictionary: [String: Double] { get }
     var handPosePositionRatioDictionary: [String: Double] { get }
+    var textFromCamera: String? { get }
+    var textBlocksNumber: Int? { get }
+    var textBlockPosition: [CGPoint] { get }
+    var textBlockSizeRatio: [Double] { get }
+    var textBlockFromCamera: [String] { get }
+    var textBlockLanguageCode: [String] { get }
 
     func start()
+    func startFaceDetection()
+    func startHandPoseDetection()
+    func startBodyPoseDetection()
+    func startTextRecognition()
 
     func stop()
 

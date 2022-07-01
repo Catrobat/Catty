@@ -133,7 +133,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     }
 
     func testSetupForFormulaFaceDetection() {
-        manager.setup(for: FormulaMock(requiredResource: .faceDetection))
+        manager.setup(for: FormulaMock(requiredResource: .visualDetection))
 
         XCTAssertTrue(visualDetectionManager.isStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
@@ -280,7 +280,28 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.faceDetection.rawValue))
 
         visualDetectionManager.isAvailable = false
-        XCTAssertEqual(ResourceType.faceDetection.rawValue, manager.unavailableResources(for: ResourceType.faceDetection.rawValue))
+        XCTAssertEqual(ResourceType.visualDetection.rawValue, manager.unavailableResources(for: ResourceType.faceDetection.rawValue))
+    }
+
+    func testUnavailableResourcesBodyPoseDetection() {
+        XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.bodyPoseDetection.rawValue))
+
+        visualDetectionManager.isAvailable = false
+        XCTAssertEqual(ResourceType.visualDetection.rawValue, manager.unavailableResources(for: ResourceType.bodyPoseDetection.rawValue))
+    }
+
+    func testUnavailableResourcesHandPoseDetection() {
+        XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.handPoseDetection.rawValue))
+
+        visualDetectionManager.isAvailable = false
+        XCTAssertEqual(ResourceType.visualDetection.rawValue, manager.unavailableResources(for: ResourceType.handPoseDetection.rawValue))
+    }
+
+    func testUnavailableResourcesTextRecognition() {
+        XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.textRecognition.rawValue))
+
+        visualDetectionManager.isAvailable = false
+        XCTAssertEqual(ResourceType.visualDetection.rawValue, manager.unavailableResources(for: ResourceType.textRecognition.rawValue))
     }
 
     func testStop() {
@@ -290,6 +311,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         locationManager.isHeadingUpdateStarted = true
         locationManager.isLocationUpdateStarted = true
         visualDetectionManager.isStarted = true
+        visualDetectionManager.faceDetectionEnabled = true
+        visualDetectionManager.bodyPoseDetectionEnabled = true
+        visualDetectionManager.handPoseDetectionEnabled = true
+        visualDetectionManager.textRecognitionEnabled = true
         audioManager.isStarted = true
         touchManager.isStarted = true
 
@@ -301,6 +326,9 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(visualDetectionManager.isStarted)
+        XCTAssertFalse(visualDetectionManager.bodyPoseDetectionEnabled)
+        XCTAssertFalse(visualDetectionManager.handPoseDetectionEnabled)
+        XCTAssertFalse(visualDetectionManager.textRecognitionEnabled)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(audioManager.isPaused)
         XCTAssertFalse(touchManager.isStarted)

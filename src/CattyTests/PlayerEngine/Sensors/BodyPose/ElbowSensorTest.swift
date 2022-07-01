@@ -116,7 +116,7 @@ final class ElbowSensorTest: XCTestCase {
 
     func testRequiredResources() {
         for elbowSensor in elbowXSensors + elbowYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: elbowSensor).requiredResource)
+            XCTAssertEqual(ResourceType.bodyPoseDetection, type(of: elbowSensor).requiredResource)
         }
     }
 

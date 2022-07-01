@@ -116,7 +116,7 @@ final class MiddleFingerSensorTest: XCTestCase {
 
     func testRequiredResources() {
         for middleFingerSensor in middleFingerXSensors + middleFingerYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: middleFingerSensor).requiredResource)
+            XCTAssertEqual(ResourceType.handPoseDetection, type(of: middleFingerSensor).requiredResource)
         }
     }
 

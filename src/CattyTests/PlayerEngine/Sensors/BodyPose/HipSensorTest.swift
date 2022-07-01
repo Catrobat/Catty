@@ -116,7 +116,7 @@ class HipSensorTest: XCTestCase {
 
     func testRequiredResources() {
         for hipSensor in hipXSensors + hipYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: hipSensor).requiredResource)
+            XCTAssertEqual(ResourceType.bodyPoseDetection, type(of: hipSensor).requiredResource)
         }
     }
 

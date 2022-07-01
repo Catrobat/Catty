@@ -33,6 +33,10 @@ final class VisualDetectionManagerMock: VisualDetectionManager {
 
     override func stop() {
         isStarted = false
+        self.faceDetectionEnabled = false
+        self.handPoseDetectionEnabled = false
+        self.bodyPoseDetectionEnabled = false
+        self.textRecognitionEnabled = false
     }
 
     override func available() -> Bool {
@@ -164,5 +168,22 @@ final class VisualDetectionManagerMock: VisualDetectionManager {
         self.handPosePositionRatioDictionary[LeftThumbKnuckleYSensor.tag] = value
         self.handPosePositionRatioDictionary[RightThumbKnuckleXSensor.tag] = value
         self.handPosePositionRatioDictionary[RightThumbKnuckleYSensor.tag] = value
+    }
+
+    func setTextBlockPositionRecognized(at position: CGPoint, withSizeRatio sizeRatio: Double) {
+        self.textBlockPosition.append(position)
+        self.textBlockSizeRatio.append(sizeRatio)
+    }
+
+    func setTextBlockTextRecognized(text: String, language: String) {
+        self.textBlockFromCamera.append(text)
+        self.textBlockLanguageCode.append(language)
+        if self.textFromCamera != nil && self.textBlocksNumber != nil {
+            self.textFromCamera!.append(" " + text)
+            self.textBlocksNumber! += 1
+        } else {
+            self.textFromCamera = text
+            self.textBlocksNumber = 1
+        }
     }
 }

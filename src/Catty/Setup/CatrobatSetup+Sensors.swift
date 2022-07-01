@@ -172,7 +172,11 @@ extension CatrobatSetup {
             sensorArray.append(LeftAnkleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
             sensorArray.append(RightAnkleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
             sensorArray.append(RightAnkleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        }
 
+        if #available(iOS 13.0, *) {
+            sensorArray.append(TextFromCameraSensor(visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(TextBlocksNumberSensor(visualDetectionManagerGetter: { visualDetectionManager }))
         }
 
         return sensorArray

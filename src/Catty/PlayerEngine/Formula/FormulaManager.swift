@@ -56,8 +56,10 @@ import CoreMotion
                                               landscapeMode: landscapeMode)
 
         let functionManager =
-            FormulaManager.buildFunctionManager(touchManager: touchManager,
-                                                bluetoothService: bluetoothService)
+        FormulaManager.buildFunctionManager(stageSize: stageSize,
+                                            touchManager: touchManager,
+                                            visualDetectionManager: visualDetectionManager,
+                                            bluetoothService: bluetoothService)
 
         let operatorManager = FormulaManager.buildOperatorManager()
 
@@ -152,8 +154,15 @@ import CoreMotion
         return SensorManager(sensors: sensors, landscapeMode: landscapeMode)
     }
 
-    private static func buildFunctionManager(touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> FunctionManager {
-        FunctionManager(functions: CatrobatSetup.registeredFunctions(touchManager: touchManager, bluetoothService: bluetoothService))
+    private static func buildFunctionManager(stageSize: CGSize,
+                                             touchManager: TouchManagerProtocol,
+                                             visualDetectionManager: VisualDetectionManager,
+                                             bluetoothService: BluetoothService) -> FunctionManager {
+
+        FunctionManager(functions: CatrobatSetup.registeredFunctions(stageSize: stageSize,
+                                                                     touchManager: touchManager,
+                                                                     visualDetectionManager: visualDetectionManager,
+                                                                     bluetoothService: bluetoothService))
     }
 
     private static func buildOperatorManager() -> OperatorManagerProtocol {

@@ -26,7 +26,7 @@ class RightWristYSensor: DeviceDoubleSensor {
     static let name = kUIFESensorRightWristY
     static let defaultRawValue = 0.0
     static let position = 700
-    static let requiredResource = ResourceType.faceDetection
+    static let requiredResource = ResourceType.bodyPoseDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageHeight: Double?

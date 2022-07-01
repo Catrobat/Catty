@@ -26,7 +26,7 @@ class RightKneeXSensor: DeviceDoubleSensor {
     static let name = kUIFESensorRightKneeX
     static let defaultRawValue = 0.0
     static let position = 970
-    static let requiredResource = ResourceType.faceDetection
+    static let requiredResource = ResourceType.bodyPoseDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageWidth: Double?

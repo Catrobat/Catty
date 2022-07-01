@@ -116,7 +116,7 @@ class KneeSensorTest: XCTestCase {
 
     func testRequiredResources() {
         for kneeSensor in kneeXSensors + kneeYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: kneeSensor).requiredResource)
+            XCTAssertEqual(ResourceType.bodyPoseDetection, type(of: kneeSensor).requiredResource)
         }
     }
 

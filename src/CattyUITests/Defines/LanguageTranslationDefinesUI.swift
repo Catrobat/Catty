@@ -661,6 +661,7 @@ let kUIFESubsectionDeviceSensors = NSLocalizedString("Device sensors", bundle: B
 let kUIFESubsectionTouchDetection = NSLocalizedString("Touch detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionVisualSensors = NSLocalizedString("Face detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionPoseDetection = NSLocalizedString("Pose detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionTextRecognition = NSLocalizedString("Text recognition", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionDataAndTime = NSLocalizedString("Date and time", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionGeneral = NSLocalizedString("General properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionMotion = NSLocalizedString("Motion properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -716,6 +717,12 @@ let kUIFEFunctionIndexOfItem = NSLocalizedString("index of item", bundle: Bundle
 let kUIFEFunctionScreenIsTouched = NSLocalizedString("stage is touched", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionScreenTouchX = NSLocalizedString("stage touch x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionScreenTouchY = NSLocalizedString("stage touch y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFEFunctionTextBlockX = NSLocalizedString("text block x from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTextBlockY = NSLocalizedString("text block y from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTextBlockSize = NSLocalizedString("text block size from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTextBlockFromCamera = NSLocalizedString("text block from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTextBlockLanguageFromCamera = NSLocalizedString("text block language from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEOperatorAnd = NSLocalizedString("and", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -877,6 +884,9 @@ let kUIFESensorLeftThumbKnuckleX = NSLocalizedString("left thumb knuckle x", bun
 let kUIFESensorLeftThumbKnuckleY = NSLocalizedString("left thumb knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorRightThumbKnuckleX = NSLocalizedString("right thumb knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorRightThumbKnuckleY = NSLocalizedString("right thumb knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFESensorTextFromCamera = NSLocalizedString("text from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorTextBlocksNumber = NSLocalizedString("number of text blocks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 

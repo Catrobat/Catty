@@ -26,7 +26,7 @@ class RightThumbKnuckleXSensor: DeviceDoubleSensor {
     static let name = kUIFESensorRightThumbKnuckleX
     static let defaultRawValue = 0.0
     static let position = 890
-    static let requiredResource = ResourceType.faceDetection
+    static let requiredResource = ResourceType.handPoseDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageWidth: Double?
