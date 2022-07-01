@@ -66,4 +66,10 @@
     return @[self.formula];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.formula getRequiredResources];
+}
+
 @end
