@@ -26,8 +26,8 @@ import XCTest
 
 final class IndexSensorTest: XCTestCase {
 
-    var indexXSensor: LeftIndexKnuckleXSensor!
-    var indexYSensor: LeftIndexKnuckleYSensor!
+    var indexXSensors = [DeviceDoubleSensor]()
+    var indexYSensors = [DeviceDoubleSensor]()
     var visualDetectionManagerMock: VisualDetectionManagerMock!
     var stageSize: CGSize!
 
@@ -36,84 +36,95 @@ final class IndexSensorTest: XCTestCase {
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
         self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
-        self.indexXSensor = LeftIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
-        self.indexYSensor = LeftIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
+        self.indexXSensors.append(LeftIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.indexXSensors.append(RightIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.indexYSensors.append(LeftIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.indexYSensors.append(RightIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
     }
 
     override func tearDown() {
         self.visualDetectionManagerMock = nil
-        self.indexXSensor = nil
-        self.indexYSensor = nil
+        self.indexXSensors.removeAll()
+        self.indexYSensors.removeAll()
         super.tearDown()
     }
 
     func testDefaultRawValue() {
-        let indexXSensor = LeftIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: indexXSensor).defaultRawValue, indexXSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: indexXSensor).defaultRawValue, indexXSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        var indexSensors = [DeviceDoubleSensor]()
+        indexSensors.append(LeftIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        indexSensors.append(RightIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        indexSensors.append(LeftIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        indexSensors.append(RightIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
 
-        let indexYSensor = LeftIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: indexYSensor).defaultRawValue, indexYSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: indexYSensor).defaultRawValue, indexYSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        for indexSensor in indexSensors {
+            XCTAssertEqual(type(of: indexSensor).defaultRawValue, indexSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+            XCTAssertEqual(type(of: indexSensor).defaultRawValue, indexSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        }
     }
 
     func testRawValue() {
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftIndexKnuckleXSensor.tag] = 0
-        XCTAssertEqual(0, self.indexXSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0, self.indexXSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllIndexSensorValueRatios(to: 0)
+        for indexSensor in indexXSensors + indexYSensors {
+            XCTAssertEqual(0, indexSensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0, indexSensor.rawValue(landscapeMode: true))
+        }
 
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftIndexKnuckleYSensor.tag] = 0.95
-        XCTAssertEqual(0.95, self.indexYSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0.95, self.indexYSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllIndexSensorValueRatios(to: 0.95)
+        for indexSensor in indexXSensors + indexYSensors {
+            XCTAssertEqual(0.95, indexSensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0.95, indexSensor.rawValue(landscapeMode: true))
+        }
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: indexXSensor).defaultRawValue, indexXSensor.convertToStandardized(rawValue: 0))
+        for indexSensor in indexXSensors {
+            XCTAssertEqual(type(of: indexSensor).defaultRawValue, indexSensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), indexXSensor.convertToStandardized(rawValue: 0.02))
-        XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), indexXSensor.convertToStandardized(rawValue: 0.45))
-        XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), indexXSensor.convertToStandardized(rawValue: 0.93))
-        XCTAssertEqual(Double(stageSize.width / 2), indexXSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), indexSensor.convertToStandardized(rawValue: 0.02))
+            XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), indexSensor.convertToStandardized(rawValue: 0.45))
+            XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), indexSensor.convertToStandardized(rawValue: 0.93))
+            XCTAssertEqual(Double(stageSize.width / 2), indexSensor.convertToStandardized(rawValue: 1.0))
+        }
 
-        XCTAssertEqual(type(of: indexYSensor).defaultRawValue, indexYSensor.convertToStandardized(rawValue: 0))
+        for indexSensor in indexYSensors {
+            XCTAssertEqual(type(of: indexSensor).defaultRawValue, indexSensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), indexYSensor.convertToStandardized(rawValue: 0.01))
-        XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), indexYSensor.convertToStandardized(rawValue: 0.4))
-        XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), indexYSensor.convertToStandardized(rawValue: 0.95))
-        XCTAssertEqual(Double(stageSize.height / 2), indexYSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), indexSensor.convertToStandardized(rawValue: 0.01))
+            XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), indexSensor.convertToStandardized(rawValue: 0.4))
+            XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), indexSensor.convertToStandardized(rawValue: 0.95))
+            XCTAssertEqual(Double(stageSize.height / 2), indexSensor.convertToStandardized(rawValue: 1.0))
+        }
     }
 
     func testStandardizedValue() {
-        var convertToStandardizedValue = indexXSensor.convertToStandardized(rawValue: indexXSensor.rawValue(landscapeMode: false))
-        var standardizedValue = indexXSensor.standardizedValue(landscapeMode: false)
-        var standardizedValueLandscape = indexXSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
-
-        convertToStandardizedValue = indexYSensor.convertToStandardized(rawValue: indexYSensor.rawValue(landscapeMode: false))
-        standardizedValue = indexYSensor.standardizedValue(landscapeMode: false)
-        standardizedValueLandscape = indexYSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        for indexSensor in indexXSensors + indexYSensors {
+            let convertToStandardizedValue = indexSensor.convertToStandardized(rawValue: indexSensor.rawValue(landscapeMode: false))
+            let standardizedValue = indexSensor.standardizedValue(landscapeMode: false)
+            let standardizedValueLandscape = indexSensor.standardizedValue(landscapeMode: true)
+            XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        }
     }
 
     func testTag() {
-        XCTAssertEqual("LEFT_INDEX_X", indexXSensor.tag())
-        XCTAssertEqual("LEFT_INDEX_Y", indexYSensor.tag())
+        XCTAssertEqual("LEFT_INDEX_X", indexXSensors[0].tag())
+        XCTAssertEqual("RIGHT_INDEX_X", indexXSensors[1].tag())
+
+        XCTAssertEqual("LEFT_INDEX_Y", indexYSensors[0].tag())
+        XCTAssertEqual("RIGHT_INDEX_Y", indexYSensors[1].tag())
     }
 
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.faceDetection, type(of: indexXSensor).requiredResource)
-        XCTAssertEqual(ResourceType.faceDetection, type(of: indexYSensor).requiredResource)
+        for indexSensor in indexXSensors + indexYSensors {
+            XCTAssertEqual(ResourceType.faceDetection, type(of: indexSensor).requiredResource)
+        }
     }
 
     func testFormulaEditorSections() {
-        var sections = indexXSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: indexXSensor).position, subsection: .pose), sections.first)
-
-        sections = indexYSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: indexYSensor).position, subsection: .pose), sections.first)
+        for indexSensor in indexXSensors + indexYSensors {
+            let sections = indexSensor.formulaEditorSections(for: SpriteObject())
+            XCTAssertEqual(1, sections.count)
+            XCTAssertEqual(.sensors(position: type(of: indexSensor).position, subsection: .pose), sections.first)
+        }
     }
 }

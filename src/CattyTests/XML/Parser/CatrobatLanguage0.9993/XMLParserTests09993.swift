@@ -211,10 +211,12 @@ class XMLParserTests09993: XMLAbstractTest {
         let project = self.getProjectForXML(xmlFile: "HandPoseDetectionSensors")
         let sensorTags: [String] = [LeftPinkyKnuckleXSensor.tag, LeftPinkyKnuckleYSensor.tag, LeftIndexKnuckleXSensor.tag, LeftIndexKnuckleYSensor.tag,
                                     LeftThumbKnuckleXSensor.tag, LeftThumbKnuckleYSensor.tag, LeftRingFingerKnuckleXSensor.tag, LeftRingFingerKnuckleYSensor.tag,
-                                    LeftMiddleFingerKnuckleXSensor.tag, LeftMiddleFingerKnuckleYSensor.tag]
+                                    LeftMiddleFingerKnuckleXSensor.tag, LeftMiddleFingerKnuckleYSensor.tag, RightPinkyKnuckleXSensor.tag, RightPinkyKnuckleYSensor.tag,
+                                    RightIndexKnuckleXSensor.tag, RightIndexKnuckleYSensor.tag, RightThumbKnuckleXSensor.tag, RightThumbKnuckleYSensor.tag,
+                                    RightRingFingerKnuckleXSensor.tag, RightRingFingerKnuckleYSensor.tag, RightMiddleFingerKnuckleXSensor.tag, RightMiddleFingerKnuckleYSensor.tag]
 
         var sensorIndex = 0
-        let objectCount = 6
+        let objectCount = 11
 
         XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
         for objectIndex in 1..<objectCount {

@@ -1760,16 +1760,46 @@
 "right hip y" = "right hip y";
 
 /* No comment provided by engineer. */
+"right index knuckle x" = "right index knuckle x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "right index knuckle y";
+
+/* No comment provided by engineer. */
 "right knee x" = "right knee x";
 
 /* No comment provided by engineer. */
 "right knee y" = "right knee y";
 
 /* No comment provided by engineer. */
+"right middle finger knuckle x" = "right middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "right middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "right pinky knuckle x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "right pinky knuckle y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "right ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "right ring finger knuckle y";
+
+/* No comment provided by engineer. */
 "right shoulder x" = "right shoulder x";
 
 /* No comment provided by engineer. */
 "right shoulder y" = "right shoulder y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "right thumb knuckle x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "right thumb knuckle y";
 
 /* No comment provided by engineer. */
 "right wrist x" = "right wrist x";

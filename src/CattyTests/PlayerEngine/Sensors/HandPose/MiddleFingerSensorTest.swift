@@ -26,8 +26,8 @@ import XCTest
 
 final class MiddleFingerSensorTest: XCTestCase {
 
-    var middleFingerXSensor: LeftMiddleFingerKnuckleXSensor!
-    var middleFingerYSensor: LeftMiddleFingerKnuckleYSensor!
+    var middleFingerXSensors = [DeviceDoubleSensor]()
+    var middleFingerYSensors = [DeviceDoubleSensor]()
     var visualDetectionManagerMock: VisualDetectionManagerMock!
     var stageSize: CGSize!
 
@@ -36,84 +36,95 @@ final class MiddleFingerSensorTest: XCTestCase {
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
         self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
-        self.middleFingerXSensor = LeftMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
-        self.middleFingerYSensor = LeftMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
+        self.middleFingerXSensors.append(LeftMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.middleFingerXSensors.append(RightMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.middleFingerYSensors.append(LeftMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.middleFingerYSensors.append(RightMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
     }
 
     override func tearDown() {
         self.visualDetectionManagerMock = nil
-        self.middleFingerXSensor = nil
-        self.middleFingerYSensor = nil
+        self.middleFingerXSensors.removeAll()
+        self.middleFingerYSensors.removeAll()
         super.tearDown()
     }
 
     func testDefaultRawValue() {
-        let middleFingerXSensor = LeftMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: middleFingerXSensor).defaultRawValue, middleFingerXSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: middleFingerXSensor).defaultRawValue, middleFingerXSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        var middleFingerSensors = [DeviceDoubleSensor]()
+        middleFingerSensors.append(LeftMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        middleFingerSensors.append(RightMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        middleFingerSensors.append(LeftMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        middleFingerSensors.append(RightMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
 
-        let middleFingerYSensor = LeftMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: middleFingerYSensor).defaultRawValue, middleFingerYSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: middleFingerYSensor).defaultRawValue, middleFingerYSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        for middleFingerSensor in middleFingerSensors {
+            XCTAssertEqual(type(of: middleFingerSensor).defaultRawValue, middleFingerSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+            XCTAssertEqual(type(of: middleFingerSensor).defaultRawValue, middleFingerSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        }
     }
 
     func testRawValue() {
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftMiddleFingerKnuckleXSensor.tag] = 0
-        XCTAssertEqual(0, self.middleFingerXSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0, self.middleFingerXSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllMiddleFingerSensorValueRatios(to: 0)
+        for middleFingerSensor in middleFingerXSensors + middleFingerYSensors {
+            XCTAssertEqual(0, middleFingerSensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0, middleFingerSensor.rawValue(landscapeMode: true))
+        }
 
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftMiddleFingerKnuckleYSensor.tag] = 0.95
-        XCTAssertEqual(0.95, self.middleFingerYSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0.95, self.middleFingerYSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllMiddleFingerSensorValueRatios(to: 0.95)
+        for middleFingerSensor in middleFingerXSensors + middleFingerYSensors {
+            XCTAssertEqual(0.95, middleFingerSensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0.95, middleFingerSensor.rawValue(landscapeMode: true))
+        }
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: middleFingerXSensor).defaultRawValue, middleFingerXSensor.convertToStandardized(rawValue: 0))
+        for middleFingerSensor in middleFingerXSensors {
+            XCTAssertEqual(type(of: middleFingerSensor).defaultRawValue, middleFingerSensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), middleFingerXSensor.convertToStandardized(rawValue: 0.02))
-        XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), middleFingerXSensor.convertToStandardized(rawValue: 0.45))
-        XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), middleFingerXSensor.convertToStandardized(rawValue: 0.93))
-        XCTAssertEqual(Double(stageSize.width / 2), middleFingerXSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), middleFingerSensor.convertToStandardized(rawValue: 0.02))
+            XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), middleFingerSensor.convertToStandardized(rawValue: 0.45))
+            XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), middleFingerSensor.convertToStandardized(rawValue: 0.93))
+            XCTAssertEqual(Double(stageSize.width / 2), middleFingerSensor.convertToStandardized(rawValue: 1.0))
+        }
 
-        XCTAssertEqual(type(of: middleFingerYSensor).defaultRawValue, middleFingerYSensor.convertToStandardized(rawValue: 0))
+        for middleFingerSensor in middleFingerYSensors {
+            XCTAssertEqual(type(of: middleFingerSensor).defaultRawValue, middleFingerSensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), middleFingerYSensor.convertToStandardized(rawValue: 0.01))
-        XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), middleFingerYSensor.convertToStandardized(rawValue: 0.4))
-        XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), middleFingerYSensor.convertToStandardized(rawValue: 0.95))
-        XCTAssertEqual(Double(stageSize.height / 2), middleFingerYSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), middleFingerSensor.convertToStandardized(rawValue: 0.01))
+            XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), middleFingerSensor.convertToStandardized(rawValue: 0.4))
+            XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), middleFingerSensor.convertToStandardized(rawValue: 0.95))
+            XCTAssertEqual(Double(stageSize.height / 2), middleFingerSensor.convertToStandardized(rawValue: 1.0))
+        }
     }
 
     func testStandardizedValue() {
-        var convertToStandardizedValue = middleFingerXSensor.convertToStandardized(rawValue: middleFingerXSensor.rawValue(landscapeMode: false))
-        var standardizedValue = middleFingerXSensor.standardizedValue(landscapeMode: false)
-        var standardizedValueLandscape = middleFingerXSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
-
-        convertToStandardizedValue = middleFingerYSensor.convertToStandardized(rawValue: middleFingerYSensor.rawValue(landscapeMode: false))
-        standardizedValue = middleFingerYSensor.standardizedValue(landscapeMode: false)
-        standardizedValueLandscape = middleFingerYSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        for middleFingerSensor in middleFingerXSensors + middleFingerYSensors {
+            let convertToStandardizedValue = middleFingerSensor.convertToStandardized(rawValue: middleFingerSensor.rawValue(landscapeMode: false))
+            let standardizedValue = middleFingerSensor.standardizedValue(landscapeMode: false)
+            let standardizedValueLandscape = middleFingerSensor.standardizedValue(landscapeMode: true)
+            XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        }
     }
 
     func testTag() {
-        XCTAssertEqual("LEFT_MIDDLE_FINGER_X", middleFingerXSensor.tag())
-        XCTAssertEqual("LEFT_MIDDLE_FINGER_Y", middleFingerYSensor.tag())
+        XCTAssertEqual("LEFT_MIDDLE_FINGER_X", middleFingerXSensors[0].tag())
+        XCTAssertEqual("RIGHT_MIDDLE_FINGER_X", middleFingerXSensors[1].tag())
+
+        XCTAssertEqual("LEFT_MIDDLE_FINGER_Y", middleFingerYSensors[0].tag())
+        XCTAssertEqual("RIGHT_MIDDLE_FINGER_Y", middleFingerYSensors[1].tag())
     }
 
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.faceDetection, type(of: middleFingerXSensor).requiredResource)
-        XCTAssertEqual(ResourceType.faceDetection, type(of: middleFingerYSensor).requiredResource)
+        for middleFingerSensor in middleFingerXSensors + middleFingerYSensors {
+            XCTAssertEqual(ResourceType.faceDetection, type(of: middleFingerSensor).requiredResource)
+        }
     }
 
     func testFormulaEditorSections() {
-        var sections = middleFingerXSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: middleFingerXSensor).position, subsection: .pose), sections.first)
-
-        sections = middleFingerYSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: middleFingerYSensor).position, subsection: .pose), sections.first)
+        for middleFingerSensor in middleFingerXSensors + middleFingerYSensors {
+            let sections = middleFingerSensor.formulaEditorSections(for: SpriteObject())
+            XCTAssertEqual(1, sections.count)
+            XCTAssertEqual(.sensors(position: type(of: middleFingerSensor).position, subsection: .pose), sections.first)
+        }
     }
 }

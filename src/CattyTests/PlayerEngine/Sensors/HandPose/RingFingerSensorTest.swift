@@ -26,8 +26,8 @@ import XCTest
 
 final class RingFingerSensorTest: XCTestCase {
 
-    var ringFingerXSensor: LeftRingFingerKnuckleXSensor!
-    var ringFingerYSensor: LeftRingFingerKnuckleYSensor!
+    var ringFingerXSensors = [DeviceDoubleSensor]()
+    var ringFingerYSensors = [DeviceDoubleSensor]()
     var visualDetectionManagerMock: VisualDetectionManagerMock!
     var stageSize: CGSize!
 
@@ -36,84 +36,95 @@ final class RingFingerSensorTest: XCTestCase {
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
         self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
-        self.ringFingerXSensor = LeftRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
-        self.ringFingerYSensor = LeftRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
+        self.ringFingerXSensors.append(LeftRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.ringFingerXSensors.append(RightRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.ringFingerYSensors.append(LeftRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
+        self.ringFingerYSensors.append(RightRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
     }
 
     override func tearDown() {
         self.visualDetectionManagerMock = nil
-        self.ringFingerXSensor = nil
-        self.ringFingerYSensor = nil
+        self.ringFingerXSensors.removeAll()
+        self.ringFingerYSensors.removeAll()
         super.tearDown()
     }
 
     func testDefaultRawValue() {
-        let ringFingerXSensor = LeftRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: ringFingerXSensor).defaultRawValue, ringFingerXSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: ringFingerXSensor).defaultRawValue, ringFingerXSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        var ringFingerSensors = [DeviceDoubleSensor]()
+        ringFingerSensors.append(LeftRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        ringFingerSensors.append(RightRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        ringFingerSensors.append(LeftRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
+        ringFingerSensors.append(RightRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil }))
 
-        let ringFingerYSensor = LeftRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: ringFingerYSensor).defaultRawValue, ringFingerYSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: ringFingerYSensor).defaultRawValue, ringFingerYSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        for ringFingerSensor in ringFingerSensors {
+            XCTAssertEqual(type(of: ringFingerSensor).defaultRawValue, ringFingerSensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+            XCTAssertEqual(type(of: ringFingerSensor).defaultRawValue, ringFingerSensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        }
     }
 
     func testRawValue() {
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftRingFingerKnuckleXSensor.tag] = 0
-        XCTAssertEqual(0, self.ringFingerXSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0, self.ringFingerXSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllRingFingerSensorValueRatios(to: 0)
+        for ringFingerSensor in ringFingerXSensors + ringFingerYSensors {
+            XCTAssertEqual(0, ringFingerSensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0, ringFingerSensor.rawValue(landscapeMode: true))
+        }
 
-        self.visualDetectionManagerMock.handPosePositionRatioDictionary[LeftRingFingerKnuckleYSensor.tag] = 0.95
-        XCTAssertEqual(0.95, self.ringFingerYSensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0.95, self.ringFingerYSensor.rawValue(landscapeMode: true))
+        visualDetectionManagerMock.setAllRingFingerSensorValueRatios(to: 0.95)
+        for ringFingerSensor in ringFingerXSensors + ringFingerYSensors {
+            XCTAssertEqual(0.95, ringFingerSensor.rawValue(landscapeMode: false))
+            XCTAssertEqual(0.95, ringFingerSensor.rawValue(landscapeMode: true))
+        }
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: ringFingerXSensor).defaultRawValue, ringFingerXSensor.convertToStandardized(rawValue: 0))
+        for ringFingerSensor in ringFingerXSensors {
+            XCTAssertEqual(type(of: ringFingerSensor).defaultRawValue, ringFingerSensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), ringFingerXSensor.convertToStandardized(rawValue: 0.02))
-        XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), ringFingerXSensor.convertToStandardized(rawValue: 0.45))
-        XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), ringFingerXSensor.convertToStandardized(rawValue: 0.93))
-        XCTAssertEqual(Double(stageSize.width / 2), ringFingerXSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), ringFingerSensor.convertToStandardized(rawValue: 0.02))
+            XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), ringFingerSensor.convertToStandardized(rawValue: 0.45))
+            XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), ringFingerSensor.convertToStandardized(rawValue: 0.93))
+            XCTAssertEqual(Double(stageSize.width / 2), ringFingerSensor.convertToStandardized(rawValue: 1.0))
+        }
 
-        XCTAssertEqual(type(of: ringFingerYSensor).defaultRawValue, ringFingerYSensor.convertToStandardized(rawValue: 0))
+        for ringFingerSensor in ringFingerYSensors {
+            XCTAssertEqual(type(of: ringFingerSensor).defaultRawValue, ringFingerSensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), ringFingerYSensor.convertToStandardized(rawValue: 0.01))
-        XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), ringFingerYSensor.convertToStandardized(rawValue: 0.4))
-        XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), ringFingerYSensor.convertToStandardized(rawValue: 0.95))
-        XCTAssertEqual(Double(stageSize.height / 2), ringFingerYSensor.convertToStandardized(rawValue: 1.0))
+            XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), ringFingerSensor.convertToStandardized(rawValue: 0.01))
+            XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), ringFingerSensor.convertToStandardized(rawValue: 0.4))
+            XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), ringFingerSensor.convertToStandardized(rawValue: 0.95))
+            XCTAssertEqual(Double(stageSize.height / 2), ringFingerSensor.convertToStandardized(rawValue: 1.0))
+        }
     }
 
     func testStandardizedValue() {
-        var convertToStandardizedValue = ringFingerXSensor.convertToStandardized(rawValue: ringFingerXSensor.rawValue(landscapeMode: false))
-        var standardizedValue = ringFingerXSensor.standardizedValue(landscapeMode: false)
-        var standardizedValueLandscape = ringFingerXSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
-
-        convertToStandardizedValue = ringFingerYSensor.convertToStandardized(rawValue: ringFingerYSensor.rawValue(landscapeMode: false))
-        standardizedValue = ringFingerYSensor.standardizedValue(landscapeMode: false)
-        standardizedValueLandscape = ringFingerYSensor.standardizedValue(landscapeMode: true)
-        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        for ringFingerSensor in ringFingerXSensors + ringFingerYSensors {
+            let convertToStandardizedValue = ringFingerSensor.convertToStandardized(rawValue: ringFingerSensor.rawValue(landscapeMode: false))
+            let standardizedValue = ringFingerSensor.standardizedValue(landscapeMode: false)
+            let standardizedValueLandscape = ringFingerSensor.standardizedValue(landscapeMode: true)
+            XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        }
     }
 
     func testTag() {
-        XCTAssertEqual("LEFT_RING_FINGER_X", ringFingerXSensor.tag())
-        XCTAssertEqual("LEFT_RING_FINGER_Y", ringFingerYSensor.tag())
+        XCTAssertEqual("LEFT_RING_FINGER_X", ringFingerXSensors[0].tag())
+        XCTAssertEqual("RIGHT_RING_FINGER_X", ringFingerXSensors[1].tag())
+
+        XCTAssertEqual("LEFT_RING_FINGER_Y", ringFingerYSensors[0].tag())
+        XCTAssertEqual("RIGHT_RING_FINGER_Y", ringFingerYSensors[1].tag())
     }
 
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.faceDetection, type(of: ringFingerXSensor).requiredResource)
-        XCTAssertEqual(ResourceType.faceDetection, type(of: ringFingerYSensor).requiredResource)
+        for ringFingerSensor in ringFingerXSensors + ringFingerYSensors {
+            XCTAssertEqual(ResourceType.faceDetection, type(of: ringFingerSensor).requiredResource)
+        }
     }
 
     func testFormulaEditorSections() {
-        var sections = ringFingerXSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: ringFingerXSensor).position, subsection: .pose), sections.first)
-
-        sections = ringFingerYSensor.formulaEditorSections(for: SpriteObject())
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.sensors(position: type(of: ringFingerYSensor).position, subsection: .pose), sections.first)
+        for ringFingerSensor in ringFingerXSensors + ringFingerYSensors {
+            let sections = ringFingerSensor.formulaEditorSections(for: SpriteObject())
+            XCTAssertEqual(1, sections.count)
+            XCTAssertEqual(.sensors(position: type(of: ringFingerSensor).position, subsection: .pose), sections.first)
+        }
     }
 }

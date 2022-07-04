@@ -20,21 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LeftKneeXSensor: DeviceDoubleSensor {
+class RightRingFingerKnuckleYSensor: DeviceDoubleSensor {
 
-    static let tag = "LEFT_KNEE_X"
-    static let name = kUIFESensorLeftKneeX
+    static let tag = "RIGHT_RING_FINGER_Y"
+    static let name = kUIFESensorRightRingFingerKnuckleY
     static let defaultRawValue = 0.0
-    static let position = 950
+    static let position = 780
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageWidth: Double?
     let stageHeight: Double?
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
-        self.stageWidth = Double(stageSize.width)
         self.stageHeight = Double(stageSize.height)
     }
 
@@ -43,18 +41,16 @@ class LeftKneeXSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let positionX = self.getVisualDetectionManager()?.bodyPosePositionRatioDictionary[self.tag()] else { return type(of: self).defaultRawValue }
-        return positionX
+        guard let positionY = self.getVisualDetectionManager()?.handPosePositionRatioDictionary[self.tag()] else { return type(of: self).defaultRawValue }
+        return positionY
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
         if rawValue == type(of: self).defaultRawValue {
             return rawValue
         }
-        guard let stageWidth = self.stageWidth, let stageHeight = self.stageHeight, let frameHeight = self.getVisualDetectionManager()?.visualDetectionFrameSize?.height else {
-            return type(of: self).defaultRawValue }
-        let scaledPreviewWidthRatio = stageHeight / frameHeight
-        return (stageWidth * rawValue - stageWidth / 2.0) * scaledPreviewWidthRatio
+        guard let stageHeight = self.stageHeight else { return type(of: self).defaultRawValue }
+        return stageHeight * rawValue - stageHeight / 2.0
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

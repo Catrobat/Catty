@@ -25,7 +25,7 @@ class LeftAnkleXSensor: DeviceDoubleSensor {
     static let tag = "LEFT_ANKLE_X"
     static let name = kUIFESensorLeftAnkleX
     static let defaultRawValue = 0.0
-    static let position = 910
+    static let position = 990
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

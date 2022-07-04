@@ -357,6 +357,16 @@
 		49402BA728117ADE009FCBF8 /* IndexSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BA628117ADE009FCBF8 /* IndexSensorTest.swift */; };
 		49402BA928117B1E009FCBF8 /* ThumbSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BA828117B1E009FCBF8 /* ThumbSensorTest.swift */; };
 		49402BAD28117B9E009FCBF8 /* HandPoseDetectionSensors.xml in Resources */ = {isa = PBXBuildFile; fileRef = 49402BAC28117B9E009FCBF8 /* HandPoseDetectionSensors.xml */; };
+		49402BB4281181D8009FCBF8 /* RightPinkyKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BAE281181D8009FCBF8 /* RightPinkyKnuckleXSensor.swift */; };
+		49402BB5281181D8009FCBF8 /* RightPinkyKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BAF281181D8009FCBF8 /* RightPinkyKnuckleYSensor.swift */; };
+		49402BB6281181D8009FCBF8 /* RightThumbKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BB0281181D8009FCBF8 /* RightThumbKnuckleXSensor.swift */; };
+		49402BB7281181D8009FCBF8 /* RightIndexKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BB1281181D8009FCBF8 /* RightIndexKnuckleYSensor.swift */; };
+		49402BB8281181D8009FCBF8 /* RightIndexKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BB2281181D8009FCBF8 /* RightIndexKnuckleXSensor.swift */; };
+		49402BB9281181D8009FCBF8 /* RightThumbKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BB3281181D8009FCBF8 /* RightThumbKnuckleYSensor.swift */; };
+		49402BBE28118354009FCBF8 /* RightMiddleFingerKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BBA28118354009FCBF8 /* RightMiddleFingerKnuckleYSensor.swift */; };
+		49402BBF28118354009FCBF8 /* RightMiddleFingerKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BBB28118354009FCBF8 /* RightMiddleFingerKnuckleXSensor.swift */; };
+		49402BC028118354009FCBF8 /* RightRingFingerKnuckleXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BBC28118354009FCBF8 /* RightRingFingerKnuckleXSensor.swift */; };
+		49402BC128118354009FCBF8 /* RightRingFingerKnuckleYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49402BBD28118354009FCBF8 /* RightRingFingerKnuckleYSensor.swift */; };
 		49519D2F27DCD6B100E32E88 /* SecondFaceDetectedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49519D2E27DCD6B100E32E88 /* SecondFaceDetectedSensor.swift */; };
 		49519D3327DCE0EC00E32E88 /* SecondFacePositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49519D3227DCE0EC00E32E88 /* SecondFacePositionXSensor.swift */; };
 		49519D3527DCE0FE00E32E88 /* SecondFacePositionYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49519D3427DCE0FE00E32E88 /* SecondFacePositionYSensor.swift */; };
@@ -2450,6 +2460,16 @@
 		49402BA628117ADE009FCBF8 /* IndexSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexSensorTest.swift; sourceTree = "<group>"; };
 		49402BA828117B1E009FCBF8 /* ThumbSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbSensorTest.swift; sourceTree = "<group>"; };
 		49402BAC28117B9E009FCBF8 /* HandPoseDetectionSensors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HandPoseDetectionSensors.xml; sourceTree = "<group>"; };
+		49402BAE281181D8009FCBF8 /* RightPinkyKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightPinkyKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402BAF281181D8009FCBF8 /* RightPinkyKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightPinkyKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402BB0281181D8009FCBF8 /* RightThumbKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightThumbKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402BB1281181D8009FCBF8 /* RightIndexKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightIndexKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402BB2281181D8009FCBF8 /* RightIndexKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightIndexKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402BB3281181D8009FCBF8 /* RightThumbKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightThumbKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402BBA28118354009FCBF8 /* RightMiddleFingerKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMiddleFingerKnuckleYSensor.swift; sourceTree = "<group>"; };
+		49402BBB28118354009FCBF8 /* RightMiddleFingerKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMiddleFingerKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402BBC28118354009FCBF8 /* RightRingFingerKnuckleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightRingFingerKnuckleXSensor.swift; sourceTree = "<group>"; };
+		49402BBD28118354009FCBF8 /* RightRingFingerKnuckleYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightRingFingerKnuckleYSensor.swift; sourceTree = "<group>"; };
 		49519D2E27DCD6B100E32E88 /* SecondFaceDetectedSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFaceDetectedSensor.swift; sourceTree = "<group>"; };
 		49519D3227DCE0EC00E32E88 /* SecondFacePositionXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFacePositionXSensor.swift; sourceTree = "<group>"; };
 		49519D3427DCE0FE00E32E88 /* SecondFacePositionYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFacePositionYSensor.swift; sourceTree = "<group>"; };
@@ -5631,14 +5651,24 @@
 			children = (
 				49402B8A28116FA2009FCBF8 /* LeftPinkyKnuckleXSensor.swift */,
 				49402B8C28116FA2009FCBF8 /* LeftPinkyKnuckleYSensor.swift */,
+				49402BAE281181D8009FCBF8 /* RightPinkyKnuckleXSensor.swift */,
+				49402BAF281181D8009FCBF8 /* RightPinkyKnuckleYSensor.swift */,
 				49402B972811742E009FCBF8 /* LeftRingFingerKnuckleXSensor.swift */,
 				49402B962811742E009FCBF8 /* LeftRingFingerKnuckleYSensor.swift */,
+				49402BBC28118354009FCBF8 /* RightRingFingerKnuckleXSensor.swift */,
+				49402BBD28118354009FCBF8 /* RightRingFingerKnuckleYSensor.swift */,
 				49402B992811742E009FCBF8 /* LeftMiddleFingerKnuckleXSensor.swift */,
 				49402B982811742E009FCBF8 /* LeftMiddleFingerKnuckleYSensor.swift */,
+				49402BBB28118354009FCBF8 /* RightMiddleFingerKnuckleXSensor.swift */,
+				49402BBA28118354009FCBF8 /* RightMiddleFingerKnuckleYSensor.swift */,
 				49402B8F28116FA2009FCBF8 /* LeftIndexKnuckleXSensor.swift */,
 				49402B8D28116FA2009FCBF8 /* LeftIndexKnuckleYSensor.swift */,
+				49402BB2281181D8009FCBF8 /* RightIndexKnuckleXSensor.swift */,
+				49402BB1281181D8009FCBF8 /* RightIndexKnuckleYSensor.swift */,
 				49402B8B28116FA2009FCBF8 /* LeftThumbKnuckleXSensor.swift */,
 				49402B8E28116FA2009FCBF8 /* LeftThumbKnuckleYSensor.swift */,
+				49402BB0281181D8009FCBF8 /* RightThumbKnuckleXSensor.swift */,
+				49402BB3281181D8009FCBF8 /* RightThumbKnuckleYSensor.swift */,
 			);
 			path = HandPose;
 			sourceTree = "<group>";
@@ -12560,6 +12590,7 @@
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
 				4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */,
+				49402BC028118354009FCBF8 /* RightRingFingerKnuckleXSensor.swift in Sources */,
 				4405C95A24F803EA005C36DC /* UserVariable+CBXMLHandler.swift in Sources */,
 				AA74F00E1BC05B5F00D1E954 /* StopAllSoundsBrick.m in Sources */,
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
@@ -12592,6 +12623,7 @@
 				BB9EC0E527D62CBA009FF8CE /* FormTableViewCell.swift in Sources */,
 				4614B1DD25608E8B004174AD /* StitchBrickCell.swift in Sources */,
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
+				49402BB6281181D8009FCBF8 /* RightThumbKnuckleXSensor.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
 				F470A2E52129DF42005EC9A3 /* NumberOfItemsFunction.swift in Sources */,
 				49949B3F2806EAD20073BF65 /* RightShoulderXSensor.swift in Sources */,
@@ -12738,6 +12770,7 @@
 				4CB0F9EE20A1731700D1BE2F /* TransparencySensor.swift in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProjectTableHeaderView.m in Sources */,
+				49402BB9281181D8009FCBF8 /* RightThumbKnuckleYSensor.swift in Sources */,
 				4C724E241B4D3E8C00E27479 /* CBXMLValidator.m in Sources */,
 				929CC0F11BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m in Sources */,
 				4C0F9F72204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */,
@@ -13022,6 +13055,7 @@
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				22BEC60425CAD86500AFE1C3 /* StoreFeaturedProject.swift in Sources */,
 				49949B3E2806EAD20073BF65 /* RightElbowXSensor.swift in Sources */,
+				49402BBF28118354009FCBF8 /* RightMiddleFingerKnuckleXSensor.swift in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				49949B402806EAD20073BF65 /* LeftElbowYSensor.swift in Sources */,
 				9E78D88B22A9B1D400948AC3 /* IterableCache.swift in Sources */,
@@ -13184,6 +13218,8 @@
 				F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				BB2B31612811B4FF00C4ED45 /* FormVersionTableViewCell.swift in Sources */,
+				49402BB7281181D8009FCBF8 /* RightIndexKnuckleYSensor.swift in Sources */,
+				49402BC128118354009FCBF8 /* RightRingFingerKnuckleYSensor.swift in Sources */,
 				4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */,
 				E577F04A2563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
@@ -13216,6 +13252,7 @@
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				597AB578202089E0007CD10D /* NetworkDefines.swift in Sources */,
 				F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */,
+				49402BB8281181D8009FCBF8 /* RightIndexKnuckleXSensor.swift in Sources */,
 				4C5AEF0522F7037200280F8B /* CatrobatSetup+Operators.swift in Sources */,
 				4C6F413F22F4DAAC00900B3F /* BrickCategory.swift in Sources */,
 				4C5AEF0822F7037200280F8B /* CatrobatSetup+Functions.swift in Sources */,
@@ -13261,6 +13298,7 @@
 				05CD095F26FA980600B25D72 /* StitchPatternProtocol.swift in Sources */,
 				4C595F4D21CAEBC50097D850 /* SmallerThanOperator.swift in Sources */,
 				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
+				49402BB5281181D8009FCBF8 /* RightPinkyKnuckleYSensor.swift in Sources */,
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */,
 				186E99132488F3FF00627E36 /* PenUpBrick.swift in Sources */,
@@ -13294,6 +13332,7 @@
 				BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */,
 				4CEFFADA2105E46500DC5CFE /* ObjectStringSensor.swift in Sources */,
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
+				49402BB4281181D8009FCBF8 /* RightPinkyKnuckleXSensor.swift in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				92B46FA71BC7C2A5004980C1 /* ArduinoSendDigitalValueBrick+Instruction.swift in Sources */,
 				AA74EFFC1BC05B5F00D1E954 /* ChangeXByNBrick.m in Sources */,
@@ -13400,6 +13439,7 @@
 				AA74F0061BC05B5F00D1E954 /* SetXBrick.m in Sources */,
 				92EC98601BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m in Sources */,
 				49B55F9527E88702000A95B4 /* RightEyebrowInnerYSensor.swift in Sources */,
+				49402BBE28118354009FCBF8 /* RightMiddleFingerKnuckleYSensor.swift in Sources */,
 				18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */,
 				99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */,
 				AA74EF4D1BC0586F00D1E954 /* ChangeXByNBrick+CBXMLHandler.m in Sources */,

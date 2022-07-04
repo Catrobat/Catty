@@ -25,7 +25,7 @@ class LeftThumbKnuckleXSensor: DeviceDoubleSensor {
     static let tag = "LEFT_THUMB_X"
     static let name = kUIFESensorLeftThumbKnuckleX
     static let defaultRawValue = 0.0
-    static let position = 790
+    static let position = 870
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

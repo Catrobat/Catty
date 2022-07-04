@@ -25,7 +25,7 @@ class LeftRingFingerKnuckleXSensor: DeviceDoubleSensor {
     static let tag = "LEFT_RING_FINGER_X"
     static let name = kUIFESensorLeftRingFingerKnuckleX
     static let defaultRawValue = 0.0
-    static let position = 730
+    static let position = 750
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?

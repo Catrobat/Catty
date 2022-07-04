@@ -24,6 +24,7 @@ import Vision
 class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     static let maxFaceCount = 2
+    static let maxHandCount = 2
 
     var isFaceDetected = [false, false]
     var facePositionXRatio: [Double?] = [nil, nil]
@@ -487,44 +488,134 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
             resetHandPoses()
             return
         }
-        let handPoseObservation = handPoseObservations[0]
 
-        let pinkyPoints = try? handPoseObservation.recognizedPoints(.littleFinger)
-        let ringFingerPoints = try? handPoseObservation.recognizedPoints(.ringFinger)
-        let middleFingerPoints = try? handPoseObservation.recognizedPoints(.middleFinger)
-        let indexPoints = try? handPoseObservation.recognizedPoints(.indexFinger)
-        let thumbPoints = try? handPoseObservation.recognizedPoints(.thumb)
+        var leftHand: VNHumanHandPoseObservation?
+        var rightHand: VNHumanHandPoseObservation?
+        if #available(iOS 15.0, *) {
+            var leftHands = handPoseObservations.filter({ $0.chirality == .left })
+            var rightHands = handPoseObservations.filter({ $0.chirality == .right })
+            if cameraPosition() == .front {
+                let tmpHands = leftHands
+                leftHands = rightHands
+                rightHands = tmpHands
+            }
+
+            if rightHands.count == 2 && leftHands.isEmpty {
+                rightHand = rightHands[0]
+                leftHand = rightHands[1]
+            } else if leftHands.count == 2 && rightHands.isEmpty {
+                leftHand = leftHands[0]
+                rightHand = leftHands[1]
+            } else {
+                if leftHands.isNotEmpty {
+                    leftHand = leftHands.first
+                }
+                if rightHands.isNotEmpty {
+                    rightHand = rightHands.first
+                }
+            }
+        } else {
+            leftHand = handPoseObservations.first
+            if handPoseObservations.count > 1 {
+                rightHand = handPoseObservations[1]
+                if let leftHandPinky = try? leftHand!.recognizedPoint(.littlePIP),
+                   let rightHandPinky = try? rightHand!.recognizedPoint(.littlePIP) {
+                    if rightHandPinky.x < leftHandPinky.x {
+                        rightHand = handPoseObservations[0]
+                        leftHand = handPoseObservations[1]
+                    }
+                }
+            }
+        }
+
+        if let leftHand = leftHand {
+            handleHandObservation(leftHand, isLeft: true)
+        } else {
+            removeLeftHandPoses()
+        }
+
+        if let rightHand = rightHand {
+            handleHandObservation(rightHand, isLeft: false)
+        } else {
+            removeRightHandPoses()
+        }
+    }
+
+    @available(iOS 14.0, *)
+    func handleHandObservation(_ hand: VNHumanHandPoseObservation, isLeft: Bool) {
+        let pinkyPoints = try? hand.recognizedPoints(.littleFinger)
+        let ringFingerPoints = try? hand.recognizedPoints(.ringFinger)
+        let middleFingerPoints = try? hand.recognizedPoints(.middleFinger)
+        let indexPoints = try? hand.recognizedPoints(.indexFinger)
+        let thumbPoints = try? hand.recognizedPoints(.thumb)
 
         if let pinkyKnuckle = pinkyPoints?[.littlePIP] {
+            NSLog("confidence %f", pinkyKnuckle.confidence)
             if pinkyKnuckle.confidence > minConfidence {
-                handPosePositionRatioDictionary[LeftPinkyKnuckleXSensor.tag] = pinkyKnuckle.x
-                handPosePositionRatioDictionary[LeftPinkyKnuckleYSensor.tag] = pinkyKnuckle.y
+                if isLeft {
+                    handPosePositionRatioDictionary[LeftPinkyKnuckleXSensor.tag] = pinkyKnuckle.x
+                    handPosePositionRatioDictionary[LeftPinkyKnuckleYSensor.tag] = pinkyKnuckle.y
+                } else {
+                    handPosePositionRatioDictionary[RightPinkyKnuckleXSensor.tag] = pinkyKnuckle.x
+                    handPosePositionRatioDictionary[RightPinkyKnuckleYSensor.tag] = pinkyKnuckle.y
+                }
             }
         }
         if let ringFingerPoints = ringFingerPoints?[.ringPIP] {
             if ringFingerPoints.confidence > minConfidence {
-                handPosePositionRatioDictionary[LeftRingFingerKnuckleXSensor.tag] = ringFingerPoints.x
-                handPosePositionRatioDictionary[LeftRingFingerKnuckleYSensor.tag] = ringFingerPoints.y
+                if isLeft {
+                    handPosePositionRatioDictionary[LeftRingFingerKnuckleXSensor.tag] = ringFingerPoints.x
+                    handPosePositionRatioDictionary[LeftRingFingerKnuckleYSensor.tag] = ringFingerPoints.y
+                } else {
+                    handPosePositionRatioDictionary[RightRingFingerKnuckleXSensor.tag] = ringFingerPoints.x
+                    handPosePositionRatioDictionary[RightRingFingerKnuckleYSensor.tag] = ringFingerPoints.y
+                }
             }
         }
         if let middleFingerPoints = middleFingerPoints?[.middlePIP] {
             if middleFingerPoints.confidence > minConfidence {
-                handPosePositionRatioDictionary[LeftMiddleFingerKnuckleXSensor.tag] = middleFingerPoints.x
-                handPosePositionRatioDictionary[LeftMiddleFingerKnuckleYSensor.tag] = middleFingerPoints.y
+                if isLeft {
+                    handPosePositionRatioDictionary[LeftMiddleFingerKnuckleXSensor.tag] = middleFingerPoints.x
+                    handPosePositionRatioDictionary[LeftMiddleFingerKnuckleYSensor.tag] = middleFingerPoints.y
+                } else {
+                    handPosePositionRatioDictionary[RightMiddleFingerKnuckleXSensor.tag] = middleFingerPoints.x
+                    handPosePositionRatioDictionary[RightMiddleFingerKnuckleYSensor.tag] = middleFingerPoints.y
+                }
             }
         }
         if let indexKnuckle = indexPoints?[.indexPIP] {
             if indexKnuckle.confidence > minConfidence {
-                handPosePositionRatioDictionary[LeftIndexKnuckleXSensor.tag] = indexKnuckle.x
-                handPosePositionRatioDictionary[LeftIndexKnuckleYSensor.tag] = indexKnuckle.y
+                if isLeft {
+                    handPosePositionRatioDictionary[LeftIndexKnuckleXSensor.tag] = indexKnuckle.x
+                    handPosePositionRatioDictionary[LeftIndexKnuckleYSensor.tag] = indexKnuckle.y
+                } else {
+                    handPosePositionRatioDictionary[RightIndexKnuckleXSensor.tag] = indexKnuckle.x
+                    handPosePositionRatioDictionary[RightIndexKnuckleYSensor.tag] = indexKnuckle.y
+                }
             }
         }
         if let thumbKnuckle = thumbPoints?[.thumbIP] {
             if thumbKnuckle.confidence > minConfidence {
-                handPosePositionRatioDictionary[LeftThumbKnuckleXSensor.tag] = thumbKnuckle.x
-                handPosePositionRatioDictionary[LeftThumbKnuckleYSensor.tag] = thumbKnuckle.y
+                if isLeft {
+                    handPosePositionRatioDictionary[LeftThumbKnuckleXSensor.tag] = thumbKnuckle.x
+                    handPosePositionRatioDictionary[LeftThumbKnuckleYSensor.tag] = thumbKnuckle.y
+                } else {
+                    handPosePositionRatioDictionary[RightThumbKnuckleXSensor.tag] = thumbKnuckle.x
+                    handPosePositionRatioDictionary[RightThumbKnuckleYSensor.tag] = thumbKnuckle.y
+                }
             }
+        }
+    }
 
+    func removeRightHandPoses() {
+        for rightHandPose in self.handPosePositionRatioDictionary.filter({ $0.key.starts(with: "RIGHT") }) {
+            self.handPosePositionRatioDictionary.removeValue(forKey: rightHandPose.key)
+        }
+    }
+
+    func removeLeftHandPoses() {
+        for leftHandPose in self.handPosePositionRatioDictionary.filter({ $0.key.starts(with: "LEFT") }) {
+            self.handPosePositionRatioDictionary.removeValue(forKey: leftHandPose.key)
         }
     }
 
