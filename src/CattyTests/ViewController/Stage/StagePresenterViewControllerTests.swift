@@ -83,6 +83,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
     }
 
     func testCheckResourcesAndPushViewController() {
+        CBFileManager.shared()?.deleteAllFilesInDocumentsDirectory()
         CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
         Util.setLastProjectWithName(kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)
 
