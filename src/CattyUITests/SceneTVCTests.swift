@@ -51,7 +51,7 @@ class SceneTVCTests: XCTestCase {
     }
 
     func testUploadProjectRedirectLogin() {
-        app = launchApp()
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["-userIsLoggedIn", "false"])
         tapOnUpload()
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedLogin]).exists)
     }
