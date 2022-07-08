@@ -9,8 +9,9 @@ jobs:
   SwiftLint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: GitHub Action for SwiftLint
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Lint with SwiftLint
         uses: norio-nomura/action-swiftlint@3.2.1
         with:
           args: --config .swiftlint.yml --strict
