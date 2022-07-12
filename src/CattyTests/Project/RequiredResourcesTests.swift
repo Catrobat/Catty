@@ -195,6 +195,16 @@ final class RequiredResourcesTests: XCTestCase {
         XCTAssertEqual(resources, ResourceType.accelerometerAndDeviceMotion.rawValue, "Resourses ChangeBrightnessByNBrick not correctly calculated")
     }
 
+    func testSayBubbleBrickResources() {
+        let brick = SayBubbleBrick()
+        let element = FormulaElement(elementType: ElementType.SENSOR, value: InclinationYSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
+        brick.formula = Formula(formulaElement: element)
+        let project = getProjectWithOneSpriteWithBrick(brick: brick)
+
+        let resources = project?.getRequiredResources()
+        XCTAssertEqual(resources, ResourceType.accelerometerAndDeviceMotion.rawValue, "Resourses SayBubbleBrick not correctly calculated")
+    }
+
     func testSetColorBrickResources() {
         let brick = SetColorBrick()
         brick.color = Formula.init(integer: 1)
