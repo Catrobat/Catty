@@ -177,6 +177,11 @@
     return _selectAllRowsButtonItem;
 }
 
++ (void)setStagePresenterViewController:(StagePresenterViewController*) mockViewController
+{
+    self.stagePresenterViewController = mockViewController;
+}
+
 #pragma mark - table view delegates
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -406,15 +411,26 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [self showLoadingView];
+
     ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
-    if (!Project.lastUsedProject.header.landscapeMode) {
-        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
-        [UINavigationController attemptRotationToDeviceOrientation];
-    } else {
-        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
-        [UINavigationController attemptRotationToDeviceOrientation];
-    }
-    [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
+    dispatch_queue_t lastProjectQueue = dispatch_queue_create("lastProjectQueue", NULL);
+    dispatch_async(lastProjectQueue, ^{
+        BOOL landscapeMode = Project.lastUsedProject.header.landscapeMode;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (! landscapeMode) {
+                [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+                [UINavigationController attemptRotationToDeviceOrientation];
+            } else {
+                [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+                [UINavigationController attemptRotationToDeviceOrientation];
+            }
+
+            [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController completion:^{
+                [self hideLoadingView];
+            }];
+        });
+    });
 }
 
 - (void)showLoadingView

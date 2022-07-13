@@ -22,12 +22,16 @@
 
 @testable import Pocket_Code
 
-class StagePresenterViewControllerMock: StagePresenterViewController {
+class BaseTableViewControllerMock: BaseTableViewController {
 
-    var latestPresentedViewController: UIViewController?
-    var embroideryService: EmbroideryProtocol?
+    var showLoadingViewCalls = 0
+    var hideLoadingViewCalls = 0
 
-    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        self.latestPresentedViewController = viewControllerToPresent
+    override func showLoadingView() {
+        showLoadingViewCalls += 1
+    }
+
+    override func hideLoadingView() {
+        hideLoadingViewCalls += 1
     }
 }

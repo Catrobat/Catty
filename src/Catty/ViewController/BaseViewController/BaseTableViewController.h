@@ -30,6 +30,7 @@
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 
+- (void)setStagePresenterViewController:(StagePresenterViewController*) mockViewController;
 - (void)showPlaceHolder:(BOOL)show;
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath;
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;

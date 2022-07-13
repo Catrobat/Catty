@@ -88,15 +88,10 @@ final class StagePresenterViewControllerTest: XCTestCase {
         Util.setLastProjectWithName(kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)
 
         XCTAssertNil(navigationController.currentViewController)
-        XCTAssertEqual(0, navigationController.view.subviews.count)
-        XCTAssertEqual(0, vc.showLoadingViewCalls)
 
         vc.checkResourcesAndPushViewController(to: navigationController)
 
         expect(self.navigationController.currentViewController).toEventually(equal(vc), timeout: .seconds(5))
-        expect(self.navigationController.view.subviews.count).toEventually(equal(1), timeout: .seconds(5))
-        expect(self.vc.showLoadingViewCalls).toEventually(equal(1), timeout: .seconds(5))
-        expect(self.vc.hideLoadingViewCalls).toEventually(equal(0), timeout: .seconds(5))
     }
 
     func testCheckResourcesAndPushViewControllerInvalidProject() {
@@ -107,9 +102,6 @@ final class StagePresenterViewControllerTest: XCTestCase {
         vc.checkResourcesAndPushViewController(to: navigationController)
 
         expect(self.navigationController.currentViewController).toEventually(beNil(), timeout: .seconds(3))
-        expect(self.navigationController.view.subviews.count).toEventually(equal(1), timeout: .seconds(3))
-        expect(self.vc.showLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
-        expect(self.vc.hideLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
     }
 
     func testShareDST() {
