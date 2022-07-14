@@ -150,6 +150,12 @@
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/YKImageCropperView</string>
             </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
+                <string>Catty/Resources/Licenses/YOLOv3Tiny</string>
+            </dict>
         </array>
 </dict>
 </plist>

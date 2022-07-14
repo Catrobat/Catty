@@ -37,6 +37,7 @@ final class VisualDetectionManagerMock: VisualDetectionManager {
         self.handPoseDetectionEnabled = false
         self.bodyPoseDetectionEnabled = false
         self.textRecognitionEnabled = false
+        self.objectRecognitionEnabled = false
     }
 
     override func available() -> Bool {
@@ -185,5 +186,9 @@ final class VisualDetectionManagerMock: VisualDetectionManager {
             self.textFromCamera = text
             self.textBlocksNumber = 1
         }
+    }
+
+    func addRecognizedObject(label: String) {
+        self.objectRecognitions.append(VNRecognizedObjectObservationMock(label))
     }
 }

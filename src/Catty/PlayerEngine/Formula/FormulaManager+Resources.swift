@@ -107,6 +107,9 @@ extension FormulaManager {
             if requiredResources & ResourceType.textRecognition.rawValue > 0 {
                 visualDetectionManager.startTextRecognition()
             }
+            if requiredResources & ResourceType.objectRecognition.rawValue > 0 {
+                visualDetectionManager.startObjectRecognition()
+            }
             visualDetectionManager.start()
         }
         if (requiredResources & ResourceType.loudness.rawValue > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {

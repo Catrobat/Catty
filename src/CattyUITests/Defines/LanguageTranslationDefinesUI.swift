@@ -662,6 +662,7 @@ let kUIFESubsectionTouchDetection = NSLocalizedString("Touch detection", bundle:
 let kUIFESubsectionVisualSensors = NSLocalizedString("Face detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionPoseDetection = NSLocalizedString("Pose detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionTextRecognition = NSLocalizedString("Text recognition", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionObjectRecognition = NSLocalizedString("Object recognition", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionDataAndTime = NSLocalizedString("Date and time", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionGeneral = NSLocalizedString("General properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionMotion = NSLocalizedString("Motion properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -723,6 +724,10 @@ let kUIFEFunctionTextBlockY = NSLocalizedString("text block y from camera", bund
 let kUIFEFunctionTextBlockSize = NSLocalizedString("text block size from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionTextBlockFromCamera = NSLocalizedString("text block from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionTextBlockLanguageFromCamera = NSLocalizedString("text block language from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFEFunctionIDOfDetectedObject = NSLocalizedString("ID of detected object", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionObjectWithIDVisible = NSLocalizedString("object with ID visible", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionLabelOfObjectWithID = NSLocalizedString("label of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEOperatorAnd = NSLocalizedString("and", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", bundle: Bundle(for: LanguageTranslation.self), comment: "")

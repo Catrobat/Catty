@@ -63,6 +63,9 @@ extension CatrobatSetup {
          TextBlockSizeFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
          TextBlockFromCameraFunction(visualDetectionManagerGetter: { visualDetectionManager }),
          TextBlockLanguageFromCameraFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         IDOfDetectedObjectFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         ObjectWithIDVisibleFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         LabelOfObjectWithIDFunction(visualDetectionManagerGetter: { visualDetectionManager }),
          ArduinoAnalogPinFunction(bluetoothServiceGetter: { bluetoothService }),
          ArduinoDigitalPinFunction(bluetoothServiceGetter: { bluetoothService })]
     }

@@ -662,6 +662,7 @@ let kUIFESubsectionTouchDetection = NSLocalizedString("Touch detection", comment
 let kUIFESubsectionVisualSensors = NSLocalizedString("Face detection", comment: "")
 let kUIFESubsectionPoseDetection = NSLocalizedString("Pose detection", comment: "")
 let kUIFESubsectionTextRecognition = NSLocalizedString("Text recognition", comment: "")
+let kUIFESubsectionObjectRecognition = NSLocalizedString("Object recognition", comment: "")
 let kUIFESubsectionDataAndTime = NSLocalizedString("Date and time", comment: "")
 let kUIFESubsectionGeneral = NSLocalizedString("General properties", comment: "")
 let kUIFESubsectionMotion = NSLocalizedString("Motion properties", comment: "")
@@ -723,6 +724,10 @@ let kUIFEFunctionTextBlockY = NSLocalizedString("text block y from camera", comm
 let kUIFEFunctionTextBlockSize = NSLocalizedString("text block size from camera", comment: "")
 let kUIFEFunctionTextBlockFromCamera = NSLocalizedString("text block from camera", comment: "")
 let kUIFEFunctionTextBlockLanguageFromCamera = NSLocalizedString("text block language from camera", comment: "")
+
+let kUIFEFunctionIDOfDetectedObject = NSLocalizedString("ID of detected object", comment: "")
+let kUIFEFunctionObjectWithIDVisible = NSLocalizedString("object with ID visible", comment: "")
+let kUIFEFunctionLabelOfObjectWithID = NSLocalizedString("label of object with ID", comment: "")
 
 let kUIFEOperatorAnd = NSLocalizedString("and", comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", comment: "")

@@ -42,16 +42,21 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     var textBlockSizeRatio: [Double] = []
     var textBlockFromCamera: [String] = []
     var textBlockLanguageCode: [String] = []
+    var objectRecognitions: [VNRecognizedObjectObservation] = []
 
     let minConfidence: Float = 0.5
 
     private var session: AVCaptureSession?
     private var videoDataOuput: AVCaptureVideoDataOutput?
     private var previewLayer: AVCaptureVideoPreviewLayer?
+
+    private var objectRecognitionModel: VNCoreMLModel?
+
     var faceDetectionEnabled = false
     var handPoseDetectionEnabled = false
     var bodyPoseDetectionEnabled = false
     var textRecognitionEnabled = false
+    var objectRecognitionEnabled = false
 
     var previousFaceObservations: [VNFaceObservation]?
 
@@ -97,6 +102,16 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         previewLayer.isHidden = true
         self.previewLayer = previewLayer
 
+        if objectRecognitionEnabled {
+            if let objectRecognitionModelURL = Bundle.main.url(forResource: "YOLOv3Tiny", withExtension: "mlmodelc") {
+                do {
+                    objectRecognitionModel = try VNCoreMLModel(for: MLModel(contentsOf: objectRecognitionModelURL))
+                } catch {
+                    NSLog("Could not load object detection model!")
+                }
+            }
+        }
+
         DispatchQueue.main.async {
             session.startRunning()
         }
@@ -116,6 +131,10 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
 
     func startTextRecognition() {
         self.textRecognitionEnabled = true
+    }
+
+    func startObjectRecognition() {
+        self.objectRecognitionEnabled = true
     }
 
     func stop() {
@@ -143,6 +162,7 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         self.handPoseDetectionEnabled = false
         self.bodyPoseDetectionEnabled = false
         self.textRecognitionEnabled = false
+        self.objectRecognitionEnabled = false
     }
 
     func reset() {
@@ -150,6 +170,7 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         self.resetBodyPoses()
         self.resetHandPoses()
         self.resetTextRecogntion()
+        self.resetObjectRecognition()
         self.visualDetectionFrameSize = nil
     }
 
@@ -177,6 +198,10 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         self.textBlockSizeRatio.removeAll()
         self.textBlockFromCamera.removeAll()
         self.textBlockLanguageCode.removeAll()
+    }
+
+    func resetObjectRecognition() {
+        self.objectRecognitions.removeAll()
     }
 
     func available() -> Bool {
@@ -251,6 +276,19 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
                     }
                 }
                 detectionRequests.append(humanHandPoseRequest)
+            }
+        }
+
+        if objectRecognitionEnabled {
+            if let objectRecognitionModel = objectRecognitionModel {
+                let objectRecognitionRequest = VNCoreMLRequest(model: objectRecognitionModel) { request, _ in
+                    if let objectObservations = request.results as? [VNRecognizedObjectObservation] {
+                        DispatchQueue.main.async {
+                            self.handleDetectedObjectObservations(objectObservations)
+                        }
+                    }
+                }
+                detectionRequests.append(objectRecognitionRequest)
             }
         }
 
@@ -639,7 +677,6 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         let thumbPoints = try? hand.recognizedPoints(.thumb)
 
         if let pinkyKnuckle = pinkyPoints?[.littlePIP] {
-            NSLog("confidence %f", pinkyKnuckle.confidence)
             if pinkyKnuckle.confidence > minConfidence {
                 if isLeft {
                     handPosePositionRatioDictionary[LeftPinkyKnuckleXSensor.tag] = pinkyKnuckle.x
@@ -706,6 +743,11 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         for leftHandPose in self.handPosePositionRatioDictionary.filter({ $0.key.starts(with: "LEFT") }) {
             self.handPosePositionRatioDictionary.removeValue(forKey: leftHandPose.key)
         }
+    }
+
+    func handleDetectedObjectObservations(_ objectObservations: [VNRecognizedObjectObservation]) {
+        resetObjectRecognition()
+        self.objectRecognitions.append(contentsOf: objectObservations.filter { $0.confidence > minConfidence })
     }
 
     func cameraPosition() -> AVCaptureDevice.Position {

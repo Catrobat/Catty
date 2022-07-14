@@ -662,6 +662,7 @@
 #define kUIFESubsectionVisualSensors NSLocalizedString(@"Face detection", nil)
 #define kUIFESubsectionPoseDetection NSLocalizedString(@"Pose detection", nil)
 #define kUIFESubsectionTextRecognition NSLocalizedString(@"Text recognition", nil)
+#define kUIFESubsectionObjectRecognition NSLocalizedString(@"Object recognition", nil)
 #define kUIFESubsectionDataAndTime NSLocalizedString(@"Date and time", nil)
 #define kUIFESubsectionGeneral NSLocalizedString(@"General properties", nil)
 #define kUIFESubsectionMotion NSLocalizedString(@"Motion properties", nil)
@@ -723,6 +724,10 @@
 #define kUIFEFunctionTextBlockSize NSLocalizedString(@"text block size from camera", nil)
 #define kUIFEFunctionTextBlockFromCamera NSLocalizedString(@"text block from camera", nil)
 #define kUIFEFunctionTextBlockLanguageFromCamera NSLocalizedString(@"text block language from camera", nil)
+
+#define kUIFEFunctionIDOfDetectedObject NSLocalizedString(@"ID of detected object", nil)
+#define kUIFEFunctionObjectWithIDVisible NSLocalizedString(@"object with ID visible", nil)
+#define kUIFEFunctionLabelOfObjectWithID NSLocalizedString(@"label of object with ID", nil)
 
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)

@@ -315,6 +315,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         visualDetectionManager.bodyPoseDetectionEnabled = true
         visualDetectionManager.handPoseDetectionEnabled = true
         visualDetectionManager.textRecognitionEnabled = true
+        visualDetectionManager.objectRecognitionEnabled = true
         audioManager.isStarted = true
         touchManager.isStarted = true
 
@@ -329,6 +330,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(visualDetectionManager.bodyPoseDetectionEnabled)
         XCTAssertFalse(visualDetectionManager.handPoseDetectionEnabled)
         XCTAssertFalse(visualDetectionManager.textRecognitionEnabled)
+        XCTAssertFalse(visualDetectionManager.objectRecognitionEnabled)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(audioManager.isPaused)
         XCTAssertFalse(touchManager.isStarted)

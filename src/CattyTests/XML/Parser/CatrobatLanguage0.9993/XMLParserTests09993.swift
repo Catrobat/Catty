@@ -297,6 +297,41 @@ class XMLParserTests09993: XMLAbstractTest {
         XCTAssertEqual(0, project.unsupportedElements.count)
     }
 
+    func testObjectDetectionSensors() {
+        let project = self.getProjectForXML(xmlFile: "ObjectRecognitionSensors")
+        let sensorTags: [String] = [IDOfDetectedObjectFunction.tag, ObjectWithIDVisibleFunction.tag, LabelOfObjectWithIDFunction.tag]
+
+        let objectCount = 4
+        let brickCount = 10
+        var sensorIndex = 0
+        var brickIndex = 2
+
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        let objectDetectorObject = project.scene.object(at: 1)!
+
+        XCTAssertEqual(objectDetectorObject.scriptList.count, 1, "Invalid script list")
+        let script = objectDetectorObject.scriptList.object(at: 0) as! Script
+        XCTAssertEqual(script.brickList.count, brickCount, "Invalid brick list")
+
+        let setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        let ifLogicBeginBrick = script.brickList.object(at: brickIndex) as! IfLogicBeginBrick
+        XCTAssertEqual(ElementType.FUNCTION, ifLogicBeginBrick.getFormulas()[0].formulaTree.leftChild.parent.type)
+        XCTAssertEqual(sensorTags[sensorIndex], ifLogicBeginBrick.getFormulas()[0].formulaTree.leftChild.parent.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        let secondSetVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, secondSetVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], secondSetVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+   }
+
     func testGlideToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
         let glideToBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick

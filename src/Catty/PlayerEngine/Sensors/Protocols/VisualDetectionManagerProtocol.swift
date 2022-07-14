@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Vision
+
 protocol VisualDetectionManagerProtocol {
 
     var isFaceDetected: [Bool] { get }
@@ -36,18 +38,23 @@ protocol VisualDetectionManagerProtocol {
     var textBlockSizeRatio: [Double] { get }
     var textBlockFromCamera: [String] { get }
     var textBlockLanguageCode: [String] { get }
+    var objectRecognitions: [VNRecognizedObjectObservation] { get }
 
     func start()
     func startFaceDetection()
     func startHandPoseDetection()
     func startBodyPoseDetection()
     func startTextRecognition()
+    func startObjectRecognition()
 
     func stop()
 
     func reset()
     func resetFaceDetection()
     func resetBodyPoses()
+    func resetHandPoses()
+    func resetTextRecogntion()
+    func resetObjectRecognition()
 
     func available() -> Bool
 }

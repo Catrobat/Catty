@@ -878,6 +878,9 @@
 "hour" = "hour";
 
 /* No comment provided by engineer. */
+"ID of detected object" = "ID of detected object";
+
+/* No comment provided by engineer. */
 "If" = "If";
 
 /* No comment provided by engineer. */
@@ -969,6 +972,9 @@
 
 /* No comment provided by engineer. */
 "LA" = "LA";
+
+/* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
 
 /* No comment provided by engineer. */
 "Last access" = "Last access";
@@ -1422,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "Object or actor name";
+
+/* No comment provided by engineer. */
+"Object recognition" = "Object recognition";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "object with ID visible";
 
 /* No comment provided by engineer. */
 "Oct" = "Oct";

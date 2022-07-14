@@ -180,6 +180,7 @@
                                  SensorSubsection.visual.title,
                                  SensorSubsection.pose.title,
                                  SensorSubsection.textRecognition.title,
+                                 SensorSubsection.objectDetection.title,
                                  SensorSubsection.dateAndTime.title,
                                  SensorSubsection.arduino.title,
                                  SensorSubsection.phiro.title]
