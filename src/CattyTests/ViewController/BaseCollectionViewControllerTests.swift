@@ -27,8 +27,20 @@ import XCTest
 
 final class BaseTableViewControllerTests: XCTestCase {
 
+    var baseTableViewControllerMock: BaseTableViewControllerMock!
+    var project: Project!
+    var projectManager: ProjectManager!
+
     override func setUp() {
         super.setUp()
+
+        baseTableViewControllerMock = BaseTableViewControllerMock()
+
+        let stagePresenterViewControllerMock = StagePresenterViewControllerMock()
+        baseTableViewControllerMock.setStagePresenter(stagePresenterViewControllerMock)
+        projectManager = ProjectManager.shared
+
+        project = projectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
     }
 
     func testNotification() {
@@ -36,5 +48,25 @@ final class BaseTableViewControllerTests: XCTestCase {
         let expectedNotification = Notification(name: .baseTableViewControllerDidAppear, object: controller)
 
         expect(controller.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
+    }
+
+    func testPlaySceneAction() {
+        CBFileManager.shared()?.deleteAllFilesInDocumentsDirectory()
+        CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
+        Util.setLastProjectWithName(kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)
+
+        baseTableViewControllerMock.playSceneAction(UIButton())
+
+        expect(self.baseTableViewControllerMock.showLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
+        expect(self.baseTableViewControllerMock.hideLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
+    }
+
+    func testPlaySceneActionInvalidProject() {
+        Util.setLastProjectWithName("InvalidProject", projectID: Date().timeIntervalSinceNow.description)
+
+        baseTableViewControllerMock.playSceneAction(UIButton())
+
+        expect(self.baseTableViewControllerMock.showLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
+        expect(self.baseTableViewControllerMock.hideLoadingViewCalls).toEventually(equal(1), timeout: .seconds(3))
     }
 }

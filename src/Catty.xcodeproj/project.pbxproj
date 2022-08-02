@@ -1742,6 +1742,7 @@
 		BB9EC0E727D62CBA009FF8CE /* FormSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0E027D62CBA009FF8CE /* FormSwitchTableViewCell.swift */; };
 		BB9EC0E827D62CBA009FF8CE /* CreateVariableOrListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0E127D62CBA009FF8CE /* CreateVariableOrListViewController.swift */; };
 		BB9EC0E927D62CBA009FF8CE /* FormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EC0E227D62CBA009FF8CE /* FormItem.swift */; };
+		BBA41C96287C3EEE00B099D3 /* BaseTableViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA41C95287C3EEE00B099D3 /* BaseTableViewControllerMock.swift */; };
 		BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19327E21186504009DE43A /* CreateProjectTests.swift */; };
 		BC35168C231D00B90090872A /* SpriteBubbleConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC35168B231D00B90090872A /* SpriteBubbleConstraintsTests.swift */; };
 		BCF2787F22F4354200B6D337 /* BubbleBrickHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2787E22F4354200B6D337 /* BubbleBrickHelper.swift */; };
@@ -4361,6 +4362,7 @@
 		BB9EC0E027D62CBA009FF8CE /* FormSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		BB9EC0E127D62CBA009FF8CE /* CreateVariableOrListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVariableOrListViewController.swift; sourceTree = "<group>"; };
 		BB9EC0E227D62CBA009FF8CE /* FormItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormItem.swift; sourceTree = "<group>"; };
+		BBA41C95287C3EEE00B099D3 /* BaseTableViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewControllerMock.swift; sourceTree = "<group>"; };
 		BC19327E21186504009DE43A /* CreateProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectTests.swift; sourceTree = "<group>"; };
 		BC35168B231D00B90090872A /* SpriteBubbleConstraintsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteBubbleConstraintsTests.swift; sourceTree = "<group>"; };
 		BCF2787E22F4354200B6D337 /* BubbleBrickHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleBrickHelper.swift; sourceTree = "<group>"; };
@@ -7755,6 +7757,7 @@
 			isa = PBXGroup;
 			children = (
 				4C21C8C0274FB1CE009F7C7F /* AlertControllerBuilderMock.swift */,
+				BBA41C95287C3EEE00B099D3 /* BaseTableViewControllerMock.swift */,
 				4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */,
 				6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */,
 				4C2048782671DF7000AE2E1B /* CBScriptContextMock.swift */,
@@ -12541,6 +12544,7 @@
 				4C7054E025DE457900B265DC /* BrickCellFormulaDataTests.swift in Sources */,
 				4C3B151B23F07C7800527D4A /* ErrorMock.swift in Sources */,
 				4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */,
+				BBA41C96287C3EEE00B099D3 /* BaseTableViewControllerMock.swift in Sources */,
 				E55F4287261335360005DB5A /* CBSpriteNodePhysicsTests.swift in Sources */,
 				4C822666213FA7A400F3D750 /* LongitudeSensorTest.swift in Sources */,
 				4C2CBB4625A5AA8400C1C143 /* XMLParserHeaderTests093.swift in Sources */,

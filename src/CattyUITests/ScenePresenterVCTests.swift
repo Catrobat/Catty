@@ -53,4 +53,19 @@ class ScenePresenterVCTests: XCTestCase {
         app.toolbars.buttons["Play"].tap()
         XCTAssertTrue(UIApplication.shared.statusBarOrientation == .portrait)
     }
+
+    func testScenePresenterLoadingViewShown() {
+        let projectName = "testProject"
+        let loadingText = "\(kLocalizedLoading)..."
+
+        app.tables.staticTexts[kLocalizedNewProject].tap()
+        let alertQuery = app.alerts[kLocalizedNewProject]
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+
+        app.toolbars.buttons["Play"].tap()
+        XCTAssertTrue(app.staticTexts[loadingText].exists)
+        XCTAssertFalse(waitForElementToDisappear(app.staticTexts[loadingText]).exists)
+    }
 }

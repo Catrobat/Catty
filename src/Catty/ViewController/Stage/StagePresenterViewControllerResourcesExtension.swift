@@ -22,18 +22,16 @@
 
 import BluetoothHelper
 import CoreBluetooth
+import UIKit
 
 @objc extension StagePresenterViewController {
 
-    @objc(checkResourcesAndPushViewControllerTo:)
-    func checkResourcesAndPushViewController(to navigationController: UINavigationController) {
-        navigationController.view.addSubview(self.loadingView)
-        self.showLoadingView()
-
+    @objc(checkResourcesAndPushViewControllerTo:completion:)
+    func checkResourcesAndPushViewController(to navigationController: UINavigationController, completion: @escaping () -> Void = {}) {
         DispatchQueue.global(qos: .userInitiated).async {
             guard let project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo()) else {
                 DispatchQueue.main.async {
-                    self.hideLoadingView()
+                    completion()
                     Util.alert(text: kLocalizedInvalidZip)
                 }
                 return
@@ -42,10 +40,11 @@ import CoreBluetooth
             DispatchQueue.main.async {
                 self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
                 let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
+
+                completion()
+
                 if readyToStart && !(self.navigationController?.topViewController is StagePresenterViewController) {
                     navigationController.pushViewController(self, animated: true)
-                } else {
-                    self.hideLoadingView()
                 }
             }
         }
