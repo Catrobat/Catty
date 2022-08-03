@@ -44,10 +44,6 @@ final class VisualDetectionManagerMock: VisualDetectionManager {
         isAvailable
     }
 
-    func setVisualDetectionFrameSize(_ frameSize: CGSize) {
-        self.visualDetectionFrameSize = frameSize
-    }
-
     func setAllEyeSensorValueRatios(to value: Double) {
         self.faceLandmarkPositionRatioDictionary[LeftEyeInnerXSensor.tag] = value
         self.faceLandmarkPositionRatioDictionary[LeftEyeInnerYSensor.tag] = value

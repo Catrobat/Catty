@@ -41,16 +41,12 @@ class FaceSizeSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        guard let faceSize = self.getVisualDetectionManager()?.faceSizeRatio[0] else { return type(of: self).defaultRawValue }
-        return Double(faceSize)
+        guard let faceSizeRatio = self.getVisualDetectionManager()?.faceSizeRatio[0] else { return type(of: self).defaultRawValue }
+        return Double(faceSizeRatio)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        guard let frameSize = self.getVisualDetectionManager()?.visualDetectionFrameSize,
-            let stageWidth = self.stageWidth
-            else { return type(of: self).defaultRawValue }
-
-        let faceSize = rawValue * stageWidth / Double(frameSize.width) * 100
+        let faceSize = rawValue * 100
         if faceSize > 100 {
             return 100
         }

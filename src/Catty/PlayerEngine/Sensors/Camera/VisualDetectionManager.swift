@@ -32,7 +32,6 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     var facePositionXRatio: [Double?] = [nil, nil]
     var facePositionYRatio: [Double?] = [nil, nil]
     var faceSizeRatio: [Double?] = [nil, nil]
-    var visualDetectionFrameSize: CGSize?
     var faceLandmarkPositionRatioDictionary: [String: Double] = [:]
     var bodyPosePositionRatioDictionary: [String: Double] = [:]
     var handPosePositionRatioDictionary: [String: Double] = [:]
@@ -51,6 +50,8 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     private var previewLayer: AVCaptureVideoPreviewLayer?
 
     private var objectRecognitionModel: VNCoreMLModel?
+    private var stage: Stage?
+    private var normalizedSize = CGSize(width: 1.0, height: 1.0)
 
     var faceDetectionEnabled = false
     var handPoseDetectionEnabled = false
@@ -59,6 +60,10 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     var objectRecognitionEnabled = false
 
     var previousFaceObservations: [VNFaceObservation]?
+
+    func setStage(_ stage: Stage?) {
+        self.stage = stage
+    }
 
     func start() {
         self.reset()
@@ -94,6 +99,16 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
 
         let videoDataOutputConnection = videoDataOuput.connection(with: .video)
         videoDataOutputConnection?.isEnabled = true
+        if let videoDataOutputConnection = videoDataOutputConnection {
+            videoDataOutputConnection.isEnabled = true
+            if videoDataOutputConnection.isVideoOrientationSupported {
+                if Project.lastUsed().header.landscapeMode {
+                    videoDataOutputConnection.videoOrientation = .landscapeRight
+                } else {
+                    videoDataOutputConnection.videoOrientation = .portrait
+                }
+            }
+        }
         self.videoDataOuput = videoDataOuput
 
         let previewLayer = AVCaptureVideoPreviewLayer(session: session)
@@ -171,7 +186,6 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         self.resetHandPoses()
         self.resetTextRecogntion()
         self.resetObjectRecognition()
-        self.visualDetectionFrameSize = nil
     }
 
     func resetFaceDetection() {
@@ -212,24 +226,71 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         return true
     }
 
+    func cropVideoBuffer(inputBuffer: CVPixelBuffer) -> CVPixelBuffer {
+        CVPixelBufferLockBaseAddress(inputBuffer, .readOnly)
+        guard let baseAddress = CVPixelBufferGetBaseAddress(inputBuffer) else { return inputBuffer }
+        let baseAddressStart = baseAddress.assumingMemoryBound(to: UInt8.self)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(inputBuffer)
+
+        let pixelFormat = CVPixelBufferGetPixelFormatType(inputBuffer)
+        let pixelBufferWidth = CGFloat(CVPixelBufferGetWidth(inputBuffer))
+        let pixelBufferHeight = CGFloat(CVPixelBufferGetHeight(inputBuffer))
+        guard let stageHeight = self.stage?.frame.height else { return inputBuffer }
+
+        let croppedWidth = pixelBufferHeight / stageHeight * pixelBufferWidth
+
+        var cropX = Int((pixelBufferWidth - CGFloat(croppedWidth)) / 2.0)
+        if cropX % 2 != 0 {
+            cropX += 1
+        }
+
+        let cropStartOffset = Int(CGFloat(cropX) * (CGFloat(bytesPerRow) / pixelBufferWidth))
+
+        let options = [
+          kCVPixelBufferCGImageCompatibilityKey: true,
+          kCVPixelBufferCGBitmapContextCompatibilityKey: true,
+          kCVPixelBufferWidthKey: croppedWidth,
+          kCVPixelBufferHeightKey: pixelBufferHeight
+        ] as [CFString: Any]
+
+        var newBuffer: CVPixelBuffer!
+
+        CVPixelBufferCreateWithBytes(kCFAllocatorDefault,
+                                     Int(croppedWidth),
+                                     Int(pixelBufferHeight),
+                                     pixelFormat,
+                                     &baseAddressStart[cropStartOffset],
+                                     Int(bytesPerRow),
+                                     nil,
+                                     nil,
+                                     options as CFDictionary,
+                                     &newBuffer)
+
+        CVPixelBufferUnlockBaseAddress(inputBuffer, .readOnly)
+        return newBuffer
+    }
+
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
-        let imageSize = CGSize(width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
-        DispatchQueue.main.async {
-            self.visualDetectionFrameSize = imageSize
+        if connection.isVideoOrientationSupported && !Project.lastUsed().header.landscapeMode && connection.videoOrientation != .portrait {
+            connection.videoOrientation = .portrait
+            return
         }
 
-        if connection.isVideoOrientationSupported {
-            connection.videoOrientation = .portrait
+        if connection.isVideoOrientationSupported && Project.lastUsed().header.landscapeMode && connection.videoOrientation != .landscapeRight {
+            connection.videoOrientation = .landscapeRight
+            return
         }
+
+        let newBuffer = self.cropVideoBuffer(inputBuffer: pixelBuffer)
 
         var orientation = CGImagePropertyOrientation.up
         if cameraPosition() == .front {
             orientation = .upMirrored
         }
 
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: orientation, options: [:])
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: newBuffer, orientation: orientation, options: [:])
         var detectionRequests: [VNRequest] = []
 
         if faceDetectionEnabled {
@@ -300,7 +361,7 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     }
 
     func handleDetectedFaceObservations(_ faceObservations: [VNFaceObservation]) {
-        guard self.visualDetectionFrameSize != nil && !faceObservations.isEmpty  else {
+        guard !faceObservations.isEmpty else {
             resetFaceDetection()
             return
         }
@@ -386,93 +447,73 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     }
 
     func handleNoseLandmark(_ nose: VNFaceLandmarkRegion2D) {
-        self.faceLandmarkPositionRatioDictionary[NoseXSensor.tag] = nose.pointsInImage(imageSize: self.visualDetectionFrameSize!)[nose.pointCount / 2].x / self.visualDetectionFrameSize!.width
-        self.faceLandmarkPositionRatioDictionary[NoseYSensor.tag] = nose.pointsInImage(imageSize: self.visualDetectionFrameSize!)[nose.pointCount / 2].y / self.visualDetectionFrameSize!.height
+        self.faceLandmarkPositionRatioDictionary[NoseXSensor.tag] = nose.pointsInImage(imageSize: normalizedSize)[nose.pointCount / 2].x
+        self.faceLandmarkPositionRatioDictionary[NoseYSensor.tag] = nose.pointsInImage(imageSize: normalizedSize)[nose.pointCount / 2].y
     }
 
     func handleEyeLandmark(_ eye: VNFaceLandmarkRegion2D, isLeft: Bool) {
         if isLeft {
-            self.faceLandmarkPositionRatioDictionary[LeftEyeInnerXSensor.tag] =
-                eye.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eye.pointCount / 2].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[LeftEyeInnerYSensor.tag] =
-                eye.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eye.pointCount / 2].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[LeftEyeInnerXSensor.tag] = eye.pointsInImage(imageSize: normalizedSize)[eye.pointCount / 2].x
+            self.faceLandmarkPositionRatioDictionary[LeftEyeInnerYSensor.tag] = eye.pointsInImage(imageSize: normalizedSize)[eye.pointCount / 2].y
 
-            self.faceLandmarkPositionRatioDictionary[LeftEyeOuterXSensor.tag] =
-                eye.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[LeftEyeOuterYSensor.tag] =
-                eye.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[LeftEyeOuterXSensor.tag] = eye.pointsInImage(imageSize: normalizedSize)[0].x
+            self.faceLandmarkPositionRatioDictionary[LeftEyeOuterYSensor.tag] = eye.pointsInImage(imageSize: normalizedSize)[0].y
         } else {
-            self.faceLandmarkPositionRatioDictionary[RightEyeInnerXSensor.tag] =
-                eye.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eye.pointCount / 2].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[RightEyeInnerYSensor.tag] =
-                eye.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eye.pointCount / 2].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[RightEyeInnerXSensor.tag] = eye.pointsInImage(imageSize: normalizedSize)[eye.pointCount / 2].x
+            self.faceLandmarkPositionRatioDictionary[RightEyeInnerYSensor.tag] = eye.pointsInImage(imageSize: normalizedSize)[eye.pointCount / 2].y
 
-            self.faceLandmarkPositionRatioDictionary[RightEyeOuterXSensor.tag] = eye.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[RightEyeOuterYSensor.tag] = eye.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[RightEyeOuterXSensor.tag] = eye.pointsInImage(imageSize: normalizedSize)[0].x
+            self.faceLandmarkPositionRatioDictionary[RightEyeOuterYSensor.tag] = eye.pointsInImage(imageSize: normalizedSize)[0].y
         }
     }
 
     func handlePupilLandmark(_ pupil: VNFaceLandmarkRegion2D, isLeft: Bool) {
         if isLeft {
-            self.faceLandmarkPositionRatioDictionary[LeftEyeCenterXSensor.tag] = pupil.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[LeftEyeCenterYSensor.tag] = pupil.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[LeftEyeCenterXSensor.tag] = pupil.pointsInImage(imageSize: normalizedSize)[0].x
+            self.faceLandmarkPositionRatioDictionary[LeftEyeCenterYSensor.tag] = pupil.pointsInImage(imageSize: normalizedSize)[0].y
         } else {
-            self.faceLandmarkPositionRatioDictionary[RightEyeCenterXSensor.tag] = pupil.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[RightEyeCenterYSensor.tag] = pupil.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[RightEyeCenterXSensor.tag] = pupil.pointsInImage(imageSize: normalizedSize)[0].x
+            self.faceLandmarkPositionRatioDictionary[RightEyeCenterYSensor.tag] = pupil.pointsInImage(imageSize: normalizedSize)[0].y
         }
     }
 
     func handleFaceContourLandmark(_ faceContour: VNFaceLandmarkRegion2D, faceBoundingBox: CGRect) {
-        self.faceLandmarkPositionRatioDictionary[LeftEarXSensor.tag] =
-            faceContour.pointsInImage(imageSize: self.visualDetectionFrameSize!)[faceContour.pointCount - 2].x / self.visualDetectionFrameSize!.width
-        self.faceLandmarkPositionRatioDictionary[LeftEarYSensor.tag] =
-            faceContour.pointsInImage(imageSize: self.visualDetectionFrameSize!)[faceContour.pointCount - 2].y / self.visualDetectionFrameSize!.height
+        self.faceLandmarkPositionRatioDictionary[LeftEarXSensor.tag] = faceContour.pointsInImage(imageSize: normalizedSize)[faceContour.pointCount - 2].x
+        self.faceLandmarkPositionRatioDictionary[LeftEarYSensor.tag] = faceContour.pointsInImage(imageSize: normalizedSize)[faceContour.pointCount - 2].y
 
-        self.faceLandmarkPositionRatioDictionary[RightEarXSensor.tag] =
-            faceContour.pointsInImage(imageSize: self.visualDetectionFrameSize!)[1].x / self.visualDetectionFrameSize!.width
-        self.faceLandmarkPositionRatioDictionary[RightEarYSensor.tag] =
-            faceContour.pointsInImage(imageSize: self.visualDetectionFrameSize!)[1].y / self.visualDetectionFrameSize!.height
+        self.faceLandmarkPositionRatioDictionary[RightEarXSensor.tag] = faceContour.pointsInImage(imageSize: normalizedSize)[1].x
+        self.faceLandmarkPositionRatioDictionary[RightEarYSensor.tag] = faceContour.pointsInImage(imageSize: normalizedSize)[1].y
 
         calculateHeadTop()
     }
 
     func handleOuterLipsLandmark(_ outerLips: VNFaceLandmarkRegion2D) {
-        self.faceLandmarkPositionRatioDictionary[MouthLeftCornerXSensor.tag] = outerLips.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].x / self.visualDetectionFrameSize!.width
-        self.faceLandmarkPositionRatioDictionary[MouthLeftCornerYSensor.tag] = outerLips.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].y / self.visualDetectionFrameSize!.height
+        self.faceLandmarkPositionRatioDictionary[MouthLeftCornerXSensor.tag] = outerLips.pointsInImage(imageSize: normalizedSize)[0].x
+        self.faceLandmarkPositionRatioDictionary[MouthLeftCornerYSensor.tag] = outerLips.pointsInImage(imageSize: normalizedSize)[0].y
 
-        self.faceLandmarkPositionRatioDictionary[MouthRightCornerXSensor.tag] =
-            outerLips.pointsInImage(imageSize: self.visualDetectionFrameSize!)[outerLips.pointCount / 2].x / self.visualDetectionFrameSize!.width
-        self.faceLandmarkPositionRatioDictionary[MouthRightCornerYSensor.tag] =
-            outerLips.pointsInImage(imageSize: self.visualDetectionFrameSize!)[outerLips.pointCount / 2].y / self.visualDetectionFrameSize!.height
+        self.faceLandmarkPositionRatioDictionary[MouthRightCornerXSensor.tag] = outerLips.pointsInImage(imageSize: normalizedSize)[outerLips.pointCount / 2].x
+        self.faceLandmarkPositionRatioDictionary[MouthRightCornerYSensor.tag] = outerLips.pointsInImage(imageSize: normalizedSize)[outerLips.pointCount / 2].y
     }
 
     func handleEyebrowLandmark(_ eyebrow: VNFaceLandmarkRegion2D, isLeft: Bool) {
         if isLeft {
-            self.faceLandmarkPositionRatioDictionary[LeftEyebrowInnerXSensor.tag] =
-                eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eyebrow.pointCount / 2].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[LeftEyebrowInnerYSensor.tag] =
-                eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eyebrow.pointCount / 2].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[LeftEyebrowInnerXSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[eyebrow.pointCount / 2].x
+            self.faceLandmarkPositionRatioDictionary[LeftEyebrowInnerYSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[eyebrow.pointCount / 2].y
 
-            self.faceLandmarkPositionRatioDictionary[LeftEyebrowCenterXSensor.tag] =
-                eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eyebrow.pointCount / 4].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[LeftEyebrowCenterYSensor.tag] =
-                eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eyebrow.pointCount / 4].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[LeftEyebrowCenterXSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[eyebrow.pointCount / 4].x
+            self.faceLandmarkPositionRatioDictionary[LeftEyebrowCenterYSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[eyebrow.pointCount / 4].y
 
-            self.faceLandmarkPositionRatioDictionary[LeftEyebrowOuterXSensor.tag] = eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[LeftEyebrowOuterYSensor.tag] = eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[LeftEyebrowOuterXSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[0].x
+            self.faceLandmarkPositionRatioDictionary[LeftEyebrowOuterYSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[0].y
         } else {
-            self.faceLandmarkPositionRatioDictionary[RightEyebrowInnerXSensor.tag] =
-                eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eyebrow.pointCount / 2].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[RightEyebrowInnerYSensor.tag] =
-                eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eyebrow.pointCount / 2].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[RightEyebrowInnerXSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[eyebrow.pointCount / 2].x
+            self.faceLandmarkPositionRatioDictionary[RightEyebrowInnerYSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[eyebrow.pointCount / 2].y
 
-            self.faceLandmarkPositionRatioDictionary[RightEyebrowCenterXSensor.tag] =
-                eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eyebrow.pointCount / 4].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[RightEyebrowCenterYSensor.tag] =
-                eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[eyebrow.pointCount / 4].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[RightEyebrowCenterXSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[eyebrow.pointCount / 4].x
+            self.faceLandmarkPositionRatioDictionary[RightEyebrowCenterYSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[eyebrow.pointCount / 4].y
 
-            self.faceLandmarkPositionRatioDictionary[RightEyebrowOuterXSensor.tag] = eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].x / self.visualDetectionFrameSize!.width
-            self.faceLandmarkPositionRatioDictionary[RightEyebrowOuterYSensor.tag] = eyebrow.pointsInImage(imageSize: self.visualDetectionFrameSize!)[0].y / self.visualDetectionFrameSize!.height
+            self.faceLandmarkPositionRatioDictionary[RightEyebrowOuterXSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[0].x
+            self.faceLandmarkPositionRatioDictionary[RightEyebrowOuterYSensor.tag] = eyebrow.pointsInImage(imageSize: normalizedSize)[0].y
         }
     }
 
@@ -496,7 +537,7 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
 
     @available(iOS 13.0, *)
     func handleTextObservations(_ textObservations: [VNRecognizedTextObservation]) {
-        guard self.visualDetectionFrameSize != nil && !textObservations.isEmpty  else {
+        guard !textObservations.isEmpty  else {
             resetTextRecogntion()
             return
         }
@@ -525,7 +566,7 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
 
     @available(iOS 14.0, *)
     func handleHumanBodyPoseObservations(_ bodyPoseObservations: [VNHumanBodyPoseObservation]) {
-        guard self.visualDetectionFrameSize != nil && !bodyPoseObservations.isEmpty, let bodyPoseObservation = bodyPoseObservations.first else {
+        guard !bodyPoseObservations.isEmpty, let bodyPoseObservation = bodyPoseObservations.first else {
            resetBodyPoses()
            return
         }
@@ -611,7 +652,7 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
 
     @available(iOS 14.0, *)
     func handleHumanHandPoseObservations(_ handPoseObservations: [VNHumanHandPoseObservation]) {
-        guard self.visualDetectionFrameSize != nil && !handPoseObservations.isEmpty else {
+        guard !handPoseObservations.isEmpty else {
             resetHandPoses()
             return
         }

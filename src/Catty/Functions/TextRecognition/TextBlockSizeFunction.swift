@@ -47,9 +47,7 @@ class TextBlockSizeFunction: SingleParameterDoubleFunction {
 
     func value(parameter: AnyObject?) -> Double {
         guard let textBlockNumberAsDouble = parameter as? Double,
-              let visualDetectionManager = self.getVisualDetectionManager(),
-              let stageWidth = self.stageWidth,
-              let frameSize = self.getVisualDetectionManager()?.visualDetectionFrameSize
+              let visualDetectionManager = self.getVisualDetectionManager()
         else { return type(of: self).defaultValue }
 
         let textBlockNumber = Int(textBlockNumberAsDouble)
@@ -57,7 +55,7 @@ class TextBlockSizeFunction: SingleParameterDoubleFunction {
             return type(of: self).defaultValue
         }
 
-        let textBlockSize = visualDetectionManager.textBlockSizeRatio[textBlockNumber - 1] * stageWidth / Double(frameSize.width) * 100
+        let textBlockSize = visualDetectionManager.textBlockSizeRatio[textBlockNumber - 1] * 100
         if textBlockSize > 100 {
             return 100
         }

@@ -110,6 +110,7 @@ extension FormulaManager {
             if requiredResources & ResourceType.objectRecognition.rawValue > 0 {
                 visualDetectionManager.startObjectRecognition()
             }
+            visualDetectionManager.setStage(stage)
             visualDetectionManager.start()
         }
         if (requiredResources & ResourceType.loudness.rawValue > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {

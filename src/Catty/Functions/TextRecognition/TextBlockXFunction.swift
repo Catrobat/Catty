@@ -30,12 +30,10 @@ class TextBlockXFunction: SingleParameterDoubleFunction {
     static let requiredResource = ResourceType.textRecognition
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageHeight: Double?
     let stageWidth: Double?
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
-        self.stageHeight = Double(stageSize.height)
         self.stageWidth = Double(stageSize.width)
     }
 
@@ -50,9 +48,7 @@ class TextBlockXFunction: SingleParameterDoubleFunction {
     func value(parameter: AnyObject?) -> Double {
         guard let textBlockNumberAsDouble = parameter as? Double,
               let visualDetectionManager = self.getVisualDetectionManager(),
-              let stageHeight = self.stageHeight,
-              let stageWidth = self.stageWidth,
-              let frameHeight = self.getVisualDetectionManager()?.visualDetectionFrameSize?.height
+              let stageWidth = self.stageWidth
         else { return type(of: self).defaultValue }
 
         let textBlockNumber = Int(textBlockNumberAsDouble)
@@ -62,8 +58,7 @@ class TextBlockXFunction: SingleParameterDoubleFunction {
 
         let textBlockPositionX = visualDetectionManager.textBlockPosition[textBlockNumber - 1].x
 
-        let scaledPreviewWidthRatio = stageHeight / frameHeight
-        return (stageWidth * textBlockPositionX - stageWidth / 2.0) * scaledPreviewWidthRatio
+        return stageWidth * textBlockPositionX - stageWidth / 2.0
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {

@@ -34,7 +34,6 @@ final class VisualDetectionManagerTest: XCTestCase {
         super.setUp()
         manager = VisualDetectionManagerMock()
         stageSize = CGSize(width: 1080, height: 1920)
-        manager.setVisualDetectionFrameSize(stageSize)
     }
 
     override func tearDown() {
@@ -49,7 +48,6 @@ final class VisualDetectionManagerTest: XCTestCase {
             manager.facePositionYRatio[faceIndex] = 0.2
             manager.faceSizeRatio[faceIndex] = 1.0
         }
-        manager.visualDetectionFrameSize = CGSize.zero
 
         manager.reset()
 
@@ -59,7 +57,6 @@ final class VisualDetectionManagerTest: XCTestCase {
             XCTAssertNil(manager.facePositionYRatio[faceIndex])
             XCTAssertNil(manager.faceSizeRatio[faceIndex])
         }
-        XCTAssertNil(manager.visualDetectionFrameSize)
     }
 
     func testCameraPosition() {

@@ -36,7 +36,6 @@ class TextBlockPositionFunctionTest: XCTestCase {
         super.setUp()
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
-        self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
 
         self.textBlockXFunction = TextBlockXFunction(stageSize: stageSize, visualDetectionManagerGetter: { [weak self] in
             self?.visualDetectionManagerMock })
@@ -145,12 +144,11 @@ class TextBlockPositionFunctionTest: XCTestCase {
     private func convertRatios(ratioValue: Double, type: SensorType) -> Double {
         switch type {
         case .x:
-            let scaledPreviewWidthRatio = stageSize.height / visualDetectionManagerMock.visualDetectionFrameSize!.height
-            return (stageSize.width * ratioValue - stageSize.width / 2.0) * scaledPreviewWidthRatio
+            return stageSize.width * ratioValue - stageSize.width / 2.0
         case .y:
             return stageSize.height * ratioValue - stageSize.height / 2.0
         case .size:
-            let textBlockSize = ratioValue * stageSize.width / Double(visualDetectionManagerMock.visualDetectionFrameSize!.width) * 100
+            let textBlockSize = ratioValue * 100
             if textBlockSize > 100 {
                 return 100
             }

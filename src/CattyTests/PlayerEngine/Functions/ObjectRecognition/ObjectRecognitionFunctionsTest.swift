@@ -41,7 +41,6 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         super.setUp()
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
-        self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
 
         self.objectWithIDVisibleFunction = ObjectWithIDVisibleFunction(visualDetectionManagerGetter: { [weak self] in
             self?.visualDetectionManagerMock
@@ -238,16 +237,15 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
     }
 
     private func convertRatios(boundingBox: CGRect, type: SensorType) -> Double {
-        let scaledPreviewWidthRatio = stageSize.height / visualDetectionManagerMock.visualDetectionFrameSize!.height
         switch type {
         case .x:
             let objectPositionX = boundingBox.origin.x + boundingBox.width / 2.0
-            return (stageSize.width * objectPositionX - stageSize.width / 2.0) * scaledPreviewWidthRatio
+            return stageSize.width * objectPositionX - stageSize.width / 2.0
         case .y:
             let objectPositionY = boundingBox.origin.y + boundingBox.height / 2.0
             return stageSize.height * objectPositionY - stageSize.height / 2.0
         case .width:
-            return stageSize.width * boundingBox.width * scaledPreviewWidthRatio
+            return stageSize.width * boundingBox.width
         case .height:
             return stageSize.height * boundingBox.height
         }
