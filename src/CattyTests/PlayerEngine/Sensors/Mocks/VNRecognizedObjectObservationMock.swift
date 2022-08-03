@@ -25,12 +25,17 @@ import Vision
 
 class VNRecognizedObjectObservationMock: VNRecognizedObjectObservation {
     var labelsMock: [VNClassificationObservation] = []
+    var boundingBoxMock = CGRect.zero
     override var labels: [VNClassificationObservation] {
         self.labelsMock
     }
+    override var boundingBox: CGRect {
+        self.boundingBoxMock
+    }
 
-    init(_ labelMock: String) {
+    init(labelMock: String, boundingBoxMock: CGRect) {
         self.labelsMock.append(VNClassificationObservationMock(labelMock))
+        self.boundingBoxMock = boundingBoxMock
         super.init()
     }
 

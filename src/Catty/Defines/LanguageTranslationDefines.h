@@ -728,6 +728,8 @@
 #define kUIFEFunctionIDOfDetectedObject NSLocalizedString(@"ID of detected object", nil)
 #define kUIFEFunctionObjectWithIDVisible NSLocalizedString(@"object with ID visible", nil)
 #define kUIFEFunctionLabelOfObjectWithID NSLocalizedString(@"label of object with ID", nil)
+#define kUIFEFunctionXOfObjectWithID NSLocalizedString(@"X of object with ID", nil)
+#define kUIFEFunctionYOfObjectWithID NSLocalizedString(@"Y of object with ID", nil)
 
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)
