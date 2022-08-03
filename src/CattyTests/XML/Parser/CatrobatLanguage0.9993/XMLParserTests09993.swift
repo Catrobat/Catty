@@ -299,10 +299,11 @@ class XMLParserTests09993: XMLAbstractTest {
 
     func testObjectDetectionSensors() {
         let project = self.getProjectForXML(xmlFile: "ObjectRecognitionSensors")
-        let sensorTags: [String] = [IDOfDetectedObjectFunction.tag, ObjectWithIDVisibleFunction.tag, LabelOfObjectWithIDFunction.tag, XOfObjectWithIDFunction.tag, YOfObjectWithIDFunction.tag]
+        let sensorTags: [String] = [IDOfDetectedObjectFunction.tag, ObjectWithIDVisibleFunction.tag, LabelOfObjectWithIDFunction.tag, XOfObjectWithIDFunction.tag, YOfObjectWithIDFunction.tag,
+                                    WidthOfObjectWithIDFunction.tag, HeightOfObjectWithIDFunction.tag]
 
         let objectCount = 4
-        let brickCount = 12
+        let brickCount = 14
         var sensorIndex = 0
         var brickIndex = 1
 
@@ -313,7 +314,7 @@ class XMLParserTests09993: XMLAbstractTest {
         let script = objectDetectorObject.scriptList.object(at: 0) as! Script
         XCTAssertEqual(script.brickList.count, brickCount, "Invalid brick list")
 
-        let setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        var setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
         XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
         XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
         sensorIndex += 1
@@ -325,9 +326,9 @@ class XMLParserTests09993: XMLAbstractTest {
         sensorIndex += 1
         brickIndex += 1
 
-        let secondSetVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
-        XCTAssertEqual(ElementType.FUNCTION, secondSetVariableBrick.getFormulas()[0].formulaTree.type)
-        XCTAssertEqual(sensorTags[sensorIndex], secondSetVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
         sensorIndex += 1
         brickIndex += 1
 
@@ -339,6 +340,16 @@ class XMLParserTests09993: XMLAbstractTest {
         XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[1].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
         sensorIndex += 1
         brickIndex += 1
+
+        setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
 
         XCTAssertEqual(0, project.unsupportedElements.count)
    }

@@ -730,6 +730,8 @@ let kUIFEFunctionObjectWithIDVisible = NSLocalizedString("object with ID visible
 let kUIFEFunctionLabelOfObjectWithID = NSLocalizedString("label of object with ID", comment: "")
 let kUIFEFunctionXOfObjectWithID = NSLocalizedString("X of object with ID", comment: "")
 let kUIFEFunctionYOfObjectWithID = NSLocalizedString("Y of object with ID", comment: "")
+let kUIFEFunctionWidthOfObjectWithID = NSLocalizedString("width of object with ID", comment: "")
+let kUIFEFunctionHeightOfObjectWithID = NSLocalizedString("height of object with ID", comment: "")
 
 let kUIFEOperatorAnd = NSLocalizedString("and", comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", comment: "")

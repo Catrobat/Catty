@@ -402,6 +402,8 @@
 		4981EDCD289AC2690052AEB1 /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4981EDCC289AC2690052AEB1 /* YOLOv3Tiny.mlmodel */; };
 		4981EDFB289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EDF7289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift */; };
 		4981EDFC289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EDFA289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift */; };
+		4981EE03289ACB2E0052AEB1 /* HeightOfObjectWithIDFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EDFF289ACB2D0052AEB1 /* HeightOfObjectWithIDFunction.swift */; };
+		4981EE04289ACB2E0052AEB1 /* WidthOfObjectWithIDFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EE02289ACB2E0052AEB1 /* WidthOfObjectWithIDFunction.swift */; };
 		498C156A2807057B00B81C8E /* WristSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B512806FD380073BF65 /* WristSensorTest.swift */; };
 		498C156B2807057B00B81C8E /* ShoulderSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B4D2806FD1E0073BF65 /* ShoulderSensorTest.swift */; };
 		498C156C2807057B00B81C8E /* ElbowSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B4F2806FD300073BF65 /* ElbowSensorTest.swift */; };
@@ -2526,6 +2528,8 @@
 		4981EDCC289AC2690052AEB1 /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 		4981EDF7289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XOfObjectWithIDFunction.swift; path = Catty/Functions/ObjectRecognition/XOfObjectWithIDFunction.swift; sourceTree = SOURCE_ROOT; };
 		4981EDFA289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YOfObjectWithIDFunction.swift; path = Catty/Functions/ObjectRecognition/YOfObjectWithIDFunction.swift; sourceTree = SOURCE_ROOT; };
+		4981EDFF289ACB2D0052AEB1 /* HeightOfObjectWithIDFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeightOfObjectWithIDFunction.swift; sourceTree = "<group>"; };
+		4981EE02289ACB2E0052AEB1 /* WidthOfObjectWithIDFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidthOfObjectWithIDFunction.swift; sourceTree = "<group>"; };
 		498C1570280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UpperBodyPoseDetectionSensors.xml; sourceTree = "<group>"; };
 		498C157228070C6B00B81C8E /* LeftKneeXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftKneeXSensor.swift; sourceTree = "<group>"; };
 		498C157328070C6B00B81C8E /* RightAnkleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightAnkleXSensor.swift; sourceTree = "<group>"; };
@@ -5709,6 +5713,8 @@
 				492E5960287FDF0A00357F09 /* ObjectWithIDVisibleFunction.swift */,
 				4981EDF7289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift */,
 				4981EDFA289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift */,
+				4981EDFF289ACB2D0052AEB1 /* HeightOfObjectWithIDFunction.swift */,
+				4981EE02289ACB2E0052AEB1 /* WidthOfObjectWithIDFunction.swift */,
 			);
 			path = ObjectRecognition;
 			sourceTree = "<group>";
@@ -13616,6 +13622,7 @@
 				AA74F09B1BC05FCE00D1E954 /* BrickCell.m in Sources */,
 				59ABDC652021D7DA00061403 /* UIAlertController+AddAction.swift in Sources */,
 				922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */,
+				4981EE04289ACB2E0052AEB1 /* WidthOfObjectWithIDFunction.swift in Sources */,
 				4CF0729920D66C4800F93AB5 /* BackgroundNameSensor.swift in Sources */,
 				AA74EEE01BC057B900D1E954 /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
 				C808F26E26B04BA0008A349A /* TouchesEdgeSensor.swift in Sources */,
@@ -13694,6 +13701,7 @@
 				181E000625B5766700534C24 /* FormulaEditorSectionViewController.swift in Sources */,
 				6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */,
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
+				4981EE03289ACB2E0052AEB1 /* HeightOfObjectWithIDFunction.swift in Sources */,
 				F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */,
 				D30359E624445ABE006688F5 /* GoToBrick+CBXMLHandler.m in Sources */,
 				92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */,

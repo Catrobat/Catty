@@ -730,6 +730,8 @@ let kUIFEFunctionObjectWithIDVisible = NSLocalizedString("object with ID visible
 let kUIFEFunctionLabelOfObjectWithID = NSLocalizedString("label of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionXOfObjectWithID = NSLocalizedString("X of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionYOfObjectWithID = NSLocalizedString("Y of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionWidthOfObjectWithID = NSLocalizedString("width of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionHeightOfObjectWithID = NSLocalizedString("height of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEOperatorAnd = NSLocalizedString("and", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", bundle: Bundle(for: LanguageTranslation.self), comment: "")

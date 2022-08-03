@@ -730,6 +730,8 @@
 #define kUIFEFunctionLabelOfObjectWithID NSLocalizedString(@"label of object with ID", nil)
 #define kUIFEFunctionXOfObjectWithID NSLocalizedString(@"X of object with ID", nil)
 #define kUIFEFunctionYOfObjectWithID NSLocalizedString(@"Y of object with ID", nil)
+#define kUIFEFunctionWidthOfObjectWithID NSLocalizedString(@"width of object with ID", nil)
+#define kUIFEFunctionHeightOfObjectWithID NSLocalizedString(@"height of object with ID", nil)
 
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)
