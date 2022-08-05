@@ -48,5 +48,5 @@ If you feel confident that your tech stack matches our requirements, then we inv
 
 ## Issues
 You found a bug? 
-1. Perfect, please check the [open issues on Jira](https://jira.catrob.at/browse/CATTY-681?jql=project%20%3D%20CATTY%20AND%20issuetype%20%3D%20Bug%20AND%20resolution%20%3D%20Unresolved%20ORDER%20BY%20priority%20DESC%2C%20key%20DESC) first to avoid duplicate tickets!
+1. Perfect, please check the [open issues on Jira](https://jira.catrob.at/projects/CATTY/issues/?filter=allopenissues) first to avoid duplicate tickets!
 2. If the bug has not been reported yet, please report it using the [issue template on Jira](https://jira.catrob.at/secure/CreateIssue.jspa?pid=11901&issuetype=1).
