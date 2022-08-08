@@ -103,8 +103,8 @@ final class NeckSensorTest: XCTestCase {
     }
 
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.faceDetection, type(of: neckXSensor).requiredResource)
-        XCTAssertEqual(ResourceType.faceDetection, type(of: neckYSensor).requiredResource)
+        XCTAssertEqual(ResourceType.bodyPoseDetection, type(of: neckXSensor).requiredResource)
+        XCTAssertEqual(ResourceType.bodyPoseDetection, type(of: neckYSensor).requiredResource)
     }
 
     func testFormulaEditorSections() {

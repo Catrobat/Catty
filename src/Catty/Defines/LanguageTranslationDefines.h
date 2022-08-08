@@ -661,6 +661,8 @@
 #define kUIFESubsectionTouchDetection NSLocalizedString(@"Touch detection", nil)
 #define kUIFESubsectionVisualSensors NSLocalizedString(@"Face detection", nil)
 #define kUIFESubsectionPoseDetection NSLocalizedString(@"Pose detection", nil)
+#define kUIFESubsectionTextRecognition NSLocalizedString(@"Text recognition", nil)
+#define kUIFESubsectionObjectRecognition NSLocalizedString(@"Object recognition", nil)
 #define kUIFESubsectionDataAndTime NSLocalizedString(@"Date and time", nil)
 #define kUIFESubsectionGeneral NSLocalizedString(@"General properties", nil)
 #define kUIFESubsectionMotion NSLocalizedString(@"Motion properties", nil)
@@ -716,6 +718,16 @@
 #define kUIFEFunctionScreenIsTouched NSLocalizedString(@"stage is touched", nil)
 #define kUIFEFunctionScreenTouchX NSLocalizedString(@"stage touch x", nil)
 #define kUIFEFunctionScreenTouchY NSLocalizedString(@"stage touch y", nil)
+
+#define kUIFEFunctionTextBlockX NSLocalizedString(@"text block x from camera", nil)
+#define kUIFEFunctionTextBlockY NSLocalizedString(@"text block y from camera", nil)
+#define kUIFEFunctionTextBlockSize NSLocalizedString(@"text block size from camera", nil)
+#define kUIFEFunctionTextBlockFromCamera NSLocalizedString(@"text block from camera", nil)
+#define kUIFEFunctionTextBlockLanguageFromCamera NSLocalizedString(@"text block language from camera", nil)
+
+#define kUIFEFunctionIDOfDetectedObject NSLocalizedString(@"ID of detected object", nil)
+#define kUIFEFunctionObjectWithIDVisible NSLocalizedString(@"object with ID visible", nil)
+#define kUIFEFunctionLabelOfObjectWithID NSLocalizedString(@"label of object with ID", nil)
 
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)
@@ -877,6 +889,9 @@
 #define kUIFESensorLeftThumbKnuckleY NSLocalizedString(@"left thumb knuckle y", nil)
 #define kUIFESensorRightThumbKnuckleX NSLocalizedString(@"right thumb knuckle x", nil)
 #define kUIFESensorRightThumbKnuckleY NSLocalizedString(@"right thumb knuckle y", nil)
+
+#define kUIFESensorTextFromCamera NSLocalizedString(@"text from camera", nil)
+#define kUIFESensorTextBlocksNumber NSLocalizedString(@"number of text blocks", nil)
 
 #define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 

@@ -26,7 +26,7 @@ class NeckXSensor: DeviceDoubleSensor {
     static let name = kUIFESensorNeckX
     static let defaultRawValue = 0.0
     static let position = 230
-    static let requiredResource = ResourceType.faceDetection
+    static let requiredResource = ResourceType.bodyPoseDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageWidth: Double?

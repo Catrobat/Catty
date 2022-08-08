@@ -19,12 +19,14 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+import NaturalLanguage
 import Vision
 
 class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     static let maxFaceCount = 2
     static let maxHandCount = 2
+    static let undefinedLanguage = "und"
 
     var isFaceDetected = [false, false]
     var facePositionXRatio: [Double?] = [nil, nil]
@@ -34,11 +36,27 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
     var faceLandmarkPositionRatioDictionary: [String: Double] = [:]
     var bodyPosePositionRatioDictionary: [String: Double] = [:]
     var handPosePositionRatioDictionary: [String: Double] = [:]
+    var textFromCamera: String?
+    var textBlocksNumber: Int?
+    var textBlockPosition: [CGPoint] = []
+    var textBlockSizeRatio: [Double] = []
+    var textBlockFromCamera: [String] = []
+    var textBlockLanguageCode: [String] = []
+    var objectRecognitions: [VNRecognizedObjectObservation] = []
+
     let minConfidence: Float = 0.5
 
     private var session: AVCaptureSession?
     private var videoDataOuput: AVCaptureVideoDataOutput?
     private var previewLayer: AVCaptureVideoPreviewLayer?
+
+    private var objectRecognitionModel: VNCoreMLModel?
+
+    var faceDetectionEnabled = false
+    var handPoseDetectionEnabled = false
+    var bodyPoseDetectionEnabled = false
+    var textRecognitionEnabled = false
+    var objectRecognitionEnabled = false
 
     var previousFaceObservations: [VNFaceObservation]?
 
@@ -84,9 +102,39 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         previewLayer.isHidden = true
         self.previewLayer = previewLayer
 
+        if objectRecognitionEnabled {
+            if let objectRecognitionModelURL = Bundle.main.url(forResource: "YOLOv3Tiny", withExtension: "mlmodelc") {
+                do {
+                    objectRecognitionModel = try VNCoreMLModel(for: MLModel(contentsOf: objectRecognitionModelURL))
+                } catch {
+                    NSLog("Could not load object detection model!")
+                }
+            }
+        }
+
         DispatchQueue.main.async {
             session.startRunning()
         }
+    }
+
+    func startFaceDetection() {
+        self.faceDetectionEnabled = true
+    }
+
+    func startHandPoseDetection() {
+        self.handPoseDetectionEnabled = true
+    }
+
+    func startBodyPoseDetection() {
+        self.bodyPoseDetectionEnabled = true
+    }
+
+    func startTextRecognition() {
+        self.textRecognitionEnabled = true
+    }
+
+    func startObjectRecognition() {
+        self.objectRecognitionEnabled = true
     }
 
     func stop() {
@@ -109,12 +157,20 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         self.videoDataOuput = nil
         self.previewLayer?.removeFromSuperlayer()
         self.previewLayer = nil
+
+        self.faceDetectionEnabled = false
+        self.handPoseDetectionEnabled = false
+        self.bodyPoseDetectionEnabled = false
+        self.textRecognitionEnabled = false
+        self.objectRecognitionEnabled = false
     }
 
     func reset() {
         self.resetFaceDetection()
         self.resetBodyPoses()
         self.resetHandPoses()
+        self.resetTextRecogntion()
+        self.resetObjectRecognition()
         self.visualDetectionFrameSize = nil
     }
 
@@ -133,6 +189,19 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
 
     func resetHandPoses() {
         self.handPosePositionRatioDictionary.removeAll()
+    }
+
+    func resetTextRecogntion() {
+        self.textFromCamera = nil
+        self.textBlocksNumber = nil
+        self.textBlockPosition.removeAll()
+        self.textBlockSizeRatio.removeAll()
+        self.textBlockFromCamera.removeAll()
+        self.textBlockLanguageCode.removeAll()
+    }
+
+    func resetObjectRecognition() {
+        self.objectRecognitions.removeAll()
     }
 
     func available() -> Bool {
@@ -161,43 +230,72 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         }
 
         let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: orientation, options: [:])
+        var detectionRequests: [VNRequest] = []
 
-        let faceDetectionRequest = VNDetectFaceLandmarksRequest { request, _ in
-            if let faceObservations = request.results as? [VNFaceObservation] {
-                DispatchQueue.main.async {
-                    self.handleDetectedFaceObservations(faceObservations)
+        if faceDetectionEnabled {
+            let faceDetectionRequest = VNDetectFaceLandmarksRequest { request, _ in
+                if let faceObservations = request.results as? [VNFaceObservation] {
+                    DispatchQueue.main.async {
+                        self.handleDetectedFaceObservations(faceObservations)
+                    }
                 }
+            }
+            detectionRequests.append(faceDetectionRequest)
+        }
+
+        if #available(iOS 13.0, *) {
+            if textRecognitionEnabled {
+                let textDetectionRequest = VNRecognizeTextRequest { request, _ in
+                    if let textObservations = request.results as? [VNRecognizedTextObservation] {
+                        DispatchQueue.main.async {
+                            self.handleTextObservations(textObservations)
+                        }
+                    }
+                }
+                detectionRequests.append(textDetectionRequest)
+            }
+        }
+
+        if #available(iOS 14.0, *) {
+            if bodyPoseDetectionEnabled {
+                let humanBodyPoseRequest = VNDetectHumanBodyPoseRequest { request, _ in
+                    if let bodyPoseObservation = request.results as? [VNHumanBodyPoseObservation] {
+                        DispatchQueue.main.async {
+                            self.handleHumanBodyPoseObservations(bodyPoseObservation)
+                        }
+                    }
+                }
+                detectionRequests.append(humanBodyPoseRequest)
+            }
+            if handPoseDetectionEnabled {
+                let humanHandPoseRequest = VNDetectHumanHandPoseRequest { request, _ in
+                    if let handPoseObservations = request.results as? [VNHumanHandPoseObservation] {
+                        DispatchQueue.main.async {
+                            self.handleHumanHandPoseObservations(handPoseObservations)
+                        }
+                    }
+                }
+                detectionRequests.append(humanHandPoseRequest)
+            }
+        }
+
+        if objectRecognitionEnabled {
+            if let objectRecognitionModel = objectRecognitionModel {
+                let objectRecognitionRequest = VNCoreMLRequest(model: objectRecognitionModel) { request, _ in
+                    if let objectObservations = request.results as? [VNRecognizedObjectObservation] {
+                        DispatchQueue.main.async {
+                            self.handleDetectedObjectObservations(objectObservations)
+                        }
+                    }
+                }
+                detectionRequests.append(objectRecognitionRequest)
             }
         }
 
         do {
-            try imageRequestHandler.perform([faceDetectionRequest])
+            try imageRequestHandler.perform(detectionRequests)
         } catch let error as NSError {
             print(error)
-        }
-
-        if #available(iOS 14.0, *) {
-            let humanBodyPoseRequest = VNDetectHumanBodyPoseRequest { request, _ in
-                if let bodyPoseObservation = request.results as? [VNHumanBodyPoseObservation] {
-                    DispatchQueue.main.async {
-                        self.handleHumanBodyPoseObservations(bodyPoseObservation)
-                    }
-                }
-            }
-            let humanHandPoseRequest = VNDetectHumanHandPoseRequest { request, _ in
-                if let handPoseObservations = request.results as? [VNHumanHandPoseObservation] {
-                    DispatchQueue.main.async {
-                        self.handleHumanHandPoseObservations(handPoseObservations)
-                    }
-                }
-            }
-            do {
-                try imageRequestHandler.perform([humanBodyPoseRequest, humanHandPoseRequest])
-            } catch let error as NSError {
-                print(error)
-            }
-        } else {
-            // Fallback on earlier versions
         }
     }
 
@@ -396,6 +494,35 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         return sqrt(pow(distanceX, 2) + pow(distanceY, 2))
     }
 
+    @available(iOS 13.0, *)
+    func handleTextObservations(_ textObservations: [VNRecognizedTextObservation]) {
+        guard self.visualDetectionFrameSize != nil && !textObservations.isEmpty  else {
+            resetTextRecogntion()
+            return
+        }
+
+        let topCanditateTextObservations = textObservations.filter({ $0.topCandidates(1).first != nil && $0.topCandidates(1).first!.string.isNotEmpty })
+
+        textBlocksNumber = topCanditateTextObservations.count
+        textBlockPosition = topCanditateTextObservations.map({ CGPoint(x: $0.boundingBox.origin.x + $0.boundingBox.width / 2,
+                                                                       y: $0.boundingBox.origin.y + $0.boundingBox.height / 2) })
+        textBlockSizeRatio = topCanditateTextObservations.map({ max($0.boundingBox.width, $0.boundingBox.height) })
+
+        textBlockFromCamera = topCanditateTextObservations.map({ $0.topCandidates(1).first!.string })
+        textFromCamera = textBlockFromCamera.joined(separator: " ")
+
+        textBlockLanguageCode = textBlockFromCamera.map({ detectedLanguage(for: $0) ?? VisualDetectionManager.undefinedLanguage })
+    }
+
+    func detectedLanguage(for string: String) -> String? {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.languageConstraints = [NLLanguage.english, NLLanguage.french, NLLanguage.italian, NLLanguage.german,
+                                          NLLanguage.spanish, NLLanguage.portuguese, NLLanguage.simplifiedChinese, NLLanguage.traditionalChinese]
+        recognizer.processString(string)
+        guard let languageCode = recognizer.dominantLanguage?.rawValue else { return nil }
+        return languageCode
+    }
+
     @available(iOS 14.0, *)
     func handleHumanBodyPoseObservations(_ bodyPoseObservations: [VNHumanBodyPoseObservation]) {
         guard self.visualDetectionFrameSize != nil && !bodyPoseObservations.isEmpty, let bodyPoseObservation = bodyPoseObservations.first else {
@@ -550,7 +677,6 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         let thumbPoints = try? hand.recognizedPoints(.thumb)
 
         if let pinkyKnuckle = pinkyPoints?[.littlePIP] {
-            NSLog("confidence %f", pinkyKnuckle.confidence)
             if pinkyKnuckle.confidence > minConfidence {
                 if isLeft {
                     handPosePositionRatioDictionary[LeftPinkyKnuckleXSensor.tag] = pinkyKnuckle.x
@@ -617,6 +743,11 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         for leftHandPose in self.handPosePositionRatioDictionary.filter({ $0.key.starts(with: "LEFT") }) {
             self.handPosePositionRatioDictionary.removeValue(forKey: leftHandPose.key)
         }
+    }
+
+    func handleDetectedObjectObservations(_ objectObservations: [VNRecognizedObjectObservation]) {
+        resetObjectRecognition()
+        self.objectRecognitions.append(contentsOf: objectObservations.filter { $0.confidence > minConfidence })
     }
 
     func cameraPosition() -> AVCaptureDevice.Position {

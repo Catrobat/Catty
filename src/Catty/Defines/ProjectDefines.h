@@ -108,7 +108,12 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kTouchHandler =         1 << 13,
     kEmbroidery =           1 << 14,
     kInternet =             1 << 15,
-    kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion // TODO Pass ResourceType parameters as array (e.g. in "Sensor")
+    kBodyPoseDetection =    1 << 16,
+    kHandPoseDetection =    1 << 17,
+    kTextRecognition =      1 << 18,
+    kObjectRecognition =    1 << 19,
+    kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion, // TODO Pass ResourceType parameters as array (e.g. in "Sensor"),
+    kVisualDetection = kFaceDetection | kBodyPoseDetection | kHandPoseDetection | kTextRecognition | kObjectRecognition
 };
 
 #define kScreenshotFilename @"screenshot.png"

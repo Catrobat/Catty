@@ -116,7 +116,7 @@ final class WristSensorTest: XCTestCase {
 
     func testRequiredResources() {
         for wristSensor in wristXSensors + wristYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: wristSensor).requiredResource)
+            XCTAssertEqual(ResourceType.bodyPoseDetection, type(of: wristSensor).requiredResource)
         }
     }
 

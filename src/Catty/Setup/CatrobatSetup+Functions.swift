@@ -22,7 +22,7 @@
 
 extension CatrobatSetup {
 
-    static func registeredFunctions(touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> [Function] {
+    static func registeredFunctions(stageSize: CGSize, touchManager: TouchManagerProtocol, visualDetectionManager: VisualDetectionManager, bluetoothService: BluetoothService) -> [Function] {
         [SinFunction(),
          CosFunction(),
          TanFunction(),
@@ -58,6 +58,14 @@ extension CatrobatSetup {
          MultiFingerXFunction(touchManagerGetter: { touchManager }),
          MultiFingerYFunction(touchManagerGetter: { touchManager }),
          MultiFingerTouchedFunction(touchManagerGetter: { touchManager }),
+         TextBlockXFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         TextBlockYFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         TextBlockSizeFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         TextBlockFromCameraFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         TextBlockLanguageFromCameraFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         IDOfDetectedObjectFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         ObjectWithIDVisibleFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         LabelOfObjectWithIDFunction(visualDetectionManagerGetter: { visualDetectionManager }),
          ArduinoAnalogPinFunction(bluetoothServiceGetter: { bluetoothService }),
          ArduinoDigitalPinFunction(bluetoothServiceGetter: { bluetoothService })]
     }

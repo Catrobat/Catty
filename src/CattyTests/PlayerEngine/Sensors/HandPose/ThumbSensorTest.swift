@@ -116,7 +116,7 @@ final class ThumbSensorTest: XCTestCase {
 
     func testRequiredResources() {
         for thumbSensor in thumbXSensors + thumbYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: thumbSensor).requiredResource)
+            XCTAssertEqual(ResourceType.handPoseDetection, type(of: thumbSensor).requiredResource)
         }
     }
 

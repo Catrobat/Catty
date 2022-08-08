@@ -661,6 +661,8 @@ let kUIFESubsectionDeviceSensors = NSLocalizedString("Device sensors", comment: 
 let kUIFESubsectionTouchDetection = NSLocalizedString("Touch detection", comment: "")
 let kUIFESubsectionVisualSensors = NSLocalizedString("Face detection", comment: "")
 let kUIFESubsectionPoseDetection = NSLocalizedString("Pose detection", comment: "")
+let kUIFESubsectionTextRecognition = NSLocalizedString("Text recognition", comment: "")
+let kUIFESubsectionObjectRecognition = NSLocalizedString("Object recognition", comment: "")
 let kUIFESubsectionDataAndTime = NSLocalizedString("Date and time", comment: "")
 let kUIFESubsectionGeneral = NSLocalizedString("General properties", comment: "")
 let kUIFESubsectionMotion = NSLocalizedString("Motion properties", comment: "")
@@ -716,6 +718,16 @@ let kUIFEFunctionIndexOfItem = NSLocalizedString("index of item", comment: "")
 let kUIFEFunctionScreenIsTouched = NSLocalizedString("stage is touched", comment: "")
 let kUIFEFunctionScreenTouchX = NSLocalizedString("stage touch x", comment: "")
 let kUIFEFunctionScreenTouchY = NSLocalizedString("stage touch y", comment: "")
+
+let kUIFEFunctionTextBlockX = NSLocalizedString("text block x from camera", comment: "")
+let kUIFEFunctionTextBlockY = NSLocalizedString("text block y from camera", comment: "")
+let kUIFEFunctionTextBlockSize = NSLocalizedString("text block size from camera", comment: "")
+let kUIFEFunctionTextBlockFromCamera = NSLocalizedString("text block from camera", comment: "")
+let kUIFEFunctionTextBlockLanguageFromCamera = NSLocalizedString("text block language from camera", comment: "")
+
+let kUIFEFunctionIDOfDetectedObject = NSLocalizedString("ID of detected object", comment: "")
+let kUIFEFunctionObjectWithIDVisible = NSLocalizedString("object with ID visible", comment: "")
+let kUIFEFunctionLabelOfObjectWithID = NSLocalizedString("label of object with ID", comment: "")
 
 let kUIFEOperatorAnd = NSLocalizedString("and", comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", comment: "")
@@ -877,6 +889,9 @@ let kUIFESensorLeftThumbKnuckleX = NSLocalizedString("left thumb knuckle x", com
 let kUIFESensorLeftThumbKnuckleY = NSLocalizedString("left thumb knuckle y", comment: "")
 let kUIFESensorRightThumbKnuckleX = NSLocalizedString("right thumb knuckle x", comment: "")
 let kUIFESensorRightThumbKnuckleY = NSLocalizedString("right thumb knuckle y", comment: "")
+
+let kUIFESensorTextFromCamera = NSLocalizedString("text from camera", comment: "")
+let kUIFESensorTextBlocksNumber = NSLocalizedString("number of text blocks", comment: "")
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 

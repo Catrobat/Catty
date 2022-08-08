@@ -116,7 +116,7 @@ final class RingFingerSensorTest: XCTestCase {
 
     func testRequiredResources() {
         for ringFingerSensor in ringFingerXSensors + ringFingerYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: ringFingerSensor).requiredResource)
+            XCTAssertEqual(ResourceType.handPoseDetection, type(of: ringFingerSensor).requiredResource)
         }
     }
 

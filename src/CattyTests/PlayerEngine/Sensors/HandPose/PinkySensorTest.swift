@@ -116,7 +116,7 @@ final class PinkySensorTest: XCTestCase {
 
     func testRequiredResources() {
         for pinkySensor in pinkyXSensors + pinkyYSensors {
-            XCTAssertEqual(ResourceType.faceDetection, type(of: pinkySensor).requiredResource)
+            XCTAssertEqual(ResourceType.handPoseDetection, type(of: pinkySensor).requiredResource)
         }
     }
 

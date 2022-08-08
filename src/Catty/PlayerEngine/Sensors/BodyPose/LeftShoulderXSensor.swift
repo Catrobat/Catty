@@ -26,7 +26,7 @@ class LeftShoulderXSensor: DeviceDoubleSensor {
     static let name = kUIFESensorLeftShoulderX
     static let defaultRawValue = 0.0
     static let position = 590
-    static let requiredResource = ResourceType.faceDetection
+    static let requiredResource = ResourceType.bodyPoseDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
     let stageWidth: Double?
