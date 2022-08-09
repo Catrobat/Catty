@@ -80,6 +80,7 @@
     
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.background;
+    self.navigationController.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -139,6 +140,24 @@
          [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
          [UINavigationController attemptRotationToDeviceOrientation];
      }
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    if (Project.lastUsedProject.header.landscapeMode) {
+        return UIInterfaceOrientationMaskLandscapeRight;
+    }
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    if (Project.lastUsedProject.header.landscapeMode) {
+        return UIInterfaceOrientationLandscapeRight;
+    }
+    return UIInterfaceOrientationPortrait;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
