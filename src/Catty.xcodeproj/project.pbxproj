@@ -467,6 +467,7 @@
 		49B55F9B27E88702000A95B4 /* RightEyebrowOuterXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B55F8F27E88701000A95B4 /* RightEyebrowOuterXSensor.swift */; };
 		49B55F9C27E88702000A95B4 /* RightEyebrowCenterXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B55F9027E88702000A95B4 /* RightEyebrowCenterXSensor.swift */; };
 		49B55F9D27E88702000A95B4 /* LeftEyebrowInnerYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B55F9127E88702000A95B4 /* LeftEyebrowInnerYSensor.swift */; };
+		49DB87C228A2BE2100DD1224 /* StagePresenterViewControllerOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB87C128A2BE2100DD1224 /* StagePresenterViewControllerOrientation.swift */; };
 		4C0076DA25F6AF79002D754D /* StagePresenterSideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0076D725F6AF79002D754D /* StagePresenterSideMenuViewTests.swift */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
@@ -2589,6 +2590,7 @@
 		49B55F8F27E88701000A95B4 /* RightEyebrowOuterXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightEyebrowOuterXSensor.swift; sourceTree = "<group>"; };
 		49B55F9027E88702000A95B4 /* RightEyebrowCenterXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightEyebrowCenterXSensor.swift; sourceTree = "<group>"; };
 		49B55F9127E88702000A95B4 /* LeftEyebrowInnerYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftEyebrowInnerYSensor.swift; sourceTree = "<group>"; };
+		49DB87C128A2BE2100DD1224 /* StagePresenterViewControllerOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePresenterViewControllerOrientation.swift; sourceTree = "<group>"; };
 		49DDC04327EA26B2007E8B0D /* EyeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeSensorTest.swift; sourceTree = "<group>"; };
 		4C0076D725F6AF79002D754D /* StagePresenterSideMenuViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StagePresenterSideMenuViewTests.swift; sourceTree = "<group>"; };
 		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
@@ -9196,6 +9198,7 @@
 				4CDE807121A1A0AE009EFD31 /* StagePresenterViewControllerScreenshotExtension.swift */,
 				E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */,
 				9705D61E262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift */,
+				49DB87C128A2BE2100DD1224 /* StagePresenterViewControllerOrientation.swift */,
 			);
 			path = Stage;
 			sourceTree = "<group>";
@@ -13524,6 +13527,7 @@
 				4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */,
 				2EBD845B253FEEA1009BFED5 /* WebRequestBrick.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
+				49DB87C228A2BE2100DD1224 /* StagePresenterViewControllerOrientation.swift in Sources */,
 				4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */,
 				9EC5174624FBD92F0029CD0E /* SetInstrumentBrickCell.swift in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,

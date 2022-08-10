@@ -179,6 +179,9 @@ static CameraPreviewHandler* shared = nil;
     dispatch_sync(dispatch_get_main_queue(), ^{
         AVCaptureVideoPreviewLayer* previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        if (Project.lastUsedProject.header.landscapeMode) {
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+        }
         rootLayer.masksToBounds = true;
         previewLayer.frame = rootLayer.bounds;
         [rootLayer addSublayer:previewLayer];
