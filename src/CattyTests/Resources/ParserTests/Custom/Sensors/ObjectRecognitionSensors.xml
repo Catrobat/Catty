@@ -15,7 +15,7 @@
     <platform>iOS</platform>
     <platformVersion>15.5</platformVersion>
     <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>ObjectDetection1</programName>
+    <programName>ObjectDetection2</programName>
     <remixOf/>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>2436</screenHeight>
@@ -54,15 +54,12 @@
         </object>
         <object type="SingleSprite" name="Object 1">
           <lookList>
-            <look fileName="817215581FC5E8F0A3A96BF5B69CB0F7_look.png" name="look"/>
+            <look fileName="8340E38A217CBBB3393C03504A4804A1_look.png" name="look"/>
           </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
-                <brick type="HideBrick">
-                  <commentedOut>false</commentedOut>
-                </brick>
                 <brick type="ForeverBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
@@ -107,7 +104,34 @@
                   </formulaList>
                   <userVariable>Label</userVariable>
                 </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>Y_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>X_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ShowBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
                 <brick type="IfLogicElseBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="HideBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetVariableBrick">
@@ -118,7 +142,7 @@
                       <value/>
                     </formula>
                   </formulaList>
-                  <userVariable reference="../../brick[5]/userVariable"/>
+                  <userVariable reference="../../brick[4]/userVariable"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -135,7 +159,7 @@
                       <value>0</value>
                     </formula>
                   </formulaList>
-                  <userVariable reference="../../brick[5]/userVariable"/>
+                  <userVariable reference="../../brick[4]/userVariable"/>
                 </brick>
                 <brick type="LoopEndlessBrick">
                   <commentedOut>false</commentedOut>
@@ -150,15 +174,12 @@
         </object>
         <object type="SingleSprite" name="Object 2">
           <lookList>
-            <look fileName="817215581FC5E8F0A3A96BF5B69CB0F7_look.png" name="look"/>
+            <look fileName="EAD1BE044D8F716505C90CE376A6BBE6_look.png" name="look"/>
           </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
-                <brick type="HideBrick">
-                  <commentedOut>false</commentedOut>
-                </brick>
                 <brick type="ForeverBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
@@ -203,7 +224,34 @@
                   </formulaList>
                   <userVariable>Label2</userVariable>
                 </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID2</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>Y_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID2</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>X_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ShowBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
                 <brick type="IfLogicElseBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="HideBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetVariableBrick">
@@ -214,7 +262,7 @@
                       <value/>
                     </formula>
                   </formulaList>
-                  <userVariable reference="../../brick[5]/userVariable"/>
+                  <userVariable reference="../../brick[4]/userVariable"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -231,7 +279,7 @@
                       <value>0</value>
                     </formula>
                   </formulaList>
-                  <userVariable reference="../../brick[5]/userVariable"/>
+                  <userVariable reference="../../brick[4]/userVariable"/>
                 </brick>
                 <brick type="LoopEndlessBrick">
                   <commentedOut>false</commentedOut>
@@ -242,22 +290,19 @@
           </scriptList>
           <nfcTagList/>
           <userVariables>
-            <userVariable reference="../../scriptList/script/brickList/brick[3]/userVariable"/>
-            <userVariable reference="../../scriptList/script/brickList/brick[5]/userVariable"/>
+            <userVariable reference="../../scriptList/script/brickList/brick[2]/userVariable"/>
+            <userVariable reference="../../scriptList/script/brickList/brick[4]/userVariable"/>
           </userVariables>
           <userLists/>
         </object>
         <object type="SingleSprite" name="Object 3">
           <lookList>
-            <look fileName="817215581FC5E8F0A3A96BF5B69CB0F7_look.png" name="look"/>
+            <look fileName="583BB94B10E158B76DF5DD626ECDF9A6_look.png" name="look"/>
           </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
-                <brick type="HideBrick">
-                  <commentedOut>false</commentedOut>
-                </brick>
                 <brick type="ForeverBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
@@ -302,7 +347,34 @@
                   </formulaList>
                   <userVariable>Label3</userVariable>
                 </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID3</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>Y_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID3</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>X_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ShowBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
                 <brick type="IfLogicElseBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="HideBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="SetVariableBrick">
@@ -313,7 +385,7 @@
                       <value/>
                     </formula>
                   </formulaList>
-                  <userVariable reference="../../brick[5]/userVariable"/>
+                  <userVariable reference="../../brick[4]/userVariable"/>
                 </brick>
                 <brick type="IfLogicEndBrick">
                   <commentedOut>false</commentedOut>
@@ -330,7 +402,7 @@
                       <value>0</value>
                     </formula>
                   </formulaList>
-                  <userVariable reference="../../brick[5]/userVariable"/>
+                  <userVariable reference="../../brick[4]/userVariable"/>
                 </brick>
                 <brick type="LoopEndlessBrick">
                   <commentedOut>false</commentedOut>
@@ -343,8 +415,8 @@
           <userVariables>
             <userVariable>ID2</userVariable>
             <userVariable>Label2</userVariable>
-            <userVariable reference="../../scriptList/script/brickList/brick[3]/userVariable"/>
-            <userVariable reference="../../scriptList/script/brickList/brick[5]/userVariable"/>
+            <userVariable reference="../../scriptList/script/brickList/brick[2]/userVariable"/>
+            <userVariable reference="../../scriptList/script/brickList/brick[4]/userVariable"/>
           </userVariables>
           <userLists/>
         </object>
@@ -352,8 +424,8 @@
     </scene>
   </scenes>
   <programVariableList>
-    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[3]/userVariable"/>
-    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[5]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[4]/userVariable"/>
   </programVariableList>
   <programListOfLists/>
 </program>

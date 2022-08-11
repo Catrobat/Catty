@@ -25,14 +25,21 @@ import XCTest
 @testable import Pocket_Code
 
 class ObjectRecognitionFunctionsTest: XCTestCase {
+    private enum SensorType { case x, y }
     var idOfDetectedObjectFunction: IDOfDetectedObjectFunction!
     var objectWithIDVisibleFunction: ObjectWithIDVisibleFunction!
     var labelOfObjectWithIDFunction: LabelOfObjectWithIDFunction!
+    var xOfObjectWithIDFunction: XOfObjectWithIDFunction!
+    var yOfObjectWithIDFunction: YOfObjectWithIDFunction!
+
     var visualDetectionManagerMock: VisualDetectionManagerMock!
+    var stageSize: CGSize!
 
     override func setUp() {
         super.setUp()
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
+        self.stageSize = CGSize(width: 1080, height: 1920)
+        self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
 
         self.objectWithIDVisibleFunction = ObjectWithIDVisibleFunction(visualDetectionManagerGetter: { [weak self] in
             self?.visualDetectionManagerMock
@@ -43,6 +50,12 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         self.labelOfObjectWithIDFunction = LabelOfObjectWithIDFunction(visualDetectionManagerGetter: { [weak self] in
             self?.visualDetectionManagerMock
         })
+        self.xOfObjectWithIDFunction = XOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { [weak self] in
+            self?.visualDetectionManagerMock
+        })
+        self.yOfObjectWithIDFunction = YOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { [weak self] in
+            self?.visualDetectionManagerMock
+        })
     }
 
     override func tearDown() {
@@ -50,11 +63,13 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         self.idOfDetectedObjectFunction = nil
         self.objectWithIDVisibleFunction = nil
         self.labelOfObjectWithIDFunction = nil
+        self.xOfObjectWithIDFunction = nil
+        self.yOfObjectWithIDFunction = nil
         super.tearDown()
     }
 
     func testDefaultValue() {
-        visualDetectionManagerMock.addRecognizedObject(label: "cup")
+        visualDetectionManagerMock.addRecognizedObject(label: "cup", boundingBox: CGRect.zero)
 
         XCTAssertEqual(type(of: idOfDetectedObjectFunction).defaultValue, idOfDetectedObjectFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: idOfDetectedObjectFunction).defaultValue, idOfDetectedObjectFunction.value(parameter: nil), accuracy: Double.epsilon)
@@ -70,57 +85,86 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: nil))
         let labelOfObjectWithIDFunction = LabelOfObjectWithIDFunction(visualDetectionManagerGetter: { nil })
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: 1 as AnyObject))
+
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
+        let xOfObjectWithIDFunction = XOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
+        let yOfObjectWithIDFunction = YOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        visualDetectionManagerMock.addRecognizedObject(label: "keyboard")
-        visualDetectionManagerMock.addRecognizedObject(label: "mouse")
+        let boundingBoxes = [CGRect(x: 0.5, y: 0.5, width: 0.1, height: 0.1), CGRect(x: 0, y: 0.3, width: 0.45, height: 0.11)]
+        visualDetectionManagerMock.addRecognizedObject(label: "keyboard", boundingBox: boundingBoxes[0])
+        visualDetectionManagerMock.addRecognizedObject(label: "mouse", boundingBox: boundingBoxes[1])
 
         XCTAssertEqual(type(of: idOfDetectedObjectFunction).defaultValue, idOfDetectedObjectFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: objectWithIDVisibleFunction).defaultValue, objectWithIDVisibleFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: -1 as AnyObject))
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
 
         XCTAssertEqual(0.0, idOfDetectedObjectFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.0, objectWithIDVisibleFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual("keyboard", labelOfObjectWithIDFunction.value(parameter: 0 as AnyObject))
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .x), xOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .y), yOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
 
         XCTAssertEqual(1.0, idOfDetectedObjectFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.0, objectWithIDVisibleFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual("mouse", labelOfObjectWithIDFunction.value(parameter: 1 as AnyObject))
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .x), xOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .y), yOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
 
         XCTAssertEqual(type(of: idOfDetectedObjectFunction).defaultValue, idOfDetectedObjectFunction.value(parameter: 3 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: objectWithIDVisibleFunction).defaultValue, objectWithIDVisibleFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: 2 as AnyObject))
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 1), idOfDetectedObjectFunction.firstParameter())
         XCTAssertEqual(.number(defaultValue: 1), objectWithIDVisibleFunction.firstParameter())
         XCTAssertEqual(.number(defaultValue: 1), labelOfObjectWithIDFunction.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 1), xOfObjectWithIDFunction.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 1), yOfObjectWithIDFunction.firstParameter())
     }
 
     func testTag() {
         XCTAssertEqual("ID_OF_DETECTED_OBJECT", type(of: idOfDetectedObjectFunction).tag)
         XCTAssertEqual("OBJECT_WITH_ID_VISIBLE", type(of: objectWithIDVisibleFunction).tag)
         XCTAssertEqual("LABEL_OF_OBJECT_WITH_ID", type(of: labelOfObjectWithIDFunction).tag)
+        XCTAssertEqual("X_OF_OBJECT_WITH_ID", type(of: xOfObjectWithIDFunction).tag)
+        XCTAssertEqual("Y_OF_OBJECT_WITH_ID", type(of: yOfObjectWithIDFunction).tag)
     }
 
     func testName() {
         XCTAssertEqual(kUIFEFunctionIDOfDetectedObject, type(of: idOfDetectedObjectFunction).name)
         XCTAssertEqual(kUIFEFunctionObjectWithIDVisible, type(of: objectWithIDVisibleFunction).name)
         XCTAssertEqual(kUIFEFunctionLabelOfObjectWithID, type(of: labelOfObjectWithIDFunction).name)
+        XCTAssertEqual(kUIFEFunctionXOfObjectWithID, type(of: xOfObjectWithIDFunction).name)
+        XCTAssertEqual(kUIFEFunctionYOfObjectWithID, type(of: yOfObjectWithIDFunction).name)
     }
 
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.objectRecognition, type(of: idOfDetectedObjectFunction).requiredResource)
         XCTAssertEqual(ResourceType.objectRecognition, type(of: objectWithIDVisibleFunction).requiredResource)
         XCTAssertEqual(ResourceType.objectRecognition, type(of: labelOfObjectWithIDFunction).requiredResource)
+        XCTAssertEqual(ResourceType.objectRecognition, type(of: xOfObjectWithIDFunction).requiredResource)
+        XCTAssertEqual(ResourceType.objectRecognition, type(of: yOfObjectWithIDFunction).requiredResource)
     }
 
     func testIsIdempotent() {
         XCTAssertFalse(type(of: idOfDetectedObjectFunction).isIdempotent)
         XCTAssertFalse(type(of: objectWithIDVisibleFunction).isIdempotent)
         XCTAssertFalse(type(of: labelOfObjectWithIDFunction).isIdempotent)
+        XCTAssertFalse(type(of: xOfObjectWithIDFunction).isIdempotent)
+        XCTAssertFalse(type(of: yOfObjectWithIDFunction).isIdempotent)
     }
 
     func testFormulaEditorSections() {
@@ -135,5 +179,25 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         sections = labelOfObjectWithIDFunction.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
         XCTAssertEqual(.sensors(position: type(of: labelOfObjectWithIDFunction).position, subsection: .objectDetection), sections.first)
+
+        sections = xOfObjectWithIDFunction.formulaEditorSections()
+        XCTAssertEqual(1, sections.count)
+        XCTAssertEqual(.sensors(position: type(of: xOfObjectWithIDFunction).position, subsection: .objectDetection), sections.first)
+
+        sections = yOfObjectWithIDFunction.formulaEditorSections()
+        XCTAssertEqual(1, sections.count)
+        XCTAssertEqual(.sensors(position: type(of: yOfObjectWithIDFunction).position, subsection: .objectDetection), sections.first)
+    }
+
+    private func convertRatios(boundingBox: CGRect, type: SensorType) -> Double {
+        switch type {
+        case .x:
+            let objectPositionX = boundingBox.origin.x + boundingBox.width / 2.0
+            let scaledPreviewWidthRatio = stageSize.height / visualDetectionManagerMock.visualDetectionFrameSize!.height
+            return (stageSize.width * objectPositionX - stageSize.width / 2.0) * scaledPreviewWidthRatio
+        case .y:
+            let objectPositionY = boundingBox.origin.y + boundingBox.height / 2.0
+            return stageSize.height * objectPositionY - stageSize.height / 2.0
+        }
     }
 }

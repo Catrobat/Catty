@@ -400,6 +400,8 @@
 		4979F41327E85AD900ABCAD6 /* LeftEyeOuterXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979F41227E85AD900ABCAD6 /* LeftEyeOuterXSensor.swift */; };
 		4979F41527E85AE700ABCAD6 /* LeftEyeOuterYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979F41427E85AE700ABCAD6 /* LeftEyeOuterYSensor.swift */; };
 		4981EDCD289AC2690052AEB1 /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4981EDCC289AC2690052AEB1 /* YOLOv3Tiny.mlmodel */; };
+		4981EDFB289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EDF7289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift */; };
+		4981EDFC289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EDFA289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift */; };
 		498C156A2807057B00B81C8E /* WristSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B512806FD380073BF65 /* WristSensorTest.swift */; };
 		498C156B2807057B00B81C8E /* ShoulderSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B4D2806FD1E0073BF65 /* ShoulderSensorTest.swift */; };
 		498C156C2807057B00B81C8E /* ElbowSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49949B4F2806FD300073BF65 /* ElbowSensorTest.swift */; };
@@ -2522,6 +2524,8 @@
 		4979F41227E85AD900ABCAD6 /* LeftEyeOuterXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEyeOuterXSensor.swift; sourceTree = "<group>"; };
 		4979F41427E85AE700ABCAD6 /* LeftEyeOuterYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEyeOuterYSensor.swift; sourceTree = "<group>"; };
 		4981EDCC289AC2690052AEB1 /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
+		4981EDF7289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XOfObjectWithIDFunction.swift; path = Catty/Functions/ObjectRecognition/XOfObjectWithIDFunction.swift; sourceTree = SOURCE_ROOT; };
+		4981EDFA289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YOfObjectWithIDFunction.swift; path = Catty/Functions/ObjectRecognition/YOfObjectWithIDFunction.swift; sourceTree = SOURCE_ROOT; };
 		498C1570280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UpperBodyPoseDetectionSensors.xml; sourceTree = "<group>"; };
 		498C157228070C6B00B81C8E /* LeftKneeXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftKneeXSensor.swift; sourceTree = "<group>"; };
 		498C157328070C6B00B81C8E /* RightAnkleXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightAnkleXSensor.swift; sourceTree = "<group>"; };
@@ -5703,6 +5707,8 @@
 				492E595C287FDEEC00357F09 /* IDOfDetectedObjectFunction.swift */,
 				492E595E287FDEFB00357F09 /* LabelOfObjectWithIDFunction.swift */,
 				492E5960287FDF0A00357F09 /* ObjectWithIDVisibleFunction.swift */,
+				4981EDF7289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift */,
+				4981EDFA289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift */,
 			);
 			path = ObjectRecognition;
 			sourceTree = "<group>";
@@ -13083,6 +13089,7 @@
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				4CE67899210C6EEE00D90B5D /* SinFunction.swift in Sources */,
 				972622E225F51B4500ABCC7A /* SetBrightnessBrick+CBXMLHandler.swift in Sources */,
+				4981EDFC289AC98C0052AEB1 /* YOfObjectWithIDFunction.swift in Sources */,
 				468EE8FE257FE40B003976DD /* SetBackgroundAndWaitBrick+CBXMLHandler.swift in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
@@ -13171,6 +13178,7 @@
 				6F1911A124E7CE0D00CF1B4F /* SceneMock.swift in Sources */,
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				49949B462806EAD20073BF65 /* RightWristXSensor.swift in Sources */,
+				4981EDFB289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift in Sources */,
 				4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */,
 				4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */,
 				46F0D30E25E593F5002252E6 /* SetLookBrick+CBXMLHandler.swift in Sources */,

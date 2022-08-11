@@ -66,6 +66,8 @@ extension CatrobatSetup {
          IDOfDetectedObjectFunction(visualDetectionManagerGetter: { visualDetectionManager }),
          ObjectWithIDVisibleFunction(visualDetectionManagerGetter: { visualDetectionManager }),
          LabelOfObjectWithIDFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         XOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         YOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
          ArduinoAnalogPinFunction(bluetoothServiceGetter: { bluetoothService }),
          ArduinoDigitalPinFunction(bluetoothServiceGetter: { bluetoothService })]
     }

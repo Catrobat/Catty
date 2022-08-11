@@ -188,7 +188,7 @@ final class VisualDetectionManagerMock: VisualDetectionManager {
         }
     }
 
-    func addRecognizedObject(label: String) {
-        self.objectRecognitions.append(VNRecognizedObjectObservationMock(label))
+    func addRecognizedObject(label: String, boundingBox: CGRect) {
+        self.objectRecognitions.append(VNRecognizedObjectObservationMock(labelMock: label, boundingBoxMock: boundingBox))
     }
 }
