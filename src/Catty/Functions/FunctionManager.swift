@@ -26,8 +26,10 @@ import BluetoothHelper
 
     public static var defaultValueForUndefinedFunction: Double = 0
     private static var functionMap = [String: Function]() // TODO: make instance let
+    private let landscapeMode: Bool
 
-    init(functions: [Function]) {
+    init(functions: [Function], landscapeMode: Bool = false) {
+        self.landscapeMode = landscapeMode
         super.init()
         registerFunctions(functionList: functions)
     }
@@ -58,6 +60,8 @@ import BluetoothHelper
             value = function.value() as AnyObject
         } else if let function = function as? SingleParameterDoubleFunction {
             value = function.value(parameter: firstParameter) as AnyObject
+        } else if let function = function as? SingleParameterDoubleLandscapeFunction {
+            value = function.value(parameter: firstParameter, landscapeMode: landscapeMode) as AnyObject
         } else if let function = function as? DoubleParameterDoubleFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
         } else if let function = function as? ZeroParameterStringFunction {

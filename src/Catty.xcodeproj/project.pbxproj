@@ -4886,6 +4886,14 @@
 			path = CattyTests/Resources/EmbroideryReference;
 			sourceTree = SOURCE_ROOT;
 		};
+		17399B8F2A0E336800BCECC1 /* DetectionManager */ = {
+			isa = PBXGroup;
+			children = (
+				4CD27AA521B55DBB00DDADB5 /* VisualDetectionManagerTest.swift */,
+			);
+			path = DetectionManager;
+			sourceTree = "<group>";
+		};
 		180D12E424D979A800341518 /* IO */ = {
 			isa = PBXGroup;
 			children = (
@@ -7155,13 +7163,13 @@
 		4C822615213FA7A300F3D750 /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				17399B8F2A0E336800BCECC1 /* DetectionManager */,
 				4974B2BC281A686A00EEF0D9 /* TextRecognition */,
-				4C822651213FA7A300F3D750 /* SensorManagerTests.swift */,
-				4C822640213FA7A300F3D750 /* Audio */,
 				49402B9E28117888009FCBF8 /* HandPose */,
 				49949B4A2806FCEC0073BF65 /* BodyPose */,
 				49E494E927F5993E0035578D /* FacePose */,
-				4C822626213FA7A300F3D750 /* Camera */,
+				4C822626213FA7A300F3D750 /* Face */,
+				4C822640213FA7A300F3D750 /* Audio */,
 				4C822632213FA7A300F3D750 /* Date */,
 				4C822630213FA7A300F3D750 /* Heading */,
 				4C82262B213FA7A300F3D750 /* Location */,
@@ -7170,6 +7178,7 @@
 				4C822642213FA7A300F3D750 /* Object */,
 				4C82264F213FA7A300F3D750 /* Phiro */,
 				4C822621213FA7A300F3D750 /* Touch */,
+				4C822651213FA7A300F3D750 /* SensorManagerTests.swift */,
 			);
 			name = Sensors;
 			path = PlayerEngine/Sensors;
@@ -7203,15 +7212,14 @@
 			path = Touch;
 			sourceTree = "<group>";
 		};
-		4C822626213FA7A300F3D750 /* Camera */ = {
+		4C822626213FA7A300F3D750 /* Face */ = {
 			isa = PBXGroup;
 			children = (
-				4CD27AA521B55DBB00DDADB5 /* VisualDetectionManagerTest.swift */,
 				4C822627213FA7A300F3D750 /* FaceDetectionSensorTest.swift */,
 				4C822628213FA7A300F3D750 /* FaceSizeSensorTest.swift */,
 				4C822629213FA7A300F3D750 /* FacePositionSensorTest.swift */,
 			);
-			path = Camera;
+			path = Face;
 			sourceTree = "<group>";
 		};
 		4C82262B213FA7A300F3D750 /* Location */ = {

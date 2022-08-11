@@ -77,7 +77,6 @@ final class PinkySensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for pinkySensor in pinkyXSensors {
-            XCTAssertEqual(type(of: pinkySensor).defaultRawValue, pinkySensor.convertToStandardized(rawValue: 0))
 
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), pinkySensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), pinkySensor.convertToStandardized(rawValue: 0.45))
@@ -86,7 +85,6 @@ final class PinkySensorTest: XCTestCase {
         }
 
         for pinkySensor in pinkyYSensors {
-            XCTAssertEqual(type(of: pinkySensor).defaultRawValue, pinkySensor.convertToStandardized(rawValue: 0))
 
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), pinkySensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), pinkySensor.convertToStandardized(rawValue: 0.4))
@@ -99,9 +97,10 @@ final class PinkySensorTest: XCTestCase {
         for pinkySensor in pinkyXSensors + pinkyYSensors {
             let convertToStandardizedValue = pinkySensor.convertToStandardized(rawValue: pinkySensor.rawValue(landscapeMode: false))
             let standardizedValue = pinkySensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = pinkySensor.convertToStandardized(rawValue: pinkySensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = pinkySensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 

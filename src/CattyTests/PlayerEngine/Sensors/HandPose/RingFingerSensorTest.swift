@@ -77,8 +77,6 @@ final class RingFingerSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for ringFingerSensor in ringFingerXSensors {
-            XCTAssertEqual(type(of: ringFingerSensor).defaultRawValue, ringFingerSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), ringFingerSensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), ringFingerSensor.convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), ringFingerSensor.convertToStandardized(rawValue: 0.93))
@@ -86,8 +84,6 @@ final class RingFingerSensorTest: XCTestCase {
         }
 
         for ringFingerSensor in ringFingerYSensors {
-            XCTAssertEqual(type(of: ringFingerSensor).defaultRawValue, ringFingerSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), ringFingerSensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), ringFingerSensor.convertToStandardized(rawValue: 0.4))
             XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), ringFingerSensor.convertToStandardized(rawValue: 0.95))
@@ -99,9 +95,10 @@ final class RingFingerSensorTest: XCTestCase {
         for ringFingerSensor in ringFingerXSensors + ringFingerYSensors {
             let convertToStandardizedValue = ringFingerSensor.convertToStandardized(rawValue: ringFingerSensor.rawValue(landscapeMode: false))
             let standardizedValue = ringFingerSensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = ringFingerSensor.convertToStandardized(rawValue: ringFingerSensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = ringFingerSensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 

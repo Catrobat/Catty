@@ -75,14 +75,11 @@ final class FacePositionSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for faceIndex in 0..<VisualDetectionManager.maxFaceCount {
-            XCTAssertEqual(type(of: facePositionXSensors[faceIndex]).defaultRawValue, facePositionXSensors[faceIndex].convertToStandardized(rawValue: 0))
 
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), facePositionXSensors[faceIndex].convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), facePositionXSensors[faceIndex].convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), facePositionXSensors[faceIndex].convertToStandardized(rawValue: 0.93))
             XCTAssertEqual(Double(stageSize.width / 2), facePositionXSensors[faceIndex].convertToStandardized(rawValue: 1.0))
-
-            XCTAssertEqual(type(of: facePositionYSensors[faceIndex]).defaultRawValue, facePositionYSensors[faceIndex].convertToStandardized(rawValue: 0))
 
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), facePositionYSensors[faceIndex].convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), facePositionYSensors[faceIndex].convertToStandardized(rawValue: 0.4))
@@ -95,15 +92,17 @@ final class FacePositionSensorTest: XCTestCase {
         for faceIndex in 0..<VisualDetectionManager.maxFaceCount {
             var convertToStandardizedValue = facePositionXSensors[faceIndex].convertToStandardized(rawValue: facePositionXSensors[faceIndex].rawValue(landscapeMode: false))
             var standardizedValue = facePositionXSensors[faceIndex].standardizedValue(landscapeMode: false)
+            var convertToStandardizedValueLandscape = facePositionXSensors[faceIndex].convertToStandardized(rawValue: facePositionXSensors[faceIndex].rawValue(landscapeMode: true))
             var standardizedValueLandscape = facePositionXSensors[faceIndex].standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
 
             convertToStandardizedValue = facePositionYSensors[faceIndex].convertToStandardized(rawValue: facePositionYSensors[faceIndex].rawValue(landscapeMode: false))
             standardizedValue = facePositionYSensors[faceIndex].standardizedValue(landscapeMode: false)
+            convertToStandardizedValueLandscape = facePositionYSensors[faceIndex].convertToStandardized(rawValue: facePositionYSensors[faceIndex].rawValue(landscapeMode: true))
             standardizedValueLandscape = facePositionYSensors[faceIndex].standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 

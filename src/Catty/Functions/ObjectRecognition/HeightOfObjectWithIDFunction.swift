@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class HeightOfObjectWithIDFunction: SingleParameterDoubleFunction {
+class HeightOfObjectWithIDFunction: SingleParameterDoubleLandscapeFunction {
 
     static let tag = "HEIGHT_OF_OBJECT_WITH_ID"
     static let name = kUIFEFunctionHeightOfObjectWithID
@@ -30,10 +30,12 @@ class HeightOfObjectWithIDFunction: SingleParameterDoubleFunction {
     static let requiredResource = ResourceType.objectRecognition
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageHeight: Double?
+    let stageSize: CGSize
+    var stageHeight: Double
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
+        self.stageSize = stageSize
         self.stageHeight = Double(stageSize.height)
     }
 
@@ -45,10 +47,9 @@ class HeightOfObjectWithIDFunction: SingleParameterDoubleFunction {
         .number(defaultValue: 1)
     }
 
-    func value(parameter: AnyObject?) -> Double {
+    func value(parameter: AnyObject?, landscapeMode: Bool) -> Double {
         guard let idAsDouble = parameter as? Double,
-              let visualDetectionManager = self.getVisualDetectionManager(),
-              let stageHeight = self.stageHeight
+              let visualDetectionManager = self.getVisualDetectionManager()
         else { return type(of: self).defaultValue }
 
         let id = Int(idAsDouble)
@@ -56,6 +57,7 @@ class HeightOfObjectWithIDFunction: SingleParameterDoubleFunction {
             return type(of: self).defaultValue
         }
 
+        stageHeight = Double(landscapeMode ? stageSize.width : stageSize.height)
         let boundingBoxHeight = visualDetectionManager.objectRecognitions[id].boundingBox.height
         return stageHeight * boundingBoxHeight
     }

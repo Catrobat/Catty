@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TextBlockYFunction: SingleParameterDoubleFunction {
+class TextBlockYFunction: SingleParameterDoubleLandscapeFunction {
 
     static let tag = "TEXT_BLOCK_Y"
     static let name = kUIFEFunctionTextBlockY
@@ -30,10 +30,12 @@ class TextBlockYFunction: SingleParameterDoubleFunction {
     static let requiredResource = ResourceType.textRecognition
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageHeight: Double?
+    let stageSize: CGSize
+    var stageHeight: Double
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
+        self.stageSize = stageSize
         self.stageHeight = Double(stageSize.height)
     }
 
@@ -45,10 +47,9 @@ class TextBlockYFunction: SingleParameterDoubleFunction {
         .number(defaultValue: 1)
     }
 
-    func value(parameter: AnyObject?) -> Double {
+    func value(parameter: AnyObject?, landscapeMode: Bool) -> Double {
         guard let textBlockNumberAsDouble = parameter as? Double,
-              let visualDetectionManager = self.getVisualDetectionManager(),
-              let stageHeight = self.stageHeight
+              let visualDetectionManager = self.getVisualDetectionManager()
         else { return type(of: self).defaultValue }
 
         let textBlockNumber = Int(textBlockNumberAsDouble)
@@ -57,6 +58,8 @@ class TextBlockYFunction: SingleParameterDoubleFunction {
         }
 
         let textBlockPositionY = visualDetectionManager.textBlockPosition[textBlockNumber - 1].y
+
+        stageHeight = Double(landscapeMode ? stageSize.width : stageSize.height)
         return stageHeight * textBlockPositionY - stageHeight / 2.0
     }
 

@@ -77,8 +77,6 @@ final class MiddleFingerSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for middleFingerSensor in middleFingerXSensors {
-            XCTAssertEqual(type(of: middleFingerSensor).defaultRawValue, middleFingerSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), middleFingerSensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), middleFingerSensor.convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), middleFingerSensor.convertToStandardized(rawValue: 0.93))
@@ -86,8 +84,6 @@ final class MiddleFingerSensorTest: XCTestCase {
         }
 
         for middleFingerSensor in middleFingerYSensors {
-            XCTAssertEqual(type(of: middleFingerSensor).defaultRawValue, middleFingerSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), middleFingerSensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), middleFingerSensor.convertToStandardized(rawValue: 0.4))
             XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), middleFingerSensor.convertToStandardized(rawValue: 0.95))
@@ -99,9 +95,10 @@ final class MiddleFingerSensorTest: XCTestCase {
         for middleFingerSensor in middleFingerXSensors + middleFingerYSensors {
             let convertToStandardizedValue = middleFingerSensor.convertToStandardized(rawValue: middleFingerSensor.rawValue(landscapeMode: false))
             let standardizedValue = middleFingerSensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = middleFingerSensor.convertToStandardized(rawValue: middleFingerSensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = middleFingerSensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 

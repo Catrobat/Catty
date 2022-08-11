@@ -150,6 +150,10 @@ protocol SingleParameterDoubleFunction: DoubleFunction, SingleParameterFunctionP
     func value(parameter: AnyObject?) -> Double
 }
 
+protocol SingleParameterDoubleLandscapeFunction: DoubleFunction, SingleParameterFunctionProtocol {
+    func value(parameter: AnyObject?, landscapeMode: Bool) -> Double
+}
+
 protocol DoubleParameterDoubleFunction: DoubleFunction, DoubleParameterFunctionProtocol {
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double
 }

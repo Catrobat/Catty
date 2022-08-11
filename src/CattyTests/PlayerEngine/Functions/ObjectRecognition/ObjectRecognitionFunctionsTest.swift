@@ -96,25 +96,29 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         let labelOfObjectWithIDFunction = LabelOfObjectWithIDFunction(visualDetectionManagerGetter: { nil })
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: 1 as AnyObject))
 
-        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: nil, landscapeMode: false), accuracy: Double.epsilon)
         let xOfObjectWithIDFunction = XOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
 
-        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: nil, landscapeMode: false), accuracy: Double.epsilon)
         let yOfObjectWithIDFunction = YOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
 
-        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue,
+                       widthOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject, landscapeMode: false),
+                       accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: nil, landscapeMode: false), accuracy: Double.epsilon)
         let widthOfObjectWithIDFunction = WidthOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
 
-        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue,
+                       heightOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject, landscapeMode: false),
+                       accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: nil, landscapeMode: false), accuracy: Double.epsilon)
         let heightOfObjectWithIDFunction = HeightOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
     }
 
     func testValue() {
@@ -125,34 +129,34 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertEqual(type(of: idOfDetectedObjectFunction).defaultValue, idOfDetectedObjectFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: objectWithIDVisibleFunction).defaultValue, objectWithIDVisibleFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: -1 as AnyObject))
-        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: -1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: -1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: -1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: -1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
 
         XCTAssertEqual(0.0, idOfDetectedObjectFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.0, objectWithIDVisibleFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual("keyboard", labelOfObjectWithIDFunction.value(parameter: 0 as AnyObject))
-        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .x), xOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .y), yOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .width), widthOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .height), heightOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .x), xOfObjectWithIDFunction.value(parameter: 0 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .y), yOfObjectWithIDFunction.value(parameter: 0 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .width), widthOfObjectWithIDFunction.value(parameter: 0 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .height), heightOfObjectWithIDFunction.value(parameter: 0 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
 
         XCTAssertEqual(1.0, idOfDetectedObjectFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.0, objectWithIDVisibleFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual("mouse", labelOfObjectWithIDFunction.value(parameter: 1 as AnyObject))
-        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .x), xOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .y), yOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .width), widthOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .height), heightOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .x), xOfObjectWithIDFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .y), yOfObjectWithIDFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .width), widthOfObjectWithIDFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .height), heightOfObjectWithIDFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
 
         XCTAssertEqual(type(of: idOfDetectedObjectFunction).defaultValue, idOfDetectedObjectFunction.value(parameter: 3 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: objectWithIDVisibleFunction).defaultValue, objectWithIDVisibleFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: 2 as AnyObject))
-        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: 2 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: 2 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: 2 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: 2 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
     }
 
     func testParameter() {

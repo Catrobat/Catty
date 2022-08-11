@@ -56,19 +56,19 @@ class TextBlockPositionFunctionTest: XCTestCase {
     func testDefaultValue() {
         visualDetectionManagerMock.setTextBlockPositionRecognized(at: CGPoint(x: 0.3, y: 0.45), withSizeRatio: 0.5)
 
-        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: "invalidParameter" as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: nil, landscapeMode: false), accuracy: Double.epsilon)
         let textBlockXFunction = TextBlockXFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
 
-        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockXFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockXFunction.value(parameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockXFunction.value(parameter: "invalidParameter" as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockXFunction.value(parameter: nil, landscapeMode: false), accuracy: Double.epsilon)
         let textBlockYFunction = TextBlockYFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockYFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockYFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
 
         XCTAssertEqual(type(of: textBlockSizeFunction).defaultValue, textBlockSizeFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: textBlockSizeFunction).defaultValue, textBlockSizeFunction.value(parameter: nil), accuracy: Double.epsilon)
-        let textBlockSizeFunction = TextBlockYFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
+        let textBlockSizeFunction = TextBlockSizeFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
         XCTAssertEqual(type(of: textBlockSizeFunction).defaultValue, textBlockSizeFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
     }
 
@@ -80,20 +80,20 @@ class TextBlockPositionFunctionTest: XCTestCase {
             visualDetectionManagerMock.setTextBlockPositionRecognized(at: point, withSizeRatio: sizeRatios[index])
         }
 
-        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockYFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: 0 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockYFunction.value(parameter: 0 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: textBlockSizeFunction).defaultValue, textBlockSizeFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(convertRatios(ratioValue: points[0].x, type: .x), textBlockXFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(convertRatios(ratioValue: points[0].y, type: .y), textBlockYFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(ratioValue: points[0].x, type: .x), textBlockXFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(ratioValue: points[0].y, type: .y), textBlockYFunction.value(parameter: 1 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
         XCTAssertEqual(convertRatios(ratioValue: sizeRatios[0], type: .size), textBlockSizeFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(convertRatios(ratioValue: points[2].x, type: .x), textBlockXFunction.value(parameter: 3.4 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(convertRatios(ratioValue: points[2].y, type: .y), textBlockYFunction.value(parameter: 3.4 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(ratioValue: points[2].x, type: .x), textBlockXFunction.value(parameter: 3.4 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(ratioValue: points[2].y, type: .y), textBlockYFunction.value(parameter: 3.4 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
         XCTAssertEqual(convertRatios(ratioValue: sizeRatios[2], type: .size), textBlockSizeFunction.value(parameter: 3.4 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: 4 as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockYFunction.value(parameter: 4 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockXFunction).defaultValue, textBlockXFunction.value(parameter: 4 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: textBlockYFunction).defaultValue, textBlockYFunction.value(parameter: 4 as AnyObject, landscapeMode: false), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: textBlockSizeFunction).defaultValue, textBlockSizeFunction.value(parameter: 4 as AnyObject), accuracy: Double.epsilon)
     }
 

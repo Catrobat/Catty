@@ -59,7 +59,8 @@ import CoreMotion
         FormulaManager.buildFunctionManager(stageSize: stageSize,
                                             touchManager: touchManager,
                                             visualDetectionManager: visualDetectionManager,
-                                            bluetoothService: bluetoothService)
+                                            bluetoothService: bluetoothService,
+                                            landscapeMode: landscapeMode)
 
         let operatorManager = FormulaManager.buildOperatorManager()
 
@@ -157,12 +158,15 @@ import CoreMotion
     private static func buildFunctionManager(stageSize: CGSize,
                                              touchManager: TouchManagerProtocol,
                                              visualDetectionManager: VisualDetectionManager,
-                                             bluetoothService: BluetoothService) -> FunctionManager {
+                                             bluetoothService: BluetoothService,
+                                             landscapeMode: Bool) -> FunctionManager {
 
-        FunctionManager(functions: CatrobatSetup.registeredFunctions(stageSize: stageSize,
-                                                                     touchManager: touchManager,
-                                                                     visualDetectionManager: visualDetectionManager,
-                                                                     bluetoothService: bluetoothService))
+        let functions = CatrobatSetup.registeredFunctions(stageSize: stageSize,
+                                                          touchManager: touchManager,
+                                                          visualDetectionManager: visualDetectionManager,
+                                                          bluetoothService: bluetoothService)
+
+        return FunctionManager(functions: functions, landscapeMode: landscapeMode)
     }
 
     private static func buildOperatorManager() -> OperatorManagerProtocol {

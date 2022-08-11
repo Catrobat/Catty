@@ -77,8 +77,6 @@ final class ShoulderSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for shoulderSensor in shoulderXSensors {
-            XCTAssertEqual(type(of: shoulderSensor).defaultRawValue, shoulderSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), shoulderSensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), shoulderSensor.convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), shoulderSensor.convertToStandardized(rawValue: 0.93))
@@ -86,8 +84,6 @@ final class ShoulderSensorTest: XCTestCase {
         }
 
         for shoulderSensor in shoulderYSensors {
-            XCTAssertEqual(type(of: shoulderSensor).defaultRawValue, shoulderSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), shoulderSensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), shoulderSensor.convertToStandardized(rawValue: 0.4))
             XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), shoulderSensor.convertToStandardized(rawValue: 0.95))
@@ -99,9 +95,10 @@ final class ShoulderSensorTest: XCTestCase {
         for shoulderSensor in shoulderXSensors + shoulderYSensors {
             let convertToStandardizedValue = shoulderSensor.convertToStandardized(rawValue: shoulderSensor.rawValue(landscapeMode: false))
             let standardizedValue = shoulderSensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = shoulderSensor.convertToStandardized(rawValue: shoulderSensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = shoulderSensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 
