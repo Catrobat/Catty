@@ -857,6 +857,9 @@
 "head top y" = "head top y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "Hello!";
 
 /* No comment provided by engineer. */
@@ -2442,6 +2445,9 @@
 
 /* No comment provided by engineer. */
 "When you receive" = "When you receive";
+
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
 
 /* paint */
 "Width selection" = "Width selection";

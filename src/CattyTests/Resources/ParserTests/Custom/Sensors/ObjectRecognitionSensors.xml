@@ -15,7 +15,7 @@
     <platform>iOS</platform>
     <platformVersion>15.5</platformVersion>
     <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>ObjectDetection2</programName>
+    <programName>ObjectDetection4</programName>
     <remixOf/>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>2436</screenHeight>
@@ -124,6 +124,34 @@
                       <value>X_OF_OBJECT_WITH_ID</value>
                     </formula>
                   </formulaList>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>WIDTH_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>Width</userVariable>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>HEIGHT_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>Height</userVariable>
                 </brick>
                 <brick type="ShowBrick">
                   <commentedOut>false</commentedOut>
@@ -426,6 +454,8 @@
   <programVariableList>
     <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
     <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[4]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[6]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[7]/userVariable"/>
   </programVariableList>
   <programListOfLists/>
 </program>

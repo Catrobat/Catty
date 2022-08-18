@@ -25,12 +25,14 @@ import XCTest
 @testable import Pocket_Code
 
 class ObjectRecognitionFunctionsTest: XCTestCase {
-    private enum SensorType { case x, y }
+    private enum SensorType { case x, y, width, height }
     var idOfDetectedObjectFunction: IDOfDetectedObjectFunction!
     var objectWithIDVisibleFunction: ObjectWithIDVisibleFunction!
     var labelOfObjectWithIDFunction: LabelOfObjectWithIDFunction!
     var xOfObjectWithIDFunction: XOfObjectWithIDFunction!
     var yOfObjectWithIDFunction: YOfObjectWithIDFunction!
+    var widthOfObjectWithIDFunction: WidthOfObjectWithIDFunction!
+    var heightOfObjectWithIDFunction: HeightOfObjectWithIDFunction!
 
     var visualDetectionManagerMock: VisualDetectionManagerMock!
     var stageSize: CGSize!
@@ -56,15 +58,24 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         self.yOfObjectWithIDFunction = YOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { [weak self] in
             self?.visualDetectionManagerMock
         })
+        self.widthOfObjectWithIDFunction = WidthOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { [weak self] in
+            self?.visualDetectionManagerMock
+        })
+        self.heightOfObjectWithIDFunction = HeightOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { [weak self] in
+            self?.visualDetectionManagerMock
+        })
     }
 
     override func tearDown() {
         self.visualDetectionManagerMock = nil
+        self.stageSize = nil
         self.idOfDetectedObjectFunction = nil
         self.objectWithIDVisibleFunction = nil
         self.labelOfObjectWithIDFunction = nil
         self.xOfObjectWithIDFunction = nil
         self.yOfObjectWithIDFunction = nil
+        self.widthOfObjectWithIDFunction = nil
+        self.heightOfObjectWithIDFunction = nil
         super.tearDown()
     }
 
@@ -95,6 +106,16 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
         let yOfObjectWithIDFunction = YOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
         XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
+        let widthOfObjectWithIDFunction = WidthOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: nil), accuracy: Double.epsilon)
+        let heightOfObjectWithIDFunction = HeightOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { nil })
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testValue() {
@@ -107,24 +128,32 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: -1 as AnyObject))
         XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: -1 as AnyObject), accuracy: Double.epsilon)
 
         XCTAssertEqual(0.0, idOfDetectedObjectFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.0, objectWithIDVisibleFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual("keyboard", labelOfObjectWithIDFunction.value(parameter: 0 as AnyObject))
         XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .x), xOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .y), yOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .width), widthOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[0], type: .height), heightOfObjectWithIDFunction.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
 
         XCTAssertEqual(1.0, idOfDetectedObjectFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.0, objectWithIDVisibleFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual("mouse", labelOfObjectWithIDFunction.value(parameter: 1 as AnyObject))
         XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .x), xOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .y), yOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .width), widthOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(convertRatios(boundingBox: boundingBoxes[1], type: .height), heightOfObjectWithIDFunction.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
 
         XCTAssertEqual(type(of: idOfDetectedObjectFunction).defaultValue, idOfDetectedObjectFunction.value(parameter: 3 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: objectWithIDVisibleFunction).defaultValue, objectWithIDVisibleFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: labelOfObjectWithIDFunction).defaultValue, labelOfObjectWithIDFunction.value(parameter: 2 as AnyObject))
         XCTAssertEqual(type(of: xOfObjectWithIDFunction).defaultValue, xOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: yOfObjectWithIDFunction).defaultValue, yOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: widthOfObjectWithIDFunction).defaultValue, widthOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: heightOfObjectWithIDFunction).defaultValue, heightOfObjectWithIDFunction.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {
@@ -133,6 +162,8 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertEqual(.number(defaultValue: 1), labelOfObjectWithIDFunction.firstParameter())
         XCTAssertEqual(.number(defaultValue: 1), xOfObjectWithIDFunction.firstParameter())
         XCTAssertEqual(.number(defaultValue: 1), yOfObjectWithIDFunction.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 1), heightOfObjectWithIDFunction.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 1), widthOfObjectWithIDFunction.firstParameter())
     }
 
     func testTag() {
@@ -141,6 +172,8 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertEqual("LABEL_OF_OBJECT_WITH_ID", type(of: labelOfObjectWithIDFunction).tag)
         XCTAssertEqual("X_OF_OBJECT_WITH_ID", type(of: xOfObjectWithIDFunction).tag)
         XCTAssertEqual("Y_OF_OBJECT_WITH_ID", type(of: yOfObjectWithIDFunction).tag)
+        XCTAssertEqual("WIDTH_OF_OBJECT_WITH_ID", type(of: widthOfObjectWithIDFunction).tag)
+        XCTAssertEqual("HEIGHT_OF_OBJECT_WITH_ID", type(of: heightOfObjectWithIDFunction).tag)
     }
 
     func testName() {
@@ -149,6 +182,8 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertEqual(kUIFEFunctionLabelOfObjectWithID, type(of: labelOfObjectWithIDFunction).name)
         XCTAssertEqual(kUIFEFunctionXOfObjectWithID, type(of: xOfObjectWithIDFunction).name)
         XCTAssertEqual(kUIFEFunctionYOfObjectWithID, type(of: yOfObjectWithIDFunction).name)
+        XCTAssertEqual(kUIFEFunctionWidthOfObjectWithID, type(of: widthOfObjectWithIDFunction).name)
+        XCTAssertEqual(kUIFEFunctionHeightOfObjectWithID, type(of: heightOfObjectWithIDFunction).name)
     }
 
     func testRequiredResources() {
@@ -157,6 +192,8 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertEqual(ResourceType.objectRecognition, type(of: labelOfObjectWithIDFunction).requiredResource)
         XCTAssertEqual(ResourceType.objectRecognition, type(of: xOfObjectWithIDFunction).requiredResource)
         XCTAssertEqual(ResourceType.objectRecognition, type(of: yOfObjectWithIDFunction).requiredResource)
+        XCTAssertEqual(ResourceType.objectRecognition, type(of: widthOfObjectWithIDFunction).requiredResource)
+        XCTAssertEqual(ResourceType.objectRecognition, type(of: heightOfObjectWithIDFunction).requiredResource)
     }
 
     func testIsIdempotent() {
@@ -165,6 +202,8 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         XCTAssertFalse(type(of: labelOfObjectWithIDFunction).isIdempotent)
         XCTAssertFalse(type(of: xOfObjectWithIDFunction).isIdempotent)
         XCTAssertFalse(type(of: yOfObjectWithIDFunction).isIdempotent)
+        XCTAssertFalse(type(of: widthOfObjectWithIDFunction).isIdempotent)
+        XCTAssertFalse(type(of: heightOfObjectWithIDFunction).isIdempotent)
     }
 
     func testFormulaEditorSections() {
@@ -187,17 +226,30 @@ class ObjectRecognitionFunctionsTest: XCTestCase {
         sections = yOfObjectWithIDFunction.formulaEditorSections()
         XCTAssertEqual(1, sections.count)
         XCTAssertEqual(.sensors(position: type(of: yOfObjectWithIDFunction).position, subsection: .objectDetection), sections.first)
+
+        sections = widthOfObjectWithIDFunction.formulaEditorSections()
+        XCTAssertEqual(1, sections.count)
+        XCTAssertEqual(.sensors(position: type(of: widthOfObjectWithIDFunction).position, subsection: .objectDetection), sections.first)
+
+        sections = heightOfObjectWithIDFunction.formulaEditorSections()
+        XCTAssertEqual(1, sections.count)
+        XCTAssertEqual(.sensors(position: type(of: heightOfObjectWithIDFunction).position, subsection: .objectDetection), sections.first)
+
     }
 
     private func convertRatios(boundingBox: CGRect, type: SensorType) -> Double {
+        let scaledPreviewWidthRatio = stageSize.height / visualDetectionManagerMock.visualDetectionFrameSize!.height
         switch type {
         case .x:
             let objectPositionX = boundingBox.origin.x + boundingBox.width / 2.0
-            let scaledPreviewWidthRatio = stageSize.height / visualDetectionManagerMock.visualDetectionFrameSize!.height
             return (stageSize.width * objectPositionX - stageSize.width / 2.0) * scaledPreviewWidthRatio
         case .y:
             let objectPositionY = boundingBox.origin.y + boundingBox.height / 2.0
             return stageSize.height * objectPositionY - stageSize.height / 2.0
+        case .width:
+            return stageSize.width * boundingBox.width * scaledPreviewWidthRatio
+        case .height:
+            return stageSize.height * boundingBox.height
         }
     }
 }
