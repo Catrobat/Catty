@@ -133,9 +133,14 @@ final class UtilTests: XCTestCase {
 
     func testDeviceName() {
         let utilDeviceName = Util.deviceName()
+        // From https://stackoverflow.com/a/2696245
         var systemInfo = utsname()
         uname(&systemInfo)
-        let systemInfoDeviceName = String(cString: &systemInfo.machine.0)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let systemInfoDeviceName = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
         XCTAssertEqual(utilDeviceName, systemInfoDeviceName)
     }
 

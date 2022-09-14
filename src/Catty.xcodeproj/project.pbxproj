@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12109,6 +12109,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		5E43D71421919F6A006FDF2A /* SwiftLint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -12123,10 +12124,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n    swiftlint autocorrect --config \".swiftlint.auto.yml\" && swiftlint --config \".swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint not installed, please run 'brew install swiftlint' or download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n    swiftlint --fix --config \".swiftlint.auto.yml\" && swiftlint --config \".swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint not installed, please run 'brew install swiftlint' or download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		929DC44A1BCB9C5000421443 /* License Validator */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -12141,6 +12143,7 @@
 		};
 		BCE07DCC213D427900154E4C /* Display TODO and FIXME comments */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -12155,6 +12158,7 @@
 		};
 		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -12169,6 +12173,7 @@
 		};
 		CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -12183,6 +12188,7 @@
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -14382,16 +14388,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/AudioKit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.3.1;
+				kind = exactVersion;
+				version = 5.4.4;
 			};
 		};
 		17A0218B2726F3C500F0489E /* XCRemoteSwiftPackageReference "DunneAudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/DunneAudioKit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.3.1;
+				kind = exactVersion;
+				version = 5.4.1;
 			};
 		};
 		17D5F5CC266A819000C678FF /* XCRemoteSwiftPackageReference "ZipArchive" */ = {

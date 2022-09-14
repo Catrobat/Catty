@@ -36,10 +36,7 @@ class AudioEngineFingerprintingStub: Pocket_Code.AudioEngine {
             speechSynth.utteranceVolume = muted ? 0.0 : 1.0
         }
 
-        let tempFile: AVAudioFile? = AudioKit.NodeRecorder.createTempFile()
-        let file = try? AVAudioFile(forWriting: tempFile!.url, settings: tempFile!.fileFormat.settings)
-
-        recorder = try? AudioKit.NodeRecorder(node: engineOutputMixer, file: file)
+        recorder = try? AudioKit.NodeRecorder(node: engineOutputMixer)
         try? self.recorder?.record()
     }
 

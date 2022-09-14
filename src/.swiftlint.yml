@@ -153,8 +153,6 @@ type_name:
     error: 50
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
- - Carthage
- - Pods
  - Catty/Defines/LanguageTranslationDefinesSwift.swift
  - CattyUITests/Defines/LanguageTranslationDefinesUI.swift
  - CattyUISnapshots/Defines/LanguageTranslationDefinesUI.swift
