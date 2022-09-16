@@ -250,7 +250,7 @@ extension StoreProjectUploaderError: Equatable {
              (.timeout, .timeout),
              (.authenticationFailed, .authenticationFailed),
              (.invalidProject, .invalidProject),
-             (.invalidLanguageTag, .invalidLanguageTag) :
+             (.invalidLanguageTag, .invalidLanguageTag):
             return true
         default:
             return false

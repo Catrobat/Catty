@@ -109,7 +109,7 @@ public final class ServiceHelper<S: ServiceWrapper> {
     public init() {
     }
 
-    public func discoverCharacteristicsIfConnected(_ service: S, characteristics: [CBUUID]?=nil) -> Future<S> {
+    public func discoverCharacteristicsIfConnected(_ service: S, characteristics: [CBUUID]? = nil) -> Future<S> {
         self.characteristicsDiscoveredPromise = Promise<S>()
         if service.state == .connected {
             service.discoverCharacteristics(characteristics)

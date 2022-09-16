@@ -126,15 +126,11 @@
             return false
         }
 
-        for list in self.lists() {
-            if !userDataContainer.contains(list) {
-                return false
-            }
+        for list in self.lists() where !userDataContainer.contains(list) {
+            return false
         }
-        for variable in self.variables() {
-            if !userDataContainer.contains(variable) {
-                return false
-            }
+        for variable in self.variables() where !userDataContainer.contains(variable) {
+            return false
         }
 
         return true

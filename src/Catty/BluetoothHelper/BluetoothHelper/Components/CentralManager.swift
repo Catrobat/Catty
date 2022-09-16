@@ -94,7 +94,7 @@ import UIKit
         self.helper.disconnectAllPeripherals(self)
     }
 
-    open func connectPeripheral(_ peripheral: Peripheral, options: [String: AnyObject]?=nil) {
+    open func connectPeripheral(_ peripheral: Peripheral, options: [String: AnyObject]? = nil) {
         self.cbCentralManager.connect(peripheral.cbPeripheral, options: options)
     }
 
@@ -126,7 +126,7 @@ import UIKit
         ownPeripheral.didDisconnectPeripheral()
     }
 
-    open func centralManager(_:CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
+    open func centralManager(_: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         if self.ownPeripherals[peripheral] == nil {
 
             let ownPeripheral = Peripheral(cbPeripheral: peripheral, advertisements: self.unpackAdvertisements(advertisementData as [String: AnyObject]), rssi: RSSI.intValue)
@@ -142,7 +142,7 @@ import UIKit
         bcPeripheral.didFailToConnectPeripheral(error as NSError?)
     }
 
-    open func centralManager(_:CBCentralManager!, didRetrieveConnectedPeripherals peripherals: [AnyObject]!) {
+    open func centralManager(_: CBCentralManager!, didRetrieveConnectedPeripherals peripherals: [AnyObject]!) {
         let peripherals = peripherals.compactMap { cbPeripheral -> Peripheral? in
             guard let peripheral = cbPeripheral as? CBPeripheral else { return nil }
             return Peripheral(cbPeripheral: peripheral)
@@ -150,7 +150,7 @@ import UIKit
         self.helper.receivedConnectedPeripheral(peripherals)
     }
 
-    open func centralManager(_:CBCentralManager!, didRetrievePeripherals peripherals: [AnyObject]!) {
+    open func centralManager(_: CBCentralManager!, didRetrievePeripherals peripherals: [AnyObject]!) {
         let peripherals = peripherals.compactMap { cbPeripheral -> Peripheral? in
             guard let peripheral = cbPeripheral as? CBPeripheral else { return nil }
             return Peripheral(cbPeripheral: peripheral)

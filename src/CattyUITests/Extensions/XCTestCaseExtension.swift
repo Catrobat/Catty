@@ -162,10 +162,8 @@ extension XCTestCase {
             if cell.staticTexts.count >= labels.count {
                 var allLabelsPresent = true
 
-                for label in labels {
-                    if !cell.staticTextEquals(label, ignoreLeadingWhiteSpace: true).exists {
-                        allLabelsPresent = false
-                    }
+                for label in labels where !cell.staticTextEquals(label, ignoreLeadingWhiteSpace: true).exists {
+                    allLabelsPresent = false
                 }
                 if allLabelsPresent {
                     return cell

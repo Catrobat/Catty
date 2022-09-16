@@ -55,10 +55,8 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     }
 
     final func hasBluetoothFormula() -> Bool {
-        for formula in condition.conditionFormulas() {
-            if (formula.getRequiredResources() & ResourceType.bluetoothArduino.rawValue) > 0 {
-                return true
-            }
+        for formula in condition.conditionFormulas() where (formula.getRequiredResources() & ResourceType.bluetoothArduino.rawValue) > 0 {
+            return true
         }
         return false
     }

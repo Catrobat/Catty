@@ -152,7 +152,7 @@
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]])
     {
-        BrickCategoryOverviewController *bcoc = [[BrickCategoryOverviewController alloc] init:self];
+        BrickCategoryOverviewController *bcoc = [[BrickCategoryOverviewController alloc] initWithScriptCollectionViewController:self];
         
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bcoc];
         

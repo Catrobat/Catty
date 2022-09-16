@@ -330,7 +330,7 @@ class Firmata: FirmataProtocol {
             portMasks[Int(port)] &= ~(1 << pinIndex) //prep the saved mask by zeroing this pin's corresponding bit
             newMask |= portMasks[Int(port)] //merge with saved port state
             portMasks[Int(port)] = newMask
-            data1 = newMask<<1; data1 >>= 1  //remove MSB
+            data1 = newMask << 1; data1 >>= 1  //remove MSB
             data2 = newMask >> 7 //use data1's MSB as data2's LSB
         } else {
             portMasks[Int(port)] &= ~(1 << pinIndex) //prep the saved mask by zeroing this pin's corresponding bit
