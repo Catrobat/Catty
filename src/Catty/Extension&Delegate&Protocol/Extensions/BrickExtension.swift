@@ -30,10 +30,8 @@
 
         if let formulaBrick = self as? BrickFormulaProtocol {
             if let formulas = formulaBrick.getFormulas() {
-                for formula in formulas {
-                    if formula.formulaTree?.isVariableUsed(variable) == true {
-                        return true
-                    }
+                for formula in formulas where formula.formulaTree?.isVariableUsed(variable) == true {
+                    return true
                 }
             }
         }
@@ -49,10 +47,8 @@
 
         if let formulaBrick = self as? BrickFormulaProtocol {
             if let formulas = formulaBrick.getFormulas() {
-                for formula in formulas {
-                    if formula.formulaTree?.isListUsed(list) == true {
-                        return true
-                    }
+                for formula in formulas where formula.formulaTree?.isListUsed(list) == true {
+                    return true
                 }
             }
         }

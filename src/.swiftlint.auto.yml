@@ -1,11 +1,12 @@
-whitelist_rules: 
+only_rules: 
  - trailing_whitespace
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
- - Carthage
- - Pods
  - Catty/Defines/LanguageTranslationDefinesSwift.swift
  - CattyUITests/Defines/LanguageTranslationDefinesUI.swift
+ - CattyUISnapshots/Defines/LanguageTranslationDefinesUI.swift
+ - CattyUISnapshots/Supporting Files/SnapshotHelper.swift
  - RunScripts/license-validator.swift
  - RunScripts/precompile-tests.swift
+ - RunScripts/synchronize-localization.swift
  

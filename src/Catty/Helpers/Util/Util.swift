@@ -108,9 +108,15 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     }
 
     class func deviceName() -> String {
+        // From https://stackoverflow.com/a/26962452
         var systemInfo = utsname()
         uname(&systemInfo)
-        return String(cString: &systemInfo.machine.0)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        return identifier
     }
 
     class func defaultAlertForNetworkError() {

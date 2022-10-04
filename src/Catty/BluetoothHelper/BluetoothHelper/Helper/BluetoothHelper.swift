@@ -28,15 +28,15 @@ public enum CentralQueue {
 
     public static let queue = DispatchQueue(label: "org.Catrobat.Bluetooth.main", attributes: [])
 
-    public static func sync(_ request:() -> Void) {
+    public static func sync(_ request: () -> Void) {
         self.queue.sync(execute: request)
     }
 
-    public static func async(_ request:@escaping () -> Void) {
+    public static func async(_ request: @escaping () -> Void) {
         self.queue.async(execute: request)
     }
 
-    public static func delay(_ delay: Double, request:@escaping () -> Void) {
+    public static func delay(_ delay: Double, request: @escaping () -> Void) {
         let popTime = DispatchTime.now() + delay
         self.queue.asyncAfter(deadline: popTime, execute: request)
     }

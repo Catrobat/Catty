@@ -58,7 +58,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
     }
 
     func testPlaySoundAndWaitExpectSoundInterruptedBySameSoundInSameObject() {
-        let referenceSimHash = "01111100010001001010100110000100"
+        let referenceSimHash = "01111100110011001010100110000100"
         let stage = self.createStage(xmlFile: "PlaySoundAndWaitBrickContinueWhenInterrupted")
 
         // Run program and record

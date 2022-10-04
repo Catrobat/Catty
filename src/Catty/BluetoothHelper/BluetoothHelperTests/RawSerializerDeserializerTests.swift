@@ -63,7 +63,7 @@ class RawDeserializerTests: XCTestCase {
 
     func testRawDeserializationFailure() {
         let data = "03".dataFromHexString()
-        if let _ : RawTest = Deserializer.deserialize(data) {
+        if let _: RawTest = Deserializer.deserialize(data) {
             XCTFail("RawDeserializable deserialization succeeded")
         }
     }
@@ -80,7 +80,7 @@ class RawDeserializerTests: XCTestCase {
 
     func testRawPairDeserializationFailure() {
         let data = "0201".dataFromHexString()
-        if let _ : RawPairTest = Deserializer.deserialize(data) {
+        if let _: RawPairTest = Deserializer.deserialize(data) {
             XCTFail("RawPairDeserializableTests deserialization succeeded")
         }
     }
@@ -97,7 +97,7 @@ class RawDeserializerTests: XCTestCase {
 
     func testRawArrayDeserializationFailure() {
         let data = "02ab0c05".dataFromHexString()
-        if let _ : RawArrayTest = Deserializer.deserialize(data) {
+        if let _: RawArrayTest = Deserializer.deserialize(data) {
             XCTFail("RawArrayDeserializable deserialization succeeded")
         }
     }
@@ -114,7 +114,7 @@ class RawDeserializerTests: XCTestCase {
 
     func testRawArrayPairDeserializationFailure() {
         let data = "020103".dataFromHexString()
-        if let _ : RawArrayPairTest = Deserializer.deserialize(data) {
+        if let _: RawArrayPairTest = Deserializer.deserialize(data) {
             XCTFail("RawPairDeserializableTests deserialization succeeded")
         }
     }

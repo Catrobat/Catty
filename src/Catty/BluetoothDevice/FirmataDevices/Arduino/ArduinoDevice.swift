@@ -160,7 +160,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
         reportSensorData(false)
         if !pinsArray.isEmpty {
             var i: Int = 0
-            for _:[String: Any] in pinsArray {
+            for _: [String: Any] in pinsArray {
                 let pin = checkValue(i)
                 if checkDigitalPinCapability(UInt8(pin), neededMode: .output) {
                     if i != 8 {

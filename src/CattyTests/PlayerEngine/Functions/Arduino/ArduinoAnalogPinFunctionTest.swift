@@ -47,9 +47,7 @@ class ArduinoAnalogPinFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0.5 as AnyObject), accuracy: Double.epsilon)
     }
 
-    func testValue() {
-        // TODO: add tests
-    }
+    // TODO: add testValue() test
 
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())

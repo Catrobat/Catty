@@ -29,7 +29,7 @@ import UIKit
     var scriptCollectionViewController: ScriptCollectionViewController
 
     // MARK: Init
-    @objc(init:) init(scriptCollectionViewController: ScriptCollectionViewController) {
+    @objc init(scriptCollectionViewController: ScriptCollectionViewController) {
         self.scriptCollectionViewController = scriptCollectionViewController
         categegoriesBricks = CatrobatSetup.self.registeredBrickCategories()
 

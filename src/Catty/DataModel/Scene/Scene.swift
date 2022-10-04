@@ -262,11 +262,9 @@
 
         for object in self._objects {
             var contains = false
-            for compareObject in scene.objects() {
-                if compareObject.isEqual(to: object) {
-                    contains = true
-                    break
-                }
+            for compareObject in scene.objects() where compareObject.isEqual(to: object) {
+                contains = true
+                break
             }
             if !contains {
                 return false
