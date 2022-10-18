@@ -133,25 +133,8 @@
 		2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */; };
 		2D6E3F39210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */; };
 		2D6E3F3B210A0AB700FB8139 /* ChartProjectsStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* ChartProjectsStoreViewController.swift */; };
-		2D7BE51E21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D7BE51B21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json */; };
-		2D7BE52021441FAE00F78A10 /* StoreProjectDownloader.searchProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D7BE51F21441FAD00F78A10 /* StoreProjectDownloader.searchProjects.fail.request.json */; };
-		2D7BE5222144238C00F78A10 /* StoreProjectDownloader.fetchSearchProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D7BE5212144238B00F78A10 /* StoreProjectDownloader.fetchSearchProjects.fail.parse.json */; };
 		2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */; };
 		2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */; };
-		2DCB4916212E9B56005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4915212E9B55005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json */; };
-		2DCB4918212E9BF4005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4917212E9BF3005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json */; };
-		2DCB491E212EA006005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB491D212EA005005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.success.json */; };
-		2DCB4920212EA096005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB491F212EA095005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.success.json */; };
-		2DCB4922212EA251005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4921212EA250005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */; };
-		2DCB4924212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4923212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json */; };
-		2DCB4928212EA477005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4927212EA476005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json */; };
-		2DCB492A212EA547005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4929212EA547005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json */; };
-		2DCB492E212EA7EC005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB492D212EA7EB005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */; };
-		2DCB4930212EA88E005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB492F212EA88D005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json */; };
-		2DCB4932212EA923005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4931212EA922005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json */; };
-		2DCB4934212EA9BF005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */; };
-		2DCB4936212EAAEF005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json */; };
-		2DCB4938212EAB36005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */; };
 		2E0E25D525E265840020CD9D /* WebRequestDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */; };
 		2E25F6E1262040550044B2DF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E25F6E0262040550044B2DF /* Reachability.swift */; };
 		2E5E767B260DEB9400D4DEBD /* WebRequestDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E767A260DEB9400D4DEBD /* WebRequestDownloaderMock.swift */; };
@@ -643,7 +626,6 @@
 		4C4778DC267C82B100CAF398 /* UIColorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778CB267C82B000CAF398 /* UIColorExtensionTests.swift */; };
 		4C4778DD267C82B100CAF398 /* NSMutableArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778CC267C82B000CAF398 /* NSMutableArrayExtensionTests.swift */; };
 		4C4778DE267C82B100CAF398 /* NSStringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778CD267C82B000CAF398 /* NSStringExtensionTests.swift */; };
-		4C4778DF267C82B100CAF398 /* CatrobatTableViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778CE267C82B000CAF398 /* CatrobatTableViewControllerExtensionTests.swift */; };
 		4C4778E0267C82B100CAF398 /* DataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778CF267C82B000CAF398 /* DataExtensionTests.swift */; };
 		4C4778E1267C82B100CAF398 /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778D0267C82B000CAF398 /* NSDateExtensionTests.swift */; };
 		4C4778E2267C82B100CAF398 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4778D1267C82B000CAF398 /* UIImageExtensionTests.swift */; };
@@ -1127,7 +1109,6 @@
 		6F7D0C9324EBD19A008C1D4C /* LookTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D0C9224EBD19A008C1D4C /* LookTest.swift */; };
 		6F7D0C9924EBD896008C1D4C /* SoundTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D0C9824EBD896008C1D4C /* SoundTest.swift */; };
 		6F7D0CA024EBEA91008C1D4C /* ValidProjectAllBricks0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6F7D0C9D24EBEA91008C1D4C /* ValidProjectAllBricks0992.xml */; };
-		6F87B80D2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F87B80C2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json */; };
 		6F954C6624D1A3E400E10BB3 /* UploadCategoryViewControllerDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */; };
 		6F954C6824D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */; };
 		6F954C7424D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F954C7124D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json */; };
@@ -1143,10 +1124,28 @@
 		6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD28D0924702CAD0035F606 /* NSDateExtension.swift */; };
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
 		6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */; };
+		7B144F1628FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1328FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */; };
+		7B144F1728FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1428FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json */; };
+		7B144F1828FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1528FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */; };
+		7B144F1C28FDCE3500C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1928FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json */; };
+		7B144F1D28FDCE3500C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1A28FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json */; };
+		7B144F1E28FDCE3500C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1B28FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json */; };
+		7B144F2228FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1F28FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json */; };
+		7B144F2328FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2028FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json */; };
+		7B144F2428FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2128FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.success.json */; };
+		7B144F2828FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2528FDD85400C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.success.json */; };
+		7B144F2928FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2628FDD85400C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */; };
+		7B144F2A28FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2728FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json */; };
+		7B144F2F28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2B28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.parse.json */; };
+		7B144F3028FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2C28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.request.json */; };
+		7B144F3128FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.specialCharacters.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2D28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */; };
+		7B144F3228FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F2E28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.json */; };
+		7B144F3528FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F3328FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */; };
+		7B144F3628FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F3428FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json */; };
+		7B144F3A28FDE5C600C4A300 /* StoreProjectDownloader.downloadProject.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F3928FDE5C600C4A300 /* StoreProjectDownloader.downloadProject.success.json */; };
 		7B53C94F27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */; };
 		7B53C95027BECAF900E86A72 /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
 		7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
-		7B5726C8275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B5726C5275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */; };
 		7B6FBD0027F1D8B4006E3BD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */; };
 		7B9090E927C931E600B31D04 /* ChromaSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B9090E827C931E600B31D04 /* ChromaSwift */; };
 		7B9090ED27C935D800B31D04 /* ChromaSwift.license in Resources */ = {isa = PBXBuildFile; fileRef = 7B9090EC27C935D800B31D04 /* ChromaSwift.license */; };
@@ -2252,25 +2251,8 @@
 		2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresenterVCTests.swift; sourceTree = "<group>"; };
 		2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectStoreDataSource.swift; sourceTree = "<group>"; };
 		2D6E3F3A210A0AB700FB8139 /* ChartProjectsStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectsStoreViewController.swift; sourceTree = "<group>"; };
-		2D7BE51B21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.success.json; sourceTree = "<group>"; };
-		2D7BE51F21441FAD00F78A10 /* StoreProjectDownloader.searchProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.fail.request.json; sourceTree = "<group>"; };
-		2D7BE5212144238B00F78A10 /* StoreProjectDownloader.fetchSearchProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchSearchProjects.fail.parse.json; sourceTree = "<group>"; };
 		2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreViewController.swift; sourceTree = "<group>"; };
 		2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSource.swift; sourceTree = "<group>"; };
-		2DCB4915212E9B55005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.success.json; sourceTree = "<group>"; };
-		2DCB4917212E9BF3005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostDownloadedProjects.success.json; sourceTree = "<group>"; };
-		2DCB491D212EA005005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostViewedProjects.success.json; sourceTree = "<group>"; };
-		2DCB491F212EA095005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.success.json; sourceTree = "<group>"; };
-		2DCB4921212EA250005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.fail.request.json; sourceTree = "<group>"; };
-		2DCB4923212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json; sourceTree = "<group>"; };
-		2DCB4927212EA476005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostViewedProjects.fail.request.json; sourceTree = "<group>"; };
-		2DCB4929212EA547005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.fail.request.json; sourceTree = "<group>"; };
-		2DCB492D212EA7EB005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json; sourceTree = "<group>"; };
-		2DCB492F212EA88D005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json; sourceTree = "<group>"; };
-		2DCB4931212EA922005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json; sourceTree = "<group>"; };
-		2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json; sourceTree = "<group>"; };
-		2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.success.json; sourceTree = "<group>"; };
-		2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.fail.request.json; sourceTree = "<group>"; };
 		2E0E25D425E265840020CD9D /* WebRequestDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestDownloader.swift; sourceTree = "<group>"; };
 		2E25F6E0262040550044B2DF /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		2E5E767A260DEB9400D4DEBD /* WebRequestDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestDownloaderMock.swift; sourceTree = "<group>"; };
@@ -2811,7 +2793,6 @@
 		4C4778CB267C82B000CAF398 /* UIColorExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensionTests.swift; sourceTree = "<group>"; };
 		4C4778CC267C82B000CAF398 /* NSMutableArrayExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableArrayExtensionTests.swift; sourceTree = "<group>"; };
 		4C4778CD267C82B000CAF398 /* NSStringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringExtensionTests.swift; sourceTree = "<group>"; };
-		4C4778CE267C82B000CAF398 /* CatrobatTableViewControllerExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtensionTests.swift; sourceTree = "<group>"; };
 		4C4778CF267C82B000CAF398 /* DataExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionTests.swift; sourceTree = "<group>"; };
 		4C4778D0267C82B000CAF398 /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensionTests.swift; sourceTree = "<group>"; };
 		4C4778D1267C82B000CAF398 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensionTests.swift; sourceTree = "<group>"; };
@@ -3339,7 +3320,6 @@
 		6F7D0C9224EBD19A008C1D4C /* LookTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookTest.swift; sourceTree = "<group>"; };
 		6F7D0C9824EBD896008C1D4C /* SoundTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundTest.swift; sourceTree = "<group>"; };
 		6F7D0C9D24EBEA91008C1D4C /* ValidProjectAllBricks0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProjectAllBricks0992.xml; sourceTree = "<group>"; };
-		6F87B80C2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.downloadProject.success.json; sourceTree = "<group>"; };
 		6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewControllerDelegateMock.swift; sourceTree = "<group>"; };
 		6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewControllerTests.swift; sourceTree = "<group>"; };
 		6F954C7124D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.fetchTags.success.json; sourceTree = "<group>"; };
@@ -3362,8 +3342,26 @@
 		758FD262053C04755851BC4D /* ml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77A836DDE7C46D9275CE4812 /* ar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7B144F1328FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.fail.request.json; sourceTree = "<group>"; };
+		7B144F1428FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.success.json; sourceTree = "<group>"; };
+		7B144F1528FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json; sourceTree = "<group>"; };
+		7B144F1928FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json; sourceTree = "<group>"; };
+		7B144F1A28FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json; sourceTree = "<group>"; };
+		7B144F1B28FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostDownloadedProjects.success.json; sourceTree = "<group>"; };
+		7B144F1F28FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json; sourceTree = "<group>"; };
+		7B144F2028FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostViewedProjects.fail.request.json; sourceTree = "<group>"; };
+		7B144F2128FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostViewedProjects.success.json; sourceTree = "<group>"; };
+		7B144F2528FDD85400C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.success.json; sourceTree = "<group>"; };
+		7B144F2628FDD85400C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json; sourceTree = "<group>"; };
+		7B144F2728FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.fail.request.json; sourceTree = "<group>"; };
+		7B144F2B28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.fail.parse.json; sourceTree = "<group>"; };
+		7B144F2C28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.fail.request.json; sourceTree = "<group>"; };
+		7B144F2D28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.success.specialCharacters.json; sourceTree = "<group>"; };
+		7B144F2E28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.success.json; sourceTree = "<group>"; };
+		7B144F3328FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.fail.request.json; sourceTree = "<group>"; };
+		7B144F3428FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.success.json; sourceTree = "<group>"; };
+		7B144F3928FDE5C600C4A300 /* StoreProjectDownloader.downloadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.downloadProject.success.json; sourceTree = "<group>"; };
 		7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewControllerTests.swift; sourceTree = "<group>"; };
-		7B5726C5275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.success.specialCharacters.json; sourceTree = "<group>"; };
 		7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B9090EC27C935D800B31D04 /* ChromaSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChromaSwift.license; sourceTree = "<group>"; };
 		7DE779FED0A3A66F8C9906B7 /* sr-Latn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "sr-Latn"; path = "sr-Latn.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -6238,7 +6236,6 @@
 		4C4778C0267C82B000CAF398 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4C4778CE267C82B000CAF398 /* CatrobatTableViewControllerExtensionTests.swift */,
 				4C4778C6267C82B000CAF398 /* CGVectorExtentionsTests.swift */,
 				4C4778CA267C82B000CAF398 /* CustomExtensionsTests.m */,
 				4C4778CF267C82B000CAF398 /* DataExtensionTests.swift */,
@@ -11101,25 +11098,25 @@
 		E4AEC8872108506A0081A980 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				6F87B80C2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json */,
-				2DCB492D212EA7EB005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */,
-				2DCB4921212EA250005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */,
-				2DCB4915212E9B55005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json */,
-				2DCB492F212EA88D005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json */,
-				2DCB4923212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json */,
-				2DCB4917212E9BF3005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json */,
-				2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */,
-				2DCB4929212EA547005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json */,
-				2DCB491F212EA095005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.success.json */,
-				2DCB4931212EA922005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json */,
-				2DCB4927212EA476005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json */,
-				2DCB491D212EA005005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.success.json */,
-				2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */,
-				2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json */,
-				2D7BE5212144238B00F78A10 /* StoreProjectDownloader.fetchSearchProjects.fail.parse.json */,
-				2D7BE51F21441FAD00F78A10 /* StoreProjectDownloader.searchProjects.fail.request.json */,
-				2D7BE51B21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json */,
-				7B5726C5275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */,
+				7B144F3928FDE5C600C4A300 /* StoreProjectDownloader.downloadProject.success.json */,
+				7B144F1528FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */,
+				7B144F1328FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */,
+				7B144F1428FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json */,
+				7B144F1A28FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json */,
+				7B144F1928FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json */,
+				7B144F1B28FDCE3400C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json */,
+				7B144F2628FDD85400C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */,
+				7B144F2728FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json */,
+				7B144F2528FDD85400C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.success.json */,
+				7B144F1F28FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json */,
+				7B144F2028FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json */,
+				7B144F2128FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.success.json */,
+				7B144F3328FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */,
+				7B144F3428FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json */,
+				7B144F2B28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.parse.json */,
+				7B144F2C28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.request.json */,
+				7B144F2E28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.json */,
+				7B144F2D28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.specialCharacters.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -11561,6 +11558,7 @@
 				4C4778E6267C83C000CAF398 /* URLSession.jsonDataTask.success.json in Resources */,
 				9E8176E92389C60F00A4912B /* guitar_chords.mp3 in Resources */,
 				9EAE57E823A19B0400E76229 /* PlaySoundAndWaitBrickSoundNotInterruptedByDifferentSound.xml in Resources */,
+				7B144F2F28FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.parse.json in Resources */,
 				4C55CCEB24BF2AB400FB8393 /* Piano_0992.xml in Resources */,
 				E5EC6D4C26B00FBA0031F13A /* Airplane_with_shadow_09993.xml in Resources */,
 				2ED417C9241120AF00AFE2FD /* Galaxy_War_098.xml in Resources */,
@@ -11568,7 +11566,6 @@
 				E57D5B3526AEA9DD003A1457 /* Tic_Tac_Toe_Master_0999.xml in Resources */,
 				2ED4187E241120B000AFE2FD /* ReplaceItemInUserListBrick098.xml in Resources */,
 				E5DAAD5826C5481500C2457F /* GoToBrick_09997.xml in Resources */,
-				2DCB4918212E9BF4005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json in Resources */,
 				2ED41858241120B000AFE2FD /* LookMapping.xml in Resources */,
 				E5EC6D4A26B00F3E0031F13A /* Air_fight_0.5_09993.xml in Resources */,
 				2ED4187A241120B000AFE2FD /* InsertItemIntoUserListBrick0991.xml in Resources */,
@@ -11577,6 +11574,7 @@
 				2ED417D4241120AF00AFE2FD /* Demonstration_097.xml in Resources */,
 				2ED417B1241120AF00AFE2FD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				E5DAAD4626C5477900C2457F /* Pong_Starter_09997.xml in Resources */,
+				7B144F3128FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.specialCharacters.json in Resources */,
 				2ED41810241120AF00AFE2FD /* Flap_Pac_Man_0992.xml in Resources */,
 				E5EC6D6426B0105B0031F13A /* GoToBrick_09993.xml in Resources */,
 				E57D5B4126AEAA8B003A1457 /* UserVariables_0999.xml in Resources */,
@@ -11593,10 +11591,8 @@
 				4C3286232546D81000C31F9D /* GoToBrick_0993.xml in Resources */,
 				2E7ED11425E3AAFA0009F17F /* WebRequestDownloader.success.json in Resources */,
 				2ED41873241120B000AFE2FD /* Encapsulated_0991.xml in Resources */,
-				2DCB492E212EA7EC005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json in Resources */,
 				E59108D126931F34008D254A /* Sensors_0994.xml in Resources */,
 				E5ADEAC125B1E530005E9360 /* collisionTest0993.xml in Resources */,
-				2DCB492A212EA547005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json in Resources */,
 				6F954C7624D1E19000E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json in Resources */,
 				E5DAAD6226C5486A00C2457F /* ValidProjectAllBricks09997.xml in Resources */,
 				E57D5B2926AEA99A003A1457 /* Flappy_v3.0_0999.xml in Resources */,
@@ -11606,10 +11602,9 @@
 				2ED41806241120AF00AFE2FD /* Pong_Starter_093.xml in Resources */,
 				E59108B726931E29008D254A /* UserVariables_0994.xml in Resources */,
 				E5EC6D6626B010670031F13A /* DisabledBricks_09993.xml in Resources */,
-				2DCB4920212EA096005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.success.json in Resources */,
-				2DCB4922212EA251005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json in Resources */,
 				9EE674D123252F510029D153 /* silence.mp3 in Resources */,
 				E5BEC71326AAE91C0063D7F0 /* Air_fight_0.5_0998.xml in Resources */,
+				7B144F3228FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.success.json in Resources */,
 				E5EC6D5626B010010031F13A /* Memory_09993.xml in Resources */,
 				E5DAAD4C26C547BA00C2457F /* UserLists_09997.xml in Resources */,
 				E5EC6D6C26B0109C0031F13A /* Encapsulated_09993.xml in Resources */,
@@ -11625,12 +11620,12 @@
 				E59108DD26931F80008D254A /* Airplane_with_shadow_0994.xml in Resources */,
 				E50E854D269EC4FA00E76CE9 /* Galaxy_War_0995.xml in Resources */,
 				2ED41874241120B000AFE2FD /* Encapsulated_097.xml in Resources */,
-				2D7BE52021441FAE00F78A10 /* StoreProjectDownloader.searchProjects.fail.request.json in Resources */,
 				4C55CCDF24BF29C500FB8393 /* Demonstration_0992.xml in Resources */,
 				2ED417C3241120AF00AFE2FD /* Air_fight_0.5_093.xml in Resources */,
 				E5BEC73D26AAEB220063D7F0 /* ValidHeader0998.xml in Resources */,
 				2ED4184F241120B000AFE2FD /* Flappy_v3.0_0993.xml in Resources */,
 				59B9F633202D8F8500937299 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */,
+				7B144F2328FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json in Resources */,
 				E50579C225B0B825003FAEE5 /* square.png in Resources */,
 				2ED4180A241120AF00AFE2FD /* Flap_Pac_Man_091.xml in Resources */,
 				2ED417D8241120AF00AFE2FD /* Demonstration_098.xml in Resources */,
@@ -11674,7 +11669,6 @@
 				E57D5B3326AEA9CF003A1457 /* Pythagorean_Theorem_0999.xml in Resources */,
 				4C3285F72546CF8000C31F9D /* LogicBricks_0993.xml in Resources */,
 				9E929E35239D732B002D8F96 /* bling_short.mp3 in Resources */,
-				2DCB4938212EAB36005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */,
 				E57D5B4526AEAAB1003A1457 /* EscapingChars_0999.xml in Resources */,
 				9E8176E72389C14B00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml in Resources */,
 				E50E854B269EC4ED00E76CE9 /* Flappy_v3.0_0995.xml in Resources */,
@@ -11709,8 +11703,8 @@
 				2ED4187B241120B000AFE2FD /* NumberOfItemsInListFunction0991.xml in Resources */,
 				49402BAD28117B9E009FCBF8 /* HandPoseDetectionSensors.xml in Resources */,
 				E57D5B4726AEAAC3003A1457 /* LogicBricks_0999.xml in Resources */,
+				7B144F1628FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json in Resources */,
 				E5EC6D4E26B00FCA0031F13A /* Demonstration_09993.xml in Resources */,
-				7B5726C8275F8A330011FABE /* StoreProjectDownloader.searchProjects.success.specialCharacters.json in Resources */,
 				2ED4185A241120B000AFE2FD /* SoundMapping.xml in Resources */,
 				4C55CCE324BF2A7700FB8393 /* Memory_0992.xml in Resources */,
 				2ED417CE241120AF00AFE2FD /* Galaxy_War_095.xml in Resources */,
@@ -11722,6 +11716,7 @@
 				2ED41879241120B000AFE2FD /* ElementOfListFunction0991.xml in Resources */,
 				E5EC6D7426B010D30031F13A /* ValidHeader09993.xml in Resources */,
 				2ED4184C241120B000AFE2FD /* Flappy_v3.0_093.xml in Resources */,
+				7B144F1E28FDCE3500C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json in Resources */,
 				4C55CD1324BF2C5700FB8393 /* Sensors_0992.xml in Resources */,
 				4CF3C92926A9A90800F94FF1 /* UserLists_0996.xml in Resources */,
 				2ED417F4241120AF00AFE2FD /* Pythagorean_Theorem_095.xml in Resources */,
@@ -11741,16 +11736,15 @@
 				E5EC6D6A26B010800031F13A /* UserVariables_09993.xml in Resources */,
 				2ED41872241120B000AFE2FD /* Encapsulated_098.xml in Resources */,
 				2ED417B8241120AF00AFE2FD /* Piano_09.xml in Resources */,
+				7B144F3A28FDE5C600C4A300 /* StoreProjectDownloader.downloadProject.success.json in Resources */,
 				2ED417DF241120AF00AFE2FD /* Airplane_with_shadow_098.xml in Resources */,
 				4C55CCFB24BF2B9300FB8393 /* CameraBricks_0992.xml in Resources */,
-				2DCB4932212EA923005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json in Resources */,
 				E5BEC71B26AAEA240063D7F0 /* Flappy_v3.0_0998.xml in Resources */,
 				E59108E126931FC0008D254A /* Memory_0994.xml in Resources */,
 				2ED4184A241120B000AFE2FD /* Flappy_v3.0_097.xml in Resources */,
 				4C7C32BB24BDCDFB004716DB /* UserVariables_0991.xml in Resources */,
 				2ED41853241120B000AFE2FD /* ValidFormulaList.xml in Resources */,
 				2ED41867241120B000AFE2FD /* WaitUntilBrick0991.xml in Resources */,
-				2DCB4934212EA9BF005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */,
 				E59108D526931F4F008D254A /* ValidHeader0994.xml in Resources */,
 				4C6A196324F2691500FC4618 /* SetBackgroundBrick_0991.xml in Resources */,
 				E57D5B3126AEA9C5003A1457 /* Pong_Starter_0999.xml in Resources */,
@@ -11764,6 +11758,7 @@
 				2ED417B5241120AF00AFE2FD /* Tic_Tac_Toe_Master_0991.xml in Resources */,
 				E5BEC72926AAEA7E0063D7F0 /* Functions_0998.xml in Resources */,
 				2ED417BC241120AF00AFE2FD /* Piano_0991.xml in Resources */,
+				7B144F1728FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */,
 				E5DAAD5026C547D800C2457F /* DisabledBricks_09997.xml in Resources */,
 				E5EC6D5026B00FDC0031F13A /* Flap_Pac_Man_09993.xml in Resources */,
 				E598BBBC26A0299700D4825F /* UserVariables_0996.xml in Resources */,
@@ -11771,6 +11766,7 @@
 				D3E4865C24766DE9002FAEBA /* GoToBrick_0992.xml in Resources */,
 				E5EC6D6226B0104D0031F13A /* collisionTest09993.xml in Resources */,
 				2ED4180F241120AF00AFE2FD /* Flap_Pac_Man_0991.xml in Resources */,
+				7B144F3628FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */,
 				6F4DAE8B24A74ABF0062DA6C /* StoreProjectUpload.uploadProject.success.json in Resources */,
 				D3AF5C1E243F822F00B04BC6 /* DisabledBricks_0991.xml in Resources */,
 				4C3285F12546CF6600C31F9D /* InsertItemIntoUserListBrick0993.xml in Resources */,
@@ -11779,7 +11775,6 @@
 				E50E8567269ECCD900E76CE9 /* Encapsulated_0995.xml in Resources */,
 				2ED41849241120B000AFE2FD /* Flappy_v3.0_096.xml in Resources */,
 				E598BBBE26A029A900D4825F /* DisabledBricks_0996.xml in Resources */,
-				2DCB4930212EA88E005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json in Resources */,
 				E5BEC73326AAEAD80063D7F0 /* UserVariables_0998.xml in Resources */,
 				4C55CD0D24BF2BFF00FB8393 /* NumberOfItemsInListFunction0992.xml in Resources */,
 				E5BEC73526AAEAE30063D7F0 /* Encapsulated_0998.xml in Resources */,
@@ -11798,10 +11793,11 @@
 				E598BBB826A0273B00D4825F /* Tic_Tac_Toe_Master_0996.xml in Resources */,
 				2ED4180E241120AF00AFE2FD /* Flap_Pac_Man_098.xml in Resources */,
 				4C55CCED24BF2AD700FB8393 /* Pythagorean_Theorem_0992.xml in Resources */,
+				7B144F1C28FDCE3500C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency_gray_alpha.png in Resources */,
 				2ED41804241120AF00AFE2FD /* Pong_Starter_096.xml in Resources */,
-				2DCB491E212EA006005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.success.json in Resources */,
 				E5BEC73B26AAEB160063D7F0 /* Sensors_0998.xml in Resources */,
+				7B144F1D28FDCE3500C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse.json in Resources */,
 				2ED417DB241120AF00AFE2FD /* Airplane_with_shadow_093.xml in Resources */,
 				2ED41861241120B000AFE2FD /* ValidProjectAllBricks093.xml in Resources */,
 				2ED41880241120B000AFE2FD /* DeleteItemOfUserListBrick0991.xml in Resources */,
@@ -11813,7 +11809,6 @@
 				E5DAAD5226C547E600C2457F /* Encapsulated_09997.xml in Resources */,
 				E50E8555269EC53500E76CE9 /* Pythagorean_Theorem_0995.xml in Resources */,
 				E5EC6D5C26B0101F0031F13A /* Pythagorean_Theorem_09993.xml in Resources */,
-				2D7BE5222144238C00F78A10 /* StoreProjectDownloader.fetchSearchProjects.fail.parse.json in Resources */,
 				2ED4180B241120AF00AFE2FD /* Flap_Pac_Man_095.xml in Resources */,
 				CAE3E4EB1B4C509800CC88BD /* test.png in Resources */,
 				2ED41802241120AF00AFE2FD /* Pong_Starter_0992.xml in Resources */,
@@ -11851,16 +11846,16 @@
 				E50E8561269EC63800E76CE9 /* GoToBrick_0995.xml in Resources */,
 				E5DAAD3A26C5473000C2457F /* Demonstration_09997.xml in Resources */,
 				4C55CCDB24BF291D00FB8393 /* Airplane_with_shadow_0992.xml in Resources */,
+				7B144F2228FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json in Resources */,
 				2ED417CF241120AF00AFE2FD /* Galaxy_War_0992.xml in Resources */,
+				7B144F1828FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json in Resources */,
 				4C55CCF924BF2B7F00FB8393 /* DisabledBricks_0992.xml in Resources */,
 				2ED41851241120B000AFE2FD /* Flappy_v3.0_0994.xml in Resources */,
 				59B17E69252B362800F30695 /* StoreProjectReporter.reportProject.unexpectedError.json in Resources */,
 				2ED417F3241120AF00AFE2FD /* Pythagorean_Theorem_0991.xml in Resources */,
-				2DCB4924212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */,
 				E50E8543269EC49500E76CE9 /* Air_fight_0.5_0995.xml in Resources */,
 				E5BEC73926AAEB060063D7F0 /* LogicBricks_0998.xml in Resources */,
 				E57D5B3726AEA9ED003A1457 /* Functions_0999.xml in Resources */,
-				2DCB4916212E9B56005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */,
 				4C55CD0324BF2BCD00FB8393 /* EscapingChars_0992.xml in Resources */,
 				CAE3E4EC1B4C509800CC88BD /* test2.png in Resources */,
 				9EE674D62325319B0029D153 /* PlaySameSoundTwiceSameObject.xml in Resources */,
@@ -11873,27 +11868,27 @@
 				59CC6F7F252E38FA00BF0C3C /* StoreProjectReporter.reportProject.authentication.fail.json in Resources */,
 				2ED4187D241120B000AFE2FD /* AddItemToUserListBrick098.xml in Resources */,
 				6F7D0CA024EBEA91008C1D4C /* ValidProjectAllBricks0992.xml in Resources */,
-				2DCB4936212EAAEF005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */,
+				7B144F2A28FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json in Resources */,
 				E59108DB26931F7A008D254A /* Air_fight_0.5_0994.xml in Resources */,
 				2ED41871241120B000AFE2FD /* CameraBricks_0991.xml in Resources */,
 				2ED417C2241120AF00AFE2FD /* Air_fight_0.5_098.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency_rgb.png in Resources */,
-				2D7BE51E21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json in Resources */,
 				4C33512426A9A32100FE961A /* 817.catrobat in Resources */,
 				4C55CD0F24BF2C0600FB8393 /* ReplaceItemInUserListBrick0992.xml in Resources */,
 				E598BBB026A0270300D4825F /* Memory_0996.xml in Resources */,
 				E5EC6D5426B00FF60031F13A /* Galaxy_War_09993.xml in Resources */,
-				2DCB4928212EA477005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json in Resources */,
 				E59108B926931E49008D254A /* DisabledBricks_0994.xml in Resources */,
 				2ED41875241120B000AFE2FD /* LedFlashBrick0991.xml in Resources */,
 				E5DAAD6026C5486000C2457F /* ValidHeader09997.xml in Resources */,
 				E598BBC226A029C900D4825F /* EscapingChars_0996.xml in Resources */,
+				7B144F3028FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.request.json in Resources */,
 				E598BBA426A026B000D4825F /* Air_fight_0.5_0996.xml in Resources */,
 				C84B21712714A2690077CF70 /* TouchesEdgeSensor.xml in Resources */,
 				4C3285E92546CF3B00C31F9D /* LedFlashBrick0993.xml in Resources */,
 				E598BBB226A0271200D4825F /* Piano_0996.xml in Resources */,
 				E57D5B3D26AEAA61003A1457 /* DisabledBricks_0999.xml in Resources */,
 				E59108CF26931EF8008D254A /* LogicBricks_0994.xml in Resources */,
+				7B144F2828FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.success.json in Resources */,
 				E598BBC826A02A2400D4825F /* LogicBricks_0996.xml in Resources */,
 				2EF0E4AA265E088E00D03C14 /* WebRequestDownloader.fail.json in Resources */,
 				9E929E3F239D7EFB002D8F96 /* PlaySoundAndWaitBrickContinueWhenInterrupted.xml in Resources */,
@@ -11919,6 +11914,7 @@
 				2ED41878241120B000AFE2FD /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				2ED417CC241120AF00AFE2FD /* Galaxy_War_0994.xml in Resources */,
 				E50E855B269EC5DA00E76CE9 /* LogicBricks_0995.xml in Resources */,
+				7B144F3528FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */,
 				E598BBAA26A026DE00D4825F /* Flap_Pac_Man_0996.xml in Resources */,
 				E57D5B2B26AEA9A3003A1457 /* Galaxy_War_0999.xml in Resources */,
 				E5DAAD4226C5476100C2457F /* Memory_09997.xml in Resources */,
@@ -11950,7 +11946,6 @@
 				2ED41882241120B000AFE2FD /* AddItemToUserListBrick0991.xml in Resources */,
 				492E596C287FE32E00357F09 /* ObjectRecognitionSensors.xml in Resources */,
 				E57D5B2D26AEA9B1003A1457 /* Memory_0999.xml in Resources */,
-				6F87B80D2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json in Resources */,
 				E5BEC73726AAEAF00063D7F0 /* EscapingChars_0998.xml in Resources */,
 				2ED417E6241120AF00AFE2FD /* Memory_09.xml in Resources */,
 				E50E8545269EC4BB00E76CE9 /* Airplane_with_shadow_0995.xml in Resources */,
@@ -11960,8 +11955,10 @@
 				E59108BD26931E86008D254A /* Functions_0994.xml in Resources */,
 				593F2F5C253201AD00933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.shortMessage.fail.json in Resources */,
 				593F2F582532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json in Resources */,
+				7B144F2428FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.success.json in Resources */,
 				E5BEC71926AAEA1A0063D7F0 /* Flap_Pac_Man_0998.xml in Resources */,
 				E5EC6D5A26B010140031F13A /* Pong_Starter_09993.xml in Resources */,
+				7B144F2928FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */,
 				E5DAAD3E26C5474900C2457F /* Flappy_v3.0_09997.xml in Resources */,
 				E5DAAD5626C5480600C2457F /* Functions_09997.xml in Resources */,
 				2ED417D3241120AF00AFE2FD /* Demonstration_093.xml in Resources */,
@@ -12366,7 +12363,6 @@
 				4C665F68253F1ADF00A84BB6 /* LookImageViewControllerTests.swift in Sources */,
 				4C4778BA267C7FC800CAF398 /* CBSpriteNodePenExtensionTests.swift in Sources */,
 				6F5CACA1246ADE0000BC58A4 /* CBFileManagerMockTests.swift in Sources */,
-				4C4778DF267C82B100CAF398 /* CatrobatTableViewControllerExtensionTests.swift in Sources */,
 				4C5AEEF922F6F46600280F8B /* PreviousLookBrickCellTests.swift in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
 				D30ECD1C2440963100FAD17D /* CBFrontendTests.swift in Sources */,

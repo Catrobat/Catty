@@ -1,0 +1,38 @@
+{
+  "name" : "StoreProjectDownloader.searchProjects.fail.parse",
+  "interactions" : [
+    {
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=Galaxy&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,author"
+      },
+      "recorded_at" : 1666032510.2298388,
+      "response" : {
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/search?query=Galaxy&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,author",
+        "headers" : {
+          "x-response-hash" : "3f18754610e77b1146210b838e3d02cc",
+          "Set-Cookie" : "dtCookie=v_4_srv_4_sn_26F440938B73CC0A72D6EA6FE822E4BF_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "cf-ray" : "75bb35753a21789a-VIE",
+          "Content-Type" : "application\/json",
+          "Content-Language" : "en",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Cache-Control" : "private, must-revalidate",
+          "Server" : "cloudflare",
+          "Date" : "Mon, 17 Oct 2022 18:48:30 GMT",
+          "cf-cache-status" : "DYNAMIC",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"960103083\"",
+          "x-openapi-message" : "OK",
+          "Content-Encoding" : "br",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=rD5PPHhWp4bbIHI%2BEEH6kOgXSPY2H09xH75%2FLwPCx2j0ychtLB9BYo7RWX3%2FliimCvYfHZ35bKVSy0gCxg0VaZNkP6EqHZIlxt8N3QLpvVxwTuWfe6cV%2BpO6c0kJJRgRgw5mRKUqlnF8bERMgZI%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Expires" : "-1",
+          "Pragma" : "no-cache",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+        },
+        "status" : 200,
+        "body" : [
+          {}
+        ]
+      }
+    }
+  ]
+}

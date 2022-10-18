@@ -21,14 +21,20 @@
  */
 
 extension URL {
-
-    func catrobatProjectId() -> String? {
+    var catrobatProjectId: String? {
         let pathComponents = self.pathComponents
+
         guard pathComponents.count >= 4 else {
             return nil
         }
+
+        let validBasePaths = ["pocketcode", "app", "api"]
+        guard validBasePaths.contains(pathComponents[1]) else {
+            return nil
+        }
+
         switch pathComponents[2] {
-        case "project":
+        case "program", "project":
             return pathComponents[3]
         case "download":
             return String(pathComponents[3].dropLast(9))

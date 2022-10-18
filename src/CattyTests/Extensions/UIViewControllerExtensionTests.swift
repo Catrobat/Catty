@@ -26,17 +26,26 @@ import XCTest
 
 final class UIViewControllerExtensionTests: XCTestCase {
 
-    var controller: CatrobatTableViewControllerMock?
-    var navigationController: NavigationControllerMock?
+    let testId = "817"
+
+    var controllerMock: CatrobatTableViewControllerMock!
+    var navigationControllerMock: NavigationControllerMock!
+    var storeProjectDownloaderMock: StoreProjectDownloaderMock!
+    var project: StoreProject!
 
     override func setUp() {
         super.setUp()
-        navigationController = NavigationControllerMock()
-        controller = CatrobatTableViewControllerMock(navigationController!)
+        navigationControllerMock = NavigationControllerMock()
+        controllerMock = CatrobatTableViewControllerMock(navigationControllerMock)
+
+        project = StoreProject(id: testId, name: "")
+
+        storeProjectDownloaderMock = StoreProjectDownloaderMock()
+        storeProjectDownloaderMock.project = project
     }
 
     func testOpenProject() {
-        XCTAssertNil(navigationController?.currentViewController)
+        XCTAssertNil(navigationControllerMock.currentViewController)
 
         let project = ProjectMock()
         let scene = Scene(name: "testScene")
@@ -46,12 +55,50 @@ final class UIViewControllerExtensionTests: XCTestCase {
 
         XCTAssertFalse(project.isLastUsedProject)
 
-        controller!.openProject(project)
+        controllerMock.openProject(project)
 
-        let sceneTableViewController = navigationController?.currentViewController as? SceneTableViewController
+        let sceneTableViewController = navigationControllerMock.currentViewController as? SceneTableViewController
 
         XCTAssertEqual(scene, sceneTableViewController?.scene)
         XCTAssertEqual(project, sceneTableViewController?.scene.project)
         XCTAssertTrue(project.isLastUsedProject)
+    }
+
+    func testOpenProjectDetails() {
+        let expectation = XCTestExpectation(description: "Fetch project details")
+        storeProjectDownloaderMock.expectation = expectation
+
+        controllerMock.openProjectDetails(projectId: testId, storeProjectDownloader: storeProjectDownloaderMock)
+
+        wait(for: [expectation], timeout: 1.0)
+
+        XCTAssertTrue(navigationControllerMock?.currentViewController is ProjectDetailStoreViewController)
+
+        let projectDetailStoreViewController = navigationControllerMock?.currentViewController as! ProjectDetailStoreViewController
+        XCTAssertEqual(testId, projectDetailStoreViewController.project.projectID)
+    }
+
+    func testOpenProjectDetailsUnableToLoadProject() {
+        let expectation = XCTestExpectation(description: "Fetch project details")
+        storeProjectDownloaderMock.expectation = expectation
+        storeProjectDownloaderMock.error = .unexpectedError
+
+        controllerMock.openProjectDetails(projectId: testId, storeProjectDownloader: storeProjectDownloaderMock)
+
+        wait(for: [expectation], timeout: 1.0)
+
+        XCTAssertNil(navigationControllerMock.currentViewController)
+    }
+
+    func testOpenProjectDetailsInvalidProject() {
+        let expectation = XCTestExpectation(description: "Fetch project details")
+        storeProjectDownloaderMock.expectation = expectation
+        storeProjectDownloaderMock.project = nil
+
+        controllerMock.openProjectDetails(projectId: testId, storeProjectDownloader: storeProjectDownloaderMock)
+
+        wait(for: [expectation], timeout: 1.0)
+
+        XCTAssertNil(navigationControllerMock.currentViewController)
     }
 }

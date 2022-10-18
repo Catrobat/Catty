@@ -28,39 +28,58 @@ import XCTest
 final class URLExtensionTests: XCTestCase {
 
     let testId = "817"
+
     let testAppProjectUrl = URL(string: "https://share.catrob.at/app/project/817")
     let testAppDownloadUrl = URL(string: "https://share.catrob.at/app/download/817.catrobat?fname=Tic-Tac-Toe%20Master")
+
     let testPocketcodeProjectUrl = URL(string: "https://share.catrob.at/pocketcode/project/817")
+    let testPocketcodeProgramUrl = URL(string: "https://share.catrob.at/pocketcode/program/817")
     let testPocketcodeDownloadUrl = URL(string: "https://share.catrob.at/pocketcode/download/817.catrobat?fname=Tic-Tac-Toe%20Master")
+
+    let testApiProjectUrl = URL(string: "https://share.catrob.at/api/project/817")
+    let testApiDownloadUrl = URL(string: "https://share.catrob.at/api/project/817/catrobat")
+
     let testInvalidTooShortUrl = URL(string: "https://share.catrob.at/invalid")
     let testInvalidTooLongUrl = URL(string: "https://share.catrob.at/invalid/invalid/invalid/invalid")
     let testInvalidPathUrl = URL(string: "https://share.catrob.at/app/invalid/817")
 
     func testIdFromURLAppProjectURL() {
-        XCTAssertEqual(testId, testAppProjectUrl!.catrobatProjectId())
+        XCTAssertEqual(testId, testAppProjectUrl!.catrobatProjectId)
     }
 
     func testIdFromURLAppDownloadURL() {
-        XCTAssertEqual(testId, testAppDownloadUrl!.catrobatProjectId())
+        XCTAssertEqual(testId, testAppDownloadUrl!.catrobatProjectId)
     }
 
     func testIdFromURLPocketcodeProjectURL() {
-        XCTAssertEqual(testId, testPocketcodeProjectUrl!.catrobatProjectId())
+        XCTAssertEqual(testId, testPocketcodeProjectUrl!.catrobatProjectId)
+    }
+
+    func testIdFromURLPocketcodeProgramURL() {
+        XCTAssertEqual(testId, testPocketcodeProgramUrl!.catrobatProjectId)
     }
 
     func testIdFromURLPocketcodeDownloadURL() {
-        XCTAssertEqual(testId, testPocketcodeDownloadUrl!.catrobatProjectId())
+        XCTAssertEqual(testId, testPocketcodeDownloadUrl!.catrobatProjectId)
+    }
+
+    func testIdFromURLApiProjectURL() {
+        XCTAssertEqual(testId, testApiProjectUrl!.catrobatProjectId)
+    }
+
+    func testIdFromURLApiDownloadURL() {
+        XCTAssertEqual(testId, testApiDownloadUrl!.catrobatProjectId)
     }
 
     func testIdFromURLInvalidTooLongURL() {
-        XCTAssertNil(testInvalidTooShortUrl!.catrobatProjectId())
+        XCTAssertNil(testInvalidTooShortUrl!.catrobatProjectId)
     }
 
     func testIdFromURLInvalidTooShortURL() {
-        XCTAssertNil(testInvalidTooLongUrl!.catrobatProjectId())
+        XCTAssertNil(testInvalidTooLongUrl!.catrobatProjectId)
     }
 
     func testIdFromURLInvalidPathURL() {
-        XCTAssertNil(testInvalidPathUrl!.catrobatProjectId())
+        XCTAssertNil(testInvalidPathUrl!.catrobatProjectId)
     }
 }

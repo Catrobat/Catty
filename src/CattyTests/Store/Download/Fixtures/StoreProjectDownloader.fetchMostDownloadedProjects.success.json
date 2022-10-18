@@ -1,461 +1,157 @@
 {
-  "name" : "StoreProjectDownloader.fetchMostDownloadedProjects.success",
   "interactions" : [
     {
+      "request" : {
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,downloads",
+        "method" : "GET"
+      },
+      "recorded_at" : 1666029125.8166699,
       "response" : {
         "status" : 200,
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.9993&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,downloads",
         "body" : [
           {
             "id" : "817",
-            "description" : "Three in one win. However, the computer is a master strategist! \n\nThe text was composed using PicSay - http:\/\/catrob.at\/PicSay as explained on http:\/\/catrob.at\/WordBalloonExplanation\n\n#GalaxyGameJam",
-            "private" : false,
-            "version" : "0.9.6",
-            "flavor" : "pocketcode",
-            "author" : "hej-wickie-hej",
+            "downloads" : 355194,
             "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_817.png?t=1598163723",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/817.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.24096775054931641,
-            "uploaded_string" : "more than one year ago",
-            "download" : 106900,
-            "uploaded" : 1366619431,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/817",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_817.png?t=1598101039",
-            "name" : "Tic-Tac-Toe Master",
-            "views" : 92704
+            "name" : "Tic-Tac-Toe Master"
           },
           {
-            "id" : "719",
-            "description" : "Control the ship by tilting the phone and shoot down as many enemies as possible.",
-            "private" : false,
-            "version" : "0.7.0beta",
-            "flavor" : "pocketcode",
-            "author" : "DavidR",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_719.png?t=1598163728",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/719.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 3.0423545837402344,
-            "uploaded_string" : "more than one year ago",
-            "download" : 76262,
-            "uploaded" : 1365151308,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/719",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_719.png?t=1598101059",
-            "name" : "Galaxy War",
-            "views" : 65569
-          },
-          {
-            "id" : "1581",
-            "description" : "A simple game similar to the popular Flappy Bird, completely made using Pocket Code. Game not tested on multiple devices yet, which might lead to minor issues. Please let me know about any issues and always welcome to remix this game. ",
-            "private" : false,
-            "version" : "0.9.",
-            "flavor" : "pocketcode",
-            "author" : "mj7007",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1581.png?t=1598163713",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/1581.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.10238456726074219,
-            "uploaded_string" : "more than one year ago",
-            "download" : 73243,
-            "uploaded" : 1394965883,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/1581",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_1581.png?t=1598101002",
-            "name" : "Flappy_v3.0",
-            "views" : 60112
-          },
-          {
-            "id" : "1450",
-            "description" : "",
-            "private" : false,
-            "version" : "0.9.4",
-            "flavor" : "pocketcode",
-            "author" : "kestapa",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1450.png?t=1598163717",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/1450.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.97402763366699219,
-            "uploaded_string" : "more than one year ago",
-            "download" : 31794,
-            "uploaded" : 1383107039,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/1450",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_1450.png?t=1598101010",
-            "name" : "Minions ",
-            "views" : 27679
-          },
-          {
-            "id" : "965",
-            "description" : "Shoot down your opponent! Steer with your device's inclination. Shoot by tapping or holding the screen. \r\n\r\nUpdate 2016-11-2: now with object grouping, new Catrobat language version 0.992 bricks, as well as unlimited bullets (through clone bricks).",
-            "private" : false,
-            "version" : "0.9.27",
-            "flavor" : "pocketcode",
-            "author" : "hej-wickie-hej",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_965.png?t=1598163735",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/965.catrobat",
-            "tags" : [
-              "Game"
-            ],
-            "filesize" : 5.5466842651367188,
-            "uploaded_string" : "more than one year ago",
-            "download" : 30081,
-            "uploaded" : 1478104990,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/965",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_965.png?t=1598101092",
-            "name" : "Air fight 0.5",
-            "views" : 26850
+            "id" : "37890",
+            "downloads" : 350859,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_37890.png?t=1598163732",
+            "name" : "Sonic Mania Android Version 0.2"
           },
           {
             "id" : "20065",
-            "description" : "\nMade with Scratch2Catrobat Converter version 0.7.2.\nOriginal Scratch project => https:\/\/scratch.mit.edu\/projects\/105500895",
-            "private" : false,
-            "version" : "0.9.27",
-            "flavor" : "pocketcode",
-            "author" : "VenomX",
+            "downloads" : 290097,
             "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_20065.png?t=1598163709",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/20065.catrobat",
-            "tags" : [
-              "Game",
-              "Music"
-            ],
-            "filesize" : 16.550339698791504,
-            "uploaded_string" : "more than one year ago",
-            "download" : 25356,
-            "uploaded" : 1481385824,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/20065",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_20065.png?t=1598100995",
-            "name" : "Geometry Dash v1.5",
-            "views" : 32620
+            "name" : "Geometry Dash v1.5"
           },
           {
-            "id" : "1719",
-            "description" : "You have 25 seconds to tap as many of the black tiles as possible, starting from the bottom. Of course, don't touch the white ones!\n\nNote that, although you must tap the black tiles one after the other starting from the lower ones, it is nevertheless possible to tap the next tiles already while they are still moving. Doing so gives exponentially more points, depending on how high the tiles were on the screen when you tapped them. \n\nRemark: All numbers and other text in images have been made with PicSay, available on Google Play, see http:\/\/catrob.at\/PicSay and http:\/\/catrob.at\/WordBalloonExplanation ",
-            "private" : false,
-            "version" : "0.9.9",
-            "flavor" : "pocketcode",
-            "author" : "hej-wickie-hej",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1719.png?t=1598163730",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/1719.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.19506740570068359,
-            "uploaded_string" : "more than one year ago",
-            "download" : 19587,
-            "uploaded" : 1404682455,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/1719",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_1719.png?t=1598101072",
-            "name" : "Don't touch the white tiles!",
-            "views" : 15409
+            "id" : "1581",
+            "downloads" : 285523,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1581.png?t=1598163713",
+            "name" : "Flappy_v3.0"
           },
           {
-            "id" : "1976",
-            "description" : "Download this program to start with the One Hour of Code tutorial at https:\/\/pocketcode.org\/hourOfCode",
-            "private" : false,
-            "version" : "0.9.10",
-            "flavor" : "pocketcode",
-            "author" : "PocketCodeTeam",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1976.png?t=1598163734",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/1976.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 1.7407207489013672,
-            "uploaded_string" : "more than one year ago",
-            "download" : 18844,
-            "uploaded" : 1410514368,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/1976",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_1976.png?t=1598101087",
-            "name" : "Skydiving Steve",
-            "views" : 14980
+            "id" : "719",
+            "downloads" : 282787,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_719.png?t=1598163728",
+            "name" : "Galaxy War"
           },
           {
-            "id" : "2438",
-            "description" : "Marian saves the day! Global games jam entry at GameCity in Nottingham - teamwork of Anja, Bernadette and Wolfgang. See also http:\/\/youtu.be\/F8y_ZL5bcO0 and http:\/\/globalgamejam.org\/2015\/games\/story-maid-marian-nottingham - Enjoy! (please note: the game is quite resource intensive and thus may work only on recent devices!).\n\n#AliceGameJam",
-            "private" : false,
-            "version" : "0.9.27",
-            "flavor" : "pocketcode",
-            "author" : "silverLining",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_2438.png?t=1598163723",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/2438.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 15.706699371337891,
-            "uploaded_string" : "more than one year ago",
-            "download" : 14492,
-            "uploaded" : 1478526437,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/2438",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_2438.png?t=1598101036",
-            "name" : "Marian Story",
-            "views" : 5334
+            "id" : "49860",
+            "downloads" : 257563,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_49860.png?t=1598163735",
+            "name" : "Undertale: rood fight"
           },
           {
-            "id" : "4705",
-            "description" : "Four dwarfs, Redy, Bluey, Greeny and Pinky have to cross a bridge at night.\nThe bridge is narrow and not more than 2 dwarfs can cross it at a time. Because of the darkness they have to use a torch to light the way. The torch only lasts up to 15 seconds.\nRedy is the fastest of the dwarfs and can cross the bridge in 1 second. Bluey needs 2, Greeny 5 and Pinky 8 seconds.\nWhen walking together the slowest of the 2 dwarfs sets the pace.\n\nCan you guide them across the bridge before the torch goes out?",
-            "private" : false,
-            "version" : "0.9.27",
-            "flavor" : "pocketcode",
-            "author" : "MukuMuku",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_4705.png?t=1598163729",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/4705.catrobat",
-            "tags" : [
-              "Game",
-              "Animation"
-            ],
-            "filesize" : 2.1802425384521484,
-            "uploaded_string" : "more than one year ago",
-            "download" : 12974,
-            "uploaded" : 1480529887,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/4705",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_4705.png?t=1598101067",
-            "name" : "Dangerous crossing",
-            "views" : 14598
+            "id" : "45868",
+            "downloads" : 254314,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_45868.png?t=1598163726",
+            "name" : "Iso-motion"
           },
           {
-            "id" : "1532",
-            "description" : "The Pac-Men are falling to their doom! Luckily enough though they've sprouted wings - tap them quick enough and they'll fly away from danger. Can you make it to the highest rank of Fantastic Pactastic? Tap screen to start.",
-            "private" : false,
-            "version" : "0.9.6",
-            "flavor" : "pocketcode",
-            "author" : "ashg",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1532.png?t=1598163722",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/1532.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.45570659637451172,
-            "uploaded_string" : "more than one year ago",
-            "download" : 12532,
-            "uploaded" : 1392243023,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/1532",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_1532.png?t=1598101032",
-            "name" : "Flap-Pac-Man",
-            "views" : 12646
-          },
-          {
-            "id" : "30726",
-            "description" : "0.5.3\n+Bug fixed\n0.5.2\n+Bug fixed\n06.08.2017:\nThanks for 0,8k Downloads\n0.5.1\n+Bug fixed\n02.08.2017:\nThanks for 0.7k Downloads\n0.5\n+Highscore\n+Messages\n+Stone\n+more Design\n+more Animations\n+more Quality\n+Bug fixed\n0.4.2\n+new Song\n0.4.1\n+new Song\n0.4\n+Music\n+Easyer\n+Bug fixed\n29.07.2017:\nThanks for 0.6k Downloads\n16.06.2017:\nThanks for 0.5k Downloads\n12.06.2017:\nThanks for 400 Downloads\n0.3.4\n+Shop Item\n+Bug fixed\n04.06.2017:\nThanks for 300 Downloads\n0.3.3\n+Bug fixed\n0.3.2\n+Shop Item\n+Bug fixed\n0.3.1\n+Bug fixed\n0.3\n+Shop Item\n+More Sounds\n+Bug fixed\n28.05.2017:\nThanks for 200 Downloads\n0.2\n+new Shop\n+more Animations\n+Bug fixed\n0.1.2\n+More Coins\n0.1.1\n+Bug fixed\n0.1\n+Shop\n+Jetpack\n+Bug fixed\n23.05.2017:\nThanks for 100 Downloads\n0.0.9\n+Bug fixed\n0.0.8\n+Bug fixed\n0.0.7\n+New stone\n0.0.6\n+Coins\n0.0.5\n+Sounds\n0.0.4\n+Loop\n+Play Button\n\nOther Games:\nPartikel Zen:\nhttps:\/\/web-test.catrob.at\/pocketcode\/program\/35000",
-            "private" : false,
-            "version" : "0.9.28",
-            "flavor" : "pocketcode",
-            "author" : "GermanCodes",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_30726.png?t=1598163719",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/30726.catrobat",
-            "tags" : [
-              "Game",
-              "Animation",
-              "Experimental"
-            ],
-            "filesize" : 16.371340751647949,
-            "uploaded_string" : "more than one year ago",
-            "download" : 11332,
-            "uploaded" : 1504858287,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/30726",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_30726.png?t=1598101026",
-            "name" : "BitRunner",
-            "views" : 9972
-          },
-          {
-            "id" : "5655",
-            "description" : "now jump button added.",
-            "private" : false,
-            "version" : "0.9.20",
-            "flavor" : "pocketcode",
-            "author" : "oskagamemaker",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_5655.png?t=1598163711",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/5655.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.17355060577392578,
-            "uploaded_string" : "more than one year ago",
-            "download" : 10841,
-            "uploaded" : 1454308079,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/5655",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_5655.png?t=1598100998",
-            "name" : "super mario bros",
-            "views" : 7830
-          },
-          {
-            "id" : "968",
-            "description" : "Tap to play each note.\nREMIX TIPS:\n * Change the sound of the piano\n * Change the looks",
-            "private" : false,
-            "version" : "0.9.2",
-            "flavor" : "pocketcode",
-            "author" : "PocketCodeTeam",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_968.png?t=1598163726",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/968.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.66807842254638672,
-            "uploaded_string" : "more than one year ago",
-            "download" : 10794,
-            "uploaded" : 1379935455,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/968",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_968.png?t=1598101045",
-            "name" : "Piano",
-            "views" : 9265
-          },
-          {
-            "id" : "18275",
-            "description" : "The PixelCraft adventure is amazing!\n\n*What's New?*\n\nBeta 0.0.10\n- New Music\n- Bug Fixed\n(- Nowe Dźwięki)\n(- Poprawki Błędów)\n\n\nHerobrine wants to get a block of 4 worlds to change all the worlds into a dark land. Only you can stop him at PixelCraft.\n\n(Herobrine chce zdobyć blok 4 światów żeby zmienić wszystkie światy w mroczną kraine.\nTylko ty możesz go powstrzymać w PixelCraft.)\n\n-*Sounds in the game are owned by Mojang AB*-\n\nTwitter\n@KrzysiekPLGames\n\nSpecial thanks:\n@SirZeusMCPE\n@PcGuiDevs\n\nVersion 0.0.10.build10\nUpdate date 7.06.2017\n\n#GalaxyGameJam",
-            "private" : false,
-            "version" : "0.9.28",
-            "flavor" : "pocketcode",
-            "author" : "KrzysiekPL",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_18275.png?t=1598163734",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/18275.catrobat",
-            "tags" : [
-              "Game",
-              "Story"
-            ],
-            "filesize" : 4.3313732147216797,
-            "uploaded_string" : "more than one year ago",
-            "download" : 10405,
-            "uploaded" : 1496839852,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/18275",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_18275.png?t=1598101088",
-            "name" : "PixelCraft: Adventure DEMO",
-            "views" : 9067
+            "id" : "43252",
+            "downloads" : 246445,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_43252.png?t=1598163708",
+            "name" : "Fnaf Pizzeria Simulator"
           },
           {
             "id" : "18600",
-            "description" : "\n----------------------------------------\nInstructions:\nIt's finally here... version 10! It has got 5 brand new levels! And more are coming soon... Use arrow keys to move and jump. Collect the coins. Jump upon Goomba enemies (twice!) to beat them. Here's a walkthrough: https:\/\/www.youtube.com\/watch?v=ONtHRrN-cDQ\n----------------------------------------\nDescription:\nI'm trying to make a Super Mario Bros game. It's not gonna be a remake. I just use the sprites and sounds. In version 10 there is a new enemy: Bullet Bill! And.. there's also music now! Feel free to remix and build a level yourself! Future plans: - add power ups - other enemies - and more... Credits for the sprites and sounds are for Nintendo. I found them here: http:\/\/spriters-resource.com\/nes\/supermariobros\/ and http:\/\/themushroomkingdom.net\/media\/smb\/wav\n----------------------------------------\n\nMade with Scratch2Catrobat Converter version 0.7.2.\nOriginal Scratch project => https:\/\/scratch.mit.edu\/projects\/49905542",
-            "private" : false,
-            "version" : "0.9.27",
-            "flavor" : "pocketcode",
-            "author" : "Ayrat",
+            "downloads" : 232645,
             "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_18600.png?t=1598163708",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/18600.catrobat",
-            "tags" : [
-              "Game",
-              "Animation",
-              "Music"
-            ],
-            "filesize" : 5.3985843658447266,
-            "uploaded_string" : "more than one year ago",
-            "download" : 10056,
-            "uploaded" : 1479594310,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/18600",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_18600.png?t=1598100992",
-            "name" : "Super Mario Bros (version 10)",
-            "views" : 8787
+            "name" : "Super Mario Bros (version 10)"
           },
           {
-            "id" : "824",
-            "description" : "A visual proof of the famous theorem, adapted from Chou pei suan ching, author unknown, around 200 B.C.",
-            "private" : false,
-            "version" : "0.9.27",
-            "flavor" : "pocketcode",
-            "author" : "hej-wickie-hej",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_824.png?t=1598163725",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/824.catrobat",
-            "tags" : [
-              "Animation"
-            ],
-            "filesize" : 0.29683017730712891,
-            "uploaded_string" : "more than one year ago",
-            "download" : 8531,
-            "uploaded" : 1477509375,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/824",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_824.png?t=1598101042",
-            "name" : "Pythagorean Theorem",
-            "views" : 9916
+            "id" : "42921",
+            "downloads" : 230497,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_42921.png?t=1598163721",
+            "name" : "Math Quest! v2"
           },
           {
-            "id" : "25499",
-            "description" : "A fast paced doughnut sorting game. ",
-            "private" : false,
-            "version" : "0.9.28",
-            "flavor" : "pocketcode",
-            "author" : "Featured",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_25499.png?t=1598163717",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/25499.catrobat",
-            "tags" : [
-              "Game",
-              "Animation"
-            ],
-            "filesize" : 3.2512178421020508,
-            "uploaded_string" : "more than one year ago",
-            "download" : 8525,
-            "uploaded" : 1488376762,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/25499",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_25499.png?t=1598101012",
-            "name" : "DapperDoughnuts",
-            "views" : 10008
+            "id" : "1450",
+            "downloads" : 227133,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1450.png?t=1598163717",
+            "name" : "Minions "
           },
           {
-            "id" : "821",
-            "description" : "",
-            "private" : false,
-            "version" : "0.7.1beta",
-            "flavor" : "pocketcode",
-            "author" : "VesnaK",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_821.png?t=1598163728",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/821.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.67617511749267578,
-            "uploaded_string" : "more than one year ago",
-            "download" : 8398,
-            "uploaded" : 1366835078,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/821",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_821.png?t=1598101054",
-            "name" : "Whack A Mole",
-            "views" : 7876
+            "id" : "1719",
+            "downloads" : 222706,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1719.png?t=1598163730",
+            "name" : "Don't touch the white tiles!"
           },
           {
-            "id" : "4683",
-            "description" : "Tap the Hatte to shoot the evil Cards. \n\nThis game was created as part of the Game Design Tutorials.\n\n#AliceGameJam",
-            "private" : false,
-            "version" : "0.9.19",
-            "flavor" : "pocketalice",
-            "author" : "NOLB.Austria",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_4683.png?t=1598163733",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/4683.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.60350227355957031,
-            "uploaded_string" : "more than one year ago",
-            "download" : 8128,
-            "uploaded" : 1448532282,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/4683",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_4683.png?t=1598101085",
-            "name" : "The Hatter - Hit and Run",
-            "views" : 1028
+            "id" : "44987",
+            "downloads" : 221224,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_44987.png?t=1598163734",
+            "name" : "Slendytubbies 2D Part 2"
+          },
+          {
+            "id" : "1976",
+            "downloads" : 212112,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1976.png?t=1598163734",
+            "name" : "Skydiving Steve"
+          },
+          {
+            "id" : "71489",
+            "downloads" : 206603,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_71489.png?t=1598163719",
+            "name" : "Pet Simulator"
+          },
+          {
+            "id" : "58961",
+            "downloads" : 206180,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_58961.png?t=1598163715",
+            "name" : "ultimate custon night fnaf6"
+          },
+          {
+            "id" : "2438",
+            "downloads" : 206121,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_2438.png?t=1598163723",
+            "name" : "Marian Story"
+          },
+          {
+            "id" : "1532",
+            "downloads" : 204621,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_1532.png?t=1598163722",
+            "name" : "Flap-Pac-Man"
+          },
+          {
+            "id" : "4705",
+            "downloads" : 204619,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_4705.png?t=1598163729",
+            "name" : "Dangerous crossing"
+          },
+          {
+            "id" : "24519",
+            "downloads" : 204509,
+            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_24519.png?t=1598163722",
+            "name" : "CALCULATOR"
           }
         ],
         "headers" : {
-          "Server" : "nginx",
-          "Expires" : "-1",
-          "Content-Type" : "application\/json",
+          "Content-Encoding" : "br",
+          "Cache-Control" : "private, must-revalidate",
+          "cf-cache-status" : "DYNAMIC",
+          "x-response-hash" : "8dda58addb8282e47538e5eb62ac7a43",
+          "Pragma" : "no-cache",
+          "Server" : "cloudflare",
           "Content-Language" : "en",
           "x-openapi-message" : "OK",
-          "Strict-Transport-Security" : "max-age=15768000",
-          "Set-Cookie" : "dtCookie=v_4_srv_8_sn_F12480F1AAA243E93B6B70172E3DF74E_perc_100000_ol_0_mul_1; Path=\/; Domain=.catrob.at",
-          "server-timing" : "dtRpid;desc=\"619531009\"",
-          "Content-Encoding" : "gzip",
-          "Pragma" : "no-cache",
-          "x-response-hash" : "079b8b6eb5f463b0b665b01f69b624f0",
-          "Date" : "Thu, 15 Apr 2021 13:02:46 GMT",
-          "Cache-Control" : "private, must-revalidate"
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Date" : "Mon, 17 Oct 2022 17:52:05 GMT",
+          "Content-Type" : "application\/json",
+          "cf-ray" : "75bae2d04b047899-VIE",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=P%2FQObLT8NYocel9nb21DOdbWwkIRDSRM47jBy9Rk3fOT1YerkyCjyoHgm18c%2BCICYA7aKWpIA2eZuXazFZreYGIEkoFOOMnN5KwdxbsxOLr%2FAZGB%2BCAcPTgE7AXXkFeGIYIzUtAZ93zfQlMabx4%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Expires" : "-1",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Set-Cookie" : "dtCookie=v_4_srv_15_sn_FED631B0C34EEF68A9BA66C39FCD34DB_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"1968500046\""
         }
-      },
-      "recorded_at" : 1618491766.46052,
-      "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.9993&limit=20&offset=0",
-        "method" : "GET"
       }
     }
-  ]
+  ],
+  "name" : "StoreProjectDownloader.fetchMostDownloadedProjects.success"
 }

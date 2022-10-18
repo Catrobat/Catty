@@ -22,12 +22,12 @@
 
 struct StoreFeaturedProject: Codable {
     let id: String
-    let url: String
-    let name: String
-    let author: String
-    let featuredImage: String
+    let url: String?
+    let name: String?
+    let author: String?
+    let featuredImage: String?
 
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id = "project_id"
         case url = "project_url"
         case name = "name"
@@ -35,7 +35,11 @@ struct StoreFeaturedProject: Codable {
         case featuredImage = "featured_image"
     }
 
-    init(id: String, url: String, name: String, author: String, featuredImage: String) {
+    static var defaultQueryParameters: [String] {
+        [CodingKeys.id.rawValue, CodingKeys.featuredImage.rawValue]
+    }
+
+    init(id: String, url: String? = nil, name: String? = nil, author: String? = nil, featuredImage: String? = nil) {
         self.id = id
         self.url = url
         self.name = name
@@ -45,14 +49,10 @@ struct StoreFeaturedProject: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let value = try? container.decode(Int.self, forKey: .id) {
-            id = String(value)
-        } else {
-            id = try container.decode(String.self, forKey: .id)
-        }
-        url = try container.decode(String.self, forKey: .url)
-        name = try container.decode(String.self, forKey: .name)
-        author = try container.decode(String.self, forKey: .author)
-        featuredImage = try container.decode(String.self, forKey: .featuredImage)
+        id = try container.decode(String.self, forKey: .id)
+        url = try container.decodeIfPresent(String.self, forKey: .url)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
+        author = try container.decodeIfPresent(String.self, forKey: .author)
+        featuredImage = try container.decodeIfPresent(String.self, forKey: .featuredImage)
     }
 }

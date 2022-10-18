@@ -1,36 +1,38 @@
 {
+  "name" : "StoreProjectDownloader.fetchMostRecentProjects.fail.parse",
   "interactions" : [
     {
-      "recorded_at" : 1618560814.5251498,
       "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.9993&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,uploaded",
         "method" : "GET"
       },
+      "recorded_at" : 1666031746.289361,
       "response" : {
-        "headers" : {
-          "Pragma" : "no-cache",
-          "x-debug-token-link" : "https:\/\/web-test.catrob.at\/_profiler\/cc90a2",
-          "Content-Type" : "application\/json",
-          "x-response-hash" : "b561ffddb4091138e540d36399321e87",
-          "Content-Language" : "en",
-          "x-debug-token" : "cc90a2",
-          "Expires" : "-1",
-          "x-openapi-message" : "OK",
-          "Server" : "nginx",
-          "Date" : "Fri, 16 Apr 2021 08:13:34 GMT",
-          "x-robots-tag" : "noindex",
-          "Content-Encoding" : "gzip",
-          "Cache-Control" : "private, must-revalidate",
-          "Strict-Transport-Security" : "max-age=15768000"
-        },
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.9993&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,uploaded",
+        "status" : 200,
         "body" : [
-          {
-          }
+          {}
         ],
-        "status" : 200
+        "headers" : {
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Cache-Control" : "private, must-revalidate",
+          "Content-Language" : "en",
+          "Content-Type" : "application\/json",
+          "x-response-hash" : "3b24245dcfbcf1d3e8a75c32a2d1e404",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Date" : "Mon, 17 Oct 2022 18:35:46 GMT",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"1837106495\"",
+          "cf-ray" : "75bb22cabb8b77eb-VIE",
+          "Server" : "cloudflare",
+          "Content-Encoding" : "br",
+          "cf-cache-status" : "DYNAMIC",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=9zQg%2F2dlmPyyDsDDOr5C02vANBf4Yq4tDqtYesMxiJfKH4r0lEbdoqY3rPzh%2FarKXDobnvnaUgNRvx26moKjWtCeuLRJhyjg%2FgnJA5rJVsOJZLLSHfcayot4JaAlvS%2BCuf%2BDDOIghCkyJGgAjik%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "x-openapi-message" : "OK",
+          "Set-Cookie" : "dtCookie=v_4_srv_8_sn_28376EC95CECB65122ED91BBBF228328_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Expires" : "-1",
+          "Pragma" : "no-cache"
+        }
       }
     }
-  ],
-  "name" : "StoreProjectDownloader.fetchMostRecentProjects.fail.request"
+  ]
 }

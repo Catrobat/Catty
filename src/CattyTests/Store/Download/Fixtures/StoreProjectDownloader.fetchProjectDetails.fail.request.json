@@ -2,51 +2,35 @@
   "interactions" : [
     {
       "request" : {
-        "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/api\/project\/821"
+        "url" : "https:\/\/web-test.catrob.at\/api\/project\/821",
+        "method" : "GET"
       },
-      "recorded_at" : 1620301872.8381901,
+      "recorded_at" : 1666033568.2038631,
       "response" : {
         "status" : 404,
+        "body" : {},
         "url" : "https:\/\/web-test.catrob.at\/api\/project\/821",
-        "body" : {
-          "id" : "821",
-          "description" : "",
-          "private" : false,
-          "version" : "0.7.1beta",
-          "flavor" : "pocketcode",
-          "author" : "VesnaK",
-          "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_821.png?t=1598163728",
-          "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/821.catrobat",
-          "tags" : [
-
-          ],
-          "filesize" : 0.67617511749267578,
-          "uploaded_string" : "more than one year ago",
-          "download" : 8416,
-          "uploaded" : 1366835078,
-          "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/821",
-          "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_821.png?t=1598101054",
-          "name" : "Whack A Mole",
-          "views" : 7891
-        },
         "headers" : {
-          "Content-Type" : "application\/json",
-          "x-response-hash" : "99914b932bd37a50b983c5e7c90ae93b",
-          "Cache-Control" : "private, must-revalidate",
-          "x-openapi-message" : "Valid request",
-          "Strict-Transport-Security" : "max-age=15768000",
-          "Date" : "Thu, 06 May 2021 11:51:12 GMT",
-          "Set-Cookie" : "dtCookie=v_4_srv_8_sn_0D39EB700A0781F0B515AF5A00E2CDE3_perc_100000_ol_0_mul_1; Path=\/; Domain=.catrob.at",
+          "Date" : "Mon, 17 Oct 2022 19:06:08 GMT",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=eQ1TGlrotDP954wHzt9GEgxydXK4h%2B3rIFb0yDoQY1nQvP1XCNqtJS%2FojDiRtexMIL%2ByosGZKZdEgcfOpioXro2iSnC688tsug6srZK3i9l4yJIw9Rqojyq5iZi5Iy9xyQCwTzoF2jRSG9zy87g%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Set-Cookie" : "dtCookie=v_4_srv_10_sn_56FF06C10720C912F1AC8FD000A11709_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"-1347002193\"",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
           "Pragma" : "no-cache",
-          "Expires" : "-1",
-          "server-timing" : "dtRpid;desc=\"377017079\"",
+          "cf-ray" : "75bb4f4938627881-VIE",
+          "cf-cache-status" : "DYNAMIC",
           "Content-Language" : "en",
-          "Server" : "nginx",
-          "Content-Encoding" : "gzip"
+          "Content-Encoding" : "br",
+          "Content-Type" : "application\/json",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "x-response-hash" : "04204be887b7be4db0ba3d30710b96fb",
+          "x-openapi-message" : "OK",
+          "Cache-Control" : "private, must-revalidate",
+          "Server" : "cloudflare",
+          "Expires" : "-1"
         }
       }
     }
   ],
-  "name" : "StoreProjectDownloader.fetchProjectDetails.IntegerId.success"
+  "name" : "StoreProjectDownloader.fetchProjectDetails.fail.request"
 }
