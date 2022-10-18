@@ -50,7 +50,8 @@ extension LooksTableViewController {
 extension LooksTableViewController: MediaLibraryViewControllerImportDelegate {
     func mediaLibraryViewController(_ mediaLibraryViewController: MediaLibraryViewController, didPickItemsForImport items: [MediaItem]) {
         for item in items {
-            guard let data = item.cachedData else { self.showImportAlert(itemName: item.name); continue }
+            guard let itemName = item.name else { continue }
+            guard let data = item.cachedData else { self.showImportAlert(itemName: itemName); continue }
 
             if let image = UIImage(data: data) {
                 self.addMediaLibraryLoadedImage(image, withName: item.name)

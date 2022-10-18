@@ -21,10 +21,16 @@
  */
 
 struct MediaItem: Codable {
-    let name: String
-    let fileExtension: String
-    let category: String
-    let relativePath: String
+    let id: Int
+    let name: String?
+    let flavours: [String]?
+    let packages: [String]?
+    let category: String?
+    let author: String?
+    let fileExtension: String?
+    let downloadURLString: String?
+    let size: Int?
+    let fileType: String?
 
     /// Since the API doesn't offer previews of items it would
     /// be a waste to not keep the already downloaded data
@@ -32,17 +38,47 @@ struct MediaItem: Codable {
     var cachedData: Data?
 
     private enum CodingKeys: String, CodingKey {
-        case name
+        case id = "id"
+        case name = "name"
+        case flavours = "flavours"
+        case packages = "packages"
+        case category = "category"
+        case author = "author"
         case fileExtension = "extension"
-        case category
-        case relativePath = "download_url"
+        case downloadURLString = "download_url"
+        case size = "size"
+        case fileType = "file_type"
+    }
+
+    static var defaultQueryParameters: [String] {
+        [CodingKeys.id.rawValue,
+         CodingKeys.name.rawValue,
+         CodingKeys.category.rawValue,
+         CodingKeys.fileExtension.rawValue,
+         CodingKeys.downloadURLString.rawValue]
+    }
+
+    init(id: Int, name: String? = nil, flavours: [String]? = nil, packages: [String]? = nil,
+         category: String? = nil, author: String? = nil, fileExtension: String? = nil,
+         downloadURLString: String? = nil, size: Int? = nil, fileType: String? = nil, cachedData: Data? = nil) {
+        self.id = id
+        self.name = name
+        self.flavours = flavours
+        self.packages = packages
+        self.category = category
+        self.author = author
+        self.fileExtension = fileExtension
+        self.downloadURLString = downloadURLString
+        self.size = size
+        self.fileType = fileType
+        self.cachedData = cachedData
     }
 }
 
 extension MediaItem {
-    var downloadURL: URL {
-        guard let baseURL = URL(string: NetworkDefines.mediaLibraryDownloadBaseUrl) else { fatalError("Media Library base URL constant misconfiguration") }
-        return baseURL.appendingPathComponent(self.relativePath)
+    var downloadURL: URL? {
+        guard let downloadPath = self.downloadURLString else { return nil }
+        return URL(string: downloadPath)
     }
 }
 
@@ -67,13 +103,16 @@ extension Sequence where Iterator.Element == MediaItem {
         }
 
         for item in self {
-            if let categoryIndex = categories[item.category] {
+            guard let itemCategory = item.category else {
+                continue
+            }
+            if let categoryIndex = categories[itemCategory] {
                 // category exists, add the item to the list
                 groupedItems[categoryIndex].append(item)
             } else {
                 // add the category with a list containing the current item
                 let categoryIndex = categories.count
-                categories[item.category] = categoryIndex
+                categories[itemCategory] = categoryIndex
                 groupedItems.append([item])
             }
         }

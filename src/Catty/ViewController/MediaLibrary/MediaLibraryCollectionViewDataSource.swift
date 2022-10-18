@@ -180,8 +180,12 @@ final class ImagesLibraryCollectionViewDataSource: MediaLibraryCollectionViewDat
     // MARK: - Helper Methods
 
     private func fetchData(for item: MediaItem, completion: @escaping (Data?) -> Void) {
+        guard let downloadURL = item.downloadURL else {
+            completion(nil)
+            return
+        }
         // try to get the image from cache
-        let resource = ImageResource(downloadURL: item.downloadURL)
+        let resource = ImageResource(downloadURL: downloadURL)
         let options: KingfisherOptionsInfo = [.onlyFromCache]
         if ImageCache.default.imageCachedType(forKey: resource.cacheKey).cached {
             ImageCache.default.retrieveImage(forKey: resource.cacheKey, options: options) { result in
