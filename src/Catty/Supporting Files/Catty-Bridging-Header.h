@@ -159,6 +159,7 @@
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
 #import "UndoManager.h"
+#import "RoundBorderedButton.h"
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes
@@ -172,7 +173,6 @@
 #import "CatrobatTableViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "LoginViewController.h"
-#import "ProjectDetailStoreViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 
