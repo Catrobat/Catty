@@ -24,6 +24,75 @@ import Foundation
 
 @objc
 extension ProjectDetailStoreViewController2 {
+    private func addDownloadAgainButton(to view: UIView, withTarget target: Any?) {
+        guard let openButton = view.viewWithTag(Int(kOpenButtonTag)) as? UIButton else { return }
+        let openButtonRightBorder = openButton.frame.origin.x + openButton.frame.width
+        let maxWidth = view.frame.size.width - openButtonRightBorder - type(of: self).spaceBetweenButtons - type(of: self).inset
+
+        let downloadAgainButton = RoundBorderedButton(frame: self.createDownloadAgainButtonFrame(view: view, openButton: openButton))
+        downloadAgainButton.setTitle(kLocalizedDownloadAgain, for: .normal)
+        downloadAgainButton.addTarget(target, action: #selector(self.downloadAgain(_:)), for: .touchUpInside)
+        downloadAgainButton.tag = Int(kDownloadAgainButtonTag)
+        downloadAgainButton.isHidden = true
+        downloadAgainButton.sizeToFit()
+
+        if downloadAgainButton.frame.size.width > maxWidth {
+            downloadAgainButton.frame.size.width = maxWidth
+        }
+
+        view.addSubview(downloadAgainButton)
+    }
+    
+    func downloadButtonPressed() {
+        let button = projectView.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
+        projectView.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
+        button?.isHidden = false
+        button?.progress = 0
+        if let duplicateName = Util.uniqueName(project.name, existingNames: Project.allProjectNames()) {
+            download(name: duplicateName)
+        }
+        /*
+         NSDebug(@"Download Button!");
+         EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+         [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+         button.hidden = NO;
+         button.progress = 0;
+         NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
+         [self downloadWithName:duplicateName];
+         */
+        
+    }
+    
+    func downloadAgain(_ sender: Any?) {
+        
+        let button = projectView.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
+        projectView.viewWithTag(Int(kOpenButtonTag))?.isHidden = true
+        
+        let downloadAgainButton = projectView.viewWithTag(Int(kDownloadAgainButtonTag)) as? UIButton
+        downloadAgainButton?.isEnabled = false
+        button?.isHidden = false
+        button?.progress = 0
+        
+        if let duplicateName = Util.uniqueName(project.name, existingNames: Project.allProjectNames()) {
+            download(name: duplicateName)
+        }
+       
+        /*
+         -(void)downloadAgain:(id)sender
+         {
+             EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+             [self.projectView viewWithTag:kOpenButtonTag].hidden = YES;
+             UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+             downloadAgainButton.enabled = NO;
+             button.hidden = NO;
+             button.progress = 0;
+             NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
+             NSDebug(@"%@",[Project allProjectNames]);
+             [self downloadWithName:duplicateName];
+         }
+         */
+    }
+    
     func download(name: String) {
         storeProjectDownloader.download(
             projectId: self.project.projectID,

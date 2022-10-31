@@ -24,7 +24,7 @@ import Foundation
 
 // TODO: header properties are not working correctly
 
-class ProjectDetailStoreViewController: UIViewController {
+class ProjectDetailStoreViewController2: UIViewController {
     var project: CatrobatProject
     @IBOutlet weak var scrollViewOutlet: UIScrollView!
     //var storeProjectDownloader: StoreProjectDownloader
@@ -170,6 +170,23 @@ class ProjectDetailStoreViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         // [self.navigationController popViewControllerAnimated:YES];
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        DispatchQueue.main.async(execute: { [self] in
+            loadProject(project)
+            view.setNeedsDisplay()
+        })
+        
+        /*
+         -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+         {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self loadProject:self.project];
+                 [self.view setNeedsDisplay];
+             });
+         }
+         */
+    }
 
     deinit {
         scrollViewOutlet.removeFromSuperview()
@@ -194,25 +211,7 @@ class ProjectDetailStoreViewController: UIViewController {
          */
     }
 
-    func downloadButtonPressed() {
-        let button = projectView.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
-        projectView.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
-        button?.isHidden = false
-        button?.progress = 0
-        if let duplicateName = Util.uniqueName(project.name, existingNames: Project.allProjectNames()) {
-            download(name: duplicateName)
-        }
-        /*
-         NSDebug(@"Download Button!");
-         EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-         [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
-         button.hidden = NO;
-         button.progress = 0;
-         NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
-         [self downloadWithName:duplicateName];
-         */
-        
-    }
+    
 
     func downloadButtonPressed(sender: String) {
         downloadButtonPressed()
@@ -230,36 +229,6 @@ class ProjectDetailStoreViewController: UIViewController {
          - (void)reportProject:(id)sender;
          {
              [self reportProject];
-         }
-         */
-    }
-
-    func downloadAgain(_ sender: Any?) {
-        
-        let button = projectView.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
-        projectView.viewWithTag(Int(kOpenButtonTag))?.isHidden = true
-        
-        let downloadAgainButton = projectView.viewWithTag(Int(kDownloadAgainButtonTag)) as? UIButton
-        downloadAgainButton?.isEnabled = false
-        button?.isHidden = false
-        button?.progress = 0
-        
-        if let duplicateName = Util.uniqueName(project.name, existingNames: Project.allProjectNames()) {
-            download(name: duplicateName)
-        }
-       
-        /*
-         -(void)downloadAgain:(id)sender
-         {
-             EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-             [self.projectView viewWithTag:kOpenButtonTag].hidden = YES;
-             UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
-             downloadAgainButton.enabled = NO;
-             button.hidden = NO;
-             button.progress = 0;
-             NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
-             NSDebug(@"%@",[Project allProjectNames]);
-             [self downloadWithName:duplicateName];
          }
          */
     }
@@ -286,6 +255,16 @@ class ProjectDetailStoreViewController: UIViewController {
     func hideLoadingView() {
         loadingView.isHidden = true
         // [self.loadingView hide];
+    }
+    
+    private func addLoadingButton(to view: UIView, openButton: UIButton, withTarget target: Any?) {
+        let button = EVCircularProgressView()
+        button.tag = Int(kStopLoadingTag)
+        button.tintColor = UIColor.buttonTint
+        button.frame = self.createLoadingButtonFrame(view: view, openButton: openButton)
+        button.isHidden = true
+        button.addTarget(target, action: #selector(URLProtocol.stopLoading), for: .touchUpInside)
+        view.addSubview(button)
     }
 
     //MARK: Actions
@@ -325,23 +304,4 @@ class ProjectDetailStoreViewController: UIViewController {
         [[Util class] setNetworkActivityIndicator:NO];
          */
     }
-
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        DispatchQueue.main.async(execute: { [self] in
-            loadProject(project)
-            view.setNeedsDisplay()
-        })
-        
-        /*
-         -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-         {
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 [self loadProject:self.project];
-                 [self.view setNeedsDisplay];
-             });
-         }
-         */
-    }
-    
 }

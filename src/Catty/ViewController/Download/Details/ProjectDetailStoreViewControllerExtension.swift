@@ -259,34 +259,9 @@ import UIKit
         return openButton
     }
 
-    private func addDownloadAgainButton(to view: UIView, withTarget target: Any?) {
-        guard let openButton = view.viewWithTag(Int(kOpenButtonTag)) as? UIButton else { return }
-        let openButtonRightBorder = openButton.frame.origin.x + openButton.frame.width
-        let maxWidth = view.frame.size.width - openButtonRightBorder - type(of: self).spaceBetweenButtons - type(of: self).inset
 
-        let downloadAgainButton = RoundBorderedButton(frame: self.createDownloadAgainButtonFrame(view: view, openButton: openButton))
-        downloadAgainButton.setTitle(kLocalizedDownloadAgain, for: .normal)
-        downloadAgainButton.addTarget(target, action: #selector(self.downloadAgain(_:)), for: .touchUpInside)
-        downloadAgainButton.tag = Int(kDownloadAgainButtonTag)
-        downloadAgainButton.isHidden = true
-        downloadAgainButton.sizeToFit()
 
-        if downloadAgainButton.frame.size.width > maxWidth {
-            downloadAgainButton.frame.size.width = maxWidth
-        }
-
-        view.addSubview(downloadAgainButton)
-    }
-
-    private func addLoadingButton(to view: UIView, openButton: UIButton, withTarget target: Any?) {
-        let button = EVCircularProgressView()
-        button.tag = Int(kStopLoadingTag)
-        button.tintColor = UIColor.buttonTint
-        button.frame = self.createLoadingButtonFrame(view: view, openButton: openButton)
-        button.isHidden = true
-        button.addTarget(target, action: #selector(URLProtocol.stopLoading), for: .touchUpInside)
-        view.addSubview(button)
-    }
+    
 
     private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) -> UILabel {
         let projectDouble = (project.uploaded as NSString).doubleValue
