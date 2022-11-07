@@ -22,80 +22,69 @@
 
 import Foundation
 
-// TODO: header properties are not working correctly
+// TODO: #selector are not working correctly
+// TODO: var project and projectView are not initialized correctly
 
-class ProjectDetailStoreViewController2: UIViewController {
+class ProjectDetailStoreViewController: UIViewController {
     var project: CatrobatProject
     @IBOutlet weak var scrollViewOutlet: UIScrollView!
-    //var storeProjectDownloader: StoreProjectDownloader
     var storeProjectDownloader = StoreProjectDownloader(session: StoreProjectDownloader.defaultSession(), fileManager: CBFileManager.shared())
-    //var projectManager: ProjectManager
     var projectManager = ProjectManager.shared
-    var projectView: UIView?
-    /*
-    @property (nonatomic, strong) CatrobatProject *project;
-    @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
-    @property (nonatomic, strong) StoreProjectDownloader *storeProjectDownloader;
-    @property (nonatomic, strong) ProjectManager *projectManager;
-    @property (nonatomic, strong) UIView *projectView;
+    var projectView: UIView
+    
+    /* ProjectDetailStoreViewController.h
+     @class CatrobatProject;
+     @class StoreProjectDownloader;
+     @class ProjectManager;
+
+     @interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
+
+     @property (nonatomic, strong) CatrobatProject *project;
+     @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
+     @property (nonatomic, strong) StoreProjectDownloader *storeProjectDownloader;
+     @property (nonatomic, strong) ProjectManager *projectManager;
+     @property (nonatomic, strong) UIView *projectView;
     */
     
-    //private var loadingView: LoadingView
     private var loadingView = LoadingView()
+    //never used
     //private var session: URLSession
     //private var dataTask: URLSessionDataTask
     
+    /* ProjectDetailStoreViewController
+    @interface ProjectDetailStoreViewController ()
+
+    @property (nonatomic, strong) LoadingView *loadingView;
+    @property (strong, nonatomic) NSURLSession *session;
+    @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
+    */
+    
+    // MARK: original init of projectManager and storedownloader
+    
     /*
-     @property (nonatomic, strong) LoadingView *loadingView;
-     @property (strong, nonatomic) NSURLSession *session;
-     @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
-     */
-  /*
-    func projectManager() -> ProjectManager {
-        if !projectManager {
-            projectManager = ProjectManager.shared()
-        }
-        return projectManager
-        /*
-         - (ProjectManager*)projectManager
-         {
-             if (! _projectManager) {
-                 _projectManager = [ProjectManager shared];
-             }
-             return _projectManager;
-         }
-         */
+    - (ProjectManager*)projectManager
+    {
+      if (! _projectManager) {
+          _projectManager = [ProjectManager shared];
+      }
+      return _projectManager;
     }
-    
-    
-    func storeProjectDownloader() -> StoreProjectDownloader? {
-        if storeProjectDownloader == nil {
-            storeProjectDownloader = StoreProjectDownloader(session: StoreProjectDownloader.defaultSession(), fileManager: CBFileManager.shared())
-        }
-        return storeProjectDownloader
-        
-        /*
-         - (StoreProjectDownloader*)storeProjectDownloader
-         {
-             if (_storeProjectDownloader == nil) {
-                 _storeProjectDownloader = [[StoreProjectDownloader alloc] initWithSession:[StoreProjectDownloader defaultSession] fileManager:[CBFileManager sharedManager]];
-             }
-             return _storeProjectDownloader;
-         }
-         */
-    }*/
+
+    - (StoreProjectDownloader*)storeProjectDownloader
+    {
+      if (_storeProjectDownloader == nil) {
+          _storeProjectDownloader = [[StoreProjectDownloader alloc] initWithSession:[StoreProjectDownloader defaultSession] fileManager:[CBFileManager sharedManager]];
+      }
+      return _storeProjectDownloader;
+    }
+    */
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        //project = CatrobatProject()
-        //projectView = UIView()
+        
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        //projectManager = ProjectManager.shared
         
-        //loadingView = LoadingView()
         view.addSubview(loadingView)
-        
-        //storeProjectDownloader = StoreProjectDownloader(session: StoreProjectDownloader.defaultSession(), fileManager: CBFileManager.shared())
-        /*
+        /* original
          - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
          {
              self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -110,8 +99,6 @@ class ProjectDetailStoreViewController2: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,10 +117,10 @@ class ProjectDetailStoreViewController2: UIViewController {
          */
     }
     
-    
     func initNavigationBar() {
         navigationItem.title = kLocalizedDetails
         title = kLocalizedDetails
+        
         /*
         - (void)initNavigationBar
         {
@@ -144,6 +131,7 @@ class ProjectDetailStoreViewController2: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.hidesBottomBarWhenPushed = false
+        NotificationCenter.default.removeObserver(self)
         
         /*
          [super viewWillDisappear:animated];
@@ -154,7 +142,11 @@ class ProjectDetailStoreViewController2: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(true, animated: animated)
+        guard self.navigationController != nil else {
+            return
+        }
+        self.navigationController!.setToolbarHidden(true, animated: animated)
+        
         /*
          [super viewWillAppear:animated];
          [self.navigationController setToolbarHidden:YES];
@@ -163,11 +155,16 @@ class ProjectDetailStoreViewController2: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         //[super viewDidAppear:animated];
     }
 
     func back() {
-        self.navigationController?.popViewController(animated: true)
+        guard self.navigationController != nil else {
+            return
+        }
+        self.navigationController!.popViewController(animated: true)
+        
         // [self.navigationController popViewControllerAnimated:YES];
     }
     
@@ -190,6 +187,7 @@ class ProjectDetailStoreViewController2: UIViewController {
 
     deinit {
         scrollViewOutlet.removeFromSuperview()
+        
         /*
         - (void)dealloc
         {
@@ -200,7 +198,7 @@ class ProjectDetailStoreViewController2: UIViewController {
 
     //MARK: Delegates
     
-    func openButtonPressed(sender: String){
+    func openButtonPressed(_ sender: Any?){
         openButtonPressed()
      
         /*
@@ -213,8 +211,9 @@ class ProjectDetailStoreViewController2: UIViewController {
 
     
 
-    func downloadButtonPressed(sender: String) {
+    func downloadButtonPressed(_ sender: Any?) {
         downloadButtonPressed()
+        
         /*
          - (void)downloadButtonPressed:(id)sender
          {
@@ -222,9 +221,60 @@ class ProjectDetailStoreViewController2: UIViewController {
          }
          */
     }
+    
+    func downloadButtonPressed() {
+        let button = projectView.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
+        projectView.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
+        button?.isHidden = false
+        button?.progress = 0
+        if let duplicateName = Util.uniqueName(project.name, existingNames: Project.allProjectNames()) {
+            download(name: duplicateName)
+        }
+        /*
+         NSDebug(@"Download Button!");
+         EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+         [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+         button.hidden = NO;
+         button.progress = 0;
+         NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
+         [self downloadWithName:duplicateName];
+         */
+        
+    }
+
+    func downloadAgain(_ sender: Any?) {
+        
+        let button = projectView.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
+        projectView.viewWithTag(Int(kOpenButtonTag))?.isHidden = true
+        
+        let downloadAgainButton = projectView.viewWithTag(Int(kDownloadAgainButtonTag)) as? UIButton
+        downloadAgainButton?.isEnabled = false
+        button?.isHidden = false
+        button?.progress = 0
+        
+        if let duplicateName = Util.uniqueName(project.name, existingNames: Project.allProjectNames()) {
+            download(name: duplicateName)
+        }
+       
+        /*
+         -(void)downloadAgain:(id)sender
+         {
+             EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+             [self.projectView viewWithTag:kOpenButtonTag].hidden = YES;
+             UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+             downloadAgainButton.enabled = NO;
+             button.hidden = NO;
+             button.progress = 0;
+             NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
+             NSDebug(@"%@",[Project allProjectNames]);
+             [self downloadWithName:duplicateName];
+         }
+         */
+    }
 
     func reportProject(_ sender: Any?) {
         reportProject()
+        
         /*
          - (void)reportProject:(id)sender;
          {
@@ -236,13 +286,8 @@ class ProjectDetailStoreViewController2: UIViewController {
     //MARK: Loading View
 
     func showLoadingView() {
-       
-        /*if loadingView == nil {
-            loadingView = LoadingView()
-            view.addSubview(loadingView)
-        }*/
         loadingView.show()
-        
+      
         /*
          if(!self.loadingView) {
             self.loadingView = [[LoadingView alloc] init];
@@ -257,15 +302,7 @@ class ProjectDetailStoreViewController2: UIViewController {
         // [self.loadingView hide];
     }
     
-    private func addLoadingButton(to view: UIView, openButton: UIButton, withTarget target: Any?) {
-        let button = EVCircularProgressView()
-        button.tag = Int(kStopLoadingTag)
-        button.tintColor = UIColor.buttonTint
-        button.frame = self.createLoadingButtonFrame(view: view, openButton: openButton)
-        button.isHidden = true
-        button.addTarget(target, action: #selector(URLProtocol.stopLoading), for: .touchUpInside)
-        view.addSubview(button)
-    }
+
 
     //MARK: Actions
     

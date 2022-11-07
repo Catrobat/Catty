@@ -32,7 +32,7 @@
 @class StoreProjectDownloader;
 @class ProjectManager;
 
-@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
+@interface ProjectDetailStoreViewControllerOld : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;

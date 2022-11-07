@@ -32,7 +32,7 @@
 #import "EVCircularProgressView.h"
 #import "RoundBorderedButton.h"
 
-@interface ProjectDetailStoreViewController ()
+@interface ProjectDetailStoreViewControllerOld ()
 
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (strong, nonatomic) NSURLSession *session;
@@ -40,7 +40,7 @@
 
 @end
 
-@implementation ProjectDetailStoreViewController2
+@implementation ProjectDetailStoreViewControllerOld
 
 #pragma mark - getters and setters
 - (ProjectManager*)projectManager

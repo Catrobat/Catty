@@ -22,8 +22,8 @@
 
 import Foundation
 
-@objc
-extension ProjectDetailStoreViewControllerOld {
+
+extension ProjectDetailStoreViewController {
     func download(name: String) {
         storeProjectDownloader.download(
             projectId: self.project.projectID,

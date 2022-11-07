@@ -23,7 +23,7 @@
 import Foundation
 
 @objc
-extension ProjectDetailStoreViewController {
+extension ProjectDetailStoreViewControllerOld {
     func reportProject() {
         guard UserDefaults.standard.bool(forKey: NetworkDefines.kUserIsLoggedIn) else {
             Util.alert(text: kLocalizedLoginToReport)

@@ -22,7 +22,7 @@
 import ActiveLabel
 import UIKit
 
-@objc extension ProjectDetailStoreViewController {
+@objc extension ProjectDetailStoreViewControllerOld {
 
     static var height: CGFloat = Util.screenHeight()
     static var inset: CGFloat = 25.0
@@ -122,6 +122,25 @@ import UIKit
 
         return stackView
     }
+    
+    private func addDownloadAgainButton(to view: UIView, withTarget target: Any?) {
+        guard let openButton = view.viewWithTag(Int(kOpenButtonTag)) as? UIButton else { return }
+        let openButtonRightBorder = openButton.frame.origin.x + openButton.frame.width
+        let maxWidth = view.frame.size.width - openButtonRightBorder - type(of: self).spaceBetweenButtons - type(of: self).inset
+
+        let downloadAgainButton = RoundBorderedButton(frame: self.createDownloadAgainButtonFrame(view: view, openButton: openButton))
+        downloadAgainButton.setTitle(kLocalizedDownloadAgain, for: .normal)
+        downloadAgainButton.addTarget(target, action: #selector(self.downloadAgain(_:)), for: .touchUpInside)
+        downloadAgainButton.tag = Int(kDownloadAgainButtonTag)
+        downloadAgainButton.isHidden = true
+        downloadAgainButton.sizeToFit()
+
+        if downloadAgainButton.frame.size.width > maxWidth {
+            downloadAgainButton.frame.size.width = maxWidth
+        }
+
+        view.addSubview(downloadAgainButton)
+    }
 
     private func setupTagLabel(for tag: String) -> PaddingLabel {
         let tagLabel = PaddingLabel(topInset: 10, bottomInset: 10, leftInset: 10, rightInset: 10)
@@ -150,6 +169,16 @@ import UIKit
         view.addSubview(nameLabel)
 
         return nameLabel
+    }
+    
+    private func addLoadingButton(to view: UIView, openButton: UIButton, withTarget target: Any?) {
+        let button = EVCircularProgressView()
+        button.tag = Int(kStopLoadingTag)
+        button.tintColor = UIColor.buttonTint
+        button.frame = self.createLoadingButtonFrame(view: view, openButton: openButton)
+        button.isHidden = true
+        button.addTarget(target, action: #selector(URLProtocol.stopLoading), for: .touchUpInside)
+        view.addSubview(button)
     }
 
     private func addAuthorLabel(withAuthor author: String?, to view: UIView, nameLabel: UILabel) {

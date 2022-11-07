@@ -22,7 +22,7 @@
 import ActiveLabel
 import UIKit
 
-@objc extension ProjectDetailStoreViewController2 {
+extension ProjectDetailStoreViewController {
 
     static var height: CGFloat = Util.screenHeight()
     static var inset: CGFloat = 25.0
@@ -236,7 +236,7 @@ import UIKit
         let downloadButton = RoundBorderedButton(frame: self.createDownloadAndOpenButtonFrame(view: view, thumbnailView: thumbnailView), andInvertedColor: true) as UIButton
         downloadButton.tag = Int(kDownloadButtonTag)
         downloadButton.setTitle(kLocalizedDownload, for: .normal)
-        downloadButton.addTarget(target, action: #selector(self.downloadButtonPressed), for: .touchUpInside)
+        downloadButton.addTarget(target, action: #selector(downloadButtonPressed), for: .touchUpInside)
         downloadButton.sizeToFit()
 
         let activity = UIActivityIndicatorView(style: .gray)
@@ -278,6 +278,7 @@ import UIKit
         view.addSubview(downloadAgainButton)
     }
 
+    
     private func addLoadingButton(to view: UIView, openButton: UIButton, withTarget target: Any?) {
         let button = EVCircularProgressView()
         button.tag = Int(kStopLoadingTag)
