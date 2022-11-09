@@ -78,7 +78,7 @@ extension ProjectDetailStoreViewController {
         let descriptionView = self.addProjectDescriptionLabel(project.projectDescription, to: view, tagsView: tagsView, target: target)
 
         let lastInformationItem = self.addInformationLabel(to: view, withDescriptionView: descriptionView)
-        self.addReportButton(to: view, lastInformationItem: lastInformationItem, withTarget: target)
+        //self.addReportButton(to: view, lastInformationItem: lastInformationItem, withTarget: target)
 
         if Project.projectExists(withProjectID: project.projectID) {
             view.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
@@ -250,7 +250,7 @@ extension ProjectDetailStoreViewController {
         let openButton = RoundBorderedButton(frame: self.createDownloadAndOpenButtonFrame(view: view, thumbnailView: thumbnailView), andInvertedColor: true) as UIButton
         openButton.tag = Int(kOpenButtonTag)
         openButton.setTitle(kLocalizedOpen, for: .normal)
-        openButton.addTarget(target, action: #selector(self.openButtonPressed(_:)), for: .touchUpInside)
+        openButton.addTarget(target, action: #selector(openButtonPressed), for: .touchUpInside)
         openButton.isHidden = true
 
         openButton.sizeToFit()
@@ -266,7 +266,7 @@ extension ProjectDetailStoreViewController {
 
         let downloadAgainButton = RoundBorderedButton(frame: self.createDownloadAgainButtonFrame(view: view, openButton: openButton))
         downloadAgainButton.setTitle(kLocalizedDownloadAgain, for: .normal)
-        downloadAgainButton.addTarget(target, action: #selector(self.downloadAgain(_:)), for: .touchUpInside)
+        downloadAgainButton.addTarget(target, action: #selector(self.downloadAgain), for: .touchUpInside)
         downloadAgainButton.tag = Int(kDownloadAgainButtonTag)
         downloadAgainButton.isHidden = true
         downloadAgainButton.sizeToFit()
@@ -278,7 +278,7 @@ extension ProjectDetailStoreViewController {
         view.addSubview(downloadAgainButton)
     }
 
-    
+
     private func addLoadingButton(to view: UIView, openButton: UIButton, withTarget target: Any?) {
         let button = EVCircularProgressView()
         button.tag = Int(kStopLoadingTag)
@@ -331,7 +331,7 @@ extension ProjectDetailStoreViewController {
         return lastItem
     }
 
-    private func addReportButton(to view: UIView, lastInformationItem: UIView, withTarget target: Any?) {
+    /*private func addReportButton(to view: UIView, lastInformationItem: UIView, withTarget target: Any?) {
         let offsetLine = lastInformationItem.frame.origin.y + lastInformationItem.frame.height + type(of: self).verticalSectionPadding
         let offsetButton = offsetLine + type(of: self).verticalSectionPadding
 
@@ -346,7 +346,7 @@ extension ProjectDetailStoreViewController {
         reportButton.sizeToFit()
 
         view.addSubview(reportButton)
-    }
+    }*/
 
     private func addHorizontalLine(to view: UIView, verticalOffset: CGFloat) {
         let width = view.frame.size.width - type(of: self).inset * 2
@@ -400,7 +400,7 @@ extension ProjectDetailStoreViewController {
         label.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
     }
 
-    func openButtonPressed() {
+    @objc func openButtonPressed() {
         guard let localProjectNames = self.projectManager.projectNames(for: project.projectID) else {
             Util.alert(text: kLocalizedUnableToLoadProject)
             return

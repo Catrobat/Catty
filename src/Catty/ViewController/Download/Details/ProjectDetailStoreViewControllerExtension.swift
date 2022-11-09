@@ -122,7 +122,7 @@ import UIKit
 
         return stackView
     }
-    
+
     private func addDownloadAgainButton(to view: UIView, withTarget target: Any?) {
         guard let openButton = view.viewWithTag(Int(kOpenButtonTag)) as? UIButton else { return }
         let openButtonRightBorder = openButton.frame.origin.x + openButton.frame.width
@@ -170,7 +170,7 @@ import UIKit
 
         return nameLabel
     }
-    
+
     private func addLoadingButton(to view: UIView, openButton: UIButton, withTarget target: Any?) {
         let button = EVCircularProgressView()
         button.tag = Int(kStopLoadingTag)
@@ -290,7 +290,7 @@ import UIKit
 
 
 
-    
+
 
     private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) -> UILabel {
         let projectDouble = (project.uploaded as NSString).doubleValue

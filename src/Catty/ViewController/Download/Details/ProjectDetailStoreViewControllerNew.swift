@@ -25,13 +25,13 @@ import Foundation
 // TODO: #selector are not working correctly
 // TODO: var project and projectView are not initialized correctly
 
-class ProjectDetailStoreViewController: UIViewController {
-    var project: CatrobatProject
+class ProjectDetailStoreViewController: UIViewController, UIScrollViewDelegate {
+    var project: CatrobatProject!
     @IBOutlet weak var scrollViewOutlet: UIScrollView!
     var storeProjectDownloader = StoreProjectDownloader(session: StoreProjectDownloader.defaultSession(), fileManager: CBFileManager.shared())
     var projectManager = ProjectManager.shared
-    var projectView: UIView
-    
+    var projectView: UIView!
+
     /* ProjectDetailStoreViewController.h
      @class CatrobatProject;
      @class StoreProjectDownloader;
@@ -45,12 +45,12 @@ class ProjectDetailStoreViewController: UIViewController {
      @property (nonatomic, strong) ProjectManager *projectManager;
      @property (nonatomic, strong) UIView *projectView;
     */
-    
+
     private var loadingView = LoadingView()
     //never used
     //private var session: URLSession
     //private var dataTask: URLSessionDataTask
-    
+
     /* ProjectDetailStoreViewController
     @interface ProjectDetailStoreViewController ()
 
@@ -58,9 +58,9 @@ class ProjectDetailStoreViewController: UIViewController {
     @property (strong, nonatomic) NSURLSession *session;
     @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
     */
-    
+
     // MARK: original init of projectManager and storedownloader
-    
+
     /*
     - (ProjectManager*)projectManager
     {
@@ -80,9 +80,9 @@ class ProjectDetailStoreViewController: UIViewController {
     */
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        
+
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
+
         view.addSubview(loadingView)
         /* original
          - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -95,18 +95,18 @@ class ProjectDetailStoreViewController: UIViewController {
          }
          */
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initNavigationBar()
         self.hidesBottomBarWhenPushed = true
         self.view.backgroundColor = UIColor.background
         loadProject(project)
-        
+
         /*
          [super viewDidLoad];
          [self initNavigationBar];
@@ -116,37 +116,37 @@ class ProjectDetailStoreViewController: UIViewController {
          [self loadProject:self.project];
          */
     }
-    
+
     func initNavigationBar() {
         navigationItem.title = kLocalizedDetails
         title = kLocalizedDetails
-        
+
         /*
         - (void)initNavigationBar
         {
             self.title = self.navigationItem.title = kLocalizedDetails;
         }*/
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.hidesBottomBarWhenPushed = false
         NotificationCenter.default.removeObserver(self)
-        
+
         /*
          [super viewWillDisappear:animated];
          self.hidesBottomBarWhenPushed = NO;
          [[NSNotificationCenter defaultCenter] removeObserver:self];
          */
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard self.navigationController != nil else {
             return
         }
         self.navigationController!.setToolbarHidden(true, animated: animated)
-        
+
         /*
          [super viewWillAppear:animated];
          [self.navigationController setToolbarHidden:YES];
@@ -155,7 +155,7 @@ class ProjectDetailStoreViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         //[super viewDidAppear:animated];
     }
 
@@ -164,16 +164,16 @@ class ProjectDetailStoreViewController: UIViewController {
             return
         }
         self.navigationController!.popViewController(animated: true)
-        
+
         // [self.navigationController popViewControllerAnimated:YES];
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         DispatchQueue.main.async(execute: { [self] in
             loadProject(project)
             view.setNeedsDisplay()
         })
-        
+
         /*
          -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
          {
@@ -187,7 +187,7 @@ class ProjectDetailStoreViewController: UIViewController {
 
     deinit {
         scrollViewOutlet.removeFromSuperview()
-        
+
         /*
         - (void)dealloc
         {
@@ -197,7 +197,7 @@ class ProjectDetailStoreViewController: UIViewController {
     }
 
     //MARK: Delegates
-    
+    /*
     func openButtonPressed(_ sender: Any?){
         openButtonPressed()
      
@@ -221,8 +221,8 @@ class ProjectDetailStoreViewController: UIViewController {
          }
          */
     }
-    
-    func downloadButtonPressed() {
+     */
+    @objc func downloadButtonPressed() {
         let button = projectView.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
         projectView.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
         button?.isHidden = false
@@ -239,23 +239,23 @@ class ProjectDetailStoreViewController: UIViewController {
          NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
          [self downloadWithName:duplicateName];
          */
-        
+
     }
 
-    func downloadAgain(_ sender: Any?) {
-        
+    @objc func downloadAgain() {
+
         let button = projectView.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
         projectView.viewWithTag(Int(kOpenButtonTag))?.isHidden = true
-        
+
         let downloadAgainButton = projectView.viewWithTag(Int(kDownloadAgainButtonTag)) as? UIButton
         downloadAgainButton?.isEnabled = false
         button?.isHidden = false
         button?.progress = 0
-        
+
         if let duplicateName = Util.uniqueName(project.name, existingNames: Project.allProjectNames()) {
             download(name: duplicateName)
         }
-       
+
         /*
          -(void)downloadAgain:(id)sender
          {
@@ -274,7 +274,7 @@ class ProjectDetailStoreViewController: UIViewController {
 
     func reportProject(_ sender: Any?) {
         reportProject()
-        
+
         /*
          - (void)reportProject:(id)sender;
          {
@@ -287,7 +287,7 @@ class ProjectDetailStoreViewController: UIViewController {
 
     func showLoadingView() {
         loadingView.show()
-      
+
         /*
          if(!self.loadingView) {
             self.loadingView = [[LoadingView alloc] init];
@@ -296,34 +296,34 @@ class ProjectDetailStoreViewController: UIViewController {
         [self.loadingView show];
          */
     }
-    
+
     func hideLoadingView() {
         loadingView.isHidden = true
         // [self.loadingView hide];
     }
-    
+
 
 
     //MARK: Actions
-    
+
     func stopLoading() {
         storeProjectDownloader.cancelDownload(for: project.projectID)
-        
+
         let button = view.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
         button?.isHidden = true
         button?.progress = 0
-        
+
         if let downloadAgainButton = view.viewWithTag(Int(kDownloadAgainButtonTag)) as? UIButton {
             if downloadAgainButton.isEnabled {
                 view.viewWithTag(Int(kDownloadAgainButtonTag))?.isHidden = false
-            } else{
+            } else {
                 view.viewWithTag(Int(kOpenButtonTag))?.isHidden = false
                 downloadAgainButton.isEnabled = true
             }
         }
-        
+
         Util.setNetworkActivityIndicator(false)
-        
+
         /*
         [self.storeProjectDownloader cancelDownloadForProjectWithId:self.project.projectID];
 
