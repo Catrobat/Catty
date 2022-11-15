@@ -75,7 +75,7 @@ final class UIViewControllerExtensionTests: XCTestCase {
         XCTAssertTrue(navigationControllerMock?.currentViewController is ProjectDetailStoreViewController)
 
         let projectDetailStoreViewController = navigationControllerMock?.currentViewController as! ProjectDetailStoreViewController
-        XCTAssertEqual(testId, projectDetailStoreViewController.project.projectID)
+        XCTAssertEqual(testId, projectDetailStoreViewController.project!.projectID)
     }
 
     func testOpenProjectDetailsUnableToLoadProject() {

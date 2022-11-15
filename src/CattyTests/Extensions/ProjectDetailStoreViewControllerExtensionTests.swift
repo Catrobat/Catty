@@ -33,11 +33,11 @@ class ProjectDetailStoreViewControllerExtensionTests: XCTestCase {
 
         self.projectDetailStoreVC = ProjectDetailStoreViewController.init()
         self.projectDetailStoreVC.project = CatrobatProject.init()
-        self.projectDetailStoreVC.project.projectID = "817"
-        self.projectDetailStoreVC.project.projectName = "Tic-Tac-Toe Master"
-        self.projectDetailStoreVC.project.projectDescription = "This is a fun game"
-        self.projectDetailStoreVC.project.uploaded = "1614680355"
-        self.projectDetailStoreVC.project.downloadUrl = "https://web-test.catrob.at/pocketcode/download/817.catrobat"
+        self.projectDetailStoreVC.project!.projectID = "817"
+        self.projectDetailStoreVC.project!.projectName = "Tic-Tac-Toe Master"
+        self.projectDetailStoreVC.project!.projectDescription = "This is a fun game"
+        self.projectDetailStoreVC.project!.uploaded = "1614680355"
+        self.projectDetailStoreVC.project!.downloadUrl = "https://web-test.catrob.at/pocketcode/download/817.catrobat"
 
         self.projectDetailStoreVC.storeProjectDownloader = storeProjectDownloaderMock
 
