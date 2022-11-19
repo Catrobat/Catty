@@ -42,7 +42,7 @@ class ProjectDetailStoreViewControllerExtensionTests: XCTestCase {
         self.projectDetailStoreVC.storeProjectDownloader = storeProjectDownloaderMock
 
         let scrollView = UIScrollView()
-        self.projectDetailStoreVC.scrollViewOutlet = scrollView
+        self.projectDetailStoreVC.setScrollViewOutlet(scrollView)
 
         self.expectedZippedProjectData = "zippedProjectData".data(using: .utf8)
         self.projectDetailStoreVC.viewDidLoad()
