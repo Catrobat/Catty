@@ -49,6 +49,10 @@
         "WebRequestBrick"
     }
 
+    override func isWebRequest() -> Bool {
+        true
+    }
+
     override func getRequiredResources() -> Int {
         ResourceType.internet.rawValue
     }

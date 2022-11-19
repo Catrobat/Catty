@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -44,5 +44,58 @@ import Foundation
             .addDefaultAction(title: kLocalizedOK) { }
             .build().showWithController(self)
         })
+    }
+}
+
+extension SceneTableViewController {
+
+    @objc func checkProjectContainsWebRequestBricks(_ project: Project) -> Bool {
+
+        guard let programID = project.header.programID else { return false }
+
+        if checkIfWarningWasShown(programID: programID) { return false }
+        updateUserDefaults(programId: programID)
+
+        let spriteObjects = project.scene.objects()
+        for spriteObject in spriteObjects {
+            for script in spriteObject.scriptList {
+
+                guard let script = script as? Script else { return false }
+                for brick in script.brickList {
+
+                    guard let brick = brick as? Brick else { return false }
+
+                    if brick.isWebRequest() {
+                        print("alarm")
+                        AlertControllerBuilder.alert(title: kLocalizedWarning, message: kLocalizedProjectContainsWebBricksWarning)
+                        .addDefaultAction(title: kLocalizedOK) { }
+                        .build()
+                        .showWithController(self)
+
+                        return true
+                    }
+                }
+            }
+        }
+
+        return false
+    }
+
+    private func checkIfWarningWasShown(programID: String) -> Bool {
+        if let defaultStorage = UserDefaults.standard.stringArray(forKey: kWebRequestWarningWasShown) {
+            if defaultStorage.contains(programID) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private func updateUserDefaults(programId: String) {
+        if var defaultStorage = UserDefaults.standard.stringArray(forKey: kWebRequestWarningWasShown) {
+            defaultStorage.append(programId)
+            UserDefaults.standard.set(defaultStorage, forKey: kWebRequestWarningWasShown)
+        } else {
+            UserDefaults.standard.set([programId], forKey: kWebRequestWarningWasShown)
+        }
     }
 }
