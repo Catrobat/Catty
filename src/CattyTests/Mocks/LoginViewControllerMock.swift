@@ -21,10 +21,28 @@
  */
 
 class LoginViewControllerMock: LoginViewController {
-
     var errorMessage: String?
+    var loginAtServerWasCalled = false
+
+    init() {
+        super.init(nibName: nil, bundle: Bundle.main)
+        self.usernameField = UITextField()
+        self.passwordField = UITextField()
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)!
+    }
+
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+
+    }
 
     override func showError(_ message: String!) {
         errorMessage = message
+    }
+
+    override func loginAtServer(withUsername username: String!, andPassword password: String!) {
+        loginAtServerWasCalled = true
     }
 }

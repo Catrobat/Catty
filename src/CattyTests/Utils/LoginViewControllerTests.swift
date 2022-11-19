@@ -37,6 +37,54 @@ class LoginViewControllerTests: XCTestCase {
         super.tearDown()
     }
 
+    func testLoginActionForInvalidUsernameWithEmptySpace() {
+        loginViewController.usernameField?.text = "te st"
+        loginViewController.passwordField?.text = "123456"
+        loginViewController.loginAction()
+
+        XCTAssertFalse(loginViewController.loginAtServerWasCalled)
+    }
+
+    func testLoginActionForValidUsernameAndPassword() {
+        loginViewController.usernameField?.text = "test"
+        loginViewController.passwordField?.text = "123456"
+        loginViewController.loginAction()
+
+        XCTAssertTrue(loginViewController.loginAtServerWasCalled)
+    }
+
+    func testLoginActionForInvalidPassword() {
+        loginViewController.usernameField?.text = "test"
+        loginViewController.passwordField?.text = "12345"
+        loginViewController.loginAction()
+
+        XCTAssertFalse(loginViewController.loginAtServerWasCalled)
+    }
+
+    func testLoginActionForInvalidPasswordWithEmptySpace() {
+        loginViewController.usernameField?.text = "test"
+        loginViewController.passwordField?.text = "12 345"
+        loginViewController.loginAction()
+
+        XCTAssertFalse(loginViewController.loginAtServerWasCalled)
+    }
+
+    func testLoginActionForValidUsernameAndPasswordWithTrailingWhiteSpace() {
+        loginViewController.usernameField?.text = " test "
+        loginViewController.passwordField?.text = " 123456 "
+        loginViewController.loginAction()
+
+        XCTAssertTrue(loginViewController.loginAtServerWasCalled)
+    }
+
+    func testLoginActionForEmptyUsername() {
+        loginViewController.usernameField?.text = ""
+        loginViewController.passwordField?.text = "123456"
+        loginViewController.loginAction()
+
+        XCTAssertFalse(loginViewController.loginAtServerWasCalled)
+    }
+
     func testServerTimeoutForUnexpectedStatusCode() {
         let unknownResponse = ["statusCode": "901"]
         loginViewController.handleLoginResponse(with: dataMock(status_code: unknownResponse), andResponse: nil)

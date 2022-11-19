@@ -211,12 +211,6 @@
     return [emailTest evaluateWithObject:checkString];
 }
 
-
--(BOOL)validPassword:(NSString*)password
-{
-    return ([password length] >= 6) ? YES : NO;
-}
-
 -(void)setFormDataParameter:(NSString*)parameterID withData:(NSData*)data forHTTPBody:(NSMutableData*)body
 {
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", httpBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -228,23 +222,6 @@
 }
 
 #pragma mark Actions
-
--(void)loginAction
-{
-    if ([self.usernameField.text isEqualToString:@""]) {
-        [Util alertWithText:kLocalizedLoginUsernameNecessary];
-        return;
-    } else if (![self validPassword:self.passwordField.text]) {
-        [Util alertWithText:kLocalizedLoginPasswordNotValid];
-        return;
-    } else if ([self stringContainsSpace:self.usernameField.text] || [self stringContainsSpace:self.passwordField.text]) {
-        [Util alertWithText:kLocalizedNoWhitespaceAllowed];
-        return;
-    }
-    
-    [self loginAtServerWithUsername:self.usernameField.text
-                        andPassword:self.passwordField.text];
-}
 
 -(void)registerAction
 {

@@ -2057,6 +2057,7 @@
 		F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */; };
 		F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */; };
 		F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */; };
+		FEA564BF292E894100FCD05A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA564BE292E894100FCD05A /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -4730,6 +4731,7 @@
 		F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalseFunction.swift; sourceTree = "<group>"; };
 		F511044FACC2C8E38A678BB4 /* chr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = chr; path = chr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FB40BD936AE254501FBA2E03 /* kn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = kn; path = kn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FEA564BE292E894100FCD05A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -8258,6 +8260,7 @@
 				9235038D1BA707DE00021F6A /* BaseLoginViewController.m */,
 				9235038E1BA707DE00021F6A /* LoginViewController.h */,
 				9235038F1BA707DE00021F6A /* LoginViewController.m */,
+				FEA564BE292E894100FCD05A /* LoginViewController.swift */,
 				5E21DA6C21A5255500017D2C /* UploadViewController.swift */,
 				6FAD028524C838E700C50710 /* UploadCategoryViewController.swift */,
 			);
@@ -13275,6 +13278,7 @@
 				18E83F812493C32C003295DA /* PenClearBrick+Instruction.swift in Sources */,
 				498C158328070C6C00B81C8E /* LeftKneeYSensor.swift in Sources */,
 				5EF590BA2192D81F00C19F12 /* DoubleExtension.swift in Sources */,
+				FEA564BF292E894100FCD05A /* LoginViewController.swift in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				46CF172F25E2F49900DADF08 /* SetBackgroundBrick.swift in Sources */,
 				AA74EFF81BC05B5F00D1E954 /* SetSizeToBrick.m in Sources */,

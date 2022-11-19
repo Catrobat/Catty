@@ -31,9 +31,9 @@
 
 @property (nonatomic, weak) id<LoginViewControllerDelegate> delegate;
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (strong, nonatomic) IBOutlet UITextField *usernameField;
 
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordField;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
@@ -50,5 +50,7 @@
 -(void)handleLoginResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response;
 
 -(void)showError:(NSString *)message;
+
+-(void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password;
 
 @end

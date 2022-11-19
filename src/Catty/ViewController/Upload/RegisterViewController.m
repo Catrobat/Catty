@@ -389,21 +389,6 @@
     } 
 }
 
-- (NSURLSession *)session {
-    if (!_session) {
-        // Initialize Session Configuration
-        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        
-        // Configure Session Configuration
-        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
-        
-        // Initialize Session
-        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
-    }
-    
-    return _session;
-}
-
 -(void)openTermsOfUse
 {
     NSString *url = NetworkDefines.termsOfUseUrl;
