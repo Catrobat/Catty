@@ -46,3 +46,72 @@ import Foundation
         })
     }
 }
+
+extension SceneTableViewController {
+    @objc func checkProjectContainsWebRequestBricks(_ project: Project) {
+
+        print("I am here to check this shit")
+        //check if project has already been checked
+        if var warningHasBeenShown = UserDefaults.standard.stringArray(forKey: kWebRequestWarningHasBeenShown) {
+            print(warningHasBeenShown)
+            if warningHasBeenShown.contains("test1234") {
+                print("already checked this one")
+                return
+            }
+        }
+        
+        //check if project has been downloaded
+        
+        
+
+        //check if project has webbricks
+        print(project.header.programID) //is immer leer???
+        print(project.header.programName)
+        print(project.scene.name)
+        print(project.scene.allObjectNames())
+
+        var spriteObjects = project.scene.objects() as! [SpriteObject]
+
+        outerloop: for currentSpriteObject in spriteObjects {
+            print(currentSpriteObject.name)
+            print(currentSpriteObject.numberOfScripts())
+
+            for currentScript in currentSpriteObject.scriptList {
+
+                var script = currentScript as! Script
+                print("script")
+                print(script.description)
+
+                for currentBrickList in script.brickList {
+                    var brick = currentBrickList as! Brick
+                    print("Brick")
+                    print(brick.description)
+                    print(brick.isWebRequest())
+
+                    if brick.isWebRequest() {
+                        AlertControllerBuilder.alert(title: kLocalizedWarning, message: kLocalizedProjectContainsWebBricksWarning)
+                        .addDefaultAction(title: kLocalizedOK) { }
+                        .build().showWithController(self)
+
+                        break outerloop
+                    }
+                }
+            }
+
+        }
+
+
+        if var warningHasBeenShown = UserDefaults.standard.stringArray(forKey: kWebRequestWarningHasBeenShown) {
+            warningHasBeenShown.append("test1234")
+            UserDefaults.standard.set(warningHasBeenShown, forKey: kWebRequestWarningHasBeenShown)
+        } else {
+            UserDefaults.standard.set(["test1234"], forKey: kWebRequestWarningHasBeenShown)
+        }
+
+
+
+
+
+
+    }
+}

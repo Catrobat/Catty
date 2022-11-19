@@ -54,6 +54,8 @@
 
 - (BOOL)isArduinoBrick;
 
+- (BOOL)isWebRequestBrick;
+
 - (NSString*)description;
 
 - (BOOL)isEqualToBrick:(Brick*)brick;
