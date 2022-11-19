@@ -42,18 +42,11 @@
 #define statusUserDoesNotExist @"803"
 
 
-//random boundary string
-#define httpBoundary @"---------------------------98598263596598246508247098291---------------------------"
-
 //web status codes are on: https://github.com/Catrobat/Catroweb/blob/master/statusCodes.php
 
 @interface LoginViewController ()
 @property (nonatomic, strong) NSString *userEmail;
-@property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) LoadingView* loadingView;
-@property (strong, nonatomic) NSURLSession *session;
-@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic) BOOL shouldShowAlert;
 //@property (nonatomic, strong) Keychain *keychain;
 @end
@@ -159,7 +152,7 @@
     
     [super viewWillDisappear:animated];
 }
-    
+
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender {
     self.activeField = sender;
@@ -211,41 +204,6 @@
     return [emailTest evaluateWithObject:checkString];
 }
 
-
--(BOOL)validPassword:(NSString*)password
-{
-    return ([password length] >= 6) ? YES : NO;
-}
-
--(void)setFormDataParameter:(NSString*)parameterID withData:(NSData*)data forHTTPBody:(NSMutableData*)body
-{
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", httpBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSString *parameterString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", parameterID];
-    [body appendData:[parameterString dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[NSData dataWithData:data]];
-    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-}
-
-#pragma mark Actions
-
--(void)loginAction
-{
-    if ([self.usernameField.text isEqualToString:@""]) {
-        [Util alertWithText:kLocalizedLoginUsernameNecessary];
-        return;
-    } else if (![self validPassword:self.passwordField.text]) {
-        [Util alertWithText:kLocalizedLoginPasswordNotValid];
-        return;
-    } else if ([self stringContainsSpace:self.usernameField.text] || [self stringContainsSpace:self.passwordField.text]) {
-        [Util alertWithText:kLocalizedNoWhitespaceAllowed];
-        return;
-    }
-    
-    [self loginAtServerWithUsername:self.usernameField.text
-                        andPassword:self.passwordField.text];
-}
-
 -(void)registerAction
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
@@ -257,84 +215,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password
-{
-    NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:NetworkDefines.loginUrl]];
-    [request setHTTPMethod:@"POST"];
-    
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", httpBoundary];
-    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-    
-    NSMutableData *body = [NSMutableData data];
-    
-    //username
-    self.userName = username;
-    [self setFormDataParameter:usernameTag withData:[username dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
-    
-    //password
-    self.password = password;
-    [self setFormDataParameter:passwordTag withData:[password dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
-    
-//    //Country
-//    NSLocale *currentLocale = [NSLocale currentLocale];
-//    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
-//    NSDebug(@"Current Country is: %@", countryCode);
-//    [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
-//    
-//    //Language ?! 
-    
-    // close form
-    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", httpBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    // set request body
-    [request setHTTPBody:body];
-    
-    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
-    [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
-    
-    [request setTimeoutInterval:NetworkDefines.connectionTimeout];
-    
-    [self showLoadingView];
-    
-    self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-        if (error) {
-            if ([Util isNetworkError:error]) {
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.loginButton.enabled = YES;
-                    [self hideLoadingView];
-                    [Util defaultAlertForNetworkError];
-                    return;
-                });
-            }
-
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self handleLoginResponseWithData:data andResponse:response];
-            });
-        }
-    }];
-  
-    
-    if (self.dataTask) {
-        [self.dataTask resume];
-        self.loginButton.enabled = NO;
-        [self showLoadingView];
-    } else {
-        self.loginButton.enabled = YES;
-        [self hideLoadingView];
-        [Util defaultAlertForNetworkError];
-    }
-    
-}
-
 -(void)handleLoginResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response
 {
     if (data == nil) {
-         
+
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
             [self hideLoadingView];
@@ -342,7 +226,7 @@
         }
         return;
     }
-     
+
     NSError *error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
@@ -385,21 +269,6 @@
     [Util alertWithText:message];
 }
 
-- (NSURLSession *)session {
-    if (!_session) {
-        // Initialize Session Configuration
-        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        
-        // Configure Session Configuration
-        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
-        
-        // Initialize Session
-        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
-    }
-    
-    return _session;
-}
-
 -(void)openTermsOfUse
 {
     NSString *url = NetworkDefines.termsOfUseUrl;
@@ -435,6 +304,8 @@
 {
     [self.loadingView hide];
     [Util setNetworkActivityIndicator:NO];
+    NSString *url = NetworkDefines.recoverPassword;
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
 }
 
 @end

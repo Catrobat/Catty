@@ -47,8 +47,20 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
+@property (strong, nonatomic) NSString *userName;
+
+@property (strong, nonatomic) NSString *password;
+
+@property (strong, nonatomic) NSURLSession *session;
+
+@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
+
 -(void)handleLoginResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response;
 
 -(void)showError:(NSString *)message;
+
+-(void)showLoadingView;
+
+-(void)hideLoadingView;
 
 @end
