@@ -48,70 +48,51 @@ import Foundation
 }
 
 extension SceneTableViewController {
+    /// Step 1: Check if project has already been checked before
+    /// Step 2: Check if project has been downloaded
+    /// Step 3: Check if project contains WebRequestBricks
+    /// Step 4: Remember this project to not check it again
     @objc func checkProjectContainsWebRequestBricks(_ project: Project) {
 
-        print("I am here to check this shit")
-        //check if project has already been checked
-        if var warningHasBeenShown = UserDefaults.standard.stringArray(forKey: kWebRequestWarningHasBeenShown) {
+        /// Step 1
+        // TODO: Require a UUID() for a project
+        if let warningHasBeenShown = UserDefaults.standard.stringArray(forKey: kWebRequestWarningHasBeenShown) {
             print(warningHasBeenShown)
-            if warningHasBeenShown.contains("test1234") {
-                print("already checked this one")
+            if warningHasBeenShown.contains("requiredUUID") {
                 return
             }
         }
         
-        //check if project has been downloaded
-        
-        
+        /// Step 2
+        // TODO: Is there an identifier if a project has been download?
+                
+        /// Step 3
+        let spriteObjects = project.scene.objects()
 
-        //check if project has webbricks
-        print(project.header.programID) //is immer leer???
-        print(project.header.programName)
-        print(project.scene.name)
-        print(project.scene.allObjectNames())
+        spriteLoop: for currentSpriteObject in spriteObjects {
+            scriptLoop: for currentScript in currentSpriteObject.scriptList {
 
-        var spriteObjects = project.scene.objects() as! [SpriteObject]
+                let script = currentScript as! Script
+                brickLoop: for currentBrickList in script.brickList {
 
-        outerloop: for currentSpriteObject in spriteObjects {
-            print(currentSpriteObject.name)
-            print(currentSpriteObject.numberOfScripts())
-
-            for currentScript in currentSpriteObject.scriptList {
-
-                var script = currentScript as! Script
-                print("script")
-                print(script.description)
-
-                for currentBrickList in script.brickList {
-                    var brick = currentBrickList as! Brick
-                    print("Brick")
-                    print(brick.description)
-                    print(brick.isWebRequest())
+                    let brick = currentBrickList as! Brick
 
                     if brick.isWebRequest() {
                         AlertControllerBuilder.alert(title: kLocalizedWarning, message: kLocalizedProjectContainsWebBricksWarning)
                         .addDefaultAction(title: kLocalizedOK) { }
                         .build().showWithController(self)
 
-                        break outerloop
+                        break spriteLoop
                     }
                 }
             }
-
         }
-
 
         if var warningHasBeenShown = UserDefaults.standard.stringArray(forKey: kWebRequestWarningHasBeenShown) {
-            warningHasBeenShown.append("test1234")
+            warningHasBeenShown.append("requiredUUID")
             UserDefaults.standard.set(warningHasBeenShown, forKey: kWebRequestWarningHasBeenShown)
         } else {
-            UserDefaults.standard.set(["test1234"], forKey: kWebRequestWarningHasBeenShown)
+            UserDefaults.standard.set(["requiredUUID"], forKey: kWebRequestWarningHasBeenShown)
         }
-
-
-
-
-
-
     }
 }
