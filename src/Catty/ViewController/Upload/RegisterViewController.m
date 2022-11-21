@@ -95,6 +95,7 @@
     [self.titleLabel sizeToFit];
     
     self.usernameField.placeholder = kLocalizedUsername;
+    [self.usernameField setKeyboardType:UIKeyboardTypeEmailAddress];
     if (self.userName) {
         self.usernameField.text = self.userName;
     }
