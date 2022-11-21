@@ -77,7 +77,7 @@ final class VibrationBrickTests: XCTestCase {
             break
         }
 
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        XCTAssertTrue(true) // The purpose of this test is to show that the program does not crash
     }
 
     func testGetFormulas() {

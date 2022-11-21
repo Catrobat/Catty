@@ -94,7 +94,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
         downloader.downloadIndex(for: .backgrounds) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -146,7 +146,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
         expect(downloader.downloadIndex(for: .backgrounds) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")

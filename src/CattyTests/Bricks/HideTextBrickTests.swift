@@ -72,7 +72,7 @@ final class HideTextBrickTests: XCTestCase {
             break
         }
 
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        XCTAssertTrue(true) // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
     }
 

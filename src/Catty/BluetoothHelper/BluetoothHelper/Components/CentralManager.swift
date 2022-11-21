@@ -69,7 +69,7 @@ import UIKit
         self.helper.retrieveKnownPeripheralsWithIdentifiers(self, uuids: uuids)
     }
 
-    open func getConnectedPeripheralsWithServices(_ uuids: [CBUUID])-> FutureStream<[Peripheral]> {
+    open func getConnectedPeripheralsWithServices(_ uuids: [CBUUID]) -> FutureStream<[Peripheral]> {
         self.helper.retrieveConnectedPeripheralsWithServices(self, uuids: uuids)
     }
 
@@ -287,7 +287,7 @@ open class CentralManagerHelper<CM> where CM: CMWrapper,
         central.retrievePeripheralsWithIdentifiers(uuids)
     }
 
-    open func retrieveConnectedPeripheralsWithServices(_ central: CM, uuids: [CBUUID])-> FutureStream<[CM.PeripheralWrap]> {
+    open func retrieveConnectedPeripheralsWithServices(_ central: CM, uuids: [CBUUID]) -> FutureStream<[CM.PeripheralWrap]> {
         central.retrieveConnectedPeripheralsWithServices(uuids)
         self.afterConnectedPeripheralDiscoveredPromise = StreamPromise<[CM.PeripheralWrap]>()
         return self.afterConnectedPeripheralDiscoveredPromise.future
