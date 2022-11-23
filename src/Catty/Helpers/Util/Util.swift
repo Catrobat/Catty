@@ -31,23 +31,31 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
 @objc extension Util {
 
     class func appName() -> String? {
-        let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
-        return appName
+        if let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String {
+            return appName
+        }
+        return ""
     }
 
     class func appVersion() -> String? {
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        return appVersion
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            return appVersion
+        }
+        return ""
     }
 
     class func appBuildName() -> String? {
-        let appBuildName = Bundle.main.infoDictionary?["CatrobatBuildName"] as? String
-        return appBuildName
+        if let appBuildName = Bundle.main.infoDictionary?["CatrobatBuildName"] as? String {
+            return appBuildName
+        }
+        return ""
     }
 
     class func appBuildVersion() -> String? {
-        let appBuildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-        return appBuildVersion
+        if let appBuildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            return appBuildVersion
+        }
+        return ""
     }
 
     @objc(alertWithText:)
@@ -98,13 +106,17 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     }
 
     class func catrobatMediaLicense() -> String? {
-        let catrobatMediaLicense = Bundle.main.infoDictionary?["CatrobatMediaLicense"] as? String
-        return catrobatMediaLicense
+        if let catrobatMediaLicense = Bundle.main.infoDictionary?["CatrobatMediaLicense"] as? String {
+            return catrobatMediaLicense
+        }
+        return ""
     }
 
     class func catrobatProgramLicense() -> String? {
-        let catrobatProgramLicense = Bundle.main.infoDictionary?["CatrobatProgramLicense"] as? String
-        return catrobatProgramLicense
+        if let catrobatProgramLicense = Bundle.main.infoDictionary?["CatrobatProgramLicense"] as? String {
+            return catrobatProgramLicense
+        }
+        return ""
     }
 
     class func deviceName() -> String {
@@ -164,8 +176,10 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
     }
 
     class func platformName() -> String? {
-        let platformName = Bundle.main.infoDictionary?["CatrobatPlatformName"] as? String
-        return platformName
+        if let platformName = Bundle.main.infoDictionary?["CatrobatPlatformName"] as? String {
+            return platformName
+        }
+        return ""
     }
 
     class func platformVersion() -> OperatingSystemVersion {
@@ -245,8 +259,8 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
                     speed: UIDefines.bdkNotifyHUDPresentationSpeed,
                     in: vc.view,
                     completion: {
-                        hud.removeFromSuperview()
-                    })
+            hud.removeFromSuperview()
+        })
     }
 
     class func showNotificationForSaveAction() {
@@ -269,8 +283,8 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
                     speed: UIDefines.bdkNotifyHUDPresentationSpeed,
                     in: vc.view,
                     completion: {
-                        hud.removeFromSuperview()
-                    })
+            hud.removeFromSuperview()
+        })
     }
 
     @objc(soundWithName:forObject:)
