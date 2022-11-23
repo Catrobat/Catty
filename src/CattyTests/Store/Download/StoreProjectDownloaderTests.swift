@@ -87,7 +87,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchFeaturedProjects(offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -157,7 +157,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         expect(downloader.fetchFeaturedProjects(offset: 0) { _, error in
                 guard let error = error else { XCTFail("no error received"); return }
                 switch error {
-                case .parse(error: _):
+                case .parse:
                     break
                 default:
                     XCTFail("wrong error received")
@@ -247,7 +247,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchProjects(for: .mostDownloaded, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -323,7 +323,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         expect(downloader.fetchProjects(for: .mostDownloaded, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -414,7 +414,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchProjects(for: .mostViewed, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -490,7 +490,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         expect(downloader.fetchProjects(for: .mostViewed, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -581,7 +581,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchProjects(for: .mostRecent, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -657,7 +657,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         expect(downloader.fetchProjects(for: .mostRecent, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -775,7 +775,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchSearchQuery(searchTerm: searchTerm) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")

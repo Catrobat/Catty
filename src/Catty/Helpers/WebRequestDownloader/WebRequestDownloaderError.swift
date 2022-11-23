@@ -41,7 +41,7 @@ enum WebRequestDownloaderError: Error {
             self = .noInternet
         case .notTrusted:
             self = .notTrusted
-        case .request(error: _, statusCode: _):
+        case .request:
             self = .request(error: nil, statusCode: 200)
         case .unexpectedError:
             self = .unexpectedError
