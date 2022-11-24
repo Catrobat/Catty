@@ -293,8 +293,8 @@ class Firmata: FirmataProtocol {
 
         //Analog (PWM) I/O message
         data0 = kANALOG_MESSAGE + pin
-        data1 = value & 0x7F;   //only 7 bottom bits
-        data2 = value >> 7;     //top bit in second byte // &0x7f ??
+        data1 = value & 0x7F  //only 7 bottom bits
+        data2 = value >> 7    //top bit in second byte
 
         let bytes: [UInt8] = [data0, data1, data2]
         let newData = Data(bytes)

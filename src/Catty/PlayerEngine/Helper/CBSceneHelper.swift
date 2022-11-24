@@ -26,9 +26,9 @@
     @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, stageSize: CGSize) -> CGPoint {
         let screenSize = Util.screenSize(false)
         var x = (coordinate.x - screenSize.width / 2.0)
-        x = x * (stageSize.width / screenSize.width)
+        x *= (stageSize.width / screenSize.width)
         var y = (screenSize.height / 2.0 - coordinate.y)
-        y = y * (stageSize.height / screenSize.height)
+        y *= (stageSize.height / screenSize.height)
         return CGPoint(x: x, y: y)
     }
 }
