@@ -102,13 +102,12 @@ class StoreProjectDownloaderTests: XCTestCase {
         let session = URLSessionMock()
         let offset = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
-        var attributes = StoreFeaturedProject.defaultQueryParameters
         urlComponents?.queryItems = [
             URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
             URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: Util.catrobatLanguageVersion()),
             URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
             URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
-            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: StoreFeaturedProject.defaultQueryParameters.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -123,13 +122,12 @@ class StoreProjectDownloaderTests: XCTestCase {
         let downloader = StoreProjectDownloader(session: dvrSession)
         let offset = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
-        var attributes = StoreFeaturedProject.defaultQueryParameters
         urlComponents?.queryItems = [
             URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
             URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: Util.catrobatLanguageVersion()),
             URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
             URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
-            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: StoreFeaturedProject.defaultQueryParameters.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -143,13 +141,12 @@ class StoreProjectDownloaderTests: XCTestCase {
         let downloader = StoreProjectDownloader(session: dvrSession)
         let offset = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
-        var attributes = StoreFeaturedProject.defaultQueryParameters
         urlComponents?.queryItems = [
             URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
             URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: Util.catrobatLanguageVersion()),
             URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
             URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
-            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: StoreFeaturedProject.defaultQueryParameters.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let errorInfo = ProjectFetchFailureInfo(url: url.absoluteString, statusCode: 200, description: expectedParsingException)
@@ -168,13 +165,12 @@ class StoreProjectDownloaderTests: XCTestCase {
     func testfetchFeaturedProjectsFailsWithTimeoutErrorNotification() {
         let offset = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
-        var attributes = StoreFeaturedProject.defaultQueryParameters
         urlComponents?.queryItems = [
             URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
             URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: Util.catrobatLanguageVersion()),
             URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
             URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
-            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: StoreFeaturedProject.defaultQueryParameters.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)

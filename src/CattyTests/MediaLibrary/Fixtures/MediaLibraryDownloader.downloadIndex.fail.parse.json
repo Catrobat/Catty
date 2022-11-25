@@ -1,31 +1,38 @@
 {
+  "name" : "MediaLibraryDownloader.downloadIndex.fail.parse",
   "interactions" : [
     {
+      "recorded_at" : 1666094559.7176251,
+      "request" : {
+        "url" : "https:\/\/web-test.catrob.at\/api\/media\/package\/Backgrounds?limit=10000&offset=0&attributes=id,name,category,extension,download_url",
+        "method" : "GET"
+      },
       "response" : {
-        "status" : 200,
+        "url" : "https:\/\/web-test.catrob.at\/api\/media\/package\/Backgrounds?limit=10000&offset=0&attributes=id,name,category,extension,download_url",
         "headers" : {
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
           "Content-Type" : "application\/json",
-          "Set-Cookie" : "PHPSESSID=hqtuffbfmbh3ni5io8phja59a2; path=\/",
+          "Server" : "cloudflare",
+          "Content-Language" : "en",
           "Expires" : "-1",
+          "Set-Cookie" : "dtCookie=v_4_srv_11_sn_6BC59E83E774117A2DEBE6E24F1621FE_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
           "Pragma" : "no-cache",
-          "Strict-Transport-Security" : "max-age=15768000",
-          "Server" : "nginx",
-          "Date" : "Fri, 09 Feb 2018 08:10:42 GMT",
-          "Cache-Control" : "private, must-revalidate"
+          "Content-Encoding" : "br",
+          "cf-cache-status" : "DYNAMIC",
+          "x-openapi-message" : "OK",
+          "Date" : "Tue, 18 Oct 2022 12:02:39 GMT",
+          "Cache-Control" : "private, must-revalidate",
+          "x-response-hash" : "91a9f3a1d680b3e9c76daf61d50a8bcc",
+          "cf-ray" : "75c120559eb0c2d7-VIE",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=d8c%2B8QYh3kXNdhx4F2BkoDcxJDyI2rymf4TnedNEMLYEFYAVudJv1qehQs5pmMFOPJNl9v5mSULxavb5XEGfXMRsHm0CBW8EHUxiq2hqmfRifYb7tToTd3vcsJgWrGQ5UE1MAtGKJyAv2iYrg%2BA%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"-681579837\""
         },
         "body" : [
-          {
-            "id" : 2
-          }
+          {}
         ],
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
-      },
-      "recorded_at" : 1518163842.845463,
-      "request" : {
-        "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
+        "status" : 200
       }
     }
-  ],
-  "name" : "MediaLibraryDownloader.downloadIndex"
+  ]
 }

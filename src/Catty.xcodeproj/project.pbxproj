@@ -1042,11 +1042,7 @@
 		597AB56F202081E8007CD10D /* LibrarySoundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597AB56D202081E8007CD10D /* LibrarySoundCollectionViewCell.xib */; };
 		597AB578202089E0007CD10D /* NetworkDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AB575202089DF007CD10D /* NetworkDefines.swift */; };
 		598E6553252A338B009F7C83 /* StoreProjectReporter.reportProject.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 598E6552252A338B009F7C83 /* StoreProjectReporter.reportProject.success.json */; };
-		599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */; };
 		599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599E649D202D9F95009494B5 /* URLSessionMock.swift */; };
-		599E64A0202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E649F202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json */; };
-		599E64A2202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E64A1202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json */; };
-		599E64A4202DB037009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E64A3202DB036009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */; };
 		599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */; };
 		599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599E64A9202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift */; };
 		59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A58D82202C714A008B1A8F /* MediaLibraryDownloaderTests.swift */; };
@@ -1054,7 +1050,6 @@
 		59ABDC652021D7DA00061403 /* UIAlertController+AddAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */; };
 		59B17E69252B362800F30695 /* StoreProjectReporter.reportProject.unexpectedError.json in Resources */ = {isa = PBXBuildFile; fileRef = 59B17E68252B362800F30695 /* StoreProjectReporter.reportProject.unexpectedError.json */; };
 		59B7A8D32504E83F001C736A /* StageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B7A8D22504E83F001C736A /* StageMock.swift */; };
-		59B9F633202D8F8500937299 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */; };
 		59BA5C6825E3EC9500CBD5CF /* StoreProjectDownloaderErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BA5C6725E3EC9500CBD5CF /* StoreProjectDownloaderErrorTests.swift */; };
 		59CC6F7F252E38FA00BF0C3C /* StoreProjectReporter.reportProject.authentication.fail.json in Resources */ = {isa = PBXBuildFile; fileRef = 59CC6F7E252E38FA00BF0C3C /* StoreProjectReporter.reportProject.authentication.fail.json */; };
 		59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008E8208E3FDC000539E7 /* MotionManager.swift */; };
@@ -1143,6 +1138,11 @@
 		7B144F3528FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F3328FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */; };
 		7B144F3628FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F3428FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json */; };
 		7B144F3A28FDE5C600C4A300 /* StoreProjectDownloader.downloadProject.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F3928FDE5C600C4A300 /* StoreProjectDownloader.downloadProject.success.json */; };
+		7B144F5228FED3DE00C4A300 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F4A28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.success.json */; };
+		7B144F5328FED3E200C4A300 /* MediaLibraryDownloader.downloadIndex.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F4B28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.request.json */; };
+		7B144F5428FED3E500C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F4C28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */; };
+		7B144F5528FED3E800C4A300 /* MediaLibraryDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F4828FED30000C4A300 /* MediaLibraryDownloader.downloadData.success.json */; };
+		7B144F5628FED3EA00C4A300 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F4928FED30000C4A300 /* MediaLibraryDownloader.downloadData.fail.request.json */; };
 		7B53C94F27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */; };
 		7B53C95027BECAF900E86A72 /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
 		7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
@@ -3250,11 +3250,7 @@
 		597AB56D202081E8007CD10D /* LibrarySoundCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibrarySoundCollectionViewCell.xib; sourceTree = "<group>"; };
 		597AB575202089DF007CD10D /* NetworkDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDefines.swift; sourceTree = "<group>"; };
 		598E6552252A338B009F7C83 /* StoreProjectReporter.reportProject.success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StoreProjectReporter.reportProject.success.json; sourceTree = "<group>"; };
-		599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		599E649D202D9F95009494B5 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
-		599E649F202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
-		599E64A1202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.fail.request.json; sourceTree = "<group>"; };
-		599E64A3202DB036009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.fail.parse.json; sourceTree = "<group>"; };
 		599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryDownloaderMock.swift; sourceTree = "<group>"; };
 		599E64A9202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryCollectionViewDataSourceTests.swift; sourceTree = "<group>"; };
 		59A58D82202C714A008B1A8F /* MediaLibraryDownloaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryDownloaderTests.swift; sourceTree = "<group>"; };
@@ -3262,7 +3258,6 @@
 		59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+AddAction.swift"; sourceTree = "<group>"; };
 		59B17E68252B362800F30695 /* StoreProjectReporter.reportProject.unexpectedError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StoreProjectReporter.reportProject.unexpectedError.json; sourceTree = "<group>"; };
 		59B7A8D22504E83F001C736A /* StageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageMock.swift; sourceTree = "<group>"; };
-		59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.success.json; sourceTree = "<group>"; };
 		59BA5C6725E3EC9500CBD5CF /* StoreProjectDownloaderErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderErrorTests.swift; sourceTree = "<group>"; };
 		59CC6F7E252E38FA00BF0C3C /* StoreProjectReporter.reportProject.authentication.fail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StoreProjectReporter.reportProject.authentication.fail.json; sourceTree = "<group>"; };
 		59D008E8208E3FDC000539E7 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
@@ -3361,6 +3356,11 @@
 		7B144F3328FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.fail.request.json; sourceTree = "<group>"; };
 		7B144F3428FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.success.json; sourceTree = "<group>"; };
 		7B144F3928FDE5C600C4A300 /* StoreProjectDownloader.downloadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.downloadProject.success.json; sourceTree = "<group>"; };
+		7B144F4828FED30000C4A300 /* MediaLibraryDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.success.json; sourceTree = "<group>"; };
+		7B144F4928FED30000C4A300 /* MediaLibraryDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
+		7B144F4A28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.success.json; sourceTree = "<group>"; };
+		7B144F4B28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.fail.request.json; sourceTree = "<group>"; };
+		7B144F4C28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.fail.parse.json; sourceTree = "<group>"; };
 		7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B9090EC27C935D800B31D04 /* ChromaSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChromaSwift.license; sourceTree = "<group>"; };
@@ -7938,11 +7938,11 @@
 		59B9F630202D8F6200937299 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				599E649F202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json */,
-				599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */,
-				599E64A3202DB036009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */,
-				599E64A1202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json */,
-				59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */,
+				7B144F4928FED30000C4A300 /* MediaLibraryDownloader.downloadData.fail.request.json */,
+				7B144F4828FED30000C4A300 /* MediaLibraryDownloader.downloadData.success.json */,
+				7B144F4C28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */,
+				7B144F4B28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.request.json */,
+				7B144F4A28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.success.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -11593,12 +11593,12 @@
 				2ED41873241120B000AFE2FD /* Encapsulated_0991.xml in Resources */,
 				E59108D126931F34008D254A /* Sensors_0994.xml in Resources */,
 				E5ADEAC125B1E530005E9360 /* collisionTest0993.xml in Resources */,
+				7B144F5428FED3E500C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */,
 				6F954C7624D1E19000E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json in Resources */,
 				E5DAAD6226C5486A00C2457F /* ValidProjectAllBricks09997.xml in Resources */,
 				E57D5B2926AEA99A003A1457 /* Flappy_v3.0_0999.xml in Resources */,
 				4C3285E52546CEF000C31F9D /* EscapingChars_0993.xml in Resources */,
 				2ED4187C241120B000AFE2FD /* InsertItemIntoUserListBrick098.xml in Resources */,
-				599E64A4202DB037009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */,
 				2ED41806241120AF00AFE2FD /* Pong_Starter_093.xml in Resources */,
 				E59108B726931E29008D254A /* UserVariables_0994.xml in Resources */,
 				E5EC6D6626B010670031F13A /* DisabledBricks_09993.xml in Resources */,
@@ -11624,7 +11624,6 @@
 				2ED417C3241120AF00AFE2FD /* Air_fight_0.5_093.xml in Resources */,
 				E5BEC73D26AAEB220063D7F0 /* ValidHeader0998.xml in Resources */,
 				2ED4184F241120B000AFE2FD /* Flappy_v3.0_0993.xml in Resources */,
-				59B9F633202D8F8500937299 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */,
 				7B144F2328FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.request.json in Resources */,
 				E50579C225B0B825003FAEE5 /* square.png in Resources */,
 				2ED4180A241120AF00AFE2FD /* Flap_Pac_Man_091.xml in Resources */,
@@ -11727,6 +11726,7 @@
 				E5DAAD5426C547F600C2457F /* EscapingChars_09997.xml in Resources */,
 				2ED41807241120AF00AFE2FD /* Pong_Starter_0994.xml in Resources */,
 				2ED41850241120B000AFE2FD /* Flappy_v3.0_0991.xml in Resources */,
+				7B144F5528FED3E800C4A300 /* MediaLibraryDownloader.downloadData.success.json in Resources */,
 				2ED417DC241120AF00AFE2FD /* Airplane_with_shadow_097.xml in Resources */,
 				E50E8559269EC5C300E76CE9 /* ValidProjectAllBricks0995.xml in Resources */,
 				4C3286212546D7CA00C31F9D /* UserVariables_0993.xml in Resources */,
@@ -11835,7 +11835,6 @@
 				2ED417B2241120AF00AFE2FD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				E57D5B4926AEAAD3003A1457 /* Sensors_0999.xml in Resources */,
 				E5EC6D7026B010B80031F13A /* LogicBricks_09993.xml in Resources */,
-				599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */,
 				4C55CD0124BF2BBD00FB8393 /* Encapsulated_0992.xml in Resources */,
 				E5BEC71F26AAEA380063D7F0 /* Memory_0998.xml in Resources */,
 				9E8176E52389BA4800A4912B /* SpeakAndWaitInterruptedBySpeak.xml in Resources */,
@@ -11843,6 +11842,7 @@
 				2ED41852241120B000AFE2FD /* InvalidBricksAndScripts.xml in Resources */,
 				E57D5B3926AEA9FB003A1457 /* collisionTest0999.xml in Resources */,
 				E5BEC72F26AAEABD0063D7F0 /* DisabledBricks_0998.xml in Resources */,
+				7B144F5328FED3E200C4A300 /* MediaLibraryDownloader.downloadIndex.fail.request.json in Resources */,
 				E50E8561269EC63800E76CE9 /* GoToBrick_0995.xml in Resources */,
 				E5DAAD3A26C5473000C2457F /* Demonstration_09997.xml in Resources */,
 				4C55CCDB24BF291D00FB8393 /* Airplane_with_shadow_0992.xml in Resources */,
@@ -11855,6 +11855,7 @@
 				2ED417F3241120AF00AFE2FD /* Pythagorean_Theorem_0991.xml in Resources */,
 				E50E8543269EC49500E76CE9 /* Air_fight_0.5_0995.xml in Resources */,
 				E5BEC73926AAEB060063D7F0 /* LogicBricks_0998.xml in Resources */,
+				7B144F5628FED3EA00C4A300 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */,
 				E57D5B3726AEA9ED003A1457 /* Functions_0999.xml in Resources */,
 				4C55CD0324BF2BCD00FB8393 /* EscapingChars_0992.xml in Resources */,
 				CAE3E4EC1B4C509800CC88BD /* test2.png in Resources */,
@@ -11888,11 +11889,11 @@
 				E598BBB226A0271200D4825F /* Piano_0996.xml in Resources */,
 				E57D5B3D26AEAA61003A1457 /* DisabledBricks_0999.xml in Resources */,
 				E59108CF26931EF8008D254A /* LogicBricks_0994.xml in Resources */,
+				7B144F5228FED3DE00C4A300 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */,
 				7B144F2828FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.success.json in Resources */,
 				E598BBC826A02A2400D4825F /* LogicBricks_0996.xml in Resources */,
 				2EF0E4AA265E088E00D03C14 /* WebRequestDownloader.fail.json in Resources */,
 				9E929E3F239D7EFB002D8F96 /* PlaySoundAndWaitBrickContinueWhenInterrupted.xml in Resources */,
-				599E64A2202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json in Resources */,
 				2ED417D0241120AF00AFE2FD /* Galaxy_War_097.xml in Resources */,
 				4C55CD0524BF2BD900FB8393 /* LedFlashBrick0992.xml in Resources */,
 				2ED417BB241120AF00AFE2FD /* Piano_098.xml in Resources */,
@@ -11936,7 +11937,6 @@
 				4C3286152546D53D00C31F9D /* Pythagorean_Theorem_0993.xml in Resources */,
 				2ED41876241120B000AFE2FD /* LedFlashBrick098.xml in Resources */,
 				2ED4180D241120AF00AFE2FD /* Flap_Pac_Man_097.xml in Resources */,
-				599E64A0202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */,
 				E5EC6D6E26B010A70031F13A /* EscapingChars_09993.xml in Resources */,
 				E598BBC426A02A0300D4825F /* Functions_0996.xml in Resources */,
 				E5DAAD3C26C5473C00C2457F /* Flap_Pac_Man_09997.xml in Resources */,

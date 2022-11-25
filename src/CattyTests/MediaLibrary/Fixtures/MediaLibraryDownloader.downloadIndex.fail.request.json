@@ -1,29 +1,33 @@
 {
   "interactions" : [
     {
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/web-test.catrob.at\/api\/media\/package\/Backgrounds?limit=10000&offset=0&attributes=id,name,category,extension,download_url"
+      },
+      "recorded_at" : 1666094503.823822,
       "response" : {
         "status" : 500,
         "headers" : {
+          "cf-ray" : "75c11ef878b3c29d-VIE",
+          "Content-Language" : "en",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Server" : "cloudflare",
           "Content-Type" : "application\/json",
-          "Set-Cookie" : "PHPSESSID=lsurf01rq2ll911qghavi56334; path=\/",
-          "Expires" : "-1",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"1397578401\"",
+          "Set-Cookie" : "dtCookie=v_4_srv_13_sn_A95F699EAC5005AF259D915BC8856BBF_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=cq65SJSkM7sLdqSal%2BfV6BkpuCpQZTMwLM1StTV5ysb2Di04k%2BnN5eydzQOBNWyrrEHFgDnTx46kcqu6qfbH3sSJmR1UfJAOjRgVlc42R9UU4Upj8%2FFuN1siIZi4zLklBpWOd2l%2F9XxpxFW6NTc%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Date" : "Tue, 18 Oct 2022 12:01:43 GMT",
+          "cf-cache-status" : "DYNAMIC",
           "Pragma" : "no-cache",
-          "Server" : "nginx",
-          "Date" : "Fri, 09 Feb 2018 08:53:51 GMT",
-          "Cache-Control" : "private, must-revalidate"
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Cache-Control" : "private, must-revalidate",
+          "x-openapi-message" : "OK",
+          "x-response-hash" : "91a9f3a1d680b3e9c76daf61d50a8bcc",
+          "Expires" : "-1",
+          "Content-Encoding" : "br"
         },
-        "body" : {
-          "error" : {
-            "message" : "Internal Server Error",
-            "code" : 500
-          }
-        },
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
-      },
-      "recorded_at" : 1518166431.5628099,
-      "request" : {
-        "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
+        "url" : "https:\/\/web-test.catrob.at\/api\/media\/package\/Backgrounds?limit=10000&offset=0&attributes=id,name,category,extension,download_url"
       }
     }
   ],

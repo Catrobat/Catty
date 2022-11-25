@@ -40,12 +40,12 @@ class MediaLibraryDownloaderTests: XCTestCase {
             guard let items = categories.first, let item = items.first else { XCTFail("no items found in category"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.name, "")
-            XCTAssertNotEqual(item.category, "")
-            XCTAssertNotEqual(item.fileExtension, "")
-            XCTAssertNotEqual(item.relativePath, "")
+            XCTAssertFalse((item.name ?? "").isEmpty)
+            XCTAssertFalse((item.category ?? "").isEmpty)
+            XCTAssertFalse((item.fileExtension ?? "").isEmpty)
+            XCTAssertFalse((item.downloadURLString ?? "").isEmpty)
+            XCTAssertNotNil(item.downloadURL)
             XCTAssertNil(item.cachedData)
-            XCTAssertNoThrow(item.downloadURL)
 
             expectation.fulfill()
         }
@@ -109,7 +109,14 @@ class MediaLibraryDownloaderTests: XCTestCase {
         let mockSession = URLSessionMock()
         let downloader = MediaLibraryDownloader(session: mockSession)
         let error = ErrorMock("")
-        let indexURL = URL(string: NetworkDefines.mediaLibraryBackgroundsIndex)
+
+        var indexURLComponents = URLComponents(string: NetworkDefines.apiEndpointMediaPackageBackgrounds)
+        indexURLComponents?.queryItems = [
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.mediaPackageMaxItems)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(0)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: MediaItem.defaultQueryParameters.joined(separator: ","))
+        ]
+        let indexURL = indexURLComponents!.url
 
         let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL!.absoluteString, description: error.localizedDescription)
 
@@ -120,7 +127,14 @@ class MediaLibraryDownloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "MediaLibraryDownloader.downloadIndex.fail.request")
         let downloader = MediaLibraryDownloader(session: dvrSession)
         let error = ErrorMock("")
-        let indexURL = URL(string: NetworkDefines.mediaLibraryBackgroundsIndex)
+
+        var indexURLComponents = URLComponents(string: NetworkDefines.apiEndpointMediaPackageBackgrounds)
+        indexURLComponents?.queryItems = [
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.mediaPackageMaxItems)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(0)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: MediaItem.defaultQueryParameters.joined(separator: ","))
+        ]
+        let indexURL = indexURLComponents!.url
 
         let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL!.absoluteString, statusCode: 500, description: error.localizedDescription)
 
@@ -138,8 +152,15 @@ class MediaLibraryDownloaderTests: XCTestCase {
     func testDownloadIndexFailsWithParseErrorNotification() {
         let dvrSession = Session(cassetteName: "MediaLibraryDownloader.downloadIndex.fail.parse")
         let downloader = MediaLibraryDownloader(session: dvrSession)
-        let indexURL = URL(string: NetworkDefines.mediaLibraryBackgroundsIndex)
         let expectedParsingException = "The data couldn’t be read because it is missing."
+
+        var indexURLComponents = URLComponents(string: NetworkDefines.apiEndpointMediaPackageBackgrounds)
+        indexURLComponents?.queryItems = [
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.mediaPackageMaxItems)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(0)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: MediaItem.defaultQueryParameters.joined(separator: ","))
+        ]
+        let indexURL = indexURLComponents!.url
 
         let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL!.absoluteString, statusCode: 200, description: expectedParsingException)
 
@@ -159,7 +180,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
     func testDownloadDataSucceeds() {
         let dvrSession = Session(cassetteName: "MediaLibraryDownloader.downloadData.success")
         let downloader = MediaLibraryDownloader(session: dvrSession)
-        let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "/pocketcode/download-media/562", cachedData: nil)
+        let mediaItem = MediaItem(id: 562, downloadURLString: NetworkDefines.shareUrl + "app/download-media/562")
         let expectation = XCTestExpectation(description: "Download background item")
 
         downloader.downloadData(for: mediaItem) { data, error in
@@ -174,7 +195,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
     func testDownloadDataFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = MediaLibraryDownloader(session: mockSession)
-        let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "", cachedData: nil)
+        let mediaItem = MediaItem(id: 562)
         let expectation = XCTestExpectation(description: "Download background item")
 
         downloader.downloadData(for: mediaItem) { _, error in
@@ -194,7 +215,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
     func testDownloadDataFailsWithRequestError() {
         let dvrSession = Session(cassetteName: "MediaLibraryDownloader.downloadData.fail.request")
         let downloader = MediaLibraryDownloader(session: dvrSession)
-        let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "/pocketcode/download-media/99999", cachedData: nil)
+        let mediaItem = MediaItem(id: 99999, downloadURLString: NetworkDefines.shareUrl + "app/download-media/99999")
         let expectation = XCTestExpectation(description: "Download background item")
 
         downloader.downloadData(for: mediaItem) { _, error in
@@ -214,10 +235,10 @@ class MediaLibraryDownloaderTests: XCTestCase {
     func testDownloadDataFailsWithUnexpectedErrorNotification() {
         let mockSession = URLSessionMock()
         let downloader = MediaLibraryDownloader(session: mockSession)
-        let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "/pocketcode/download-media/99999", cachedData: nil)
+        let mediaItem = MediaItem(id: 99999, downloadURLString: NetworkDefines.shareUrl + "app/download-media/99999")
         let error = ErrorMock("")
 
-        let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL.absoluteString, description: error.localizedDescription)
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL!.absoluteString, description: error.localizedDescription)
 
         expect(downloader.downloadData(for: mediaItem) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
@@ -233,10 +254,10 @@ class MediaLibraryDownloaderTests: XCTestCase {
     func testDownloadDataFailsWithRequestErrorNotification() {
         let dvrSession = Session(cassetteName: "MediaLibraryDownloader.downloadData.fail.request")
         let downloader = MediaLibraryDownloader(session: dvrSession)
-        let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "/pocketcode/download-media/99999", cachedData: nil)
+        let mediaItem = MediaItem(id: 99999, downloadURLString: NetworkDefines.shareUrl + "app/download-media/99999")
         let error = ErrorMock("")
 
-        let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL.absoluteString, statusCode: 404, description: error.localizedDescription)
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL!.absoluteString, statusCode: 404, description: error.localizedDescription)
 
         expect(downloader.downloadData(for: mediaItem) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }

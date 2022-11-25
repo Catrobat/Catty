@@ -64,14 +64,12 @@ class NetworkDefines: NSObject {
 
     static let tagLanguage = "language"
 
-    // MARK: MediaLibrary
-
-    static var mediaLibraryBackgroundsIndex: String { baseUrl.appending("/api/media/package/Backgrounds/json") }
-    static var mediaLibraryLooksIndex: String { baseUrl.appending("/api/media/package/Looks/json") }
-    static var mediaLibrarySoundsIndex: String { baseUrl.appending("/api/media/package/Sounds/json") }
-    static var mediaLibraryDownloadBaseUrl: String { baseUrl.replacingOccurrences(of: "/pocketcode/", with: "") }
-
     // MARK: API
+
+    static var apiEndpointMediaPackage = apiBaseUrl.appending("media/package")
+    static var apiEndpointMediaPackageBackgrounds = apiEndpointMediaPackage.appending("/Backgrounds")
+    static var apiEndpointMediaPackageLooks = apiEndpointMediaPackage.appending("/Looks")
+    static var apiEndpointMediaPackageSounds = apiEndpointMediaPackage.appending("/Sounds")
 
     static var apiEndpointProject = apiBaseUrl.appending("project")
     static var apiEndpointProjects = apiBaseUrl.appending("projects")
@@ -97,6 +95,8 @@ class NetworkDefines: NSObject {
     static let searchProjectsBatchSize = 20
 
     static let searchLookupDelayInSeconds = 0.3
+
+    static let mediaPackageMaxItems = 10000
 
     static let currentPlatform = "ios"
 
