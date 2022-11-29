@@ -53,6 +53,10 @@
         }
     }
     
+    if (![[OperatorManager class] nameWithTag:stringValue] && ![[FunctionManager class] nameWithTag:stringValue] && ![[SensorManager class] nameWithTag:stringValue]) {
+        [context.unsupportedElements addObject:stringValue];
+    }
+    
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:type
                                                                  value:stringValue
                                                              leftChild:nil
