@@ -2057,6 +2057,11 @@
 		F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */; };
 		F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */; };
 		F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */; };
+		FE4134F8293B418A0001DA11 /* StopScriptBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4134F7293B418A0001DA11 /* StopScriptBrick.swift */; };
+		FE4134FA293B44E00001DA11 /* StopScriptBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4134F9293B44E00001DA11 /* StopScriptBrickCell.swift */; };
+		FE4134FF293BA41A0001DA11 /* StopScriptBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4134FE293BA41A0001DA11 /* StopScriptBrick+Instruction.swift */; };
+		FE413501293BACEC0001DA11 /* StopStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE413500293BACEC0001DA11 /* StopStyle.swift */; };
+		FEDC355B29407F5D00256FAB /* StopScriptBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDC355A29407F5D00256FAB /* StopScriptBrick+CBXMLHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -4730,6 +4735,11 @@
 		F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalseFunction.swift; sourceTree = "<group>"; };
 		F511044FACC2C8E38A678BB4 /* chr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = chr; path = chr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FB40BD936AE254501FBA2E03 /* kn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = kn; path = kn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FE4134F7293B418A0001DA11 /* StopScriptBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopScriptBrick.swift; sourceTree = "<group>"; };
+		FE4134F9293B44E00001DA11 /* StopScriptBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopScriptBrickCell.swift; sourceTree = "<group>"; };
+		FE4134FE293BA41A0001DA11 /* StopScriptBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopScriptBrick+Instruction.swift"; sourceTree = "<group>"; };
+		FE413500293BACEC0001DA11 /* StopStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopStyle.swift; sourceTree = "<group>"; };
+		FEDC355A29407F5D00256FAB /* StopScriptBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StopScriptBrick+CBXMLHandler.swift"; path = "Catty/DataModel/SpriteObject/StopScriptBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -6794,6 +6804,7 @@
 				AA74EEDA1BC057B900D1E954 /* WaitBrick+CBXMLHandler.m */,
 				BA987D042194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.h */,
 				BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */,
+				FEDC355A29407F5D00256FAB /* StopScriptBrick+CBXMLHandler.swift */,
 			);
 			name = Control;
 			path = ControlBricks;
@@ -9050,6 +9061,7 @@
 			children = (
 				181CC10424B750AE004A783E /* CBPosition.swift */,
 				4C0D2A81254AA2C100A8637F /* RotationStyle.swift */,
+				FE413500293BACEC0001DA11 /* StopStyle.swift */,
 				92FF30BF1A24DCAA00093DA7 /* SpriteObject.h */,
 				92FF30C01A24DCAA00093DA7 /* SpriteObject.m */,
 			);
@@ -10126,6 +10138,7 @@
 				AA74EE1F1BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift */,
 				AA74EE201BC053FD00D1E954 /* WaitBrick+Instruction.swift */,
 				BA987D0E2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift */,
+				FE4134FE293BA41A0001DA11 /* StopScriptBrick+Instruction.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -10255,6 +10268,7 @@
 				AA74EF931BC05B5F00D1E954 /* RepeatBrick.m */,
 				4C0F9F27204ADBDF00E71B2D /* RepeatUntilBrick.h */,
 				4C0F9F26204ADBDF00E71B2D /* RepeatUntilBrick.m */,
+				FE4134F7293B418A0001DA11 /* StopScriptBrick.swift */,
 				AA74EF941BC05B5F00D1E954 /* WaitBrick.h */,
 				AA74EF951BC05B5F00D1E954 /* WaitBrick.m */,
 				BA987D072194E158002DAA05 /* WaitUntilBrick.h */,
@@ -10499,6 +10513,7 @@
 				9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */,
 				BA987D0A2194E25A002DAA05 /* WaitUntilBrickCell.h */,
 				BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */,
+				FE4134F9293B44E00001DA11 /* StopScriptBrickCell.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -13192,6 +13207,7 @@
 				46F0D30E25E593F5002252E6 /* SetLookBrick+CBXMLHandler.swift in Sources */,
 				4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */,
 				AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */,
+				FEDC355B29407F5D00256FAB /* StopScriptBrick+CBXMLHandler.swift in Sources */,
 				4C0F9FA5204BD2C200E71B2D /* ThinkForBubbleBrickCell.m in Sources */,
 				4CDA808521366AEA0052FA24 /* FormulaManagerProtocol.swift in Sources */,
 				49B55F9327E88702000A95B4 /* RightEyebrowInnerXSensor.swift in Sources */,
@@ -13453,8 +13469,10 @@
 				186E99132488F3FF00627E36 /* PenUpBrick.swift in Sources */,
 				BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */,
 				9E2AEA50239887A600CDF58F /* PlaySoundAndWaitBrickCell.swift in Sources */,
+				FE413501293BACEC0001DA11 /* StopStyle.swift in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,
 				F4E6E584210DFD4300D86FE6 /* TanFunction.swift in Sources */,
+				FE4134F8293B418A0001DA11 /* StopScriptBrick.swift in Sources */,
 				92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */,
 				F4E6E596210E03B700D86FE6 /* AtanFunction.swift in Sources */,
 				F4E6E588210DFE8800D86FE6 /* LogFunction.swift in Sources */,
@@ -13609,6 +13627,7 @@
 				AAF6D9D81BC0BAF300686849 /* ShowBrick+Instruction.swift in Sources */,
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
 				BB9EC0E327D62CBA009FF8CE /* FormCheckTableViewCell.swift in Sources */,
+				FE4134FA293B44E00001DA11 /* StopScriptBrickCell.swift in Sources */,
 				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				4420ACB3250929DA00951328 /* AskBrickCell.swift in Sources */,
@@ -13643,6 +13662,7 @@
 				5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */,
 				9218B2111CC4AB75007B4C60 /* PointerTool.m in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
+				FE4134FF293BA41A0001DA11 /* StopScriptBrick+Instruction.swift in Sources */,
 				F4E6E580210DE61900D86FE6 /* PowerFunction.swift in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
 				498C158528070C6C00B81C8E /* RightKneeYSensor.swift in Sources */,

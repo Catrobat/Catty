@@ -581,4 +581,25 @@ class XMLParserTests0991: XMLAbstractTest {
         XCTAssertEqual((background.lookList.object(at: 0) as! Look), brickWithValidBackgroundReference.look)
         XCTAssertNil(brickWithInvalidBackgroundReference.look)
     }
+
+    func testStopBrick() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0991")
+        let background = project.scene.object(at: 0)!
+
+        let backgroundScript = background.scriptList.object(at: 0) as! Script
+        XCTAssertGreaterThanOrEqual(backgroundScript.brickList.count, 53, "Invalid brick list")
+
+        let stopScriptThisBrick = backgroundScript.brickList.object(at: 50) as! Brick
+        XCTAssertTrue(stopScriptThisBrick.isKind(of: StopScriptBrick.self), "Invalid brick type")
+        let stopScriptAllBrick = backgroundScript.brickList.object(at: 51) as! Brick
+        XCTAssertTrue(stopScriptAllBrick.isKind(of: StopScriptBrick.self), "Invalid brick type")
+        let stopScriptOtherBrick = backgroundScript.brickList.object(at: 52) as! Brick
+        XCTAssertTrue(stopScriptOtherBrick.isKind(of: StopScriptBrick.self), "Invalid brick type")
+        let textThis = (stopScriptThisBrick as! StopScriptBrick).selection
+        XCTAssertEqual(StopStyle.thisScript, textThis, "Invalid list value")
+        let textAll = (stopScriptAllBrick as! StopScriptBrick).selection
+        XCTAssertEqual(StopStyle.allScripts, textAll, "Invalid list value")
+        let textOther = (stopScriptOtherBrick as! StopScriptBrick).selection
+        XCTAssertEqual(StopStyle.otherScripts, textOther, "Invalid list value")
+    }
 }

@@ -674,6 +674,18 @@
                 </formula>
               </formulaList>
             </brick>
+            <brick type="StopScriptBrick">
+                <commentedOut>false</commentedOut>
+                <selection>0</selection>
+            </brick>
+            <brick type="StopScriptBrick">
+                <commentedOut>false</commentedOut>
+                <selection>1</selection>
+            </brick>
+            <brick type="StopScriptBrick">
+                <commentedOut>false</commentedOut>
+                <selection>2</selection>
+            </brick>
           </brickList>
           <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
