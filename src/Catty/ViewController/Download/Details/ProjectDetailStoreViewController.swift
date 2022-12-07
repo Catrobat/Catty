@@ -51,22 +51,23 @@ class ProjectDetailStoreViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Initializers
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+ /*   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
-        view.addSubview(loadingView)
+        
         print("init done")
-    }
+    }*/
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+        super.init(coder: coder)
+      }
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(loadingView)
         initNavigationBar()
         self.hidesBottomBarWhenPushed = true
         self.view.backgroundColor = UIColor.background
@@ -119,7 +120,7 @@ class ProjectDetailStoreViewController: UIViewController, UIScrollViewDelegate {
     }
 
     private func loadProject(_ project: CatrobatProject) {
-        guard projectView != nil else { fatalError("Load Project") }
+        //guard projectView != nil else { fatalError("Load Project") }
 
         self.projectView?.removeFromSuperview()
         self.projectView = self.createProjectDetailView(project, target: self)
@@ -201,7 +202,7 @@ class ProjectDetailStoreViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    private func openProject(withLocalName localProjectName: String?) {
+    func openProject(withLocalName localProjectName: String?) {
         guard project != nil else { return }
         showLoadingView()
 
@@ -347,7 +348,7 @@ class ProjectDetailStoreViewController: UIViewController, UIScrollViewDelegate {
 
     private func addTags(to view: UIView, thumbnailView: UIView) -> UIView {
         guard project != nil else { fatalError(kLocalizedErrorUnknown) }
-        guard projectView != nil else { fatalError(kLocalizedErrorUnknown) }
+        //guard projectView != nil else { fatalError(kLocalizedErrorUnknown) }
 
         let tags = project!.tags ?? []
         let height = !tags.isEmpty ? type(of: self).buttonHeight : 0.0
