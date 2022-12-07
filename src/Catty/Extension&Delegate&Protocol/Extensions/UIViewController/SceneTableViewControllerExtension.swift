@@ -55,6 +55,7 @@ extension SceneTableViewController {
     @objc func checkProjectContainsWebRequestBricks(_ project: Project) {
 
         /// Step 1
+        // programID kann ich benutzen
         // TODO: Require a UUID() for a project
         if let warningHasBeenShown = UserDefaults.standard.stringArray(forKey: kWebRequestWarningHasBeenShown) {
             print(warningHasBeenShown)
@@ -67,6 +68,8 @@ extension SceneTableViewController {
         // TODO: Is there an identifier if a project has been download?
                 
         /// Step 3
+        /// ins projekt.m rein, conforms to,
+        /// oder guard let
         let spriteObjects = project.scene.objects()
 
         spriteLoop: for currentSpriteObject in spriteObjects {

@@ -49,7 +49,6 @@
         "WebRequestBrick"
     }
 
-    // TODO: Why is this named isWebRequest and not isWebRequestBrick?
     override func isWebRequest() -> Bool {
         true
     }
