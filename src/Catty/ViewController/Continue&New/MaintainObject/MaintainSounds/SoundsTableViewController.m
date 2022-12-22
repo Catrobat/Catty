@@ -32,7 +32,6 @@
 #import "CBFileManager.h"
 #import "CBFileManager.h"
 #import "RuntimeImageCache.h"
-#import "SRViewController.h"
 #import "PlaceHolderView.h"
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
