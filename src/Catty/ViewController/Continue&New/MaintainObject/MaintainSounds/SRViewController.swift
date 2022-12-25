@@ -126,6 +126,8 @@ class SRViewController: UIViewController, AVAudioRecorderDelegate {
         if sound?.name == kLocalizedRecording {
             recorder?.stop()
             delegate?.add(sound)
+        } else {
+            recorder?.deleteRecording()
         }
         isSaved = true
         navigationController?.popViewController(animated: true)
@@ -136,6 +138,8 @@ class SRViewController: UIViewController, AVAudioRecorderDelegate {
         if (sound?.name == kLocalizedRecording) && !isSaved {
             recorder?.stop()
             delegate?.showSaveSoundAlert(sound)
+        } else if (sound?.name != kLocalizedRecording) && !isSaved {
+            recorder?.deleteRecording()
         }
     }
 
@@ -152,7 +156,15 @@ class SRViewController: UIViewController, AVAudioRecorderDelegate {
         }
 
         if !flag {
+            sound?.name = ""
         }
+    }
+
+    // MARK: System Memory Warning
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        Util.alert(title: kLocalizedError, text: kLocalizedMemoryWarning)
     }
 
 }
