@@ -40,7 +40,7 @@ class SRViewController: UIViewController, AVAudioRecorderDelegate {
         super.viewDidLoad()
 
         let save = UIBarButtonItem(
-            title: "save", style: .done, target: self, action: #selector(saveSound(sender:)))
+            title: "Done", style: .done, target: self, action: #selector(saveSound(sender:)))
         navigationController?.isToolbarHidden = true
         navigationItem.rightBarButtonItem = save
 
@@ -123,8 +123,8 @@ class SRViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func saveSound(sender: UIBarButtonItem) {
+        recorder?.stop()
         if sound?.name == kLocalizedRecording {
-            recorder?.stop()
             delegate?.add(sound)
         } else {
             recorder?.deleteRecording()
@@ -139,6 +139,7 @@ class SRViewController: UIViewController, AVAudioRecorderDelegate {
             recorder?.stop()
             delegate?.showSaveSoundAlert(sound)
         } else if (sound?.name != kLocalizedRecording) && !isSaved {
+            recorder?.stop()
             recorder?.deleteRecording()
         }
     }
@@ -151,13 +152,10 @@ class SRViewController: UIViewController, AVAudioRecorderDelegate {
         timerLabel.pause()
         recordButton.isSelected = false
 
-        if (Double(CBFileManager.shared().freeDiskspace() / 1024) / 1024) < 1 {
+        if (Double(CBFileManager.shared().freeDiskspace() / 1024) / 1024) < 10 {
             Util.alert(title: kLocalizedError, text: kLocalizedMemoryWarning)
         }
 
-        if !flag {
-            sound?.name = ""
-        }
     }
 
     // MARK: System Memory Warning
