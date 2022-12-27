@@ -85,6 +85,7 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic, assign) BOOL batchUpdateMutex;
+@property (nonatomic, assign) BOOL isBrickMove;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
@@ -304,6 +305,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self reloadData];
             [self.object.scene.project saveToDiskWithNotification:YES];
         }];
+
+        [actionSheet addDefaultActionWithTitle:kLocalizedMoveScript handler:^{
+            script.animateInsertBrick = YES;
+            script.animateMoveBrick = YES;
+            [[BrickInsertManager sharedInstance] setBrickMoveMode:YES];
+            [self turnOnInsertingBrickMode];
+            [self reloadData];
+        }];
     }
     
     [[[[actionSheet build]
@@ -401,17 +410,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } else {
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
-		fromBrick.script = toScript;
-        if ([fromScript.brickList count] == 1) {
-            [fromScript.brickList removeAllObjects];
-        } else {
-            [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+        if ([fromScript.brickList count] > 0) {
+            Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+            fromBrick.script = toScript;
+            if ([fromScript.brickList count] == 1) {
+                [fromScript.brickList removeAllObjects];
+            } else {
+                [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+            }
+            if ([toScript.brickList count] == 0) {
+                [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item];
+            }else{
+                [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+            }
         }
-        if ([toScript.brickList count] == 0) {
-            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item];
-        }else{
-            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+        else {
+            self.object.scriptList[toIndexPath.section] = fromScript;
+            self.object.scriptList[fromIndexPath.section] = toScript;
+
         }
     }
 }
@@ -433,22 +449,28 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        if (indexPath.item != 0) {
-            Brick *brick;
-            if (script.brickList.count >= 1) {
-                brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        if ([script.brickList count] > 0) {
+            if (indexPath.item != 0) {
+                Brick *brick;
+                if (script.brickList.count >= 1) {
+                    brick = [script.brickList objectAtIndex:indexPath.item - 1];
+                }else{
+                    brick = [script.brickList objectAtIndex:indexPath.item];
+                }
+                if (brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick) {
+                    [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+                }else if(!brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick){
+                    return;
+                }else {
+                    brick.animateInsertBrick = NO;
+                    brick.animateMoveBrick = NO;
+                }
             }else{
-                brick = [script.brickList objectAtIndex:indexPath.item];
+                script.animateInsertBrick = NO;
             }
-            if (brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick) {
-                [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
-            }else if(!brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick){
-                return;
-            }else {
-                brick.animateInsertBrick = NO;
-                brick.animateMoveBrick = NO;
-            }
-        }else{
+        } else {
+            script.animateInsertBrick = NO;
+            script.animateMoveBrick = NO;
             script.animateInsertBrick = NO;
         }
         [self.object.scene.project saveToDiskWithNotification:NO];
@@ -473,8 +495,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode] && ![[BrickInsertManager sharedInstance] isBrickMoveMode]) {
         return [[BrickInsertManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canInsertToIndexPath:toIndexPath andObject:self.object];
     }
-    
-    return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object];
+    BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:fromIndexPath];
+    if (brickCell) {
+        id scriptOrBrick = brickCell.scriptOrBrick;
+        self.isBrickMove = [scriptOrBrick isKindOfClass:[Brick class]];
+    }
+    return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object isBrick: self.isBrickMove];
 }
 
 
@@ -487,9 +513,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         if (indexPath.item != 0) {
             brick = [script.brickList objectAtIndex:indexPath.item - 1];
         }
-        return (script.animateInsertBrick || brick.animateMoveBrick || brick.animateInsertBrick);
+        return (script.animateMoveBrick || script.animateInsertBrick || brick.animateMoveBrick || brick.animateInsertBrick);
     }
-    BOOL editable = ((self.isEditing || indexPath.item == 0) ? NO : YES);
+    BOOL editable = (self.isEditing ? NO : YES);
     return ((editable || [[BrickInsertManager sharedInstance] isBrickInsertionMode]) ? YES : editable);
 }
 

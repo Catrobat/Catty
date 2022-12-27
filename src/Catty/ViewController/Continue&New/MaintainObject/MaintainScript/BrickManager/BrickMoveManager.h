@@ -27,9 +27,8 @@
 @interface BrickMoveManager : NSObject
 
 +(id)sharedInstance;
-
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
-    canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object;
+    canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object isBrick:(BOOL)isBrick;
 
 -(void)reset;
 -(void)getReadyForNewBrickMovement;
