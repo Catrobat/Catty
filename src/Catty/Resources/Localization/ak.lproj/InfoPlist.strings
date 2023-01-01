@@ -1,0 +1,20 @@
+CFBundleDevelopmentRegion = "English";
+CFBundleTypeName = "Catrobat Program";
+LSHandlerRank = "Owner";
+CFBundlePackageType = "APPL";
+CFBundleSignature = "????";
+CatrobatApplicationName = "Pocket Code (Catty iOS)";
+CatrobatBuildName = "Catty";
+CatrobatPlatformName = "iOS";
+NSBluetoothAlwaysUsageDescription = "Communicate with your Arduino device using Bluetooth.";
+NSBluetoothPeripheralUsageDescription = "Communicate with your Arduino device using Bluetooth.";
+NSCameraUsageDescription = "Import pictures from your device camera to use as Look or Background.";
+NSLocationWhenInUseUsageDescription = "This program is requesting access to your location.";
+NSMicrophoneUsageDescription = "Record your own sounds or use the microphone for screen recording.";
+NSPhotoLibraryUsageDescription = "Import pictures from your Photo Library to use as Look or Background.";
+UILaunchStoryboardName = "LaunchScreen";
+UIMainStoryboardFile = "iPhone";
+UIStatusBarStyle = "UIStatusBarStyleLightContent";
+UIUserInterfaceStyle = "Light";
+UTTypeDescription = "Catrobat Program";
+
