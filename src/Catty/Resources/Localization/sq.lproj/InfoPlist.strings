@@ -1,10 +1,12 @@
 CFBundleDevelopmentRegion = "English";
 CFBundleTypeName = "Catrobat Program";
 LSHandlerRank = "Owner";
+CFBundleInfoDictionaryVersion = "6.0";
 CFBundlePackageType = "APPL";
 CFBundleSignature = "????";
 CatrobatApplicationName = "Pocket Code (Catty iOS)";
 CatrobatBuildName = "Catty";
+CatrobatLanguageVersion = "0.9993";
 CatrobatPlatformName = "iOS";
 NSBluetoothAlwaysUsageDescription = "Communicate with your Arduino device using Bluetooth.";
 NSBluetoothPeripheralUsageDescription = "Communicate with your Arduino device using Bluetooth.";
@@ -17,4 +19,4 @@ UIMainStoryboardFile = "iPhone";
 UIStatusBarStyle = "UIStatusBarStyleLightContent";
 UIUserInterfaceStyle = "Light";
 UTTypeDescription = "Catrobat Program";
-
+UTTypeIdentifier = "org.catrobat.pocketcode.catrobat";
