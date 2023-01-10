@@ -25,6 +25,12 @@ import Foundation
 @objc
 extension ProjectDetailStoreViewController {
     func download(name: String) {
+        guard Double(self.project.size) ?? 0.0 < NetworkDefines.projectMaxSize else {
+            Util.alert(text: kLocalizedUnableToLoadProject)
+            self.resetDownloadStatus()
+            return
+        }
+
         storeProjectDownloader.download(
             projectId: self.project.projectID,
             projectName: name,

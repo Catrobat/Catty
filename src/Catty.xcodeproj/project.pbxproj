@@ -1325,7 +1325,6 @@
 		92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */; };
 		92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312F1A24DEB300093DA7 /* ObjectTableViewController.m */; };
 		92FF31581A24DEB300093DA7 /* SceneTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31311A24DEB300093DA7 /* SceneTableViewController.m */; };
-		92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */; };
 		92FF315B1A24DEB300093DA7 /* ProjectDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31381A24DEB300093DA7 /* ProjectDetailStoreViewController.m */; };
 		92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31421A24DEB300093DA7 /* MyProjectsViewController.m */; };
 		92FF31611A24DEB300093DA7 /* StagePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31471A24DEB300093DA7 /* StagePresenterViewController.m */; };
@@ -1805,6 +1804,7 @@
 		CAE3E4EC1B4C509800CC88BD /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E4EA1B4C509800CC88BD /* test2.png */; };
 		CE201D67293BC6E000E7DD06 /* SRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE201D66293BC6E000E7DD06 /* SRViewController.swift */; };
 		CE76D87729644F91001D7517 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE76D87529644F91001D7517 /* InfoPlist.strings */; };
+		CE76D8C52965DF3A001D7517 /* DownloadTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76D8C42965DF3A001D7517 /* DownloadTabBarController.swift */; };
 		D30359E624445ABE006688F5 /* GoToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D30359E524445ABE006688F5 /* GoToBrick+CBXMLHandler.m */; };
 		D30359E82444723D006688F5 /* GoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30359E72444723D006688F5 /* GoToBrick+Instruction.swift */; };
 		D30ECD1C2440963100FAD17D /* CBFrontendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30ECD1A2440963100FAD17D /* CBFrontendTests.swift */; };
@@ -3700,8 +3700,6 @@
 		92FF312F1A24DEB300093DA7 /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
 		92FF31301A24DEB300093DA7 /* SceneTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTableViewController.h; sourceTree = "<group>"; };
 		92FF31311A24DEB300093DA7 /* SceneTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTableViewController.m; sourceTree = "<group>"; };
-		92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadTabBarController.h; sourceTree = "<group>"; };
-		92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadTabBarController.m; sourceTree = "<group>"; };
 		92FF31371A24DEB300093DA7 /* ProjectDetailStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailStoreViewController.h; sourceTree = "<group>"; };
 		92FF31381A24DEB300093DA7 /* ProjectDetailStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailStoreViewController.m; sourceTree = "<group>"; };
 		92FF31411A24DEB300093DA7 /* MyProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProjectsViewController.h; sourceTree = "<group>"; };
@@ -4533,6 +4531,7 @@
 		CE76D8BE29645087001D7517 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE76D8BF2964508A001D7517 /* uz */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE76D8C02964508D001D7517 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CE76D8C42965DF3A001D7517 /* DownloadTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTabBarController.swift; sourceTree = "<group>"; };
 		D30359E424445A6B006688F5 /* GoToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GoToBrick+CBXMLHandler.h"; path = "Catty/XML/XMLHandler/Bricks/Motion/GoToBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		D30359E524445ABE006688F5 /* GoToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "GoToBrick+CBXMLHandler.m"; path = "Catty/XML/XMLHandler/Bricks/Motion/GoToBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		D30359E72444723D006688F5 /* GoToBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GoToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/GoToBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -9248,8 +9247,7 @@
 				E4B1BF4D20F719DB00800555 /* FeaturedProjects */,
 				2DA8790F212BD67700FE0585 /* ChartProjects */,
 				2DA87910212BD6C000FE0585 /* SearchStore */,
-				92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */,
-				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
+				CE76D8C42965DF3A001D7517 /* DownloadTabBarController.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -13355,6 +13353,7 @@
 				C8A0338326064F3C00702911 /* SetTempoToBrick+CBXMLHandler.swift in Sources */,
 				9218B2101CC4AB75007B4C60 /* PipetteTool.m in Sources */,
 				4C0F9F66204BD18600E71B2D /* SayBubbleBrick+CBXMLHandler.m in Sources */,
+				CE76D8C52965DF3A001D7517 /* DownloadTabBarController.swift in Sources */,
 				49519D3527DCE0FE00E32E88 /* SecondFacePositionYSensor.swift in Sources */,
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				4C595F4921CAEB7E0097D850 /* NotEqualOperator.swift in Sources */,
@@ -13484,7 +13483,6 @@
 				5EFBD5FC2145AADC003B3CDC /* UIViewExtension.swift in Sources */,
 				49949B472806EAD20073BF65 /* NeckYSensor.swift in Sources */,
 				9728AE9E25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift in Sources */,
-				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				229DC44F25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift in Sources */,
 				46CF173425E2F4D200DADF08 /* SetBackgroundBrick+CBXMLHandler.swift in Sources */,
 				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,

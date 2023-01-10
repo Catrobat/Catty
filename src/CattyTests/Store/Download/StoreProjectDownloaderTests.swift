@@ -872,6 +872,7 @@ class StoreProjectDownloaderTests: XCTestCase {
     }
 
     // MARK: - Download project
+
     func testDownloadProjectSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadProject.success")
         let fileManagerMock = CBFileManagerMock(filePath: [], directoryPath: [])

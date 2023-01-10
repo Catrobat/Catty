@@ -113,4 +113,7 @@ class NetworkDefines: NSObject {
 
     // MARK: Wiki
     static let kWebRequestWikiURL = "https://wiki.catrobat.org/bin/view/Documentation/Web%20requests/"
+
+    // MARK: AppLimits
+    static let projectMaxSize = 8.0
 }

@@ -27,8 +27,10 @@ class ProjectDetailStoreViewControllerExtensionTests: XCTestCase {
     var expectedZippedProjectData: Data!
     var projectDetailStoreVC: ProjectDetailStoreViewController!
     var storeProjectDownloaderMock: StoreProjectDownloaderMock!
+    var sut: UIViewController!
 
     override func setUp() {
+
         self.storeProjectDownloaderMock = StoreProjectDownloaderMock()
 
         self.projectDetailStoreVC = ProjectDetailStoreViewController.init()
@@ -38,6 +40,7 @@ class ProjectDetailStoreViewControllerExtensionTests: XCTestCase {
         self.projectDetailStoreVC.project.projectDescription = "This is a fun game"
         self.projectDetailStoreVC.project.uploaded = "1614680355"
         self.projectDetailStoreVC.project.downloadUrl = "https://web-test.catrob.at/pocketcode/download/817.catrobat"
+        self.projectDetailStoreVC.project.size = "7.9"
 
         self.projectDetailStoreVC.storeProjectDownloader = storeProjectDownloaderMock
 
@@ -57,5 +60,14 @@ class ProjectDetailStoreViewControllerExtensionTests: XCTestCase {
         self.projectDetailStoreVC.download(name: projectName)
 
         wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testMaxProjectSize() {
+        let projectName = "Tic-Tac-Toe Master"
+        self.projectDetailStoreVC.project.size = "8.0"
+
+        self.projectDetailStoreVC.download(name: projectName)
+
+        XCTAssertTrue(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController is UIAlertController)
     }
 }

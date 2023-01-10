@@ -160,6 +160,8 @@
 #import "CameraPreviewHandler.h"
 #import "UndoManager.h"
 #import "TimerLabel.h"
+#import "UIUtil.h"
+
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes
@@ -174,6 +176,9 @@
 #import "ScriptCollectionViewController.h"
 #import "LoginViewController.h"
 #import "ProjectDetailStoreViewController.h"
+#import "ViewControllerDefines.h"
+#import "DarkBlueGradientImageDetailCell.h"
+#import "PlaceHolderView.h"
 
 //------------------------------------------------------------------------------------------------------------
 
