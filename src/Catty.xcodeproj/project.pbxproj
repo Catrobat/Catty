@@ -1323,7 +1323,6 @@
 		92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311B1A24DEB300093DA7 /* LookImageViewController.m */; };
 		92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */; };
 		92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */; };
-		92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312D1A24DEB300093DA7 /* SRViewController.m */; };
 		92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312F1A24DEB300093DA7 /* ObjectTableViewController.m */; };
 		92FF31581A24DEB300093DA7 /* SceneTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31311A24DEB300093DA7 /* SceneTableViewController.m */; };
 		92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */; };
@@ -1804,6 +1803,7 @@
 		CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3C79B1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift */; };
 		CAE3E4EB1B4C509800CC88BD /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E4E91B4C509800CC88BD /* test.png */; };
 		CAE3E4EC1B4C509800CC88BD /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E4EA1B4C509800CC88BD /* test2.png */; };
+		CE201D67293BC6E000E7DD06 /* SRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE201D66293BC6E000E7DD06 /* SRViewController.swift */; };
 		D30359E624445ABE006688F5 /* GoToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D30359E524445ABE006688F5 /* GoToBrick+CBXMLHandler.m */; };
 		D30359E82444723D006688F5 /* GoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30359E72444723D006688F5 /* GoToBrick+Instruction.swift */; };
 		D30ECD1C2440963100FAD17D /* CBFrontendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30ECD1A2440963100FAD17D /* CBFrontendTests.swift */; };
@@ -3695,8 +3695,6 @@
 		92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksTableViewController.m; sourceTree = "<group>"; };
 		92FF312A1A24DEB300093DA7 /* SoundsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsTableViewController.h; sourceTree = "<group>"; };
 		92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsTableViewController.m; sourceTree = "<group>"; };
-		92FF312C1A24DEB300093DA7 /* SRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRViewController.h; sourceTree = "<group>"; };
-		92FF312D1A24DEB300093DA7 /* SRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRViewController.m; sourceTree = "<group>"; };
 		92FF312E1A24DEB300093DA7 /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
 		92FF312F1A24DEB300093DA7 /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
 		92FF31301A24DEB300093DA7 /* SceneTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTableViewController.h; sourceTree = "<group>"; };
@@ -4459,6 +4457,7 @@
 		CC7AC0EC7C3FE7D0298ABB4B /* sl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CC8375C29E5886620CED275A /* ja */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD83AA3639A4C0DD990858AD /* ps */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ps; path = ps.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE201D66293BC6E000E7DD06 /* SRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRViewController.swift; sourceTree = "<group>"; };
 		D30359E424445A6B006688F5 /* GoToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GoToBrick+CBXMLHandler.h"; path = "Catty/XML/XMLHandler/Bricks/Motion/GoToBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		D30359E524445ABE006688F5 /* GoToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "GoToBrick+CBXMLHandler.m"; path = "Catty/XML/XMLHandler/Bricks/Motion/GoToBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		D30359E72444723D006688F5 /* GoToBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GoToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/GoToBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -9160,9 +9159,8 @@
 				92FF312A1A24DEB300093DA7 /* SoundsTableViewController.h */,
 				92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */,
 				5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */,
-				92FF312C1A24DEB300093DA7 /* SRViewController.h */,
-				92FF312D1A24DEB300093DA7 /* SRViewController.m */,
 				97417A9A265284400079A2A2 /* SoundsTableViewController+SelectFile.swift */,
+				CE201D66293BC6E000E7DD06 /* SRViewController.swift */,
 			);
 			path = MaintainSounds;
 			sourceTree = "<group>";
@@ -13252,7 +13250,6 @@
 				F4E6E58A210DFECA00D86FE6 /* SqrtFunction.swift in Sources */,
 				F4E6E586210DFE0800D86FE6 /* LnFunction.swift in Sources */,
 				4CC147B1257A22D3001A93F9 /* LaunchArguments.swift in Sources */,
-				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
 				AAF6D9DA1BC0BB1F00686849 /* SetLookBrick+Instruction.swift in Sources */,
 				4C0F9F8B204BD26100E71B2D /* IfThenLogicBeginBrickCell.m in Sources */,
 				BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */,
@@ -13531,6 +13528,7 @@
 				59D008ED208E4249000539E7 /* LocationManager.swift in Sources */,
 				9218B2061CC4AB75007B4C60 /* RGBAHelper.m in Sources */,
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
+				CE201D67293BC6E000E7DD06 /* SRViewController.swift in Sources */,
 				4C0F9F5D204BD16F00E71B2D /* ChooseCameraBrick+CBXMLHandler.m in Sources */,
 				49B55F7327E86315000A95B4 /* RightEyeCenterXSensor.swift in Sources */,
 				AA74EEFA1BC057C900D1E954 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
