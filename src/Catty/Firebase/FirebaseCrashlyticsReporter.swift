@@ -52,6 +52,7 @@ class FirebaseCrashlyticsReporter {
             addObserver(selector: #selector(self.scriptDisabled(notification:)), name: .scriptDisabled)
             addObserver(selector: #selector(self.projectInvalidVersion(notification:)), name: .projectInvalidVersion)
             addObserver(selector: #selector(self.projectInvalidXml(notification:)), name: .projectInvalidXml)
+            addObserver(selector: #selector(self.projectXmlTooLarge(notification:)), name: .projectXmlTooLarge)
             addObserver(selector: #selector(self.projectFetchFailure(notification:)), name: .projectFetchFailure)
             addObserver(selector: #selector(self.projectFetchDetailsFailure(notification:)), name: .projectFetchDetailsFailure)
             addObserver(selector: #selector(self.projectSearchFailure(notification:)), name: .projectSearchFailure)
@@ -148,6 +149,17 @@ class FirebaseCrashlyticsReporter {
                         "projectName": projectName]
 
         let error = NSError(domain: "ProjectParserError", code: 501, userInfo: userInfo)
+        crashlytics.record(error: error)
+    }
+
+    @objc func projectXmlTooLarge(notification: Notification) {
+        let projectName = (notification.object as? ProjectLoadingInfo)?.visibleName ?? type(of: self).logNoValue
+        let projectId = (notification.object as? ProjectLoadingInfo)?.projectID ?? type(of: self).logNoValue
+        let userInfo = ["description": "Too large XML for Project",
+                        "projectId": projectId,
+                        "projectName": projectName]
+
+        let error = NSError(domain: "ProjectParserError", code: 502, userInfo: userInfo)
         crashlytics.record(error: error)
     }
 
