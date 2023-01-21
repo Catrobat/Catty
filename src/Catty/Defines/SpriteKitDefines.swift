@@ -45,7 +45,7 @@ class SpriteKitDefines: NSObject {
     static let stitchingPointShapeNodeName = "stitchingPointShapeNode"
     static let defaultCatrobatStitchingSize = CGFloat(3.15)
     static let defaultStitchingZPosition = CGFloat(0)
-    static let defaultStitchingColor = UIColor(red: 0, green: 0, blue: 0)
+    static var currentStitchingColor = UIColor(red: 0, green: 0, blue: 0)
     static let stitchingCircleRadius = CGFloat(3.0)
 
     static let maxLengthSKLabelNode = 160

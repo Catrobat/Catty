@@ -152,6 +152,7 @@ class EmbroideryStream: Collection {
     private func append(_ stitch: Stitch) {
         if nextStitchIsColorChange {
             stitch.isColorChange = true
+            stitch.setColor(color: SpriteKitDefines.currentStitchingColor)
             nextStitchIsColorChange = false
         }
         drawEmbroideryQueue.append(stitch)

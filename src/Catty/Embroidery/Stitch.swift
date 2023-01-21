@@ -29,6 +29,7 @@ class Stitch: Equatable {
     var isColorChange = false
     var isInterpolated = false
     var isDrawn = false
+    private var color = SpriteKitDefines.currentStitchingColor
 
     init<T: BinaryInteger>(x: T, y: T, asJump isJump: Bool = false, isInterpolated: Bool = false) {
         self.x = CGFloat(x)
@@ -65,5 +66,13 @@ class Stitch: Equatable {
 
     func getPosition() -> CGPoint {
         CGPoint(x: self.x, y: self.y)
+    }
+
+    func setColor(color: UIColor) {
+        self.color = color
+    }
+
+    func getColor() -> UIColor {
+        self.color
     }
 }

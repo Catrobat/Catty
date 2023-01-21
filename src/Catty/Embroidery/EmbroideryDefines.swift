@@ -61,4 +61,5 @@ enum EmbroideryDefines {
     static let defaultZigzagStitchLength = 10
     static let defaultZigzagStitchWidth = 20
     static let sewUpSteps = 3
+    static let deafultThreadColor = "#ff0000"
 }

@@ -83,7 +83,7 @@ final class CBSpriteNodeStitchExtensionTests: XCTestCase {
         var allLineShapeNodes = getAllLineShapeNodes()
 
         XCTAssertEqual(allLineShapeNodes.count, 1)
-        XCTAssertEqual(allLineShapeNodes[0].strokeColor, SpriteKitDefines.defaultStitchingColor)
+        XCTAssertEqual(allLineShapeNodes[0].strokeColor, SpriteKitDefines.currentStitchingColor)
         XCTAssertEqual(allLineShapeNodes[0].pathStartPoint, initialPosition)
         XCTAssertEqual(allLineShapeNodes[0].pathEndPoint, spriteNode.position)
 
@@ -115,8 +115,8 @@ final class CBSpriteNodeStitchExtensionTests: XCTestCase {
         var allPointShapeNodes = getAllPointShapeNodes()
 
         XCTAssertEqual(allPointShapeNodes.count, 2)
-        XCTAssertEqual(allPointShapeNodes[0].strokeColor, SpriteKitDefines.defaultStitchingColor)
-        XCTAssertEqual(allPointShapeNodes[0].fillColor, SpriteKitDefines.defaultStitchingColor)
+        XCTAssertEqual(allPointShapeNodes[0].strokeColor, SpriteKitDefines.currentStitchingColor)
+        XCTAssertEqual(allPointShapeNodes[0].fillColor, SpriteKitDefines.currentStitchingColor)
         XCTAssertEqual(allPointShapeNodes[0].point, initialPosition)
 
         spriteNode.position = CGPoint(x: 2, y: 2)
@@ -168,7 +168,7 @@ final class CBSpriteNodeStitchExtensionTests: XCTestCase {
         let firstLine = lines.first!
 
         XCTAssertEqual(firstLine.name, SpriteKitDefines.stitchingLineShapeNodeName)
-        XCTAssertEqual(firstLine.strokeColor, SpriteKitDefines.defaultStitchingColor)
+        XCTAssertEqual(firstLine.strokeColor, SpriteKitDefines.currentStitchingColor)
         XCTAssertEqual(firstLine.zPosition, SpriteKitDefines.defaultStitchingZPosition)
         XCTAssertEqual(firstLine.pathStartPoint, initialPosition)
         XCTAssertEqual(firstLine.pathEndPoint, secondPosition)
@@ -198,8 +198,8 @@ final class CBSpriteNodeStitchExtensionTests: XCTestCase {
         let firstPoint = points.first!
 
         XCTAssertEqual(firstPoint.name, SpriteKitDefines.stitchingPointShapeNodeName)
-        XCTAssertEqual(firstPoint.strokeColor, SpriteKitDefines.defaultStitchingColor)
-        XCTAssertEqual(firstPoint.fillColor, SpriteKitDefines.defaultStitchingColor)
+        XCTAssertEqual(firstPoint.strokeColor, SpriteKitDefines.currentStitchingColor)
+        XCTAssertEqual(firstPoint.fillColor, SpriteKitDefines.currentStitchingColor)
         XCTAssertEqual(firstPoint.zPosition, SpriteKitDefines.defaultStitchingZPosition)
         XCTAssertEqual(firstPoint.point, initialPosition)
 
