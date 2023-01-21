@@ -122,6 +122,7 @@
             ArduinoSendPWMValueBrick(),
             // embroidery brick
             StitchBrick(),
+            StitchThreadColorBrick(),
             StartRunningStitchBrick(),
             SewUpBrick(),
             StopCurrentStitchBrick(),

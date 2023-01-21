@@ -20,21 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension StitchBrick: CBInstructionProtocol {
+class StitchThreadColorCell: BrickCell, BrickCellProtocol {
 
-    func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+    var textLabel: UILabel?
+    var stitchColorField: UITextField?
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
-    func actionBlock() -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
-        return {
-            let position = spriteNode.position
-            let stitch = Stitch(x: position.x, y: position.y, withColor: spriteNode.embroideryStream.color)
-            spriteNode.embroideryStream.add(stitch)
-        }
+    static func cellHeight() -> CGFloat {
+        UIDefines.brickHeight1h
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.stitchColorField = inlineViewSubViews[1] as? UITextField
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedStitchThreadColor + " %@"
+    }
+
+    override func parameters() -> [String]! {
+        ["{FLOAT;range=(0,inf)}"]
     }
 }
