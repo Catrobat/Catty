@@ -28,16 +28,16 @@ public extension CGPoint {
         CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
 
-    static func += (lhs: inout CGPoint, rhs: CGVector) { //swiftlint:disable shorthand_operator
-        lhs = lhs + rhs                                   //this is a known limitation of swiftlint
+    static func += (lhs: inout CGPoint, rhs: CGVector) {
+        lhs = lhs + rhs
     }
 
     static func - (lhs: CGPoint, rhs: CGVector) -> CGPoint {
         CGPoint(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)
     }
 
-    static func -= (lhs: inout CGPoint, rhs: CGVector) { //swiftlint:disable shorthand_operator
-        lhs = lhs - rhs                                   //this is a known limitation of swiftlint
+    static func -= (lhs: inout CGPoint, rhs: CGVector) {
+        lhs = lhs - rhs
     }
 
     static func squaredDistance(from: CGPoint, to: CGPoint) -> CGFloat {
