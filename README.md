@@ -1,79 +1,52 @@
+⚠️ **__If you have not heard about who Catrobat is, what we are doing and in what ways you can contribute, then you might want to take a step back and check out the start of our [step-by-step guide](https://github.com/Catrobat/Catroid/blob/develop/README.md).__**
+```diff
+👷 TODO: Change link to README in Catrobat's .github repository when added!
+```
+💡 *If any step in the following process is unclear, misleading, or incorrect, you can directly contribute by issuing a pull request with the updated information!*
 
-Catty
-=====
-[![](https://jenkins.catrob.at/buildStatus/icon?job=Catty%2Fdevelop)](https://jenkins.catrob.at/job/Catty/job/develop/) ![](https://img.shields.io/github/release/catrobat/catty.svg) ![](https://img.shields.io/github/languages/top/catrobat/catty.svg)
 
-Catty, also known as **Pocket Code for iOS**, is an on-device visual programming system for iPhones.
 
-Catrobat is a visual programming language and set of creativity tools for smartphones, tablets, and mobile browsers. Catrobat programs can be written by using the Catroid programming system on Android phones and tablets, using Catroid, or Catty for iPhones.
+# Catty
+Catty, also known as "Pocket Code for iOS", is an on-device visual programming system for iPhones. If you used an Apple device in the previous steps, this is exactly the app that enabled you to create your first small Catrobat game.
 
-For more information oriented towards developers please visit our [developers page](http://developer.catrobat.org/).
 
-[![Download on the App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://catrob.at/PCios)
+## Team Culture
+We work as a team and expect everyone to follow the rules. In our daily work, we use the methods listed below to create high-quality code. We support each other but also anticipate newcomers to learn about our coding principles proactively:
 
-# Issues #
+- [Test-Driven Development](http://wiki.c2.com/?TestDrivenDevelopment)
+- [Clean Code](https://www.planetgeek.ch/wp-content/uploads/2013/06/Clean-Code-V2.2.pdf)
+- Jira Workflow
+- Style Guide
+- Code Reviews
+- Pair Programming
+- Biweekly Meetings (remote)
 
-For reporting issues use our [Jira issue tracker](https://jira.catrob.at/secure/CreateIssue.jspa?pid=11901&issuetype=1). Before creating a new bug, please browse our currently open issues [here](https://jira.catrob.at/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+CATTY+AND+resolution+%3D+Unresolved+ORDER+BY+priority+DESC%2C+key+DESC&mode=hide).
+## Technologies
+Below you can find an outline of the technologies we currently use at Catty. If you want to contribute to our team, your tech stack should cover most of the technologies. But don't worry! If you are uncertain about a specific technology, you can learn it along the way. Google is your friend ;)
 
-# Contributing #
+### Languages
+[![Objective-C](http://img.shields.io/badge/Objective_C-darkblue)](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#:~:text=Objective%2DC%20is%20the%20primary,capabilities%20and%20a%20dynamic%20runtime.)
+[![Swift](https://img.shields.io/badge/Swift-with_SwiftLint-green?labelColor=darkblue)](https://developer.apple.com/swift/)
 
-We welcome all offers for help! If you want to contribute we suggest that you start with [forking](https://help.github.com/articles/fork-a-repo/) our repository and browse the code. You can then look at our [Jira issue tracker](https://jira.catrob.at/issues/?jql=project%20%3D%20Catty%20AND%20status%20%3D%20%22Ready%20For%20Development%22%20AND%20%22Experience%20Level%22%20in%20(BEGINNER%2CTRAINING)) and start working on a ticket. It is recommended to start your contribution on a ticket labelled as *TRAINING* or *BEGINNER* ticket. We strictly use [Test-Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment) and [Clean Code](http://www.planetgeek.ch/wp-content/uploads/2013/06/Clean-Code-V2.2.pdf), code developed in a different style will not be accepted. After you have implemented a certain ticket, hand in a pull request on GitHub and have a look at our pull request template.
+### Infrastructure (IDE, Version Control, Issue Tracking, ...)
+[![Xcode](https://img.shields.io/badge/Xcode-purple)](https://developer.apple.com/xcode/)
+[![SwiftLint](https://img.shields.io/badge/SwiftLint-purple)](https://github.com/realm/SwiftLint)
+[![macOS](https://img.shields.io/badge/Mac_(macOS_latest_version)-must_have-green?labelColor=purple)](https://www.apple.com/macos/)
+[![iOS](https://img.shields.io/badge/iPhone_(iOS_latest_version)-nice_to_have-green?labelColor=purple)](https://www.apple.com/ios/)
+[![Git](https://img.shields.io/badge/Git-purple)](https://git-scm.com/)
+[![Jira](https://img.shields.io/badge/Jira-purple)](https://jira.catrob.at/secure/Dashboard.jspa)
 
-If you want to implement a new feature, please ask about further details on [Google Groups](https://groups.google.com/forum/#!forum/catty-ios).
+### Knowledge Repository
+[![Confluence](https://img.shields.io/badge/Confluence-orange)](https://confluence.catrob.at/)
 
-<!--
- 1. Make sure you have installed [Brew][1], a package manage for OSX, which the `bootstrap` script uses to pull dependencies
- 1. Now install xctool and cmake by executing following lines at the command-line prompt:
- `sudo brew install xctool`
- `sudo brew install cmake`
- 1. Checkout our repository
- `git clone ...`
- 1. Update submodules
- `git submodule update --init --recursive`
- 1. Call bootstrap script of ObjectiveGit library
- `Catty/objective-git/script/bootstrap`
- 1. `sudo brew install homebrew/versions/perl516`
- -->
+### Communication
+[![Slack](https://img.shields.io/badge/Slack-green)](https://slack.com/)
 
-## Learn iOS development
 
-We recommend [Developing iOS 11 Apps with Swift](https://itunes.apple.com/us/course/developing-ios-11-apps-with-swift/id1309275316) from the Stanford University.
+## Start Contribution
+If you feel confident that your tech stack matches our requirements, then we invite you to [start contributing](https://github.com/Catrobat/Catty/blob/develop/.github/onboarding.md)!
 
-## Start setting up the working environment:
-
-* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) 13.0 or newer and [SwiftLint](https://github.com/realm/SwiftLint)
-
-* Clone this repository and open [Catty.xcodeproj](src/Catty.xcodeproj)
-
-* If you have any further questions please use our [Google Group](https://groups.google.com/forum/#!forum/catty-ios)
-
-# License
-
-The Following License Header should be used for all header and source files.
-
-## License Header (for source and header files)
-<pre lang="objective-c"><code>
-/**
- *  Copyright (C) 2010-2022 The Catrobat Team
- *  (http://developer.catrobat.org/credits)
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Affero General Public License as
- *  published by the Free Software Foundation, either version 3 of the
- *  License, or (at your option) any later version.
- *
- *  An additional term exception under section 7 of the GNU Affero
- *  General Public License, version 3, is available at
- *  (http://developer.catrobat.org/license_additional_term)
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU Affero General Public License for more details.
- *
- *  You should have received a copy of the GNU Affero General Public License
- *  along with this program.  If not, see http://www.gnu.org/licenses/.
- */
-</code></pre>
-
-[1]: http://brew.sh
+## Issues
+You found a bug? 
+1. Perfect, please check the [open issues on Jira](https://jira.catrob.at/projects/CATTY/issues/?filter=allopenissues) first to avoid duplicate tickets!
+2. If the bug has not been reported yet, please report it using the [issue template on Jira](https://jira.catrob.at/secure/CreateIssue.jspa?pid=11901&issuetype=1).
