@@ -27,7 +27,6 @@
 #import "Util.h"
 #import "CatrobatImageCell.h"
 #import "DownloadTabBarController.h"
-#import "ProjectDetailStoreViewController.h"
 #import "SegueDefines.h"
 #import "Script.h"
 #import "SceneTableViewController.h"

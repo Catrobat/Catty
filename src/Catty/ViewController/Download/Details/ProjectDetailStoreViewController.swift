@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -19,10 +19,19 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-import ActiveLabel
-import UIKit
 
-@objc extension ProjectDetailStoreViewController {
+import ActiveLabel
+import Foundation
+
+class ProjectDetailStoreViewController: UIViewController, UIScrollViewDelegate {
+    // MARK: - Properties
+
+    var project: CatrobatProject?
+    @IBOutlet private weak var scrollViewOutlet: UIScrollView!
+    var storeProjectDownloader = StoreProjectDownloader(session: StoreProjectDownloader.defaultSession(), fileManager: CBFileManager.shared())
+    var projectManager = ProjectManager.shared
+    var projectView: UIView?
+    private var loadingView = LoadingView()
 
     static var height: CGFloat = Util.screenHeight()
     static var inset: CGFloat = 25.0
@@ -38,29 +47,90 @@ import UIKit
     static var fontSizeInformationItem: CGFloat = 14.0
     static var fontSizeLabel: CGFloat = 12.0
 
-    func loadProject(_ project: CatrobatProject) {
+    // MARK: - Initializers
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    // MARK: - Life Cycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(loadingView)
+        initNavigationBar()
+        self.hidesBottomBarWhenPushed = true
+        self.view.backgroundColor = UIColor.background
+        guard project != nil else { return }
+        loadProject(project!)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.hidesBottomBarWhenPushed = false
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard self.navigationController != nil else { return }
+
+        self.navigationController!.setToolbarHidden(true, animated: animated)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        guard project != nil else { return }
+
+        DispatchQueue.main.async(execute: { [self] in
+            loadProject(project!)
+            view.setNeedsDisplay()
+        })
+    }
+
+    func back() {
+        guard self.navigationController != nil else { return }
+        self.navigationController!.popViewController(animated: true)
+    }
+
+    // MARK: - Deinitializer
+
+    deinit {
+        scrollViewOutlet.removeFromSuperview()
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    // MARK: - Helper Methods
+
+    func setScrollViewOutlet(_ scrollViewOutlet: UIScrollView) {
+        self.scrollViewOutlet = scrollViewOutlet
+    }
+
+    private func loadProject(_ project: CatrobatProject) {
+
         self.projectView?.removeFromSuperview()
         self.projectView = self.createProjectDetailView(project, target: self)
 
-        if self.project.author == nil {
+        if self.project!.author == nil {
             self.showLoadingView()
-            let button = self.projectView.viewWithTag(Int(kDownloadButtonTag)) as! UIButton
+            let button = self.projectView!.viewWithTag(Int(kDownloadButtonTag)) as! UIButton
             button.isEnabled = false
         }
 
-        self.scrollViewOutlet.addSubview(self.projectView)
+        self.scrollViewOutlet.addSubview(self.projectView!)
         self.scrollViewOutlet.delegate = self
-
-        if let reportButton = view.viewWithTag(Int(kReportButtonTag)) {
-            let height = reportButton.frame.origin.y + reportButton.frame.size.height + type(of: self).inset
-            self.scrollViewOutlet.contentSize = CGSize(width: self.scrollViewOutlet.frame.width, height: height)
-        }
 
         self.scrollViewOutlet.contentInsetAdjustmentBehavior = .never
         self.scrollViewOutlet.isUserInteractionEnabled = true
     }
 
-    func createProjectDetailView(_ project: CatrobatProject, target: Any?) -> UIView? {
+    private func createProjectDetailView(_ project: CatrobatProject, target: Any?) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: Util.screenWidth(), height: CGFloat.greatestFiniteMagnitude))
         view.backgroundColor = UIColor.clear
 
@@ -77,8 +147,7 @@ import UIKit
         let tagsView = self.addTags(to: view, thumbnailView: thumbnailView)
         let descriptionView = self.addProjectDescriptionLabel(project.projectDescription, to: view, tagsView: tagsView, target: target)
 
-        let lastInformationItem = self.addInformationLabel(to: view, withDescriptionView: descriptionView)
-        self.addReportButton(to: view, lastInformationItem: lastInformationItem, withTarget: target)
+        self.addInformationLabel(to: view, withDescriptionView: descriptionView)
 
         if Project.projectExists(withProjectID: project.projectID) {
             view.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
@@ -96,8 +165,183 @@ import UIKit
         return view
     }
 
+    private func initNavigationBar() {
+        navigationItem.title = kLocalizedDetails
+        title = kLocalizedDetails
+    }
+
+    @objc private func openButtonPressed() {
+        guard project != nil else { return }
+
+        guard let localProjectNames = self.projectManager.projectNames(for: project!.projectID) else {
+            Util.alert(text: kLocalizedUnableToLoadProject)
+            return
+        }
+
+        if localProjectNames.count > 1 {
+            let nameSelectionSheet = UIAlertController(title: kLocalizedOpen, message: nil, preferredStyle: .actionSheet)
+            nameSelectionSheet.addAction(title: kLocalizedCancel, style: .cancel, handler: nil)
+
+            for localProjectName in localProjectNames {
+                nameSelectionSheet.addAction(title: localProjectName, style: .default, handler: { action in
+                    self.openProject(withLocalName: action.title)
+                })
+            }
+
+            self.present(nameSelectionSheet, animated: true, completion: nil)
+        } else {
+            openProject(withLocalName: localProjectNames.first)
+        }
+    }
+
+    func openProject(withLocalName localProjectName: String?) {
+        guard project != nil else { return }
+        showLoadingView()
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let selectedProject = Project.init(loadingInfo: ProjectLoadingInfo.init(forProjectWithName: localProjectName, projectID: self.project!.projectID)) else {
+                DispatchQueue.main.async {
+                    self.hideLoadingView()
+                    Util.alert(text: kLocalizedUnableToLoadProject)
+                }
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.hideLoadingView()
+                self.openProject(selectedProject)
+            }
+        }
+    }
+
+    @objc private func downloadButtonPressed() {
+        guard project != nil else { return }
+        guard projectView != nil else { return }
+
+        let button = projectView!.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
+        projectView!.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
+        button?.isHidden = false
+        button?.progress = 0
+        if let duplicateName = Util.uniqueName(project!.name, existingNames: Project.allProjectNames()) {
+            download(name: duplicateName)
+        }
+    }
+
+    @objc private func downloadAgain() {
+        guard project != nil else { return }
+        guard projectView != nil else { return }
+
+        let button = projectView!.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
+        projectView!.viewWithTag(Int(kOpenButtonTag))?.isHidden = true
+
+        let downloadAgainButton = projectView!.viewWithTag(Int(kDownloadAgainButtonTag)) as? UIButton
+        downloadAgainButton?.isEnabled = false
+        button?.isHidden = false
+        button?.progress = 0
+
+        if let duplicateName = Util.uniqueName(project!.name, existingNames: Project.allProjectNames()) {
+            download(name: duplicateName)
+        }
+    }
+
+    func download(name: String) {
+        guard project != nil else { return }
+
+        storeProjectDownloader.download(
+            projectId: project!.projectID,
+            projectName: name,
+            completion: { _, storeProjectDownloaderError in
+                if let error = storeProjectDownloaderError {
+                    switch error {
+                    case .cancelled:
+                        return
+                    case .unexpectedError, .timeout:
+                        Util.defaultAlertForNetworkError()
+                    case .parse(error: _), .request(error: _, statusCode: _):
+                        Util.alert(text: kLocalizedInvalidZip)
+                    }
+
+                    self.resetDownloadStatus()
+                    return
+                }
+
+                self.downloadFinished()
+
+            }, progression: { progress in
+                self.updateProgress(Double(progress))
+                self.reloadInputViews()
+            })
+    }
+
+    private func downloadFinished() {
+        guard project != nil else { return }
+
+        self.project!.isdownloading = false
+
+        if let button = self.view.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView {
+            button.isHidden = true
+            button.progress = 0
+        }
+
+        if let openButton = self.view.viewWithTag(Int(kOpenButtonTag)) {
+            openButton.isHidden = false
+        }
+
+        if let downloadButton = self.view.viewWithTag(Int(kDownloadAgainButtonTag)) as? UIButton {
+            downloadButton.isEnabled = true
+            downloadButton.isHidden = false
+        }
+
+        Util.setNetworkActivityIndicator(false)
+    }
+
+    private func resetDownloadStatus() {
+        self.view.viewWithTag(Int(kDownloadButtonTag))?.isHidden = false
+        self.view.viewWithTag(Int(kOpenButtonTag))?.isHidden = true
+        self.view.viewWithTag(Int(kStopLoadingTag))?.isHidden = true
+        self.view.viewWithTag(Int(kDownloadAgainButtonTag))?.isHidden = true
+
+        Util.setNetworkActivityIndicator(false)
+    }
+
+    private func updateProgress(_ progress: Double) {
+        guard let button = self.view.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView else { return }
+        button.setProgress(progress, animated: true)
+    }
+
+    private func showLoadingView() {
+        loadingView.show()
+    }
+
+    private func hideLoadingView() {
+        loadingView.isHidden = true
+    }
+
+    private func stopLoading() {
+        guard project != nil else { return }
+
+        storeProjectDownloader.cancelDownload(for: project!.projectID)
+
+        let button = view.viewWithTag(Int(kStopLoadingTag)) as? EVCircularProgressView
+        button?.isHidden = true
+        button?.progress = 0
+
+        if let downloadAgainButton = view.viewWithTag(Int(kDownloadAgainButtonTag)) as? UIButton {
+            if downloadAgainButton.isEnabled {
+                view.viewWithTag(Int(kDownloadAgainButtonTag))?.isHidden = false
+            } else {
+                view.viewWithTag(Int(kOpenButtonTag))?.isHidden = false
+                downloadAgainButton.isEnabled = true
+            }
+        }
+
+        Util.setNetworkActivityIndicator(false)
+    }
+
     private func addTags(to view: UIView, thumbnailView: UIView) -> UIView {
-        let tags = project.tags ?? []
+        guard project != nil else { fatalError(kLocalizedErrorUnknown) }
+
+        let tags = project!.tags ?? []
         let height = !tags.isEmpty ? type(of: self).buttonHeight : 0.0
 
         let offsetX = thumbnailView.frame.origin.x
@@ -236,7 +480,7 @@ import UIKit
         let downloadButton = RoundBorderedButton(frame: self.createDownloadAndOpenButtonFrame(view: view, thumbnailView: thumbnailView), andInvertedColor: true) as UIButton
         downloadButton.tag = Int(kDownloadButtonTag)
         downloadButton.setTitle(kLocalizedDownload, for: .normal)
-        downloadButton.addTarget(target, action: #selector(self.downloadButtonPressed), for: .touchUpInside)
+        downloadButton.addTarget(target, action: #selector(downloadButtonPressed), for: .touchUpInside)
         downloadButton.sizeToFit()
 
         let activity = UIActivityIndicatorView(style: .gray)
@@ -250,7 +494,7 @@ import UIKit
         let openButton = RoundBorderedButton(frame: self.createDownloadAndOpenButtonFrame(view: view, thumbnailView: thumbnailView), andInvertedColor: true) as UIButton
         openButton.tag = Int(kOpenButtonTag)
         openButton.setTitle(kLocalizedOpen, for: .normal)
-        openButton.addTarget(target, action: #selector(self.openButtonPressed(_:)), for: .touchUpInside)
+        openButton.addTarget(target, action: #selector(openButtonPressed), for: .touchUpInside)
         openButton.isHidden = true
 
         openButton.sizeToFit()
@@ -266,7 +510,7 @@ import UIKit
 
         let downloadAgainButton = RoundBorderedButton(frame: self.createDownloadAgainButtonFrame(view: view, openButton: openButton))
         downloadAgainButton.setTitle(kLocalizedDownloadAgain, for: .normal)
-        downloadAgainButton.addTarget(target, action: #selector(self.downloadAgain(_:)), for: .touchUpInside)
+        downloadAgainButton.addTarget(target, action: #selector(self.downloadAgain), for: .touchUpInside)
         downloadAgainButton.tag = Int(kDownloadAgainButtonTag)
         downloadAgainButton.isHidden = true
         downloadAgainButton.sizeToFit()
@@ -288,13 +532,15 @@ import UIKit
         view.addSubview(button)
     }
 
-    private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) -> UILabel {
-        let projectDouble = (project.uploaded as NSString).doubleValue
+    private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) {
+        guard project != nil else { fatalError(kLocalizedErrorUnknown) }
+
+        let projectDouble = (project!.uploaded as NSString).doubleValue
         let projectDate = Date(timeIntervalSince1970: TimeInterval(projectDouble))
         let uploaded = CatrobatProject.uploadDateFormatter().string(from: projectDate)
-        let views = project.views
-        let downloads = project.downloads
-        var size = project.size
+        let views = project!.views
+        let downloads = project!.downloads
+        var size = project!.size
 
         let offsetLine = descriptionView.frame.origin.y + descriptionView.frame.size.height + type(of: self).verticalSectionPadding
         let offsetLabel = offsetLine + type(of: self).verticalSectionPadding
@@ -314,7 +560,6 @@ import UIKit
 
         let informationArray = [views?.stringValue ?? "", uploaded, size, downloads?.stringValue ?? ""]
         let informationTitleArray = [UIImage(named: "viewsIcon"), UIImage(named: "timeIcon"), UIImage(named: "sizeIcon"), UIImage(named: "downloadIcon")]
-        var lastItem = informationLabel
 
         for (index, info) in informationArray.enumerated() {
             let titleIcon = self.getInformationTitleLabel(withTitle: informationTitleArray[index], atXPosition: type(of: self).inset, atYPosition: offset, andHeight: height)
@@ -322,29 +567,9 @@ import UIKit
 
             let infoLabel = self.getInformationDetailLabel(withTitle: info, atXPosition: type(of: self).inset * 2, atYPosition: offset - 1, andHeight: height)
             view.addSubview(infoLabel)
-            lastItem = infoLabel
 
             offset += height + type(of: self).spaceBetweenButtons
         }
-
-        return lastItem
-    }
-
-    private func addReportButton(to view: UIView, lastInformationItem: UIView, withTarget target: Any?) {
-        let offsetLine = lastInformationItem.frame.origin.y + lastInformationItem.frame.height + type(of: self).verticalSectionPadding
-        let offsetButton = offsetLine + type(of: self).verticalSectionPadding
-
-        self.addHorizontalLine(to: view, verticalOffset: offsetLine)
-
-        let reportButton = RoundBorderedButton(frame: CGRect(x: type(of: self).inset, y: offsetButton, width: view.frame.width, height: type(of: self).buttonHeight), andBorder: true) as UIButton
-        reportButton.tag = Int(kReportButtonTag)
-        reportButton.titleLabel?.font = UIFont.systemFont(ofSize: type(of: self).fontSizeLabel)
-        reportButton.setTitle(kLocalizedReportProject, for: .normal)
-        reportButton.addTarget(target, action: #selector(self.reportProject(_:)), for: .touchUpInside)
-        reportButton.isUserInteractionEnabled = true
-        reportButton.sizeToFit()
-
-        view.addSubview(reportButton)
     }
 
     private func addHorizontalLine(to view: UIView, verticalOffset: CGFloat) {
@@ -397,47 +622,6 @@ import UIKit
         label.URLSelectedColor = UIColor.navTint
 
         label.handleURLTap { url in UIApplication.shared.open(url, options: [:], completionHandler: nil) }
-    }
-
-    func openButtonPressed() {
-        guard let localProjectNames = self.projectManager.projectNames(for: project.projectID) else {
-            Util.alert(text: kLocalizedUnableToLoadProject)
-            return
-        }
-
-        if localProjectNames.count > 1 {
-            let nameSelectionSheet = UIAlertController(title: kLocalizedOpen, message: nil, preferredStyle: .actionSheet)
-            nameSelectionSheet.addAction(title: kLocalizedCancel, style: .cancel, handler: nil)
-
-            for localProjectName in localProjectNames {
-                nameSelectionSheet.addAction(title: localProjectName, style: .default, handler: { action in
-                    self.openProject(withLocalName: action.title)
-                })
-            }
-
-            self.present(nameSelectionSheet, animated: true, completion: nil)
-        } else {
-            openProject(withLocalName: localProjectNames.first)
-        }
-    }
-
-    private func openProject(withLocalName localProjectName: String?) {
-        showLoadingView()
-
-        DispatchQueue.global(qos: .userInitiated).async {
-            guard let selectedProject = Project.init(loadingInfo: ProjectLoadingInfo.init(forProjectWithName: localProjectName, projectID: self.project.projectID)) else {
-                DispatchQueue.main.async {
-                    self.hideLoadingView()
-                    Util.alert(text: kLocalizedUnableToLoadProject)
-                }
-                return
-            }
-
-            DispatchQueue.main.async {
-                self.hideLoadingView()
-                self.openProject(selectedProject)
-            }
-        }
     }
 
     private func createDownloadAndOpenButtonFrame(view: UIView, thumbnailView: UIView) -> CGRect {
