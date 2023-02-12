@@ -132,6 +132,22 @@ extension XCTestCase {
         }
     }
 
+    func tapOnBrick(atPosition index: Int, in app: XCUIApplication) {
+        app.collectionViews.cells.allElementsBoundByIndex[index].tap()
+    }
+
+    func tapOnBrickCell(number index: Int, of brick: String, in app: XCUIApplication, fromFormualEditor: Bool = false) {
+        var element: XCUIElement?
+        if fromFormualEditor {
+            let brickElements = app.cells.identifierTextBeginsWith(kLocalizedPlaceAt)
+            element = brickElements.element(boundBy: brickElements.count - 1).buttons.element(boundBy: index)
+        } else {
+            element = app.collectionViews.cells.otherElements.identifierTextBeginsWith(brick)
+                .children(matching: .button).element(boundBy: index)
+        }
+        element!.tap()
+    }
+
     func tapOnVariablePicker(of brick: String, in app: XCUIApplication) {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick)
             .children(matching: .other).element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelVariable + "'")).tap()

@@ -68,8 +68,8 @@ class XMLParserTests0999: XMLAbstractTest {
         XCTAssertTrue(glideToBrick.isKind(of: GlideToBrick.self), "Invalid brick type")
 
         let castedBrick = glideToBrick as! GlideToBrick
-        XCTAssertTrue(castedBrick.xDestination.isEqual(to: Formula(integer: 100)), "Invalid formula")
-        XCTAssertTrue(castedBrick.yDestination.isEqual(to: Formula(integer: 200)), "Invalid formula")
+        XCTAssertTrue(castedBrick.xPosition.isEqual(to: Formula(integer: 100)), "Invalid formula")
+        XCTAssertTrue(castedBrick.yPosition.isEqual(to: Formula(integer: 200)), "Invalid formula")
         XCTAssertEqual("1.0", castedBrick.durationInSeconds.formulaTree.value, "Invalid formula")
     }
 

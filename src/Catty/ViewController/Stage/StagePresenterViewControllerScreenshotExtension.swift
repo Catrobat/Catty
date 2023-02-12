@@ -31,28 +31,38 @@
         saveScreenshot(snapshot, for: scene, manualScreenshot: false)
     }
 
+    @objc(takeAutomaticVisualPlacementScreenshotForSKView: andProject:)
+    func takeAutomaticVisualPlacementScreenshot(for skView: SKView, and scene: Scene) {
+        guard let fullScreenSnapshot = self.screenshot(for: skView, fullScreen: true) else { return }
+        saveScreenshot(fullScreenSnapshot, for: scene, manualScreenshot: false, fullScreen: true)
+    }
+
     @objc(takeManualScreenshotForSKView: andProject:)
     func takeManualScreenshot(for skView: SKView, and scene: Scene) {
         guard let snapshot = self.screenshot(for: skView) else { return }
         saveScreenshot(snapshot, for: scene, manualScreenshot: true)
     }
 
-    private func screenshot(for skView: SKView) -> UIImage? {
+    private func screenshot(for skView: SKView, fullScreen: Bool = false) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(skView.frame.size, false, 1)
         skView.drawHierarchy(in: skView.frame, afterScreenUpdates: true)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        let size = CGSize(width: type(of: self).previewImageWidth, height: type(of: self).previewImageHeight)
-        let center = CGPoint(x: 0, y: (skView.bounds.size.height) / 2 - (size.height / 2))
+        if !fullScreen {
+            let size = CGSize(width: type(of: self).previewImageWidth, height: type(of: self).previewImageHeight)
+            let center = CGPoint(x: 0, y: (skView.bounds.size.height) / 2 - (size.height / 2))
 
-        return image.crop(rect: CGRect(origin: center, size: size))!
+            return image.crop(rect: CGRect(origin: center, size: size))!
+        } else {
+            return image
+        }
     }
 
-    private func saveScreenshot(_ screenshot: UIImage, for scene: Scene, manualScreenshot: Bool) {
+    private func saveScreenshot(_ screenshot: UIImage, for scene: Scene, manualScreenshot: Bool, fullScreen: Bool = false) {
         guard let project = scene.project else { return }
 
-        let fileName = manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename
+        let fileName = fullScreen ? kScreenshotAutoFullScreenFilename : manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename
         let filePath = project.projectPath() + fileName
         guard let data = screenshot.pngData() else { return }
 

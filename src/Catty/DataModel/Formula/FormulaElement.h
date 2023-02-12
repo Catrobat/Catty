@@ -128,6 +128,8 @@ additionalChildren:(NSArray<FormulaElement*>*)additionalChildren
 
 - (BOOL)isSingleNumberFormula;
 
+- (double)getSingleNumberFormulaValue;
+
 - (NSInteger)getRequiredResources;
 
 @end

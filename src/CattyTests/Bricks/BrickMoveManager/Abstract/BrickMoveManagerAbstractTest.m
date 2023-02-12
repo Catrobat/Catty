@@ -33,7 +33,6 @@
 #import "IfLogicEndBrick.h"
 #import "SetXBrick.h"
 #import "SetYBrick.h"
-#import "PlaceAtBrick.h"
 #import "Pocket_Code-Swift.h"
 
 @implementation BrickMoveManagerAbstractTest

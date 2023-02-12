@@ -28,7 +28,7 @@ public extension CGPoint {
         CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
 
-    static func += (lhs: inout CGPoint, rhs: CGVector) {
+    static func += (lhs: inout CGPoint, rhs: CGVector) { //swiftlint:disable shorthand_operator
         lhs = lhs + rhs
     }
 
@@ -36,7 +36,7 @@ public extension CGPoint {
         CGPoint(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)
     }
 
-    static func -= (lhs: inout CGPoint, rhs: CGVector) {
+    static func -= (lhs: inout CGPoint, rhs: CGVector) { //swiftlint:disable shorthand_operator
         lhs = lhs - rhs
     }
 

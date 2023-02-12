@@ -53,6 +53,7 @@ final class PreviousLookBrickTests: AbstractBrickTest {
 
         spriteNode = CBSpriteNode(spriteObject: backgroundObject)
         backgroundObject.spriteNode = spriteNode
+        backgroundObject.name = "testname"
 
         script = Script()
         script.object = backgroundObject

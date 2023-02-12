@@ -28,4 +28,24 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return croppedImage
     }
+
+    func rotated(byDegrees degrees: CGFloat) -> UIImage {
+            let radians = degrees * .pi / 180
+            let rotatedViewBox = UIView(frame: CGRect(origin: .zero, size: size))
+            let transform = CGAffineTransform(rotationAngle: radians)
+            rotatedViewBox.transform = transform
+            let rotatedSize = rotatedViewBox.frame.size
+
+            UIGraphicsBeginImageContext(rotatedSize)
+            guard let context = UIGraphicsGetCurrentContext() else { return self }
+
+            context.translateBy(x: rotatedSize.width / 2.0, y: rotatedSize.height / 2.0)
+            context.rotate(by: radians)
+            draw(in: CGRect(x: -size.width / 2, y: -size.height / 2, width: size.width, height: size.height))
+
+            let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            return rotatedImage ?? self
+    }
 }

@@ -49,6 +49,7 @@ final class SetLookBrickTests: AbstractBrickTest {
         scene.project = Project()
 
         object = SpriteObject()
+        object.name = "testname"
         scene.add(object: object)
 
         object.lookList.add(lookA!)

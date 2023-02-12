@@ -49,6 +49,7 @@ final class NextLookBrickTests: AbstractBrickTest {
         scene.project = Project()
 
         let backgroundObject = SpriteObject()
+        backgroundObject.name = "testname"
         scene.add(object: backgroundObject)
 
         spriteNode = CBSpriteNode(spriteObject: backgroundObject)

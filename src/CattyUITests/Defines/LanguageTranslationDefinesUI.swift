@@ -167,6 +167,7 @@ let kLocalizedEnableLoop = NSLocalizedString("Enable loop", bundle: Bundle(for: 
 let kLocalizedDisableCondition = NSLocalizedString("Disable condition", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEnableCondition = NSLocalizedString("Enable condition", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEditFormula = NSLocalizedString("Edit formula", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPlaceVisually = NSLocalizedString("Place visually", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMoveBrick = NSLocalizedString("Move brick", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDeleteSounds = NSLocalizedString("Delete sounds", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMoveSounds = NSLocalizedString("Move sounds", bundle: Bundle(for: LanguageTranslation.self), comment: "")

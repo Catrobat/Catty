@@ -71,6 +71,9 @@
             }
 
             spriteNode.catrobatRotation = rotationDegrees
+            var look = ObjectCache.shared.getLook(for: object.name)
+            look?.rotation = rotationDegrees
+            ObjectCache.shared.cacheLook(look!, for: object.name)
         }
     }
 }

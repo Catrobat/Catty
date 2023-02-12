@@ -80,6 +80,9 @@
 
             spriteNode.catrobatRotation = rotation
             spriteNode.catrobatPosition = CBPosition(x: Double(xPosition), y: Double(yPosition))
+            var look = ObjectCache.shared.getLook(for: object.name)
+            look?.rotation = rotation
+            ObjectCache.shared.cacheLook(look!, for: object.name)
         }
     }
 
