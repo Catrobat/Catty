@@ -44,6 +44,7 @@ final class TurnLeftBrickTests: AbstractBrickTest {
         let object = SpriteObject()
         let scene = Scene(name: "testScene")
         object.scene = scene
+        object.name = "testname"
         let spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
 

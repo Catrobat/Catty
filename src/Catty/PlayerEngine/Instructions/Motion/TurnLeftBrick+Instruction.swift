@@ -35,6 +35,9 @@
             let degrees = formulaInterpreter.interpretDouble(self.degrees, for: object)
             let rotation = spriteNode.catrobatRotation - degrees
             spriteNode.catrobatRotation = rotation
+            var look = ObjectCache.shared.getLook(for: object.name)
+            look?.rotation = rotation
+            ObjectCache.shared.cacheLook(look!, for: object.name)
         }
     }
 }

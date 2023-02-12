@@ -101,11 +101,15 @@
 
 - (NSString*)previewImagePath
 {
-    Look* look = [self.lookList objectAtIndex:0];
-    if (! look)
-        return nil;
-    
-    return [look pathForScene:self.scene];
+    if ([self numberOfLooks] > 0)
+    {
+        Look* look = [self.lookList objectAtIndex:0];
+        if (! look)
+            return nil;
+        
+        return [look pathForScene:self.scene];
+    }
+    return nil;
 }
 
 - (BOOL)isBackground

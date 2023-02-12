@@ -36,6 +36,7 @@ final class ChangeSizeByNBrickTests: AbstractBrickTest {
         super.setUp()
         let scene = Scene(name: "testScene")
         object = SpriteObject()
+        object.name = "testname"
         object.scene = scene
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode

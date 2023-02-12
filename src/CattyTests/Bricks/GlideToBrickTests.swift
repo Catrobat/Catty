@@ -30,20 +30,20 @@ final class GlideToBrickTests: XCTestCase {
         let brick = GlideToBrick()
 
         brick.durationInSeconds = Formula(double: 1)
-        brick.xDestination = Formula(double: 1)
-        brick.yDestination = Formula(double: 1)
+        brick.xPosition = Formula(double: 1)
+        brick.yPosition = Formula(double: 1)
 
         XCTAssertEqual(brick.durationInSeconds, brick.formula(forLineNumber: 0, andParameterNumber: 0))
-        XCTAssertEqual(brick.xDestination, brick.formula(forLineNumber: 1, andParameterNumber: 0))
-        XCTAssertEqual(brick.yDestination, brick.formula(forLineNumber: 1, andParameterNumber: 1))
+        XCTAssertEqual(brick.xPosition, brick.formula(forLineNumber: 1, andParameterNumber: 0))
+        XCTAssertEqual(brick.yPosition, brick.formula(forLineNumber: 1, andParameterNumber: 1))
     }
 
     func testMutableCopy() {
         let brick = GlideToBrick()
 
         brick.durationInSeconds = Formula(double: 1)
-        brick.xDestination = Formula(double: 1)
-        brick.yDestination = Formula(double: 1)
+        brick.xPosition = Formula(double: 1)
+        brick.yPosition = Formula(double: 1)
 
         let copiedBrick: GlideToBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! GlideToBrick
 
@@ -53,11 +53,11 @@ final class GlideToBrickTests: XCTestCase {
         XCTAssertTrue(brick.durationInSeconds.isEqual(to: copiedBrick.durationInSeconds))
         XCTAssertFalse(brick.durationInSeconds === copiedBrick.durationInSeconds)
 
-        XCTAssertTrue(brick.xDestination.isEqual(to: copiedBrick.xDestination))
-        XCTAssertFalse(brick.xDestination === copiedBrick.xDestination)
+        XCTAssertTrue(brick.xPosition.isEqual(to: copiedBrick.xPosition))
+        XCTAssertFalse(brick.xPosition === copiedBrick.xPosition)
 
-        XCTAssertTrue(brick.yDestination.isEqual(to: copiedBrick.yDestination))
-        XCTAssertFalse(brick.yDestination === copiedBrick.yDestination)
+        XCTAssertTrue(brick.yPosition.isEqual(to: copiedBrick.yPosition))
+        XCTAssertFalse(brick.yPosition === copiedBrick.yPosition)
     }
 
     func testGetFormulas() {
@@ -66,22 +66,22 @@ final class GlideToBrickTests: XCTestCase {
         let xDestinationIndex = 1
         let yDestinationIndex = 2
         brick.durationInSeconds = Formula(double: 3)
-        brick.xDestination = Formula(double: 2)
-        brick.yDestination = Formula(double: 1)
+        brick.xPosition = Formula(double: 2)
+        brick.yPosition = Formula(double: 1)
         var formulas = brick.getFormulas()
 
-        XCTAssertEqual(formulas?.count, 3)
-        XCTAssertEqual(brick.durationInSeconds, formulas?[durationIndex])
-        XCTAssertEqual(brick.xDestination, formulas?[xDestinationIndex])
-        XCTAssertEqual(brick.yDestination, formulas?[yDestinationIndex])
+        XCTAssertEqual(formulas.count, 3)
+        XCTAssertEqual(brick.durationInSeconds, formulas[durationIndex])
+        XCTAssertEqual(brick.xPosition, formulas[xDestinationIndex])
+        XCTAssertEqual(brick.yPosition, formulas[yDestinationIndex])
 
         brick.durationInSeconds = Formula(double: 1)
-        brick.xDestination = Formula(double: 2)
-        brick.yDestination = Formula(double: 3)
+        brick.xPosition = Formula(double: 2)
+        brick.yPosition = Formula(double: 3)
         formulas = brick.getFormulas()
 
-        XCTAssertEqual(brick.durationInSeconds, formulas?[durationIndex])
-        XCTAssertEqual(brick.xDestination, formulas?[xDestinationIndex])
-        XCTAssertEqual(brick.yDestination, formulas?[yDestinationIndex])
+        XCTAssertEqual(brick.durationInSeconds, formulas[durationIndex])
+        XCTAssertEqual(brick.xPosition, formulas[xDestinationIndex])
+        XCTAssertEqual(brick.yPosition, formulas[yDestinationIndex])
     }
 }

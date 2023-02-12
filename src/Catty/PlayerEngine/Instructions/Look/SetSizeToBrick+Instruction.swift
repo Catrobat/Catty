@@ -34,6 +34,13 @@
         return {
             let sizeInPercent = formulaInterpreter.interpretDouble(self.size, for: object)
             spriteNode.catrobatSize = sizeInPercent
+            if let currentLook = spriteNode.currentLook, let firstLook = object.lookList.firstObject {
+                if currentLook.isEqual(firstLook) {
+                    var look = ObjectCache.shared.getLook(for: object.name)
+                    look?.size = sizeInPercent / 100
+                    ObjectCache.shared.cacheLook(look!, for: object.name)
+                }
+            }
         }
     }
 }

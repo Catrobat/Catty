@@ -44,6 +44,9 @@ extension SetLookBrick: CBInstructionProtocol {
 
             spriteNode.currentLook = self.look
             spriteNode.executeFilter(image)
+            var look = ObjectCache.shared.getLook(for: object.name)
+            look?.lastLook = image
+            ObjectCache.shared.cacheLook(look!, for: object.name)
         }
     }
 }

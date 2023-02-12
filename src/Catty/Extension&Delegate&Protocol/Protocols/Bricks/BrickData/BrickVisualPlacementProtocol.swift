@@ -20,16 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+import Foundation
 
-@class Formula;
+@objc protocol BrickVisualPlacementProtocol: BrickFormulaProtocol {
+    var xPosition: Formula { get set }
+    var yPosition: Formula { get set }
 
-@interface GlideToBrick : Brick<BrickFormulaProtocol>
-
-@property (nonatomic, strong) Formula *durationInSeconds;
-@property (nonatomic, strong) Formula *xDestination;
-@property (nonatomic, strong) Formula *yDestination;
-
-
-@end
+    func isVisualPlacementFormula(_ formula: Formula) -> Bool
+    func doVisualPlacementBrickCellsContainOnlyValues() -> Bool
+}

@@ -37,12 +37,14 @@ final class PointToBrickTests: AbstractBrickTest {
         let firstObject = SpriteObject()
         let scene = Scene(name: "testScene")
         firstObject.scene = scene
+        firstObject.name = "testname1"
         firstSpriteNode = CBSpriteNode(spriteObject: firstObject)
         firstObject.spriteNode = firstSpriteNode
         let secondObject = SpriteObject()
         secondObject.scene = scene
         secondSpriteNode = CBSpriteNode(spriteObject: secondObject)
         secondObject.spriteNode = secondSpriteNode
+        secondObject.name = "testname2"
 
         self.stage.addChild(firstSpriteNode)
         self.stage.addChild(secondSpriteNode)

@@ -61,14 +61,12 @@
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
 #import "VibrationBrick.h"
-#import "GlideToBrick.h"
 #import "GoToBrick.h"
 #import "MoveNStepsBrick.h"
 #import "IfOnEdgeBounceBrick.h"
 #import "ShowBrick.h"
 #import "SetSizeToBrick.h"
 #import "PointInDirectionBrick.h"
-#import "PlaceAtBrick.h"
 #import "GoNStepsBackBrick.h"
 #import "ComeToFrontBrick.h"
 #import "ChangeSizeByNBrick.h"
@@ -111,7 +109,6 @@
 #import "ThinkBubbleBrick.h"
 #import "ThinkForBubbleBrick.h"
 #import "AddItemToUserListBrick+CBXMLHandler.h"
-#import "PlaceAtBrick+CBXMLHandler.h"
 
 // BrickCells
 #import "RepeatBrickCell.h"

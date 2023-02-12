@@ -20,14 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+import Foundation
 
-@class Formula;
+class ObjectCache {
+    static let shared = ObjectCache()
 
-@interface PlaceAtBrick : Brick<BrickFormulaProtocol>
+    private var cache: [String: ObjectLook] = [:]
 
-@property (nonatomic, strong) Formula *xPosition;
-@property (nonatomic, strong) Formula *yPosition;
+    private init() {}
 
-@end
+    func getLook(for objectId: String) -> ObjectLook? {
+        if let cachedLook = cache[objectId] {
+                    return cachedLook
+                } else {
+                    let look = ObjectLook()
+                    cache[objectId] = look
+                    return look
+                }
+    }
+
+    func cacheLook(_ look: ObjectLook, for objectId: String) {
+        cache[objectId] = look
+    }
+}
+
+struct ObjectLook {
+    var rotation: Double = 90.0
+    var lastLook: UIImage?
+    var size: Double = 1.0
+}

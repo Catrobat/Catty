@@ -34,6 +34,10 @@
         return {
             let sizeIncrease = formulaInterpreter.interpretDouble(self.size, for: object)
             spriteNode.catrobatSize += sizeIncrease
+
+                    var look = ObjectCache.shared.getLook(for: object.name)
+                    look?.size = spriteNode.catrobatSize / 100
+                    ObjectCache.shared.cacheLook(look!, for: object.name)
         }
     }
 }

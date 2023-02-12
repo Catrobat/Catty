@@ -32,7 +32,11 @@
             else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.catrobatRotation = formulaInterpreter.interpretDouble(self.degrees, for: object)
+            let rotation = formulaInterpreter.interpretDouble(self.degrees, for: object)
+            spriteNode.catrobatRotation = rotation
+            var look = ObjectCache.shared.getLook(for: object.name)
+            look?.rotation = rotation
+            ObjectCache.shared.cacheLook(look!, for: object.name)
         }
     }
 }

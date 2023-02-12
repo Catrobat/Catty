@@ -40,7 +40,7 @@ public extension CGVector {
         CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
     }
 
-    static func += (lhs: inout CGVector, rhs: CGVector) {
+    static func += (lhs: inout CGVector, rhs: CGVector) { //swiftlint:disable shorthand_operator
         lhs = lhs + rhs
     }
 
@@ -48,7 +48,7 @@ public extension CGVector {
         CGVector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
     }
 
-    static func -= (lhs: inout CGVector, rhs: CGVector) {
+    static func -= (lhs: inout CGVector, rhs: CGVector) { //swiftlint:disable shorthand_operator
         lhs = lhs - rhs
     }
 

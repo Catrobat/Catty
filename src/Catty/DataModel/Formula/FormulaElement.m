@@ -321,6 +321,18 @@ additionalChildren:(NSArray<FormulaElement*>*)additionalChildren
     return false;
 }
 
+- (double)getSingleNumberFormulaValue
+{
+    if (self.type == OPERATOR) {
+        if (self.value == MinusOperator.tag && self.leftChild == nil) {
+            return -[self.rightChild getSingleNumberFormulaValue];
+        }
+    } else if(self.type == NUMBER) {
+        return [self.value doubleValue];
+    }
+    return 0.0;
+}
+
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {

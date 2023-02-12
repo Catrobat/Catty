@@ -44,6 +44,9 @@
 
             spriteNode.currentLook = look
             spriteNode.executeFilter(image)
+            var cacheLook = ObjectCache.shared.getLook(for: object.name)
+            cacheLook?.lastLook = image
+            ObjectCache.shared.cacheLook(cacheLook!, for: object.name)
         }
     }
 }
