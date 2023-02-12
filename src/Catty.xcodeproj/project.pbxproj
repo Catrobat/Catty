@@ -8572,7 +8572,6 @@
 			isa = PBXGroup;
 			children = (
 				CEFA0FBC299936DC00EC6295 /* Cache */,
-				49F0DA1927B3B4A3003E4B3A /* VisualPlacementViewController.swift */,
 				18E3497C25DF8411008B9D6E /* FormulaEditorSectionViewController */,
 				92DFB0051A38949E00FA9B0F /* FormulaEditorViewController.h */,
 				92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */,
@@ -8580,6 +8579,7 @@
 				4C4EE29A210901E70045F890 /* FormulaEditorViewControllerInputExtension.swift */,
 				F4664F9120DD7A1700E1519A /* FormulaEditorViewControllerSectionExtension.swift */,
 				18957DDE25B8B870001A623F /* FormulaEditorSubsection.swift */,
+				49F0DA1927B3B4A3003E4B3A /* VisualPlacementViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
