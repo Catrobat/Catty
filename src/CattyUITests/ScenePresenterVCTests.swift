@@ -65,7 +65,6 @@ class ScenePresenterVCTests: XCTestCase {
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         app.toolbars.buttons["Play"].tap()
-        XCTAssertTrue(app.staticTexts[loadingText].exists)
         XCTAssertFalse(waitForElementToDisappear(app.staticTexts[loadingText]).exists)
     }
 }

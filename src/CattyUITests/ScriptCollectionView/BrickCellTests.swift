@@ -53,8 +53,7 @@ class BrickCellTests: XCTestCase {
             app.pickerWheels.firstMatch.swipeDown()
             app.buttons[kLocalizedDone].firstMatch.tap()
 
-            let alert1 = waitForElementToAppear(app.sheets[kLocalizedAddLook])
-            alert1.buttons[kLocalizedDrawNewImage].tap()
+            waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
 
             waitForElementToAppear(app.buttons["tools"]).tap()
             waitForElementToAppear(app.tables.firstMatch).swipeUp()
@@ -66,8 +65,7 @@ class BrickCellTests: XCTestCase {
 
             waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]).buttons[kLocalizedBack].tap()
 
-            let alert2 = waitForElementToAppear(app.sheets.firstMatch)
-            alert2.buttons[kLocalizedSaveChanges].tap()
+            waitForElementToAppear(app.buttons[kLocalizedSaveChanges]).tap()
 
             let alert3 = waitForElementToAppear(app.alerts[kLocalizedAddImage])
             alert3.textFields.buttons["Clear text"].tap()

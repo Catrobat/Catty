@@ -160,10 +160,9 @@ class ObjectTVCTests: XCTestCase {
         app.tables.staticTexts[objectName].swipeLeft()
         app.buttons[kLocalizedMore].tap()
 
-        let sheet = app.sheets[kLocalizedEditObject]
-        XCTAssertTrue(sheet.exists)
-
-        sheet.buttons[kLocalizedCopy].tap()
+        XCTAssertTrue(app.staticTexts[kLocalizedEditObject].exists)
+        XCTAssertTrue(app.buttons[kLocalizedCopy].exists)
+        app.buttons[kLocalizedCopy].tap()
 
         XCTAssertTrue(waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).exists)
 
