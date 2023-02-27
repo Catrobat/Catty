@@ -58,7 +58,7 @@ class BrickMovementTests: XCTestCase {
         let setYBrick = app.collectionViews.cells.element(boundBy: 3)
         setYBrick.tap()
 
-        let moveBrickButton = app.sheets[kLocalizedEditBrick].scrollViews.otherElements.buttons[kLocalizedMoveBrick]
+        let moveBrickButton = app.scrollViews.otherElements.buttons[kLocalizedMoveBrick]
         moveBrickButton.tap()
 
         setYBrick.press(forDuration: 1, thenDragTo: app.collectionViews.cells.element(boundBy: 1))
@@ -86,7 +86,7 @@ class BrickMovementTests: XCTestCase {
         let hideBrick = app.collectionViews.cells.element(boundBy: 1)
         hideBrick.tap()
 
-        let moveBrickButton = app.sheets[kLocalizedEditBrick].scrollViews.otherElements.buttons[kLocalizedMoveBrick]
+        let moveBrickButton = app.scrollViews.otherElements.buttons[kLocalizedMoveBrick]
         moveBrickButton.tap()
 
         hideBrick.press(forDuration: 1, thenDragTo: app.collectionViews.cells.element(boundBy: 4))

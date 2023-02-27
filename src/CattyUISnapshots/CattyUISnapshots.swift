@@ -37,7 +37,7 @@ class CattyUISnapshots: XCTestCase {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedEdit].tap()
 
-        app.sheets[kLocalizedEditProjects].scrollViews.otherElements.buttons[kLocalizedDeleteProjects].tap()
+        app.scrollViews.otherElements.buttons[kLocalizedDeleteProjects].tap()
 
         let toolbar = app.toolbars["Toolbar"]
         toolbar.buttons[kLocalizedSelectAllItems].tap()
@@ -58,7 +58,7 @@ class CattyUISnapshots: XCTestCase {
         tablesQuery.staticTexts[kLocalizedLooks].tap()
         app.toolbars["Toolbar"].buttons[kLocalizedAdd].tap()
 
-        app.sheets[kLocalizedAddLook].scrollViews.otherElements.buttons[kLocalizedMediaLibrary].tap()
+        app.scrollViews.otherElements.buttons[kLocalizedMediaLibrary].tap()
 
         let loadMediaLibraryExpectation = XCTestExpectation(description: "Wait till the page loads")
         Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in

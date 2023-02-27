@@ -64,8 +64,8 @@ class CreateProjectTests: XCTestCase {
         app.tap()
 
         app.navigationBars.buttons[kLocalizedBack].tap()
-        XCTAssert(app.sheets.firstMatch.exists)
-        app.sheets.firstMatch.buttons[kLocalizedSaveChanges].tap()
+        XCTAssert(app.buttons[kLocalizedSaveChanges].exists)
+        app.buttons[kLocalizedSaveChanges].tap()
 
         let addImageAlert = waitForElementToAppear(app.alerts[kLocalizedAddImage])
         addImageAlert.buttons[kLocalizedOK].tap()

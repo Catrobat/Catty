@@ -93,7 +93,7 @@ class LooksTVCTests: XCTestCase {
         app.tap()
         app.navigationBars.buttons[kLocalizedBack].tap()
 
-        waitForElementToAppear(app.sheets.firstMatch).buttons[kLocalizedSaveChanges].tap()
+        waitForElementToAppear(app.buttons[kLocalizedSaveChanges]).tap()
         waitForElementToAppear(app.alerts[kLocalizedAddImage]).buttons[kLocalizedCancel].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[testObject]))
     }
@@ -108,13 +108,13 @@ class LooksTVCTests: XCTestCase {
         waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
         app.navigationBars.buttons[kLocalizedBack].tap()
-        XCTAssertFalse(app.sheets.firstMatch.exists)
+        XCTAssertFalse(app.buttons[kLocalizedSaveChanges].exists)
 
         app.buttons[kLocalizedAdd].tap()
         waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
         app.tap()
         app.navigationBars.buttons[kLocalizedBack].tap()
-        XCTAssertTrue(app.sheets.firstMatch.exists)
+        XCTAssertTrue(app.buttons[kLocalizedSaveChanges].exists)
     }
 }

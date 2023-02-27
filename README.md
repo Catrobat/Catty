@@ -41,7 +41,7 @@ We recommend [Developing iOS 11 Apps with Swift](https://itunes.apple.com/us/cou
 
 ## Start setting up the working environment:
 
-* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) 13.0 or newer and [SwiftLint](https://github.com/realm/SwiftLint)
+* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) 14.2 or newer and [SwiftLint](https://github.com/realm/SwiftLint)
 
 * Clone this repository and open [Catty.xcodeproj](src/Catty.xcodeproj)
 

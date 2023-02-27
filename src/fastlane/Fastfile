@@ -65,7 +65,7 @@ platform :ios do
     file = File.open("Install.html", "w")
     file.puts '<!DOCTYPE html><meta name="viewport" content="width=device-width, initial-scale=1">'
     if ENV['BROWSERSTACK_LIVE_APP_ID']
-      file.puts "<h2><a href='https://app-live.browserstack.com/#os=iOS&os_version=15.5&device=iPhone+13&app_hashed_id="+ENV['BROWSERSTACK_LIVE_APP_ID'][5..-1]+"&start=true'>Browserstack</a></h2><br>"
+      file.puts "<h2><a href='https://app-live.browserstack.com/#os=iOS&os_version=16.2&device=iPhone+14&app_hashed_id="+ENV['BROWSERSTACK_LIVE_APP_ID'][5..-1]+"&start=true'>Browserstack</a></h2><br>"
     end
     if ENV["BUILD_NUMBER"]
       file.puts '<h2><a href="itms-services://?action=download-manifest&url=https://jenkins.catrob.at/job/Catty/job/'+$branch_name+'/'+ENV["BUILD_NUMBER"]+'/artifact/src/fastlane/Adhoc.plist">Install on Device</a></h2>'
@@ -102,7 +102,7 @@ platform :ios do
       project: "Catty.xcodeproj",
       scheme: $catty_schemes["debug"],
       xcodebuild_formatter: "xcbeautify",
-      device: "iPhone 13",
+      device: "iPhone 14",
       parallel_testing: true,
       concurrent_workers: 3,
       number_of_retries: 2,
