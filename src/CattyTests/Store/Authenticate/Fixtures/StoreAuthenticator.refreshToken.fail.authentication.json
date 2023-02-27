@@ -1,0 +1,41 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "headers" : {
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=mYWx6mPiViIDJNGPzlBsGeMmjbcjQyOrb1mMtPhKcNfZOEtpzThzXRBYjS2DF05uqeHqSKo7%2FQ25%2FiVHfL708916zTsAsDeiowluE3pz%2BF1v3076slz4QCYGwYUIbIGF9c6Hex86%2BkSxx8G6gfU%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "cf-cache-status" : "DYNAMIC",
+          "Date" : "Mon, 27 Feb 2023 11:34:55 GMT",
+          "Content-Type" : "application\/json",
+          "Set-Cookie" : "dtCookie=v_4_srv_8_sn_4A15DD7E5E30FFD83BC7557CE20CF1B3_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Server" : "cloudflare",
+          "Expires" : "-1",
+          "cf-ray" : "7a009d356ac17873-VIE",
+          "Pragma" : "no-cache",
+          "Cache-Control" : "private, must-revalidate",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"2056590721\"",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+        },
+        "status" : 401,
+        "body" : {
+          "message" : "JWT Refresh Token Not Found",
+          "code" : 401
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication\/refresh"
+      },
+      "recorded_at" : 1677497695.60198,
+      "request" : {
+        "body" : {
+          "refresh_token" : "6b40fb5dac84fbd8c5b904545b09130efe6748686a1dca65b3ecc8b51e2e82733825f49b9536fc053c43d0755dc4350ec552ef81e5c0676251552767b090cacb"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication\/refresh",
+        "headers" : {
+          "Content-Type" : "application\/json"
+        }
+      }
+    }
+  ],
+  "name" : "StoreAuthenticator.refreshToken.fail.authentication"
+}

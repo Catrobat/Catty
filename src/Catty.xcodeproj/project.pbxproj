@@ -1143,6 +1143,24 @@
 		7B144F5428FED3E500C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F4C28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */; };
 		7B144F5528FED3E800C4A300 /* MediaLibraryDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F4828FED30000C4A300 /* MediaLibraryDownloader.downloadData.success.json */; };
 		7B144F5628FED3EA00C4A300 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F4928FED30000C4A300 /* MediaLibraryDownloader.downloadData.fail.request.json */; };
+		7B37460F29ACD8010085A90D /* StoreAuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3745EC29ACD7D20085A90D /* StoreAuthenticatorTests.swift */; };
+		7B37461029ACD8080085A90D /* StoreAuthenticator.deleteUser.fail.authentication.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F929ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.authentication.json */; };
+		7B37461129ACD8080085A90D /* StoreAuthenticator.login.fail.authentication.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745FA29ACD7D20085A90D /* StoreAuthenticator.login.fail.authentication.json */; };
+		7B37461229ACD8080085A90D /* StoreAuthenticator.login.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F729ACD7D20085A90D /* StoreAuthenticator.login.success.json */; };
+		7B37461329ACD8080085A90D /* StoreAuthenticator.login.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745FD29ACD7D20085A90D /* StoreAuthenticator.login.fail.parse.json */; };
+		7B37461429ACD8080085A90D /* StoreAuthenticator.login.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F629ACD7D20085A90D /* StoreAuthenticator.login.fail.request.json */; };
+		7B37461529ACD8080085A90D /* StoreAuthenticator.refreshToken.fail.authentication.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745EE29ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.authentication.json */; };
+		7B37461629ACD8080085A90D /* StoreAuthenticator.refreshToken.success.upgrade.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745EF29ACD7D20085A90D /* StoreAuthenticator.refreshToken.success.upgrade.json */; };
+		7B37461729ACD8080085A90D /* StoreAuthenticator.register.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F829ACD7D20085A90D /* StoreAuthenticator.register.fail.parse.json */; };
+		7B37461829ACD8080085A90D /* StoreAuthenticator.register.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F029ACD7D20085A90D /* StoreAuthenticator.register.success.json */; };
+		7B37461929ACD8080085A90D /* StoreAuthenticator.refreshToken.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F229ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.parse.json */; };
+		7B37461A29ACD8080085A90D /* StoreAuthenticator.register.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745FB29ACD7D20085A90D /* StoreAuthenticator.register.fail.request.json */; };
+		7B37461B29ACD8080085A90D /* StoreAuthenticator.deleteUser.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745FC29ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.request.json */; };
+		7B37461C29ACD8080085A90D /* StoreAuthenticator.refreshToken.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F429ACD7D20085A90D /* StoreAuthenticator.refreshToken.success.json */; };
+		7B37461D29ACD8080085A90D /* StoreAuthenticator.deleteUser.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F329ACD7D20085A90D /* StoreAuthenticator.deleteUser.success.json */; };
+		7B37461E29ACD8080085A90D /* StoreAuthenticator.refreshToken.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F529ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.request.json */; };
+		7B37461F29ACD8080085A90D /* StoreAuthenticator.register.fail.validation.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F129ACD7D20085A90D /* StoreAuthenticator.register.fail.validation.json */; };
+		7B37462129ACD83B0085A90D /* StoreAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B37462029ACD83B0085A90D /* StoreAuthenticator.swift */; };
 		7B53C94F27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */; };
 		7B53C95027BECAF900E86A72 /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
 		7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
@@ -3361,6 +3379,24 @@
 		7B144F4A28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.success.json; sourceTree = "<group>"; };
 		7B144F4B28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.fail.request.json; sourceTree = "<group>"; };
 		7B144F4C28FED30000C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.fail.parse.json; sourceTree = "<group>"; };
+		7B3745EC29ACD7D20085A90D /* StoreAuthenticatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAuthenticatorTests.swift; sourceTree = "<group>"; };
+		7B3745EE29ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.authentication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.refreshToken.fail.authentication.json; sourceTree = "<group>"; };
+		7B3745EF29ACD7D20085A90D /* StoreAuthenticator.refreshToken.success.upgrade.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.refreshToken.success.upgrade.json; sourceTree = "<group>"; };
+		7B3745F029ACD7D20085A90D /* StoreAuthenticator.register.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.register.success.json; sourceTree = "<group>"; };
+		7B3745F129ACD7D20085A90D /* StoreAuthenticator.register.fail.validation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.register.fail.validation.json; sourceTree = "<group>"; };
+		7B3745F229ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.refreshToken.fail.parse.json; sourceTree = "<group>"; };
+		7B3745F329ACD7D20085A90D /* StoreAuthenticator.deleteUser.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.success.json; sourceTree = "<group>"; };
+		7B3745F429ACD7D20085A90D /* StoreAuthenticator.refreshToken.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.refreshToken.success.json; sourceTree = "<group>"; };
+		7B3745F529ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.refreshToken.fail.request.json; sourceTree = "<group>"; };
+		7B3745F629ACD7D20085A90D /* StoreAuthenticator.login.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.login.fail.request.json; sourceTree = "<group>"; };
+		7B3745F729ACD7D20085A90D /* StoreAuthenticator.login.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.login.success.json; sourceTree = "<group>"; };
+		7B3745F829ACD7D20085A90D /* StoreAuthenticator.register.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.register.fail.parse.json; sourceTree = "<group>"; };
+		7B3745F929ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.authentication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.fail.authentication.json; sourceTree = "<group>"; };
+		7B3745FA29ACD7D20085A90D /* StoreAuthenticator.login.fail.authentication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.login.fail.authentication.json; sourceTree = "<group>"; };
+		7B3745FB29ACD7D20085A90D /* StoreAuthenticator.register.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.register.fail.request.json; sourceTree = "<group>"; };
+		7B3745FC29ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.fail.request.json; sourceTree = "<group>"; };
+		7B3745FD29ACD7D20085A90D /* StoreAuthenticator.login.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.login.fail.parse.json; sourceTree = "<group>"; };
+		7B37462029ACD83B0085A90D /* StoreAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAuthenticator.swift; sourceTree = "<group>"; };
 		7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B9090EC27C935D800B31D04 /* ChromaSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChromaSwift.license; sourceTree = "<group>"; };
@@ -8009,6 +8045,7 @@
 		6F021E6124A6811A0097F21A /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				7B3745EB29ACD7D20085A90D /* Authenticate */,
 				5907FA99252905750042EC5D /* Report */,
 				E4AEC8732108503D0081A980 /* Download */,
 				6F021E6424A681270097F21A /* Upload */,
@@ -8089,6 +8126,7 @@
 			isa = PBXGroup;
 			children = (
 				229DC43E25D6986200BA9AA2 /* Model */,
+				7B37462029ACD83B0085A90D /* StoreAuthenticator.swift */,
 				6FB09D2224A29F1E009C69A0 /* StoreProjectUploader.swift */,
 				E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */,
 				5907FA95252888DF0042EC5D /* StoreProjectReporter.swift */,
@@ -8112,6 +8150,38 @@
 				6F50E54B247907E7007885AA /* UserList+CBXMLHandler.m */,
 			);
 			path = UserList;
+			sourceTree = "<group>";
+		};
+		7B3745EB29ACD7D20085A90D /* Authenticate */ = {
+			isa = PBXGroup;
+			children = (
+				7B3745ED29ACD7D20085A90D /* Fixtures */,
+				7B3745EC29ACD7D20085A90D /* StoreAuthenticatorTests.swift */,
+			);
+			path = Authenticate;
+			sourceTree = "<group>";
+		};
+		7B3745ED29ACD7D20085A90D /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				7B3745F929ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.authentication.json */,
+				7B3745FC29ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.request.json */,
+				7B3745F329ACD7D20085A90D /* StoreAuthenticator.deleteUser.success.json */,
+				7B3745FA29ACD7D20085A90D /* StoreAuthenticator.login.fail.authentication.json */,
+				7B3745FD29ACD7D20085A90D /* StoreAuthenticator.login.fail.parse.json */,
+				7B3745F629ACD7D20085A90D /* StoreAuthenticator.login.fail.request.json */,
+				7B3745F729ACD7D20085A90D /* StoreAuthenticator.login.success.json */,
+				7B3745EE29ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.authentication.json */,
+				7B3745F229ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.parse.json */,
+				7B3745F529ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.request.json */,
+				7B3745F429ACD7D20085A90D /* StoreAuthenticator.refreshToken.success.json */,
+				7B3745EF29ACD7D20085A90D /* StoreAuthenticator.refreshToken.success.upgrade.json */,
+				7B3745F829ACD7D20085A90D /* StoreAuthenticator.register.fail.parse.json */,
+				7B3745FB29ACD7D20085A90D /* StoreAuthenticator.register.fail.request.json */,
+				7B3745F129ACD7D20085A90D /* StoreAuthenticator.register.fail.validation.json */,
+				7B3745F029ACD7D20085A90D /* StoreAuthenticator.register.success.json */,
+			);
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		91FC81FA01E91B5CF3266F79 /* AlertController */ = {
@@ -11582,6 +11652,7 @@
 				2ED417B4241120AF00AFE2FD /* Tic_Tac_Toe_Master_0994.xml in Resources */,
 				2ED41808241120AF00AFE2FD /* Pong_Starter_098.xml in Resources */,
 				590D082D252B8D3E006231AB /* StoreProjectReporter.reportProject.postDataIncorrect.fail.json in Resources */,
+				7B37461129ACD8080085A90D /* StoreAuthenticator.login.fail.authentication.json in Resources */,
 				2ED417DE241120AF00AFE2FD /* Airplane_with_shadow_095.xml in Resources */,
 				2ED417C4241120AF00AFE2FD /* Air_fight_0.5_091.xml in Resources */,
 				4974B2C0281A772100EEF0D9 /* TextRecognitionSensors.xml in Resources */,
@@ -11643,6 +11714,7 @@
 				2ED417D2241120AF00AFE2FD /* Galaxy_War_0991.xml in Resources */,
 				9E929E3B239D7966002D8F96 /* kontrabass_jazz.mp3 in Resources */,
 				E5DAAD5C26C5483B00C2457F /* collisionTest09997.xml in Resources */,
+				7B37461729ACD8080085A90D /* StoreAuthenticator.register.fail.parse.json in Resources */,
 				49774F9728073D6500374655 /* LowerBodyPoseDetectionSensors.xml in Resources */,
 				E5EC6D5E26B0102D0031F13A /* Tic_Tac_Toe_Master_09993.xml in Resources */,
 				6F61FD8924A90B4D00C6C969 /* StoreProjectDownloader.uploadProject.fail.invalidProject.json in Resources */,
@@ -11653,6 +11725,7 @@
 				2ED417F5241120AF00AFE2FD /* Pythagorean_Theorem_093.xml in Resources */,
 				2ED417D6241120AF00AFE2FD /* Demonstration_095.xml in Resources */,
 				E50E8549269EC4DE00E76CE9 /* Flap_Pac_Man_0995.xml in Resources */,
+				7B37461829ACD8080085A90D /* StoreAuthenticator.register.success.json in Resources */,
 				4C3285F32546CF6E00C31F9D /* NumberOfItemsInListFunction0993.xml in Resources */,
 				E5EC6D5826B0100B0031F13A /* Piano_09993.xml in Resources */,
 				E5EC6D7226B010C40031F13A /* Sensors_09993.xml in Resources */,
@@ -11698,10 +11771,12 @@
 				2ED41809241120AF00AFE2FD /* Flap_Pac_Man_093.xml in Resources */,
 				2ED417F7241120AF00AFE2FD /* Pythagorean_Theorem_098.xml in Resources */,
 				E5DAAD4026C5475300C2457F /* Galaxy_War_09997.xml in Resources */,
+				7B37461329ACD8080085A90D /* StoreAuthenticator.login.fail.parse.json in Resources */,
 				598E6553252A338B009F7C83 /* StoreProjectReporter.reportProject.success.json in Resources */,
 				2ED4187B241120B000AFE2FD /* NumberOfItemsInListFunction0991.xml in Resources */,
 				49402BAD28117B9E009FCBF8 /* HandPoseDetectionSensors.xml in Resources */,
 				E57D5B4726AEAAC3003A1457 /* LogicBricks_0999.xml in Resources */,
+				7B37461529ACD8080085A90D /* StoreAuthenticator.refreshToken.fail.authentication.json in Resources */,
 				7B144F1628FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json in Resources */,
 				E5EC6D4E26B00FCA0031F13A /* Demonstration_09993.xml in Resources */,
 				2ED4185A241120B000AFE2FD /* SoundMapping.xml in Resources */,
@@ -11711,6 +11786,7 @@
 				2ED417F6241120AF00AFE2FD /* Pythagorean_Theorem_092.xml in Resources */,
 				2ED4180C241120AF00AFE2FD /* Flap_Pac_Man_096.xml in Resources */,
 				E50E8557269EC54200E76CE9 /* Tic_Tac_Toe_Master_0995.xml in Resources */,
+				7B37461C29ACD8080085A90D /* StoreAuthenticator.refreshToken.success.json in Resources */,
 				4C55CCD924BF291300FB8393 /* Air_fight_0.5_0992.xml in Resources */,
 				2ED41879241120B000AFE2FD /* ElementOfListFunction0991.xml in Resources */,
 				E5EC6D7426B010D30031F13A /* ValidHeader09993.xml in Resources */,
@@ -11755,12 +11831,14 @@
 				E5BEC71526AAEA060063D7F0 /* Airplane_with_shadow_0998.xml in Resources */,
 				E5BEC72326AAEA4C0063D7F0 /* Pong_Starter_0998.xml in Resources */,
 				2ED417C6241120AF00AFE2FD /* Air_fight_0.5_096.xml in Resources */,
+				7B37461B29ACD8080085A90D /* StoreAuthenticator.deleteUser.fail.request.json in Resources */,
 				2ED417B5241120AF00AFE2FD /* Tic_Tac_Toe_Master_0991.xml in Resources */,
 				E5BEC72926AAEA7E0063D7F0 /* Functions_0998.xml in Resources */,
 				2ED417BC241120AF00AFE2FD /* Piano_0991.xml in Resources */,
 				7B144F1728FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */,
 				E5DAAD5026C547D800C2457F /* DisabledBricks_09997.xml in Resources */,
 				E5EC6D5026B00FDC0031F13A /* Flap_Pac_Man_09993.xml in Resources */,
+				7B37461D29ACD8080085A90D /* StoreAuthenticator.deleteUser.success.json in Resources */,
 				E598BBBC26A0299700D4825F /* UserVariables_0996.xml in Resources */,
 				97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */,
 				D3E4865C24766DE9002FAEBA /* GoToBrick_0992.xml in Resources */,
@@ -11769,6 +11847,7 @@
 				7B144F3628FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */,
 				6F4DAE8B24A74ABF0062DA6C /* StoreProjectUpload.uploadProject.success.json in Resources */,
 				D3AF5C1E243F822F00B04BC6 /* DisabledBricks_0991.xml in Resources */,
+				7B37461429ACD8080085A90D /* StoreAuthenticator.login.fail.request.json in Resources */,
 				4C3285F12546CF6600C31F9D /* InsertItemIntoUserListBrick0993.xml in Resources */,
 				E50E8563269EC64D00E76CE9 /* collisionTest0995.xml in Resources */,
 				2ED417D1241120AF00AFE2FD /* Galaxy_War_096.xml in Resources */,
@@ -11794,6 +11873,7 @@
 				2ED4180E241120AF00AFE2FD /* Flap_Pac_Man_098.xml in Resources */,
 				4C55CCED24BF2AD700FB8393 /* Pythagorean_Theorem_0992.xml in Resources */,
 				7B144F1C28FDCE3500C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */,
+				7B37461A29ACD8080085A90D /* StoreAuthenticator.register.fail.request.json in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency_gray_alpha.png in Resources */,
 				2ED41804241120AF00AFE2FD /* Pong_Starter_096.xml in Resources */,
 				E5BEC73B26AAEB160063D7F0 /* Sensors_0998.xml in Resources */,
@@ -11817,6 +11897,7 @@
 				E5DAAD4826C5478300C2457F /* Pythagorean_Theorem_09997.xml in Resources */,
 				2ED417D5241120AF00AFE2FD /* Demonstration_096.xml in Resources */,
 				2ED417FF241120AF00AFE2FD /* Pong_Starter_09.xml in Resources */,
+				7B37461E29ACD8080085A90D /* StoreAuthenticator.refreshToken.fail.request.json in Resources */,
 				E5DAAD5A26C5482700C2457F /* LogicBricks_09997.xml in Resources */,
 				E59108C726931ED6008D254A /* ElementOfListFunction0994.xml in Resources */,
 				E57D5B3B26AEAA0B003A1457 /* GoToBrick_0999.xml in Resources */,
@@ -11831,12 +11912,14 @@
 				4C3286072546D4AA00C31F9D /* Demonstration_0993.xml in Resources */,
 				4C3285FF2546D40700C31F9D /* ValidProjectAllBricks0993.xml in Resources */,
 				05E6802F255B602700D1E295 /* stitch.dst in Resources */,
+				7B37461029ACD8080085A90D /* StoreAuthenticator.deleteUser.fail.authentication.json in Resources */,
 				E5BEC72B26AAEA8C0063D7F0 /* collisionTest0998.xml in Resources */,
 				2ED417B2241120AF00AFE2FD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				E57D5B4926AEAAD3003A1457 /* Sensors_0999.xml in Resources */,
 				E5EC6D7026B010B80031F13A /* LogicBricks_09993.xml in Resources */,
 				4C55CD0124BF2BBD00FB8393 /* Encapsulated_0992.xml in Resources */,
 				E5BEC71F26AAEA380063D7F0 /* Memory_0998.xml in Resources */,
+				7B37461629ACD8080085A90D /* StoreAuthenticator.refreshToken.success.upgrade.json in Resources */,
 				9E8176E52389BA4800A4912B /* SpeakAndWaitInterruptedBySpeak.xml in Resources */,
 				E598BBD026A02B4B00D4825F /* ValidProjectAllBricks0996.xml in Resources */,
 				2ED41852241120B000AFE2FD /* InvalidBricksAndScripts.xml in Resources */,
@@ -11844,6 +11927,7 @@
 				E5BEC72F26AAEABD0063D7F0 /* DisabledBricks_0998.xml in Resources */,
 				7B144F5328FED3E200C4A300 /* MediaLibraryDownloader.downloadIndex.fail.request.json in Resources */,
 				E50E8561269EC63800E76CE9 /* GoToBrick_0995.xml in Resources */,
+				7B37461229ACD8080085A90D /* StoreAuthenticator.login.success.json in Resources */,
 				E5DAAD3A26C5473000C2457F /* Demonstration_09997.xml in Resources */,
 				4C55CCDB24BF291D00FB8393 /* Airplane_with_shadow_0992.xml in Resources */,
 				7B144F2228FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json in Resources */,
@@ -11924,6 +12008,7 @@
 				E50E8572269EEEC300E76CE9 /* Functions_0995.xml in Resources */,
 				2ED4185C241120B000AFE2FD /* ValidProjectAllBricks0991.xml in Resources */,
 				4C3286012546D48500C31F9D /* Air_fight_0.5_0993.xml in Resources */,
+				7B37461F29ACD8080085A90D /* StoreAuthenticator.register.fail.validation.json in Resources */,
 				E5DAAD4A26C5478E00C2457F /* Tic_Tac_Toe_Master_09997.xml in Resources */,
 				2ED4184D241120B000AFE2FD /* Flappy_v3.0_092.xml in Resources */,
 				E5DAAD4E26C547BF00C2457F /* UserVariables_09997.xml in Resources */,
@@ -11957,6 +12042,7 @@
 				593F2F582532007400933EFD /* StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail.json in Resources */,
 				7B144F2428FDD5F800C4A300 /* StoreProjectDownloader.fetchMostViewedProjects.success.json in Resources */,
 				E5BEC71926AAEA1A0063D7F0 /* Flap_Pac_Man_0998.xml in Resources */,
+				7B37461929ACD8080085A90D /* StoreAuthenticator.refreshToken.fail.parse.json in Resources */,
 				E5EC6D5A26B010140031F13A /* Pong_Starter_09993.xml in Resources */,
 				7B144F2928FDD85500C4A300 /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */,
 				E5DAAD3E26C5474900C2457F /* Flappy_v3.0_09997.xml in Resources */,
@@ -12642,6 +12728,7 @@
 				498C156D2807057B00B81C8E /* NeckSensorTest.swift in Sources */,
 				9E3AF7982326F21300AB16F1 /* SetXBrickTests.swift in Sources */,
 				4C4B4CDF23EE98C80054C861 /* CustomAlertControllerTests.swift in Sources */,
+				7B37460F29ACD8010085A90D /* StoreAuthenticatorTests.swift in Sources */,
 				4C822678213FA7A400F3D750 /* ColorSensorTest.swift in Sources */,
 				4974B2BB281A5F6300EEF0D9 /* TextBlockTextFunctionTest.swift in Sources */,
 				4C4778DA267C82B100CAF398 /* URLSessionJsonExtensionTests.swift in Sources */,
@@ -12745,6 +12832,7 @@
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
 				594E7DD4257D5B6A0053D6E9 /* URLExtension.swift in Sources */,
 				E4668B4220FE02F40021FA0B /* FeaturedProjectsCell.swift in Sources */,
+				7B37462129ACD83B0085A90D /* StoreAuthenticator.swift in Sources */,
 				0594CE60275E5568007DC3F9 /* SewUpBrick+CBXMLHandler.swift in Sources */,
 				4CDF7BB62138735700FFF7F4 /* StageBuilder.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,

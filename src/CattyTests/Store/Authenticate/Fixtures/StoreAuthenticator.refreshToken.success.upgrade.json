@@ -1,0 +1,43 @@
+{
+  "name" : "StoreAuthenticator.refreshToken.success.upgrade",
+  "interactions" : [
+    {
+      "recorded_at" : 1666354524.6961551,
+      "request" : {
+        "headers" : {
+          "Content-Type" : "application\/json"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication\/upgrade",
+        "method" : "POST",
+        "body" : {
+          "upload_token" : "36cdf53b812dd2d47471367de94e8538"
+        }
+      },
+      "response" : {
+        "headers" : {
+          "Server" : "cloudflare",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"882761614\"",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "cf-ray" : "75d9eb1e6d51c2e6-VIE",
+          "x-openapi-message" : "OK",
+          "Content-Encoding" : "br",
+          "Cache-Control" : "private, must-revalidate",
+          "Set-Cookie" : "dtCookie=v_4_srv_4_sn_729B30BB3E6FEA52977D7E11B286EB2D_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Date" : "Fri, 21 Oct 2022 12:15:24 GMT",
+          "Pragma" : "no-cache",
+          "Content-Type" : "application\/json",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=ona5C3dW28WEmQBFVVH56ZZaHx2GlOEQnDdED2lXbRw%2BXJ40u37q1IEYVjRY0ntDdEANZMyvm%2F91WGVsEYFOehm5VMvbQaEWT7jUXMmjjmzU5QZMQ4Vmj79sKkf1waz76QuROeHga5GqOLFFoCk%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Expires" : "-1",
+          "cf-cache-status" : "DYNAMIC"
+        },
+        "status" : 200,
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication\/upgrade",
+        "body" : {
+          "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjo0ODIyMDMzMDUyfQ.GNnO3_Y4hYTkULubsayMWZmi25ZAWWw6PV01cRAu7M8",
+          "refresh_token" : "6b40fb5dac84fbd8c5b904545b09130efe6748686a1dca65b3ecc8b51e2e82733825f49b9536fc053c43d0755dc4350ec552ef81e5c0676251552767b090cacb"
+        }
+      }
+    }
+  ]
+}

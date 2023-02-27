@@ -1,38 +1,44 @@
 {
+  "name" : "URLSession.jsonDataTask.success",
   "interactions" : [
     {
       "request" : {
+        "body" : {
+          "email" : "invalidEmail"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/user\/reset-password",
+        "method" : "POST",
         "headers" : {
+          "Accept-Language" : "en",
           "Content-Type" : "application\/json"
-        },
-        "url" : "https:\/\/web-test.catrob.at\/api\/authentication",
-        "body" : {
-          "username" : "username",
-          "password" : "password"
-        },
-        "method" : "POST"
-      },
-      "recorded_at" : 1623850660.212079,
-      "response" : {
-        "status" : 401,
-        "url" : "https:\/\/web-test.catrob.at\/api\/authentication",
-        "body" : {
-          "message" : "Invalid credentials.",
-          "code" : 401
-        },
-        "headers" : {
-          "Server" : "nginx",
-          "Expires" : "-1",
-          "Content-Type" : "application\/json",
-          "Pragma" : "no-cache",
-          "Set-Cookie" : "dtCookie=v_4_srv_11_sn_A619F5E037CAAAD64315AC1907D62A28_perc_100000_ol_0_mul_1; Path=\/; Domain=.catrob.at",
-          "server-timing" : "dtRpid;desc=\"2040254617\"",
-          "Cache-Control" : "private, must-revalidate",
-          "Date" : "Wed, 16 Jun 2021 13:37:39 GMT",
-          "Www-Authenticate" : "Bearer"
         }
-      }
+      },
+      "response" : {
+        "headers" : {
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Server" : "cloudflare",
+          "Expires" : "-1",
+          "Cache-Control" : "private, must-revalidate",
+          "Date" : "Mon, 24 Oct 2022 19:19:55 GMT",
+          "cf-ray" : "75f5111b0da7c30c-VIE",
+          "Set-Cookie" : "dtCookie=v_4_srv_11_sn_E70DFCDD1984B28DE3263E72BA3BFC18_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Content-Type" : "application\/json",
+          "x-response-hash" : "23dafe3a3845c10212d192baaf3c0d52",
+          "cf-cache-status" : "DYNAMIC",
+          "Content-Language" : "en",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "x-openapi-message" : "Unprocessable Entity. (Specific error messages will be translated to the locale)",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=0xrfseGvLYbPtYCeUuQ5lQ9tw6kyf1BnZteTgq%2FAzqwH%2BkJfloKZic2aAdpZWrBebaWF1n9REapNcFf0feOchmiV%2BOCxYAKD0pR2bVBGbsz0FUpEtfbQgkpCPfNZ%2B9tGzNqrMzZ6fCct7pKsYdM%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"391255690\"",
+          "Pragma" : "no-cache"
+        },
+        "status" : 422,
+        "url" : "https:\/\/web-test.catrob.at\/api\/user\/reset-password",
+        "body" : {
+          "email" : "Email invalid"
+        }
+      },
+      "recorded_at" : 1666639195.4284739
     }
-  ],
-  "name" : "URLSession.jsonDataTask.success"
+  ]
 }
