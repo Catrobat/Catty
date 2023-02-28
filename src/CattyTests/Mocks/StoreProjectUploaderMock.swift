@@ -29,9 +29,8 @@ final class StoreProjectUploaderMock: StoreProjectUploaderProtocol {
     var timesUploadMethodCalled: Int = 0
     var timesFetchTagsMethodCalled: Int = 0
     var projectToUpload: Project?
-    var language: String?
     var projectId: String?
-    var tags: [String]?
+    var tags: [StoreProjectTag]?
 
     func upload(project: Project, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?) {
         timesUploadMethodCalled += 1
@@ -43,12 +42,9 @@ final class StoreProjectUploaderMock: StoreProjectUploaderProtocol {
         }
     }
 
-    func fetchTags(for language: String, completion: @escaping ([String], StoreProjectUploaderError?) -> Void) {
-        self.language = language
+    func fetchTags(completion: @escaping ([StoreProjectTag]?, StoreProjectUploaderError?) -> Void) {
         timesFetchTagsMethodCalled += 1
 
-        if let tags = tags {
-            completion(tags, self.error)
-        }
+        completion(tags, self.error)
     }
 }
