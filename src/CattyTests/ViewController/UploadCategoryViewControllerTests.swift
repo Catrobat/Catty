@@ -31,19 +31,22 @@ class UploadCategoryViewControllerTests: XCTestCase {
 
     override func setUp() {
         delegateMock = UploadCategoryViewControllerDelegateMock()
-        uploadCategoryViewController = UploadCategoryViewController(tags: [String]())
+        uploadCategoryViewController = UploadCategoryViewController(tags: [StoreProjectTag]())
         uploadCategoryViewController.delegate = delegateMock
     }
 
     func testDelegate() {
         XCTAssertNil(delegateMock.tags)
 
-        uploadCategoryViewController.delegate?.categoriesSelected(tags: ["testTag1", "testTag2"])
-
+        uploadCategoryViewController.delegate?.categoriesSelected(tags: [
+            StoreProjectTag(id: "testTag1", text: "Test Tag 1"),
+            StoreProjectTag(id: "testTag2", text: "Test Tag 2")
+        ])
         XCTAssertNotNil(delegateMock.tags)
         XCTAssertEqual(delegateMock.tags?.count, 2)
-        XCTAssertEqual(delegateMock.tags![0], "testTag1")
-        XCTAssertEqual(delegateMock.tags![1], "testTag2")
+        XCTAssertEqual(delegateMock.tags?[0].id, "testTag1")
+        XCTAssertEqual(delegateMock.tags?[0].text, "Test Tag 1")
+        XCTAssertEqual(delegateMock.tags?[1].id, "testTag2")
+        XCTAssertEqual(delegateMock.tags?[1].text, "Test Tag 2")
     }
-
 }

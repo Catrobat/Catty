@@ -1,0 +1,42 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "headers" : {
+          "Alt-Svc" : "h3=\":443\"; ma=86400, h3-29=\":443\"; ma=86400",
+          "Expires" : "-1",
+          "Content-Language" : "en_UK",
+          "Cache-Control" : "private, must-revalidate",
+          "Pragma" : "no-cache",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=Om7EZyUXsFjMkaVZFm3mYArrbosOo8Ne9X%2FNlHm9oDEhduGX%2Fv%2B1Bf9ICBwQZm0936t%2F77ZMsM4i0PDFque8s3zkacVdMjiUphNs9jbWf27Bp37QhU9NErPR6pce2msVW9c2LRyxVtBVl2DbkdSJzKw%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Set-Cookie" : "dtCookie=v_4_srv_6_sn_66B6D55841080BF096416196FEFB0C0B_perc_100000_ol_0_mul_1_app-3Aea7c4b59f27d43eb_1; Path=\/; Domain=.catrob.at",
+          "Content-Type" : "application\/json",
+          "cf-cache-status" : "DYNAMIC",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "x-response-hash" : "5af03cec282085e7f92ec97e0f77d40e",
+          "cf-ray" : "7a0191dc6f4ac245-VIE",
+          "Server" : "cloudflare",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"-328596786\"",
+          "x-openapi-message" : "OK",
+          "Content-Encoding" : "br",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Date" : "Mon, 27 Feb 2023 14:21:56 GMT"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/tags",
+        "status" : 200,
+        "body" : [
+          {}
+        ]
+      },
+      "recorded_at" : 1677507716.5612001,
+      "request" : {
+        "headers" : {
+          "Accept-Language" : "en"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/tags",
+        "method" : "GET"
+      }
+    }
+  ],
+  "name" : "StoreProjectUploader.fetchTags.fail.parse"
+}

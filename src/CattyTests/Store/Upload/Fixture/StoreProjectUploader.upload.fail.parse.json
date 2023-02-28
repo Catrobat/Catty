@@ -1,0 +1,41 @@
+{
+  "name" : "StoreProjectUploader.fail.parse",
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 201,
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects",
+        "body" : {},
+        "headers" : {
+          "x-openapi-message" : "Project successfully uploaded",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"615991014\"",
+          "cf-cache-status" : "DYNAMIC",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Expires" : "-1",
+          "Server" : "cloudflare",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Pragma" : "no-cache",
+          "Date" : "Mon, 27 Feb 2023 16:31:07 GMT",
+          "Content-Type" : "application\/json",
+          "Cache-Control" : "private, must-revalidate",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=MhlKJFlrjGQ2%2FXkeeivdCatRxn61XqCmHuvZ%2Fm%2F4ayhh40WlU87nbMaXCI%2BFuKWO6M3bJJsO65rNOQV%2BkbueDKCEn8DpXL%2BkB5rcNKQL6UcSl698ySpzY66098yELhXVsx1gCvO6lgIxK7nFAa4%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Location" : "https:\/\/web-test.catrob.at\/app\/project\/2c43d3ee-4ba4-4dd5-9811-4bdb1656bdde",
+          "Set-Cookie" : "dtCookie=v_4_srv_12_sn_FF7A3DCAF0770563E42C89FDBDC2E644_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "cf-ray" : "7a024f0bcc65c2e3-VIE"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "headers" : {
+          "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjo0ODIyMDMzMDUyfQ.GNnO3_Y4hYTkULubsayMWZmi25ZAWWw6PV01cRAu7M8",
+          "Accept-Language" : "en",
+          "Content-Length" : "473",
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------"
+        },
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJjaGVja3N1bSINCg0KYWE2NTU5NTRmMzE2MmNjZjUyYTBlN2E1MjUzY2Y5ZjMNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGF0dGFjaG1lbnQ7IG5hbWU9ImZpbGUiOyBmaWxlbmFtZT0iLnppcCIgDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL29jdGV0LXN0cmVhbQ0KDQp6aXBwZWRQcm9qZWN0RGF0YQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo=",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects"
+      },
+      "recorded_at" : 1677515467.321923
+    }
+  ]
+}

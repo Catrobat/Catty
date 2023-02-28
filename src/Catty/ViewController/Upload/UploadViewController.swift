@@ -49,7 +49,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
     private var separationViews: [UIView]
     private var values: [UILabel]
     private var selectCategoriesValueLabel: UILabel
-    private var availableTags: [String]
+    private var availableTags: [StoreProjectTag]
     private var loadingView: LoadingView?
 
     // MARK: - View Lifecycle
@@ -101,11 +101,10 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         self.projectNameTextField = UITextField()
         self.descriptionTextView = UITextView()
         self.selectCategoriesValueLabel = UILabel()
-        self.availableTags = [String]()
+        self.availableTags = [StoreProjectTag]()
         super.init(coder: aDecoder)
         self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
-
-        self.uploader = StoreProjectUploader(fileManager: CBFileManager())
+        self.uploader = StoreProjectUploader()
     }
 
     init(uploader: StoreProjectUploaderProtocol, project: Project, selectCategoriesValueLabel: UILabel) {
@@ -117,7 +116,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         self.projectNameTextField = UITextField()
         self.descriptionTextView = UITextView()
         self.selectCategoriesValueLabel = selectCategoriesValueLabel
-        self.availableTags = [String]()
+        self.availableTags = [StoreProjectTag]()
         super.init(nibName: nil, bundle: nil)
         self.uploader = uploader
     }
@@ -176,13 +175,15 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         }
         let selectCategoriesLabel = createLabel(text: kLocalizedSelectCategories, font: .boldSystemFont(ofSize: labelFontSize), addConstraint: false)
 
-        var tags = String()
-        if let existingTags = self.project?.header.tags, !existingTags.isEmpty {
-            tags = existingTags
-        } else {
-            tags = kLocalizedNoCategoriesSelected
+        var tagTextString = kLocalizedNoCategoriesSelected
+        if let tagIDString = self.project?.header.tags {
+            let tags = [StoreProjectTag](with: tagIDString, from: availableTags)
+            project?.header.tags = tags.idString
+            if !tags.isEmpty {
+                tagTextString = tags.textString
+            }
         }
-        selectCategoriesValueLabel = createValue(text: tags, font: .systemFont(ofSize: valueFontSize - 5), color: .black)
+        selectCategoriesValueLabel = createValue(text: tagTextString, font: .systemFont(ofSize: valueFontSize - 5), color: .black)
 
         let selectCategoryView = UIView()
         let selectCategoryTapGesture = UITapGestureRecognizer(target: self, action: #selector(selectCategories))
@@ -354,20 +355,16 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         if segue.identifier == kSegueToSelectCategories {
             if let destination = segue.destination as? UploadCategoryViewController {
                 destination.delegate = self
-                destination.tags = project?.header.tags
+                destination.tagIDString = project?.header.tags
             }
         }
     }
 
-    func categoriesSelected(tags: [String]) {
-        let stringRepresentationOfSelectedTags = tags.joined(separator: ",")
-        if !stringRepresentationOfSelectedTags.isEmpty {
-            selectCategoriesValueLabel.text = stringRepresentationOfSelectedTags
-        } else {
-            selectCategoriesValueLabel.text = kLocalizedNoCategoriesSelected
-        }
-        project?.header.tags = tags.joined(separator: ",")
+    func categoriesSelected(tags: [StoreProjectTag]) {
+        selectCategoriesValueLabel.text = !tags.textString.isEmpty ? tags.textString : kLocalizedNoCategoriesSelected
+        project?.header.tags = tags.idString
     }
+
     // MARK: - Actions
 
     @objc func checkProjectAction() {
@@ -394,10 +391,11 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         projectNameTextField.endEditing(true)
         descriptionTextView.endEditing(true)
         let viewController = UploadCategoryViewController(tags: availableTags)
-        viewController.tags = project?.header.tags
+        viewController.tagIDString = project?.header.tags
         viewController.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     }
+
     // MARK: - Upload
 
     @objc func uploadAction() {
@@ -406,70 +404,75 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
             return
         }
         activeRequest = false
-        if let project = project, let uploader = self.uploader {
-            uploader.upload(project: project,
-                            completion: { projectId, error  in
-                                self.enableUploadView()
-                                if let error = error {
-                                    switch error {
-                                    case .unexpectedError, .timeout:
-                                        Util.defaultAlertForNetworkError()
-                                    case .zippingError, .invalidProject, .request:
-                                        Util.alert(text: kLocalizedUploadProblem)
-                                    case .authenticationFailed:
-                                        UserDefaults.standard.set(false, forKey: NetworkDefines.kUserIsLoggedIn)
 
-                                        AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: kLocalizedSessionExpired)
-                                            .addDefaultAction(title: kLocalizedOK) {
-                                                let storyboard = UIStoryboard(name: "iPhone", bundle: nil)
-                                                if let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController {
-                                                    self.navigationController?.pushViewController(loginViewController, animated: true)
-                                                }
-                                            }.build().showWithController(self)
-                                    default:
-                                        break
-                                    }
-                                    return
-                                }
-
-                                DispatchQueue.main.async(execute: {
-                                    if let projectId = projectId {
-                                        project.rename(toProjectName: project.header.programName, andProjectId: projectId, andShowSaveNotification: false)
-                                        self.delegate?.uploadSuccessful(project: project, projectId: projectId)
-                                    }
-                                    self.dismissView()
-                                })
-            }, progression: nil)
+        guard let project = project, let uploader = self.uploader else {
+            return
         }
+
+        uploader.upload(
+            project: project,
+            completion: { projectId, error  in
+                self.enableUploadView()
+                switch error {
+                case .none:
+                    break
+                case .authentication:
+                    AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: kLocalizedSessionExpired).addDefaultAction(title: kLocalizedOK) {
+                        let storyboard = UIStoryboard(name: "iPhone", bundle: nil)
+                        if let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController {
+                            self.navigationController?.pushViewController(loginViewController, animated: true)
+                        }
+                    }.build().showWithController(self)
+                case .network, .timeout:
+                    Util.defaultAlertForNetworkError()
+                case .validation(response: let response):
+                    Util.alert(text: response)
+                default:
+                    Util.alert(text: kLocalizedUploadProblem)
+                }
+
+                DispatchQueue.main.async(execute: {
+                    if let projectId = projectId {
+                        project.rename(toProjectName: project.header.programName, andProjectId: projectId, andShowSaveNotification: false)
+                        self.delegate?.uploadSuccessful(project: project, projectId: projectId)
+                    }
+                    self.dismissView()
+                })
+            },
+            progression: nil
+        )
     }
 
     func fetchTags() {
         showLoading()
-        if let uploader = uploader, let languageCode = Locale.current.languageCode {
-            uploader.fetchTags(for: languageCode) { tags, error in
-                self.loadingView?.hide()
-                if let error = error {
-                    switch error {
-                    case .unexpectedError, .timeout:
-                        AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: kLocalizedErrorInternetConnection)
-                            .addDefaultAction(title: kLocalizedOK) {
-                                DispatchQueue.main.async(execute: {
-                                    self.dismissView()
-                                })
-                            }.build().showWithController(self)
-                        return
-                    case .invalidLanguageTag:
-                        break
-                    default:
-                        return
-                    }
+        guard let uploader = uploader else {
+            return
+        }
+
+        uploader.fetchTags { tags, error in
+            self.loadingView?.hide()
+            if let error = error {
+                switch error {
+                case .network, .timeout:
+                    AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: kLocalizedErrorInternetConnection).addDefaultAction(title: kLocalizedOK) {
+                        DispatchQueue.main.async(execute: {
+                            self.dismissView()
+                        })
+                    }.build().showWithController(self)
+                    return
+                default:
+                    return
                 }
-                self.availableTags = tags
-                self.shouldHideLoadingView = true
-                self.showUIElements()
             }
+
+            if let tags = tags {
+                self.availableTags = tags
+            }
+            self.shouldHideLoadingView = true
+            self.showUIElements()
         }
     }
+
     // MARK: - Keyboard
 
     @objc func keyboardWillShow(notification: Notification) {

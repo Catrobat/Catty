@@ -57,12 +57,6 @@ class NetworkDefines: NSObject {
     @objc static var registerUrl: String { baseUrl.appending("api/register/Register.json") }
     @objc static var reportProjectUrl: String { baseUrl.appending("api/reportProject/reportProject.json") }
     @objc static var recoverPassword: String { baseUrl.appending("resetting/request") }
-    static var uploadUrl: String { baseUrl.appending("api/upload") }
-    static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
-
-    static let connectionUpload = "upload.json"
-
-    static let tagLanguage = "language"
 
     // MARK: API
 
@@ -81,6 +75,7 @@ class NetworkDefines: NSObject {
     static var apiEndpointProjects = apiBaseUrl.appending("projects")
     static var apiEndpointProjectsFeatured = apiEndpointProjects.appending("/featured")
     static var apiEndpointProjectsSearch = apiEndpointProjects.appending("/search")
+    static var apiEndpointProjectsTags = apiEndpointProjects.appending("/tags")
 
     static let apiParameterOffset = "offset"
     static let apiParameterLimit = "limit"
