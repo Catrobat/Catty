@@ -1,0 +1,47 @@
+{
+  "interactions" : [
+    {
+      "request" : {
+        "body" : {
+          "email" : "test@email.dev",
+          "username" : "testUser",
+          "password" : "testPass"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/user",
+        "method" : "POST",
+        "headers" : {
+          "Accept-Language" : "en",
+          "Content-Type" : "application\/json"
+        }
+      },
+      "recorded_at" : 1666352848.4719219,
+      "response" : {
+        "url" : "https:\/\/web-test.catrob.at\/api\/user",
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"1417420050\"",
+          "Expires" : "-1",
+          "x-openapi-message" : "User successfully registered",
+          "x-response-hash" : "b1e4e6ad2ca7e15a920509b4349738b8",
+          "Cache-Control" : "private, must-revalidate",
+          "Pragma" : "no-cache",
+          "cf-cache-status" : "DYNAMIC",
+          "Server" : "cloudflare",
+          "Date" : "Fri, 21 Oct 2022 11:47:28 GMT",
+          "Content-Language" : "en",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "cf-ray" : "75d9c2335dbdc275-VIE",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=hKp2%2B%2FMCm1GcnaamlLezQ3A%2Fu7daj9hNAvQHhSk9Hdo2q9vtrKl%2B2be%2FdN51wbndLY1KnxgAoKx3hb2pKIISj8ZYigimb%2BrG3zlIYHtrtzggukCzV1jUHxYXNIY75XIpK8uWXzkJHBaYrXmfsCQ%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Set-Cookie" : "dtCookie=v_4_srv_5_sn_7FEBA1434A7E9AD4D1D868DCF461D16A_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at"
+        },
+        "status" : 201,
+        "body" : {
+          "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjo0ODIyMDMzMDUyfQ.GNnO3_Y4hYTkULubsayMWZmi25ZAWWw6PV01cRAu7M8",
+          "refresh_token" : "6b40fb5dac84fbd8c5b904545b09130efe6748686a1dca65b3ecc8b51e2e82733825f49b9536fc053c43d0755dc4350ec552ef81e5c0676251552767b090cacb"
+        }
+      }
+    }
+  ],
+  "name" : "StoreAuthenticator.register.success"
+}

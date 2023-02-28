@@ -26,18 +26,23 @@ import XCTest
 @testable import Pocket_Code
 
 final class URLSessionJsonExtensionTests: XCTestCase {
+    let url = URL(string: NetworkDefines.apiEndpointUserResetPassword)!
+
+    let keyEmail = "email"
+    let testInvalidEmail = "invalidEmail"
+    let testLanguage = "en"
 
     func testJsonDataTask() {
         let urlSession = Session(cassetteName: "URLSession.jsonDataTask.success")
         let expectation = XCTestExpectation(description: "Json data task")
 
-        let bodyData = ["username": "username", "password": "password"]
-        let url = URL(string: "https://web-test.catrob.at/api/authentication")!
+        let bodyData = [keyEmail: testInvalidEmail]
 
-        let task = urlSession.jsonDataTask(with: url, bodyData: bodyData, completionHandler: { jsonResponseData, response, error in
-            XCTAssertEqual(2, jsonResponseData?.count)
-            XCTAssertEqual("Invalid credentials.", jsonResponseData!["message"] as! String)
-            XCTAssertEqual(401, jsonResponseData!["code"] as! Int)
+        let headers = ["Accept-Language": testLanguage]
+
+        let task = urlSession.jsonDataTask(with: url, bodyData: bodyData, headers: headers, completionHandler: { jsonResponseData, response, error in
+            XCTAssertEqual(1, jsonResponseData?.count)
+            XCTAssertEqual("Email invalid", jsonResponseData?["email"] as? String)
 
             XCTAssertNotNil(response)
             XCTAssertNil(error)
@@ -54,10 +59,11 @@ final class URLSessionJsonExtensionTests: XCTestCase {
         let urlSession = Session(cassetteName: "URLSession.jsonDataTask.fail")
         let expectation = XCTestExpectation(description: "Json data task")
 
-        let bodyData = ["username": "username", "password": "password"]
-        let url = URL(string: "https://web-test.catrob.at/api/authentication")!
+        let bodyData = [keyEmail: testInvalidEmail]
 
-        let task = urlSession.jsonDataTask(with: url, bodyData: bodyData, completionHandler: { jsonResponseData, response, error in
+        let headers = ["Accept-Language": testLanguage]
+
+        let task = urlSession.jsonDataTask(with: url, bodyData: bodyData, headers: headers, completionHandler: { jsonResponseData, response, error in
             XCTAssertNil(jsonResponseData)
             XCTAssertNotNil(response)
             XCTAssertNil(error)

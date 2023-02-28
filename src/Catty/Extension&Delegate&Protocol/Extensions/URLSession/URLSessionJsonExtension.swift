@@ -22,11 +22,15 @@
 
 public extension URLSession {
 
-    func jsonDataTask(with url: URL, bodyData: [String: String], completionHandler: @escaping ([String: Any]?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    func jsonDataTask(with url: URL, bodyData: [String: Any], headers: [String: String] = [:], completionHandler: @escaping ([String: Any]?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        for header in headers {
+            request.addValue(header.value, forHTTPHeaderField: header.key)
+        }
 
         let body = try? JSONSerialization.data(withJSONObject: bodyData)
         request.httpBody = body
@@ -34,7 +38,7 @@ public extension URLSession {
         let task = self.dataTask(with: request, completionHandler: { data, response, error in
 
             if let data = data, error == nil {
-                let dictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                let dictionary = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
                 completionHandler(dictionary, response, error)
             } else {
                 completionHandler(nil, response, error)

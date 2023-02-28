@@ -66,6 +66,12 @@ class NetworkDefines: NSObject {
 
     // MARK: API
 
+    static var apiEndpointAuthentication = apiBaseUrl.appending("authentication")
+    static var apiEndpointAuthenticationRefresh = apiEndpointAuthentication.appending("/refresh")
+    static var apiEndpointAuthenticationUpgrade = apiEndpointAuthentication.appending("/upgrade")
+    static var apiEndpointUser = apiBaseUrl.appending("user")
+    static var apiEndpointUserResetPassword = apiEndpointUser.appending("/reset-password")
+
     static var apiEndpointMediaPackage = apiBaseUrl.appending("media/package")
     static var apiEndpointMediaPackageBackgrounds = apiEndpointMediaPackage.appending("/Backgrounds")
     static var apiEndpointMediaPackageLooks = apiEndpointMediaPackage.appending("/Looks")
@@ -105,6 +111,13 @@ class NetworkDefines: NSObject {
 
     @objc static let kUserIsLoggedIn = "userIsLoggedIn"
     @objc static let kUserLoginToken = "userLoginToken"
+
+    static let kUsername = "username"
+    static let kAuthenticationToken = "authenticationToken"
+    static let kRefreshToken = "refreshToken"
+    static let kLegacyToken = "userLoginToken"
+
+    static let tokenExpirationTolerance = 600 // = 10 min
 
     // MARK: WebRequestDownloader
 
