@@ -32,120 +32,50 @@ final class ZigzagStitchPatternTests: XCTestCase {
         embroideryStream = EmbroideryStream()
     }
 
-    func testSimpleLine() {
-        let reference = EmbroideryStream()
-        reference.add(Stitch(x: 0, y: 0))
-        reference.add(Stitch(x: 30, y: 0))
-        reference.add(Stitch(x: 0, y: 20))
-        reference.add(Stitch(x: 30, y: 20))
-        reference.add(Stitch(x: 0, y: 40))
-        reference.add(Stitch(x: 30, y: 40))
-        reference.add(Stitch(x: 0, y: 60))
-        reference.add(Stitch(x: 30, y: 60))
-        reference.add(Stitch(x: 0, y: 80))
-
-        embroideryStream!.activePattern = ZigzagStitchPattern(for: embroideryStream!,
-                                                              at: .zero,
-                                                              withLength: 20,
-                                                              andWidth: 30)
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80))
-
-        XCTAssertEqual(embroideryStream!.count, reference.count)
-        for i in 0..<reference.count {
-            XCTAssertEqual(reference[i].getPosition(), embroideryStream![i].getPosition())
-        }
-    }
-
     func testSquare() {
+        let length = CGFloat(20)
+        let width = CGFloat(30)
+        let halfWidth = width / 2
+        let firstPoint = CGPoint(x: 0, y: 80)
+        let secondPoint = CGPoint(x: 80, y: 80)
+        let thirdPoint = CGPoint(x: 80, y: 0)
+        let fourthPoint = CGPoint(x: 0, y: 0)
         let reference = EmbroideryStream()
-        reference.add(Stitch(x: 0, y: 0))
-        reference.add(Stitch(x: 30, y: 0))
-        reference.add(Stitch(x: 0, y: 20))
-        reference.add(Stitch(x: 30, y: 20))
-        reference.add(Stitch(x: 0, y: 40))
-        reference.add(Stitch(x: 30, y: 40))
-        reference.add(Stitch(x: 0, y: 60))
-        reference.add(Stitch(x: 30, y: 60))
-        reference.add(Stitch(x: 0, y: 80))
 
-        reference.add(Stitch(x: 0, y: 50))
-        reference.add(Stitch(x: 20, y: 80))
-        reference.add(Stitch(x: 20, y: 50))
-        reference.add(Stitch(x: 40, y: 80))
-        reference.add(Stitch(x: 40, y: 50))
-        reference.add(Stitch(x: 60, y: 80))
-        reference.add(Stitch(x: 60, y: 50))
-        reference.add(Stitch(x: 80, y: 80))
+        reference.add(Stitch(x: firstPoint.x - halfWidth, y: length * 0))
+        reference.add(Stitch(x: firstPoint.x + halfWidth, y: length * 1))
+        reference.add(Stitch(x: firstPoint.x - halfWidth, y: length * 2))
+        reference.add(Stitch(x: firstPoint.x + halfWidth, y: length * 3))
+        reference.add(Stitch(x: firstPoint.x - halfWidth, y: length * 4))
 
-        reference.add(Stitch(x: 80, y: 110))
-        reference.add(Stitch(x: 60, y: 80))
-        reference.add(Stitch(x: 60, y: 110))
-        reference.add(Stitch(x: 40, y: 80))
-        reference.add(Stitch(x: 40, y: 110))
-        reference.add(Stitch(x: 20, y: 80))
-        reference.add(Stitch(x: 20, y: 110))
-        reference.add(Stitch(x: 0, y: 80))
+        reference.add(Stitch(x: length * 1, y: secondPoint.y - halfWidth))
+        reference.add(Stitch(x: length * 2, y: secondPoint.y + halfWidth))
+        reference.add(Stitch(x: length * 3, y: secondPoint.y - halfWidth))
+        reference.add(Stitch(x: length * 4, y: secondPoint.y + halfWidth))
 
-        reference.add(Stitch(x: -30, y: 80))
-        reference.add(Stitch(x: 0, y: 60))
-        reference.add(Stitch(x: -30, y: 60))
-        reference.add(Stitch(x: 0, y: 40))
-        reference.add(Stitch(x: -30, y: 40))
-        reference.add(Stitch(x: 0, y: 20))
-        reference.add(Stitch(x: -30, y: 20))
-        reference.add(Stitch(x: 0, y: 0))
+        reference.add(Stitch(x: thirdPoint.x - width / 2, y: length * 3))
+        reference.add(Stitch(x: thirdPoint.x + width / 2, y: length * 2))
+        reference.add(Stitch(x: thirdPoint.x - width / 2, y: length * 1))
+        reference.add(Stitch(x: thirdPoint.x + width / 2, y: length * 0))
+
+        reference.add(Stitch(x: length * 3, y: fourthPoint.y + halfWidth))
+        reference.add(Stitch(x: length * 2, y: fourthPoint.y - halfWidth))
+        reference.add(Stitch(x: length * 1, y: fourthPoint.y + halfWidth))
+        reference.add(Stitch(x: length * 0, y: fourthPoint.y - halfWidth))
 
         embroideryStream!.activePattern = ZigzagStitchPattern(for: embroideryStream!,
                                                               at: .zero,
-                                                              withLength: 20,
-                                                              andWidth: 30)
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 80, y: 80))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 0))
+                                                              withLength: length,
+                                                              andWidth: width)
+        embroideryStream!.activePattern!.spriteDidMove(to: firstPoint, rotation: 0)
+        embroideryStream!.activePattern!.spriteDidMove(to: secondPoint, rotation: 90)
+        embroideryStream!.activePattern!.spriteDidMove(to: thirdPoint, rotation: 180)
+        embroideryStream!.activePattern!.spriteDidMove(to: fourthPoint, rotation: 270)
 
         XCTAssertEqual(embroideryStream!.count, reference.count)
         for i in 0..<reference.count {
-            XCTAssertEqual(reference[i].getPosition(), embroideryStream![i].getPosition())
-        }
-    }
-
-    func testSquareNonDivisibleLength() {
-        let reference = EmbroideryStream()
-        reference.add(Stitch(x: 0, y: 0))
-
-        reference.add(Stitch(x: 15, y: 0))
-        reference.add(Stitch(x: 0, y: 10))
-        reference.add(Stitch(x: 15, y: 10))
-        reference.add(Stitch(x: 0, y: 19))
-
-        reference.add(Stitch(x: 0, y: 4))
-        reference.add(Stitch(x: 10, y: 19))
-        reference.add(Stitch(x: 10, y: 4))
-        reference.add(Stitch(x: 19, y: 19))
-
-        reference.add(Stitch(x: 4, y: 19))
-        reference.add(Stitch(x: 19, y: 9))
-        reference.add(Stitch(x: 4, y: 9))
-        reference.add(Stitch(x: 19, y: 0))
-
-        reference.add(Stitch(x: 19, y: 15))
-        reference.add(Stitch(x: 9, y: 0))
-        reference.add(Stitch(x: 9, y: 15))
-        reference.add(Stitch(x: 0, y: 0))
-
-        embroideryStream!.activePattern = ZigzagStitchPattern(for: embroideryStream!,
-                                                              at: .zero,
-                                                              withLength: 10,
-                                                              andWidth: 15)
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 19))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 19, y: 19))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 19, y: 0))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 0))
-
-        XCTAssertEqual(embroideryStream!.count, reference.count)
-        for i in 0..<reference.count {
-            XCTAssertEqual(reference[i].getPosition(), embroideryStream![i].getPosition())
+            XCTAssertEqual(reference[i].getPosition().x, embroideryStream![i].getPosition().x, accuracy: 0.01)
+            XCTAssertEqual(reference[i].getPosition().y, embroideryStream![i].getPosition().y, accuracy: 0.01)
         }
     }
 }

@@ -38,10 +38,19 @@ class EmbroideryDSTService: EmbroideryProtocol {
         for currentStitch in embroideryStream {
             let relativeX = Int(currentStitch.embroideryDimensions().x - previousStitch.embroideryDimensions().x)
             let relativeY = Int(currentStitch.embroideryDimensions().y - previousStitch.embroideryDimensions().y)
+            let delta = CGVector(dx: relativeX, dy: relativeY)
 
-            DSTHeader.update(relativeX: relativeX,
-                             relativeY: relativeY,
-                             isColorChange: currentStitch.isColorChange)
+            if let startpoint = embroideryStream.startPoint {
+                DSTHeader.update(relativeX: Float(currentStitch.x - startpoint.x),
+                                 relativeY: Float(currentStitch.y - startpoint.y),
+                                 delta: delta,
+                                 isColorChange: currentStitch.isColorChange)
+            } else {
+                DSTHeader.update(relativeX: Float(currentStitch.x - embroideryStream.first!.x),
+                                 relativeY: Float(currentStitch.y - embroideryStream.first!.y),
+                                 delta: delta,
+                                 isColorChange: currentStitch.isColorChange)
+            }
 
             DSTStitches.append(contentsOf: StichDTSBytes(
                 relativeX: relativeX,
@@ -50,9 +59,9 @@ class EmbroideryDSTService: EmbroideryProtocol {
                 isColorChange: currentStitch.isColorChange))
 
             if currentStitch.isColorChange {
-                DSTHeader.update(relativeX: 0, relativeY: 0, isColorChange: false)
+                DSTHeader.update(relativeX: 0, relativeY: 0, delta: delta, isColorChange: false)
                 DSTStitches.append(contentsOf: StichDTSBytes(relativeX: 0, relativeY: 0, isJump: true))
-                DSTHeader.update(relativeX: 0, relativeY: 0, isColorChange: false)
+                DSTHeader.update(relativeX: 0, relativeY: 0, delta: delta, isColorChange: false)
                 DSTStitches.append(contentsOf: StichDTSBytes(relativeX: 0, relativeY: 0, isJump: true))
             }
 

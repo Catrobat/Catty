@@ -41,6 +41,8 @@ class EmbroideryStream: Collection {
         stitches.last
     }
 
+    var startPoint: CGPoint?
+
     private(set) var size: CGFloat
 
     init(projectWidth: CGFloat?, projectHeight: CGFloat?, withName name: String? = nil) {
@@ -73,6 +75,7 @@ class EmbroideryStream: Collection {
         }
 
         self.size = streams[0].size
+        self.startPoint = streams.first?.startPoint
         for stream in streams {
             for stitch in stream {
                 self.add(stitch)
