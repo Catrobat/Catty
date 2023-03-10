@@ -64,6 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
             Util.setLastProjectWithName(nil, projectID: nil)
         }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.setUserLoggedIn) {
+            UserDefaults.standard.set("testUsername", forKey: NetworkDefines.kUsername)
+            Keychain.saveValue("testAuthenticationToken", forKey: NetworkDefines.kAuthenticationToken)
+            Keychain.saveValue("testRefreshToken", forKey: NetworkDefines.kRefreshToken)
+            Keychain.deleteValue(forKey: NetworkDefines.kLegacyToken)
+        }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.setUserLoggedOut) {
+            StoreAuthenticator.logout()
+        }
         #endif
 
         return true

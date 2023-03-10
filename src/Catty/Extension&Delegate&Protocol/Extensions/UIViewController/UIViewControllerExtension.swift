@@ -22,6 +22,15 @@
 
 extension UIViewController {
 
+    var previousViewController: UIViewController? {
+        guard let viewControllers = navigationController?.viewControllers,
+              let index = viewControllers.firstIndex(of: self), index > 0 else {
+            return nil
+        }
+
+        return viewControllers[index - 1]
+    }
+
     func hideKeyboardWhenTapInViewController() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(UIViewController.dismissKeyboard))

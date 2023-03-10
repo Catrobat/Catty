@@ -109,4 +109,14 @@ class SettingsTVCTests: XCTestCase {
         app.tables.staticTexts[kLocalizedTrustedDomains].tap()
         XCTAssert(app.navigationBars.staticTexts[kLocalizedWebAccess].exists)
     }
+
+    func testLogout() {
+        let app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedIn"])
+        app.navigationBars.buttons[PocketCodeMainScreenTests.settingsButtonLabel].tap()
+        XCTAssert(app.tables.staticTexts[kLocalizedLogout].exists)
+
+        app.tables.staticTexts[kLocalizedLogout].tap()
+        app.navigationBars.buttons[PocketCodeMainScreenTests.settingsButtonLabel].tap()
+        XCTAssertFalse(app.tables.staticTexts[kLocalizedLogout].exists)
+    }
 }

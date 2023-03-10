@@ -561,11 +561,7 @@ let kUploadSelectedProject = NSLocalizedString("Upload selected project", commen
 let kLocalizedUploadProblem = NSLocalizedString("Something went wrong while uploading the project.", comment: "")
 let kLocalizedSessionExpired = NSLocalizedString("Session expired, please log in.", comment: "")
 let kLocalizedUploadSelectProject = NSLocalizedString("Please select a project to upload", comment: "")
-let kLocalizedNoWhitespaceAllowed = NSLocalizedString("No whitespace character allowed", comment: "")
 let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", comment: "")
-
-let kLocalizedInfoLogin = NSLocalizedString("Login", comment: "")
-let kLocalizedInfoRegister = NSLocalizedString("Register", comment: "")
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************

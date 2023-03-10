@@ -122,8 +122,6 @@
 		222A6934247E43AB004BE434 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
 		22412CFE26ECE5B70074915C /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22412CFD26ECE5B70074915C /* PaddingLabel.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
-		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
-		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
 		229DC44225D6989000BA9AA2 /* ProjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DC44125D6989000BA9AA2 /* ProjectType.swift */; };
 		229DC44A25D698FF00BA9AA2 /* StoreProjectDownloaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DC44925D698FF00BA9AA2 /* StoreProjectDownloaderError.swift */; };
 		229DC44F25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DC44E25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift */; };
@@ -1112,7 +1110,9 @@
 		6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD28D0924702CAD0035F606 /* NSDateExtension.swift */; };
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
 		6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */; };
-		7B09EB6429B1DE0B00590F3D /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B09EB6329B1DE0B00590F3D /* RegisterViewController.m */; };
+		7B09EB6829B1DF8200590F3D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09EB6529B1DF8200590F3D /* RegisterViewController.swift */; };
+		7B09EB6929B1DF8200590F3D /* BaseAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09EB6629B1DF8200590F3D /* BaseAuthenticationViewController.swift */; };
+		7B09EB6A29B1DF8200590F3D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09EB6729B1DF8200590F3D /* LoginViewController.swift */; };
 		7B144F1628FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1328FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */; };
 		7B144F1728FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1428FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json */; };
 		7B144F1828FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1528FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */; };
@@ -1166,6 +1166,7 @@
 		7B37463729AD17880085A90D /* StoreProjectUploader.upload.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37463629AD17880085A90D /* StoreProjectUploader.upload.fail.request.json */; };
 		7B37463929AE48420085A90D /* StoreProjectUploader.upload.success.upgrade.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37463829AE48420085A90D /* StoreProjectUploader.upload.success.upgrade.json */; };
 		7B37463B29AE4E290085A90D /* StoreProjectUploader.upload.success.refresh.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37463A29AE4E290085A90D /* StoreProjectUploader.upload.success.refresh.json */; };
+		7B4C0C8229BB2BE9009D32FC /* AuthenticationVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4C0C8129BB2BE9009D32FC /* AuthenticationVCTests.swift */; };
 		7B53C94F27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */; };
 		7B53C95027BECAF900E86A72 /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
 		7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
@@ -1227,8 +1228,6 @@
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */; };
-		923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038D1BA707DE00021F6A /* BaseLoginViewController.m */; };
-		923503911BA707DE00021F6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginViewController.m */; };
 		925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */; };
 		926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197EF1BF3249E006D1A61 /* ArduinoTests.swift */; };
 		9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B7041C9E8F6C008BC594 /* SoundCache.m */; };
@@ -2259,8 +2258,6 @@
 		2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableArrayExtension.swift; sourceTree = "<group>"; };
 		22412CFD26ECE5B70074915C /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
-		22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerMock.swift; sourceTree = "<group>"; };
 		229DC44125D6989000BA9AA2 /* ProjectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectType.swift; sourceTree = "<group>"; };
 		229DC44925D698FF00BA9AA2 /* StoreProjectDownloaderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderError.swift; sourceTree = "<group>"; };
 		229DC44E25D69A2D00BA9AA2 /* ProjectFetchFailureInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFetchFailureInfo.swift; sourceTree = "<group>"; };
@@ -3351,7 +3348,9 @@
 		758FD262053C04755851BC4D /* ml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77A836DDE7C46D9275CE4812 /* ar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7B09EB6329B1DE0B00590F3D /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		7B09EB6529B1DF8200590F3D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7B09EB6629B1DF8200590F3D /* BaseAuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAuthenticationViewController.swift; sourceTree = "<group>"; };
+		7B09EB6729B1DF8200590F3D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7B144F1328FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.fail.request.json; sourceTree = "<group>"; };
 		7B144F1428FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.success.json; sourceTree = "<group>"; };
 		7B144F1528FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json; sourceTree = "<group>"; };
@@ -3405,6 +3404,7 @@
 		7B37463629AD17880085A90D /* StoreProjectUploader.upload.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.upload.fail.request.json; sourceTree = "<group>"; };
 		7B37463829AE48420085A90D /* StoreProjectUploader.upload.success.upgrade.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = StoreProjectUploader.upload.success.upgrade.json; sourceTree = "<group>"; tabWidth = 2; };
 		7B37463A29AE4E290085A90D /* StoreProjectUploader.upload.success.refresh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.upload.success.refresh.json; sourceTree = "<group>"; };
+		7B4C0C8129BB2BE9009D32FC /* AuthenticationVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVCTests.swift; sourceTree = "<group>"; };
 		7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B9090EC27C935D800B31D04 /* ChromaSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChromaSwift.license; sourceTree = "<group>"; };
@@ -3506,10 +3506,6 @@
 		92289A481A42F2A3008C771A /* iOSCombobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCombobox.m; sourceTree = "<group>"; };
 		922FE8DF1B963BDE005A19FA /* BrickSelectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionManager.h; sourceTree = "<group>"; };
 		922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionManager.m; sourceTree = "<group>"; };
-		9235038C1BA707DE00021F6A /* BaseLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLoginViewController.h; sourceTree = "<group>"; };
-		9235038D1BA707DE00021F6A /* BaseLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLoginViewController.m; sourceTree = "<group>"; };
-		9235038E1BA707DE00021F6A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		9235038F1BA707DE00021F6A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		925819861C0208E8003247A9 /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
 		925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		926197EF1BF3249E006D1A61 /* ArduinoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoTests.swift; sourceTree = "<group>"; };
@@ -3647,7 +3643,6 @@
 		92EC985A1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhiroRGBLightBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92EC985B1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhiroRGBLightBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92EC99491BC3CA870003A891 /* Firmata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmata.swift; sourceTree = "<group>"; };
-		92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		92F2E5017A712B683E3E8964 /* sq */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
 		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
@@ -7447,7 +7442,6 @@
 			isa = PBXGroup;
 			children = (
 				9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */,
-				22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */,
 				4C245CA9244481F3004C941C /* NimbleMatcher.swift */,
 				4CD0BA952146791D00BF17A4 /* UtilTests.swift */,
 			);
@@ -7930,7 +7924,6 @@
 				4C3B151A23F07C7800527D4A /* ErrorMock.swift */,
 				4CD27AA921B5765B00DDADB5 /* FeatureMock.swift */,
 				4C28D78A2132A83D00870CE2 /* FormulaMock.swift */,
-				22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */,
 				4C2DDEE525834A1A00728306 /* LookMock.swift */,
 				5973F235202EF2BB00A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
@@ -8331,12 +8324,9 @@
 		9238C57C1A3AE9920099F061 /* Upload/Login */ = {
 			isa = PBXGroup;
 			children = (
-				9235038C1BA707DE00021F6A /* BaseLoginViewController.h */,
-				9235038D1BA707DE00021F6A /* BaseLoginViewController.m */,
-				9235038E1BA707DE00021F6A /* LoginViewController.h */,
-				9235038F1BA707DE00021F6A /* LoginViewController.m */,
-				92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */,
-				7B09EB6329B1DE0B00590F3D /* RegisterViewController.m */,
+				7B09EB6629B1DF8200590F3D /* BaseAuthenticationViewController.swift */,
+				7B09EB6729B1DF8200590F3D /* LoginViewController.swift */,
+				7B09EB6529B1DF8200590F3D /* RegisterViewController.swift */,
 				6FAD028524C838E700C50710 /* UploadCategoryViewController.swift */,
 				5E21DA6C21A5255500017D2C /* UploadViewController.swift */,
 			);
@@ -10783,6 +10773,7 @@
 				9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */,
 				18E908A72624995900EF57D6 /* FormulaEditorComputeDialogTest.swift */,
 				2EB9FAF3269967FF00DBC4FB /* TrustedDomainTVCTests.swift */,
+				7B4C0C8129BB2BE9009D32FC /* AuthenticationVCTests.swift */,
 			);
 			path = CattyUITests;
 			sourceTree = "<group>";
@@ -12336,6 +12327,7 @@
 				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */,
 				4CC147B3257A25C1001A93F9 /* PrivacyPolicyVCTests.swift in Sources */,
+				7B4C0C8229BB2BE9009D32FC /* AuthenticationVCTests.swift in Sources */,
 				2D010F4822240C9F00CAAA06 /* XCUIElementExtension.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* XCTestCaseExtension.swift in Sources */,
 				BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */,
@@ -12732,7 +12724,6 @@
 				4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
 				7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */,
-				22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
 				4C4778BD267C7FF800CAF398 /* CBSpriteNodeStitchExtensionTests.swift in Sources */,
 				0594CE64275E55CD007DC3F9 /* SewUpTests.swift in Sources */,
@@ -12804,7 +12795,6 @@
 				4C3A5CA721D3B687008FD83F /* EqualOperatorTest.swift in Sources */,
 				4C3A5CA321D3B542008FD83F /* MultOperator.swift in Sources */,
 				4C4778D8267C82B100CAF398 /* CGVectorExtentionsTests.swift in Sources */,
-				22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */,
 				4C82268F213FB2C600F3D750 /* MultiFingerYFunctionTests.swift in Sources */,
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
 				498C158D28070DA700B81C8E /* KneeSensorTest.swift in Sources */,
@@ -12965,6 +12955,7 @@
 				1882475924C84D9C00B01653 /* SetPenColorBrickCell.swift in Sources */,
 				4C0F9F9E204BD2B100E71B2D /* SayBubbleBrickCell.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
+				7B09EB6A29B1DF8200590F3D /* LoginViewController.swift in Sources */,
 				5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
 				4CE3D68F2107B68600005629 /* VisualDetectionManagerProtocol.swift in Sources */,
@@ -13215,7 +13206,6 @@
 				921D46871BDF698A0086AD20 /* ChangeBrightnessByNBrick+Instruction.swift in Sources */,
 				18E3498025DF8467008B9D6E /* FormulaEditorDataSectionViewController.swift in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
-				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
 				49B55F7127E86315000A95B4 /* RightEyeInnerYSensor.swift in Sources */,
 				46D8055D2573E4B300CDDEC8 /* CBSpriteNodeEmbroideryExtension.swift in Sources */,
 				18D939E724C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift in Sources */,
@@ -13382,7 +13372,6 @@
 				9218B2101CC4AB75007B4C60 /* PipetteTool.m in Sources */,
 				4C0F9F66204BD18600E71B2D /* SayBubbleBrick+CBXMLHandler.m in Sources */,
 				49519D3527DCE0FE00E32E88 /* SecondFacePositionYSensor.swift in Sources */,
-				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				4C595F4921CAEB7E0097D850 /* NotEqualOperator.swift in Sources */,
 				4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */,
 				18AAC23924A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift in Sources */,
@@ -13529,6 +13518,7 @@
 				F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */,
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
 				4CF0728A20D659F700F93AB5 /* PhiroFrontRightSensor.swift in Sources */,
+				7B09EB6929B1DF8200590F3D /* BaseAuthenticationViewController.swift in Sources */,
 				92FF31581A24DEB300093DA7 /* SceneTableViewController.m in Sources */,
 				4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */,
 				9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */,
@@ -13641,7 +13631,6 @@
 				4C4B4CD723EE8ABB0054C861 /* NotificationExtension.swift in Sources */,
 				AA74EF541BC0586F00D1E954 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
 				4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */,
-				7B09EB6429B1DE0B00590F3D /* RegisterViewController.m in Sources */,
 				2EBD845B253FEEA1009BFED5 /* WebRequestBrick.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
 				49DB87C228A2BE2100DD1224 /* StagePresenterViewControllerOrientation.swift in Sources */,
@@ -13742,6 +13731,7 @@
 				972622DD25F51A8F00ABCC7A /* ChangeBrightnessByNBrick+CBXMLHandler.swift in Sources */,
 				99B2C3751D884F2D00736769 /* FlashBrick+Instruction.swift in Sources */,
 				5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */,
+				7B09EB6829B1DF8200590F3D /* RegisterViewController.swift in Sources */,
 				9218B2111CC4AB75007B4C60 /* PointerTool.m in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
 				F4E6E580210DE61900D86FE6 /* PowerFunction.swift in Sources */,

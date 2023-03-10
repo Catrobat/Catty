@@ -25,6 +25,8 @@ class LaunchArguments: NSObject {
 
     static let UITests = "UITests"
     static let restoreDefaultProject = "restoreDefaultProject"
+    static let setUserLoggedIn = "setUserLoggedIn"
+    static let setUserLoggedOut = "setUserLoggedOut"
     @objc static let skipPrivacyPolicy = "skipPrivacyPolicy"
     @objc static let alwaysShowPrivacyPolicy = "alwaysShowPrivacyPolicy"
 

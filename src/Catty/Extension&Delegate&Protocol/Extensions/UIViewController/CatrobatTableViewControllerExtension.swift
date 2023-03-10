@@ -22,10 +22,10 @@
 
 import Foundation
 
-@objc extension CatrobatTableViewController: LoginViewControllerDelegate {
-    public func afterSuccessfulLogin() {
+@objc extension CatrobatTableViewController: AuthenticationDelegate {
+    public func successfullyAuthenticated() {
         DispatchQueue.main.async {
-            if UserDefaults().bool(forKey: NetworkDefines.kUserIsLoggedIn) {
+            if StoreAuthenticator.isLoggedIn() {
                 if self.shouldPerformSegue(withIdentifier: kSegueToUpload, sender: self) {
                     self.performSegue(withIdentifier: kSegueToUpload, sender: self)
                 }

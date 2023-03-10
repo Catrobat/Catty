@@ -45,13 +45,13 @@ class SceneTVCTests: XCTestCase {
     }
 
     func testUploadProject() {
-        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["-userIsLoggedIn", "true"])
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedIn"])
         tapOnUpload()
         XCTAssert(waitForElementToAppear(app.navigationBars.buttons[kLocalizedUploadProject]).exists)
     }
 
     func testUploadProjectRedirectLogin() {
-        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["-userIsLoggedIn", "false"])
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedOut"])
         tapOnUpload()
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedLogin]).exists)
     }
