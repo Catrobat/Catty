@@ -1087,18 +1087,13 @@
 		6F4B2FB92466706B00B5F0ED /* ProjectMigratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FB82466706B00B5F0ED /* ProjectMigratorTest.swift */; };
 		6F4B2FBB246670C800B5F0ED /* ProjectMigratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FBA246670C800B5F0ED /* ProjectMigratorProtocol.swift */; };
 		6F4B2FC12466F58500B5F0ED /* CBFileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */; };
-		6F4DAE8B24A74ABF0062DA6C /* StoreProjectUpload.uploadProject.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F021E6924A68AB70097F21A /* StoreProjectUpload.uploadProject.success.json */; };
 		6F4F8AFF24CF261C002C3814 /* UserDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4F8AFE24CF261C002C3814 /* UserDataContainer.swift */; };
 		6F50E54C247907E7007885AA /* UserList+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F50E54B247907E7007885AA /* UserList+CBXMLHandler.m */; };
-		6F58F0B124ABA59900AB8C99 /* StoreProjectDownloader.uploadProject.fail.invalidChecksum.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F58F0AE24ABA59800AB8C99 /* StoreProjectDownloader.uploadProject.fail.invalidChecksum.json */; };
-		6F58F0C224AC956000AB8C99 /* StoreProjectUpload.uploadProject.fail.invalidBody.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F58F0C124AC956000AB8C99 /* StoreProjectUpload.uploadProject.fail.invalidBody.json */; };
 		6F5ADF13247D4703008FC2C5 /* BrickExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */; };
 		6F5B4C6224D412EF00D2D319 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5B4C6124D412EF00D2D319 /* Scene.swift */; };
 		6F5B4C6E24D4432F00D2D319 /* Scene+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5B4C6C24D4432E00D2D319 /* Scene+CBXMLHandler.m */; };
 		6F5B4C7124D458AC00D2D319 /* SceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5B4C6F24D4588E00D2D319 /* SceneTest.swift */; };
 		6F5CACA1246ADE0000BC58A4 /* CBFileManagerMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5CACA0246ADE0000BC58A4 /* CBFileManagerMockTests.swift */; };
-		6F61FD8524A8B38800C6C969 /* StoreProjectDownloader.uploadProject.fail.authentication.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F61FD8424A8B38800C6C969 /* StoreProjectDownloader.uploadProject.fail.authentication.json */; };
-		6F61FD8924A90B4D00C6C969 /* StoreProjectDownloader.uploadProject.fail.invalidProject.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F61FD8824A90B4D00C6C969 /* StoreProjectDownloader.uploadProject.fail.invalidProject.json */; };
 		6F6EA566248A5E5B00FAFBB6 /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6EA565248A5E5B00FAFBB6 /* SynchronizedArray.swift */; };
 		6F6EA568248A657400FAFBB6 /* SynchronizedArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6EA567248A657400FAFBB6 /* SynchronizedArrayTests.swift */; };
 		6F7D0C9324EBD19A008C1D4C /* LookTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D0C9224EBD19A008C1D4C /* LookTest.swift */; };
@@ -1106,8 +1101,6 @@
 		6F7D0CA024EBEA91008C1D4C /* ValidProjectAllBricks0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6F7D0C9D24EBEA91008C1D4C /* ValidProjectAllBricks0992.xml */; };
 		6F954C6624D1A3E400E10BB3 /* UploadCategoryViewControllerDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */; };
 		6F954C6824D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */; };
-		6F954C7424D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F954C7124D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json */; };
-		6F954C7624D1E19000E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F954C7524D1E18F00E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json */; };
 		6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F96E9F4246D52C70054E2F7 /* UserDataProtocol.swift */; };
 		6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF11F246E7AA7008CED1C /* UserList.swift */; };
 		6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF122246E8767008CED1C /* UserListTest.swift */; };
@@ -1119,6 +1112,7 @@
 		6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD28D0924702CAD0035F606 /* NSDateExtension.swift */; };
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
 		6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */; };
+		7B09EB6429B1DE0B00590F3D /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B09EB6329B1DE0B00590F3D /* RegisterViewController.m */; };
 		7B144F1628FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1328FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */; };
 		7B144F1728FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1428FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json */; };
 		7B144F1828FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B144F1528FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */; };
@@ -1161,6 +1155,17 @@
 		7B37461E29ACD8080085A90D /* StoreAuthenticator.refreshToken.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F529ACD7D20085A90D /* StoreAuthenticator.refreshToken.fail.request.json */; };
 		7B37461F29ACD8080085A90D /* StoreAuthenticator.register.fail.validation.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B3745F129ACD7D20085A90D /* StoreAuthenticator.register.fail.validation.json */; };
 		7B37462129ACD83B0085A90D /* StoreAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B37462029ACD83B0085A90D /* StoreAuthenticator.swift */; };
+		7B37462429ACEACC0085A90D /* StoreProjectTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B37462329ACEACC0085A90D /* StoreProjectTag.swift */; };
+		7B37462929ACF50D0085A90D /* StoreProjectUploader.fetchTags.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37462829ACF50D0085A90D /* StoreProjectUploader.fetchTags.success.json */; };
+		7B37462C29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37462A29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.parse.json */; };
+		7B37462D29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37462B29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.request.json */; };
+		7B37463229AD168A0085A90D /* StoreProjectUploader.upload.fail.authentication.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37462E29AD168A0085A90D /* StoreProjectUploader.upload.fail.authentication.json */; };
+		7B37463329AD168A0085A90D /* StoreProjectUploader.upload.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37462F29AD168A0085A90D /* StoreProjectUploader.upload.success.json */; };
+		7B37463429AD168A0085A90D /* StoreProjectUploader.upload.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37463029AD168A0085A90D /* StoreProjectUploader.upload.fail.parse.json */; };
+		7B37463529AD168A0085A90D /* StoreProjectUploader.upload.fail.validation.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37463129AD168A0085A90D /* StoreProjectUploader.upload.fail.validation.json */; };
+		7B37463729AD17880085A90D /* StoreProjectUploader.upload.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37463629AD17880085A90D /* StoreProjectUploader.upload.fail.request.json */; };
+		7B37463929AE48420085A90D /* StoreProjectUploader.upload.success.upgrade.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37463829AE48420085A90D /* StoreProjectUploader.upload.success.upgrade.json */; };
+		7B37463B29AE4E290085A90D /* StoreProjectUploader.upload.success.refresh.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B37463A29AE4E290085A90D /* StoreProjectUploader.upload.success.refresh.json */; };
 		7B53C94F27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */; };
 		7B53C95027BECAF900E86A72 /* FormulaEditorSectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B304525E11ADD0047C74C /* FormulaEditorSectionViewControllerTests.swift */; };
 		7B53C95127BED0D300E86A72 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
@@ -1299,7 +1304,6 @@
 		92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98591BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m */; };
 		92EC98601BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC985B1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m */; };
 		92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99491BC3CA870003A891 /* Firmata.swift */; };
-		92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */; };
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */; };
@@ -1379,7 +1383,6 @@
 		97770B8825E5A88C00F51EFA /* SetBrightnessBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */; };
 		97770B8F25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */; };
 		9797CB8325AF7A6000A50444 /* SceneTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */; };
-		97AC582125C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json in Resources */ = {isa = PBXBuildFile; fileRef = 97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */; };
 		97ACDD9B268DEB2D007FBAE9 /* IndexOfItemFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ACDD9A268DEB2D007FBAE9 /* IndexOfItemFunction.swift */; };
 		97ACDDA4268E09ED007FBAE9 /* IndexOfItemFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ACDD9F268E092E007FBAE9 /* IndexOfItemFunctionTest.swift */; };
 		97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */; };
@@ -3306,7 +3309,6 @@
 		639CB8E425C418FE0051CB82 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		63D69EBA25E3178F00D662D6 /* CBFileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerExtension.swift; sourceTree = "<group>"; };
 		6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectUploaderTests.swift; sourceTree = "<group>"; };
-		6F021E6924A68AB70097F21A /* StoreProjectUpload.uploadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.success.json; sourceTree = "<group>"; };
 		6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewControllerTests.swift; sourceTree = "<group>"; };
 		6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneMock.swift; sourceTree = "<group>"; };
 		6F348C84245499F1000C963B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Supporting Files/AppDelegate.swift"; sourceTree = "<group>"; };
@@ -3318,16 +3320,12 @@
 		6F4F8AFE24CF261C002C3814 /* UserDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataContainer.swift; sourceTree = "<group>"; };
 		6F50E54A247907E6007885AA /* UserList+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserList+CBXMLHandler.h"; sourceTree = "<group>"; };
 		6F50E54B247907E7007885AA /* UserList+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserList+CBXMLHandler.m"; sourceTree = "<group>"; };
-		6F58F0AE24ABA59800AB8C99 /* StoreProjectDownloader.uploadProject.fail.invalidChecksum.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.uploadProject.fail.invalidChecksum.json; sourceTree = "<group>"; };
-		6F58F0C124AC956000AB8C99 /* StoreProjectUpload.uploadProject.fail.invalidBody.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.fail.invalidBody.json; sourceTree = "<group>"; };
 		6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickExtension.swift; sourceTree = "<group>"; };
 		6F5B4C6124D412EF00D2D319 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		6F5B4C6C24D4432E00D2D319 /* Scene+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Scene+CBXMLHandler.m"; sourceTree = "<group>"; };
 		6F5B4C6D24D4432E00D2D319 /* Scene+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Scene+CBXMLHandler.h"; sourceTree = "<group>"; };
 		6F5B4C6F24D4588E00D2D319 /* SceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTest.swift; sourceTree = "<group>"; };
 		6F5CACA0246ADE0000BC58A4 /* CBFileManagerMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerMockTests.swift; sourceTree = "<group>"; };
-		6F61FD8424A8B38800C6C969 /* StoreProjectDownloader.uploadProject.fail.authentication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.uploadProject.fail.authentication.json; sourceTree = "<group>"; };
-		6F61FD8824A90B4D00C6C969 /* StoreProjectDownloader.uploadProject.fail.invalidProject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.uploadProject.fail.invalidProject.json; sourceTree = "<group>"; };
 		6F6EA565248A5E5B00FAFBB6 /* SynchronizedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedArray.swift; sourceTree = "<group>"; };
 		6F6EA567248A657400FAFBB6 /* SynchronizedArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedArrayTests.swift; sourceTree = "<group>"; };
 		6F7D0C9224EBD19A008C1D4C /* LookTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookTest.swift; sourceTree = "<group>"; };
@@ -3335,8 +3333,6 @@
 		6F7D0C9D24EBEA91008C1D4C /* ValidProjectAllBricks0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProjectAllBricks0992.xml; sourceTree = "<group>"; };
 		6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewControllerDelegateMock.swift; sourceTree = "<group>"; };
 		6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewControllerTests.swift; sourceTree = "<group>"; };
-		6F954C7124D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.fetchTags.success.json; sourceTree = "<group>"; };
-		6F954C7524D1E18F00E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.fetchTags.invalidLanguageTag.json; sourceTree = "<group>"; };
 		6F96E9F4246D52C70054E2F7 /* UserDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProtocol.swift; sourceTree = "<group>"; };
 		6F9CF11F246E7AA7008CED1C /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		6F9CF122246E8767008CED1C /* UserListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTest.swift; sourceTree = "<group>"; };
@@ -3355,6 +3351,7 @@
 		758FD262053C04755851BC4D /* ml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77A836DDE7C46D9275CE4812 /* ar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7B09EB6329B1DE0B00590F3D /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		7B144F1328FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.fail.request.json; sourceTree = "<group>"; };
 		7B144F1428FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.success.json; sourceTree = "<group>"; };
 		7B144F1528FDCAC400C4A300 /* StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchFeaturedProjects.fail.parse.json; sourceTree = "<group>"; };
@@ -3397,6 +3394,17 @@
 		7B3745FC29ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.fail.request.json; sourceTree = "<group>"; };
 		7B3745FD29ACD7D20085A90D /* StoreAuthenticator.login.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.login.fail.parse.json; sourceTree = "<group>"; };
 		7B37462029ACD83B0085A90D /* StoreAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAuthenticator.swift; sourceTree = "<group>"; };
+		7B37462329ACEACC0085A90D /* StoreProjectTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectTag.swift; sourceTree = "<group>"; };
+		7B37462829ACF50D0085A90D /* StoreProjectUploader.fetchTags.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.fetchTags.success.json; sourceTree = "<group>"; };
+		7B37462A29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.fetchTags.fail.parse.json; sourceTree = "<group>"; };
+		7B37462B29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.fetchTags.fail.request.json; sourceTree = "<group>"; };
+		7B37462E29AD168A0085A90D /* StoreProjectUploader.upload.fail.authentication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.upload.fail.authentication.json; sourceTree = "<group>"; };
+		7B37462F29AD168A0085A90D /* StoreProjectUploader.upload.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.upload.success.json; sourceTree = "<group>"; };
+		7B37463029AD168A0085A90D /* StoreProjectUploader.upload.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.upload.fail.parse.json; sourceTree = "<group>"; };
+		7B37463129AD168A0085A90D /* StoreProjectUploader.upload.fail.validation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.upload.fail.validation.json; sourceTree = "<group>"; };
+		7B37463629AD17880085A90D /* StoreProjectUploader.upload.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.upload.fail.request.json; sourceTree = "<group>"; };
+		7B37463829AE48420085A90D /* StoreProjectUploader.upload.success.upgrade.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = StoreProjectUploader.upload.success.upgrade.json; sourceTree = "<group>"; tabWidth = 2; };
+		7B37463A29AE4E290085A90D /* StoreProjectUploader.upload.success.refresh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUploader.upload.success.refresh.json; sourceTree = "<group>"; };
 		7B53C94E27BECAEF00E86A72 /* FormulaEditorDataSectionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorDataSectionViewControllerTests.swift; sourceTree = "<group>"; };
 		7B6FBCFF27F1D8B4006E3BD5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B9090EC27C935D800B31D04 /* ChromaSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChromaSwift.license; sourceTree = "<group>"; };
@@ -3640,7 +3648,6 @@
 		92EC985B1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhiroRGBLightBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92EC99491BC3CA870003A891 /* Firmata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmata.swift; sourceTree = "<group>"; };
 		92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		92F2E5017A712B683E3E8964 /* sq */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
 		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
@@ -3790,7 +3797,6 @@
 		97770B8725E5A88C00F51EFA /* SetBrightnessBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBrightnessBrick.swift; sourceTree = "<group>"; };
 		97770B8E25E5AD2600F51EFA /* ChangeBrightnessByNBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBrightnessByNBrick.swift; sourceTree = "<group>"; };
 		9797CB8225AF7A6000A50444 /* SceneTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTVCTests.swift; sourceTree = "<group>"; };
-		97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.fail.invalidToken.json; sourceTree = "<group>"; };
 		97ACDD9A268DEB2D007FBAE9 /* IndexOfItemFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexOfItemFunction.swift; sourceTree = "<group>"; };
 		97ACDD9F268E092E007FBAE9 /* IndexOfItemFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexOfItemFunctionTest.swift; sourceTree = "<group>"; };
 		97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -7477,6 +7483,7 @@
 			children = (
 				92FF2EB01A24C8A700093DA7 /* CatrobatProject */,
 				E4E5599620FCD6AD004B4A08 /* StoreProject.swift */,
+				7B37462329ACEACC0085A90D /* StoreProjectTag.swift */,
 				22BEC60325CAD86500AFE1C3 /* StoreFeaturedProject.swift */,
 			);
 			path = API;
@@ -8065,14 +8072,16 @@
 		6F021E6824A68A9C0097F21A /* Fixture */ = {
 			isa = PBXGroup;
 			children = (
-				6F58F0C124AC956000AB8C99 /* StoreProjectUpload.uploadProject.fail.invalidBody.json */,
-				6F58F0AE24ABA59800AB8C99 /* StoreProjectDownloader.uploadProject.fail.invalidChecksum.json */,
-				6F61FD8824A90B4D00C6C969 /* StoreProjectDownloader.uploadProject.fail.invalidProject.json */,
-				6F61FD8424A8B38800C6C969 /* StoreProjectDownloader.uploadProject.fail.authentication.json */,
-				6F021E6924A68AB70097F21A /* StoreProjectUpload.uploadProject.success.json */,
-				6F954C7124D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json */,
-				6F954C7524D1E18F00E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json */,
-				97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */,
+				7B37462A29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.parse.json */,
+				7B37462B29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.request.json */,
+				7B37462829ACF50D0085A90D /* StoreProjectUploader.fetchTags.success.json */,
+				7B37462E29AD168A0085A90D /* StoreProjectUploader.upload.fail.authentication.json */,
+				7B37463029AD168A0085A90D /* StoreProjectUploader.upload.fail.parse.json */,
+				7B37463629AD17880085A90D /* StoreProjectUploader.upload.fail.request.json */,
+				7B37463129AD168A0085A90D /* StoreProjectUploader.upload.fail.validation.json */,
+				7B37462F29AD168A0085A90D /* StoreProjectUploader.upload.success.json */,
+				7B37463A29AE4E290085A90D /* StoreProjectUploader.upload.success.refresh.json */,
+				7B37463829AE48420085A90D /* StoreProjectUploader.upload.success.upgrade.json */,
 			);
 			path = Fixture;
 			sourceTree = "<group>";
@@ -8322,14 +8331,14 @@
 		9238C57C1A3AE9920099F061 /* Upload/Login */ = {
 			isa = PBXGroup;
 			children = (
-				92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */,
-				92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */,
 				9235038C1BA707DE00021F6A /* BaseLoginViewController.h */,
 				9235038D1BA707DE00021F6A /* BaseLoginViewController.m */,
 				9235038E1BA707DE00021F6A /* LoginViewController.h */,
 				9235038F1BA707DE00021F6A /* LoginViewController.m */,
-				5E21DA6C21A5255500017D2C /* UploadViewController.swift */,
+				92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */,
+				7B09EB6329B1DE0B00590F3D /* RegisterViewController.m */,
 				6FAD028524C838E700C50710 /* UploadCategoryViewController.swift */,
+				5E21DA6C21A5255500017D2C /* UploadViewController.swift */,
 			);
 			name = Upload/Login;
 			path = Upload;
@@ -11665,7 +11674,6 @@
 				E59108D126931F34008D254A /* Sensors_0994.xml in Resources */,
 				E5ADEAC125B1E530005E9360 /* collisionTest0993.xml in Resources */,
 				7B144F5428FED3E500C4A300 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */,
-				6F954C7624D1E19000E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json in Resources */,
 				E5DAAD6226C5486A00C2457F /* ValidProjectAllBricks09997.xml in Resources */,
 				E57D5B2926AEA99A003A1457 /* Flappy_v3.0_0999.xml in Resources */,
 				4C3285E52546CEF000C31F9D /* EscapingChars_0993.xml in Resources */,
@@ -11717,7 +11725,6 @@
 				7B37461729ACD8080085A90D /* StoreAuthenticator.register.fail.parse.json in Resources */,
 				49774F9728073D6500374655 /* LowerBodyPoseDetectionSensors.xml in Resources */,
 				E5EC6D5E26B0102D0031F13A /* Tic_Tac_Toe_Master_09993.xml in Resources */,
-				6F61FD8924A90B4D00C6C969 /* StoreProjectDownloader.uploadProject.fail.invalidProject.json in Resources */,
 				2ED417B6241120AF00AFE2FD /* Tic_Tac_Toe_Master_0993.xml in Resources */,
 				2ED417CD241120AF00AFE2FD /* Galaxy_War_0993.xml in Resources */,
 				49A291A927EB2FE70052EE3B /* FacePoseSensors.xml in Resources */,
@@ -11740,17 +11747,17 @@
 				E5EC6D6826B010770031F13A /* UserLists_09993.xml in Resources */,
 				E57D5B3326AEA9CF003A1457 /* Pythagorean_Theorem_0999.xml in Resources */,
 				4C3285F72546CF8000C31F9D /* LogicBricks_0993.xml in Resources */,
+				7B37463429AD168A0085A90D /* StoreProjectUploader.upload.fail.parse.json in Resources */,
 				9E929E35239D732B002D8F96 /* bling_short.mp3 in Resources */,
 				E57D5B4526AEAAB1003A1457 /* EscapingChars_0999.xml in Resources */,
+				7B37462929ACF50D0085A90D /* StoreProjectUploader.fetchTags.success.json in Resources */,
 				9E8176E72389C14B00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml in Resources */,
 				E50E854B269EC4ED00E76CE9 /* Flappy_v3.0_0995.xml in Resources */,
 				2ED41856241120B000AFE2FD /* BroadcastMapping.xml in Resources */,
-				6F954C7424D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json in Resources */,
+				7B37463729AD17880085A90D /* StoreProjectUploader.upload.fail.request.json in Resources */,
 				E598BBAE26A026F800D4825F /* Galaxy_War_0996.xml in Resources */,
 				E59108BF26931E94008D254A /* GoToBrick_0994.xml in Resources */,
-				6F58F0C224AC956000AB8C99 /* StoreProjectUpload.uploadProject.fail.invalidBody.json in Resources */,
 				9E384938256192AF002D8F28 /* SamplerBricks_0992.xml in Resources */,
-				6F58F0B124ABA59900AB8C99 /* StoreProjectDownloader.uploadProject.fail.invalidChecksum.json in Resources */,
 				E59108BB26931E5C008D254A /* Encapsulated_0994.xml in Resources */,
 				E50E8553269EC52600E76CE9 /* Pong_Starter_0995.xml in Resources */,
 				E598BBA826A026D200D4825F /* Demonstration_0996.xml in Resources */,
@@ -11843,12 +11850,13 @@
 				97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */,
 				D3E4865C24766DE9002FAEBA /* GoToBrick_0992.xml in Resources */,
 				E5EC6D6226B0104D0031F13A /* collisionTest09993.xml in Resources */,
+				7B37463329AD168A0085A90D /* StoreProjectUploader.upload.success.json in Resources */,
 				2ED4180F241120AF00AFE2FD /* Flap_Pac_Man_0991.xml in Resources */,
 				7B144F3628FDDF3E00C4A300 /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */,
-				6F4DAE8B24A74ABF0062DA6C /* StoreProjectUpload.uploadProject.success.json in Resources */,
 				D3AF5C1E243F822F00B04BC6 /* DisabledBricks_0991.xml in Resources */,
 				7B37461429ACD8080085A90D /* StoreAuthenticator.login.fail.request.json in Resources */,
 				4C3285F12546CF6600C31F9D /* InsertItemIntoUserListBrick0993.xml in Resources */,
+				7B37463929AE48420085A90D /* StoreProjectUploader.upload.success.upgrade.json in Resources */,
 				E50E8563269EC64D00E76CE9 /* collisionTest0995.xml in Resources */,
 				2ED417D1241120AF00AFE2FD /* Galaxy_War_096.xml in Resources */,
 				E50E8567269ECCD900E76CE9 /* Encapsulated_0995.xml in Resources */,
@@ -11962,6 +11970,7 @@
 				4C55CD0F24BF2C0600FB8393 /* ReplaceItemInUserListBrick0992.xml in Resources */,
 				E598BBB026A0270300D4825F /* Memory_0996.xml in Resources */,
 				E5EC6D5426B00FF60031F13A /* Galaxy_War_09993.xml in Resources */,
+				7B37463529AD168A0085A90D /* StoreProjectUploader.upload.fail.validation.json in Resources */,
 				E59108B926931E49008D254A /* DisabledBricks_0994.xml in Resources */,
 				2ED41875241120B000AFE2FD /* LedFlashBrick0991.xml in Resources */,
 				E5DAAD6026C5486000C2457F /* ValidHeader09997.xml in Resources */,
@@ -11969,7 +11978,9 @@
 				7B144F3028FDDB4300C4A300 /* StoreProjectDownloader.searchProjects.fail.request.json in Resources */,
 				E598BBA426A026B000D4825F /* Air_fight_0.5_0996.xml in Resources */,
 				C84B21712714A2690077CF70 /* TouchesEdgeSensor.xml in Resources */,
+				7B37463B29AE4E290085A90D /* StoreProjectUploader.upload.success.refresh.json in Resources */,
 				4C3285E92546CF3B00C31F9D /* LedFlashBrick0993.xml in Resources */,
+				7B37463229AD168A0085A90D /* StoreProjectUploader.upload.fail.authentication.json in Resources */,
 				E598BBB226A0271200D4825F /* Piano_0996.xml in Resources */,
 				E57D5B3D26AEAA61003A1457 /* DisabledBricks_0999.xml in Resources */,
 				E59108CF26931EF8008D254A /* LogicBricks_0994.xml in Resources */,
@@ -11986,11 +11997,13 @@
 				498C1571280708E800B81C8E /* UpperBodyPoseDetectionSensors.xml in Resources */,
 				E59108E326931FC7008D254A /* Piano_0994.xml in Resources */,
 				E50E8574269EEF3000E76CE9 /* Sensors_0995.xml in Resources */,
+				7B37462D29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.request.json in Resources */,
 				2ED417B9241120AF00AFE2FD /* Piano_097.xml in Resources */,
 				E57D5B4D26AEAAEB003A1457 /* ValidProjectAllBricks0999.xml in Resources */,
 				2ED4184E241120B000AFE2FD /* Flappy_v3.0_0992.xml in Resources */,
 				E57D5B4326AEAAA7003A1457 /* Encapsulated_0999.xml in Resources */,
 				9E544D392387562400935C17 /* SpeakBrickWithSoundBrick.xml in Resources */,
+				7B37462C29ACF5860085A90D /* StoreProjectUploader.fetchTags.fail.parse.json in Resources */,
 				2ED417DA241120AF00AFE2FD /* Airplane_with_shadow_091.xml in Resources */,
 				E598BBCE26A02B3000D4825F /* ValidHeader0996.xml in Resources */,
 				2ED41868241120B000AFE2FD /* EscapingChars_0994.xml in Resources */,
@@ -12003,7 +12016,6 @@
 				E598BBAA26A026DE00D4825F /* Flap_Pac_Man_0996.xml in Resources */,
 				E57D5B2B26AEA9A3003A1457 /* Galaxy_War_0999.xml in Resources */,
 				E5DAAD4226C5476100C2457F /* Memory_09997.xml in Resources */,
-				6F61FD8524A8B38800C6C969 /* StoreProjectDownloader.uploadProject.fail.authentication.json in Resources */,
 				2ED417C8241120AF00AFE2FD /* Air_fight_0.5_0991.xml in Resources */,
 				E50E8572269EEEC300E76CE9 /* Functions_0995.xml in Resources */,
 				2ED4185C241120B000AFE2FD /* ValidProjectAllBricks0991.xml in Resources */,
@@ -12016,7 +12028,6 @@
 				2ED417E7241120AF00AFE2FD /* Memory_098.xml in Resources */,
 				4CFAD3611CFAB9AA0019C636 /* transparency_rgba.png in Resources */,
 				4C32860B2546D4F900C31F9D /* Memory_0993.xml in Resources */,
-				97AC582125C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json in Resources */,
 				2ED4185B241120B000AFE2FD /* Sensors_0991.xml in Resources */,
 				4C3285ED2546CF5800C31F9D /* DeleteItemOfUserListBrick0993.xml in Resources */,
 				4C3286152546D53D00C31F9D /* Pythagorean_Theorem_0993.xml in Resources */,
@@ -13271,6 +13282,7 @@
 				22412CFE26ECE5B70074915C /* PaddingLabel.swift in Sources */,
 				4CF0728C20D659F700F93AB5 /* PhiroSideLeftSensor.swift in Sources */,
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
+				7B37462429ACEACC0085A90D /* StoreProjectTag.swift in Sources */,
 				6F1911A124E7CE0D00CF1B4F /* SceneMock.swift in Sources */,
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				49949B462806EAD20073BF65 /* RightWristXSensor.swift in Sources */,
@@ -13629,6 +13641,7 @@
 				4C4B4CD723EE8ABB0054C861 /* NotificationExtension.swift in Sources */,
 				AA74EF541BC0586F00D1E954 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
 				4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */,
+				7B09EB6429B1DE0B00590F3D /* RegisterViewController.m in Sources */,
 				2EBD845B253FEEA1009BFED5 /* WebRequestBrick.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
 				49DB87C228A2BE2100DD1224 /* StagePresenterViewControllerOrientation.swift in Sources */,
@@ -13807,7 +13820,6 @@
 				46E9E4A425AF53A100027D28 /* CircleShapeNode.swift in Sources */,
 				056677F527DEA012006B4477 /* StartZigzagStitchBrickCell.swift in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
-				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
 				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,
 				186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */,
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */,

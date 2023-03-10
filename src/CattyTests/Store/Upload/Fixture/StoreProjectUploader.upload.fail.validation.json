@@ -1,0 +1,44 @@
+{
+  "name" : "StoreProjectUploader.upload.fail.validation",
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 422,
+        "body" : {
+          "error" : "Error while creating project entity. Try uploading again!"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects",
+        "headers" : {
+          "cf-ray" : "7a01f6298c4cc2ed-VIE",
+          "x-openapi-message" : "Upload Error",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"-1680325632\"",
+          "Date" : "Mon, 27 Feb 2023 15:30:25 GMT",
+          "Expires" : "-1",
+          "Server" : "cloudflare",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=bbFoYnVB1X61dZtGpZ%2F2JVL4fA%2Fq91QA3Oh5AS70YMnTBlrXhAm9Qcve6%2FC024dmhFhwyJHgmgwFVhdsF%2B%2FR3UC2POsqMRqxPH%2F5vCp5Ln1kxoXa7a7hP2beBGhfkXrfdNaHvE1uK0zHs7v14Hc%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Set-Cookie" : "dtCookie=v_4_srv_4_sn_B8987DD9B3D5780BAD003730859A44B8_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "cf-cache-status" : "DYNAMIC",
+          "Content-Type" : "application\/json",
+          "x-response-hash" : "841f3563731b893b0b6b0a09cf47fd91",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Content-Language" : "en_UK",
+          "Pragma" : "no-cache",
+          "Cache-Control" : "private, must-revalidate"
+        }
+      },
+      "request" : {
+        "headers" : {
+          "Content-Length" : "473",
+          "Accept-Language" : "en",
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------",
+          "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjo0ODIyMDMzMDUyfQ.GNnO3_Y4hYTkULubsayMWZmi25ZAWWw6PV01cRAu7M8"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects",
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJjaGVja3N1bSINCg0KYWE2NTU5NTRmMzE2MmNjZjUyYTBlN2E1MjUzY2Y5ZjMNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGF0dGFjaG1lbnQ7IG5hbWU9ImZpbGUiOyBmaWxlbmFtZT0iLnppcCIgDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL29jdGV0LXN0cmVhbQ0KDQp6aXBwZWRQcm9qZWN0RGF0YQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo=",
+        "method" : "POST"
+      },
+      "recorded_at" : 1677511825.0084341
+    }
+  ]
+}

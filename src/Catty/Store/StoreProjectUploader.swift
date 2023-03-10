@@ -21,108 +21,105 @@
  */
 
 protocol StoreProjectUploaderProtocol {
-    func upload( project: Project, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?)
-    func fetchTags(for language: String, completion: @escaping ([String], StoreProjectUploaderError?) -> Void)
+    func upload(project: Project, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?)
+    func fetchTags(completion: @escaping ([StoreProjectTag]?, StoreProjectUploaderError?) -> Void)
 }
 
 enum StoreProjectUploaderError: Error {
     case request(error: Error?, statusCode: Int)
-
-    case zippingError
-
+    case validation(response: String)
+    case authentication
+    case parser
     case timeout
-
-    case unexpectedError
-
-    case authenticationFailed
-
-    case invalidProject
-
-    case invalidLanguageTag
+    case network
+    case generic
 }
 
 final class StoreProjectUploader: StoreProjectUploaderProtocol {
+    private let keyChecksum = "checksum"
+    private let keyFile = "file"
+    private let keyError = "error"
 
-    private let httpBoundary = "---------------------------98598263596598246508247098291---------------------------"
-    private let uploadParameterTag = "upload"
-    private let fileChecksumParameterTag = "fileChecksum"
-    private let tokenParameterTag = "token"
-    private let projectNameTag = "projectTitle"
-    private let projectDescriptionTag = "projectDescription"
-    private let userEmailTag = "userEmail"
-    private let userNameTag = "username"
-    private let deviceLanguageTag = "deviceLanguage"
-    private let statusCodeTag = "statusCode"
-    private let projectIDTag = "projectId"
-    private let availableTags = "constantTags"
     private let session: URLSession
     private let fileManager: CBFileManager
 
     private var uploadProjectProgressObserver: NSKeyValueObservation?
 
-    init(fileManager: CBFileManager, session: URLSession = StoreProjectUploader.defaultSession()) {
+    init(fileManager: CBFileManager = CBFileManager(), session: URLSession = StoreProjectUploader.defaultSession()) {
         self.session = session
         self.fileManager = fileManager
     }
 
     func upload(project: Project, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?) {
+        upload(project: project, checkToken: true, completion: completion, progression: progression)
+    }
 
-        guard let zipFileData = fileManager.zip(project) else { completion(nil, .zippingError); return }
-
-        let checksum = zipFileData.md5()
-        let attachments = [AttachmentData(name: uploadParameterTag, data: zipFileData, filename: ".zip")]
-
-        let uploadUrl = NetworkDefines.uploadUrl
-        let urlString = "\(uploadUrl)/\(NetworkDefines.connectionUpload)"
-        guard let url = URL(string: urlString) else { completion(nil, .unexpectedError); return }
-
-        var parameters = [FormData(name: projectNameTag, value: project.header.programName),
-                          FormData(name: projectDescriptionTag, value: project.header.programDescription)]
-        if let email = UserDefaults.standard.string(forKey: kcEmail) {
-            parameters.append(FormData(name: userEmailTag, value: email))
+    private func upload(project: Project, checkToken: Bool, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?) {
+        if checkToken && StoreAuthenticator.needsTokenRefresh() {
+            StoreAuthenticator(session: session).refreshToken { error in
+                switch error {
+                case .none:
+                    self.upload(project: project, checkToken: false, completion: completion, progression: progression)
+                case .request(error: let error, statusCode: let statusCode):
+                    completion(nil, .request(error: error, statusCode: statusCode))
+                case .authentication:
+                    completion(nil, .authentication)
+                case .parser:
+                    completion(nil, .parser)
+                case .network:
+                    completion(nil, .network)
+                case .timeout:
+                    completion(nil, .timeout)
+                default:
+                    completion(nil, .generic)
+                }
+            }
+            return
         }
 
-        parameters.append(FormData(name: fileChecksumParameterTag, value: checksum))
-
-        if let token = Keychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
-            parameters.append(FormData(name: tokenParameterTag, value: token))
+        guard let url = URL(string: NetworkDefines.apiEndpointProjects),
+              let language = Locale.autoupdatingCurrent.languageCode,
+              let zipFileData = self.fileManager.zip(project) else {
+            completion(nil, .generic)
+            return
         }
 
-        if let userName = UserDefaults.standard.string(forKey: kcUsername) {
-            parameters.append(FormData(name: userNameTag, value: userName))
+        guard let authorizationHeader = StoreAuthenticator.authorizationHeader() else {
+            completion(nil, .authentication)
+            return
         }
 
-        parameters.append(FormData(name: deviceLanguageTag, value: NSLocale.preferredLanguages[0]))
+        let parameters = [FormData(name: keyChecksum, value: zipFileData.md5())]
+        let headers = ["Accept-Language": language, "Authorization": authorizationHeader]
+        let attachments = [AttachmentData(name: keyFile, data: zipFileData, filename: ".zip")]
 
-        let task = self.session.multipartUploadTask(with: url, from: parameters, attachmentData: attachments) { data, response, error in
+        let task = self.session.multipartUploadTask(with: url, from: parameters, headers: headers, attachmentData: attachments) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (projectId: String?, error: StoreProjectUploaderError?)
             handleDataTaskCompletion = { data, response, error in
-                guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
-
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
                     return (nil, .timeout)
                 }
 
-                guard let data = data, response.statusCode == 200, error == nil else {
-                    if response.statusCode == 401 || response.statusCode == 403 { return (nil, .authenticationFailed) }
+                guard let response = response as? HTTPURLResponse else {
+                    return (nil, .network)
+                }
+
+                guard let data = data, response.statusCode == 201, error == nil else {
+                    if response.statusCode == 401 {
+                        return (nil, .authentication)
+                    } else if response.statusCode == 422, let jsonData = data,
+                              let jsonDict = try? JSONSerialization.jsonObject(with: jsonData) as? [String: String],
+                              let errorString = jsonDict[self.keyError] {
+                        return (nil, .validation(response: errorString))
+                    }
                     return (nil, .request(error: error, statusCode: response.statusCode))
                 }
 
-                var statusCode: Int?
-                var programId: String?
-                do {
-                    let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable: Any]
-                    statusCode = dictionary?[self.statusCodeTag] as? Int
-                    if let programTag = dictionary?[self.projectIDTag] as? String {
-                        programId = programTag
-                    }
-                } catch {
-                    return (nil, .unexpectedError)
+                guard let storeProject = try? JSONDecoder().decode(StoreProject.self, from: data) else {
+                    return (nil, .parser)
                 }
 
-                guard statusCode == 200  else { return (nil, .invalidProject) }
-
-                return (programId, nil)
+                return (storeProject.id, nil)
             }
 
             let result = handleDataTaskCompletion(data, response, error)
@@ -143,44 +140,34 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
         task.resume()
     }
 
-    func fetchTags(for language: String, completion: @escaping ([String], StoreProjectUploaderError?) -> Void) {
-        var tagUrlComponents = URLComponents(string: NetworkDefines.tagUrl)
-        tagUrlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.tagLanguage, value: language)
-        ]
-
-        guard let tagUrl = tagUrlComponents?.url else {
+    func fetchTags(completion: @escaping ([StoreProjectTag]?, StoreProjectUploaderError?) -> Void) {
+        guard let url = URL(string: NetworkDefines.apiEndpointProjectsTags),
+              let language = Locale.autoupdatingCurrent.languageCode else {
+            completion(nil, .generic)
             return
         }
 
-        self.session.dataTask(with: tagUrl) { data, response, error in
-            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (availableTags: [String], error: StoreProjectUploaderError?)
+        var request = URLRequest(url: url)
+        request.addValue(language, forHTTPHeaderField: "Accept-Language")
 
+        self.session.dataTask(with: request) { data, response, error in
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (availableTags: [StoreProjectTag]?, error: StoreProjectUploaderError?)
             handleDataTaskCompletion = { data, response, error in
-                guard let response = response as? HTTPURLResponse else { return ([], .unexpectedError) }
-
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
-                    return ([], .timeout)
+                    return (nil, .timeout)
                 }
 
-                guard let data = data, response.statusCode == 200, error == nil else {
-                    return ([], .request(error: error, statusCode: response.statusCode))
+                guard let response = response as? HTTPURLResponse else {
+                    return (nil, .network)
                 }
 
-                var statusCode: Int?
-                var tags = [String]()
-
-                do {
-                    let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable: Any]
-                    statusCode = dictionary?[self.statusCodeTag] as? Int
-                    if let availableTags = dictionary?[self.availableTags] as? [String] {
-                        tags = availableTags
-                    }
-                } catch {
-                    return ([], .unexpectedError)
+                guard response.statusCode == 200, error == nil else {
+                    return (nil, .request(error: error, statusCode: response.statusCode))
                 }
 
-                guard statusCode == 200  else { return (tags, .invalidLanguageTag) }
+                guard let data = data, let tags = try? JSONDecoder().decode([StoreProjectTag].self, from: data) else {
+                    return (nil, .parser)
+                }
 
                 return (tags, nil)
             }
