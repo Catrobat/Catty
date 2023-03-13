@@ -35,8 +35,6 @@ class NetworkDefines: NSObject {
         #endif
     }
 
-    static let baseUrl = shareUrl.appending("pocketcode/")
-
     // MARK: AppStore
 
     static let appStoreIdentifier = "1117935892"
@@ -50,10 +48,6 @@ class NetworkDefines: NSObject {
     static let sourceCodeLicenseUrl = "https://developer.catrobat.org/licenses"
     static let termsOfUseUrl = shareUrl.appending("app/termsOfUse")
     static let resetPasswordUrl = shareUrl.appending("app/reset-password")
-
-    // MARK: Old API
-
-    @objc static var reportProjectUrl: String { baseUrl.appending("api/reportProject/reportProject.json") }
 
     // MARK: API
 
@@ -99,11 +93,6 @@ class NetworkDefines: NSObject {
     static let mediaPackageMaxItems = 10000
 
     static let currentPlatform = "ios"
-
-    @objc static let reportProjectNoteMaxLength = 100
-    @objc static let reportProjectNoteMinLength = 3
-
-    @objc static let kUserLoginToken = "userLoginToken"
 
     static let kUsername = "username"
     static let kAuthenticationToken = "authenticationToken"

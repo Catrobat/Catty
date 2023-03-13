@@ -27,6 +27,5 @@
 - (void) openButtonPressed:(id)sender;
 - (void) downloadButtonPressed:(id)sender;
 - (void) downloadAgain:(id)sender;
-- (void) reportProject:(id)sender;
 
 @end

@@ -134,11 +134,6 @@
     [self downloadButtonPressed];
 }
 
-- (void)reportProject:(id)sender;
-{
-    [self reportProject];
-}
-
 -(void)downloadAgain:(id)sender
 {
     EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];

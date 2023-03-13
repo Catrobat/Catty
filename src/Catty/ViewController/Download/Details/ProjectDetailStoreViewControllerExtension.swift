@@ -77,8 +77,7 @@ import UIKit
         let tagsView = self.addTags(to: view, thumbnailView: thumbnailView)
         let descriptionView = self.addProjectDescriptionLabel(project.projectDescription, to: view, tagsView: tagsView, target: target)
 
-        let lastInformationItem = self.addInformationLabel(to: view, withDescriptionView: descriptionView)
-        self.addReportButton(to: view, lastInformationItem: lastInformationItem, withTarget: target)
+        self.addInformationLabel(to: view, withDescriptionView: descriptionView)
 
         if Project.projectExists(withProjectID: project.projectID) {
             view.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
@@ -288,7 +287,7 @@ import UIKit
         view.addSubview(button)
     }
 
-    private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) -> UILabel {
+    private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) {
         let projectDouble = (project.uploaded as NSString).doubleValue
         let projectDate = Date(timeIntervalSince1970: TimeInterval(projectDouble))
         let uploaded = CatrobatProject.uploadDateFormatter().string(from: projectDate)
@@ -314,7 +313,6 @@ import UIKit
 
         let informationArray = [views?.stringValue ?? "", uploaded, size, downloads?.stringValue ?? ""]
         let informationTitleArray = [UIImage(named: "viewsIcon"), UIImage(named: "timeIcon"), UIImage(named: "sizeIcon"), UIImage(named: "downloadIcon")]
-        var lastItem = informationLabel
 
         for (index, info) in informationArray.enumerated() {
             let titleIcon = self.getInformationTitleLabel(withTitle: informationTitleArray[index], atXPosition: type(of: self).inset, atYPosition: offset, andHeight: height)
@@ -322,29 +320,9 @@ import UIKit
 
             let infoLabel = self.getInformationDetailLabel(withTitle: info, atXPosition: type(of: self).inset * 2, atYPosition: offset - 1, andHeight: height)
             view.addSubview(infoLabel)
-            lastItem = infoLabel
 
             offset += height + type(of: self).spaceBetweenButtons
         }
-
-        return lastItem
-    }
-
-    private func addReportButton(to view: UIView, lastInformationItem: UIView, withTarget target: Any?) {
-        let offsetLine = lastInformationItem.frame.origin.y + lastInformationItem.frame.height + type(of: self).verticalSectionPadding
-        let offsetButton = offsetLine + type(of: self).verticalSectionPadding
-
-        self.addHorizontalLine(to: view, verticalOffset: offsetLine)
-
-        let reportButton = RoundBorderedButton(frame: CGRect(x: type(of: self).inset, y: offsetButton, width: view.frame.width, height: type(of: self).buttonHeight), andBorder: true) as UIButton
-        reportButton.tag = Int(kReportButtonTag)
-        reportButton.titleLabel?.font = UIFont.systemFont(ofSize: type(of: self).fontSizeLabel)
-        reportButton.setTitle(kLocalizedReportProject, for: .normal)
-        reportButton.addTarget(target, action: #selector(self.reportProject(_:)), for: .touchUpInside)
-        reportButton.isUserInteractionEnabled = true
-        reportButton.sizeToFit()
-
-        view.addSubview(reportButton)
     }
 
     private func addHorizontalLine(to view: UIView, verticalOffset: CGFloat) {
