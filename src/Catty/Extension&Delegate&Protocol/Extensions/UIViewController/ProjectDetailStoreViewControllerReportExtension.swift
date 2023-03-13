@@ -25,7 +25,7 @@ import Foundation
 @objc
 extension ProjectDetailStoreViewController {
     func reportProject() {
-        guard UserDefaults.standard.bool(forKey: NetworkDefines.kUserIsLoggedIn) else {
+        guard StoreAuthenticator.isLoggedIn() else {
             Util.alert(text: kLocalizedLoginToReport)
             return
         }

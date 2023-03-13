@@ -300,7 +300,7 @@
         [self toggleDetailCellsMode];
     }]
        addDefaultActionWithTitle:kLocalizedUploadProject handler:^{
-        if ([[[NSUserDefaults standardUserDefaults] valueForKey:NetworkDefines.kUserIsLoggedIn] boolValue]) {
+        if ([StoreAuthenticator isLoggedIn]) {
             [self performSegueWithIdentifier:kSegueToUpload sender:self];
         } else {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];

@@ -112,7 +112,7 @@ import Foundation
             currentSectionFooters.insert(nil, at: 1)
         }
 
-        if UserDefaults.standard.bool(forKey: NetworkDefines.kUserIsLoggedIn) {
+        if StoreAuthenticator.isLoggedIn() {
             formItems.append([
                 FormItem(title: kLocalizedLogout, titleColor: .red, action: {
                     self.logout()
@@ -208,10 +208,7 @@ import Foundation
     }
 
     private func logout() {
-        UserDefaults.standard.setValue(false, forKey: NetworkDefines.kUserIsLoggedIn)
-        UserDefaults.standard.setValue("", forKey: NetworkDefines.kUserLoginToken)
-        UserDefaults.standard.setValue("", forKey: kcUsername)
-
+        StoreAuthenticator.logout()
         self.navigationController?.popViewController(animated: true)
     }
 }

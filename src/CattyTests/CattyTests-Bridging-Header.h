@@ -28,7 +28,6 @@
 
 #import "ConvertExceptionToError.h"
 #import "ForceInit.h"
-#import "LoginViewController.h"
 #import "BaseCollectionViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "FormulaEditorViewController.h"

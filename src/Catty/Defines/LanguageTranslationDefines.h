@@ -561,11 +561,7 @@
 #define kLocalizedUploadProblem NSLocalizedString(@"Something went wrong while uploading the project.", nil)
 #define kLocalizedSessionExpired NSLocalizedString(@"Session expired, please log in.", nil)
 #define kLocalizedUploadSelectProject NSLocalizedString(@"Please select a project to upload", nil)
-#define kLocalizedNoWhitespaceAllowed NSLocalizedString(@"No whitespace character allowed",nil)
 #define kLocalizedAuthenticationFailed NSLocalizedString(@"Authentication failed",nil)
-
-#define kLocalizedInfoLogin NSLocalizedString(@"Login",nil)
-#define kLocalizedInfoRegister NSLocalizedString(@"Register",nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************

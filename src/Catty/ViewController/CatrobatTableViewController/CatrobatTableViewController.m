@@ -31,7 +31,6 @@
 #import "SegueDefines.h"
 #import "Script.h"
 #import "SceneTableViewController.h"
-#import "LoginViewController.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
@@ -267,7 +266,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             segueIdentifier = kSegueToHelp;
             break;
         case kUploadVC:
-            if ([[[NSUserDefaults standardUserDefaults] valueForKey:NetworkDefines.kUserIsLoggedIn] boolValue]) {
+            if ([StoreAuthenticator isLoggedIn]) {
                 segueIdentifier = kSegueToUpload;
             } else {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];

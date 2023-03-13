@@ -36,46 +36,45 @@ class NetworkDefines: NSObject {
     }
 
     static let baseUrl = shareUrl.appending("pocketcode/")
-    static let apiBaseUrl = shareUrl.appending("api/")
 
     // MARK: AppStore
 
     static let appStoreIdentifier = "1117935892"
-    @objc static let appStoreUrl = "itms-apps://itunes.apple.com/app/".appending(appStoreIdentifier)
+    static let appStoreUrl = "itms-apps://itunes.apple.com/app/".appending(appStoreIdentifier)
 
     // MARK: Static content
 
+    @objc static let unsupportedElementsUrl = "https://catrob.at/ibuf"
     static let aboutCatrobatUrl = "https://catrobat.org"
     static let helpUrl = "https://catrob.at/help"
     static let sourceCodeLicenseUrl = "https://developer.catrobat.org/licenses"
-    @objc static let termsOfUseUrl = shareUrl.appending("app/termsOfUse")
-    @objc static let unsupportedElementsUrl = "https://catrob.at/ibuf"
+    static let termsOfUseUrl = shareUrl.appending("app/termsOfUse")
+    static let resetPasswordUrl = shareUrl.appending("app/reset-password")
 
     // MARK: Old API
 
-    @objc static var loginUrl: String { baseUrl.appending("api/login/Login.json") }
-    @objc static var registerUrl: String { baseUrl.appending("api/register/Register.json") }
     @objc static var reportProjectUrl: String { baseUrl.appending("api/reportProject/reportProject.json") }
-    @objc static var recoverPassword: String { baseUrl.appending("resetting/request") }
 
     // MARK: API
 
-    static var apiEndpointAuthentication = apiBaseUrl.appending("authentication")
-    static var apiEndpointAuthenticationRefresh = apiEndpointAuthentication.appending("/refresh")
-    static var apiEndpointAuthenticationUpgrade = apiEndpointAuthentication.appending("/upgrade")
-    static var apiEndpointUser = apiBaseUrl.appending("user")
-    static var apiEndpointUserResetPassword = apiEndpointUser.appending("/reset-password")
+    static let apiBaseUrl = shareUrl.appending("api/")
 
-    static var apiEndpointMediaPackage = apiBaseUrl.appending("media/package")
-    static var apiEndpointMediaPackageBackgrounds = apiEndpointMediaPackage.appending("/Backgrounds")
-    static var apiEndpointMediaPackageLooks = apiEndpointMediaPackage.appending("/Looks")
-    static var apiEndpointMediaPackageSounds = apiEndpointMediaPackage.appending("/Sounds")
+    static let apiEndpointAuthentication = apiBaseUrl.appending("authentication")
+    static let apiEndpointAuthenticationRefresh = apiEndpointAuthentication.appending("/refresh")
+    static let apiEndpointAuthenticationUpgrade = apiEndpointAuthentication.appending("/upgrade")
+    static let apiEndpointUser = apiBaseUrl.appending("user")
+    static let apiEndpointUserResetPassword = apiEndpointUser.appending("/reset-password")
 
-    static var apiEndpointProject = apiBaseUrl.appending("project")
-    static var apiEndpointProjects = apiBaseUrl.appending("projects")
-    static var apiEndpointProjectsFeatured = apiEndpointProjects.appending("/featured")
-    static var apiEndpointProjectsSearch = apiEndpointProjects.appending("/search")
-    static var apiEndpointProjectsTags = apiEndpointProjects.appending("/tags")
+    static let apiEndpointMediaPackage = apiBaseUrl.appending("media/package")
+    static let apiEndpointMediaPackageBackgrounds = apiEndpointMediaPackage.appending("/Backgrounds")
+    static let apiEndpointMediaPackageLooks = apiEndpointMediaPackage.appending("/Looks")
+    static let apiEndpointMediaPackageSounds = apiEndpointMediaPackage.appending("/Sounds")
+
+    static let apiEndpointProject = apiBaseUrl.appending("project")
+    static let apiEndpointProjects = apiBaseUrl.appending("projects")
+    static let apiEndpointProjectsFeatured = apiEndpointProjects.appending("/featured")
+    static let apiEndpointProjectsSearch = apiEndpointProjects.appending("/search")
+    static let apiEndpointProjectsTags = apiEndpointProjects.appending("/tags")
 
     static let apiParameterOffset = "offset"
     static let apiParameterLimit = "limit"
@@ -85,11 +84,11 @@ class NetworkDefines: NSObject {
     static let apiParameterPlatform = "platform"
     static let apiParameterAttributes = "attributes"
 
-    static var apiActionDownload = "catrobat"
+    static let apiActionDownload = "catrobat"
 
     // MARK: API Configuration
 
-    @objc static let connectionTimeout = 15
+    static let connectionTimeout = 15
 
     static let featuredProjectsBatchSize = 20
     static let chartProjectsBatchSize = 20
@@ -104,7 +103,6 @@ class NetworkDefines: NSObject {
     @objc static let reportProjectNoteMaxLength = 100
     @objc static let reportProjectNoteMinLength = 3
 
-    @objc static let kUserIsLoggedIn = "userIsLoggedIn"
     @objc static let kUserLoginToken = "userLoginToken"
 
     static let kUsername = "username"

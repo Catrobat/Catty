@@ -561,11 +561,7 @@ let kUploadSelectedProject = NSLocalizedString("Upload selected project", bundle
 let kLocalizedUploadProblem = NSLocalizedString("Something went wrong while uploading the project.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSessionExpired = NSLocalizedString("Session expired, please log in.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUploadSelectProject = NSLocalizedString("Please select a project to upload", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedNoWhitespaceAllowed = NSLocalizedString("No whitespace character allowed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-
-let kLocalizedInfoLogin = NSLocalizedString("Login", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedInfoRegister = NSLocalizedString("Register", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************

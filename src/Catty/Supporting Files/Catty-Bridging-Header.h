@@ -171,7 +171,6 @@
 #import "SceneTableViewController.h"
 #import "CatrobatTableViewController.h"
 #import "ScriptCollectionViewController.h"
-#import "LoginViewController.h"
 #import "ProjectDetailStoreViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
