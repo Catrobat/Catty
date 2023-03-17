@@ -673,9 +673,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "Enter a reason";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
 
@@ -705,9 +702,6 @@
 
 /* No comment provided by engineer. */
 "Error" = "Error";
-
-/* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
@@ -1543,9 +1537,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
-
 /* paint */
 "Please pick a tool" = "Please pick a tool";
 
@@ -1695,9 +1686,6 @@
 
 /* No comment provided by engineer. */
 "Replace item in list" = "Replace item in list";
-
-/* No comment provided by engineer. */
-"Report as inappropriate" = "Report as inappropriate";
 
 /* paint */
 "Resize" = "Resize";
@@ -2484,9 +2472,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "Your report was successfully sent!";
 
 /* paint */
 "Zoom" = "Zoom";
