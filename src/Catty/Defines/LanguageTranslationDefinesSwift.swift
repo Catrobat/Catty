@@ -539,6 +539,7 @@ let kLocalizedLogin = NSLocalizedString("Login", comment: "")
 let kLocalizedLogout = NSLocalizedString("Logout", comment: "")
 let kLocalizedUsername = NSLocalizedString("Username", comment: "")
 let kLocalizedPassword = NSLocalizedString("Password", comment: "")
+let kLocalizedDeleteAccount = NSLocalizedString("Delete Account", comment: "")
 let kLocalizedConfirmPassword = NSLocalizedString("Confirm password", comment: "")
 let kLocalizedEmail = NSLocalizedString("Email", comment: "")
 let kLocalizedRegister = NSLocalizedString("Create account", comment: "")
@@ -557,6 +558,8 @@ let kLocalizedUploadProblem = NSLocalizedString("Something went wrong while uplo
 let kLocalizedSessionExpired = NSLocalizedString("Session expired, please log in.", comment: "")
 let kLocalizedUploadSelectProject = NSLocalizedString("Please select a project to upload", comment: "")
 let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", comment: "")
+let kLocalizedDeleteAccountConfirm = NSLocalizedString("Are you sure you want to delete your account?", comment: "")
+let kLocalizedDeleteAcocuntSuccessful = NSLocalizedString("Your account has successfully been deleted.", comment: "")
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************

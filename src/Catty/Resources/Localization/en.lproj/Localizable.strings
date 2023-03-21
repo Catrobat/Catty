@@ -149,6 +149,9 @@
 "Arduino extension" = "Arduino extension";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account?" = "Are you sure you want to delete your account?";
+
+/* No comment provided by engineer. */
 "Ask " = "Ask ";
 
 /* No comment provided by engineer. */
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Delete Account" = "Delete Account";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "Delete actors or objects";
@@ -2463,6 +2469,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your account has successfully been deleted." = "Your account has successfully been deleted.";
 
 /* No comment provided by engineer. */
 "Your answer" = "Your answer";

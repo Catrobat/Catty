@@ -38,6 +38,7 @@ import Foundation
     private var featureItems: [FormItem] = []
     private var bluetoothItems: [FormItem] = []
     private var webAccessItems: [FormItem] = []
+    private let authenticator = StoreAuthenticator()
 
     // MARK: - Lifecycle
 
@@ -116,6 +117,9 @@ import Foundation
             formItems.append([
                 FormItem(title: kLocalizedLogout, titleColor: .red, action: {
                     self.logout()
+                }),
+                FormItem(title: kLocalizedDeleteAccount, titleColor: .red, action: {
+                    self.deleteAccount()
                 })
             ])
         }
@@ -210,5 +214,30 @@ import Foundation
     private func logout() {
         StoreAuthenticator.logout()
         self.navigationController?.popViewController(animated: true)
+    }
+
+    private func deleteAccount() {
+        let alertController = UIAlertController(title: kLocalizedDeleteAccount, message: kLocalizedDeleteAccountConfirm, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: kLocalizedDelete, style: .destructive) { _ in
+            self.authenticator.deleteUser { error in
+                DispatchQueue.main.async(execute: {
+                    switch error {
+                    case .none:
+                        self.navigationController?.popViewController(animated: true)
+                        Util.alert(text: kLocalizedDeleteAcocuntSuccessful)
+                    case .authentication:
+                        Util.alert(text: kLocalizedAuthenticationFailed)
+                    case .network, .timeout:
+                        Util.defaultAlertForNetworkError()
+                    default:
+                        Util.alert(text: kLocalizedUnexpectedErrorMessage)
+                    }
+                })
+            }
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
