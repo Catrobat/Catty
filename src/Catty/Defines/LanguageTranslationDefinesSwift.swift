@@ -559,7 +559,7 @@ let kLocalizedSessionExpired = NSLocalizedString("Session expired, please log in
 let kLocalizedUploadSelectProject = NSLocalizedString("Please select a project to upload", comment: "")
 let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", comment: "")
 let kLocalizedDeleteAccountConfirm = NSLocalizedString("Are you sure you want to delete your account?", comment: "")
-let kLocalizedDeleteAcocuntSuccessful = NSLocalizedString("Your account has successfully been deleted.", comment: "")
+let kLocalizedDeleteAccountSuccessful = NSLocalizedString("Your account has successfully been deleted.", comment: "")
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
