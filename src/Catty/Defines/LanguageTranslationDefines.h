@@ -559,7 +559,7 @@
 #define kLocalizedUploadSelectProject NSLocalizedString(@"Please select a project to upload", nil)
 #define kLocalizedAuthenticationFailed NSLocalizedString(@"Authentication failed",nil)
 #define kLocalizedDeleteAccountConfirm NSLocalizedString(@"Are you sure you want to delete your account?", nil)
-#define kLocalizedDeleteAcocuntSuccessful NSLocalizedString(@"Your account has successfully been deleted.", nil)
+#define kLocalizedDeleteAccountSuccessful NSLocalizedString(@"Your account has successfully been deleted.", nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
