@@ -65,7 +65,7 @@ import UIKit
         brickCategoryOverviewCollectionView.register(BrickCategoryOverviewCollectionViewCell.self, forCellWithReuseIdentifier: BrickCategoryOverviewCollectionViewCell.identifier)
         brickCategoryOverviewCollectionView.delegate = self
         brickCategoryOverviewCollectionView.dataSource = self
-        brickCategoryOverviewCollectionView.backgroundColor = UIColor.white
+        brickCategoryOverviewCollectionView.backgroundColor = UIColor.background
         brickCategoryOverviewCollectionView.autoresizesSubviews = true
         brickCategoryOverviewCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
