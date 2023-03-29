@@ -539,6 +539,7 @@
 #define kLocalizedLogout NSLocalizedString(@"Logout", nil)
 #define kLocalizedUsername NSLocalizedString(@"Username", nil)
 #define kLocalizedPassword NSLocalizedString(@"Password", nil)
+#define kLocalizedDeleteAccount NSLocalizedString(@"Delete account", nil)
 #define kLocalizedConfirmPassword NSLocalizedString(@"Confirm password", nil)
 #define kLocalizedEmail NSLocalizedString(@"Email", nil)
 #define kLocalizedRegister NSLocalizedString(@"Create account", nil)
@@ -557,6 +558,8 @@
 #define kLocalizedSessionExpired NSLocalizedString(@"Session expired, please log in.", nil)
 #define kLocalizedUploadSelectProject NSLocalizedString(@"Please select a project to upload", nil)
 #define kLocalizedAuthenticationFailed NSLocalizedString(@"Authentication failed",nil)
+#define kLocalizedDeleteAccountConfirm NSLocalizedString(@"Are you sure you want to delete your account? This cannot be undone!", nil)
+#define kLocalizedDeleteAccountSuccessful NSLocalizedString(@"Your account has been successfully deleted.", nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
