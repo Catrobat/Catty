@@ -14471,7 +14471,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.1.1;
+				minimumVersion = 7.6.2;
 			};
 		};
 		4CFAC30625ADD89E00AF0DD1 /* XCRemoteSwiftPackageReference "Siren" */ = {
