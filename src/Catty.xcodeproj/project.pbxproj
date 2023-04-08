@@ -2213,7 +2213,7 @@
 		1875C5B92457190000F3F276 /* UserVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariable.swift; sourceTree = "<group>"; };
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
-		187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty UISnapshots.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		187E07A024E26CED00E652C4 /* CattyUISnapshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyUISnapshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		187E07A224E26CED00E652C4 /* CattyUISnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CattyUISnapshots.swift; sourceTree = "<group>"; };
 		187E07A424E26CED00E652C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1882475424C84B8100B01653 /* SetPenColorBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrick.swift; sourceTree = "<group>"; };
@@ -3331,6 +3331,7 @@
 		758FD262053C04755851BC4D /* ml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77A836DDE7C46D9275CE4812 /* ar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7B014D0E29E7122E004AA0E0 /* CattyTestplan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CattyTestplan.xctestplan; path = Catty.xcodeproj/CattyTestplan.xctestplan; sourceTree = "<group>"; };
 		7B09EB6529B1DF8200590F3D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7B09EB6629B1DF8200590F3D /* BaseAuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAuthenticationViewController.swift; sourceTree = "<group>"; };
 		7B09EB6729B1DF8200590F3D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -4331,7 +4332,7 @@
 		AA74F0901BC05FCE00D1E954 /* StartScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScriptCell.m; sourceTree = "<group>"; };
 		AA74F0911BC05FCE00D1E954 /* WhenScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScriptCell.h; sourceTree = "<group>"; };
 		AA74F0921BC05FCE00D1E954 /* WhenScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScriptCell.m; sourceTree = "<group>"; };
-		AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAADA0041B9B29D500E0CA9A /* CattyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAADA0081B9B29D500E0CA9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAAF22831BC0CA0F0076F11E /* SetXBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetXBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/SetXBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetYBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/SetYBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -4457,7 +4458,7 @@
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBBroadcastHandler.swift; sourceTree = "<group>"; };
-		CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B01B115E6400419A55 /* CBIfConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBIfConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBIfConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B11B115E6400419A55 /* CBOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBOperation.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBOperation.swift; sourceTree = SOURCE_ROOT; };
@@ -4959,9 +4960,9 @@
 			isa = PBXGroup;
 			children = (
 				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
-				CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */,
-				AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */,
-				187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */,
+				CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */,
+				AAADA0041B9B29D500E0CA9A /* CattyUITests.xctest */,
+				187E07A024E26CED00E652C4 /* CattyUISnapshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4992,6 +4993,7 @@
 				92FF32C11A24E33B00093DA7 /* Storyboard+XIB */,
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
 				B43498471927A3AB002F9075 /* Resources */,
+				7B014D0E29E7122E004AA0E0 /* CattyTestplan.xctestplan */,
 				B46B270317703F9400172837 /* CattyTests */,
 				AAADA0051B9B29D500E0CA9A /* CattyUITests */,
 				187E07A124E26CED00E652C4 /* CattyUISnapshots */,
@@ -11303,9 +11305,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		187E079F24E26CED00E652C4 /* Catty UISnapshots */ = {
+		187E079F24E26CED00E652C4 /* CattyUISnapshots */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 187E07AB24E26CED00E652C4 /* Build configuration list for PBXNativeTarget "Catty UISnapshots" */;
+			buildConfigurationList = 187E07AB24E26CED00E652C4 /* Build configuration list for PBXNativeTarget "CattyUISnapshots" */;
 			buildPhases = (
 				187E079C24E26CED00E652C4 /* Sources */,
 				187E079D24E26CED00E652C4 /* Frameworks */,
@@ -11316,14 +11318,14 @@
 			dependencies = (
 				187E07A624E26CED00E652C4 /* PBXTargetDependency */,
 			);
-			name = "Catty UISnapshots";
+			name = CattyUISnapshots;
 			productName = CattyUISnapshots;
-			productReference = 187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */;
+			productReference = 187E07A024E26CED00E652C4 /* CattyUISnapshots.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		AAADA0031B9B29D500E0CA9A /* Catty UITests */ = {
+		AAADA0031B9B29D500E0CA9A /* CattyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */;
+			buildConfigurationList = AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "CattyUITests" */;
 			buildPhases = (
 				AAADA0001B9B29D500E0CA9A /* Sources */,
 				AAADA0011B9B29D500E0CA9A /* Frameworks */,
@@ -11334,14 +11336,14 @@
 			dependencies = (
 				AAADA00A1B9B29D500E0CA9A /* PBXTargetDependency */,
 			);
-			name = "Catty UITests";
+			name = CattyUITests;
 			productName = "Catty UITests";
-			productReference = AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */;
+			productReference = AAADA0041B9B29D500E0CA9A /* CattyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		CA7698A91B0E4A97000D0340 /* Catty Tests */ = {
+		CA7698A91B0E4A97000D0340 /* CattyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "Catty Tests" */;
+			buildConfigurationList = CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "CattyTests" */;
 			buildPhases = (
 				CA7698A61B0E4A97000D0340 /* Sources */,
 				CA7698A81B0E4A97000D0340 /* Resources */,
@@ -11352,14 +11354,14 @@
 			dependencies = (
 				CA7698B11B0E4A97000D0340 /* PBXTargetDependency */,
 			);
-			name = "Catty Tests";
+			name = CattyTests;
 			packageProductDependencies = (
 				4CFAC28C25ADCD8100AF0DD1 /* Nimble */,
 				4CFAC2CC25ADD12100AF0DD1 /* DVR */,
 				7B9090E827C931E600B31D04 /* ChromaSwift */,
 			);
 			productName = CattyTests;
-			productReference = CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */;
+			productReference = CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		CADBD6D319B0E8C200C62836 /* Catty */ = {
@@ -11537,9 +11539,9 @@
 			projectRoot = "";
 			targets = (
 				CADBD6D319B0E8C200C62836 /* Catty */,
-				CA7698A91B0E4A97000D0340 /* Catty Tests */,
-				AAADA0031B9B29D500E0CA9A /* Catty UITests */,
-				187E079F24E26CED00E652C4 /* Catty UISnapshots */,
+				CA7698A91B0E4A97000D0340 /* CattyTests */,
+				AAADA0031B9B29D500E0CA9A /* CattyUITests */,
+				187E079F24E26CED00E652C4 /* CattyUISnapshots */,
 			);
 		};
 /* End PBXProject section */
@@ -14370,7 +14372,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		187E07AB24E26CED00E652C4 /* Build configuration list for PBXNativeTarget "Catty UISnapshots" */ = {
+		187E07AB24E26CED00E652C4 /* Build configuration list for PBXNativeTarget "CattyUISnapshots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				187E07A724E26CED00E652C4 /* Debug */,
@@ -14379,7 +14381,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */ = {
+		AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "CattyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AAADA00B1B9B29D500E0CA9A /* Debug */,
@@ -14397,7 +14399,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "Catty Tests" */ = {
+		CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CA7698B31B0E4A97000D0340 /* Debug */,

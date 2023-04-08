@@ -28,14 +28,6 @@ import XCTest
 
 class PeripheralTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-    }
-
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testDiscoverServicesSuccess() {
         let testPeripheral = TestPeripheral(state: .connected)
         let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")

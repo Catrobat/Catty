@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		92EC98A41BC3C32A0003A891 /* BluetoothHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 92EC98A31BC3C32A0003A891 /* BluetoothHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		92EC98AB1BC3C32A0003A891 /* BluetoothHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EC98A01BC3C32A0003A891 /* BluetoothHelper.framework */; };
-		92EC98B01BC3C32A0003A891 /* BluetoothHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98AF1BC3C32A0003A891 /* BluetoothHelperTests.swift */; };
 		92EC98CC1BC3C3500003A891 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BB1BC3C3500003A891 /* CentralManager.swift */; };
 		92EC98CD1BC3C3500003A891 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BC1BC3C3500003A891 /* Characteristic.swift */; };
 		92EC98CE1BC3C3500003A891 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BD1BC3C3500003A891 /* Peripheral.swift */; };
@@ -48,7 +47,6 @@
 		92EC98A31BC3C32A0003A891 /* BluetoothHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BluetoothHelper.h; sourceTree = "<group>"; };
 		92EC98A51BC3C32A0003A891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92EC98AA1BC3C32A0003A891 /* BluetoothHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluetoothHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		92EC98AF1BC3C32A0003A891 /* BluetoothHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothHelperTests.swift; sourceTree = "<group>"; };
 		92EC98B11BC3C32A0003A891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92EC98BB1BC3C3500003A891 /* CentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
 		92EC98BC1BC3C3500003A891 /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				92EC98DF1BC3C39A0003A891 /* RawTestHelper.swift */,
 				92EC98E01BC3C39A0003A891 /* SerializerDeserializerTests.swift */,
 				92EC98E11BC3C39A0003A891 /* ServiceTests.swift */,
-				92EC98AF1BC3C32A0003A891 /* BluetoothHelperTests.swift */,
 				92EC98B11BC3C32A0003A891 /* Info.plist */,
 			);
 			path = BluetoothHelperTests;
@@ -320,7 +317,6 @@
 				92EC98E71BC3C39A0003A891 /* RawTestHelper.swift in Sources */,
 				92EC98E81BC3C39A0003A891 /* SerializerDeserializerTests.swift in Sources */,
 				92EC98E31BC3C39A0003A891 /* CentralManagerTests.swift in Sources */,
-				92EC98B01BC3C32A0003A891 /* BluetoothHelperTests.swift in Sources */,
 				92EC98E91BC3C39A0003A891 /* ServiceTests.swift in Sources */,
 				92EC98E51BC3C39A0003A891 /* PeripheralTests.swift in Sources */,
 			);

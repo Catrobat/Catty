@@ -1,5 +1,5 @@
 devices([
-  "iPhone 11 Pro Max",
+  "iPhone 14 Plus",
   "iPhone 8 Plus"
 ])
 
@@ -7,8 +7,7 @@ languages([
   "en-US",
   "de-DE",
   "ru-RU",
-  "pt-BR",
-  "es"
+  "pt-BR"
 ])
 
 

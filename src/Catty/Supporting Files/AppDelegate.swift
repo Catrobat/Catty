@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.UITests) {
             UIView.setAnimationsEnabled(false)
-            UIApplication.shared.keyWindow?.layer.speed = 10.0
+            UIApplication.shared.keyWindow?.layer.speed = 100
         }
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.alwaysShowPrivacyPolicy) {
             PrivacyPolicyViewController.showOnEveryLaunch = true
