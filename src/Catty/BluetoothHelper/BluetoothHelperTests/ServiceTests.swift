@@ -28,14 +28,6 @@ import XCTest
 
 class ServiceTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-    }
-
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testDiscoverCharacteristicsSuccess() {
         let testService = TestService()
         let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")

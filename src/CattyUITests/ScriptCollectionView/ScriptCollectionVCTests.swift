@@ -26,12 +26,9 @@ class ScriptCollectionVCTests: XCTestCase {
 
     var app: XCUIApplication!
 
-    override func setUp() {
-        super.setUp()
-        app = launchApp()
-    }
-
     func testCopyIfLogicBeginBrick() {
+        app = launchApp(with: ["skipPrivacyPolicy", "restoreDefaultProject"])
+
         createProject(name: "testProject", in: app)
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
@@ -60,6 +57,8 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testLengthOfBroadcastMessage() {
+        app = launchApp()
+
         let message = String(repeating: "a", count: 25)
 
         createProject(name: "testProject", in: app)
@@ -87,6 +86,8 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testWaitBrick() {
+        app = launchApp()
+
         createProject(name: "testProject", in: app)
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -104,6 +105,8 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testEmptyStringInFormulaEditor() {
+        app = launchApp()
+
         createProject(name: "testProject", in: app)
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -120,6 +123,8 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testEditBrickButtonDisableOrEnable() {
+        app = launchApp()
+
         createProject(name: "testProject", in: app)
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()

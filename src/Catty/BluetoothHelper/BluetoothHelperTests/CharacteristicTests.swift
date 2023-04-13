@@ -27,14 +27,6 @@ import XCTest
 
 class CharacteristicTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-    }
-
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testDiscovered() {
         let testCharacteristic = TestCharacteristic()
         let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
