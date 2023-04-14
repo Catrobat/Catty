@@ -77,6 +77,11 @@
     return NO;
 }
 
+- (BOOL)isWebRequestBrick
+{
+    return NO;
+}
+
 - (BOOL)isDisabledForBackground
 {
     return NO;

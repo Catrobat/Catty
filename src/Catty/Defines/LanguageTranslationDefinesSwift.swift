@@ -283,6 +283,7 @@ let kLocalizedAboutUs = NSLocalizedString("About Us", comment: "")
 let kLocalizedCatrobatWebsite = NSLocalizedString("Catrobat website", comment: "")
 let kLocalizedViewTermsOfUse = NSLocalizedString("View Terms of Use and Service", comment: "")
 let kLocalizedTrustedDomains = NSLocalizedString("Trusted domains", comment: "")
+let kLocalizedWarning = NSLocalizedString("Warning", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -343,6 +344,7 @@ let kLocalizedNoAccesToCameraCheckSettingsDescription = NSLocalizedString("Pocke
 let kLocalizedNoAccesToMicrophoneCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", comment: "")
 let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following features used in this project are not compatible with this version of Pocket Code:", comment: "")
 let kLocalizedAlwaysAllowWebRequestDescription = NSLocalizedString("Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.", comment: "")
+let kLocalizedProjectContainsWebBricksWarning = NSLocalizedString("The project you have downloaded uses a \"Send web request\", comment: \"Get image from\" or \"Open in browser\" brick, which can send your data to the internet. This may be harmless, and necessary for its intended behavior. In any case, please be cautious about what data you provide, as it may be misused. In case of any doubt, please delete the downloaded project. You shall also report the project on its page on the Catrobat community platform in case you are sure that it is harmful.", comment: "")
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************

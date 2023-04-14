@@ -88,6 +88,7 @@
         [self addObjectAction:nil];
     }
     [self checkUnsupportedElements];
+    [self checkProjectContainsWebRequestBricks:self.scene.project];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -37,3 +37,5 @@
 #define kEmbroideryActivated 1
 #define kFirebaseSendCrashReportsDefault 1
 #define kWebRequestBrickActivated 0
+
+#define kWebRequestWarningWasShown @"webRequestWarningHasBeenShown"
