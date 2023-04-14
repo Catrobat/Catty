@@ -1102,6 +1102,8 @@
 		6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD28D0924702CAD0035F606 /* NSDateExtension.swift */; };
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
 		6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */; };
+		7B014D0529E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.refresh.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B014D0329E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.refresh.json */; };
+		7B014D0629E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.upgrade.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B014D0429E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.upgrade.json */; };
 		7B09EB6829B1DF8200590F3D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09EB6529B1DF8200590F3D /* RegisterViewController.swift */; };
 		7B09EB6929B1DF8200590F3D /* BaseAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09EB6629B1DF8200590F3D /* BaseAuthenticationViewController.swift */; };
 		7B09EB6A29B1DF8200590F3D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09EB6729B1DF8200590F3D /* LoginViewController.swift */; };
@@ -3332,6 +3334,8 @@
 		77A836DDE7C46D9275CE4812 /* ar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7B014D0E29E7122E004AA0E0 /* CattyTestplan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CattyTestplan.xctestplan; path = Catty.xcodeproj/CattyTestplan.xctestplan; sourceTree = "<group>"; };
+		7B014D0329E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.refresh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.success.refresh.json; sourceTree = "<group>"; };
+		7B014D0429E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.upgrade.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.success.upgrade.json; sourceTree = "<group>"; };
 		7B09EB6529B1DF8200590F3D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7B09EB6629B1DF8200590F3D /* BaseAuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAuthenticationViewController.swift; sourceTree = "<group>"; };
 		7B09EB6729B1DF8200590F3D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -8128,6 +8132,8 @@
 				7B3745F929ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.authentication.json */,
 				7B3745FC29ACD7D20085A90D /* StoreAuthenticator.deleteUser.fail.request.json */,
 				7B3745F329ACD7D20085A90D /* StoreAuthenticator.deleteUser.success.json */,
+				7B014D0329E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.refresh.json */,
+				7B014D0429E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.upgrade.json */,
 				7B3745FA29ACD7D20085A90D /* StoreAuthenticator.login.fail.authentication.json */,
 				7B3745FD29ACD7D20085A90D /* StoreAuthenticator.login.fail.parse.json */,
 				7B3745F629ACD7D20085A90D /* StoreAuthenticator.login.fail.request.json */,
@@ -11714,6 +11720,7 @@
 				2ED4185D241120B000AFE2FD /* ValidProjectAllBricks098.xml in Resources */,
 				9E929E3D239D7E2B002D8F96 /* PlaySoundAndWaitBrickContinueWhenFinished.xml in Resources */,
 				2ED417BA241120AF00AFE2FD /* Piano_093.xml in Resources */,
+				7B014D0529E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.refresh.json in Resources */,
 				E5DAAD3626C5471A00C2457F /* Air_fight_0.5_09997.xml in Resources */,
 				E598BBCA26A02A3B00D4825F /* collisionTest0996.xml in Resources */,
 				9E929E37239D738E002D8F96 /* PlaySoundAndWaitBrickStopUntilFinished.xml in Resources */,
@@ -11853,6 +11860,7 @@
 				E5DAAD4826C5478300C2457F /* Pythagorean_Theorem_09997.xml in Resources */,
 				2ED417D5241120AF00AFE2FD /* Demonstration_096.xml in Resources */,
 				2ED417FF241120AF00AFE2FD /* Pong_Starter_09.xml in Resources */,
+				7B014D0629E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.upgrade.json in Resources */,
 				7B37461E29ACD8080085A90D /* StoreAuthenticator.refreshToken.fail.request.json in Resources */,
 				E5DAAD5A26C5482700C2457F /* LogicBricks_09997.xml in Resources */,
 				E59108C726931ED6008D254A /* ElementOfListFunction0994.xml in Resources */,

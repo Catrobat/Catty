@@ -248,13 +248,35 @@ class StoreAuthenticatorTests: XCTestCase {
     // MARK: - Delete User
 
     func testDeleteUserSucceeds() {
-        let dvrSession = Session(cassetteName: "StoreAuthenticator.deleteUser.success")
-        let authenticator = StoreAuthenticator(session: dvrSession)
-        let expectation = XCTestExpectation(description: "Delete user")
-
         UserDefaults.standard.set(testUser, forKey: NetworkDefines.kUsername)
         Keychain.saveValue(testToken, forKey: NetworkDefines.kAuthenticationToken)
         Keychain.saveValue(testRefreshToken, forKey: NetworkDefines.kRefreshToken)
+
+        delete(with: "StoreAuthenticator.deleteUser.success")
+    }
+
+    func testDeleteUserSucceedsWithRefresh() {
+        UserDefaults.standard.set(testUser, forKey: NetworkDefines.kUsername)
+        // swiftlint:disable:next line_length
+        let expiredToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxNTE2MjM5MDIyfQ.lJ7ZxhkDfz2CTJCYTUlnx-braSZGxj9cZlIA4yqmqWg"
+        Keychain.saveValue(expiredToken, forKey: NetworkDefines.kAuthenticationToken)
+        Keychain.saveValue(testRefreshToken, forKey: NetworkDefines.kRefreshToken)
+
+        delete(with: "StoreAuthenticator.deleteUser.success.refresh")
+    }
+
+    func testDeleteUserSucceedsWithUpgrade() {
+        UserDefaults.standard.set(testUser, forKey: NetworkDefines.kUsername)
+        let testLegacyToken = "36cdf53b812dd2d47471367de94e8538"
+        Keychain.saveValue(testLegacyToken, forKey: NetworkDefines.kLegacyToken)
+
+        delete(with: "StoreAuthenticator.deleteUser.success.upgrade")
+    }
+
+    func delete(with cassette: String) {
+        let dvrSession = Session(cassetteName: cassette)
+        let authenticator = StoreAuthenticator(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Delete user")
 
         authenticator.deleteUser { error in
             XCTAssertNil(error, "Delete user failed")

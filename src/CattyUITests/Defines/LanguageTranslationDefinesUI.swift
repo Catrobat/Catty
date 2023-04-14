@@ -539,6 +539,7 @@ let kLocalizedLogin = NSLocalizedString("Login", bundle: Bundle(for: LanguageTra
 let kLocalizedLogout = NSLocalizedString("Logout", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUsername = NSLocalizedString("Username", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPassword = NSLocalizedString("Password", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDeleteAccount = NSLocalizedString("Delete account", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedConfirmPassword = NSLocalizedString("Confirm password", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEmail = NSLocalizedString("Email", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRegister = NSLocalizedString("Create account", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -557,6 +558,8 @@ let kLocalizedUploadProblem = NSLocalizedString("Something went wrong while uplo
 let kLocalizedSessionExpired = NSLocalizedString("Session expired, please log in.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUploadSelectProject = NSLocalizedString("Please select a project to upload", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDeleteAccountConfirm = NSLocalizedString("Are you sure you want to delete your account? This cannot be undone!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDeleteAccountSuccessful = NSLocalizedString("Your account has been successfully deleted.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
