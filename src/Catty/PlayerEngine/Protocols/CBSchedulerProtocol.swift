@@ -50,6 +50,8 @@ protocol CBSchedulerProtocol: AnyObject {
     func runNextInstructionsGroup()
     func scheduleContext(_ context: CBScriptContextProtocol)
     func stopContext(_ context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool)
+    func stopAllScripts()
+    func stopAllOtherScripts(_ context: CBScriptContextProtocol)
 
     // timers
     func registerTimer(_ timer: ExtendedTimer)

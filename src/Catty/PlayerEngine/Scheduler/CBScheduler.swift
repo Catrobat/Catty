@@ -383,12 +383,29 @@ final class CBScheduler: CBSchedulerProtocol {
             if context.state == .running || context.state == .waiting {
                 _broadcastHandler.terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context)
             }
-
             scheduleContext(context)
         }
 
         //runNextInstructionsGroup()
 
+    }
+
+    func stopAllScripts() {
+        _scheduledContexts.orderedValues.forEach {
+            $0.forEach {
+                stopContext($0, continueWaitingBroadcastSenders: false)
+            }
+        }
+    }
+
+    func stopAllOtherScripts(_ context: CBScriptContextProtocol) {
+        _scheduledContexts.orderedValues.forEach {
+            $0.forEach {
+                if $0.spriteNode.name == context.spriteNode.name && $0.id != context.id {
+                    stopContext($0, continueWaitingBroadcastSenders: false)
+                }
+            }
+        }
     }
 
     func stopContext(_ context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool) {

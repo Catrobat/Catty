@@ -46,6 +46,7 @@
             NoteBrick(),
             WaitUntilBrick(),
             LoopEndBrick(),
+            StopScriptBrick(),
             // motion bricks
             PlaceAtBrick(),
             GlideToBrick(),

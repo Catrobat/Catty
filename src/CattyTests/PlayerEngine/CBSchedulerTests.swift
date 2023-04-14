@@ -27,8 +27,11 @@ import XCTest
 final class CBSchedulerTests: XCTestCase {
 
     var spriteObject: SpriteObject!
+    var otherSpriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
+    var otherSpriteNode: CBSpriteNode!
     var startScript: StartScript!
+    var whenScript: WhenScript!
     var interpreter: FormulaInterpreterProtocol!
     var touchManager: TouchManagerProtocol!
     var scheduler: CBScheduler!
@@ -38,9 +41,16 @@ final class CBSchedulerTests: XCTestCase {
 
         spriteObject = SpriteObjectMock(name: "Name", scene: scene)
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
+        otherSpriteObject = SpriteObjectMock(name: "Test", scene: scene)
+        otherSpriteNode = CBSpriteNodeMock(spriteObject: otherSpriteObject)
 
         startScript = StartScript()
         startScript.object = spriteObject
+        whenScript = WhenScript()
+        whenScript.object = otherSpriteObject
+
+        otherSpriteNode.spriteObject.scriptList.add(startScript ?? "")
+        otherSpriteNode.spriteObject.scriptList.add(whenScript ?? "")
 
         let logger = Swell.getLogger(LoggerTestConfig.PlayerSchedulerID)!
         let broadcastHandler = CBBroadcastHandler(logger: logger)
@@ -52,6 +62,63 @@ final class CBSchedulerTests: XCTestCase {
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: interpreter, audioEngine: audioEngine)
 
         scheduler.registerSpriteNode(spriteNode)
+        scheduler.registerSpriteNode(otherSpriteNode)
+    }
+
+    func testAreAllContextsStoped() {
+        let context = CBScriptContext(script: startScript, spriteNode: spriteNode, formulaInterpreter: interpreter, touchManager: touchManager)!
+        let otherContext = CBScriptContext(script: startScript, spriteNode: otherSpriteNode, formulaInterpreter: interpreter, touchManager: touchManager)!
+        let anotherContextWithinOtherContext = CBScriptContext(script: whenScript, spriteNode: otherSpriteNode, formulaInterpreter: interpreter, touchManager: touchManager)!
+
+        XCTAssertFalse(scheduler.isContextScheduled(context))
+        XCTAssertFalse(scheduler.isContextScheduled(otherContext))
+        XCTAssertFalse(scheduler.isContextScheduled(anotherContextWithinOtherContext))
+
+        scheduler.registerContext(context)
+        scheduler.registerContext(otherContext)
+        scheduler.registerContext(anotherContextWithinOtherContext)
+
+        scheduler.scheduleContext(context)
+        scheduler.scheduleContext(otherContext)
+        scheduler.scheduleContext(anotherContextWithinOtherContext)
+
+        XCTAssertTrue(scheduler.isContextScheduled(context))
+        XCTAssertTrue(scheduler.isContextScheduled(otherContext))
+        XCTAssertTrue(scheduler.isContextScheduled(anotherContextWithinOtherContext))
+
+        scheduler.stopAllScripts()
+
+        XCTAssertFalse(scheduler.isContextScheduled(context))
+        XCTAssertFalse(scheduler.isContextScheduled(otherContext))
+        XCTAssertFalse(scheduler.isContextScheduled(anotherContextWithinOtherContext))
+    }
+
+    func testAreOtherContextsStoped() {
+        let context = CBScriptContext(script: startScript, spriteNode: spriteNode, formulaInterpreter: interpreter, touchManager: touchManager)!
+        let otherContext = CBScriptContext(script: startScript, spriteNode: otherSpriteNode, formulaInterpreter: interpreter, touchManager: touchManager)!
+        let anotherContextWithinOtherContext = CBScriptContext(script: whenScript, spriteNode: otherSpriteNode, formulaInterpreter: interpreter, touchManager: touchManager)!
+
+        XCTAssertFalse(scheduler.isContextScheduled(context))
+        XCTAssertFalse(scheduler.isContextScheduled(otherContext))
+        XCTAssertFalse(scheduler.isContextScheduled(anotherContextWithinOtherContext))
+
+        scheduler.registerContext(context)
+        scheduler.registerContext(otherContext)
+        scheduler.registerContext(anotherContextWithinOtherContext)
+
+        scheduler.scheduleContext(context)
+        scheduler.scheduleContext(otherContext)
+        scheduler.scheduleContext(anotherContextWithinOtherContext)
+
+        XCTAssertTrue(scheduler.isContextScheduled(context))
+        XCTAssertTrue(scheduler.isContextScheduled(otherContext))
+        XCTAssertTrue(scheduler.isContextScheduled(anotherContextWithinOtherContext))
+
+        scheduler.stopAllOtherScripts(otherContext)
+
+        XCTAssertTrue(scheduler.isContextScheduled(context))
+        XCTAssertTrue(scheduler.isContextScheduled(otherContext))
+        XCTAssertFalse(scheduler.isContextScheduled(anotherContextWithinOtherContext))
     }
 
     func testIsContextScheduled() {
