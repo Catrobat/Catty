@@ -23,5 +23,5 @@
 import Foundation
 
 protocol StitchPatternProtocol {
-    func spriteDidMove(to pos: CGPoint)
+    func spriteDidMove(to pos: CGPoint, rotation: Double)
 }

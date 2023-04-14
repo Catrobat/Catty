@@ -34,9 +34,10 @@ class RunningStitchPattern: StitchPatternProtocol {
         stitchLen = stitchingLength
 
         stream.add(Stitch(atPosition: currentPosition))
+        stream.startPoint = currentPosition
     }
 
-    func spriteDidMove(to pos: CGPoint) {
+    func spriteDidMove(to pos: CGPoint, rotation: Double) {
         guard var lastPos = stream.last?.getPosition() else {
             fatalError("RunningStitch Mode running on empty EmbroideryStream. Should never happen")
         }

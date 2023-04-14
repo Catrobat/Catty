@@ -27,33 +27,40 @@ import XCTest
 class EmbroideryDSTHeaderTests: XCTestCase {
 
     func testBoundingBox() {
+        let startPoint = CGPoint(x: 0, y: 0)
         let stitches = [
-            Stitch(x: 0, y: 0),
+            Stitch(atPosition: startPoint),
             Stitch(x: 10, y: 10),
             Stitch(x: 5, y: 5),
             Stitch(x: -10, y: -10),
-            Stitch(x: 0, y: 0)
+            Stitch(atPosition: startPoint)
         ]
         let header = EmbroideryDSTHeader(withName: "stitch")
 
         var previous = stitches[0]
         for current in stitches {
+            let delta = CGVector(dx: previous.embroideryDimensions().x - current.embroideryDimensions().x,
+                                 dy: previous.embroideryDimensions().y - current.embroideryDimensions().y)
             header.update(
-                relativeX: Int(previous.embroideryDimensions().x - current.embroideryDimensions().x),
-                relativeY: Int(previous.embroideryDimensions().y - current.embroideryDimensions().y)
+                relativeX: Float(current.x - startPoint.x),
+                relativeY: Float(current.y - startPoint.y),
+                delta: delta
             )
             previous = current
         }
 
-        XCTAssertEqual(header.boundingBox.maxX, 20)
-        XCTAssertEqual(header.boundingBox.maxY, 20)
-        XCTAssertEqual(header.boundingBox.minX, -20)
-        XCTAssertEqual(header.boundingBox.minY, -20)
+        XCTAssertEqual(header.maxX, 20)
+        XCTAssertEqual(header.maxY, 20)
+        XCTAssertEqual(header.minX, -20)
+        XCTAssertEqual(header.minY, -20)
+        XCTAssertEqual(header.mx, 0)
+        XCTAssertEqual(header.my, 0)
     }
 
     func testFirstLastDelta() {
+        let startPoint = CGPoint(x: 0, y: 0)
         let stitches = [
-            Stitch(x: 0, y: 0),
+            Stitch(atPosition: startPoint),
             Stitch(x: 10, y: -10),
             Stitch(x: 5, y: 5)
         ]
@@ -61,12 +68,15 @@ class EmbroideryDSTHeaderTests: XCTestCase {
 
         var previous = stitches[0]
         for current in stitches {
+            let delta = CGVector(dx: previous.embroideryDimensions().x - current.embroideryDimensions().x,
+                                 dy: previous.embroideryDimensions().y - current.embroideryDimensions().y)
             header.update(
-                relativeX: Int(current.embroideryDimensions().x - previous.embroideryDimensions().x),
-                relativeY: Int(current.embroideryDimensions().y - previous.embroideryDimensions().y)
+                relativeX: Float(current.x - startPoint.x),
+                relativeY: Float(current.y - startPoint.y),
+                delta: delta
             )
             previous = current
         }
-        XCTAssertEqual(header.delta, CGVector(dx: 10, dy: 10))
+        XCTAssertEqual(header.delta, CGVector(dx: -10, dy: -10))
     }
 }
