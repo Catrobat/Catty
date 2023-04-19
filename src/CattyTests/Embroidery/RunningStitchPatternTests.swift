@@ -89,12 +89,10 @@ final class RunningStitchPatternTests: XCTestCase {
         let reference = EmbroideryStream()
         reference.add(Stitch(x: 0, y: 0))
         reference.add(Stitch(x: 0, y: 10))
-        reference.add(Stitch(x: 0, y: 19))
-        reference.add(Stitch(x: 10, y: 19))
-        reference.add(Stitch(x: 19, y: 19))
+        reference.add(Stitch(x: 9, y: 14))
+        reference.add(Stitch(x: 18, y: 19))
         reference.add(Stitch(x: 19, y: 9))
-        reference.add(Stitch(x: 19, y: 0))
-        reference.add(Stitch(x: 9, y: 0))
+        reference.add(Stitch(x: 9, y: 4))
         reference.add(Stitch(x: 0, y: 0))
 
         embroideryStream!.activePattern = RunningStitchPattern(for: embroideryStream!,

@@ -24,31 +24,53 @@ import Foundation
 
 class RunningStitchPattern: StitchPatternProtocol {
     unowned let stream: EmbroideryStream
-    var stitchLen: CGFloat
+    var length: CGFloat
+    var firstPoint: CGPoint
+    var first = true
 
     init(for embroideryStream: EmbroideryStream,
          at currentPosition: CGPoint,
          with stitchingLength: CGFloat) {
 
         stream = embroideryStream
-        stitchLen = stitchingLength
+        length = stitchingLength
 
-        stream.add(Stitch(atPosition: currentPosition, withColor: stream.color))
+        firstPoint = currentPosition
         stream.startPoint = currentPosition
     }
 
     func spriteDidMove(to pos: CGPoint, rotation: Double) {
-        guard var lastPos = stream.last?.getPosition() else {
-            fatalError("RunningStitch Mode running on empty EmbroideryStream. Should never happen")
-        }
-        let delta = CGVector(from: lastPos, to: pos)
-        let e = delta.normalized()
+        var distance = CGPoint.distance(from: firstPoint, to: pos)
+        var currentX = pos.x
+        var currentY = pos.y
 
-        let sqLen = (stitchLen * stitchLen)
-        while CGPoint.squaredDistance(from: lastPos, to: pos) > sqLen {
-            lastPos += e * stitchLen
-            stream.add(Stitch(atPosition: lastPos, withColor: stream.color))
+        if distance >= length {
+            let surplusPercentage = (distance - (distance.truncatingRemainder(dividingBy: length))) / distance
+            currentX = firstPoint.x + (surplusPercentage * (currentX - firstPoint.x))
+            currentY = firstPoint.y + (surplusPercentage * (currentY - firstPoint.y))
+            distance -= distance.truncatingRemainder(dividingBy: length)
+            let interpolationCount = Int(floor(distance / length))
+
+            interpolateStitches(interpolationCount: interpolationCount, x: currentX, y: currentY)
+            firstPoint = CGPoint(x: currentX, y: currentY)
         }
-        stream.add(Stitch(atPosition: pos, withColor: stream.color))
+    }
+
+    func interpolateStitches(interpolationCount: Int, x: CGFloat, y: CGFloat) {
+        if first {
+            first = false
+            stream.add(Stitch(atPosition: CGPoint(x: firstPoint.x, y: firstPoint.y)))
+        }
+
+        for interpolationFactor in 1 ..< interpolationCount + 1 {
+            let splitFactor = Float(interpolationFactor) / Float(interpolationCount)
+            let currentX = interpolate(endValue: x, startValue: firstPoint.x, percentage: CGFloat(splitFactor))
+            let currentY = interpolate(endValue: y, startValue: firstPoint.y, percentage: CGFloat(splitFactor))
+            stream.add(Stitch(atPosition: CGPoint(x: currentX, y: currentY)))
+        }
+    }
+
+    func interpolate(endValue: CGFloat, startValue: CGFloat, percentage: CGFloat) -> CGFloat {
+        CGFloat(round(startValue + percentage * (endValue - startValue)))
     }
 }
