@@ -71,6 +71,9 @@
 "All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
 
 /* No comment provided by engineer. */
+"Allow access to your photos" = "Allow access to your photos";
+
+/* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
 
 /* No comment provided by engineer. */
@@ -285,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Change color " = "Change color ";
+
+/* No comment provided by engineer. */
+"Change Settings to allow Pocket Code full access to this photo." = "Change Settings to allow Pocket Code full access to this photo.";
 
 /* No comment provided by engineer. */
 "Change size by" = "Change size by";
@@ -1464,6 +1470,9 @@
 
 /* No comment provided by engineer. */
 "Open" = "Open";
+
+/* No comment provided by engineer. */
+"Open Settings" = "Open Settings";
 
 /* No comment provided by engineer. */
 "or" = "or";
