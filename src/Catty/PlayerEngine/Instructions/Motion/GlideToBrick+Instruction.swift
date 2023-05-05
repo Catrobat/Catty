@@ -43,8 +43,18 @@
             fatalError("This should never happen!")
         }
         let destPoint = CGPoint(x: scene.size.width / 2 + CGFloat(xDestination), y: scene.size.height / 2 + CGFloat(yDestination))
+        let startX = scene.size.width / 2 + spriteNode.catrobatPosition.x
+        let startY = scene.size.height / 2 + spriteNode.catrobatPosition.y
 
-        let action = SKAction.move(to: destPoint, duration: duration)
-        return action
+        let moveAction = SKAction.customAction(withDuration: duration) { node, elapsedTime in
+            let progress = elapsedTime / duration
+            let intermediateX = startX + (destPoint.x - startX) * progress
+            let intermediateY = startY + (destPoint.y - startY) * progress
+            node.position = CGPoint(x: intermediateX, y: intermediateY)
+            if let activePattern = spriteNode.embroideryStream.activePattern {
+                activePattern.spriteDidMove(to: CGPoint(x: intermediateX, y: intermediateY), rotation: Double(spriteNode.catrobatRotation))
+            }
+        }
+        return moveAction
     }
 }
