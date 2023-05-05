@@ -33,7 +33,7 @@ class RunningStitchPattern: StitchPatternProtocol {
         stream = embroideryStream
         stitchLen = stitchingLength
 
-        stream.add(Stitch(atPosition: currentPosition))
+        stream.add(Stitch(atPosition: currentPosition, withColor: stream.color))
         stream.startPoint = currentPosition
     }
 
@@ -47,8 +47,8 @@ class RunningStitchPattern: StitchPatternProtocol {
         let sqLen = (stitchLen * stitchLen)
         while CGPoint.squaredDistance(from: lastPos, to: pos) > sqLen {
             lastPos += e * stitchLen
-            stream.add(Stitch(atPosition: lastPos))
+            stream.add(Stitch(atPosition: lastPos, withColor: stream.color))
         }
-        stream.add(Stitch(atPosition: pos))
+        stream.add(Stitch(atPosition: pos, withColor: stream.color))
     }
 }

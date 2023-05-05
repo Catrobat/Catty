@@ -20,21 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension StitchBrick: CBInstructionProtocol {
+extension StitchThreadColorBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+        .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 
-    func actionBlock() -> () -> Void {
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
+              let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
 
         return {
-            let position = spriteNode.position
-            let stitch = Stitch(x: position.x, y: position.y, withColor: spriteNode.embroideryStream.color)
-            spriteNode.embroideryStream.add(stitch)
+            guard let stitchColor = self.stitchColor else { fatalError("Unexpected found nil.") }
+            let stitchColorString = formulaInterpreter.interpretString(stitchColor, for: object)
+            if let color = UIColor(hexString: stitchColorString) {
+                spriteNode.embroideryStream.setColor(newColor: color)
+                spriteNode.embroideryStream.addColorChange()
+            }
         }
     }
 }

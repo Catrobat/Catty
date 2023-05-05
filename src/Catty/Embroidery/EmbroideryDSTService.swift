@@ -58,13 +58,6 @@ class EmbroideryDSTService: EmbroideryProtocol {
                 isJump: currentStitch.isJump,
                 isColorChange: currentStitch.isColorChange))
 
-            if currentStitch.isColorChange {
-                DSTHeader.update(relativeX: 0, relativeY: 0, delta: delta, isColorChange: false)
-                DSTStitches.append(contentsOf: StichDTSBytes(relativeX: 0, relativeY: 0, isJump: true))
-                DSTHeader.update(relativeX: 0, relativeY: 0, delta: delta, isColorChange: false)
-                DSTStitches.append(contentsOf: StichDTSBytes(relativeX: 0, relativeY: 0, isJump: true))
-            }
-
             previousStitch = currentStitch
         }
 

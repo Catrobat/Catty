@@ -63,7 +63,6 @@ class ZigzagStitchPattern: StitchPatternProtocol {
     }
 
     func interpolateStitches(interpolationCount: Int, x: CGFloat, y: CGFloat, degrees: CGFloat) {
-
         if first {
             first = false
             addPointInDirection(x: firstPoint.x, y: firstPoint.y, degrees: degrees)
@@ -87,7 +86,7 @@ class ZigzagStitchPattern: StitchPatternProtocol {
         let xCoord = x - (width / 2) * CGFloat(sin(degreesToRadians(degrees: Float(degrees + 90))) * Float(direction))
         let yCoord = y - (width / 2) * CGFloat(cos(degreesToRadians(degrees: Float(degrees + 90))) * Float(direction))
         direction *= -1
-        stream.add(Stitch(atPosition: CGPoint(x: xCoord, y: yCoord)))
+        stream.add(Stitch(atPosition: CGPoint(x: xCoord, y: yCoord), withColor: self.stream.color))
     }
 
     func degreesToRadians(degrees: Float) -> Float {

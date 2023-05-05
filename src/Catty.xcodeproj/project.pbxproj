@@ -2070,6 +2070,11 @@
 		F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */; };
 		F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */; };
 		F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */; };
+		FE9E7F7729811AFB00C9598C /* StitchThreadColorBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9E7F7629811AFB00C9598C /* StitchThreadColorBrickTests.swift */; };
+		FEFCFB20297A9B940028CEB2 /* StitchThreadColorBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFCFB1F297A9B940028CEB2 /* StitchThreadColorBrick.swift */; };
+		FEFCFB22297A9F640028CEB2 /* StitchThreadColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFCFB21297A9F640028CEB2 /* StitchThreadColorCell.swift */; };
+		FEFCFB24297AA7290028CEB2 /* StitchThreadColorBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFCFB23297AA7290028CEB2 /* StitchThreadColorBrick+CBXMLHandler.swift */; };
+		FEFCFB29297C06B50028CEB2 /* StitchThreadColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFCFB28297C06B50028CEB2 /* StitchThreadColorBrick+Instruction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -4754,6 +4759,11 @@
 		F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalseFunction.swift; sourceTree = "<group>"; };
 		F511044FACC2C8E38A678BB4 /* chr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = chr; path = chr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FB40BD936AE254501FBA2E03 /* kn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = kn; path = kn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FE9E7F7629811AFB00C9598C /* StitchThreadColorBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StitchThreadColorBrickTests.swift; sourceTree = "<group>"; };
+		FEFCFB1F297A9B940028CEB2 /* StitchThreadColorBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StitchThreadColorBrick.swift; sourceTree = "<group>"; };
+		FEFCFB21297A9F640028CEB2 /* StitchThreadColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StitchThreadColorCell.swift; sourceTree = "<group>"; };
+		FEFCFB23297AA7290028CEB2 /* StitchThreadColorBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StitchThreadColorBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		FEFCFB28297C06B50028CEB2 /* StitchThreadColorBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StitchThreadColorBrick+Instruction.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5659,6 +5669,7 @@
 				4614B1CF2560856B004174AD /* StitchBrick.swift */,
 				057B182926DC8B6A00C47E60 /* StartRunningStitchBrick.swift */,
 				056677F227DE9C6B006B4477 /* StartZigzagStitchBrick.swift */,
+				FEFCFB1F297A9B940028CEB2 /* StitchThreadColorBrick.swift */,
 			);
 			path = Embroidery;
 			sourceTree = "<group>";
@@ -5671,6 +5682,7 @@
 				4614B1DC25608E8B004174AD /* StitchBrickCell.swift */,
 				057B182B26DC903500C47E60 /* StartRunningStitchBrickCell.swift */,
 				056677F427DEA012006B4477 /* StartZigzagStitchBrickCell.swift */,
+				FEFCFB21297A9F640028CEB2 /* StitchThreadColorCell.swift */,
 			);
 			path = Embroidery;
 			sourceTree = "<group>";
@@ -5692,6 +5704,7 @@
 				46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */,
 				0570883D2739CC6F00622D84 /* StartRunningStitchBrick+Instruction.swift */,
 				056677F627DEA772006B4477 /* StartZigzagStitchBrick+Instruction.swift */,
+				FEFCFB28297C06B50028CEB2 /* StitchThreadColorBrick+Instruction.swift */,
 			);
 			name = Embroidery;
 			path = PlayerEngine/Instructions/Embroidery;
@@ -5705,6 +5718,7 @@
 				46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */,
 				057B182F26DD0A3400C47E60 /* StartRunningStitchBrick+CBXMLHandler.swift */,
 				056677F827DF4C00006B4477 /* StartZigzagStitchBrick+CBXMLHandler.swift */,
+				FEFCFB23297AA7290028CEB2 /* StitchThreadColorBrick+CBXMLHandler.swift */,
 			);
 			path = Embroidery;
 			sourceTree = "<group>";
@@ -7648,6 +7662,7 @@
 				186AA34824830491001E38FD /* PenDownBrickTests.swift */,
 				186E991C2488FBDB00627E36 /* PenUpBrickTests.swift */,
 				46B94F9625791507007E5ABE /* StitchBrickTests.swift */,
+				FE9E7F7629811AFB00C9598C /* StitchThreadColorBrickTests.swift */,
 				18E83F842493C978003295DA /* PenClearBrickTests.swift */,
 				18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */,
 				18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */,
@@ -12349,6 +12364,7 @@
 				0594CE66275E567E007DC3F9 /* SewUpBrickTests.swift in Sources */,
 				187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */,
 				4C4778FE267C83F500CAF398 /* InternFormulaKeyboardAdapterTests.swift in Sources */,
+				FE9E7F7729811AFB00C9598C /* StitchThreadColorBrickTests.swift in Sources */,
 				4C1A596823FE9997001A78D2 /* CrashlyticsMock.swift in Sources */,
 				4C82265A213FA7A400F3D750 /* TouchManagerMock.swift in Sources */,
 				4CBF96BF2351B3EC0063D5FC /* ProjectTests.swift in Sources */,
@@ -12775,6 +12791,7 @@
 				05E6801E255B5DAA00D1E295 /* EmbroideryProtocol.swift in Sources */,
 				AA74F0BF1BC05FCE00D1E954 /* PointToBrickCell.m in Sources */,
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
+				FEFCFB20297A9B940028CEB2 /* StitchThreadColorBrick.swift in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
 				4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */,
@@ -12867,6 +12884,7 @@
 				46D0516524F814FE00A79155 /* SetRotationStyleBrick.swift in Sources */,
 				4C0F9F34204ADC4000E71B2D /* PreviousLookBrick.swift in Sources */,
 				92B46FA31BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m in Sources */,
+				FEFCFB22297A9F640028CEB2 /* StitchThreadColorCell.swift in Sources */,
 				4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */,
 				49519D3327DCE0EC00E32E88 /* SecondFacePositionXSensor.swift in Sources */,
 				057B183026DD0A3400C47E60 /* StartRunningStitchBrick+CBXMLHandler.swift in Sources */,
@@ -12969,6 +12987,7 @@
 				4C0F9F72204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */,
 				92BCDC871BF1FB1E00F9CB23 /* FirmataProtocol.swift in Sources */,
 				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
+				FEFCFB29297C06B50028CEB2 /* StitchThreadColorBrick+Instruction.swift in Sources */,
 				4CF0729420D66A7F00F93AB5 /* AltitudeSensor.swift in Sources */,
 				9218B2131CC4AB75007B4C60 /* UndoManager.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
@@ -13192,6 +13211,7 @@
 				592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */,
 				F4E6E592210E032000D86FE6 /* AsinFunction.swift in Sources */,
 				49949B412806EAD20073BF65 /* LeftShoulderXSensor.swift in Sources */,
+				FEFCFB24297AA7290028CEB2 /* StitchThreadColorBrick+CBXMLHandler.swift in Sources */,
 				AA74EE391BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift in Sources */,
 				AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */,
