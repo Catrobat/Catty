@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CA7698A91B0E4A97000D0340"
-               BuildableName = "Catty Tests.xctest"
+               BuildableName = "CattyTests.xctest"
                BlueprintName = "CattyTests"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>

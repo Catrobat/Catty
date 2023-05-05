@@ -22,6 +22,7 @@
 
 @objc
 class SelectButton: UIButton {
+    static let iconSize = CGFloat(22.0)
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -30,21 +31,25 @@ class SelectButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        var unselectedImage = UIImage(named: "unselected_button")
-        var selectedImage = UIImage(named: "selected_button")
-        unselectedImage = unselectedImage?.withRenderingMode(.alwaysTemplate)
-        selectedImage = selectedImage?.withRenderingMode(.alwaysTemplate)
+        let unselectedImage = UIImage(named: "circle")
+        let selectedImage = UIImage(named: "checkmark.circle.fill")
+        contentMode = .scaleAspectFit
+        tintAdjustmentMode = .normal
 
         setBackgroundImage(unselectedImage, for: .normal)
         setBackgroundImage(selectedImage, for: .selected)
-
-        tintColor = UIColor.globalTint
     }
 
     override func backgroundRect(forBounds bounds: CGRect) -> CGRect {
-        CGRect(x: self.frame.width / 4,
-               y: self.frame.height / 4,
-               width: self.frame.width / 2,
-               height: self.frame.height / 2)
+        CGRect(x: (self.frame.width - SelectButton.iconSize) / 2,
+               y: (self.frame.height - SelectButton.iconSize) / 2,
+               width: SelectButton.iconSize,
+               height: SelectButton.iconSize)
+    }
+
+    override open var isSelected: Bool {
+        didSet {
+            self.tintColor = isSelected ? UIColor.globalTint : UIColor.lightGray
+        }
     }
 }

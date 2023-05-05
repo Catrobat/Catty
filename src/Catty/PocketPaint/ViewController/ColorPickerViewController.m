@@ -83,8 +83,8 @@
 - (void)setupViews
 {
   NSArray *itemArray = [NSArray arrayWithObjects:
-                        [UIImage imageNamed:@"standardColors"],
-                        [UIImage imageNamed:@"sliderColors"], nil];
+                        [UIImage imageNamed:@"paintpalette"],
+                        [UIImage imageNamed:@"slider.horizontal.3"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.translatesAutoresizingMaskIntoConstraints = false;
   [self.view addSubview:self.viewChanger];

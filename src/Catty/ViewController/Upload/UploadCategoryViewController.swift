@@ -124,9 +124,11 @@ class UploadCategoryViewController: UIViewController {
 
             var selectedImageView = UIView()
             if let  checkImage = UIImage(named: "checkmark") {
-                selectedImageView = UIImageView(image: checkImage.withRenderingMode(.alwaysTemplate))
+                selectedImageView = UIImageView(image: checkImage)
             }
+            selectedImageView.contentMode = .scaleAspectFit
             selectedImageView.tintColor = UIColor.globalTint
+            selectedImageView.tintAdjustmentMode = .normal
             if selectedCategoryTag.contains(tag) {
                 selectedImageView.isHidden = false
             } else {
@@ -135,8 +137,8 @@ class UploadCategoryViewController: UIViewController {
             elemetView.addSubview(selectedImageView)
 
             selectedImageView.translatesAutoresizingMaskIntoConstraints = false
-            selectedImageView.heightAnchor.constraint(equalToConstant: 15).isActive = true
-            selectedImageView.widthAnchor.constraint(equalToConstant: 15).isActive = true
+            selectedImageView.heightAnchor.constraint(equalToConstant: 12).isActive = true
+            selectedImageView.widthAnchor.constraint(equalToConstant: 12).isActive = true
             selectedImageView.centerYAnchor.constraint(equalTo: categoryLabel.centerYAnchor).isActive = true
             selectedImageView.trailingAnchor.constraint(equalTo: elemetView.trailingAnchor, constant: -horizontalConstrainValue).isActive = true
 

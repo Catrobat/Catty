@@ -282,7 +282,7 @@
     [self.resizeViewer changeBorderWithColor:UIColor.greenColor];
     [self.resizeViewer showEditingHandles];
     [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(hideShowUserAction) userInfo:nil repeats:NO];
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:nil
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"doc.on.clipboard"]
                                                     text:kLocalizedPaintInserted];
     hud.destinationOpacity = UIDefines.bdkNotifyHUDDestinationOpacity;
     hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + UIDefines.bdkNotifyHUDCenterOffsetY);
@@ -295,7 +295,7 @@
 
 - (void)showStampAction
 {
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:UIDefines.bdkNotifyHUDCheckmarkImageName]
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"star.square.on.square"]
                                                     text:kLocalizedPaintStamped];
     hud.destinationOpacity = UIDefines.bdkNotifyHUDDestinationOpacity;
     hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + UIDefines.bdkNotifyHUDCenterOffsetY);
