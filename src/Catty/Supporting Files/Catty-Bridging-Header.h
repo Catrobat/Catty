@@ -159,6 +159,7 @@
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
 #import "UndoManager.h"
+#import "TimerLabel.h"
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes

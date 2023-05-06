@@ -59,7 +59,7 @@ extension SoundsTableViewController: UIDocumentPickerDelegate, UINavigationContr
             do {
                 let data = try Data.init(contentsOf: url)
                 try data.write(to: fileURL, options: .atomic)
-                self.showDownloadSoundAlert(sound)
+                self.add(sound)
             } catch {
                 self.showImportAlert(itemName: name)
             }

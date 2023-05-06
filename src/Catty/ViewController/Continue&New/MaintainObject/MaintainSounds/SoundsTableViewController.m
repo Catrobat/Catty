@@ -32,7 +32,6 @@
 #import "CBFileManager.h"
 #import "CBFileManager.h"
 #import "RuntimeImageCache.h"
-#import "SRViewController.h"
 #import "PlaceHolderView.h"
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
@@ -41,7 +40,6 @@
 @interface SoundsTableViewController () <AudioManagerDelegate,AVAudioPlayerDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (atomic, strong) Sound *currentPlayingSong;
-@property (atomic, strong) Sound *sound;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic,assign) BOOL isAllowed;
 @property (nonatomic,assign) BOOL deletionMode;
@@ -621,7 +619,7 @@
                      dispatch_async(dispatch_get_main_queue(), ^{
                          self.isAllowed = YES;
                          [self stopAllSounds];
-                         SRViewController *soundRecorderViewController;
+                         SoundRecorderViewController *soundRecorderViewController;
                          
                          soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
                          soundRecorderViewController.delegate = self;
@@ -715,63 +713,19 @@
 -(void)addSound:(Sound *)sound
 {
     if (self.isAllowed) {
-        Sound* recording =(Sound*)sound;
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@", [CBFileManager sharedManager].documentsDirectory, recording.fileName];
-        [self addSoundToObjectAction:recording];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", [CBFileManager sharedManager].documentsDirectory, sound.fileName];
+        [self addSoundToObjectAction:sound];
         NSError *error;
         [fileManager removeItemAtPath:filePath error:&error];
-        if (error) {
-            NSDebug(@"-.-");
-        }
         self.isAllowed = NO;
-
-    }
-    if (self.afterSafeBlock) {
-        self.afterSafeBlock(nil);
-    }
-    [self reloadData];
-}
-
-- (void)showDownloadSoundAlert:(Sound *)sound
-{
-    self.sound = sound;
-    [self saveSound];
-}
-
-- (void)showSaveSoundAlert:(Sound *)sound
-{
-    self.sound = sound;
-    [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         [self cancelPaintSave];
-     }]
-     addDefaultActionWithTitle:kLocalizedYes handler:^{
-         [self saveSound];
-     }] build]
-     showWithController:self];
-}
-
-
-- (void)saveSound
-{
-    if (self.sound) {
-        [self addSound:self.sound];
     }
     
     if (self.afterSafeBlock) {
         self.afterSafeBlock(nil);
     }
-}
-
-- (void)cancelPaintSave
-{
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, self.sound.fileName];
-    [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
-    if (self.afterSafeBlock) {
-        self.afterSafeBlock(nil);
-    }
+    
+    [self reloadData];
 }
 
 @end

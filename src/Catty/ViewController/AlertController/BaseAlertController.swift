@@ -54,7 +54,7 @@ final class CustomAlertController: UIAlertController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
 
         delegate?.viewWillDisappear?()
     }

@@ -27,10 +27,7 @@
 @class Sound;
 
 @protocol SoundDelegate <NSObject>
-
-- (void)showSaveSoundAlert:(Sound*)sound;
 - (void)addSound:(Sound *)sound;
-- (void)showDownloadSoundAlert:(Sound *)sound;
 @end
 
 
