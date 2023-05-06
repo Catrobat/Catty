@@ -353,6 +353,7 @@
 #define kLocalizedStartRunningStitch NSLocalizedString(@"Start running stitch with length", nil)
 #define kLocalizedStartZigzagStitch NSLocalizedString(@"Start zigzag stitch with length", nil)
 #define kLocalizedAndWidth NSLocalizedString(@"and width", nil)
+#define kLocalizedStartTripleStitch NSLocalizedString(@"Start triple stitch with length", nil)
 #define kLocalizedStitchThreadColor NSLocalizedString(@"Set thread color to", nil)
 #define kLocalizedSewUp NSLocalizedString(@"Sew up", @"literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric.")
 #define kLocalizedStopCurrentStitch NSLocalizedString(@"Stop current stitch", nil)

@@ -124,6 +124,7 @@
             StitchBrick(),
             StitchThreadColorBrick(),
             StartRunningStitchBrick(),
+            StartTripleStitchBrick(),
             SewUpBrick(),
             StopCurrentStitchBrick(),
             StartZigzagStitchBrick()
