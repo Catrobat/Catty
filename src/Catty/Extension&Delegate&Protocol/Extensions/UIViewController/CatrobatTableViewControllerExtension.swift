@@ -46,3 +46,30 @@ import Foundation
         })
     }
 }
+
+@objc extension CatrobatTableViewController {
+    func openAccountMenu() {
+        if StoreAuthenticator.isLoggedIn() {
+            DispatchQueue.main.async(execute: {
+                AlertControllerBuilder.actionSheet(title: UserDefaults.standard.string(forKey: NetworkDefines.kUsername))
+                    .addDestructiveAction(title: kLocalizedLogout, handler: { [weak self] in
+                        StoreAuthenticator.logout()
+                        self?.navigationItem.rightBarButtonItem?.image = self?.generateAccountImage()
+                    })
+                .addCancelAction(title: kLocalizedCancel, handler: nil)
+                .build().showWithController(self)
+            })
+        } else {
+            self.openLoginScreen()
+        }
+    }
+
+    func generateAccountImage() -> UIImage? {
+        if StoreAuthenticator.isLoggedIn(),
+           let initial = UserDefaults.standard.string(forKey: NetworkDefines.kUsername)?.uppercased().first {
+            return UIImage(named: "circle.fill#navbar")?.overlayText(String(initial), withFont: UIFont.boldSystemFont(ofSize: 16), andColor: UIColor.clear)
+        } else {
+            return UIImage(named: "person.crop.circle#navbar")
+        }
+    }
+}

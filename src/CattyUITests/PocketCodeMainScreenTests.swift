@@ -25,6 +25,7 @@ import XCTest
 class PocketCodeMainScreenTests: XCTestCase {
 
     public static let settingsButtonLabel = "Settings"
+    public static let accountButtonLabel = "Account"
 
     var app: XCUIApplication!
 
@@ -157,6 +158,20 @@ class PocketCodeMainScreenTests: XCTestCase {
         app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedOut"])
         app.tables.staticTexts[kLocalizedUploadProject].tap()
 
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedLogin]).exists)
+    }
+
+    func testAccountMenu() {
+        let app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedIn"])
+        app.navigationBars.buttons[PocketCodeMainScreenTests.accountButtonLabel].tap()
+        XCTAssert(app.staticTexts["testUsername"].exists)
+        XCTAssert(app.buttons[kLocalizedLogout].exists)
+
+        app.buttons[kLocalizedLogout].tap()
+        XCTAssertFalse(app.staticTexts["testUsername"].exists)
+        XCTAssertFalse(app.buttons[kLocalizedLogout].exists)
+
+        app.navigationBars.buttons[PocketCodeMainScreenTests.accountButtonLabel].tap()
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedLogin]).exists)
     }
 }

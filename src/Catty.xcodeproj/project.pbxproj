@@ -3352,9 +3352,9 @@
 		758FD262053C04755851BC4D /* ml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77A836DDE7C46D9275CE4812 /* ar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7B014D0E29E7122E004AA0E0 /* CattyTestplan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CattyTestplan.xctestplan; path = Catty.xcodeproj/CattyTestplan.xctestplan; sourceTree = "<group>"; };
 		7B014D0329E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.refresh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.success.refresh.json; sourceTree = "<group>"; };
 		7B014D0429E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.upgrade.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.success.upgrade.json; sourceTree = "<group>"; };
+		7B014D0E29E7122E004AA0E0 /* CattyTestplan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CattyTestplan.xctestplan; path = Catty.xcodeproj/CattyTestplan.xctestplan; sourceTree = "<group>"; };
 		7B09EB6529B1DF8200590F3D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7B09EB6629B1DF8200590F3D /* BaseAuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAuthenticationViewController.swift; sourceTree = "<group>"; };
 		7B09EB6729B1DF8200590F3D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };

@@ -115,9 +115,6 @@ import Foundation
 
         if StoreAuthenticator.isLoggedIn() {
             formItems.append([
-                FormItem(title: kLocalizedLogout, titleColor: .red, action: {
-                    self.logout()
-                }),
                 FormItem(title: kLocalizedDeleteAccount, titleColor: .red, action: {
                     self.deleteAccount()
                 })
@@ -209,11 +206,6 @@ import Foundation
 
     private func showAboutUs() {
         self.navigationController?.pushViewController(AboutPocketCodeTableViewController(), animated: true)
-    }
-
-    private func logout() {
-        StoreAuthenticator.logout()
-        self.navigationController?.popViewController(animated: true)
     }
 
     private func deleteAccount() {
