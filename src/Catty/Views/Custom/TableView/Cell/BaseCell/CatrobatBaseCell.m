@@ -41,9 +41,10 @@
     switch (self.accessoryType) {
         case UITableViewCellAccessoryDisclosureIndicator:
         case UITableViewCellAccessoryDetailDisclosureButton:
-            accessoryImage = [UIImage imageNamed:@"accessory"];
-            accessoryImage = [accessoryImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            accessoryImage = [UIImage imageNamed:@"chevron.right#accessory"];
             self.accessoryView = [[UIImageView alloc] initWithImage:accessoryImage];
+            self.accessoryView.contentMode = UIViewContentModeScaleAspectFit;
+            self.accessoryView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             self.accessoryView.tintColor = UIColor.utilityTint;
         default:
             break;

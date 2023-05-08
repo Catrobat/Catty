@@ -63,6 +63,7 @@
     self.tabBar.barTintColor = UIColor.tabBar;
     self.tabBar.barStyle = UIBarStyleDefault;
     self.tabBar.tintColor = UIColor.whiteGray;
+    self.tabBar.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     self.tabBar.unselectedItemTintColor = UIColor.tabTint;
     self.view.backgroundColor = UIColor.background;
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],

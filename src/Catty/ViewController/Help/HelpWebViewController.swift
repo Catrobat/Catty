@@ -242,13 +242,13 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         navigationController?.toolbar.barTintColor = UIColor.toolBar
         navigationController?.toolbar.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
 
-        let forward = UIBarButtonItem(image: UIImage(named: "webview_arrow_right"),
+        let forward = UIBarButtonItem(image: UIImage(named: "chevron.right"),
                                       style: .plain,
                                       target: self,
                                       action: #selector(HelpWebViewController.goForward(_:)))
         forward.isEnabled = webView?.canGoForward ?? false
 
-        let back = UIBarButtonItem(image: UIImage(named: "webview_arrow_left"),
+        let back = UIBarButtonItem(image: UIImage(named: "chevron.left"),
                                    style: .plain,
                                    target: self,
                                    action: #selector(HelpWebViewController.goBack(_:)))

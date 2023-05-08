@@ -312,7 +312,7 @@ import UIKit
         size = (size ?? "") + " MB"
 
         let informationArray = [views?.stringValue ?? "", uploaded, size, downloads?.stringValue ?? ""]
-        let informationTitleArray = [UIImage(named: "viewsIcon"), UIImage(named: "timeIcon"), UIImage(named: "sizeIcon"), UIImage(named: "downloadIcon")]
+        let informationTitleArray = [UIImage(named: "eye.circle.fill"), UIImage(named: "clock.fill"), UIImage(named: "doc.circle.fill"), UIImage(named: "arrow.down.circle.fill")]
 
         for (index, info) in informationArray.enumerated() {
             let titleIcon = self.getInformationTitleLabel(withTitle: informationTitleArray[index], atXPosition: type(of: self).inset, atYPosition: offset, andHeight: height)
@@ -351,6 +351,8 @@ import UIKit
     private func getInformationTitleLabel(withTitle icon: UIImage?, atXPosition xPosition: CGFloat, atYPosition yPosition: CGFloat, andHeight height: CGFloat) -> UIImageView {
         let titleInformation = UIImageView(frame: CGRect(x: xPosition, y: yPosition, width: 15, height: 15))
         titleInformation.image = icon
+        titleInformation.contentMode = .scaleAspectFit
+        titleInformation.tintAdjustmentMode = .normal
 
         return titleInformation
     }

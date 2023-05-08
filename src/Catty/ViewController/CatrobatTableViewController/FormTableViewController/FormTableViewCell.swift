@@ -87,15 +87,14 @@ class FormTableViewCell: UITableViewCell {
     }
 
     private func addTintedDisclosureIndicator() {
-        if #available(iOS 13.0, *) {
-            let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 12, weight: .bold)
-            let symbolImage = UIImage(systemName: "chevron.right",
-                                      withConfiguration: symbolConfiguration)
+        let image = UIImage(named: "chevron.right#accessory")
 
-            let imageView = UIImageView(image: symbolImage)
-            imageView.tintColor = .globalTint
-            self.accessoryView = imageView
-        }
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintAdjustmentMode = .normal
+        imageView.tintColor = UIColor.utilityTint
+
+        self.accessoryView = imageView
     }
 
     private func removeTintedDisclosureIndicator() {

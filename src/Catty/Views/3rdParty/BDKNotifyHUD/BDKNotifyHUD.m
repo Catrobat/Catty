@@ -114,6 +114,7 @@
     imageView.frame = frame;
     imageView = (UIImageView *)[self configureViewForCentering:imageView];
     _iconView = imageView;
+    _iconView.tintColor = UIColor.whiteColor;
 }
 
 - (void)setCurrentOpacity:(CGFloat)currentOpacity {

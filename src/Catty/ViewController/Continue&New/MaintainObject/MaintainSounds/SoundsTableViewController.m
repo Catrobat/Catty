@@ -287,8 +287,8 @@
     }
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     imageCell.indexPath = indexPath;
-    static NSString *playIconName = @"ic_media_play";
-    static NSString *stopIconName = @"ic_media_pause";
+    static NSString *playIconName = @"play.circle";
+    static NSString *stopIconName = @"stop.circle";
 
     // determine right icon, therefore check if this song is played currently
     NSString *rightIconName = playIconName;
@@ -312,6 +312,8 @@
     } else {
         imageCell.iconImageView.image = image;
     }
+
+    imageCell.iconImageView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
 
     imageCell.titleLabel.text = sound.name;
     imageCell.iconImageView.userInteractionEnabled = YES;
@@ -470,14 +472,14 @@
         BOOL isPlaying = sound.isPlaying;
         if (self.currentPlayingSong && self.currentPlayingSongCell) {
             self.currentPlayingSong.playing = NO;
-            self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+            self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"play.circle"];
         }
         self.currentPlayingSong = sound;
         self.currentPlayingSongCell = imageCell;
         self.currentPlayingSong.playing = (! isPlaying);
-        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"play.circle"];
         if (! isPlaying)
-            imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause"];
+            imageCell.iconImageView.image = [UIImage imageNamed:@"stop.circle"];
         
         // ASYNC !! lock lost here...
         // acquire new lock, because this part is executed asynchronously (!) on another thread
@@ -528,7 +530,7 @@
         self.currentPlayingSong = nil;
         self.currentPlayingSongCell = nil;
         
-        static NSString *playIconName = @"ic_media_play";
+        static NSString *playIconName = @"play.circle";
         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
         UIImage *image = [imageCache cachedImageForName:playIconName];
         
@@ -562,7 +564,7 @@
         self.currentPlayingSong = nil;
         self.currentPlayingSongCell = nil;
         
-        static NSString *playIconName = @"ic_media_play";
+        static NSString *playIconName = @"play.circle";
         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
         UIImage *image = [imageCache cachedImageForName:playIconName];
         
@@ -594,7 +596,7 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     if (self.currentPlayingSongCell) {
-        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"play.circle"];
     }
     self.currentPlayingSong.playing = NO;
     self.currentPlayingSong = nil;

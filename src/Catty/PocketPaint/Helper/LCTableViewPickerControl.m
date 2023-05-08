@@ -227,7 +227,6 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     cell.tintColor = UIColor.globalTint;
-    cell.imageView.backgroundColor = UIColor.background;
     cell.textLabel.textColor = UIColor.buttonTint;
     cell.backgroundColor = UIColor.background;
     UIView *selectionView = [UIView new];
@@ -237,12 +236,12 @@
     switch (item) {
         case brush:{
             [cell.textLabel setText:kLocalizedPaintBrush];
-            cell.imageView.image = [UIImage imageNamed:@"brush"];
+            cell.imageView.image = [UIImage imageNamed:@"paintbrush.pointed.fill"];
         }
             break;
         case eraser:{
             [cell.textLabel setText:kLocalizedPaintEraser];
-            cell.imageView.image = [UIImage imageNamed:@"eraser"];
+            cell.imageView.image = [UIImage imageNamed:@"eraser.fill"];
         }
             break;
         case resize:{
@@ -252,67 +251,70 @@
             break;
         case pipette:{
             [cell.textLabel setText:kLocalizedPaintPipette];
-            cell.imageView.image = [UIImage imageNamed:@"pipette"];
+            cell.imageView.image = [UIImage imageNamed:@"eyedropper"];
         }
             break;
         case mirror:{
             [cell.textLabel setText:kLocalizedPaintMirror];
-            cell.imageView.image = [UIImage imageNamed:@"mirror"];
+            cell.imageView.image = [UIImage imageNamed:@"trapezoid.and.line.vertical"];
         }
             break;
         case image:{
             [cell.textLabel setText:kLocalizedPaintImage];
-            cell.imageView.image = [UIImage imageNamed:@"image_select"];
+            cell.imageView.image = [UIImage imageNamed:@"photo"];
         }
             break;
         case line:{
             [cell.textLabel setText:kLocalizedPaintLine];
-            cell.imageView.image = [UIImage imageNamed:@"line"];
+            cell.imageView.image = [UIImage imageNamed:@"line.diagonal"];
         }
             break;
         case rectangle:{
             [cell.textLabel setText:kLocalizedPaintRect];
-            cell.imageView.image = [UIImage imageNamed:@"rect"];
+            cell.imageView.image = [UIImage imageNamed:@"square.dashed.inset.filled"];
         }
             break;
         case ellipse:{
             [cell.textLabel setText:kLocalizedPaintCircle];
-            cell.imageView.image = [UIImage imageNamed:@"circle"];
+            cell.imageView.image = [UIImage imageNamed:@"circle.dashed.inset.filled"];
         }
             break;
         case stamp:{
             [cell.textLabel setText:kLocalizedPaintStamp];
-            cell.imageView.image = [UIImage imageNamed:@"stamp"];
+            cell.imageView.image = [UIImage imageNamed:@"star.square.on.square"];
         }
             break;
         case rotate:{
             [cell.textLabel setText:kLocalizedPaintRotate];
-            cell.imageView.image = [UIImage imageNamed:@"rotate"];
+            cell.imageView.image = [UIImage imageNamed:@"rotate.right"];
         }
             break;
         case fillTool:{
             [cell.textLabel setText:kLocalizedPaintFill];
-            cell.imageView.image = [UIImage imageNamed:@"fill"];
+            cell.imageView.image = [UIImage imageNamed:@"oilcan.fill"];
         }
             break;
         case zoom:{
             [cell.textLabel setText:kLocalizedPaintZoom];
-            cell.imageView.image = [UIImage imageNamed:@"zoom"];
+            cell.imageView.image = [UIImage imageNamed:@"magnifyingglass"];
         }
             break;
         case pointer:{
             [cell.textLabel setText:kLocalizedPaintPointer];
-            cell.imageView.image = [UIImage imageNamed:@"pointer"];
+            cell.imageView.image = [UIImage imageNamed:@"dot.squareshape.split.2x2"];
         }
             break;
         case text:{
             [cell.textLabel setText:kLocalizedPaintTextTool];
-            cell.imageView.image = [UIImage imageNamed:@"text"];
+            cell.imageView.image = [UIImage imageNamed:@"textformat"];
         }
         default:
             break;
     }
     
+    cell.imageView.image = [UIImage imageWithImage:cell.imageView.image scaledToMaxWidth:25 maxHeight:25];
+    cell.imageView.image = [cell.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
     return cell;
 }
 

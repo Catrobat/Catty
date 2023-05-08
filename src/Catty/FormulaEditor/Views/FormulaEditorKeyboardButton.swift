@@ -137,7 +137,7 @@ class ArrowButton: FormulaEditorKeyboardButton {
     init() {
         super.init(touchDownFeedback: false)
         self.backgroundColor = .formulaEditorLargeButtons
-        let image = UIImage(named: "formulaEditorArrow")
+        let image = UIImage(named: "chevron.compact.down")
         self.setImage(image, for: .normal)
         self.tintColor = UIColor.white
     }

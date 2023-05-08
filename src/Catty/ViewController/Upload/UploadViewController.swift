@@ -207,10 +207,12 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         selectCategoriesValueLabel.bottomAnchor.constraint(equalTo: selectCategoryView.bottomAnchor, constant: 0).isActive = true
 
         var accessoryImageView = UIView()
-        if let  accessoryImage = UIImage(named: "accessory") {
-            accessoryImageView = UIImageView(image: accessoryImage.withRenderingMode(.alwaysTemplate))
+        if let  accessoryImage = UIImage(named: "chevron.right#accessory") {
+            accessoryImageView = UIImageView(image: accessoryImage)
         }
-        accessoryImageView.tintColor = .lightGray
+        accessoryImageView.contentMode = .scaleAspectFit
+        accessoryImageView.tintColor = UIColor.globalTint
+        accessoryImageView.tintAdjustmentMode = .normal
         self.view.addSubview(accessoryImageView)
 
         accessoryImageView.translatesAutoresizingMaskIntoConstraints = false

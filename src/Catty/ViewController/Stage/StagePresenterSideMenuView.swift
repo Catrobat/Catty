@@ -115,14 +115,14 @@ enum SideMenuButtonType {
     }
 
     private func setUpButtonsPortrait() {
-        let backButton = setupButton(imageName: "stage_dialog_button_back", selector: #selector(delegate?.stopAction))
+        let backButton = setupButton(imageName: "chevron.left", selector: #selector(delegate?.stopAction))
         backButton.center = self.center
         backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
 
         let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction))
         backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 0).isActive = true
 
-        let screenshotButton = setupButton(imageName: "stage_dialog_button_screenshot", selector: #selector(delegate?.takeScreenshotAction))
+        let screenshotButton = setupButton(imageName: "camera.viewfinder", selector: #selector(delegate?.takeScreenshotAction))
         let restartLabel = setupLabel(title: kLocalizedRestart, selector: #selector(delegate?.restartAction))
 
         if embroidery == true {
@@ -136,26 +136,26 @@ enum SideMenuButtonType {
             restartLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         }
 
-        let restartButton = setupButton(imageName: "stage_dialog_button_restart", selector: #selector(delegate?.restartAction))
+        let restartButton = setupButton(imageName: "arrow.counterclockwise", selector: #selector(delegate?.restartAction))
         restartButton.bottomAnchor.constraint(equalTo: restartLabel.topAnchor, constant: 0).isActive = true
 
         let continueLabel = setupLabel(title: kLocalizedContinue, selector: #selector(delegate?.continueAction))
         continueLabel.bottomAnchor.constraint(equalTo: restartButton.topAnchor, constant: marginTopBottom * -1).isActive = true
 
-        let continueButton = setupButton(imageName: "stage_dialog_button_continue", selector: #selector(delegate?.continueAction))
+        let continueButton = setupButton(imageName: "chevron.right", selector: #selector(delegate?.continueAction))
         continueButton.bottomAnchor.constraint(equalTo: continueLabel.topAnchor, constant: 0).isActive = true
 
         let screenshotLabel = setupLabel(title: kLocalizedPreview, selector: #selector(delegate?.takeScreenshotAction))
         screenshotLabel.topAnchor.constraint(equalTo: screenshotButton.bottomAnchor, constant: 0).isActive = true
 
-        let axesButton = setupButton(imageName: "stage_dialog_button_toggle_axis", selector: #selector(delegate?.showHideAxisAction))
+        let axesButton = setupButton(imageName: "arrow.up.and.down.and.arrow.left.and.right", selector: #selector(delegate?.showHideAxisAction))
         axesButton.topAnchor.constraint(equalTo: screenshotLabel.bottomAnchor, constant: marginTopBottom).isActive = true
 
         let axesLabel = setupLabel(title: kLocalizedAxes, selector: #selector(delegate?.showHideAxisAction))
         axesLabel.topAnchor.constraint(equalTo: axesButton.bottomAnchor, constant: 0).isActive = true
 
         if embroidery {
-            let shareButton = setupButton(imageName: "square.and.arrow.up.reg", selector: #selector(delegate?.shareDSTAction))
+            let shareButton = setupButton(imageName: "square.and.arrow.up", selector: #selector(delegate?.shareDSTAction))
             shareButton.topAnchor.constraint(equalTo: axesLabel.bottomAnchor, constant: marginTopBottom).isActive = true
 
             let shareLabel = setupLabel(title: kLocalizedCategoryEmbroidery, selector: #selector(delegate?.shareDSTAction))
@@ -166,7 +166,7 @@ enum SideMenuButtonType {
         aspectRatioLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (marginTopBottom) * -1).isActive = true
         self.aspectRatioLabel = aspectRatioLabel
 
-        let aspectRatioButton = setupButton(imageName: "stage_dialog_button_aspect_ratio", selector: #selector(self.aspectRatioAction), target: self)
+        let aspectRatioButton = setupButton(imageName: "arrow.up.left.and.arrow.down.right", selector: #selector(self.aspectRatioAction), target: self)
         aspectRatioButton.bottomAnchor.constraint(equalTo: aspectRatioLabel.topAnchor, constant: 0).isActive = true
         self.aspectRatioButton = aspectRatioButton
     }
@@ -175,7 +175,7 @@ enum SideMenuButtonType {
         if embroidery {
             self.landscapeMultiplier = 1.7
         }
-        let backButton = setupButton(imageName: "stage_dialog_button_back", selector: #selector(delegate?.stopAction), type: .landscapeLarge)
+        let backButton = setupButton(imageName: "chevron.left", selector: #selector(delegate?.stopAction), type: .landscapeLarge)
         if #available(iOS 11.0, *) {
             backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
         } else {
@@ -185,11 +185,11 @@ enum SideMenuButtonType {
         let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction), type: .landscapeLarge)
         backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor).isActive = true
 
-        let continueButton = setupButton(imageName: "stage_dialog_button_continue", selector: #selector(delegate?.continueAction), type: .landscapeLarge)
+        let continueButton = setupButton(imageName: "chevron.right", selector: #selector(delegate?.continueAction), type: .landscapeLarge)
 
         let continueLabel = setupLabel(title: kLocalizedContinue, selector: #selector(delegate?.continueAction), type: .landscapeLarge)
 
-        let restartButton = setupButton(imageName: "stage_dialog_button_restart", selector: #selector(delegate?.restartAction), type: .landscapeLarge)
+        let restartButton = setupButton(imageName: "arrow.counterclockwise", selector: #selector(delegate?.restartAction), type: .landscapeLarge)
 
         let restartLabel = setupLabel(title: kLocalizedRestart, selector: #selector(delegate?.restartAction), type: .landscapeLarge)
 
@@ -199,7 +199,7 @@ enum SideMenuButtonType {
             restartButton.topAnchor.constraint(equalTo: self.centerYAnchor, constant: marginTopBottom * -1).isActive = true
             restartLabel.topAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: 0).isActive = true
 
-            let shareButton = setupButton(imageName: "square.and.arrow.up.reg", selector: #selector(delegate?.shareDSTAction), type: .landscapeLarge)
+            let shareButton = setupButton(imageName: "square.and.arrow.up", selector: #selector(delegate?.shareDSTAction), type: .landscapeLarge)
             shareButton.topAnchor.constraint(equalTo: restartLabel.bottomAnchor, constant: marginLabel * 3).isActive = true
 
             let shareLabel = setupLabel(title: kLocalizedCategoryEmbroidery, selector: #selector(delegate?.shareDSTAction), type: .landscapeLarge)
@@ -211,7 +211,7 @@ enum SideMenuButtonType {
             restartLabel.topAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: marginLabel).isActive = true
         }
 
-        let axesButton = setupButton(imageName: "stage_dialog_button_toggle_axis", selector: #selector(delegate?.showHideAxisAction), type: .landscapeSmall)
+        let axesButton = setupButton(imageName: "arrow.up.and.down.and.arrow.left.and.right", selector: #selector(delegate?.showHideAxisAction), type: .landscapeSmall)
         axesButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginLabel * 5).isActive = true
 
         if hideAspectRatio() {
@@ -220,11 +220,11 @@ enum SideMenuButtonType {
             axesButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         }
 
-        let screenshotButton = setupButton(imageName: "stage_dialog_button_screenshot", selector: #selector(delegate?.takeScreenshotAction), type: .landscapeSmall)
+        let screenshotButton = setupButton(imageName: "camera.viewfinder", selector: #selector(delegate?.takeScreenshotAction), type: .landscapeSmall)
         screenshotButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginLabel * 5).isActive = true
         screenshotButton.rightAnchor.constraint(equalTo: axesButton.leftAnchor, constant: marginTopBottom * -1).isActive = true
 
-        let aspectRatioButton = setupButton(imageName: "stage_dialog_button_aspect_ratio", selector: #selector(self.aspectRatioActionLandscape), target: self, type: .landscapeSmall)
+        let aspectRatioButton = setupButton(imageName: "arrow.up.left.and.arrow.down.right", selector: #selector(self.aspectRatioActionLandscape), target: self, type: .landscapeSmall)
         aspectRatioButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: marginLabel * 5).isActive = true
         aspectRatioButton.leftAnchor.constraint(equalTo: axesButton.rightAnchor, constant: marginTopBottom * 1).isActive = true
         self.aspectRatioButton = aspectRatioButton
@@ -236,10 +236,10 @@ enum SideMenuButtonType {
 
         if self.aspectRatioLabelLandscape == kLocalizedMaximize {
             self.aspectRatioLabelLandscape = kLocalizedMinimize
-            changeImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
+            changeImage("arrow.down.right.and.arrow.up.left", for: aspectRatioButton)
          } else {
             self.aspectRatioLabelLandscape = kLocalizedMaximize
-            changeImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
+            changeImage("arrow.up.left.and.arrow.down.right", for: aspectRatioButton)
          }
 
         self.delegate?.aspectRatioAction()
@@ -250,10 +250,10 @@ enum SideMenuButtonType {
 
         if aspectRatioLabel.currentTitle == kLocalizedMaximize {
             aspectRatioLabel.setTitle(kLocalizedMinimize, for: .normal)
-            changeImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
+            changeImage("arrow.down.right.and.arrow.up.left", for: aspectRatioButton)
          } else {
             aspectRatioLabel.setTitle(kLocalizedMaximize, for: .normal)
-            changeImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
+            changeImage("arrow.up.left.and.arrow.down.right", for: aspectRatioButton)
          }
 
         self.delegate?.aspectRatioAction()
@@ -265,10 +265,10 @@ enum SideMenuButtonType {
         self.aspectRatioLabel?.removeFromSuperview()
         if project.header.screenMode == kCatrobatHeaderScreenModeMaximize {
             self.aspectRatioLabelLandscape = kLocalizedMinimize
-            setupImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
+            setupImage("arrow.down.right.and.arrow.up.left", for: aspectRatioButton)
         } else {
             self.aspectRatioLabelLandscape = kLocalizedMaximize
-            setupImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
+            setupImage("arrow.up.left.and.arrow.down.right", for: aspectRatioButton)
         }
 
         if hideAspectRatio() {
@@ -283,10 +283,10 @@ enum SideMenuButtonType {
 
         if project.header.screenMode == kCatrobatHeaderScreenModeMaximize {
             aspectRatioLabel.setTitle(kLocalizedMinimize, for: .normal)
-            setupImage("stage_dialog_button_aspect_ratio_close", for: aspectRatioButton)
+            setupImage("arrow.down.right.and.arrow.up.left", for: aspectRatioButton)
         } else {
             aspectRatioLabel.setTitle(kLocalizedMaximize, for: .normal)
-            setupImage("stage_dialog_button_aspect_ratio", for: aspectRatioButton)
+            setupImage("arrow.up.left.and.arrow.down.right", for: aspectRatioButton)
         }
 
         if hideAspectRatio() {
@@ -394,10 +394,19 @@ enum SideMenuButtonType {
             }
         }
 
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant), false, 0.0)
+        let imageViewWidth = button.frame.size.width / dividingConstant
+        let imageViewHeight = button.frame.size.height / dividingConstant
 
-        let image = UIImage(named: imageName)
-        image?.draw(in: CGRect(x: 0, y: 0, width: button.frame.size.width / dividingConstant, height: button.frame.size.width / dividingConstant))
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: imageViewWidth, height: imageViewHeight), false, 0.0)
+
+        if let image = UIImage(named: imageName) {
+            let imageAspectRatio = image.size.width / image.size.height
+            if imageAspectRatio < 1.0 {
+                image.draw(in: CGRect(x: (imageViewWidth - (imageAspectRatio * imageViewWidth)) / 2, y: 0, width: imageAspectRatio * imageViewWidth, height: imageViewHeight))
+            } else {
+                image.draw(in: CGRect(x: 0, y: (imageViewHeight - (imageAspectRatio * imageViewHeight)) / 2, width: imageViewWidth, height: CGFloat(1.0) / imageAspectRatio * imageViewHeight))
+            }
+        }
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

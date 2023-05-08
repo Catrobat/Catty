@@ -144,18 +144,18 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                   kLocalizedCatrobatCommunity,
                   kLocalizedUploadProject, nil];
 
-    self.imageNames = [[NSArray alloc] initWithObjects:UIDefines.menuImageNameContinue, UIDefines.menuImageNameNew, UIDefines.menuImageNameProjects, UIDefines.menuImageNameHelp, UIDefines.menuImageNameExplore, UIDefines.menuImageNameUpload, nil];
+    self.imageNames = [[NSArray alloc] initWithObjects: @"", UIDefines.menuImageNameNew, UIDefines.menuImageNameProjects, UIDefines.menuImageNameHelp, UIDefines.menuImageNameExplore, UIDefines.menuImageNameUpload, nil];
 }
 
 - (void)initNavigationBar
 {
     self.navigationItem.title = kLocalizedPocketCode;
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.navTint };
-}
-
-- (IBAction)openSettings:(id)sender
-{
-    [self infoPressed:sender];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"gearshape.fill#navbar"]
+                                                                             style: UIBarButtonItemStylePlain
+                                                                            target: self
+                                                                            action: @selector(openSettings)];
+    self.navigationItem.leftBarButtonItem.accessibilityIdentifier = @"Settings";
 }
 
 #pragma mark - privacy policy
@@ -176,7 +176,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 }
 
 #pragma mark - actions
-- (void)infoPressed:(id)sender
+- (void)openSettings
 {
     SettingsTableViewController *sTVC = [SettingsTableViewController new];
     [self.navigationController pushViewController:sTVC animated:YES];
@@ -325,8 +325,10 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         }];
         
     } else {
-        cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+        UIImage *iconImage = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+        cell.iconImageView.image = [iconImage imageWithAlignmentRectInsets:UIEdgeInsetsMake(-UIDefines.menuImagePadding, -UIDefines.menuImagePadding, -UIDefines.menuImagePadding, -UIDefines.menuImagePadding)];
         cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        cell.iconImageView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     }
     
 }

@@ -116,9 +116,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UINavigationBar.appearance().barTintColor = UIColor.navBar
         UINavigationBar.appearance().tintColor = UIColor.navTint
+        UINavigationBar.appearance().tintAdjustmentMode = .normal
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navText]
         UINavigationBar.appearance().barStyle = UIBarStyle.black
         self.window?.tintColor = UIColor.globalTint
+        self.window?.tintAdjustmentMode = .normal
     }
 
     func setDefaultUserDefaults(defaults: UserDefaults) {
