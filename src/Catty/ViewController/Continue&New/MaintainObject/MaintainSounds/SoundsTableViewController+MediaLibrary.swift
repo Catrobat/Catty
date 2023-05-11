@@ -55,7 +55,7 @@ extension SoundsTableViewController: MediaLibraryViewControllerImportDelegate {
             let sound = Sound(name: itemName, fileName: fileURL.lastPathComponent)
             do {
                 try data.write(to: fileURL, options: .atomic)
-                self.showDownloadSoundAlert(sound)
+                self.add(sound)
             } catch {
                 self.showImportAlert(itemName: itemName)
             }

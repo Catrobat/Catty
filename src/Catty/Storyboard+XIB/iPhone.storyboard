@@ -1528,7 +1528,7 @@
         <!--SoundRecorder-->
         <scene sceneID="glL-eY-bAy">
             <objects>
-                <viewController storyboardIdentifier="SoundRecorder" id="lwW-9d-q7k" userLabel="SoundRecorder" customClass="SRViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SoundRecorder" id="lwW-9d-q7k" userLabel="SoundRecorder" customClass="SoundRecorderViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IJq-Qo-cn4"/>
                         <viewControllerLayoutGuide type="bottom" id="fIn-tw-1Zh"/>
@@ -1543,12 +1543,11 @@
                                     <constraint firstAttribute="width" constant="200" id="5M3-h7-vWe"/>
                                     <constraint firstAttribute="width" secondItem="JwC-96-opT" secondAttribute="height" multiplier="1:1" id="Flj-5s-MHG"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="mic.circle">
+                                <state key="normal">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <state key="selected" backgroundImage="pause.circle"/>
                                 <connections>
-                                    <action selector="recordClicked" destination="lwW-9d-q7k" eventType="touchUpInside" id="a9x-QK-vcn"/>
+                                    <action selector="recordButtonPressed:" destination="lwW-9d-q7k" eventType="touchUpInside" id="Av9-Ch-sQg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDu-IA-6xb" customClass="TimerLabel">
@@ -1557,6 +1556,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1Cn-aR-4ha">
+                                <rect key="frame" x="163.5" y="458.5" width="48" height="4"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -1564,23 +1566,19 @@
                             <constraint firstItem="uDu-IA-6xb" firstAttribute="centerX" secondItem="jIJ-1a-DdX" secondAttribute="centerX" id="1DJ-Js-8hE"/>
                             <constraint firstItem="JwC-96-opT" firstAttribute="centerX" secondItem="jIJ-1a-DdX" secondAttribute="centerX" id="Fjx-b1-sNW"/>
                             <constraint firstItem="JwC-96-opT" firstAttribute="centerY" secondItem="jIJ-1a-DdX" secondAttribute="centerY" id="Ife-fa-6JC"/>
+                            <constraint firstItem="1Cn-aR-4ha" firstAttribute="centerX" secondItem="jIJ-1a-DdX" secondAttribute="centerX" id="K8Y-s6-TTJ"/>
                             <constraint firstItem="JwC-96-opT" firstAttribute="top" secondItem="uDu-IA-6xb" secondAttribute="bottom" constant="25" id="Ufr-ZF-tji"/>
+                            <constraint firstItem="1Cn-aR-4ha" firstAttribute="width" secondItem="uDu-IA-6xb" secondAttribute="width" id="hMZ-My-wJ2"/>
+                            <constraint firstItem="1Cn-aR-4ha" firstAttribute="top" secondItem="JwC-96-opT" secondAttribute="bottom" constant="25" id="qyo-fA-bEd"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="oiC-0f-8Wa" appends="YES" id="wbs-bF-BX9"/>
-                        </connections>
                     </view>
                     <connections>
-                        <outlet property="record" destination="JwC-96-opT" id="WAj-Vw-xK0"/>
+                        <outlet property="dbMeter" destination="1Cn-aR-4ha" id="IEz-Rt-14i"/>
+                        <outlet property="recordButton" destination="JwC-96-opT" id="Ssz-6a-anc"/>
                         <outlet property="timerLabel" destination="uDu-IA-6xb" id="eaM-BU-hV8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctC-SX-B8t" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="oiC-0f-8Wa">
-                    <connections>
-                        <action selector="recording:" destination="lwW-9d-q7k" id="Cbx-yX-hhl"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-465" y="-3156.3380281690138"/>
         </scene>
@@ -2173,8 +2171,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="list.star" width="24.599599838256836" height="20.172100067138672"/>
-        <image name="mic.circle" width="24.902299880981445" height="24.914600372314453"/>
-        <image name="pause.circle" width="24.902299880981445" height="24.914600372314453"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
