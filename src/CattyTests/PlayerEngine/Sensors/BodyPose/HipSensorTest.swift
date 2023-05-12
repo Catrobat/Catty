@@ -35,7 +35,6 @@ class HipSensorTest: XCTestCase {
         super.setUp()
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
-        self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
         self.hipXSensors.append(LeftHipXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
         self.hipXSensors.append(RightHipXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
         self.hipYSensors.append(LeftHipYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))

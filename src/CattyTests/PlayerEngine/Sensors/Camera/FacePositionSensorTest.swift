@@ -35,7 +35,6 @@ final class FacePositionSensorTest: XCTestCase {
         super.setUp()
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
-        self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
         self.facePositionXSensors.append(FacePositionXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
         self.facePositionXSensors.append(SecondFacePositionXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
         self.facePositionYSensors.append(FacePositionYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))

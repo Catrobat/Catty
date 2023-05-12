@@ -72,18 +72,11 @@ final class FaceSizeSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for faceIndex in 0..<VisualDetectionManager.maxFaceCount {
-            let frameWidth = 400
-            let scaleFactor = Double(self.stageSize.width) / Double(frameWidth)
-            self.cameraManagerMock.visualDetectionFrameSize = CGSize(width: frameWidth, height: 700)
-
             XCTAssertEqual(0, faceSizeSensors[faceIndex].convertToStandardized(rawValue: 0), accuracy: Double.epsilon)
-            XCTAssertEqual(0.5 * scaleFactor * 100, faceSizeSensors[faceIndex].convertToStandardized(rawValue: 0.5), accuracy: Double.epsilon)
+            XCTAssertEqual(50, faceSizeSensors[faceIndex].convertToStandardized(rawValue: 0.5), accuracy: Double.epsilon)
             XCTAssertEqual(100, faceSizeSensors[faceIndex].convertToStandardized(rawValue: 1), accuracy: Double.epsilon)
             XCTAssertEqual(0, faceSizeSensors[faceIndex].convertToStandardized(rawValue: -20), accuracy: Double.epsilon)
             XCTAssertEqual(100, faceSizeSensors[faceIndex].convertToStandardized(rawValue: 150), accuracy: Double.epsilon)
-
-            self.cameraManagerMock.visualDetectionFrameSize = nil
-            XCTAssertEqual(type(of: faceSizeSensors[faceIndex]).defaultRawValue, faceSizeSensors[faceIndex].convertToStandardized(rawValue: 20), accuracy: Double.epsilon)
         }
     }
 

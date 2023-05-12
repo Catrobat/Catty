@@ -30,12 +30,10 @@ class XOfObjectWithIDFunction: SingleParameterDoubleFunction {
     static let requiredResource = ResourceType.objectRecognition
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageHeight: Double?
     let stageWidth: Double?
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
-        self.stageHeight = Double(stageSize.height)
         self.stageWidth = Double(stageSize.width)
     }
 
@@ -50,9 +48,7 @@ class XOfObjectWithIDFunction: SingleParameterDoubleFunction {
     func value(parameter: AnyObject?) -> Double {
         guard let idAsDouble = parameter as? Double,
               let visualDetectionManager = self.getVisualDetectionManager(),
-              let stageHeight = self.stageHeight,
-              let stageWidth = self.stageWidth,
-              let frameHeight = self.getVisualDetectionManager()?.visualDetectionFrameSize?.height
+              let stageWidth = self.stageWidth
         else { return type(of: self).defaultValue }
 
         let id = Int(idAsDouble)
@@ -63,8 +59,7 @@ class XOfObjectWithIDFunction: SingleParameterDoubleFunction {
         let boundingBox = visualDetectionManager.objectRecognitions[id].boundingBox
         let objectPositionX = boundingBox.origin.x + boundingBox.width / 2.0
 
-        let scaledPreviewWidthRatio = stageHeight / frameHeight
-        return (stageWidth * objectPositionX - stageWidth / 2.0) * scaledPreviewWidthRatio
+        return stageWidth * objectPositionX - stageWidth / 2.0
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {

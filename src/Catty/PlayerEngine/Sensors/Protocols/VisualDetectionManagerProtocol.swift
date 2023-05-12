@@ -28,7 +28,6 @@ protocol VisualDetectionManagerProtocol {
     var facePositionXRatio: [Double?] { get }
     var facePositionYRatio: [Double?] { get }
     var faceSizeRatio: [Double?] { get }
-    var visualDetectionFrameSize: CGSize? { get }
     var faceLandmarkPositionRatioDictionary: [String: Double] { get }
     var bodyPosePositionRatioDictionary: [String: Double] { get }
     var handPosePositionRatioDictionary: [String: Double] { get }
@@ -40,6 +39,7 @@ protocol VisualDetectionManagerProtocol {
     var textBlockLanguageCode: [String] { get }
     var objectRecognitions: [VNRecognizedObjectObservation] { get }
 
+    func setStage(_ stage: Stage?)
     func start()
     func startFaceDetection()
     func startHandPoseDetection()
