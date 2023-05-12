@@ -67,14 +67,10 @@ final class NoseSensorTest: XCTestCase {
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: noseXSensor).defaultRawValue, noseXSensor.convertToStandardized(rawValue: 0))
-
         XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), noseXSensor.convertToStandardized(rawValue: 0.02))
         XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), noseXSensor.convertToStandardized(rawValue: 0.45))
         XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), noseXSensor.convertToStandardized(rawValue: 0.93))
         XCTAssertEqual(Double(stageSize.width / 2), noseXSensor.convertToStandardized(rawValue: 1.0))
-
-        XCTAssertEqual(type(of: noseYSensor).defaultRawValue, noseYSensor.convertToStandardized(rawValue: 0))
 
         XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), noseYSensor.convertToStandardized(rawValue: 0.01))
         XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), noseYSensor.convertToStandardized(rawValue: 0.4))
@@ -85,15 +81,17 @@ final class NoseSensorTest: XCTestCase {
     func testStandardizedValue() {
         var convertToStandardizedValue = noseXSensor.convertToStandardized(rawValue: noseXSensor.rawValue(landscapeMode: false))
         var standardizedValue = noseXSensor.standardizedValue(landscapeMode: false)
+        var convertToStandardizedValueLandscape = noseXSensor.convertToStandardized(rawValue: noseXSensor.rawValue(landscapeMode: true))
         var standardizedValueLandscape = noseXSensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
 
         convertToStandardizedValue = noseYSensor.convertToStandardized(rawValue: noseYSensor.rawValue(landscapeMode: false))
         standardizedValue = noseYSensor.standardizedValue(landscapeMode: false)
+        convertToStandardizedValueLandscape = noseYSensor.convertToStandardized(rawValue: noseYSensor.rawValue(landscapeMode: true))
         standardizedValueLandscape = noseYSensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
     }
 
     func testTag() {

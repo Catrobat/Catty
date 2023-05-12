@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TextBlockXFunction: SingleParameterDoubleFunction {
+class TextBlockXFunction: SingleParameterDoubleLandscapeFunction {
 
     static let tag = "TEXT_BLOCK_X"
     static let name = kUIFEFunctionTextBlockX
@@ -30,10 +30,12 @@ class TextBlockXFunction: SingleParameterDoubleFunction {
     static let requiredResource = ResourceType.textRecognition
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageWidth: Double?
+    let stageSize: CGSize
+    var stageWidth: Double
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
+        self.stageSize = stageSize
         self.stageWidth = Double(stageSize.width)
     }
 
@@ -45,10 +47,9 @@ class TextBlockXFunction: SingleParameterDoubleFunction {
         .number(defaultValue: 1)
     }
 
-    func value(parameter: AnyObject?) -> Double {
+    func value(parameter: AnyObject?, landscapeMode: Bool) -> Double {
         guard let textBlockNumberAsDouble = parameter as? Double,
-              let visualDetectionManager = self.getVisualDetectionManager(),
-              let stageWidth = self.stageWidth
+              let visualDetectionManager = self.getVisualDetectionManager()
         else { return type(of: self).defaultValue }
 
         let textBlockNumber = Int(textBlockNumberAsDouble)
@@ -58,6 +59,7 @@ class TextBlockXFunction: SingleParameterDoubleFunction {
 
         let textBlockPositionX = visualDetectionManager.textBlockPosition[textBlockNumber - 1].x
 
+        stageWidth = Double(landscapeMode ? stageSize.height : stageSize.width)
         return stageWidth * textBlockPositionX - stageWidth / 2.0
     }
 

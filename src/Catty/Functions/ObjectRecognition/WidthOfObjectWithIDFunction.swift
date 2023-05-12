@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class WidthOfObjectWithIDFunction: SingleParameterDoubleFunction {
+class WidthOfObjectWithIDFunction: SingleParameterDoubleLandscapeFunction {
 
     static let tag = "WIDTH_OF_OBJECT_WITH_ID"
     static let name = kUIFEFunctionWidthOfObjectWithID
@@ -30,10 +30,12 @@ class WidthOfObjectWithIDFunction: SingleParameterDoubleFunction {
     static let requiredResource = ResourceType.objectRecognition
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageWidth: Double?
+    let stageSize: CGSize
+    var stageWidth: Double
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
+        self.stageSize = stageSize
         self.stageWidth = Double(stageSize.width)
     }
 
@@ -45,10 +47,9 @@ class WidthOfObjectWithIDFunction: SingleParameterDoubleFunction {
         .number(defaultValue: 1)
     }
 
-    func value(parameter: AnyObject?) -> Double {
+    func value(parameter: AnyObject?, landscapeMode: Bool) -> Double {
         guard let idAsDouble = parameter as? Double,
-              let visualDetectionManager = self.getVisualDetectionManager(),
-              let stageWidth = self.stageWidth
+              let visualDetectionManager = self.getVisualDetectionManager()
         else { return type(of: self).defaultValue }
 
         let id = Int(idAsDouble)
@@ -57,6 +58,8 @@ class WidthOfObjectWithIDFunction: SingleParameterDoubleFunction {
         }
 
         let boundingBoxWidth = visualDetectionManager.objectRecognitions[id].boundingBox.width
+
+        stageWidth = Double(landscapeMode ? stageSize.height : stageSize.width)
         return stageWidth * boundingBoxWidth
     }
 

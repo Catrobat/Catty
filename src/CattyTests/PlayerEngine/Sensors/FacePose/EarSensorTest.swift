@@ -77,8 +77,6 @@ final class EarSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for earSensor in earXSensors {
-            XCTAssertEqual(type(of: earSensor).defaultRawValue, earSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), earSensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), earSensor.convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), earSensor.convertToStandardized(rawValue: 0.93))
@@ -86,8 +84,6 @@ final class EarSensorTest: XCTestCase {
         }
 
         for earSensor in earYSensors {
-            XCTAssertEqual(type(of: earSensor).defaultRawValue, earSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), earSensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), earSensor.convertToStandardized(rawValue: 0.4))
             XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), earSensor.convertToStandardized(rawValue: 0.95))
@@ -99,9 +95,10 @@ final class EarSensorTest: XCTestCase {
         for earSensor in earXSensors + earYSensors {
             let convertToStandardizedValue = earSensor.convertToStandardized(rawValue: earSensor.rawValue(landscapeMode: false))
             let standardizedValue = earSensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = earSensor.convertToStandardized(rawValue: earSensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = earSensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 

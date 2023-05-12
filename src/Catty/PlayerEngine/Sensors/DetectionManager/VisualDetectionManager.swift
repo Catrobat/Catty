@@ -238,38 +238,47 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
         return true
     }
 
-    func cropVideoBuffer(inputBuffer: CVPixelBuffer) -> CVPixelBuffer {
+    func cropVideoBuffer(inputBuffer: CVPixelBuffer, isLandscape: Bool) -> CVPixelBuffer {
         CVPixelBufferLockBaseAddress(inputBuffer, .readOnly)
         guard let baseAddress = CVPixelBufferGetBaseAddress(inputBuffer) else { return inputBuffer }
         let baseAddressStart = baseAddress.assumingMemoryBound(to: UInt8.self)
         let bytesPerRow = CVPixelBufferGetBytesPerRow(inputBuffer)
-
         let pixelFormat = CVPixelBufferGetPixelFormatType(inputBuffer)
         let pixelBufferWidth = CGFloat(CVPixelBufferGetWidth(inputBuffer))
         let pixelBufferHeight = CGFloat(CVPixelBufferGetHeight(inputBuffer))
+        guard let stageWidth = self.stage?.frame.width else { return inputBuffer }
         guard let stageHeight = self.stage?.frame.height else { return inputBuffer }
+        var newBuffer: CVPixelBuffer!
+        var croppedWidth = pixelBufferWidth
+        var croppedHeight = pixelBufferHeight
+        var cropX = 0
+        var cropY = 0
 
-        let croppedWidth = pixelBufferHeight / stageHeight * pixelBufferWidth
+        if isLandscape {
+            croppedHeight = pixelBufferWidth / stageWidth * pixelBufferHeight
 
-        var cropX = Int((pixelBufferWidth - CGFloat(croppedWidth)) / 2.0)
-        if cropX % 2 != 0 {
-            cropX += 1
+            cropY = Int((pixelBufferHeight - CGFloat(croppedHeight)) / 2.0)
+        } else {
+            croppedWidth = pixelBufferHeight / stageHeight * pixelBufferWidth
+
+            cropX = Int((pixelBufferWidth - CGFloat(croppedWidth)) / 2.0)
+            if cropX % 2 != 0 {
+                cropX += 1
+            }
         }
 
-        let cropStartOffset = Int(CGFloat(cropX) * (CGFloat(bytesPerRow) / pixelBufferWidth))
+        let cropStartOffset = Int(CGFloat(cropX) * (CGFloat(bytesPerRow) / pixelBufferWidth) + CGFloat(cropY) * CGFloat(bytesPerRow))
 
         let options = [
           kCVPixelBufferCGImageCompatibilityKey: true,
           kCVPixelBufferCGBitmapContextCompatibilityKey: true,
           kCVPixelBufferWidthKey: croppedWidth,
-          kCVPixelBufferHeightKey: pixelBufferHeight
+          kCVPixelBufferHeightKey: croppedHeight
         ] as [CFString: Any]
-
-        var newBuffer: CVPixelBuffer!
 
         CVPixelBufferCreateWithBytes(kCFAllocatorDefault,
                                      Int(croppedWidth),
-                                     Int(pixelBufferHeight),
+                                     Int(croppedHeight),
                                      pixelFormat,
                                      &baseAddressStart[cropStartOffset],
                                      Int(bytesPerRow),
@@ -284,18 +293,18 @@ class VisualDetectionManager: NSObject, VisualDetectionManagerProtocol, AVCaptur
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-
-        if connection.isVideoOrientationSupported && !Project.lastUsed().header.landscapeMode && connection.videoOrientation != .portrait {
+        let isLandscape = Project.lastUsed().header.landscapeMode
+        if connection.isVideoOrientationSupported && !isLandscape && connection.videoOrientation != .portrait {
             connection.videoOrientation = .portrait
             return
         }
 
-        if connection.isVideoOrientationSupported && Project.lastUsed().header.landscapeMode && connection.videoOrientation != .landscapeRight {
+        if connection.isVideoOrientationSupported && isLandscape && connection.videoOrientation != .landscapeRight {
             connection.videoOrientation = .landscapeRight
             return
         }
 
-        let newBuffer = self.cropVideoBuffer(inputBuffer: pixelBuffer)
+        let newBuffer = self.cropVideoBuffer(inputBuffer: pixelBuffer, isLandscape: isLandscape)
 
         var orientation = CGImagePropertyOrientation.up
         if cameraPosition() == .front {

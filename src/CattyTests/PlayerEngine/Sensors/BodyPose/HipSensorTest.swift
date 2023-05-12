@@ -77,8 +77,6 @@ class HipSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for hipSensor in hipXSensors {
-            XCTAssertEqual(type(of: hipSensor).defaultRawValue, hipSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), hipSensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), hipSensor.convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), hipSensor.convertToStandardized(rawValue: 0.93))
@@ -86,8 +84,6 @@ class HipSensorTest: XCTestCase {
         }
 
         for hipSensor in hipYSensors {
-            XCTAssertEqual(type(of: hipSensor).defaultRawValue, hipSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), hipSensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), hipSensor.convertToStandardized(rawValue: 0.4))
             XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), hipSensor.convertToStandardized(rawValue: 0.95))
@@ -99,9 +95,10 @@ class HipSensorTest: XCTestCase {
         for hipSensor in hipXSensors + hipYSensors {
             let convertToStandardizedValue = hipSensor.convertToStandardized(rawValue: hipSensor.rawValue(landscapeMode: false))
             let standardizedValue = hipSensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = hipSensor.convertToStandardized(rawValue: hipSensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = hipSensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 

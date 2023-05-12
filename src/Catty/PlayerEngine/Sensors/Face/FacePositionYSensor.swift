@@ -29,10 +29,12 @@ class FacePositionYSensor: DeviceDoubleSensor {
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageHeight: Double?
+    let stageSize: CGSize
+    var stageHeight: Double
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
+        self.stageSize = stageSize
         self.stageHeight = Double(stageSize.height)
     }
 
@@ -41,16 +43,13 @@ class FacePositionYSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
+        stageHeight = Double(landscapeMode ? stageSize.width : stageSize.height)
         guard let positionY = self.getVisualDetectionManager()?.facePositionYRatio[0] else { return type(of: self).defaultRawValue }
         return positionY
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        if rawValue == type(of: self).defaultRawValue {
-            return rawValue
-        }
-        guard let stageHeight = self.stageHeight else { return type(of: self).defaultRawValue }
-        return stageHeight * rawValue - stageHeight / 2.0
+        stageHeight * rawValue - stageHeight / 2.0
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

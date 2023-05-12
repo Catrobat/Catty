@@ -67,14 +67,10 @@ final class NeckSensorTest: XCTestCase {
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: neckXSensor).defaultRawValue, neckXSensor.convertToStandardized(rawValue: 0))
-
         XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), neckXSensor.convertToStandardized(rawValue: 0.02))
         XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), neckXSensor.convertToStandardized(rawValue: 0.45))
         XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), neckXSensor.convertToStandardized(rawValue: 0.93))
         XCTAssertEqual(Double(stageSize.width / 2), neckXSensor.convertToStandardized(rawValue: 1.0))
-
-        XCTAssertEqual(type(of: neckYSensor).defaultRawValue, neckYSensor.convertToStandardized(rawValue: 0))
 
         XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), neckYSensor.convertToStandardized(rawValue: 0.01))
         XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), neckYSensor.convertToStandardized(rawValue: 0.4))
@@ -85,15 +81,17 @@ final class NeckSensorTest: XCTestCase {
     func testStandardizedValue() {
         var convertToStandardizedValue = neckXSensor.convertToStandardized(rawValue: neckXSensor.rawValue(landscapeMode: false))
         var standardizedValue = neckXSensor.standardizedValue(landscapeMode: false)
+        var convertToStandardizedValueLandscape = neckXSensor.convertToStandardized(rawValue: neckXSensor.rawValue(landscapeMode: true))
         var standardizedValueLandscape = neckXSensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
 
         convertToStandardizedValue = neckYSensor.convertToStandardized(rawValue: neckYSensor.rawValue(landscapeMode: false))
         standardizedValue = neckYSensor.standardizedValue(landscapeMode: false)
+        convertToStandardizedValueLandscape = neckYSensor.convertToStandardized(rawValue: neckYSensor.rawValue(landscapeMode: true))
         standardizedValueLandscape = neckYSensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
     }
 
     func testTag() {

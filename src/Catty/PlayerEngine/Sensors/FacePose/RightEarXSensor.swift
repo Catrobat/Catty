@@ -29,10 +29,12 @@ class RightEarXSensor: DeviceDoubleSensor {
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageWidth: Double?
+    let stageSize: CGSize
+    var stageWidth: Double
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
+        self.stageSize = stageSize
         self.stageWidth = Double(stageSize.width)
     }
 
@@ -41,17 +43,13 @@ class RightEarXSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
+        stageWidth = Double(landscapeMode ? stageSize.height : stageSize.width)
         guard let positionX = self.getVisualDetectionManager()?.faceLandmarkPositionRatioDictionary[self.tag()] else { return type(of: self).defaultRawValue }
         return positionX
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        if rawValue == type(of: self).defaultRawValue {
-            return rawValue
-        }
-        guard let stageWidth = self.stageWidth else {
-            return type(of: self).defaultRawValue }
-        return stageWidth * rawValue - stageWidth / 2.0
+        stageWidth * rawValue - stageWidth / 2.0
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

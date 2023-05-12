@@ -77,8 +77,6 @@ class AnkleSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for ankleSensor in ankleXSensors {
-            XCTAssertEqual(type(of: ankleSensor).defaultRawValue, ankleSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), ankleSensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), ankleSensor.convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), ankleSensor.convertToStandardized(rawValue: 0.93))
@@ -86,8 +84,6 @@ class AnkleSensorTest: XCTestCase {
         }
 
         for ankleSensor in ankleYSensors {
-            XCTAssertEqual(type(of: ankleSensor).defaultRawValue, ankleSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), ankleSensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), ankleSensor.convertToStandardized(rawValue: 0.4))
             XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), ankleSensor.convertToStandardized(rawValue: 0.95))
@@ -99,9 +95,10 @@ class AnkleSensorTest: XCTestCase {
         for ankleSensor in ankleXSensors + ankleYSensors {
             let convertToStandardizedValue = ankleSensor.convertToStandardized(rawValue: ankleSensor.rawValue(landscapeMode: false))
             let standardizedValue = ankleSensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = ankleSensor.convertToStandardized(rawValue: ankleSensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = ankleSensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 

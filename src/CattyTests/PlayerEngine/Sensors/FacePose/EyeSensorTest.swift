@@ -93,8 +93,6 @@ final class EyeSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for eyeSensor in eyeXSensors {
-            XCTAssertEqual(type(of: eyeSensor).defaultRawValue, eyeSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), eyeSensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), eyeSensor.convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), eyeSensor.convertToStandardized(rawValue: 0.93))
@@ -102,8 +100,6 @@ final class EyeSensorTest: XCTestCase {
         }
 
         for eyeSensor in eyeYSensors {
-            XCTAssertEqual(type(of: eyeSensor).defaultRawValue, eyeSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), eyeSensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), eyeSensor.convertToStandardized(rawValue: 0.4))
             XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), eyeSensor.convertToStandardized(rawValue: 0.95))
@@ -115,9 +111,10 @@ final class EyeSensorTest: XCTestCase {
         for eyeSensor in eyeXSensors + eyeYSensors {
             let convertToStandardizedValue = eyeSensor.convertToStandardized(rawValue: eyeSensor.rawValue(landscapeMode: false))
             let standardizedValue = eyeSensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = eyeSensor.convertToStandardized(rawValue: eyeSensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = eyeSensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 
