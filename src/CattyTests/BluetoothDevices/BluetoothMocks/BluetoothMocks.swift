@@ -208,3 +208,14 @@ class ArduinoTestMock: ArduinoPropertyProtocol {
 
     internal let arduinoHelper = ArduinoHelper()
 }
+
+class ArduinoMock: ArduinoDevice {
+
+    override func getDigitalArduinoPin(_ digitalPinNumber: Int) -> Double {
+        Double(digitalPinNumber)
+    }
+
+    override func getAnalogPin(_ analogPinNumber: Int) -> Double {
+        Double(analogPinNumber)
+    }
+}
