@@ -24,6 +24,5 @@
 #define kOpenButtonTag 502
 #define kStopLoadingTag 503
 #define kDownloadAgainButtonTag 504
-#define kReportButtonTag 505
 
 #define kActivityIndicator 228

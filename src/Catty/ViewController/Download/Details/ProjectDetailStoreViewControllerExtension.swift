@@ -50,12 +50,7 @@ import UIKit
 
         self.scrollViewOutlet.addSubview(self.projectView)
         self.scrollViewOutlet.delegate = self
-
-        if let reportButton = view.viewWithTag(Int(kReportButtonTag)) {
-            let height = reportButton.frame.origin.y + reportButton.frame.size.height + type(of: self).inset
-            self.scrollViewOutlet.contentSize = CGSize(width: self.scrollViewOutlet.frame.width, height: height)
-        }
-
+        self.scrollViewOutlet.contentSize = CGSize(width: self.scrollViewOutlet.frame.width, height: projectView.frame.height)
         self.scrollViewOutlet.contentInsetAdjustmentBehavior = .never
         self.scrollViewOutlet.isUserInteractionEnabled = true
     }
@@ -77,7 +72,7 @@ import UIKit
         let tagsView = self.addTags(to: view, thumbnailView: thumbnailView)
         let descriptionView = self.addProjectDescriptionLabel(project.projectDescription, to: view, tagsView: tagsView, target: target)
 
-        self.addInformationLabel(to: view, withDescriptionView: descriptionView)
+        let lastItemView = self.addInformationLabel(to: view, withDescriptionView: descriptionView)
 
         if Project.projectExists(withProjectID: project.projectID) {
             view.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
@@ -91,7 +86,8 @@ import UIKit
             view.viewWithTag(Int(kDownloadAgainButtonTag))?.isHidden = true
         }
 
-        view.sizeToFit()
+        let height = lastItemView.frame.origin.y + lastItemView.frame.height + type(of: self).inset
+        view.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: height)
         return view
     }
 
@@ -287,7 +283,7 @@ import UIKit
         view.addSubview(button)
     }
 
-    private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) {
+    private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) -> UIView {
         let projectDouble = (project.uploaded as NSString).doubleValue
         let projectDate = Date(timeIntervalSince1970: TimeInterval(projectDouble))
         let uploaded = CatrobatProject.uploadDateFormatter().string(from: projectDate)
@@ -304,6 +300,7 @@ import UIKit
         informationLabel.text = kLocalizedInformation
         self.configureTitleLabel(informationLabel)
         view.addSubview(informationLabel)
+        var lastItem = informationLabel
 
         var offset = informationLabel.frame.origin.y + informationLabel.frame.height + type(of: self).verticalSectionPadding
         let height = type(of: self).buttonHeight
@@ -320,9 +317,12 @@ import UIKit
 
             let infoLabel = self.getInformationDetailLabel(withTitle: info, atXPosition: type(of: self).inset * 2, atYPosition: offset - 1, andHeight: height)
             view.addSubview(infoLabel)
+            lastItem = infoLabel
 
             offset += height + type(of: self).spaceBetweenButtons
         }
+
+        return lastItem
     }
 
     private func addHorizontalLine(to view: UIView, verticalOffset: CGFloat) {
