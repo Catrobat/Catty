@@ -110,7 +110,7 @@
         externTokenString = [self generateExternStringFromToken:currentToken];
         
         if (externTokenString == nil) {
-            externTokenString = kUIFEUnknownElementType;
+            externTokenString = [NSString stringWithFormat:@"%@: %@", kUIFEUnknownElementType, [currentToken getTokenStringValue]];
         }
         
         self.generatedExternFormulaString = [self.generatedExternFormulaString stringByAppendingString:externTokenString];
