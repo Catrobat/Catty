@@ -24,6 +24,7 @@
 #define kLastUsedProject @"lastUsedProject"
 #define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProjectCodeFileName @"code.xml"
+#define kProjectCodeFileMaxSize (8 * 1024 * 1024) // in bytes
 #define kProjectSoundsDirName @"sounds"
 #define kProjectImagesDirName @"images"
 #define kProjectsFolder @".projects"

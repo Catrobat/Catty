@@ -36,6 +36,7 @@ extension Notification.Name {
     static var scriptDisabled: Notification.Name { .init(rawValue: NotificationName.scriptDisabled) }
     static var projectInvalidVersion: Notification.Name { .init(rawValue: NotificationName.projectInvalidVersion) }
     static var projectInvalidXml: Notification.Name { .init(rawValue: NotificationName.projectInvalidXml) }
+    static var projectXmlTooLarge: Notification.Name { .init(rawValue: NotificationName.projectXmlTooLarge) }
     static var projectFetchFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchFailure) }
     static var projectFetchDetailsFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchDetailsFailure) }
     static var projectSearchFailure: Notification.Name { .init(rawValue: NotificationName.projectSearchFailure) }
@@ -63,6 +64,7 @@ public class NotificationName: NSObject {
     public static let scriptDisabled = "BrickCategoryViewController.scriptDisabled"
     public static let projectInvalidVersion = "Project.invalidVersion"
     public static let projectInvalidXml = "Project.invalidXml"
+    public static let projectXmlTooLarge = "Project.xmlTooLarge"
     public static let projectFetchFailure = "Project.fetchFailure"
     public static let projectFetchDetailsFailure = "Project.fetchDetailsFailure"
     public static let projectSearchFailure = "Project.searchFailure"

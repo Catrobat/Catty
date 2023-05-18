@@ -295,15 +295,21 @@ static NSObject* saveLock;
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProjectCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
 
-    Project *project = nil;
-    CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
+    CBFileManager *fileManager = [[CBFileManager alloc] init];
+    if ([fileManager sizeOfFileAtPath:xmlPath] > kProjectCodeFileMaxSize) {
+        NSDebug(@"Project exceeds maximum XML size!");
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectXmlTooLarge object:loadingInfo];
+        return nil;
+    }
 
+    CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
     if (languageVersion == kCatrobatInvalidVersion) {
         NSDebug(@"Invalid catrobat language version!");
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectInvalidVersion object:loadingInfo];
         return nil;
     }
 
+    Project *project = nil;
     // detect right parser for correct catrobat language version
     CBXMLParser *catrobatParser = [[CBXMLParser alloc] initWithPath:xmlPath];
     if (! [catrobatParser isSupportedLanguageVersion:languageVersion]) {
@@ -318,14 +324,13 @@ static NSObject* saveLock;
         project.header.programName = loadingInfo.visibleName;
     }
 
-    if (! project) {
+    if (!project) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectInvalidXml object:loadingInfo];
         return nil;
     }
 
     [self updateLastModificationTimeForProjectWithName:loadingInfo.visibleName projectID:loadingInfo.projectID];
     
-    CBFileManager *fileManager = [[CBFileManager alloc] init];
     NSString *defaultSceneDirectoryPath = [NSString stringWithFormat:@"%@%@", [project projectPath], [Util defaultSceneNameForSceneNumber:1]];
     if (![fileManager directoryExists:defaultSceneDirectoryPath]) {
         project.header.catrobatLanguageVersion = Util.catrobatLanguageVersion;
