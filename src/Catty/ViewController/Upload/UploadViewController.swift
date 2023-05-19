@@ -420,10 +420,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
                     break
                 case .authentication:
                     AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: kLocalizedSessionExpired).addDefaultAction(title: kLocalizedOK) {
-                        let storyboard = UIStoryboard(name: "iPhone", bundle: nil)
-                        if let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController {
-                            self.navigationController?.pushViewController(loginViewController, animated: true)
-                        }
+                        self.openLoginScreen()
                     }.build().showWithController(self)
                 case .network, .timeout:
                     Util.defaultAlertForNetworkError()

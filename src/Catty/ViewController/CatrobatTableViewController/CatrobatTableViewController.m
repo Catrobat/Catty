@@ -151,11 +151,18 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 {
     self.navigationItem.title = kLocalizedPocketCode;
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.navTint };
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"gearshape.fill#navbar"]
                                                                              style: UIBarButtonItemStylePlain
                                                                             target: self
                                                                             action: @selector(openSettings)];
     self.navigationItem.leftBarButtonItem.accessibilityIdentifier = @"Settings";
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [self generateAccountImage]
+                                                                             style: UIBarButtonItemStylePlain
+                                                                            target: self
+                                                                            action: @selector(openAccountMenu)];
+    self.navigationItem.rightBarButtonItem.accessibilityIdentifier = @"Account";
 }
 
 #pragma mark - privacy policy
@@ -269,10 +276,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             if ([StoreAuthenticator isLoggedIn]) {
                 segueIdentifier = kSegueToUpload;
             } else {
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-                LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-                vc.delegate = self;
-                [self.navigationController pushViewController:vc animated:YES];
+                [self openLoginScreen:self];
             }
 
             break;

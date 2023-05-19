@@ -303,10 +303,7 @@
         if ([StoreAuthenticator isLoggedIn]) {
             [self performSegueWithIdentifier:kSegueToUpload sender:self];
         } else {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-            LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-            vc.delegate = self;
-            [self.navigationController pushViewController:vc animated:YES];
+            [self openLoginScreen:self];
         }
     }]
       build]

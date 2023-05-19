@@ -42,6 +42,13 @@ extension UIViewController {
         view.endEditing(true)
     }
 
+    @objc func openLoginScreen(_ delegate: AuthenticationDelegate? = nil) {
+        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController else { return }
+        viewController.delegate = delegate
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+
     @objc func openProject(_ project: Project) {
         guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
 
