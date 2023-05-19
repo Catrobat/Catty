@@ -421,10 +421,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (! landscapeMode) {
                 [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
-                [UINavigationController attemptRotationToDeviceOrientation];
             } else {
                 [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
-                [UINavigationController attemptRotationToDeviceOrientation];
             }
 
             [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController completion:^{

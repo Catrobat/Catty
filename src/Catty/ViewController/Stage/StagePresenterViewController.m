@@ -61,31 +61,37 @@
 }
 
 #pragma mark - View Event Handling
-- (void)viewDidLoad
+
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     
-    _skView = [[SKView alloc] initWithFrame:self.view.bounds];
-    _skView.paused = NO;
+    self.skView = [[SKView alloc] initWithFrame:self.view.bounds];
+    self.skView.paused = NO;
+    self.skView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.skView.backgroundColor = UIColor.background;
+    [self.view addSubview:self.skView];
+    
+    [NSLayoutConstraint activateConstraints:@[
+        [self.skView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.skView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        [self.skView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.skView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor]
+    ]];
     
     #if DEBUG == 1
-        _skView.showsFPS = YES;
-        _skView.showsNodeCount = YES;
-        _skView.showsDrawCount = YES;
+        self.skView.showsFPS = YES;
+        self.skView.showsNodeCount = YES;
+        self.skView.showsDrawCount = YES;
     
         if (SpriteKitDefines.physicsShowBody) {
-            _skView.showsPhysics = YES;
+            self.skView.showsPhysics = YES;
         }
     #endif
     
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.background;
     self.navigationController.delegate = self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -103,7 +109,13 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    self.menuView = [[StagePresenterSideMenuView alloc] initWithFrame:CGRectMake(0, 0, screenWidth / StagePresenterSideMenuView.widthProportionalPortrait, screenHeight) andStagePresenterViewController_: self];
+    if (self.project.header.landscapeMode == YES)
+    {
+        self.menuView = [[StagePresenterSideMenuView alloc] initWithFrame:CGRectMake(0, 0, screenHeight / StagePresenterSideMenuView.widthProportionalLandscape, screenWidth) andStagePresenterViewController_: self];
+    } else {
+        self.menuView = [[StagePresenterSideMenuView alloc] initWithFrame:CGRectMake(0, 0, screenWidth / StagePresenterSideMenuView.widthProportionalPortrait, screenHeight) andStagePresenterViewController_: self];
+    }
+    
     
     [self.view insertSubview:self.menuView aboveSubview:self.skView];
     
@@ -132,18 +144,10 @@
 {
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.stagePresenterViewControllerDidAppear object:self];
-    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
-     if (!Project.lastUsedProject.header.landscapeMode) {
-         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
-         [UINavigationController attemptRotationToDeviceOrientation];
-     } else {
-         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
-         [UINavigationController attemptRotationToDeviceOrientation];
-     }
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    if (Project.lastUsedProject.header.landscapeMode) {
+    if (self.project.header.landscapeMode) {
         return UIInterfaceOrientationMaskLandscapeRight;
     }
     return UIInterfaceOrientationMaskPortrait;
@@ -154,7 +158,7 @@
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    if (Project.lastUsedProject.header.landscapeMode) {
+    if (self.project.header.landscapeMode) {
         return UIInterfaceOrientationLandscapeRight;
     }
     return UIInterfaceOrientationPortrait;
@@ -178,7 +182,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.skView.bounds = self.view.bounds;
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - Initialization & Setup & Dealloc
@@ -206,52 +210,65 @@
 - (void)setUpGridView
 {
     self.gridView.backgroundColor = UIColor.clearColor;
-    UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util screenHeight]/2,[Util screenWidth],1)];
+    int width = self.project.header.landscapeMode? [Util screenHeight]: [Util screenWidth];
+    int height = self.project.header.landscapeMode? [Util screenWidth]: [Util screenHeight];
+
+    UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0, height/2, width, 1)];
     xArrow.backgroundColor = UIColor.redColor;
     [self.gridView addSubview:xArrow];
-    UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util screenWidth]/2,0,1,[Util screenHeight])];
+    UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake(width/2, 0, 1, height)];
     yArrow.backgroundColor = UIColor.redColor;
     [self.gridView addSubview:yArrow];
+   
+    UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
+    int labelHeight = 15;
+    int labelWidth  = 40;
+    int padding = 5;
+    int widthPosition = width/2 + padding;
+    int heightPosition = height/2 + padding;
+
     // nullLabel
-    UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight]/2 + 5, 10, 15)];
+    UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake(widthPosition, heightPosition, labelWidth, labelHeight)];
     nullLabel.text = @"0";
     nullLabel.textColor = UIColor.redColor;
     [self.gridView addSubview:nullLabel];
-    // positveWidth
-    UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
-    positiveWidth.textColor = UIColor.redColor;
-
-    positiveWidth.frame = CGRectMake([Util screenWidth] - positiveWidth.frame.size.width - 5, [Util screenHeight]/2 + 5, positiveWidth.frame.size.width, positiveWidth.frame.size.height);
     
-    // negativeWidth
-    UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
+    // positveWidth
+    int paddingRight = width - root.view.safeAreaInsets.right - labelWidth + padding;
+    UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake(paddingRight, heightPosition, labelWidth, labelHeight)];
+    positiveWidth.textColor = UIColor.redColor;
+    
+    // negativeWidth 
+    int paddingLeft = self.project.header.landscapeMode? root.view.safeAreaInsets.top: root.view.safeAreaInsets.left + padding;
+    UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(paddingLeft, heightPosition, labelWidth, labelHeight)];
     negativeWidth.textColor = UIColor.redColor;
     
-    // positveHeight
-    UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
-    positiveHeight.textColor = UIColor.redColor;
-
     // negativeHeight
-    UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
-    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, root.view.safeAreaInsets.top, 40, 15)];
+    int paddingBottom = height - root.view.safeAreaInsets.bottom;
+    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake(widthPosition, paddingBottom, labelWidth, labelHeight)];
     negativeHeight.textColor = UIColor.redColor;
 
+    // positiveHeight
+    double paddingTop = self.project.header.landscapeMode? root.view.safeAreaInsets.right + padding: root.view.safeAreaInsets.top;
+    UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake(widthPosition, paddingTop, labelWidth, labelHeight)];
+    positiveHeight.textColor = UIColor.redColor;
+    
     if (!self.project.header.landscapeMode) {
         positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenWidth.floatValue/2];
         negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenWidth.floatValue/2];
-        positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenHeight.floatValue/2];
-        negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenHeight.floatValue/2];
+        positiveHeight.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenHeight.floatValue/2];
+        negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenHeight.floatValue/2];
     } else {
         positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenHeight.floatValue/2];
         negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenHeight.floatValue/2];
-        positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenWidth.floatValue/2];
-        negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenWidth.floatValue/2];
+        positiveHeight.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenWidth.floatValue/2];
+        negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenWidth.floatValue/2];
     }
     
     [self.gridView addSubview:positiveWidth];
     [self.gridView addSubview:negativeWidth];
-    [self.gridView addSubview:positiveHeight];
     [self.gridView addSubview:negativeHeight];
+    [self.gridView addSubview:positiveHeight];
     
     [positiveWidth sizeToFit];
     [negativeWidth sizeToFit];
@@ -369,8 +386,6 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = false;
-    [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
-    [UINavigationController attemptRotationToDeviceOrientation];
 }
 
 - (void)restartAction
