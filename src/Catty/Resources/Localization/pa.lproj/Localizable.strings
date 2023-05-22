@@ -8,10 +8,16 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"About" = "ਬਾਰੇ";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "ਕੈਟਰੋਬੈਟ ਬਾਰੇ";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "ਪਾਕੇਟ ਕੋਡ ਬਾਰੇ";
+
+/* No comment provided by engineer. */
+"About Us" = "About Us";
 
 /* No comment provided by engineer. */
 "absolute value" = "ਸਹੀ ਮੁੱਲ";
@@ -143,6 +149,9 @@
 "Arduino extension" = "ਅਰੂਦਿਨੋ ਐਕਸਟੈਂਸ਼ਨ";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
 "Ask " = "ਪੁੱਛੋ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "ਕੈਟ੍ਰੋਬੈਟ ਕਮਿ communityਨਿਟੀ";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat website";
 
 /* No comment provided by engineer. */
 "ceiling" = "ਛੱਤ";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "ਮਿਟਾਓ";
+
+/* No comment provided by engineer. */
+"Delete account" = "ਖਾਤਾ ਮਿਟਾਓ";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "ਅਦਾਕਾਰ ਜਾਂ ਵਸਤੂਆਂ ਨੂੰ ਮਿਟਾਓ";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "ਲੂਪ ਦਾ ਅੰਤ";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "ਇੱਕ ਕਾਰਨ ਦਰਜ";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "ਆਪਣੀ ਤਸਵੀਰ ਦਾ ਨਾਮ ਇੱਥੇ ਦਾਖਲ ਕਰੋ…";
 
@@ -698,9 +710,6 @@
 "Error" = "ਗਲਤੀ";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "ਪ੍ਰੋਜੈਕਟ ਦੀ ਰਿਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਆਈ ਹੈ. ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ.";
-
-/* No comment provided by engineer. */
 "Error saving file" = "ਫਾਈਲ ਨੂੰ ਸੇਵ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "ਘਾਤਕ";
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensions";
 
 /* No comment provided by engineer. */
 "FA" = "ਐੱਫ";
@@ -845,6 +857,9 @@
 "head top y" = "ਸਿਰ ਦਾ ਸਿਖਰ y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "ਹੈਲੋ!";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "ਘੰਟਾ";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "ਖੋਜੀ ਵਸਤੂ ਦੀ ID";
 
 /* No comment provided by engineer. */
 "If" = "ਜੇ";
@@ -959,6 +977,9 @@
 "LA" = "ਲਾ";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
+
+/* No comment provided by engineer. */
 "Last access" = "ਆਖਰੀ ਪਹੁੰਚ";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "ਖੱਬੇ";
 
 /* No comment provided by engineer. */
+"left ankle x" = "ਖੱਬਾ ਗਿੱਟਾ x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "ਖੱਬਾ ਗਿੱਟਾ y";
+
+/* No comment provided by engineer. */
 "left ear x" = "ਖੱਬਾ ਕੰਨ x";
 
 /* No comment provided by engineer. */
 "left ear y" = "ਛੇਤੀ ਛੱਡ ਦਿੱਤਾ";
+
+/* No comment provided by engineer. */
+"left elbow x" = "ਖੱਬੀ ਕੂਹਣੀ x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "ਖੱਬੀ ਕੂਹਣੀ y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "ਖੱਬੀ ਅੱਖ ਦਾ ਕੇਂਦਰ x";
@@ -1020,6 +1053,60 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left hip x" = "ਖੱਬਾ ਹਿੱਪ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"left hip y" = "ਖੱਬੀ ਹਿੱਪ y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "ਖੱਬਾ ਇੰਡੈਕਸ ਨੱਕਲ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "ਖੱਬੇ ਇੰਡੈਕਸ ਨੱਕਲ y";
+
+/* No comment provided by engineer. */
+"left knee x" = "ਖੱਬਾ ਗੋਡਾ x";
+
+/* No comment provided by engineer. */
+"left knee y" = "ਖੱਬਾ ਗੋਡਾ y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "left middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "left middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "ਖੱਬੇ ਪਿੰਕੀ ਨੱਕਲ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "ਖੱਬੇ ਪਿੰਕੀ ਦੀ ਪੱਟੜੀ y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "left ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "left ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "ਖੱਬਾ ਮੋ shoulderਾ x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "ਖੱਬੇ ਮੋ shoulderੇ y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "ਖੱਬੇ ਅੰਗੂਠੇ ਦੀ ਪੱਟ x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "ਖੱਬੇ ਅੰਗੂਠੇ ਦੀ ਨੱਕ y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "ਖੱਬਾ ਗੁੱਟ x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "ਖੱਬਾ ਗੁੱਟ y";
 
 /* No comment provided by engineer. */
 "left-right only" = "ਸਿਰਫ ਖੱਬੇ-ਸੱਜੇ";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "ਕੁਦਰਤੀ ਲੋਗਰਿਥਮ";
 
 /* No comment provided by engineer. */
+"neck x" = "ਗਰਦਨ x";
+
+/* No comment provided by engineer. */
+"neck y" = "ਗਰਦਨ y";
+
+/* No comment provided by engineer. */
 "New" = "ਨਵਾਂ";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "ਹੇ ਖੋਜ ਨਤੀਜੇ";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "ਕੋਈ ਵ੍ਹਾਈਟਸਪੇਸ ਅੱਖਰ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ";
-
-/* No comment provided by engineer. */
 "nose x" = "ਨੱਕ ਐਕਸ";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "ਵਸਤੂਆਂ ਦੀ ਗਿਣਤੀ";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "ਟੈਕਸਟ ਬਲਾਕਾਂ ਦੀ ਗਿਣਤੀ";
+
+/* No comment provided by engineer. */
 "Numbers" = "ਨੰਬਰ";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "ਆਬਜੈਕਟ ਜਾਂ ਅਦਾਕਾਰ ਦਾ ਨਾਮ";
+
+/* No comment provided by engineer. */
+"Object recognition" = "ਵਸਤੂ ਪਛਾਣ";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "object with ID visible";
 
 /* No comment provided by engineer. */
 "Oct" = "ਅਕਤੂਬਰ";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ%lu ਅੱਖਰ ਭਰੋ.";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "ਇਸ ਪ੍ਰਾਜੈਕਟ ਨੂੰ ਅਣਉਚਿਤ ਵਜੋਂ ਰਿਪੋਰਟ ਕਰਨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਲੌਗਇਨ ਕਰੋ";
-
 /* paint */
 "Please pick a tool" = "ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਟੂਲ ਚੁਣੋ";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "ਪਿਛਲਾ ਟ੍ਰੈਕ";
 
 /* No comment provided by engineer. */
+"Privacy" = "Privacy";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "ਗੋਪਨੀਯਤਾ ਸੈਟਿੰਗਜ਼";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "ਲਾਲ";
 
 /* No comment provided by engineer. */
-"Register" = "ਰਜਿਸਟਰ";
-
-/* No comment provided by engineer. */
 "Registration successful" = "ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਸਫਲ";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "ਸੂਚੀ ਵਿਚ ਇਕਾਈ ਨੂੰ ਤਬਦੀਲ";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "ਅਣਉਚਿਤ ਤੌਰ ਤੇ ਰਿਪੋਰਟ ਕਰੋ";
-
 /* paint */
 "Resize" = "ਮੁੜ ਆਕਾਰ ਦਿਓ";
 
@@ -1613,10 +1706,22 @@
 "Right" = "ਸਹੀ";
 
 /* No comment provided by engineer. */
+"right ankle x" = "ਸੱਜੇ ਗਿੱਟੇ x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "ਸੱਜੇ ਗਿੱਟੇ y";
+
+/* No comment provided by engineer. */
 "right ear x" = "ਸੱਜਾ ਕੰਨ ਐਕਸ";
 
 /* No comment provided by engineer. */
 "right ear y" = "ਸੱਜੇ ਕੰਨ y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "ਸੱਜੀ ਕੂਹਣੀ x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "ਸੱਜੀ ਕੂਹਣੀ y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "ਸੱਜੀ ਅੱਖ ਦਾ ਕੇਂਦਰ x";
@@ -1653,6 +1758,60 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right hip x" = "ਸੱਜਾ ਹਿੱਪ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"right hip y" = "ਸੱਜੇ ਹਿੱਪ y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "ਸੱਜਾ ਇੰਡੈਕਸ ਨੱਕਲ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "ਸੱਜੇ ਇੰਡੈਕਸ ਨੱਕਲ y";
+
+/* No comment provided by engineer. */
+"right knee x" = "ਸੱਜਾ ਗੋਡਾ x";
+
+/* No comment provided by engineer. */
+"right knee y" = "ਸੱਜਾ ਗੋਡਾ y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "right middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "right middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "ਸੱਜੀ ਪਿੰਕੀ ਨੌਕਲ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "ਸੱਜੀ ਗੁਲਾਬੀ ਨੱਕ y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "right ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "right ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "ਸੱਜਾ ਮੋ shoulderਾ x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "ਸੱਜਾ ਮੋ shoulderਾ y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "ਸੱਜੇ ਅੰਗੂਠੇ ਦੀ ਪੱਟ x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "ਸੱਜੇ ਅੰਗੂਠੇ ਦੀ ਨੱਕ y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "ਸੱਜੀ ਗੁੱਟ ਐਕਸ";
+
+/* No comment provided by engineer. */
+"right wrist y" = "ਸੱਜੀ ਗੁੱਟ y";
 
 /* paint */
 "Rotate" = "ਘੁੰਮਾਓ";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "ਟੈਂਪੂ ਸੈੱਟ ਕਰੋ";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "ਨੂੰ ਸੈੱਟ ਕਲਮ ਦਾ ਰੰਗ";
+
+/* No comment provided by engineer. */
 "Set transparency " = "ਪਾਰਦਰਸ਼ਤਾ ਸੈੱਟ ਕਰੋ ";
 
 /* No comment provided by engineer. */
@@ -1889,7 +2051,7 @@
 "stage touch y" = "ਸਟੇਜ ਟੱਚ y";
 
 /* paint */
-"Stamp" = "ਸਟੈਂਪ";
+"Stamp" = "ਮੋਹਰਾਂ";
 
 /* paint */
 "Stamped" = "ਮੋਹਰ ਲੱਗੀ";
@@ -1902,6 +2064,9 @@
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "ਆਵਾਜ਼ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਉਡੀਕ ਕਰੋ";
+
+/* No comment provided by engineer. */
+"Start triple stitch with length" = "ਲੰਬਾਈ ਦੇ ਨਾਲ ਸਿਲਾਈ ਚਲਾਉਣੀ ਸ਼ੁਰੂ ਕਰੋ";
 
 /* No comment provided by engineer. */
 "Start zigzag stitch with length" = "ਲੰਬਾਈ ਦੇ ਨਾਲ ਸਿਲਾਈ ਚਲਾਉਣੀ ਸ਼ੁਰੂ ਕਰੋ";
@@ -1976,7 +2141,28 @@
 "Text" = "ਟੈਕਸਟ";
 
 /* No comment provided by engineer. */
+"text block from camera" = "ਕੈਮਰੇ ਤੋਂ ਟੈਕਸਟ ਬਲਾਕ";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "ਕੈਮਰੇ ਤੋਂ ਟੈਕਸਟ ਬਲਾਕ ਭਾਸ਼ਾ";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "ਕੈਮਰਾ ਤੋਂ ਟੈਕਸਟ ਬਲਾਕ ਦਾ ਆਕਾਰ";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "ਕੈਮਰਾ ਤੋਂ ਟੈਕਸਟ ਬਲਾਕ x";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "ਕੈਮਰਾ ਤੋਂ ਟੈਕਸਟ ਬਲਾਕ y";
+
+/* No comment provided by engineer. */
+"text from camera" = "ਕੈਮਰਾ ਤੱਕ ਪਾਠ";
+
+/* No comment provided by engineer. */
 "Text message:" = "ਟੈਕਸਟ ਸੁਨੇਹਾ:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "ਟੈਕਸਟ ਪਛਾਣ";
 
 /* paint */
 "Text:" = "ਟੈਕਸਟ:";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "ਸੱਚ ਹੈ";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Trusted domains";
 
 /* No comment provided by engineer. */
 "Tu" = "ਤੁ";
@@ -2204,6 +2393,9 @@
 "View" = "ਵੇਖੋ";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "View Terms of Use and Service";
+
+/* No comment provided by engineer. */
 "Views" = "ਵਿਚਾਰ";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "ਜਦੋਂ ਤੁਸੀਂ ਪ੍ਰਾਪਤ ਕਰਦੇ ਹੋ";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
+
 /* paint */
 "Width selection" = "ਚੌੜਾਈ ਚੋਣ";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "ਲੱਕੜ ਦੀ ਬੰਸਰੀ";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X of object with ID";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y of object with ID";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "ਤੁਹਾਨੂੰ ਹੀ ਇਸ ਪ੍ਰਾਜੈਕਟ ਨੂੰ ਡਾਊਨਲੋਡ ਕੀਤਾ ਹੈ!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "ਤੁਹਾਡਾ ਜਵਾਬ";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "ਤੁਹਾਡਾ ਪ੍ਰਾਜੈਕਟ ਨੂੰ Catrobat ਭਾਈਚਾਰੇ ਹੋਰ ਨੂੰ ਵਰਤਣ ਅਤੇ ਇਸ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ, ਜਿੱਥੇ ਨੂੰ ਅੱਪਲੋਡ ਕੀਤਾ ਗਿਆ.";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "ਤੁਹਾਡੀ ਰਿਪੋਰਟ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜੀ ਗਈ ਸੀ!";
 
 /* paint */
 "Zoom" = "ਜ਼ੂਮ";

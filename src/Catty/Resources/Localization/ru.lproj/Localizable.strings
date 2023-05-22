@@ -1,11 +1,14 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "Сообщение с таким именем уже существует, попробуйте еще раз.";
+"A message with the same name already exists, try again." = "Сообщение с таким названием уже существует, попробуйте еще раз.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "Проект с таким именем уже существует, попробуйте снова.";
+"A project with the same name already exists, try again." = "Проект с таким названием уже существует, попробуйте снова.";
 
 /* No comment provided by engineer. */
 "Abc" = "Абв";
+
+/* No comment provided by engineer. */
+"About" = "О приложении";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "О проекте Catrobat";
@@ -14,16 +17,19 @@
 "About Pocket Code" = "О Pocket Code";
 
 /* No comment provided by engineer. */
+"About Us" = "О нас";
+
+/* No comment provided by engineer. */
 "absolute value" = "абсолютное значение";
 
 /* No comment provided by engineer. */
-"acceleration x" = "ускорение х";
+"acceleration x" = "ускорение по оси X";
 
 /* No comment provided by engineer. */
 "acceleration y" = "ускорение по оси Y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "ускорение z";
+"acceleration z" = "ускорение по оси Z";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "датчик ускорения";
@@ -62,10 +68,10 @@
 "All Bluetooth devices successfully disconnected" = "Все Bluetooth устройства успешно отключены";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "Все известные Bluetooth-устройства успешно удалены";
+"All known Bluetooth devices successfully removed" = "Все известные Bluetooth устройства успешно удалены";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Разрешить приложению управлять платой Arduino";
+"Allow the app to control Arduino boards" = "Разрешить приложению управлять платами Arduino";
 
 /* No comment provided by engineer. */
 "Allow the app to send crash reports automatically" = "Разрешить приложению автоматически отправлять отчеты об ошибках";
@@ -86,19 +92,19 @@
 "Always allow web access" = "Всегда разрешать веб-доступ";
 
 /* No comment provided by engineer. */
-"An image with the same name already exists, try again." = "Изображение с таким именем уже существует, попробуйте еще раз.";
+"An image with the same name already exists, try again." = "Изображение с таким названием уже существует, попробуйте еще раз.";
 
 /* No comment provided by engineer. */
-"An object with the same name already exists, try again." = "Объект с таким именем уже существует, попробуйте еще раз.";
+"An object with the same name already exists, try again." = "Объект с таким названием уже существует, попробуйте еще раз.";
 
 /* No comment provided by engineer. */
 "An unknown error occurred. Check your Internet connection." = "Произошла неизвестная ошибка. Проверьте подключение к интернету.";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Please try again later." = "Неизвестная ошибка. Попробуйте позже.";
+"An unknown error occurred. Please try again later." = "Произошла неизвестная ошибка. Пожалуйста, повторите попытку позже.";
 
 /* No comment provided by engineer. */
-"and" = "И";
+"and" = "и";
 
 /* No comment provided by engineer. */
 "and store answer in" = "и сохранить ответ в";
@@ -113,7 +119,7 @@
 "and width" = "и шириной";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Анимированные кирпичи";
+"Animate brick-parts" = "Анимированные части блоков";
 
 /* No comment provided by engineer. */
 "Apr" = "Апр";
@@ -122,13 +128,13 @@
 "April" = "Апрель";
 
 /* No comment provided by engineer. */
-"arccosine" = "arccosine";
+"arccosine" = "арккосинус";
 
 /* No comment provided by engineer. */
-"arcsine" = "arcsine";
+"arcsine" = "арксинус";
 
 /* No comment provided by engineer. */
-"arctangent" = "arctangent";
+"arctangent" = "арктангенс";
 
 /* No comment provided by engineer. */
 "Arduino" = "Arduino";
@@ -141,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Расширение Arduino";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Вы уверены, что хотите удалить ваш аккаунт? Это нельзя отменить!";
 
 /* No comment provided by engineer. */
 "Ask " = "Спросить";
@@ -194,7 +203,7 @@
 "Bassoon" = "Бассон";
 
 /* No comment provided by engineer. */
-"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Будьте предельно внимательны перед предоставлением доступа, так как ссылка может раскрыть вашу личную информацию, , например, точное географическое местоположение или любой текст, который вы ввели для злоумышленников или для общественности. Смотрите нашу вики для получения дополнительной информации, почему это может быть очень опасно. Всегда открывая доступ, вы не будете повторно запрашивать подтверждение веб-адресов с этого домена. Если вы хотите отменить это разрешение позже, вы можете удалить домен из списка доверенных доменов в настройках этого приложения.";
+"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Будьте предельно внимательны перед предоставлением доступа, так как ссылка может раскрыть вашу личную информацию, например, ваше точное географическое местоположение или любой текст, который вы ввели для злоумышленников или для общественности. Смотрите нашу вики для получения дополнительной информации, почему это может быть очень опасно. Открывая доступ на все время, с вас не будут повторно запрашивать подтверждение веб-адресов с этого домена. Если вы хотите отменить это разрешение позже, вы можете удалить домен из списка доверенных доменов в настройках этого приложения.";
 
 /* No comment provided by engineer. */
 "becomes true" = "становится истинным";
@@ -209,7 +218,7 @@
 "Blue" = "Синий";
 
 /* No comment provided by engineer. */
-"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth недоступен. Либо ваше устройство не поддерживает Bluetooth 4.0 или ваш Bluetooth-чип поврежден. Пожалуйста, проверьте его соединением с другим Bluetooth-устройством в настройках.";
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth недоступен. Либо ваше устройство не поддерживает Bluetooth 4.0, либо ваш Bluetooth-чип поврежден. Пожалуйста, проверьте это, соединив ваше устройство с другим Bluetooth устройством в Настройках.";
 
 /* No comment provided by engineer. */
 "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth выключен. Пожалуйста, включите его для подключения к Bluetooth-устройству.";
@@ -227,7 +236,7 @@
 "brightness" = "яркость";
 
 /* No comment provided by engineer. */
-"Broadcast" = "Вещать всем";
+"Broadcast" = "Трансляция";
 
 /* No comment provided by engineer. */
 "Broadcast and wait" = "Вещать всем и ждать";
@@ -263,7 +272,10 @@
 "Catrobat community" = "Сообщество Catrobat";
 
 /* No comment provided by engineer. */
-"ceiling" = "округление к большему";
+"Catrobat website" = "Сайт Catrobat";
+
+/* No comment provided by engineer. */
+"ceiling" = "округлить к большему";
 
 /* No comment provided by engineer. */
 "Cello" = "Виолончель";
@@ -281,7 +293,7 @@
 "Change to landscape" = "Перейти в горизонтальный режим";
 
 /* No comment provided by engineer. */
-"Change to portrait" = "Изменить на портретный режим";
+"Change to portrait" = "Изменить на вертикальный режим";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Изменить прозрачность ";
@@ -293,25 +305,25 @@
 "Change volume by" = "Изменить громкость на";
 
 /* No comment provided by engineer. */
-"Change x by " = "Изменить по X ";
+"Change x by " = "Изменить X на";
 
 /* No comment provided by engineer. */
-"Change y by " = "Изменить по Y ";
+"Change y by " = "Изменить Y на";
 
 /* No comment provided by engineer. */
-"Changes discarded." = "Изменения сброшены!";
+"Changes discarded." = "Изменения сброшены.";
 
 /* No comment provided by engineer. */
-"Changes saved." = "Изменения сохранены!";
+"Changes saved." = "Изменения сохранены.";
 
 /* No comment provided by engineer. */
-"Choir" = "Хоар";
+"Choir" = "Хор";
 
 /* No comment provided by engineer. */
 "Choose" = "Выберите";
 
 /* No comment provided by engineer. */
-"Choose image" = "Выбрать изображение";
+"Choose image" = "Выберите изображение";
 
 /* No comment provided by engineer. */
 "Clarinet" = "Кларнет";
@@ -353,7 +365,7 @@
 "Confirm password" = "Подтвердить пароль";
 
 /* bluetooth */
-"Connection failed" = "Подключиться не удалось";
+"Connection failed" = "Ошибка подключения";
 
 /* bluetooth */
 "Connection lost" = "Соединение потеряно";
@@ -374,19 +386,19 @@
 "Control" = "Управление";
 
 /* No comment provided by engineer. */
-"Copy" = "Копировать";
+"Copy" = "Скопировать";
 
 /* No comment provided by engineer. */
-"Copy actors or objects" = "Копировать персонажа или объекты";
+"Copy actors or objects" = "Скопировать актеров или объекты";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Копировать блок";
+"Copy brick" = "Скопировать блок";
 
 /* No comment provided by engineer. */
-"Copy looks" = "Копировать образы";
+"Copy looks" = "Скопировать образы";
 
 /* No comment provided by engineer. */
-"Copy project" = "Копировать проект";
+"Copy project" = "Скопировать проект";
 
 /* No comment provided by engineer. */
 "cosine" = "косинус";
@@ -428,13 +440,16 @@
 "Delete" = "Удалить";
 
 /* No comment provided by engineer. */
-"Delete actors or objects" = "Удалить персонажа или объекты";
+"Delete account" = "Удалить аккаунт";
 
 /* No comment provided by engineer. */
-"Delete backgrounds" = "Удалить фон";
+"Delete actors or objects" = "Удалить актеров или объекты";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Удалить кирпич";
+"Delete backgrounds" = "Удалить фоны";
+
+/* No comment provided by engineer. */
+"Delete brick" = "Удалить блок";
 
 /* No comment provided by engineer. */
 "Delete condition" = "Удалить условие";
@@ -458,7 +473,7 @@
 "Delete script" = "Удалить скрипт";
 
 /* No comment provided by engineer. */
-"Delete sounds" = "Удалить Звуки";
+"Delete sounds" = "Удалить звуки";
 
 /* No comment provided by engineer. */
 "Delete these bricks?" = "Вы уверены, что хотите удалить эти блоки?";
@@ -524,7 +539,7 @@
 "direction" = "направление";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Отключить кирпич";
+"Disable brick" = "Отключить блок";
 
 /* No comment provided by engineer. */
 "Disable condition" = "Отключить блок условия";
@@ -539,13 +554,13 @@
 "Disagree" = "Отклонить";
 
 /* No comment provided by engineer. */
-"Discard changes" = "Отбросить изменения";
+"Discard changes" = "Откатить изменения";
 
 /* No comment provided by engineer. */
 "Disconnect all devices" = "Отключить все устройства";
 
 /* No comment provided by engineer. */
-"DO" = "ДО";
+"DO" = "Делать";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Вы действительно хотите удалить текущий рисунок?";
@@ -566,22 +581,22 @@
 "Download again" = "Скачать снова";
 
 /* No comment provided by engineer. */
-"Download too big" = "Файл для скачивания большой";
+"Download too big" = "Файл для скачивания слишком большой";
 
 /* No comment provided by engineer. */
 "Downloads" = "Загрузки";
 
 /* No comment provided by engineer. */
-"Draw new image" = "Нарисовать новое";
+"Draw new image" = "Нарисовать новое изображение";
 
 /* No comment provided by engineer. */
 "Duration" = "Длительность";
 
 /* No comment provided by engineer. */
-"Edit" = "Редактирование";
+"Edit" = "Изменить";
 
 /* No comment provided by engineer. */
-"Edit actor or object" = "Редактирование персонажа или объекта";
+"Edit actor or object" = "Редактирование актера или объекта";
 
 /* Action sheet menu title */
 "Edit background" = "Изменить фон";
@@ -590,7 +605,7 @@
 "Edit backgrounds" = "Изменить фоны";
 
 /* Action sheet menu title */
-"Edit brick" = "Изменить кирпич";
+"Edit brick" = "Изменить блок";
 
 /* No comment provided by engineer. */
 "Edit formula" = "Изменить формулу";
@@ -602,13 +617,13 @@
 "Edit looks" = "Изменить образы";
 
 /* No comment provided by engineer. */
-"Edit project" = "Редактировать проект";
+"Edit project" = "Изменить проект";
 
 /* No comment provided by engineer. */
-"Edit projects" = "Редактировать проекты";
+"Edit projects" = "Изменить проекты";
 
 /* Action sheet menu title */
-"Edit script" = "Редактировать скрипт";
+"Edit script" = "Изменить скрипт";
 
 /* Action sheet menu title */
 "Edit sound" = "Изменить звук";
@@ -617,7 +632,7 @@
 "Edit sounds" = "Изменить звуки";
 
 /* No comment provided by engineer. */
-"Edit trusted domain" = "Редактировать доверенный домен";
+"Edit trusted domain" = "Изменить доверенный домен";
 
 /* No comment provided by engineer. */
 "Electric Guitar" = "Электрическая гитара";
@@ -632,7 +647,7 @@
 "Ellipse / Circle" = "Эллипс / Круг";
 
 /* No comment provided by engineer. */
-"Else" = "иначе";
+"Else" = "Другие";
 
 /* No comment provided by engineer. */
 "Email" = "Почта";
@@ -647,7 +662,7 @@
 "Empty input!" = "Пустой ввод!";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Включить кирпич";
+"Enable brick" = "Включить блок";
 
 /* No comment provided by engineer. */
 "Enable condition" = "Включить блок условия";
@@ -659,37 +674,34 @@
 "Enable script" = "Включить скрипт";
 
 /* No comment provided by engineer. */
-"End if" = "Конец цикла (если)";
+"End if" = "Конец если";
 
 /* No comment provided by engineer. */
 "End of Loop" = "Конец цикла";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "Введите причину";
-
 /* Placeholder for add image-name input field */
-"Enter your image name here..." = "Введите имя изображения здесь...";
+"Enter your image name here..." = "Введите название вашего изображения здесь...";
 
 /* Placeholder for list input field */
-"Enter your list name here..." = "Введите имя вашего списка здесь...";
+"Enter your list name here..." = "Введите название вашего списка здесь...";
 
 /* Placeholder for message input field */
 "Enter your message here..." = "Введите ваше сообщение здесь...";
 
 /* Placeholder for add object-name input field */
-"Enter your object name here..." = "Введите имя объекта здесь...";
+"Enter your object name here..." = "Введите название вашего объекта здесь...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Введите описание проекта здесь...";
+"Enter your project description here..." = "Введите описание вашего проекта здесь...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Введите имя вашего проекта здесь...";
+"Enter your project name here..." = "Введите название вашего проекта здесь...";
 
 /* Placeholder for add sound-name input field */
-"Enter your sound name here..." = "Введите название звука здесь...";
+"Enter your sound name here..." = "Введите название вашего звука здесь...";
 
 /* Placeholder for variable input field */
-"Enter your variable name here..." = "Введите имя переменной здесь...";
+"Enter your variable name here..." = "Введите название вашей переменной здесь...";
 
 /* paint */
 "Eraser" = "Ластик";
@@ -698,22 +710,22 @@
 "Error" = "Ошибка";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "Произошла ошибка при загрузке проекта. Пожалуйста, повторите попытку позже.";
-
-/* No comment provided by engineer. */
 "Error saving file" = "Ошибка сохранения файла";
 
 /* No comment provided by engineer. */
 "Event" = "Событие";
 
 /* No comment provided by engineer. */
-"exponent" = "экспонент";
+"exponent" = "экспонента";
+
+/* No comment provided by engineer. */
+"Extensions" = "Расширения";
 
 /* No comment provided by engineer. */
 "FA" = "ФА";
 
 /* No comment provided by engineer. */
-"Face detection" = "Обнаружение лиц";
+"Face detection" = "Обнаружение лица";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "Не удалось импортировать элемент";
@@ -731,7 +743,7 @@
 "Failed to play sound" = "Не удалось воспроизвести звук";
 
 /* No comment provided by engineer. */
-"false" = "Ложь";
+"false" = "ложь";
 
 /* No comment provided by engineer. */
 "Featured projects" = "Избранные проекты";
@@ -743,7 +755,7 @@
 "February" = "Февраль";
 
 /* paint */
-"Fill" = "Заливка";
+"Fill" = "Заполнять";
 
 /* No comment provided by engineer. */
 "first face size" = "размер первого лица";
@@ -752,10 +764,10 @@
 "first face visible" = "видимость первого лица";
 
 /* No comment provided by engineer. */
-"first face x position" = "лицо по оси X";
+"first face x position" = "первое лицо по оси X";
 
 /* No comment provided by engineer. */
-"first face y position" = "лицо по оси Y";
+"first face y position" = "первое лицо по оси Y";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Фонарик выкл";
@@ -773,13 +785,13 @@
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Следующие функции, используемые в этом проекте, несовместимы с этой версией Pocket Code:";
 
 /* No comment provided by engineer. */
-"for" = "в течении";
+"for" = "для";
 
 /* No comment provided by engineer. */
 "for all actors or objects" = "для всех актеров или объектов";
 
 /* No comment provided by engineer. */
-"for this actor or object" = "для этого персонажа или объекта";
+"for this actor or object" = "для этого актера или объекта";
 
 /* No comment provided by engineer. */
 "Forever" = "Всегда";
@@ -806,31 +818,31 @@
 "front" = "переднюю";
 
 /* No comment provided by engineer. */
-"Front camera" = "Фронтальная камера";
+"Front camera" = "Передняя камера";
 
 /* No comment provided by engineer. */
 "Functions" = "Функции";
 
 /* No comment provided by engineer. */
-"General properties" = "общие свойства";
+"General properties" = "Общие свойства";
 
 /* No comment provided by engineer. */
 "Glide" = "Скользить ";
 
 /* No comment provided by engineer. */
-"Go back" = "Назад на";
+"Go back" = "Переместить на";
 
 /* No comment provided by engineer. */
 "Go to" = "Перейти в";
 
 /* No comment provided by engineer. */
-"Go to front" = "Переместить на передний план";
+"Go to front" = "Перейти на передний план";
 
 /* No comment provided by engineer. */
 "green" = "зеленый";
 
 /* paint */
-"Green" = "зелёный";
+"Green" = "Зеленый";
 
 /* No comment provided by engineer. */
 "Guitar" = "Гитара";
@@ -842,7 +854,10 @@
 "head top x" = "верхняя часть головы по оси X";
 
 /* No comment provided by engineer. */
-"head top y" = "голова сверху по оси Y";
+"head top y" = "верхняя часть головы по оси Y";
+
+/* No comment provided by engineer. */
+"height of object with ID" = "высота объекта с ID";
 
 /* No comment provided by engineer. */
 "Hello!" = "Привет!";
@@ -866,6 +881,9 @@
 "hour" = "час";
 
 /* No comment provided by engineer. */
+"ID of detected object" = "ID обнаруженного объекта";
+
+/* No comment provided by engineer. */
 "If" = "Если";
 
 /* No comment provided by engineer. */
@@ -875,7 +893,7 @@
 "Image" = "Изображение";
 
 /* No comment provided by engineer. */
-"Image name" = "Имя изображения";
+"Image name" = "Название изображения";
 
 /* No comment provided by engineer. */
 "Image source not available" = "Источник изображения недоступен";
@@ -920,10 +938,10 @@
 "iOS." = "iOS.";
 
 /* No comment provided by engineer. */
-"is true" = "есть истина";
+"is true" = "является истинной";
 
 /* No comment provided by engineer. */
-"is true then" = "истина, то";
+"is true then" = "является истинной, то";
 
 /* paint */
 "italic" = "курсив";
@@ -959,6 +977,9 @@
 "LA" = "ЛЯ";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "этикетка объекта с ID";
+
+/* No comment provided by engineer. */
 "Last access" = "Последний доступ";
 
 /* No comment provided by engineer. */
@@ -971,7 +992,7 @@
 "layer" = "слой";
 
 /* No comment provided by engineer. */
-"layers" = "слоёв";
+"layers" = "слои";
 
 /* No comment provided by engineer. */
 "LED" = "LED";
@@ -980,10 +1001,22 @@
 "Left" = "Налево";
 
 /* No comment provided by engineer. */
+"left ankle x" = "левая лодыжка по оси X";
+
+/* No comment provided by engineer. */
+"left ankle y" = "левая лодыжка по оси Y";
+
+/* No comment provided by engineer. */
 "left ear x" = "левое ухо по оси X";
 
 /* No comment provided by engineer. */
 "left ear y" = "левое ухо по оси Y";
+
+/* No comment provided by engineer. */
+"left elbow x" = "левый локоть по оси X";
+
+/* No comment provided by engineer. */
+"left elbow y" = "левый локоть по оси Y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "центр левого глаза по оси X";
@@ -992,16 +1025,16 @@
 "left eye center y" = "центр правого глаза по оси Y";
 
 /* No comment provided by engineer. */
-"left eye inner x" = "внутренний левый глаз по оси X";
+"left eye inner x" = "внутренний угол левого глаза по оси X";
 
 /* No comment provided by engineer. */
-"left eye inner y" = "внутренний левый глаз по оси Y";
+"left eye inner y" = "внутренний угол левого глаза по оси Y";
 
 /* No comment provided by engineer. */
-"left eye outer x" = "наружный левый глаз по оси X";
+"left eye outer x" = "внешний угол левого глаза по оси X";
 
 /* No comment provided by engineer. */
-"left eye outer y" = "наружный левый глаз по оси Y";
+"left eye outer y" = "внешний угол левого глаза по оси Y";
 
 /* No comment provided by engineer. */
 "left eyebrow center x" = "центр левой брови по оси X";
@@ -1010,19 +1043,73 @@
 "left eyebrow center y" = "центр левой брови по оси Y";
 
 /* No comment provided by engineer. */
-"left eyebrow inner x" = "левая внутренняя бровь по оси X";
+"left eyebrow inner x" = "внутренний конец левой брови по оси X";
 
 /* No comment provided by engineer. */
-"left eyebrow inner y" = "левая внутренняя бровь по оси Y";
+"left eyebrow inner y" = "внутренний конец левой брови по оси Y";
 
 /* No comment provided by engineer. */
-"left eyebrow outer x" = "левая внешняя бровь по оси X";
+"left eyebrow outer x" = "внешний конец левой брови по оси X";
 
 /* No comment provided by engineer. */
-"left eyebrow outer y" = "левая внешняя бровь по оси Y";
+"left eyebrow outer y" = "внешний конец левой брови по оси Y";
 
 /* No comment provided by engineer. */
-"left-right only" = "только слева-направо";
+"left hip x" = "левое бедро по оси X";
+
+/* No comment provided by engineer. */
+"left hip y" = "левое бедро по оси Y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "сустав указательного пальца левой руки по оси X";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "сустав указательного пальца левой руки по оси Y";
+
+/* No comment provided by engineer. */
+"left knee x" = "левое колено по оси X";
+
+/* No comment provided by engineer. */
+"left knee y" = "левое колено по оси Y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "сустав среднего пальца левой руки по оси X";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "сустав среднего пальца левой руки по оси Y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "сустав мизинца левой руки по оси X";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "сустав мизинца левой руки по оси Y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "сустав безымянного пальца левой руки по оси X";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "сустав безымянного пальца левой руки по оси Y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "левое плечо по оси X";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "левое плечо по оси Y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "сустав большого пальца левой руки по оси X";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "сустав большого пальца левой руки по оси Y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "левое запястье по оси X";
+
+/* No comment provided by engineer. */
+"left wrist y" = "левое запястье по оси Y";
+
+/* No comment provided by engineer. */
+"left-right only" = "только влево-вправо";
 
 /* No comment provided by engineer. */
 "length" = "длина";
@@ -1052,7 +1139,7 @@
 "Lists for all actors and objects" = "Списки для всех актеров или объектов";
 
 /* No comment provided by engineer. */
-"Lists for this actor or object only" = "Списки только для актера или объекта только";
+"Lists for this actor or object only" = "Списки только для этого актера или объекта";
 
 /* No comment provided by engineer. */
 "Loading" = "Загрузка";
@@ -1061,7 +1148,7 @@
 "location" = "местоположение";
 
 /* No comment provided by engineer. */
-"location accuracy" = "точность расстояния";
+"location accuracy" = "точность местоположения";
 
 /* No comment provided by engineer. */
 "Logic" = "Логические";
@@ -1073,7 +1160,7 @@
 "Login" = "Войти";
 
 /* No comment provided by engineer. */
-"Login successful" = "Вы вошли";
+"Login successful" = "Вы успешно вошли в аккаунт";
 
 /* No comment provided by engineer. */
 "Logout" = "Выйти";
@@ -1127,7 +1214,7 @@
 "Measure" = "Измерение";
 
 /* No comment provided by engineer. */
-"Media library" = "Загрузить из библиотеки";
+"Media library" = "Медиатека";
 
 /* paint */
 "Menu" = "Меню";
@@ -1136,7 +1223,7 @@
 "Message" = "Сообщение";
 
 /* No comment provided by engineer. */
-"message 1" = "Сообщение 1";
+"message 1" = "сообщение 1";
 
 /* No comment provided by engineer. */
 "MI" = "МИ";
@@ -1157,7 +1244,7 @@
 "Mo" = "Пн";
 
 /* No comment provided by engineer. */
-"modulo" = "modulo";
+"modulo" = "модуль";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Крот";
@@ -1202,10 +1289,10 @@
 "Move" = "Переместить";
 
 /* No comment provided by engineer. */
-"Move actors or objects" = "Перемещение персонажей или объектов";
+"Move actors or objects" = "Перемещение актеров или объектов";
 
 /* No comment provided by engineer. */
-"Move brick" = "Переместить кирпич";
+"Move brick" = "Переместить блок";
 
 /* No comment provided by engineer. */
 "Move looks" = "Переместить образы";
@@ -1214,19 +1301,19 @@
 "Move Phiro motor backward" = "Двигать Phiro мотор назад";
 
 /* No comment provided by engineer. */
-"Move Phiro motor forward" = "Двигать Phiro мотор в перед";
+"Move Phiro motor forward" = "Двигать Phiro мотор вперед";
 
 /* No comment provided by engineer. */
 "Move sounds" = "Переместить звуки";
 
 /* No comment provided by engineer. */
-"Music Box" = "Музыкальный блок";
+"Music Box" = "Музыкальная шкатулка";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Мой первый проект";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My image" = "Мои изображения";
+"My image" = "Мое изображение";
 
 /* Title for first (default) object */
 "My object" = "Мой объект";
@@ -1235,10 +1322,16 @@
 "Name" = "Название";
 
 /* No comment provided by engineer. */
-"Name already exists." = "Такое имя уже существует.";
+"Name already exists." = "Такое название уже существует.";
 
 /* No comment provided by engineer. */
 "natural logarithm" = "натуральный логарифм";
+
+/* No comment provided by engineer. */
+"neck x" = "шея по оси X";
+
+/* No comment provided by engineer. */
+"neck y" = "шея по оси Y";
 
 /* No comment provided by engineer. */
 "New" = "Новый";
@@ -1250,7 +1343,7 @@
 "New list" = "Новый список";
 
 /* No comment provided by engineer. */
-"New message" = "Новый сигнал";
+"New message" = "Новое сообщение";
 
 /* No comment provided by engineer. */
 "New project" = "Новый проект";
@@ -1283,19 +1376,16 @@
 "No categories selected" = "Не выбрана категория!";
 
 /* No comment provided by engineer. */
-"No description available" = "Нет описания";
+"No description available" = "Описание отсутствует";
 
 /* No comment provided by engineer. */
-"No or invalid image name entered, try again." = "Нет или введено недопустимое имя изображения, попробуйте снова.";
+"No or invalid image name entered, try again." = "Отсутствует или введено недопустимое название изображения, попробуйте снова.";
 
 /* No comment provided by engineer. */
-"No or invalid sound name entered, try again." = "Нет или введено недопустимое имя звука, попробуйте снова.";
+"No or invalid sound name entered, try again." = "Отсутствует или введено недопустимое название звука, попробуйте снова.";
 
 /* No comment provided by engineer. */
 "No search results" = "Ничего не найдено";
-
-/* No comment provided by engineer. */
-"No whitespace character allowed" = "Нельзя использовать пробел";
 
 /* No comment provided by engineer. */
 "nose x" = "нос по оси X";
@@ -1319,7 +1409,7 @@
 "Nothing to crop!" = "Нечего обрезать!";
 
 /* No comment provided by engineer. */
-"Nov" = "Ноя";
+"Nov" = "Ноя.";
 
 /* No comment provided by engineer. */
 "November" = "Ноябрь";
@@ -1328,13 +1418,22 @@
 "number of items" = "количество элементов";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "количество текстовых блоков";
+
+/* No comment provided by engineer. */
 "Numbers" = "Числа";
 
 /* No comment provided by engineer. */
 "Object" = "Объект";
 
 /* No comment provided by engineer. */
-"Object or actor name" = "Имя объекта или актера";
+"Object or actor name" = "Название объекта или актера";
+
+/* No comment provided by engineer. */
+"Object recognition" = "Распознавание объектов";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "объект с ID виден";
 
 /* No comment provided by engineer. */
 "Oct" = "Окт";
@@ -1358,16 +1457,16 @@
 "only 15 characters allowed" = "разрешено только 15 символов";
 
 /* No comment provided by engineer. */
-"Only space is not allowed. Please enter at least %lu other character(s)." = "Не допускается только пробел. Пожалуйста введите хотя бы %lu других символов.";
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Только пробел не допускается. Пожалуйста, введите по крайней мере %lu других символов.";
 
 /* No comment provided by engineer. */
-"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Не допускаются только специальные символы. Пожалуйста, введите хотя бы %lu других символов.";
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Только специальные символы не допускаются. Пожалуйста, введите хотя бы %lu других символов.";
 
 /* No comment provided by engineer. */
 "Open" = "Открыть ";
 
 /* No comment provided by engineer. */
-"or" = "ИЛИ";
+"or" = "или";
 
 /* No comment provided by engineer. */
 "Organ" = "Орган";
@@ -1394,22 +1493,22 @@
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
-"phiro bottom left" = "Нижний левый фиро";
+"phiro bottom left" = "Нижний левый phiro";
 
 /* No comment provided by engineer. */
-"phiro bottom right" = "phiro справа внизу";
+"phiro bottom right" = "справа нижний phiro";
 
 /* No comment provided by engineer. */
-"phiro front left" = "phiro спереди влево";
+"phiro front left" = "phiro спереди слева";
 
 /* No comment provided by engineer. */
-"phiro front right" = "phiro справа";
+"phiro front right" = "phiro спереди справа";
 
 /* No comment provided by engineer. */
-"phiro side left" = "сторона phiro слева";
+"phiro side left" = "phiro с левой стороны";
 
 /* No comment provided by engineer. */
-"phiro side right" = "phiro сторона справа";
+"phiro side right" = "phiro с правой стороны";
 
 /* No comment provided by engineer. */
 "pi" = "пи";
@@ -1433,7 +1532,7 @@
 "Play Phiro music\n" = "Играть музыку Phiro\n";
 
 /* No comment provided by engineer. */
-"Please choose another name:" = "Пожалуйста, выберите другое имя:";
+"Please choose another name:" = "Пожалуйста, выберите другое название:";
 
 /* No comment provided by engineer. */
 "Please choose up to three categories" = "Пожалуйста, выберите до трех категорий";
@@ -1443,9 +1542,6 @@
 
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "Пожалуйста, введите хотя бы %lu символ(ов).";
-
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Пожалуйста, войдите, чтобы пожаловаться на этот проект";
 
 /* paint */
 "Please pick a tool" = "Пожалуйста, выберите инструмент";
@@ -1463,22 +1559,22 @@
 "Pocket Code for iOS" = "Pocket Code для iOS";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code не имеет доступа к камере. Для разрешения доступа перейдите в настройки и активируйте камеру. Ваш рисунок будет автоматически сохранен в PocketCode для вас.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code не имеет доступа к вашей камере. Перейдите в настройки и включите доступ к ней. Ваш рисунок будет автоматически сохранен в PocketCode для вас.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code не имеет доступа к вашим изображениям. Чтобы разрешить доступ, перейдите в настройки и активируйте изображения. Ваш рисунок будет автоматически сохранен в PocketCode для вас.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code не имеет доступа к вашим изображениям. Перейдите в настройки и включите доступ к ним. Ваши рисунки будут автоматически сохраняться в PocketCode для вас.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code не имеет доступа к микрофону. Чтобы разрешить доступ, нажмите на настройки и активируйте микрофон.";
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code не имеет доступа к вашему микрофону. Перейдите в настройки и включите его.";
 
 /* No comment provided by engineer. */
-"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code — это среда программирования для iOS для языка визуального программирования Catrobat. Код Pocket Code в основном находится под лицензией GNU AGPL v3. Для получения дополнительной информации о лицензии посетите следующие ссылки:";
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code — это среда программирования на iOS для визуального языка программирования Catrobat. Код Pocket Code в основном находится под лицензией GNU AGPL v3. Подробнее о лицензии можно узнать перейдя по этим ссылкам:";
 
 /* No comment provided by engineer. */
 "Pocket Code Recorder" = "Pocket Code диктофон";
 
 /* No comment provided by engineer. */
-"Pocket Code Source Code License" = "Лицензия Pocket Code";
+"Pocket Code Source Code License" = "Лицензия исходного кода Pocket Code";
 
 /* paint */
 "Pocket Paint" = "Pocket Paint";
@@ -1493,7 +1589,7 @@
 "Pointer" = "Указатель";
 
 /* No comment provided by engineer. */
-"Pose detection" = "Определение позы";
+"Pose detection" = "Обнаружение позы";
 
 /* No comment provided by engineer. */
 "position x" = "координата X";
@@ -1505,13 +1601,16 @@
 "power" = "степень";
 
 /* No comment provided by engineer. */
-"Preview" = "Предпросмотр";
+"Preview" = "Превью";
 
 /* No comment provided by engineer. */
 "Previous background" = "Предыдущий фон";
 
 /* No comment provided by engineer. */
 "Previous look" = "Предыдущий образ";
+
+/* No comment provided by engineer. */
+"Privacy" = "Конфиденциальность";
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Настройки приватности";
@@ -1523,7 +1622,7 @@
 "Project name" = "Название проекта";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Необходимо имя проекта!";
+"Project Name is necessary!" = "Проект должен иметь название!";
 
 /* No comment provided by engineer. */
 "Projects" = "Проекты";
@@ -1535,10 +1634,10 @@
 "Properties" = "Свойства";
 
 /* No comment provided by engineer. */
-"random position" = "Случайное место";
+"random position" = "случайная позиция";
 
 /* No comment provided by engineer. */
-"random value from to" = "случайный";
+"random value from to" = "случайное значение от до";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Оценить нас";
@@ -1556,16 +1655,13 @@
 "Rectangle / Square" = "Прямоугольник / Квадрат";
 
 /* paint */
-"Red" = "красный";
+"Red" = "Красный";
 
 /* No comment provided by engineer. */
 "red" = "красный";
 
 /* No comment provided by engineer. */
-"Register" = "Зарегистрироваться";
-
-/* No comment provided by engineer. */
-"Registration successful" = "Регистрация завершена";
+"Registration successful" = "Регистрация успешно завершена";
 
 /* No comment provided by engineer. */
 "regular expression" = "регулярное выражение";
@@ -1577,7 +1673,7 @@
 "Rename" = "Переименовать";
 
 /* No comment provided by engineer. */
-"Rename actor or object" = "Переименовать актера или объекта";
+"Rename actor or object" = "Переименовать актера или объект";
 
 /* No comment provided by engineer. */
 "Rename image" = "Переименовать изображение";
@@ -1597,14 +1693,11 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "Заменить предмет в списке";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "Пожаловаться";
-
 /* paint */
-"Resize" = "Изменить Размер";
+"Resize" = "Изменить размер";
 
 /* No comment provided by engineer. */
-"Restart" = "Заново";
+"Restart" = "Перезапустить";
 
 /* No comment provided by engineer. */
 "Result" = "Результат";
@@ -1613,10 +1706,22 @@
 "Right" = "Направо";
 
 /* No comment provided by engineer. */
+"right ankle x" = "правая лодыжка по оси X";
+
+/* No comment provided by engineer. */
+"right ankle y" = "правая лодыжка по оси Y";
+
+/* No comment provided by engineer. */
 "right ear x" = "правое ухо по оси X";
 
 /* No comment provided by engineer. */
 "right ear y" = "правое ухо по оси Y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "правый локоть по оси X";
+
+/* No comment provided by engineer. */
+"right elbow y" = "правый локоть по оси Y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "центр правого глаза по оси X";
@@ -1625,16 +1730,16 @@
 "right eye center y" = "центр правого глаза по оси Y";
 
 /* No comment provided by engineer. */
-"right eye inner x" = "внутренний правый глаз по оси X";
+"right eye inner x" = "внутренний угол правого глаза по оси X";
 
 /* No comment provided by engineer. */
-"right eye inner y" = "внутренний правый глаз по оси Y";
+"right eye inner y" = "внутренний угол правого глаза по оси Y";
 
 /* No comment provided by engineer. */
-"right eye outer x" = "наружный правый глаз по оси X";
+"right eye outer x" = "наружный угол правого глаза по оси X";
 
 /* No comment provided by engineer. */
-"right eye outer y" = "наружный правый глаз по оси Y";
+"right eye outer y" = "наружный угол правого глаза по оси Y";
 
 /* No comment provided by engineer. */
 "right eyebrow center x" = "центр правой брови по оси X";
@@ -1643,16 +1748,70 @@
 "right eyebrow center y" = "центр правой брови по оси Y";
 
 /* No comment provided by engineer. */
-"right eyebrow inner x" = "правая внутренняя бровь по оси X";
+"right eyebrow inner x" = "внутренний конец правой брови по оси X";
 
 /* No comment provided by engineer. */
-"right eyebrow inner y" = "правая внутренняя бровь по оси Y";
+"right eyebrow inner y" = "внутренний конец правой брови по оси Y";
 
 /* No comment provided by engineer. */
-"right eyebrow outer x" = "правая внешняя бровь по оси X";
+"right eyebrow outer x" = "внешний конец правой брови по оси X";
 
 /* No comment provided by engineer. */
-"right eyebrow outer y" = "правая внешняя бровь по оси Y";
+"right eyebrow outer y" = "внешний конец правой брови по оси Y";
+
+/* No comment provided by engineer. */
+"right hip x" = "правое бедро по оси X";
+
+/* No comment provided by engineer. */
+"right hip y" = "правое бедро по оси Y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "сустав указательного пальца правой руки по оси X";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "сустав указательного пальца правой руки по оси Y";
+
+/* No comment provided by engineer. */
+"right knee x" = "правое колено по оси X";
+
+/* No comment provided by engineer. */
+"right knee y" = "правое колено по оси Y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "сустав среднего пальца правой руки по оси X";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "сустав среднего пальца правой руки по оси Y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "сустав мизинца правой руки по оси X";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "сустав мизинца правой руки по оси Y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "сустав безымянного пальца правой руки по оси X";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "сустав безымянного пальца правой руки по оси Y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "правое плечо по оси X";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "правое плечо по оси Y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "сустав большого пальца правой руки по оси X";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "сустав большого пальца правой руки по оси Y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "правое запястье по оси X";
+
+/* No comment provided by engineer. */
+"right wrist y" = "правое запястье по оси Y";
 
 /* paint */
 "Rotate" = "Повернуть";
@@ -1670,7 +1829,7 @@
 "Save changes" = "Сохранить изменения";
 
 /* paint */
-"Save to Photos" = "Сохранить фотографии ";
+"Save to Photos" = "Сохранить в Фото";
 
 /* No comment provided by engineer. */
 "Saved" = "Сохранено";
@@ -1688,7 +1847,7 @@
 "Script" = "Скрипт";
 
 /* No comment provided by engineer. */
-"Scripts" = "Скрипта";
+"Scripts" = "Скрипты";
 
 /* bluetooth */
 "Search" = "Поиск";
@@ -1724,7 +1883,7 @@
 "Select Arduino" = "Выбрать Arduino";
 
 /* No comment provided by engineer. */
-"Select brick category" = "Выберите категорию блока";
+"Select brick category" = "Выберите категорию блоков";
 
 /* No comment provided by engineer. */
 "Select categories" = "Выберите категории";
@@ -1784,7 +1943,7 @@
 "Set brightness " = "Задать яркость ";
 
 /* No comment provided by engineer. */
-"Set color " = "Установить цвет ";
+"Set color " = "Задать цвет ";
 
 /* No comment provided by engineer. */
 "Set description" = "Добавить описание";
@@ -1793,31 +1952,34 @@
 "Set Instrument to" = "Установить инструмент к";
 
 /* No comment provided by engineer. */
-"Set pen color to" = "Задать цвет пера:";
+"Set pen color to" = "Задать цвет пера ";
 
 /* No comment provided by engineer. */
-"Set pen size to" = "Установить размер пера";
+"Set pen size to" = "Задать размер пера";
 
 /* No comment provided by engineer. */
-"Set Phiro light" = "Установить Phiro свет";
+"Set Phiro light" = "Задать свет Phiro";
 
 /* No comment provided by engineer. */
 "Set rotation style" = "Задать тип вращения ";
 
 /* No comment provided by engineer. */
-"Set size to" = "Установить размер";
+"Set size to" = "Задать размер";
 
 /* No comment provided by engineer. */
 "Set tempo to" = "Задать темп";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "Задать цвет нити";
+
+/* No comment provided by engineer. */
 "Set transparency " = "Задать прозрачность ";
 
 /* No comment provided by engineer. */
-"Set variable" = "Присвоить";
+"Set variable" = "Задать переменную";
 
 /* No comment provided by engineer. */
-"Set volume to" = "Установить громкость";
+"Set volume to" = "Задать громкость";
 
 /* No comment provided by engineer. */
 "Set x to " = "Установить X в ";
@@ -1832,7 +1994,7 @@
 "Sew up" = "Шить";
 
 /* No comment provided by engineer. */
-"Show" = "Посмотреть";
+"Show" = "Показать";
 
 /* No comment provided by engineer. */
 "Show details" = "Показать детали";
@@ -1856,7 +2018,7 @@
 "SO" = "СО";
 
 /* No comment provided by engineer. */
-"Something went wrong while uploading the project." = "Произошла ошибка во время закачивания проекта.";
+"Something went wrong while uploading the project." = "Что-то пошло не так во время выкладывания проекта.";
 
 /* No comment provided by engineer. */
 "Sound" = "Звук";
@@ -1880,13 +2042,13 @@
 "square root" = "корень";
 
 /* No comment provided by engineer. */
-"stage is touched" = "коснулся экрана";
+"stage is touched" = "касается экрана";
 
 /* No comment provided by engineer. */
-"stage touch x" = "прикосновение к экрану X";
+"stage touch x" = "касание экрана по оси X";
 
 /* No comment provided by engineer. */
-"stage touch y" = "прикосновение к экрану y";
+"stage touch y" = "касание экрана по оси Y";
 
 /* paint */
 "Stamp" = "Штамп";
@@ -1895,13 +2057,16 @@
 "Stamped" = "Штамповано";
 
 /* No comment provided by engineer. */
-"Start running stitch with length" = "Запустить stitch с длиной";
+"Start running stitch with length" = "Запустить вышивку с длиной";
 
 /* No comment provided by engineer. */
 "Start sound" = "Воспроизвести звук";
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Воспроизвести звук и ждать";
+
+/* No comment provided by engineer. */
+"Start triple stitch with length" = "Запустить тройную вышивку с длиной";
 
 /* No comment provided by engineer. */
 "Start zigzag stitch with length" = "Запустить зигзаг строчку с длиной";
@@ -1916,13 +2081,13 @@
 "steps" = "шагов";
 
 /* No comment provided by engineer. */
-"Stitch" = "Прикрепить";
+"Stitch" = "Стежок";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Остановить все звуки";
 
 /* No comment provided by engineer. */
-"Stop current stitch" = "Остановить текущее действие";
+"Stop current stitch" = "Остановить текущую вышивку";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Остановить мотор Phiro";
@@ -1940,7 +2105,7 @@
 "Switch to look with number" = "Задать образ под номером";
 
 /* No comment provided by engineer. */
-"Syntax Error!" = "Ошибка формулы!";
+"Syntax Error!" = "Синтаксическая ошибка!";
 
 /* No comment provided by engineer. */
 "Synth Lead" = "Ведущий Синтезатор";
@@ -1952,10 +2117,10 @@
 "tangent" = "тангенс";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Нажми \"+\" чтобы добавить актеров или объектов";
+"Tap \"+\" to add actors or objects" = "Нажмите \"+\" чтобы добавить актеров или объекты";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add backgrounds" = "Нажмите «+», чтобы добавить фон";
+"Tap \"+\" to add backgrounds" = "Нажмите \"+\" чтобы добавить фоны";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add looks" = "Нажмите \"+\" чтобы добавить образы";
@@ -1976,7 +2141,28 @@
 "Text" = "Текст";
 
 /* No comment provided by engineer. */
+"text block from camera" = "текстовый блок с камеры";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "текстовый блок языка с камеры";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "размер текстового блока с камеры";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "текстовый блок по оси X с камеры";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "текстовый блок по оси Y с камеры";
+
+/* No comment provided by engineer. */
+"text from camera" = "текст с камеры";
+
+/* No comment provided by engineer. */
 "Text message:" = "Текстовое сообщение:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "Распознавание текста";
 
 /* paint */
 "Text:" = "Текст:";
@@ -1991,13 +2177,13 @@
 "The featured projects cannot be loaded" = "Избранные проекты не могут быть загружены";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the media library:" = "Невозможно импортировать следующие элементы из библиотеки:";
+"The following item could not be imported from the media library:" = "Невозможно импортировать следующий элемент из библиотеки:";
 
 /* No comment provided by engineer. */
-"The input is too long. Please enter maximal %lu character(s)." = "Ввод слишком длинный. Пожалуйста, введите максимально %lu символ(ов).";
+"The input is too long. Please enter maximal %lu character(s)." = "Ввод слишком длинный. Пожалуйста, введите максимум %lu символ(ов).";
 
 /* No comment provided by engineer. */
-"The name contains blocked characters. Please try again!" = "Имя содержит запрещенные символы. Попробуйте еще раз!";
+"The name contains blocked characters. Please try again!" = "Название содержит запрещенные символы. Попробуйте еще раз!";
 
 /* No comment provided by engineer. */
 "The recent projects cannot be loaded" = "Недавние проекты не могут быть загружены";
@@ -2021,7 +2207,7 @@
 "This feature is coming soon!" = "В разработке!";
 
 /* No comment provided by engineer. */
-"This list can not be deleted because it is still in use." = "Эта переменная не может быть удалена, потому что она все еще используется.";
+"This list can not be deleted because it is still in use." = "Этот список не может быть удален, так как он все еще используется.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Эта переменная не может быть удалена, потому что она все еще используется.";
@@ -2042,13 +2228,13 @@
 "to" = "значение";
 
 /* No comment provided by engineer. */
-"to list" = "к списку";
+"to list" = "в список";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "Чтобы предложить вам все преимущества наших услуг и связанного с ними счета, необходимо собрать от вас определенные данные.\n\n\u{2022} Для поддержания и улучшения наших услуг (приложений и веб-сайтов) и проведения научных исследований в области ИКТ и STEM/STEAM образования мы используем Google Analytics, Crashlytics и Firebase, все от Google LLC (США), а также Dynatrace от Dynatrace LLC (США) для получения метаданных об использовании наших услуг, например, информации о сбоях, временных метках, посещенных страницах/экранах, использовании наших приложений и услуг, используемой операционной системе и информации о сетевом провайдере. Этот анализ и собранные данные не связаны с вашим профилем и не содержат никакой личной информации (последние биты IP-адреса анонимизируются). Однако собранные данные будут переданы поставщику услуг (Google LLC, США и Dynatrace LLC, США). Обработка данных осуществляется на основании соглашений с Google LLC и Dynatrace LLC. Отношения с поставщиком услуг соответствуют Общему регламенту защиты данных Европейского Союза\\ (EU GDPR) и соглашению EU-USA \"Privacy Shield\".\n\n\u{2022} Для создания и использования аккаунта в наших системах, а также для информирования вас о необходимых изменениях в вашем аккаунте по электронной почте, например, об обновлениях или нарушениях наших Условий использования и обслуживания, правил нашего сообщества или наших политик, мы будем хранить ваше имя пользователя и, если вы его предоставили, ваш адрес электронной почты. Если вы подключили свой аккаунт через учетную запись Google или Facebook, мы дополнительно храним идентификационный ключ, связанный с вашим аккаунтом на этих сервисах. Мы не будем использовать эти данные для каких-либо других (например, маркетинговых) целей, если вы явно не разрешили нам это делать.\n\n\u{2022} На добровольной основе вы можете указать нам страну проживания на странице вашей учетной записи на сайте обмена. Эта информация будет отображаться в вашем публичном профиле и будет использоваться нами только в статистических и исследовательских целях. Ее можно удалить в любое время в настройках вашего профиля.\n\n\u{2022} Вы можете в любое время отказаться от использования личных данных, принадлежащих вашему аккаунту, удалив свой аккаунт через страницу профиля на сайте https://share.catrob.at. После удаления аккаунта вы по-прежнему сможете пользоваться предоставляемыми услугами, но не сотрудничать, например, загружая программы, комментируя или ставя лайки. Также будет удален весь предоставленный контент, связанный с вашей учетной записью, например, загруженные программы, комментарии и т.д.\n\n\u{2022} Во избежание неправомерного использования наших услуг, например, через загруженные пользователем программы или комментарии в незаконных целях, все созданные пользователем публичные данные (загрузки, комментарии) будут храниться внутри базы данных, вместе с меткой времени и использованным интернет-адресом. Эти данные не будут использоваться или передаваться каким-либо учреждениям, за исключением случаев, когда имеются обоснованные подозрения в совершении противоправных действий, и когда официально уполномоченные юридические учреждения запрашивают их на основании действующего законодательства. Каждый случай будет сначала тщательно проверен нами в индивидуальном порядке.\n\n\u{2022} Вы можете добровольно подписаться на рассылку новостей Catrobat на сайте https://catrob.at/newsletter, предоставленном нами через сервис MailChimp (The Rocket Science Group LLC d/b/a MailChimp, США). В этом случае вы будете получать обновления о проекте Catrobat и его услугах на указанный вами адрес электронной почты. Вы можете отказаться от рассылки в любое время, воспользовавшись ссылкой \"отписаться\" в нижнем колонтитуле каждого информационного письма. Рассылка осуществляется компанией MailChimp, с которой у нас заключено соглашение об обработке данных и которая приняла на себя обязательства по соблюдению Общего регламента ЕС по защите данных и \"Щита конфиденциальности\" между ЕС и США. Для получения более подробной информации о MailChimp, пожалуйста, ознакомьтесь с Политикой конфиденциальности и Условиями использования MailChimp\\.\n\n\u{2022} Все Услуги предоставляются бесплатным проектом Catrobat с открытым исходным кодом под эгидой Международной ассоциации Catrobat - Verein zur Förderung freier Software, некоммерческой неправительственной организации, зарегистрированной в Граце, Австрия (Европейский Союз). Наша политика предусматривает соблюдение законодательства ЕС и Австрии о защите данных (GDPR). Чтобы связаться с нами, пожалуйста, отправьте электронное письмо по адресу contact@catrobat.org или напишите нам по адресу Catrobat,\nc/o\nИнститут технологии программного обеспечения,\nТехнологический университет Граца,\nInffeldgasse 16b,\nA-8010 Грац, Австрия\n(Европейский Союз).\n\nЕсли вы не достигли 14-летнего возраста, данная политика должна быть принята законным опекуном (обычно родителем).\n\nОфициальная политика конфиденциальности Catrobat\\ на английском языке доступна на сайте по адресу https://catrob.at/privacypolicy.\n\nВерсия 2.2, 17 октября 2019 г.\n\nНайти предыдущую, устаревшую версию нашей политики конфиденциальности (2.0) можно здесь: http://developer.catrobat.org/privacy_policy_2-0.";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "Чтобы предложить вам все преимущества наших услуг и соответствующего аккаунта, необходимо собрать от вас определенные данные.\n\n\u{2022} Для поддержания и улучшения наших услуг (приложений и веб-сайтов) и проведения научных исследований в области ИКТ и STEM/STEAM образования мы используем Google Analytics, Crashlytics и Firebase, все от Google LLC (США), а также Dynatrace от Dynatrace LLC (США) для получения метаданных об использовании наших услуг, например, информации о сбоях, временных метках, посещенных страницах/экранах, использовании наших приложений и услуг, используемой операционной системе и информации о сетевом провайдере. Этот анализ и собранные данные не связаны с вашим профилем и не содержат никакой личной информации (последние биты IP-адреса скрываются). Однако собранные данные будут переданы поставщику услуг (Google LLC, США и Dynatrace LLC, США). Обработка данных осуществляется на основании соглашений с Google LLC и Dynatrace LLC. Отношения с поставщиком услуг соответствуют Общему регламенту защиты данных Европейского Союза\\ (EU GDPR) и соглашению EU-USA \"Privacy Shield\".\n\n\u{2022} Для создания и использования аккаунта в наших системах, а также для информирования вас о необходимых изменениях в вашем аккаунте по электронной почте, например, об обновлениях или нарушениях наших Условий использования и обслуживания, правил нашего сообщества или наших политик, мы будем хранить ваше имя пользователя и, если вы его предоставили, ваш адрес электронной почты. Если вы подключили свой аккаунт через учетную запись Google или Facebook, мы дополнительно храним идентификационный ключ, связанный с вашим аккаунтом на этих сервисах. Мы не будем использовать эти данные для каких-либо других (например, маркетинговых) целей, если вы явно не разрешили нам это делать.\n\n\u{2022} На добровольной основе вы можете указать страну проживания на странице вашей учетной записи на сайте обмена. Эта информация будет отображаться в вашем публичном профиле и будет использоваться нами только в статистических и исследовательских целях. Ее можно удалить в любое время в настройках вашего профиля.\n\n\u{2022} Вы можете в любое время отказаться от использования личных данных, принадлежащих вашему аккаунту, удалив свой аккаунт через страницу профиля на сайте https://share.catrob.at. После удаления аккаунта вы по-прежнему сможете пользоваться предоставляемыми услугами, но не сотрудничать, например, загружая программы, комментируя или ставя лайки. Также будет удален весь предоставленный контент, связанный с вашей учетной записью, например, загруженные программы, комментарии и т.д.\n\n\u{2022} Во избежание неправомерного использования наших услуг, например, через загруженные пользователем программы или комментарии в незаконных целях, все созданные пользователем публичные данные (загрузки, комментарии) будут храниться внутри базы данных, вместе с меткой времени и использованным интернет-адресом. Эти данные не будут использоваться или передаваться каким-либо учреждениям, за исключением случаев, когда имеются обоснованные подозрения в совершении противоправных действий, и когда официально уполномоченные юридические учреждения запрашивают их на основании действующего законодательства. Каждый случай будет сначала тщательно проверен нами в индивидуальном порядке.\n\n\u{2022} Вы можете добровольно подписаться на рассылку новостей Catrobat на сайте https://catrob.at/newsletter, предоставленном нами через сервис MailChimp (The Rocket Science Group LLC d/b/a MailChimp, США). В этом случае вы будете получать обновления о проекте Catrobat и его услугах на указанный вами адрес электронной почты. Вы можете отказаться от рассылки в любое время, воспользовавшись ссылкой \"отписаться\" в нижнем колонтитуле каждого информационного письма. Рассылка осуществляется компанией MailChimp, с которой у нас заключено соглашение об обработке данных и которая приняла на себя обязательства по соблюдению Общего регламента ЕС по защите данных и \"Щита конфиденциальности\" между ЕС и США. Для получения более подробной информации о MailChimp, пожалуйста, ознакомьтесь с Политикой конфиденциальности и Условиями использования MailChimp\\.\n\n\u{2022} Все Услуги предоставляются бесплатным проектом Catrobat с открытым исходным кодом под эгидой Международной ассоциации Catrobat - Verein zur Förderung freier Software, некоммерческой неправительственной организации, зарегистрированной в Граце, Австрия (Европейский Союз). Наша политика предусматривает соблюдение законодательства ЕС и Австрии о защите данных (GDPR). Чтобы связаться с нами, пожалуйста, отправьте электронное письмо по адресу contact@catrobat.org или напишите нам по адресу Catrobat,\nc/o\nИнститут технологии программного обеспечения,\nТехнологический университет Граца,\nInffeldgasse 16b,\nA-8010 Грац, Австрия\n(Европейский Союз).\n\nЕсли вы не достигли 14-летнего возраста, данная политика должна быть принята законным опекуном (обычно родителем).\n\nОфициальная политика конфиденциальности Catrobat\\ на английском языке доступна на сайте по адресу https://catrob.at/privacypolicy.\n\nВерсия 2.2, 17 октября 2019 г.\n\nНайти предыдущую, устаревшую версию нашей политики конфиденциальности (2.0) можно здесь: http://developer.catrobat.org/privacy_policy_2-0.";
 
 /* No comment provided by engineer. */
-"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "Для использования нашего приложения необходимо принять нашу Политику конфиденциальности. Однако, если вам это не удобно, вы можете воспользоваться нашими бесплатными веб-сервисами на share.catrob.at";
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "Для использования нашего приложения необходимо принять нашу Политику конфиденциальности. Однако, если вам не хочется этого делать, вы можете воспользоваться нашими бесплатными веб-сервисами на share.catrob.at";
 
 /* No comment provided by engineer. */
 "to x:" = "по X:";
@@ -2057,10 +2243,10 @@
 "Today" = "Сегодня";
 
 /* No comment provided by engineer. */
-"Touch detection" = "Обнаружение касаний";
+"Touch detection" = "Обнаружение касания";
 
 /* No comment provided by engineer. */
-"touch position" = "Место, к которому прикоснулись";
+"touch position" = "место касания";
 
 /* No comment provided by engineer. */
 "touches actor or object" = "касается актера или объекта";
@@ -2078,7 +2264,10 @@
 "Trombone" = "Тромбон";
 
 /* No comment provided by engineer. */
-"true" = "Истина";
+"true" = "истина";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Доверенные домены";
 
 /* No comment provided by engineer. */
 "Tu" = "Вт";
@@ -2087,10 +2276,10 @@
 "Tuesday" = "Вторник";
 
 /* No comment provided by engineer. */
-"Turn camera" = "Повернуть камеру";
+"Turn camera" = "Включить камеру";
 
 /* No comment provided by engineer. */
-"Turn flashlight" = "Вспышка";
+"Turn flashlight" = "Включить вспышку";
 
 /* No comment provided by engineer. */
 "Turn left" = "Повернуть налево";
@@ -2105,7 +2294,7 @@
 "Unable to load project!" = "Не удается загрузить проект!";
 
 /* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Не удается воспроизвести этот звук!\nВозможно, это не верный звук или файл поврежден.";
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Не удается воспроизвести этот звук!\nВозможно, это неверный звук или файл поврежден.";
 
 /* paint */
 "underline" = "подчеркивание";
@@ -2126,13 +2315,13 @@
 "Unexpected Error, please try again later." = "Непредвиденная ошибка, попробуйте позже.";
 
 /* No comment provided by engineer. */
-"Unknown Element" = "Неизвестный элемент";
+"Unknown Element" = "Неизвестный Элемент";
 
 /* No comment provided by engineer. */
 "Unselect all" = "Снять все";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Неподдерживаемый блок:";
+"Unsupported Brick:" = "Неподдерживаемый Блок:";
 
 /* No comment provided by engineer. */
 "Unsupported Elements" = "Неподдерживаемые Элементы";
@@ -2141,16 +2330,16 @@
 "Unsupported Script:" = "Неподдерживаемый Скрипт:";
 
 /* No comment provided by engineer. */
-"Upload project" = "Загрузить проект";
+"Upload project" = "Выложить проект";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Загрузить выбранный проект";
+"Upload selected project" = "Выложить выбранный проект";
 
 /* No comment provided by engineer. */
-"Upload successful" = "Добавлено успешно";
+"Upload successful" = "Проект успешно выложен";
 
 /* No comment provided by engineer. */
-"Uploaded" = "Загружено";
+"Uploaded" = "Выложено";
 
 /* No comment provided by engineer. */
 "Use camera" = "Использовать камеру";
@@ -2168,10 +2357,10 @@
 "Username must not be blank" = "Имя пользователя не должно быть пустым";
 
 /* No comment provided by engineer. */
-"Variable name" = "Имя переменной";
+"Variable name" = "Название переменной";
 
 /* No comment provided by engineer. */
-"Variable name:" = "Имя переменной:";
+"Variable name:" = "Название переменной:";
 
 /* No comment provided by engineer. */
 "Variable or list" = "Переменная или список";
@@ -2201,7 +2390,10 @@
 "vibration" = "вибрация";
 
 /* No comment provided by engineer. */
-"View" = "Вид";
+"View" = "Просмотр";
+
+/* No comment provided by engineer. */
+"View Terms of Use and Service" = "Смотреть условия пользования и обслуживания";
 
 /* No comment provided by engineer. */
 "Views" = "Просмотры";
@@ -2228,37 +2420,46 @@
 "Welcome!" = "Добро пожаловать!";
 
 /* No comment provided by engineer. */
-"What's your name?" = "Как тебя зовут?";
+"What's your name?" = "Как вас зовут?";
 
 /* No comment provided by engineer. */
 "When" = "Как только";
 
 /* No comment provided by engineer. */
-"When background changes to" = "Когда только фон изменится на";
+"When background changes to" = "Когда фон изменится на";
 
 /* No comment provided by engineer. */
-"When project starts" = "При старте";
+"When project starts" = "При запуске проекта";
 
 /* No comment provided by engineer. */
-"When stage is tapped" = "При прикосновении к экрану";
+"When stage is tapped" = "При нажатии на экран";
 
 /* No comment provided by engineer. */
 "When tapped" = "При нажатии";
 
 /* No comment provided by engineer. */
-"When you receive" = "Когда я получу";
+"When you receive" = "Когда вы получите";
+
+/* No comment provided by engineer. */
+"width of object with ID" = "ширина объекта с ID";
 
 /* paint */
 "Width selection" = "Выбор ширины";
 
 /* No comment provided by engineer. */
-"with" = "на";
+"with" = "с";
 
 /* No comment provided by engineer. */
 "Wooden Flute" = "Деревянная флейта";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "кордината объекта по оси X с ID";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "кордината объекта по оси Y с ID";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
@@ -2273,19 +2474,19 @@
 "Yesterday" = "Вчера";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "Вы уже загрузили этот проект!";
+"You have already downloaded this project!" = "Вы уже скачали этот проект!";
+
+/* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Ваш аккаунт был успешно удален.";
 
 /* No comment provided by engineer. */
 "Your answer" = "Ваш ответ";
 
 /* No comment provided by engineer. */
-"Your email seems to be invalid" = "Ваш электронный адрес, похоже, не действителен.";
+"Your email seems to be invalid" = "Ваш электронный адрес, похоже, недействителен.";
 
 /* No comment provided by engineer. */
-"Your project was uploaded to the Catrobat community where others can use and download it." = "Ваш проект был загружен в сообщество Catrobat, где его могут использовать и загружать другие.";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "Ваше сообщение успешно отправлено!";
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Ваш проект был выложен в сообщество Catrobat, где другие могут использовать и скачивать его.";
 
 /* paint */
 "Zoom" = "Масштаб";
