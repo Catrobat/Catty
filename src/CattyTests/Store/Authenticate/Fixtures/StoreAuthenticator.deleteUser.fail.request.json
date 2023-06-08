@@ -1,0 +1,35 @@
+{
+  "name" : "StoreAuthenticator.deleteUser.fail.request",
+  "interactions" : [
+    {
+      "recorded_at" : 1666353666.8849568,
+      "request" : {
+        "method" : "DELETE",
+        "url" : "https:\/\/web-test.catrob.at\/api\/user",
+        "headers" : {
+          "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjo0ODIyMDMzMDUyfQ.GNnO3_Y4hYTkULubsayMWZmi25ZAWWw6PV01cRAu7M8"
+        }
+      },
+      "response" : {
+        "headers" : {
+          "Cache-Control" : "private, must-revalidate",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Set-Cookie" : "dtCookie=v_4_srv_5_sn_6F98C004924771F26FEEB6F901176C81_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Server" : "cloudflare",
+          "Expires" : "-1",
+          "Pragma" : "no-cache",
+          "cf-ray" : "75d9d631acafc2e1-VIE",
+          "Www-Authenticate" : "Bearer",
+          "cf-cache-status" : "DYNAMIC",
+          "Date" : "Fri, 21 Oct 2022 12:01:06 GMT",
+          "Content-Type" : "application\/json",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"818668980\"",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=t26gpLejiM8d64CDEy%2BepwmoQ6ijR8mqwZ8jmMHawLBJx0Z3J1Hughy%2Fdg1G18X%2BKfMEO4jDmtJ2EZIGqSXDBYNuKrJZm10GTiA2GMR9%2BkFOIBG5TZ%2BGTE7MYtjm8nKgBW4Aa4MWxybAoAjmHLA%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+        },
+        "status" : 500,
+        "url" : "https:\/\/web-test.catrob.at\/api\/user"
+      }
+    }
+  ]
+}

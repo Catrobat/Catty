@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -260,20 +260,14 @@
         }
 
         if project.userData.contains(userVariable) {
-
             for object in project.allObjects() {
-                for brick in self.getAllBricks(for: object) {
-                    if brick.isVariableUsed(variable: userVariable) {
-                        return true
-                    }
-                }
-            }
-
-        } else {
-            for brick in self.getAllBricks(for: spriteObject) {
-                if brick.isVariableUsed(variable: userVariable) {
+                for brick in self.getAllBricks(for: object) where brick.isVariableUsed(variable: userVariable) {
                     return true
                 }
+            }
+        } else {
+            for brick in self.getAllBricks(for: spriteObject) where brick.isVariableUsed(variable: userVariable) {
+                return true
             }
         }
 
@@ -288,18 +282,13 @@
 
         if project.userData.contains(userList) {
             for object in project.allObjects() {
-                for brick in self.getAllBricks(for: object) {
-                    if brick.isListUsed(list: userList) {
-                        return true
-                    }
-                }
-
-            }
-        } else {
-            for brick in self.getAllBricks(for: spriteObject) {
-                if brick.isListUsed(list: userList) {
+                for brick in self.getAllBricks(for: object) where brick.isListUsed(list: userList) {
                     return true
                 }
+            }
+        } else {
+            for brick in self.getAllBricks(for: spriteObject) where brick.isListUsed(list: userList) {
+                return true
             }
         }
 

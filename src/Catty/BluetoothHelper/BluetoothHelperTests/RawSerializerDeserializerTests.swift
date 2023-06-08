@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,23 +34,6 @@ class RawDeserializerTests: XCTestCase {
         static let uuid = "TEST"
     }
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
     // MARK: RawDeserialize
     func testRawDeserialization() {
         let data = "01".dataFromHexString()
@@ -63,7 +46,7 @@ class RawDeserializerTests: XCTestCase {
 
     func testRawDeserializationFailure() {
         let data = "03".dataFromHexString()
-        if let _ : RawTest = Deserializer.deserialize(data) {
+        if let _: RawTest = Deserializer.deserialize(data) {
             XCTFail("RawDeserializable deserialization succeeded")
         }
     }
@@ -80,7 +63,7 @@ class RawDeserializerTests: XCTestCase {
 
     func testRawPairDeserializationFailure() {
         let data = "0201".dataFromHexString()
-        if let _ : RawPairTest = Deserializer.deserialize(data) {
+        if let _: RawPairTest = Deserializer.deserialize(data) {
             XCTFail("RawPairDeserializableTests deserialization succeeded")
         }
     }
@@ -97,7 +80,7 @@ class RawDeserializerTests: XCTestCase {
 
     func testRawArrayDeserializationFailure() {
         let data = "02ab0c05".dataFromHexString()
-        if let _ : RawArrayTest = Deserializer.deserialize(data) {
+        if let _: RawArrayTest = Deserializer.deserialize(data) {
             XCTFail("RawArrayDeserializable deserialization succeeded")
         }
     }
@@ -114,7 +97,7 @@ class RawDeserializerTests: XCTestCase {
 
     func testRawArrayPairDeserializationFailure() {
         let data = "020103".dataFromHexString()
-        if let _ : RawArrayPairTest = Deserializer.deserialize(data) {
+        if let _: RawArrayPairTest = Deserializer.deserialize(data) {
             XCTFail("RawPairDeserializableTests deserialization succeeded")
         }
     }

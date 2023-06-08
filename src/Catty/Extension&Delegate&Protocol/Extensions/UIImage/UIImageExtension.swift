@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,5 +27,26 @@ extension UIImage {
         let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return croppedImage
+    }
+
+    func overlayText(_ text: String, withFont font: UIFont, andColor color: UIColor) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+
+        let textStyle = NSMutableParagraphStyle()
+        textStyle.alignment = .center
+        let attributes: [NSAttributedString.Key: Any] = [.font: font, .paragraphStyle: textStyle, .foregroundColor: color]
+
+        let textYOffset = (self.size.height - font.lineHeight) / 2
+        let textBox = CGRect(x: 0, y: textYOffset, width: self.size.width, height: font.lineHeight)
+
+        if color == UIColor.clear {
+            UIGraphicsGetCurrentContext()?.setBlendMode(.clear)
+        }
+        text.draw(in: textBox, withAttributes: attributes)
+
+        let textImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return textImage
     }
 }

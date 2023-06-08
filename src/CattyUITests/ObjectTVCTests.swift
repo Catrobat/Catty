@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,12 +26,9 @@ class ObjectTVCTests: XCTestCase {
 
     var app: XCUIApplication!
 
-    override func setUp() {
-        super.setUp()
-        app = launchApp()
-    }
-
     func testScriptsCanEnterScriptsOfAllMoles() {
+        app = launchApp()
+
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
@@ -48,6 +45,8 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanDeleteBrickSetSizeTo() {
+        app = launchApp()
+
         app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -63,6 +62,8 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanDeleteBrickLoop() {
+        app = launchApp()
+
         app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -78,6 +79,8 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanCopyForeverBrick() {
+        app = launchApp(with: ["skipPrivacyPolicy", "restoreDefaultProject"])
+
         app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -93,6 +96,8 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanDeleteWhenProjectStartedBrick() {
+        app = launchApp()
+
         app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -111,6 +116,8 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanDeleteWaitBrick() {
+        app = launchApp()
+
         app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -123,6 +130,8 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testLooksCanEnterSingleLook() {
+        app = launchApp()
+
         app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedLooks].tap()
@@ -131,6 +140,8 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testCopyObjectWithIfBricks() {
+        app = launchApp()
+
         let projectName = "testProject"
         let objectName = "testObject"
         let copiedObjectName = objectName + " (1)"
@@ -160,10 +171,9 @@ class ObjectTVCTests: XCTestCase {
         app.tables.staticTexts[objectName].swipeLeft()
         app.buttons[kLocalizedMore].tap()
 
-        let sheet = app.sheets[kLocalizedEditObject]
-        XCTAssertTrue(sheet.exists)
-
-        sheet.buttons[kLocalizedCopy].tap()
+        XCTAssertTrue(app.staticTexts[kLocalizedEditObject].exists)
+        XCTAssertTrue(app.buttons[kLocalizedCopy].exists)
+        app.buttons[kLocalizedCopy].tap()
 
         XCTAssertTrue(waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).exists)
 

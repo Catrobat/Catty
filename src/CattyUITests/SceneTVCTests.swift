@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -45,13 +45,13 @@ class SceneTVCTests: XCTestCase {
     }
 
     func testUploadProject() {
-        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["-userIsLoggedIn", "true"])
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedIn"])
         tapOnUpload()
         XCTAssert(waitForElementToAppear(app.navigationBars.buttons[kLocalizedUploadProject]).exists)
     }
 
     func testUploadProjectRedirectLogin() {
-        app = launchApp()
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedOut"])
         tapOnUpload()
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedLogin]).exists)
     }

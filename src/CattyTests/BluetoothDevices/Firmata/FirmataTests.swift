@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -200,7 +200,7 @@ final class FirmataTests: XCTestCase {
         portMasks[Int(0)] &= ~(1 << 4) //prep the saved mask by zeroing this pin's corresponding bit
         newMask |= portMasks[Int(0)] //merge with saved port state
         portMasks[Int(0)] = newMask
-        var data1 = newMask<<1; data1 >>= 1  //remove MSB
+        var data1 = newMask << 1; data1 >>= 1  //remove MSB
         let data2 = newMask >> 7 //use data1's MSB as data2's LSB
         let bytes: [UInt8] = [kDIGITAL_MESSAGE + 4 / 8, data1, data2]
         let newData = Data(bytes)
@@ -272,7 +272,7 @@ final class FirmataTests: XCTestCase {
     func testReceiveDigitalMessage() {
         //Given
         let newMask = UInt8(0)
-        var data1 = newMask<<1; data1 >>= 1  //remove MSB
+        var data1 = newMask << 1; data1 >>= 1  //remove MSB
         let data2 = newMask >> 7 //use data1's MSB as data2's LSB
         let bytes: [UInt8] = [kDIGITAL_MESSAGE, data1, data2]
         let receivedData = Data(bytes)
@@ -287,7 +287,7 @@ final class FirmataTests: XCTestCase {
     func testReceiveDigitalMessage2() {
         //Given
         let newMask = UInt8(PinState.high.rawValue * Int(powf(2, Float(4))))
-        var data1 = newMask<<1; data1 >>= 1  //remove MSB
+        var data1 = newMask << 1; data1 >>= 1  //remove MSB
         let data2 = newMask >> 7 //use data1's MSB as data2's LSB
         let bytes: [UInt8] = [kDIGITAL_MESSAGE, data1, data2]
         let receivedData = Data(bytes)
@@ -385,10 +385,8 @@ final class FirmataTests: XCTestCase {
 
     private func equal(_ lhs: [[Int: Int]], _ rhs: [[Int: Int]]) -> Bool {
         guard lhs.count == rhs.count else { return false }
-        for i in 0..<lhs.count {
-            if !NSDictionary(dictionary: lhs[i]).isEqual(to: rhs[i]) {
-                return false
-            }
+        for i in 0..<lhs.count where !NSDictionary(dictionary: lhs[i]).isEqual(to: rhs[i]) {
+            return false
         }
         return true
     }

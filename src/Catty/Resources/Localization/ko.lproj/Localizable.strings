@@ -8,10 +8,16 @@
 "Abc" = "글자";
 
 /* No comment provided by engineer. */
+"About" = "정보";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "Catrobat에 대하여";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "포켓 코드에 대하여";
+
+/* No comment provided by engineer. */
+"About Us" = "About Us";
 
 /* No comment provided by engineer. */
 "absolute value" = "절대 값";
@@ -143,6 +149,9 @@
 "Arduino extension" = "아두이노 블록";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
 "Ask " = "질문";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "Catrobat 공유";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat website";
 
 /* No comment provided by engineer. */
 "ceiling" = "위";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "삭제";
+
+/* No comment provided by engineer. */
+"Delete account" = "계정 삭제";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "배우나 오브젝트 삭제";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "반복 끝";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "이유를 입력하세요";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "여기에 그림파일 이름을 입력하세요...";
 
@@ -698,9 +710,6 @@
 "Error" = "오류";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "프로젝트를보고하는 동안 오류가 발생했습니다. 나중에 다시 시도하세요.";
-
-/* No comment provided by engineer. */
 "Error saving file" = "화일저장 오류";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "멱지수";
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensions";
 
 /* No comment provided by engineer. */
 "FA" = "파";
@@ -845,6 +857,9 @@
 "head top y" = "헤드 탑 y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "안녕하세요!";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "시간";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "감지된 개체의 ID";
 
 /* No comment provided by engineer. */
 "If" = "조건문";
@@ -959,6 +977,9 @@
 "LA" = "라";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
+
+/* No comment provided by engineer. */
 "Last access" = "최종 사용";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "왼쪽";
 
 /* No comment provided by engineer. */
+"left ankle x" = "왼쪽 발목 x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "왼쪽 발목 y";
+
+/* No comment provided by engineer. */
 "left ear x" = "왼쪽 귀 x";
 
 /* No comment provided by engineer. */
 "left ear y" = "일찍 떠났어";
+
+/* No comment provided by engineer. */
+"left elbow x" = "왼쪽 팔꿈치 x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "왼쪽 팔꿈치 y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "왼쪽 눈 센터 x";
@@ -1020,6 +1053,60 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left hip x" = "왼쪽 엉덩이 x";
+
+/* No comment provided by engineer. */
+"left hip y" = "왼쪽 엉덩이 y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "왼쪽 인덱스 너클 x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "왼쪽 인덱스 너클 y";
+
+/* No comment provided by engineer. */
+"left knee x" = "왼쪽 무릎 x";
+
+/* No comment provided by engineer. */
+"left knee y" = "왼쪽 무릎 y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "left middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "left middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "왼쪽 새끼손가락 너클 x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "왼쪽 새끼손가락 너클 y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "left ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "left ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "왼쪽 어깨 x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "왼쪽 어깨 y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "왼쪽 엄지 손가락 관절 x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "왼쪽 엄지 손가락 관절 y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "왼쪽 손목 x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "왼쪽 손목 y";
 
 /* No comment provided by engineer. */
 "left-right only" = "왼쪽-오른쪽만";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "자연 로그";
 
 /* No comment provided by engineer. */
+"neck x" = "목 x";
+
+/* No comment provided by engineer. */
+"neck y" = "목 y";
+
+/* No comment provided by engineer. */
 "New" = "새로운";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "검색결과가 없습니다.";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "빈 칸은 허용되지 않습니다";
-
-/* No comment provided by engineer. */
 "nose x" = "코 엑스";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "항목의 수";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "텍스트 블록 수";
+
+/* No comment provided by engineer. */
 "Numbers" = "숫자";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "오브젝트나 배우의 이름";
+
+/* No comment provided by engineer. */
+"Object recognition" = "물체 인식";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "object with ID visible";
 
 /* No comment provided by engineer. */
 "Oct" = "10월";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "%lu 자 이상을 입력하십시오.";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "이 프로젝트를 부적합하다고 신고하려면 로그인 해 주세요";
-
 /* paint */
 "Please pick a tool" = "도구를 선택하십시오";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "이전 모양";
 
 /* No comment provided by engineer. */
+"Privacy" = "Privacy";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "개인 정보 설정";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "빨강";
 
 /* No comment provided by engineer. */
-"Register" = "등록";
-
-/* No comment provided by engineer. */
 "Registration successful" = "등록 성공";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "리스트의 항목 바꾸기";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "부적합한 프로그램으로 보고";
-
 /* paint */
 "Resize" = "크기 조절";
 
@@ -1613,10 +1706,22 @@
 "Right" = "오른쪽";
 
 /* No comment provided by engineer. */
+"right ankle x" = "오른쪽 발목 x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "오른쪽 발목 y";
+
+/* No comment provided by engineer. */
 "right ear x" = "오른쪽 귀 X";
 
 /* No comment provided by engineer. */
 "right ear y" = "오른쪽 귀 y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "오른쪽 팔꿈치 x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "오른쪽 팔꿈치 y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "오른쪽 눈 센터 x";
@@ -1653,6 +1758,60 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right hip x" = "오른쪽 엉덩이 x";
+
+/* No comment provided by engineer. */
+"right hip y" = "오른쪽 엉덩이 y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "오른쪽 인덱스 너클 x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "오른쪽 인덱스 너클 y";
+
+/* No comment provided by engineer. */
+"right knee x" = "오른쪽 무릎 x";
+
+/* No comment provided by engineer. */
+"right knee y" = "오른쪽 무릎 y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "right middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "right middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "오른쪽 새끼손가락 너클 x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "오른쪽 새끼손가락 너클 y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "right ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "right ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "오른쪽 어깨 x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "오른쪽 어깨 y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "오른손 엄지손가락 x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "오른쪽 엄지손가락 관절 y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "오른쪽 손목 x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "오른쪽 손목 y";
 
 /* paint */
 "Rotate" = "회전하기";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "빠르기 설정";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "실 색상을 다음으로 설정";
+
+/* No comment provided by engineer. */
 "Set transparency " = "투명도 정하기";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "소리 재생하고 기다리기";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "길이만큼 트리플 스티치 시작";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "길이만큼 지그재그 스티치 시작";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "텍스트";
 
 /* No comment provided by engineer. */
+"text block from camera" = "카메라의 텍스트 블록";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "카메라의 텍스트 블록 언어";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "카메라의 텍스트 블록 크기";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "카메라의 텍스트 블록 x";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "카메라의 텍스트 블록 y";
+
+/* No comment provided by engineer. */
+"text from camera" = "카메라의 텍스트";
+
+/* No comment provided by engineer. */
 "Text message:" = "문자 메시지";
+
+/* No comment provided by engineer. */
+"Text recognition" = "텍스트 인식";
 
 /* paint */
 "Text:" = "텍스트:";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "참";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Trusted domains";
 
 /* No comment provided by engineer. */
 "Tu" = "화";
@@ -2204,6 +2393,9 @@
 "View" = "조회수";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "View Terms of Use and Service";
+
+/* No comment provided by engineer. */
 "Views" = "조회수";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "신호를 받을 때";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
+
 /* paint */
 "Width selection" = "너비 선택";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "나무 플룻";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X of object with ID";
+
+/* No comment provided by engineer. */
 "x: " = "x:";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y of object with ID";
 
 /* No comment provided by engineer. */
 "y: " = "y:";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "이미 이 프로그램은 다운로드되었습니다!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "답변";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "프로젝트는 Catrobat 커뮤니티에 업로드되어 누구나 사용할 수 있습니다.";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "버그 신고가 성공적으로 전송되었습니다!";
 
 /* paint */
 "Zoom" = "줌";

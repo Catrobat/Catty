@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,10 +38,7 @@ final class SettingsTableViewControllerTests: XCTestCase {
         let expectedValue = NSNumber(value: true)
         let expectedNotification = Notification(name: .settingsCrashReportingChanged, object: expectedValue)
 
-        let switchParameter = UISwitch()
-        switchParameter.setOn(true, animated: false)
-
-        expect(self.controller?.changeFirebaseCrashReportSettings(switchParameter))
+        expect(self.controller?.changeFirebaseCrashReportSettings(isEnabled: true))
             .to(postNotifications(contain(expectedNotification)))
     }
 
@@ -49,10 +46,7 @@ final class SettingsTableViewControllerTests: XCTestCase {
         let expectedValue = NSNumber(value: false)
         let expectedNotification = Notification(name: .settingsCrashReportingChanged, object: expectedValue)
 
-        let switchParameter = UISwitch()
-        switchParameter.setOn(false, animated: false)
-
-        expect(self.controller?.changeFirebaseCrashReportSettings(switchParameter))
+        expect(self.controller?.changeFirebaseCrashReportSettings(isEnabled: false))
             .to(postNotifications(contain(expectedNotification)))
     }
 }

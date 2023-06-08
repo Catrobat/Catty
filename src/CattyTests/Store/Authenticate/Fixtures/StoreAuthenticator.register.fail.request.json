@@ -1,0 +1,42 @@
+{
+  "name" : "StoreAuthenticator.register.fail.request",
+  "interactions" : [
+    {
+      "recorded_at" : 1666352979.532491,
+      "response" : {
+        "url" : "https:\/\/web-test.catrob.at\/api\/user",
+        "status" : 500,
+        "headers" : {
+          "Cache-Control" : "private, must-revalidate",
+          "cf-ray" : "75d9c56a2f317873-VIE",
+          "x-response-hash" : "6eae39ac07a5bc8cd98246ff8dd43866",
+          "Date" : "Fri, 21 Oct 2022 11:49:39 GMT",
+          "Content-Language" : "en",
+          "Pragma" : "no-cache",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=VyLSNIsTvm3oydPKNDemPBalSaBXK9CIIm%2BJuGctKykvNeIDSpukZocuxMMszwh0m25u1ObQbwVmrMD29M71CJhjEHVeQpBf0GGoP8e45%2F%2Bpu6dlACk%2F0L08qdsgTiF9CUg20XSFvzhY2oos1sM%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Server" : "cloudflare",
+          "Set-Cookie" : "dtCookie=v_4_srv_15_sn_FCA389DBC7409475D2A8961BC31CCE95_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Expires" : "-1",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"339276935\"",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Content-Type" : "application\/json",
+          "cf-cache-status" : "DYNAMIC"
+        }
+      },
+      "request" : {
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "Accept-Language" : "en"
+        },
+        "method" : "POST",
+        "body" : {
+          "email" : "test@email.dev",
+          "username" : "testUser",
+          "password" : "testPass"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/user"
+      }
+    }
+  ]
+}

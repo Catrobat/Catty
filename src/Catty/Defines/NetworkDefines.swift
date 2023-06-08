@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,76 +35,71 @@ class NetworkDefines: NSObject {
         #endif
     }
 
-    static let baseUrl = shareUrl.appending("pocketcode/")
-    static let newApiEndpoint = shareUrl.appending("api/")
-
     // MARK: AppStore
 
     static let appStoreIdentifier = "1117935892"
-    @objc static let appStoreUrl = "itms-apps://itunes.apple.com/app/".appending(appStoreIdentifier)
+    static let appStoreUrl = "itms-apps://itunes.apple.com/app/".appending(appStoreIdentifier)
 
     // MARK: Static content
 
-    @objc static let sourceCodeLicenseUrl = "http://developer.catrobat.org/licenses"
-    @objc static let aboutCatrobatUrl = "http://www.catrobat.org"
     @objc static let unsupportedElementsUrl = "https://catrob.at/ibuf"
+    static let aboutCatrobatUrl = "https://catrobat.org"
+    static let helpUrl = "https://catrob.at/help"
+    static let sourceCodeLicenseUrl = "https://developer.catrobat.org/licenses"
+    static let termsOfUseUrl = shareUrl.appending("app/termsOfUse")
+    static let resetPasswordUrl = shareUrl.appending("app/reset-password")
 
     // MARK: API
 
-    @objc static let connectionTimeout = 15
+    static let apiBaseUrl = shareUrl.appending("api/")
 
-    @objc static var loginUrl: String { baseUrl.appending("api/login/Login.json") }
-    @objc static var registerUrl: String { baseUrl.appending("api/register/Register.json") }
-    @objc static var reportProjectUrl: String { baseUrl.appending("api/reportProject/reportProject.json") }
-    @objc static var termsOfUseUrl: String { baseUrl.appending("termsOfUse") }
-    @objc static var recoverPassword: String { baseUrl.appending("resetting/request") }
-    static var uploadUrl: String { baseUrl.appending("api/upload") }
-    static var downloadUrl: String { baseUrl.appending("download") }
-    static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
-    static var helpUrl: String { "https://catrob.at/help" }
+    static let apiEndpointAuthentication = apiBaseUrl.appending("authentication")
+    static let apiEndpointAuthenticationRefresh = apiEndpointAuthentication.appending("/refresh")
+    static let apiEndpointAuthenticationUpgrade = apiEndpointAuthentication.appending("/upgrade")
+    static let apiEndpointUser = apiBaseUrl.appending("user")
+    static let apiEndpointUserResetPassword = apiEndpointUser.appending("/reset-password")
 
-    static let connectionUpload = "upload.json"
-    static let connectionIDQuery = "getInfoById.json"
+    static let apiEndpointMediaPackage = apiBaseUrl.appending("media/package")
+    static let apiEndpointMediaPackageBackgrounds = apiEndpointMediaPackage.appending("/Backgrounds")
+    static let apiEndpointMediaPackageLooks = apiEndpointMediaPackage.appending("/Looks")
+    static let apiEndpointMediaPackageSounds = apiEndpointMediaPackage.appending("/Sounds")
 
-    static let projectsOffset = "offset"
-    static let projectsLimit = "limit"
-    static let maxVersion = "max_version"
-    static let tagLanguage = "language"
-    static let projectQuery = "query"
-    static let projectCategory = "category"
-    static let featuredPlatform = "platform"
+    static let apiEndpointProject = apiBaseUrl.appending("project")
+    static let apiEndpointProjects = apiBaseUrl.appending("projects")
+    static let apiEndpointProjectsFeatured = apiEndpointProjects.appending("/featured")
+    static let apiEndpointProjectsSearch = apiEndpointProjects.appending("/search")
+    static let apiEndpointProjectsTags = apiEndpointProjects.appending("/tags")
 
-    // MARK: MediaLibrary
+    static let apiParameterOffset = "offset"
+    static let apiParameterLimit = "limit"
+    static let apiParameterMaxVersion = "max_version"
+    static let apiParameterQuery = "query"
+    static let apiParameterCategory = "category"
+    static let apiParameterPlatform = "platform"
+    static let apiParameterAttributes = "attributes"
 
-    static var mediaLibraryBackgroundsIndex: String { baseUrl.appending("/api/media/package/Backgrounds/json") }
-    static var mediaLibraryLooksIndex: String { baseUrl.appending("/api/media/package/Looks/json") }
-    static var mediaLibrarySoundsIndex: String { baseUrl.appending("/api/media/package/Sounds/json") }
-    static var mediaLibraryDownloadBaseUrl: String { baseUrl.replacingOccurrences(of: "/pocketcode/", with: "") }
+    static let apiActionDownload = "catrobat"
 
-    // MARK: Share
+    // MARK: API Configuration
 
-    static var projectDetailsBaseUrl: String { baseUrl.appending("project/") }
+    static let connectionTimeout = 15
 
-    // MARK: FeaturedProjectStoreViewController
-
-    static var apiEndpointProjects = newApiEndpoint.appending("projects")
-    static var apiEndpointProjectDetails = newApiEndpoint.appending("project")
-    static var apiEndpointFeatured = apiEndpointProjects.appending("/featured")
-    static var apiEndpointSearch = apiEndpointProjects.appending("/search")
-
-    static let chartProjectsMaxResults = 10
-    static let recentProjectsMaxResults = 20
-    static let searchStoreMaxResults = 50
+    static let featuredProjectsBatchSize = 20
+    static let chartProjectsBatchSize = 20
+    static let searchProjectsBatchSize = 20
 
     static let searchLookupDelayInSeconds = 0.3
 
+    static let mediaPackageMaxItems = 10000
+
     static let currentPlatform = "ios"
 
-    @objc static let reportProjectNoteMaxLength = 100
-    @objc static let reportProjectNoteMinLength = 3
+    static let kUsername = "username"
+    static let kAuthenticationToken = "authenticationToken"
+    static let kRefreshToken = "refreshToken"
+    static let kLegacyToken = "userLoginToken"
 
-    @objc static let kUserIsLoggedIn = "userIsLoggedIn"
-    @objc static let kUserLoginToken = "userLoginToken"
+    static let tokenExpirationTolerance = 600 // = 10 min
 
     // MARK: WebRequestDownloader
 

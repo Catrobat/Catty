@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -70,20 +70,23 @@
         UITableViewCell <CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         switch (indexPath.row) {
             case 0:
-                imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
+                imageCell.iconImageView.image = [UIImage imageNamed:@"catrobat.scripts"];
                 imageCell.titleLabel.text = kLocalizedScripts;
                 break;
             case 1:
-                imageCell.iconImageView.image = [UIImage imageNamed:@"ic_looks"];
+                imageCell.iconImageView.image = [UIImage imageNamed:@"eye.fill"];
                 imageCell.titleLabel.text = (self.object.isBackground
                                           ? kLocalizedBackgrounds
                                           : kLocalizedLooks);
                 break;
             case 2:
-                imageCell.iconImageView.image = [UIImage imageNamed:@"ic_sounds"];
+                imageCell.iconImageView.image = [UIImage imageNamed:@"speaker.wave.2.fill"];
                 imageCell.titleLabel.text = kLocalizedSounds;
                 break;
         }
+
+        imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageCell.iconImageView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     }
     return cell;
 }

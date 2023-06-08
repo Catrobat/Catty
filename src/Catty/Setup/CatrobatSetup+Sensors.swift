@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ extension CatrobatSetup {
                                   audioManager: AudioManagerProtocol,
                                   touchManager: TouchManagerProtocol,
                                   bluetoothService: BluetoothService) -> [Sensor] {
+        var sensorArray: [Sensor] =
         [LoudnessSensor(audioManagerGetter: { audioManager }),
          InclinationXSensor(motionManagerGetter: { motionManager }),
          InclinationYSensor(motionManagerGetter: { motionManager }),
@@ -121,5 +122,65 @@ extension CatrobatSetup {
          BackgroundNameSensor(),
          LookNumberSensor(),
          LookNameSensor()]
+
+        if #available(iOS 14.0, *) {
+            sensorArray.append(NeckXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(NeckYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        }
+        sensorArray.append(LeftShoulderXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftShoulderYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightShoulderXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightShoulderYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftElbowXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftElbowYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightElbowXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightElbowYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftWristXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftWristYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightWristXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightWristYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+
+        if #available(iOS 14.0, *) {
+            sensorArray.append(LeftPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightPinkyKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightPinkyKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightRingFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightRingFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightMiddleFingerKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightMiddleFingerKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightIndexKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightIndexKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(LeftThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightThumbKnuckleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(RightThumbKnuckleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        }
+
+        sensorArray.append(LeftHipXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftHipYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightHipXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightHipYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftKneeXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftKneeYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightKneeXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightKneeYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftAnkleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(LeftAnkleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightAnkleXSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+        sensorArray.append(RightAnkleYSensor(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }))
+
+        if #available(iOS 13.0, *) {
+            sensorArray.append(TextFromCameraSensor(visualDetectionManagerGetter: { visualDetectionManager }))
+            sensorArray.append(TextBlocksNumberSensor(visualDetectionManagerGetter: { visualDetectionManager }))
+        }
+
+        return sensorArray
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.UITests) {
             UIView.setAnimationsEnabled(false)
-            UIApplication.shared.keyWindow?.layer.speed = 10.0
+            UIApplication.shared.keyWindow?.layer.speed = 100
         }
         if ProcessInfo.processInfo.arguments.contains(LaunchArguments.alwaysShowPrivacyPolicy) {
             PrivacyPolicyViewController.showOnEveryLaunch = true
@@ -63,6 +63,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CBFileManager.shared()?.deleteAllFilesInDocumentsDirectory()
             CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
             Util.setLastProjectWithName(nil, projectID: nil)
+        }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.setUserLoggedIn) {
+            UserDefaults.standard.set("testUsername", forKey: NetworkDefines.kUsername)
+            Keychain.saveValue("testAuthenticationToken", forKey: NetworkDefines.kAuthenticationToken)
+            Keychain.saveValue("testRefreshToken", forKey: NetworkDefines.kRefreshToken)
+            Keychain.deleteValue(forKey: NetworkDefines.kLegacyToken)
+        }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.setUserLoggedOut) {
+            StoreAuthenticator.logout()
         }
         #endif
 
@@ -107,9 +116,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UINavigationBar.appearance().barTintColor = UIColor.navBar
         UINavigationBar.appearance().tintColor = UIColor.navTint
+        UINavigationBar.appearance().tintAdjustmentMode = .normal
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navText]
         UINavigationBar.appearance().barStyle = UIBarStyle.black
         self.window?.tintColor = UIColor.globalTint
+        self.window?.tintAdjustmentMode = .normal
     }
 
     func setDefaultUserDefaults(defaults: UserDefaults) {
@@ -155,10 +166,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL,
-            let topViewController = vc?.topViewController else {
+            let topViewController = vc?.topViewController,
+            let projectID = url.catrobatProjectId else {
             return false
         }
-        topViewController.openProjectDetails(url: url)
+        topViewController.openProjectDetails(projectId: projectID)
         return true
     }
 

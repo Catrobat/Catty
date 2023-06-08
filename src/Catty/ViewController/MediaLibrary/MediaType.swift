@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,17 +27,14 @@ enum MediaType: String {
 }
 
 extension MediaType {
-    var indexURL: URL {
+    var indexURLString: String {
         switch self {
         case .backgrounds:
-            guard let indexURL = URL(string: NetworkDefines.mediaLibraryBackgroundsIndex) else { fatalError("Media Library backgrounds URL constant misconfiguration") }
-            return indexURL
+            return NetworkDefines.apiEndpointMediaPackageBackgrounds
         case .looks:
-            guard let indexURL = URL(string: NetworkDefines.mediaLibraryLooksIndex) else { fatalError("Media Library looks URL constant misconfiguration") }
-            return indexURL
+            return NetworkDefines.apiEndpointMediaPackageLooks
         case .sounds:
-            guard let indexURL = URL(string: NetworkDefines.mediaLibrarySoundsIndex) else { fatalError("Media Library sounds URL constant misconfiguration") }
-            return indexURL
+            return NetworkDefines.apiEndpointMediaPackageSounds
         }
     }
 }

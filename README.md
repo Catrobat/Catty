@@ -41,9 +41,9 @@ We recommend [Developing iOS 11 Apps with Swift](https://itunes.apple.com/us/cou
 
 ## Start setting up the working environment:
 
-* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) 13.0 or newer, [Carthage](https://github.com/Carthage/Carthage) and [SwiftLint](https://github.com/realm/SwiftLint).
+* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) 14.2 or newer and [SwiftLint](https://github.com/realm/SwiftLint)
 
-* Clone this repository, set up the required third-party libraries by executing `make init` within the 'Catty' directory and open [Catty.xcodeproj](src/Catty.xcodeproj)
+* Clone this repository and open [Catty.xcodeproj](src/Catty.xcodeproj)
 
 * If you have any further questions please use our [Google Group](https://groups.google.com/forum/#!forum/catty-ios)
 
@@ -54,7 +54,7 @@ The Following License Header should be used for all header and source files.
 ## License Header (for source and header files)
 <pre lang="objective-c"><code>
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify

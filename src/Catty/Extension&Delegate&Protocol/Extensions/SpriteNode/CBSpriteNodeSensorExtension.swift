@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,14 +31,13 @@ extension CBSpriteNode {
                 self.penConfiguration.previousPositions.append(CGPoint(x: self.position.x, y: self.position.y))
             }
             if let activePattern = embroideryStream.activePattern {
-                activePattern.spriteDidMove(to: CGPoint(x: self.position.x, y: self.position.y))
+                activePattern.spriteDidMove(to: CGPoint(x: self.position.x, y: self.position.y), rotation: Double(self.catrobatRotation))
             }
         }
 
         get {
             CBPosition(x: PositionXSensor.standardizedValue(for: self.spriteObject), y: PositionYSensor.standardizedValue(for: self.spriteObject))
         }
-
     }
 
     var catrobatSize: Double {

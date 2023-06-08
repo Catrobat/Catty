@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 extension CatrobatSetup {
 
-    static func registeredFunctions(touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> [Function] {
+    static func registeredFunctions(stageSize: CGSize, touchManager: TouchManagerProtocol, visualDetectionManager: VisualDetectionManager, bluetoothService: BluetoothService) -> [Function] {
         [SinFunction(),
          CosFunction(),
          TanFunction(),
@@ -58,6 +58,18 @@ extension CatrobatSetup {
          MultiFingerXFunction(touchManagerGetter: { touchManager }),
          MultiFingerYFunction(touchManagerGetter: { touchManager }),
          MultiFingerTouchedFunction(touchManagerGetter: { touchManager }),
+         TextBlockXFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         TextBlockYFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         TextBlockSizeFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         TextBlockFromCameraFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         TextBlockLanguageFromCameraFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         IDOfDetectedObjectFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         ObjectWithIDVisibleFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         LabelOfObjectWithIDFunction(visualDetectionManagerGetter: { visualDetectionManager }),
+         XOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         YOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         WidthOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
+         HeightOfObjectWithIDFunction(stageSize: stageSize, visualDetectionManagerGetter: { visualDetectionManager }),
          ArduinoAnalogPinFunction(bluetoothServiceGetter: { bluetoothService }),
          ArduinoDigitalPinFunction(bluetoothServiceGetter: { bluetoothService })]
     }

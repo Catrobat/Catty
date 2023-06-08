@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,221 +22,214 @@
 
 import Foundation
 
-class SettingsTableViewController: BOTableViewController {
+@objc class SettingsTableViewController: FormTableViewController {
 
-    static let unusedKey = "unused"
+    private let sectionHeaders: [String?] = [
+        kLocalizedExtensions, kLocalizedPrivacy, kLocalizedAbout, kLocalizedMore, nil
+    ]
 
-    let trustedDomainViewController = TrustedDomainTableViewController()
-    let aboutPocketCodeViewController = AboutPocketCodeOptionTableViewController()
-    let termsOfUseViewController = TermsOfUseOptionTableViewController()
+    private let sectionFooters: [String?] = [
+        nil, nil, nil, nil, nil
+    ]
 
-    override func setup() {
+    private var currentSectionHeaders: [String?] = []
+    private var currentSectionFooters: [String?] = []
 
-        title = kLocalizedSettings
-        view.backgroundColor = UIColor.background
-        view.tintColor = UIColor.globalTint
+    private var featureItems: [FormItem] = []
+    private var bluetoothItems: [FormItem] = []
+    private var webAccessItems: [FormItem] = []
+    private let authenticator = StoreAuthenticator()
 
-        addSection(BOTableViewSection(headerTitle: "", handler: { section in
-            if Util.isPhiroActivated() {
-                section?.addCell(BOSwitchTableViewCell(title: kLocalizedPhiroBricks, key: kUsePhiroBricks, handler: { cell in
-                    if let phiroBricksCellSwitch = cell as? BOSwitchTableViewCell {
-                        phiroBricksCellSwitch.backgroundColor = UIColor.background
-                        phiroBricksCellSwitch.mainColor = UIColor.globalTint
-                        phiroBricksCellSwitch.toggleSwitch.tintColor = UIColor.globalTint
-                        phiroBricksCellSwitch.toggleSwitch.onTintColor = UIColor.globalTint
-                    }
-                }))
-            }
+    // MARK: - Lifecycle
 
-            if Util.isEmbroideryActivated() {
-                section?.addCell(BOSwitchTableViewCell(title: kLocalizedEmbroideryBricks, key: kUseEmbroideryBricks, handler: { cell in
-                    if let embroideryBricksCellSwitch = cell as? BOSwitchTableViewCell {
-                        embroideryBricksCellSwitch.backgroundColor = UIColor.background
-                        embroideryBricksCellSwitch.mainColor = UIColor.globalTint
-                        embroideryBricksCellSwitch.toggleSwitch.tintColor = UIColor.globalTint
-                        embroideryBricksCellSwitch.toggleSwitch.onTintColor = UIColor.globalTint
-                        embroideryBricksCellSwitch.onFooterTitle = kLocalizedEmbroideryBricksDescription
-                        embroideryBricksCellSwitch.offFooterTitle = kLocalizedEmbroideryBricksDescription
-                    }
-                }))
-            }
-        }))
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-        addSection(BOTableViewSection(headerTitle: "", handler: { section in
-            if Util.isArduinoActivated() {
-                section?.addCell(BOSwitchTableViewCell(title: kLocalizedArduinoBricks, key: kUseArduinoBricks, handler: { cell in
-                    if let arduinoBricksCellSwitch = cell as? BOSwitchTableViewCell {
-                        arduinoBricksCellSwitch.backgroundColor = UIColor.background
-                        arduinoBricksCellSwitch.mainColor = UIColor.globalTint
-                        arduinoBricksCellSwitch.toggleSwitch.tintColor = UIColor.globalTint
-                        arduinoBricksCellSwitch.toggleSwitch.onTintColor = UIColor.globalTint
-                        arduinoBricksCellSwitch.onFooterTitle = kLocalizedArduinoBricksDescription
-                        arduinoBricksCellSwitch.offFooterTitle = kLocalizedArduinoBricksDescription
-                    }
-                }))
-            }
-        }))
+        setupViews()
+        setupFormItems()
+    }
 
-        addSection(BOTableViewSection(headerTitle: "", handler: { section in
-            section?.addCell(BOSwitchTableViewCell(title: kLocalizedSendCrashReports, key: kFirebaseSendCrashReports, handler: { cell in
-                if let firebaseSendCrashReportsCellSwitch = cell as? BOSwitchTableViewCell {
-                    firebaseSendCrashReportsCellSwitch.backgroundColor = UIColor.background
-                    firebaseSendCrashReportsCellSwitch.mainColor = UIColor.globalTint
-                    firebaseSendCrashReportsCellSwitch.toggleSwitch.tintColor = UIColor.globalTint
-                    firebaseSendCrashReportsCellSwitch.toggleSwitch.onTintColor = UIColor.globalTint
-                    firebaseSendCrashReportsCellSwitch.onFooterTitle = kLocalizedSendCrashReportsDescription
-                    firebaseSendCrashReportsCellSwitch.offFooterTitle = kLocalizedSendCrashReportsDescription
+    // MARK: - UI
 
-                    firebaseSendCrashReportsCellSwitch.toggleSwitch.addTarget(self, action: #selector(self.changeFirebaseCrashReportSettings(_:)), for: .valueChanged)
-                }
-            }))
-        }))
+    private func setupViews() {
+        self.tableView.backgroundColor = .background
+        self.navigationItem.title = kLocalizedSettings
+    }
 
-        let service = BluetoothService.sharedInstance()
+    // MARK: - TableView
 
-        if Util.isPhiroActivated() || Util.isArduinoActivated() {
-            addSection(BOTableViewSection(headerTitle: "", handler: { section in
-                if service.phiro != nil || service.arduino != nil {
-                    section?.addCell(BOButtonTableViewCell(title: kLocalizedDisconnectAllDevices, key: type(of: self).unusedKey, handler: { cell in
-                        if let disconnectAllDevicesCellButton = cell as? BOButtonTableViewCell {
-                            disconnectAllDevicesCellButton.backgroundColor = UIColor.background
-                            disconnectAllDevicesCellButton.mainColor = UIColor.globalTint
-                            disconnectAllDevicesCellButton.actionBlock = {
-                                self.disconnect()
-                            }
-                        }
-                    }))
-                }
-                let tempArray = UserDefaults.standard.array(forKey: "KnownBluetoothDevices")
-                if tempArray?.count != nil {
-                    section?.addCell(BOButtonTableViewCell(title: kLocalizedRemoveKnownDevices, key: type(of: self).unusedKey, handler: { cell in
-                        if let removeKnownDevicesCellButton = cell as? BOButtonTableViewCell {
-                            removeKnownDevicesCellButton.backgroundColor = UIColor.background
-                            removeKnownDevicesCellButton.mainColor = UIColor.globalTint
-                            removeKnownDevicesCellButton.actionBlock = {
-                                self.removeKnownDevices()
-                            }
-                        }
-                    }))
-                }
-            }))
-        }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        currentSectionHeaders[section]
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        currentSectionFooters[section]
+    }
+
+    // MARK: - Functions
+
+    private func setupFormItems() {
+        self.currentSectionHeaders = self.sectionHeaders
+        self.currentSectionFooters = self.sectionFooters
+
+        setupFeatureItems()
+        setupBluetoothItems()
+        setupWebAccessItems()
+
+        formItems = [ self.featureItems,
+            [
+                FormCrashReportsSwitchItem(switchAction: { isEnabled in
+                    self.changeFirebaseCrashReportSettings(isEnabled: isEnabled)
+                }),
+                FormItem(title: kLocalizedPrivacySettings, titleColor: .globalTint, action: {
+                    self.openPrivacySettings()
+                })
+            ],
+            [
+                FormItem(title: kLocalizedAboutUs, accessoryType: .disclosureIndicator, action: {
+                    self.showAboutUs()
+                })
+            ],
+            [
+                FormVersionItem(),
+                FormItem(title: kLocalizedTermsOfUse, accessoryType: .disclosureIndicator, action: {
+                    self.showTermsOfUseAndService()
+                }),
+                FormItem(title: kLocalizedRateUs, titleColor: .globalTint, action: {
+                    self.openRateUsURL()
+                })
+            ]
+        ]
 
         if UserDefaults.standard.bool(forKey: kUseWebRequestBrick) {
-            addSection(BOTableViewSection(headerTitle: "", handler: { section in
-                section?.addCell(BOChoiceTableViewCell(title: kLocalizedWebAccess, key: type(of: self).unusedKey, handler: { cell in
-                    if let aboutPocketCodeCellChoice = cell as? BOChoiceTableViewCell {
-                        aboutPocketCodeCellChoice.destinationViewController = self.trustedDomainViewController
-                        aboutPocketCodeCellChoice.backgroundColor = UIColor.background
-                        aboutPocketCodeCellChoice.mainColor = UIColor.globalTint
-                    }
-                }))
+            formItems.insert(self.webAccessItems, at: 1)
+            currentSectionHeaders.insert(kLocalizedWebAccess, at: 1)
+            currentSectionFooters.insert(nil, at: 1)
+        }
+
+        if UserDefaults.standard.bool(forKey: kUseArduinoBricks), !bluetoothItems.isEmpty {
+            formItems.insert(self.bluetoothItems, at: 1)
+            currentSectionHeaders.insert(kLocalizedArduinoBricks, at: 1)
+            currentSectionFooters.insert(nil, at: 1)
+        }
+
+        if StoreAuthenticator.isLoggedIn() {
+            formItems.append([
+                FormItem(title: kLocalizedDeleteAccount, titleColor: .red, action: {
+                    self.deleteAccount()
+                })
+            ])
+        }
+    }
+
+    private func setupFeatureItems() {
+        self.featureItems = []
+
+        if Util.isPhiroActivated() {
+            self.featureItems.append(FormPhiroSwitchItem())
+        }
+
+        if Util.isArduinoActivated() {
+            self.featureItems.append(FormArduinoSwitchItem(switchAction: { _ in
+                self.setupFormItems()
             }))
         }
 
-        if (UserDefaults.standard.value(forKey: NetworkDefines.kUserIsLoggedIn) as? NSNumber)?.boolValue ?? false {
-            addSection(BOTableViewSection(headerTitle: "", handler: { section in
-                section?.addCell(BOButtonTableViewCell(title: kLocalizedLogout, key: type(of: self).unusedKey, handler: { cell in
-                    if let userIsLoggedInCellButton = cell as? BOButtonTableViewCell {
-                        userIsLoggedInCellButton.backgroundColor = UIColor.background
-                        userIsLoggedInCellButton.mainColor = UIColor.variableBrickRed
-                        userIsLoggedInCellButton.actionBlock = {
-                            self.logoutUser()
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                }))
-            }))
+        if Util.isEmbroideryActivated() {
+            self.featureItems.append(FormEmbroiderySwitchItem())
+        }
+    }
+
+    private func setupBluetoothItems() {
+        self.bluetoothItems = []
+
+        if BluetoothService.sharedInstance().phiro != nil || BluetoothService.sharedInstance().arduino != nil {
+            self.bluetoothItems.append(
+                FormItem(title: kLocalizedDisconnectAllDevices, action: {
+                    self.disconnectAllBluetoothDevices()
+                })
+            )
         }
 
-        addSection(BOTableViewSection(headerTitle: "", handler: { section in
-            section?.addCell(BOChoiceTableViewCell(title: kLocalizedAboutPocketCode, key: type(of: self).unusedKey, handler: { cell in
-                if let aboutPocketCodeCellChoice = cell as? BOChoiceTableViewCell {
-                    aboutPocketCodeCellChoice.destinationViewController = self.aboutPocketCodeViewController
-                    aboutPocketCodeCellChoice.backgroundColor = UIColor.background
-                    aboutPocketCodeCellChoice.mainColor = UIColor.globalTint
-                }
-            }))
-
-            section?.addCell(BOChoiceTableViewCell(title: kLocalizedTermsOfUse, key: type(of: self).unusedKey, handler: { cell in
-                if let termsOfUseCellChoice = cell as? BOChoiceTableViewCell {
-                    termsOfUseCellChoice.destinationViewController = self.termsOfUseViewController
-                    termsOfUseCellChoice.backgroundColor = UIColor.background
-                    termsOfUseCellChoice.mainColor = UIColor.globalTint
-                }
-            }))
-        }))
-
-        addSection(BOTableViewSection(headerTitle: "", handler: { section in
-            section?.addCell(BOButtonTableViewCell(title: kLocalizedPrivacySettings, key: type(of: self).unusedKey, handler: { cell in
-                if let privacyCellButton = cell as? BOButtonTableViewCell {
-                    privacyCellButton.backgroundColor = UIColor.background
-                    privacyCellButton.mainColor = UIColor.globalTint
-                    privacyCellButton.actionBlock = {
-                        self.openPrivacySettings()
-                    }
-                }
-            }))
-
-            section?.addCell(BOButtonTableViewCell(title: kLocalizedRateUs, key: type(of: self).unusedKey, handler: { cell in
-                if let rateUsCellButton = cell as? BOButtonTableViewCell {
-                    rateUsCellButton.backgroundColor = UIColor.background
-                    rateUsCellButton.mainColor = UIColor.globalTint
-                    rateUsCellButton.actionBlock = {
-                        self.openRateUsURL()
-                    }
-                }
-            }))
-
-            let object = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
-            var version = "\(kLocalizedVersionLabel)\(object!) (\(Util.appBuildVersion()!))"
-
-            #if DEBUG
-                version = "\(String(describing: version))(\(kLocalizedDebugMode))"
-            #endif
-
-            section?.footerTitle = version
-        }))
+        if let knownDevices = UserDefaults.standard.array(forKey: kKnownBluetoothDevices), !knownDevices.isEmpty {
+            self.bluetoothItems.append(
+                FormItem(title: kLocalizedRemoveKnownDevices, action: {
+                    self.removeKnownBluetoothDevices()
+                })
+            )
+        }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UserDefaults.standard.synchronize()
+    private func setupWebAccessItems() {
+        self.webAccessItems = [
+            FormItem(title: kLocalizedTrustedDomains, accessoryType: .disclosureIndicator, action: {
+                self.showTrustedDomains()
+            })
+        ]
     }
 
-    @objc func changeFirebaseCrashReportSettings(_ sender: UISwitch?) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName.settingsCrashReportingChanged), object: NSNumber(value: sender?.isOn ?? false))
+    func changeFirebaseCrashReportSettings(isEnabled: Bool) {
+         NotificationCenter.default.post(
+            name: NSNotification.Name(rawValue: NotificationName.settingsCrashReportingChanged),
+            object: NSNumber(value: isEnabled))
+     }
+
+    private func disconnectAllBluetoothDevices() {
+        BluetoothService.sharedInstance().disconnect()
+        Util.alert(text: kLocalizedDisconnectBluetoothDevices)
     }
 
-    fileprivate func presentAlertController(withTitle title: String?, message: String?) {
-        Util.alert(title: title!, text: message!)
+    private func removeKnownBluetoothDevices() {
+        BluetoothService.sharedInstance().removeKnownDevices()
+        Util.alert(text: kLocalizedRemovedKnownBluetoothDevices)
     }
 
-    fileprivate func openRateUsURL() {
+    private func openRateUsURL() {
         if let url = URL(string: NetworkDefines.appStoreUrl) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 
-    fileprivate func openPrivacySettings() {
+    private func openPrivacySettings() {
         if let url = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 
-    fileprivate func disconnect() {
-        BluetoothService.sharedInstance().disconnect()
-        Util.alert(text: kLocalizedDisconnectBluetoothDevices)
+    private func showTrustedDomains() {
+        self.navigationController?.pushViewController(TrustedDomainTableViewController(), animated: true)
     }
 
-    fileprivate func removeKnownDevices() {
-        BluetoothService.sharedInstance().removeKnownDevices()
-        Util.alert(text: kLocalizedRemovedKnownBluetoothDevices)
+    private func showTermsOfUseAndService() {
+        self.navigationController?.pushViewController(TermsOfUseTableViewController(), animated: true)
     }
 
-    fileprivate func logoutUser() {
-        UserDefaults.standard.setValue(false, forKey: NetworkDefines.kUserIsLoggedIn)
-        UserDefaults.standard.setValue("", forKey: NetworkDefines.kUserLoginToken)
-        UserDefaults.standard.setValue("", forKey: kcUsername)
+    private func showAboutUs() {
+        self.navigationController?.pushViewController(AboutPocketCodeTableViewController(), animated: true)
+    }
+
+    private func deleteAccount() {
+        let alertController = UIAlertController(title: kLocalizedDeleteAccount, message: kLocalizedDeleteAccountConfirm, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: kLocalizedDelete, style: .destructive) { _ in
+            self.authenticator.deleteUser { error in
+                DispatchQueue.main.async(execute: {
+                    switch error {
+                    case .none:
+                        self.navigationController?.popViewController(animated: true)
+                        Util.alert(text: kLocalizedDeleteAccountSuccessful)
+                    case .authentication:
+                        Util.alert(text: kLocalizedAuthenticationFailed)
+                    case .network, .timeout:
+                        Util.defaultAlertForNetworkError()
+                    default:
+                        Util.alert(text: kLocalizedUnexpectedErrorMessage)
+                    }
+                })
+            }
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

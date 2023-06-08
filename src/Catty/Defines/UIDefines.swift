@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -59,12 +59,12 @@ class UIDefines: NSObject {
     // Blocked characters for project names, object names, images names, sounds names and variable/list names
     @objc static let textFieldBlockedCharacters = ""
 
-    @objc static let menuImageNameContinue = "continue"
-    @objc static let menuImageNameNew = "new"
-    @objc static let menuImageNameProjects = "projects"
-    @objc static let menuImageNameHelp = "help"
-    @objc static let menuImageNameExplore = "explore"
-    @objc static let menuImageNameUpload = "upload"
+    @objc static let menuImagePadding = CGFloat(10.0)
+    @objc static let menuImageNameNew = "plus"
+    @objc static let menuImageNameProjects = "square.grid.2x2"
+    @objc static let menuImageNameHelp = "questionmark.circle"
+    @objc static let menuImageNameExplore = "globe"
+    @objc static let menuImageNameUpload = "arrow.up.circle"
 
     // view tag
     @objc static let savedViewTag = Int(99996)
@@ -82,7 +82,7 @@ class UIDefines: NSObject {
     @objc static let bdkNotifyHUDCenterOffsetY = CGFloat(-20.0)
     @objc static let bdkNotifyHUDPresentationDuration = CGFloat(0.5)
     @objc static let bdkNotifyHUDPresentationSpeed = CGFloat(0.1)
-    @objc static let bdkNotifyHUDCheckmarkImageName = "checkmark.png"
+    @objc static let bdkNotifyHUDCheckmarkImageName = "checkmark"
 
     // ---------------------- BRICK CONFIG ---------------------------------------
     @objc static let whenScriptDefaultAction = "Tapped" // at the moment Catrobat only supports this type of action for WhenScripts

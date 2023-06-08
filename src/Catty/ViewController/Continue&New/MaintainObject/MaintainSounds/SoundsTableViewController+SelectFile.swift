@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ extension SoundsTableViewController: UIDocumentPickerDelegate, UINavigationContr
             do {
                 let data = try Data.init(contentsOf: url)
                 try data.write(to: fileURL, options: .atomic)
-                self.showDownloadSoundAlert(sound)
+                self.add(sound)
             } catch {
                 self.showImportAlert(itemName: name)
             }

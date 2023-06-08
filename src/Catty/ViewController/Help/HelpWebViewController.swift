@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -182,8 +182,9 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             return
         }
 
-        if requestUrl.absoluteString.contains(NetworkDefines.apiEndpointProjectDetails) {
-            self.openProjectDetails(url: requestUrl)
+        if requestUrl.absoluteString.contains(NetworkDefines.shareUrl),
+           let projectId = requestUrl.catrobatProjectId {
+            self.openProjectDetails(projectId: projectId)
             decisionHandler(.cancel)
             return
         }
@@ -241,13 +242,13 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         navigationController?.toolbar.barTintColor = UIColor.toolBar
         navigationController?.toolbar.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
 
-        let forward = UIBarButtonItem(image: UIImage(named: "webview_arrow_right"),
+        let forward = UIBarButtonItem(image: UIImage(named: "chevron.right"),
                                       style: .plain,
                                       target: self,
                                       action: #selector(HelpWebViewController.goForward(_:)))
         forward.isEnabled = webView?.canGoForward ?? false
 
-        let back = UIBarButtonItem(image: UIImage(named: "webview_arrow_left"),
+        let back = UIBarButtonItem(image: UIImage(named: "chevron.left"),
                                    style: .plain,
                                    target: self,
                                    action: #selector(HelpWebViewController.goBack(_:)))

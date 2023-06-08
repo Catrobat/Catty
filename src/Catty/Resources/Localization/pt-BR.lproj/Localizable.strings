@@ -8,10 +8,16 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"About" = "Sobre";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "Sobre o Catrobat";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "Sobre o Pocket Code";
+
+/* No comment provided by engineer. */
+"About Us" = "Sobre Nós";
 
 /* No comment provided by engineer. */
 "absolute value" = "valor absoluto";
@@ -143,6 +149,9 @@
 "Arduino extension" = "Extensão Arduino";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Tem certeza que deseja apagar sua conta? Isso não poderá ser desfeito!";
+
+/* No comment provided by engineer. */
 "Ask " = "Perguntar ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "Comunidade Catrobat";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "website Catrobat";
 
 /* No comment provided by engineer. */
 "ceiling" = "arredondar para cima";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "Apagar";
+
+/* No comment provided by engineer. */
+"Delete account" = "Excluir conta";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "Excluir atores ou objetos";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "Fim do loop";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "Entre um motivo";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Insira o nome de sua imagem aqui...";
 
@@ -698,9 +710,6 @@
 "Error" = "Erro";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "Ocorreu um erro ao reportar o projeto. Por favor, tente novamente mais tarde.";
-
-/* No comment provided by engineer. */
 "Error saving file" = "Erro ao salvar o arquivo";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "expoente";
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensões";
 
 /* No comment provided by engineer. */
 "FA" = "Fá";
@@ -845,6 +857,9 @@
 "head top y" = "cabeça superior y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "altura do objeto com ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "Olá!";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "hora";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "ID do objeto detectado";
 
 /* No comment provided by engineer. */
 "If" = "Se";
@@ -959,6 +977,9 @@
 "LA" = "LA";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "rótulo do objeto com ID";
+
+/* No comment provided by engineer. */
 "Last access" = "Último acesso";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "Esquerda";
 
 /* No comment provided by engineer. */
+"left ankle x" = "tornozelo esquerdo x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "tornozelo esquerdo y";
+
+/* No comment provided by engineer. */
 "left ear x" = "orelha esquerda x";
 
 /* No comment provided by engineer. */
 "left ear y" = "orelha esquerda y";
+
+/* No comment provided by engineer. */
+"left elbow x" = "cotovelo esquerdo x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "cotovelo esquerdo y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "centro do olho esquerdo x";
@@ -1020,6 +1053,60 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "exterior da sobrancelha esquerda y";
+
+/* No comment provided by engineer. */
+"left hip x" = "quadril esquerdo x";
+
+/* No comment provided by engineer. */
+"left hip y" = "quadril esquerdo y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "articulação do dedo indicador esquerdo x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "articulação do dedo indicador esquerdo y";
+
+/* No comment provided by engineer. */
+"left knee x" = "joelho esquerdo x";
+
+/* No comment provided by engineer. */
+"left knee y" = "joelho esquerdo y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "junta do dedo do meio esquerdo x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "junta do dedo do meio esquerdo y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "articulação do dedo mindinho esquerdo x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "articulação do dedo mindinho esquerdo y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "junta do dedo anelar esquerdo x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "junta do dedo anelar esquerdo y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "ombro esquerdo x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "ombro esquerdo y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "articulação do polegar esquerdo x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "articulação do polegar esquerdo y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "pulso esquerdo x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "pulso esquerdo y";
 
 /* No comment provided by engineer. */
 "left-right only" = "Apenas esquerda e direita";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "logaritmo natural";
 
 /* No comment provided by engineer. */
+"neck x" = "pescoço x";
+
+/* No comment provided by engineer. */
+"neck y" = "pescoço y";
+
+/* No comment provided by engineer. */
 "New" = "Novo";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "Nenhum resultado para a busca";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "Não são permitidos caracteres em branco";
-
-/* No comment provided by engineer. */
 "nose x" = "nariz x";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "número de itens";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "número de blocos de texto";
+
+/* No comment provided by engineer. */
 "Numbers" = "Números";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "Nome do objeto ou do ator";
+
+/* No comment provided by engineer. */
+"Object recognition" = "Reconhecimento de objeto";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "objeto com ID visível";
 
 /* No comment provided by engineer. */
 "Oct" = "Out";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "Por favor insira pelo menos %lu caractere(s).";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Por favor, faça login para reportar este projeto como inapropriado";
-
 /* paint */
 "Please pick a tool" = "Por favor, escolha uma ferramenta";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "Aparência anterior";
 
 /* No comment provided by engineer. */
+"Privacy" = "Privacidade";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "Configurações de Privacidade";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "vermelho";
 
 /* No comment provided by engineer. */
-"Register" = "Cadastre-se";
-
-/* No comment provided by engineer. */
 "Registration successful" = "Cadastro bem-sucedido";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "Substituir item na lista";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "Reportar como impróprio";
-
 /* paint */
 "Resize" = "Redimensionar";
 
@@ -1613,10 +1706,22 @@
 "Right" = "Direita";
 
 /* No comment provided by engineer. */
+"right ankle x" = "tornozelo direito x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "tornozelo direito y";
+
+/* No comment provided by engineer. */
 "right ear x" = "orelha direita x";
 
 /* No comment provided by engineer. */
 "right ear y" = "orelha direito y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "cotovelo direito x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "cotovelo direito y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "centro do olho direito x";
@@ -1653,6 +1758,60 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "exterior da sobrancelha direita y";
+
+/* No comment provided by engineer. */
+"right hip x" = "quadril direito x";
+
+/* No comment provided by engineer. */
+"right hip y" = "quadril direito y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "articulação do dedo indicador direito x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "articulação do dedo indicador direito y";
+
+/* No comment provided by engineer. */
+"right knee x" = "joelho direito x";
+
+/* No comment provided by engineer. */
+"right knee y" = "joelho direito y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "junta do dedo do meio direito x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "junta do dedo do meio direito y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "articulação do dedo mínimo direito x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "articulação do dedo mindinho direito y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "junta do dedo anelar direito x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "junta do dedo anelar direito y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "ombro direito x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "ombro direito y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "articulação do polegar direito x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "articulação do polegar direito y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "pulso direito x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "pulso direito y";
 
 /* paint */
 "Rotate" = "Girar";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "Definir tempo para";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "Definir a cor do tópico para";
+
+/* No comment provided by engineer. */
 "Set transparency " = "Definir transparência ";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "Iniciar som e aguardar";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "Iniciar pontos triplos com comprimento";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "Iniciar ordem em zigue-zague com comprimento";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "Texto";
 
 /* No comment provided by engineer. */
+"text block from camera" = "bloco de texto da câmera";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "idiomas do bloco de texto da câmera";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "tamanho do bloco de texto da câmera";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "Bloco de texto X da câmera";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "Bloco de texto Y da câmera";
+
+/* No comment provided by engineer. */
+"text from camera" = "texto da câmera";
+
+/* No comment provided by engineer. */
 "Text message:" = "Mensagem de texto:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "Reconhecimento de texto";
 
 /* paint */
 "Text:" = "Texto:";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "verdadeiro";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Domínios confiáveis";
 
 /* No comment provided by engineer. */
 "Tu" = "Ter";
@@ -2204,6 +2393,9 @@
 "View" = "Visualizar";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "Ver os Termos de Uso e Serviço";
+
+/* No comment provided by engineer. */
 "Views" = "Visualizações";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "Quando receber";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "largura do objeto com ID";
+
 /* paint */
 "Width selection" = "Selecção de largura";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "Flauta de Madeira";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X do objeto com ID";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y do objeto com ID";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "Você já baixou este projeto!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Sua conta foi excluída com sucesso.";
+
+/* No comment provided by engineer. */
 "Your answer" = "Sua resposta";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Seu projeto foi enviado para a comunidade Catrobat, onde outros podem usa-lo e baixá-lo.";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "Seu relatório foi enviado com sucesso!";
 
 /* paint */
 "Zoom" = "Ampliar";

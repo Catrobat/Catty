@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -56,8 +56,11 @@ import CoreMotion
                                               landscapeMode: landscapeMode)
 
         let functionManager =
-            FormulaManager.buildFunctionManager(touchManager: touchManager,
-                                                bluetoothService: bluetoothService)
+        FormulaManager.buildFunctionManager(stageSize: stageSize,
+                                            touchManager: touchManager,
+                                            visualDetectionManager: visualDetectionManager,
+                                            bluetoothService: bluetoothService,
+                                            landscapeMode: landscapeMode)
 
         let operatorManager = FormulaManager.buildOperatorManager()
 
@@ -152,8 +155,18 @@ import CoreMotion
         return SensorManager(sensors: sensors, landscapeMode: landscapeMode)
     }
 
-    private static func buildFunctionManager(touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> FunctionManager {
-        FunctionManager(functions: CatrobatSetup.registeredFunctions(touchManager: touchManager, bluetoothService: bluetoothService))
+    private static func buildFunctionManager(stageSize: CGSize,
+                                             touchManager: TouchManagerProtocol,
+                                             visualDetectionManager: VisualDetectionManager,
+                                             bluetoothService: BluetoothService,
+                                             landscapeMode: Bool) -> FunctionManager {
+
+        let functions = CatrobatSetup.registeredFunctions(stageSize: stageSize,
+                                                          touchManager: touchManager,
+                                                          visualDetectionManager: visualDetectionManager,
+                                                          bluetoothService: bluetoothService)
+
+        return FunctionManager(functions: functions, landscapeMode: landscapeMode)
     }
 
     private static func buildOperatorManager() -> OperatorManagerProtocol {

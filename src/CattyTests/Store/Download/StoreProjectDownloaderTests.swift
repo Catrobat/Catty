@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,10 +41,9 @@ class StoreProjectDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no featured projects found"); return }
             guard let item = projects.first else { XCTFail("no featured projects in array"); return }
 
-            // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.id, "")
-            XCTAssertNotEqual(item.name, "")
-            XCTAssertNotEqual(item.author, "")
+            // check that the first item in the first category has no empty properties
+            XCTAssertFalse(item.id.isEmpty)
+            XCTAssertFalse((item.featuredImage ?? "").isEmpty)
 
             expectation.fulfill()
         }
@@ -88,7 +87,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchFeaturedProjects(offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -102,12 +101,13 @@ class StoreProjectDownloaderTests: XCTestCase {
     func testfetchFeaturedProjectsFailsWithUnexpectedErrorNotification() {
         let session = URLSessionMock()
         let offset = 0
-        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointFeatured)
+        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.featuredPlatform, value: NetworkDefines.currentPlatform),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: Util.catrobatLanguageVersion()),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: Util.catrobatLanguageVersion()),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: StoreFeaturedProject.defaultQueryParameters.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -121,12 +121,13 @@ class StoreProjectDownloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchFeaturedProjects.fail.request")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let offset = 0
-        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointFeatured)
+        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.featuredPlatform, value: NetworkDefines.currentPlatform),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: Util.catrobatLanguageVersion()),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: Util.catrobatLanguageVersion()),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: StoreFeaturedProject.defaultQueryParameters.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -139,12 +140,13 @@ class StoreProjectDownloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchFeaturedProjects.fail.parse")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let offset = 0
-        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointFeatured)
+        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.featuredPlatform, value: NetworkDefines.currentPlatform),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: Util.catrobatLanguageVersion()),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: Util.catrobatLanguageVersion()),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: StoreFeaturedProject.defaultQueryParameters.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let errorInfo = ProjectFetchFailureInfo(url: url.absoluteString, statusCode: 200, description: expectedParsingException)
@@ -152,7 +154,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         expect(downloader.fetchFeaturedProjects(offset: 0) { _, error in
                 guard let error = error else { XCTFail("no error received"); return }
                 switch error {
-                case .parse(error: _):
+                case .parse:
                     break
                 default:
                     XCTFail("wrong error received")
@@ -162,12 +164,13 @@ class StoreProjectDownloaderTests: XCTestCase {
 
     func testfetchFeaturedProjectsFailsWithTimeoutErrorNotification() {
         let offset = 0
-        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointFeatured)
+        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.featuredPlatform, value: NetworkDefines.currentPlatform),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: Util.catrobatLanguageVersion()),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: Util.catrobatLanguageVersion()),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: StoreFeaturedProject.defaultQueryParameters.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
@@ -192,10 +195,11 @@ class StoreProjectDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no most downloaded projects found"); return }
             guard let item = projects.first else { XCTFail("no most downloaded projects in array"); return }
 
-            // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.id, "")
-            XCTAssertNotEqual(item.name, "")
-            XCTAssertNotEqual(item.author, "")
+            // check that the first item in the first category has no empty properties
+            XCTAssertFalse(item.id.isEmpty)
+            XCTAssertFalse((item.name ?? "").isEmpty)
+            XCTAssertFalse((item.screenshotSmall ?? "").isEmpty)
+            XCTAssertNotNil(item.downloads)
 
             expectation.fulfill()
         }
@@ -239,7 +243,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchProjects(for: .mostDownloaded, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -255,11 +259,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.downloads.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostDownloaded.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostDownloaded.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -275,11 +282,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.downloads.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostDownloaded.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostDownloaded.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -294,11 +304,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.downloads.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostDownloaded.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostDownloaded.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostDownloaded, url: url.absoluteString, statusCode: 200, description: expectedParsingException)
@@ -306,7 +319,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         expect(downloader.fetchProjects(for: .mostDownloaded, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -318,11 +331,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.downloads.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostDownloaded.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostDownloaded.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
@@ -346,10 +362,11 @@ class StoreProjectDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no most viewed projects found"); return }
             guard let item = projects.first else { XCTFail("no most viewed projects in array"); return }
 
-            // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.id, "")
-            XCTAssertNotEqual(item.name, "")
-            XCTAssertNotEqual(item.author, "")
+            // check that the first item in the first category has no empty properties
+            XCTAssertFalse(item.id.isEmpty)
+            XCTAssertFalse((item.name ?? "").isEmpty)
+            XCTAssertFalse((item.screenshotSmall ?? "").isEmpty)
+            XCTAssertNotNil(item.views)
 
             expectation.fulfill()
         }
@@ -393,7 +410,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchProjects(for: .mostViewed, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -409,11 +426,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.views.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostViewed.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostViewed.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -429,11 +449,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.views.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostViewed.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostViewed.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -448,11 +471,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.views.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostViewed.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostViewed.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostViewed, url: url.absoluteString, statusCode: 200, description: expectedParsingException)
@@ -460,7 +486,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         expect(downloader.fetchProjects(for: .mostViewed, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -472,11 +498,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.views.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostViewed.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostViewed.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
@@ -500,10 +529,11 @@ class StoreProjectDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no most recent projects found"); return }
             guard let item = projects.first else { XCTFail("no most recent projects in array"); return }
 
-            // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.id, "")
-            XCTAssertNotEqual(item.name, "")
-            XCTAssertNotEqual(item.author, "")
+            // check that the first item in the first category has no empty properties
+            XCTAssertFalse(item.id.isEmpty)
+            XCTAssertFalse((item.name ?? "").isEmpty)
+            XCTAssertFalse((item.screenshotSmall ?? "").isEmpty)
+            XCTAssertNotNil(item.uploaded)
 
             expectation.fulfill()
         }
@@ -547,7 +577,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchProjects(for: .mostRecent, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -563,11 +593,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.uploaded.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostRecent.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostRecent.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -583,11 +616,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.uploaded.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostRecent.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostRecent.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let error = ErrorMock("")
@@ -602,11 +638,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.uploaded.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostRecent.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostRecent.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostRecent, url: url.absoluteString, statusCode: 200, description: expectedParsingException)
@@ -614,7 +653,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         expect(downloader.fetchProjects(for: .mostRecent, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -626,11 +665,14 @@ class StoreProjectDownloaderTests: XCTestCase {
         let version: String = Util.catrobatLanguageVersion()
         let offset: Int = 0
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.uploaded.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: ProjectType.mostRecent.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: ProjectType.mostRecent.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url!
         let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
@@ -655,10 +697,11 @@ class StoreProjectDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no projects found"); return }
             guard let item = projects.first else { XCTFail("no projects in array"); return }
 
-            // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.id, "")
-            XCTAssertNotEqual(item.name, "")
-            XCTAssertNotEqual(item.author, "")
+            // check that the first item in the first category has no empty properties
+            XCTAssertFalse(item.id.isEmpty)
+            XCTAssertFalse((item.name ?? "").isEmpty)
+            XCTAssertFalse((item.screenshotSmall ?? "").isEmpty)
+            XCTAssertFalse((item.author ?? "").isEmpty)
 
             expectation.fulfill()
         }
@@ -677,10 +720,11 @@ class StoreProjectDownloaderTests: XCTestCase {
             guard let projects = projects else { XCTFail("no projects found"); return }
             guard let item = projects.first else { XCTFail("no projects in array"); return }
 
-            // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.id, "")
-            XCTAssertNotEqual(item.name, "")
-            XCTAssertNotEqual(item.author, "")
+            // check that the first item in the first category has no empty properties
+            XCTAssertFalse(item.id.isEmpty)
+            XCTAssertFalse((item.name ?? "").isEmpty)
+            XCTAssertFalse((item.screenshotSmall ?? "").isEmpty)
+            XCTAssertFalse((item.author ?? "").isEmpty)
 
             expectation.fulfill()
         }
@@ -719,7 +763,7 @@ class StoreProjectDownloaderTests: XCTestCase {
     }
 
     func testSearchProjectsFailsWithParseError() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchSearchProjects.fail.parse")
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.searchProjects.fail.parse")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Search Projects")
         let searchTerm = "Galaxy"
@@ -727,7 +771,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         downloader.fetchSearchQuery(searchTerm: searchTerm) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
-            case .parse(error: _):
+            case .parse:
                 break
             default:
                 XCTFail("wrong error received")
@@ -742,12 +786,15 @@ class StoreProjectDownloaderTests: XCTestCase {
         let searchTerm = "Galaxy"
         let version: String = Util.catrobatLanguageVersion()
 
-        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointSearch)
+        var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsSearch)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.author.rawValue)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectQuery, value: searchTerm),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(0))
+            URLQueryItem(name: NetworkDefines.apiParameterQuery, value: searchTerm),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.searchProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(0)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
         let url = urlComponents!.url
         let response = HTTPURLResponse(url: url!, statusCode: 404, httpVersion: nil, headerFields: nil)
@@ -809,7 +856,7 @@ class StoreProjectDownloaderTests: XCTestCase {
 
     func testFetchProjectDetailsNotFoundNotification() {
         let projectId = "821"
-        let url = URL(string: "\(NetworkDefines.apiEndpointProjectDetails)/\(projectId)")!
+        let url = URL(string: "\(NetworkDefines.apiEndpointProject)/\(projectId)")!
         let response = HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: nil)
         let error = ErrorMock("errorDescription")
         let session = URLSessionMock(response: response, error: error)
@@ -830,7 +877,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         let fileManagerMock = CBFileManagerMock(filePath: [], directoryPath: [])
 
         let downloader = StoreProjectDownloader(session: dvrSession, fileManager: fileManagerMock)
-        let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
+        let projectId = "821"
         let projectName = "projectName"
         let expectation = XCTestExpectation(description: "Download Project")
 
@@ -873,7 +920,7 @@ class StoreProjectDownloaderTests: XCTestCase {
 
     func testDownloadProjectFailsWithRequestError() {
         let projectId = ""
-        let url = URL(string: "\(NetworkDefines.downloadUrl)/\(projectId).catrobat")!
+        let url = URL(string: "\(NetworkDefines.apiEndpointProject)/\(projectId)/\(NetworkDefines.apiActionDownload)")!
         let response = HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: nil)
         let error = ErrorMock("errorDescription")
         let session = URLSessionMock(response: response, error: error)
@@ -890,7 +937,7 @@ class StoreProjectDownloaderTests: XCTestCase {
 
     func testDownloadProjectCancelled() {
         let projectId = "projectId"
-        let url = URL(string: "\(NetworkDefines.downloadUrl)/\(projectId).catrobat")!
+        let url = URL(string: "\(NetworkDefines.apiEndpointProject)/\(projectId)/\(NetworkDefines.apiActionDownload)")!
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
         let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled)
         let session = URLSessionMock(response: response, error: error)
@@ -935,7 +982,7 @@ class StoreProjectDownloaderTests: XCTestCase {
         let mockSession = URLSessionMock(response: nil, error: nil, bytesReceived: 600, bytesTotal: 1200)
         let downloader = StoreProjectDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Download Project Progression")
-        let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
+        let projectId = "821"
 
         downloader.download(projectId: projectId,
                             projectName: "projectName",

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,9 +27,9 @@ import XCTest
 class MediaItemTest: XCTestCase {
 
     func testGroupedByCategories() {
-        let mediaItemA = MediaItem(name: "nameA", fileExtension: "", category: "categoryA", relativePath: "", cachedData: nil)
-        let mediaItemB = MediaItem(name: "nameB", fileExtension: "", category: "categoryB", relativePath: "", cachedData: nil)
-        let mediaItemC = MediaItem(name: "nameC", fileExtension: "", category: "categoryA", relativePath: "", cachedData: nil)
+        let mediaItemA = MediaItem(id: 0, name: "nameA", category: "categoryA")
+        let mediaItemB = MediaItem(id: 1, name: "nameB", category: "categoryB")
+        let mediaItemC = MediaItem(id: 2, name: "nameC", category: "categoryA")
 
         XCTAssertNotEqual(mediaItemA.category, mediaItemB.category)
         XCTAssertNotEqual(mediaItemB.category, mediaItemC.category)
@@ -48,9 +48,9 @@ class MediaItemTest: XCTestCase {
     }
 
     func testGroupedByCategoriesSingleItems() {
-        let mediaItemA = MediaItem(name: "nameA", fileExtension: "", category: "categoryA", relativePath: "", cachedData: nil)
-        let mediaItemB = MediaItem(name: "nameB", fileExtension: "", category: "categoryB", relativePath: "", cachedData: nil)
-        let mediaItemC = MediaItem(name: "nameC", fileExtension: "", category: "categoryC", relativePath: "", cachedData: nil)
+        let mediaItemA = MediaItem(id: 0, name: "nameA", category: "categoryA")
+        let mediaItemB = MediaItem(id: 1, name: "nameB", category: "categoryB")
+        let mediaItemC = MediaItem(id: 2, name: "nameC", category: "categoryC")
 
         XCTAssertNotEqual(mediaItemA.category, mediaItemB.category)
         XCTAssertNotEqual(mediaItemB.category, mediaItemC.category)
@@ -75,9 +75,9 @@ class MediaItemTest: XCTestCase {
         var categories = [MediaItem]()
         XCTAssertTrue(!categories.prioritizedCategories.isEmpty)
 
-        let mediaItemA = MediaItem(name: "nameA", fileExtension: "", category: "categoryA", relativePath: "", cachedData: nil)
-        let mediaItemB = MediaItem(name: "nameB", fileExtension: "", category: categories.prioritizedCategories[0], relativePath: "", cachedData: nil)
-        let mediaItemC = MediaItem(name: "nameC", fileExtension: "", category: "categoryC", relativePath: "", cachedData: nil)
+        let mediaItemA = MediaItem(id: 0, name: "nameA", category: "categoryA")
+        let mediaItemB = MediaItem(id: 1, name: "nameB", category: categories.prioritizedCategories[0])
+        let mediaItemC = MediaItem(id: 2, name: "nameC", category: "categoryC")
 
         XCTAssertNotEqual(mediaItemA.category, mediaItemB.category)
         XCTAssertNotEqual(mediaItemB.category, mediaItemC.category)

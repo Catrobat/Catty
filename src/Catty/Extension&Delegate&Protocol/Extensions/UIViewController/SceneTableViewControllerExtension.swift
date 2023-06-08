@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,10 +22,10 @@
 
 import Foundation
 
-@objc extension SceneTableViewController: LoginViewControllerDelegate {
-    public func afterSuccessfulLogin() {
+@objc extension SceneTableViewController: AuthenticationDelegate {
+    public func successfullyAuthenticated() {
         DispatchQueue.main.async {
-            if UserDefaults().bool(forKey: NetworkDefines.kUserIsLoggedIn) {
+            if StoreAuthenticator.isLoggedIn() {
                 if self.shouldPerformSegue(withIdentifier: kSegueToUpload, sender: self) {
                     self.performSegue(withIdentifier: kSegueToUpload, sender: self)
                 }
@@ -39,9 +39,7 @@ import Foundation
         DispatchQueue.main.async(execute: {
             AlertControllerBuilder.alert(title: kLocalizedProjectUploaded, message: kLocalizedProjectUploadedBody)
                 .addDefaultAction(title: kLocalizedView) {
-                    if let projectURL = URL(string: NetworkDefines.projectDetailsBaseUrl + projectId) {
-                        Util.openURL(url: projectURL, delegate: self)
-                    }
+                    self.openProjectDetails(projectId: projectId)
                 }
             .addDefaultAction(title: kLocalizedOK) { }
             .build().showWithController(self)

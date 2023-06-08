@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -58,7 +58,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
     }
 
     func testPlaySoundAndWaitExpectSoundInterruptedBySameSoundInSameObject() {
-        let referenceSimHash = "01111100010001001010100110000100"
+        let referenceSimHash = "01111100110011001010100110000100"
         let stage = self.createStage(xmlFile: "PlaySoundAndWaitBrickContinueWhenInterrupted")
 
         // Run program and record
@@ -87,7 +87,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         let recordedTape = self.runAndRecord(duration: 4, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
-        expect(similarity) >= 0.75
+        expect(similarity) >= 0.85
     }
 
     func testPlaySoundAndWaitExpectScriptToContinueWhenSoundFinished() {
@@ -98,6 +98,6 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
-        expect(similarity) >= 0.75
+        expect(similarity) >= 0.85
     }
 }

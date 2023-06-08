@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,20 +20,41 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Vision
+
 protocol VisualDetectionManagerProtocol {
 
     var isFaceDetected: [Bool] { get }
     var facePositionXRatio: [Double?] { get }
     var facePositionYRatio: [Double?] { get }
     var faceSizeRatio: [Double?] { get }
-    var visualDetectionFrameSize: CGSize? { get }
     var faceLandmarkPositionRatioDictionary: [String: Double] { get }
+    var bodyPosePositionRatioDictionary: [String: Double] { get }
+    var handPosePositionRatioDictionary: [String: Double] { get }
+    var textFromCamera: String? { get }
+    var textBlocksNumber: Int? { get }
+    var textBlockPosition: [CGPoint] { get }
+    var textBlockSizeRatio: [Double] { get }
+    var textBlockFromCamera: [String] { get }
+    var textBlockLanguageCode: [String] { get }
+    var objectRecognitions: [VNRecognizedObjectObservation] { get }
 
+    func setStage(_ stage: Stage?)
     func start()
+    func startFaceDetection()
+    func startHandPoseDetection()
+    func startBodyPoseDetection()
+    func startTextRecognition()
+    func startObjectRecognition()
 
     func stop()
 
     func reset()
+    func resetFaceDetection()
+    func resetBodyPoses()
+    func resetHandPoses()
+    func resetTextRecogntion()
+    func resetObjectRecognition()
 
     func available() -> Bool
 }

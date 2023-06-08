@@ -5,14 +5,19 @@ on:
     - cron:  '0 0 * * *'
 
 jobs:
-  build:
+  CrowdinUpload:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v3
       with:
-          ref: develop
-    - name: Upload Localization to Crowdin by fastlane
+        ref: develop
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        working-directory: src
+        bundler-cache: true
+    - name: Upload Localizations to Crowdin via Fastlane
       env:
         CROWDIN_KEY: ${{ secrets.CROWDIN_API }}
-        FASTLANE_SKIP_UPDATE_CHECK: '1'
-      run: cd src && fastlane crowdin_upload
+      run: cd src && bundle exec fastlane ios crowdin_upload

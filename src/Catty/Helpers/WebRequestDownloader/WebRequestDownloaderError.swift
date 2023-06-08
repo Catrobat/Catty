@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ enum WebRequestDownloaderError: Error {
             self = .noInternet
         case .notTrusted:
             self = .notTrusted
-        case .request(error: _, statusCode: _):
+        case .request:
             self = .request(error: nil, statusCode: 200)
         case .unexpectedError:
             self = .unexpectedError

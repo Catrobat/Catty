@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,6 @@ final class HeadTopSensorTest: XCTestCase {
         super.setUp()
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
-        self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
         self.headTopXSensor = HeadTopXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
         self.headTopYSensor = HeadTopYSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock })
     }
@@ -68,14 +67,10 @@ final class HeadTopSensorTest: XCTestCase {
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: headTopXSensor).defaultRawValue, headTopXSensor.convertToStandardized(rawValue: 0))
-
         XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), headTopXSensor.convertToStandardized(rawValue: 0.02))
         XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), headTopXSensor.convertToStandardized(rawValue: 0.45))
         XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), headTopXSensor.convertToStandardized(rawValue: 0.93))
         XCTAssertEqual(Double(stageSize.width / 2), headTopXSensor.convertToStandardized(rawValue: 1.0))
-
-        XCTAssertEqual(type(of: headTopYSensor).defaultRawValue, headTopYSensor.convertToStandardized(rawValue: 0))
 
         XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), headTopYSensor.convertToStandardized(rawValue: 0.01))
         XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), headTopYSensor.convertToStandardized(rawValue: 0.4))
@@ -86,15 +81,17 @@ final class HeadTopSensorTest: XCTestCase {
     func testStandardizedValue() {
         var convertToStandardizedValue = headTopXSensor.convertToStandardized(rawValue: headTopXSensor.rawValue(landscapeMode: false))
         var standardizedValue = headTopXSensor.standardizedValue(landscapeMode: false)
+        var convertToStandardizedValueLandscape = headTopXSensor.convertToStandardized(rawValue: headTopXSensor.rawValue(landscapeMode: true))
         var standardizedValueLandscape = headTopXSensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
 
         convertToStandardizedValue = headTopYSensor.convertToStandardized(rawValue: headTopYSensor.rawValue(landscapeMode: false))
         standardizedValue = headTopYSensor.standardizedValue(landscapeMode: false)
+        convertToStandardizedValueLandscape = headTopYSensor.convertToStandardized(rawValue: headTopYSensor.rawValue(landscapeMode: true))
         standardizedValueLandscape = headTopYSensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
     }
 
     func testTag() {

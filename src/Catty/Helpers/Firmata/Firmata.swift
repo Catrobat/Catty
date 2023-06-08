@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -293,8 +293,8 @@ class Firmata: FirmataProtocol {
 
         //Analog (PWM) I/O message
         data0 = kANALOG_MESSAGE + pin
-        data1 = value & 0x7F;   //only 7 bottom bits
-        data2 = value >> 7;     //top bit in second byte // &0x7f ??
+        data1 = value & 0x7F  //only 7 bottom bits
+        data2 = value >> 7    //top bit in second byte
 
         let bytes: [UInt8] = [data0, data1, data2]
         let newData = Data(bytes)
@@ -330,7 +330,7 @@ class Firmata: FirmataProtocol {
             portMasks[Int(port)] &= ~(1 << pinIndex) //prep the saved mask by zeroing this pin's corresponding bit
             newMask |= portMasks[Int(port)] //merge with saved port state
             portMasks[Int(port)] = newMask
-            data1 = newMask<<1; data1 >>= 1  //remove MSB
+            data1 = newMask << 1; data1 >>= 1  //remove MSB
             data2 = newMask >> 7 //use data1's MSB as data2's LSB
         } else {
             portMasks[Int(port)] &= ~(1 << pinIndex) //prep the saved mask by zeroing this pin's corresponding bit

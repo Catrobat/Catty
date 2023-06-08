@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@ final class RunningStitchPatternTests: XCTestCase {
         embroideryStream!.activePattern = RunningStitchPattern(for: embroideryStream!,
                                                                at: .zero,
                                                                with: 20)
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80))
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80), rotation: 0)
 
         XCTAssertEqual(embroideryStream!.count, reference.count)
         for i in 0..<reference.count {
@@ -74,10 +74,10 @@ final class RunningStitchPatternTests: XCTestCase {
         embroideryStream!.activePattern = RunningStitchPattern(for: embroideryStream!,
                                                                at: .zero,
                                                                with: 20)
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 80, y: 80))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 0))
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80), rotation: 0)
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 80, y: 80), rotation: 0)
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 80), rotation: 0)
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 0), rotation: 0)
 
         XCTAssertEqual(embroideryStream!.count, reference.count)
         for i in 0..<reference.count {
@@ -89,21 +89,19 @@ final class RunningStitchPatternTests: XCTestCase {
         let reference = EmbroideryStream()
         reference.add(Stitch(x: 0, y: 0))
         reference.add(Stitch(x: 0, y: 10))
-        reference.add(Stitch(x: 0, y: 19))
-        reference.add(Stitch(x: 10, y: 19))
-        reference.add(Stitch(x: 19, y: 19))
+        reference.add(Stitch(x: 9, y: 14))
+        reference.add(Stitch(x: 18, y: 19))
         reference.add(Stitch(x: 19, y: 9))
-        reference.add(Stitch(x: 19, y: 0))
-        reference.add(Stitch(x: 9, y: 0))
+        reference.add(Stitch(x: 9, y: 4))
         reference.add(Stitch(x: 0, y: 0))
 
         embroideryStream!.activePattern = RunningStitchPattern(for: embroideryStream!,
                                                                at: .zero,
                                                                with: 10)
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 19))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 19, y: 19))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 19, y: 0))
-        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 0))
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 19), rotation: 0)
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 19, y: 19), rotation: 0)
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 19, y: 0), rotation: 0)
+        embroideryStream!.activePattern!.spriteDidMove(to: CGPoint(x: 0, y: 0), rotation: 0)
 
         XCTAssertEqual(embroideryStream!.count, reference.count)
         for i in 0..<reference.count {

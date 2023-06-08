@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -110,14 +110,14 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 
     // MARK: CBPeripheralDelegate
-    open func peripheralDidUpdateName(_:CBPeripheral) {
+    open func peripheralDidUpdateName(_: CBPeripheral) {
 
     }
 
-    open func peripheral(_:CBPeripheral, didModifyServices invalidatedServices: [CBService]) {
+    open func peripheral(_: CBPeripheral, didModifyServices invalidatedServices: [CBService]) {
     }
 
-    open func peripheral(_:CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+    open func peripheral(_: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
         self.helper.didReadRSSI(RSSI, error: error as NSError?)
     }
 
@@ -165,7 +165,7 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
         ownCharacteristic.didUpdate(error as NSError?)
     }
 
-    open func peripheral(_:CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+    open func peripheral(_: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let ownCharacteristic = self.ownCharacteristics[characteristic] else {
             return
         }

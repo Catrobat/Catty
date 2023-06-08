@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,25 +25,39 @@ extension CBSpriteNode {
     @objc func drawEmbroidery() {
         let drawEmbroideryQueue = embroideryStream.drawEmbroideryQueue
         let stitchCount = drawEmbroideryQueue.count
-
+        var lastDrawedStitchIndex = 0
+        var lastColorChangeIndex = 0
+        var currentColor = SpriteKitDefines.defaultStitchingColor
+        var previousColor = SpriteKitDefines.defaultStitchingColor
         for (index, stitch) in drawEmbroideryQueue.enumerated() where !stitch.isDrawn {
-
-            if !stitch.isJump && !stitch.isInterpolated {
-                self.drawStitchingPoint(stitch)
+            if stitch.isColorChange {
+                previousColor = currentColor
+                lastColorChangeIndex = index
             }
-            self.drawStitchingLine(from: drawEmbroideryQueue[index - 1], to: stitch)
+            currentColor = stitch.getColor()
+            if !stitch.isJump && !stitch.isInterpolated {
+                self.drawStitchingPoint(stitch, color: stitch.getColor())
+                lastDrawedStitchIndex = index
+            }
+            let color = drawEmbroideryQueue[index - 1]?.getColor() ?? SpriteKitDefines.defaultStitchingColor
+            if color != stitch.getColor() {
+                self.drawStitchingLine(from: drawEmbroideryQueue[index - 1], to: stitch, color: color)
+            } else if lastDrawedStitchIndex < lastColorChangeIndex {
+                self.drawStitchingLine(from: drawEmbroideryQueue[index - 1], to: stitch, color: previousColor)
+            } else {
+                self.drawStitchingLine(from: drawEmbroideryQueue[index - 1], to: stitch, color: currentColor)
+            }
         }
-
         if stitchCount > 1 {
             drawEmbroideryQueue.removeSubrange(0..<stitchCount - 1)
         }
     }
 
-    private func drawStitchingPoint(_ stitch: Stitch) {
+    private func drawStitchingPoint(_ stitch: Stitch, color: UIColor) {
         let point = CircleShapeNode(point: stitch.getPosition(), radius: SpriteKitDefines.stitchingCircleRadius, startAngle: 0.0, endAngle: 2.0 * CGFloat.pi, clockwise: true, transform: .identity)
         point.name = SpriteKitDefines.stitchingPointShapeNodeName
-        point.fillColor = SpriteKitDefines.defaultStitchingColor
-        point.strokeColor = SpriteKitDefines.defaultStitchingColor
+        point.strokeColor = color
+        point.fillColor = color
         point.lineWidth = embroideryStream.size
         point.zPosition = SpriteKitDefines.defaultStitchingZPosition
 
@@ -51,15 +65,14 @@ extension CBSpriteNode {
         stitch.isDrawn = true
     }
 
-    private func drawStitchingLine(from start: Stitch?, to end: Stitch) {
+    private func drawStitchingLine(from start: Stitch?, to end: Stitch, color: UIColor) {
         guard let start = start else { return }
 
         let line = LineShapeNode(pathStartPoint: start.getPosition(), pathEndPoint: end.getPosition())
         line.name = SpriteKitDefines.stitchingLineShapeNodeName
-        line.strokeColor = SpriteKitDefines.defaultStitchingColor
+        line.strokeColor = color
         line.lineWidth = embroideryStream.size
         line.zPosition = SpriteKitDefines.defaultStitchingZPosition
-
         self.scene?.addChild(line)
     }
 }

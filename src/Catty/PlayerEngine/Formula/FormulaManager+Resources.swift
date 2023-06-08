@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -49,8 +49,8 @@ extension FormulaManager {
         if requiredResources & ResourceType.magnetometer.rawValue > 0 && !motionManager.isMagnetometerAvailable {
             unavailableResource |= ResourceType.magnetometer.rawValue
         }
-        if requiredResources & ResourceType.faceDetection.rawValue > 0 && !visualDetectionManager.available() {
-            unavailableResource |= ResourceType.faceDetection.rawValue
+        if requiredResources & ResourceType.visualDetection.rawValue > 0 && !visualDetectionManager.available() {
+            unavailableResource |= ResourceType.visualDetection.rawValue
         }
         if requiredResources & ResourceType.loudness.rawValue > 0 && !audioManager.loudnessAvailable() {
             unavailableResource |= ResourceType.loudness.rawValue
@@ -94,10 +94,26 @@ extension FormulaManager {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
-        if ((requiredResources & ResourceType.faceDetection.rawValue) > 0) && (unavailableResource & ResourceType.faceDetection.rawValue) == 0 {
+        if (requiredResources & ResourceType.visualDetection.rawValue > 0) && (unavailableResource & ResourceType.visualDetection.rawValue) == 0 {
+            if requiredResources & ResourceType.faceDetection.rawValue > 0 {
+                visualDetectionManager.startFaceDetection()
+            }
+            if requiredResources & ResourceType.handPoseDetection.rawValue > 0 {
+                visualDetectionManager.startHandPoseDetection()
+            }
+            if requiredResources & ResourceType.bodyPoseDetection.rawValue > 0 {
+                visualDetectionManager.startBodyPoseDetection()
+            }
+            if requiredResources & ResourceType.textRecognition.rawValue > 0 {
+                visualDetectionManager.startTextRecognition()
+            }
+            if requiredResources & ResourceType.objectRecognition.rawValue > 0 {
+                visualDetectionManager.startObjectRecognition()
+            }
+            visualDetectionManager.setStage(stage)
             visualDetectionManager.start()
         }
-        if ((requiredResources & ResourceType.loudness.rawValue) > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
+        if (requiredResources & ResourceType.loudness.rawValue > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
             audioManager.startLoudnessRecorder()
         }
 

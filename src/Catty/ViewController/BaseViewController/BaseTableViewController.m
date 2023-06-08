@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -177,6 +177,11 @@
     return _selectAllRowsButtonItem;
 }
 
++ (void)setStagePresenterViewController:(StagePresenterViewController*) mockViewController
+{
+    self.stagePresenterViewController = mockViewController;
+}
+
 #pragma mark - table view delegates
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -284,6 +289,7 @@
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
     self.navigationController.toolbar.tintColor = UIColor.toolTint;
+    self.navigationController.toolbar.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     self.navigationController.toolbar.barTintColor = UIColor.toolBar;
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
@@ -406,15 +412,24 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [self showLoadingView];
+
     ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
-    if (!Project.lastUsedProject.header.landscapeMode) {
-        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
-        [UINavigationController attemptRotationToDeviceOrientation];
-    } else {
-        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
-        [UINavigationController attemptRotationToDeviceOrientation];
-    }
-    [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
+    dispatch_queue_t lastProjectQueue = dispatch_queue_create("lastProjectQueue", NULL);
+    dispatch_async(lastProjectQueue, ^{
+        BOOL landscapeMode = Project.lastUsedProject.header.landscapeMode;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (! landscapeMode) {
+                [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+            } else {
+                [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+            }
+
+            [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController completion:^{
+                [self hideLoadingView];
+            }];
+        });
+    });
 }
 
 - (void)showLoadingView

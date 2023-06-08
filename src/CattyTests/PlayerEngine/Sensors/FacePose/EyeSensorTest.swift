@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,6 @@ final class EyeSensorTest: XCTestCase {
         super.setUp()
         self.visualDetectionManagerMock = VisualDetectionManagerMock()
         self.stageSize = CGSize(width: 1080, height: 1920)
-        self.visualDetectionManagerMock.setVisualDetectionFrameSize(stageSize)
         self.eyeXSensors.append(LeftEyeInnerXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
         self.eyeXSensors.append(LeftEyeCenterXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
         self.eyeXSensors.append(LeftEyeOuterXSensor(stageSize: stageSize, visualDetectionManagerGetter: { [ weak self ] in self?.visualDetectionManagerMock }))
@@ -94,8 +93,6 @@ final class EyeSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         for eyeSensor in eyeXSensors {
-            XCTAssertEqual(type(of: eyeSensor).defaultRawValue, eyeSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), eyeSensor.convertToStandardized(rawValue: 0.02))
             XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), eyeSensor.convertToStandardized(rawValue: 0.45))
             XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), eyeSensor.convertToStandardized(rawValue: 0.93))
@@ -103,8 +100,6 @@ final class EyeSensorTest: XCTestCase {
         }
 
         for eyeSensor in eyeYSensors {
-            XCTAssertEqual(type(of: eyeSensor).defaultRawValue, eyeSensor.convertToStandardized(rawValue: 0))
-
             XCTAssertEqual(Double(stageSize.height * 0.01) - Double(stageSize.height / 2), eyeSensor.convertToStandardized(rawValue: 0.01))
             XCTAssertEqual(Double(stageSize.height * 0.4) - Double(stageSize.height / 2), eyeSensor.convertToStandardized(rawValue: 0.4))
             XCTAssertEqual(Double(stageSize.height * 0.95) - Double(stageSize.height / 2), eyeSensor.convertToStandardized(rawValue: 0.95))
@@ -116,9 +111,10 @@ final class EyeSensorTest: XCTestCase {
         for eyeSensor in eyeXSensors + eyeYSensors {
             let convertToStandardizedValue = eyeSensor.convertToStandardized(rawValue: eyeSensor.rawValue(landscapeMode: false))
             let standardizedValue = eyeSensor.standardizedValue(landscapeMode: false)
+            let convertToStandardizedValueLandscape = eyeSensor.convertToStandardized(rawValue: eyeSensor.rawValue(landscapeMode: true))
             let standardizedValueLandscape = eyeSensor.standardizedValue(landscapeMode: true)
             XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-            XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+            XCTAssertEqual(convertToStandardizedValueLandscape, standardizedValueLandscape)
         }
     }
 

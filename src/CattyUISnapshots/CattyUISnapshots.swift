@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,6 @@ import XCTest
 class CattyUISnapshots: XCTestCase {
 
     let app = XCUIApplication()
-    let mediaLibraryImageName = "Penguin"
 
     override func setUp() {
         setupSnapshot(app)
@@ -33,83 +32,57 @@ class CattyUISnapshots: XCTestCase {
         dismissPrivacyPolicyScreenIfShown()
     }
 
-    func testUIScreenshots() {
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.navigationBars[kLocalizedProjects].buttons[kLocalizedEdit].tap()
-
-        app.sheets[kLocalizedEditProjects].scrollViews.otherElements.buttons[kLocalizedDeleteProjects].tap()
-
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons[kLocalizedSelectAllItems].tap()
-        toolbar.buttons[kLocalizedDelete].tap()
-        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        snapshot("01-Landing page")
-
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-
-        let tablesQuery = XCUIApplication().tables
-        tablesQuery.staticTexts[kLocalizedMyFirstProject].tap()
-        tablesQuery.staticTexts[kLocalizedMole + " 1"].tap()
-        tablesQuery.staticTexts[kLocalizedScripts].tap()
-        snapshot("02-Mole 1 script")
-
-        app.navigationBars[kLocalizedScripts].buttons[kLocalizedMole + " 1"].tap()
-
-        tablesQuery.staticTexts[kLocalizedLooks].tap()
-        app.toolbars["Toolbar"].buttons[kLocalizedAdd].tap()
-
-        app.sheets[kLocalizedAddLook].scrollViews.otherElements.buttons[kLocalizedMediaLibrary].tap()
-
-        let loadMediaLibraryExpectation = XCTestExpectation(description: "Wait till the page loads")
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
-            loadMediaLibraryExpectation.fulfill()
-        }
-        wait(for: [loadMediaLibraryExpectation], timeout: 5.1)
-        snapshot("04-Media library")
-
-        let imageCell = app.collectionViews.children(matching: .cell)[mediaLibraryImageName].children(matching: .other).element
-        let exists = NSPredicate(format: "exists == 1")
-        let imageCellExpectation = expectation(for: exists, evaluatedWith: imageCell, handler: nil)
-        wait(for: [imageCellExpectation], timeout: 5.0)
-        imageCell.tap()
-
-        tablesQuery.staticTexts[mediaLibraryImageName].tap()
-        snapshot("05-Paint with Penguin")
-    }
-
-    func testMyFirstProjectScreenshot() {
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
-
-        app.toolbars["Toolbar"].buttons["Play"].tap()
-
-        let projectLoadExpectation = XCTestExpectation(description: "Arbitrarily wait till the project loads")
-
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            projectLoadExpectation.fulfill()
-        }
-
-        wait(for: [projectLoadExpectation], timeout: 3.1)
-        snapshot("06-My first project stage")
-    }
-
-    func testCatrobatCommunityScreenshot() {
-        app.tables.staticTexts[kLocalizedCatrobatCommunity].tap()
-        app.tabBars.buttons["Charts"].tap()
-
-        let loadCompleteExpectation = XCTestExpectation(description: "Wait till the page loads")
-
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-            loadCompleteExpectation.fulfill()
-        }
-
-        wait(for: [loadCompleteExpectation], timeout: 2.1)
-        snapshot("03-Catrobat community charts")
-    }
-
     private func dismissPrivacyPolicyScreenIfShown() {
         if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
             app.buttons[kLocalizedPrivacyPolicyAgree].tap()
         }
+    }
+
+    func testMyFirstProjectScreenshots() {
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedEdit].tap()
+        app.scrollViews.otherElements.buttons[kLocalizedDeleteProjects].tap()
+        let toolbar = app.toolbars["Toolbar"]
+        toolbar.buttons[kLocalizedSelectAllItems].tap()
+        toolbar.buttons[kLocalizedDelete].tap()
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+        snapshot("01-Main")
+
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
+        let tablesQuery = XCUIApplication().tables
+        tablesQuery.staticTexts[kLocalizedMyFirstProject].tap()
+        snapshot("03-Project")
+
+        tablesQuery.staticTexts[kLocalizedMole + " 1"].tap()
+        tablesQuery.staticTexts[kLocalizedScripts].tap()
+        snapshot("04-Scripts")
+
+        app.navigationBars[kLocalizedScripts].buttons[kLocalizedMole + " 1"].tap()
+        tablesQuery.staticTexts[kLocalizedLooks].tap()
+        tablesQuery.staticTexts["Mole"].tap()
+        snapshot("05-Paint")
+
+        app.navigationBars[kLocalizedPaintPocketPaint].buttons[kLocalizedBack].tap()
+        app.toolbars["Toolbar"].buttons["Play"].tap()
+        let stageLoadExpectation = XCTestExpectation(description: "Wait till the stage loads")
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+            stageLoadExpectation.fulfill()
+        }
+        wait(for: [stageLoadExpectation], timeout: 5.1)
+        let leftEdge = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0.5))
+        let center = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        leftEdge.press(forDuration: 0.5, thenDragTo: center)
+        app.staticTexts[kLocalizedMaximize].tap()
+        snapshot("06-Stage")
+    }
+
+    func testCatrobatCommunityScreenshot() {
+        app.tables.staticTexts[kLocalizedCatrobatCommunity].tap()
+        let communityLoadExpectation = XCTestExpectation(description: "Wait till the featured projects load")
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+            communityLoadExpectation.fulfill()
+        }
+        wait(for: [communityLoadExpectation], timeout: 5.1)
+        snapshot("02-Community")
     }
 }

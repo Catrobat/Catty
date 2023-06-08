@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -50,7 +50,8 @@ extension LooksTableViewController {
 extension LooksTableViewController: MediaLibraryViewControllerImportDelegate {
     func mediaLibraryViewController(_ mediaLibraryViewController: MediaLibraryViewController, didPickItemsForImport items: [MediaItem]) {
         for item in items {
-            guard let data = item.cachedData else { self.showImportAlert(itemName: item.name); continue }
+            guard let itemName = item.name else { continue }
+            guard let data = item.cachedData else { self.showImportAlert(itemName: itemName); continue }
 
             if let image = UIImage(data: data) {
                 self.addMediaLibraryLoadedImage(image, withName: item.name)

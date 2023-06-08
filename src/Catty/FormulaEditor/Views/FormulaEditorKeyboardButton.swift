@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -137,7 +137,7 @@ class ArrowButton: FormulaEditorKeyboardButton {
     init() {
         super.init(touchDownFeedback: false)
         self.backgroundColor = .formulaEditorLargeButtons
-        let image = UIImage(named: "formulaEditorArrow")
+        let image = UIImage(named: "chevron.compact.down")
         self.setImage(image, for: .normal)
         self.tintColor = UIColor.white
     }

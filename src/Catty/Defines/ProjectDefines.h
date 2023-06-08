@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #define kLastUsedProject @"lastUsedProject"
 #define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProjectCodeFileName @"code.xml"
+#define kProjectCodeFileMaxSize (8 * 1024 * 1024) // in bytes
 #define kProjectSoundsDirName @"sounds"
 #define kProjectImagesDirName @"images"
 #define kProjectsFolder @".projects"
@@ -108,7 +109,12 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kTouchHandler =         1 << 13,
     kEmbroidery =           1 << 14,
     kInternet =             1 << 15,
-    kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion // TODO Pass ResourceType parameters as array (e.g. in "Sensor")
+    kBodyPoseDetection =    1 << 16,
+    kHandPoseDetection =    1 << 17,
+    kTextRecognition =      1 << 18,
+    kObjectRecognition =    1 << 19,
+    kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion, // TODO Pass ResourceType parameters as array (e.g. in "Sensor"),
+    kVisualDetection = kFaceDetection | kBodyPoseDetection | kHandPoseDetection | kTextRecognition | kObjectRecognition
 };
 
 #define kScreenshotFilename @"screenshot.png"

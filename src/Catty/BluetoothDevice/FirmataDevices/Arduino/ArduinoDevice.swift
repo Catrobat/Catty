@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -160,7 +160,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
         reportSensorData(false)
         if !pinsArray.isEmpty {
             var i: Int = 0
-            for _:[String: Any] in pinsArray {
+            for _: [String: Any] in pinsArray {
                 let pin = checkValue(i)
                 if checkDigitalPinCapability(UInt8(pin), neededMode: .output) {
                     if i != 8 {

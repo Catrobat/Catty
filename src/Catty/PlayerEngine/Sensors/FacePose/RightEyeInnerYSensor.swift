@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,14 +25,16 @@ class RightEyeInnerYSensor: DeviceDoubleSensor {
     static let tag = "RIGHT_EYE_INNER_Y"
     static let name = kUIFESensorRightEyeInnerY
     static let defaultRawValue = 0.0
-    static let position = 320
+    static let position = 340
     static let requiredResource = ResourceType.faceDetection
 
     let getVisualDetectionManager: () -> VisualDetectionManagerProtocol?
-    let stageHeight: Double?
+    let stageSize: CGSize
+    var stageHeight: Double
 
     init(stageSize: CGSize, visualDetectionManagerGetter: @escaping () -> VisualDetectionManagerProtocol?) {
         self.getVisualDetectionManager = visualDetectionManagerGetter
+        self.stageSize = stageSize
         self.stageHeight = Double(stageSize.height)
     }
 
@@ -41,16 +43,13 @@ class RightEyeInnerYSensor: DeviceDoubleSensor {
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
+        stageHeight = Double(landscapeMode ? stageSize.width : stageSize.height)
         guard let positionY = self.getVisualDetectionManager()?.faceLandmarkPositionRatioDictionary[self.tag()] else { return type(of: self).defaultRawValue }
         return positionY
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        if rawValue == type(of: self).defaultRawValue {
-            return rawValue
-        }
-        guard let stageHeight = self.stageHeight else { return type(of: self).defaultRawValue }
-        return stageHeight * rawValue - stageHeight / 2.0
+        stageHeight * rawValue - stageHeight / 2.0
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

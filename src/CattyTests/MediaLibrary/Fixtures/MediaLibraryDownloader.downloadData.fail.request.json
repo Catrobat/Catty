@@ -1,29 +1,32 @@
 {
   "interactions" : [
     {
-      "response" : {
-        "status" : 404,
-        "headers" : {
-          "Content-Type" : "application\/json",
-          "Set-Cookie" : "PHPSESSID=rkidg0r1et92gc232gquhvbaj1; path=\/",
-          "Expires" : "-1",
-          "Pragma" : "no-cache",
-          "Server" : "nginx",
-          "Date" : "Fri, 09 Feb 2018 10:17:32 GMT",
-          "Cache-Control" : "private, must-revalidate"
-        },
-        "body" : {
-          "error" : {
-            "message" : "Not Found",
-            "code" : 404
-          }
-        },
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/download-media\/99999"
-      },
-      "recorded_at" : 1518171451.8201509,
+      "recorded_at" : 1666094788.6289361,
       "request" : {
-        "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/download-media\/99999"
+        "url" : "https:\/\/web-test.catrob.at\/app\/download-media\/99999",
+        "method" : "GET"
+      },
+      "response" : {
+        "url" : "https:\/\/web-test.catrob.at\/app\/download-media\/99999",
+        "body" : "",
+        "headers" : {
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Set-Cookie" : "PHPSESSID=029c8aln5t0edi6bh8rkjqlmbl; path=\/; secure; httponly; samesite=lax, dtCookie=v_4_srv_15_sn_91C2B0F60E5639C1760B4F92A01E88B9_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Date" : "Tue, 18 Oct 2022 12:06:28 GMT",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=enfzYus2JmV%2FsdRXpQtpc9N1%2B5jghpW%2FzMbMHfYr6%2BpoBdxFMe%2FGeblOBHI2%2F5SsUKb6uW%2F0qpjyPesYHBwLQfuBT%2FrKfsRw3NNLx3UgFlfovwRJmkXd2EKQiaABbenQSGNPOYqWeSzHFtdrk2w%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Accept-Ranges" : "bytes",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "Etag" : "\"1597349444:dtagent10251220909040818Ngr9\"",
+          "cf-ray" : "75c125ec9f7acb9c-VIE",
+          "Content-Length" : "0",
+          "Last-Modified" : "Thu, 13 Aug 2020 20:10:43 GMT",
+          "Server" : "cloudflare",
+          "cf-cache-status" : "DYNAMIC",
+          "Expires" : "Tue, 18 Oct 2022 12:06:28 GMT",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"874054250\"",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+        },
+        "status" : 404
       }
     }
   ],

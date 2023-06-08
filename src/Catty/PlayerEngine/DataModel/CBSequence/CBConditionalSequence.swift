@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -55,10 +55,8 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     }
 
     final func hasBluetoothFormula() -> Bool {
-        for formula in condition.conditionFormulas() {
-            if (formula.getRequiredResources() & ResourceType.bluetoothArduino.rawValue) > 0 {
-                return true
-            }
+        for formula in condition.conditionFormulas() where (formula.getRequiredResources() & ResourceType.bluetoothArduino.rawValue) > 0 {
+            return true
         }
         return false
     }

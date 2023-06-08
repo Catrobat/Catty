@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ final class ShowTextBrickTests: XCTestCase {
 
         executeInstruction(for: brick)
 
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        XCTAssertTrue(true) // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
     }
 

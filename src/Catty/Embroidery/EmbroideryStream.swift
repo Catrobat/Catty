@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,16 +36,20 @@ class EmbroideryStream: Collection {
 
     var stitches = SynchronizedArray<Stitch>()
     var drawEmbroideryQueue = SynchronizedArray<Stitch>()
+    var color: UIColor
 
     var last: Stitch? {
         stitches.last
     }
+
+    var startPoint: CGPoint?
 
     private(set) var size: CGFloat
 
     init(projectWidth: CGFloat?, projectHeight: CGFloat?, withName name: String? = nil) {
         self.name = name
         self.nextStitchIsColorChange = false
+        self.color = SpriteKitDefines.defaultStitchingColor
 
         size = SpriteKitDefines.defaultCatrobatStitchingSize * EmbroideryDefines.sizeConversionFactor
         guard let width = projectWidth, let height = projectHeight else {
@@ -73,6 +77,7 @@ class EmbroideryStream: Collection {
         }
 
         self.size = streams[0].size
+        self.startPoint = streams.first?.startPoint
         for stream in streams {
             for stitch in stream {
                 self.add(stitch)
@@ -126,7 +131,7 @@ class EmbroideryStream: Collection {
         let e = CGVector(dx: cos(angleInRadians), dy: sin(angleInRadians))
 
         for dir in [StitichingDirection.ahead, .center, .behind, .center] {
-            add(Stitch(atPosition: position + e * dir.rawValue * CGFloat(EmbroideryDefines.sewUpSteps)))
+            add(Stitch(atPosition: position + e * dir.rawValue * CGFloat(EmbroideryDefines.sewUpSteps), withColor: self.color))
         }
     }
 
@@ -144,14 +149,19 @@ class EmbroideryStream: Collection {
             let interpolatedX = round(lastStitch.x + splitFactor * (stitch.x - lastStitch.x))
             let interpolatedY = round(lastStitch.y + splitFactor * (stitch.y - lastStitch.y))
 
-            let interpolatedStitch = Stitch(atPosition: CGPoint(x: interpolatedX, y: interpolatedY), asJump: true, isInterpolated: true)
+            let interpolatedStitch = Stitch(atPosition: CGPoint(x: interpolatedX, y: interpolatedY), withColor: self.color, asJump: true, isInterpolated: true)
             append(interpolatedStitch)
         }
+    }
+
+    public func setColor(newColor: UIColor) {
+        self.color = newColor
     }
 
     private func append(_ stitch: Stitch) {
         if nextStitchIsColorChange {
             stitch.isColorChange = true
+            stitch.setColor(color: self.color)
             nextStitchIsColorChange = false
         }
         drawEmbroideryQueue.append(stitch)

@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>48</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.6.20</applicationVersion>
+    <catrobatLanguageVersion>0.9993</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>iPhone11,2</deviceName>
+    <isCastProject>false</isCastProject>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>15.5</platformVersion>
+    <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>ObjectDetection4</programName>
+    <remixOf/>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>2436</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1125</screenWidth>
+    <tags/>
+    <url/>
+    <userHandle/>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Scene 1</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList/>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ChooseCameraBrick">
+                  <commentedOut>false</commentedOut>
+                  <spinnerSelectionID>0</spinnerSelectionID>
+                </brick>
+                <brick type="CameraBrick">
+                  <commentedOut>false</commentedOut>
+                  <spinnerSelectionID>1</spinnerSelectionID>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="Object 1">
+          <lookList>
+            <look fileName="8340E38A217CBBB3393C03504A4804A1_look.png" name="look"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>1</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>ID_OF_DETECTED_OBJECT</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>ID</userVariable>
+                </brick>
+                <brick type="IfLogicBeginBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="IF_CONDITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>OBJECT_WITH_ID_VISIBLE</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>LABEL_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>Label</userVariable>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>Y_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>X_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>WIDTH_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>Width</userVariable>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>HEIGHT_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>Height</userVariable>
+                </brick>
+                <brick type="ShowBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="IfLogicElseBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="HideBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>STRING</type>
+                      <value/>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick[4]/userVariable"/>
+                </brick>
+                <brick type="IfLogicEndBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="ShowTextBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>1000</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick[4]/userVariable"/>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables/>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="Object 2">
+          <lookList>
+            <look fileName="EAD1BE044D8F716505C90CE376A6BBE6_look.png" name="look"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>2</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>ID_OF_DETECTED_OBJECT</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>ID2</userVariable>
+                </brick>
+                <brick type="IfLogicBeginBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="IF_CONDITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID2</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>OBJECT_WITH_ID_VISIBLE</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID2</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>LABEL_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>Label2</userVariable>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID2</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>Y_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID2</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>X_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ShowBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="IfLogicElseBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="HideBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>STRING</type>
+                      <value/>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick[4]/userVariable"/>
+                </brick>
+                <brick type="IfLogicEndBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="ShowTextBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>900</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick[4]/userVariable"/>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables>
+            <userVariable reference="../../scriptList/script/brickList/brick[2]/userVariable"/>
+            <userVariable reference="../../scriptList/script/brickList/brick[4]/userVariable"/>
+          </userVariables>
+          <userLists/>
+        </object>
+        <object type="SingleSprite" name="Object 3">
+          <lookList>
+            <look fileName="583BB94B10E158B76DF5DD626ECDF9A6_look.png" name="look"/>
+          </lookList>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ForeverBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>NUMBER</type>
+                        <value>3</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>ID_OF_DETECTED_OBJECT</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>ID3</userVariable>
+                </brick>
+                <brick type="IfLogicBeginBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="IF_CONDITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID3</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>OBJECT_WITH_ID_VISIBLE</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID3</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>LABEL_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>Label3</userVariable>
+                </brick>
+                <brick type="PlaceAtBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID3</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>Y_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <type>USER_VARIABLE</type>
+                        <value>ID3</value>
+                      </leftChild>
+                      <type>FUNCTION</type>
+                      <value>X_OF_OBJECT_WITH_ID</value>
+                    </formula>
+                  </formulaList>
+                </brick>
+                <brick type="ShowBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="IfLogicElseBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="HideBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>STRING</type>
+                      <value/>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick[4]/userVariable"/>
+                </brick>
+                <brick type="IfLogicEndBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+                <brick type="ShowTextBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>800</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick[4]/userVariable"/>
+                </brick>
+                <brick type="LoopEndlessBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+            </script>
+          </scriptList>
+          <nfcTagList/>
+          <userVariables>
+            <userVariable>ID2</userVariable>
+            <userVariable>Label2</userVariable>
+            <userVariable reference="../../scriptList/script/brickList/brick[2]/userVariable"/>
+            <userVariable reference="../../scriptList/script/brickList/brick[4]/userVariable"/>
+          </userVariables>
+          <userLists/>
+        </object>
+      </objectList>
+    </scene>
+  </scenes>
+  <programVariableList>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[4]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[6]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[7]/userVariable"/>
+  </programVariableList>
+  <programListOfLists/>
+</program>

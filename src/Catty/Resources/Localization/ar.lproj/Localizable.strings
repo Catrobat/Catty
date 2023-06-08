@@ -8,10 +8,16 @@
 "Abc" = "أبج";
 
 /* No comment provided by engineer. */
+"About" = "حول";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "حول كاتروبات";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "حول تطبيق بوكت بينت";
+
+/* No comment provided by engineer. */
+"About Us" = "About Us";
 
 /* No comment provided by engineer. */
 "absolute value" = "القيمة المطلقة";
@@ -143,6 +149,9 @@
 "Arduino extension" = "لبّنات برمجية لـ اردوينو";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
 "Ask " = "اسأل ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "مجتمع كاتروبات";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat website";
 
 /* No comment provided by engineer. */
 "ceiling" = "تقريب للأعلى";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "حذف";
+
+/* No comment provided by engineer. */
+"Delete account" = "حذف الحساب";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "حذف الممثلين أو العناصر";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "نهاية التكرار";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "أدخل السبب";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "أدخل اسم الصورة الخاصة بك هنا...";
 
@@ -698,9 +710,6 @@
 "Error" = "خطأ";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "حدث خطأ أثناء الإبلاغ عن المشروع. الرجاء المحاولة مرة أخرى لاحقاً.";
-
-/* No comment provided by engineer. */
 "Error saving file" = "خطأ في حفظ الملف";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "الأس الطبيعي";
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensions";
 
 /* No comment provided by engineer. */
 "FA" = "فا";
@@ -845,6 +857,9 @@
 "head top y" = "رأس الأعلى ص";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "مرحباً!";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "ساعة";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "معرف الكائن المكتشف";
 
 /* No comment provided by engineer. */
 "If" = "إذا";
@@ -959,6 +977,9 @@
 "LA" = "لا";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
+
+/* No comment provided by engineer. */
 "Last access" = "أخر وصول";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "اليسار";
 
 /* No comment provided by engineer. */
+"left ankle x" = "الكاحل الأيسر x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "الكاحل الأيسر ذ";
+
+/* No comment provided by engineer. */
 "left ear x" = "الأذن اليسرى x";
 
 /* No comment provided by engineer. */
 "left ear y" = "غادر مبكرا";
+
+/* No comment provided by engineer. */
+"left elbow x" = "الكوع الأيسر x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "الكوع الأيسر ذ";
 
 /* No comment provided by engineer. */
 "left eye center x" = "مركز العين اليسرى x";
@@ -1020,6 +1053,60 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left hip x" = "الورك الأيسر x";
+
+/* No comment provided by engineer. */
+"left hip y" = "يسار الورك ذ";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "مفصل الفهرس الأيسر x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "مفصل الفهرس الأيسر ذ";
+
+/* No comment provided by engineer. */
+"left knee x" = "الركبة اليسرى x";
+
+/* No comment provided by engineer. */
+"left knee y" = "ذ الركبة اليسرى";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "left middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "left middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "أيسر المفصل الخنصر x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "غادر مفصل الخنصر ذ";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "left ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "left ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "الكتف الأيسر x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "ذ الكتف الأيسر";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "مفصل الإبهام الأيسر x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "مفصل الإبهام الأيسر ذ";
+
+/* No comment provided by engineer. */
+"left wrist x" = "الرسغ الأيسر x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "ذ الرسغ الأيسر";
 
 /* No comment provided by engineer. */
 "left-right only" = "من اليسار-اليمين فقط";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "اللوغاريثم الطبيعي";
 
 /* No comment provided by engineer. */
+"neck x" = "الرقبة x";
+
+/* No comment provided by engineer. */
+"neck y" = "عنق y";
+
+/* No comment provided by engineer. */
 "New" = "جديد";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "لا يوجد نتائج للبحث";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "المسافات البيضاء غير مسموحة";
-
-/* No comment provided by engineer. */
 "nose x" = "أنف x";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "عدد_العناصر";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "عدد كتل النص";
+
+/* No comment provided by engineer. */
 "Numbers" = "أرقام";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "اسم الكائن أو الممثل";
+
+/* No comment provided by engineer. */
+"Object recognition" = "التعرف على الكائن";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "object with ID visible";
 
 /* No comment provided by engineer. */
 "Oct" = "تشرين الأول (أكتوبر)";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "الرجاء إدخال %lu حرف على الأقل.";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "الرجاء تسجيل الدخول للإبلاغ عن هذا المشروع باعتباره غير مناسب";
-
 /* paint */
 "Please pick a tool" = "الرجاء إنتقاء أداة";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "المنظر السابق";
 
 /* No comment provided by engineer. */
+"Privacy" = "Privacy";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "اعدادات الخصوصية";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "احمر";
 
 /* No comment provided by engineer. */
-"Register" = "تسجيل";
-
-/* No comment provided by engineer. */
 "Registration successful" = "تم التسجيل بنجاح";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "استبدال عنصر في القائمة";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "تبليغ كـ محتوى غير مناسب";
-
 /* paint */
 "Resize" = "تغيير الحجم";
 
@@ -1613,10 +1706,22 @@
 "Right" = "اليمين";
 
 /* No comment provided by engineer. */
+"right ankle x" = "الكاحل الأيمن x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "الكاحل الأيمن ذ";
+
+/* No comment provided by engineer. */
 "right ear x" = "الأذن اليمنى x";
 
 /* No comment provided by engineer. */
 "right ear y" = "ذ الأذن اليمنى";
+
+/* No comment provided by engineer. */
+"right elbow x" = "الكوع الأيمن x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "الكوع الأيمن ذ";
 
 /* No comment provided by engineer. */
 "right eye center x" = "مركز العين اليمنى x";
@@ -1653,6 +1758,60 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right hip x" = "الورك الأيمن x";
+
+/* No comment provided by engineer. */
+"right hip y" = "الورك الأيمن ذ";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "المفصل الأيمن x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "المفصل الأيمن y";
+
+/* No comment provided by engineer. */
+"right knee x" = "الركبة اليمنى x";
+
+/* No comment provided by engineer. */
+"right knee y" = "ذ الركبة اليمنى";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "right middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "right middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "المفصل الأيمن الخنصر x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "مفصل الخنصر الأيمن ذ";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "right ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "right ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "الكتف الأيمن x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "ذ الكتف الأيمن";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "مفصل الإبهام الأيمن x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "مفصل الإبهام الأيمن ذ";
+
+/* No comment provided by engineer. */
+"right wrist x" = "المعصم الأيمن x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "ذ المعصم الأيمن";
 
 /* paint */
 "Rotate" = "تدوير";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "تعيين الإيقاع إلى";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "اضبط لون الخيط على";
+
+/* No comment provided by engineer. */
 "Set transparency " = "تعيين درجة الشفافية الى ";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "بدء تشغيل مقطع صوتي والانتظار";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "ابدأ الخيط الثلاثي بطول";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "ابدأ خياطة zigzag بطول";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "النص";
 
 /* No comment provided by engineer. */
+"text block from camera" = "كتلة نصية من الكاميرا";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "لغة كتلة النص من الكاميرا";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "حجم كتلة النص من الكاميرا";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "كتلة النص x من الكاميرا";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "كتلة النص y من الكاميرا";
+
+/* No comment provided by engineer. */
+"text from camera" = "نص من الكاميرا";
+
+/* No comment provided by engineer. */
 "Text message:" = "نص الرسالة:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "التعرف على النص";
 
 /* paint */
 "Text:" = "نص:";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "صحيح";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Trusted domains";
 
 /* No comment provided by engineer. */
 "Tu" = "الثلاثاء";
@@ -2204,6 +2393,9 @@
 "View" = "عرض";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "View Terms of Use and Service";
+
+/* No comment provided by engineer. */
 "Views" = "عرض";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "عند إستلام";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
+
 /* paint */
 "Width selection" = "إنتقاء العرض";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "لطيف خشبي";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X of object with ID";
+
+/* No comment provided by engineer. */
 "x: " = "س: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y of object with ID";
 
 /* No comment provided by engineer. */
 "y: " = "ص:";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "لقد قمت بتحميل هذا المشروع مسبقاً!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "إجابتك";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "تم تحميل مشروعك إلى مجتمع كاتروبات حيث يمكن للآخرين استخدامه وتحميله.";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "تم إرسال تقريرك بنجاح!";
 
 /* paint */
 "Zoom" = "تكبير";

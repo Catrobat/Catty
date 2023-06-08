@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -83,8 +83,8 @@
 - (void)setupViews
 {
   NSArray *itemArray = [NSArray arrayWithObjects:
-                        [UIImage imageNamed:@"standardColors"],
-                        [UIImage imageNamed:@"sliderColors"], nil];
+                        [UIImage imageNamed:@"paintpalette"],
+                        [UIImage imageNamed:@"slider.horizontal.3"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.translatesAutoresizingMaskIntoConstraints = false;
   [self.view addSubview:self.viewChanger];

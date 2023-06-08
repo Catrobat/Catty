@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -52,5 +52,19 @@ class ScenePresenterVCTests: XCTestCase {
         //Start scence and check the orientation
         app.toolbars.buttons["Play"].tap()
         XCTAssertTrue(UIApplication.shared.statusBarOrientation == .portrait)
+    }
+
+    func testScenePresenterLoadingViewShown() {
+        let projectName = "testProject"
+        let loadingText = "\(kLocalizedLoading)..."
+
+        app.tables.staticTexts[kLocalizedNewProject].tap()
+        let alertQuery = app.alerts[kLocalizedNewProject]
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+
+        app.toolbars.buttons["Play"].tap()
+        XCTAssertFalse(waitForElementToDisappear(app.staticTexts[loadingText]).exists)
     }
 }

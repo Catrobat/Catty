@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,10 @@ class EmbroideryDSTHeader {
     var colorChangeCount: Int
 
     var delta: CGVector
-    var boundingBox: CGRect
+    var minX: Float
+    var maxX: Float
+    var minY: Float
+    var maxY: Float
 
     let mx: Int = 0
     let my: Int = 0
@@ -40,15 +43,33 @@ class EmbroideryDSTHeader {
         self.colorChangeCount = 1
 
         self.delta = CGVector.zero
-        self.boundingBox = CGRect.zero
+        self.minX = 0
+        self.maxX = 0
+        self.minY = 0
+        self.maxY = 0
     }
 
-    func update(relativeX: Int, relativeY: Int, isColorChange: Bool = false) {
-        delta += CGVector(dx: relativeX, dy: relativeY)
+    func update(relativeX: Float, relativeY: Float, delta: CGVector, isColorChange: Bool = false) {
+        self.delta += delta
+        let xCoord = relativeX * 2
+        let yCoord = relativeY * 2
 
-        if !boundingBox.contains(delta.toCGPoint()) {
-            boundingBox = boundingBox.union(CGRect(x: 0, y: 0, width: delta.dx, height: delta.dy))
+        if xCoord < minX {
+            minX = xCoord
         }
+
+        if xCoord > maxX {
+            maxX = xCoord
+        }
+
+        if yCoord < minY {
+            minY = yCoord
+        }
+
+        if yCoord > maxY {
+            maxY = yCoord
+        }
+
         if isColorChange {
             colorChangeCount += 1
         }
@@ -64,10 +85,10 @@ class EmbroideryDSTHeader {
             headerContent.append(String.init(format: EmbroideryDefines.HEADER_FORMAT_STRINGS[1],
                                              pointAmount,
                                              colorChangeCount,
-                                             Int(boundingBox.maxX),
-                                             Int(boundingBox.minX),
-                                             Int(boundingBox.maxY),
-                                             Int(boundingBox.minY),
+                                             Int(maxX),
+                                             Int(minX),
+                                             Int(maxY),
+                                             Int(minY),
                                              Int(delta.dx),
                                              Int(delta.dy),
                                              mx,

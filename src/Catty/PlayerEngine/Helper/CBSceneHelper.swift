@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,9 +26,9 @@
     @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, stageSize: CGSize) -> CGPoint {
         let screenSize = Util.screenSize(false)
         var x = (coordinate.x - screenSize.width / 2.0)
-        x = x * (stageSize.width / screenSize.width)
+        x *= (stageSize.width / screenSize.width)
         var y = (screenSize.height / 2.0 - coordinate.y)
-        y = y * (stageSize.height / screenSize.height)
+        y *= (stageSize.height / screenSize.height)
         return CGPoint(x: x, y: y)
     }
 }

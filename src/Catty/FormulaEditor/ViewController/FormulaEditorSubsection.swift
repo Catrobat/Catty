@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -92,6 +92,12 @@ enum SensorSubsection: FormulaEditorSubsection, CaseIterable {
         case .pose:
             return kUIFESubsectionPoseDetection
 
+        case .textRecognition:
+            return kUIFESubsectionTextRecognition
+
+        case .objectDetection:
+            return kUIFESubsectionObjectRecognition
+
         case .dateAndTime:
             return kUIFESubsectionDataAndTime
 
@@ -107,6 +113,8 @@ enum SensorSubsection: FormulaEditorSubsection, CaseIterable {
     case touch
     case visual
     case pose
+    case textRecognition
+    case objectDetection
     case dateAndTime
     case arduino
     case phiro

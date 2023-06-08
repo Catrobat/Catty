@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -266,11 +266,6 @@ let kLocalizedRemoveKnownDevices = NSLocalizedString("Remove known devices", bun
 let kLocalizedRecording = NSLocalizedString("Recording", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedError = NSLocalizedString("Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMemoryWarning = NSLocalizedString("Not enough Memory", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedReportProject = NSLocalizedString("Report as inappropriate", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedReportedProject = NSLocalizedString("Your report was successfully sent!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedProjectNotReported = NSLocalizedString("Error occurred while reporting the project. Please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedEnterReason = NSLocalizedString("Enter a reason", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedLoginToReport = NSLocalizedString("Please log in to report this project as inappropriate", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedName = NSLocalizedString("Name", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSettings = NSLocalizedString("Settings", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedOff = NSLocalizedString("off", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -281,6 +276,13 @@ let kLocalizedMoreInformation = NSLocalizedString("More information", bundle: Bu
 let kLocalizedScene = NSLocalizedString("Scene", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEditTrustedDomain = NSLocalizedString("Edit trusted domain", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAddTrustedDomain = NSLocalizedString("Add trusted domain", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedExtensions = NSLocalizedString("Extensions", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPrivacy = NSLocalizedString("Privacy", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAbout = NSLocalizedString("About", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAboutUs = NSLocalizedString("About Us", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCatrobatWebsite = NSLocalizedString("Catrobat website", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedViewTermsOfUse = NSLocalizedString("View Terms of Use and Service", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedTrustedDomains = NSLocalizedString("Trusted domains", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -351,6 +353,8 @@ let kLocalizedStitch = NSLocalizedString("Stitch", bundle: Bundle(for: LanguageT
 let kLocalizedStartRunningStitch = NSLocalizedString("Start running stitch with length", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedStartZigzagStitch = NSLocalizedString("Start zigzag stitch with length", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAndWidth = NSLocalizedString("and width", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStartTripleStitch = NSLocalizedString("Start triple stitch with length", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStitchThreadColor = NSLocalizedString("Set thread color to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSewUp = NSLocalizedString("Sew up", bundle: Bundle(for: LanguageTranslation.self), comment: "literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric.")
 let kLocalizedStopCurrentStitch = NSLocalizedString("Stop current stitch", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
@@ -537,6 +541,7 @@ let kLocalizedLogin = NSLocalizedString("Login", bundle: Bundle(for: LanguageTra
 let kLocalizedLogout = NSLocalizedString("Logout", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUsername = NSLocalizedString("Username", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPassword = NSLocalizedString("Password", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDeleteAccount = NSLocalizedString("Delete account", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedConfirmPassword = NSLocalizedString("Confirm password", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEmail = NSLocalizedString("Email", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRegister = NSLocalizedString("Create account", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -554,11 +559,9 @@ let kUploadSelectedProject = NSLocalizedString("Upload selected project", bundle
 let kLocalizedUploadProblem = NSLocalizedString("Something went wrong while uploading the project.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSessionExpired = NSLocalizedString("Session expired, please log in.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUploadSelectProject = NSLocalizedString("Please select a project to upload", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedNoWhitespaceAllowed = NSLocalizedString("No whitespace character allowed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-
-let kLocalizedInfoLogin = NSLocalizedString("Login", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedInfoRegister = NSLocalizedString("Register", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDeleteAccountConfirm = NSLocalizedString("Are you sure you want to delete your account? This cannot be undone!", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDeleteAccountSuccessful = NSLocalizedString("Your account has been successfully deleted.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
@@ -654,6 +657,8 @@ let kUIFESubsectionDeviceSensors = NSLocalizedString("Device sensors", bundle: B
 let kUIFESubsectionTouchDetection = NSLocalizedString("Touch detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionVisualSensors = NSLocalizedString("Face detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionPoseDetection = NSLocalizedString("Pose detection", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionTextRecognition = NSLocalizedString("Text recognition", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESubsectionObjectRecognition = NSLocalizedString("Object recognition", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionDataAndTime = NSLocalizedString("Date and time", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionGeneral = NSLocalizedString("General properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESubsectionMotion = NSLocalizedString("Motion properties", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -709,6 +714,20 @@ let kUIFEFunctionIndexOfItem = NSLocalizedString("index of item", bundle: Bundle
 let kUIFEFunctionScreenIsTouched = NSLocalizedString("stage is touched", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionScreenTouchX = NSLocalizedString("stage touch x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEFunctionScreenTouchY = NSLocalizedString("stage touch y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFEFunctionTextBlockX = NSLocalizedString("text block x from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTextBlockY = NSLocalizedString("text block y from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTextBlockSize = NSLocalizedString("text block size from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTextBlockFromCamera = NSLocalizedString("text block from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionTextBlockLanguageFromCamera = NSLocalizedString("text block language from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFEFunctionIDOfDetectedObject = NSLocalizedString("ID of detected object", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionObjectWithIDVisible = NSLocalizedString("object with ID visible", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionLabelOfObjectWithID = NSLocalizedString("label of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionXOfObjectWithID = NSLocalizedString("X of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionYOfObjectWithID = NSLocalizedString("Y of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionWidthOfObjectWithID = NSLocalizedString("width of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEFunctionHeightOfObjectWithID = NSLocalizedString("height of object with ID", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEOperatorAnd = NSLocalizedString("and", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -788,6 +807,8 @@ let kUIFESensorSecondFaceY = NSLocalizedString("second face y position", bundle:
 
 let kUIFESensorHeadTopX = NSLocalizedString("head top x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorHeadTopY = NSLocalizedString("head top y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorNeckX = NSLocalizedString("neck x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorNeckY = NSLocalizedString("neck y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorNoseX = NSLocalizedString("nose x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorNoseY = NSLocalizedString("nose y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorLeftEyeInnerX = NSLocalizedString("left eye inner x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -822,6 +843,55 @@ let kUIFESensorRightEyebrowCenterX = NSLocalizedString("right eyebrow center x",
 let kUIFESensorRightEyebrowCenterY = NSLocalizedString("right eyebrow center y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorRightEyebrowOuterX = NSLocalizedString("right eyebrow outer x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFESensorRightEyebrowOuterY = NSLocalizedString("right eyebrow outer y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFESensorLeftShoulderX = NSLocalizedString("left shoulder x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftShoulderY = NSLocalizedString("left shoulder y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightShoulderX = NSLocalizedString("right shoulder x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightShoulderY = NSLocalizedString("right shoulder y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftElbowX = NSLocalizedString("left elbow x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftElbowY = NSLocalizedString("left elbow y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightElbowX = NSLocalizedString("right elbow x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightElbowY = NSLocalizedString("right elbow y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftWristX = NSLocalizedString("left wrist x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftWristY = NSLocalizedString("left wrist y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightWristX = NSLocalizedString("right wrist x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightWristY = NSLocalizedString("right wrist y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftHipX = NSLocalizedString("left hip x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftHipY = NSLocalizedString("left hip y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightHipX = NSLocalizedString("right hip x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightHipY = NSLocalizedString("right hip y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftKneeX = NSLocalizedString("left knee x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftKneeY = NSLocalizedString("left knee y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightKneeX = NSLocalizedString("right knee x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightKneeY = NSLocalizedString("right knee y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftAnkleX = NSLocalizedString("left ankle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftAnkleY = NSLocalizedString("left ankle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightAnkleX = NSLocalizedString("right ankle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightAnkleY = NSLocalizedString("right ankle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFESensorLeftPinkyKnuckleX = NSLocalizedString("left pinky knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftPinkyKnuckleY = NSLocalizedString("left pinky knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightPinkyKnuckleX = NSLocalizedString("right pinky knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightPinkyKnuckleY = NSLocalizedString("right pinky knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftRingFingerKnuckleX = NSLocalizedString("left ring finger knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftRingFingerKnuckleY = NSLocalizedString("left ring finger knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightRingFingerKnuckleX = NSLocalizedString("right ring finger knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightRingFingerKnuckleY = NSLocalizedString("right ring finger knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftMiddleFingerKnuckleX = NSLocalizedString("left middle finger knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftMiddleFingerKnuckleY = NSLocalizedString("left middle finger knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightMiddleFingerKnuckleX = NSLocalizedString("right middle finger knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightMiddleFingerKnuckleY = NSLocalizedString("right middle finger knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftIndexKnuckleX = NSLocalizedString("left index knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftIndexKnuckleY = NSLocalizedString("left index knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightIndexKnuckleX = NSLocalizedString("right index knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightIndexKnuckleY = NSLocalizedString("right index knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftThumbKnuckleX = NSLocalizedString("left thumb knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorLeftThumbKnuckleY = NSLocalizedString("left thumb knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightThumbKnuckleX = NSLocalizedString("right thumb knuckle x", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorRightThumbKnuckleY = NSLocalizedString("right thumb knuckle y", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+let kUIFESensorTextFromCamera = NSLocalizedString("text from camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFESensorTextBlocksNumber = NSLocalizedString("number of text blocks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 

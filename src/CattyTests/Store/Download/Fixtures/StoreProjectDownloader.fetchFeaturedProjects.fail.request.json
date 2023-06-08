@@ -4,134 +4,32 @@
     {
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.9993&limit=20&offset=0"
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.9993&limit=20&offset=0&attributes=project_id,featured_image"
       },
-      "recorded_at" : 1616508147.6064649,
+      "recorded_at" : 1666028039.514858,
       "response" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.9993&limit=20&offset=0",
-        "headers" : {
-          "Content-Type" : "application\/json",
-          "Strict-Transport-Security" : "max-age=15768000",
-          "x-response-hash" : "7dda09e1c9de3e3e6d68b80632a77743",
-          "Date" : "Tue, 23 Mar 2021 14:02:27 GMT",
-          "Cache-Control" : "private, must-revalidate",
-          "x-openapi-message" : "OK",
-          "Expires" : "-1",
-          "Content-Encoding" : "gzip",
-          "Pragma" : "no-cache",
-          "Server" : "nginx"
-        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects\/featured?platform=ios&max_version=0.9993&limit=20&offset=0&attributes=project_id,featured_image",
+        "body" : [],
         "status" : 404,
-        "body" : [
-          {
-            "author" : "DavidR",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/719",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_28.jpeg",
-            "id" : "28",
-            "project_id" : "719",
-            "name" : "Galaxy War",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/719"
-          },
-          {
-            "author" : "hej-wickie-hej",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/75593",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_15.jpeg",
-            "id" : "15",
-            "project_id" : "75593",
-            "name" : "Dangerous crossing",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/75593"
-          },
-          {
-            "author" : "Kurt",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/3155",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_14.jpeg",
-            "id" : "14",
-            "project_id" : "3155",
-            "name" : "Zombie maker",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/3155"
-          },
-          {
-            "author" : "naakf0023",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/27155",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_35.png",
-            "id" : "35",
-            "project_id" : "27155",
-            "name" : "Wer ist der Mörder? ",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/27155"
-          },
-          {
-            "author" : "computing03.gibs",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/5878",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_36.png",
-            "id" : "36",
-            "project_id" : "5878",
-            "name" : "A long walk to water_gibst_decl",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/5878"
-          },
-          {
-            "author" : "hej-wickie-hej",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/817",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_59.png",
-            "id" : "59",
-            "project_id" : "817",
-            "name" : "Tic-Tac-Toe Master",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/817"
-          },
-          {
-            "author" : "hej-wickie-hej",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/75490",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_60.png",
-            "id" : "60",
-            "project_id" : "75490",
-            "name" : "Falling blocks!",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/75490"
-          },
-          {
-            "author" : "hej-wickie-hej",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/2354",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_61.png",
-            "id" : "61",
-            "project_id" : "2354",
-            "name" : "Frogger - cross the roads!",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/2354"
-          },
-          {
-            "author" : "hej-wickie-hej",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/72775",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_62.png",
-            "id" : "62",
-            "project_id" : "72775",
-            "name" : "Othello",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/72775"
-          },
-          {
-            "author" : "hej-wickie-hej",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/1719",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_63.png",
-            "id" : "63",
-            "project_id" : "1719",
-            "name" : "Don't touch the white tiles!",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/1719"
-          },
-          {
-            "author" : "hej-wickie-hej",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/2433",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_64.png",
-            "id" : "64",
-            "project_id" : "2433",
-            "name" : "Marian!",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/2433"
-          },
-          {
-            "author" : "hej-wickie-hej",
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/75594",
-            "featured_image" : "https:\/\/web-test.catrob.at\/resources\/featured\/featured_65.png",
-            "id" : "65",
-            "project_id" : "75594",
-            "name" : "Fireball Alley Diamond Racer",
-            "url" : "https:\/\/web-test.catrob.at\/app\/project\/75594"
-          }
-        ]
+        "headers" : {
+          "Server" : "cloudflare",
+          "Set-Cookie" : "dtCookie=v_4_srv_14_sn_9D1D43A4BBA619EEB91AE2F72654CD29_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Content-Type" : "application\/json",
+          "Date" : "Mon, 17 Oct 2022 17:33:59 GMT",
+          "Pragma" : "no-cache",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=XsH%2Bv60ugVc65YBtVO%2By1h%2Fmgpg0LJe1%2FM7HGSH29d%2BKoST6X6Bbw9hRVSZHgpd3NjhVDi1k93lDEAPgPtDjjzN0w3zcBvtJilAZSdfWrbmaoHY09rGXPGKWx%2B23I17Y2DqwTmHGvQb0ynCGsGE%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"1804221641\"",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Content-Encoding" : "br",
+          "cf-cache-status" : "DYNAMIC",
+          "Content-Language" : "en",
+          "cf-ray" : "75bac84ebce177f5-VIE",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Expires" : "-1",
+          "x-openapi-message" : "OK",
+          "Cache-Control" : "private, must-revalidate",
+          "x-response-hash" : "29a8a5e92422a31e4401d43d887e553c"
+        }
       }
     }
   ]

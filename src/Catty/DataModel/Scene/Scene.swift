@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -262,11 +262,9 @@
 
         for object in self._objects {
             var contains = false
-            for compareObject in scene.objects() {
-                if compareObject.isEqual(to: object) {
-                    contains = true
-                    break
-                }
+            for compareObject in scene.objects() where compareObject.isEqual(to: object) {
+                contains = true
+                break
             }
             if !contains {
                 return false

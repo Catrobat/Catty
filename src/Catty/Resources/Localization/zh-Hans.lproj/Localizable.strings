@@ -8,10 +8,16 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"About" = "关于统计";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "关于 Catrobat";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "关于口袋编程";
+
+/* No comment provided by engineer. */
+"About Us" = "关于我们";
 
 /* No comment provided by engineer. */
 "absolute value" = "绝对值";
@@ -143,6 +149,9 @@
 "Arduino extension" = "Arduino积木";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "您确定要删除您的帐户吗？此操作无法撤消！";
+
+/* No comment provided by engineer. */
 "Ask " = "询问 ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "Catrobat社区";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat网站";
 
 /* No comment provided by engineer. */
 "ceiling" = "向上取整";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "删除";
+
+/* No comment provided by engineer. */
+"Delete account" = "删除帐户";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "删除对象或物体";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "重复执行结束";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "给个理由先";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "在此处输入图像名称......";
 
@@ -698,9 +710,6 @@
 "Error" = "错误";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "报告项目时发生错误。请稍后再试。";
-
-/* No comment provided by engineer. */
 "Error saving file" = "存储文件时发生错误";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "指数值";
+
+/* No comment provided by engineer. */
+"Extensions" = "扩展";
 
 /* No comment provided by engineer. */
 "FA" = "FA型";
@@ -845,6 +857,9 @@
 "head top y" = "头顶 y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "具有ID的对象高度";
+
+/* No comment provided by engineer. */
 "Hello!" = "您好！";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "小时";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "检测到的对象的ID";
 
 /* No comment provided by engineer. */
 "If" = "如果";
@@ -959,6 +977,9 @@
 "LA" = "洛杉矶";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "具有ID的对象标签";
+
+/* No comment provided by engineer. */
 "Last access" = "上次访问时间";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "左移";
 
 /* No comment provided by engineer. */
+"left ankle x" = "左脚踝 x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "左脚踝 y";
+
+/* No comment provided by engineer. */
 "left ear x" = "左耳x";
 
 /* No comment provided by engineer. */
 "left ear y" = "左耳 y";
+
+/* No comment provided by engineer. */
+"left elbow x" = "左肘部x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "左肘部 y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "左眼中心 x";
@@ -1004,22 +1037,76 @@
 "left eye outer y" = "左眼外侧 y";
 
 /* No comment provided by engineer. */
-"left eyebrow center x" = "left eyebrow center x";
+"left eyebrow center x" = "左边眉毛中心 x";
 
 /* No comment provided by engineer. */
-"left eyebrow center y" = "left eyebrow center y";
+"left eyebrow center y" = "左边眉毛中心 y";
 
 /* No comment provided by engineer. */
-"left eyebrow inner x" = "left eyebrow inner x";
+"left eyebrow inner x" = "左边眉毛内侧 x";
 
 /* No comment provided by engineer. */
-"left eyebrow inner y" = "left eyebrow inner y";
+"left eyebrow inner y" = "左边眉毛内侧 y";
 
 /* No comment provided by engineer. */
-"left eyebrow outer x" = "left eyebrow outer x";
+"left eyebrow outer x" = "左边眉毛外侧 x";
 
 /* No comment provided by engineer. */
-"left eyebrow outer y" = "left eyebrow outer y";
+"left eyebrow outer y" = "左边眉毛外侧 y";
+
+/* No comment provided by engineer. */
+"left hip x" = "左髋关节 x";
+
+/* No comment provided by engineer. */
+"left hip y" = "左髋关节 y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "左手食指关节 x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "左手食指关节 y";
+
+/* No comment provided by engineer. */
+"left knee x" = "左膝关节 X";
+
+/* No comment provided by engineer. */
+"left knee y" = "左腿膝盖Y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "左手中指关节 x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "左手中指关节 y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "左手小指关节x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "左手小指关节 y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "左手无名指关节 x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "左手无名指关节 y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "左肩X";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "左肩 y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "左手拇指指节 x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "左手拇指指节Y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "左手腕x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "左手腕 y";
 
 /* No comment provided by engineer. */
 "left-right only" = "水平翻转";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "自然对数";
 
 /* No comment provided by engineer. */
+"neck x" = "颈部 x";
+
+/* No comment provided by engineer. */
+"neck y" = "颈部 y";
+
+/* No comment provided by engineer. */
 "New" = "新变量";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "没有搜索结果";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "不允许空格字符";
-
-/* No comment provided by engineer. */
 "nose x" = "鼻子x";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "数据项数量";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "文本块数";
+
+/* No comment provided by engineer. */
 "Numbers" = "数字";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "对象或演员名称";
+
+/* No comment provided by engineer. */
+"Object recognition" = "对象识别";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "ID可见的对象";
 
 /* No comment provided by engineer. */
 "Oct" = "十月";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "请输入至少 %lu 个字符。";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "请登录以报告此项目不恰当。";
-
 /* paint */
 "Please pick a tool" = "请选择工具";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "上一个外观";
 
 /* No comment provided by engineer. */
+"Privacy" = "隐私政策";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "隐私设置";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "红色";
 
 /* No comment provided by engineer. */
-"Register" = "注册";
-
-/* No comment provided by engineer. */
 "Registration successful" = "註册成功";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "替换项目在列表";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "举报为不适当";
-
 /* paint */
 "Resize" = "调节大小";
 
@@ -1613,10 +1706,22 @@
 "Right" = "右移";
 
 /* No comment provided by engineer. */
+"right ankle x" = "右脚踝x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "右脚踝 y";
+
+/* No comment provided by engineer. */
 "right ear x" = "右耳x";
 
 /* No comment provided by engineer. */
 "right ear y" = "右耳 y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "右肘部x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "右肘部 y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "右眼中心X";
@@ -1637,22 +1742,76 @@
 "right eye outer y" = "右眼外侧 y";
 
 /* No comment provided by engineer. */
-"right eyebrow center x" = "right eyebrow center x";
+"right eyebrow center x" = "右边眉毛中心 x";
 
 /* No comment provided by engineer. */
-"right eyebrow center y" = "right eyebrow center y";
+"right eyebrow center y" = "右边眉毛中心 y";
 
 /* No comment provided by engineer. */
-"right eyebrow inner x" = "right eyebrow inner x";
+"right eyebrow inner x" = "右边眉毛内侧 x";
 
 /* No comment provided by engineer. */
-"right eyebrow inner y" = "right eyebrow inner y";
+"right eyebrow inner y" = "右边眉毛内侧 y";
 
 /* No comment provided by engineer. */
-"right eyebrow outer x" = "right eyebrow outer x";
+"right eyebrow outer x" = "右边眉毛外侧 x";
 
 /* No comment provided by engineer. */
-"right eyebrow outer y" = "right eyebrow outer y";
+"right eyebrow outer y" = "右边眉毛外侧 y";
+
+/* No comment provided by engineer. */
+"right hip x" = "右髋关节 x";
+
+/* No comment provided by engineer. */
+"right hip y" = "右髋关节 y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "右手食指关节 X";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "右手食指关节Y";
+
+/* No comment provided by engineer. */
+"right knee x" = "右膝关节 X";
+
+/* No comment provided by engineer. */
+"right knee y" = "右腿膝盖 y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "右手中指关节 x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "右手中指关节 y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "右手小指关节 X";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "右小指关节Y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "右手无名指关节 x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "右手无名指关节 y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "右肩 X";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "右肩 y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "右手拇指指节X";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "右手拇指指节Y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "右手腕x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "右手腕 y";
 
 /* paint */
 "Rotate" = "旋转";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "设置节奏为";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "将线的颜色设置为";
+
+/* No comment provided by engineer. */
 "Set transparency " = "设置透明度 ";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "播放声音并等待";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "开始以三重线迹缝制，按照长度";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "开始以锯齿线迹缝制，按照长度";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "文本";
 
 /* No comment provided by engineer. */
+"text block from camera" = "来自相机的文本块 ";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "来自相机的文本方块语言";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "来自相机的文本块大小";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "来自相机的文本块 x";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "来自相机的文本块 y";
+
+/* No comment provided by engineer. */
+"text from camera" = "来自相机的文本";
+
+/* No comment provided by engineer. */
 "Text message:" = "文字消息";
+
+/* No comment provided by engineer. */
+"Text recognition" = "文本识别";
 
 /* paint */
 "Text:" = "文字：";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "Đúng";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "信任的域";
 
 /* No comment provided by engineer. */
 "Tu" = "星期二";
@@ -2204,6 +2393,9 @@
 "View" = "查看";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "查看使用和服务条款";
+
+/* No comment provided by engineer. */
 "Views" = "查看";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "当接收到";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "具有ID的对象宽度";
+
 /* paint */
 "Width selection" = "宽度选择";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "木制流体";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "具有ID的对象X坐标";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "具有ID的对象Y坐标";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "您已经下载了这个项目！";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "您的帐户已成功删除。";
+
+/* No comment provided by engineer. */
 "Your answer" = "您的答案";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "您的项目已上传到 Catrobat 社区，其他人可以在那里使用并下载它。";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "您的报告已成功发送！";
 
 /* paint */
 "Zoom" = "缩放";

@@ -3,31 +3,34 @@
   "interactions" : [
     {
       "response" : {
-        "status" : 200,
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.9993&limit=20&offset=0",
-        "body" : [
-          {
-          }
-        ],
         "headers" : {
-          "Server" : "nginx",
-          "Expires" : "-1",
+          "Cache-Control" : "private, must-revalidate",
+          "Date" : "Mon, 17 Oct 2022 17:53:10 GMT",
+          "Set-Cookie" : "dtCookie=v_4_srv_10_sn_292BC5D245C38FCBC0EEEED735A4F70B_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
           "Content-Type" : "application\/json",
-          "Content-Language" : "en",
           "x-openapi-message" : "OK",
-          "Strict-Transport-Security" : "max-age=15768000",
-          "Set-Cookie" : "dtCookie=v_4_srv_8_sn_F12480F1AAA243E93B6B70172E3DF74E_perc_100000_ol_0_mul_1; Path=\/; Domain=.catrob.at",
-          "server-timing" : "dtRpid;desc=\"619531009\"",
-          "Content-Encoding" : "gzip",
+          "Expires" : "-1",
+          "cf-cache-status" : "DYNAMIC",
+          "Content-Language" : "en",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=tpJW16MYyu63xJFPS3TKbPMvt3eg3E3l8t8ljbCfc%2BsMQJUPZV35hYsvup9bkRhvIVYh%2B1zNUqVwATpqFfiANVJXp3Myg%2BChdaZF4GWjgPFgPi8z0Ya6GwXujXv6gvg1tG%2Ber006MewMJy5rw8g%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "x-response-hash" : "8dda58addb8282e47538e5eb62ac7a43",
+          "Content-Encoding" : "br",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"691164051\"",
           "Pragma" : "no-cache",
-          "x-response-hash" : "079b8b6eb5f463b0b665b01f69b624f0",
-          "Date" : "Thu, 15 Apr 2021 13:02:46 GMT",
-          "Cache-Control" : "private, must-revalidate"
-        }
+          "cf-ray" : "75bae466cb2177e6-VIE",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Server" : "cloudflare"
+        },
+        "status" : 200,
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,downloads",
+        "body" : [
+          {}
+        ]
       },
-      "recorded_at" : 1618491766.46052,
+      "recorded_at" : 1666029190.218039,
       "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.9993&limit=20&offset=0",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=most_downloaded&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,downloads",
         "method" : "GET"
       }
     }

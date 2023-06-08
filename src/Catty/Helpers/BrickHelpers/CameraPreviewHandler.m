@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -163,6 +163,9 @@ static CameraPreviewHandler* shared = nil;
     if (self.session.running) {
         [self.session stopRunning];
     }
+    for (AVCaptureDeviceInput* input in self.session.inputs) {
+        [self.session removeInput:input];
+    }
     if ([self.session canAddInput:deviceInput]) {
         [self.session addInput:deviceInput];
     }
@@ -176,6 +179,9 @@ static CameraPreviewHandler* shared = nil;
     dispatch_sync(dispatch_get_main_queue(), ^{
         AVCaptureVideoPreviewLayer* previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        if (Project.lastUsedProject.header.landscapeMode) {
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+        }
         rootLayer.masksToBounds = true;
         previewLayer.frame = rootLayer.bounds;
         [rootLayer addSublayer:previewLayer];

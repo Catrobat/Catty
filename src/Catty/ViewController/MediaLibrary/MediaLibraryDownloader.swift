@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,17 +34,29 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
     }
 
     func downloadIndex(for mediaType: MediaType, completion: @escaping ([[MediaItem]]?, MediaLibraryDownloadError?) -> Void) {
-        self.session.dataTask(with: URLRequest(url: mediaType.indexURL)) { data, response, error in
+        var indexURLComponents = URLComponents(string: mediaType.indexURLString)
+        indexURLComponents?.queryItems = [
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.mediaPackageMaxItems)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(0)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: MediaItem.defaultQueryParameters.joined(separator: ","))
+        ]
+
+        guard let indexURL = indexURLComponents?.url else {
+            completion(nil, .unexpectedError)
+            return
+        }
+
+        self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
 
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: [[MediaItem]]?, error: MediaLibraryDownloadError?)
             handleDataTaskCompletion = { data, response, error in
                 guard let response = response as? HTTPURLResponse else {
-                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaType.indexURL.absoluteString, description: error?.localizedDescription ?? "")
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL.absoluteString, description: error?.localizedDescription ?? "")
                     NotificationCenter.default.post(name: .mediaLibraryDownloadIndexFailure, object: errorInfo)
                     return (nil, .unexpectedError)
                 }
                 guard let data = data, response.statusCode == 200, error == nil else {
-                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaType.indexURL.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
                     NotificationCenter.default.post(name: .mediaLibraryDownloadIndexFailure, object: errorInfo)
                     return (nil, .request(error: error, statusCode: response.statusCode))
                 }
@@ -52,7 +64,7 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
                 do {
                     items = try JSONDecoder().decode([MediaItem].self, from: data).groupedByCategories
                 } catch {
-                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaType.indexURL.absoluteString, statusCode: response.statusCode, description: error.localizedDescription)
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL.absoluteString, statusCode: response.statusCode, description: error.localizedDescription)
                     NotificationCenter.default.post(name: .mediaLibraryDownloadIndexFailure, object: errorInfo)
                     return (nil, .parse(error: error))
                 }
@@ -67,17 +79,21 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
     }
 
     func downloadData(for mediaItem: MediaItem, completion: @escaping (Data?, MediaLibraryDownloadError?) -> Void) {
-        self.session.dataTask(with: URLRequest(url: mediaItem.downloadURL)) { data, response, error in
+        guard let downloadURL = mediaItem.downloadURL else {
+            completion(nil, .unexpectedError)
+            return
+        }
+        self.session.dataTask(with: URLRequest(url: downloadURL)) { data, response, error in
             DispatchQueue.main.async {
                 guard let response = response as? HTTPURLResponse else {
                     completion(nil, .unexpectedError)
-                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL.absoluteString, description: error?.localizedDescription ?? "")
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: downloadURL.absoluteString, description: error?.localizedDescription ?? "")
                     NotificationCenter.default.post(name: .mediaLibraryDownloadDataFailure, object: errorInfo)
                     return
                 }
                 guard let data = data, response.statusCode == 200, error == nil else {
                     completion(nil, .request(error: error, statusCode: response.statusCode))
-                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: downloadURL.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
                     NotificationCenter.default.post(name: .mediaLibraryDownloadDataFailure, object: errorInfo)
                     return
                 }

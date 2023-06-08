@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -68,27 +68,6 @@
                                                                   target:target
                                                                   action:action];
     return editButton;
-}
-
-//+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell{
-//    if(cell.seperatorView == nil) {
-//        UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
-//        seperator.frame = CGRectMake(0.0f, 0.0f, cell.bounds.size.width, 4.0f);
-//        [cell.contentView addSubview:seperator];
-//        cell.seperatorView = seperator;
-//    }
-//}
-
-#pragma mark Helper
-+ (UIBarButtonItem*)createBackButtonWithTarget:(id)target{
-    UIButton *backbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *img = [UIImage imageNamed:@"backbutton"];
-    backbutton.frame = CGRectMake(20, 100, img.size.width+10, img.size.height);
-    [backbutton setImage:img forState:UIControlStateNormal];
-    [backbutton setImage:img forState:UIControlStateHighlighted];
-    [backbutton setImage:img forState:UIControlStateSelected];
-    [backbutton addTarget:target action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    return [[UIBarButtonItem alloc] initWithCustomView:backbutton];
 }
 
 @end

@@ -1,118 +1,36 @@
 {
+  "name" : "StoreProjectDownloader.fetchMostRecentProjects.fail.request",
   "interactions" : [
     {
-      "recorded_at" : 1618560814.5251498,
-      "request" : {
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.9993&limit=20&offset=0",
-        "method" : "GET"
-      },
+      "recorded_at" : 1666031718.74422,
       "response" : {
+        "body" : [],
+        "status" : 404,
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,uploaded",
         "headers" : {
-          "Pragma" : "no-cache",
-          "x-debug-token-link" : "https:\/\/web-test.catrob.at\/_profiler\/cc90a2",
-          "Content-Type" : "application\/json",
-          "x-response-hash" : "b561ffddb4091138e540d36399321e87",
-          "Content-Language" : "en",
-          "x-debug-token" : "cc90a2",
-          "Expires" : "-1",
-          "x-openapi-message" : "OK",
-          "Server" : "nginx",
-          "Date" : "Fri, 16 Apr 2021 08:13:34 GMT",
-          "x-robots-tag" : "noindex",
-          "Content-Encoding" : "gzip",
           "Cache-Control" : "private, must-revalidate",
-          "Strict-Transport-Security" : "max-age=15768000"
-        },
-        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.9993&limit=20&offset=0",
-        "body" : [
-          {
-            "id" : "2efc5cae-9dfa-11eb-8d86-005056a3ba1c",
-            "description" : "",
-            "private" : false,
-            "version" : "0.1",
-            "flavor" : "pocketcode",
-            "author" : "Sam",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_2efc5cae-9dfa-11eb-8d86-005056a3ba1c.png?t=1618498342",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/2efc5cae-9dfa-11eb-8d86-005056a3ba1c.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.70432662963867188,
-            "uploaded_string" : "17 hours ago",
-            "download" : 2,
-            "uploaded" : 1618498342,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/2efc5cae-9dfa-11eb-8d86-005056a3ba1c",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_2efc5cae-9dfa-11eb-8d86-005056a3ba1c.png?t=1618498342",
-            "name" : "Whack A Mole",
-            "views" : 1
-          },
-          {
-            "id" : "19bdaf75-9dfa-11eb-8d86-005056a3ba1c",
-            "description" : "I know it’s trash just don’t say it this was my first game ever\n—Don’t copy are I will be super sad but you cant maybe because the watermark that I have now just in case-",
-            "private" : false,
-            "version" : "0.6.15",
-            "flavor" : "pocketcode",
-            "author" : "Sam",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_19bdaf75-9dfa-11eb-8d86-005056a3ba1c.png?t=1618498307",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/19bdaf75-9dfa-11eb-8d86-005056a3ba1c.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 1.5435886383056641,
-            "uploaded_string" : "17 hours ago",
-            "download" : 4,
-            "uploaded" : 1618498306,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/19bdaf75-9dfa-11eb-8d86-005056a3ba1c",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_19bdaf75-9dfa-11eb-8d86-005056a3ba1c.png?t=1618498307",
-            "name" : "Ennard simulator demo v2.2",
-            "views" : 1
-          },
-          {
-            "id" : "0d7c3e5e-9dfa-11eb-8d86-005056a3ba1c",
-            "description" : "isk if lolololol",
-            "private" : false,
-            "version" : "0.9.20",
-            "flavor" : "pocketcode",
-            "author" : "Janice",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_0d7c3e5e-9dfa-11eb-8d86-005056a3ba1c.png?t=1618498286",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/0d7c3e5e-9dfa-11eb-8d86-005056a3ba1c.catrobat",
-            "tags" : [
-
-            ],
-            "filesize" : 0.012297630310058594,
-            "uploaded_string" : "17 hours ago",
-            "download" : 5,
-            "uploaded" : 1618498286,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/0d7c3e5e-9dfa-11eb-8d86-005056a3ba1c",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_0d7c3e5e-9dfa-11eb-8d86-005056a3ba1c.png?t=1618498286",
-            "name" : "GrowHmod",
-            "views" : 5
-          },
-          {
-            "id" : "088c8cec-9dfa-11eb-8d86-005056a3ba1c",
-            "description" : "This is the first version. So in future versions  I will put in more upgrades. Tap the money to get money to buy upgrades.            Check out my most downloaded game, Smash The Bird!   Have fun playing  as well as checking out my code!",
-            "private" : false,
-            "version" : "0.9.27",
-            "flavor" : "pocketcode",
-            "author" : "user",
-            "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_088c8cec-9dfa-11eb-8d86-005056a3ba1c.png?t=1618498278",
-            "download_url" : "https:\/\/web-test.catrob.at\/app\/download\/088c8cec-9dfa-11eb-8d86-005056a3ba1c.catrobat",
-            "tags" : [
-              "Game"
-            ],
-            "filesize" : 0.86625003814697266,
-            "uploaded_string" : "17 hours ago",
-            "download" : 3,
-            "uploaded" : 1618498278,
-            "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/088c8cec-9dfa-11eb-8d86-005056a3ba1c",
-            "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_088c8cec-9dfa-11eb-8d86-005056a3ba1c.png?t=1618498278",
-            "name" : "Money tap V.1",
-            "views" : 1
-          }
-        ],
-        "status" : 404
+          "Expires" : "-1",
+          "x-response-hash" : "3b24245dcfbcf1d3e8a75c32a2d1e404",
+          "cf-cache-status" : "DYNAMIC",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"851852724\"",
+          "Date" : "Mon, 17 Oct 2022 18:35:18 GMT",
+          "cf-ray" : "75bb221e6b6ec27d-VIE",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Server" : "cloudflare",
+          "Content-Encoding" : "br",
+          "Set-Cookie" : "dtCookie=v_4_srv_6_sn_2AE3A3D66F49C9E2EE8FFA6BB5EF457D_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Content-Type" : "application\/json",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=6Z8KkGf5B279qHlaXK%2FxCO8Cnt1jEEJ%2FCV%2F8UvcHLLGlTBITweRZ1luH%2BFc5DmKTaJxYR2APv%2Bu%2BugEE37DOp3CbMTBeWHA4ZWB4aaKsVUryWf%2FUDgswLs%2B7bFQNpUZqiTTzp4mZ%2BVq19xEF2t8%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Content-Language" : "en",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Pragma" : "no-cache",
+          "x-openapi-message" : "OK"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects?category=recent&max_version=0.9993&limit=20&offset=0&attributes=id,name,screenshot_small,uploaded"
       }
     }
-  ],
-  "name" : "StoreProjectDownloader.fetchMostRecentProjects.fail.request"
+  ]
 }

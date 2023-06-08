@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CA7698A91B0E4A97000D0340"
-               BuildableName = "Catty Tests.xctest"
-               BlueprintName = "Catty Tests"
+               BuildableName = "CattyTests.xctest"
+               BlueprintName = "CattyTests"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AAADA0031B9B29D500E0CA9A"
-               BuildableName = "Catty UITests.xctest"
-               BlueprintName = "Catty UITests"
+               BuildableName = "CattyUITests.xctest"
+               BlueprintName = "CattyUITests"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -57,8 +57,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "187E079F24E26CED00E652C4"
-               BuildableName = "Catty UISnapshots.xctest"
-               BlueprintName = "Catty UISnapshots"
+               BuildableName = "CattyUISnapshots.xctest"
+               BlueprintName = "CattyUISnapshots"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

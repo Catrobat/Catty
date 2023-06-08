@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -56,6 +56,7 @@
 - (void)changeProjectOrientation;
 - (void)updateReferences;
 
++ (NSObject* _Nonnull)saveLock;
 + (instancetype _Nonnull)lastUsedProject;
 + (void)updateLastModificationTimeForProjectWithName:(NSString* _Nonnull)projectName
                                            projectID:(NSString* _Nonnull)projectID;

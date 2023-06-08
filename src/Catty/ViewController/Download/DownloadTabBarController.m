@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -63,6 +63,7 @@
     self.tabBar.barTintColor = UIColor.tabBar;
     self.tabBar.barStyle = UIBarStyleDefault;
     self.tabBar.tintColor = UIColor.whiteGray;
+    self.tabBar.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     self.tabBar.unselectedItemTintColor = UIColor.tabTint;
     self.view.backgroundColor = UIColor.background;
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],

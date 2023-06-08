@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -53,8 +53,7 @@ class BrickCellTests: XCTestCase {
             app.pickerWheels.firstMatch.swipeDown()
             app.buttons[kLocalizedDone].firstMatch.tap()
 
-            let alert1 = waitForElementToAppear(app.sheets[kLocalizedAddLook])
-            alert1.buttons[kLocalizedDrawNewImage].tap()
+            waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
 
             waitForElementToAppear(app.buttons["tools"]).tap()
             waitForElementToAppear(app.tables.firstMatch).swipeUp()
@@ -66,8 +65,7 @@ class BrickCellTests: XCTestCase {
 
             waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]).buttons[kLocalizedBack].tap()
 
-            let alert2 = waitForElementToAppear(app.sheets.firstMatch)
-            alert2.buttons[kLocalizedSaveChanges].tap()
+            waitForElementToAppear(app.buttons[kLocalizedSaveChanges]).tap()
 
             let alert3 = waitForElementToAppear(app.alerts[kLocalizedAddImage])
             alert3.textFields.buttons["Clear text"].tap()

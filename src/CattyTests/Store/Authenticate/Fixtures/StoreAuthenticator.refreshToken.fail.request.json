@@ -1,0 +1,39 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1666354939.471827,
+      "request" : {
+        "headers" : {
+          "Content-Type" : "application\/json"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication\/refresh",
+        "method" : "POST",
+        "body" : {
+          "refresh_token" : "6b40fb5dac84fbd8c5b904545b09130efe6748686a1dca65b3ecc8b51e2e82733825f49b9536fc053c43d0755dc4350ec552ef81e5c0676251552767b090cacb"
+        }
+      },
+      "response" : {
+        "status" : 500,
+        "headers" : {
+          "x-ruxit-js-agent" : "true",
+          "Date" : "Fri, 21 Oct 2022 12:22:19 GMT",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=obT8PUNWtGxvVVahu7rbXQITHqbBm73nvcqdKPrezgra3zDsV2Z5bczi%2BbSR2xDgkCEWvS6upZcsUWugFJpYRi9w42U9jXE8vnHyGaDYI2JBAu%2FYilkQW50EUWWJGhARvElF1%2B6o%2BK4uZiSINYY%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "cf-ray" : "75d9f542ce89c29b-VIE",
+          "Expires" : "-1",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"-351222750\"",
+          "Content-Type" : "text\/html; charset=UTF-8",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Set-Cookie" : "dtCookie=v_4_srv_8_sn_F4C2655A503FB1EEC2D4890B62E9D1C8_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Cache-Control" : "private, must-revalidate",
+          "cf-cache-status" : "DYNAMIC",
+          "Server" : "cloudflare",
+          "Pragma" : "no-cache",
+          "x-oneagent-js-injection" : "true"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication\/refresh"
+      }
+    }
+  ],
+  "name" : "StoreAuthenticator.refreshToken.fail.request"
+}

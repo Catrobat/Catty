@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -109,7 +109,7 @@ public final class ServiceHelper<S: ServiceWrapper> {
     public init() {
     }
 
-    public func discoverCharacteristicsIfConnected(_ service: S, characteristics: [CBUUID]?=nil) -> Future<S> {
+    public func discoverCharacteristicsIfConnected(_ service: S, characteristics: [CBUUID]? = nil) -> Future<S> {
         self.characteristicsDiscoveredPromise = Promise<S>()
         if service.state == .connected {
             service.discoverCharacteristics(characteristics)

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -300,13 +300,10 @@
         [self toggleDetailCellsMode];
     }]
        addDefaultActionWithTitle:kLocalizedUploadProject handler:^{
-        if ([[[NSUserDefaults standardUserDefaults] valueForKey:NetworkDefines.kUserIsLoggedIn] boolValue]) {
+        if ([StoreAuthenticator isLoggedIn]) {
             [self performSegueWithIdentifier:kSegueToUpload sender:self];
         } else {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-            LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-            vc.delegate = self;
-            [self.navigationController pushViewController:vc animated:YES];
+            [self openLoginScreen:self];
         }
     }]
       build]

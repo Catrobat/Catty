@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,9 +41,10 @@
     switch (self.accessoryType) {
         case UITableViewCellAccessoryDisclosureIndicator:
         case UITableViewCellAccessoryDetailDisclosureButton:
-            accessoryImage = [UIImage imageNamed:@"accessory"];
-            accessoryImage = [accessoryImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            accessoryImage = [UIImage imageNamed:@"chevron.right#accessory"];
             self.accessoryView = [[UIImageView alloc] initWithImage:accessoryImage];
+            self.accessoryView.contentMode = UIViewContentModeScaleAspectFit;
+            self.accessoryView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             self.accessoryView.tintColor = UIColor.utilityTint;
         default:
             break;

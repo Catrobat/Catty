@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,6 @@
 #import "SegueDefines.h"
 #import "Script.h"
 #import "SceneTableViewController.h"
-#import "LoginViewController.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
@@ -145,18 +144,25 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                   kLocalizedCatrobatCommunity,
                   kLocalizedUploadProject, nil];
 
-    self.imageNames = [[NSArray alloc] initWithObjects:UIDefines.menuImageNameContinue, UIDefines.menuImageNameNew, UIDefines.menuImageNameProjects, UIDefines.menuImageNameHelp, UIDefines.menuImageNameExplore, UIDefines.menuImageNameUpload, nil];
+    self.imageNames = [[NSArray alloc] initWithObjects: @"", UIDefines.menuImageNameNew, UIDefines.menuImageNameProjects, UIDefines.menuImageNameHelp, UIDefines.menuImageNameExplore, UIDefines.menuImageNameUpload, nil];
 }
 
 - (void)initNavigationBar
 {
     self.navigationItem.title = kLocalizedPocketCode;
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.navTint };
-}
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"gearshape.fill#navbar"]
+                                                                             style: UIBarButtonItemStylePlain
+                                                                            target: self
+                                                                            action: @selector(openSettings)];
+    self.navigationItem.leftBarButtonItem.accessibilityIdentifier = @"Settings";
 
-- (IBAction)openSettings:(id)sender
-{
-    [self infoPressed:sender];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [self generateAccountImage]
+                                                                             style: UIBarButtonItemStylePlain
+                                                                            target: self
+                                                                            action: @selector(openAccountMenu)];
+    self.navigationItem.rightBarButtonItem.accessibilityIdentifier = @"Account";
 }
 
 #pragma mark - privacy policy
@@ -177,7 +183,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 }
 
 #pragma mark - actions
-- (void)infoPressed:(id)sender
+- (void)openSettings
 {
     SettingsTableViewController *sTVC = [SettingsTableViewController new];
     [self.navigationController pushViewController:sTVC animated:YES];
@@ -267,13 +273,10 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             segueIdentifier = kSegueToHelp;
             break;
         case kUploadVC:
-            if ([[[NSUserDefaults standardUserDefaults] valueForKey:NetworkDefines.kUserIsLoggedIn] boolValue]) {
+            if ([StoreAuthenticator isLoggedIn]) {
                 segueIdentifier = kSegueToUpload;
             } else {
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-                LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-                vc.delegate = self;
-                [self.navigationController pushViewController:vc animated:YES];
+                [self openLoginScreen:self];
             }
 
             break;
@@ -326,8 +329,10 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         }];
         
     } else {
-        cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+        UIImage *iconImage = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+        cell.iconImageView.image = [iconImage imageWithAlignmentRectInsets:UIEdgeInsetsMake(-UIDefines.menuImagePadding, -UIDefines.menuImagePadding, -UIDefines.menuImagePadding, -UIDefines.menuImagePadding)];
         cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        cell.iconImageView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     }
     
 }

@@ -10,13 +10,7 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-before_all do
-  if ENV["FASTLANE_SKIP_UPDATE_CHECK"] != "1"
-    update_fastlane
-  end
-
-  opt_out_usage
-end
+opt_out_usage
 
 default_platform(:ios)
 platform :ios do
@@ -34,11 +28,13 @@ platform :ios do
 
   desc "Create an ipa build (options: scheme)"
   lane :create_build do |options|
-    gym(scheme: options[:scheme],
-        export_method: options[:method],
-        output_directory: $build_dir,
-        export_xcargs: "-allowProvisioningUpdates",
-        output_name: $build_name
+    gym(
+      scheme: options[:scheme],
+      xcodebuild_formatter: "xcbeautify",
+      export_method: options[:method],
+      output_directory: $build_dir,
+      export_xcargs: "-allowProvisioningUpdates",
+      output_name: $build_name
     )
   end
 
@@ -67,9 +63,9 @@ platform :ios do
 
     # Adhoc
     file = File.open("Install.html", "w")
-    file.puts '<meta name="viewport" content="width=device-width, initial-scale=1">'
+    file.puts '<!DOCTYPE html><meta name="viewport" content="width=device-width, initial-scale=1">'
     if ENV['BROWSERSTACK_LIVE_APP_ID']
-      file.puts "<h2><a href='https://app-live.browserstack.com/#os=iOS&os_version=12.0&device=iPhone+XS&zoom_to_fit=true&full_screen=true&speed=1&app_hashed_id="+ENV['BROWSERSTACK_LIVE_APP_ID'][5..-1]+"'>Browserstack</a></h2><br>"
+      file.puts "<h2><a href='https://app-live.browserstack.com/#os=iOS&os_version=16.2&device=iPhone+14&app_hashed_id="+ENV['BROWSERSTACK_LIVE_APP_ID'][5..-1]+"&start=true'>Browserstack</a></h2><br>"
     end
     if ENV["BUILD_NUMBER"]
       file.puts '<h2><a href="itms-services://?action=download-manifest&url=https://jenkins.catrob.at/job/Catty/job/'+$branch_name+'/'+ENV["BUILD_NUMBER"]+'/artifact/src/fastlane/Adhoc.plist">Install on Device</a></h2>'
@@ -97,38 +93,20 @@ platform :ios do
   #
   ##########################################################################
 
-  #https://github.com/lyndsey-ferguson/fastlane-plugin-test_center
   desc "Run tests"
   lane :tests do
     clear_derived_data
     reset_simulator_contents
 
-    test_run_block = lambda do |testrun_info|
-      failed_test_count = testrun_info[:failed].size
-
-      if failed_test_count > 0
-        UI.important('The run of tests would finish with failures due to fragile tests here.')
-
-        try_attempt = testrun_info[:try_count]
-        if try_attempt < 3
-          UI.header('Since we are using :multi_scan, we can re-run just those failing tests!')
-        end
-      end
-    end
-
-    result = multi_scan(devices: ["iPhone 13"],
-      project: File.absolute_path('../Catty.xcodeproj'),
-      try_count: 3,
-      parallel_testrun_count: 4,
-      fail_build: true,
-      collate_reports: true,
-      output_types: "junit",
+    scan(
+      project: "Catty.xcodeproj",
       scheme: $catty_schemes["debug"],
-      testrun_completed_block: test_run_block
+      xcodebuild_formatter: "xcbeautify",
+      device: "iPhone 14",
+      concurrent_workers: 3,
+      output_remove_retry_attempts: true,
+      output_types: "junit"
     )
-    unless result[:failed_testcount].zero?
-      UI.message("There are #{result[:failed_testcount]} legitimate failing tests")
-    end
   end
 
   ##########################################################################
@@ -236,16 +214,40 @@ platform :ios do
 
   desc "Generate localized screenshots for Pocket Code"
   lane(:screenshots) do |options|
-  snapshot(
-    project: 'Catty.xcodeproj',
-    scheme: 'Snapshots',
-    reinstall_app: true,
-    override_status_bar: true,
-    output_simulator_logs: true,
-    clear_previous_screenshots: true,
-    concurrent_simulators: false,
-    localize_simulator: true
-  )
-end
+    clear_derived_data
+    reset_simulator_contents
+
+    devices = [
+      "iPhone 14 Pro Max",
+      "iPhone 8 Plus"
+    ]
+    languages = [
+      "en-US",
+      "de-DE",
+      "ru-RU",
+      "pt-BR",
+      "es-MX"
+    ]
+    scheme = "Snapshots"
+
+    scan(
+      build_for_testing: true,
+      devices: devices,
+      scheme: scheme,
+      xcodebuild_formatter: "xcbeautify",
+    )
+
+    snapshot(
+      test_without_building: true,
+      derived_data_path: lane_context[SharedValues::SCAN_DERIVED_DATA_PATH],
+      languages: languages,
+      devices: devices,
+      scheme: scheme,
+      xcodebuild_formatter: "xcbeautify",
+      localize_simulator: true,
+      override_status_bar: true,
+      clear_previous_screenshots: true
+    )
+  end
 
 end

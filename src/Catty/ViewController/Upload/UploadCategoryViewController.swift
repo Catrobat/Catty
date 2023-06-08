@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,18 +21,18 @@
  */
 
 protocol UploadCategoryViewControllerDelegate: AnyObject {
-    func categoriesSelected(tags: [String])
+    func categoriesSelected(tags: [StoreProjectTag])
 }
 
 class UploadCategoryViewController: UIViewController {
-    var tags: String?
+    var tagIDString: String?
     weak var delegate: UploadCategoryViewControllerDelegate?
 
     private let horizontalConstrainValue: CGFloat = 25.0
     private let verticalConstrainValue: CGFloat = 0.0
     private let eachElementEstimatedHight: CGFloat = 40
     private var selectedCategoryTag: [Int]
-    private let categories: [String]
+    private let categories: [StoreProjectTag]
     private var backgroundViewHeight: CGFloat
 
     private var categoryElementViews: [UIView]
@@ -43,12 +43,8 @@ class UploadCategoryViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.background
-        if let tags = tags {
-            for tag in tags.components(separatedBy: ",") {
-                if let tagIndex = categories.firstIndex(of: tag) {
-                    selectedCategoryTag.append(tagIndex)
-                }
-            }
+        if let tagIDString = tagIDString {
+            selectedCategoryTag += StoreProjectTag.indices(with: tagIDString, from: categories)
         }
 
         self.initCategoriesElements()
@@ -63,7 +59,7 @@ class UploadCategoryViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        var selectedCategories = [String]()
+        var selectedCategories = [StoreProjectTag]()
          for tag in selectedCategoryTag {
             selectedCategories.append(self.categories[tag])
         }
@@ -74,7 +70,7 @@ class UploadCategoryViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    required init(tags: [String]) {
+    required init(tags: [StoreProjectTag]) {
         categoryElementViews = [UIView]()
         selectedCategoryTag = [Int]()
         backgroundView = UIView()
@@ -117,7 +113,7 @@ class UploadCategoryViewController: UIViewController {
             elemetView.rightAnchor.constraint(equalTo: self.backgroundView.rightAnchor, constant: 0).isActive = true
 
             let categoryLabel = UILabel()
-            categoryLabel.text = categories[tag]
+            categoryLabel.text = categories[tag].text
             categoryLabel.font = .systemFont(ofSize: 16.0)
             elemetView.addSubview(categoryLabel)
 
@@ -128,9 +124,11 @@ class UploadCategoryViewController: UIViewController {
 
             var selectedImageView = UIView()
             if let  checkImage = UIImage(named: "checkmark") {
-                selectedImageView = UIImageView(image: checkImage.withRenderingMode(.alwaysTemplate))
+                selectedImageView = UIImageView(image: checkImage)
             }
+            selectedImageView.contentMode = .scaleAspectFit
             selectedImageView.tintColor = UIColor.globalTint
+            selectedImageView.tintAdjustmentMode = .normal
             if selectedCategoryTag.contains(tag) {
                 selectedImageView.isHidden = false
             } else {
@@ -139,8 +137,8 @@ class UploadCategoryViewController: UIViewController {
             elemetView.addSubview(selectedImageView)
 
             selectedImageView.translatesAutoresizingMaskIntoConstraints = false
-            selectedImageView.heightAnchor.constraint(equalToConstant: 15).isActive = true
-            selectedImageView.widthAnchor.constraint(equalToConstant: 15).isActive = true
+            selectedImageView.heightAnchor.constraint(equalToConstant: 12).isActive = true
+            selectedImageView.widthAnchor.constraint(equalToConstant: 12).isActive = true
             selectedImageView.centerYAnchor.constraint(equalTo: categoryLabel.centerYAnchor).isActive = true
             selectedImageView.trailingAnchor.constraint(equalTo: elemetView.trailingAnchor, constant: -horizontalConstrainValue).isActive = true
 
@@ -205,7 +203,7 @@ class UploadCategoryViewController: UIViewController {
         }
     }
 
-    func sendBack(selectedCategories: [String]) {
+    func sendBack(selectedCategories: [StoreProjectTag]) {
         self.delegate?.categoriesSelected(tags: selectedCategories)
     }
 }

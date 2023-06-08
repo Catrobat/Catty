@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -79,23 +79,25 @@
 
 - (void)serializeProject:(Project*)project
 {
-    @try {
-        NSInfo(@"Saving Project...");
-        GDataXMLDocument *document = [[self class] xmlDocumentForProject:project];
-        NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
-                               [document.rootElement XMLStringPrettyPrinted:YES]];
-        NSError *error = nil;
+    @synchronized (Project.saveLock) {
+        @try {
+            NSInfo(@"Saving Project...");
+            GDataXMLDocument *document = [[self class] xmlDocumentForProject:project];
+            NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
+                                   [document.rootElement XMLStringPrettyPrinted:YES]];
+            NSError *error = nil;
 
-        if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
-            NSError(@"Project could not saved to disk! %@", error);
+            if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
+                NSError(@"Project could not saved to disk! %@", error);
+            }
+
+            // update last access time
+            [Project updateLastModificationTimeForProjectWithName:project.header.programName
+                                                        projectID:project.header.programID];
+            NSInfo(@"Saving finished...");
+        } @catch(NSException *exception) {
+            NSError(@"Project could not be serialized! %@", [exception description]);
         }
-
-        // update last access time
-        [Project updateLastModificationTimeForProjectWithName:project.header.programName
-                                                    projectID:project.header.programID];
-        NSInfo(@"Saving finished...");
-    } @catch(NSException *exception) {
-        NSError(@"Project could not be serialized! %@", [exception description]);
     }
 }
 

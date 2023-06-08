@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,12 +26,9 @@ class ScriptCollectionVCTests: XCTestCase {
 
     var app: XCUIApplication!
 
-    override func setUp() {
-        super.setUp()
-        app = launchApp()
-    }
-
     func testCopyIfLogicBeginBrick() {
+        app = launchApp(with: ["skipPrivacyPolicy", "restoreDefaultProject"])
+
         createProject(name: "testProject", in: app)
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
@@ -45,10 +42,10 @@ class ScriptCollectionVCTests: XCTestCase {
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
 
         app.collectionViews.cells.element(boundBy: 1).tap()
-        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
+        XCTAssertTrue(app.staticTexts[kLocalizedEditBrick].exists)
 
-        let copyButton = app.sheets[kLocalizedEditBrick].buttons[kLocalizedCopyBrick]
-
+        let copyButton = app.buttons[kLocalizedCopyBrick]
+        XCTAssertTrue(copyButton.exists)
         XCTAssertEqual(kLocalizedCopyBrick, copyButton.label)
         copyButton.tap()
 
@@ -60,6 +57,8 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testLengthOfBroadcastMessage() {
+        app = launchApp()
+
         let message = String(repeating: "a", count: 25)
 
         createProject(name: "testProject", in: app)
@@ -87,6 +86,8 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testWaitBrick() {
+        app = launchApp()
+
         createProject(name: "testProject", in: app)
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -104,6 +105,8 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testEmptyStringInFormulaEditor() {
+        app = launchApp()
+
         createProject(name: "testProject", in: app)
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -120,6 +123,8 @@ class ScriptCollectionVCTests: XCTestCase {
     }
 
     func testEditBrickButtonDisableOrEnable() {
+        app = launchApp()
+
         createProject(name: "testProject", in: app)
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
@@ -131,21 +136,21 @@ class ScriptCollectionVCTests: XCTestCase {
         XCTAssertEqual(2, app.collectionViews.cells.count)
         app.collectionViews.cells.element(boundBy: 1).tap()
 
-        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
+        XCTAssertTrue(app.staticTexts[kLocalizedEditBrick].exists)
 
-        let disableButton = app.sheets[kLocalizedEditBrick].buttons[kLocalizedDisableBrick]
+        let disableButton = app.buttons[kLocalizedDisableBrick]
         XCTAssertTrue(disableButton.exists)
 
         disableButton.tap()
         app.collectionViews.cells.element(boundBy: 1).tap()
-        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
+        XCTAssertTrue(app.staticTexts[kLocalizedEditBrick].exists)
 
-        let enableButton = app.sheets[kLocalizedEditBrick].buttons[kLocalizedEnableBrick]
+        let enableButton = app.buttons[kLocalizedEnableBrick]
         XCTAssertTrue(enableButton.exists)
         enableButton.tap()
 
         app.collectionViews.cells.element(boundBy: 1).tap()
-        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
+        XCTAssertTrue(app.staticTexts[kLocalizedEditBrick].exists)
         XCTAssertTrue(disableButton.exists)
     }
 }

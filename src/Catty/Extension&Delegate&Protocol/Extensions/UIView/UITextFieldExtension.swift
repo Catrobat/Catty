@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,8 +27,10 @@ extension UITextField {
      */
     func setIcon(_ image: UIImage) {
         if image.size.width > 0 && image.size.height > 0 {
-            let iconView = UIImageView(frame: CGRect(x: 5, y: 5, width: 50, height: 50))
-            iconView.image = image.withRenderingMode(.alwaysTemplate)
+            let iconView = UIImageView(frame: CGRect(x: 15, y: 15, width: 30, height: 30))
+            iconView.contentMode = .scaleAspectFit
+            iconView.tintAdjustmentMode = .normal
+            iconView.image = image
             let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
             iconContainerView.addSubview(iconView)
             leftView = iconContainerView

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -74,31 +74,13 @@ final class HelpWebViewControllerTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
-    func testDecidePolicyForNavigationAllowWhenDownloadURL() {
-        let webView = WKWebView()
-        let viewController = HelpWebViewController()
-
-        let expectation = XCTestExpectation(description: "NavigationActionPolicy allow when download URL detected")
-
-        if let url = URL(string: NetworkDefines.downloadUrl + "/") {
-            let testRequest4 = URLRequest(url: url)
-            let navigationAction = DemoNavigationAction(testRequest: testRequest4)
-            viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in
-                XCTAssertEqual(navigationActionPolicy, WKNavigationActionPolicy.allow)
-                expectation.fulfill()
-            }
-        }
-
-        wait(for: [expectation], timeout: 1)
-    }
-
     func testDecidePolicyForNavigationCancelWhenProjectDetailsURL() {
         let webView = WKWebView()
         let viewController = HelpWebViewController()
 
         let expectation = XCTestExpectation(description: "NavigationActionPolicy canceled when project details URL was detected")
 
-        if let url = URL(string: NetworkDefines.apiEndpointProjectDetails + "/123.catrobat?fname=My+first+project") {
+        if let url = URL(string: NetworkDefines.shareUrl + "app/project/123") {
             let testRequest4 = URLRequest(url: url)
             let navigationAction = DemoNavigationAction(testRequest: testRequest4)
             viewController.webView(webView, decidePolicyFor: navigationAction) { navigationActionPolicy in

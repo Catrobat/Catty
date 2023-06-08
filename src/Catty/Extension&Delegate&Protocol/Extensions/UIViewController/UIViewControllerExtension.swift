@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,15 @@
 
 extension UIViewController {
 
+    var previousViewController: UIViewController? {
+        guard let viewControllers = navigationController?.viewControllers,
+              let index = viewControllers.firstIndex(of: self), index > 0 else {
+            return nil
+        }
+
+        return viewControllers[index - 1]
+    }
+
     func hideKeyboardWhenTapInViewController() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(UIViewController.dismissKeyboard))
@@ -33,6 +42,13 @@ extension UIViewController {
         view.endEditing(true)
     }
 
+    @objc func openLoginScreen(_ delegate: AuthenticationDelegate? = nil) {
+        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController else { return }
+        viewController.delegate = delegate
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+
     @objc func openProject(_ project: Project) {
         guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
 
@@ -41,17 +57,14 @@ extension UIViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func openProjectDetails(url: URL) {
-        self.openProjectDetails(url: url, storeProjectDownloader: StoreProjectDownloader())
-    }
-
-    @nonobjc func openProjectDetails(url: URL, storeProjectDownloader: StoreProjectDownloaderProtocol) {
-        guard let projectId = url.catrobatProjectId() else {
-            Util.alert(text: kLocalizedInvalidURLGiven)
-            return
+    func openProjectDetails(projectId: String, storeProjectDownloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) {
+        if let baseTableViewController = self as? BaseTableViewController {
+            baseTableViewController.showLoadingView()
         }
-
         storeProjectDownloader.fetchProjectDetails(for: projectId, completion: {project, error in
+            if let baseTableViewController = self as? BaseTableViewController {
+                baseTableViewController.hideLoadingView()
+            }
 
             guard error == nil else {
                 Util.alert(text: kLocalizedUnableToLoadProject)

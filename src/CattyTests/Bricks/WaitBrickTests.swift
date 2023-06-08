@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -118,15 +118,15 @@ final class WaitBrickTests: XCTestCase {
         case let .waitExecClosure(closure):
 
             let expectation = self.expectation(description: "Wait expectation")
-            DispatchQueue.global(qos: .background).async {
-                let start = NSDate()
+            DispatchQueue.global(qos: .default).async {
+                let start = DispatchTime.now()
                 closure(CBScriptContext(script: self.script,
                                         spriteNode: self.spriteNode,
                                         formulaInterpreter: self.formulaInterpreter,
                                         touchManager: self.formulaInterpreter.touchManager)!,
                         self.scheduler)
-                let end = NSDate()
-                timeIntervalInSeconds = end.timeIntervalSince(start as Date)
+                let end = DispatchTime.now()
+                timeIntervalInSeconds = Double(end.uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000_000
                 expectation.fulfill()
             }
             waitForExpectations(timeout: 10)

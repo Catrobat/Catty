@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -72,53 +72,55 @@
 #pragma mark - Project parsing
 - (Project*)parseAndCreateProject
 {
-    NSError *error;
-    NSString *xmlFile;
+    @synchronized(Project.saveLock) {
+        NSError *error;
+        NSString *xmlFile;
 
-    if (self.xmlContent) {
-        xmlFile = self.xmlContent;
-    } else {
-        xmlFile = [NSString stringWithContentsOfFile:self.xmlPath
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:&error];
+        if (self.xmlContent) {
+            xmlFile = self.xmlContent;
+        } else {
+            xmlFile = [NSString stringWithContentsOfFile:self.xmlPath
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:&error];
+        }
+        
+        // sanity check
+        if (error) {
+            NSError(@"XML file could not be loaded!");
+            return nil;
+        }
+
+        NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
+
+        // sanity check
+        if (! xmlData) {
+            NSError(@"XML file could not be loaded!");
+            return nil;
+        }
+
+        error = nil;
+        GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+
+        // sanity check
+        if (error || (! xmlDocument)) { return nil; }
+
+        Project *project = nil;
+        @try {
+            CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:self.xmlPath];
+            NSInfo(@"Parsing Project with CatrobatLanguageVersion %g...", languageVersion);
+            CBXMLParserContext *parserContext = [[CBXMLParserContext alloc]
+                                                 initWithLanguageVersion:languageVersion andRootElement: xmlDocument.rootElement];
+            project = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Project class]];
+            project.unsupportedElements = parserContext.unsupportedElements;
+            project.physicsObjectNames = parserContext.physicsObjectNames;
+            NSInfo(@"Parsing finished...");
+        } @catch(NSException *exception) {
+            NSError(@"Project could not be loaded! %@", [exception description]);
+            return nil;
+        }
+        [project updateReferences];
+        return project;
     }
-
-    // sanity check
-    if (error) {
-        NSError(@"XML file could not be loaded!");
-        return nil;
-    }
-
-    NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
-
-    // sanity check
-    if (! xmlData) {
-        NSError(@"XML file could not be loaded!");
-        return nil;
-    }
-
-    error = nil;
-    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
-
-    // sanity check
-    if (error || (! xmlDocument)) { return nil; }
-
-    Project *project = nil;
-    @try {
-        CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:self.xmlPath];
-        NSInfo(@"Parsing Project with CatrobatLanguageVersion %g...", languageVersion);
-        CBXMLParserContext *parserContext = [[CBXMLParserContext alloc]
-                                             initWithLanguageVersion:languageVersion andRootElement: xmlDocument.rootElement];
-        project = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Project class]];
-        project.unsupportedElements = parserContext.unsupportedElements;
-        project.physicsObjectNames = parserContext.physicsObjectNames;
-        NSInfo(@"Parsing finished...");
-    } @catch(NSException *exception) {
-        NSError(@"Project could not be loaded! %@", [exception description]);
-        return nil;
-    }
-    [project updateReferences];
-    return project;
 }
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -50,12 +50,7 @@ import UIKit
 
         self.scrollViewOutlet.addSubview(self.projectView)
         self.scrollViewOutlet.delegate = self
-
-        if let reportButton = view.viewWithTag(Int(kReportButtonTag)) {
-            let height = reportButton.frame.origin.y + reportButton.frame.size.height + type(of: self).inset
-            self.scrollViewOutlet.contentSize = CGSize(width: self.scrollViewOutlet.frame.width, height: height)
-        }
-
+        self.scrollViewOutlet.contentSize = CGSize(width: self.scrollViewOutlet.frame.width, height: projectView.frame.height)
         self.scrollViewOutlet.contentInsetAdjustmentBehavior = .never
         self.scrollViewOutlet.isUserInteractionEnabled = true
     }
@@ -77,8 +72,7 @@ import UIKit
         let tagsView = self.addTags(to: view, thumbnailView: thumbnailView)
         let descriptionView = self.addProjectDescriptionLabel(project.projectDescription, to: view, tagsView: tagsView, target: target)
 
-        let lastInformationItem = self.addInformationLabel(to: view, withDescriptionView: descriptionView)
-        self.addReportButton(to: view, lastInformationItem: lastInformationItem, withTarget: target)
+        let lastItemView = self.addInformationLabel(to: view, withDescriptionView: descriptionView)
 
         if Project.projectExists(withProjectID: project.projectID) {
             view.viewWithTag(Int(kDownloadButtonTag))?.isHidden = true
@@ -92,7 +86,8 @@ import UIKit
             view.viewWithTag(Int(kDownloadAgainButtonTag))?.isHidden = true
         }
 
-        view.sizeToFit()
+        let height = lastItemView.frame.origin.y + lastItemView.frame.height + type(of: self).inset
+        view.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: height)
         return view
     }
 
@@ -288,7 +283,7 @@ import UIKit
         view.addSubview(button)
     }
 
-    private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) -> UILabel {
+    private func addInformationLabel(to view: UIView, withDescriptionView descriptionView: UIView) -> UIView {
         let projectDouble = (project.uploaded as NSString).doubleValue
         let projectDate = Date(timeIntervalSince1970: TimeInterval(projectDouble))
         let uploaded = CatrobatProject.uploadDateFormatter().string(from: projectDate)
@@ -305,6 +300,7 @@ import UIKit
         informationLabel.text = kLocalizedInformation
         self.configureTitleLabel(informationLabel)
         view.addSubview(informationLabel)
+        var lastItem = informationLabel
 
         var offset = informationLabel.frame.origin.y + informationLabel.frame.height + type(of: self).verticalSectionPadding
         let height = type(of: self).buttonHeight
@@ -313,8 +309,7 @@ import UIKit
         size = (size ?? "") + " MB"
 
         let informationArray = [views?.stringValue ?? "", uploaded, size, downloads?.stringValue ?? ""]
-        let informationTitleArray = [UIImage(named: "viewsIcon"), UIImage(named: "timeIcon"), UIImage(named: "sizeIcon"), UIImage(named: "downloadIcon")]
-        var lastItem = informationLabel
+        let informationTitleArray = [UIImage(named: "eye.circle.fill"), UIImage(named: "clock.fill"), UIImage(named: "doc.circle.fill"), UIImage(named: "arrow.down.circle.fill")]
 
         for (index, info) in informationArray.enumerated() {
             let titleIcon = self.getInformationTitleLabel(withTitle: informationTitleArray[index], atXPosition: type(of: self).inset, atYPosition: offset, andHeight: height)
@@ -328,23 +323,6 @@ import UIKit
         }
 
         return lastItem
-    }
-
-    private func addReportButton(to view: UIView, lastInformationItem: UIView, withTarget target: Any?) {
-        let offsetLine = lastInformationItem.frame.origin.y + lastInformationItem.frame.height + type(of: self).verticalSectionPadding
-        let offsetButton = offsetLine + type(of: self).verticalSectionPadding
-
-        self.addHorizontalLine(to: view, verticalOffset: offsetLine)
-
-        let reportButton = RoundBorderedButton(frame: CGRect(x: type(of: self).inset, y: offsetButton, width: view.frame.width, height: type(of: self).buttonHeight), andBorder: true) as UIButton
-        reportButton.tag = Int(kReportButtonTag)
-        reportButton.titleLabel?.font = UIFont.systemFont(ofSize: type(of: self).fontSizeLabel)
-        reportButton.setTitle(kLocalizedReportProject, for: .normal)
-        reportButton.addTarget(target, action: #selector(self.reportProject(_:)), for: .touchUpInside)
-        reportButton.isUserInteractionEnabled = true
-        reportButton.sizeToFit()
-
-        view.addSubview(reportButton)
     }
 
     private func addHorizontalLine(to view: UIView, verticalOffset: CGFloat) {
@@ -373,6 +351,8 @@ import UIKit
     private func getInformationTitleLabel(withTitle icon: UIImage?, atXPosition xPosition: CGFloat, atYPosition yPosition: CGFloat, andHeight height: CGFloat) -> UIImageView {
         let titleInformation = UIImageView(frame: CGRect(x: xPosition, y: yPosition, width: 15, height: 15))
         titleInformation.image = icon
+        titleInformation.contentMode = .scaleAspectFit
+        titleInformation.tintAdjustmentMode = .normal
 
         return titleInformation
     }

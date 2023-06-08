@@ -5,6 +5,10 @@ pipeline {
     label 'MAC'
   }
 
+  environment {
+    PATH = "$HOME/.rbenv/shims:$PATH"
+  }
+
   options {
     timeout(time: 2, unit: 'HOURS')
     timestamps()
@@ -16,28 +20,19 @@ pipeline {
   }
 
   stages {
-    stage('Unlock keychain') {
+    stage('Prepare') {
       steps {
         withCredentials([usernamePassword(credentialsId: '29a4006b-0d8b-4fe9-9237-b00856bdb0de', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
           script {
             unlockMACKeychain "${PASSWORD}"
           }
         }
-      }
-    }
-    stage('Clear Carthage temporary items') {
-      steps {
-        sh 'rm -rf ${TMPDIR}/TemporaryItems/*carthage*'
-      }
-    }
-    stage('Prepare') {
-      steps {
-        sh 'make init'
+        sh 'cd src && bundle install'
       }
     }
     stage('Build') {
       steps {
-        sh 'cd src && fastlane build_catty'
+        sh 'cd src && bundle exec fastlane ios build_catty'
       }
       post {
         always {
@@ -49,7 +44,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'cd src && fastlane tests'
+        sh 'cd src && bundle exec fastlane ios tests'
       }
     }
   }

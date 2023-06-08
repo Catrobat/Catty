@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -45,18 +45,19 @@ extension SoundsTableViewController: MediaLibraryViewControllerImportDelegate {
         let documents = URL(fileURLWithPath:
             CBFileManager.shared().documentsDirectory)
         for item in items {
-            guard let data = item.cachedData else { self.showImportAlert(itemName: item.name); continue }
+            guard let itemName = item.name, let itemFileExtension = item.fileExtension else { continue }
+            guard let data = item.cachedData else { self.showImportAlert(itemName: itemName); continue }
 
             let fileName = UUID().uuidString
             let fileURL = documents
                 .appendingPathComponent(fileName)
-                .appendingPathExtension(item.fileExtension)
-            let sound = Sound(name: item.name, fileName: fileURL.lastPathComponent)
+                .appendingPathExtension(itemFileExtension)
+            let sound = Sound(name: itemName, fileName: fileURL.lastPathComponent)
             do {
                 try data.write(to: fileURL, options: .atomic)
-                self.showDownloadSoundAlert(sound)
+                self.add(sound)
             } catch {
-                self.showImportAlert(itemName: item.name)
+                self.showImportAlert(itemName: itemName)
             }
         }
     }

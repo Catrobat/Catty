@@ -8,10 +8,16 @@
 "Abc" = "বর্ণমালা";
 
 /* No comment provided by engineer. */
+"About" = "সম্পর্কে";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "ক্যাট্রোব্যাট সম্পর্কে";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "পকেট কোড সম্পর্কে";
+
+/* No comment provided by engineer. */
+"About Us" = "About Us";
 
 /* No comment provided by engineer. */
 "absolute value" = "পরম মান";
@@ -143,6 +149,9 @@
 "Arduino extension" = "আরডুইনো এক্সটেনশন";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
 "Ask " = "জিজ্ঞাসা করুন ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "ক্যাট্রোব্যাট সম্প্রদায়";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat website";
 
 /* No comment provided by engineer. */
 "ceiling" = "ছাদ";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "মুছুন";
+
+/* No comment provided by engineer. */
+"Delete account" = "অ্যাকাউন্ট মুছে ফেলুন";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "অভিনেতা বা অবজেক্ট মুছুন";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "লুপের সমাপ্তি";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "কারণ লিখুন";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "আপনার ছবির নাম এখানে প্রবেশ করুন ...";
 
@@ -698,9 +710,6 @@
 "Error" = "ভুল";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "প্রকল্পটি রিপোর্ট করার সময় ত্রুটি ঘটেছে। পরে আবার চেষ্টা করুন.";
-
-/* No comment provided by engineer. */
 "Error saving file" = "ফাইল সংরক্ষণে ভুল";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "ঘাতক";
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensions";
 
 /* No comment provided by engineer. */
 "FA" = "এফএ";
@@ -845,6 +857,9 @@
 "head top y" = "মাথার উপরে y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "হ্যালো";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "ঘন্টা";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "সনাক্ত করা বস্তুর আইডি";
 
 /* No comment provided by engineer. */
 "If" = "যদি";
@@ -959,6 +977,9 @@
 "LA" = "LA";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
+
+/* No comment provided by engineer. */
 "Last access" = "শেষ প্রবেশ";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "বাম দিক";
 
 /* No comment provided by engineer. */
+"left ankle x" = "বাম গোড়ালি x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "বাম গোড়ালি y";
+
+/* No comment provided by engineer. */
 "left ear x" = "বাম কান x";
 
 /* No comment provided by engineer. */
 "left ear y" = "তাড়াতাড়ি চলে";
+
+/* No comment provided by engineer. */
+"left elbow x" = "বাম কনুই x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "বাম কনুই y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "বাম চোখের কেন্দ্র x";
@@ -1020,6 +1053,60 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left hip x" = "বাম নিতম্ব x";
+
+/* No comment provided by engineer. */
+"left hip y" = "বাম নিতম্ব y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "বাম সূচক নকল x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "বাম সূচক নাকাল y";
+
+/* No comment provided by engineer. */
+"left knee x" = "বাম হাঁটু x";
+
+/* No comment provided by engineer. */
+"left knee y" = "বাম হাঁটু y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "left middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "left middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "বাম গোলাপী নকল x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "বাম গোলাপী নকল y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "left ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "left ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "বাম কাঁধ x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "বাম কাঁধ y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "বাম থাম্ব নকল x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "বাম থাম্ব নকল y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "বাম কব্জি x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "বাম কব্জি y";
 
 /* No comment provided by engineer. */
 "left-right only" = "শুধুমাত্র বাম-ডান";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "প্রাকৃতিক লগারিদম";
 
 /* No comment provided by engineer. */
+"neck x" = "ঘাড় x";
+
+/* No comment provided by engineer. */
+"neck y" = "ঘাড় y";
+
+/* No comment provided by engineer. */
 "New" = "নতুন";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "অনুসন্ধানের কোন ফলাফল পাওয়া যায়নি";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "হোয়াইটস্পেস অক্ষর অনুমোদিত নয়";
-
-/* No comment provided by engineer. */
 "nose x" = "নাক x";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "আইটেমের সংখ্যা";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "পাঠ্য ব্লকের সংখ্যা";
+
+/* No comment provided by engineer. */
 "Numbers" = "সংখ্যা";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "অবজেক্ট বা অভিনেতার নাম";
+
+/* No comment provided by engineer. */
+"Object recognition" = "বস্তুর স্বীকৃতি";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "object with ID visible";
 
 /* No comment provided by engineer. */
 "Oct" = "অক্টোবর";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "কমপক্ষে %lu অক্ষর লিখুন।";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "অনুপযুক্ত হিসাবে এই প্রজেক্টটি রিপোর্ট করতে লগ ইন করুন";
-
 /* paint */
 "Please pick a tool" = "একটি সরঞ্জাম নির্বাচন করুন";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "পূর্ববর্তী চেহারা";
 
 /* No comment provided by engineer. */
+"Privacy" = "Privacy";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "গোপনীয়তা সেটিংস";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "লাল";
 
 /* No comment provided by engineer. */
-"Register" = "নিবন্ধন";
-
-/* No comment provided by engineer. */
 "Registration successful" = "নিবন্ধন সফল";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "তালিকায় আইটেম প্রতিস্থাপন করুন";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "অনুপযুক্ত হিসাবে রিপোর্ট করুন";
-
 /* paint */
 "Resize" = "পুনরায় আকার দিন";
 
@@ -1613,10 +1706,22 @@
 "Right" = "ডান দিক";
 
 /* No comment provided by engineer. */
+"right ankle x" = "ডান গোড়ালি x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "ডান গোড়ালি y";
+
+/* No comment provided by engineer. */
 "right ear x" = "ডান কান x";
 
 /* No comment provided by engineer. */
 "right ear y" = "ডান কান y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "ডান কনুই x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "ডান কনুই y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "ডান চোখের কেন্দ্র x";
@@ -1653,6 +1758,60 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right hip x" = "ডান নিতম্ব x";
+
+/* No comment provided by engineer. */
+"right hip y" = "ডান নিতম্ব y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "ডান সূচক নকল x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "ডান সূচক knuckle y";
+
+/* No comment provided by engineer. */
+"right knee x" = "ডান হাঁটু x";
+
+/* No comment provided by engineer. */
+"right knee y" = "ডান হাঁটু y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "right middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "right middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "ডান গোলাপী নকল x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "ডান গোলাপী নকল y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "right ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "right ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "ডান কাঁধ x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "ডান কাঁধ y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "ডান থাম্ব নকল x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "ডান থাম্ব নকল y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "ডান কব্জি x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "ডান কব্জি y";
 
 /* paint */
 "Rotate" = "ঘোরান";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "টেম্পো সেট করুন";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "থ্রেড রঙ সেট করুন";
+
+/* No comment provided by engineer. */
 "Set transparency " = "স্বচ্ছতা সেট করুন";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "শব্দ শুরু করুন এবং অপেক্ষা করুন";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "দৈর্ঘ্য সহ ট্রিপল সেলাই শুরু করুন";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "দৈর্ঘ্য দিয়ে জিগজ্যাগ সেলাই শুরু করুন";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "পাঠ্য";
 
 /* No comment provided by engineer. */
+"text block from camera" = "ক্যামেরা থেকে পাঠ্য ব্লক";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "ক্যামেরা থেকে পাঠ্য ব্লক ভাষা";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "ক্যামেরা থেকে পাঠ্য ব্লক আকার";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "ক্যামেরা থেকে টেক্সট ব্লক এক্স";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "ক্যামেরা থেকে পাঠ্য ব্লক y";
+
+/* No comment provided by engineer. */
+"text from camera" = "ক্যামেরা থেকে পাঠ্য";
+
+/* No comment provided by engineer. */
 "Text message:" = "পাঠ্য বার্তা";
+
+/* No comment provided by engineer. */
+"Text recognition" = "পাঠ্য স্বীকৃতি";
 
 /* paint */
 "Text:" = "পাঠ্য";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "সত্য";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Trusted domains";
 
 /* No comment provided by engineer. */
 "Tu" = "মঙ্গলবার";
@@ -2204,6 +2393,9 @@
 "View" = "দেখুন";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "View Terms of Use and Service";
+
+/* No comment provided by engineer. */
 "Views" = "দেখুনঃ";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "আপনি যখন পাবেন";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
+
 /* paint */
 "Width selection" = "প্রস্থ নির্বাচন";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "কাঠের বাঁশি";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X of object with ID";
+
+/* No comment provided by engineer. */
 "x: " = "এক্স: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y of object with ID";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "আপনি ইতিমধ্যে এই প্রজেক্টটি ডাউনলোড করেছেন!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "তোমার উত্তর";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "আপনার প্রকল্পটি ক্যাটরোব্যাট সম্প্রদায়ে আপলোড হয়েছে যেখানে অন্যরা এটি ব্যবহার করতে এবং ডাউনলোড করতে পারে।";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "আপনার প্রতিবেদনটি সফলভাবে পাঠানো হয়েছে";
 
 /* paint */
 "Zoom" = "দৃশ্যমান";

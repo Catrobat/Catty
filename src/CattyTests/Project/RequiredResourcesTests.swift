@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,10 @@ final class RequiredResourcesTests: XCTestCase {
                                                       touchManager: TouchManagerMock(),
                                                       bluetoothService: BluetoothService.sharedInstance())
 
-        let functions = CatrobatSetup.registeredFunctions(touchManager: TouchManagerMock(), bluetoothService: BluetoothService.sharedInstance())
+        let functions = CatrobatSetup.registeredFunctions(stageSize: CGSize.zero,
+                                                          touchManager: TouchManagerMock(),
+                                                          visualDetectionManager: VisualDetectionManagerMock(),
+                                                          bluetoothService: BluetoothService.sharedInstance())
 
         _ = SensorManager(sensors: sensors, landscapeMode: false)
         _ = FunctionManager(functions: functions)
@@ -195,6 +198,16 @@ final class RequiredResourcesTests: XCTestCase {
         XCTAssertEqual(resources, ResourceType.accelerometerAndDeviceMotion.rawValue, "Resourses ChangeBrightnessByNBrick not correctly calculated")
     }
 
+    func testSayBubbleBrickResources() {
+        let brick = SayBubbleBrick()
+        let element = FormulaElement(elementType: ElementType.SENSOR, value: InclinationYSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
+        brick.formula = Formula(formulaElement: element)
+        let project = getProjectWithOneSpriteWithBrick(brick: brick)
+
+        let resources = project?.getRequiredResources()
+        XCTAssertEqual(resources, ResourceType.accelerometerAndDeviceMotion.rawValue, "Resourses SayBubbleBrick not correctly calculated")
+    }
+
     func testSetColorBrickResources() {
         let brick = SetColorBrick()
         brick.color = Formula.init(integer: 1)
@@ -300,7 +313,7 @@ final class RequiredResourcesTests: XCTestCase {
 
     func testSetVariableBrick2Resources() {
         let brick = SetVariableBrick()
-        let element = FormulaElement(elementType: ElementType.SENSOR, value: "FACE_DETECTED", leftChild: nil, rightChild: nil, parent: nil)
+        let element = FormulaElement(elementType: ElementType.SENSOR, value: FaceDetectedSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
         brick.variableFormula = Formula(formulaElement: element)
         let project = getProjectWithOneSpriteWithBrick(brick: brick)
 
@@ -753,14 +766,14 @@ final class RequiredResourcesTests: XCTestCase {
         XCTAssertEqual(ResourceType.compass.rawValue, resources & ResourceType.compass.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(ResourceType.bluetoothArduino.rawValue, resources & ResourceType.bluetoothArduino.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.bluetoothPhiro.rawValue, "Resourses nested not correctly calculated")
-        XCTAssertEqual(0, resources & ResourceType.faceDetection.rawValue, "Resourses nested not correctly calculated")
+        XCTAssertEqual(0, resources & ResourceType.visualDetection.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.magnetometer.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.loudness.rawValue, "Resourses nested not correctly calculated")
     }
 
     func testNested2Resources() {
         let brick = GlideToBrick()
-        var element = FormulaElement(elementType: ElementType.SENSOR, value: "FACE_DETECTED", leftChild: nil, rightChild: nil, parent: nil)
+        var element = FormulaElement(elementType: ElementType.SENSOR, value: FaceDetectedSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
         brick.durationInSeconds = Formula(formulaElement: element)
         element = FormulaElement(elementType: ElementType.SENSOR, value: AccelerationYSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
         brick.xDestination = Formula(formulaElement: element)
@@ -858,7 +871,7 @@ final class RequiredResourcesTests: XCTestCase {
         element = FormulaElement(elementType: ElementType.SENSOR, value: AccelerationXSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
         brick.yPosition = Formula(formulaElement: element)
         let brick1 = GlideToBrick()
-        element = FormulaElement(elementType: ElementType.SENSOR, value: "FACE_DETECTED", leftChild: nil, rightChild: nil, parent: nil)
+        element = FormulaElement(elementType: ElementType.SENSOR, value: FaceDetectedSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
         brick1.durationInSeconds = Formula(formulaElement: element)
         element = FormulaElement(elementType: ElementType.SENSOR, value: AccelerationYSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
         brick1.xDestination = Formula(formulaElement: element)
@@ -917,7 +930,7 @@ final class RequiredResourcesTests: XCTestCase {
         XCTAssertEqual(ResourceType.loudness.rawValue, resources & ResourceType.loudness.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.bluetoothArduino.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.bluetoothPhiro.rawValue, "Resourses nested not correctly calculated")
-        XCTAssertEqual(0, resources & ResourceType.faceDetection.rawValue, "Resourses nested not correctly calculated")
+        XCTAssertEqual(0, resources & ResourceType.visualDetection.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.magnetometer.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(ResourceType.compass.rawValue, resources & ResourceType.compass.rawValue, "Resourses nested not correctly calculated")
     }
@@ -956,7 +969,7 @@ final class RequiredResourcesTests: XCTestCase {
         element = FormulaElement(elementType: ElementType.SENSOR, value: AccelerationXSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
         brick.yPosition = Formula(formulaElement: element)
         let brick1 = GlideToBrick()
-        element = FormulaElement(elementType: ElementType.SENSOR, value: "FACE_DETECTED", leftChild: nil, rightChild: nil, parent: nil)
+        element = FormulaElement(elementType: ElementType.SENSOR, value: FaceDetectedSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
         brick1.durationInSeconds = Formula(formulaElement: element)
         element = FormulaElement(elementType: ElementType.SENSOR, value: AccelerationYSensor.tag, leftChild: nil, rightChild: nil, parent: nil)
                 brick1.xDestination = Formula(formulaElement: element)
@@ -1014,7 +1027,7 @@ final class RequiredResourcesTests: XCTestCase {
         XCTAssertEqual(ResourceType.loudness.rawValue, resources & ResourceType.loudness.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.bluetoothArduino.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.bluetoothPhiro.rawValue, "Resourses nested not correctly calculated")
-        XCTAssertEqual(0, resources & ResourceType.faceDetection.rawValue, "Resourses nested not correctly calculated")
+        XCTAssertEqual(0, resources & ResourceType.visualDetection.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(0, resources & ResourceType.magnetometer.rawValue, "Resourses nested not correctly calculated")
         XCTAssertEqual(ResourceType.compass.rawValue, resources & ResourceType.compass.rawValue, "Resourses nested not correctly calculated")
     }

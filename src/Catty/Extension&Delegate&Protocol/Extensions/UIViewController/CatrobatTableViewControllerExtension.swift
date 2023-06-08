@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,10 +22,10 @@
 
 import Foundation
 
-@objc extension CatrobatTableViewController: LoginViewControllerDelegate {
-    public func afterSuccessfulLogin() {
+@objc extension CatrobatTableViewController: AuthenticationDelegate {
+    public func successfullyAuthenticated() {
         DispatchQueue.main.async {
-            if UserDefaults().bool(forKey: NetworkDefines.kUserIsLoggedIn) {
+            if StoreAuthenticator.isLoggedIn() {
                 if self.shouldPerformSegue(withIdentifier: kSegueToUpload, sender: self) {
                     self.performSegue(withIdentifier: kSegueToUpload, sender: self)
                 }
@@ -39,12 +39,37 @@ import Foundation
         DispatchQueue.main.async(execute: {
             AlertControllerBuilder.alert(title: kLocalizedProjectUploaded, message: kLocalizedProjectUploadedBody)
                 .addDefaultAction(title: kLocalizedView) {
-                    if let projectURL = URL(string: NetworkDefines.projectDetailsBaseUrl + projectId) {
-                        Util.openURL(url: projectURL, delegate: self)
-                    }
+                    self.openProjectDetails(projectId: projectId)
                 }
             .addDefaultAction(title: kLocalizedOK) { }
             .build().showWithController(self)
         })
+    }
+}
+
+@objc extension CatrobatTableViewController {
+    func openAccountMenu() {
+        if StoreAuthenticator.isLoggedIn() {
+            DispatchQueue.main.async(execute: {
+                AlertControllerBuilder.actionSheet(title: UserDefaults.standard.string(forKey: NetworkDefines.kUsername))
+                    .addDestructiveAction(title: kLocalizedLogout, handler: { [weak self] in
+                        StoreAuthenticator.logout()
+                        self?.navigationItem.rightBarButtonItem?.image = self?.generateAccountImage()
+                    })
+                .addCancelAction(title: kLocalizedCancel, handler: nil)
+                .build().showWithController(self)
+            })
+        } else {
+            self.openLoginScreen()
+        }
+    }
+
+    func generateAccountImage() -> UIImage? {
+        if StoreAuthenticator.isLoggedIn(),
+           let initial = UserDefaults.standard.string(forKey: NetworkDefines.kUsername)?.uppercased().first {
+            return UIImage(named: "circle.fill#navbar")?.overlayText(String(initial), withFont: UIFont.boldSystemFont(ofSize: 16), andColor: UIColor.clear)
+        } else {
+            return UIImage(named: "person.crop.circle#navbar")
+        }
     }
 }

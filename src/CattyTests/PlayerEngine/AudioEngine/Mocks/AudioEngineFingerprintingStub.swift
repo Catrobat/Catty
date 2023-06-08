@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,10 +36,7 @@ class AudioEngineFingerprintingStub: Pocket_Code.AudioEngine {
             speechSynth.utteranceVolume = muted ? 0.0 : 1.0
         }
 
-        let tempFile: AVAudioFile? = AudioKit.NodeRecorder.createTempFile()
-        let file = try? AVAudioFile(forWriting: tempFile!.url, settings: tempFile!.fileFormat.settings)
-
-        recorder = try? AudioKit.NodeRecorder(node: engineOutputMixer, file: file)
+        recorder = try? AudioKit.NodeRecorder(node: engineOutputMixer)
         try? self.recorder?.record()
     }
 

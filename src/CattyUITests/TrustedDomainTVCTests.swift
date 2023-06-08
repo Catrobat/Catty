@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ class TrustedDomainTVCTests: XCTestCase {
         app.navigationBars.buttons[PocketCodeMainScreenTests.settingsButtonLabel].tap()
 
         XCTAssert(app.staticTexts[kLocalizedWebAccess].exists)
-        app.staticTexts[kLocalizedWebAccess].tap()
+        app.staticTexts[kLocalizedTrustedDomains].tap()
         XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedWebAccess]).exists)
 
         let url = "https://www.test.com"

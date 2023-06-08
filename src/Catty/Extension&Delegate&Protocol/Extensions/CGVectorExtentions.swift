@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -40,16 +40,16 @@ public extension CGVector {
         CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
     }
 
-    static func += (lhs: inout CGVector, rhs: CGVector) { //swiftlint:disable shorthand_operator
-        lhs = lhs + rhs                                   //this is a known limitation of swiftlint
+    static func += (lhs: inout CGVector, rhs: CGVector) {
+        lhs = lhs + rhs
     }
 
     static func - (lhs: CGVector, rhs: CGVector) -> CGVector {
         CGVector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
     }
 
-    static func -= (lhs: inout CGVector, rhs: CGVector) { //swiftlint:disable shorthand_operator
-        lhs = lhs - rhs                                   //this is a known limitation of swiftlint
+    static func -= (lhs: inout CGVector, rhs: CGVector) {
+        lhs = lhs - rhs
     }
 
     static func * (lhs: CGVector, rhs: CGFloat) -> CGVector {

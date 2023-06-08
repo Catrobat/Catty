@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,163 +27,111 @@ import XCTest
 
 class StoreProjectUploaderTests: XCTestCase {
 
-    var expectedZippedProjectData: Data!
     var fileManagerMock: CBFileManagerMock!
     var project: Project!
 
     override func setUp() {
         super.setUp()
-        let header = Header.default()!
-        header.programName = kDefaultProjectBundleName
-        header.programDescription = ""
 
         self.project = Project()
-        self.project.header = header
+        self.fileManagerMock = CBFileManagerMock(zipData: "zippedProjectData".data(using: .utf8)!)
 
-        Keychain.saveValue("validToken", forKey: NetworkDefines.kUserLoginToken)
-        UserDefaults.standard.setValue("UserName", forKey: kcUsername)
+        let testUser = "testUser"
+        //swiftlint:disable line_length
+        let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjo0ODIyMDMzMDUyfQ.GNnO3_Y4hYTkULubsayMWZmi25ZAWWw6PV01cRAu7M8"
+        let testRefreshToken = "6b40fb5dac84fbd8c5b904545b09130efe6748686a1dca65b3ecc8b51e2e82733825f49b9536fc053c43d0755dc4350ec552ef81e5c0676251552767b090cacb"
 
-        self.expectedZippedProjectData = "zippedProjectData".data(using: .utf8)
-        self.fileManagerMock = CBFileManagerMock(zipData: expectedZippedProjectData)
+        UserDefaults.standard.set(testUser, forKey: NetworkDefines.kUsername)
+        Keychain.saveValue(testToken, forKey: NetworkDefines.kAuthenticationToken)
+        Keychain.saveValue(testRefreshToken, forKey: NetworkDefines.kRefreshToken)
+        Keychain.deleteValue(forKey: NetworkDefines.kLegacyToken)
     }
 
-    override func tearDown() {
-        UserDefaults.standard.removeObject(forKey: kcUsername)
-        Keychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
-        super.tearDown()
+    // MARK: - Upload
+
+    func testUploadSucceeds() {
+        upload(with: "StoreProjectUploader.upload.success")
     }
 
-    func testUploadProjectSucess() {
-        let dvrSession = Session(cassetteName: "StoreProjectUpload.uploadProject.success")
-        let expectation = XCTestExpectation(description: "Upload Project")
+    func testUploadSucceedsWithRefresh() {
+        // swiftlint:disable:next line_length
+        let expiredToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxNTE2MjM5MDIyfQ.lJ7ZxhkDfz2CTJCYTUlnx-braSZGxj9cZlIA4yqmqWg"
+        Keychain.saveValue(expiredToken, forKey: NetworkDefines.kAuthenticationToken)
+
+        upload(with: "StoreProjectUploader.upload.success.refresh")
+    }
+
+    func testUploadSucceedsWithUpgrade() {
+        let testLegacyToken = "36cdf53b812dd2d47471367de94e8538"
+        Keychain.deleteValue(forKey: NetworkDefines.kAuthenticationToken)
+        Keychain.deleteValue(forKey: NetworkDefines.kRefreshToken)
+        Keychain.saveValue(testLegacyToken, forKey: NetworkDefines.kLegacyToken)
+
+        upload(with: "StoreProjectUploader.upload.success.upgrade")
+    }
+
+    func upload(with cassette: String) {
+        let dvrSession = Session(cassetteName: cassette)
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
-        uploader.upload(project: self.project,
-                        completion: { projectId, error  in
-                            XCTAssertNotNil(projectId)
-                            XCTAssertEqual("4942a248-b7e1-11ea-a7ff-005056a36f47", projectId)
+        let expectation = XCTestExpectation(description: "Upload project")
+
+        uploader.upload(project: project,
+                        completion: { projectId, error in
                             XCTAssertNil(error)
+
+                            XCTAssertEqual(projectId, "2c43d3ee-4ba4-4dd5-9811-4bdb1656bdde")
+
                             expectation.fulfill()
-        }, progression: nil)
-        wait(for: [expectation], timeout: 1)
+                        },
+                        progression: nil)
+
+        wait(for: [expectation], timeout: 1.0)
     }
 
-    func testUploadProjectFailsWithUnexpectedError() {
-        let mockSession = URLSessionMock()
-        let uploader = StoreProjectUploader(fileManager: self.fileManagerMock, session: mockSession)
-        let expectation = XCTestExpectation(description: "Upload Projects")
-
-        uploader.upload(project: self.project,
-                        completion: { projectId, error in
-                            guard let error = error else { XCTFail("no error returned"); return }
-                            XCTAssertNil(projectId)
-                            XCTAssertEqual(error, .unexpectedError)
-                            expectation.fulfill()
-        }, progression: nil)
-
-        wait(for: [expectation], timeout: 1)
+    func testUploadFailsWithValidationError() {
+        upload(expecting: .validation(response: "Error while creating project entity. Try uploading again!"),
+               with: "StoreProjectUploader.upload.fail.validation")
     }
 
-    func testUploadProjectFailsForAuthenticationError() {
-        Keychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.uploadProject.fail.authentication")
-        let expectation = XCTestExpectation(description: "Upload Projects")
-        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
-
-        uploader.upload(project: self.project,
-                        completion: { projectId, error in
-                            guard let error = error else { XCTFail("no error received"); return }
-                            XCTAssertNil(projectId)
-                            XCTAssertEqual(error, .authenticationFailed)
-                            expectation.fulfill()
-        }, progression: nil)
-
-        wait(for: [expectation], timeout: 1)
+    func testUploadFailsWithAuthenticationError() {
+        upload(expecting: .authentication, with: "StoreProjectUploader.upload.fail.authentication")
     }
 
-    func testUploadProjectFailsForInvalidToken() {
-        let dvrSession = Session(cassetteName: "StoreProjectUpload.uploadProject.fail.invalidToken")
-        let expectation = XCTestExpectation(description: "Upload Projects")
-        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
-
-        uploader.upload(project: self.project,
-                        completion: { projectId, error in
-                            guard let error = error else { XCTFail("no error received"); return }
-                            XCTAssertNil(projectId)
-                            XCTAssertEqual(error, .authenticationFailed)
-                            expectation.fulfill()
-        }, progression: nil)
-
-        wait(for: [expectation], timeout: 1)
+    func testUploadFailsWithRequestError() {
+        upload(expecting: .request(error: nil, statusCode: 500), with: "StoreProjectUploader.upload.fail.request")
     }
 
-    func testUploadProjectFailsForZippingError() {
+    func testUploadFailsWithParseError() {
+        upload(expecting: .parser, with: "StoreProjectUploader.upload.fail.parse")
+    }
+
+    func testUploadFailsWithGenericError() {
         self.fileManagerMock = CBFileManagerMock(filePath: [String](), directoryPath: [String]())
-        let uploader = StoreProjectUploader(fileManager: fileManagerMock)
-        let expectation = XCTestExpectation(description: "Upload Projects")
+        upload(expecting: .generic)
+    }
+
+    func upload(expecting expectedError: StoreProjectUploaderError, with cassette: String? = nil) {
+        let dvrSession = cassette != nil ? Session(cassetteName: cassette!) : StoreProjectUploader.defaultSession()
+        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
+        let expectation = XCTestExpectation(description: "Upload project")
 
         uploader.upload(project: project,
                         completion: { projectId, error in
-                            guard let error = error else { XCTFail("no error received"); return }
-                            XCTAssertNil(projectId)
-                            XCTAssertEqual(error, .zippingError)
-                            expectation.fulfill()
-        }, progression: nil)
+                            XCTAssertEqual(error, expectedError)
 
-        wait(for: [expectation], timeout: 1)
+                            XCTAssertNil(projectId)
+
+                            expectation.fulfill()
+                        },
+                        progression: nil)
+
+        wait(for: [expectation], timeout: 1.0)
     }
 
-    func testUploadProjetFailsForInvalidProject() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.uploadProject.fail.invalidProject")
-        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
-        let expectation = XCTestExpectation(description: "Upload Projects")
-
-        uploader.upload(project: project,
-                        completion: { projectId, error in
-                            guard let error = error else { XCTFail("no error received"); return }
-                            XCTAssertNil(projectId)
-                            XCTAssertEqual(error, .invalidProject)
-                            expectation.fulfill()
-        }, progression: nil)
-
-        wait(for: [expectation], timeout: 1)
-    }
-
-    func testUploadProjectInvalidChecksum() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.uploadProject.fail.invalidChecksum")
-        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
-        let expectation = XCTestExpectation(description: "Upload Projects")
-
-        uploader.upload(project: project,
-                        completion: { projectId, error in
-                            guard let error = error else { XCTFail("no error received"); return }
-                            XCTAssertNil(projectId)
-                            XCTAssertEqual(error, .invalidProject)
-                            expectation.fulfill()
-        }, progression: nil)
-
-        wait(for: [expectation], timeout: 1)
-    }
-
-    func testUploadProjectInvalidBody () {
-        let dvrSession = Session(cassetteName: "StoreProjectUpload.uploadProject.fail.invalidBody")
-        let expectation = XCTestExpectation(description: "Upload Project")
-        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
-
-        uploader.upload(project: self.project,
-                        completion: { projectId, error in
-                            guard let error = error else { XCTFail("no error received"); return }
-                            XCTAssertNil(projectId)
-                            XCTAssertEqual(error, .unexpectedError)
-                            expectation.fulfill()
-        }, progression: nil)
-
-        wait(for: [expectation], timeout: 1)
-    }
-
-    func testUploadProjectVaildProgression() {
+    func testUploadProgression() {
         let mockSession = URLSessionMock(bytesSent: 500, bytesTotal: 1000)
         let uploader = StoreProjectUploader(fileManager: self.fileManagerMock, session: mockSession)
-        let expectation = XCTestExpectation(description: "Upload Projects")
+        let expectation = XCTestExpectation(description: "Upload project")
 
         uploader.upload(project: self.project,
                         completion: { _, _  in },
@@ -192,65 +140,63 @@ class StoreProjectUploaderTests: XCTestCase {
                             expectation.fulfill()
         })
 
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 1.0)
     }
+
+    // MARK: - Fetch Tags
 
     func testFetchTagsSuccess() {
-        let dvrSession = Session(cassetteName: "StoreProjectUpload.fetchTags.success")
+        let dvrSession = Session(cassetteName: "StoreProjectUploader.fetchTags.success")
         let expectation = XCTestExpectation(description: "Fetch tags")
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
-        let languageTag = "en"
-        uploader.fetchTags(for: languageTag,
-                           completion: { tags, error in
-                            XCTAssertNil(error)
-                            XCTAssertFalse(tags.isEmpty)
-                            expectation.fulfill()
-        })
-        wait(for: [expectation], timeout: 1)
+
+        uploader.fetchTags { tags, error in
+            XCTAssertNil(error)
+
+            XCTAssertNotNil(tags)
+            XCTAssertEqual(tags?.first?.id, "game")
+            XCTAssertEqual(tags?.first?.text, "Game")
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
     }
 
-    func testFetchTagsFailsWithUnexpectedError() {
-        let mockSession = URLSessionMock()
-        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: mockSession)
-        let expectation = XCTestExpectation(description: "Fetch tags")
-        let languageTag = "en"
-        uploader.fetchTags(for: languageTag,
-                           completion: { tags, error in
-                            guard let error = error else { XCTFail("no error returned"); return }
-                            XCTAssertEqual(error, .unexpectedError)
-                            XCTAssertTrue(tags.isEmpty)
-                            expectation.fulfill()
-        })
-        wait(for: [expectation], timeout: 1)
+    func testFetchTagsFailsWithRequestError() {
+        fetchTags(expecting: .request(error: nil, statusCode: 500), with: "StoreProjectUploader.fetchTags.fail.request")
     }
 
-    func testFetchTagsFailsWithInvalidLanguageTag() {
-        let dvrSession = Session(cassetteName: "StoreProjectUpload.fetchTags.invalidLanguageTag")
+    func testFetchTagsFailsWithParseError() {
+        fetchTags(expecting: .parser, with: "StoreProjectUploader.fetchTags.fail.parse")
+    }
+
+    func fetchTags(expecting expectedError: StoreProjectUploaderError, with cassette: String) {
+        let dvrSession = Session(cassetteName: cassette)
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch tags")
-        let languageTag = "invalidLanguageTag"
-        uploader.fetchTags(for: languageTag,
-                           completion: { tags, error in
-                            guard let error = error else { XCTFail("no error returned"); return }
-                            XCTAssertEqual(error, .invalidLanguageTag)
-                            XCTAssertFalse(tags.isEmpty)
-                            expectation.fulfill()
-        })
-        wait(for: [expectation], timeout: 1)
-    }
 
+        uploader.fetchTags { tags, error in
+            XCTAssertEqual(error, expectedError)
+
+            XCTAssertNil(tags)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
 }
 
 extension StoreProjectUploaderError: Equatable {
     public static func == (lhs: StoreProjectUploaderError, rhs: StoreProjectUploaderError) -> Bool {
         switch (lhs, rhs) {
-        case (.request, .request),
-             (.zippingError, .zippingError),
-             (.unexpectedError, .unexpectedError),
-             (.timeout, .timeout),
-             (.authenticationFailed, .authenticationFailed),
-             (.invalidProject, .invalidProject),
-             (.invalidLanguageTag, .invalidLanguageTag) :
+        case (.request(let errorLhs, let statusCodeLhs), .request(let errorRhs, let statusCodeRhs)) where
+            errorLhs?.localizedDescription == errorRhs?.localizedDescription && statusCodeLhs == statusCodeRhs:
+            return true
+        case (.validation(let responseLhs), .validation(let responseRhs)) where responseLhs == responseRhs:
+            return true
+        case (.authentication, .authentication), (.parser, .parser), (.timeout, .timeout), (.network, .network), (.generic, .generic):
             return true
         default:
             return false

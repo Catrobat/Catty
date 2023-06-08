@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,21 +25,23 @@ import XCTest
 class PocketCodeMainScreenTests: XCTestCase {
 
     public static let settingsButtonLabel = "Settings"
+    public static let accountButtonLabel = "Account"
 
     var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-        app = launchApp()
     }
 
     func testContinue() {
+        app = launchApp()
         app.tables.staticTexts[kLocalizedContinueProject].tap()
 
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
     }
 
     func testNew() {
+        app = launchApp()
         let testProject = "testProject"
 
         app.tables.staticTexts[kLocalizedNewProject].tap()
@@ -65,6 +67,7 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testNewInvalidNames() {
+        app = launchApp()
         let progNamesErrorMsgMap = ["": "No input. Please enter at least 1 character.",
                                     String(repeating: "i", count: 25 + 1): "The input is too long. Please enter maximal 25 character(s).",
                                     ".": "Only special characters are not allowed. Please enter at least 1 other character.",
@@ -90,6 +93,7 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testNewCanceled() {
+        app = launchApp()
         app.tables.staticTexts[kLocalizedNewProject].tap()
 
         let alertQuery = app.alerts[kLocalizedNewProject]
@@ -100,6 +104,7 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testProjects() {
+        app = launchApp()
         let projectNames = ["testProject1", "testProject2"]
 
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
@@ -129,27 +134,44 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testHelp() {
+        app = launchApp()
         app.tables.staticTexts[kLocalizedHelp].tap()
 
         XCTAssert(app.navigationBars[kLocalizedHelp].exists)
     }
 
     func testExplore() {
+        app = launchApp()
         app.tables.staticTexts[kLocalizedCatrobatCommunity].tap()
 
         XCTAssert(app.navigationBars[kLocalizedCatrobatCommunity].exists)
     }
 
-    func testUploadRedirectToLogin() {
-        app.navigationBars.buttons[type(of: self).settingsButtonLabel].tap()
-
-        if app.tables.staticTexts[kLocalizedLogout].exists {
-            app.tables.staticTexts[kLocalizedLogout].tap()
-        } else {
-            app.navigationBars.buttons[kLocalizedPocketCode].tap()
-        }
-
+    func testUpload() {
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedIn"])
         app.tables.staticTexts[kLocalizedUploadProject].tap()
-        XCTAssert(app.navigationBars[kLocalizedLogin].exists)
+
+        XCTAssert(waitForElementToAppear(app.navigationBars.buttons[kLocalizedUploadProject]).exists)
+    }
+
+    func testUploadRedirectToLogin() {
+        app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedOut"])
+        app.tables.staticTexts[kLocalizedUploadProject].tap()
+
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedLogin]).exists)
+    }
+
+    func testAccountMenu() {
+        let app = launchApp(with: XCTestCase.defaultLaunchArguments + ["setUserLoggedIn"])
+        app.navigationBars.buttons[PocketCodeMainScreenTests.accountButtonLabel].tap()
+        XCTAssert(app.staticTexts["testUsername"].exists)
+        XCTAssert(app.buttons[kLocalizedLogout].exists)
+
+        app.buttons[kLocalizedLogout].tap()
+        XCTAssertFalse(app.staticTexts["testUsername"].exists)
+        XCTAssertFalse(app.buttons[kLocalizedLogout].exists)
+
+        app.navigationBars.buttons[PocketCodeMainScreenTests.accountButtonLabel].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedLogin]).exists)
     }
 }

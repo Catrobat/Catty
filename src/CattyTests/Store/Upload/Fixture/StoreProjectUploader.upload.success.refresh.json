@@ -1,0 +1,102 @@
+{
+  "name" : "StoreProjectUploader.upload.success.upgrade",
+  "interactions" : [
+      {
+        "request" : {
+          "headers" : {
+            "Content-Type" : "application\/json"
+          },
+          "url" : "https:\/\/web-test.catrob.at\/api\/authentication\/refresh",
+          "body" : {
+            "refresh_token" : "6b40fb5dac84fbd8c5b904545b09130efe6748686a1dca65b3ecc8b51e2e82733825f49b9536fc053c43d0755dc4350ec552ef81e5c0676251552767b090cacb"
+          },
+          "method" : "POST"
+        },
+        "response" : {
+          "status" : 200,
+          "body" : {
+            "token" : "newTestToken",
+            "refresh_token" : "newTestRefreshToken"
+          },
+          "headers" : {
+            "Date" : "Mon, 27 Feb 2023 11:26:21 GMT",
+            "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=3Clargr%2BY2JdA890fLHfsVoX69PlPyTgnfl81MOWAD8ldk41XS3SLnefujofJ2%2FLLBt3Js%2BtsUzbdgmgqNXodOA7FTLe%2FEQ7fQjad6HmYUJHQo8mntRrJg1R3HQrYrhq0BCexk0PMeBzP9gRVV4%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+            "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+            "Cache-Control" : "private, must-revalidate",
+            "Set-Cookie" : "dtCookie=v_4_srv_15_sn_5CA86C50C35DB64E1465AC38AB8BDC2E_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+            "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"-614085235\"",
+            "cf-cache-status" : "DYNAMIC",
+            "Server" : "cloudflare",
+            "Pragma" : "no-cache",
+            "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+            "Content-Encoding" : "br",
+            "Content-Type" : "application\/json",
+            "cf-ray" : "7a0090a6bfc60d63-VIE",
+            "Expires" : "-1"
+          },
+          "url" : "https:\/\/web-test.catrob.at\/api\/authentication\/refresh"
+        },
+        "recorded_at" : 1677497181.2449431
+      },
+    {
+      "response" : {
+        "status" : 201,
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects",
+        "body" : {
+          "flavor" : "pocketcode",
+          "project_url" : "https:\/\/web-test.catrob.at\/app\/project\/2c43d3ee-4ba4-4dd5-9811-4bdb1656bdde",
+          "reactions" : 0,
+          "tags" : [
+
+          ],
+          "filesize" : 0.80131626129150391,
+          "downloads" : 0,
+          "private" : false,
+          "views" : 0,
+          "name" : "Mein erstes Projekt",
+          "version" : "0.6.20",
+          "download_url" : "https:\/\/web-test.catrob.at\/api\/project\/2c43d3ee-4ba4-4dd5-9811-4bdb1656bdde\/catrobat",
+          "id" : "2c43d3ee-4ba4-4dd5-9811-4bdb1656bdde",
+          "uploaded_string" : "< 1 minute ago",
+          "screenshot_large" : "https:\/\/web-test.catrob.at\/resources\/screenshots\/screen_2c43d3ee-4ba4-4dd5-9811-4bdb1656bdde.png?t=1677515467",
+          "comments" : 0,
+          "screenshot_small" : "https:\/\/web-test.catrob.at\/resources\/thumbnails\/screen_2c43d3ee-4ba4-4dd5-9811-4bdb1656bdde.png?t=1677515467",
+          "credits" : "",
+          "download" : 0,
+          "uploaded" : 1677515466,
+          "author" : "Wallcom",
+          "description" : ""
+        },
+        "headers" : {
+          "x-openapi-message" : "Project successfully uploaded",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"615991014\"",
+          "cf-cache-status" : "DYNAMIC",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "Expires" : "-1",
+          "Server" : "cloudflare",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "Pragma" : "no-cache",
+          "Date" : "Mon, 27 Feb 2023 16:31:07 GMT",
+          "Content-Type" : "application\/json",
+          "Cache-Control" : "private, must-revalidate",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=MhlKJFlrjGQ2%2FXkeeivdCatRxn61XqCmHuvZ%2Fm%2F4ayhh40WlU87nbMaXCI%2BFuKWO6M3bJJsO65rNOQV%2BkbueDKCEn8DpXL%2BkB5rcNKQL6UcSl698ySpzY66098yELhXVsx1gCvO6lgIxK7nFAa4%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Location" : "https:\/\/web-test.catrob.at\/app\/project\/2c43d3ee-4ba4-4dd5-9811-4bdb1656bdde",
+          "Set-Cookie" : "dtCookie=v_4_srv_12_sn_FF7A3DCAF0770563E42C89FDBDC2E644_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "cf-ray" : "7a024f0bcc65c2e3-VIE"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "headers" : {
+          "Authorization" : "Bearer newTestToken",
+          "Accept-Language" : "en",
+          "Content-Length" : "473",
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------"
+        },
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJjaGVja3N1bSINCg0KYWE2NTU5NTRmMzE2MmNjZjUyYTBlN2E1MjUzY2Y5ZjMNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGF0dGFjaG1lbnQ7IG5hbWU9ImZpbGUiOyBmaWxlbmFtZT0iLnppcCIgDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL29jdGV0LXN0cmVhbQ0KDQp6aXBwZWRQcm9qZWN0RGF0YQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo=",
+        "url" : "https:\/\/web-test.catrob.at\/api\/projects"
+      },
+      "recorded_at" : 1677515467.321923
+    }
+  ]
+}

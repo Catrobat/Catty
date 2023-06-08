@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,23 +29,26 @@ class Stitch: Equatable {
     var isColorChange = false
     var isInterpolated = false
     var isDrawn = false
+    var color: UIColor
 
     init<T: BinaryInteger>(x: T, y: T, asJump isJump: Bool = false, isInterpolated: Bool = false) {
         self.x = CGFloat(x)
         self.y = CGFloat(y)
         self.isJump = isJump
         self.isInterpolated = isInterpolated
+        self.color = SpriteKitDefines.defaultStitchingColor
     }
 
-    init<T: BinaryFloatingPoint>(x: T, y: T, asJump isJump: Bool = false, isInterpolated: Bool = false) {
+    init<T: BinaryFloatingPoint>(x: T, y: T, withColor: UIColor = SpriteKitDefines.defaultStitchingColor, asJump isJump: Bool = false, isInterpolated: Bool = false) {
         self.x = CGFloat(x)
         self.y = CGFloat(y)
         self.isJump = isJump
         self.isInterpolated = isInterpolated
+        self.color = withColor
     }
 
-    convenience init(atPosition pos: CGPoint, asJump isJump: Bool = false, isInterpolated: Bool = false) {
-        self.init(x: pos.x, y: pos.y, asJump: isJump, isInterpolated: isInterpolated)
+    convenience init(atPosition pos: CGPoint, withColor: UIColor = SpriteKitDefines.defaultStitchingColor, asJump isJump: Bool = false, isInterpolated: Bool = false) {
+        self.init(x: pos.x, y: pos.y, withColor: withColor, asJump: isJump, isInterpolated: isInterpolated)
     }
 
     static func == (lhs: Stitch, rhs: Stitch) -> Bool {
@@ -65,5 +68,13 @@ class Stitch: Equatable {
 
     func getPosition() -> CGPoint {
         CGPoint(x: self.x, y: self.y)
+    }
+
+    func setColor(color: UIColor) {
+        self.color = color
+    }
+
+    func getColor() -> UIColor {
+        self.color
     }
 }

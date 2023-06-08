@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -159,6 +159,7 @@
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
 #import "UndoManager.h"
+#import "TimerLabel.h"
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes
@@ -169,11 +170,8 @@
 #import "FormulaEditorViewController.h"
 #import "MyProjectsViewController.h"
 #import "SceneTableViewController.h"
-#import "TermsOfUseOptionTableViewController.h"
-#import "AboutPocketCodeOptionTableViewController.h"
 #import "CatrobatTableViewController.h"
 #import "ScriptCollectionViewController.h"
-#import "LoginViewController.h"
 #import "ProjectDetailStoreViewController.h"
 
 //------------------------------------------------------------------------------------------------------------

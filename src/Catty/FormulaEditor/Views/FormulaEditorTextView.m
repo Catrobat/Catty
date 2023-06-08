@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@
 #define TEXT_FIELD_MARGIN_BOTTOM 2
 #define BACKSPACE_HEIGHT 28
 #define BACKSPACE_WIDTH 28
+#define BACKSPACE_PADDING 5
 
 - (id)initWithFrame:(CGRect)frame AndFormulaEditorViewController:(FormulaEditorViewController*)formulaEditorViewController
 {
@@ -63,9 +64,10 @@
         self.textContainerInset = UIEdgeInsetsMake(TEXT_FIELD_PADDING_VERTICAL, TEXT_FIELD_PADDING_HORIZONTAL, TEXT_FIELD_PADDING_VERTICAL, TEXT_FIELD_PADDING_HORIZONTAL + BACKSPACE_WIDTH);
         
         self.backspaceButton = [[UIButton alloc] init];
-        [self.backspaceButton setImage:[UIImage imageNamed:@"del_active"] forState:UIControlStateNormal];
-        [self.backspaceButton setImage:[UIImage imageNamed:@"del"] forState:UIControlStateDisabled];
-        self.backspaceButton.tintColor = UIColor.globalTint;
+        [self.backspaceButton setImage:[UIImage imageNamed:@"xmark.circle.fill"] forState:UIControlStateNormal];
+        self.backspaceButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.backspaceButton.imageEdgeInsets = UIEdgeInsetsMake(BACKSPACE_PADDING, 0, BACKSPACE_PADDING, BACKSPACE_PADDING * 2);
+        self.backspaceButton.tintColor = UIColor.formulaEditorLargeButtons;
         self.backspaceButton.frame = CGRectMake(self.frame.size.width - BACKSPACE_WIDTH, 0, BACKSPACE_HEIGHT, BACKSPACE_WIDTH);
         [self.backspaceButton addTarget:self action:@selector(clear) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.backspaceButton];

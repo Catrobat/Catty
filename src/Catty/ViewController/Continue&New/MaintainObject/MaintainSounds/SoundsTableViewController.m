@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,6 @@
 #import "CBFileManager.h"
 #import "CBFileManager.h"
 #import "RuntimeImageCache.h"
-#import "SRViewController.h"
 #import "PlaceHolderView.h"
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
@@ -41,7 +40,6 @@
 @interface SoundsTableViewController () <AudioManagerDelegate,AVAudioPlayerDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (atomic, strong) Sound *currentPlayingSong;
-@property (atomic, strong) Sound *sound;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic,assign) BOOL isAllowed;
 @property (nonatomic,assign) BOOL deletionMode;
@@ -287,8 +285,8 @@
     }
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     imageCell.indexPath = indexPath;
-    static NSString *playIconName = @"ic_media_play";
-    static NSString *stopIconName = @"ic_media_pause";
+    static NSString *playIconName = @"play.circle";
+    static NSString *stopIconName = @"stop.circle";
 
     // determine right icon, therefore check if this song is played currently
     NSString *rightIconName = playIconName;
@@ -312,6 +310,8 @@
     } else {
         imageCell.iconImageView.image = image;
     }
+
+    imageCell.iconImageView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
 
     imageCell.titleLabel.text = sound.name;
     imageCell.iconImageView.userInteractionEnabled = YES;
@@ -470,14 +470,14 @@
         BOOL isPlaying = sound.isPlaying;
         if (self.currentPlayingSong && self.currentPlayingSongCell) {
             self.currentPlayingSong.playing = NO;
-            self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+            self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"play.circle"];
         }
         self.currentPlayingSong = sound;
         self.currentPlayingSongCell = imageCell;
         self.currentPlayingSong.playing = (! isPlaying);
-        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"play.circle"];
         if (! isPlaying)
-            imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause"];
+            imageCell.iconImageView.image = [UIImage imageNamed:@"stop.circle"];
         
         // ASYNC !! lock lost here...
         // acquire new lock, because this part is executed asynchronously (!) on another thread
@@ -528,7 +528,7 @@
         self.currentPlayingSong = nil;
         self.currentPlayingSongCell = nil;
         
-        static NSString *playIconName = @"ic_media_play";
+        static NSString *playIconName = @"play.circle";
         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
         UIImage *image = [imageCache cachedImageForName:playIconName];
         
@@ -562,7 +562,7 @@
         self.currentPlayingSong = nil;
         self.currentPlayingSongCell = nil;
         
-        static NSString *playIconName = @"ic_media_play";
+        static NSString *playIconName = @"play.circle";
         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
         UIImage *image = [imageCache cachedImageForName:playIconName];
         
@@ -594,7 +594,7 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     if (self.currentPlayingSongCell) {
-        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"play.circle"];
     }
     self.currentPlayingSong.playing = NO;
     self.currentPlayingSong = nil;
@@ -619,7 +619,7 @@
                      dispatch_async(dispatch_get_main_queue(), ^{
                          self.isAllowed = YES;
                          [self stopAllSounds];
-                         SRViewController *soundRecorderViewController;
+                         SoundRecorderViewController *soundRecorderViewController;
                          
                          soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
                          soundRecorderViewController.delegate = self;
@@ -713,63 +713,19 @@
 -(void)addSound:(Sound *)sound
 {
     if (self.isAllowed) {
-        Sound* recording =(Sound*)sound;
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@", [CBFileManager sharedManager].documentsDirectory, recording.fileName];
-        [self addSoundToObjectAction:recording];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", [CBFileManager sharedManager].documentsDirectory, sound.fileName];
+        [self addSoundToObjectAction:sound];
         NSError *error;
         [fileManager removeItemAtPath:filePath error:&error];
-        if (error) {
-            NSDebug(@"-.-");
-        }
         self.isAllowed = NO;
-
-    }
-    if (self.afterSafeBlock) {
-        self.afterSafeBlock(nil);
-    }
-    [self reloadData];
-}
-
-- (void)showDownloadSoundAlert:(Sound *)sound
-{
-    self.sound = sound;
-    [self saveSound];
-}
-
-- (void)showSaveSoundAlert:(Sound *)sound
-{
-    self.sound = sound;
-    [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         [self cancelPaintSave];
-     }]
-     addDefaultActionWithTitle:kLocalizedYes handler:^{
-         [self saveSound];
-     }] build]
-     showWithController:self];
-}
-
-
-- (void)saveSound
-{
-    if (self.sound) {
-        [self addSound:self.sound];
     }
     
     if (self.afterSafeBlock) {
         self.afterSafeBlock(nil);
     }
-}
-
-- (void)cancelPaintSave
-{
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, self.sound.fileName];
-    [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
-    if (self.afterSafeBlock) {
-        self.afterSafeBlock(nil);
-    }
+    
+    [self reloadData];
 }
 
 @end

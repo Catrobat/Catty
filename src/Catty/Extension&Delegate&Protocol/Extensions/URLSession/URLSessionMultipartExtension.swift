@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,14 +24,18 @@ extension URLSession {
 
     static var httpBoundary = "---------------------------98598263596598246508247098291---------------------------"
 
-    public func multipartUploadTask(with url: URL, from formData: [FormData], attachmentData: [AttachmentData],
-                                    completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    public func multipartUploadTask(with url: URL, from formData: [FormData], headers: [String: String] = [:],
+                                    attachmentData: [AttachmentData] = [], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
         let contentType = "multipart/form-data; boundary=\(type(of: self).httpBoundary)"
         request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+
+        for header in headers {
+            request.addValue(header.value, forHTTPHeaderField: header.key)
+        }
 
         var body = Data()
 

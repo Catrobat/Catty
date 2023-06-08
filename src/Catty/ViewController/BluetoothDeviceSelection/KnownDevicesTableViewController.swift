@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -66,15 +66,8 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
     }
 
     func getKnownDevices() {
-        //        let afterPeripheralDiscovered = {(peripherals:[Peripheral]) -> Void in
-        //            self.knownDevices = peripherals
-        //            self.updateWhenActive()
-        //        }
-        //        let afterTimeout = {(error:NSError) -> Void in
-        //
-        //        }
         var knownCBPeripherals: [CBPeripheral]
-        let stringArray = UserDefaults.standard.array(forKey: "KnownBluetoothDevices") as? [String]
+        let stringArray = UserDefaults.standard.array(forKey: kKnownBluetoothDevices) as? [String]
         let uuidArray = stringArray?.compactMap { UUID(uuidString: $0) }
         knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(uuidArray ?? [])
         for peri in knownCBPeripherals {

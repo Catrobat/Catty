@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -270,7 +270,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     doneButton.tintColor = UIColor.navTint;
     
-    UIImage* undoButtonImage = [UIImage imageNamed:@"undoButton"];
+    UIImage* undoButtonImage = [UIImage imageNamed:@"arrow.uturn.backward.circle#navbar"];
     self.undoButton = [[UIBarButtonItem alloc] initWithImage: undoButtonImage
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
@@ -278,7 +278,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self.undoButton setEnabled:false];
     
-    UIImage* redoButtonImage = [UIImage imageNamed:@"redoButton"];
+    UIImage* redoButtonImage = [UIImage imageNamed:@"arrow.uturn.forward.circle#navbar"];
     self.redoButton = [[UIBarButtonItem alloc] initWithImage: redoButtonImage
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ import UIKit
     var scriptCollectionViewController: ScriptCollectionViewController
 
     // MARK: Init
-    @objc(init:) init(scriptCollectionViewController: ScriptCollectionViewController) {
+    @objc init(scriptCollectionViewController: ScriptCollectionViewController) {
         self.scriptCollectionViewController = scriptCollectionViewController
         categegoriesBricks = CatrobatSetup.self.registeredBrickCategories()
 
@@ -65,7 +65,7 @@ import UIKit
         brickCategoryOverviewCollectionView.register(BrickCategoryOverviewCollectionViewCell.self, forCellWithReuseIdentifier: BrickCategoryOverviewCollectionViewCell.identifier)
         brickCategoryOverviewCollectionView.delegate = self
         brickCategoryOverviewCollectionView.dataSource = self
-        brickCategoryOverviewCollectionView.backgroundColor = UIColor.white
+        brickCategoryOverviewCollectionView.backgroundColor = UIColor.background
         brickCategoryOverviewCollectionView.autoresizesSubviews = true
         brickCategoryOverviewCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 

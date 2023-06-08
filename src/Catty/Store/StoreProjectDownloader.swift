@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,12 +47,16 @@ class StoreProjectDownloader: NSObject, StoreProjectDownloaderProtocol {
 
         let version: String = Util.catrobatLanguageVersion()
 
-        var indexURLComponents = URLComponents(string: NetworkDefines.apiEndpointSearch)
+        var attributes = StoreProject.defaultQueryParameters
+        attributes.append(StoreProject.CodingKeys.author.rawValue)
+
+        var indexURLComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsSearch)
         indexURLComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectQuery, value: searchTerm),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(0))
+            URLQueryItem(name: NetworkDefines.apiParameterQuery, value: searchTerm),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.searchProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(0)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
 
         guard let indexURL = indexURLComponents?.url else {
@@ -107,12 +111,23 @@ class StoreProjectDownloader: NSObject, StoreProjectDownloaderProtocol {
 
         let version: String = Util.catrobatLanguageVersion()
 
+        var attributes = StoreProject.defaultQueryParameters
+        switch type {
+        case .mostDownloaded:
+            attributes.append(StoreProject.CodingKeys.downloads.rawValue)
+        case .mostViewed:
+            attributes.append(StoreProject.CodingKeys.views.rawValue)
+        case .mostRecent:
+            attributes.append(StoreProject.CodingKeys.uploaded.rawValue)
+        }
+
         var urlComponents = URLComponents(string: NetworkDefines.apiEndpointProjects)
         urlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.projectCategory, value: type.apiCategory()),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterCategory, value: type.apiCategory()),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.chartProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
 
         guard let url = urlComponents?.url else {
@@ -161,14 +176,18 @@ class StoreProjectDownloader: NSObject, StoreProjectDownloaderProtocol {
     }
 
     func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void) {
+
         let version: String = Util.catrobatLanguageVersion()
 
-        var featuredUrlComponents = URLComponents(string: NetworkDefines.apiEndpointFeatured)
+        let attributes = StoreFeaturedProject.defaultQueryParameters
+
+        var featuredUrlComponents = URLComponents(string: NetworkDefines.apiEndpointProjectsFeatured)
         featuredUrlComponents?.queryItems = [
-            URLQueryItem(name: NetworkDefines.featuredPlatform, value: NetworkDefines.currentPlatform),
-            URLQueryItem(name: NetworkDefines.maxVersion, value: version),
-            URLQueryItem(name: NetworkDefines.projectsLimit, value: String(NetworkDefines.recentProjectsMaxResults)),
-            URLQueryItem(name: NetworkDefines.projectsOffset, value: String(offset))
+            URLQueryItem(name: NetworkDefines.apiParameterPlatform, value: NetworkDefines.currentPlatform),
+            URLQueryItem(name: NetworkDefines.apiParameterMaxVersion, value: version),
+            URLQueryItem(name: NetworkDefines.apiParameterLimit, value: String(NetworkDefines.featuredProjectsBatchSize)),
+            URLQueryItem(name: NetworkDefines.apiParameterOffset, value: String(offset)),
+            URLQueryItem(name: NetworkDefines.apiParameterAttributes, value: attributes.joined(separator: ","))
         ]
 
         guard let url = featuredUrlComponents?.url else {
@@ -218,7 +237,7 @@ class StoreProjectDownloader: NSObject, StoreProjectDownloaderProtocol {
     }
 
     func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
-        guard let indexURL = URL(string: "\(NetworkDefines.apiEndpointProjectDetails)/\(projectId)") else { return }
+        guard let indexURL = URL(string: "\(NetworkDefines.apiEndpointProject)/\(projectId)") else { return }
 
         self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (project: StoreProject?, error: StoreProjectDownloaderError?)
@@ -251,7 +270,7 @@ class StoreProjectDownloader: NSObject, StoreProjectDownloaderProtocol {
     }
 
     func download(projectId: String, projectName: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
-        guard let indexURL = URL(string: "\(NetworkDefines.downloadUrl)/\(projectId).catrobat") else { return }
+        guard let indexURL = URL(string: "\(NetworkDefines.apiEndpointProject)/\(projectId)/\(NetworkDefines.apiActionDownload)") else { return }
         let task = self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (projectData: Data?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in

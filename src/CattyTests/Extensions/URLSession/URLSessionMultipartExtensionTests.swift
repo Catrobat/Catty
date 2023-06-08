@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,106 +25,101 @@ import XCTest
 @testable import Pocket_Code
 
 final class URLSessionMultipartExtensionTests: XCTestCase {
+    let url = URL(string: NetworkDefines.apiEndpointProject)!
 
-    var urlSession: URLSession!
-    var url: URL!
-    let uploadParameterTag = "upload"
-    let projectNameTag = "projectTitle"
-    let projectDescriptionTag = "projectDescription"
-    var expectedZippedProjectData: Data!
+    let keyChecksum = "checksum"
+    let keyFile = "file"
 
-    override func setUp() {
-        self.urlSession = URLSession.shared
-        self.url = URL(string: NetworkDefines.uploadUrl)!
-        self.expectedZippedProjectData = "zippedProjectData".data(using: .utf8)
-    }
+    let testLanguage = "en"
+    let testChecksum = "8a382118b630df98d4a90336174bc528"
+    let testFile = "someTestData".data(using: .utf8)!
+    let testFilename = "filename.bin"
 
     func testMultipartUploadTask() {
-        let projectName = "testProjectName"
-        let projectDescription = "testProjectDescription"
-        let filename = "testFilename.zip"
+        let formData = [FormData(name: keyChecksum, value: testChecksum)]
 
-        let formData = [FormData(name: projectNameTag, value: projectName),
-                        FormData(name: projectDescriptionTag, value: projectDescription)]
+        let headers = ["Accept-Language": testLanguage]
 
-        let attachmentData = [AttachmentData(name: uploadParameterTag, data: expectedZippedProjectData, filename: filename)]
+        let attachmentData = [AttachmentData(name: keyFile, data: testFile, filename: testFilename)]
 
-        let expectedMinimumSize = projectNameTag.count + projectName.count + projectDescriptionTag.count +
-            projectDescription.count + uploadParameterTag.count + expectedZippedProjectData.count + filename.count +
-            URLSession.httpBoundary.count * 4
+        let expectedMinimumSize = keyChecksum.count + testChecksum.count + keyFile.count + testFile.count + testFilename.count + URLSession.httpBoundary.count * 3
 
-        let task = self.urlSession!.multipartUploadTask(with: url,
-                                                        from: formData,
-                                                        attachmentData: attachmentData,
-                                                        completionHandler: { data, response, error in
+        let task = URLSession.shared.multipartUploadTask(with: url,
+                                                         from: formData,
+                                                         headers: headers,
+                                                         attachmentData: attachmentData,
+                                                         completionHandler: { data, response, error in
                                                             XCTAssertNotNil(data)
                                                             XCTAssertNotNil(response)
                                                             XCTAssertNil(error)
         })
 
         XCTAssertEqual("POST", task.originalRequest?.httpMethod)
+        XCTAssertEqual(task.originalRequest!.allHTTPHeaderFields!["Accept-Language"]!, testLanguage)
         XCTAssertTrue(Int(task.originalRequest!.allHTTPHeaderFields!["Content-Length"]!)! >= expectedMinimumSize)
 
         let request = String(decoding: task.originalRequest!.httpBody!, as: UTF8.self)
 
-        XCTAssertEqual(4, request.components(separatedBy: URLSession.httpBoundary).count - 1)
-        XCTAssertTrue(request.contains(projectNameTag))
-        XCTAssertTrue(request.contains(projectName))
-        XCTAssertTrue(request.contains(projectDescriptionTag))
-        XCTAssertTrue(request.contains(projectDescription))
-        XCTAssertTrue(request.contains(uploadParameterTag))
-        XCTAssertTrue(request.contains("filename=\"" + filename + "\""))
-        XCTAssertTrue(request.contains(String(decoding: expectedZippedProjectData, as: UTF8.self)))
+        XCTAssertEqual(3, request.components(separatedBy: URLSession.httpBoundary).count - 1)
+        XCTAssertTrue(request.contains(keyChecksum))
+        XCTAssertTrue(request.contains(testChecksum))
+        XCTAssertTrue(request.contains(keyFile))
+        XCTAssertTrue(request.contains("filename=\"" + testFilename + "\""))
+        XCTAssertTrue(request.contains(String(decoding: testFile, as: UTF8.self)))
     }
 
     func testMultipartUploadTaskWithAttachmentWithoutFilename() {
-        let projectName = "testProjectName"
+        let formData = [FormData(name: keyChecksum, value: testChecksum)]
 
-        let formData = [FormData(name: projectNameTag, value: projectName)]
-        let attachmentData = [AttachmentData(name: uploadParameterTag, data: expectedZippedProjectData, filename: nil)]
+        let headers = ["Accept-Language": testLanguage]
 
-        let task = self.urlSession!.multipartUploadTask(with: url,
-                                                        from: formData,
-                                                        attachmentData: attachmentData,
-                                                        completionHandler: { data, response, error in
+        let attachmentData = [AttachmentData(name: keyFile, data: testFile, filename: nil)]
+
+        let task = URLSession.shared.multipartUploadTask(with: url,
+                                                         from: formData,
+                                                         headers: headers,
+                                                         attachmentData: attachmentData,
+                                                         completionHandler: { data, response, error in
                                                             XCTAssertNotNil(data)
                                                             XCTAssertNotNil(response)
                                                             XCTAssertNil(error)
         })
 
         XCTAssertEqual("POST", task.originalRequest?.httpMethod)
+        XCTAssertEqual(task.originalRequest!.allHTTPHeaderFields!["Accept-Language"]!, testLanguage)
 
         let request = String(decoding: task.originalRequest!.httpBody!, as: UTF8.self)
 
         XCTAssertEqual(3, request.components(separatedBy: URLSession.httpBoundary).count - 1)
-        XCTAssertTrue(request.contains(projectNameTag))
-        XCTAssertTrue(request.contains(projectName))
-        XCTAssertTrue(request.contains(uploadParameterTag))
+        XCTAssertTrue(request.contains(keyChecksum))
+        XCTAssertTrue(request.contains(testChecksum))
+        XCTAssertTrue(request.contains(keyFile))
         XCTAssertFalse(request.contains("filename=\""))
-        XCTAssertTrue(request.contains(String(decoding: expectedZippedProjectData, as: UTF8.self)))
+        XCTAssertTrue(request.contains(String(decoding: testFile, as: UTF8.self)))
     }
 
     func testMultipartUploadTaskWithoutAttachments() {
-        let projectName = "testProjectName"
+        let formData = [FormData(name: keyChecksum, value: testChecksum)]
 
-        let formData = [FormData(name: projectNameTag, value: projectName)]
+        let headers = ["Accept-Language": testLanguage]
 
-        let task = self.urlSession!.multipartUploadTask(with: url,
-                                                        from: formData,
-                                                        attachmentData: [],
-                                                        completionHandler: { data, response, error in
+        let task = URLSession.shared.multipartUploadTask(with: url,
+                                                         from: formData,
+                                                         headers: headers,
+                                                         completionHandler: { data, response, error in
                                                             XCTAssertNotNil(data)
                                                             XCTAssertNotNil(response)
                                                             XCTAssertNil(error)
         })
 
         XCTAssertEqual("POST", task.originalRequest?.httpMethod)
+        XCTAssertEqual(task.originalRequest!.allHTTPHeaderFields!["Accept-Language"]!, testLanguage)
 
         let request = String(decoding: task.originalRequest!.httpBody!, as: UTF8.self)
 
         XCTAssertEqual(2, request.components(separatedBy: URLSession.httpBoundary).count - 1)
-        XCTAssertTrue(request.contains(projectNameTag))
-        XCTAssertTrue(request.contains(projectName))
+        XCTAssertTrue(request.contains(keyChecksum))
+        XCTAssertTrue(request.contains(testChecksum))
         XCTAssertFalse(request.contains("filename=\""))
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -170,7 +170,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
         // store image in cache
         let indexPath = IndexPath(item: 0, section: 1)
-        let resource = ImageResource(downloadURL: self.exampleCategories[indexPath].downloadURL)
+        let resource = ImageResource(downloadURL: self.exampleCategories[indexPath].downloadURL!)
         ImageCache.default.store(UIImage(data: kExampleData)!, forKey: resource.cacheKey)
 
         let expectation = XCTestExpectation(description: "Fetch looks")
@@ -446,8 +446,8 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 // MARK: - Extensions
 
 private extension MediaItem {
-    init(name: String = "", category: String = "", cachedData: Data? = nil) {
-        self.init(name: name, fileExtension: "", category: category, relativePath: "", cachedData: cachedData)
+    init(name: String? = nil, category: String? = nil, cachedData: Data? = nil) {
+        self.init(id: 0, name: name, category: category, downloadURLString: NetworkDefines.shareUrl, cachedData: cachedData)
     }
 }
 

@@ -8,10 +8,16 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"About" = "アプリについて";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "キャットロバットについて";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "ポケットコードについて";
+
+/* No comment provided by engineer. */
+"About Us" = "About Us";
 
 /* No comment provided by engineer. */
 "absolute value" = "abs";
@@ -143,6 +149,9 @@
 "Arduino extension" = "Arduino ブロック";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
 "Ask " = "質問する ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "Catrobat コミュニティ";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat website";
 
 /* No comment provided by engineer. */
 "ceiling" = "天井に";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "削除";
+
+/* No comment provided by engineer. */
+"Delete account" = "アカウントを削除";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "アクターまたはオブジェクトを削除";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "ループの終わり";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "理由を入力してください。";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "ここに画像名を入力してください...";
 
@@ -698,9 +710,6 @@
 "Error" = "エラー";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "プロジェクトの報告中にエラーが発生しました。後でもう一度やり直してください。";
-
-/* No comment provided by engineer. */
 "Error saving file" = "ファイルの保存に失敗しました";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "指数関数";
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensions";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -845,6 +857,9 @@
 "head top y" = "ヘッドトップ y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "こんにちは！";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = " 時間";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "検出されたオブジェクトのID";
 
 /* No comment provided by engineer. */
 "If" = "もし";
@@ -959,6 +977,9 @@
 "LA" = "LA";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
+
+/* No comment provided by engineer. */
 "Last access" = "最終アクセス";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "左";
 
 /* No comment provided by engineer. */
+"left ankle x" = "左足首 x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "左足首Y";
+
+/* No comment provided by engineer. */
 "left ear x" = "左耳X";
 
 /* No comment provided by engineer. */
 "left ear y" = "左耳Y";
+
+/* No comment provided by engineer. */
+"left elbow x" = "左ひじ x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "左ひじY";
 
 /* No comment provided by engineer. */
 "left eye center x" = "左目のセンターX";
@@ -1020,6 +1053,60 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left hip x" = "左腰 x";
+
+/* No comment provided by engineer. */
+"left hip y" = "左ヒップY";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "左インデックスナックル x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "左インデックスナックルY";
+
+/* No comment provided by engineer. */
+"left knee x" = "左ひざ x";
+
+/* No comment provided by engineer. */
+"left knee y" = "左ひざY";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "left middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "left middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "左の小指の関節 x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "左小指のナックル Y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "left ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "left ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "左肩 x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "左肩Y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "左手の親指のナックル x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "左サムナックルY";
+
+/* No comment provided by engineer. */
+"left wrist x" = "左手首 x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "左手首Y";
 
 /* No comment provided by engineer. */
 "left-right only" = "左右のみ";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "ln";
 
 /* No comment provided by engineer. */
+"neck x" = "ネックx";
+
+/* No comment provided by engineer. */
+"neck y" = "ネックy";
+
+/* No comment provided by engineer. */
 "New" = "新しい";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "検索結果がありません";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "空白文字は使用できません";
-
-/* No comment provided by engineer. */
 "nose x" = "鼻x";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "アイテム数";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "テキストブロックの数";
+
+/* No comment provided by engineer. */
 "Numbers" = "数値";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "オブジェクトまたはアクター名";
+
+/* No comment provided by engineer. */
+"Object recognition" = "オブジェクト認識";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "ID が表示されたオブジェクト";
 
 /* No comment provided by engineer. */
 "Oct" = "10月";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "少なくとも %lu 文字を入力してください。";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "このプロジェクトを不適切として報告するにはログインしてください";
-
 /* paint */
 "Please pick a tool" = "ツールを選択してください";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "前の外見";
 
 /* No comment provided by engineer. */
+"Privacy" = "Privacy";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "プライバシー設定";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "赤";
 
 /* No comment provided by engineer. */
-"Register" = "登録";
-
-/* No comment provided by engineer. */
 "Registration successful" = "登録が完了しました";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "リストのアイテムを置き換え";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "不適切として報告します。";
-
 /* paint */
 "Resize" = "サイズ変更";
 
@@ -1613,10 +1706,22 @@
 "Right" = "右";
 
 /* No comment provided by engineer. */
+"right ankle x" = "右足首 x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "右足首Y";
+
+/* No comment provided by engineer. */
 "right ear x" = "右耳X";
 
 /* No comment provided by engineer. */
 "right ear y" = "右耳y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "右ひじ x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "右ひじY";
 
 /* No comment provided by engineer. */
 "right eye center x" = "右目のセンターX";
@@ -1653,6 +1758,60 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right hip x" = "右腰 x";
+
+/* No comment provided by engineer. */
+"right hip y" = "右腰Y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "右インデックスナックル x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "右インデックスナックルY";
+
+/* No comment provided by engineer. */
+"right knee x" = "右ひざ x";
+
+/* No comment provided by engineer. */
+"right knee y" = "右ひざY";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "right middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "right middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "右小指のナックル x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "右小指のナックル Y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "right ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "right ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "右肩x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "右肩Y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "右親指ナックルX";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "右サムナックルY";
+
+/* No comment provided by engineer. */
+"right wrist x" = "右手首 x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "右手首Y";
 
 /* paint */
 "Rotate" = "回転";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "テンポを設定";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "糸の色を";
+
+/* No comment provided by engineer. */
 "Set transparency " = "透明度の設定 ";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "サウンドを開始して待つ";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "トリプルステッチを長さで開始";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "ジグザグステッチを長さで開始";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "テキスト";
 
 /* No comment provided by engineer. */
+"text block from camera" = "カメラからのテキストブロック";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "カメラからのテキストブロック言語";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "カメラからのテキストブロックサイズ";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "カメラからのテキストブロック x";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "カメラからのテキストブロック y";
+
+/* No comment provided by engineer. */
+"text from camera" = "カメラからのテキスト";
+
+/* No comment provided by engineer. */
 "Text message:" = "テキストメッセージ:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "テキスト認識";
 
 /* paint */
 "Text:" = "テキストです。";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "真";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Trusted domains";
 
 /* No comment provided by engineer. */
 "Tu" = "(火)";
@@ -2204,6 +2393,9 @@
 "View" = "表示";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "View Terms of Use and Service";
+
+/* No comment provided by engineer. */
 "Views" = "ビュー";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "受け取ったとき";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
+
 /* paint */
 "Width selection" = "幅の選択";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "木製のフルート";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X of object with ID";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y of object with ID";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "このプロジェクトは既にダウンロードされています！";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "あなたの回答";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "プロジェクトは Catrobat コミュニティにアップロードされました。";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "レポートは正常に送信されました!";
 
 /* paint */
 "Zoom" = "ズーム";

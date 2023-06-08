@@ -1,0 +1,43 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1666351372.1237612,
+      "response" : {
+        "headers" : {
+          "cf-cache-status" : "DYNAMIC",
+          "Content-Encoding" : "br",
+          "Pragma" : "no-cache",
+          "Server" : "cloudflare",
+          "cf-ray" : "75d99e27492ac31c-VIE",
+          "Set-Cookie" : "dtCookie=v_4_srv_15_sn_8991BABB40A112EF2772D4D0C3E8C236_perc_100000_ol_0_mul_1_app-3A95f731861a1a1696_1; Path=\/; Domain=.catrob.at",
+          "Date" : "Fri, 21 Oct 2022 11:22:52 GMT",
+          "Content-Type" : "application\/json",
+          "Strict-Transport-Security" : "max-age=0; includeSubDomains; preload",
+          "server-timing" : "dtSInfo;desc=\"0\", dtRpid;desc=\"-598667104\"",
+          "nel" : "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+          "report-to" : "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v3?s=YWSsUykpximlj0W7d06u16%2FUka%2BFHoHDzmX9WWdO%2BgI6VsO1Vrp1iMepIxyBpXSd847JHsMFZwM%2BozIIPQK%2FBg9gXHJzRafB9FcOYMJzMuU%2Bcz4hinoWu5CcfuSRnrwdc0kHILCbaetBZY9E7NI%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+          "Expires" : "-1",
+          "Cache-Control" : "private, must-revalidate"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication",
+        "body" : {
+          "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjo0ODIyMDMzMDUyfQ.GNnO3_Y4hYTkULubsayMWZmi25ZAWWw6PV01cRAu7M8",
+          "refresh_token" : "6b40fb5dac84fbd8c5b904545b09130efe6748686a1dca65b3ecc8b51e2e82733825f49b9536fc053c43d0755dc4350ec552ef81e5c0676251552767b090cacb"
+        },
+        "status" : 200
+      },
+      "request" : {
+        "headers" : {
+          "Content-Type" : "application\/json"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/web-test.catrob.at\/api\/authentication",
+        "body" : {
+          "username" : "testUser",
+          "password" : "testPass"
+        }
+      }
+    }
+  ],
+  "name" : "StoreAuthenticator.login.success"
+}

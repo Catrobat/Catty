@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,9 +47,7 @@ class ArduinoDigitalPinFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1.5 as AnyObject), accuracy: Double.epsilon)
     }
 
-    func testValue() {
-        // TODO: add tests
-    }
+    // TODO: add testValue() test
 
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -96,15 +96,13 @@
         }
 
         DispatchQueue.global(qos: .default).async {
-            for imagePath in fallbackPaths {
-                if self.fileManager.fileExists(imagePath as String) {
-                    self.imageCache.loadImageFromDisk(
-                        withPath: imagePath,
-                        andSize: UIDefines.previewImageSize,
-                        onCompletion: { image, path in completion(image, path) })
-
-                    return
-                }
+            for imagePath in fallbackPaths where self.fileManager.fileExists(imagePath as String) {
+                self.imageCache.loadImageFromDisk(
+                    withPath: imagePath,
+                    andSize: UIDefines.previewImageSize,
+                    onCompletion: { image, path in completion(image, path) }
+                )
+                return
             }
             completion(UIImage(named: "catrobat"), nil)
         }
@@ -175,10 +173,8 @@
 
     @objc func removeObjects(_ project: Project, objects: [SpriteObject]) {
         let scene = project.scene
-        for object in objects {
-            if scene.objects().contains(object) {
-                scene.removeObject(object)
-            }
+        for object in objects where scene.objects().contains(object) {
+            scene.removeObject(object)
         }
         project.saveToDisk(withNotification: true)
     }

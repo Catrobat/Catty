@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ extension ProjectDetailStoreViewController {
                         return
                     case .unexpectedError, .timeout:
                         Util.defaultAlertForNetworkError()
-                    case .parse(error: _), .request(error: _, statusCode: _):
+                    case .parse, .request:
                         Util.alert(text: kLocalizedInvalidZip)
                     }
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,9 +29,8 @@ final class StoreProjectUploaderMock: StoreProjectUploaderProtocol {
     var timesUploadMethodCalled: Int = 0
     var timesFetchTagsMethodCalled: Int = 0
     var projectToUpload: Project?
-    var language: String?
     var projectId: String?
-    var tags: [String]?
+    var tags: [StoreProjectTag]?
 
     func upload(project: Project, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?) {
         timesUploadMethodCalled += 1
@@ -43,12 +42,9 @@ final class StoreProjectUploaderMock: StoreProjectUploaderProtocol {
         }
     }
 
-    func fetchTags(for language: String, completion: @escaping ([String], StoreProjectUploaderError?) -> Void) {
-        self.language = language
+    func fetchTags(completion: @escaping ([StoreProjectTag]?, StoreProjectUploaderError?) -> Void) {
         timesFetchTagsMethodCalled += 1
 
-        if let tags = tags {
-            completion(tags, self.error)
-        }
+        completion(tags, self.error)
     }
 }

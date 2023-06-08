@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -148,6 +148,211 @@ class XMLParserTests09993: XMLAbstractTest {
 
         XCTAssertEqual(0, project.unsupportedElements.count)
     }
+
+    func testUpperBodyPoseSensors() {
+        let project = self.getProjectForXML(xmlFile: "UpperBodyPoseDetectionSensors")
+        let sensorTags: [String] = [LeftShoulderXSensor.tag, LeftShoulderYSensor.tag, RightShoulderXSensor.tag, RightShoulderYSensor.tag,
+                                    LeftElbowXSensor.tag, LeftElbowYSensor.tag, RightElbowXSensor.tag, RightElbowYSensor.tag, LeftWristXSensor.tag,
+                                    LeftWristYSensor.tag, RightWristXSensor.tag, RightWristYSensor.tag, NeckXSensor.tag, NeckYSensor.tag]
+
+        var sensorIndex = 0
+        let objectCount = 8
+
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        for objectIndex in 1..<objectCount {
+            let object = project.scene.object(at: objectIndex)!
+            XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
+            let script = object.scriptList.object(at: 0) as! Script
+            XCTAssertEqual(script.brickList.count, 3, "Invalid brick list")
+
+            let placeAtBrick = script.brickList.object(at: 1) as! PlaceAtBrick
+            XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[0].formulaTree.type)
+            XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[1].formulaTree.type)
+
+            XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+            sensorIndex += 1
+            XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[1].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+            sensorIndex += 1
+        }
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
+
+    func testLowerBodyPoseSensors() {
+        let project = self.getProjectForXML(xmlFile: "LowerBodyPoseDetectionSensors")
+        let sensorTags: [String] = [LeftHipXSensor.tag, LeftHipYSensor.tag, RightHipXSensor.tag, RightHipYSensor.tag,
+                                    LeftKneeXSensor.tag, LeftKneeYSensor.tag, RightKneeXSensor.tag, RightKneeYSensor.tag,
+                                    LeftAnkleXSensor.tag, LeftAnkleYSensor.tag, RightAnkleXSensor.tag, RightAnkleYSensor.tag]
+
+        var sensorIndex = 0
+        let objectCount = 7
+
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        for objectIndex in 1..<objectCount {
+            let object = project.scene.object(at: objectIndex)!
+            XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
+            let script = object.scriptList.object(at: 0) as! Script
+            XCTAssertEqual(script.brickList.count, 3, "Invalid brick list")
+
+            let placeAtBrick = script.brickList.object(at: 1) as! PlaceAtBrick
+            XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[0].formulaTree.type)
+            XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[1].formulaTree.type)
+
+            XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+            sensorIndex += 1
+            XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[1].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+            sensorIndex += 1
+        }
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
+
+    func testHandBodyPoseSensors() {
+        let project = self.getProjectForXML(xmlFile: "HandPoseDetectionSensors")
+        let sensorTags: [String] = [LeftPinkyKnuckleXSensor.tag, LeftPinkyKnuckleYSensor.tag, LeftIndexKnuckleXSensor.tag, LeftIndexKnuckleYSensor.tag,
+                                    LeftThumbKnuckleXSensor.tag, LeftThumbKnuckleYSensor.tag, LeftRingFingerKnuckleXSensor.tag, LeftRingFingerKnuckleYSensor.tag,
+                                    LeftMiddleFingerKnuckleXSensor.tag, LeftMiddleFingerKnuckleYSensor.tag, RightPinkyKnuckleXSensor.tag, RightPinkyKnuckleYSensor.tag,
+                                    RightIndexKnuckleXSensor.tag, RightIndexKnuckleYSensor.tag, RightThumbKnuckleXSensor.tag, RightThumbKnuckleYSensor.tag,
+                                    RightRingFingerKnuckleXSensor.tag, RightRingFingerKnuckleYSensor.tag, RightMiddleFingerKnuckleXSensor.tag, RightMiddleFingerKnuckleYSensor.tag]
+
+        var sensorIndex = 0
+        let objectCount = 11
+
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        for objectIndex in 1..<objectCount {
+            let object = project.scene.object(at: objectIndex)!
+            XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
+            let script = object.scriptList.object(at: 0) as! Script
+            XCTAssertEqual(script.brickList.count, 3, "Invalid brick list")
+
+            let placeAtBrick = script.brickList.object(at: 1) as! PlaceAtBrick
+            XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[0].formulaTree.type)
+            XCTAssertEqual(ElementType.SENSOR, placeAtBrick.getFormulas()[1].formulaTree.type)
+
+            XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+            sensorIndex += 1
+            XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[1].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+            sensorIndex += 1
+        }
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
+
+    func testTextRecognitionSensors() {
+        let project = self.getProjectForXML(xmlFile: "TextRecognitionSensors")
+        let sensorTags: [String] = [TextBlocksNumberSensor.tag, TextBlockSizeFunction.tag, TextBlockXFunction.tag, TextBlockYFunction.tag,
+                                    TextFromCameraSensor.tag, TextBlockFromCameraFunction.tag, TextBlockLanguageFromCameraFunction.tag]
+
+        let objectCount = 3
+        let brickCount = 12
+        var sensorIndex = 0
+        var brickIndex = 1
+
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        let textDetectorObject = project.scene.object(at: 1)!
+
+        XCTAssertEqual(textDetectorObject.scriptList.count, 1, "Invalid script list")
+        let script = textDetectorObject.scriptList.object(at: 0) as! Script
+        XCTAssertEqual(script.brickList.count, brickCount, "Invalid brick list")
+
+        let ifLogicBeginBrick = script.brickList.object(at: brickIndex) as! IfLogicBeginBrick
+        XCTAssertEqual(ElementType.SENSOR, ifLogicBeginBrick.getFormulas()[0].formulaTree.leftChild.type)
+        XCTAssertEqual(sensorTags[sensorIndex], ifLogicBeginBrick.getFormulas()[0].formulaTree.leftChild.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        let setSizeToBrick = script.brickList.object(at: brickIndex) as! SetSizeToBrick
+        XCTAssertEqual(ElementType.FUNCTION, setSizeToBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setSizeToBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        let placeAtBrick = script.brickList.object(at: brickIndex) as! PlaceAtBrick
+        XCTAssertEqual(ElementType.FUNCTION, placeAtBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        XCTAssertEqual(ElementType.FUNCTION, placeAtBrick.getFormulas()[1].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[1].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        var setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.SENSOR, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+    }
+
+    func testObjectDetectionSensors() {
+        let project = self.getProjectForXML(xmlFile: "ObjectRecognitionSensors")
+        let sensorTags: [String] = [IDOfDetectedObjectFunction.tag, ObjectWithIDVisibleFunction.tag, LabelOfObjectWithIDFunction.tag, XOfObjectWithIDFunction.tag, YOfObjectWithIDFunction.tag,
+                                    WidthOfObjectWithIDFunction.tag, HeightOfObjectWithIDFunction.tag]
+
+        let objectCount = 4
+        let brickCount = 14
+        var sensorIndex = 0
+        var brickIndex = 1
+
+        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        let objectDetectorObject = project.scene.object(at: 1)!
+
+        XCTAssertEqual(objectDetectorObject.scriptList.count, 1, "Invalid script list")
+        let script = objectDetectorObject.scriptList.object(at: 0) as! Script
+        XCTAssertEqual(script.brickList.count, brickCount, "Invalid brick list")
+
+        var setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        let ifLogicBeginBrick = script.brickList.object(at: brickIndex) as! IfLogicBeginBrick
+        XCTAssertEqual(ElementType.FUNCTION, ifLogicBeginBrick.getFormulas()[0].formulaTree.leftChild.parent.type)
+        XCTAssertEqual(sensorTags[sensorIndex], ifLogicBeginBrick.getFormulas()[0].formulaTree.leftChild.parent.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        let placeAtBrick = script.brickList.object(at: brickIndex) as! PlaceAtBrick
+        XCTAssertEqual(ElementType.FUNCTION, placeAtBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        XCTAssertEqual(ElementType.FUNCTION, placeAtBrick.getFormulas()[1].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], placeAtBrick.getFormulas()[1].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+        sensorIndex += 1
+        brickIndex += 1
+
+        setVariableBrick = script.brickList.object(at: brickIndex) as! SetVariableBrick
+        XCTAssertEqual(ElementType.FUNCTION, setVariableBrick.getFormulas()[0].formulaTree.type)
+        XCTAssertEqual(sensorTags[sensorIndex], setVariableBrick.getFormulas()[0].formulaTree.value, "Invalid sensor \(sensorTags[sensorIndex])")
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+   }
 
     func testGlideToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")

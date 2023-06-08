@@ -4,6 +4,11 @@ pipeline {
   agent {
     label 'MAC'
   }
+
+  environment {
+    PATH = "$HOME/.rbenv/shims:$PATH"
+  }
+
   parameters {
     gitParameter defaultValue: 'origin/master', name: 'gitBranch', type: 'BRANCH', description: 'Select the branch you want to build e.g. origin/master.'
     password name: 'CI_PASSWORD', description: ''
@@ -11,6 +16,7 @@ pipeline {
     password name: 'FIREBASE_API_KEY', description: ''
     password name: 'FIREBASE_GOOGLE_APP_ID', description: ''
   }
+
   options {
     timeout(time: 2, unit: 'HOURS')
     timestamps()
@@ -18,24 +24,19 @@ pipeline {
   }
 
   stages {
-    stage('Unlock keychain') {
+    stage('Prepare') {
       steps {
         withCredentials([usernamePassword(credentialsId: '29a4006b-0d8b-4fe9-9237-b00856bdb0de', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
           script {
             unlockMACKeychain "${PASSWORD}"
           }
         }
-      }
-    }
-
-    stage('Carthage') {
-      steps {
-        sh 'make init'
+        sh 'cd src && bundle install'
       }
     }
     stage('Release') {
       steps {
-        sh 'cd src && fastlane release'
+        sh 'cd src && bundle exec fastlane ios release'
       }
     }
   }

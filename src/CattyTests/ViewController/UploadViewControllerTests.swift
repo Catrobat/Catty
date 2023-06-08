@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Nimble
 import XCTest
 
 @testable import Pocket_Code
@@ -53,25 +52,26 @@ class UploadViewControllerTests: XCTestCase {
 
     func testFetchTag() {
         XCTAssertEqual(0, uploaderMock.timesFetchTagsMethodCalled)
-        XCTAssertNil(uploaderMock.language)
 
         uploadViewController.fetchTags()
         XCTAssertEqual(1, uploaderMock.timesFetchTagsMethodCalled)
-        XCTAssertEqual("en", uploaderMock.language)
     }
 
     func testCatagoriesSelected() {
         XCTAssertNil(selectedCategoriesValueLabel.text)
         XCTAssertNil(project.header.tags)
 
-        uploadViewController.categoriesSelected(tags: [String]())
+        uploadViewController.categoriesSelected(tags: [StoreProjectTag]())
         XCTAssertNotNil(selectedCategoriesValueLabel.text)
         XCTAssertEqual(selectedCategoriesValueLabel.text, kLocalizedNoCategoriesSelected)
         XCTAssertTrue(project.header.tags.isEmpty)
 
-        uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2"])
+        uploadViewController.categoriesSelected(tags: [
+            StoreProjectTag(id: "testTag1", text: "Test Tag 1"),
+            StoreProjectTag(id: "testTag2", text: "Test Tag 2")
+        ])
         XCTAssertNotNil(selectedCategoriesValueLabel.text)
-        XCTAssertEqual(selectedCategoriesValueLabel.text, "testTag1,testTag2")
+        XCTAssertEqual(selectedCategoriesValueLabel.text, "Test Tag 1, Test Tag 2")
         XCTAssertFalse(project.header.tags.isEmpty)
         XCTAssertEqual(project.header.tags, "testTag1,testTag2")
     }
@@ -82,16 +82,22 @@ class UploadViewControllerTests: XCTestCase {
         uploadViewController.uploadAction()
         XCTAssertNil(uploaderMock.projectToUpload?.header.tags)
 
-        uploadViewController.categoriesSelected(tags: [String]())
+        uploadViewController.categoriesSelected(tags: [StoreProjectTag]())
         uploadViewController.uploadAction()
         XCTAssertTrue(uploaderMock.projectToUpload!.header.tags.isEmpty)
 
-        uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2"])
+        uploadViewController.categoriesSelected(tags: [
+            StoreProjectTag(id: "testTag1", text: "Test Tag 1"),
+            StoreProjectTag(id: "testTag2", text: "Test Tag 2")
+        ])
         uploadViewController.uploadAction()
         XCTAssertFalse(uploaderMock.projectToUpload!.header.tags.isEmpty)
         XCTAssertEqual(uploaderMock.projectToUpload!.header.tags, "testTag1,testTag2")
 
-        uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2 with space"])
+        uploadViewController.categoriesSelected(tags: [
+            StoreProjectTag(id: "testTag1", text: "Test Tag 1"),
+            StoreProjectTag(id: "testTag2 with space", text: "Test Tag 2 with space")
+        ])
         uploadViewController.uploadAction()
         XCTAssertFalse(uploaderMock.projectToUpload!.header.tags.isEmpty)
         XCTAssertEqual(uploaderMock.projectToUpload!.header.tags, "testTag1,testTag2 with space")

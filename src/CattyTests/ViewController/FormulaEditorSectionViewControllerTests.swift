@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@ final class FormulaEditorSectionViewControllerTests: XCTestCase {
         viewController = FormulaEditorSectionViewController(type: .sensors, formulaManager: formulaManager, spriteObject: spriteObject, formulaEditorViewController: formulaEditorViewController)
         viewController.reloadData()
 
-        XCTAssertEqual(viewController.numberOfSections, 5)
+        XCTAssertEqual(viewController.numberOfSections, 7)
 
         for section in 0..<viewController.numberOfSections {
             for row in 0..<viewController.numberOfRowsInSection[section] {

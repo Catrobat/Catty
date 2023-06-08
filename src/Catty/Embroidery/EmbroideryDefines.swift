@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -58,7 +58,10 @@ enum EmbroideryDefines {
 
     static let sizeConversionFactor = CGFloat(0.634)
     static let defaultRunningStitchLength = 10
-    static let defaultZigzagStitchLength = 10
-    static let defaultZigzagStitchWidth = 20
+    static let defaultZigzagStitchLength = 2
+    static let defaultZigzagStitchWidth = 10
+    static let defaultTripleStitchLength = 10
+
     static let sewUpSteps = 3
+    static let defaultThreadColor = "#ff0000"
 }

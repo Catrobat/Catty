@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2022 The Catrobat Team
+ *  Copyright (C) 2010-2023 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -126,15 +126,11 @@
             return false
         }
 
-        for list in self.lists() {
-            if !userDataContainer.contains(list) {
-                return false
-            }
+        for list in self.lists() where !userDataContainer.contains(list) {
+            return false
         }
-        for variable in self.variables() {
-            if !userDataContainer.contains(variable) {
-                return false
-            }
+        for variable in self.variables() where !userDataContainer.contains(variable) {
+            return false
         }
 
         return true
