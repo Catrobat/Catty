@@ -8,10 +8,16 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"About" = "Daha fazla";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "Catrobat Hakkında";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "Cep kodu hakkında";
+
+/* No comment provided by engineer. */
+"About Us" = "Hakkımızda";
 
 /* No comment provided by engineer. */
 "absolute value" = "abs";
@@ -143,6 +149,9 @@
 "Arduino extension" = "Arduino tuğlaları";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
 "Ask " = "Sor ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "Catrobat topluluğu";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat Websitesi";
 
 /* No comment provided by engineer. */
 "ceiling" = "tavan";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "Sil";
+
+/* No comment provided by engineer. */
+"Delete account" = "Hesabı Sil";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "Objeleri sil";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "Döngü sonu";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "Bu programı uygunsuz olarak belirtmenizin sebebi ne";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Resim adınızı buraya girin...";
 
@@ -698,9 +710,6 @@
 "Error" = "Hata";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "Proje bildirilirken hata oluştu. Lütfen daha sonra tekrar deneyiniz.";
-
-/* No comment provided by engineer. */
 "Error saving file" = "Dosya kaydedilirken hata oluştu";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "üs";
+
+/* No comment provided by engineer. */
+"Extensions" = "Eklentiler";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -845,6 +857,9 @@
 "head top y" = "baş üstü y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "ID ile objenin yüksekliği";
+
+/* No comment provided by engineer. */
 "Hello!" = "Merhaba!";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "saat";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "Algılanan nesnenin ID'si";
 
 /* No comment provided by engineer. */
 "If" = "Eğer";
@@ -959,6 +977,9 @@
 "LA" = "Los Angeles";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "IDsi olan nesnenin etiketi";
+
+/* No comment provided by engineer. */
 "Last access" = "Son erişim";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "Sol";
 
 /* No comment provided by engineer. */
+"left ankle x" = "sol ayak bileği x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "sol ayak bileği y";
+
+/* No comment provided by engineer. */
 "left ear x" = "sol kulak x";
 
 /* No comment provided by engineer. */
 "left ear y" = "sol kulak y";
+
+/* No comment provided by engineer. */
+"left elbow x" = "sol dirsek x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "sol dirsek y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "sol göz merkezi x";
@@ -1004,22 +1037,76 @@
 "left eye outer y" = "sol göz dış y";
 
 /* No comment provided by engineer. */
-"left eyebrow center x" = "left eyebrow center x";
+"left eyebrow center x" = "sol kaş merkezi x";
 
 /* No comment provided by engineer. */
-"left eyebrow center y" = "left eyebrow center y";
+"left eyebrow center y" = "sol kaş merkezi y";
 
 /* No comment provided by engineer. */
-"left eyebrow inner x" = "left eyebrow inner x";
+"left eyebrow inner x" = "sol kaş iç x";
 
 /* No comment provided by engineer. */
-"left eyebrow inner y" = "left eyebrow inner y";
+"left eyebrow inner y" = "sol kaş iç y";
 
 /* No comment provided by engineer. */
-"left eyebrow outer x" = "left eyebrow outer x";
+"left eyebrow outer x" = "sol kaş dış x";
 
 /* No comment provided by engineer. */
-"left eyebrow outer y" = "left eyebrow outer y";
+"left eyebrow outer y" = "sol kaş dış y";
+
+/* No comment provided by engineer. */
+"left hip x" = "sol kalça x";
+
+/* No comment provided by engineer. */
+"left hip y" = "sol kalça y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "sol işaret parmağı x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "sol işaret parmağı y";
+
+/* No comment provided by engineer. */
+"left knee x" = "sol diz x";
+
+/* No comment provided by engineer. */
+"left knee y" = "sol diz y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "sol orta parmak eklemi x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "sol orta parmak eklemi y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "sol serçe parmağı x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "sol serçe parmağı y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "sol yüzük parmağı eklemi x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "sol yüzük parmağı eklemi y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "sol omuz x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "sol omuz y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "sol baş parmak x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "sol baş parmak y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "sol bilek x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "sol bilek y";
 
 /* No comment provided by engineer. */
 "left-right only" = "sadece sağdan sola";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "Içinde";
 
 /* No comment provided by engineer. */
+"neck x" = "boynu x";
+
+/* No comment provided by engineer. */
+"neck y" = "boynu y";
+
+/* No comment provided by engineer. */
 "New" = "Yeni";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "Arama sonucu bulunamadı";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "İzin verilen boşluk karakteri yok";
-
-/* No comment provided by engineer. */
 "nose x" = "burun x";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "öğe sayısı";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "metin bloklarının sayısı";
+
+/* No comment provided by engineer. */
 "Numbers" = "Sayılar";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "Obje ismi";
+
+/* No comment provided by engineer. */
+"Object recognition" = "Obje tanıma";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "ID'si görünür olan obje";
 
 /* No comment provided by engineer. */
 "Oct" = "Ekim";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "Lütfen en az %lu karakter girin.";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Bu projeyi uygunsuz olarak bildirmek için lütfen giriş yapın";
-
 /* paint */
 "Please pick a tool" = "Lütfen bir alet seçin";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "Önceki görüntü";
 
 /* No comment provided by engineer. */
+"Privacy" = "Gizlilik";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "Gizlilik ayarları";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "Kırmızı";
 
 /* No comment provided by engineer. */
-"Register" = "Kayıt olmak";
-
-/* No comment provided by engineer. */
 "Registration successful" = "Kayıt başarılı";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "Listedeki öğeyi değiştir";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "Uygunsuz olarak rapor et";
-
 /* paint */
 "Resize" = "Yeniden boyutlandırma";
 
@@ -1613,10 +1706,22 @@
 "Right" = "Sağ";
 
 /* No comment provided by engineer. */
+"right ankle x" = "sağ ayak bileği x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "sağ ayak bileği y";
+
+/* No comment provided by engineer. */
 "right ear x" = "sağ kulak x";
 
 /* No comment provided by engineer. */
 "right ear y" = "sağ kulak y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "sağ dirsek x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "sağ dirsek y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "sağ göz merkezi x";
@@ -1637,22 +1742,76 @@
 "right eye outer y" = "sağ göz dış y";
 
 /* No comment provided by engineer. */
-"right eyebrow center x" = "right eyebrow center x";
+"right eyebrow center x" = "sağ kaş merkezi x";
 
 /* No comment provided by engineer. */
-"right eyebrow center y" = "right eyebrow center y";
+"right eyebrow center y" = "sağ kaş merkezi y";
 
 /* No comment provided by engineer. */
-"right eyebrow inner x" = "right eyebrow inner x";
+"right eyebrow inner x" = "sağ kaş iç x";
 
 /* No comment provided by engineer. */
-"right eyebrow inner y" = "right eyebrow inner y";
+"right eyebrow inner y" = "sağ kaş iç y";
 
 /* No comment provided by engineer. */
-"right eyebrow outer x" = "right eyebrow outer x";
+"right eyebrow outer x" = "sağ kaş dış x";
 
 /* No comment provided by engineer. */
-"right eyebrow outer y" = "right eyebrow outer y";
+"right eyebrow outer y" = "sağ kaş dış y";
+
+/* No comment provided by engineer. */
+"right hip x" = "sağ kalça x";
+
+/* No comment provided by engineer. */
+"right hip y" = "sağ kalça y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "sağ işaret parmağı x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "sağ işaret parmağı y";
+
+/* No comment provided by engineer. */
+"right knee x" = "sağ diz x";
+
+/* No comment provided by engineer. */
+"right knee y" = "sağ diz y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "sağ orta parmağı eklemi x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "sağ orta parmağı eklemi y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "sağ serçe parmağı x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "sağ serçe parmağı y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "sağ yüzük parmağı eklemi x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "sağ yüzük parmağı eklemi y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "sağ omuz x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "sağ omuz y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "sağ baş parmak x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "sağ baş parmak y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "sağ bilek x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "sağ bilek y";
 
 /* paint */
 "Rotate" = "Döndür";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "Tempoyu şuna ayarlayın:";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "İplik rengini şu değere ayarlayın";
+
+/* No comment provided by engineer. */
 "Set transparency " = "Şeffaflığı düzenle ";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "Sesi başlat ve bekle";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "Uzunluğu olan üçlü dikişi başlatın";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "Zikzak dikişi uzunluğunda başla";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "Metin";
 
 /* No comment provided by engineer. */
+"text block from camera" = "kameradan gelen metin bloğu";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "kameradan gelen metin bloğu dili";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "kameradan gelen metin bloğu boyutu";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "kameradan x'e metin bloğu";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "kameradan y'e metin bloğu";
+
+/* No comment provided by engineer. */
+"text from camera" = "kameradan metin";
+
+/* No comment provided by engineer. */
 "Text message:" = "Metin mesajı:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "Metin tanıma";
 
 /* paint */
 "Text:" = "Metin:";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "doğru";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Güvenilen siteler";
 
 /* No comment provided by engineer. */
 "Tu" = "Sa";
@@ -2204,6 +2393,9 @@
 "View" = "Görüntüle";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "Kullanım ve Hizmet Koşullarını Görüntüle";
+
+/* No comment provided by engineer. */
 "Views" = "Görünümler";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "Aldığınızda";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "ID ile objenin genişliği";
+
 /* paint */
 "Width selection" = "Genişlik seçimi";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "Ahşap Flüt";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "ID ile objenin X'i";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "ID ile objenin Y'si";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "Bu projeyi zaten indirdiniz!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "Senin cevabın";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Projeniz, diğerleri tarafından kullanılıp indirilebileceği Catrobat topluluğuna yüklendi. ";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "Raporunuz başarıyla gönderildi!";
 
 /* paint */
 "Zoom" = "yakınlaştırma";

@@ -1,29 +1,35 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "Дәл осындай атауы бар хабар бар, қайтадан қайталаңыз.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "Дәл осындай атауы бар жоба бар, қайтадан қайталаңыз.";
 
 /* No comment provided by engineer. */
-"Abc" = "Abc";
+"Abc" = "Абв";
 
 /* No comment provided by engineer. */
-"About Catrobat" = "About Catrobat";
+"About" = "Туралы";
 
 /* No comment provided by engineer. */
-"About Pocket Code" = "About Pocket Code";
+"About Catrobat" = "Catrobat туралы";
+
+/* No comment provided by engineer. */
+"About Pocket Code" = "Pocket Code туралы";
+
+/* No comment provided by engineer. */
+"About Us" = "Біз туралы";
 
 /* No comment provided by engineer. */
 "absolute value" = "absolute value";
 
 /* No comment provided by engineer. */
-"acceleration x" = "acceleration x";
+"acceleration x" = "үдеу X";
 
 /* No comment provided by engineer. */
-"acceleration y" = "acceleration y";
+"acceleration y" = "үдеу Y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "acceleration z";
+"acceleration z" = "үдеу Z";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "acceleration-sensor";
@@ -32,7 +38,7 @@
 "Actors and objects" = "Актерлер мен объектілер";
 
 /* No comment provided by engineer. */
-"Add" = "Add";
+"Add" = "Қосу";
 
 /* No comment provided by engineer. */
 "Add actor or object" = "Add actor or object";
@@ -41,13 +47,13 @@
 "add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
-"Add image" = "Add image";
+"Add image" = "Суретті қосу";
 
 /* Action sheet menu title */
-"Add look" = "Add look";
+"Add look" = "Кейіпті қосу";
 
 /* Action sheet menu title */
-"Add sound" = "Add sound";
+"Add sound" = "Дыбысту қосу";
 
 /* No comment provided by engineer. */
 "Add trusted domain" = "Add trusted domain";
@@ -74,10 +80,10 @@
 "Allow web access" = "Allow web access";
 
 /* paint */
-"Alpha" = "Alpha";
+"Alpha" = "Альфа";
 
 /* No comment provided by engineer. */
-"altitude" = "altitude";
+"altitude" = "биіктік";
 
 /* No comment provided by engineer. */
 "Always" = "Әрқашан";
@@ -92,25 +98,25 @@
 "An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Check your Internet connection." = "An unknown error occurred. Check your Internet connection.";
+"An unknown error occurred. Check your Internet connection." = "Белгісіз қате орын алды. Интернет байланысын тексеріңіз.";
 
 /* No comment provided by engineer. */
 "An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
 
 /* No comment provided by engineer. */
-"and" = "and";
+"and" = "және";
 
 /* No comment provided by engineer. */
-"and store answer in" = "and store answer in";
+"and store answer in" = "және жазбаша жауапты сақтаңыз";
 
 /* No comment provided by engineer. */
 "and store written answer in " = "and store written answer in ";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and wait" = "және күту";
 
 /* No comment provided by engineer. */
-"and width" = "and width";
+"and width" = "және ені";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Animate brick-parts";
@@ -143,13 +149,16 @@
 "Arduino extension" = "Arduino кеңейтімі";
 
 /* No comment provided by engineer. */
-"Ask " = "Ask ";
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
+"Ask " = "Сұрау";
 
 /* No comment provided by engineer. */
 "at " = "at ";
 
 /* No comment provided by engineer. */
-"at position" = "at position";
+"at position" = "позициядан";
 
 /* paint */
 "Attributes:" = "Attributes:";
@@ -161,7 +170,7 @@
 "August" = "August";
 
 /* No comment provided by engineer. */
-"Authentication failed" = "Authentication failed";
+"Authentication failed" = "Аутентификация орындамалды";
 
 /* No comment provided by engineer. */
 "Author" = "Author";
@@ -173,16 +182,16 @@
 "back" = "back";
 
 /* No comment provided by engineer. */
-"Back" = "Back";
+"Back" = "Кері қайту";
 
 /* No comment provided by engineer. */
-"Background" = "Background";
+"Background" = "Фон";
 
 /* No comment provided by engineer. */
-"background name" = "background name";
+"background name" = "фон атауы";
 
 /* No comment provided by engineer. */
-"background number" = "background number";
+"background number" = "фонның саны";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "Backgrounds";
@@ -197,16 +206,16 @@
 "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app." = "Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.";
 
 /* No comment provided by engineer. */
-"becomes true" = "becomes true";
+"becomes true" = "шындыққа айналады";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* No comment provided by engineer. */
-"blue" = "blue";
+"blue" = "көк";
 
 /* paint */
-"Blue" = "Blue";
+"Blue" = "Көк";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
@@ -218,34 +227,34 @@
 "bold" = "bold";
 
 /* No comment provided by engineer. */
-"Both" = "Both";
+"Both" = "Екеуі";
 
 /* No comment provided by engineer. */
-"Bricks" = "Bricks";
+"Bricks" = "Блоктар";
 
 /* No comment provided by engineer. */
-"brightness" = "brightness";
+"brightness" = "жарықтық";
 
 /* No comment provided by engineer. */
-"Broadcast" = "Broadcast";
+"Broadcast" = "Тарату";
 
 /* No comment provided by engineer. */
-"Broadcast and wait" = "Broadcast and wait";
+"Broadcast and wait" = "Таратыңыз және күтіңіз";
 
 /* paint */
 "Brush" = "Щётка";
 
 /* No comment provided by engineer. */
-"by" = "by";
+"by" = "арқылы";
 
 /* No comment provided by engineer. */
-"By registering you agree to our" = "By registering you agree to our";
+"By registering you agree to our" = "Тіркелу арқылы сіз біздің келісімімізге келісесіз";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
-"Cancel" = "Cancel";
+"Cancel" = "Болдырмау";
 
 /* bluetooth */
 "Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
@@ -257,13 +266,16 @@
 "Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
 
 /* No comment provided by engineer. */
-"Categories" = "Categories";
+"Categories" = "Санаттар";
 
 /* No comment provided by engineer. */
 "Catrobat community" = "Catrobat қауымдастығы";
 
 /* No comment provided by engineer. */
-"ceiling" = "ceiling";
+"Catrobat website" = "Catrobat website";
+
+/* No comment provided by engineer. */
+"ceiling" = "үлкенге дөңгелектеу";
 
 /* No comment provided by engineer. */
 "Cello" = "Cello";
@@ -275,7 +287,7 @@
 "Change color " = "Change color ";
 
 /* No comment provided by engineer. */
-"Change size by" = "Change size by";
+"Change size by" = "Өлшемді өзгерту";
 
 /* No comment provided by engineer. */
 "Change to landscape" = "Change to landscape";
@@ -287,10 +299,10 @@
 "Change transparency " = "Change transparency ";
 
 /* No comment provided by engineer. */
-"Change variable" = "Change variable";
+"Change variable" = "Айнымалыны өзгерту";
 
 /* No comment provided by engineer. */
-"Change volume by" = "Change volume by";
+"Change volume by" = "Дыбыс деңгейін өзгерту";
 
 /* No comment provided by engineer. */
 "Change x by " = "Change x by ";
@@ -317,10 +329,10 @@
 "Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
-"Clear" = "Clear";
+"Clear" = "Тазарту";
 
 /* No comment provided by engineer. */
-"Clear graphic effects" = "Clear graphic effects";
+"Clear graphic effects" = "Графикалық эффекттерді тазалау";
 
 /* No comment provided by engineer. */
 "Close" = "Close";
@@ -329,16 +341,16 @@
 "Close Paint" = "Close Paint";
 
 /* No comment provided by engineer. */
-"color" = "color";
+"color" = "түс";
 
 /* No comment provided by engineer. */
-"Comparison operators" = "Comparison operators";
+"Comparison operators" = "Салыстыру операторлары";
 
 /* No comment provided by engineer. */
 "compass" = "compass";
 
 /* No comment provided by engineer. */
-"Compute" = "Compute";
+"Compute" = "Есептеу";
 
 /* No comment provided by engineer. */
 "Computed result is %.2f" = "Computed result is %.2f";
@@ -350,7 +362,7 @@
 "Computed result is TRUE" = "Computed result is TRUE";
 
 /* No comment provided by engineer. */
-"Confirm password" = "Confirm password";
+"Confirm password" = "Құпиясөзді растау";
 
 /* bluetooth */
 "Connection failed" = "Connection failed";
@@ -362,7 +374,7 @@
 "Connection not possible" = "Connection not possible";
 
 /* No comment provided by engineer. */
-"contains" = "contains";
+"contains" = "қамтиды";
 
 /* No comment provided by engineer. */
 "Continue" = "Continue";
@@ -371,7 +383,7 @@
 "Continue project" = "Жобаны жалғастыру";
 
 /* No comment provided by engineer. */
-"Control" = "Control";
+"Control" = "Бақылау";
 
 /* No comment provided by engineer. */
 "Copy" = "Көшіру";
@@ -380,7 +392,7 @@
 "Copy actors or objects" = "Copy actors or objects";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy brick" = "Кірпішті көшіру";
 
 /* No comment provided by engineer. */
 "Copy looks" = "Copy looks";
@@ -392,7 +404,7 @@
 "cosine" = "cosine";
 
 /* No comment provided by engineer. */
-"Create account" = "Create account";
+"Create account" = "Аккаунт ашу";
 
 /* No comment provided by engineer. */
 "Create as list" = "Create as list";
@@ -401,13 +413,13 @@
 "Create patterns for stiching machines" = "Create patterns for stiching machines";
 
 /* No comment provided by engineer. */
-"Data" = "Data";
+"Data" = "Деректер";
 
 /* No comment provided by engineer. */
-"Date and time" = "Date and time";
+"Date and time" = "Күні мен уақыты";
 
 /* No comment provided by engineer. */
-"day" = "day";
+"day" = "күн";
 
 /* No comment provided by engineer. */
 "debug" = "debug";
@@ -425,7 +437,10 @@
 "degrees" = "градус";
 
 /* No comment provided by engineer. */
-"Delete" = "Delete";
+"Delete" = "Жою";
+
+/* No comment provided by engineer. */
+"Delete account" = "Delete Account";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "Delete actors or objects";
@@ -434,13 +449,13 @@
 "Delete backgrounds" = "Delete backgrounds";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Delete brick";
+"Delete brick" = "Кірпішті жою";
 
 /* No comment provided by engineer. */
 "Delete condition" = "Delete condition";
 
 /* No comment provided by engineer. */
-"Delete item from list" = "Delete item from list";
+"Delete item from list" = "Тізімнен жою керек пе?";
 
 /* No comment provided by engineer. */
 "Delete looks" = "Delete looks";
@@ -449,13 +464,13 @@
 "Delete loop" = "Delete loop";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete project" = "Жобаны жою";
 
 /* No comment provided by engineer. */
 "Delete projects" = "Delete projects";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete script" = "Скриптті жою";
 
 /* No comment provided by engineer. */
 "Delete sounds" = "Delete sounds";
@@ -506,10 +521,10 @@
 "Deny" = "Бас тарту";
 
 /* No comment provided by engineer. */
-"Description" = "Description";
+"Description" = "Сипаттама";
 
 /* No comment provided by engineer. */
-"Details" = "Details";
+"Details" = "Детальдар";
 
 /* bluetooth */
 "Device disconnected." = "Device disconnected.";
@@ -518,13 +533,13 @@
 "device motion-sensor" = "device motion-sensor";
 
 /* No comment provided by engineer. */
-"Device sensors" = "Device sensors";
+"Device sensors" = "Құрылғы сенсорлары";
 
 /* No comment provided by engineer. */
-"direction" = "direction";
+"direction" = "бағыт";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "Кірпішті өшіру";
 
 /* No comment provided by engineer. */
 "Disable condition" = "Disable condition";
@@ -533,7 +548,7 @@
 "Disable loop" = "Disable loop";
 
 /* No comment provided by engineer. */
-"Disable script" = "Disable script";
+"Disable script" = "Скриптті өшіру";
 
 /* No comment provided by engineer. */
 "Disagree" = "Келіспеу";
@@ -551,16 +566,16 @@
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
 
 /* paint */
-"Do you want to save your changes?" = "Do you want to save your changes?";
+"Do you want to save your changes?" = "Өзгерістерді сақтағыңыз келе ме?";
 
 /* No comment provided by engineer. */
-"don't rotate" = "don't rotate";
+"don't rotate" = "айналдырмаңыз";
 
 /* No comment provided by engineer. */
 "Done" = "Дайын";
 
 /* No comment provided by engineer. */
-"Download" = "Download";
+"Download" = "Жүктеп алу";
 
 /* No comment provided by engineer. */
 "Download again" = "Download again";
@@ -575,16 +590,16 @@
 "Draw new image" = "Draw new image";
 
 /* No comment provided by engineer. */
-"Duration" = "Duration";
+"Duration" = "Ұзақтық";
 
 /* No comment provided by engineer. */
-"Edit" = "Edit";
+"Edit" = "Өңдеу";
 
 /* No comment provided by engineer. */
 "Edit actor or object" = "Edit actor or object";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "Фонды өзгерту";
 
 /* Action sheet menu title */
 "Edit backgrounds" = "Edit backgrounds";
@@ -593,10 +608,10 @@
 "Edit brick" = "Edit brick";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "Формула өзгеру";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "Суретті өзгерту";
 
 /* Action sheet menu title */
 "Edit looks" = "Edit looks";
@@ -632,13 +647,13 @@
 "Ellipse / Circle" = "Ellipse / Circle";
 
 /* No comment provided by engineer. */
-"Else" = "Else";
+"Else" = "Басқа";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "Эл. пошта";
 
 /* No comment provided by engineer. */
-"Embroidery" = "Embroidery";
+"Embroidery" = "Кесте тігу";
 
 /* No comment provided by engineer. */
 "Embroidery extension" = "Кесте тігу кеңейтімі";
@@ -647,7 +662,7 @@
 "Empty input!" = "Empty input!";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Enable brick" = "Кірпішті қосу";
 
 /* No comment provided by engineer. */
 "Enable condition" = "Enable condition";
@@ -656,16 +671,13 @@
 "Enable loop" = "Enable loop";
 
 /* No comment provided by engineer. */
-"Enable script" = "Enable script";
+"Enable script" = "Скриптті қосу";
 
 /* No comment provided by engineer. */
-"End if" = "End if";
+"End if" = "Аяқтау егер";
 
 /* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
-
-/* No comment provided by engineer. */
-"Enter a reason" = "Enter a reason";
 
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
@@ -695,25 +707,25 @@
 "Eraser" = "Ошіргіш";
 
 /* No comment provided by engineer. */
-"Error" = "Error";
-
-/* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+"Error" = "Қате";
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
 
 /* No comment provided by engineer. */
-"Event" = "Event";
+"Event" = "Оқиға";
 
 /* No comment provided by engineer. */
 "exponent" = "exponent";
 
 /* No comment provided by engineer. */
+"Extensions" = "Extensions";
+
+/* No comment provided by engineer. */
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"Face detection" = "Face detection";
+"Face detection" = "Бет анықтау";
 
 /* No comment provided by engineer. */
 "Failed to import item" = "Failed to import item";
@@ -731,7 +743,7 @@
 "Failed to play sound" = "Failed to play sound";
 
 /* No comment provided by engineer. */
-"false" = "false";
+"false" = "Жалған";
 
 /* No comment provided by engineer. */
 "Featured projects" = "Featured projects";
@@ -764,7 +776,7 @@
 "Flashlight on" = "Flashlight on";
 
 /* No comment provided by engineer. */
-"floor" = "floor";
+"floor" = "кішіге дөңгелектеу";
 
 /* No comment provided by engineer. */
 "Flute" = "Flute";
@@ -773,7 +785,7 @@
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
-"for" = "for";
+"for" = "үшін";
 
 /* No comment provided by engineer. */
 "for all actors or objects" = "for all actors or objects";
@@ -782,7 +794,7 @@
 "for this actor or object" = "for this actor or object";
 
 /* No comment provided by engineer. */
-"Forever" = "Forever";
+"Forever" = "Мәңгі";
 
 /* No comment provided by engineer. */
 "Forgot password" = "Forgot password";
@@ -791,7 +803,7 @@
 "Formula Editor" = "Formula Editor";
 
 /* No comment provided by engineer. */
-"Formula too long!" = "Formula too long!";
+"Formula too long!" = "Формула өте ұзын!";
 
 /* No comment provided by engineer. */
 "Fr" = "Fr";
@@ -803,34 +815,34 @@
 "From camera" = "From camera";
 
 /* No comment provided by engineer. */
-"front" = "front";
+"front" = "алдыңғы";
 
 /* No comment provided by engineer. */
 "Front camera" = "Front camera";
 
 /* No comment provided by engineer. */
-"Functions" = "Functions";
+"Functions" = "Функциялар";
 
 /* No comment provided by engineer. */
 "General properties" = "General properties";
 
 /* No comment provided by engineer. */
-"Glide" = "Glide";
+"Glide" = "Сырғыту";
 
 /* No comment provided by engineer. */
-"Go back" = "Go back";
+"Go back" = "Қайтып келу";
 
 /* No comment provided by engineer. */
-"Go to" = "Go to";
+"Go to" = "Бару";
 
 /* No comment provided by engineer. */
-"Go to front" = "Go to front";
+"Go to front" = "Алдыңа өт";
 
 /* No comment provided by engineer. */
-"green" = "green";
+"green" = "жасыл";
 
 /* paint */
-"Green" = "Green";
+"Green" = "Жасыл";
 
 /* No comment provided by engineer. */
 "Guitar" = "Guitar";
@@ -839,43 +851,49 @@
 "gyro-sensor" = "gyro-sensor";
 
 /* No comment provided by engineer. */
-"head top x" = "head top x";
+"head top x" = "бастың төбесі X координатасы";
 
 /* No comment provided by engineer. */
-"head top y" = "head top y";
+"head top y" = "бастың төбесі Y координатасы";
 
 /* No comment provided by engineer. */
-"Hello!" = "Hello!";
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
+"Hello!" = "Сәлем!";
 
 /* No comment provided by engineer. */
 "Help" = "Қөмек";
 
 /* No comment provided by engineer. */
-"Hide" = "Hide";
+"Hide" = "Жасыру";
 
 /* No comment provided by engineer. */
 "Hide details" = "Мәліметтерді жасыру";
 
 /* No comment provided by engineer. */
-"Hide variable" = "Hide variable";
+"Hide variable" = "Айнымалыны жасыру";
 
 /* No comment provided by engineer. */
-"Hmmmm!" = "Hmmmm!";
+"Hmmmm!" = "Хмм-мм?";
 
 /* No comment provided by engineer. */
-"hour" = "hour";
+"hour" = "сағат";
 
 /* No comment provided by engineer. */
-"If" = "If";
+"ID of detected object" = "Анықталған объектінің идентификаторы";
 
 /* No comment provided by engineer. */
-"If on edge, bounce" = "If on edge, bounce";
+"If" = "Егер";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Шетінде болса, секіру";
 
 /* paint */
 "Image" = "Image";
 
 /* No comment provided by engineer. */
-"Image name" = "Image name";
+"Image name" = "Суреттің аты";
 
 /* No comment provided by engineer. */
 "Image source not available" = "Image source not available";
@@ -887,10 +905,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
 
 /* No comment provided by engineer. */
-"inclination x" = "inclination x";
+"inclination x" = "бейімділік x";
 
 /* No comment provided by engineer. */
-"inclination y" = "inclination y";
+"inclination y" = "бейімділік y";
 
 /* No comment provided by engineer. */
 "index of item" = "index of item";
@@ -899,7 +917,7 @@
 "Information" = "Ақпарат";
 
 /* No comment provided by engineer. */
-"Insert" = "Insert";
+"Insert" = "Енгізу";
 
 /* paint */
 "Inserted" = "Inserted";
@@ -908,7 +926,7 @@
 "Internet" = "Internet";
 
 /* No comment provided by engineer. */
-"into list" = "into list";
+"into list" = "тізімге";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -920,16 +938,16 @@
 "iOS." = "iOS.";
 
 /* No comment provided by engineer. */
-"is true" = "is true";
+"is true" = "шындық";
 
 /* No comment provided by engineer. */
-"is true then" = "is true then";
+"is true then" = "дұрыс болса, онда";
 
 /* paint */
 "italic" = "italic";
 
 /* No comment provided by engineer. */
-"item" = "item";
+"item" = "элемент";
 
 /* No comment provided by engineer. */
 "Jan" = "Jan";
@@ -938,7 +956,7 @@
 "January" = "January";
 
 /* No comment provided by engineer. */
-"join" = "join";
+"join" = "қосу";
 
 /* No comment provided by engineer. */
 "Jul" = "Jul";
@@ -959,49 +977,64 @@
 "LA" = "LA";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
+
+/* No comment provided by engineer. */
 "Last access" = "Last access";
 
 /* No comment provided by engineer. */
-"last stage touch index" = "last stage touch index";
+"last stage touch index" = "соңғы сахнада сенсорлық индекс";
 
 /* No comment provided by engineer. */
-"latitude" = "latitude";
+"latitude" = "ендік";
 
 /* No comment provided by engineer. */
-"layer" = "layer";
+"layer" = "қабат";
 
 /* No comment provided by engineer. */
-"layers" = "layers";
+"layers" = "қабаттар";
 
 /* No comment provided by engineer. */
 "LED" = "LED";
 
 /* No comment provided by engineer. */
-"Left" = "Left";
+"Left" = "Сол";
 
 /* No comment provided by engineer. */
-"left ear x" = "left ear x";
+"left ankle x" = "сол жақ сирақ x";
 
 /* No comment provided by engineer. */
-"left ear y" = "left ear y";
+"left ankle y" = "сол жақ сирақ y";
 
 /* No comment provided by engineer. */
-"left eye center x" = "left eye center x";
+"left ear x" = "сол құлақ x";
 
 /* No comment provided by engineer. */
-"left eye center y" = "left eye center y";
+"left ear y" = "сол құлақ y";
 
 /* No comment provided by engineer. */
-"left eye inner x" = "left eye inner x";
+"left elbow x" = "сол жақ шынтақ x";
 
 /* No comment provided by engineer. */
-"left eye inner y" = "left eye inner y";
+"left elbow y" = "сол жақ шынтақ y";
 
 /* No comment provided by engineer. */
-"left eye outer x" = "left eye outer x";
+"left eye center x" = "сол жақ көз орталығы x";
 
 /* No comment provided by engineer. */
-"left eye outer y" = "left eye outer y";
+"left eye center y" = "сол жақ көз орталығы y";
+
+/* No comment provided by engineer. */
+"left eye inner x" = "сол көздің ішкі x";
+
+/* No comment provided by engineer. */
+"left eye inner y" = "сол көздің ішкі y";
+
+/* No comment provided by engineer. */
+"left eye outer x" = "сол көздің сыртқы x";
+
+/* No comment provided by engineer. */
+"left eye outer y" = "сол көздің сыртқы y";
 
 /* No comment provided by engineer. */
 "left eyebrow center x" = "left eyebrow center x";
@@ -1022,16 +1055,70 @@
 "left eyebrow outer y" = "left eyebrow outer y";
 
 /* No comment provided by engineer. */
-"left-right only" = "left-right only";
+"left hip x" = "сол жамбас x";
 
 /* No comment provided by engineer. */
-"length" = "length";
+"left hip y" = "сол жамбас y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "сол жақ индикатор x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "сол жақ индекс y";
+
+/* No comment provided by engineer. */
+"left knee x" = "сол жақ тізе x";
+
+/* No comment provided by engineer. */
+"left knee y" = "сол жақ тізе y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "left middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "left middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "сол жақ қызғылт буын x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "сол жақ қызғылт буын y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "left ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "left ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "сол жақ иық x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "сол жақ иық y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "сол жақ бас бармақ x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "сол жақ бас бармақ y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "сол жақ білек x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "сол жақ білек y";
+
+/* No comment provided by engineer. */
+"left-right only" = "тек солдан оңға";
+
+/* No comment provided by engineer. */
+"length" = "ұзындық";
 
 /* No comment provided by engineer. */
 "Length" = "Length";
 
 /* No comment provided by engineer. */
-"letter" = "letter";
+"letter" = "әріп";
 
 /* paint */
 "Line" = "Қатар";
@@ -1046,7 +1133,7 @@
 "List type" = "List type";
 
 /* No comment provided by engineer. */
-"Lists" = "Lists";
+"Lists" = "Тізім";
 
 /* No comment provided by engineer. */
 "Lists for all actors and objects" = "Барлық актерлер мен объектілерге арналған тізімдер";
@@ -1061,25 +1148,25 @@
 "location" = "location";
 
 /* No comment provided by engineer. */
-"location accuracy" = "location accuracy";
+"location accuracy" = "орынның дәлдігі";
 
 /* No comment provided by engineer. */
-"Logic" = "Logic";
+"Logic" = "Логикалық";
 
 /* No comment provided by engineer. */
-"Logical (Boolean) operators and constants" = "Logical (Boolean) operators and constants";
+"Logical (Boolean) operators and constants" = "Логикалық (Boolean) операторлар және тұрақтылар";
 
 /* No comment provided by engineer. */
-"Login" = "Login";
+"Login" = "Кіру";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "Жүйеге кіру сәтті";
 
 /* No comment provided by engineer. */
 "Logout" = "Шығу";
 
 /* No comment provided by engineer. */
-"longitude" = "longitude";
+"longitude" = "бойлық";
 
 /* LOOK */
 "look" = "look";
@@ -1088,16 +1175,16 @@
 "Look" = "Look";
 
 /* No comment provided by engineer. */
-"look name" = "look name";
+"look name" = "суреттің атауы";
 
 /* No comment provided by engineer. */
-"look number" = "look number";
+"look number" = "суреттің нөмірі";
 
 /* No comment provided by engineer. */
-"Looks" = "Looks";
+"Looks" = "Көрініс";
 
 /* No comment provided by engineer. */
-"loudness" = "loudness";
+"loudness" = "дыбысы";
 
 /* No comment provided by engineer. */
 "magnetic-sensor" = "magnetic-sensor";
@@ -1112,13 +1199,13 @@
 "Marimba" = "Marimba";
 
 /* No comment provided by engineer. */
-"Maths" = "Maths";
+"Maths" = "Математика";
 
 /* No comment provided by engineer. */
 "Maximize" = "Maximize";
 
 /* No comment provided by engineer. */
-"maximum of" = "maximum of";
+"maximum of" = "максимум";
 
 /* No comment provided by engineer. */
 "May" = "May";
@@ -1127,13 +1214,13 @@
 "Measure" = "Measure";
 
 /* No comment provided by engineer. */
-"Media library" = "Media library";
+"Media library" = "Медиатека";
 
 /* paint */
 "Menu" = "Menu";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
+"Message" = "Хабар";
 
 /* No comment provided by engineer. */
 "message 1" = "message 1";
@@ -1145,10 +1232,10 @@
 "Minimize" = "Minimize";
 
 /* No comment provided by engineer. */
-"minimum of" = "minimum of";
+"minimum of" = "минимум";
 
 /* No comment provided by engineer. */
-"minute" = "minute";
+"minute" = "минут";
 
 /* paint */
 "Mirror" = "Mirror";
@@ -1166,55 +1253,55 @@
 "Monday" = "Monday";
 
 /* No comment provided by engineer. */
-"month" = "month";
+"month" = "ай";
 
 /* No comment provided by engineer. */
 "More" = "More";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "Көбірек ақпарат";
 
 /* No comment provided by engineer. */
-"Most downloaded" = "Most downloaded";
+"Most downloaded" = "Ең көп жүктелген";
 
 /* No comment provided by engineer. */
-"Most viewed" = "Most viewed";
+"Most viewed" = "Ең көп қаралды";
 
 /* No comment provided by engineer. */
-"Motion" = "Motion";
+"Motion" = "Қозғалыс";
 
 /* No comment provided by engineer. */
-"Motion properties" = "Motion properties";
+"Motion properties" = "Қозғалыс қасиеттері";
 
 /* No comment provided by engineer. */
-"mouth left corner x" = "mouth left corner x";
+"mouth left corner x" = "ауыздың сол жақ бұрышы x";
 
 /* No comment provided by engineer. */
-"mouth left corner y" = "mouth left corner y";
+"mouth left corner y" = "ауыздың сол жақ бұрышы y";
 
 /* No comment provided by engineer. */
-"mouth right corner x" = "mouth right corner x";
+"mouth right corner x" = "ауыздың оң жақ бұрышы x";
 
 /* No comment provided by engineer. */
-"mouth right corner y" = "mouth right corner y";
+"mouth right corner y" = "ауыздың оң жақ бұрышы y";
 
 /* No comment provided by engineer. */
-"Move" = "Move";
+"Move" = "Жылжу";
 
 /* No comment provided by engineer. */
 "Move actors or objects" = "Move actors or objects";
 
 /* No comment provided by engineer. */
-"Move brick" = "Move brick";
+"Move brick" = "Кірпішті жылжыту";
 
 /* No comment provided by engineer. */
 "Move looks" = "Move looks";
 
 /* No comment provided by engineer. */
-"Move Phiro motor backward" = "Move Phiro motor backward";
+"Move Phiro motor backward" = "Phiro моторын артқа жылжыту";
 
 /* No comment provided by engineer. */
-"Move Phiro motor forward" = "Move Phiro motor forward";
+"Move Phiro motor forward" = "Phiro қозғалтқышын алға жылжыту";
 
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
@@ -1232,7 +1319,7 @@
 "My object" = "My object";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "Аты";
 
 /* No comment provided by engineer. */
 "Name already exists." = "Name already exists.";
@@ -1241,25 +1328,31 @@
 "natural logarithm" = "natural logarithm";
 
 /* No comment provided by engineer. */
+"neck x" = "мойын X координатасы";
+
+/* No comment provided by engineer. */
+"neck y" = "мойын Y координатасы";
+
+/* No comment provided by engineer. */
 "New" = "New";
 
 /* paint */
 "New canvas" = "New canvas";
 
 /* No comment provided by engineer. */
-"New list" = "New list";
+"New list" = "Жаңа тізім";
 
 /* No comment provided by engineer. */
-"New message" = "New message";
+"New message" = "Жаңа хабар";
 
 /* No comment provided by engineer. */
 "New project" = "Жаңа жоба";
 
 /* No comment provided by engineer. */
-"New text" = "New text";
+"New text" = "Жаңа текст";
 
 /* No comment provided by engineer. */
-"New variable" = "New variable";
+"New variable" = "Жаңа айнымалы";
 
 /* No comment provided by engineer. */
 "New..." = "New...";
@@ -1268,13 +1361,13 @@
 "Newest" = "Newest";
 
 /* No comment provided by engineer. */
-"Next background" = "Next background";
+"Next background" = "Келесі фон";
 
 /* No comment provided by engineer. */
-"Next look" = "Next look";
+"Next look" = "Келесі сурет";
 
 /* No comment provided by engineer. */
-"No" = "No";
+"No" = "Жоқ";
 
 /* No comment provided by engineer. */
 "No camera available" = "No camera available";
@@ -1295,16 +1388,13 @@
 "No search results" = "No search results";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "No whitespace character allowed";
+"nose x" = "мұрын x";
 
 /* No comment provided by engineer. */
-"nose x" = "nose x";
+"nose y" = "мұрын Y";
 
 /* No comment provided by engineer. */
-"nose y" = "nose y";
-
-/* No comment provided by engineer. */
-"not" = "not";
+"not" = "болмаса";
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "not available. Continue anyway?";
@@ -1313,7 +1403,7 @@
 "Not enough Memory" = "Not enough Memory";
 
 /* No comment provided by engineer. */
-"Note" = "Note";
+"Note" = "Ескерту";
 
 /* paint */
 "Nothing to crop!" = "Nothing to crop!";
@@ -1325,7 +1415,10 @@
 "November" = "November";
 
 /* No comment provided by engineer. */
-"number of items" = "number of items";
+"number of items" = "заттар саны";
+
+/* No comment provided by engineer. */
+"number of text blocks" = "мәтін блоктар саны";
 
 /* No comment provided by engineer. */
 "Numbers" = "Numbers";
@@ -1337,19 +1430,25 @@
 "Object or actor name" = "Object or actor name";
 
 /* No comment provided by engineer. */
+"Object recognition" = "Обьектті тану";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "идентификаторы көрінетін обхект";
+
+/* No comment provided by engineer. */
 "Oct" = "Oct";
 
 /* No comment provided by engineer. */
 "October" = "October";
 
 /* No comment provided by engineer. */
-"off" = "off";
+"off" = "сөндірулі";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
-"on" = "on";
+"on" = "қосулы";
 
 /* No comment provided by engineer. */
 "Once" = "Бір рет";
@@ -1364,31 +1463,31 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
 
 /* No comment provided by engineer. */
-"Open" = "Open";
+"Open" = "Ашу";
 
 /* No comment provided by engineer. */
-"or" = "or";
+"or" = "немесе";
 
 /* No comment provided by engineer. */
 "Organ" = "Organ";
 
 /* No comment provided by engineer. */
-"Password" = "Password";
+"Password" = "Құпиясөз";
 
 /* No comment provided by engineer. */
 "Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
 
 /* No comment provided by engineer. */
-"Passwords do not match" = "Passwords do not match";
+"Passwords do not match" = "Құпия сөздер сәйкес келмейді";
 
 /* No comment provided by engineer. */
-"Pen" = "Pen";
+"Pen" = "Қалам";
 
 /* No comment provided by engineer. */
-"Pen down" = "Pen down";
+"Pen down" = "Қалам түсіру";
 
 /* No comment provided by engineer. */
-"Pen up" = "Pen up";
+"Pen up" = "Қалам жоғарту";
 
 /* No comment provided by engineer. */
 "Phiro" = "Phiro";
@@ -1436,16 +1535,13 @@
 "Please choose another name:" = "Please choose another name:";
 
 /* No comment provided by engineer. */
-"Please choose up to three categories" = "Please choose up to three categories";
+"Please choose up to three categories" = "Өтінемін, бұлардың арасынан 3 категорияға шейін тандаңыз";
 
 /* paint */
 "Please enter a text." = "Please enter a text.";
 
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
-
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
 
 /* paint */
 "Please pick a tool" = "Please pick a tool";
@@ -1484,34 +1580,37 @@
 "Pocket Paint" = "Пакет Сөреті";
 
 /* No comment provided by engineer. */
-"Point in direction" = "Point in direction";
+"Point in direction" = "Бағытта көрсету";
 
 /* No comment provided by engineer. */
-"Point towards" = "Point towards";
+"Point towards" = "Бағыт етіңіз";
 
 /* paint */
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
-"Pose detection" = "Pose detection";
+"Pose detection" = "Қалыпты анықтау";
 
 /* No comment provided by engineer. */
-"position x" = "position x";
+"position x" = "X координатасы";
 
 /* No comment provided by engineer. */
-"position y" = "position y";
+"position y" = "Y координатасы";
 
 /* No comment provided by engineer. */
-"power" = "power";
+"power" = "қуат";
 
 /* No comment provided by engineer. */
-"Preview" = "Preview";
+"Preview" = "Қарау";
 
 /* No comment provided by engineer. */
-"Previous background" = "Previous background";
+"Previous background" = "Алдыңғы фон";
 
 /* No comment provided by engineer. */
-"Previous look" = "Previous look";
+"Previous look" = "Алдыңғы фон";
+
+/* No comment provided by engineer. */
+"Privacy" = "Privacy";
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
@@ -1532,13 +1631,13 @@
 "Projects on device" = "Құрылғыдағы жобалар";
 
 /* No comment provided by engineer. */
-"Properties" = "Properties";
+"Properties" = "Қасиеттері";
 
 /* No comment provided by engineer. */
-"random position" = "random position";
+"random position" = "кездейсоқ позиция";
 
 /* No comment provided by engineer. */
-"random value from to" = "random value from to";
+"random value from to" = "бастап кездейсоқ мән";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
@@ -1547,7 +1646,7 @@
 "RE" = "RE";
 
 /* Title of brick category where the user can see his or her recently used bricks. */
-"Recently used" = "Recently used";
+"Recently used" = "Жақында пайдаланылғандар";
 
 /* No comment provided by engineer. */
 "Recording" = "Recording";
@@ -1556,19 +1655,16 @@
 "Rectangle / Square" = "Rectangle / Square";
 
 /* paint */
-"Red" = "Red";
+"Red" = "Қызыл";
 
 /* No comment provided by engineer. */
-"red" = "red";
-
-/* No comment provided by engineer. */
-"Register" = "Register";
+"red" = "қызыл";
 
 /* No comment provided by engineer. */
 "Registration successful" = "Registration successful";
 
 /* No comment provided by engineer. */
-"regular expression" = "regular expression";
+"regular expression" = "тұрақты өрнек";
 
 /* No comment provided by engineer. */
 "Remove known devices" = "Remove known devices";
@@ -1589,52 +1685,61 @@
 "Rename sound" = "Дыбыстың атын өзгерту";
 
 /* No comment provided by engineer. */
-"Repeat" = "Repeat";
+"Repeat" = "Қайталау";
 
 /* No comment provided by engineer. */
-"Repeat until" = "Repeat until";
+"Repeat until" = "Дейін қайталау";
 
 /* No comment provided by engineer. */
-"Replace item in list" = "Replace item in list";
-
-/* No comment provided by engineer. */
-"Report as inappropriate" = "Report as inappropriate";
+"Replace item in list" = "Тізімдегі затты алмастыру";
 
 /* paint */
 "Resize" = "Resize";
 
 /* No comment provided by engineer. */
-"Restart" = "Restart";
+"Restart" = "Қайта бастау";
 
 /* No comment provided by engineer. */
 "Result" = "Result";
 
 /* No comment provided by engineer. */
-"Right" = "Right";
+"Right" = "Оң";
 
 /* No comment provided by engineer. */
-"right ear x" = "right ear x";
+"right ankle x" = "оң жақ сирақ x";
 
 /* No comment provided by engineer. */
-"right ear y" = "right ear y";
+"right ankle y" = "оң жақ сирақ y";
 
 /* No comment provided by engineer. */
-"right eye center x" = "right eye center x";
+"right ear x" = "оң құлақ x";
 
 /* No comment provided by engineer. */
-"right eye center y" = "right eye center y";
+"right ear y" = "оң құлақ y";
 
 /* No comment provided by engineer. */
-"right eye inner x" = "right eye inner x";
+"right elbow x" = "оң жақ шынтақ x";
 
 /* No comment provided by engineer. */
-"right eye inner y" = "right eye inner y";
+"right elbow y" = "оң жақ шынтақ y";
 
 /* No comment provided by engineer. */
-"right eye outer x" = "right eye outer x";
+"right eye center x" = "оң жақ көз орталығы x";
 
 /* No comment provided by engineer. */
-"right eye outer y" = "right eye outer y";
+"right eye center y" = "оң жақ көз орталығы y";
+
+/* No comment provided by engineer. */
+"right eye inner x" = "оң көздің ішкі x";
+
+/* No comment provided by engineer. */
+"right eye inner y" = "оң көздің ішкі y";
+
+/* No comment provided by engineer. */
+"right eye outer x" = "оң көздің сыртқы x";
+
+/* No comment provided by engineer. */
+"right eye outer y" = "оң көздің сыртқы y";
 
 /* No comment provided by engineer. */
 "right eyebrow center x" = "right eyebrow center x";
@@ -1654,11 +1759,65 @@
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
 
+/* No comment provided by engineer. */
+"right hip x" = "оң жамбас x";
+
+/* No comment provided by engineer. */
+"right hip y" = "оң жамбас y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "оң жақ индекс x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "оң жақ индекс y";
+
+/* No comment provided by engineer. */
+"right knee x" = "оң тізе x";
+
+/* No comment provided by engineer. */
+"right knee y" = "оң тізе y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "right middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "right middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "оң жақ қызғылт буын x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "оң жақ қызғылт буын y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "right ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "right ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "оң иық x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "оң иық y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "оң жақ бас бармақ x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "оң жақ бас бармақ y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "оң жақтағы білек x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "оң жақтағы білек y";
+
 /* paint */
 "Rotate" = "Rotate";
 
 /* paint */
-"round" = "round";
+"round" = "дөнгелектеу";
 
 /* No comment provided by engineer. */
 "Sa" = "Sa";
@@ -1679,7 +1838,7 @@
 "Saxophone" = "Saxophone";
 
 /* No comment provided by engineer. */
-"Say" = "Say";
+"Say" = "Айту";
 
 /* No comment provided by engineer. */
 "Scene" = "Scene";
@@ -1688,31 +1847,31 @@
 "Script" = "Script";
 
 /* No comment provided by engineer. */
-"Scripts" = "Scripts";
+"Scripts" = "Скрипттер";
 
 /* bluetooth */
-"Search" = "Іздеу…";
+"Search" = "Іздеу";
 
 /* No comment provided by engineer. */
-"second" = "second";
+"second" = "секунд";
 
 /* No comment provided by engineer. */
 "second " = "second ";
 
 /* No comment provided by engineer. */
-"second face size" = "second face size";
+"second face size" = "екінші беттің өлшемі";
 
 /* No comment provided by engineer. */
 "second face visible" = "second face visible";
 
 /* No comment provided by engineer. */
-"second face x position" = "second face x position";
+"second face x position" = "екінші беттің X координатасы";
 
 /* No comment provided by engineer. */
-"second face y position" = "second face y position";
+"second face y position" = "екінші беттің Y координатасы";
 
 /* No comment provided by engineer. */
-"seconds" = "seconds";
+"seconds" = "секундтар";
 
 /* No comment provided by engineer. */
 "seconds " = "seconds ";
@@ -1730,7 +1889,7 @@
 "Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
-"Select file" = "Select file";
+"Select file" = "Файл таңдау";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Select logical operator";
@@ -1745,13 +1904,13 @@
 "Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
-"Send web request to" = "Send web request to";
+"Send web request to" = "Веб-сұраныс жіберу";
 
 /* No comment provided by engineer. */
 "Sending anonymous crash reports" = "Қателер туралы анонимдік есептер жіберу";
 
 /* No comment provided by engineer. */
-"Sensors" = "Sensors";
+"Sensors" = "Сенсор";
 
 /* No comment provided by engineer. */
 "Sep" = "Sep";
@@ -1763,22 +1922,22 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
-"Session expired, please log in." = "Session expired, please log in.";
+"Session expired, please log in." = "Сеанс аяқталды, жүйеге кіріңіз.";
 
 /* No comment provided by engineer. */
-"Set Arduino digital pin" = "Set Arduino digital pin";
+"Set Arduino digital pin" = "Arduino-ға ПИН код қою";
 
 /* No comment provided by engineer. */
-"Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
+"Set Arduino PWM~ pin" = "Arduino PWM-ға ПИН код қою";
 
 /* No comment provided by engineer. */
-"Set background" = "Set background";
+"Set background" = "Фонды орнату";
 
 /* No comment provided by engineer. */
-"Set background and wait" = "Set background and wait";
+"Set background and wait" = "Фонды орнатыңыз және күтіңіз";
 
 /* No comment provided by engineer. */
-"Set background to number" = "Set background to number";
+"Set background to number" = "Санға фондық орнату";
 
 /* No comment provided by engineer. */
 "Set brightness " = "Set brightness ";
@@ -1793,31 +1952,34 @@
 "Set Instrument to" = "Set Instrument to";
 
 /* No comment provided by engineer. */
-"Set pen color to" = "Set pen color to";
+"Set pen color to" = "Қалам түсін орнату";
 
 /* No comment provided by engineer. */
-"Set pen size to" = "Set pen size to";
+"Set pen size to" = "Қалам өлшемін орнату";
 
 /* No comment provided by engineer. */
-"Set Phiro light" = "Set Phiro light";
+"Set Phiro light" = "Phiro шамын орнату";
 
 /* No comment provided by engineer. */
-"Set rotation style" = "Set rotation style";
+"Set rotation style" = "Айналу мәнерін орнату";
 
 /* No comment provided by engineer. */
-"Set size to" = "Set size to";
+"Set size to" = "өлшемін орнатыңыз";
 
 /* No comment provided by engineer. */
-"Set tempo to" = "Set tempo to";
+"Set tempo to" = "Темпты қою";
+
+/* No comment provided by engineer. */
+"Set thread color to" = "Қалам түсін орнату";
 
 /* No comment provided by engineer. */
 "Set transparency " = "Set transparency ";
 
 /* No comment provided by engineer. */
-"Set variable" = "Set variable";
+"Set variable" = "Айнымалыға қою";
 
 /* No comment provided by engineer. */
-"Set volume to" = "Set volume to";
+"Set volume to" = "Дыбыс деңгейін орнату";
 
 /* No comment provided by engineer. */
 "Set x to " = "Set x to ";
@@ -1826,67 +1988,67 @@
 "Set y to " = "Set y to ";
 
 /* No comment provided by engineer. */
-"Settings" = "Settings";
+"Settings" = "Параметрлер";
 
 /* literally; Sewing up a thread at the end of an embroidered pattern, so that said thread is fixed in the fabric. */
-"Sew up" = "Sew up";
+"Sew up" = "Тігу";
 
 /* No comment provided by engineer. */
-"Show" = "Show";
+"Show" = "Көрсету";
 
 /* No comment provided by engineer. */
 "Show details" = "Мәліметтерді көрсету";
 
 /* No comment provided by engineer. */
-"Show variable" = "Show variable";
+"Show variable" = "Айнымалыны көрсету";
 
 /* No comment provided by engineer. */
 "sine" = "sine";
 
 /* No comment provided by engineer. */
-"size" = "size";
+"size" = "өлшем";
 
 /* No comment provided by engineer. */
 "Size" = "Size";
 
 /* No comment provided by engineer. */
-"Skip" = "Skip";
+"Skip" = "Өткізу";
 
 /* No comment provided by engineer. */
 "SO" = "SO";
 
 /* No comment provided by engineer. */
-"Something went wrong while uploading the project." = "Something went wrong while uploading the project.";
+"Something went wrong while uploading the project." = "Жобаны жүктеу кезінде бір нәрсе дұрыс болмады :(";
 
 /* No comment provided by engineer. */
-"Sound" = "Sound";
+"Sound" = "Дыбыс";
 
 /* No comment provided by engineer. */
 "Sound name" = "Sound name";
 
 /* No comment provided by engineer. */
-"Sounds" = "Sounds";
+"Sounds" = "Дыбыстар";
 
 /* No comment provided by engineer. */
-"Speak" = "Speak";
+"Speak" = "Сөйлеу";
 
 /* No comment provided by engineer. */
-"Speed" = "Speed";
+"Speed" = "Жылдамдық";
 
 /* paint */
 "square" = "square";
 
 /* No comment provided by engineer. */
-"square root" = "square root";
+"square root" = "квадрат түбір";
 
 /* No comment provided by engineer. */
-"stage is touched" = "stage is touched";
+"stage is touched" = "экран басылса";
 
 /* No comment provided by engineer. */
-"stage touch x" = "stage touch x";
+"stage touch x" = "экранды басу X координатасы";
 
 /* No comment provided by engineer. */
-"stage touch y" = "stage touch y";
+"stage touch y" = "экранды басу Y координатасы";
 
 /* paint */
 "Stamp" = "Жазу";
@@ -1895,37 +2057,40 @@
 "Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
-"Start running stitch with length" = "Start running stitch with length";
+"Start running stitch with length" = "Ұзындықпен зигзаг жүргізу";
 
 /* No comment provided by engineer. */
-"Start sound" = "Start sound";
+"Start sound" = "Дыбысты бастау";
 
 /* No comment provided by engineer. */
-"Start sound and wait" = "Start sound and wait";
+"Start sound and wait" = "Дыбысты бастау және күту";
 
 /* No comment provided by engineer. */
-"Start zigzag stitch with length" = "Start zigzag stitch with length";
+"Start triple stitch with length" = "Ұзындықпен үш тігісті бастау";
+
+/* No comment provided by engineer. */
+"Start zigzag stitch with length" = "Ұзындықпен зигзаг тігісін бастау";
 
 /* No comment provided by engineer. */
 "Steel Drum" = "Steel Drum";
 
 /* No comment provided by engineer. */
-"step" = "step";
+"step" = "қадам";
 
 /* No comment provided by engineer. */
-"steps" = "steps";
+"steps" = "қадамдар";
 
 /* No comment provided by engineer. */
-"Stitch" = "Stitch";
+"Stitch" = "Тігіс";
 
 /* No comment provided by engineer. */
-"Stop all sounds" = "Stop all sounds";
+"Stop all sounds" = "Барлық дыбыстар тоқтату";
 
 /* No comment provided by engineer. */
-"Stop current stitch" = "Stop current stitch";
+"Stop current stitch" = "Ағымдағы тігісті тоқтату";
 
 /* No comment provided by engineer. */
-"Stop Phiro motor" = "Stop Phiro motor";
+"Stop Phiro motor" = "Phiro моторын тоқтату";
 
 /* No comment provided by engineer. */
 "Su" = "Su";
@@ -1934,10 +2099,10 @@
 "Sunday" = "Sunday";
 
 /* No comment provided by engineer. */
-"Switch to look" = "Switch to look";
+"Switch to look" = "Қарауға ауысыңыз";
 
 /* No comment provided by engineer. */
-"Switch to look with number" = "Switch to look with number";
+"Switch to look with number" = "Нөмірмен қарауға ауысыңыз";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Syntax Error!";
@@ -1964,7 +2129,7 @@
 "Tap \"+\" to add scripts" = "Скриптілерді қосу үшін \"+\" түймесін басыңыз";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add sounds" = "Tap \"+\" to add sounds";
+"Tap \"+\" to add sounds" = "Дыбыстарды қосу үшін \"+\" түртіңіз";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add variables and lists" = "Tap \"+\" to add variables and lists";
@@ -1976,7 +2141,28 @@
 "Text" = "Текст";
 
 /* No comment provided by engineer. */
+"text block from camera" = "камерадан мәтіндік блок";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "камерадан мәтіндік блок тілі";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "камерадан мәтін блогының өлшемі";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "камерадан x мәтін блогы";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "камерадан y мәтін блогы";
+
+/* No comment provided by engineer. */
+"text from camera" = "камерадан алынған мәтін";
+
+/* No comment provided by engineer. */
 "Text message:" = "Text message:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "Мәтінді тану";
 
 /* paint */
 "Text:" = "Text:";
@@ -2012,7 +2198,7 @@
 "The sound item cannot be played" = "The sound item cannot be played";
 
 /* No comment provided by engineer. */
-"Think" = "Think";
+"Think" = "Ойлау";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
@@ -2033,16 +2219,16 @@
 "TI" = "TI";
 
 /* No comment provided by engineer. */
-"time" = "time";
+"time" = "рет";
 
 /* No comment provided by engineer. */
-"times" = "times";
+"times" = "реттер";
 
 /* No comment provided by engineer. */
-"to" = "to";
+"to" = "дейін";
 
 /* No comment provided by engineer. */
-"to list" = "to list";
+"to list" = "тізімге";
 
 /* No comment provided by engineer. */
 "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
@@ -2051,34 +2237,37 @@
 "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
 
 /* No comment provided by engineer. */
-"to x:" = "to x:";
+"to x:" = "x үшін:";
 
 /* No comment provided by engineer. */
 "Today" = "Бүгін";
 
 /* No comment provided by engineer. */
-"Touch detection" = "Touch detection";
+"Touch detection" = "Түрті анықтау ";
 
 /* No comment provided by engineer. */
-"touch position" = "touch position";
+"touch position" = "түрту позициясы";
 
 /* No comment provided by engineer. */
-"touches actor or object" = "touches actor or object";
+"touches actor or object" = "спрайтқа тиіссе";
 
 /* No comment provided by engineer. */
-"touches edge" = "touches edge";
+"touches edge" = "жиегіне тиіссе";
 
 /* No comment provided by engineer. */
-"touches finger" = "touches finger";
+"touches finger" = "саусақпен басса";
 
 /* No comment provided by engineer. */
-"transparency" = "transparency";
+"transparency" = "ашықтық";
 
 /* No comment provided by engineer. */
 "Trombone" = "Trombone";
 
 /* No comment provided by engineer. */
-"true" = "true";
+"true" = "Ақиқат";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Trusted domains";
 
 /* No comment provided by engineer. */
 "Tu" = "Tu";
@@ -2087,16 +2276,16 @@
 "Tuesday" = "Tuesday";
 
 /* No comment provided by engineer. */
-"Turn camera" = "Turn camera";
+"Turn camera" = "Камераны қосу";
 
 /* No comment provided by engineer. */
-"Turn flashlight" = "Turn flashlight";
+"Turn flashlight" = "Қолшамды қосу";
 
 /* No comment provided by engineer. */
-"Turn left" = "Turn left";
+"Turn left" = "Солға бұру";
 
 /* No comment provided by engineer. */
-"Turn right" = "Turn right";
+"Turn right" = "Оңға бұру";
 
 /* No comment provided by engineer. */
 "Unable to import project!" = "Unable to import project!";
@@ -2141,31 +2330,31 @@
 "Unsupported Script:" = "Unsupported Script:";
 
 /* No comment provided by engineer. */
-"Upload project" = "Upload project";
+"Upload project" = "Проектті жүктеу";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
-"Upload successful" = "Upload successful";
+"Upload successful" = "Жүктеу сәтті болды";
 
 /* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
 
 /* No comment provided by engineer. */
-"Use camera" = "Use camera";
+"Use camera" = "Камераны пайдалану";
 
 /* No comment provided by engineer. */
 "Use Phiro bricks" = "Use Phiro bricks";
 
 /* No comment provided by engineer. */
-"user language" = "user language";
+"user language" = "қолданушы тілі";
 
 /* No comment provided by engineer. */
-"Username" = "Username";
+"Username" = "Пайдаланушы аты";
 
 /* No comment provided by engineer. */
-"Username must not be blank" = "Username must not be blank";
+"Username must not be blank" = "Пайдаланушы атыңыз бос болмауы керек.";
 
 /* No comment provided by engineer. */
 "Variable name" = "Variable name";
@@ -2195,7 +2384,7 @@
 "Vibraphone" = "Vibraphone";
 
 /* No comment provided by engineer. */
-"Vibrate for" = "Vibrate for";
+"Vibrate for" = "Дірілдеу";
 
 /* No comment provided by engineer. */
 "vibration" = "vibration";
@@ -2204,13 +2393,16 @@
 "View" = "View";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "View Terms of Use and Service";
+
+/* No comment provided by engineer. */
 "Views" = "Views";
 
 /* No comment provided by engineer. */
-"Wait" = "Wait";
+"Wait" = "Күту";
 
 /* No comment provided by engineer. */
-"Wait until" = "Wait until";
+"Wait until" = "дейін күтіңіз";
 
 /* No comment provided by engineer. */
 "We" = "We";
@@ -2222,52 +2414,61 @@
 "Wednesday" = "Wednesday";
 
 /* No comment provided by engineer. */
-"weekday" = "weekday";
+"weekday" = "жұма күні";
 
 /* No comment provided by engineer. */
-"Welcome!" = "Welcome!";
+"Welcome!" = "Қош келдіңіз!";
 
 /* No comment provided by engineer. */
-"What's your name?" = "What's your name?";
+"What's your name?" = "Сенің атың кім?";
 
 /* No comment provided by engineer. */
-"When" = "When";
+"When" = "Егер";
 
 /* No comment provided by engineer. */
-"When background changes to" = "When background changes to";
+"When background changes to" = "Фон өзгерген кезде";
 
 /* No comment provided by engineer. */
 "When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
-"When stage is tapped" = "When stage is tapped";
+"When stage is tapped" = "Сахна түртілгенде";
 
 /* No comment provided by engineer. */
-"When tapped" = "When tapped";
+"When tapped" = "Басқанда";
 
 /* No comment provided by engineer. */
-"When you receive" = "When you receive";
+"When you receive" = "Сіз қабылдаған кезде";
+
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
 
 /* paint */
 "Width selection" = "Width selection";
 
 /* No comment provided by engineer. */
-"with" = "with";
+"with" = "бірге";
 
 /* No comment provided by engineer. */
 "Wooden Flute" = "Wooden Flute";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X of object with ID";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y of object with ID";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
 
 /* No comment provided by engineer. */
-"year" = "year";
+"year" = "жыл";
 
 /* No comment provided by engineer. */
-"Yes" = "Yes";
+"Yes" = "Иә";
 
 /* No comment provided by engineer. */
 "Yesterday" = "Yesterday";
@@ -2276,16 +2477,16 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
-"Your email seems to be invalid" = "Your email seems to be invalid";
+"Your email seems to be invalid" = "Электрондық поштаңыз жарамсыз сияқты";
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "Your report was successfully sent!";
 
 /* paint */
 "Zoom" = "Zoom";

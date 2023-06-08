@@ -214,16 +214,39 @@ platform :ios do
 
   desc "Generate localized screenshots for Pocket Code"
   lane(:screenshots) do |options|
-    snapshot(
-      project: "Catty.xcodeproj",
-      scheme: "Snapshots",
+    clear_derived_data
+    reset_simulator_contents
+
+    devices = [
+      "iPhone 14 Pro Max",
+      "iPhone 8 Plus"
+    ]
+    languages = [
+      "en-US",
+      "de-DE",
+      "ru-RU",
+      "pt-BR",
+      "es-MX"
+    ]
+    scheme = "Snapshots"
+
+    scan(
+      build_for_testing: true,
+      devices: devices,
+      scheme: scheme,
       xcodebuild_formatter: "xcbeautify",
-      reinstall_app: true,
+    )
+
+    snapshot(
+      test_without_building: true,
+      derived_data_path: lane_context[SharedValues::SCAN_DERIVED_DATA_PATH],
+      languages: languages,
+      devices: devices,
+      scheme: scheme,
+      xcodebuild_formatter: "xcbeautify",
+      localize_simulator: true,
       override_status_bar: true,
-      output_simulator_logs: true,
-      clear_previous_screenshots: true,
-      concurrent_simulators: false,
-      localize_simulator: true
+      clear_previous_screenshots: true
     )
   end
 

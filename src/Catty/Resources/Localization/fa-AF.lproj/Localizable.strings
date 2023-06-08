@@ -8,10 +8,16 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"About" = "در باره";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "درباره کاتروبات Catrobat";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "درباره کد جیبی Pocket Code";
+
+/* No comment provided by engineer. */
+"About Us" = "About Us";
 
 /* No comment provided by engineer. */
 "absolute value" = "عدد مطلق";
@@ -143,6 +149,9 @@
 "Arduino extension" = "فرمت Arduino";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
 "Ask " = "بپرس ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "جامعه کاتروبات Catrobat";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "Catrobat website";
 
 /* No comment provided by engineer. */
 "ceiling" = "سقف";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "حذف";
+
+/* No comment provided by engineer. */
+"Delete account" = "Delete Account";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "بازیگران یا اشیاء را حذف کنید";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "انتهای حلقه";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "یک دلیل را وارد کنید";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "نام تصویر خود را اینجا وارد کنید ...";
 
@@ -698,9 +710,6 @@
 "Error" = "خطا";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "هنگام گزارش این پروژه خطا رخ داد. لطفا بعدا دوباره امتحان کنید";
-
-/* No comment provided by engineer. */
 "Error saving file" = "خطا در جریان ذخیره فایل";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "قدرت";
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensions";
 
 /* No comment provided by engineer. */
 "FA" = "فارسی";
@@ -845,6 +857,9 @@
 "head top y" = "بالای سر y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "سلام";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "ساعت";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "شناسه شی شناسایی شده";
 
 /* No comment provided by engineer. */
 "If" = "اگر";
@@ -959,6 +977,9 @@
 "LA" = "LA";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
+
+/* No comment provided by engineer. */
 "Last access" = "آخرین دسترسی";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "چپ";
 
 /* No comment provided by engineer. */
+"left ankle x" = "مچ پای چپ x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "مچ پای چپ y";
+
+/* No comment provided by engineer. */
 "left ear x" = "گوش چپ x";
 
 /* No comment provided by engineer. */
 "left ear y" = "گوش چپ y";
+
+/* No comment provided by engineer. */
+"left elbow x" = "آرنج چپ x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "آرنج چپ y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "مرکز چشم چپ x";
@@ -1020,6 +1053,60 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left hip x" = "ران چپ x";
+
+/* No comment provided by engineer. */
+"left hip y" = "ران چپ y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "بند انگشت شاخص چپ x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "بند انگشت شاخص چپ y";
+
+/* No comment provided by engineer. */
+"left knee x" = "زانوی چپ x";
+
+/* No comment provided by engineer. */
+"left knee y" = "زانوی چپ y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "left middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "left middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "بند انگشت صورتی سمت چپ x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "بند انگشت صورتی سمت چپ y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "left ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "left ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "شانه چپ x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "شانه چپ y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "بند انگشت شست چپ x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "بند انگشت شست چپ y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "مچ دست چپ x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "مچ دست چپ y";
 
 /* No comment provided by engineer. */
 "left-right only" = "فقط چپ راست";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "لگاریتم طبیعی";
 
 /* No comment provided by engineer. */
+"neck x" = "گردن x";
+
+/* No comment provided by engineer. */
+"neck y" = "گردن y";
+
+/* No comment provided by engineer. */
 "New" = "جدید";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "هیچ نتیجه ای برای جستجو یافت نشد";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "هیچ حرف فضای خالی مجاز نیست";
-
-/* No comment provided by engineer. */
 "nose x" = "بینی x";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "تعداد اقلام";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "تعداد بلوک های متنی";
+
+/* No comment provided by engineer. */
 "Numbers" = "شماره";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "نام جسم یا نام بازیگر";
+
+/* No comment provided by engineer. */
+"Object recognition" = "تشخیص شی";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "شی با شناسه قابل مشاهده";
 
 /* No comment provided by engineer. */
 "Oct" = "اکتوبر";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "لطفاً حداقل %lu نویسه(ها) را وارد کنید.";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "لطفا برای گزارش این پروژه به عنوان نامناسب وارد شوید";
-
 /* paint */
 "Please pick a tool" = "لطفا یک ابزار انتخاب کنید";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "دید قبلی";
 
 /* No comment provided by engineer. */
+"Privacy" = "Privacy";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "تنظیمات حریم خصوصی";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "سرخ";
 
 /* No comment provided by engineer. */
-"Register" = "ثبت نام";
-
-/* No comment provided by engineer. */
 "Registration successful" = "ثبتنام موفقیتآمیز";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "مورد را در لیست جایگزین کنید";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "گزارش به عنوان نامناسب";
-
 /* paint */
 "Resize" = "تغییر اندازه";
 
@@ -1613,10 +1706,22 @@
 "Right" = "راست";
 
 /* No comment provided by engineer. */
+"right ankle x" = "مچ پای راست x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "مچ پای راست y";
+
+/* No comment provided by engineer. */
 "right ear x" = "گوش راست x";
 
 /* No comment provided by engineer. */
 "right ear y" = "گوش راست y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "آرنج راست x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "آرنج راست y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "مرکز چشم راست x";
@@ -1653,6 +1758,60 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right hip x" = "باسن راست x";
+
+/* No comment provided by engineer. */
+"right hip y" = "لگن راست y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "بند انگشت شاخص سمت راست x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "بند انگشت شاخص سمت راست y";
+
+/* No comment provided by engineer. */
+"right knee x" = "زانوی راست x";
+
+/* No comment provided by engineer. */
+"right knee y" = "زانوی راست y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "right middle finger knuckle x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "right middle finger knuckle y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "بند انگشت صورتی راست x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "بند انگشت صورتی راست y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "right ring finger knuckle x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "right ring finger knuckle y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "شانه راست x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "شانه راست y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "بند انگشت شست راست x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "بند انگشت شست راست y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "مچ دست راست x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "مچ دست راست y";
 
 /* paint */
 "Rotate" = "چرخش";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "تنظیم سرعت به";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "رنگ نخ را روی";
+
+/* No comment provided by engineer. */
 "Set transparency " = "شفافیت را تنظیم کنید ";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "صدا را شروع کنید و صبر کنید";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "دوخت سه گانه را با طول شروع کنید";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "دوخت زیگزاگ را با طول شروع کنید";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "متن";
 
 /* No comment provided by engineer. */
+"text block from camera" = "بلوک متن از دوربین";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "زبان بلوک متن از دوربین";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "اندازه بلوک متن از دوربین";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "بلوک متنی x از دوربین";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "بلوک متنی y از دوربین";
+
+/* No comment provided by engineer. */
+"text from camera" = "متن از دوربین";
+
+/* No comment provided by engineer. */
 "Text message:" = "پیام متنی:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "تشخیص متن";
 
 /* paint */
 "Text:" = "متن:";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "واقعی";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "Trusted domains";
 
 /* No comment provided by engineer. */
 "Tu" = "سهشنبه";
@@ -2204,6 +2393,9 @@
 "View" = "بازدیدها";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "View Terms of Use and Service";
+
+/* No comment provided by engineer. */
 "Views" = "بازدیدها";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "وقتی دریافت می کنید";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
+
 /* paint */
 "Width selection" = "انتخاب عرض";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "فلوت چوبی";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X of object with ID";
+
+/* No comment provided by engineer. */
 "x: " = "ایکس: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y of object with ID";
 
 /* No comment provided by engineer. */
 "y: " = "y: ";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "شما قبلاً این پروژه را دانلود کرده اید!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "جواب شما";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "پروژه شما در انجمن کاتروبات آپلود شد که دیگران می توانند از آن استفاده و دانلود کنند.";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "گزارش شما با موفقیت ارسال شد!";
 
 /* paint */
 "Zoom" = "بزرگنمایی";

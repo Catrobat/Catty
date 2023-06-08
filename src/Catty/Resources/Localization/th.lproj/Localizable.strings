@@ -8,10 +8,16 @@
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
+"About" = "เกี่ยวกับ";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "เกี่ยวกับ Catrobat";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "เกี่ยวกับ Pocket Code";
+
+/* No comment provided by engineer. */
+"About Us" = "เกี่ยวกับเรา";
 
 /* No comment provided by engineer. */
 "absolute value" = "abs";
@@ -143,6 +149,9 @@
 "Arduino extension" = "ส่วนขยาย Arduino";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+
+/* No comment provided by engineer. */
 "Ask " = "คำถาม ";
 
 /* No comment provided by engineer. */
@@ -261,6 +270,9 @@
 
 /* No comment provided by engineer. */
 "Catrobat community" = "ชุมชน Catrobat";
+
+/* No comment provided by engineer. */
+"Catrobat website" = "เว็บไซต์ Catrobat";
 
 /* No comment provided by engineer. */
 "ceiling" = "เพดาน";
@@ -426,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Delete" = "ลบ";
+
+/* No comment provided by engineer. */
+"Delete account" = "ลบบัญชี";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "ลบนักแสดงหรือวัตถุ";
@@ -664,9 +679,6 @@
 /* No comment provided by engineer. */
 "End of Loop" = "จุดสิ้นสุดของลูป";
 
-/* No comment provided by engineer. */
-"Enter a reason" = "ป้อนเหตุผล";
-
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "ใส่ชื่อภาพของคุณที่นี่...";
 
@@ -698,9 +710,6 @@
 "Error" = "ผิดพลาด";
 
 /* No comment provided by engineer. */
-"Error occurred while reporting the project. Please try again later." = "เกิดข้อผิดพลาดขณะรายงานโครงการ กรุณาลองใหม่อีกครั้งในภายหลัง.";
-
-/* No comment provided by engineer. */
 "Error saving file" = "เกิดข้อผิดพลาดในการบันทึกไฟล์";
 
 /* No comment provided by engineer. */
@@ -708,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "exponent" = "exp";
+
+/* No comment provided by engineer. */
+"Extensions" = "ส่วนขยาย";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -845,6 +857,9 @@
 "head top y" = "หัวด้านบน y";
 
 /* No comment provided by engineer. */
+"height of object with ID" = "height of object with ID";
+
+/* No comment provided by engineer. */
 "Hello!" = "สวัสดี!";
 
 /* No comment provided by engineer. */
@@ -864,6 +879,9 @@
 
 /* No comment provided by engineer. */
 "hour" = "ชั่วโมง";
+
+/* No comment provided by engineer. */
+"ID of detected object" = "ID ของวัตถุที่ตรวจพบ";
 
 /* No comment provided by engineer. */
 "If" = "ถ้า";
@@ -959,6 +977,9 @@
 "LA" = "ลา";
 
 /* No comment provided by engineer. */
+"label of object with ID" = "label of object with ID";
+
+/* No comment provided by engineer. */
 "Last access" = "เข้าถึงครั้งสุดท้าย";
 
 /* No comment provided by engineer. */
@@ -980,10 +1001,22 @@
 "Left" = "ซ้าย";
 
 /* No comment provided by engineer. */
+"left ankle x" = "ข้อเท้าซ้าย x";
+
+/* No comment provided by engineer. */
+"left ankle y" = "ข้อเท้าซ้าย y";
+
+/* No comment provided by engineer. */
 "left ear x" = "หูซ้าย x";
 
 /* No comment provided by engineer. */
 "left ear y" = "หูซ้าย y";
+
+/* No comment provided by engineer. */
+"left elbow x" = "ศอกซ้าย x";
+
+/* No comment provided by engineer. */
+"left elbow y" = "ศอกซ้าย y";
 
 /* No comment provided by engineer. */
 "left eye center x" = "ศูนย์ตาซ้าย x";
@@ -1020,6 +1053,60 @@
 
 /* No comment provided by engineer. */
 "left eyebrow outer y" = "left eyebrow outer y";
+
+/* No comment provided by engineer. */
+"left hip x" = "สะโพกซ้าย x";
+
+/* No comment provided by engineer. */
+"left hip y" = "สะโพกซ้าย y";
+
+/* No comment provided by engineer. */
+"left index knuckle x" = "สนับมือซ้าย x";
+
+/* No comment provided by engineer. */
+"left index knuckle y" = "สนับมือซ้าย y";
+
+/* No comment provided by engineer. */
+"left knee x" = "เข่าซ้าย x";
+
+/* No comment provided by engineer. */
+"left knee y" = "เข่าซ้าย y";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle x" = "นิ้วกลางซ้าย x";
+
+/* No comment provided by engineer. */
+"left middle finger knuckle y" = "นิ้วกลางซ้าย y";
+
+/* No comment provided by engineer. */
+"left pinky knuckle x" = "นิ้วก้อยซ้าย x";
+
+/* No comment provided by engineer. */
+"left pinky knuckle y" = "นิ้วก้อยซ้าย y";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle x" = "26 / 5,000\nผลลัพธ์การแปล\nนิ้วนางข้างซ้าย x";
+
+/* No comment provided by engineer. */
+"left ring finger knuckle y" = "นิ้วนางข้างซ้าย y";
+
+/* No comment provided by engineer. */
+"left shoulder x" = "ไหล่ซ้าย x";
+
+/* No comment provided by engineer. */
+"left shoulder y" = "ไหล่ซ้าย y";
+
+/* No comment provided by engineer. */
+"left thumb knuckle x" = "นิ้วหัวแม่มือซ้าย x";
+
+/* No comment provided by engineer. */
+"left thumb knuckle y" = "นิ้วหัวแม่มือซ้าย y";
+
+/* No comment provided by engineer. */
+"left wrist x" = "ข้อมือซ้าย x";
+
+/* No comment provided by engineer. */
+"left wrist y" = "ข้อมือซ้าย y";
 
 /* No comment provided by engineer. */
 "left-right only" = "ซ้าย - ขวาเท่านั้น";
@@ -1241,6 +1328,12 @@
 "natural logarithm" = "ln";
 
 /* No comment provided by engineer. */
+"neck x" = "คอ x";
+
+/* No comment provided by engineer. */
+"neck y" = "คอ y";
+
+/* No comment provided by engineer. */
 "New" = "สร้างใหม่";
 
 /* paint */
@@ -1295,9 +1388,6 @@
 "No search results" = "ไม่มีผลลัพธ์การค้นหา";
 
 /* No comment provided by engineer. */
-"No whitespace character allowed" = "ไม่อนุญาตให้ใช้อักขระเว้นวรรค";
-
-/* No comment provided by engineer. */
 "nose x" = "จมูก x";
 
 /* No comment provided by engineer. */
@@ -1328,6 +1418,9 @@
 "number of items" = "จำนวนรายการ";
 
 /* No comment provided by engineer. */
+"number of text blocks" = "จำนวนบล็อกข้อความ";
+
+/* No comment provided by engineer. */
 "Numbers" = "ตัวเลข";
 
 /* No comment provided by engineer. */
@@ -1335,6 +1428,12 @@
 
 /* No comment provided by engineer. */
 "Object or actor name" = "ชื่อวัตถุหรือนักแสดง";
+
+/* No comment provided by engineer. */
+"Object recognition" = "การจดจำวัตถุ";
+
+/* No comment provided by engineer. */
+"object with ID visible" = "วัตถุที่มี ID มองเห็นได้";
 
 /* No comment provided by engineer. */
 "Oct" = "ต.ค";
@@ -1444,9 +1543,6 @@
 /* No comment provided by engineer. */
 "Please enter at least %lu character(s)." = "กรุณากรอกตัวอักษรอย่างน้อย %lu";
 
-/* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "กรุณาเข้าสู่ระบบเพื่อรายงานว่าโครงการนี้ไม่เหมาะสม";
-
 /* paint */
 "Please pick a tool" = "กรุณาเลือกเครื่องมือ";
 
@@ -1514,6 +1610,9 @@
 "Previous look" = "ดูก่อนหน้า";
 
 /* No comment provided by engineer. */
+"Privacy" = "ความเป็นส่วนตัว";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "การตั้งค่าความเป็นส่วนตัว";
 
 /* No comment provided by engineer. */
@@ -1562,9 +1661,6 @@
 "red" = "สีแดง";
 
 /* No comment provided by engineer. */
-"Register" = "ลงทะเบียน";
-
-/* No comment provided by engineer. */
 "Registration successful" = "ลงทะเบียนสำเร็จ";
 
 /* No comment provided by engineer. */
@@ -1597,9 +1693,6 @@
 /* No comment provided by engineer. */
 "Replace item in list" = "แทนที่ข้อมูลในรายการ";
 
-/* No comment provided by engineer. */
-"Report as inappropriate" = "รายงาน ไม่เหมาะสม";
-
 /* paint */
 "Resize" = "ปรับขนาด";
 
@@ -1613,10 +1706,22 @@
 "Right" = "ขวา";
 
 /* No comment provided by engineer. */
+"right ankle x" = "ข้อเท้าขวา x";
+
+/* No comment provided by engineer. */
+"right ankle y" = "ข้อเท้าขวา y";
+
+/* No comment provided by engineer. */
 "right ear x" = "หูขวา x";
 
 /* No comment provided by engineer. */
 "right ear y" = "หูขวา y";
+
+/* No comment provided by engineer. */
+"right elbow x" = "ศอกขวา x";
+
+/* No comment provided by engineer. */
+"right elbow y" = "ศอกขวา y";
 
 /* No comment provided by engineer. */
 "right eye center x" = "ศูนย์ตาขวา x";
@@ -1653,6 +1758,60 @@
 
 /* No comment provided by engineer. */
 "right eyebrow outer y" = "right eyebrow outer y";
+
+/* No comment provided by engineer. */
+"right hip x" = "สะโพกขวา x";
+
+/* No comment provided by engineer. */
+"right hip y" = "สะโพกขวา y";
+
+/* No comment provided by engineer. */
+"right index knuckle x" = "สนับมือขวา x";
+
+/* No comment provided by engineer. */
+"right index knuckle y" = "สนับมือขวา y";
+
+/* No comment provided by engineer. */
+"right knee x" = "เข่าขวา x";
+
+/* No comment provided by engineer. */
+"right knee y" = "เข่าขวา y";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle x" = "นิ้วกลางขวา สนับมือ x";
+
+/* No comment provided by engineer. */
+"right middle finger knuckle y" = "นิ้วกลางขวา สนับมือ y";
+
+/* No comment provided by engineer. */
+"right pinky knuckle x" = "นิ้วก้อยขวา x";
+
+/* No comment provided by engineer. */
+"right pinky knuckle y" = "นิ้วก้อยขวา y";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle x" = "นิ้วนางข้างขวา x";
+
+/* No comment provided by engineer. */
+"right ring finger knuckle y" = "นิ้วนางข้างขวา y";
+
+/* No comment provided by engineer. */
+"right shoulder x" = "ไหล่ขวา x";
+
+/* No comment provided by engineer. */
+"right shoulder y" = "ไหล่ขวา y";
+
+/* No comment provided by engineer. */
+"right thumb knuckle x" = "นิ้วหัวแม่มือขวา x";
+
+/* No comment provided by engineer. */
+"right thumb knuckle y" = "นิ้วหัวแม่มือขวา y";
+
+/* No comment provided by engineer. */
+"right wrist x" = "ข้อมือขวา x";
+
+/* No comment provided by engineer. */
+"right wrist y" = "ข้อมือขวา y";
 
 /* paint */
 "Rotate" = "หมุน";
@@ -1811,6 +1970,9 @@
 "Set tempo to" = "ตั้งเวลาเป็น";
 
 /* No comment provided by engineer. */
+"Set thread color to" = "ตั้งค่าสีเป็น";
+
+/* No comment provided by engineer. */
 "Set transparency " = "ตั้งค่าความโปร่งใส ";
 
 /* No comment provided by engineer. */
@@ -1904,6 +2066,9 @@
 "Start sound and wait" = "เริ่มเสียงแล้วรอ";
 
 /* No comment provided by engineer. */
+"Start triple stitch with length" = "เริ่มเย็บสามครั้งด้วยความยาว";
+
+/* No comment provided by engineer. */
 "Start zigzag stitch with length" = "เริ่มเย็บซิกแซกด้วยความยาว";
 
 /* No comment provided by engineer. */
@@ -1976,7 +2141,28 @@
 "Text" = "ข้อความ";
 
 /* No comment provided by engineer. */
+"text block from camera" = "บล็อกข้อความจากกล้อง";
+
+/* No comment provided by engineer. */
+"text block language from camera" = "ภาษาบล็อกข้อความจากกล้อง";
+
+/* No comment provided by engineer. */
+"text block size from camera" = "ขนาดบล็อกข้อความจากกล้อง";
+
+/* No comment provided by engineer. */
+"text block x from camera" = "บล็อกข้อความ x จากกล้อง";
+
+/* No comment provided by engineer. */
+"text block y from camera" = "บล็อกข้อความ y จากกล้อง";
+
+/* No comment provided by engineer. */
+"text from camera" = "ข้อความจากกล้อง";
+
+/* No comment provided by engineer. */
 "Text message:" = "ข้อความ:";
+
+/* No comment provided by engineer. */
+"Text recognition" = "การจดจำข้อความ";
 
 /* paint */
 "Text:" = "ข้อความ:";
@@ -2079,6 +2265,9 @@
 
 /* No comment provided by engineer. */
 "true" = "จริง";
+
+/* No comment provided by engineer. */
+"Trusted domains" = "โดเมนที่เชื่อถือได้";
 
 /* No comment provided by engineer. */
 "Tu" = "วันอังคาร";
@@ -2204,6 +2393,9 @@
 "View" = "ดู";
 
 /* No comment provided by engineer. */
+"View Terms of Use and Service" = "ดูข้อกำหนดการใช้งานและบริการ";
+
+/* No comment provided by engineer. */
 "Views" = "มุมมอง";
 
 /* No comment provided by engineer. */
@@ -2248,6 +2440,9 @@
 /* No comment provided by engineer. */
 "When you receive" = "เมื่อคุณได้รับ";
 
+/* No comment provided by engineer. */
+"width of object with ID" = "width of object with ID";
+
 /* paint */
 "Width selection" = "การเลือกความกว้าง";
 
@@ -2258,7 +2453,13 @@
 "Wooden Flute" = "ขลุ่ยไม้";
 
 /* No comment provided by engineer. */
+"X of object with ID" = "X of object with ID";
+
+/* No comment provided by engineer. */
 "x: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y of object with ID" = "Y of object with ID";
 
 /* No comment provided by engineer. */
 "y: " = "Y: ";
@@ -2276,6 +2477,9 @@
 "You have already downloaded this project!" = "คุณได้ดาวน์โหลดโครงการนี้แล้ว!";
 
 /* No comment provided by engineer. */
+"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+
+/* No comment provided by engineer. */
 "Your answer" = "คำตอบของคุณ";
 
 /* No comment provided by engineer. */
@@ -2283,9 +2487,6 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "โครงการของคุณถูกอัปโหลดไปยังชุมชน Catrobat ซึ่งผู้อื่นสามารถใช้และดาวน์โหลดได้";
-
-/* No comment provided by engineer. */
-"Your report was successfully sent!" = "ส่งรายงานของคุณเรียบร้อยแล้ว!";
 
 /* paint */
 "Zoom" = "ซูม";
