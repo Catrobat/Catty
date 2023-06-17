@@ -17,8 +17,8 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxh-7K-9PF">
-                    <rect key="frame" x="16" y="8" width="307" height="29"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <rect key="frame" x="16" y="28" width="307" height="9"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
