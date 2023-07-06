@@ -637,7 +637,7 @@ UITextFieldDelegate>
         }
     }
     
-    [[[[actionSheet
+    [[[[[actionSheet
         addDefaultActionWithTitle:kLocalizedDrawNewImage handler:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
@@ -658,7 +658,13 @@ UITextFieldDelegate>
                 [self showLooksMediaLibrary];
             }
         });
-    }] build]
+    }]
+      addDefaultActionWithTitle:kLocalizedSelectFile handler:^{
+          dispatch_async(dispatch_get_main_queue(), ^{
+              [self showImagesSelectFile];
+          });
+      }]
+      build]
      showWithController:self];
 }
 

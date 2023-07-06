@@ -58,6 +58,7 @@
 		05E68028255B5DEE00D1E295 /* EmbroideryDSTServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68024255B5DED00D1E295 /* EmbroideryDSTServiceTests.swift */; };
 		05E6802C255B5E3400D1E295 /* CGVectorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */; };
 		05E6802F255B602700D1E295 /* stitch.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05E6802E255B602700D1E295 /* stitch.dst */; };
+		175605302CC1E46400E3B27E /* LooksTableViewController+SelectFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1756052F2CC1E46400E3B27E /* LooksTableViewController+SelectFile.swift */; };
 		1764E6382A06CC940013102B /* SoundRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1764E6372A06CC940013102B /* SoundRecorderViewController.swift */; };
 		17A0218A2726F36700F0489E /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17A021892726F36700F0489E /* AudioKit */; };
 		17A0218D2726F3C600F0489E /* DunneAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17A0218C2726F3C600F0489E /* DunneAudioKit */; };
@@ -2204,6 +2205,7 @@
 		0C64E34E5347DA71ECB56DE6 /* pt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		113CDA22CF21176FFA49E694 /* sd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sd; path = sd.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1756052F2CC1E46400E3B27E /* LooksTableViewController+SelectFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LooksTableViewController+SelectFile.swift"; sourceTree = "<group>"; };
 		1764E6372A06CC940013102B /* SoundRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRecorderViewController.swift; sourceTree = "<group>"; };
 		17A8AC642644E6A900DDD480 /* ForceInit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForceInit.m; sourceTree = "<group>"; };
 		17A8AC6B2644E6B500DDD480 /* ForceInit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForceInit.h; sourceTree = "<group>"; };
@@ -9243,6 +9245,7 @@
 				92FF311C1A24DEB300093DA7 /* LooksTableViewController.h */,
 				92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */,
 				59ABDC5F2021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift */,
+				1756052F2CC1E46400E3B27E /* LooksTableViewController+SelectFile.swift */,
 			);
 			path = MaintainLooks;
 			sourceTree = "<group>";
@@ -13364,6 +13367,7 @@
 				4CF0729D20D66F8D00F93AB5 /* LookNumberSensor.swift in Sources */,
 				05E6802C255B5E3400D1E295 /* CGVectorExtentions.swift in Sources */,
 				597AB56E202081E8007CD10D /* LibrarySoundCollectionViewCell.swift in Sources */,
+				175605302CC1E46400E3B27E /* LooksTableViewController+SelectFile.swift in Sources */,
 				4C724E5B1B4D3E8C00E27479 /* Script+CBXMLHandler.m in Sources */,
 				92EC985E1BC3ABB90003A891 /* PhiroMotorStopBrick+CBXMLHandler.m in Sources */,
 				4C0F9F9F204BD2B100E71B2D /* SayForBubbleBrickCell.m in Sources */,
