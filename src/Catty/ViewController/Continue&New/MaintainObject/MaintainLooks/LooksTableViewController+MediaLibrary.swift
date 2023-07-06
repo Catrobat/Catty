@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import MobileCoreServices
+
 extension LooksTableViewController {
 
     @objc
@@ -58,5 +60,53 @@ extension LooksTableViewController: MediaLibraryViewControllerImportDelegate {
                 continue
             }
         }
+    }
+}
+
+extension LooksTableViewController {
+    @available(iOS 14.0, *)
+    static var supportedFileFormats = [UTType.png, UTType.jpeg]
+
+    @objc
+    func showImagesSelectFile() {
+        var documentPicker: UIDocumentPickerViewController
+        if #available(iOS 14.0, *) {
+            documentPicker = UIDocumentPickerViewController.init(forOpeningContentTypes: type(of: self).supportedFileFormats, asCopy: true)
+            documentPicker.allowsMultipleSelection = false
+            documentPicker.delegate = self
+            documentPicker.modalPresentationStyle = .formSheet
+            present(documentPicker, animated: true)
+        }
+    }
+}
+
+extension LooksTableViewController: UIDocumentPickerDelegate, UINavigationControllerDelegate {
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        let documents = URL(fileURLWithPath:
+                                CBFileManager.shared().documentsDirectory)
+
+        for url in urls {
+            let fileName = UUID().uuidString
+            let name = url.deletingPathExtension().lastPathComponent
+            let fileURL = documents
+                .appendingPathComponent(fileName)
+                .appendingPathExtension(url.pathExtension)
+
+            do {
+                let data = try Data.init(contentsOf: url)
+                try data.write(to: fileURL, options: .atomic)
+                if let image = UIImage(data: data) {
+                    self.addMediaLibraryLoadedImage(image, withName: name)
+                    continue
+                }
+            } catch {
+                self.showImportAlert(itemName: name)
+            }
+        }
+        controller.dismiss(animated: true)
+    }
+
+    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        controller.dismiss(animated: true)
     }
 }
