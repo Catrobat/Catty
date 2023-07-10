@@ -24,9 +24,9 @@
 
 @implementation NoteBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kControlBrick;
+    return @[@(kControlBrick)];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject

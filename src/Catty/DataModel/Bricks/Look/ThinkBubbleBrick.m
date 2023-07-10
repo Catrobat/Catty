@@ -24,9 +24,9 @@
 
 @implementation ThinkBubbleBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kLookBrick;
+    return @[@(kLookBrick)];
 }
 
 - (BOOL)allowsStringFormula

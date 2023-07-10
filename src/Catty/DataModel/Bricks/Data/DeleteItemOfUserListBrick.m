@@ -28,9 +28,9 @@
 
 @implementation DeleteItemOfUserListBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kDataBrick;
+    return @[@(kDataBrick)];
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

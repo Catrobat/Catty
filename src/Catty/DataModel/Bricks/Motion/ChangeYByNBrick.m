@@ -26,9 +26,9 @@
 
 @implementation ChangeYByNBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kMotionBrick;
+    return @[@(kMotionBrick)];
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

@@ -29,9 +29,9 @@
 
 @implementation GoToBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kMotionBrick;
+    return @[@(kMotionBrick)];
 }
 
 - (id)initWithChoice:(int)choice

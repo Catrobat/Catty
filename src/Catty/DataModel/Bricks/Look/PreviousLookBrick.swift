@@ -22,6 +22,7 @@
 
 @objc(PreviousLookBrick)
 @objcMembers class PreviousLookBrick: Brick, BrickProtocol {
+
     override public required init() {
         super.init()
     }
@@ -30,8 +31,8 @@
         look.path(for: script.object.scene)
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.lookBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.lookBrick.rawValue)]
     }
 
     override func description() -> String {

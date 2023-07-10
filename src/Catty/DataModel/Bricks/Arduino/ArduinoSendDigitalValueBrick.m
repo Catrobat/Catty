@@ -25,9 +25,9 @@
 
 @implementation ArduinoSendDigitalValueBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kArduinoBrick;
+    return @[@(kArduinoBrick)];
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

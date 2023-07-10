@@ -26,9 +26,9 @@
 
 @implementation ComeToFrontBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kMotionBrick;
+    return @[@(kMotionBrick)];
 }
 
 - (BOOL)isDisabledForBackground

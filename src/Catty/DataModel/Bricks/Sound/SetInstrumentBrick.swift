@@ -31,7 +31,9 @@ import Foundation
         super.init()
     }
 
-    func category() -> kBrickCategoryType { kBrickCategoryType.soundBrick }
+    func category() -> [NSNumber] {
+        [NSNumber(value: kBrickCategoryType.soundBrick.rawValue)]
+    }
 
     override func getRequiredResources() -> Int { ResourceType.noResources.rawValue }
 

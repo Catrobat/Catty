@@ -39,7 +39,7 @@
 - (void)drawRect:(CGRect)rect
 {
     LoopEndBrick *brick = (LoopEndBrick*)[self scriptOrBrick];
-    BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:brick.category];
+    BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:(kBrickCategoryType) (NSUInteger) [brick.category[0] integerValue]];
     
     CGFloat height = [[self class] cellHeight] + marginBottomSquaredBrick;
     CGFloat width = [Util screenWidth];

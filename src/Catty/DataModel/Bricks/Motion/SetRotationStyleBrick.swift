@@ -36,8 +36,8 @@
         self.selection = type(of: self).defaultSelection
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.motionBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.motionBrick.rawValue)]
     }
 
     override class func description() -> String {

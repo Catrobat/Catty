@@ -26,9 +26,9 @@
 
 @implementation ChangeSizeByNBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kLookBrick;
+    return @[@(kLookBrick)];
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
