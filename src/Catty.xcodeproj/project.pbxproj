@@ -1751,6 +1751,7 @@
 		AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */; };
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
+		B068304E2A5FF66600BF06BD /* ObjectTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068304D2A5FF66600BF06BD /* ObjectTableViewControllerExtension.swift */; };
 		BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */; };
 		BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99C1F02AEDC0084184D /* InsertItemIntoUserListBrick.m */; };
 		BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */; };
@@ -4395,6 +4396,7 @@
 		AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointInDirectionBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointInDirectionBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		ABD74577198FBC2984BDDE56 /* hu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B068304D2A5FF66600BF06BD /* ObjectTableViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ObjectTableViewControllerExtension.swift; path = "Catty/Extension&Delegate&Protocol/Extensions/UIViewController/ObjectTableViewControllerExtension.swift"; sourceTree = SOURCE_ROOT; };
 		B11EA657D0D5E2E348790671 /* ta */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ta; path = ta.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B46B270517703F9400172837 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
 		B46B270717703F9400172837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -8038,6 +8040,7 @@
 		59F007C2253081FD00039EBD /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B068304D2A5FF66600BF06BD /* ObjectTableViewControllerExtension.swift */,
 				594DF6E825EA9160005CEE16 /* ProjectDetailStoreViewControllerDownloadExtension.swift */,
 				5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */,
 				05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */,
@@ -13516,6 +13519,7 @@
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				498C158228070C6C00B81C8E /* LeftAnkleYSensor.swift in Sources */,
 				229DC44A25D698FF00BA9AA2 /* StoreProjectDownloaderError.swift in Sources */,
+				B068304E2A5FF66600BF06BD /* ObjectTableViewControllerExtension.swift in Sources */,
 				4CA50301268C8E0E00B331EC /* DeviceDoubleSensor.swift in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
 				4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */,

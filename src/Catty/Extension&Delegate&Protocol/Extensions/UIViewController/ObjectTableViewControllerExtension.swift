@@ -20,12 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+import Foundation
 
-@class SpriteObject;
+@objc extension ObjectTableViewController {
+    func configureSegmentedControll() {
 
-@interface ObjectTableViewController : BaseTableViewController
-@property (strong, nonatomic) IBOutlet UISegmentedControl *objectSegmentedControl;
-@property (strong, nonatomic) SpriteObject *object;
-@end
+        self.objectSegmentedControl.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
+        self.objectSegmentedControl.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
+        self.objectSegmentedControl.setTitle(kLocalizedNewest, forSegmentAt: 2)
+        print("Here")
+
+    }
+}
