@@ -789,6 +789,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)turnOnInsertingBrickMode
 {
+    NSLog(@"@%ss","turn on");
     [[BrickInsertManager sharedInstance] setBrickInsertionMode:YES];
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = NO;

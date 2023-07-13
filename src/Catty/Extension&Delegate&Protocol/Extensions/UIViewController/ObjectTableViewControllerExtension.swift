@@ -25,9 +25,9 @@ import Foundation
 @objc extension ObjectTableViewController {
     func configureSegmentedControll() {
 
-        self.objectSegmentedControl.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
-        self.objectSegmentedControl.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
-        self.objectSegmentedControl.setTitle(kLocalizedNewest, forSegmentAt: 2)
+        self.objectSegementedControl.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
+        self.objectSegementedControl.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
+        self.objectSegementedControl.setTitle(kLocalizedNewest, forSegmentAt: 2)
         print("Here")
 
     }

@@ -26,6 +26,7 @@
 @class SpriteObject;
 
 @interface ObjectTableViewController : BaseTableViewController
-@property (strong, nonatomic) IBOutlet UISegmentedControl *objectSegmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *objectSegementedControl;
+
 @property (strong, nonatomic) SpriteObject *object;
 @end

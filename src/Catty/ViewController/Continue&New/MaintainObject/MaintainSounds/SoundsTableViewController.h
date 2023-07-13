@@ -36,5 +36,8 @@
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic) BOOL showAddSoundActionSheetAtStart;
 @property (copy) void (^afterSafeBlock)(Sound* look);
+- (void)playSceneAction:(id)sender;
+- (void)addSoundAction:(id)sender;
+
 
 @end

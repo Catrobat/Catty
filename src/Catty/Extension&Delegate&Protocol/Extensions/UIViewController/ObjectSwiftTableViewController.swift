@@ -26,11 +26,12 @@ class ObjectSwiftTableViewController: UIViewController {
 
     @IBOutlet private weak var objectSegmentedControl: UISegmentedControl!
 
+    @IBOutlet private weak var scriptsContainerView: UIView!
     public var object: SpriteObject?
 
-    var SoundViewController = SoundsTableViewController()
-    var LooksViewController = LooksTableViewController()
-    var ScriptsViewController = ScriptCollectionViewController()
+    var soundViewController = SoundsTableViewController()
+    //var looksViewController = LooksTableViewController()
+    var scriptsViewController = ScriptCollectionViewController(collectionViewLayout: type(of: UICollectionViewFlowLayout()).init())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,34 @@ class ObjectSwiftTableViewController: UIViewController {
             self.title = object.name
             self.navigationItem.title = object.name
         }
+        navigationController?.setToolbarHidden(false, animated: true)
+        configureViewControllers()
+        setupToolBar()
+    }
 
+    func configureViewControllers() {
+
+        scriptsContainerView.addSubview(scriptsViewController.view)
+        //scriptsContainerView.addSubview(looksViewController.view)
+        scriptsContainerView.addSubview(soundViewController.view)
+        //scriptsViewController.didMove(toParent: self)
+        scriptsViewController.view.frame = scriptsContainerView.bounds
+
+        //soundViewController.didMove(toParent: self)
+        soundViewController.view.frame = scriptsContainerView.bounds
+
+//        looksViewController.didMove(toParent: self)
+//        looksViewController.view.frame = scriptsContainerView.bounds
+
+        soundViewController.object = object
+        //looksViewController.object = object
+        scriptsViewController.object = object
+
+        scriptsViewController.view.isHidden = false
+        //looksViewController.view.isHidden = true
+        soundViewController.view.isHidden = true
+
+        //looksViewController.setupToolBar()
     }
 
     func configureSegmentedControll() {
@@ -50,8 +78,46 @@ class ObjectSwiftTableViewController: UIViewController {
         self.objectSegmentedControl.setTitle(kLocalizedSounds, forSegmentAt: 2)
     }
 
+    @IBAction private func segmentTapped(_ sender: UISegmentedControl) {
+
+        switch sender.selectedSegmentIndex {
+        case 0:
+            //scriptsViewController.setEditing(true, animated: true)
+            scriptsViewController.view.isHidden = false
+            //looksViewController.view.isHidden = true
+            soundViewController.view.isHidden = true
+            setupToolBar()
+        case 1:
+            scriptsViewController.view.isHidden = true
+            //looksViewController.view.isHidden = false
+            soundViewController.view.isHidden = true
+        case 2:
+            scriptsViewController.view.isHidden = true
+            //looksViewController.view.isHidden = true
+            soundViewController.view.isHidden = false
+            setupToolBarForSound()
+        default:
+            break
+        }
+
+    }
     @objc func setObject(_ object: SpriteObject) {
         self.object = object
     }
 
+    func setupToolBar() {
+
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: scriptsViewController, action: #selector(ScriptCollectionViewController.showBrickPickerAction))
+        let play = PlayButton(target: scriptsViewController, action: #selector(ScriptCollectionViewController.playSceneAction(_:)))
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        self.toolbarItems = [flex, add, flex, flex, play, flex]
+    }
+    
+    func setupToolBarForSound() {
+
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: soundViewController, action: #selector(soundViewController.addSoundAction(_:)))
+        let play = PlayButton(target: soundViewController, action: #selector(soundViewController.playSceneAction(_:)))
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        self.toolbarItems = [flex, add, flex, flex, play, flex]
+    }
 }

@@ -29,6 +29,8 @@
 @property (nonatomic, strong) SpriteObject *object;
 
 - (void)removeBrickOrScript:(id<BrickProtocol>)scriptOrBrick atIndexPath:(NSIndexPath*)indexPath;
+-(void)turnOnInsertingBrickMode;
+- (void)showBrickPickerAction:(id)sender;
 
 @end
 
