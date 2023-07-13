@@ -632,10 +632,13 @@
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         if ([segue.identifier isEqualToString:toObjectSegueID]) {
-            if ([destController isKindOfClass:[ObjectTableViewController class]]) {
-                ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
+            if ([destController isKindOfClass:[ObjectSwiftTableViewController class]]) {
+                ObjectSwiftTableViewController *tvc = (ObjectSwiftTableViewController*) destController;
+               
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
                     SpriteObject* object = [self.scene.objects objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
+                    //tvc.title = object.name;
+                    //tvc.navigationItem.title = object.name;
                     [destController performSelector:@selector(setObject:) withObject:object];
                 }
             }

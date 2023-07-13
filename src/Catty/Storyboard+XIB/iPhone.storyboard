@@ -217,10 +217,10 @@
             </objects>
             <point key="canvasLocation" x="-4329" y="-3639"/>
         </scene>
-        <!--Object Table View Controller-->
+        <!--Object Swift Table View Controller-->
         <scene sceneID="em2-uX-sDK">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="gRy-dL-Z2R" customClass="ObjectTableViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="gRy-dL-Z2R" customClass="ObjectSwiftTableViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M2y-aL-Oy0"/>
                         <viewControllerLayoutGuide type="bottom" id="6aT-PV-5w4"/>
@@ -234,6 +234,7 @@
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
+                                    <segment title=""/>
                                 </segments>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iw-2N-nQe">
@@ -253,6 +254,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KvU-7v-DHg"/>
+                    <connections>
+                        <outlet property="objectSegmentedControl" destination="onX-Xn-2Pt" id="zrA-1B-Aws"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgN-Ly-L21" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
