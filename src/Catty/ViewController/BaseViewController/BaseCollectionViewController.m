@@ -33,7 +33,6 @@
 
 @interface BaseCollectionViewController ()
 @property (nonatomic, strong) LoadingView* loadingView;
-@property (nonatomic, strong) StagePresenterViewController *stagePresenterViewController;
 @end
 
 @implementation BaseCollectionViewController
