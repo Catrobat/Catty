@@ -40,7 +40,6 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
-@property (nonatomic, strong) StagePresenterViewController *stagePresenterViewController;
 @end
 
 @implementation BaseTableViewController
@@ -438,7 +437,7 @@
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     self.navigationController.toolbar.userInteractionEnabled = NO;
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    [self showPlaceHolder:NO];
+    //[self showPlaceHolder:NO];
     [self.loadingView show];
 }
 

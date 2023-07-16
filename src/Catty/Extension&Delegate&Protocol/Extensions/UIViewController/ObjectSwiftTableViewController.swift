@@ -30,7 +30,7 @@ class ObjectSwiftTableViewController: UIViewController {
     public var object: SpriteObject?
 
     var soundViewController = SoundsTableViewController()
-    //var looksViewController = LooksTableViewController()
+    var looksViewController = LooksTableViewController()
     var scriptsViewController = ScriptCollectionViewController(collectionViewLayout: type(of: UICollectionViewFlowLayout()).init())
 
     override func viewDidLoad() {
@@ -49,27 +49,22 @@ class ObjectSwiftTableViewController: UIViewController {
     func configureViewControllers() {
         scriptsViewController.object = object
         soundViewController.object = object
+        looksViewController.object = object
+        scriptsContainerView.addSubview(looksViewController.view)
+        looksViewController.view.frame = scriptsContainerView.bounds
+
 
         scriptsContainerView.addSubview(scriptsViewController.view)
         //scriptsContainerView.addSubview(looksViewController.view)
         scriptsContainerView.addSubview(soundViewController.view)
-        //scriptsViewController.didMove(toParent: self)
-        scriptsViewController.view.frame = scriptsContainerView.bounds
 
-        //soundViewController.didMove(toParent: self)
+        scriptsViewController.view.frame = scriptsContainerView.bounds
         soundViewController.view.frame = scriptsContainerView.bounds
 
-//        looksViewController.didMove(toParent: self)
-//        looksViewController.view.frame = scriptsContainerView.bounds
-
-       
-        //looksViewController.object = object
 
         scriptsViewController.view.isHidden = false
-        //looksViewController.view.isHidden = true
+        looksViewController.view.isHidden = true
         soundViewController.view.isHidden = true
-
-        //looksViewController.setupToolBar()
     }
 
     func configureSegmentedControll() {
@@ -85,9 +80,7 @@ class ObjectSwiftTableViewController: UIViewController {
         case 0:
             showScripts()
         case 1:
-            scriptsViewController.view.isHidden = true
-            //looksViewController.view.isHidden = false
-            soundViewController.view.isHidden = true
+          showBackgrounds()
         case 2:
            showSounds()
         default:
@@ -99,16 +92,22 @@ class ObjectSwiftTableViewController: UIViewController {
         self.object = object
     }
 
+    func showBackgrounds() {
+        scriptsViewController.view.isHidden = true
+        looksViewController.view.isHidden = false
+        soundViewController.view.isHidden = true
+    }
+
     func showScripts() {
         scriptsViewController.view.isHidden = false
-        //looksViewController.view.isHidden = true
+        looksViewController.view.isHidden = true
         soundViewController.view.isHidden = true
         setupToolBarForScripts()
     }
 
     func showSounds() {
         scriptsViewController.view.isHidden = true
-        //looksViewController.view.isHidden = true
+        looksViewController.view.isHidden = true
         soundViewController.view.isHidden = false
         setupToolBarForSound()
     }
@@ -122,13 +121,39 @@ class ObjectSwiftTableViewController: UIViewController {
 
     func setupToolBarForSound() {
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: soundViewController, action: #selector(soundViewController.addSoundAction(_:)))
-        let play = PlayButton(target: soundViewController, action: #selector(soundViewController.playSceneAction(_:)))
+        let play = PlayButton(target: self, action: #selector(soundPlayButtonPressed))
         let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         self.toolbarItems = [flex, add, flex, flex, play, flex]
     }
 
     @objc func scriptPlayButtonPressed() {
         playSceneAction(UIBarButtonItem())
+    }
+
+    @objc func soundPlayButtonPressed() {
+        soundViewController.playSceneAction(nil)
+        playSoundSceneAction(UIBarButtonItem())
+    }
+
+    func playSoundSceneAction(_ sender: Any) {
+        soundViewController.showLoadingView()
+
+        (UIApplication.shared.delegate as? AppDelegate)?.enabledOrientation = true
+        let lastProjectQueue = DispatchQueue(label: "lastProjectQueue")
+        lastProjectQueue.async {
+            let landscapeMode = Project.lastUsed().header.landscapeMode
+            DispatchQueue.main.async { [self] in
+                if !landscapeMode {
+                    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+                } else {
+                    UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+                }
+
+                soundViewController.stagePresenterViewController.checkResourcesAndPushViewController(to: self.navigationController!) {
+                    self.soundViewController.hideLoadingView()
+                }
+            }
+        }
     }
 
     func playSceneAction(_ sender: Any) {

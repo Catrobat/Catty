@@ -82,6 +82,8 @@ UITextFieldDelegate>
     if(self.showAddLookActionSheetAtStartForScriptEditor || self.showAddLookActionSheetAtStartForObject) {
         [self showAddLookActionSheet];
     }
+    [self.tableView registerClass:[DarkBlueGradientImageCell class] forCellReuseIdentifier:kImageCell];
+    [self.tableView registerClass:[DarkBlueGradientImageDetailCell class] forCellReuseIdentifier:kDetailImageCell];
 }
 
 #pragma mark viewwillappear

@@ -68,7 +68,8 @@
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
     self.placeHolderView.title = kLocalizedTapPlusToAddSound;
-    [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    //[self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    self.placeHolderView.hidden = (self.object.soundList.count != 0);
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.isAllowed = YES;
@@ -76,6 +77,9 @@
     if(self.showAddSoundActionSheetAtStart) {
         [self addSoundAction:nil];
     }
+    [self.tableView registerClass:[DarkBlueGradientImageCell class] forCellReuseIdentifier:kImageCell];
+    [self.tableView registerClass:[DarkBlueGradientImageDetailCell class] forCellReuseIdentifier:kDetailImageCell];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,6 +87,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -96,7 +101,7 @@
 - (void)playSceneAction:(id)sender
 {
     [self stopAllSounds];
-    [super playSceneAction:sender];
+    //[super playSceneAction:sender];
 }
 
 #pragma mark - actions

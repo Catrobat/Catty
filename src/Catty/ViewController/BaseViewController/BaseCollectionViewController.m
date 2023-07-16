@@ -190,7 +190,7 @@
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     self.navigationController.toolbar.userInteractionEnabled = NO;
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    [self showPlaceHolder:NO];
+    //[self showPlaceHolder:NO];
     [self.loadingView show];
 }
 
