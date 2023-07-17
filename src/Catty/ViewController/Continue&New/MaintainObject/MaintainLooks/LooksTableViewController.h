@@ -32,6 +32,7 @@
 
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
 - (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
+- (void)addLookAction:(id)sender;
 @end
 
 

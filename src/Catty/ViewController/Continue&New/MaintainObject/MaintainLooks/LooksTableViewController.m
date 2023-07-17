@@ -82,8 +82,8 @@ UITextFieldDelegate>
     if(self.showAddLookActionSheetAtStartForScriptEditor || self.showAddLookActionSheetAtStartForObject) {
         [self showAddLookActionSheet];
     }
-    [self.tableView registerClass:[DarkBlueGradientImageCell class] forCellReuseIdentifier:kImageCell];
-    [self.tableView registerClass:[DarkBlueGradientImageDetailCell class] forCellReuseIdentifier:kDetailImageCell];
+    //[self.tableView registerClass:[DarkBlueGradientImageCell class] forCellReuseIdentifier:kImageCell];
+    //[self.tableView registerClass:[DarkBlueGradientImageDetailCell class] forCellReuseIdentifier:kDetailImageCell];
 }
 
 #pragma mark viewwillappear
@@ -305,6 +305,7 @@ UITextFieldDelegate>
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
     }
+    
     
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
