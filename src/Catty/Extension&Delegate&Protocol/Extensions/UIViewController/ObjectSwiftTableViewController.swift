@@ -43,9 +43,6 @@ class ObjectSwiftTableViewController: UIViewController {
             self.title = object.name
             self.navigationItem.title = object.name
         }
-        navigationController?.setToolbarHidden(false, animated: true)
-        showScripts()
-
         let leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
         leftSwipeGestureRecognizer.direction = .left
         objectSegmentedControl.addGestureRecognizer(leftSwipeGestureRecognizer)
@@ -53,20 +50,24 @@ class ObjectSwiftTableViewController: UIViewController {
         let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
         rightSwipeGestureRecognizer.direction = .right
         objectSegmentedControl.addGestureRecognizer(rightSwipeGestureRecognizer)
+
+        navigationController?.setToolbarHidden(false, animated: true)
+        showScripts()
     }
+    
+    // TODO There is a bug, sometimes if you swipe, the text color of the selected segment does not get adjusted
 
     @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .left {
             if objectSegmentedControl.selectedSegmentIndex < 2 {
                 objectSegmentedControl.selectedSegmentIndex += 1
-                segmentTapped(objectSegmentedControl)
             }
         } else if gesture.direction == .right {
             if objectSegmentedControl.selectedSegmentIndex > 0 {
                 objectSegmentedControl.selectedSegmentIndex -= 1
-                segmentTapped(objectSegmentedControl)
             }
         }
+        objectSegmentedControl.sendActions(for: .valueChanged)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -107,6 +108,8 @@ class ObjectSwiftTableViewController: UIViewController {
         default:
             break
         }
+        objectSegmentedControl.isMomentary = true
+        objectSegmentedControl.isMomentary = false
     }
 
     @objc func setObject(_ object: SpriteObject) {
@@ -136,4 +139,5 @@ class ObjectSwiftTableViewController: UIViewController {
         soundViewController?.initNavigationBar()
         soundViewController?.setupToolBar()
     }
+
 }

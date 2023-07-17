@@ -229,8 +229,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="onX-Xn-2Pt">
-                                <rect key="frame" x="16" y="64" width="343" height="32"/>
+                            <segmentedControl contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="onX-Xn-2Pt">
+                                <rect key="frame" x="0.0" y="64" width="375" height="32"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
@@ -262,10 +262,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="WNm-Ev-vsb" firstAttribute="leading" secondItem="vdJ-ls-RAh" secondAttribute="leading" id="3OM-bn-yZs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="onX-Xn-2Pt" secondAttribute="trailing" id="9mL-dG-5JQ"/>
                             <constraint firstAttribute="bottom" secondItem="2bX-c3-TH9" secondAttribute="bottom" constant="49" id="Wqa-bk-fCJ"/>
                             <constraint firstItem="6aT-PV-5w4" firstAttribute="top" secondItem="WNm-Ev-vsb" secondAttribute="bottom" id="XWs-Qv-9fE"/>
-                            <constraint firstItem="onX-Xn-2Pt" firstAttribute="leading" secondItem="vdJ-ls-RAh" secondAttribute="leadingMargin" id="e9F-QJ-AuZ"/>
+                            <constraint firstAttribute="trailing" secondItem="onX-Xn-2Pt" secondAttribute="trailing" id="hKP-Fg-mb7"/>
+                            <constraint firstItem="onX-Xn-2Pt" firstAttribute="leading" secondItem="vdJ-ls-RAh" secondAttribute="leading" id="iv7-wq-S6W"/>
                             <constraint firstItem="2bX-c3-TH9" firstAttribute="top" secondItem="onX-Xn-2Pt" secondAttribute="bottom" id="j7n-UZ-uQ2"/>
                             <constraint firstItem="6aT-PV-5w4" firstAttribute="top" secondItem="Now-bR-jKO" secondAttribute="bottom" id="k6U-1V-ZsZ"/>
                             <constraint firstItem="2bX-c3-TH9" firstAttribute="leading" secondItem="vdJ-ls-RAh" secondAttribute="leading" id="nMr-j1-NH4"/>
