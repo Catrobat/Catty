@@ -56,6 +56,7 @@ class ObjectSwiftTableViewController: UIViewController {
         } else if segue.identifier == "toSounds" {
             let destVC = segue.destination as! SoundsTableViewController
             destVC.object = object
+            destVC.parentNavigationController = self
             soundViewController = destVC
         } else if segue.identifier == "toScripts" {
             let destVC = segue.destination as! ScriptCollectionViewController
@@ -113,6 +114,8 @@ class ObjectSwiftTableViewController: UIViewController {
         looksContainerView.isHidden = true
         soundContainerView.isHidden = false
         //setupToolBarForSound()
+        soundViewController?.initNavigationBar()
+        soundViewController?.setupToolBar()
     }
 
     func setupToolBarForScripts() {

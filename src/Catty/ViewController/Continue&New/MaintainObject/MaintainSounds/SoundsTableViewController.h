@@ -28,6 +28,7 @@
 
 @protocol SoundDelegate <NSObject>
 - (void)addSound:(Sound *)sound;
+- (void)initNavigationBar;
 @end
 
 
@@ -35,6 +36,7 @@
 
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic) BOOL showAddSoundActionSheetAtStart;
+@property (nonatomic, strong) UIViewController *parentNavigationController;
 @property (copy) void (^afterSafeBlock)(Sound* look);
 - (void)playSceneAction:(id)sender;
 - (void)addSoundAction:(id)sender;

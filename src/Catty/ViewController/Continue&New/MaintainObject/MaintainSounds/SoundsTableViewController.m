@@ -51,7 +51,7 @@
 - (void)initNavigationBar
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
-    self.navigationItem.rightBarButtonItem = editButtonItem;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = editButtonItem;
 }
 
 #pragma mark - events
@@ -77,8 +77,6 @@
     if(self.showAddSoundActionSheetAtStart) {
         [self addSoundAction:nil];
     }
-    [self.tableView registerClass:[DarkBlueGradientImageCell class] forCellReuseIdentifier:kImageCell];
-    [self.tableView registerClass:[DarkBlueGradientImageDetailCell class] forCellReuseIdentifier:kDetailImageCell];
 
 }
 
@@ -101,7 +99,7 @@
 - (void)playSceneAction:(id)sender
 {
     [self stopAllSounds];
-    //[super playSceneAction:sender];
+    [super playSceneAction:sender];
 }
 
 #pragma mark - actions
@@ -680,6 +678,7 @@
                                                                           target:self
                                                                           action:nil];
     self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
+    self.parentNavigationController.toolbarItems = self.toolbarItems;
 }
 
 - (void)setupEditingToolBar
@@ -694,6 +693,7 @@
                                                                           target:self
                                                                           action:nil];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, deleteButton, nil];
+    self.parentNavigationController.toolbarItems = self.toolbarItems;
 }
 
 - (void)changeEditingBarButtonState
