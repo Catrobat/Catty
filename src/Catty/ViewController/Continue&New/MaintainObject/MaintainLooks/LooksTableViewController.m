@@ -55,7 +55,7 @@ UITextFieldDelegate>
 - (void)initNavigationBar
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
-    self.navigationItem.rightBarButtonItem = editButtonItem;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = editButtonItem;
     [self changeEditingBarButtonState];
 }
 
@@ -82,8 +82,6 @@ UITextFieldDelegate>
     if(self.showAddLookActionSheetAtStartForScriptEditor || self.showAddLookActionSheetAtStartForObject) {
         [self showAddLookActionSheet];
     }
-    //[self.tableView registerClass:[DarkBlueGradientImageCell class] forCellReuseIdentifier:kImageCell];
-    //[self.tableView registerClass:[DarkBlueGradientImageDetailCell class] forCellReuseIdentifier:kDetailImageCell];
 }
 
 #pragma mark viewwillappear
@@ -697,7 +695,7 @@ UITextFieldDelegate>
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                           target:self
                                                                           action:nil];
-    self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
+    self.parentNavigationController.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
 }
 
 - (void)setupEditingToolBar
@@ -719,7 +717,7 @@ UITextFieldDelegate>
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                           target:self
                                                                           action:nil];
-    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, editActionButton, nil];
+    self.parentNavigationController.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, editActionButton, nil];
 }
 
 #pragma mark paintDelegate
@@ -875,9 +873,9 @@ UITextFieldDelegate>
 - (void)changeEditingBarButtonState
 {
     if (self.object.lookList.count >= 1) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.parentViewController.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.parentViewController.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 

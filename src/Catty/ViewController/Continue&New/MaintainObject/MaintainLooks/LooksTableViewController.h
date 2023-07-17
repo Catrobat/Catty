@@ -33,11 +33,13 @@
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
 - (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
 - (void)addLookAction:(id)sender;
+- (void)initNavigationBar;
 @end
 
 
 @interface LooksTableViewController : BaseTableViewController <PaintDelegate>
 @property (strong, nonatomic) SpriteObject *object;
+@property (nonatomic, strong) UIViewController *parentNavigationController;
 @property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
 @property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
 @property (copy) void (^afterSafeBlock)(Look* look);

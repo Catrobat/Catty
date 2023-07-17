@@ -51,6 +51,7 @@ class ObjectSwiftTableViewController: UIViewController {
         if segue.identifier == "toLooks" {
             let destVC = segue.destination as! LooksTableViewController
             destVC.object = object
+            destVC.parentNavigationController = self
             looksViewController = destVC
         } else if segue.identifier == "toSounds" {
             let destVC = segue.destination as! SoundsTableViewController
@@ -59,6 +60,7 @@ class ObjectSwiftTableViewController: UIViewController {
         } else if segue.identifier == "toScripts" {
             let destVC = segue.destination as! ScriptCollectionViewController
             destVC.object = object
+            destVC.parentNavigationController = self
             scriptsViewController = destVC
         }
     }
@@ -92,21 +94,25 @@ class ObjectSwiftTableViewController: UIViewController {
         scriptsContainerView.isHidden = true
         looksContainerView.isHidden = false
         soundContainerView.isHidden = true
-        setUpToolBarForLooks()
+        //setUpToolBarForLooks()
+        looksViewController?.initNavigationBar()
+        looksViewController?.setupToolBar()
     }
 
     func showScripts() {
         scriptsContainerView.isHidden = false
         looksContainerView.isHidden = true
         soundContainerView.isHidden = true
-        setupToolBarForScripts()
+        //setupToolBarForScripts()
+        scriptsViewController?.setupToolBar()
+        scriptsViewController?.changeDeleteBarButtonState()
     }
 
     func showSounds() {
         scriptsContainerView.isHidden = true
         looksContainerView.isHidden = true
         soundContainerView.isHidden = false
-        setupToolBarForSound()
+        //setupToolBarForSound()
     }
 
     func setupToolBarForScripts() {

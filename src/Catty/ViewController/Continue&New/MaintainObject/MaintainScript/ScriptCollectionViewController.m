@@ -114,6 +114,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
     [super viewWillAppear:animated];
     
     // do not call super to prevent automatic scrolling when opening a UIPickerView
@@ -825,11 +826,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else {
         navBarButton= [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel style:UIBarButtonItemStylePlain target:self action:@selector(exitDeleteMode)];
     }
-    self.navigationItem.rightBarButtonItem = navBarButton;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = navBarButton;
     if (self.object.scriptList.count) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 
@@ -1294,7 +1295,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)enterDeleteMode
 {
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel style:UIBarButtonItemStylePlain target:self action:@selector(exitDeleteMode)];
-    self.navigationItem.rightBarButtonItem = cancelButton;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
     
     [UIView animateWithDuration:0.5f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
@@ -1312,7 +1313,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)exitDeleteMode
 {
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
-    self.navigationItem.rightBarButtonItem = deleteButton;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = deleteButton;
     
     [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -1340,6 +1341,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     return NO;
+}
+
+- (void)setupToolBar
+{
+    [super setupToolBar];
+    
+//    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                                                                         target:self
+//                                                                         action:@selector(showBrickPickerAction:)];
+//    UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
+//                                                        action:@selector(playSceneAction:)];
+//    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                                                                          target:self
+//                                                                          action:nil];
+//    self.parentNavigationController.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
+    
+    
+    self.parentNavigationController.toolbarItems = self.toolbarItems;
 }
 
 @end

@@ -27,10 +27,13 @@
 
 @interface ScriptCollectionViewController : BaseCollectionViewController<BrickCategoryViewControllerDelegate>
 @property (nonatomic, strong) SpriteObject *object;
+@property (nonatomic, strong) UIViewController *parentNavigationController;
+
 
 - (void)removeBrickOrScript:(id<BrickProtocol>)scriptOrBrick atIndexPath:(NSIndexPath*)indexPath;
 -(void)turnOnInsertingBrickMode;
 - (void)showBrickPickerAction:(id)sender;
+- (void)changeDeleteBarButtonState;
 
 @end
 
