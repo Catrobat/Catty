@@ -45,6 +45,28 @@ class ObjectSwiftTableViewController: UIViewController {
         }
         navigationController?.setToolbarHidden(false, animated: true)
         showScripts()
+
+        let leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        leftSwipeGestureRecognizer.direction = .left
+        objectSegmentedControl.addGestureRecognizer(leftSwipeGestureRecognizer)
+
+        let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        rightSwipeGestureRecognizer.direction = .right
+        objectSegmentedControl.addGestureRecognizer(rightSwipeGestureRecognizer)
+    }
+
+    @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .left {
+            if objectSegmentedControl.selectedSegmentIndex < 2 {
+                objectSegmentedControl.selectedSegmentIndex += 1
+                segmentTapped(objectSegmentedControl)
+            }
+        } else if gesture.direction == .right {
+            if objectSegmentedControl.selectedSegmentIndex > 0 {
+                objectSegmentedControl.selectedSegmentIndex -= 1
+                segmentTapped(objectSegmentedControl)
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,7 +117,6 @@ class ObjectSwiftTableViewController: UIViewController {
         scriptsContainerView.isHidden = true
         looksContainerView.isHidden = false
         soundContainerView.isHidden = true
-        //setUpToolBarForLooks()
         looksViewController?.initNavigationBar()
         looksViewController?.setupToolBar()
     }
@@ -104,7 +125,6 @@ class ObjectSwiftTableViewController: UIViewController {
         scriptsContainerView.isHidden = false
         looksContainerView.isHidden = true
         soundContainerView.isHidden = true
-        //setupToolBarForScripts()
         scriptsViewController?.setupToolBar()
         scriptsViewController?.changeDeleteBarButtonState()
     }
@@ -113,101 +133,7 @@ class ObjectSwiftTableViewController: UIViewController {
         scriptsContainerView.isHidden = true
         looksContainerView.isHidden = true
         soundContainerView.isHidden = false
-        //setupToolBarForSound()
         soundViewController?.initNavigationBar()
         soundViewController?.setupToolBar()
     }
-
-    func setupToolBarForScripts() {
-
-        guard let scriptsViewController = scriptsViewController else {
-            return
-        }
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: scriptsViewController, action: #selector(scriptsViewController.showBrickPickerAction))
-        let play = PlayButton(target: self, action: #selector(scriptPlayButtonPressed))
-        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        self.toolbarItems = [flex, add, flex, flex, play, flex]
-    }
-
-    func setupToolBarForSound() {
-        guard let soundViewController = soundViewController else {
-            return
-        }
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: soundViewController, action: #selector(soundViewController.addSoundAction(_:)))
-        let play = PlayButton(target: self, action: #selector(soundPlayButtonPressed))
-        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        self.toolbarItems = [flex, add, flex, flex, play, flex]
-    }
-
-    func setUpToolBarForLooks() {
-        guard let looksViewController = looksViewController else {
-            return
-        }
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: looksViewController, action: #selector(looksViewController.addLookAction(_:)))
-        let play = PlayButton(target: self, action: #selector(looksPlayButtonPressed))
-        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        self.toolbarItems = [flex, add, flex, flex, play, flex]
-    }
-
-    @objc func scriptPlayButtonPressed() {
-        if let scriptsViewController = scriptsViewController {
-            playScriptsSceneAction(scriptsViewController)
-        }
-
-    }
-
-    @objc func soundPlayButtonPressed() {
-        guard let soundViewController = soundViewController else {
-            return
-        }
-        soundViewController.playSceneAction(nil)
-        playBaseTableViewSceneAction(soundViewController)
-    }
-
-    @objc func looksPlayButtonPressed() {
-        if let looksViewController {
-            playBaseTableViewSceneAction(looksViewController)
-        }
-    }
-
-    func playBaseTableViewSceneAction(_ sender: BaseTableViewController) {
-        sender.showLoadingView()
-
-        (UIApplication.shared.delegate as? AppDelegate)?.enabledOrientation = true
-        let lastProjectQueue = DispatchQueue(label: "lastProjectQueue")
-        lastProjectQueue.async {
-            let landscapeMode = Project.lastUsed().header.landscapeMode
-            DispatchQueue.main.async { [self] in
-                if !landscapeMode {
-                    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-                } else {
-                    UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-                }
-
-                sender.stagePresenterViewController.checkResourcesAndPushViewController(to: self.navigationController!) {
-                    sender.hideLoadingView()
-                }
-            }
-        }
-    }
-
-    func playScriptsSceneAction(_ sender: ScriptCollectionViewController) {
-        sender.showLoadingView()
-        (UIApplication.shared.delegate as? AppDelegate)?.enabledOrientation = true
-        let lastProjectQueue = DispatchQueue(label: "lastProjectQueue")
-        lastProjectQueue.async {
-            let landscapeMode = Project.lastUsed().header.landscapeMode
-            DispatchQueue.main.async { [self] in
-                if !landscapeMode {
-                    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-                } else {
-                    UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-                }
-                sender.stagePresenterViewController.checkResourcesAndPushViewController(to: self.navigationController!) {
-                    sender.hideLoadingView()
-                }
-            }
-        }
-    }
-
 }
