@@ -54,7 +54,7 @@ class ObjectSwiftTableViewController: UIViewController {
         navigationController?.setToolbarHidden(false, animated: true)
         showScripts()
     }
-    
+
     // TODO There is a bug, sometimes if you swipe, the text color of the selected segment does not get adjusted
 
     @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
@@ -74,6 +74,7 @@ class ObjectSwiftTableViewController: UIViewController {
         if segue.identifier == "toLooks" {
             let destVC = segue.destination as! LooksTableViewController
             destVC.object = object
+            destVC.segmentedControllDelegate = self
             destVC.parentNavigationController = self
             looksViewController = destVC
         } else if segue.identifier == "toSounds" {
@@ -140,4 +141,14 @@ class ObjectSwiftTableViewController: UIViewController {
         soundViewController?.setupToolBar()
     }
 
+}
+
+extension ObjectSwiftTableViewController: EnableAndDisableSegmentedControllDelegate {
+    func enableSegmentedControll() {
+        objectSegmentedControl.isEnabled = true
+    }
+
+    func disableSegmentedControll() {
+        objectSegmentedControl.isEnabled = false
+    }
 }

@@ -26,6 +26,12 @@
 @class SpriteObject;
 @class Brick;
 @class Look;
+
+@protocol EnableAndDisableSegmentedControllDelegate <NSObject>
+- (void)enableSegmentedControll;
+- (void)disableSegmentedControll;
+@end
+
 @protocol BrickLookProtocol;
 
 @protocol PaintDelegate <NSObject>
@@ -39,7 +45,8 @@
 
 @interface LooksTableViewController : BaseTableViewController <PaintDelegate>
 @property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic, strong) UIViewController *parentNavigationController;
+@property (weak, nonatomic) id<EnableAndDisableSegmentedControllDelegate> segmentedControllDelegate;
+@property (weak, nonatomic) UIViewController *parentNavigationController;
 @property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
 @property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
 @property (copy) void (^afterSafeBlock)(Look* look);

@@ -112,14 +112,14 @@
         [actionSheet addDestructiveActionWithTitle:kLocalizedDeleteSounds handler:^{
             self.deletionMode = YES;
             [self setupEditingToolBar];
-            [super changeToEditingMode:sender];
+            [self changeToEditingMode:sender];
         }];
     }
     
     if (self.object.soundList.count >= 2) {
         [actionSheet addDefaultActionWithTitle:kLocalizedMoveSounds handler:^{
             self.deletionMode = NO;
-            [super changeToMoveMode:sender];
+            [self changeToMoveMode:sender];
         }];
     }
     
@@ -222,7 +222,7 @@
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
         // nothing selected, nothing to delete...
-        [super exitEditingMode];
+        [self exitEditingMode];
         return;
     }
     self.deletionMode = NO;
@@ -240,7 +240,7 @@
         [soundsToRemove addObject:sound];
     }
     [self.object removeSounds:soundsToRemove AndSaveToDisk:YES];
-    [super exitEditingMode];
+    [self exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self hideLoadingView];
@@ -585,10 +585,45 @@
     }
 }
 
+- (void)changeToMoveMode:(id)sender
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.parentNavigationController.navigationItem.hidesBackButton = YES;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = NO;
+    self.editing = YES;
+}
+
+- (void)changeToEditingMode:(id)sender
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.parentNavigationController.navigationItem.hidesBackButton = YES;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    self.editing = YES;
+}
+
 - (void)exitEditingMode
 {
     [super exitEditingMode];
     self.deletionMode = NO;
+    self.parentNavigationController.navigationItem.hidesBackButton = NO;
+    [self initNavigationBar];
+    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = YES;
+    [self.tableView setEditing:NO animated:YES];
+    [self setupToolBar];
+    self.editing = NO;
 }
 
 #pragma mark - Helper Methods

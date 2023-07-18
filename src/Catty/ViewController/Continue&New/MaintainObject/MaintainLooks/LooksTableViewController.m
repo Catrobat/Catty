@@ -94,6 +94,7 @@ UITextFieldDelegate>
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
+    
     [self.tableView setEditing:false animated:YES];
     
     NSString *actionSheetTitle = self.object.isBackground ? kLocalizedEditBackgrounds : kLocalizedEditLooks;
@@ -104,24 +105,27 @@ UITextFieldDelegate>
         NSString *destructiveActionTitle = self.object.isBackground ? kLocalizedDeleteBackgrounds : kLocalizedDeleteLooks;
         [[actionSheet
           addDestructiveActionWithTitle:destructiveActionTitle handler:^{
+            [self.segmentedControllDelegate disableSegmentedControll];
             self.deletionMode = YES;
             self.copyMode = NO;
             [self setupEditingToolBar];
-            [super changeToEditingMode:sender];
+            [self changeToEditingMode:sender];
         }]
          addDefaultActionWithTitle:kLocalizedCopyLooks handler:^{
+            [self.segmentedControllDelegate disableSegmentedControll];
             self.deletionMode = NO;
             self.copyMode = YES;
             [self setupEditingToolBar];
-            [super changeToEditingMode:sender];
+            [self changeToEditingMode:sender];
         }];
         
     }
     if (self.object.lookList.count >= 2) {
         [actionSheet addDefaultActionWithTitle:kLocalizedMoveLooks handler:^{
+            [self.segmentedControllDelegate disableSegmentedControll];
             self.deletionMode = NO;
             self.copyMode = NO;
-            [super changeToMoveMode:sender];
+            [self changeToMoveMode:sender];
         }];
     }
     
@@ -131,6 +135,48 @@ UITextFieldDelegate>
         [self toggleDetailCellsMode];
     }] build]
      showWithController:self];
+}
+
+- (void)changeToMoveMode:(id)sender
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.parentNavigationController.navigationItem.hidesBackButton = YES;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = NO;
+    self.parentNavigationController.navigationController.toolbar.hidden = true;
+    self.editing = YES;
+}
+
+- (void)changeToEditingMode:(id)sender
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.parentNavigationController.navigationItem.hidesBackButton = YES;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    self.editing = YES;
+}
+
+- (void)exitEditingMode
+{
+    self.parentNavigationController.navigationItem.hidesBackButton = NO;
+    [self initNavigationBar];
+    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = YES;
+    [self.tableView setEditing:NO animated:YES];
+    [self setupToolBar];
+    self.editing = NO;
+    [self.segmentedControllDelegate enableSegmentedControll];
+    self.parentNavigationController.navigationController.toolbar.hidden = false;
 }
 
 - (void)toggleDetailCellsMode {
@@ -189,7 +235,7 @@ UITextFieldDelegate>
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
         // nothing selected, nothing to delete...
-        [super exitEditingMode];
+        [self exitEditingMode];
         return;
     }
     
@@ -199,7 +245,7 @@ UITextFieldDelegate>
         [looksToCopy addObject:look];
     }
     [self copyLooksActionWithSourceLooks:looksToCopy];
-    [super exitEditingMode];
+    [self exitEditingMode];
 }
 
 - (void)copyLooksActionWithSourceLooks:(NSArray<Look *> *)sourceLooks
@@ -242,7 +288,7 @@ UITextFieldDelegate>
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
         // nothing selected, nothing to delete...
-        [super exitEditingMode];
+        [self exitEditingMode];
         return;
     }
     [self deleteSelectedLooksAction];
@@ -259,7 +305,7 @@ UITextFieldDelegate>
         [self.dataCache removeObjectForKey:look.fileName];
     }
     [self.object removeLooks:looksToRemove AndSaveToDisk:YES];
-    [super exitEditingMode];
+    [self exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self hideLoadingView];
