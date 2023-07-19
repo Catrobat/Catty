@@ -25,6 +25,7 @@
 
 @class SpriteObject;
 @class Sound;
+@protocol EnableAndDisableSegmentedControllDelegate;
 
 @protocol SoundDelegate <NSObject>
 - (void)addSound:(Sound *)sound;
@@ -36,6 +37,7 @@
 
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic) BOOL showAddSoundActionSheetAtStart;
+@property (weak, nonatomic) id<EnableAndDisableSegmentedControllDelegate> segmentedControllDelegate;
 @property (nonatomic, strong) UIViewController *parentNavigationController;
 @property (copy) void (^afterSafeBlock)(Sound* look);
 - (void)playSceneAction:(id)sender;

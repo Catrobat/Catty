@@ -148,7 +148,6 @@ UITextFieldDelegate>
     [self.tableView reloadData];
     [self.tableView setEditing:YES animated:YES];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = NO;
     self.parentNavigationController.navigationController.toolbar.hidden = true;
     self.editing = YES;
 }
@@ -171,7 +170,6 @@ UITextFieldDelegate>
 {
     self.parentNavigationController.navigationItem.hidesBackButton = NO;
     [self initNavigationBar];
-    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = YES;
     [self.tableView setEditing:NO animated:YES];
     [self setupToolBar];
     self.editing = NO;

@@ -217,10 +217,10 @@
             </objects>
             <point key="canvasLocation" x="-4329" y="-3639"/>
         </scene>
-        <!--Object Swift Table View Controller-->
+        <!--Object View Controller-->
         <scene sceneID="em2-uX-sDK">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="gRy-dL-Z2R" customClass="ObjectSwiftTableViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="gRy-dL-Z2R" customClass="ObjectViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M2y-aL-Oy0"/>
                         <viewControllerLayoutGuide type="bottom" id="6aT-PV-5w4"/>
@@ -283,7 +283,7 @@
                         <outlet property="looksContainerView" destination="2bX-c3-TH9" id="KNg-Vt-q3K"/>
                         <outlet property="objectSegmentedControl" destination="onX-Xn-2Pt" id="Xxf-RB-DIc"/>
                         <outlet property="scriptsContainerView" destination="Now-bR-jKO" id="892-Hi-Ckk"/>
-                        <outlet property="soundContainerView" destination="WNm-Ev-vsb" id="x8K-fK-dCB"/>
+                        <outlet property="soundsContainerView" destination="WNm-Ev-vsb" id="x8K-fK-dCB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgN-Ly-L21" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -826,44 +826,44 @@
                                         <mask key="constraints">
                                             <exclude reference="rmt-5j-xHo"/>
                                             <exclude reference="yVh-0t-Vlf"/>
-                                            <exclude reference="ZIf-lr-LMK"/>
-                                            <exclude reference="zru-bB-Yux"/>
-                                            <exclude reference="IzG-s5-0qj"/>
-                                            <exclude reference="zww-e0-3nv"/>
                                             <exclude reference="3aU-ob-WB6"/>
-                                            <exclude reference="zuY-hW-g8A"/>
+                                            <exclude reference="IzG-s5-0qj"/>
+                                            <exclude reference="ZIf-lr-LMK"/>
                                             <exclude reference="gFN-Nx-sWf"/>
-                                            <exclude reference="at5-an-H2H"/>
-                                            <exclude reference="lfh-2t-P64"/>
+                                            <exclude reference="zru-bB-Yux"/>
+                                            <exclude reference="zuY-hW-g8A"/>
+                                            <exclude reference="zww-e0-3nv"/>
+                                            <exclude reference="9Jc-Nn-Nvn"/>
                                             <exclude reference="KIq-8R-GN7"/>
                                             <exclude reference="Wgx-Tc-fYn"/>
-                                            <exclude reference="9Jc-Nn-Nvn"/>
+                                            <exclude reference="at5-an-H2H"/>
+                                            <exclude reference="lfh-2t-P64"/>
                                             <exclude reference="wg2-40-KFe"/>
                                             <exclude reference="3yY-ie-Twv"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=compact">
                                         <mask key="constraints">
-                                            <include reference="rmt-5j-xHo"/>
                                             <exclude reference="MEm-fR-Wy7"/>
-                                            <exclude reference="yVh-0t-Vlf"/>
+                                            <include reference="rmt-5j-xHo"/>
                                             <exclude reference="uCW-nB-rah"/>
-                                            <include reference="ZIf-lr-LMK"/>
-                                            <exclude reference="QFO-QV-wfQ"/>
-                                            <exclude reference="zru-bB-Yux"/>
-                                            <exclude reference="IzG-s5-0qj"/>
-                                            <exclude reference="zww-e0-3nv"/>
+                                            <exclude reference="yVh-0t-Vlf"/>
                                             <include reference="3aU-ob-WB6"/>
-                                            <exclude reference="zuY-hW-g8A"/>
+                                            <exclude reference="IzG-s5-0qj"/>
+                                            <exclude reference="QFO-QV-wfQ"/>
+                                            <include reference="ZIf-lr-LMK"/>
                                             <exclude reference="gFN-Nx-sWf"/>
-                                            <exclude reference="at5-an-H2H"/>
-                                            <exclude reference="CQb-3m-sd7"/>
-                                            <exclude reference="lfh-2t-P64"/>
-                                            <exclude reference="KIq-8R-GN7"/>
-                                            <include reference="Wgx-Tc-fYn"/>
-                                            <exclude reference="gxp-9J-hzE"/>
-                                            <exclude reference="WNC-sb-OMH"/>
+                                            <exclude reference="zru-bB-Yux"/>
+                                            <exclude reference="zuY-hW-g8A"/>
+                                            <exclude reference="zww-e0-3nv"/>
                                             <exclude reference="9Jc-Nn-Nvn"/>
+                                            <exclude reference="CQb-3m-sd7"/>
+                                            <exclude reference="KIq-8R-GN7"/>
+                                            <exclude reference="WNC-sb-OMH"/>
+                                            <include reference="Wgx-Tc-fYn"/>
+                                            <exclude reference="at5-an-H2H"/>
+                                            <exclude reference="gxp-9J-hzE"/>
+                                            <exclude reference="lfh-2t-P64"/>
                                             <include reference="wg2-40-KFe"/>
                                             <include reference="3yY-ie-Twv"/>
                                         </mask>

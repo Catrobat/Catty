@@ -22,15 +22,15 @@
 
 import UIKit
 
-class ObjectSwiftTableViewController: UIViewController {
+class ObjectViewController: UIViewController, EnableAndDisableSegmentedControllDelegate {
 
     @IBOutlet private weak var objectSegmentedControl: UISegmentedControl!
-    @IBOutlet private weak var soundContainerView: UIView!
+    @IBOutlet private weak var soundsContainerView: UIView!
     @IBOutlet private weak var scriptsContainerView: UIView!
     @IBOutlet private weak var looksContainerView: UIView!
     public var object: SpriteObject?
 
-    var soundViewController: SoundsTableViewController?
+    var soundsViewController: SoundsTableViewController?
     var looksViewController: LooksTableViewController?
     var scriptsViewController: ScriptCollectionViewController?
 
@@ -80,11 +80,13 @@ class ObjectSwiftTableViewController: UIViewController {
         } else if segue.identifier == "toSounds" {
             let destVC = segue.destination as! SoundsTableViewController
             destVC.object = object
+            destVC.segmentedControllDelegate = self
             destVC.parentNavigationController = self
-            soundViewController = destVC
+            soundsViewController = destVC
         } else if segue.identifier == "toScripts" {
             let destVC = segue.destination as! ScriptCollectionViewController
             destVC.object = object
+            destVC.segmentedControllDelegate = self
             destVC.parentNavigationController = self
             scriptsViewController = destVC
         }
@@ -120,7 +122,7 @@ class ObjectSwiftTableViewController: UIViewController {
     func showBackgrounds() {
         scriptsContainerView.isHidden = true
         looksContainerView.isHidden = false
-        soundContainerView.isHidden = true
+        soundsContainerView.isHidden = true
         looksViewController?.initNavigationBar()
         looksViewController?.setupToolBar()
     }
@@ -128,7 +130,7 @@ class ObjectSwiftTableViewController: UIViewController {
     func showScripts() {
         scriptsContainerView.isHidden = false
         looksContainerView.isHidden = true
-        soundContainerView.isHidden = true
+        soundsContainerView.isHidden = true
         scriptsViewController?.setupToolBar()
         scriptsViewController?.changeDeleteBarButtonState()
     }
@@ -136,14 +138,11 @@ class ObjectSwiftTableViewController: UIViewController {
     func showSounds() {
         scriptsContainerView.isHidden = true
         looksContainerView.isHidden = true
-        soundContainerView.isHidden = false
-        soundViewController?.initNavigationBar()
-        soundViewController?.setupToolBar()
+        soundsContainerView.isHidden = false
+        soundsViewController?.initNavigationBar()
+        soundsViewController?.setupToolBar()
     }
 
-}
-
-extension ObjectSwiftTableViewController: EnableAndDisableSegmentedControllDelegate {
     func enableSegmentedControll() {
         objectSegmentedControl.isEnabled = true
     }
@@ -151,4 +150,5 @@ extension ObjectSwiftTableViewController: EnableAndDisableSegmentedControllDeleg
     func disableSegmentedControll() {
         objectSegmentedControl.isEnabled = false
     }
+
 }

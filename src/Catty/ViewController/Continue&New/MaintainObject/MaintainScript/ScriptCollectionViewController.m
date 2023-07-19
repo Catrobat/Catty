@@ -370,6 +370,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
          addDefaultActionWithTitle:kLocalizedYes handler:^{
              [self deleteSelectedBricks];
              self.allBricksSelected = NO;
+            [self.segmentedControllDelegate enableSegmentedControll];
          }] build]
          showWithController:self];
     }
@@ -1180,6 +1181,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
         cell.alpha = kBrickCellActiveOpacity;
+        [self.segmentedControllDelegate enableSegmentedControll];
     }
     
     CGFloat maxContentOffset = self.collectionView.contentSize.height + self.collectionView.contentInset.bottom - self.collectionView.bounds.size.height;
@@ -1199,17 +1201,18 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
-    self.navigationController.toolbar.userInteractionEnabled = NO;
-    self.navigationController.navigationBar.userInteractionEnabled = NO;
+    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = NO;
+    self.parentNavigationController.navigationController.navigationBar.userInteractionEnabled = NO;
         // disable swipe back gesture
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    if ([self.parentNavigationController.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.parentNavigationController.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         if (cell != brickCell) {
             cell.enabled = NO;
             cell.alpha = kBrickCellInactiveWhileEditingOpacity;
+            [self.segmentedControllDelegate disableSegmentedControll];
         }
     }
     
@@ -1294,6 +1297,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)enterDeleteMode
 {
+    [self.segmentedControllDelegate disableSegmentedControll];
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel style:UIBarButtonItemStylePlain target:self action:@selector(exitDeleteMode)];
     self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
     
@@ -1336,6 +1340,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                      }];
     self.editing = NO;
     self.allBricksSelected = NO;
+    [self.segmentedControllDelegate enableSegmentedControll];
 }
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer

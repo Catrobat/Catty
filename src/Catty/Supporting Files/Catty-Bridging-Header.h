@@ -173,7 +173,6 @@
 #import "CatrobatTableViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "ProjectDetailStoreViewController.h"
-#import "ObjectTableViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 

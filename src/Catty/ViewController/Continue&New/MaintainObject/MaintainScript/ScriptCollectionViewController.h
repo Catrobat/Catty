@@ -24,10 +24,12 @@
 #import "BaseCollectionViewController.h"
 
 @class SpriteObject;
+@protocol EnableAndDisableSegmentedControllDelegate;
 
 @interface ScriptCollectionViewController : BaseCollectionViewController<BrickCategoryViewControllerDelegate>
 @property (nonatomic, strong) SpriteObject *object;
 @property (nonatomic, strong) UIViewController *parentNavigationController;
+@property (weak, nonatomic) id<EnableAndDisableSegmentedControllDelegate> segmentedControllDelegate;
 
 
 - (void)removeBrickOrScript:(id<BrickProtocol>)scriptOrBrick atIndexPath:(NSIndexPath*)indexPath;

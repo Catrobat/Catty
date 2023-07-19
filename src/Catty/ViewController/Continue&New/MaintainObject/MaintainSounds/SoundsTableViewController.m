@@ -587,6 +587,7 @@
 
 - (void)changeToMoveMode:(id)sender
 {
+    [self.segmentedControllDelegate disableSegmentedControll];
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
@@ -596,12 +597,13 @@
     [self.tableView reloadData];
     [self.tableView setEditing:YES animated:YES];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = NO;
+    self.parentNavigationController.navigationController.toolbar.hidden = true;
     self.editing = YES;
 }
 
 - (void)changeToEditingMode:(id)sender
 {
+    [self.segmentedControllDelegate disableSegmentedControll];
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
@@ -620,10 +622,11 @@
     self.deletionMode = NO;
     self.parentNavigationController.navigationItem.hidesBackButton = NO;
     [self initNavigationBar];
-    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = YES;
+    self.parentNavigationController.navigationController.toolbar.hidden = false;
     [self.tableView setEditing:NO animated:YES];
     [self setupToolBar];
     self.editing = NO;
+    [self.segmentedControllDelegate enableSegmentedControll];
 }
 
 #pragma mark - Helper Methods
