@@ -800,7 +800,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     layout.longPressGestureRecognizer.minimumPressDuration = 0.1;
     [self.navigationItem setHidesBackButton:YES animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
-       self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = NO;
     });
     
 }
@@ -815,7 +815,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     layout.longPressGestureRecognizer.minimumPressDuration = 0.5;
     [self.navigationItem setHidesBackButton:NO animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = YES;
     });
 }
 

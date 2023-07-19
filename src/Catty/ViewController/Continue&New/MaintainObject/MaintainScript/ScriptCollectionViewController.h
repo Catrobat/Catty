@@ -34,6 +34,7 @@
 
 - (void)removeBrickOrScript:(id<BrickProtocol>)scriptOrBrick atIndexPath:(NSIndexPath*)indexPath;
 -(void)turnOnInsertingBrickMode;
+-(void)reloadData;
 - (void)showBrickPickerAction:(id)sender;
 - (void)changeDeleteBarButtonState;
 

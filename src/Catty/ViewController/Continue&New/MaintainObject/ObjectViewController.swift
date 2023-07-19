@@ -111,8 +111,6 @@ class ObjectViewController: UIViewController, EnableAndDisableSegmentedControllD
         default:
             break
         }
-        objectSegmentedControl.isMomentary = true
-        objectSegmentedControl.isMomentary = false
     }
 
     @objc func setObject(_ object: SpriteObject) {

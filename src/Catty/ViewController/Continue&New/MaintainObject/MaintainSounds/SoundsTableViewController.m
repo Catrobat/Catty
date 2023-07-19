@@ -737,9 +737,9 @@
 - (void)changeEditingBarButtonState
 {
     if (self.object.soundList.count >= 1) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 

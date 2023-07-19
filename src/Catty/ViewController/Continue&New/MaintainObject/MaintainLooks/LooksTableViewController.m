@@ -88,7 +88,6 @@ UITextFieldDelegate>
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self reloadData];
 }
 
 #pragma mark - actions
