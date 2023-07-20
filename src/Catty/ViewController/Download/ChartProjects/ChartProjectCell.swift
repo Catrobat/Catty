@@ -51,5 +51,12 @@ class ChartProjectCell: UITableViewCell {
 
         chartProjectTitle?.text = chartTitle
         chartProjectTitle.textColor = UIColor.globalTint
+
+        if let accessoryImage = UIImage(named: "chevron.right#accessory") {
+            self.accessoryView = UIImageView(image: accessoryImage)
+        }
+        self.accessoryView?.contentMode = .scaleAspectFit
+        self.accessoryView?.tintAdjustmentMode = .normal
+        self.accessoryView?.tintColor = UIColor.utilityTint
     }
 }
