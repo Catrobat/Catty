@@ -275,7 +275,8 @@
     [positiveHeight sizeToFit];
     [negativeHeight sizeToFit];
     
-    [self.view insertSubview:self.gridView aboveSubview:self.skView];
+    //[self.view insertSubview:self.gridView aboveSubview:self.skView];
+    [self.skView addSubview:self.gridView];
 }
 
 - (void)setupStageAndStart
