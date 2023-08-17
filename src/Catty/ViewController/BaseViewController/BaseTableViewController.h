@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
+@property (nonatomic, strong) StagePresenterViewController *stagePresenterViewController;
 
 - (void)setStagePresenterViewController:(StagePresenterViewController*) mockViewController;
 - (void)showPlaceHolder:(BOOL)show;

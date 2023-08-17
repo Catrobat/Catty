@@ -26,17 +26,27 @@
 @class SpriteObject;
 @class Brick;
 @class Look;
+
+@protocol EnableAndDisableSegmentedControllDelegate <NSObject>
+- (void)enableSegmentedControll;
+- (void)disableSegmentedControll;
+@end
+
 @protocol BrickLookProtocol;
 
 @protocol PaintDelegate <NSObject>
 
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
 - (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
+- (void)addLookAction:(id)sender;
+- (void)initNavigationBar;
 @end
 
 
 @interface LooksTableViewController : BaseTableViewController <PaintDelegate>
 @property (strong, nonatomic) SpriteObject *object;
+@property (weak, nonatomic) id<EnableAndDisableSegmentedControllDelegate> segmentedControllDelegate;
+@property (weak, nonatomic) UIViewController *parentNavigationController;
 @property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
 @property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
 @property (copy) void (^afterSafeBlock)(Look* look);

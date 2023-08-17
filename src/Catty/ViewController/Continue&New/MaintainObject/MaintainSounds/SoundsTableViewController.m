@@ -51,7 +51,7 @@
 - (void)initNavigationBar
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
-    self.navigationItem.rightBarButtonItem = editButtonItem;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = editButtonItem;
 }
 
 #pragma mark - events
@@ -68,7 +68,8 @@
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
     self.placeHolderView.title = kLocalizedTapPlusToAddSound;
-    [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    //[self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    self.placeHolderView.hidden = (self.object.soundList.count != 0);
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.isAllowed = YES;
@@ -76,6 +77,7 @@
     if(self.showAddSoundActionSheetAtStart) {
         [self addSoundAction:nil];
     }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,6 +85,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -109,14 +112,14 @@
         [actionSheet addDestructiveActionWithTitle:kLocalizedDeleteSounds handler:^{
             self.deletionMode = YES;
             [self setupEditingToolBar];
-            [super changeToEditingMode:sender];
+            [self changeToEditingMode:sender];
         }];
     }
     
     if (self.object.soundList.count >= 2) {
         [actionSheet addDefaultActionWithTitle:kLocalizedMoveSounds handler:^{
             self.deletionMode = NO;
-            [super changeToMoveMode:sender];
+            [self changeToMoveMode:sender];
         }];
     }
     
@@ -219,7 +222,7 @@
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
         // nothing selected, nothing to delete...
-        [super exitEditingMode];
+        [self exitEditingMode];
         return;
     }
     self.deletionMode = NO;
@@ -237,7 +240,7 @@
         [soundsToRemove addObject:sound];
     }
     [self.object removeSounds:soundsToRemove AndSaveToDisk:YES];
-    [super exitEditingMode];
+    [self exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self hideLoadingView];
@@ -582,10 +585,48 @@
     }
 }
 
+- (void)changeToMoveMode:(id)sender
+{
+    [self.segmentedControllDelegate disableSegmentedControll];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.parentNavigationController.navigationItem.hidesBackButton = YES;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.parentNavigationController.navigationController.toolbar.hidden = true;
+    self.editing = YES;
+}
+
+- (void)changeToEditingMode:(id)sender
+{
+    [self.segmentedControllDelegate disableSegmentedControll];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.parentNavigationController.navigationItem.hidesBackButton = YES;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    self.editing = YES;
+}
+
 - (void)exitEditingMode
 {
     [super exitEditingMode];
     self.deletionMode = NO;
+    self.parentNavigationController.navigationItem.hidesBackButton = NO;
+    [self initNavigationBar];
+    self.parentNavigationController.navigationController.toolbar.hidden = false;
+    [self.tableView setEditing:NO animated:YES];
+    [self setupToolBar];
+    self.editing = NO;
+    [self.segmentedControllDelegate enableSegmentedControll];
 }
 
 #pragma mark - Helper Methods
@@ -675,6 +716,7 @@
                                                                           target:self
                                                                           action:nil];
     self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
+    self.parentNavigationController.toolbarItems = self.toolbarItems;
 }
 
 - (void)setupEditingToolBar
@@ -689,14 +731,15 @@
                                                                           target:self
                                                                           action:nil];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, deleteButton, nil];
+    self.parentNavigationController.toolbarItems = self.toolbarItems;
 }
 
 - (void)changeEditingBarButtonState
 {
     if (self.object.soundList.count >= 1) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 

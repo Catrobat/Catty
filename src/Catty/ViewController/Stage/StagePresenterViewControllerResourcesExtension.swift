@@ -24,7 +24,7 @@ import BluetoothHelper
 import CoreBluetooth
 import UIKit
 
-@objc extension StagePresenterViewController {
+@objc public extension StagePresenterViewController {
 
     @objc(checkResourcesAndPushViewControllerTo:completion:)
     func checkResourcesAndPushViewController(to navigationController: UINavigationController, completion: @escaping () -> Void = {}) {

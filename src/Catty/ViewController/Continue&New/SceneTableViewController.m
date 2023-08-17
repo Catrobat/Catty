@@ -22,7 +22,6 @@
 
 #import "SceneTableViewController.h"
 #import "TableUtil.h"
-#import "ObjectTableViewController.h"
 #import "SegueDefines.h"
 #import "Brick.h"
 #import "CatrobatImageCell.h"
@@ -632,10 +631,13 @@
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         if ([segue.identifier isEqualToString:toObjectSegueID]) {
-            if ([destController isKindOfClass:[ObjectTableViewController class]]) {
-                ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
+            if ([destController isKindOfClass:[ObjectViewController class]]) {
+                ObjectViewController *tvc = (ObjectViewController*) destController;
+               
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
                     SpriteObject* object = [self.scene.objects objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
+                    //tvc.title = object.name;
+                    //tvc.navigationItem.title = object.name;
                     [destController performSelector:@selector(setObject:) withObject:object];
                 }
             }

@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, assign) BOOL allBricksSelected;
+@property (nonatomic, strong) StagePresenterViewController *stagePresenterViewController;
 
 - (void)showPlaceHolder:(BOOL)show;
 - (void)setupToolBar;
