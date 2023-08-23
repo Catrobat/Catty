@@ -38,7 +38,6 @@ class ProjectTVCTests: XCTestCase {
         createProject(name: projectName, in: app)
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         XCTAssertEqual(1, app.tables.cells.count)
-
         addObjectAndDrawNewImage(name: objectName, in: app)
         XCTAssertEqual(2, app.tables.cells.count)
     }
@@ -63,7 +62,7 @@ class ProjectTVCTests: XCTestCase {
         app.tap()
         app.navigationBars.buttons[kLocalizedBack].tap()
 
-        waitForElementToAppear(app.sheets.firstMatch).buttons[kLocalizedSaveChanges].tap()
+        waitForElementToAppear(app.buttons[kLocalizedSaveChanges]).tap()
         let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
         alert.textFields[kLocalizedEnterYourObjectNameHere].tap()
         alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
