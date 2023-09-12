@@ -78,7 +78,7 @@ extension XCTestCase {
         app.tap()
         app.navigationBars.buttons[kLocalizedBack].tap()
 
-        waitForElementToAppear(app.sheets.firstMatch).buttons[kLocalizedSaveChanges].tap()
+        waitForElementToAppear(app.buttons[kLocalizedSaveChanges]).tap()
         let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
         alert.textFields[kLocalizedEnterYourObjectNameHere].tap()
 
