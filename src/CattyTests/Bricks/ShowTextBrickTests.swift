@@ -46,7 +46,7 @@ final class ShowTextBrickTests: XCTestCase {
         spriteObject.spriteNode = spriteNode
         spriteObject.scene.project = project
 
-        project.scene = spriteObject.scene
+        project.scenes[0] = spriteObject.scene!
 
         script = Script()
         script.object = spriteObject

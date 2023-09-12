@@ -43,19 +43,21 @@ extension UIViewController {
     }
 
     @objc func openLoginScreen(_ delegate: AuthenticationDelegate? = nil) {
-        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController else { return }
-        viewController.delegate = delegate
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
+
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController else { return }
+            viewController.delegate = delegate
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
 
     @objc func openProject(_ project: Project) {
         guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
 
-        viewController.scene = project.scene
+        guard let scene = project.scenes[0] as? Scene else { return }
+        viewController.scene = scene
         project.setAsLastUsedProject()
         self.navigationController?.pushViewController(viewController, animated: true)
-    }
+
+        }
 
     func openProjectDetails(projectId: String, storeProjectDownloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) {
         if let baseTableViewController = self as? BaseTableViewController {

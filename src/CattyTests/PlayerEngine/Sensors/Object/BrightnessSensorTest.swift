@@ -35,7 +35,7 @@ final class BrightnessSensorTest: XCTestCase {
         spriteObject = SpriteObject()
         spriteObject.scene = scene
         let project = Project()
-        project.scene = spriteObject.scene
+        project.scenes[0] = spriteObject.scene!
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = BrightnessSensor()
     }

@@ -42,6 +42,8 @@
     {
         _allBroadcastMessages = [[NSMutableOrderedSet alloc] init];
     }
+    self.scenes = [[NSMutableArray alloc] init];
+    [self.scenes addObject: [[Scene alloc] init]];
     return self;
 }
 
@@ -153,7 +155,11 @@
 
 - (NSArray<SpriteObject*>*)allObjects
 {
-    return self.scene.objects;
+    NSMutableArray<SpriteObject*> *objects = [[NSMutableArray<SpriteObject*> alloc] init];
+    for (Scene* scene in self.scenes) {
+        [objects addObjectsFromArray: [scene objects]];
+    }
+    return objects;
 }
 
 - (void)setDescription:(NSString*)description
@@ -163,7 +169,9 @@
 
 - (void)removeReferences
 {
-    [self.scene.objects makeObjectsPerformSelector:@selector(removeReferences)];
+    for (Scene* scene in self.scenes){
+        [scene.objects makeObjectsPerformSelector:@selector(removeReferences)];
+    }
 }
 
 - (BOOL)isEqualToProject:(Project*)project
@@ -172,14 +180,23 @@
         return NO;
     if (! [self.userData isEqual:project.userData])
         return NO;
-    if (![self.scene isEqual:project.scene])
+    if ([self.scenes count] != [project.scenes count])
         return NO;
+    for (int i = 0; i < [self.scenes count]; ++i) {
+        if (![[self.scenes objectAtIndex: i] isEqual: [project.scenes objectAtIndex: i]])
+        return NO;
+    }
+    
     return YES;
 }
 
 - (NSInteger)getRequiredResources
 {
-    return [self.scene getRequiredResources];
+    NSInteger requiredResources = 0;
+    for (Scene* scene in self.scenes) {
+        requiredResources |= [scene getRequiredResources];
+    }
+    return requiredResources;
 }
 #pragma mark - helpers
 
@@ -204,7 +221,7 @@
     [ret appendFormat:@"Screen Height: %@\n", self.header.screenHeight];
     [ret appendFormat:@"Screen Width: %@\n", self.header.screenWidth];
     [ret appendFormat:@"Screen Mode: %@\n", self.header.screenMode];
-    [ret appendFormat:@"Scene: %@\n", self.scene];
+    [ret appendFormat:@"First Scene: %@\n", [self.scenes objectAtIndex:0]];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
     [ret appendFormat:@"Variables: %@\n", self.userData];
@@ -397,19 +414,21 @@ static NSObject* saveLock;
 
 - (void)translateDefaultProject
 {
-    NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.scene.objects) {
-        if (index == kBackgroundObjectIndex) {
-            spriteObject.name = kLocalizedBackground;
-        } else {
-            NSMutableString *spriteObjectName = [NSMutableString stringWithString:spriteObject.name];
-            [spriteObjectName replaceOccurrencesOfString:kDefaultProjectBundleOtherObjectsNamePrefix
-                                              withString:kLocalizedMole
-                                                 options:NSCaseInsensitiveSearch
-                                                   range:NSMakeRange(0, spriteObjectName.length)];
-            spriteObject.name = (NSString*)spriteObjectName;
+    for (Scene* scene in self.scenes) {
+        NSUInteger index = 0;
+        for (SpriteObject *spriteObject in scene.objects) {
+            if (index == kBackgroundObjectIndex) {
+                spriteObject.name = kLocalizedBackground;
+            } else {
+                NSMutableString *spriteObjectName = [NSMutableString stringWithString:spriteObject.name];
+                [spriteObjectName replaceOccurrencesOfString:kDefaultProjectBundleOtherObjectsNamePrefix
+                                                  withString:kLocalizedMole
+                                                     options:NSCaseInsensitiveSearch
+                                                       range:NSMakeRange(0, spriteObjectName.length)];
+                spriteObject.name = (NSString*)spriteObjectName;
+            }
+            ++index;
         }
-        ++index;
     }
     [self renameToProjectName:kLocalizedMyFirstProject andShowSaveNotification:NO]; // saves to disk!
 }

@@ -50,12 +50,12 @@ final class BubbleBrickTests: XMLAbstractTest {
         spriteObject.scene = scene
         spriteObject.name = "SpriteObjectName"
 
-        project.scene = spriteObject.scene
+        project.scenes[0] = spriteObject.scene!
         let spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
         spriteObject.scene.project = project
 
-        project.scene.add(object: spriteObject)
+        (project.scenes[0] as! Scene).add(object: spriteObject)
         spriteNode.mockedStage = StageBuilder(project: ProjectMock(width: CGFloat(kIphoneXStageWidth), andHeight: CGFloat(kIphoneXStageHeight))).build()
 
         BubbleBrickHelper.addBubble(to: spriteNode, withText: sentence, andType: CBBubbleType.thought)

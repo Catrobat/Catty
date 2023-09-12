@@ -51,7 +51,7 @@ final class UIViewControllerExtensionTests: XCTestCase {
         let scene = Scene(name: "testScene")
         scene.project = project
 
-        project.scene = scene
+        project.scenes[0] = scene
 
         XCTAssertFalse(project.isLastUsedProject)
 

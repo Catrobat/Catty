@@ -49,7 +49,7 @@ class XMLParserTests0996: XMLAbstractTest {
 
     func testSetPenColorBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0996")
-        let setPenColorBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 46) as! Brick
+        let setPenColorBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 46) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(setPenColorBrick.isKind(of: SetPenColorBrick.self), "Invalid brick type")
@@ -62,7 +62,7 @@ class XMLParserTests0996: XMLAbstractTest {
 
     func testGlideToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0996")
-        let glideToBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
+        let glideToBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(glideToBrick.isKind(of: GlideToBrick.self), "Invalid brick type")
@@ -75,7 +75,7 @@ class XMLParserTests0996: XMLAbstractTest {
 
     func testParseLookAndLooklist() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0996")
-        let looklist = project.scene.object(at: 0)!.lookList
+        let looklist = (project.scenes[0] as! Scene).object(at: 0)!.lookList
         XCTAssertEqual(1, looklist!.count)
 
         let look = (looklist?.object(at: 0)) as! Look
@@ -85,7 +85,7 @@ class XMLParserTests0996: XMLAbstractTest {
 
     func testParseSoundAndSoundlist() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0996")
-        let soundlist = ((project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 9) as! PointToBrick).pointedObject.soundList
+        let soundlist = (((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 9) as! PointToBrick).pointedObject.soundList
         XCTAssertEqual(1, soundlist!.count)
 
         let sound = (soundlist?.object(at: 0)) as! Sound
@@ -95,17 +95,17 @@ class XMLParserTests0996: XMLAbstractTest {
 
     func testParseLocalLists() {
         let project = self.getProjectForXML(xmlFile: "UserLists_0996")
-        let objects = project.scene.objects()
+        let objects = (project.scenes[0] as! Scene).objects()
         XCTAssertEqual(3, objects.count)
 
-        let backgroundObject = project.scene.object(at: 0)
+        let backgroundObject = (project.scenes[0] as! Scene).object(at: 0)
         XCTAssertEqual("Background", backgroundObject?.name)
 
         let localLists = backgroundObject?.userData.lists()
         XCTAssertEqual(1, localLists?.count)
         XCTAssertEqual("localListBackground", localLists?[0].name)
 
-        let object = project.scene.object(at: 1)
+        let object = (project.scenes[0] as! Scene).object(at: 1)
         XCTAssertEqual("Object1", object?.name)
 
         let localListsObject = object?.userData.lists()
