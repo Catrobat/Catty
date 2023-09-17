@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) Scene *scene;
 
+
+
 @property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
 @property (copy) void (^afterSafeBlock)(SpriteObject* object);
 

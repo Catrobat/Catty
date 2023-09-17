@@ -277,9 +277,16 @@
     
     NSString *changeOrientation = self.scene.project.header.landscapeMode ? kLocalizedMakeItPortrait : kLocalizedMakeItLandscape;
     
-    [[[[[[actionSheet
+    NSString *addNewScene = @"New Scene";
+    
+    
+    [[[[[[[actionSheet
          addDefaultActionWithTitle:changeOrientation handler:^{
         [self changeProjectOrientationAction:self.scene.project];
+    }]
+         addDefaultActionWithTitle:addNewScene handler:^{
+        [self performSegueWithIdentifier: kSegueToScene sender: self];
+        //[self changeProjectOrientationAction:self.scene.project];
     }]
         addDefaultActionWithTitle:kLocalizedRenameProject handler:^{
         NSMutableArray *unavailableNames = [[Project allProjectNames] mutableCopy];
@@ -642,6 +649,11 @@
         }
     } else if ([destController isKindOfClass:[UploadViewController class]]) {
         ((UploadViewController*) destController).delegate = self;
+    } else if ([destController isKindOfClass:[ScenesTableViewController class]]) {
+        ScenesTableViewController *stvc= (ScenesTableViewController*) destController;
+        if ([stvc respondsToSelector:@selector(setObject:)]) {
+            [stvc performSelector:@selector(setObject:) withObject:self.scene];
+        }
     }
 }
 
