@@ -652,7 +652,7 @@
     } else if ([destController isKindOfClass:[ScenesTableViewController class]]) {
         ScenesTableViewController *stvc= (ScenesTableViewController*) destController;
         if ([stvc respondsToSelector:@selector(setObject:)]) {
-            [stvc performSelector:@selector(setObject:) withObject:self.scene];
+            [stvc performSelector:@selector(setObject:) withObject:self.project];
         }
     }
 }

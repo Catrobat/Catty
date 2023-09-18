@@ -54,9 +54,19 @@ extension UIViewController {
 
         guard let scene = project.scenes[0] as? Scene else { return }
         viewController.scene = scene
+        viewController.project = project
         project.setAsLastUsedProject()
         self.navigationController?.pushViewController(viewController, animated: true)
 
+        }
+
+    func openScene(_ scene: Scene, _ project: Project) {
+        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
+
+        viewController.scene = scene
+        viewController.project = project
+        project.setAsLastUsedProject()
+        self.navigationController?.pushViewController(viewController, animated: true)
         }
 
     func openProjectDetails(projectId: String, storeProjectDownloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) {

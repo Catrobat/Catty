@@ -24,11 +24,13 @@ import UIKit
 
 class ScenesTableViewController: UITableViewController {
 
-    @objc var scenes: [Scene] = []
+    var scenes: [Scene] = []
+    var project: Project = Project()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = scenes[0].name
+        self.title = project.header.programName
+        promptForAnswer()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,16 +50,41 @@ class ScenesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        var cell = UITableViewCell()
 
-        let sceneName = scenes[indexPath.row].name
-        cell.textLabel?.text = sceneName
+        cell.textLabel?.text = scenes[indexPath.row].name
+
         return cell
+
     }
 
-    @objc public func setObject(_ scene: Scene) {
-        self.scenes = [scene]
+    @objc public func setObject(_ project: Project) {
+        self.project = project
+        self.scenes = project.scenes as! [Scene]
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.openScene(self.scenes[indexPath.row], self.project)
+    }
+
+    func promptForAnswer() {
+        let ac = UIAlertController(title: "Scene name", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+
+        let submitAction = UIAlertAction(title: "Ok", style: .default) { [unowned ac] _ in
+            let answer = ac.textFields![0]
+            if let name = answer.text {
+                self.scenes.append(Scene (name: name))
+                self.tableView.reloadData()
+            }
+        }
+
+        ac.addAction(submitAction)
+
+        present(ac, animated: true)
+    }
+
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
