@@ -41,6 +41,7 @@
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @property (nonatomic, strong) ProjectManager *projectManager;
+@property (nonatomic) BOOL popViewController;
 @end
 
 @implementation SceneTableViewController
@@ -93,6 +94,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    self.popViewController = FALSE;
     [self.tableView reloadData];
 }
 
@@ -653,6 +655,7 @@
         ScenesTableViewController *stvc= (ScenesTableViewController*) destController;
         if ([stvc respondsToSelector:@selector(setObject:)]) {
             [stvc performSelector:@selector(setObject:) withObject:self.project];
+            self.popViewController = TRUE;
         }
     }
 }
@@ -726,6 +729,16 @@
             [Util showNotificationForSaveAction];
         });
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    if (self.navigationController && _popViewController) {
+        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+        [viewControllers removeObjectAtIndex:viewControllers.count-2];
+        [self.navigationController setViewControllers:viewControllers animated:TRUE];
+    }
 }
 
 @end

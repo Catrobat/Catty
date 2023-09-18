@@ -36,6 +36,23 @@ final class LookTest: XCTestCase {
         XCTAssertEqual(expectedPath, look.path(for: scene))
     }
 
+    func testPathForTwoScenes() {
+        let project = Project()
+        let scene = Scene(name: "testScene")
+        project.scenes[0] = scene
+        scene.project = project
+        let look = Look(name: "testLook", filePath: "testLookFile")
+        let expectedPath = project.projectPath() + "testScene/images/testLookFile"
+        XCTAssertEqual(expectedPath, look.path(for: scene))
+
+        let scene2 = Scene(name: "testScene2")
+        project.scenes[1] = scene2
+        scene2.project = project
+        let look2 = Look(name: "testLook2", filePath: "testLookFile2")
+        let expectedPath2 = project.projectPath() + "testScene2/images/testLookFile2"
+        XCTAssertEqual(expectedPath2, look2.path(for: scene2))
+    }
+
     func testIsEqual() {
         let project = Project()
         let scene = Scene(name: "testScene")

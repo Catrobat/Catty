@@ -26,34 +26,28 @@ class ScenesTableViewController: UITableViewController {
 
     var scenes: [Scene] = []
     var project: Project = Project()
+    var addNewScene: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = project.header.programName
-        promptForAnswer()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    override func viewWillAppear(_ animated: Bool) {
+        if addNewScene {
+            createNewScene()
+        }
+    }
+
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+    override func numberOfSections(in tableView: UITableView) -> Int {return 1}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return scenes.count
-    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return scenes.count}
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-
+        let cell = UITableViewCell()
         cell.textLabel?.text = scenes[indexPath.row].name
-
         return cell
 
     }
@@ -61,29 +55,37 @@ class ScenesTableViewController: UITableViewController {
     @objc public func setObject(_ project: Project) {
         self.project = project
         self.scenes = project.scenes as! [Scene]
+        self.addNewScene = true
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.openScene(self.scenes[indexPath.row], self.project)
     }
 
-    func promptForAnswer() {
+    func createNewScene() {
         let ac = UIAlertController(title: "Scene name", message: nil, preferredStyle: .alert)
         ac.addTextField()
 
         let submitAction = UIAlertAction(title: "Ok", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0]
             if let name = answer.text {
-                self.scenes.append(Scene (name: name))
+                let newScene = Scene(name: name)
+                newScene.project = self.project
+                self.scenes.append(newScene)
+                self.addNewScene = false
+                self.project.scenes.add(newScene)
+                self.saveProject()
                 self.tableView.reloadData()
             }
         }
-
         ac.addAction(submitAction)
-
         present(ac, animated: true)
     }
 
+    func saveProject() {
+        self.project.saveToDisk(withNotification: false)
+
+    }
 
     /*
     // Override to support conditional editing of the table view.
