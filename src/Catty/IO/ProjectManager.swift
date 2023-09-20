@@ -64,7 +64,7 @@
         scene.addObject(withName: kLocalizedBackground)
         project.scenes[0] = scene
 
-        let filePath = project.projectPath() + kScreenshotAutoFilename
+        let filePath = scene.path()! + kScreenshotAutoFilename
         let projectIconNames = UIDefines.defaultScreenshots
         let randomIndex = Int(arc4random_uniform(UInt32(projectIconNames.count)))
 
@@ -80,6 +80,47 @@
         fileManager.writeData(data, path: filePath)
         imageCache.clear()
         return project
+    }
+
+    func addNewScene(name: String, project: Project) {
+
+        let scene = Scene(name: name)
+        scene.project = project
+
+        let sceneDir = scene.path()
+        if !fileManager.directoryExists(sceneDir) {
+            fileManager.createDirectory(sceneDir)
+        }
+
+        let imagesDirName = scene.imagesPath()
+        if fileManager.directoryExists(imagesDirName) == false {
+            fileManager.createDirectory(imagesDirName)
+        }
+
+        let soundDirName = scene.soundsPath()
+        if fileManager.directoryExists(soundDirName) == false {
+            fileManager.createDirectory(soundDirName)
+        }
+        scene.addObject(withName: kLocalizedBackground)
+
+        project.scenes.add(scene)
+
+        let filePath = scene.path()! + kScreenshotAutoFilename
+        let projectIconNames = UIDefines.defaultScreenshots
+        let randomIndex = Int(arc4random_uniform(UInt32(projectIconNames.count)))
+
+        guard let defaultScreenshotImage = UIImage(named: projectIconNames[randomIndex]) else {
+            debugPrint("Could not find image named \(projectIconNames[randomIndex])")
+            return
+        }
+
+        guard let data = defaultScreenshotImage.pngData() else {
+            return
+        }
+
+        fileManager.writeData(data, path: filePath)
+        imageCache.clear()
+
     }
 
     @objc func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {

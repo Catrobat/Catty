@@ -65,7 +65,6 @@ extension UIViewController {
 
         viewController.scene = scene
         viewController.project = project
-        project.setAsLastUsedProject()
         self.navigationController?.pushViewController(viewController, animated: true)
         }
 

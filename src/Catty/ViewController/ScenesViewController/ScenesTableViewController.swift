@@ -24,7 +24,6 @@ import UIKit
 
 class ScenesTableViewController: UITableViewController {
 
-    var scenes: [Scene] = []
     var project: Project = Project()
     var addNewScene: Bool = false
 
@@ -38,28 +37,27 @@ class ScenesTableViewController: UITableViewController {
         }
     }
 
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {return 1}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return scenes.count}
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return project.scenes.count}
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = scenes[indexPath.row].name
+        cell.textLabel?.text = (project.scenes[indexPath.row] as AnyObject).name
         return cell
 
     }
 
     @objc public func setObject(_ project: Project) {
         self.project = project
-        self.scenes = project.scenes as! [Scene]
         self.addNewScene = true
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.openScene(self.scenes[indexPath.row], self.project)
+        //self.openScene(self.project.scenes[1] as! Scene, self.project)
+        self.openScene(self.project.scenes[indexPath.row] as! Scene, self.project)
     }
 
     func createNewScene() {
@@ -69,11 +67,9 @@ class ScenesTableViewController: UITableViewController {
         let submitAction = UIAlertAction(title: "Ok", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0]
             if let name = answer.text {
-                let newScene = Scene(name: name)
-                newScene.project = self.project
-                self.scenes.append(newScene)
+
+                ProjectManager.shared.addNewScene(name: name, project: self.project)
                 self.addNewScene = false
-                self.project.scenes.add(newScene)
                 self.saveProject()
                 self.tableView.reloadData()
             }
