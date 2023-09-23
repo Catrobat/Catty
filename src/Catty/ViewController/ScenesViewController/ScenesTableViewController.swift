@@ -24,12 +24,12 @@ import UIKit
 
 class ScenesTableViewController: UITableViewController {
 
-    var project: Project = Project()
-    var addNewScene: Bool = false
+    var project = Project()
+    var addNewScene = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = project.header.programName
+        self.title = "Scenes" // maybe project.header.programName is better
     }
     override func viewWillAppear(_ animated: Bool) {
         if addNewScene {
@@ -44,11 +44,28 @@ class ScenesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return project.scenes.count}
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = (project.scenes[indexPath.row] as AnyObject).name
-        return cell
+
+        let cellIdentifier = kImageCell
+        var cell: UITableViewCell?
+
+        cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+
+        if !(cell?.conforms(to: CatrobatImageCell.self) ?? false) || !(cell is CatrobatBaseCell) {
+            return cell!
+        }
+
+        if let imageCell = cell as? CatrobatBaseCell & CatrobatImageCell {
+            imageCell.iconImageView.image = nil
+            imageCell.titleLabel.text = (project.scenes[indexPath.row] as AnyObject).name
+            imageCell.setNeedsLayout()
+            imageCell.iconImageView.contentMode = .scaleAspectFit
+        }
+
+        return cell!
 
     }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { TableUtil.heightForImageCell() }
 
     @objc public func setObject(_ project: Project) {
         self.project = project

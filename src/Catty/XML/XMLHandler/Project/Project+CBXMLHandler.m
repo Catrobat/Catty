@@ -115,34 +115,72 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    Scene* scene = [self.scenes objectAtIndex:0];
+    Scene* scene = [self.scenes lastObject];
     
     // update context object
     context.spriteObjectList = [[NSMutableArray alloc] initWithArray: scene.objects];
-    
+
     // generate xml element for program
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];
-    
+
     // add pseudo <settings/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"settings" context:nil]];
-    
+
     GDataXMLElement *scenes = [GDataXMLElement elementWithName:@"scenes" context:context];
     [scenes addChild:[scene xmlElementWithContext:context] context:context];
     [xmlElement addChild:scenes context:context];
 
     if (self.userData) {
         GDataXMLElement *projectUserDataXmlElement = [self.userData serializeForProject:context];
-        
+
         GDataXMLElement *programVariableListXmlElement = [projectUserDataXmlElement childWithElementName:@"programVariableList"];
         [XMLError exceptionIfNil:programVariableListXmlElement message:@"No programVariableList element present"];
         [xmlElement addChild:programVariableListXmlElement context:nil];
-        
+
         GDataXMLElement *programListOfListsXmlElement = [projectUserDataXmlElement childWithElementName:@"programListOfLists"];
         [XMLError exceptionIfNil:programListOfListsXmlElement message:@"No programVariableList element present"];
         [xmlElement addChild:programListOfListsXmlElement context:nil];
     }
+
     return xmlElement;
 }
+//- (GDataXMLElement *)xmlElementWithContext:(CBXMLSerializerContext *)context {
+//    // Create the root XML element
+//    GDataXMLElement *rootElement = [GDataXMLElement elementWithName:@"program" context:context];
+//    [rootElement addChild:[self.header xmlElementWithContext:context] context:context];
+//
+//    // Add a pseudo <settings/> element
+//    [rootElement addChild:[GDataXMLElement elementWithName:@"settings" context:nil]];
+//
+//    GDataXMLElement *scenesElement = [GDataXMLElement elementWithName:@"scenes" context:context];
+//
+//    // Iterate through each scene in self.scenes
+//    for (Scene *scene in self.scenes) {
+//        // Update context object for each scene
+//        context.spriteObjectList = [[NSMutableArray alloc] initWithArray:scene.objects];
+//
+//        // Generate XML element for the current scene and add it to the scenesElement
+//        GDataXMLElement *sceneElement = [scene xmlElementWithContext:context];
+//        [scenesElement addChild:sceneElement context:context];
+//    }
+//
+//    [rootElement addChild:scenesElement context:context];
+//
+//    if (self.userData) {
+//        GDataXMLElement *projectUserDataXmlElement = [self.userData serializeForProject:context];
+//
+//        GDataXMLElement *programVariableListXmlElement = [projectUserDataXmlElement childWithElementName:@"programVariableList"];
+//        [XMLError exceptionIfNil:programVariableListXmlElement message:@"No programVariableList element present"];
+//        [rootElement addChild:programVariableListXmlElement context:nil];
+//
+//        GDataXMLElement *programListOfListsXmlElement = [projectUserDataXmlElement childWithElementName:@"programListOfLists"];
+//        [XMLError exceptionIfNil:programListOfListsXmlElement message:@"No programVariableList element present"];
+//        [rootElement addChild:programListOfListsXmlElement context:nil];
+//    }
+//
+//    return rootElement;
+//}
+
 
 @end

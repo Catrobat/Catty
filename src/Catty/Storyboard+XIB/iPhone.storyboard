@@ -17,13 +17,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GMx-4N-9RJ" customClass="DarkBlueGradientCell">
-                                <rect key="frame" x="0.0" y="50" width="375" height="43.5"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="hIz-Zm-adq" customClass="DarkBlueGradientImageCell">
+                                <rect key="frame" x="0.0" y="50" width="375" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GMx-4N-9RJ" id="7WD-Ew-lGY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hIz-Zm-adq" id="vj3-Xl-T4B">
+                                    <rect key="frame" x="0.0" y="0.0" width="348.5" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tw4-sr-qzD">
+                                            <rect key="frame" x="100" y="28.5" width="240.5" height="22"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtU-HD-cLg" customClass="RoundedImageView" customModule="Pocket_Code" customModuleProvider="target">
+                                            <rect key="frame" x="28" y="16" width="47" height="47"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="XtU-HD-cLg" secondAttribute="height" multiplier="1:1" id="gHc-4T-c9d"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Tw4-sr-qzD" firstAttribute="centerY" secondItem="XtU-HD-cLg" secondAttribute="centerY" id="60e-b7-pwu"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Tw4-sr-qzD" secondAttribute="trailing" id="6B6-c2-DnY"/>
+                                        <constraint firstItem="Tw4-sr-qzD" firstAttribute="leading" secondItem="XtU-HD-cLg" secondAttribute="trailing" constant="25" id="DPe-Gs-wAO"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="XtU-HD-cLg" secondAttribute="bottom" constant="5" id="SFz-6t-71I"/>
+                                        <constraint firstItem="XtU-HD-cLg" firstAttribute="top" secondItem="vj3-Xl-T4B" secondAttribute="topMargin" constant="5" id="mzw-Uk-FRE"/>
+                                        <constraint firstItem="XtU-HD-cLg" firstAttribute="leading" secondItem="vj3-Xl-T4B" secondAttribute="leadingMargin" constant="12" id="n6V-ic-zAp"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="iconImageView" destination="XtU-HD-cLg" id="tPE-2r-IAx"/>
+                                    <outlet property="titleLabel" destination="Tw4-sr-qzD" id="ggf-mM-wBs"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -705,7 +731,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5785" y="-1838"/>
+            <point key="canvasLocation" x="-6076" y="-1743"/>
         </scene>
         <!--Looks-->
         <scene sceneID="wWp-yc-EGI">
@@ -1139,7 +1165,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2N-cX-jqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6798.75" y="-1508.450704225352"/>
+            <point key="canvasLocation" x="-7158" y="-1743"/>
         </scene>
         <!--Stage Presenter View Controller-->
         <scene sceneID="tde-d3-jr8">
@@ -2023,7 +2049,7 @@
                         <viewControllerLayoutGuide type="bottom" id="DdI-Lf-CRN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1yB-9i-wb8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -2196,7 +2222,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d5M-d9-Nnc"/>
+        <segue reference="oND-g0-GIJ"/>
         <segue reference="O7z-Si-jt2"/>
     </inferredMetricsTieBreakers>
     <resources>
