@@ -733,7 +733,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-
+    
     if (self.navigationController && _popViewController) {
         NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
         [viewControllers removeObjectAtIndex:viewControllers.count-2];

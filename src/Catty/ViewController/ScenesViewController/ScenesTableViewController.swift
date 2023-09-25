@@ -30,6 +30,8 @@ class ScenesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Scenes" // maybe project.header.programName is better
+        self.navigationItem.leftBarButtonItem?.title = kLocalizedProjects
+        //self.navigationItem.backBarButtonItem?.a
     }
     override func viewWillAppear(_ animated: Bool) {
         if addNewScene {
@@ -73,76 +75,45 @@ class ScenesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //self.openScene(self.project.scenes[1] as! Scene, self.project)
         self.openScene(self.project.scenes[indexPath.row] as! Scene, self.project)
     }
 
     func createNewScene() {
-        let ac = UIAlertController(title: "Scene name", message: nil, preferredStyle: .alert)
-        ac.addTextField()
 
-        let submitAction = UIAlertAction(title: "Ok", style: .default) { [unowned ac] _ in
-            let answer = ac.textFields![0]
+        let addNewSceneAlert = UIAlertController(title: "\(kLocalizedNew) \(kLocalizedScene)", message: nil, preferredStyle: .alert)
+        addNewSceneAlert.addTextField()
+        let errorAlert = UIAlertController(title: kLocalizedPocketCode, message: kLocalizedObjectNameAlreadyExistsDescription, preferredStyle: .alert)
+
+        let cancelActionErrorAlert = UIAlertAction(title: kLocalizedOK, style: .default) { _ in
+            self.present(addNewSceneAlert, animated: true, completion: nil)
+        }
+        errorAlert.addAction(cancelActionErrorAlert)
+
+        let submitAction = UIAlertAction(title: kLocalizedOK, style: .default) { _ in
+            let answer = addNewSceneAlert.textFields![0]
+
             if let name = answer.text {
-
-                ProjectManager.shared.addNewScene(name: name, project: self.project)
-                self.addNewScene = false
-                self.saveProject()
-                self.tableView.reloadData()
+                if self.project.scenes.map({ ($0 as! Scene).name }).contains(name) {
+                    self.present(errorAlert, animated: true)
+                } else {
+                    ProjectManager.shared.addNewScene(name: name, project: self.project)
+                    self.addNewScene = false
+                    self.saveProject()
+                    self.tableView.reloadData()
+                }
             }
         }
-        ac.addAction(submitAction)
-        present(ac, animated: true)
+
+        let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel) { _ in
+            // TODO Implemt Cancel Logic
+        }
+
+        addNewSceneAlert.addAction(cancelAction)
+        addNewSceneAlert.addAction(submitAction)
+        present(addNewSceneAlert, animated: true, completion: nil)
     }
 
     func saveProject() {
         self.project.saveToDisk(withNotification: false)
-
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
