@@ -22,10 +22,14 @@
 
 import UIKit
 
-class ScenesTableViewController: UITableViewController {
+class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
+
+    func addNewScene() {
+        newScene = true
+    }
 
     var project = Project()
-    var addNewScene = false
+    var newScene = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +38,9 @@ class ScenesTableViewController: UITableViewController {
         let edit = UIBarButtonItem(title: kLocalizedEdit, style: .plain, target: self, action: #selector(editButtonTapped))
         navigationItem.rightBarButtonItems = [edit]
     }
+
     override func viewWillAppear(_ animated: Bool) {
-        if addNewScene {
+        if newScene {
             createNewScene()
         }
     }
@@ -86,11 +91,10 @@ class ScenesTableViewController: UITableViewController {
 
     @objc public func setObject(_ project: Project) {
         self.project = project
-        self.addNewScene = true
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.openScene(self.project.scenes[indexPath.row] as! Scene, self.project)
+        self.openScene(self.project.scenes[indexPath.row] as! Scene, self)
     }
 
     func createNewScene() {
@@ -112,7 +116,6 @@ class ScenesTableViewController: UITableViewController {
                     self.present(errorAlert, animated: true)
                 } else {
                     ProjectManager.shared.addNewScene(name: name, project: self.project)
-                    self.addNewScene = false
                     self.saveProject()
                     self.tableView.reloadData()
                 }
@@ -120,9 +123,8 @@ class ScenesTableViewController: UITableViewController {
         }
 
         let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel) { _ in
-            // TODO Implemt Cancel Logic
         }
-
+        newScene = false
         addNewSceneAlert.addAction(cancelAction)
         addNewSceneAlert.addAction(submitAction)
         present(addNewSceneAlert, animated: true, completion: nil)

@@ -281,11 +281,16 @@
     
     NSString *changeOrientation = self.scene.project.header.landscapeMode ? kLocalizedMakeItPortrait : kLocalizedMakeItLandscape;
     
-    [[[[[[actionSheet
+    NSString *newScene = [[kLocalizedNew stringByAppendingString:@" "]stringByAppendingString:kLocalizedScene];
+    
+    [[[[[[[actionSheet
          addDefaultActionWithTitle:changeOrientation handler:^{
         [self changeProjectOrientationAction:self.scene.project];
     }]
-
+         addDefaultActionWithTitle:newScene handler:^{
+        [self.addNewSceneDelegate addNewScene];
+        [self.navigationController popViewControllerAnimated:YES];
+    }]
         addDefaultActionWithTitle:kLocalizedRenameProject handler:^{
         NSMutableArray *unavailableNames = [[Project allProjectNames] mutableCopy];
         [unavailableNames removeString:self.scene.project.header.programName];

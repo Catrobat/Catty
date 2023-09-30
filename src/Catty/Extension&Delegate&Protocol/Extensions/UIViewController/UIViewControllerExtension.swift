@@ -53,7 +53,6 @@ extension UIViewController {
         ProjectManager.shared.currentProject = project
         guard let viewController = self.instantiateViewController("ScenesTableViewController") as? ScenesTableViewController else { return }
         viewController.project = project
-        viewController.addNewScene = false
         project.setAsLastUsedProject()
         self.navigationController?.pushViewController(viewController, animated: true)
 
@@ -67,11 +66,12 @@ extension UIViewController {
 
         }
 
-    func openScene(_ scene: Scene, _ project: Project) {
+    func openScene(_ scene: Scene, _ scenesTableViewController: ScenesTableViewController) {
         guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
-        project.activeScene = scene
+        scenesTableViewController.project.activeScene = scene
         viewController.scene = scene
-        viewController.project = project
+        viewController.project = scenesTableViewController.project
+        viewController.addNewSceneDelegate = scenesTableViewController
         self.navigationController?.pushViewController(viewController, animated: true)
         }
 
