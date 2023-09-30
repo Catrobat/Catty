@@ -356,7 +356,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andScene:[self.project.scenes objectAtIndex:0]];
+                             [self takeAutomaticScreenshotForSKView:self.skView andScene:self.project.activeScene];
                          }
                      }];
     self.skView.paused = NO;
@@ -443,7 +443,7 @@
 
 - (void)takeScreenshotAction
 {
-    [self takeManualScreenshotForSKView:self.skView andScene: [self.project.scenes objectAtIndex: 0]];
+    [self takeManualScreenshotForSKView:self.skView andScene: self.project.activeScene];
 }
 
 - (void)shareDSTAction
@@ -634,6 +634,8 @@
 {
     return self.menuOpen;
 }
+
+
 
 #pragma mark - Helpers
 - (UIImage*)brightnessBackground:(UIImage*)startImage {

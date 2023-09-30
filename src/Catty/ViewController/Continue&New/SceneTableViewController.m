@@ -41,7 +41,8 @@
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @property (nonatomic, strong) ProjectManager *projectManager;
-@property (nonatomic) BOOL popViewController;
+@property (nonatomic, strong) StagePresenterViewController *stagePresenterViewController;
+
 @end
 
 @implementation SceneTableViewController
@@ -89,12 +90,13 @@
         [self addObjectAction:nil];
     }
     [self checkUnsupportedElements];
+    self.stagePresenterViewController = [StagePresenterViewController new];
+    self.stagePresenterViewController.project = self.project;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.popViewController = FALSE;
     [self.tableView reloadData];
 }
 
@@ -279,17 +281,11 @@
     
     NSString *changeOrientation = self.scene.project.header.landscapeMode ? kLocalizedMakeItPortrait : kLocalizedMakeItLandscape;
     
-    NSString *addNewScene = @"New Scene";
-    
-    
-    [[[[[[[actionSheet
+    [[[[[[actionSheet
          addDefaultActionWithTitle:changeOrientation handler:^{
         [self changeProjectOrientationAction:self.scene.project];
     }]
-         addDefaultActionWithTitle:addNewScene handler:^{
-        [self performSegueWithIdentifier: kSegueToScene sender: self];
-        //[self changeProjectOrientationAction:self.scene.project];
-    }]
+
         addDefaultActionWithTitle:kLocalizedRenameProject handler:^{
         NSMutableArray *unavailableNames = [[Project allProjectNames] mutableCopy];
         [unavailableNames removeString:self.scene.project.header.programName];
@@ -651,12 +647,6 @@
         }
     } else if ([destController isKindOfClass:[UploadViewController class]]) {
         ((UploadViewController*) destController).delegate = self;
-    } else if ([destController isKindOfClass:[ScenesTableViewController class]]) {
-        ScenesTableViewController *stvc= (ScenesTableViewController*) destController;
-        if ([stvc respondsToSelector:@selector(setObject:)]) {
-            [stvc performSelector:@selector(setObject:) withObject:self.project];
-            self.popViewController = TRUE;
-        }
     }
 }
 
@@ -683,11 +673,29 @@
                                                                          target:self
                                                                          action:@selector(addObjectAction:)];
     UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
-                                                        action:@selector(playSceneAction:)];
+                                                        action:@selector(playActionForActiveScene:)];
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                           target:self
                                                                           action:nil];
     self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
+}
+
+-(void)playActionForActiveScene:(id)sender {
+    [self showLoadingView];
+    
+
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
+    BOOL landscapeMode = self.project.header.landscapeMode;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (! landscapeMode) {
+            [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+        } else {
+            [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+        }
+        [self.stagePresenterViewController playSceneTo:self.navigationController completion:^{
+            [self hideLoadingView];
+        }];
+    });
 }
 
 - (void)setupEditingToolBar
@@ -733,12 +741,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    if (self.navigationController && _popViewController) {
-        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-        [viewControllers removeObjectAtIndex:viewControllers.count-2];
-        [self.navigationController setViewControllers:viewControllers animated:TRUE];
-    }
 }
 
 @end

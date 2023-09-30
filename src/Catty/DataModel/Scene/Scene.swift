@@ -44,7 +44,7 @@
         self._objects.count
     }
 
-    func returnSceneName() -> String{
+    func returnSceneName() -> String {
         self.name
     }
 

@@ -24,6 +24,7 @@
 
     @objc static let shared = ProjectManager()
 
+    @objc public var currentProject = Project.lastUsed()
     private let fileManager: CBFileManager
     private let imageCache: RuntimeImageCache
 

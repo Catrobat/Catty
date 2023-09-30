@@ -61,7 +61,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEE-Kl-xq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5680" y="-3233"/>
+            <point key="canvasLocation" x="-5378" y="-4191"/>
         </scene>
         <!--Project-->
         <scene sceneID="zhR-1R-Y6s">
@@ -266,12 +266,11 @@
                     <connections>
                         <segue destination="DpO-xp-0fW" kind="show" identifier="segueToObject" id="S4X-8v-yA3"/>
                         <segue destination="bYj-Ga-eye" kind="show" identifier="segueToUpload" id="oND-g0-GIJ"/>
-                        <segue destination="YQl-DF-gyc" kind="show" identifier="segueToScenes" id="fRX-dy-8ZR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8T7-WP-UB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4564" y="-4191"/>
+            <point key="canvasLocation" x="-4545" y="-4191"/>
         </scene>
         <!--Object-->
         <scene sceneID="7hr-t9-tha">

@@ -120,6 +120,7 @@
     [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
     
     self.stagePresenterViewController = [StagePresenterViewController new];
+    self.stagePresenterViewController.project = ProjectManager.shared.currentProject;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -413,23 +414,20 @@
 - (void)playSceneAction:(id)sender
 {
     [self showLoadingView];
-
+    
     ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
-    dispatch_queue_t lastProjectQueue = dispatch_queue_create("lastProjectQueue", NULL);
-    dispatch_async(lastProjectQueue, ^{
-        BOOL landscapeMode = Project.lastUsedProject.header.landscapeMode;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (! landscapeMode) {
-                [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
-            } else {
-                [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
-            }
-
-            [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController completion:^{
-                [self hideLoadingView];
-            }];
-        });
+    BOOL landscapeMode = ProjectManager.shared.currentProject.header.landscapeMode;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (! landscapeMode) {
+            [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+        } else {
+            [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+        }
+        [self.stagePresenterViewController playSceneTo:self.navigationController completion:^{
+            [self hideLoadingView];
+        }];
     });
+    
 }
 
 - (void)showLoadingView
@@ -474,5 +472,7 @@
 {
     return UIStatusBarStyleLightContent;
 }
+
+
 
 @end

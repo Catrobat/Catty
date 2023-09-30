@@ -31,7 +31,8 @@ class ScenesTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Scenes" // maybe project.header.programName is better
         self.navigationItem.leftBarButtonItem?.title = kLocalizedProjects
-        //self.navigationItem.backBarButtonItem?.a
+        let edit = UIBarButtonItem(title: kLocalizedEdit, style: .plain, target: self, action: #selector(editButtonTapped))
+        navigationItem.rightBarButtonItems = [edit]
     }
     override func viewWillAppear(_ animated: Bool) {
         if addNewScene {
@@ -65,6 +66,20 @@ class ScenesTableViewController: UITableViewController {
 
         return cell!
 
+    }
+
+    @objc func editButtonTapped() {
+        let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let firstAction = UIAlertAction(title: "\(kLocalizedNew) \(kLocalizedScene)", style: .default) { _ in
+            self.createNewScene()
+        }
+
+        let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel) { _ in }
+
+        actionSheetController.addAction(firstAction)
+        actionSheetController.addAction(cancelAction)
+        present(actionSheetController, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { TableUtil.heightForImageCell() }
@@ -116,4 +131,5 @@ class ScenesTableViewController: UITableViewController {
     func saveProject() {
         self.project.saveToDisk(withNotification: false)
     }
+
 }

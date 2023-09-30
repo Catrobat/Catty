@@ -697,6 +697,8 @@ UITextFieldDelegate>
     self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
 }
 
+
+
 - (void)setupEditingToolBar
 {
     [super setupEditingToolBar];

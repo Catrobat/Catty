@@ -50,19 +50,26 @@ extension UIViewController {
         }
 
     @objc func openProject(_ project: Project) {
-        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
-
-        guard let scene = project.scenes[0] as? Scene else { return }
-        viewController.scene = scene
+        ProjectManager.shared.currentProject = project
+        guard let viewController = self.instantiateViewController("ScenesTableViewController") as? ScenesTableViewController else { return }
         viewController.project = project
+        viewController.addNewScene = false
         project.setAsLastUsedProject()
         self.navigationController?.pushViewController(viewController, animated: true)
+
+//        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
+//
+//        guard let scene = project.scenes[0] as? Scene else { return }
+//        viewController.scene = scene
+//        viewController.project = project
+//        project.setAsLastUsedProject()
+//        self.navigationController?.pushViewController(viewController, animated: true)
 
         }
 
     func openScene(_ scene: Scene, _ project: Project) {
         guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
-
+        project.activeScene = scene
         viewController.scene = scene
         viewController.project = project
         self.navigationController?.pushViewController(viewController, animated: true)

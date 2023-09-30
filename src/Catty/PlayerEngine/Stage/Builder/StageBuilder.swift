@@ -90,7 +90,7 @@
         let audioEngine = getAudioEngine()
         let scheduler = getScheduler(broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager, audioEngine: audioEngine)
 
-        guard let scene = project.scenes[0] as? Scene else {
+        guard let scene = project.activeScene as? Scene else {
             preconditionFailure()
         }
 
