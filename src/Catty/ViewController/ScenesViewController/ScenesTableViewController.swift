@@ -30,6 +30,8 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
 
     var project = Project()
     var newScene = false
+    let stagePresenterViewController = StagePresenterViewController()
+    let toolbar = UIToolbar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +39,15 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
         self.navigationItem.leftBarButtonItem?.title = kLocalizedProjects
         let edit = UIBarButtonItem(title: kLocalizedEdit, style: .plain, target: self, action: #selector(editButtonTapped))
         navigationItem.rightBarButtonItems = [edit]
+        stagePresenterViewController.project = project
+        setupToolBar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         if newScene {
             createNewScene()
         }
+        setupToolBar()
     }
 
     // MARK: - Table view data source
@@ -97,7 +102,7 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
         self.openScene(self.project.scenes[indexPath.row] as! Scene, self)
     }
 
-    func createNewScene() {
+    @objc func createNewScene() {
 
         let addNewSceneAlert = UIAlertController(title: "\(kLocalizedNew) \(kLocalizedScene)", message: nil, preferredStyle: .alert)
         addNewSceneAlert.addTextField()
@@ -132,6 +137,44 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
 
     func saveProject() {
         self.project.saveToDisk(withNotification: false)
+    }
+
+    func setupToolBar() {
+        navigationController?.isToolbarHidden = false
+        navigationController?.toolbar.barStyle = .blackTranslucent
+        navigationController?.toolbar.tintColor = UIColor.toolTint
+        navigationController?.toolbar.barTintColor = UIColor.toolBar
+        navigationController?.toolbar.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewScene))
+        let play = PlayButton(target: self, action: #selector(playSceneAction))
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
+        toolbarItems = [flex, add, flex, flex, play, flex]
+
+        navigationController?.hidesBottomBarWhenPushed = false
+    }
+
+    @objc func playSceneAction(_ sender: Any) {
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.enabledOrientation = true
+        }
+
+        let landscapeMode = ProjectManager.shared.currentProject.header.landscapeMode
+
+        DispatchQueue.main.async {
+            if !landscapeMode {
+                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+            } else {
+                UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+            }
+            if let navigationController = self.navigationController {
+                self.stagePresenterViewController.playScene(to: navigationController) {
+                }
+            }
+
+        }
     }
 
 }

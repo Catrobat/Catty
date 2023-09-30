@@ -52,7 +52,9 @@ extension UIViewController {
     @objc func openProject(_ project: Project) {
         ProjectManager.shared.currentProject = project
         guard let viewController = self.instantiateViewController("ScenesTableViewController") as? ScenesTableViewController else { return }
+        project.activeScene = project.scenes[0] as! Scene
         viewController.project = project
+
         project.setAsLastUsedProject()
         self.navigationController?.pushViewController(viewController, animated: true)
 
