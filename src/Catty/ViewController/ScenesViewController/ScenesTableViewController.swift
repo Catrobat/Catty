@@ -31,7 +31,6 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
     var project = Project()
     var newScene = false
     let stagePresenterViewController = StagePresenterViewController()
-    let toolbar = UIToolbar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +43,11 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isToolbarHidden = false
+        setupToolBar()
         if newScene {
             createNewScene()
         }
-        setupToolBar()
     }
 
     // MARK: - Table view data source
@@ -140,11 +140,12 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
     }
 
     func setupToolBar() {
-        navigationController?.isToolbarHidden = false
-        navigationController?.toolbar.barStyle = .blackTranslucent
+
+        navigationController?.toolbar.tintAdjustmentMode = .normal
         navigationController?.toolbar.tintColor = UIColor.toolTint
-        navigationController?.toolbar.barTintColor = UIColor.toolBar
         navigationController?.toolbar.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        navigationController?.toolbar.backgroundColor = UIColor.toolBar
+        navigationController?.toolbar.barStyle = .default
 
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewScene))
         let play = PlayButton(target: self, action: #selector(playSceneAction))
@@ -152,7 +153,6 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
 
         toolbarItems = [flex, add, flex, flex, play, flex]
 
-        navigationController?.hidesBottomBarWhenPushed = false
     }
 
     @objc func playSceneAction(_ sender: Any) {
