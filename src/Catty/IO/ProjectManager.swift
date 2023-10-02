@@ -124,6 +124,36 @@
 
     }
 
+    func loadSceneImage(scene: Scene, completion: @escaping (_ image: UIImage?) -> Void) {
+
+        let fallbackPaths = [
+            scene.path()! + kScreenshotFilename,
+            scene.path()! + kScreenshotManualFilename,
+            scene.path()! + kScreenshotAutoFilename
+        ]
+
+        for imagePath in fallbackPaths {
+            let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize)
+            if image != nil {
+                completion(image)
+                return
+            }
+        }
+
+        DispatchQueue.global(qos: .default).async {
+            for imagePath in fallbackPaths where self.fileManager.fileExists(imagePath as String) {
+                self.imageCache.loadImageFromDisk(
+                    withPath: imagePath,
+                    andSize: UIDefines.previewImageSize,
+                    onCompletion: { image, _ in completion(image) }
+                )
+                return
+            }
+            completion(UIImage(named: "catrobat"))
+        }
+        return
+    }
+
     @objc func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
         let fallbackPaths = [
             projectLoadingInfo.basePath + kScreenshotFilename,

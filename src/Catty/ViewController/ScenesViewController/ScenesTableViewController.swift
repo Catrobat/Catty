@@ -44,6 +44,7 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isToolbarHidden = false
+        self.tableView.reloadData()
         setupToolBar()
         if newScene {
             createNewScene()
@@ -68,11 +69,15 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
         }
 
         if let imageCell = cell as? CatrobatBaseCell & CatrobatImageCell {
-            imageCell.iconImageView.image = nil
+           ProjectManager.shared.loadSceneImage(scene: project.scenes[indexPath.row] as! Scene) { [weak self] image in
+               imageCell.iconImageView.image = image
+            }
             imageCell.titleLabel.text = (project.scenes[indexPath.row] as AnyObject).name
             imageCell.setNeedsLayout()
             imageCell.iconImageView.contentMode = .scaleAspectFit
+
         }
+
 
         return cell!
 
