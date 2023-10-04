@@ -2050,7 +2050,7 @@
                         <viewControllerLayoutGuide type="bottom" id="DdI-Lf-CRN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1yB-9i-wb8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -2223,7 +2223,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d5M-d9-Nnc"/>
+        <segue reference="oND-g0-GIJ"/>
         <segue reference="O7z-Si-jt2"/>
     </inferredMetricsTieBreakers>
     <resources>
