@@ -24,10 +24,6 @@ import UIKit
 
 class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
 
-    func addNewScene() {
-        newScene = true
-    }
-
     var project = Project()
     var newScene = false
     let stagePresenterViewController = StagePresenterViewController()
@@ -51,7 +47,9 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
         }
     }
 
-    // MARK: - Table view data source
+    func addNewScene() {
+        newScene = true
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {return 1}
 
@@ -69,25 +67,23 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
         }
 
         if let imageCell = cell as? CatrobatBaseCell & CatrobatImageCell {
-           ProjectManager.shared.loadSceneImage(scene: project.scenes[indexPath.row] as! Scene) { [weak self] image in
-               imageCell.iconImageView.image = image
+            ProjectManager.shared.loadSceneImage(scene: project.scenes[indexPath.row] as! Scene) { image in
+                imageCell.iconImageView.image = image
             }
             imageCell.titleLabel.text = (project.scenes[indexPath.row] as AnyObject).name
             imageCell.setNeedsLayout()
             imageCell.iconImageView.contentMode = .scaleAspectFit
-
         }
-
-
         return cell!
-
     }
 
     @objc func editButtonTapped() {
         let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let firstAction = UIAlertAction(title: "\(kLocalizedNew) \(kLocalizedScene)", style: .default) { _ in
-            self.createNewScene()
+        //TODO replace title
+        let firstAction = UIAlertAction(title: "Edit Button Action 1", style: .default) { _ in
+            //TODO ADD EDIT Button Action Here
+
         }
 
         let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel) { _ in }
@@ -132,8 +128,7 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
             }
         }
 
-        let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel) { _ in
-        }
+        let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel) { _ in }
         newScene = false
         addNewSceneAlert.addAction(cancelAction)
         addNewSceneAlert.addAction(submitAction)
@@ -145,19 +140,25 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
     }
 
     func setupToolBar() {
+        if #available(iOS 15.0, *) {
+            let toolBarAppearance = UIToolbarAppearance()
+            toolBarAppearance.backgroundColor = UIColor.toolBar
 
+            if let navigationController = self.navigationController {
+                navigationController.toolbar.standardAppearance = toolBarAppearance
+                navigationController.toolbar.scrollEdgeAppearance = toolBarAppearance
+            }
+        }
         navigationController?.toolbar.tintAdjustmentMode = .normal
         navigationController?.toolbar.tintColor = UIColor.toolTint
-        navigationController?.toolbar.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        navigationController?.toolbar.barTintColor = UIColor.toolBar
         navigationController?.toolbar.backgroundColor = UIColor.toolBar
-        navigationController?.toolbar.barStyle = .default
 
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewScene))
         let play = PlayButton(target: self, action: #selector(playSceneAction))
         let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
         toolbarItems = [flex, add, flex, flex, play, flex]
-
     }
 
     @objc func playSceneAction(_ sender: Any) {
@@ -178,7 +179,6 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
                 self.stagePresenterViewController.playScene(to: navigationController) {
                 }
             }
-
         }
     }
 

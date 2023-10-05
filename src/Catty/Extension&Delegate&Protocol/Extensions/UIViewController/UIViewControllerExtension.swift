@@ -47,26 +47,16 @@ extension UIViewController {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController else { return }
             viewController.delegate = delegate
             self.navigationController?.pushViewController(viewController, animated: true)
-        }
+    }
 
     @objc func openProject(_ project: Project) {
         ProjectManager.shared.currentProject = project
         guard let viewController = self.instantiateViewController("ScenesTableViewController") as? ScenesTableViewController else { return }
         project.activeScene = project.scenes[0] as! Scene
         viewController.project = project
-
         project.setAsLastUsedProject()
         self.navigationController?.pushViewController(viewController, animated: true)
-
-//        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
-//
-//        guard let scene = project.scenes[0] as? Scene else { return }
-//        viewController.scene = scene
-//        viewController.project = project
-//        project.setAsLastUsedProject()
-//        self.navigationController?.pushViewController(viewController, animated: true)
-
-        }
+    }
 
     func openScene(_ scene: Scene, _ scenesTableViewController: ScenesTableViewController) {
         guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
@@ -75,7 +65,7 @@ extension UIViewController {
         viewController.project = scenesTableViewController.project
         viewController.addNewSceneDelegate = scenesTableViewController
         self.navigationController?.pushViewController(viewController, animated: true)
-        }
+    }
 
     func openProjectDetails(projectId: String, storeProjectDownloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) {
         if let baseTableViewController = self as? BaseTableViewController {

@@ -81,7 +81,7 @@
     
     if (self.scene.project.header.programName) {
         self.navigationItem.title = self.scene.project.header.programName;
-        self.title = self.scene.project.header.programName;
+        self.title = self.scene.name;
     }
     self.placeHolderView.title = kLocalizedTapPlusToAddSprite;
     [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
