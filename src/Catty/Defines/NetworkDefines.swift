@@ -29,7 +29,7 @@ class NetworkDefines: NSObject {
 
     static var shareUrl: String {
         #if DEBUG
-        return shareUrlTesting
+        return shareUrlProduction
         #else
         return shareUrlProduction
         #endif

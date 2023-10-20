@@ -127,6 +127,8 @@
     [xmlElement addChild:[GDataXMLElement elementWithName:@"settings" context:nil]];
     GDataXMLElement *scenes = [GDataXMLElement elementWithName:@"scenes" context:context];
     
+    context.sceneList = [[NSMutableArray alloc] initWithArray:self.scenes];
+    
     for(Scene* scene in self.scenes) {
         context.spriteObjectList = [[NSMutableArray alloc] initWithArray: scene.objects];
         [scenes addChild:[scene xmlElementWithContext:context] context:context];
