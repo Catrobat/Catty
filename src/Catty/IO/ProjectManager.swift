@@ -81,7 +81,7 @@
             debugPrint("Could not find image named \(projectIconNames[randomIndex])")
             return
         }
-        
+
         guard let data = defaultScreenshotImage.pngData() else {
             return
         }
