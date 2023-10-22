@@ -80,11 +80,9 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
     func lastTouch() -> UITouch? {
         activeTouches.last
     }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        // Without this, other required gestures (like the left slide out control strip) are blocked.
-        return true
-    }
+    
+    // Without this, other required gestures (like the left slide out control strip) are blocked.
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool { true }
 
     func handle(touch: UITouch, for state: UIGestureRecognizer.State) {
         if state == .began {

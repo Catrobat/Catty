@@ -70,8 +70,9 @@
         scene.addObject(withName: kLocalizedBackground)
 
         project.scenes.add(scene)
-        
-        guard let scenePath = scene.path() else { return }
+        guard let scenePath = scene.path() else {
+            return
+        }
         let filePath = scenePath + kScreenshotAutoFilename
         let projectIconNames = UIDefines.defaultScreenshots
         let randomIndex = Int(arc4random_uniform(UInt32(projectIconNames.count)))
@@ -80,14 +81,12 @@
             debugPrint("Could not find image named \(projectIconNames[randomIndex])")
             return
         }
-
+        
         guard let data = defaultScreenshotImage.pngData() else {
             return
         }
-
         fileManager.writeData(data, path: filePath)
         imageCache.clear()
-
     }
 
     func loadSceneImage(scene: Scene, completion: @escaping (_ image: UIImage?) -> Void) {
