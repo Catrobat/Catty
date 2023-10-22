@@ -40,46 +40,7 @@
         project.header.programName = projectName
         project.header.programID = projectId
 
-        let scene = Scene(name: Util.defaultSceneName(forSceneNumber: 1))
-        scene.project = project
-
-        if fileManager.directoryExists(projectName) == false {
-            fileManager.createDirectory(project.projectPath())
-        }
-
-        let sceneDir = scene.path()
-        if !fileManager.directoryExists(sceneDir) {
-            fileManager.createDirectory(sceneDir)
-        }
-
-        let imagesDirName = scene.imagesPath()
-        if fileManager.directoryExists(imagesDirName) == false {
-            fileManager.createDirectory(imagesDirName)
-        }
-
-        let soundDirName = scene.soundsPath()
-        if fileManager.directoryExists(soundDirName) == false {
-            fileManager.createDirectory(soundDirName)
-        }
-
-        scene.addObject(withName: kLocalizedBackground)
-        project.scenes[0] = scene
-
-        let filePath = scene.path()! + kScreenshotAutoFilename
-        let projectIconNames = UIDefines.defaultScreenshots
-        let randomIndex = Int(arc4random_uniform(UInt32(projectIconNames.count)))
-
-        guard let defaultScreenshotImage = UIImage(named: projectIconNames[randomIndex]) else {
-            debugPrint("Could not find image named \(projectIconNames[randomIndex])")
-            return project
-        }
-
-        guard let data = defaultScreenshotImage.pngData() else {
-            return project
-        }
-
-        fileManager.writeData(data, path: filePath)
-        imageCache.clear()
+        addNewScene(name: Util.defaultSceneName(forSceneNumber: 1), project: project)
         return project
     }
 
@@ -87,6 +48,10 @@
 
         let scene = Scene(name: name)
         scene.project = project
+
+        if fileManager.directoryExists(project.header.programName) == false {
+               fileManager.createDirectory(project.projectPath())
+           }
 
         let sceneDir = scene.path()
         if !fileManager.directoryExists(sceneDir) {
@@ -105,8 +70,9 @@
         scene.addObject(withName: kLocalizedBackground)
 
         project.scenes.add(scene)
-
-        let filePath = scene.path()! + kScreenshotAutoFilename
+        
+        guard let scenePath = scene.path() else { return }
+        let filePath = scenePath + kScreenshotAutoFilename
         let projectIconNames = UIDefines.defaultScreenshots
         let randomIndex = Int(arc4random_uniform(UInt32(projectIconNames.count)))
 
@@ -126,10 +92,15 @@
 
     func loadSceneImage(scene: Scene, completion: @escaping (_ image: UIImage?) -> Void) {
 
+        guard let scenePath = scene.path() else {
+            completion(UIImage(named: "catrobat"))
+            return
+        }
+
         let fallbackPaths = [
-            scene.path()! + kScreenshotFilename,
-            scene.path()! + kScreenshotManualFilename,
-            scene.path()! + kScreenshotAutoFilename
+            scenePath + kScreenshotFilename,
+            scenePath + kScreenshotManualFilename,
+            scenePath + kScreenshotAutoFilename
         ]
 
         for imagePath in fallbackPaths {
@@ -162,8 +133,7 @@
         ]
 
         for imagePath in fallbackPaths {
-            let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize)
-            if image != nil {
+            if let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize) {
                 completion(image, imagePath)
                 return
             }

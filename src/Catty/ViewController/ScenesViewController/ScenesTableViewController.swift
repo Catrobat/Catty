@@ -30,7 +30,7 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Scenes" // maybe project.header.programName is better
+        self.title = project.header.programName
         self.navigationItem.leftBarButtonItem?.title = kLocalizedProjects
         let edit = UIBarButtonItem(title: kLocalizedEdit, style: .plain, target: self, action: #selector(editButtonTapped))
         navigationItem.rightBarButtonItems = [edit]

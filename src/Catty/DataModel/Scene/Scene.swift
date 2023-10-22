@@ -44,10 +44,6 @@
         self._objects.count
     }
 
-    func returnSceneName() -> String {
-        self.name
-    }
-
     func numberOfBackgroundObjects() -> Int {
         let numberOfTotalObjects = self.count
         if numberOfTotalObjects < kBackgroundObjects {

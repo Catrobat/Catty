@@ -43,7 +43,6 @@
         _allBroadcastMessages = [[NSMutableOrderedSet alloc] init];
     }
     self.scenes = [[NSMutableArray alloc] init];
-    [self.scenes addObject: [[Scene alloc] init]];
     return self;
 }
 

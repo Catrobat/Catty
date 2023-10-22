@@ -43,8 +43,7 @@ extension UIViewController {
     }
 
     @objc func openLoginScreen(_ delegate: AuthenticationDelegate? = nil) {
-
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController else { return }
+        guard let viewController = self.instantiateViewController("LoginController") as? LoginViewController else { return }
             viewController.delegate = delegate
             self.navigationController?.pushViewController(viewController, animated: true)
     }
