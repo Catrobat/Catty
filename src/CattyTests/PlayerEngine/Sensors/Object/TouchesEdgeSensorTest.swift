@@ -52,6 +52,7 @@ final class TouchesEdgeSensorTest: XMLAbstractTest {
 
     func testRawValue() {
         let project = getProjectForXML(xmlFile: "TouchesEdgeSensor")
+        project.activeScene = project.scenes.firstObject as! Scene
         let touchEdgeVar = project.userData.getUserVariable(identifiedBy: "touchEdgeVar")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
 

@@ -41,7 +41,25 @@
         project.header.programID = projectId
 
         addNewScene(name: Util.defaultSceneName(forSceneNumber: 1), project: project)
+        project.activeScene = project.scenes[0] as! Scene
+
+        let filePath = project.projectPath() + kScreenshotAutoFilename
+        let projectIconNames = UIDefines.defaultScreenshots
+        let randomIndex = Int(arc4random_uniform(UInt32(projectIconNames.count)))
+
+        guard let defaultScreenshotImage = UIImage(named: projectIconNames[randomIndex]) else {
+            debugPrint("Could not find image named \(projectIconNames[randomIndex])")
+            return project
+        }
+
+        guard let data = defaultScreenshotImage.pngData() else {
+            return project
+        }
+
+        fileManager.writeData(data, path: filePath)
+        imageCache.clear()
         return project
+
     }
 
     func addNewScene(name: String, project: Project) {

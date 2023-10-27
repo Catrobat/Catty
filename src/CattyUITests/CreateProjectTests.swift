@@ -42,7 +42,7 @@ class CreateProjectTests: XCTestCase {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        addObjectAndDrawNewImage(name: testObject, in: app)
+        addObjectAndDrawNewImage(name: testObject, in: app, projectName: projectName)
 
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         app.staticTexts[testObject].tap()
@@ -108,7 +108,7 @@ class CreateProjectTests: XCTestCase {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        addObjectAndDrawNewImage(name: helloText, in: app)
+        addObjectAndDrawNewImage(name: helloText, in: app, projectName: projectName)
 
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         XCTAssert(app.staticTexts[helloText].exists)

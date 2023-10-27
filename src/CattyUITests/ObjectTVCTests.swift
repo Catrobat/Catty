@@ -152,7 +152,7 @@ class ObjectTVCTests: XCTestCase {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        addObjectAndDrawNewImage(name: objectName, in: app)
+        addObjectAndDrawNewImage(name: objectName, in: app, projectName: projectName)
 
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         waitForElementToAppear(app.tables.staticTexts[objectName]).tap()

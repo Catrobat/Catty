@@ -41,7 +41,7 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
          XCTFail("Project has no Scenes.")
             return
         }
-
+        project.activeScene = scene
         scene.object(at: 1)?.lookList = [look]
         scene.object(at: 2)?.lookList = [look]
         scene.object(at: 3)?.lookList = [look]
@@ -68,6 +68,7 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
          XCTFail("Project has no Scenes.")
             return
         }
+        project.activeScene = scene
         scene.object(at: 1)?.lookList = [look]
         scene.object(at: 2)?.lookList = [look]
         scene.object(at: 3)?.lookList = [look]
@@ -107,7 +108,7 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
          XCTFail("Project has no Scenes.")
             return
         }
-
+        project.activeScene = scene
         scene.object(at: 1)?.lookList = [look]
         scene.object(at: 2)?.lookList = [look]
 
@@ -144,6 +145,7 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
          XCTFail("Project has no Scenes.")
             return
         }
+        project.activeScene = scene
         scene.object(at: 1)?.lookList = [look]
         scene.object(at: 2)?.lookList = [look]
         scene.object(at: 3)?.lookList = [look]

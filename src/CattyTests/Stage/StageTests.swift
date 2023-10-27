@@ -112,6 +112,7 @@ final class StageTests: XCTestCase {
         let scene = Scene()
         scene.project = project
         project.scenes[0] = scene
+        project.activeScene = scene
         let stage = StageBuilder(project: project).build()
 
         let userVariable = UserVariable(name: "testName")

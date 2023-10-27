@@ -63,6 +63,7 @@ class AudioEngineAbstractTest: XMLAbstractTest {
 
     func createStage(xmlFile: String) -> Stage {
         let project = self.getProjectForXML(xmlFile: xmlFile)
+        project.activeScene = project.scenes.firstObject as! Scene
         let stageBuilder = StageBuilder(project: project)
             .withFormulaManager(formulaManager: FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false))
             .withAudioEngine(audioEngine: audioEngine)

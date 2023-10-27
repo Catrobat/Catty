@@ -46,6 +46,7 @@ final class CollisionFunctionTests: XMLAbstractTest {
          XCTFail("Project has no Scenes.")
             return
         }
+        project.activeScene = scene
         scene.object(at: 1)?.lookList = [look]
         scene.object(at: 2)?.lookList = [look]
 
@@ -68,6 +69,7 @@ final class CollisionFunctionTests: XMLAbstractTest {
          XCTFail("Project has no Scenes.")
             return
         }
+        project.activeScene = scene
         scene.object(at: 1)?.lookList = [look]
         scene.object(at: 2)?.lookList = [look]
 
@@ -92,6 +94,7 @@ final class CollisionFunctionTests: XMLAbstractTest {
          XCTFail("Project has no Scenes.")
             return
         }
+        project.activeScene = scene
         scene.object(at: 1)?.lookList = [look]
         scene.object(at: 2)?.lookList = [look]
 
@@ -122,6 +125,7 @@ final class CollisionFunctionTests: XMLAbstractTest {
          XCTFail("Project has no Scenes.")
             return
         }
+        project.activeScene = scene
         scene.object(at: 1)?.lookList = [look]
         scene.object(at: 2)?.lookList = [look]
 
