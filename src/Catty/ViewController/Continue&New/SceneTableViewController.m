@@ -172,18 +172,6 @@
     [self hideLoadingView];
 }
 
-- (void)renameProjectActionForProjectWithName:(NSString*)newProjectName
-{
-    if ([newProjectName isEqualToString:self.scene.project.header.programName])
-        return;
-    
-    [self showLoadingView];
-    newProjectName = [Util uniqueName:newProjectName existingNames:[Project allProjectNames]];
-    [self.scene.project renameToProjectName:newProjectName andShowSaveNotification:YES];
-    self.navigationItem.title = self.title = self.scene.project.header.programName;
-    [self hideLoadingView];
-}
-
 - (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
 {
     [self showLoadingView];
@@ -283,28 +271,13 @@
     
     NSString *newScene = [[kLocalizedNew stringByAppendingString:@" "]stringByAppendingString:kLocalizedScene];
     
-    [[[[[[[actionSheet
+    [[[[[[actionSheet
          addDefaultActionWithTitle:changeOrientation handler:^{
         [self changeProjectOrientationAction:self.scene.project];
     }]
          addDefaultActionWithTitle:newScene handler:^{
-        [self.addNewSceneDelegate addNewScene];
+        [self.sceneDelegate addNewScene];
         [self.navigationController popViewControllerAnimated:YES];
-    }]
-        addDefaultActionWithTitle:kLocalizedRenameProject handler:^{
-        NSMutableArray *unavailableNames = [[Project allProjectNames] mutableCopy];
-        [unavailableNames removeString:self.scene.project.header.programName];
-        [Util askUserForUniqueNameAndPerformAction:@selector(renameProjectActionForProjectWithName:)
-                                            target:self
-                                       promptTitle:kLocalizedRenameProject
-                                     promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
-                                       promptValue:((! [self.scene.project.header.programName isEqualToString:kLocalizedNewProject])
-                                                    ? self.scene.project.header.programName : nil)
-                                 promptPlaceholder:kLocalizedEnterYourProjectNameHere
-                                    minInputLength:kMinNumOfProjectNameCharacters
-                                    maxInputLength:kMaxNumOfProjectNameCharacters
-                          invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
-                                     existingNames:unavailableNames];
     }]
        addDefaultActionWithTitle:detailActionTitle handler:^{
         [self toggleDetailCellsMode];

@@ -22,8 +22,7 @@
 
 import UIKit
 
-class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
-
+class ScenesTableViewController: UITableViewController, SceneDelegate {
     var project = Project()
     var newScene = false
     let stagePresenterViewController = StagePresenterViewController()
@@ -80,9 +79,8 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
     @objc func editButtonTapped() {
         let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        //TODO replace title
-        let firstAction = UIAlertAction(title: "Edit Button Action 1", style: .default) { _ in
-            //TODO ADD EDIT Button Action Here
+        let firstAction = UIAlertAction(title: kLocalizedRenameProject, style: .default) { _ in
+            self.reanameProjectAlert()
 
         }
 
@@ -91,6 +89,26 @@ class ScenesTableViewController: UITableViewController, AddNewSceneDelegate {
         actionSheetController.addAction(firstAction)
         actionSheetController.addAction(cancelAction)
         present(actionSheetController, animated: true)
+    }
+
+    func reanameProjectAlert() {
+        Util.askUser(forUniqueNameAndPerformAction: #selector(renameProject(inputProjectName:)),
+                     target: self,
+                     promptTitle: kLocalizedRenameProject,
+                     promptMessage: "\(kLocalizedProjectName):",
+                     promptValue: self.project.header.programName,
+                     promptPlaceholder: kLocalizedEnterYourProjectNameHere,
+                     minInputLength: UInt(kMinNumOfProjectNameCharacters),
+                     maxInputLength: UInt(kMaxNumOfProjectNameCharacters),
+                     invalidInputAlertMessage: kLocalizedProjectNameAlreadyExistsDescription,
+                     existingNames: Project.allProjectNames())
+    }
+
+    @objc func renameProject(inputProjectName: String) {
+        let newProjectName = Util.uniqueName(inputProjectName, existingNames: Project.allProjectNames())
+        self.project.rename(toProjectName: newProjectName ?? self.project.header.programName, andShowSaveNotification: true)
+        self.title = newProjectName
+        self.tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { TableUtil.heightForImageCell() }

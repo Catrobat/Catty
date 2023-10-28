@@ -62,7 +62,7 @@ extension UIViewController {
         scenesTableViewController.project.activeScene = scene
         viewController.scene = scene
         viewController.project = scenesTableViewController.project
-        viewController.addNewSceneDelegate = scenesTableViewController
+        viewController.sceneDelegate = scenesTableViewController
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 

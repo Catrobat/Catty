@@ -36,6 +36,7 @@ class FormulaEditorKeyboardTests: XCTestCase {
 
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -66,6 +67,7 @@ class FormulaEditorKeyboardTests: XCTestCase {
 
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -90,6 +92,7 @@ class FormulaEditorKeyboardTests: XCTestCase {
     func testSectionButtons() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -120,6 +123,7 @@ class FormulaEditorKeyboardTests: XCTestCase {
     func testArrowButton() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -141,6 +145,7 @@ class FormulaEditorKeyboardTests: XCTestCase {
     func testTextButton() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 

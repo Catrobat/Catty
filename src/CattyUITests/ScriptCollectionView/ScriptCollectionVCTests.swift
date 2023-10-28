@@ -30,6 +30,7 @@ class ScriptCollectionVCTests: XCTestCase {
         app = launchApp(with: ["skipPrivacyPolicy", "restoreDefaultProject"])
 
         createProject(name: "testProject", in: app)
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
@@ -62,6 +63,7 @@ class ScriptCollectionVCTests: XCTestCase {
         let message = String(repeating: "a", count: 25)
 
         createProject(name: "testProject", in: app)
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -89,6 +91,7 @@ class ScriptCollectionVCTests: XCTestCase {
         app = launchApp()
 
         createProject(name: "testProject", in: app)
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -108,6 +111,7 @@ class ScriptCollectionVCTests: XCTestCase {
         app = launchApp()
 
         createProject(name: "testProject", in: app)
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -126,6 +130,7 @@ class ScriptCollectionVCTests: XCTestCase {
         app = launchApp()
 
         createProject(name: "testProject", in: app)
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
