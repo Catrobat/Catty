@@ -83,6 +83,7 @@ class BrickCellTests: XCTestCase {
         let secondParameterTextViewWidth: CGFloat
 
         createProject(name: "My Project", in: app)
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
         addBrick(label: kLocalizedPlaceAt, section: kLocalizedCategoryMotion, in: app)
@@ -123,6 +124,7 @@ class BrickCellTests: XCTestCase {
         let brick: String = kLocalizedSetBackground
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 

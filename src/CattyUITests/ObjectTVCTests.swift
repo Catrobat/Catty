@@ -41,7 +41,7 @@ class ObjectTVCTests: XCTestCase {
             XCTAssert(app.navigationBars[kLocalizedScripts].buttons[object].exists)
             app.navigationBars[kLocalizedScripts].buttons[object].tap()
             app.navigationBars[object].buttons["\(kLocalizedScene) 1"].tap()
-            XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
+            XCTAssert(waitForElementToAppear(app.navigationBars["\(kLocalizedScene) 1"]).exists)
         }
     }
 

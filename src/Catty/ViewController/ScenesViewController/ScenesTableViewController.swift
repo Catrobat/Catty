@@ -42,7 +42,7 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
         self.tableView.reloadData()
         setupToolBar()
         if newScene {
-            createNewScene()
+            addNewSceneAllert()
         }
     }
 
@@ -104,6 +104,25 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
                      existingNames: Project.allProjectNames())
     }
 
+    @objc func addNewSceneAllert() {
+        Util.askUser(forUniqueNameAndPerformAction: #selector(createNewScene(inputProjectName:)),
+                     target: self,
+                     promptTitle: "\(kLocalizedNew) \(kLocalizedScene)",
+                     promptMessage: "\(kLocalizedNew) \(kLocalizedScene):",
+                     promptValue: nil,
+                     promptPlaceholder: nil,
+                     minInputLength: UInt(kMinNumOfProjectNameCharacters),
+                     maxInputLength: UInt(kMaxNumOfProjectNameCharacters),
+                     invalidInputAlertMessage: kLocalizedObjectNameAlreadyExistsDescription,
+                     existingNames: self.project.scenes.map({ ($0 as! Scene).name }))
+    }
+
+    @objc func createNewScene(inputProjectName: String) {
+        ProjectManager.shared.addNewScene(name: inputProjectName, project: self.project)
+        self.project.saveToDisk(withNotification: false)
+        self.tableView.reloadData()
+    }
+
     @objc func renameProject(inputProjectName: String) {
         let newProjectName = Util.uniqueName(inputProjectName, existingNames: Project.allProjectNames())
         self.project.rename(toProjectName: newProjectName ?? self.project.header.programName, andShowSaveNotification: true)
@@ -121,42 +140,6 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
         self.openScene(self.project.scenes[indexPath.row] as! Scene, self)
     }
 
-    @objc func createNewScene() {
-
-        let addNewSceneAlert = UIAlertController(title: "\(kLocalizedNew) \(kLocalizedScene)", message: nil, preferredStyle: .alert)
-        addNewSceneAlert.addTextField()
-        let errorAlert = UIAlertController(title: kLocalizedPocketCode, message: kLocalizedObjectNameAlreadyExistsDescription, preferredStyle: .alert)
-
-        let cancelActionErrorAlert = UIAlertAction(title: kLocalizedOK, style: .default) { _ in
-            self.present(addNewSceneAlert, animated: true, completion: nil)
-        }
-        errorAlert.addAction(cancelActionErrorAlert)
-
-        let submitAction = UIAlertAction(title: kLocalizedOK, style: .default) { _ in
-            let answer = addNewSceneAlert.textFields![0]
-
-            if let name = answer.text {
-                if self.project.scenes.map({ ($0 as! Scene).name }).contains(name) {
-                    self.present(errorAlert, animated: true)
-                } else {
-                    ProjectManager.shared.addNewScene(name: name, project: self.project)
-                    self.saveProject()
-                    self.tableView.reloadData()
-                }
-            }
-        }
-
-        let cancelAction = UIAlertAction(title: kLocalizedCancel, style: .cancel) { _ in }
-        newScene = false
-        addNewSceneAlert.addAction(cancelAction)
-        addNewSceneAlert.addAction(submitAction)
-        present(addNewSceneAlert, animated: true, completion: nil)
-    }
-
-    func saveProject() {
-        self.project.saveToDisk(withNotification: false)
-    }
-
     func setupToolBar() {
         if #available(iOS 15.0, *) {
             let toolBarAppearance = UIToolbarAppearance()
@@ -172,7 +155,7 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
         navigationController?.toolbar.barTintColor = UIColor.toolBar
         navigationController?.toolbar.backgroundColor = UIColor.toolBar
 
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewScene))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewSceneAllert))
         let play = PlayButton(target: self, action: #selector(playSceneAction))
         let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
