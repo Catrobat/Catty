@@ -59,4 +59,9 @@ class ParseMultipleScenesTests: XMLAbstractTest {
         XCTAssertEqual(look2.name, "North Pole")
         XCTAssertEqual(look2.fileName, "8ada7bc98ee101e3877ceb3bc9bcc254_North Pole.png")
     }
+
+    func testSceneswithVariables() {
+        let project = self.getProjectForXML(xmlFile: "ValidScenes")
+        XCTAssertEqual(project.scenes.count, 2)
+    }
 }
