@@ -42,6 +42,14 @@
     return _pointedSpriteObjectList;
 }
 
+- (NSMutableArray*)sceneList
+{
+    if (! _sceneList) {
+        _sceneList = [NSMutableArray array];
+    }
+    return _sceneList;
+}
+
 - (NSMutableArray*)spriteObjectList
 {
     if (! _spriteObjectList) {

@@ -33,3 +33,5 @@
 #define kSegueToSounds @"segueToSounds"
 #define kSegueToImage @"segueToImage"
 
+#define kSegueToScene @"segueToScenes"
+

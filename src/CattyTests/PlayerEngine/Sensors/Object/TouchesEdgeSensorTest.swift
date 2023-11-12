@@ -52,11 +52,12 @@ final class TouchesEdgeSensorTest: XMLAbstractTest {
 
     func testRawValue() {
         let project = getProjectForXML(xmlFile: "TouchesEdgeSensor")
+        project.activeScene = project.scenes.firstObject as! Scene
         let touchEdgeVar = project.userData.getUserVariable(identifiedBy: "touchEdgeVar")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
 
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
+        (project.scenes[0] as! Scene).object(at: 1)?.lookList = [look]
 
         let screenHeight = Double(project.header.screenHeight as! Int / 2)
         let screenWidth = Double(project.header.screenHeight as! Int / 2)
@@ -65,37 +66,37 @@ final class TouchesEdgeSensorTest: XMLAbstractTest {
         let started = stage.startProject()
 
         XCTAssertTrue(started)
-        XCTAssertEqual(project.scene.objects().count, 2)
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, 2)
 
         //no edge touch
         expect(touchEdgeVar?.value as? Int).toEventually(equal(0), timeout: .seconds(5))
-        XCTAssertEqual(sensor.rawValue(for: project.scene.object(at: 1)!), 0)
+        XCTAssertEqual(sensor.rawValue(for: (project.scenes[0] as! Scene).object(at: 1)!), 0)
 
         //right edge touch
-        project.scene.object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: screenWidth / 2, y: 0)
+        (project.scenes[0] as! Scene).object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: screenWidth / 2, y: 0)
         expect(touchEdgeVar?.value as? Int).toEventually(equal(1), timeout: .seconds(5))
-        XCTAssertEqual(sensor.rawValue(for: project.scene.object(at: 1)!), 1)
+        XCTAssertEqual(sensor.rawValue(for: (project.scenes[0] as! Scene).object(at: 1)!), 1)
 
         //left edge touch
-        project.scene.object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: -screenWidth / 2, y: 0)
+        (project.scenes[0] as! Scene).object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: -screenWidth / 2, y: 0)
         expect(touchEdgeVar?.value as? Int).toEventually(equal(1), timeout: .seconds(5))
-        XCTAssertEqual(sensor.rawValue(for: project.scene.object(at: 1)!), 1)
+        XCTAssertEqual(sensor.rawValue(for: (project.scenes[0] as! Scene).object(at: 1)!), 1)
 
         //top edge touch
-        project.scene.object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: 0, y: screenHeight / 2)
+        (project.scenes[0] as! Scene).object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: 0, y: screenHeight / 2)
         expect(touchEdgeVar?.value as? Int).toEventually(equal(1), timeout: .seconds(5))
-        XCTAssertEqual(sensor.rawValue(for: project.scene.object(at: 1)!), 1)
+        XCTAssertEqual(sensor.rawValue(for: (project.scenes[0] as! Scene).object(at: 1)!), 1)
 
         //bottom edge touch
-        project.scene.object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: 0, y: -screenHeight / 2)
+        (project.scenes[0] as! Scene).object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: 0, y: -screenHeight / 2)
         expect(touchEdgeVar?.value as? Int).toEventually(equal(1), timeout: .seconds(5))
-        XCTAssertEqual(sensor.rawValue(for: project.scene.object(at: 1)!), 1)
+        XCTAssertEqual(sensor.rawValue(for: (project.scenes[0] as! Scene).object(at: 1)!), 1)
 
         //hidden spriteNode
-        project.scene.object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: 0, y: -screenHeight / 2)
-        project.scene.object(at: 1)?.spriteNode.isHidden = true
+        (project.scenes[0] as! Scene).object(at: 1)?.spriteNode.catrobatPosition = CBPosition(x: 0, y: -screenHeight / 2)
+        (project.scenes[0] as! Scene).object(at: 1)?.spriteNode.isHidden = true
         expect(touchEdgeVar?.value as? Int).toEventually(equal(1), timeout: .seconds(5))
-        XCTAssertEqual(sensor.rawValue(for: project.scene.object(at: 1)!), 1)
+        XCTAssertEqual(sensor.rawValue(for: (project.scenes[0] as! Scene).object(at: 1)!), 1)
     }
 
     func testConvertToStandarized() {

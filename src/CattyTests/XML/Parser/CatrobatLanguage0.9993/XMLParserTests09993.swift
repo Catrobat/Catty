@@ -51,8 +51,8 @@ class XMLParserTests09993: XMLAbstractTest {
         let project = self.getProjectForXML(xmlFile: "BackwardsCompatibleFaceDetectionSensors")
 
         let objectCount = 2
-        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
-        let object = project.scene.object(at: 1)!
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, objectCount, "Invalid object list")
+        let object = (project.scenes[0] as! Scene).object(at: 1)!
         XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
         let script = object.scriptList.object(at: 0) as! Script
         XCTAssertEqual(script.brickList.count, 9, "Invalid brick list")
@@ -76,8 +76,8 @@ class XMLParserTests09993: XMLAbstractTest {
         let project = self.getProjectForXML(xmlFile: "FaceDetectionSensors")
 
         let objectCount = 3
-        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
-        var object = project.scene.object(at: 1)!
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, objectCount, "Invalid object list")
+        var object = (project.scenes[0] as! Scene).object(at: 1)!
         XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
         var script = object.scriptList.object(at: 0) as! Script
         XCTAssertEqual(script.brickList.count, 9, "Invalid brick list")
@@ -96,7 +96,7 @@ class XMLParserTests09993: XMLAbstractTest {
         XCTAssertEqual(FacePositionXSensor.tag, placeAtBrick.getFormulas()[0].formulaTree.value)
         XCTAssertEqual(FacePositionYSensor.tag, placeAtBrick.getFormulas()[1].formulaTree.value)
 
-        object = project.scene.object(at: 2)!
+        object = (project.scenes[0] as! Scene).object(at: 2)!
         XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
         script = object.scriptList.object(at: 0) as! Script
         XCTAssertEqual(script.brickList.count, 9, "Invalid brick list")
@@ -129,9 +129,9 @@ class XMLParserTests09993: XMLAbstractTest {
         var sensorIndex = 0
         let objectCount = 19
 
-        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, objectCount, "Invalid object list")
         for objectIndex in 1..<objectCount {
-            let object = project.scene.object(at: objectIndex)!
+            let object = (project.scenes[0] as! Scene).object(at: objectIndex)!
             XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
             let script = object.scriptList.object(at: 0) as! Script
             XCTAssertEqual(script.brickList.count, 8, "Invalid brick list")
@@ -158,9 +158,9 @@ class XMLParserTests09993: XMLAbstractTest {
         var sensorIndex = 0
         let objectCount = 8
 
-        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, objectCount, "Invalid object list")
         for objectIndex in 1..<objectCount {
-            let object = project.scene.object(at: objectIndex)!
+            let object = (project.scenes[0] as! Scene).object(at: objectIndex)!
             XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
             let script = object.scriptList.object(at: 0) as! Script
             XCTAssertEqual(script.brickList.count, 3, "Invalid brick list")
@@ -187,9 +187,9 @@ class XMLParserTests09993: XMLAbstractTest {
         var sensorIndex = 0
         let objectCount = 7
 
-        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, objectCount, "Invalid object list")
         for objectIndex in 1..<objectCount {
-            let object = project.scene.object(at: objectIndex)!
+            let object = (project.scenes[0] as! Scene).object(at: objectIndex)!
             XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
             let script = object.scriptList.object(at: 0) as! Script
             XCTAssertEqual(script.brickList.count, 3, "Invalid brick list")
@@ -218,9 +218,9 @@ class XMLParserTests09993: XMLAbstractTest {
         var sensorIndex = 0
         let objectCount = 11
 
-        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, objectCount, "Invalid object list")
         for objectIndex in 1..<objectCount {
-            let object = project.scene.object(at: objectIndex)!
+            let object = (project.scenes[0] as! Scene).object(at: objectIndex)!
             XCTAssertEqual(object.scriptList.count, 1, "Invalid script list")
             let script = object.scriptList.object(at: 0) as! Script
             XCTAssertEqual(script.brickList.count, 3, "Invalid brick list")
@@ -248,8 +248,8 @@ class XMLParserTests09993: XMLAbstractTest {
         var sensorIndex = 0
         var brickIndex = 1
 
-        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
-        let textDetectorObject = project.scene.object(at: 1)!
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, objectCount, "Invalid object list")
+        let textDetectorObject = (project.scenes[0] as! Scene).object(at: 1)!
 
         XCTAssertEqual(textDetectorObject.scriptList.count, 1, "Invalid script list")
         let script = textDetectorObject.scriptList.object(at: 0) as! Script
@@ -307,8 +307,8 @@ class XMLParserTests09993: XMLAbstractTest {
         var sensorIndex = 0
         var brickIndex = 1
 
-        XCTAssertEqual(project.scene.objects().count, objectCount, "Invalid object list")
-        let objectDetectorObject = project.scene.object(at: 1)!
+        XCTAssertEqual((project.scenes[0] as! Scene).objects().count, objectCount, "Invalid object list")
+        let objectDetectorObject = (project.scenes[0] as! Scene).object(at: 1)!
 
         XCTAssertEqual(objectDetectorObject.scriptList.count, 1, "Invalid script list")
         let script = objectDetectorObject.scriptList.object(at: 0) as! Script
@@ -356,7 +356,7 @@ class XMLParserTests09993: XMLAbstractTest {
 
     func testGlideToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let glideToBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
+        let glideToBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(glideToBrick.isKind(of: GlideToBrick.self), "Invalid brick type")
@@ -369,7 +369,7 @@ class XMLParserTests09993: XMLAbstractTest {
 
     func testThinkForBubbleBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let thinkForBubbleBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 37) as! Brick
+        let thinkForBubbleBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 37) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(thinkForBubbleBrick.isKind(of: ThinkForBubbleBrick.self), "Invalid brick type")
@@ -381,17 +381,17 @@ class XMLParserTests09993: XMLAbstractTest {
 
     func testParseLocalLists() {
         let project = self.getProjectForXML(xmlFile: "UserLists_09993")
-        let objects = project.scene.objects()
+        let objects = (project.scenes[0] as! Scene).objects()
         XCTAssertEqual(3, objects.count)
 
-        let backgroundObject = project.scene.object(at: 0)
+        let backgroundObject = (project.scenes[0] as! Scene).object(at: 0)
         XCTAssertEqual("Background", backgroundObject?.name)
 
         let localLists = backgroundObject?.userData.lists()
         XCTAssertEqual(1, localLists?.count)
         XCTAssertEqual("localListBackground", localLists?[0].name)
 
-        let object = project.scene.object(at: 1)
+        let object = (project.scenes[0] as! Scene).object(at: 1)
         XCTAssertEqual("Object1", object?.name)
 
         let localListsObject = object?.userData.lists()
@@ -408,10 +408,10 @@ class XMLParserTests09993: XMLAbstractTest {
 
     func testParseLocalVariables() {
         let project = self.getProjectForXML(xmlFile: "UserVariables_09993")
-        let objects = project.scene.objects()
+        let objects = (project.scenes[0] as! Scene).objects()
         XCTAssertEqual(3, objects.count)
 
-        let backgroundObject = project.scene.object(at: 0)
+        let backgroundObject = (project.scenes[0] as! Scene).object(at: 0)
         XCTAssertEqual("Background", backgroundObject?.name)
 
         let localVariables = backgroundObject?.userData.variables()
@@ -419,7 +419,7 @@ class XMLParserTests09993: XMLAbstractTest {
         XCTAssertEqual("localBackground", localVariables?[0].name)
         XCTAssertEqual("localBackground2", localVariables?[1].name)
 
-        let object = project.scene.object(at: 1)
+        let object = (project.scenes[0] as! Scene).object(at: 1)
         XCTAssertEqual("A", object?.name)
 
         let localVariablesObject = object?.userData.variables()

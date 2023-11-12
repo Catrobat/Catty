@@ -32,7 +32,7 @@ class ListTests: XCTestCase {
 
     private func createProjectAndAddAddToListBrick(name: String) {
         createProject(name: name, in: app)
-
+        app.tables.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 

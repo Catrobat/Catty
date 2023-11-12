@@ -34,11 +34,12 @@ class SceneTVCTests: XCTestCase {
         app = launchApp()
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
         app.tables.staticTexts[kLocalizedContinueProject].tap()
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
+        app.navigationBars["\(kLocalizedScene) 1"].buttons[kLocalizedEdit].tap()
         waitForElementToAppear(app.buttons[kLocalizedCopyObjects]).tap()
         app.buttons[kLocalizedSelectAllItems].tap()
         app.buttons[kLocalizedCopy].tap()
-        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
+        XCTAssert(waitForElementToAppear(app.navigationBars["\(kLocalizedScene) 1"]).exists)
         for object in projectObjects {
             XCTAssert(app.tables.staticTexts[object + " (1)"].exists)
         }
@@ -58,7 +59,8 @@ class SceneTVCTests: XCTestCase {
 
     func tapOnUpload() {
         app.tables.staticTexts[kLocalizedContinueProject].tap()
-        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
+        app.navigationBars["\(kLocalizedScene) 1"].buttons[kLocalizedEdit].tap()
         waitForElementToAppear(app.buttons[kLocalizedUploadProject]).tap()
     }
 }

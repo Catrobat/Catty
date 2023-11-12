@@ -32,6 +32,7 @@ class BrickCellPickerViewerTests: XCTestCase {
         super.setUp()
         app = launchApp()
         app.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         variableBrickHasValues = false
     }
 

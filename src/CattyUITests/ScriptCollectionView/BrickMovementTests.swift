@@ -32,6 +32,7 @@ class BrickMovementTests: XCTestCase {
         app = launchApp()
 
         createProject(name: projectName, in: app)
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
@@ -64,10 +65,12 @@ class BrickMovementTests: XCTestCase {
         setYBrick.press(forDuration: 1, thenDragTo: app.collectionViews.cells.element(boundBy: 1))
 
         waitForElementToAppear(app.navigationBars[kLocalizedScripts].buttons[kLocalizedBackground]).tap()
-        app.navigationBars[kLocalizedBackground].buttons[projectName].tap()
+        app.navigationBars[kLocalizedBackground].buttons["\(kLocalizedScene) 1"].tap()
+        app.navigationBars["\(kLocalizedScene) 1"].buttons[projectName].tap()
         app.navigationBars[projectName].buttons[kLocalizedPocketCode].tap()
 
         waitForElementToAppear(app.staticTexts[projectName]).tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
@@ -92,10 +95,12 @@ class BrickMovementTests: XCTestCase {
         hideBrick.press(forDuration: 1, thenDragTo: app.collectionViews.cells.element(boundBy: 4))
 
         waitForElementToAppear(app.navigationBars[kLocalizedScripts].buttons[kLocalizedBackground]).tap()
-        app.navigationBars[kLocalizedBackground].buttons[projectName].tap()
+        app.navigationBars[kLocalizedBackground].buttons["\(kLocalizedScene) 1"].tap()
+        app.navigationBars["\(kLocalizedScene) 1"].buttons[projectName].tap()
         app.navigationBars[projectName].buttons[kLocalizedPocketCode].tap()
 
         waitForElementToAppear(app.staticTexts[projectName]).tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 

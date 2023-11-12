@@ -130,7 +130,7 @@ extension UIColor {
         default: //teal
             return UIColor(hex: 0xadeef0)
         }*/
-        return UIColor(hex: 0xadeef0)
+        UIColor(hex: 0xadeef0)
     }
 
     static var medium: UIColor {
@@ -143,7 +143,7 @@ extension UIColor {
         default: //teal
             return UIColor(hex: 0x18a5b7)
         }*/
-        return UIColor(hex: 0x18a5b7)
+        UIColor(hex: 0x18a5b7)
     }
 
     static var dark: UIColor {
@@ -183,7 +183,7 @@ extension UIColor {
                 return self.dark
             }
         }*/
-        return self.light
+        self.light
     }
 
     static var navText: UIColor {
@@ -225,7 +225,7 @@ extension UIColor {
                 return self.light
             }
         }*/
-        return self.dark
+        self.dark
     }
 
     static var pageIndicator: UIColor {

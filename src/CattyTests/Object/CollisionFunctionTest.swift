@@ -40,10 +40,15 @@ final class CollisionFunctionTests: XMLAbstractTest {
         let project = getProjectForXML(xmlFile: "collisionTest0993")
         let collisionVar = project.userData.getUserVariable(identifiedBy: "collisionVar")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
-
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
-        project.scene.object(at: 2)?.lookList = [look]
+
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
+        project.activeScene = scene
+        scene.object(at: 1)?.lookList = [look]
+        scene.object(at: 2)?.lookList = [look]
 
         let stage = createStage(project: project)
         let started = stage.startProject()
@@ -58,15 +63,20 @@ final class CollisionFunctionTests: XMLAbstractTest {
         let project = getProjectForXML(xmlFile: "collisionTest0993")
         let collisionVar = project.userData.getUserVariable(identifiedBy: "collisionVar")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
-
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
-        project.scene.object(at: 2)?.lookList = [look]
+
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
+        project.activeScene = scene
+        scene.object(at: 1)?.lookList = [look]
+        scene.object(at: 2)?.lookList = [look]
 
         let stage = createStage(project: project)
         let started = stage.startProject()
 
-        project.scene.object(at: 2)?.spriteNode.position = CGPoint(x: 200, y: 200)
+        scene.object(at: 2)?.spriteNode.position = CGPoint(x: 200, y: 200)
 
         XCTAssertTrue(started)
         expect(collisionVar?.value as? Int).toEventually(equal(noCollision), timeout: .seconds(5))
@@ -78,21 +88,26 @@ final class CollisionFunctionTests: XMLAbstractTest {
         let project = getProjectForXML(xmlFile: "collisionTest0993")
         let collisionVar = project.userData.getUserVariable(identifiedBy: "collisionVar")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
-
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
-        project.scene.object(at: 2)?.lookList = [look]
+
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
+        project.activeScene = scene
+        scene.object(at: 1)?.lookList = [look]
+        scene.object(at: 2)?.lookList = [look]
 
         let stage = createStage(project: project)
         let started = stage.startProject()
 
-        project.scene.object(at: 2)?.spriteNode.catrobatTransparency = 100.0
+        scene.object(at: 2)?.spriteNode.catrobatTransparency = 100.0
 
         XCTAssertTrue(started)
         expect(collisionVar?.value as? Int).toEventually(equal(noCollision), timeout: .seconds(5))
 
-        project.scene.object(at: 2)?.spriteNode.catrobatTransparency = 0.0
-        project.scene.object(at: 1)?.spriteNode.catrobatTransparency = 100.0
+        scene.object(at: 2)?.spriteNode.catrobatTransparency = 0.0
+        scene.object(at: 1)?.spriteNode.catrobatTransparency = 100.0
         collisionVar?.value = 10
 
         expect(collisionVar?.value as? Int).toEventually(equal(noCollision), timeout: .seconds(5))
@@ -104,26 +119,31 @@ final class CollisionFunctionTests: XMLAbstractTest {
         let project = getProjectForXML(xmlFile: "collisionTest0993")
         let collisionVar = project.userData.getUserVariable(identifiedBy: "collisionVar")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
-
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
-        project.scene.object(at: 2)?.lookList = [look]
+
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
+        project.activeScene = scene
+        scene.object(at: 1)?.lookList = [look]
+        scene.object(at: 2)?.lookList = [look]
 
         let stage = createStage(project: project)
         let started = stage.startProject()
 
-        project.scene.object(at: 1)?.spriteNode.position = CGPoint(x: 0, y: 0)
-        project.scene.object(at: 2)?.spriteNode.position = CGPoint(x: 115, y: 58)
+        scene.object(at: 1)?.spriteNode.position = CGPoint(x: 0, y: 0)
+        scene.object(at: 2)?.spriteNode.position = CGPoint(x: 115, y: 58)
 
         XCTAssertTrue(started)
         expect(collisionVar?.value as? Int).toEventually(equal(noCollision), timeout: .seconds(5))
 
-        let obj1PosX = project.scene.object(at: 1)?.spriteNode.position.x
-        let obj1PosY = project.scene.object(at: 1)?.spriteNode.position.y
-        let obj2PosX = project.scene.object(at: 2)?.spriteNode.position.x
-        let obj2PosY = project.scene.object(at: 2)?.spriteNode.position.y
-        let lookWidth = project.scene.object(at: 1)?.spriteNode.size.width
-        let lookHeigth = project.scene.object(at: 1)?.spriteNode.size.height
+        let obj1PosX = scene.object(at: 1)?.spriteNode.position.x
+        let obj1PosY = scene.object(at: 1)?.spriteNode.position.y
+        let obj2PosX = scene.object(at: 2)?.spriteNode.position.x
+        let obj2PosY = scene.object(at: 2)?.spriteNode.position.y
+        let lookWidth = scene.object(at: 1)?.spriteNode.size.width
+        let lookHeigth = scene.object(at: 1)?.spriteNode.size.height
 
         XCTAssertGreaterThan(obj1PosX! + (lookWidth! / 2), obj2PosX! - (lookWidth! / 2), "Images are not overlapping")
         XCTAssertGreaterThan(obj1PosY! + (lookHeigth! / 2), obj2PosY! - (lookHeigth! / 2), "Images are not overlapping")

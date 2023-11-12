@@ -34,6 +34,7 @@ class FormulaEditorTests: XCTestCase {
     func testFormulaEditorSave() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -62,11 +63,13 @@ class FormulaEditorTests: XCTestCase {
         XCTWaiter().wait(for: [XCTNSNotificationExpectation(name: NSNotification.Name(rawValue: "Wait for project to be saved"))], timeout: 10)
 
         app.navigationBars.buttons[kLocalizedMole + " 1"].tap()
+        app.navigationBars.buttons["\(kLocalizedScene) 1"].tap()
         app.navigationBars.buttons[kLocalizedMyFirstProject].tap()
         app.navigationBars.buttons[kLocalizedProjects].tap()
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
 
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -78,6 +81,7 @@ class FormulaEditorTests: XCTestCase {
     func testFormulaEditorCancel() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -102,11 +106,13 @@ class FormulaEditorTests: XCTestCase {
         }
 
         app.navigationBars.buttons[kLocalizedMole + " 1"].tap()
+        app.navigationBars.buttons["\(kLocalizedScene) 1"].tap()
         app.navigationBars.buttons[kLocalizedMyFirstProject].tap()
         app.navigationBars.buttons[kLocalizedProjects].tap()
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
 
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedMole + " 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 

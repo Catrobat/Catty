@@ -38,7 +38,7 @@ final class ChangeVariableBrickTests: XCTestCase {
         let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
         spriteObject.scene = scene
-        project.scene = spriteObject.scene
+        project.scenes[0] = spriteObject.scene!
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)

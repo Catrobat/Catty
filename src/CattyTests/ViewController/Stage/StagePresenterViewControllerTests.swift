@@ -121,11 +121,11 @@ final class StagePresenterViewControllerTest: XCTestCase {
         let backgroundNode = CBSpriteNodeMock(spriteObject: background)
         background.spriteNode = backgroundNode
 
-        let object = SpriteObjectMock(scene: project.scene)
+        let object = SpriteObjectMock(scene: (project.scenes[0] as! Scene))
         let objectNode = CBSpriteNodeMock(spriteObject: object)
         objectNode.embroideryStream = stream
         object.spriteNode = objectNode
-        project.scene.add(object: object)
+        (project.scenes[0] as? Scene)?.add(object: object)
 
         XCTAssertEqual(2, project.allObjects().count)
         XCTAssertNil(vc.latestPresentedViewController)

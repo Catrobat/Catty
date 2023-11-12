@@ -46,7 +46,7 @@ final class AskBrickTests: XCTestCase {
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
         spriteObject.scene.project = project
-        project.scene = spriteObject.scene
+        project.scenes[0] = spriteObject.scene!
 
         script = Script()
         script.object = spriteObject

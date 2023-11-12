@@ -39,7 +39,7 @@ final class UserDataContainerTest: XCTestCase {
 
         let scene = Scene(name: "testScene")
 
-        self.project.scene = scene
+        self.project.scenes[0] = scene
 
         self.objectA = SpriteObject()
         self.objectA.scene = scene
@@ -51,10 +51,10 @@ final class UserDataContainerTest: XCTestCase {
         self.objectB.scene = scene
         self.objectB.scene.project = self.project
 
-        self.project.scene.add(object: objectA)
-        self.project.scene.add(object: objectB)
+        (self.project.scenes[0] as! Scene).add(object: objectA)
+        (self.project.scenes[0] as! Scene).add(object: objectB)
 
-        self.project.scene = objectA.scene
+        self.project.scenes[0] = objectA.scene!
     }
 
     func testAddObjectVariable() {
@@ -353,25 +353,25 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testMutableCopy() {
-        let list = UserList(name: "testList")
-        let variable = UserVariable(name: "testvariable")
+          let list = UserList(name: "testList")
+          let variable = UserVariable(name: "testvariable")
 
-        container.add(list)
-        container.add(variable)
+          container.add(list)
+          container.add(variable)
 
-        let copyContainer = container.mutableCopy(with: CBMutableCopyContext()) as! UserDataContainer
-        XCTAssertFalse(container === copyContainer)
+          let copyContainer = container.mutableCopy(with: CBMutableCopyContext()) as! UserDataContainer
+          XCTAssertFalse(container === copyContainer)
 
-        let copiedVariables = copyContainer.variables()
-        XCTAssertEqual(1, copiedVariables.count)
-        XCTAssertEqual(variable, copiedVariables[0])
-        XCTAssertTrue(copiedVariables[0] === variable)
+          let copiedVariables = copyContainer.variables()
+          XCTAssertEqual(1, copiedVariables.count)
+          XCTAssertEqual(variable, copiedVariables[0])
+          XCTAssertTrue(copiedVariables[0] === variable)
 
-        let copiedLists = copyContainer.lists()
-        XCTAssertEqual(1, copiedLists.count)
-        XCTAssertEqual(list, copiedLists[0])
-        XCTAssertTrue(copiedLists[0] === list)
-    }
+          let copiedLists = copyContainer.lists()
+          XCTAssertEqual(1, copiedLists.count)
+          XCTAssertEqual(list, copiedLists[0])
+          XCTAssertTrue(copiedLists[0] === list)
+      }
 
     func testMutableCopyWithUpdatedReferences() {
         let context = CBMutableCopyContext()

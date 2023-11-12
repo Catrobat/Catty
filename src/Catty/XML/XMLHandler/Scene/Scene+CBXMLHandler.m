@@ -117,7 +117,9 @@
 - (GDataXMLElement *)xmlElementWithContext:(CBXMLSerializerContext *)context {
     context.spriteObjectList = [[NSMutableArray alloc] initWithArray:self.objects];
     
-    GDataXMLElement *sceneXmlElement = [GDataXMLElement elementWithName:@"scene" context:context];
+    NSUInteger indexOfScene = [CBXMLSerializerHelper indexOfElement:self inArray:context.sceneList];
+    GDataXMLElement *sceneXmlElement = [GDataXMLElement elementWithName:@"scene" xPathIndex:(indexOfScene+1) context:context];
+    
     GDataXMLElement *nameXmlElement = [GDataXMLElement elementWithName:@"name" stringValue:self.name context:context];
     
     [sceneXmlElement addChild:nameXmlElement context:context];

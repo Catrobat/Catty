@@ -29,7 +29,9 @@ extension StagePresenterViewController {
     func shareDST(embroideryService: EmbroideryProtocol) {
 
         var embroideryStream = [EmbroideryStream]()
-        for object in project.scene.objects() where !object.spriteNode.embroideryStream.isEmpty {
+
+        guard let scene = project.scenes[0] as? Scene else {return}
+        for object in scene.objects() where !object.spriteNode.embroideryStream.isEmpty {
             embroideryStream.append(object.spriteNode.embroideryStream)
         }
         let embroideryStreamMerged = EmbroideryStream(streams: embroideryStream)

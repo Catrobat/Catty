@@ -33,7 +33,7 @@ class VariableTests: XCTestCase {
 
     private func createNewProjectAndAddSetVariableBrick(name: String) {
         createProject(name: name, in: app)
-
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -49,7 +49,6 @@ class VariableTests: XCTestCase {
 
     func testCreateVariableWithMaxLength() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
-
         tapOnVariablePicker(of: kLocalizedSetVariable, in: app)
         XCTAssert(app.navigationBars[kUIFENewVar].exists)
 

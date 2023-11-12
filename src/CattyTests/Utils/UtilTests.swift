@@ -36,7 +36,7 @@ final class UtilTests: XCTestCase {
     override func setUp() {
 
         project = Project()
-        project.scene = Scene()
+        project.scenes[0] = Scene()
 
         super.setUp()
     }
@@ -83,10 +83,10 @@ final class UtilTests: XCTestCase {
 
     func testdefaultSceneNameForSceneNumber() {
         var sceneDirectoryname = Util.defaultSceneName(forSceneNumber: 1)
-        XCTAssertEqual(sceneDirectoryname, "Scene 1")
+        XCTAssertEqual(sceneDirectoryname, "\(kLocalizedScene) 1")
 
         sceneDirectoryname = Util.defaultSceneName(forSceneNumber: 99)
-        XCTAssertEqual(sceneDirectoryname, "Scene 99")
+        XCTAssertEqual(sceneDirectoryname, "\(kLocalizedScene) 99")
     }
 
     func testAppName() {
@@ -183,7 +183,7 @@ final class UtilTests: XCTestCase {
         project.allBroadcastMessages?.add("firstValue")
 
         spriteObject = SpriteObject()
-        project.scene.add(object: spriteObject!)
+        (project.scenes[0] as! Scene).add(object: spriteObject!)
         broadcastScript = BroadcastScript()
         spriteObject.scriptList.add(broadcastScript!)
         broadcastScript.receivedMessage = "secondValue"
@@ -226,7 +226,7 @@ final class UtilTests: XCTestCase {
     func testLookWithNameForObject() {
         let look = Look(name: "TestLook", filePath: "/test/path")
         spriteObject = SpriteObject()
-        project.scene.add(object: spriteObject!)
+        (project.scenes[0] as! Scene).add(object: spriteObject!)
         spriteObject.lookList.add(look)
 
         let utilLook = Util.look(with: "TestLook", for: spriteObject)
@@ -237,9 +237,9 @@ final class UtilTests: XCTestCase {
     func testObjectWithNameForScene() {
         spriteObject = SpriteObject()
         spriteObject.name = "TestSpriteObject"
-        project.scene.add(object: spriteObject!)
+        (project.scenes[0] as! Scene).add(object: spriteObject!)
 
-        let utilSpriteObject = Util.object(with: "TestSpriteObject", for: project.scene)
+        let utilSpriteObject = Util.object(with: "TestSpriteObject", for: (project.scenes[0] as! Scene))
 
         XCTAssertEqual(utilSpriteObject, spriteObject)
     }
@@ -247,7 +247,7 @@ final class UtilTests: XCTestCase {
     func testSoundWithNameForObject() {
         let sound = Sound(name: "TestSound", fileName: "/test/path")
         spriteObject = SpriteObject()
-        project.scene.add(object: spriteObject!)
+        (project.scenes[0] as! Scene).add(object: spriteObject!)
         spriteObject.soundList.add(sound)
 
         let utilSound = Util.sound(with: "TestSound", for: spriteObject)

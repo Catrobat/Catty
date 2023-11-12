@@ -41,6 +41,7 @@ final class BaseTableViewControllerTests: XCTestCase {
         projectManager = ProjectManager.shared
 
         project = projectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
+        stagePresenterViewControllerMock.project = project
     }
 
     func testNotification() {

@@ -43,17 +43,26 @@ extension UIViewController {
     }
 
     @objc func openLoginScreen(_ delegate: AuthenticationDelegate? = nil) {
-        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController else { return }
-        viewController.delegate = delegate
-        self.navigationController?.pushViewController(viewController, animated: true)
+        guard let viewController = self.instantiateViewController("LoginController") as? LoginViewController else { return }
+            viewController.delegate = delegate
+            self.navigationController?.pushViewController(viewController, animated: true)
     }
 
     @objc func openProject(_ project: Project) {
-        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
-
-        viewController.scene = project.scene
+        ProjectManager.shared.currentProject = project
+        guard let viewController = self.instantiateViewController("ScenesTableViewController") as? ScenesTableViewController else { return }
+        project.activeScene = project.scenes[0] as! Scene
+        viewController.project = project
         project.setAsLastUsedProject()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func openScene(_ scene: Scene, _ scenesTableViewController: ScenesTableViewController) {
+        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
+        scenesTableViewController.project.activeScene = scene
+        viewController.scene = scene
+        viewController.project = scenesTableViewController.project
+        viewController.sceneDelegate = scenesTableViewController
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 

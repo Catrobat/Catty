@@ -90,6 +90,7 @@
             if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
                 NSError(@"Project could not saved to disk! %@", error);
             }
+            NSLog(@"%@", xmlString);
 
             // update last access time
             [Project updateLastModificationTimeForProjectWithName:project.header.programName

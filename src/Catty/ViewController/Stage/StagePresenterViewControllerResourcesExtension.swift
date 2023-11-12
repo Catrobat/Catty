@@ -50,6 +50,19 @@ import UIKit
         }
     }
 
+    @objc func playScene(to navigationController: UINavigationController, completion: @escaping () -> Void = {}) {
+        DispatchQueue.main.async {
+            self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
+            let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
+
+            completion()
+
+            if readyToStart && !(self.navigationController?.topViewController is StagePresenterViewController) {
+                navigationController.pushViewController(self, animated: true)
+            }
+        }
+    }
+
     @nonobjc private func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
         let requiredResources = project.getRequiredResources()
 

@@ -40,8 +40,9 @@ final class SetBackgroundByIndexBrickTest: XCTestCase {
 
     override func setUp() {
         project = ProjectManager.shared.createProject(name: "setBackgroundByIndexTest", projectId: "1")
-        spriteObject = project.scene.object(at: 0)
-        spriteObject.scene = project.scene
+        spriteObject = (project.scenes[0] as! Scene).object(at: 0)
+        //guard let scene = project.scenes[0] as? Scene else {XCTFail("No scene found."); return}
+        spriteObject.scene = project.scenes[0] as? Scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)

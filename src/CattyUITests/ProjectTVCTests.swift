@@ -37,9 +37,10 @@ class ProjectTVCTests: XCTestCase {
 
         createProject(name: projectName, in: app)
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        app.tables.staticTexts["\(kLocalizedScene) 1"].tap()
         XCTAssertEqual(1, app.tables.cells.count)
 
-        addObjectAndDrawNewImage(name: objectName, in: app)
+        addObjectAndDrawNewImage(name: objectName, in: app, projectName: projectName)
         XCTAssertEqual(2, app.tables.cells.count)
     }
 
@@ -52,7 +53,9 @@ class ProjectTVCTests: XCTestCase {
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        app.tables.staticTexts["\(kLocalizedScene) 1"].tap()
 
         //Add new Object
         app.toolbars.buttons[kLocalizedUserListAdd].tap()

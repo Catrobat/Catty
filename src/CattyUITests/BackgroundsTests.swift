@@ -34,6 +34,7 @@ class BackgroundsTests: XCTestCase {
     func testScriptsCanEnterScripts() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -70,6 +71,7 @@ class BackgroundsTests: XCTestCase {
 
     func testBackgroundsCanEnterBackgrounds() {
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts[kLocalizedBackground]).tap()
         app.tables.staticTexts[kLocalizedBackgrounds].tap()
 
@@ -216,6 +218,7 @@ class BackgroundsTests: XCTestCase {
     func testSoundsCanEnterSounds() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedSounds].tap()
 
