@@ -63,5 +63,40 @@ class ParseMultipleScenesTests: XMLAbstractTest {
     func testSceneswithVariables() {
         let project = self.getProjectForXML(xmlFile: "ValidScenes")
         XCTAssertEqual(project.scenes.count, 2)
+
+        let scene1 = project.scenes[0] as! Scene
+        let obj1 = scene1.objects()[1]
+        XCTAssertEqual(obj1.name, "SpriteWithLocalVarAndList")
+        XCTAssertEqual(obj1.lookList.count, 1)
+        XCTAssertEqual(obj1.scriptList.count, 1)
+        XCTAssertEqual(obj1.soundList.count, 0)
+
+        let localLists = obj1.userData.lists()
+        XCTAssertEqual(1, localLists.count)
+        XCTAssertEqual("localList", localLists[0].name)
+
+        let localVars = obj1.userData.variables()
+        XCTAssertEqual(1, localVars.count)
+        XCTAssertEqual("localVar", localVars[0].name)
+
+        let obj2 = scene1.objects()[2]
+        XCTAssertEqual(obj2.name, "SpriteWithGlobalVarAndList")
+        XCTAssertEqual(obj2.lookList.count, 1)
+        XCTAssertEqual(obj2.scriptList.count, 1)
+        XCTAssertEqual(obj2.soundList.count, 0)
+
+        let localLists2 = obj2.userData.lists()
+        XCTAssertEqual(0, localLists2.count)
+
+        let localVars2 = obj2.userData.variables()
+        XCTAssertEqual(0, localVars2.count)
+    }
+
+    func testParseGlobalVariables() {
+        let project = self.getProjectForXML(xmlFile: "ValidScenes")
+        let variables = project.userData.variables()
+        XCTAssertEqual(1, variables.count)
+        XCTAssertEqual("globalVar", variables[0].name)
+
     }
 }
