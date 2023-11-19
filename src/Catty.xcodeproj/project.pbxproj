@@ -1750,6 +1750,10 @@
 		AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */; };
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
+		B0A32C6C2B0A79F500EE2FE6 /* SceneStartBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */; };
+		B0A32C6E2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6D2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift */; };
+		B0A32C702B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6F2B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift */; };
+		B0A32C722B0A8BA000EE2FE6 /* SceneStartBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C712B0A8BA000EE2FE6 /* SceneStartBrick+CBXMLHandler.swift */; };
 		B0C080932A9CE61A008E31A4 /* RunningStitchPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C0808F2A9CE619008E31A4 /* RunningStitchPattern.swift */; };
 		B0C080942A9CE61A008E31A4 /* ZigzagStitchPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C080902A9CE61A008E31A4 /* ZigzagStitchPattern.swift */; };
 		B0C080952A9CE61A008E31A4 /* TripleStitchPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C080912A9CE61A008E31A4 /* TripleStitchPattern.swift */; };
@@ -4398,6 +4402,10 @@
 		AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointInDirectionBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointInDirectionBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		ABD74577198FBC2984BDDE56 /* hu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrick.swift; sourceTree = "<group>"; };
+		B0A32C6D2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrickCell.swift; sourceTree = "<group>"; };
+		B0A32C6F2B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneStartBrick+Instruction.swift"; sourceTree = "<group>"; };
+		B0A32C712B0A8BA000EE2FE6 /* SceneStartBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SceneStartBrick+CBXMLHandler.swift"; path = "Catty/SceneStartBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
 		B0C0808F2A9CE619008E31A4 /* RunningStitchPattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningStitchPattern.swift; sourceTree = "<group>"; };
 		B0C080902A9CE61A008E31A4 /* ZigzagStitchPattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZigzagStitchPattern.swift; sourceTree = "<group>"; };
 		B0C080912A9CE61A008E31A4 /* TripleStitchPattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripleStitchPattern.swift; sourceTree = "<group>"; };
@@ -6913,6 +6921,7 @@
 				AA74EEDA1BC057B900D1E954 /* WaitBrick+CBXMLHandler.m */,
 				BA987D042194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.h */,
 				BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */,
+				B0A32C712B0A8BA000EE2FE6 /* SceneStartBrick+CBXMLHandler.swift */,
 			);
 			name = Control;
 			path = ControlBricks;
@@ -9057,6 +9066,7 @@
 		92FF302B1A24DCAA00093DA7 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				B0A32C6A2B0A79D600EE2FE6 /* Scenes */,
 				4614B1CE2560856B004174AD /* Embroidery */,
 				4C6F413B22F4DAAC00900B3F /* Category */,
 				92B46F8A1BC7B3E5004980C1 /* Arduino */,
@@ -10241,6 +10251,7 @@
 				AA74EE1F1BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift */,
 				AA74EE201BC053FD00D1E954 /* WaitBrick+Instruction.swift */,
 				BA987D0E2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift */,
+				B0A32C6F2B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -10839,6 +10850,15 @@
 				596E779C24F1266100D449FF /* StageProtocol.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		B0A32C6A2B0A79D600EE2FE6 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */,
+				B0A32C6D2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		B0C0808E2A9CE573008E31A4 /* Pattern */ = {
@@ -12962,6 +12982,7 @@
 				C8DCC43F26724BE400D1FC9E /* DeviceStringSensor.swift in Sources */,
 				18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */,
 				49B55F7727E874BD000A95B4 /* LeftEarXSensor.swift in Sources */,
+				B0A32C6C2B0A79F500EE2FE6 /* SceneStartBrick.swift in Sources */,
 				929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */,
 				6F6EA566248A5E5B00FAFBB6 /* SynchronizedArray.swift in Sources */,
 				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
@@ -13166,6 +13187,7 @@
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
+				B0A32C702B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift in Sources */,
 				9EDCD22322886C870040EFE3 /* CBExpectation.swift in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */,
@@ -13854,6 +13876,7 @@
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
 				05E6801F255B5DAA00D1E295 /* EmbroideryDSTService.swift in Sources */,
 				4614B1D22560856B004174AD /* StitchBrick.swift in Sources */,
+				B0A32C722B0A8BA000EE2FE6 /* SceneStartBrick+CBXMLHandler.swift in Sources */,
 				9200C2D01C808206002F5CA4 /* ShowTextBrick+Instruction.swift in Sources */,
 				92FF31611A24DEB300093DA7 /* StagePresenterViewController.m in Sources */,
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
@@ -13896,6 +13919,7 @@
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
 				91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */,
+				B0A32C6E2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift in Sources */,
 				4981EE37289ACF1A0052AEB1 /* HandPoseDetectionManager.swift in Sources */,
 				4CE0574C266E1B2F008AD7FF /* SetBackgroundByIndexBrick+CBXMLHandler.swift in Sources */,
 			);

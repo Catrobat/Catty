@@ -127,7 +127,8 @@
             StartZigzagStitchBrick(),
             StartTripleStitchBrick(),
             SewUpBrick(),
-            StopCurrentStitchBrick()
+            StopCurrentStitchBrick(),
+            SceneStartBrick()
         ]
 
         if isPhiroEnabled() {
