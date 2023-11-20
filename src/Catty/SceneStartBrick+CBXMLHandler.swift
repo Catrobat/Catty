@@ -28,7 +28,7 @@ extension SceneStartBrick: CBXMLNodeProtocol {
         let brick = self.init()
         // TODO change this to the actual selected scene
         if let selection: GDataXMLElement = xmlElement.child(withElementName: "scenesSelection"), let instrument = Formula(string: "Test"){
-            brick.question = instrument
+            //brick.question = instrument
         } else {
             fatalError("SetInstrumentBrick contains no or invalid instrumentSelection child element!")
         }

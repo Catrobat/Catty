@@ -19,32 +19,15 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-class SceneStartBrickCell: BrickCell, BrickCellProtocol {
-    var leftTextLabel: UILabel?
-    var variableComboBox: iOSCombobox?
 
-    override init(frame: CGRect) {
-       super.init(frame: frame)
-   }
+#import <Foundation/Foundation.h>
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+@class Brick;
+@class Sound;
 
-    static func cellHeight() -> CGFloat {
-        UIDefines.brickHeight2h
-    }
+@protocol BrickSceneProtocol <BrickProtocol>
 
-    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
-        self.leftTextLabel = inlineViewSubViews[0] as? UILabel
-        self.variableComboBox = inlineViewSubViews[1] as? iOSCombobox
-    }
+- (Scene*)sceneForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setScene:(Scene*)scene forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
-    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
-        "Scene start" + "\n%@"
-    }
-    // change this to scenes list
-    override func parameters() -> [String] {
-        ["{Scenes}"]
-    }
-}
+@end

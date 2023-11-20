@@ -1750,6 +1750,7 @@
 		AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */; };
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
+		B00A17812B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */; };
 		B0A32C6C2B0A79F500EE2FE6 /* SceneStartBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */; };
 		B0A32C6E2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6D2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift */; };
 		B0A32C702B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6F2B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift */; };
@@ -4402,6 +4403,8 @@
 		AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointInDirectionBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointInDirectionBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		ABD74577198FBC2984BDDE56 /* hu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellScenesStartBrickData.swift; sourceTree = "<group>"; };
+		B00A17822B0C0223009E2F1E /* BrickSceneProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickSceneProtocol.h; sourceTree = "<group>"; };
 		B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrick.swift; sourceTree = "<group>"; };
 		B0A32C6D2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrickCell.swift; sourceTree = "<group>"; };
 		B0A32C6F2B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneStartBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -6564,6 +6567,7 @@
 				9990BB6C1D89D89A0088357A /* BrickStaticChoiceProtocol.h */,
 				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
 				4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */,
+				B00A17822B0C0223009E2F1E /* BrickSceneProtocol.h */,
 			);
 			path = BrickData;
 			sourceTree = "<group>";
@@ -10562,6 +10566,7 @@
 				AA74F01C1BC05FCE00D1E954 /* BrickCellVariableData.h */,
 				AA74F01D1BC05FCE00D1E954 /* BrickCellVariableData.m */,
 				4CF8276924F0E54C006E562A /* BrickCellBackgroundData.swift */,
+				B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */,
 			);
 			path = BrickCellData;
 			sourceTree = "<group>";
@@ -13772,6 +13777,7 @@
 				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
+				B00A17812B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift in Sources */,
 				18AAC23724A6170600C96335 /* SetPenSizeBrick+Instruction.swift in Sources */,
 				4C994E31207A594100C415FD /* InclinationYSensor.swift in Sources */,
 				4635B28125E98B2800970CCA /* NextLookBrick.swift in Sources */,

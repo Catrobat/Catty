@@ -25,13 +25,28 @@
 // TODO if one scene gets deleted adjust the scene start brick
 
 @objc(SceneStartBrick)
-@objcMembers class SceneStartBrick: Brick, BrickProtocol, BrickFormulaProtocol, BrickVariableProtocol {
-    var question: Formula?
-    var userVariable: UserVariable?
+@objcMembers class SceneStartBrick: Brick, BrickProtocol, BrickSceneProtocol {
+
+    func setScene(_ scene: Scene!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
+        if scene != nil {
+            self.selectedScene = scene
+        }
+    }
+
+    func scene(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> Scene! {
+        self.selectedScene
+    }
+
+    @objc var selectedScene: Scene?
+
+//    override required init() {
+//        super.init()
+//    }
 
     override required init() {
-        super.init()
+
     }
+
     func category() -> kBrickCategoryType {
         kBrickCategoryType.controlBrick
     }
@@ -48,30 +63,9 @@
         SceneStartBrickCell.self as BrickCellProtocol.Type
     }
 
-    func variable(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> UserVariable! {
-        self.userVariable
-    }
-
-    func setVariable(_ variable: UserVariable!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
-        self.userVariable = variable
-    }
-
-    func formula(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> Formula! {
-        self.question
-    }
-
-    func setFormula(_ formula: Formula!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
-        self.question = formula
-    }
-
-    func getFormulas() -> [Formula]! {
-        [question!]
-    }
-
     override func setDefaultValuesFor(_ spriteObject: SpriteObject!) {
-        let variable = UserVariable(name: "variableName")
-        self.userVariable = variable
-        self.question = Formula(userVariable: variable)
+
+        self.selectedScene = (ProjectManager.shared.currentProject.scenes.firstObject as! Scene)
     }
 
     func allowsStringFormula() -> Bool {
