@@ -41,12 +41,22 @@ class BrickCellScenesStartBrickData: iOSCombobox, BrickCellDataProtocol, iOSComb
         var backgroundOptions: [String] = []
         var currentOptionIndex = 0
 
-        let currentScene = (brickCell.scriptOrBrick as? BrickSceneProtocol)?.scene(forLineNumber: line, andParameterNumber: parameter)
+        var currentScene = (brickCell.scriptOrBrick as? BrickSceneProtocol)?.scene(forLineNumber: line, andParameterNumber: parameter)
+
+        let selectedScenename = (brickCell.scriptOrBrick as? BrickSceneProtocol)?.sceneName()
+
+        // this is just because we can't set our scene when parsing because the scene probably is not parsed yet, mabye remove the Scene Object cmplety and load it only when neeeded or find a better solution
+
+        if currentScene?.name != selectedScenename {
+            let scenes = ProjectManager.shared.currentProject.scenes.map { $0 as! Scene }
+            currentScene = scenes.first { $0.name == selectedScenename }
+            (brickCell.scriptOrBrick as? BrickSceneProtocol)?.setScene(currentScene)
+        }
 
         for case let scene as Scene in ProjectManager.shared.currentProject.scenes {
             backgroundOptions.append(scene.name)
 
-            if currentScene?.name == scene.name {
+            if selectedScenename == scene.name {
                 currentOptionIndex = backgroundOptions.count - 1
             }
 
@@ -73,22 +83,5 @@ class BrickCellScenesStartBrickData: iOSCombobox, BrickCellDataProtocol, iOSComb
 
     func comboboxOpened(_ combobox: iOSCombobox!) {
         self.brickCell.dataDelegate.disableUserInteractionAndHighlight(self.brickCell, withMarginBottom: CGFloat(kiOSComboboxTotalHeight))
-    }
-
-    private func setCurrentLook(_ look: Look, for object: SpriteObject) {
-        let imageCache = RuntimeImageCache.shared()
-        let path = object.projectPath() + kProjectImagesDirName + "/" + look.fileName
-
-        if let image = imageCache?.cachedImage(forPath: path) {
-            self.currentImage = image
-        } else {
-            imageCache?.loadImageFromDisk(withPath: path, onCompletion: { image, _ in
-                guard let image = image else { return }
-                DispatchQueue.main.async {
-                    self.currentImage = image
-                    self.setNeedsDisplay()
-                }
-            })
-        }
     }
 }

@@ -28,6 +28,7 @@
 @protocol BrickSceneProtocol <BrickProtocol>
 
 - (Scene*)sceneForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
-- (void)setScene:(Scene*)scene forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (NSString*)sceneName;
+- (void)setScene:(Scene*)scene;
 
 @end

@@ -26,10 +26,14 @@
 
 @objc(SceneStartBrick)
 @objcMembers class SceneStartBrick: Brick, BrickProtocol, BrickSceneProtocol {
+    func sceneName() -> String! {
+        selectedSceneName
+    }
 
-    func setScene(_ scene: Scene!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
+    func setScene(_ scene: Scene!) {
         if scene != nil {
             self.selectedScene = scene
+            self.selectedSceneName = scene.name
         }
     }
 
@@ -39,12 +43,10 @@
 
     @objc var selectedScene: Scene?
 
-//    override required init() {
-//        super.init()
-//    }
+    @objc var selectedSceneName: String?
 
     override required init() {
-
+        super.init()
     }
 
     func category() -> kBrickCategoryType {
@@ -64,8 +66,8 @@
     }
 
     override func setDefaultValuesFor(_ spriteObject: SpriteObject!) {
-
         self.selectedScene = (ProjectManager.shared.currentProject.scenes.firstObject as! Scene)
+        self.selectedSceneName = selectedScene?.name
     }
 
     func allowsStringFormula() -> Bool {

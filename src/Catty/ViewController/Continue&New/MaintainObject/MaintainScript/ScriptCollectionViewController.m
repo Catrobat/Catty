@@ -974,7 +974,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 if ([object isKindOfClass:[Scene class]]) {
                     Scene *scene = (Scene *)object;
                     if ([scene.name isEqualToString:value]) {
-                        [sceneBrick setScene:scene forLineNumber:line andParameterNumber:parameter];
+                        [sceneBrick setScene:scene];
                         break;
                     }
                 }

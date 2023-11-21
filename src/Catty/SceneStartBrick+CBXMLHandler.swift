@@ -26,11 +26,10 @@ extension SceneStartBrick: CBXMLNodeProtocol {
         CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 1)
 
         let brick = self.init()
-        // TODO change this to the actual selected scene
-        if let selection: GDataXMLElement = xmlElement.child(withElementName: "scenesSelection"), let instrument = Formula(string: "Test"){
-            //brick.question = instrument
+        if let selection: GDataXMLElement = xmlElement.child(withElementName: "sceneToStart") {
+            brick.selectedSceneName = selection.stringValue()
         } else {
-            fatalError("SetInstrumentBrick contains no or invalid instrumentSelection child element!")
+            fatalError("SceneStartBrick contains no or invalid sceneToStart child element!")
         }
 
         return brick
@@ -38,7 +37,8 @@ extension SceneStartBrick: CBXMLNodeProtocol {
 
     func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
         let brick = super.xmlElement(for: "SceneStartBrick", with: context)
-        let selection = GDataXMLElement(name: "scenesSelection", stringValue: "Test", context: context)
+        let selection = GDataXMLElement(name: "sceneToStart", stringValue: self.selectedSceneName, context: context)
+
         brick?.addChild(selection, context: context)
         return brick
    }
