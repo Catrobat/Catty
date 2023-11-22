@@ -25,7 +25,7 @@ import UIKit
 class ScenesTableViewController: UITableViewController, SceneDelegate {
     var project = Project()
     var newScene = false
-    let stagePresenterViewController = StagePresenterViewController()
+    //let stagePresenterViewController = StagePresenterViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
         self.navigationItem.leftBarButtonItem?.title = kLocalizedProjects
         let edit = UIBarButtonItem(title: kLocalizedEdit, style: .plain, target: self, action: #selector(editButtonTapped))
         navigationItem.rightBarButtonItems = [edit]
-        stagePresenterViewController.project = project
+        project.stagePresenterViewController.stageNavigationController = self.navigationController
         setupToolBar()
     }
 
@@ -177,7 +177,7 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
                 UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
             }
             if let navigationController = self.navigationController {
-                self.stagePresenterViewController.playScene(to: navigationController) {
+                self.project.stagePresenterViewController.playScene(to: self.project.stagePresenterViewController.stageNavigationController) {
                 }
             }
         }

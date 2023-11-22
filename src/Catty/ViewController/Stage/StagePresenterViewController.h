@@ -37,7 +37,9 @@
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIView *gridView;
+@property (nonatomic, strong) UINavigationController *stageNavigationController;
 
+- (void)stopAction;
 - (void)pauseAction;
 - (void)resumeAction;
 - (void)connectionLost;
