@@ -25,6 +25,7 @@
     private var _objects: [SpriteObject]
     var name: String
     var project: Project?
+    let stagePresenterViewController = StagePresenterViewController()
 
     override var description: String {
         allObjectNames().joined(separator: ", ")

@@ -26,37 +26,24 @@ extension SceneStartBrick: CBInstructionProtocol {
     func instruction() -> CBInstruction {
         return CBInstruction.highPriorityExecClosure { context, scheduler, broadcastHandler in
 
-            let scenes = ProjectManager.shared.currentProject.scenes.map {$0 as! Scene}
-            let newStagePres = StagePresenterViewController()
-            newStagePres.project = ProjectManager.shared.currentProject
-            newStagePres.stageNavigationController = ProjectManager.shared.currentProject.stagePresenterViewController.stageNavigationController
+            let scenes = ProjectManager.shared.currentProject.scenes.map { $0 as! Scene }
+//            newStagePres.stageNavigationController = ProjectManager.shared.currentProject.stagePresenterViewController.stageNavigationController
             if let selectedSceneName = self.selectedSceneName {
                 print(selectedSceneName)
+                print("active \(ProjectManager.shared.currentProject.activeScene.name)")
+                print(selectedSceneName == ProjectManager.shared.currentProject.activeScene.name)
+                if selectedSceneName == ProjectManager.shared.currentProject.activeScene.name {
+                    //ProjectManager.shared.currentProject.activeScene.stagePresenterViewController.resumeAction()
+                    return
+                } else {
+                    ProjectManager.shared.currentProject.activeScene.stagePresenterViewController.pauseAction()
+                    scenes.first { $0.name == selectedSceneName }!
+                        .stagePresenterViewController.playScene(to: scenes.first {$0.name == selectedSceneName}!.stagePresenterViewController.stageNavigationController)
+                   // ProjectManager.shared.currentProject.activeScene.stagePresenterViewController.navigationController?.popViewController(animated: true)
+                    ProjectManager.shared.currentProject.activeScene = scenes.first { $0.name == selectedSceneName }!
 
-                ProjectManager.shared.currentProject.stagePresenterViewController.stopAction()
-                newStagePres.project.activeScene = scenes.first {$0.name == selectedSceneName}!
-                newStagePres.playScene(to:   newStagePres.stageNavigationController)
+                }
             }
         }
     }
-//    func instruction() -> CBInstruction {
-//
-//        .execClosure { context, _ in
-//
-//            let scenes = ProjectManager.shared.currentProject.scenes.map {$0 as! Scene}
-//
-//            if let selectedSceneName = self.selectedSceneName {
-//                ProjectManager.shared.currentProject.activeScene = scenes.first {$0.name == selectedSceneName}!
-//                let stageP =  scenes.first {$0.name == selectedSceneName}! as? Stage
-//            }
-//            if let stage = self.script.object.spriteNode.scene as? Stage {
-//                stage.view?.allowsTransparency = self.isEnabled()
-//                stage.backgroundColor = self.isEnabled() ? UIColor.clear : UIColor.white
-//                stage.stopProject()
-////                self.isEnabled() ? CameraPreviewHandler.shared().startCameraPreview() : CameraPreviewHandler.shared().stopCamera()
-//            }
-//
-//            context.state = .runnable
-//        }
-//    }
 }

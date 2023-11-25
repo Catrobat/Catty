@@ -26,6 +26,7 @@
 @protocol SpriteManagerDelegate;
 
 @class Project;
+@class Scene;
 @class FormulaManager;
 @class LoadingView;
 @class StagePresenterSideMenuView;

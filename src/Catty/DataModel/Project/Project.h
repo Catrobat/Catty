@@ -32,7 +32,6 @@
 @interface Project : NSObject
 
 @property (nonatomic, strong, nonnull) Header *header;
-@property (nonatomic, strong, nonnull) StagePresenterViewController* stagePresenterViewController;
 @property (nonatomic, strong, nonnull) NSMutableArray<Scene*> *scenes;
 @property (nonatomic, strong, nonnull) Scene *scene DEPRECATED_ATTRIBUTE; //needed for compadability with "Old Parser"
 @property (nonatomic, strong, nonnull) Scene *activeScene;
