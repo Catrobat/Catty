@@ -29,12 +29,17 @@
 @class Scene;
 @class FormulaManager;
 @class LoadingView;
+@class Stage;
 @class StagePresenterSideMenuView;
 @class StagePresenterViewControllerShareExtension;
+@class SKView;
 
 @interface StagePresenterViewController : UIViewController
 
 @property (nonatomic, strong) Project *project;
+@property (nonatomic, strong) Scene *scene;
+@property (nonatomic, strong) Stage *stage;
+@property (nonatomic, strong) SKView *skView;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIView *gridView;
@@ -44,10 +49,11 @@
 - (void)pauseAction;
 - (void)resumeAction;
 - (void)connectionLost;
-
+- (void)setupStageAndStart;
 - (void)showLoadingView;
 - (void)hideLoadingView;
 - (void)setUpGridView;
+- (void)restartAction;
 
 - (BOOL)isPaused;
 

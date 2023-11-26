@@ -31,8 +31,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface StagePresenterViewController() <UIActionSheetDelegate, StagePresenterSideMenuDelegate>
-@property (nonatomic, strong) Stage *stage;
-@property (nonatomic, strong) SKView *skView;
 @property (nonatomic, strong) StagePresenterSideMenuView *menuView;
 @property (nonatomic, strong) NSLayoutConstraint *menuViewLeadingConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *menuViewRightConstraint;
@@ -281,7 +279,7 @@
 - (void)setupStageAndStart
 {
     // Initialize scene
-    Stage *stage = [[[[StageBuilder alloc] initWithProject:self.project] andFormulaManager:self.formulaManager] build];
+    Stage *stage = [[[[StageBuilder alloc] initWithScene: self.scene] andFormulaManager:self.formulaManager] build];
     if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         stage.scaleMode = SKSceneScaleModeFill;
     } else if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
@@ -356,7 +354,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andScene:self.project.activeScene];
+                             [self takeAutomaticScreenshotForSKView:self.skView andScene:self.scene];
                          }
                      }];
     self.skView.paused = NO;
@@ -443,7 +441,7 @@
 
 - (void)takeScreenshotAction
 {
-    [self takeManualScreenshotForSKView:self.skView andScene: self.project.activeScene];
+    [self takeManualScreenshotForSKView:self.skView andScene: self.scene];
 }
 
 - (void)shareDSTAction

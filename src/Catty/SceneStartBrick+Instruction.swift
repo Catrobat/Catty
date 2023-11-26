@@ -36,11 +36,14 @@ extension SceneStartBrick: CBInstructionProtocol {
                     //ProjectManager.shared.currentProject.activeScene.stagePresenterViewController.resumeAction()
                     return
                 } else {
-                    ProjectManager.shared.currentProject.activeScene.stagePresenterViewController.pauseAction()
-                    scenes.first { $0.name == selectedSceneName }!
-                        .stagePresenterViewController.playScene(to: scenes.first {$0.name == selectedSceneName}!.stagePresenterViewController.stageNavigationController)
-                   // ProjectManager.shared.currentProject.activeScene.stagePresenterViewController.navigationController?.popViewController(animated: true)
+                    ProjectManager.shared.currentProject.stagePresenterVC.pauseAction()
                     ProjectManager.shared.currentProject.activeScene = scenes.first { $0.name == selectedSceneName }!
+                    ProjectManager.shared.currentProject.stagePresenterVC.changeStage(newScene: scenes.first { $0.name == selectedSceneName }!)
+
+                    ProjectManager.shared.currentProject.stagePresenterVC.resumeAction()
+//                        .stagePresenterViewController.playScene(to: scenes.first {$0.name == selectedSceneName}!.stagePresenterViewController.stageNavigationController)
+//                   // ProjectManager.shared.currentProject.activeScene.stagePresenterViewController.navigationController?.popViewController(animated: true)
+//                    ProjectManager.shared.currentProject.activeScene = scenes.first { $0.name == selectedSceneName }!
 
                 }
             }

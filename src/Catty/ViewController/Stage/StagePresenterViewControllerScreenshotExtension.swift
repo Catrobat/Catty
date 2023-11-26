@@ -49,6 +49,20 @@
         return image.crop(rect: CGRect(origin: center, size: size))!
     }
 
+     func changeStage(newScene: Scene) {
+
+         self.scene = newScene
+         self.restartAction()
+
+//        var stageBuilder = StageBuilder(scene: self.scene)
+//        stageBuilder = stageBuilder.withFormulaManager(formulaManager: self.formulaManager)
+//        let stage = stageBuilder.build()
+//        stage.scaleMode = .fill
+//        self.stage = stage
+//        self.skView.presentScene(self.stage)
+//         self.restat
+    }
+
     private func saveScreenshot(_ screenshot: UIImage, for scene: Scene, manualScreenshot: Bool) {
         guard let project = scene.project else { return }
 

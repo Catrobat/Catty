@@ -25,7 +25,7 @@ import UIKit
 class ScenesTableViewController: UITableViewController, SceneDelegate {
     var project = Project()
     var newScene = false
-    //let stagePresenterViewController = StagePresenterViewController()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +33,17 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
         self.navigationItem.leftBarButtonItem?.title = kLocalizedProjects
         let edit = UIBarButtonItem(title: kLocalizedEdit, style: .plain, target: self, action: #selector(editButtonTapped))
         navigationItem.rightBarButtonItems = [edit]
+        project.activeScene.project = project
+        project.stagePresenterVC.scene = project.activeScene
 
-        for case let scene as Scene in ProjectManager.shared.currentProject.scenes {
-            scene.stagePresenterViewController.stageNavigationController = self.navigationController
-            scene.stagePresenterViewController.project = project
-            scene.project = project
-            scene.stagePresenterViewController.activeScene = scene
-        }
-
-        //project.stagePresenterViewController.stageNavigationController = self.navigationController
+//        for case let scene as Scene in ProjectManager.shared.currentProject.scenes {
+//            scene.stagePresenterViewController.stageNavigationController = self.navigationController
+//            scene.stagePresenterViewController.project = project
+//            scene.project = project
+//            scene.stagePresenterViewController.scene = scene
+//        }
+        project.stagePresenterVC.project = project
+        project.stagePresenterVC.stageNavigationController = self.navigationController
         setupToolBar()
     }
 
@@ -186,7 +188,7 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
             }
 
             if let navigationController = self.navigationController {
-                self.project.activeScene.stagePresenterViewController.playScene(to: self.project.activeScene.stagePresenterViewController.stageNavigationController)
+                self.project.stagePresenterVC.playScene(to: self.project.stagePresenterVC.stageNavigationController)
             }
         }
     }

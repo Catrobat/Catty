@@ -23,6 +23,7 @@
 @objc class StageBuilder: NSObject {
 
     private var project: Project
+    private var scene: Scene
     private var logger: CBLogger
     private var size: CGSize
     private var scheduler: CBSchedulerProtocol?
@@ -32,8 +33,9 @@
     private var formulaManager: FormulaManagerProtocol?
     private var audioEngine: AudioEngineProtocol?
 
-    @objc init(project: Project) {
-        self.project = project
+    @objc init(scene: Scene) {
+        self.project = scene.project!
+        self.scene = scene
 
         guard let stageLogger = Swell.getLogger(LoggerConfig.PlayerSceneID) else { preconditionFailure() }
 
@@ -90,9 +92,9 @@
         let audioEngine = getAudioEngine()
         let scheduler = getScheduler(broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager, audioEngine: audioEngine)
 
-        guard let scene = project.activeScene as? Scene else {
-            preconditionFailure()
-        }
+//        guard let scene = project.activeScene as? Scene else {
+//            preconditionFailure()
+//        }
 
         return Stage(scene: scene,
                      size: size,
