@@ -37,8 +37,8 @@
 @interface StagePresenterViewController : UIViewController
 
 @property (nonatomic, strong) Project *project;
-@property (nonatomic, strong) Scene *scene;
 @property (nonatomic, strong) Stage *stage;
+@property (nonatomic, strong) Scene *scene;
 @property (nonatomic, strong) SKView *skView;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @property (nonatomic, strong) LoadingView* loadingView;

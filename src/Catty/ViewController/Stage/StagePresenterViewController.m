@@ -279,7 +279,7 @@
 - (void)setupStageAndStart
 {
     // Initialize scene
-    Stage *stage = [[[[StageBuilder alloc] initWithScene: self.scene] andFormulaManager:self.formulaManager] build];
+    Stage *stage = [[[[StageBuilder alloc] initWithScene: ProjectManager.shared.currentProject.activeScene] andFormulaManager:self.formulaManager] build];
     if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         stage.scaleMode = SKSceneScaleModeFill;
     } else if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
@@ -354,7 +354,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andScene:self.scene];
+                             [self takeAutomaticScreenshotForSKView:self.skView andScene: self.scene];
                          }
                      }];
     self.skView.paused = NO;

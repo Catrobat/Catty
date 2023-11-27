@@ -41,7 +41,6 @@
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @property (nonatomic, strong) ProjectManager *projectManager;
-@property (nonatomic, strong) StagePresenterViewController *stagePresenterViewController;
 
 @end
 
@@ -91,11 +90,11 @@
     }
     [self checkUnsupportedElements];
     self.stagePresenterViewController = [StagePresenterViewController new];
-    self.stagePresenterViewController.project = self.project;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    ProjectManager.shared.currentProject.activeScene = self.scene;
     [super viewWillAppear:YES];
     [self.tableView reloadData];
 }
@@ -670,7 +669,7 @@
         } else {
             [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
         }
-        [self.stagePresenterViewController playSceneTo:self.navigationController completion:^{
+        [ProjectManager.shared.currentProject.stagePresenterVC playSceneTo:self.navigationController completion:^{
             [self hideLoadingView];
         }];
     });

@@ -50,17 +50,9 @@
     }
 
      func changeStage(newScene: Scene) {
-
-         self.scene = newScene
+         ProjectManager.shared.currentProject.activeScene = newScene
          self.restartAction()
-
-//        var stageBuilder = StageBuilder(scene: self.scene)
-//        stageBuilder = stageBuilder.withFormulaManager(formulaManager: self.formulaManager)
-//        let stage = stageBuilder.build()
-//        stage.scaleMode = .fill
-//        self.stage = stage
-//        self.skView.presentScene(self.stage)
-//         self.restat
+         self.scene = newScene
     }
 
     private func saveScreenshot(_ screenshot: UIImage, for scene: Scene, manualScreenshot: Bool) {
