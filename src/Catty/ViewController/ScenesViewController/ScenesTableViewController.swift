@@ -25,8 +25,7 @@ import UIKit
 class ScenesTableViewController: UITableViewController, SceneDelegate {
     var project = Project()
     var newScene = false
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = project.header.programName
@@ -36,12 +35,6 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
         project.activeScene.project = project
         project.stagePresenterVC.scene = project.activeScene
 
-//        for case let scene as Scene in ProjectManager.shared.currentProject.scenes {
-//            scene.stagePresenterViewController.stageNavigationController = self.navigationController
-//            scene.stagePresenterViewController.project = project
-//            scene.project = project
-//            scene.stagePresenterViewController.scene = scene
-//        }
         project.stagePresenterVC.project = project
         project.stagePresenterVC.stageNavigationController = self.navigationController
         setupToolBar()

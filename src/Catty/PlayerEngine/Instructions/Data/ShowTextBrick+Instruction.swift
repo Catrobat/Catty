@@ -37,6 +37,11 @@
             let yResult = context.formulaInterpreter.interpretDouble(yFormula, for: spriteObject)
 
             if let userVariable = userVariable {
+
+                if let value = userVariable.value as? NSNumber {
+                    userVariable.textLabel?.text = (value).stringValue
+                }
+
                 guard let scene = userVariable.textLabel?.scene else {
                     fatalError("This should never happen!")
                 }
