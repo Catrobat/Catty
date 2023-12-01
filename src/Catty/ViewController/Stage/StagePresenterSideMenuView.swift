@@ -32,6 +32,7 @@ import UIKit
     func showHideAxisAction()
     func aspectRatioAction()
     func shareDSTAction()
+    func stopActionAndDeleteTempData()
 }
 
 enum SideMenuButtonType {
@@ -115,11 +116,11 @@ enum SideMenuButtonType {
     }
 
     private func setUpButtonsPortrait() {
-        let backButton = setupButton(imageName: "chevron.left", selector: #selector(delegate?.stopAction))
+        let backButton = setupButton(imageName: "chevron.left", selector: #selector(delegate?.stopActionAndDeleteTempData))
         backButton.center = self.center
         backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
 
-        let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction))
+        let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopActionAndDeleteTempData))
         backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 0).isActive = true
 
         let screenshotButton = setupButton(imageName: "camera.viewfinder", selector: #selector(delegate?.takeScreenshotAction))

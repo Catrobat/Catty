@@ -27,7 +27,7 @@ final class Stage: SKScene, StageProtocol {
 
     // MARK: - Properties
     final let scheduler: CBSchedulerProtocol
-    private final let CBScene: Scene
+    public final let CBScene: Scene
     private final let frontend: CBFrontendProtocol
     private final let backend: CBBackendProtocol
     private final let broadcastHandler: CBBroadcastHandlerProtocol
@@ -263,6 +263,7 @@ final class Stage: SKScene, StageProtocol {
             }
         }
         for variable: UserVariable in variableList {
+            print(variable)
             let label = SKLabelNode(fontNamed: SpriteKitDefines.defaultFont)
             variable.textLabel = label
             variable.textLabel?.text = SpriteKitDefines.defaultValueShowVariable
@@ -301,6 +302,7 @@ final class Stage: SKScene, StageProtocol {
         DispatchQueue.main.async {
             self.removeAllChildren() // remove all CBSpriteNodes from Scene
         }
+
         //Removing reverences causes the App to crash when running a scene with objects twice
 //        CBScene.objects().forEach {
 //            $0.removeReferences()

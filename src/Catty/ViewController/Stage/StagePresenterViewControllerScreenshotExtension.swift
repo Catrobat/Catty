@@ -55,6 +55,16 @@
          self.scene = newScene
     }
 
+    @objc func stopActionAndDeleteTempData() {
+        if let uservariablelist = self.stage.CBScene.project?.userData.variables() {
+
+            for uservar in uservariablelist {
+                uservar.value = nil
+            }
+        }
+        self.stopAction()
+    }
+
     private func saveScreenshot(_ screenshot: UIImage, for scene: Scene, manualScreenshot: Bool) {
         guard let project = scene.project else { return }
 

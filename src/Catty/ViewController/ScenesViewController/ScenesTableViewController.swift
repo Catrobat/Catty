@@ -25,7 +25,7 @@ import UIKit
 class ScenesTableViewController: UITableViewController, SceneDelegate {
     var project = Project()
     var newScene = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = project.header.programName
@@ -185,5 +185,4 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
             }
         }
     }
-
 }

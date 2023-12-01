@@ -38,6 +38,7 @@ import UIKit
             }
             self.project = project
             DispatchQueue.main.async {
+                print("New Foemel sjiojdd")
                 self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
                 let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 
