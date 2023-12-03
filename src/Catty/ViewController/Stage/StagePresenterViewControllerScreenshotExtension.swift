@@ -49,22 +49,6 @@
         return image.crop(rect: CGRect(origin: center, size: size))!
     }
 
-     func changeStage(newScene: Scene) {
-         ProjectManager.shared.currentProject.activeScene = newScene
-         self.restartAction()
-         self.scene = newScene
-    }
-
-    @objc func stopActionAndDeleteTempData() {
-        if let uservariablelist = self.stage.CBScene.project?.userData.variables() {
-
-            for uservar in uservariablelist {
-                uservar.value = nil
-            }
-        }
-        self.stopAction()
-    }
-
     private func saveScreenshot(_ screenshot: UIImage, for scene: Scene, manualScreenshot: Bool) {
         guard let project = scene.project else { return }
 

@@ -20,20 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SceneStartBrick: CBInstructionProtocol {
-    func instruction() -> CBInstruction {
-        CBInstruction.execClosure { _, _ in
+@objc extension StagePresenterViewController {
 
-            print("Is this Brick disabled \(self.isDisabled)")
-            let scenes = ProjectManager.shared.currentProject.scenes.map { $0 as! Scene }
+    func changeStage(newScene: Scene) {
+        ProjectManager.shared.currentProject.activeScene = newScene
+        self.restartAction()
+        self.scene = newScene
+   }
 
-            if let selectedSceneName = self.selectedSceneName {
-                print(selectedSceneName)
-                print("active \(ProjectManager.shared.currentProject.activeScene.name)")
-                print(selectedSceneName == ProjectManager.shared.currentProject.activeScene.name)
-                //ProjectManager.shared.currentProject.stagePresenterVC.pauseAction()
-                ProjectManager.shared.currentProject.stagePresenterVC.changeStage(newScene: scenes.first { $0.name == selectedSceneName }!)
-            }
-        }
-    }
+   @objc func restartSceneAndResetUserData() {
+       self.stage.CBScene.project?.clearUserData()
+       self.restartAction()
+   }
+
+   @objc func stopActionAndResetUserData() {
+
+       self.stage.CBScene.project?.clearUserData()
+
+       print("Project Var: \(ProjectManager.shared.currentProject.userData.variables())")
+       self.stopAction()
+   }
 }

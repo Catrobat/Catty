@@ -32,7 +32,8 @@ import UIKit
     func showHideAxisAction()
     func aspectRatioAction()
     func shareDSTAction()
-    func stopActionAndDeleteTempData()
+    func stopActionAndResetUserData()
+    func restartSceneAndResetUserData()
 }
 
 enum SideMenuButtonType {
@@ -116,11 +117,11 @@ enum SideMenuButtonType {
     }
 
     private func setUpButtonsPortrait() {
-        let backButton = setupButton(imageName: "chevron.left", selector: #selector(delegate?.stopActionAndDeleteTempData))
+        let backButton = setupButton(imageName: "chevron.left", selector: #selector(delegate?.stopActionAndResetUserData))
         backButton.center = self.center
         backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
 
-        let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopActionAndDeleteTempData))
+        let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopActionAndResetUserData))
         backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 0).isActive = true
 
         let screenshotButton = setupButton(imageName: "camera.viewfinder", selector: #selector(delegate?.takeScreenshotAction))
@@ -137,7 +138,7 @@ enum SideMenuButtonType {
             restartLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         }
 
-        let restartButton = setupButton(imageName: "arrow.counterclockwise", selector: #selector(delegate?.restartAction))
+        let restartButton = setupButton(imageName: "arrow.counterclockwise", selector: #selector(delegate?.restartSceneAndResetUserData))
         restartButton.bottomAnchor.constraint(equalTo: restartLabel.topAnchor, constant: 0).isActive = true
 
         let continueLabel = setupLabel(title: kLocalizedContinue, selector: #selector(delegate?.continueAction))

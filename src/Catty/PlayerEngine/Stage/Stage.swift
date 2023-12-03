@@ -303,7 +303,7 @@ final class Stage: SKScene, StageProtocol {
             self.removeAllChildren() // remove all CBSpriteNodes from Scene
         }
 
-        //Removing reverences causes the App to crash when running a scene with objects twice
+        //Not needed anymore since we clear userdata on project level
 //        CBScene.objects().forEach {
 //            $0.removeReferences()
 //        }

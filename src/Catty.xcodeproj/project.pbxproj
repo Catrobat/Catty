@@ -1751,6 +1751,8 @@
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
 		B00A17812B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */; };
+		B07A35A42B1CA52800D136B0 /* ProjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */; };
+		B07A35A62B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A35A52B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift */; };
 		B0A32C6C2B0A79F500EE2FE6 /* SceneStartBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */; };
 		B0A32C6E2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6D2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift */; };
 		B0A32C702B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6F2B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift */; };
@@ -4405,6 +4407,8 @@
 		ABD74577198FBC2984BDDE56 /* hu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellScenesStartBrickData.swift; sourceTree = "<group>"; };
 		B00A17822B0C0223009E2F1E /* BrickSceneProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickSceneProtocol.h; sourceTree = "<group>"; };
+		B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectExtension.swift; sourceTree = "<group>"; };
+		B07A35A52B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagepresenterViewControllerActionExtension.swift; sourceTree = "<group>"; };
 		B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrick.swift; sourceTree = "<group>"; };
 		B0A32C6D2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrickCell.swift; sourceTree = "<group>"; };
 		B0A32C6F2B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneStartBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -9132,6 +9136,7 @@
 			children = (
 				92FF30AA1A24DCAA00093DA7 /* Project.h */,
 				92FF30AB1A24DCAA00093DA7 /* Project.m */,
+				B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -9337,6 +9342,7 @@
 				E5103DED25CAE67300A32DF8 /* StagePresenterSideMenuView.swift */,
 				9705D61E262EFD96006BE248 /* StagePresenterViewControllerShareExtension.swift */,
 				49DB87C128A2BE2100DD1224 /* StagePresenterViewControllerOrientation.swift */,
+				B07A35A52B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift */,
 			);
 			path = Stage;
 			sourceTree = "<group>";
@@ -13372,6 +13378,7 @@
 				22412CFE26ECE5B70074915C /* PaddingLabel.swift in Sources */,
 				4CF0728C20D659F700F93AB5 /* PhiroSideLeftSensor.swift in Sources */,
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
+				B07A35A62B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift in Sources */,
 				7B37462429ACEACC0085A90D /* StoreProjectTag.swift in Sources */,
 				6F1911A124E7CE0D00CF1B4F /* SceneMock.swift in Sources */,
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
@@ -13397,6 +13404,7 @@
 				49949B3E2806EAD20073BF65 /* RightElbowXSensor.swift in Sources */,
 				49402BBF28118354009FCBF8 /* RightMiddleFingerKnuckleXSensor.swift in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
+				B07A35A42B1CA52800D136B0 /* ProjectExtension.swift in Sources */,
 				49949B402806EAD20073BF65 /* LeftElbowYSensor.swift in Sources */,
 				9E78D88B22A9B1D400948AC3 /* IterableCache.swift in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
