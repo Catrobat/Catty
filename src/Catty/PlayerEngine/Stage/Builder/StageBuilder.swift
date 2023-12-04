@@ -47,6 +47,20 @@
         )
     }
 
+    @objc init(project: Project) {
+        self.project = project
+        self.scene = project.scenes[0] as! Scene
+
+        guard let stageLogger = Swell.getLogger(LoggerConfig.PlayerSceneID) else { preconditionFailure() }
+
+        self.logger = stageLogger
+
+        self.size = CGSize(
+            width: CGFloat(project.header.screenWidth.floatValue),
+            height: CGFloat(project.header.screenHeight.floatValue)
+        )
+    }
+
     func withScheduler(scheduler: CBSchedulerProtocol) -> Self {
         self.scheduler = scheduler
         return self

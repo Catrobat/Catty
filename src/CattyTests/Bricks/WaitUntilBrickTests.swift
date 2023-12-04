@@ -118,7 +118,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     private func createStage(project: Project) -> Stage {
-        let stageBuilder = StageBuilder(project: project)
+        let stageBuilder = StageBuilder(scene: project.scenes[0] as! Scene)
             .withFormulaManager(formulaManager: FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false))
             .withAudioEngine(audioEngine: AudioEngineMock())
         return stageBuilder.build()

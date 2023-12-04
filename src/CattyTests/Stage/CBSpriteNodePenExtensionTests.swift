@@ -37,7 +37,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
         spriteNode = CBSpriteNode(spriteObject: object)
         spriteNode.name = "testName"
 
-        stage = StageBuilder(project: ProjectMock()).build()
+        stage = StageBuilder(scene: ProjectMock().scenes[0] as! Scene).build()
         stage.addChild(spriteNode)
 
         initialPosition = CGPoint.zero

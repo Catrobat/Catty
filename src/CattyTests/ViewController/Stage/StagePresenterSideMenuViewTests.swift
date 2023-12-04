@@ -141,6 +141,10 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
 }
 
 class StagePresenterSideMenuDelegateMock: StagePresenterSideMenuDelegate {
+    func stopActionAndResetUserData() {}
+
+    func restartSceneAndResetUserData() {}
+
     var project: Project
     var stopActionCalled = false
     var continueActionCalled = false

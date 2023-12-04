@@ -113,7 +113,7 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
                      promptTitle: "\(kLocalizedNew) \(kLocalizedScene)",
                      promptMessage: "\(kLocalizedNew) \(kLocalizedScene):",
                      promptValue: nil,
-                     promptPlaceholder: nil,
+                     promptPlaceholder: "New Scene",
                      minInputLength: UInt(kMinNumOfProjectNameCharacters),
                      maxInputLength: UInt(kMaxNumOfProjectNameCharacters),
                      invalidInputAlertMessage: kLocalizedObjectNameAlreadyExistsDescription,
@@ -180,9 +180,8 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
                 UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
             }
 
-            if let navigationController = self.navigationController {
-                self.project.stagePresenterVC.playScene(to: self.project.stagePresenterVC.stageNavigationController)
-            }
+            self.project.stagePresenterVC.playScene(to: self.project.stagePresenterVC.stageNavigationController)
+
         }
     }
 }
