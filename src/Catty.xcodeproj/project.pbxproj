@@ -1753,6 +1753,7 @@
 		B00A17812B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */; };
 		B041EBB72B1E575B004D4A5C /* SceneStartBrickTetsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041EBB62B1E575B004D4A5C /* SceneStartBrickTetsts.swift */; };
 		B041EBBA2B1E6928004D4A5C /* SceneStartBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */; };
+		B06E813E2B230B4800DDCF8E /* StageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E813D2B230B4800DDCF8E /* StageManager.swift */; };
 		B07A35A42B1CA52800D136B0 /* ProjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */; };
 		B07A35A62B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A35A52B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift */; };
 		B0A32C6C2B0A79F500EE2FE6 /* SceneStartBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */; };
@@ -4411,6 +4412,7 @@
 		B00A17822B0C0223009E2F1E /* BrickSceneProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickSceneProtocol.h; sourceTree = "<group>"; };
 		B041EBB62B1E575B004D4A5C /* SceneStartBrickTetsts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrickTetsts.swift; sourceTree = "<group>"; };
 		B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SceneStartBrick.xml; sourceTree = "<group>"; };
+		B06E813D2B230B4800DDCF8E /* StageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManager.swift; sourceTree = "<group>"; };
 		B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectExtension.swift; sourceTree = "<group>"; };
 		B07A35A52B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagepresenterViewControllerActionExtension.swift; sourceTree = "<group>"; };
 		B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrick.swift; sourceTree = "<group>"; };
@@ -9152,6 +9154,7 @@
 				4CDF7BB42138735700FFF7F4 /* Builder */,
 				4C6FA80522F17F89000A72F6 /* Constraints */,
 				AABCB3CC1BB36131009F67D2 /* Stage.swift */,
+				B06E813D2B230B4800DDCF8E /* StageManager.swift */,
 			);
 			name = Stage;
 			path = PlayerEngine/Stage;
@@ -13851,6 +13854,7 @@
 				4CF0728E20D659F700F93AB5 /* PhiroBottomRightSensor.swift in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,
 				4CF429F5213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift in Sources */,
+				B06E813E2B230B4800DDCF8E /* StageManager.swift in Sources */,
 				921D468B1BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift in Sources */,
 				F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */,
 				4C724E591B4D3E8C00E27479 /* Look+CBXMLHandler.m in Sources */,

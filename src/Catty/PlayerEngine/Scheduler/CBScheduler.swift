@@ -43,6 +43,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private let _lockWaitQueue = DispatchQueue(label: "org.catrobat.LockWaitQueue", attributes: [])
     private let _lockBufferQueue = DispatchQueue(label: "org.catrobat.LockBufferQueue", attributes: [])
     private var _lastQueueIndex = 0
+    public var stageManagerDelegate: StageManagerProtocol?
 
     var synchronizedTimerArray = SynchronizedArray<ExtendedTimer>()
 

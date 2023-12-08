@@ -279,16 +279,10 @@
 - (void)setupStageAndStart
 {
     // Initialize scene
-    Stage *stage = [[[[StageBuilder alloc] initWithScene: ProjectManager.shared.currentProject.activeScene] andFormulaManager:self.formulaManager] build];
-    if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-        stage.scaleMode = SKSceneScaleModeFill;
-    } else if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-        stage.scaleMode = SKSceneScaleModeAspectFit;
-    } else {
-        stage.scaleMode = SKSceneScaleModeFill;
-    }
+
+    [self.stageManager setupStage];
     self.skView.paused = NO;
-    self.stage = stage;
+    self.stage =  self.stageManager.stage;
     
     [[BluetoothService sharedInstance] setStagePresenter:self];
     [[CameraPreviewHandler shared] setCamView:self.view];

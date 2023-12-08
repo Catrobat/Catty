@@ -24,6 +24,12 @@ import BluetoothHelper
 import CoreBluetooth
 import UIKit
 
+@objc extension StagePresenterViewController: StagePresenterViewControllerStageManagerDelegate {
+    func startNewScene() {
+        self.restartAction()
+    }
+}
+
 @objc extension StagePresenterViewController {
 
     @objc(checkResourcesAndPushViewControllerTo:completion:)
@@ -37,6 +43,7 @@ import UIKit
                 return
             }
             self.project = project
+
             DispatchQueue.main.async {
                 print("New Foemel sjiojdd")
                 self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
@@ -54,6 +61,8 @@ import UIKit
     @objc func playScene(to navigationController: UINavigationController, completion: @escaping () -> Void = {}) {
         DispatchQueue.main.async {
             self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
+            self.stageManager = StageManager(project: self.project)
+            self.stageManager.stagePresenterDeleagte = self
             let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 
             completion()
