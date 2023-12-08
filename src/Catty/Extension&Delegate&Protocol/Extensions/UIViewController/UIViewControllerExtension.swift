@@ -54,14 +54,21 @@ extension UIViewController {
         project.activeScene = project.scenes[0] as! Scene
         viewController.project = project
         project.setAsLastUsedProject()
+        viewController.stagePresenterVC = StagePresenterViewController()
+        viewController.stagePresenterVC.project = project
+        viewController.stagePresenterVC.stageManager = StageManager(project: project)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
     func openScene(_ scene: Scene, _ scenesTableViewController: ScenesTableViewController) {
-        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
+        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController, let project = scene.project else { return }
         scenesTableViewController.project.activeScene = scene
         viewController.scene = scene
         viewController.project = scenesTableViewController.project
+        viewController.stagePresenterVC = StagePresenterViewController()
+        viewController.stagePresenterVC.project = scene.project
+        viewController.stagePresenterVC.stageManager = StageManager(project: project)
+
         viewController.sceneDelegate = scenesTableViewController
         self.navigationController?.pushViewController(viewController, animated: true)
     }

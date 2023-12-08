@@ -61,7 +61,7 @@ import UIKit
     @objc func playScene(to navigationController: UINavigationController, completion: @escaping () -> Void = {}) {
         DispatchQueue.main.async {
             self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
-            self.stageManager = StageManager(project: self.project)
+            //self.stageManager = StageManager(project: self.project)
             self.stageManager.stagePresenterDeleagte = self
             let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 

@@ -29,15 +29,10 @@
    }
 
    @objc func restartSceneAndResetUserData() {
-       self.stage.CBScene.project?.clearUserData()
-       self.restartAction()
+       self.stageManager.restartSceneAndResetUserData()
    }
 
    @objc func stopActionAndResetUserData() {
-
-       self.stage.CBScene.project?.clearUserData()
-
-       print("Project Var: \(ProjectManager.shared.currentProject.userData.variables())")
-       self.stopAction()
+       self.stageManager.stopActionAndResetUserData()
    }
 }

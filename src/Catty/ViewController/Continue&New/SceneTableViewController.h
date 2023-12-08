@@ -32,8 +32,8 @@
 @interface SceneTableViewController : BaseTableViewController
 
 @property (nonatomic, strong) Scene *scene;
-
 @property (nonatomic, strong) Project *project;
+@property (nonatomic, strong) StagePresenterViewController *stagePresenterVC;
 
 @property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
 @property (copy) void (^afterSafeBlock)(SpriteObject* object);

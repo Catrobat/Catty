@@ -29,16 +29,19 @@ protocol StageManagerProtocol {
 
 @objc protocol StagePresenterViewControllerStageManagerDelegate {
     func startNewScene()
+    func stopAction()
+    func restartAction()
 }
 
 @objc class StageManager: NSObject, StageManagerProtocol {
 
     let project: Project
     @objc public var stage: Stage
-    let scene: Scene
+    @objc public var scene: Scene
     let formulaManager: FormulaManager
     var stagePresenterDeleagte: StagePresenterViewControllerStageManagerDelegate?
 
+    @objc(initWithProject:)
     init(project: Project) {
         self.project = project
         self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: project.header.landscapeMode)
@@ -48,10 +51,11 @@ protocol StageManagerProtocol {
     }
 
     func startnewScene(scene: Scene) {
-        pauseSchedular()
+        pauseScheduler()
         project.activeScene = scene
         setupStage()
         stagePresenterDeleagte?.startNewScene()
+        self.scene = scene
     }
 
     func resumeAction() {
@@ -62,12 +66,24 @@ protocol StageManagerProtocol {
         stage.stopProject()
     }
 
-    func resumeSchedular() {
+    @objc public func resumeScheduler() {
         stage.resumeScheduler()
     }
 
-    func pauseSchedular() {
+    @objc public func pauseScheduler() {
         stage.pauseScheduler()
+    }
+    func restartSceneAndResetUserData() {
+        self.stage.CBScene.project?.clearUserData()
+        self.stagePresenterDeleagte?.restartAction()
+    }
+
+    @objc func stopActionAndResetUserData() {
+
+        self.stage.CBScene.project?.clearUserData()
+
+        print("Project Var: \(ProjectManager.shared.currentProject.userData.variables())")
+        self.stagePresenterDeleagte?.stopAction()
     }
 
     @objc public func setupStage() {

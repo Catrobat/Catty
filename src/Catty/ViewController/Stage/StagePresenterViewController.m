@@ -44,7 +44,7 @@
 
 - (void)stopProject
 {
-    [self.stage stopProject];
+    [self.stageManager stopProject];
     
     // TODO remove Singletons
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -287,7 +287,7 @@
     [[BluetoothService sharedInstance] setStagePresenter:self];
     [[CameraPreviewHandler shared] setCamView:self.view];
 
-    [self.skView presentScene:self.stage];
+    [self.skView presentScene:self.stageManager.stage];
     if (![self.stage startProject]) {
         [self stopAction];
     }
@@ -310,7 +310,7 @@
         [[BluetoothService sharedInstance] pauseBluetoothDevice];
     });
     
-    [self.stage pauseScheduler];
+    [self.stageManager pauseScheduler];
 }
 
 - (void)resumeAction
@@ -323,7 +323,7 @@
         }
     });
     
-    [self.stage resumeScheduler];
+    [self.stageManager resumeScheduler];
 }
 
 - (void)continueAction
@@ -348,7 +348,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andScene: self.scene];
+                             [self takeAutomaticScreenshotForSKView:self.skView andScene: self.stageManager.scene];
                          }
                      }];
     self.skView.paused = NO;
@@ -356,7 +356,7 @@
 
 - (void)stopAction
 {
-    Stage *previousStage = self.stage;
+    Stage *previousStage = self.stageManager.stage;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         self.menuView.userInteractionEnabled = NO;
@@ -435,7 +435,7 @@
 
 - (void)takeScreenshotAction
 {
-    [self takeManualScreenshotForSKView:self.skView andScene: self.scene];
+    [self takeManualScreenshotForSKView:self.skView andScene: self.stageManager.scene];
 }
 
 - (void)shareDSTAction

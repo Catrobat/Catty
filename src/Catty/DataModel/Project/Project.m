@@ -43,7 +43,6 @@
         _allBroadcastMessages = [[NSMutableOrderedSet alloc] init];
     }
     self.scenes = [[NSMutableArray alloc] init];
-    self.stagePresenterVC = [[StagePresenterViewController alloc] init];
     return self;
 }
 

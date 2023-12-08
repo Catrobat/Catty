@@ -121,6 +121,10 @@
     
     self.stagePresenterViewController = [StagePresenterViewController new];
     self.stagePresenterViewController.project = ProjectManager.shared.currentProject;
+    
+    if (self.stagePresenterViewController.project.activeScene != nil) {
+        self.stagePresenterViewController.stageManager = [[StageManager alloc] initWithProject: ProjectManager.shared.currentProject];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -423,7 +427,7 @@
         } else {
             [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
         }
-        [ProjectManager.shared.currentProject.stagePresenterVC playSceneTo:self.navigationController completion:^{
+        [self.stagePresenterViewController playSceneTo:self.navigationController completion:^{
             [self hideLoadingView];
         }];
     });

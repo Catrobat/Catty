@@ -669,7 +669,7 @@
         } else {
             [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
         }
-        [ProjectManager.shared.currentProject.stagePresenterVC playSceneTo:self.navigationController completion:^{
+        [self.stagePresenterVC playSceneTo:self.navigationController completion:^{
             [self hideLoadingView];
         }];
     });
