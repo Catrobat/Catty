@@ -43,7 +43,6 @@ import UIKit
                 return
             }
             DispatchQueue.main.async {
-                print("New Foemel sjiojdd")
                 let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 
                 completion()

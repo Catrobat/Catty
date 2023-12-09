@@ -23,7 +23,9 @@
 import Foundation
 import SpriteKit
 
-protocol StageManagerProtocol {
+protocol StageManagerProtocol: AnyObject {
+    var project: Project { get }
+
     func startnewScene(scene: Scene)
 }
 
@@ -64,7 +66,6 @@ protocol StageManagerProtocol {
     func startnewScene(scene: Scene) {
         pauseScheduler()
         project.activeScene = scene
-        setupStage()
         stagePresenterDeleagte?.startNewScene()
         self.scene = scene
     }

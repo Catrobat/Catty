@@ -263,7 +263,6 @@ final class Stage: SKScene, StageProtocol {
             }
         }
         for variable: UserVariable in variableList {
-            print(variable)
             let label = SKLabelNode(fontNamed: SpriteKitDefines.defaultFont)
             variable.textLabel = label
             variable.textLabel?.text = SpriteKitDefines.defaultValueShowVariable

@@ -22,12 +22,52 @@
 
 import XCTest
 
+class StagePresenterVCMock: StagePresenterViewControllerStageManagerDelegate {
+
+    let stageManger: StageManager
+
+    init(stageManger: StageManager) {
+        self.stageManger = stageManger
+    }
+
+    func startNewScene() {
+        stageManger.setupStage()
+
+        if !stageManger.stage.startProject() {
+            stopAction()
+        }
+        stageManger.resumeScheduler()
+    }
+
+    func stopAction() {
+        stageManger.stopProject()
+    }
+
+    func restartAction() {
+        stageManger.stopProject()
+        startNewScene()
+    }
+}
+
 @testable import Pocket_Code
 
 final class StageManagerTests: XMLAbstractTest {
 
-    func testProjectWithVars() {
+    func testStageManagerWithMultipleScenesAndGlobalVars() {
         let project = self.getProjectForXML(xmlFile: "SceneStartBrick")
-        let header = project.header
+        project.activeScene = project.scenes[0] as! Scene
+        let stageManger = StageManager(project: project)
+        let stagepresenterVC = StagePresenterVCMock(stageManger: stageManger)
+        stageManger.stagePresenterDeleagte = stagepresenterVC
+        XCTAssertTrue(project.userData.variables().first!.value == nil)
+        stageManger.setupStage()
+        stagepresenterVC.startNewScene()
+        print(project.userData.variables())
+        XCTAssertTrue(project.activeScene == project.scenes[2] as! Scene)
+        XCTAssertTrue(project.userData.variables().first!.value as! Int == 3)
+
+        stageManger.restartSceneAndResetUserData()
+        XCTAssertTrue(project.activeScene == project.scenes[2] as! Scene)
+        XCTAssertTrue(project.userData.variables().first!.value as! Int == 1)
     }
 }

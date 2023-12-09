@@ -24,16 +24,15 @@ extension SceneStartBrick: CBInstructionProtocol {
     func instruction() -> CBInstruction {
         CBInstruction.execClosure { _, schedular in
 
-            print("Is this Brick disabled \(self.isDisabled)")
-            let scenes = ProjectManager.shared.currentProject.scenes.map { $0 as! Scene }
+            guard let project = schedular.stageManagerDelegate?.project else {
+                print("No project")
+                return
+            }
+
+            let scenes = project.scenes.map { $0 as! Scene }
 
             if let selectedSceneName = self.selectedSceneName {
-                print(selectedSceneName)
-                print("active \(ProjectManager.shared.currentProject.activeScene.name)")
-                print(selectedSceneName == ProjectManager.shared.currentProject.activeScene.name)
-                //ProjectManager.shared.currentProject.stagePresenterVC.pauseAction()
                 schedular.stageManagerDelegate?.startnewScene(scene: scenes.first { $0.name == selectedSceneName }!)
-//                ProjectManager.shared.currentProject.stagePresenterVC.changeStage(newScene: scenes.first { $0.name == selectedSceneName }!)
             }
         }
     }

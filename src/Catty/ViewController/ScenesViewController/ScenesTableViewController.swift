@@ -33,12 +33,6 @@ class ScenesTableViewController: UITableViewController, SceneDelegate {
         self.navigationItem.leftBarButtonItem?.title = kLocalizedProjects
         let edit = UIBarButtonItem(title: kLocalizedEdit, style: .plain, target: self, action: #selector(editButtonTapped))
         navigationItem.rightBarButtonItems = [edit]
-//        project.activeScene.project = project
-//        project.stagePresenterVC.scene = project.activeScene
-
-//        self.stagePresenterVC.project = project
-//        self.stagePresenterVC.stageManager = StageManager(project: project)
-//        project.stagePresenterVC.stageNavigationController = self.navigationController
         setupToolBar()
     }
 

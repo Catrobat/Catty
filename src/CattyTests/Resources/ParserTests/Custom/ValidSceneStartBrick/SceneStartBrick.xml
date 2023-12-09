@@ -15,7 +15,7 @@
     <platform>iOS</platform>
     <platformVersion>16.4</platformVersion>
     <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>steuishlux</programName>
+    <programName>scenes</programName>
     <remixOf/>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>2556</screenHeight>
@@ -44,30 +44,7 @@
                       <value>1</value>
                     </formula>
                   </formulaList>
-                  <userVariable>New11</userVariable>
-                </brick>
-                <brick type="ShowTextBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>200</value>
-                    </formula>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>100</value>
-                    </formula>
-                  </formulaList>
-                  <userVariable reference="../../brick/userVariable"/>
-                </brick>
-                <brick type="WaitBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="TIME_TO_WAIT_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>2</value>
-                    </formula>
-                  </formulaList>
+                  <userVariable>FirstGlobal</userVariable>
                 </brick>
                 <brick type="SceneStartBrick">
                   <commentedOut>false</commentedOut>
@@ -81,29 +58,19 @@
           <userVariables/>
           <userLists/>
         </object>
-        <object type="SingleSprite" name="1">
+        <object type="SingleSprite" name="12">
           <lookList>
-            <look fileName="E4C017AE4012DF9354C93D0A527C0CA7_look.png" name="look"/>
-          </lookList>
-          <soundList/>
-          <scriptList/>
-          <nfcTagList/>
-          <userVariables/>
-          <userLists/>
-        </object>
-        <object type="SingleSprite" name="1222">
-          <lookList>
-            <look fileName="E08DE87B0E4E56783837323D258EEF78_Girl.png" name="Girl"/>
+            <look fileName="8D50C9099A4606F908F6EAA0B4A0855C_Elephant.png" name="Elephant"/>
           </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
               <brickList>
                 <brick type="ForeverBrick">
-                  <commentedOut>true</commentedOut>
+                  <commentedOut>false</commentedOut>
                 </brick>
                 <brick type="TurnLeftBrick">
-                  <commentedOut>true</commentedOut>
+                  <commentedOut>false</commentedOut>
                   <formulaList>
                     <formula category="TURN_LEFT_DEGREES">
                       <type>NUMBER</type>
@@ -112,7 +79,7 @@
                   </formulaList>
                 </brick>
                 <brick type="LoopEndlessBrick">
-                  <commentedOut>true</commentedOut>
+                  <commentedOut>false</commentedOut>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
@@ -128,7 +95,9 @@
       <name>scene 2</name>
       <objectList>
         <object type="SingleSprite" name="Background">
-          <lookList/>
+          <lookList>
+            <look fileName="8CB9C2F0F07B598997F401E6AC7B7F51_look.png" name="look"/>
+          </lookList>
           <soundList/>
           <scriptList>
             <script type="StartScript">
@@ -143,47 +112,14 @@
                   </formulaList>
                   <userVariable reference="../../../../../../../../scene/objectList/object/scriptList/script/brickList/brick/userVariable"/>
                 </brick>
-                <brick type="ShowTextBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>200</value>
-                    </formula>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>100</value>
-                    </formula>
-                  </formulaList>
-                  <userVariable reference="../../../../../../../../scene/objectList/object/scriptList/script/brickList/brick/userVariable"/>
-                </brick>
-                <brick type="WaitBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="TIME_TO_WAIT_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1</value>
-                    </formula>
-                  </formulaList>
-                </brick>
                 <brick type="SceneStartBrick">
                   <commentedOut>false</commentedOut>
-                  <sceneToStart>scene 4</sceneToStart>
+                  <sceneToStart>scene 3</sceneToStart>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
             </script>
           </scriptList>
-          <nfcTagList/>
-          <userVariables/>
-          <userLists/>
-        </object>
-        <object type="SingleSprite" name="2">
-          <lookList>
-            <look fileName="A9628CD1E7B1B6C30247F7498B56C6F9_look.png" name="look"/>
-          </lookList>
-          <soundList/>
-          <scriptList/>
           <nfcTagList/>
           <userVariables/>
           <userLists/>
@@ -199,66 +135,6 @@
           <scriptList>
             <script type="StartScript">
               <brickList>
-                <brick type="ShowTextBrick">
-                  <commentedOut>true</commentedOut>
-                  <formulaList>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>200</value>
-                    </formula>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>100</value>
-                    </formula>
-                  </formulaList>
-                  <userVariable>1</userVariable>
-                </brick>
-                <brick type="WaitBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="TIME_TO_WAIT_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>1</value>
-                    </formula>
-                  </formulaList>
-                </brick>
-                <brick type="SceneStartBrick">
-                  <commentedOut>false</commentedOut>
-                  <sceneToStart>scene 4</sceneToStart>
-                </brick>
-                <brick type="SceneStartBrick">
-                  <commentedOut>false</commentedOut>
-                  <sceneToStart>scene 3</sceneToStart>
-                </brick>
-              </brickList>
-              <commentedOut>false</commentedOut>
-            </script>
-          </scriptList>
-          <nfcTagList/>
-          <userVariables/>
-          <userLists/>
-        </object>
-        <object type="SingleSprite" name="3">
-          <lookList>
-            <look fileName="B412213FEF806C872370891E867DE835_look.png" name="look"/>
-          </lookList>
-          <soundList/>
-          <scriptList/>
-          <nfcTagList/>
-          <userVariables/>
-          <userLists/>
-        </object>
-      </objectList>
-    </scene>
-    <scene>
-      <name>scene 4</name>
-      <objectList>
-        <object type="SingleSprite" name="Background">
-          <lookList/>
-          <soundList/>
-          <scriptList>
-            <script type="StartScript">
-              <brickList>
                 <brick type="ChangeVariableBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
@@ -269,89 +145,6 @@
                   </formulaList>
                   <userVariable reference="../../../../../../../../scene/objectList/object/scriptList/script/brickList/brick/userVariable"/>
                 </brick>
-                <brick type="ShowTextBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>200</value>
-                    </formula>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>100</value>
-                    </formula>
-                  </formulaList>
-                  <userVariable reference="../../../../../../../../scene/objectList/object/scriptList/script/brickList/brick/userVariable"/>
-                </brick>
-                <brick type="IfThenLogicBeginBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="IF_CONDITION">
-                      <leftChild>
-                        <type>USER_VARIABLE</type>
-                        <value>New11</value>
-                      </leftChild>
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>1</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>EQUAL</value>
-                    </formula>
-                  </formulaList>
-                </brick>
-                <brick type="AskBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="ASK_QUESTION">
-                      <type>STRING</type>
-                      <value>What&apos;s your name?</value>
-                    </formula>
-                  </formulaList>
-                  <userVariable>New11</userVariable>
-                </brick>
-                <brick type="IfThenLogicEndBrick">
-                  <commentedOut>false</commentedOut>
-                </brick>
-                <brick type="InsertItemIntoUserListBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
-                      <type>NUMBER</type>
-                      <value>1</value>
-                    </formula>
-                    <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
-                      <type>NUMBER</type>
-                      <value>1</value>
-                    </formula>
-                  </formulaList>
-                  <userList>
-                    <name>2</name>
-                  </userList>
-                </brick>
-                <brick type="AddItemToUserListBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="LIST_ADD_ITEM">
-                      <type>NUMBER</type>
-                      <value>1</value>
-                    </formula>
-                  </formulaList>
-                  <userList reference="../../brick[6]/userList"/>
-                </brick>
-                <brick type="WaitBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="TIME_TO_WAIT_IN_SECONDS">
-                      <type>NUMBER</type>
-                      <value>3</value>
-                    </formula>
-                  </formulaList>
-                </brick>
-                <brick type="SceneStartBrick">
-                  <commentedOut>true</commentedOut>
-                  <sceneToStart>Scene 1</sceneToStart>
-                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
             </script>
@@ -360,24 +153,11 @@
           <userVariables/>
           <userLists/>
         </object>
-        <object type="SingleSprite" name="4">
-          <lookList>
-            <look fileName="2758251017C7B0FADA824492084F0DCB_look.png" name="look"/>
-          </lookList>
-          <soundList/>
-          <scriptList/>
-          <nfcTagList/>
-          <userVariables/>
-          <userLists/>
-        </object>
       </objectList>
     </scene>
   </scenes>
   <programVariableList>
-    <userVariable reference="../../scenes/scene[3]/objectList/object/scriptList/script/brickList/brick/userVariable"/>
     <userVariable reference="../../scenes/scene/objectList/object/scriptList/script/brickList/brick/userVariable"/>
   </programVariableList>
-  <programListOfLists>
-    <userList reference="../../scenes/scene[4]/objectList/object/scriptList/script/brickList/brick[6]/userList"/>
-  </programListOfLists>
+  <programListOfLists/>
 </program>
