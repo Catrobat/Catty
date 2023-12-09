@@ -1752,7 +1752,6 @@
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
 		B00A17812B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */; };
 		B041E8AE2B24A2C300B0F65A /* StageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8AD2B24A2C300B0F65A /* StageManagerTests.swift */; };
-		B041EBB72B1E575B004D4A5C /* SceneStartBrickTetsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041EBB62B1E575B004D4A5C /* SceneStartBrickTetsts.swift */; };
 		B041EBBA2B1E6928004D4A5C /* SceneStartBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */; };
 		B06E813E2B230B4800DDCF8E /* StageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E813D2B230B4800DDCF8E /* StageManager.swift */; };
 		B07A35A42B1CA52800D136B0 /* ProjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */; };
@@ -4412,7 +4411,6 @@
 		B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellScenesStartBrickData.swift; sourceTree = "<group>"; };
 		B00A17822B0C0223009E2F1E /* BrickSceneProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickSceneProtocol.h; sourceTree = "<group>"; };
 		B041E8AD2B24A2C300B0F65A /* StageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManagerTests.swift; sourceTree = "<group>"; };
-		B041EBB62B1E575B004D4A5C /* SceneStartBrickTetsts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrickTetsts.swift; sourceTree = "<group>"; };
 		B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SceneStartBrick.xml; sourceTree = "<group>"; };
 		B06E813D2B230B4800DDCF8E /* StageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManager.swift; sourceTree = "<group>"; };
 		B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectExtension.swift; sourceTree = "<group>"; };
@@ -10853,7 +10851,6 @@
 				18E908A72624995900EF57D6 /* FormulaEditorComputeDialogTest.swift */,
 				2EB9FAF3269967FF00DBC4FB /* TrustedDomainTVCTests.swift */,
 				7B4C0C8129BB2BE9009D32FC /* AuthenticationVCTests.swift */,
-				B041EBB62B1E575B004D4A5C /* SceneStartBrickTetsts.swift */,
 			);
 			path = CattyUITests;
 			sourceTree = "<group>";
@@ -12429,7 +12426,6 @@
 				59F76C5825D293CA00C3FD93 /* BrickMovementTests.swift in Sources */,
 				4C48E5CE23FD7F4B004C6E6A /* SettingsTVCTests.swift in Sources */,
 				BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */,
-				B041EBB72B1E575B004D4A5C /* SceneStartBrickTetsts.swift in Sources */,
 				4C7F50FC21E62B0E0010AC36 /* ProjectsTVCTests.swift in Sources */,
 				6F38BF69247537290052C692 /* ListTests.swift in Sources */,
 				18E908A82624995900EF57D6 /* FormulaEditorComputeDialogTest.swift in Sources */,
