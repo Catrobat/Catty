@@ -20,35 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
+import XCTest
 
-@protocol SpriteManagerDelegate;
+@testable import Pocket_Code
 
-@class LoadingView;
-@class StagePresenterSideMenuView;
-@class StagePresenterViewControllerShareExtension;
-@class StageManager;
-@class SKView;
+final class StageManagerTests: XMLAbstractTest {
 
-@interface StagePresenterViewController : UIViewController
-
-@property (nonatomic, strong) StageManager *stageManager;
-@property (nonatomic, strong) SKView *skView;
-@property (nonatomic, strong) LoadingView* loadingView;
-@property (nonatomic, strong) UIView *gridView;
-@property (nonatomic, strong) UINavigationController *stageNavigationController;
-
-- (void)stopAction;
-- (void)pauseAction;
-- (void)resumeAction;
-- (void)connectionLost;
-- (void)setupStageAndStart;
-- (void)showLoadingView;
-- (void)hideLoadingView;
-- (void)setUpGridView;
-- (void)restartAction;
-
-- (BOOL)isPaused;
-
-@end
+    func testProjectWithVars() {
+        let project = self.getProjectForXML(xmlFile: "SceneStartBrick")
+        let header = project.header
+    }
+}

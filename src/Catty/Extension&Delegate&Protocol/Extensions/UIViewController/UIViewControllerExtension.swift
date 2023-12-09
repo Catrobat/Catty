@@ -55,7 +55,6 @@ extension UIViewController {
         viewController.project = project
         project.setAsLastUsedProject()
         viewController.stagePresenterVC = StagePresenterViewController()
-        viewController.stagePresenterVC.project = project
         viewController.stagePresenterVC.stageManager = StageManager(project: project)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -66,7 +65,6 @@ extension UIViewController {
         viewController.scene = scene
         viewController.project = scenesTableViewController.project
         viewController.stagePresenterVC = StagePresenterViewController()
-        viewController.stagePresenterVC.project = scene.project
         viewController.stagePresenterVC.stageManager = StageManager(project: project)
 
         viewController.sceneDelegate = scenesTableViewController

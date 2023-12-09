@@ -23,7 +23,7 @@
 import UIKit
 
 @objc protocol StagePresenterSideMenuDelegate {
-    var project: Project { get }
+    var stageManager: StageManager { get }
 
     func stopAction()
     func continueAction()
@@ -72,8 +72,8 @@ enum SideMenuButtonType {
     @objc(initWithFrame:andStagePresenterViewController_:)
     init(frame: CGRect, delegate: StagePresenterSideMenuDelegate) {
         self.delegate = delegate
-        self.landscape = delegate.project.header.landscapeMode
-        self.project = delegate.project
+        self.landscape = delegate.stageManager.project.header.landscapeMode
+        self.project = delegate.stageManager.project
         self.embroidery = self.project.getRequiredResources() & ResourceType.embroidery.rawValue > 0
         self.landscapeMultiplier = 2.0
 

@@ -1751,6 +1751,7 @@
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
 		B00A17812B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */; };
+		B041E8AE2B24A2C300B0F65A /* StageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8AD2B24A2C300B0F65A /* StageManagerTests.swift */; };
 		B041EBB72B1E575B004D4A5C /* SceneStartBrickTetsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041EBB62B1E575B004D4A5C /* SceneStartBrickTetsts.swift */; };
 		B041EBBA2B1E6928004D4A5C /* SceneStartBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */; };
 		B06E813E2B230B4800DDCF8E /* StageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E813D2B230B4800DDCF8E /* StageManager.swift */; };
@@ -4410,6 +4411,7 @@
 		ABD74577198FBC2984BDDE56 /* hu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellScenesStartBrickData.swift; sourceTree = "<group>"; };
 		B00A17822B0C0223009E2F1E /* BrickSceneProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickSceneProtocol.h; sourceTree = "<group>"; };
+		B041E8AD2B24A2C300B0F65A /* StageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManagerTests.swift; sourceTree = "<group>"; };
 		B041EBB62B1E575B004D4A5C /* SceneStartBrickTetsts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStartBrickTetsts.swift; sourceTree = "<group>"; };
 		B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SceneStartBrick.xml; sourceTree = "<group>"; };
 		B06E813D2B230B4800DDCF8E /* StageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManager.swift; sourceTree = "<group>"; };
@@ -6370,6 +6372,7 @@
 				4C4778B3267C7FC800CAF398 /* LineShapeNodeTests.swift */,
 				4C4778B4267C7FC800CAF398 /* PenConfigurationTests.swift */,
 				4C4778B2267C7FC800CAF398 /* StageTests.swift */,
+				B041E8AD2B24A2C300B0F65A /* StageManagerTests.swift */,
 			);
 			path = Stage;
 			sourceTree = "<group>";
@@ -12611,6 +12614,7 @@
 				E5E1E5B42578117400D2F1BC /* SetLookByIndexBrickTests.swift in Sources */,
 				E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */,
 				4C822691213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift in Sources */,
+				B041E8AE2B24A2C300B0F65A /* StageManagerTests.swift in Sources */,
 				4CF8277424F1172E006E562A /* StoryboardMock.swift in Sources */,
 				4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */,
 				4CFD5C5B23C47E2100980CD0 /* GlideToBrickTests.swift in Sources */,

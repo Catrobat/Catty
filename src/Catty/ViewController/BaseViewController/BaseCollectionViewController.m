@@ -95,7 +95,6 @@
     
 
     self.stagePresenterViewController = [StagePresenterViewController new];
-    self.stagePresenterViewController.project = ProjectManager.shared.currentProject;
     self.stagePresenterViewController.stageManager = [[StageManager alloc] initWithProject: ProjectManager.shared.currentProject];
 }
 

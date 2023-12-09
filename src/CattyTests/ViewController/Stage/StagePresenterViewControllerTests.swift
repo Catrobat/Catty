@@ -54,8 +54,8 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewPortraitMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = projectManager.createProject(name: "testProject", projectId: "")
-        stagePresenterViewController!.project.header.landscapeMode = false
+        stagePresenterViewController!.stageManager = StageManager(project: projectManager.createProject(name: "testProject", projectId: ""))
+        stagePresenterViewController!.stageManager.project.header.landscapeMode = false
 
         stagePresenterViewController!.setUpGridView()
         let gridLabels = stagePresenterViewController!.gridView?.subviews.compactMap { $0 as? UILabel }
@@ -69,8 +69,8 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewLandscapeMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = projectManager.createProject(name: "testProject", projectId: "")
-        stagePresenterViewController!.project.header.landscapeMode = true
+        stagePresenterViewController!.stageManager = StageManager(project: projectManager.createProject(name: "testProject", projectId: ""))
+        stagePresenterViewController!.stageManager.project.header.landscapeMode = true
 
         stagePresenterViewController!.setUpGridView()
         let gridLabels = stagePresenterViewController!.gridView?.subviews.compactMap { $0 as? UILabel }
@@ -113,7 +113,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
         let embroideryServiceMock = EmbroideryServiceMock(outputData: data)
 
-        vc.project = project
+        vc.stageManager =  StageManager(project: project)
 
         XCTAssertEqual(1, project.allObjects().count)
 

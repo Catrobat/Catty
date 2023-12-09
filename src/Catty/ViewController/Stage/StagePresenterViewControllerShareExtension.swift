@@ -30,7 +30,7 @@ extension StagePresenterViewController {
 
         var embroideryStream = [EmbroideryStream]()
 
-        guard let scene = project.scenes[0] as? Scene else {return}
+        guard let scene = self.stageManager.project.scenes[0] as? Scene else {return}
         for object in scene.objects() where !object.spriteNode.embroideryStream.isEmpty {
             embroideryStream.append(object.spriteNode.embroideryStream)
         }
@@ -38,7 +38,7 @@ extension StagePresenterViewController {
         let data = embroideryService.generateOutput(embroideryStream: embroideryStreamMerged)
 
         let temporaryFolder = FileManager.default.temporaryDirectory
-        let fileName = String(self.project.header.programName!) + ".dst"
+        let fileName = String(self.stageManager.project.header.programName!) + ".dst"
         let temporaryFileURL = temporaryFolder.appendingPathComponent(fileName)
         do {
             try data.write(to: temporaryFileURL)

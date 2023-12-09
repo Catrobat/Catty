@@ -22,12 +22,6 @@
 
 @objc extension StagePresenterViewController {
 
-    func changeStage(newScene: Scene) {
-        ProjectManager.shared.currentProject.activeScene = newScene
-        self.restartAction()
-        self.scene = newScene
-   }
-
    @objc func restartSceneAndResetUserData() {
        self.stageManager.restartSceneAndResetUserData()
    }

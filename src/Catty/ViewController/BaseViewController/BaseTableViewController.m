@@ -120,9 +120,8 @@
     [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
     
     self.stagePresenterViewController = [StagePresenterViewController new];
-    self.stagePresenterViewController.project = ProjectManager.shared.currentProject;
     
-    if (self.stagePresenterViewController.project.activeScene != nil) {
+    if (ProjectManager.shared.currentProject.activeScene != nil) {
         self.stagePresenterViewController.stageManager = [[StageManager alloc] initWithProject: ProjectManager.shared.currentProject];
     }
 }

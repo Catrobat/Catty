@@ -95,8 +95,8 @@ class FirebaseCrashlyticsReporter {
     }
 
     @objc func stagePresenterViewControllerDidAppear(notification: Notification) {
-        let projectName = (notification.object as? StagePresenterViewController)?.project?.header.programName ?? type(of: self).logNoValue
-        let projectId = (notification.object as? StagePresenterViewController)?.project?.header.programID ?? type(of: self).logNoValue
+        let projectName = (notification.object as? StagePresenterViewController)?.stageManager.project.header.programName ?? type(of: self).logNoValue
+        let projectId = (notification.object as? StagePresenterViewController)?.stageManager.project.header.programID ?? type(of: self).logNoValue
         crashlytics.log("Scene started with Project: \"" + projectName + "\" (" + projectId + ")")
     }
 
