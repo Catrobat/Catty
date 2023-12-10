@@ -70,9 +70,9 @@ protocol StageManagerProtocol: AnyObject {
         stagePresenterDeleagte?.startNewScene()
         self.scene = scene
     }
-    
+
     func continueScene(scene: Scene) {
-        
+
     }
 
     func restartSceneAndResetUserData() {

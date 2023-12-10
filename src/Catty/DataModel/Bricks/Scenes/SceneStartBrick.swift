@@ -77,7 +77,6 @@
     override func isDisabledForBackground() -> Bool {
         false
     }
-    
     @objc(mutableCopyWithContext:)
     override func mutableCopy(with context: CBMutableCopyContext) -> Any {
         let brick = SceneStartBrick.init()
