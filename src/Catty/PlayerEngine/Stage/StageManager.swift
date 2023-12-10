@@ -27,6 +27,7 @@ protocol StageManagerProtocol: AnyObject {
     var project: Project { get }
 
     func startnewScene(scene: Scene)
+    func continueScene(scene: Scene)
 }
 
 @objc protocol StagePresenterViewControllerStageManagerDelegate {
@@ -68,6 +69,10 @@ protocol StageManagerProtocol: AnyObject {
         project.activeScene = scene
         stagePresenterDeleagte?.startNewScene()
         self.scene = scene
+    }
+    
+    func continueScene(scene: Scene) {
+        
     }
 
     func restartSceneAndResetUserData() {

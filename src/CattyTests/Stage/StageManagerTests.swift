@@ -24,27 +24,27 @@ import XCTest
 
 class StagePresenterVCMock: StagePresenterViewControllerStageManagerDelegate {
 
-    let stageManger: StageManager
+    let stageManager: StageManager
 
-    init(stageManger: StageManager) {
-        self.stageManger = stageManger
+    init(stageManager: StageManager) {
+        self.stageManager = stageManager
     }
 
     func startNewScene() {
-        stageManger.setupStage()
+        stageManager.setupStage()
 
-        if !stageManger.stage.startProject() {
+        if !stageManager.stage.startProject() {
             stopAction()
         }
-        stageManger.resumeScheduler()
+        stageManager.resumeScheduler()
     }
 
     func stopAction() {
-        stageManger.stopProject()
+        stageManager.stopProject()
     }
 
     func restartAction() {
-        stageManger.stopProject()
+        stageManager.stopProject()
         startNewScene()
     }
 }
@@ -56,17 +56,17 @@ final class StageManagerTests: XMLAbstractTest {
     func testStageManagerWithMultipleScenesAndGlobalVars() {
         let project = self.getProjectForXML(xmlFile: "SceneStartBrick")
         project.activeScene = project.scenes[0] as! Scene
-        let stageManger = StageManager(project: project)
-        let stagepresenterVC = StagePresenterVCMock(stageManger: stageManger)
-        stageManger.stagePresenterDeleagte = stagepresenterVC
+        let stageManager = StageManager(project: project)
+        let stagepresenterVC = StagePresenterVCMock(stageManager: stageManager)
+        stageManager.stagePresenterDeleagte = stagepresenterVC
         XCTAssertTrue(project.userData.variables().first!.value == nil)
-        stageManger.setupStage()
+        stageManager.setupStage()
         stagepresenterVC.startNewScene()
         print(project.userData.variables())
         XCTAssertTrue(project.activeScene == project.scenes[2] as! Scene)
         XCTAssertTrue(project.userData.variables().first!.value as! Int == 3)
 
-        stageManger.restartSceneAndResetUserData()
+        stageManager.restartSceneAndResetUserData()
         XCTAssertTrue(project.activeScene == project.scenes[2] as! Scene)
         XCTAssertTrue(project.userData.variables().first!.value as! Int == 1)
     }

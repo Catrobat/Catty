@@ -1752,6 +1752,10 @@
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
 		B00A17812B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */; };
 		B041E8AE2B24A2C300B0F65A /* StageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8AD2B24A2C300B0F65A /* StageManagerTests.swift */; };
+		B041E8B02B25C9C700B0F65A /* SceneTransitionBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8AF2B25C9C700B0F65A /* SceneTransitionBrick.swift */; };
+		B041E8B22B25CA5200B0F65A /* SceneTransitionBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8B12B25CA5200B0F65A /* SceneTransitionBrickCell.swift */; };
+		B041E8B42B25CB0F00B0F65A /* SceneTrasitionBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8B32B25CB0F00B0F65A /* SceneTrasitionBrick+CBXMLHandler.swift */; };
+		B041E8B62B25CCAD00B0F65A /* SceneTrasitionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8B52B25CCAD00B0F65A /* SceneTrasitionBrick+Instruction.swift */; };
 		B041EBBA2B1E6928004D4A5C /* SceneStartBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */; };
 		B06E813E2B230B4800DDCF8E /* StageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E813D2B230B4800DDCF8E /* StageManager.swift */; };
 		B07A35A42B1CA52800D136B0 /* ProjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */; };
@@ -4411,6 +4415,10 @@
 		B00A17802B0BEB42009E2F1E /* BrickCellScenesStartBrickData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellScenesStartBrickData.swift; sourceTree = "<group>"; };
 		B00A17822B0C0223009E2F1E /* BrickSceneProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickSceneProtocol.h; sourceTree = "<group>"; };
 		B041E8AD2B24A2C300B0F65A /* StageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManagerTests.swift; sourceTree = "<group>"; };
+		B041E8AF2B25C9C700B0F65A /* SceneTransitionBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransitionBrick.swift; sourceTree = "<group>"; };
+		B041E8B12B25CA5200B0F65A /* SceneTransitionBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransitionBrickCell.swift; sourceTree = "<group>"; };
+		B041E8B32B25CB0F00B0F65A /* SceneTrasitionBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SceneTrasitionBrick+CBXMLHandler.swift"; path = "Catty/DataModel/Bricks/Scenes/SceneTrasitionBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
+		B041E8B52B25CCAD00B0F65A /* SceneTrasitionBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneTrasitionBrick+Instruction.swift"; sourceTree = "<group>"; };
 		B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SceneStartBrick.xml; sourceTree = "<group>"; };
 		B06E813D2B230B4800DDCF8E /* StageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManager.swift; sourceTree = "<group>"; };
 		B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectExtension.swift; sourceTree = "<group>"; };
@@ -6938,6 +6946,7 @@
 				BA987D042194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.h */,
 				BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */,
 				B0A32C712B0A8BA000EE2FE6 /* SceneStartBrick+CBXMLHandler.swift */,
+				B041E8B32B25CB0F00B0F65A /* SceneTrasitionBrick+CBXMLHandler.swift */,
 			);
 			name = Control;
 			path = ControlBricks;
@@ -10271,6 +10280,7 @@
 				AA74EE201BC053FD00D1E954 /* WaitBrick+Instruction.swift */,
 				BA987D0E2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift */,
 				B0A32C6F2B0A7C8300EE2FE6 /* SceneStartBrick+Instruction.swift */,
+				B041E8B52B25CCAD00B0F65A /* SceneTrasitionBrick+Instruction.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -10885,6 +10895,8 @@
 			children = (
 				B0A32C6B2B0A79F500EE2FE6 /* SceneStartBrick.swift */,
 				B0A32C6D2B0A7B0A00EE2FE6 /* SceneStartBrickCell.swift */,
+				B041E8AF2B25C9C700B0F65A /* SceneTransitionBrick.swift */,
+				B041E8B12B25CA5200B0F65A /* SceneTransitionBrickCell.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -13085,6 +13097,7 @@
 				49B55F8527E877EE000A95B4 /* MouthRightCornerYSensor.swift in Sources */,
 				4979F40D27E85AA900ABCAD6 /* NoseYSensor.swift in Sources */,
 				92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */,
+				B041E8B62B25CCAD00B0F65A /* SceneTrasitionBrick+Instruction.swift in Sources */,
 				4979F40527E8541200ABCAD6 /* HeadTopXSensor.swift in Sources */,
 				92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */,
 				AA74F0A41BC05FCE00D1E954 /* LoopEndBrickCell.m in Sources */,
@@ -13252,6 +13265,7 @@
 				BB6FE23A2812AED2007ABDA9 /* FormEmbroiderySwitchTableViewCell.swift in Sources */,
 				05CBC6C3286C5A85007FBA61 /* StartTripleStitchBrick.swift in Sources */,
 				92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */,
+				B041E8B22B25CA5200B0F65A /* SceneTransitionBrickCell.swift in Sources */,
 				F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */,
 				4C0F9F74204BD1CE00E71B2D /* CameraBrick+Instruction.swift in Sources */,
 				468EE8DF257F9730003976DD /* SetBackgroundAndWaitBrickCell.swift in Sources */,
@@ -13402,6 +13416,7 @@
 				6F1911A124E7CE0D00CF1B4F /* SceneMock.swift in Sources */,
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				49949B462806EAD20073BF65 /* RightWristXSensor.swift in Sources */,
+				B041E8B42B25CB0F00B0F65A /* SceneTrasitionBrick+CBXMLHandler.swift in Sources */,
 				4981EDFB289AC98C0052AEB1 /* XOfObjectWithIDFunction.swift in Sources */,
 				4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */,
 				4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */,
@@ -13878,6 +13893,7 @@
 				F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */,
 				AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				4963EB632812C5E100A9B3FA /* TextBlockXFunction.swift in Sources */,
+				B041E8B02B25C9C700B0F65A /* SceneTransitionBrick.swift in Sources */,
 				9218B2151CC4AB75007B4C60 /* ColorPickerViewController.m in Sources */,
 				D38F58622441B19F0079F6EA /* GoToBrick.m in Sources */,
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
