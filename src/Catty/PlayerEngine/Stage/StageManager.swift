@@ -32,6 +32,7 @@ protocol StageManagerProtocol: AnyObject {
 
 @objc protocol StagePresenterViewControllerStageManagerDelegate {
     func startNewScene()
+    func continueScene()
     func stopAction()
     func restartAction()
 }
@@ -43,6 +44,7 @@ protocol StageManagerProtocol: AnyObject {
     @objc public var scene: Scene
     @objc public let formulaManager: FormulaManager
     var stagePresenterDeleagte: StagePresenterViewControllerStageManagerDelegate?
+    var saveStages: [String: Stage] = [:]
 
     @objc(initWithProject:)
     init(project: Project) {
@@ -53,7 +55,8 @@ protocol StageManagerProtocol: AnyObject {
     }
 
     @objc public func stopProject() {
-        stage.stopProject()
+        stage.pauseScheduler()
+        //stage.stopProject()
     }
 
     @objc public func resumeScheduler() {
@@ -66,13 +69,22 @@ protocol StageManagerProtocol: AnyObject {
 
     func startnewScene(scene: Scene) {
         pauseScheduler()
+        saveStages.updateValue(stage, forKey: scene.name)
         project.activeScene = scene
         stagePresenterDeleagte?.startNewScene()
         self.scene = scene
     }
 
     func continueScene(scene: Scene) {
-
+        if let stage = saveStages[scene.name] {
+            pauseScheduler()
+            saveStages.updateValue(stage, forKey: scene.name)
+            self.stage = stage
+            stagePresenterDeleagte?.continueScene()
+            self.scene = scene
+        } else {
+            startnewScene(scene: scene)
+        }
     }
 
     func restartSceneAndResetUserData() {

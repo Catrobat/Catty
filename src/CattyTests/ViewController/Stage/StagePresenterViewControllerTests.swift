@@ -113,7 +113,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
         let embroideryServiceMock = EmbroideryServiceMock(outputData: data)
 
-        vc.stageManager =  StageManager(project: project)
+        vc.stageManager = StageManager(project: project)
 
         XCTAssertEqual(1, project.allObjects().count)
 

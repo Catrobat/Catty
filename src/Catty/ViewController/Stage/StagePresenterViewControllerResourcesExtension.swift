@@ -28,6 +28,9 @@ import UIKit
     func startNewScene() {
         self.restartAction()
     }
+    func continueScene() {
+        self.continueAction()
+    }
 }
 
 @objc extension StagePresenterViewController {

@@ -48,6 +48,7 @@
 - (void)hideLoadingView;
 - (void)setUpGridView;
 - (void)restartAction;
+- (void)continueAction;
 
 - (BOOL)isPaused;
 

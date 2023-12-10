@@ -48,4 +48,3 @@ class SceneTransitionBrickCell: BrickCell, BrickCellProtocol {
         ["{Scenes}"]
     }
 }
-

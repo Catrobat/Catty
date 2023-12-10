@@ -43,4 +43,3 @@ extension SceneTransitionBrick: CBXMLNodeProtocol {
         return brick
    }
 }
-
