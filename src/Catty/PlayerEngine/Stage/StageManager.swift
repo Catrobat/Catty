@@ -69,7 +69,7 @@ protocol StageManagerProtocol: AnyObject {
 
     func startnewScene(scene: Scene) {
         pauseScheduler()
-        saveStages.updateValue(stage, forKey: scene.name)
+        saveStages.updateValue(stage, forKey: self.scene.name)
         project.activeScene = scene
         stagePresenterDeleagte?.startNewScene()
         self.scene = scene
@@ -78,7 +78,7 @@ protocol StageManagerProtocol: AnyObject {
     func continueScene(scene: Scene) {
         if let stage = saveStages[scene.name] {
             pauseScheduler()
-            saveStages.updateValue(stage, forKey: scene.name)
+            saveStages.updateValue(self.stage, forKey: self.scene.name)
             self.stage = stage
             stagePresenterDeleagte?.continueScene()
             self.scene = scene

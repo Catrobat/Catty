@@ -316,7 +316,7 @@
             [[FlashHelper sharedFlashHandler] resume];
         }
     });
-    
+    [self.skView presentScene:self.stageManager.stage];
     [self.stageManager resumeScheduler];
 }
 
