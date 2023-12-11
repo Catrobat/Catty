@@ -29,7 +29,13 @@ import UIKit
         self.restartAction()
     }
     func continueScene() {
-        self.continueAction()
+
+        //skView.presentScene(stageManager.stage)
+        self.skView.isPaused = false
+
+        self.skView.presentScene(self.stageManager.stage, transition: .crossFade(withDuration: 5.0))
+        stageManager.stage.scheduler.resume()
+
     }
 }
 

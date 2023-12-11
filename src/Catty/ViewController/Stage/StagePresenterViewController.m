@@ -280,6 +280,7 @@
     
     [[BluetoothService sharedInstance] setStagePresenter:self];
     [[CameraPreviewHandler shared] setCamView:self.view];
+    //[self.skView presentScene:self.stageManager.stage transition:[SKTransition crossFadeWithDuration:0.2]];
 
     [self.skView presentScene:self.stageManager.stage];
     if (![self.stageManager.stage startProject]) {
@@ -316,7 +317,6 @@
             [[FlashHelper sharedFlashHandler] resume];
         }
     });
-    [self.skView presentScene:self.stageManager.stage];
     [self.stageManager resumeScheduler];
 }
 

@@ -56,7 +56,6 @@ protocol StageManagerProtocol: AnyObject {
 
     @objc public func stopProject() {
         stage.pauseScheduler()
-        //stage.stopProject()
     }
 
     @objc public func resumeScheduler() {
@@ -80,6 +79,7 @@ protocol StageManagerProtocol: AnyObject {
             pauseScheduler()
             saveStages.updateValue(self.stage, forKey: self.scene.name)
             self.stage = stage
+            project.activeScene = scene
             stagePresenterDeleagte?.continueScene()
             self.scene = scene
         } else {
@@ -90,15 +90,23 @@ protocol StageManagerProtocol: AnyObject {
     func restartSceneAndResetUserData() {
         self.stage.CBScene.project?.clearUserData()
         self.stagePresenterDeleagte?.restartAction()
+        self.stopAllStages()
     }
 
     func stopActionAndResetUserData() {
         self.stage.CBScene.project?.clearUserData()
         self.stagePresenterDeleagte?.stopAction()
+        self.stopAllStages()
+    }
+
+    func stopAllStages() {
+        for stage in saveStages {
+            stage.value.stopProject()
+        }
     }
 
     @objc public func setupStage() {
-        self.stage = StageBuilder(scene: project.activeScene).withFormulaManager(formulaManager: self.formulaManager).build()
+        self.stage = StageBuilder(scene: project.activeScene).withFormulaManager(formulaManager: FormulaManager(stageSize: Util.screenSize(true), landscapeMode: project.header.landscapeMode)).build()
         self.stage.scheduler.stageManagerDelegate = self
         if self.project.header.screenMode == kCatrobatHeaderScreenModeMaximize {
             stage.scaleMode = .aspectFill
