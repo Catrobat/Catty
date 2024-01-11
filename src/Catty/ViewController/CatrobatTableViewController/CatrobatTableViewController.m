@@ -240,16 +240,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     
     switch (indexPath.row) {
         case kNewProjectVC:
-            [Util askUserForUniqueNameAndPerformAction:@selector(createAndOpenProjectWithName:)
-                                                target:self
-                                           promptTitle:kLocalizedNewProject
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
-                                           promptValue:nil
-                                     promptPlaceholder:kLocalizedEnterYourProjectNameHere
-                                        minInputLength:kMinNumOfProjectNameCharacters
-                                        maxInputLength:kMaxNumOfProjectNameCharacters
-                              invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
-                                         existingNames:[Project allProjectNames]];
+            [self createProjectCreationDialogue];
             break;
         case kContinueProjectVC:
             if (!self.lastUsedProject) {

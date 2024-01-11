@@ -157,6 +157,68 @@
     return formatParameter != 1 ? [Util pluralString:desc] : [Util singularString:desc];
 }
 
++ (void)askUserForProject:(SEL)action
+                                      target:(id)target
+                                cancelAction:(SEL)cancelAction
+                                  withObject:(id)passingObject
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                                 promptValue:(NSString*)value
+                           promptPlaceholder:(NSString*)placeholder
+                              minInputLength:(NSUInteger)minInputLength
+                              maxInputLength:(NSUInteger)maxInputLength
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                               existingNames:(NSArray*)existingNames {
+    [[[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
+     placeholder:placeholder]
+     initialText:value]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         if (target && cancelAction) {
+             IMP imp = [target methodForSelector:cancelAction];
+             void (*func)(id, SEL) = (void *)imp;
+             func(target, cancelAction);
+         }
+     }]
+         addDefaultActionWithTitle:kLocalizedFr handler:^(NSString *name) {
+             IMP imp = [target methodForSelector:action];
+             if (target && action) {
+                 if (passingObject) {
+                     void (*func)(id, SEL, id, id, Boolean) = (void *)imp;
+                     func(target, action, name, passingObject, true);
+                 } else {
+                     void (*func)(id, SEL, id, Boolean) = (void *)imp;
+                     func(target, action, name, true);
+                 }
+             }
+         }]     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+         IMP imp = [target methodForSelector:action];
+         if (target && action) {
+             if (passingObject) {
+                 void (*func)(id, SEL, id, id, Boolean) = (void *)imp;
+                 func(target, action, name, passingObject, false);
+             } else {
+                 void (*func)(id, SEL, id, Boolean) = (void *)imp;
+                 func(target, action, name, false);
+             }
+         }
+     }]
+     valueValidator:^InputValidationResult *(NSString *name) {
+         InputValidationResult *result = [self validationResultWithName:name minLength:minInputLength maxlength:maxInputLength];
+
+         if (!result.valid) {
+             return result;
+         }
+         if ([name isEqualToString:kLocalizedNewElement]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedInvalidInputDescription];
+         }
+         if ([existingNames containsObject:name]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:invalidInputAlertMessage];
+         }
+         return [InputValidationResult validInput];
+     }] build]
+     showWithController:[self topmostViewController]];
+}
+
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
                                 cancelAction:(SEL)cancelAction
