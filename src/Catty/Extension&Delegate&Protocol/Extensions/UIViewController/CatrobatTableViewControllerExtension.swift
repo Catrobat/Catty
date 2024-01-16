@@ -76,10 +76,19 @@ import Foundation
     func createProject(inputName: String, isdefault: Bool) {
         print("createProject bool: \(isdefault)")
         
+        if isdefault
+        {
+            
+        }
+        else {
+            let project = self.projectManager.createProject(name: inputName, projectId: nil)
+            self.openProject(project)
+        }
+        
     }
     
     func createProjectCreationDialogue() {
-        Util.askUser(forProject: #selector(createProject(inputName: isdefault: )), target: self, cancelAction: nil, with: nil, promptTitle: kLocalizedNewProject, promptMessage: kLocalizedProjectName, promptValue: nil, promptPlaceholder: kLocalizedEnterYourProjectNameHere, minInputLength: UInt(kMinNumOfProjectNameCharacters), maxInputLength: UInt(kMaxNumOfProjectNameCharacters), invalidInputAlertMessage: kLocalizedProjectNameAlreadyExistsDescription)
+        Util.askUser(forProject: #selector(createProject(inputName: isdefault: )), target: self, promptTitle: kLocalizedNewProject, promptMessage: kLocalizedProjectName, promptValue: nil, promptPlaceholder: kLocalizedEnterYourProjectNameHere, minInputLength: UInt(kMinNumOfProjectNameCharacters), maxInputLength: UInt(kMaxNumOfProjectNameCharacters), invalidInputAlertMessage: kLocalizedProjectNameAlreadyExistsDescription, existingNames: Project.allProjectNames())
     }
     
 }

@@ -48,7 +48,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) Project *lastUsedProject;
 @property (nonatomic, strong) Project *defaultProject;
-@property (nonatomic, strong) ProjectManager *projectManager;
 @property (nonatomic, assign) CGFloat dynamicStatusBarHeight;
 @property (nonatomic, assign) CGFloat fixedStatusBarHeight;
 @end
