@@ -46,7 +46,7 @@
 - (void)saveToDiskWithNotification:(BOOL)notify andCompletion:(void (^ _Nullable)(void))completion;
 - (BOOL)isLastUsedProject;
 - (void)setAsLastUsedProject;
-- (void)translateDefaultProject;
+- (void)translateDefaultProject:(NSString* _Nonnull)projectName;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName andShowSaveNotification:(BOOL)showSaveNotification;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName andProjectId:(NSString* _Nonnull)projectId andShowSaveNotification:(BOOL)showSaveNotification;
 - (void)setDescription:(NSString* _Nonnull)description;

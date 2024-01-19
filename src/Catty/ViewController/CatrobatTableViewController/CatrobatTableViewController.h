@@ -26,6 +26,7 @@
 @class CatrobatTableViewController;
 @class ProjectManager;
 
+
 @interface CatrobatTableViewController : BaseTableViewController
 @property (nonatomic, strong) ProjectManager *projectManager;
 @end

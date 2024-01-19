@@ -78,7 +78,10 @@ import Foundation
         
         if isdefault
         {
-            
+            if let project = CBFileManager.shared().addDefaultProject(toProjectsRootDirectory: inputName)
+            {
+                self.openProject(project)
+            }
         }
         else {
             let project = self.projectManager.createProject(name: inputName, projectId: nil)
