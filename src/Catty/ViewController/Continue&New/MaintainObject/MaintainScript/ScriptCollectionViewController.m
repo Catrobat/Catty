@@ -114,6 +114,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
     [super viewWillAppear:animated];
     
     // do not call super to prevent automatic scrolling when opening a UIPickerView
@@ -369,6 +370,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
          addDefaultActionWithTitle:kLocalizedYes handler:^{
              [self deleteSelectedBricks];
              self.allBricksSelected = NO;
+            [self.segmentedControllDelegate enableSegmentedControll];
          }] build]
          showWithController:self];
     }
@@ -789,6 +791,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)turnOnInsertingBrickMode
 {
+    NSLog(@"@%ss","turn on");
     [[BrickInsertManager sharedInstance] setBrickInsertionMode:YES];
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = NO;
@@ -797,7 +800,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     layout.longPressGestureRecognizer.minimumPressDuration = 0.1;
     [self.navigationItem setHidesBackButton:YES animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
-       self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = NO;
     });
     
 }
@@ -812,7 +815,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     layout.longPressGestureRecognizer.minimumPressDuration = 0.5;
     [self.navigationItem setHidesBackButton:NO animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = YES;
     });
 }
 
@@ -824,11 +827,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else {
         navBarButton= [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel style:UIBarButtonItemStylePlain target:self action:@selector(exitDeleteMode)];
     }
-    self.navigationItem.rightBarButtonItem = navBarButton;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = navBarButton;
     if (self.object.scriptList.count) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.parentNavigationController.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 
@@ -1178,6 +1181,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
         cell.alpha = kBrickCellActiveOpacity;
+        [self.segmentedControllDelegate enableSegmentedControll];
     }
     
     CGFloat maxContentOffset = self.collectionView.contentSize.height + self.collectionView.contentInset.bottom - self.collectionView.bounds.size.height;
@@ -1197,17 +1201,18 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
-    self.navigationController.toolbar.userInteractionEnabled = NO;
-    self.navigationController.navigationBar.userInteractionEnabled = NO;
+    self.parentNavigationController.navigationController.toolbar.userInteractionEnabled = NO;
+    self.parentNavigationController.navigationController.navigationBar.userInteractionEnabled = NO;
         // disable swipe back gesture
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    if ([self.parentNavigationController.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.parentNavigationController.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         if (cell != brickCell) {
             cell.enabled = NO;
             cell.alpha = kBrickCellInactiveWhileEditingOpacity;
+            [self.segmentedControllDelegate disableSegmentedControll];
         }
     }
     
@@ -1292,8 +1297,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)enterDeleteMode
 {
+    [self.segmentedControllDelegate disableSegmentedControll];
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel style:UIBarButtonItemStylePlain target:self action:@selector(exitDeleteMode)];
-    self.navigationItem.rightBarButtonItem = cancelButton;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = cancelButton;
     
     [UIView animateWithDuration:0.5f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
@@ -1311,7 +1317,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)exitDeleteMode
 {
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
-    self.navigationItem.rightBarButtonItem = deleteButton;
+    self.parentNavigationController.navigationItem.rightBarButtonItem = deleteButton;
     
     [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -1334,11 +1340,30 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                      }];
     self.editing = NO;
     self.allBricksSelected = NO;
+    [self.segmentedControllDelegate enableSegmentedControll];
 }
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     return NO;
+}
+
+- (void)setupToolBar
+{
+    [super setupToolBar];
+    
+//    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                                                                         target:self
+//                                                                         action:@selector(showBrickPickerAction:)];
+//    UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
+//                                                        action:@selector(playSceneAction:)];
+//    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                                                                          target:self
+//                                                                          action:nil];
+//    self.parentNavigationController.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
+    
+    
+    self.parentNavigationController.toolbarItems = self.toolbarItems;
 }
 
 @end
