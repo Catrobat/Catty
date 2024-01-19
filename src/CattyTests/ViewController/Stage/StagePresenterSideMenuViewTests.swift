@@ -82,8 +82,8 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
 
     func testAspectRatioHidden() {
         project.header.screenMode = kCatrobatHeaderScreenModeStretch
-        project.header.screenWidth = NSNumber(value: Util.screenWidth(true).doubleValue)
-        project.header.screenHeight = NSNumber(value: Util.screenHeight(true).doubleValue)
+        project.header.screenWidth = NSNumber(value: Util.screenWidth(true))
+        project.header.screenHeight = NSNumber(value: Util.screenHeight(true))
 
         let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
 
@@ -92,8 +92,8 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
     }
 
     func testAspectRatioLandscape() {
-        project.header.screenWidth = NSNumber(value: Util.screenWidth(true).doubleValue)
-        project.header.screenHeight = NSNumber(value: Util.screenHeight(true).doubleValue)
+        project.header.screenWidth = NSNumber(value: Util.screenWidth(true))
+        project.header.screenHeight = NSNumber(value: Util.screenHeight(true))
         project.header.landscapeMode = true
 
         let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
@@ -103,8 +103,8 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
     }
 
     func testAspectRatioLandscapeHidden() {
-        project.header.screenWidth = NSNumber(value: Util.screenHeight(true).doubleValue)
-        project.header.screenHeight = NSNumber(value: Util.screenWidth(true).doubleValue)
+        project.header.screenWidth = NSNumber(value: Util.screenHeight(true))
+        project.header.screenHeight = NSNumber(value: Util.screenWidth(true))
         project.header.landscapeMode = true
 
         let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
@@ -124,14 +124,14 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
     }
 
     func testRestartAspectRatio() {
-        project.header.screenWidth = NSNumber(value: Util.screenWidth(true).doubleValue)
+        project.header.screenWidth = NSNumber(value: Util.screenWidth(true))
         project.header.screenHeight = 10
 
         let view = StagePresenterSideMenuView(frame: .zero, delegate: delegateMock)
         XCTAssertFalse(view.aspectRatioButton!.isHidden)
         XCTAssertFalse(view.aspectRatioLabel!.isHidden)
 
-        project.header.screenHeight = NSNumber(value: Util.screenHeight(true).doubleValue)
+        project.header.screenHeight = NSNumber(value: Util.screenHeight(true))
 
         view.restart(with: project)
 

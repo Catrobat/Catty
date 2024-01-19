@@ -49,14 +49,14 @@ final class AppDelegateTests: XCTestCase {
         appDelegate.applicationWillResignActive(UIApplication.shared)
 
         expect(self.scenePresenterViewController.methodCalls).to(contain("pauseAction"))
-        expect(self.scenePresenterViewController.methodCalls.count).to(be(1))
+        expect(self.scenePresenterViewController.methodCalls.count) == 1
     }
 
     func testApplicationDidEnterBackground() {
         appDelegate.applicationDidEnterBackground(UIApplication.shared)
 
         expect(self.audioEngineHelper.methodCalls).to(contain("deactivateAudioSession"))
-        expect(self.audioEngineHelper.methodCalls.count).to(be(1))
+        expect(self.audioEngineHelper.methodCalls.count) == 1
     }
 
     func testApplicationWillEnterForeground() {
@@ -66,7 +66,7 @@ final class AppDelegateTests: XCTestCase {
         appDelegate.applicationWillEnterForeground(UIApplication.shared)
 
         expect(self.audioEngineHelper.methodCalls).to(contain("activateAudioSession"))
-        expect(self.audioEngineHelper.methodCalls.count).to(be(1))
+        expect(self.audioEngineHelper.methodCalls.count) == 1
     }
 
     func testApplicationWillEnterForegroundWhenScenePaused() {
@@ -75,7 +75,7 @@ final class AppDelegateTests: XCTestCase {
         appDelegate.applicationWillEnterForeground(UIApplication.shared)
 
         expect(self.audioEngineHelper.methodCalls).to(contain("activateAudioSession"))
-        expect(self.audioEngineHelper.methodCalls.count).to(be(1))
+        expect(self.audioEngineHelper.methodCalls.count) == 1
     }
 
     func testApplicationDidBecomeActive() {
@@ -84,7 +84,7 @@ final class AppDelegateTests: XCTestCase {
         appDelegate.applicationDidBecomeActive(UIApplication.shared)
 
         expect(self.scenePresenterViewController.methodCalls).to(contain("resumeAction"))
-        expect(self.scenePresenterViewController.methodCalls.count).to(be(1))
+        expect(self.scenePresenterViewController.methodCalls.count) == 1
     }
 
     func testApplicationDidBecomeActiveWhenScenePaused() {

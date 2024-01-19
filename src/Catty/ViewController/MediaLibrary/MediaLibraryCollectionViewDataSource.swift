@@ -185,7 +185,7 @@ final class ImagesLibraryCollectionViewDataSource: MediaLibraryCollectionViewDat
             return
         }
         // try to get the image from cache
-        let resource = ImageResource(downloadURL: downloadURL)
+        let resource = KF.ImageResource(downloadURL: downloadURL)
         let options: KingfisherOptionsInfo = [.onlyFromCache]
         if ImageCache.default.imageCachedType(forKey: resource.cacheKey).cached {
             ImageCache.default.retrieveImage(forKey: resource.cacheKey, options: options) { result in

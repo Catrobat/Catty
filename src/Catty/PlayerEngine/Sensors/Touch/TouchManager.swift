@@ -83,7 +83,7 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         // Without this, other required gestures (like the left slide out control strip) are blocked.
-        return true
+        true
     }
 
     func handle(touch: UITouch, for state: UIGestureRecognizer.State) {

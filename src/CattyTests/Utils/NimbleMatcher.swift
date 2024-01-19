@@ -22,13 +22,13 @@
 
 import Nimble
 
-public func contain<T: Equatable>(_ expectedNotificationName: Notification.Name, expectedObject: T) -> Predicate<[Notification]> {
-    Predicate.define("contain " + stringify(expectedNotificationName) + " with object " + stringify(expectedObject)) { actualExpression, msg in
+public func contain<T: Equatable>(_ expectedNotificationName: Notification.Name, expectedObject: T) -> Matcher<[Notification]> {
+    Matcher.define("contain " + stringify(expectedNotificationName) + " with object " + stringify(expectedObject)) { actualExpression, msg in
         guard let actualNotifications = try actualExpression.evaluate() else {
-            return PredicateResult(status: .fail, message: msg)
+            return MatcherResult(status: .fail, message: msg)
         }
 
         let matches = actualNotifications.filter { $0.name == expectedNotificationName && ($0.object as? T) == expectedObject }
-        return PredicateResult(bool: !matches.isEmpty, message: msg)
+        return MatcherResult(bool: !matches.isEmpty, message: msg)
     }
 }

@@ -47,11 +47,10 @@ class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
     }
 
     func getConnectedDevices() {
-        let afterPeripheralDiscovered = {(_: [Peripheral]) -> Void in
+        let afterPeripheralDiscovered = {(_: [Peripheral]) in
             self.updateWhenActive()
         }
-        let afterTimeout = {(_: NSError) -> Void in
-
+        let afterTimeout = {(_: NSError) in
         }
 
         let future: FutureStream<[Peripheral]> = CentralManager.sharedInstance.getConnectedPeripheralsWithServices([])

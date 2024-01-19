@@ -69,7 +69,7 @@ final class AudioPlayerTests: XCTestCase {
         XCTAssertTrue(audioPlayer.isPlaying)
         audioPlayer.stop()
 
-        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
+        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: NimbleTimeInterval.seconds(3))
         expect(self.audioPlayer.isPlaying) == false
     }
 
@@ -98,7 +98,7 @@ final class AudioPlayerTests: XCTestCase {
         audioPlayer.play(expectation: soundIsFinishedExpectation)
         expect(self.audioPlayer.isPlaying) == true
         audioPlayer.remove()
-        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
+        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: NimbleTimeInterval.seconds(3))
         expect(self.audioPlayer.isPlaying) == false
         expect(self.testMixer.hasInput(self.audioPlayer.player)) == false
     }
