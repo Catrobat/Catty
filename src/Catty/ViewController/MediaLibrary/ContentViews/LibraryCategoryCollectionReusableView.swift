@@ -40,4 +40,13 @@ class LibraryCategoryCollectionReusableView: UICollectionReusableView {
             titleLabel.text = newValue
         }
     }
+
+    var titleColor: UIColor {
+        get {
+            titleLabel.textColor!
+        }
+        set {
+            titleLabel.textColor = newValue
+        }
+    }
 }
