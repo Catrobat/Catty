@@ -67,6 +67,8 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         }
     }
 
+    var cellPrototype = [StoreProject]()
+
     var projectOffset: Int {
         switch projectType {
         case .mostDownloaded:
@@ -94,6 +96,9 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     fileprivate init(with downloader: StoreProjectDownloaderProtocol) {
         self.downloader = downloader
         self.projectType = .mostDownloaded
+        for _ in 1 ... NetworkDefines.chartProjectsBatchSize {
+                    cellPrototype.append(StoreProject(id: ""))
+                }
     }
 
     static func dataSource(with downloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) -> ChartProjectStoreDataSource {
@@ -105,23 +110,35 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     func fetchItems(type: ProjectType, completion: @escaping (StoreProjectDownloaderError?) -> Void) {
 
         projectType = type
-        scrollView.setContentOffset(scrollViewOffset, animated: false)
 
         if self.projectOffset == projects.count || projects.isEmpty {
+            switch self.projectType {
+                       case .mostDownloaded:
+                           self.mostDownloadedProjects.append(contentsOf: cellPrototype)
+                           self.mostDownloadedOffset += NetworkDefines.chartProjectsBatchSize
+                       case .mostViewed:
+                           self.mostViewedProjects.append(contentsOf: cellPrototype)
+                           self.mostViewedOffset += NetworkDefines.chartProjectsBatchSize
+                       case .mostRecent:
+                           self.mostRecentProjects.append(contentsOf: cellPrototype)
+                           self.mostRecentOffset += NetworkDefines.chartProjectsBatchSize
+
+                       }
+
             self.downloader.fetchProjects(for: type, offset: self.projectOffset) {items, error in
 
                 guard let collection = items, error == nil else { completion(error); return }
 
                 switch self.projectType {
                 case .mostDownloaded:
+                    self.mostDownloadedProjects.removeSubrange(self.mostDownloadedOffset - NetworkDefines.chartProjectsBatchSize ... self.mostDownloadedOffset - 1)
                     self.mostDownloadedProjects.append(contentsOf: collection)
-                    self.mostDownloadedOffset += NetworkDefines.chartProjectsBatchSize
                 case .mostViewed:
+                    self.mostViewedProjects.removeSubrange(self.mostViewedOffset - NetworkDefines.chartProjectsBatchSize ... self.mostViewedOffset - 1)
                     self.mostViewedProjects.append(contentsOf: collection)
-                    self.mostViewedOffset += NetworkDefines.chartProjectsBatchSize
                 case .mostRecent:
+                    self.mostRecentProjects.removeSubrange(self.mostRecentOffset - NetworkDefines.chartProjectsBatchSize ... self.mostRecentOffset - 1)
                     self.mostRecentProjects.append(contentsOf: collection)
-                    self.mostRecentOffset += NetworkDefines.chartProjectsBatchSize
                 }
                 completion(nil)
 
@@ -215,6 +232,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
 
             self.fetchItems(type: self.projectType) { error in
                 self.delegate?.hideLoadingIndicator(true)
+                self.delegate?.scrollViewHandler()
                 self.isReloadingData = false
                 if error != nil {
                     self.delegate?.errorAlertHandler(error: error!)
