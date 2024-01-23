@@ -306,6 +306,7 @@
 #define kLocalizedRemovedKnownBluetoothDevices NSLocalizedString(@"All known Bluetooth devices successfully removed", nil)
 #define kLocalizedArduinoBricksDescription NSLocalizedString(@"Allow the app to control Arduino boards", nil)
 #define kLocalizedEmbroideryBricksDescription NSLocalizedString(@"Create patterns for stiching machines", nil)
+#define kLocalizedAllowAccessToPhotos NSLocalizedString(@"Allow access to your photos", nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -343,6 +344,7 @@
 #define kLocalizedNoAccesToMicrophoneCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", nil)
 #define kLocalizedUnsupportedElementsDescription NSLocalizedString(@"Following features used in this project are not compatible with this version of Pocket Code:", nil)
 #define kLocalizedAlwaysAllowWebRequestDescription NSLocalizedString(@"Be very careful before allowing access, since the link may expose your personal information, such as your precise geographical location or any text you have entered to malicious other persons or to the public. See our wiki for more information why this can be extremely dangerous. By always allowing access, you will not be asked again to confirm web addresses from this domain. If you want to revoke this permission later, you can remove the domain from the list of trusted domains in the settings of this app.", nil)
+#define kLocalizedAllowAccessToPhotosDescription NSLocalizedString(@"Pocket Code has no access to this images. To permit access, tap settings and activate images.", nil)
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
