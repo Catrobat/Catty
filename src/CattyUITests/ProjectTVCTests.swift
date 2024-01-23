@@ -38,7 +38,6 @@ class ProjectTVCTests: XCTestCase {
         createProject(name: projectName, in: app)
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         XCTAssertEqual(1, app.tables.cells.count)
-
         addObjectAndDrawNewImage(name: objectName, in: app)
         XCTAssertEqual(2, app.tables.cells.count)
     }
@@ -54,10 +53,20 @@ class ProjectTVCTests: XCTestCase {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        //Add new Object
+        //Add new Object        
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
+
+        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
+
+        app.tap()
+        app.navigationBars.buttons[kLocalizedBack].tap()
+
+        waitForElementToAppear(app.buttons[kLocalizedSaveChanges]).tap()
+        let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
+        alert.textFields[kLocalizedEnterYourObjectNameHere].tap()
+        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
+        alert.buttons[kLocalizedOK].tap()
 
         XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
