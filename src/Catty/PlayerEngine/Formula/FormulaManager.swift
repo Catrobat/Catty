@@ -41,7 +41,7 @@ import CoreMotion
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()
         let visualDetectionManager = VisualDetectionManager()
-        let audioManager = AudioManager.shared()!
+        let audioManager = AudioEngine()
         let touchManager = TouchManager()
         let bluetoothService = BluetoothService.sharedInstance()
 
@@ -82,7 +82,7 @@ import CoreMotion
                   motionManager: CMMotionManager(),
                   locationManager: CLLocationManager(),
                   visualDetectionManager: VisualDetectionManager(),
-                  audioManager: AudioManager(),
+                  audioManager: AudioEngine(),
                   touchManager: TouchManager(),
                   bluetoothService: BluetoothService.sharedInstance())
     }

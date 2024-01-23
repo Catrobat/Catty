@@ -196,14 +196,6 @@
 {
     self.project = nil;
     self.stage = nil;
-    
-    // Delete sound rec for loudness sensor
-    NSError *error;
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *soundfile = [documentsPath stringByAppendingPathComponent:@"loudness_handler.m4a"];
-    if ([fileMgr removeItemAtPath:soundfile error:&error] != YES)
-        NSDebug(@"No Sound file available or unable to delete file: %@", [error localizedDescription]);
 }
 
 #pragma mark View Setup
