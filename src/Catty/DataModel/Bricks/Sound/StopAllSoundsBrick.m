@@ -24,9 +24,9 @@
 
 @implementation StopAllSoundsBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kSoundBrick;
+    return @[@(kSoundBrick)];
 }
 
 #pragma mark - Description

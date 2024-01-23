@@ -26,9 +26,9 @@
 
 @implementation PhiroMotorMoveBackwardBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kPhiroBrick;
+    return @[@(kPhiroBrick)];
 }
 
 #pragma mark - Description

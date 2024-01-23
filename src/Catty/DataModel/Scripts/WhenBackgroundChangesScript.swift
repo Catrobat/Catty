@@ -39,8 +39,8 @@ class WhenBackgroundChangesScript: Script, BrickLookProtocol {
         super.init()
     }
 
-    public func category() -> kBrickCategoryType {
-        kBrickCategoryType.eventBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.eventBrick.rawValue), NSNumber(value: kBrickCategoryType.lookBrick.rawValue)]
     }
 
     override func description() -> String {

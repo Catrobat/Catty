@@ -27,9 +27,9 @@
 
 @implementation BroadcastScript
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kEventBrick;
+    return @[@(kEventBrick),@(kControlBrick)];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject

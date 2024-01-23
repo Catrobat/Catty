@@ -24,9 +24,9 @@
 
 @implementation SpeakBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kSoundBrick;
+    return @[@(kSoundBrick)];
 }
 
 - (BOOL)allowsStringFormula

@@ -24,9 +24,9 @@
 
 @implementation ChooseCameraBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kLookBrick;
+    return @[@(kLookBrick)];
 }
 
 - (id)initWithChoice:(int)choice
