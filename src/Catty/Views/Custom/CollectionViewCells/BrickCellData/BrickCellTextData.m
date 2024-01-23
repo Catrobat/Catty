@@ -153,6 +153,12 @@
         newFrame.size.height = availableHeight;
         self.frame = newFrame;
     }
+    if (self.frame.size.width < UIDefines.brickInputFieldMinWidth)
+    {
+        CGRect newFrame = self.frame;
+        newFrame.size.width = UIDefines.brickInputFieldMinWidth;
+        self.frame = newFrame;
+    }
     if (self.frame.origin.x + self.frame.size.width + 60 > [Util screenWidth]) {
         self.frame = CGRectMake(self.frame.origin.x,self.frame.origin.y,[Util screenWidth] - 60 - self.frame.origin.x, self.frame.size.height);
     }
