@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -112,12 +112,12 @@ class BluetoothDevicesTableViewController: UITableViewController {
     }
 
     func startScan() {
-
-        let afterPeripheralDiscovered = {(_: Peripheral) -> Void in
+        let afterPeripheralDiscovered = {(_: Peripheral) in
             self.updateWhenActive()
         }
-        let afterTimeout = {(_: NSError) -> Void in
+        let afterTimeout = {(_: NSError) in
         }
+
         let future: FutureStream<Peripheral> = CentralManager.sharedInstance.startScan()
         future.onSuccess(afterPeripheralDiscovered)
         future.onFailure(afterTimeout)

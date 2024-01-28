@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -185,7 +185,7 @@ final class ImagesLibraryCollectionViewDataSource: MediaLibraryCollectionViewDat
             return
         }
         // try to get the image from cache
-        let resource = ImageResource(downloadURL: downloadURL)
+        let resource = KF.ImageResource(downloadURL: downloadURL)
         let options: KingfisherOptionsInfo = [.onlyFromCache]
         if ImageCache.default.imageCachedType(forKey: resource.cacheKey).cached {
             ImageCache.default.retrieveImage(forKey: resource.cacheKey, options: options) { result in
