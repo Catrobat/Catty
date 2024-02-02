@@ -83,8 +83,8 @@ final class Stage: SKScene, StageProtocol {
 
     // MARK: - Scene events
     @objc override func willMove(from view: SKView) {
-        removeAllChildren()
-        removeAllActions()
+        //removeAllChildren()
+        //removeAllActions()
     }
 
     override func didMove(to view: SKView) {
@@ -281,11 +281,13 @@ final class Stage: SKScene, StageProtocol {
     }
 
     @objc func pauseScheduler() {
+        print("Schedular paused \(CBScene.name)")
         scheduler.pause()
         formulaManager.pause()
     }
 
     @objc func resumeScheduler() {
+        print("Schedular resumed \(CBScene.name)")
         scheduler.resume()
         formulaManager.resume()
     }

@@ -30,12 +30,10 @@ import UIKit
     }
     func continueScene() {
 
-        //skView.presentScene(stageManager.stage)
         self.skView.isPaused = false
-
-        self.skView.presentScene(self.stageManager.stage, transition: .crossFade(withDuration: 5.0))
-        stageManager.stage.scheduler.resume()
-
+        print(self.stageManager.stage.CBScene.name)
+        self.skView.presentScene(self.stageManager.stage, transition: .crossFade(withDuration: 1))
+        stageManager.resumeScheduler()
     }
 }
 

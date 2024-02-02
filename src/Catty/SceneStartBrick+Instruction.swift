@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 extension SceneStartBrick: CBInstructionProtocol {
     func instruction() -> CBInstruction {
-        CBInstruction.execClosure { _, schedular in
+        CBInstruction.execClosure { context, schedular in
 
             guard let project = schedular.stageManagerDelegate?.project else {
                 print("No project")
@@ -34,6 +34,7 @@ extension SceneStartBrick: CBInstructionProtocol {
             if let selectedSceneName = self.selectedSceneName {
                 schedular.stageManagerDelegate?.startnewScene(scene: scenes.first { $0.name == selectedSceneName }!)
             }
+            context.state = .runnable
         }
     }
 }

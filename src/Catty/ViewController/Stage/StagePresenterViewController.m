@@ -44,7 +44,7 @@
 
 - (void)stopProject
 {
-    [self.stageManager stopProject];
+    [self.stageManager pauseScheduler];
     
     // TODO remove Singletons
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -280,7 +280,6 @@
     
     [[BluetoothService sharedInstance] setStagePresenter:self];
     [[CameraPreviewHandler shared] setCamView:self.view];
-    //[self.skView presentScene:self.stageManager.stage transition:[SKTransition crossFadeWithDuration:0.2]];
 
     [self.skView presentScene:self.stageManager.stage];
     if (![self.stageManager.stage startProject]) {
