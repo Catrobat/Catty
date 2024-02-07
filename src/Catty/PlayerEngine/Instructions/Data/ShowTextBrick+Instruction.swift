@@ -39,14 +39,14 @@
             if let userVariable = userVariable {
 
                 if let value = userVariable.value as? NSNumber {
-                    userVariable.textLabel?.text = (value).stringValue
+                    userVariable.textLabels[spriteObject.scene.name]?.text = (value).stringValue
                 }
 
-                guard let scene = userVariable.textLabel?.scene else {
+                guard let scene = userVariable.textLabels[spriteObject.scene.name]?.scene else {
                     fatalError("This should never happen!")
                 }
-                userVariable.textLabel?.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
-                userVariable.textLabel?.isHidden = false
+                userVariable.textLabels[spriteObject.scene.name]?.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
+                userVariable.textLabels[spriteObject.scene.name]?.isHidden = false
             }
             context.state = .runnable
         }

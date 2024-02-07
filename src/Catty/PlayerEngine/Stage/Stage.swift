@@ -264,13 +264,13 @@ final class Stage: SKScene, StageProtocol {
         }
         for variable: UserVariable in variableList {
             let label = SKLabelNode(fontNamed: SpriteKitDefines.defaultFont)
-            variable.textLabel = label
-            variable.textLabel?.text = SpriteKitDefines.defaultValueShowVariable
-            variable.textLabel?.zPosition = CGFloat(zPosition + 1)
-            variable.textLabel?.fontColor = UIColor.black
-            variable.textLabel?.fontSize = CGFloat(SpriteKitDefines.defaultLabelFontSize)
-            variable.textLabel?.isHidden = true
-            variable.textLabel?.horizontalAlignmentMode = .center
+            label.text = SpriteKitDefines.defaultValueShowVariable
+            label.zPosition = CGFloat(zPosition + 1)
+            label.fontColor = UIColor.black
+            label.fontSize = CGFloat(SpriteKitDefines.defaultLabelFontSize)
+            label.isHidden = true
+            label.horizontalAlignmentMode = .center
+            variable.textLabels.updateValue(label, forKey: CBScene.name)
             addChild(label)
         }
 
