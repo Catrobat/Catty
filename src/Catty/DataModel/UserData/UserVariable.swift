@@ -31,19 +31,19 @@
 
     var value: Any? {
         get {
-          _value
+            _value
         }
         set {
             variableLocker.lock()
             if let value = newValue as? NSString {
                 _value = value
                 for label in textLabels.values {
-                    label.text =  truncateIfLengthExceeded(value: value as String)
+                    label.text = truncateIfLengthExceeded(value: value as String)
                 }
             } else if let value = newValue as? NSNumber {
                 _value = value
                 for label in textLabels.values {
-                    label.text =  value.stringValue
+                    label.text = value.stringValue
                 }
             } else {
                 _value = NSNumber(value: 0)
