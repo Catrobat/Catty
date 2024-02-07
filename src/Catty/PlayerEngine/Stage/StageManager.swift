@@ -25,7 +25,6 @@ import SpriteKit
 
 protocol StageManagerProtocol: AnyObject {
     var project: Project { get }
-
     func startnewScene(scene: Scene)
     func continueScene(scene: Scene)
 }
@@ -67,6 +66,7 @@ protocol StageManagerProtocol: AnyObject {
     }
 
     func startnewScene(scene: Scene) {
+        print(project.userData.variables())
         pauseScheduler()
         saveStages.updateValue(stage, forKey: self.scene.name)
         project.activeScene = scene
@@ -75,6 +75,7 @@ protocol StageManagerProtocol: AnyObject {
     }
 
     func continueScene(scene: Scene) {
+        print(project.userData.variables())
         if let stage = saveStages[scene.name] {
             pauseScheduler()
             saveStages.updateValue(self.stage, forKey: self.scene.name)
@@ -88,12 +89,14 @@ protocol StageManagerProtocol: AnyObject {
     }
 
     func restartSceneAndResetUserData() {
+        self.saveStages = [:]
         self.stage.CBScene.project?.clearUserData()
         self.stagePresenterDeleagte?.restartAction()
         self.stopAllStages()
     }
 
     func stopActionAndResetUserData() {
+        self.saveStages = [:]
         self.stage.CBScene.project?.clearUserData()
         self.stagePresenterDeleagte?.stopAction()
         self.stopAllStages()
@@ -106,7 +109,8 @@ protocol StageManagerProtocol: AnyObject {
     }
 
     @objc public func setupStage() {
-        self.stage = StageBuilder(scene: project.activeScene).withFormulaManager(formulaManager: FormulaManager(stageSize: Util.screenSize(true), landscapeMode: project.header.landscapeMode)).build()
+        self.stage = StageBuilder(scene: project.activeScene)
+            .withFormulaManager(formulaManager: FormulaManager(stageSize: Util.screenSize(true), landscapeMode: project.header.landscapeMode)).build()
         self.stage.scheduler.stageManagerDelegate = self
         if self.project.header.screenMode == kCatrobatHeaderScreenModeMaximize {
             stage.scaleMode = .aspectFill

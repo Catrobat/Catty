@@ -34,6 +34,7 @@ import UIKit
         print(self.stageManager.stage.CBScene.name)
         self.skView.presentScene(self.stageManager.stage, transition: .crossFade(withDuration: 1))
         stageManager.resumeScheduler()
+        print(stageManager.project.userData.variables().map {$0.textLabel?.text})
     }
 }
 

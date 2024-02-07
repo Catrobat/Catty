@@ -1757,6 +1757,7 @@
 		B041E8B42B25CB0F00B0F65A /* SceneTrasitionBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8B32B25CB0F00B0F65A /* SceneTrasitionBrick+CBXMLHandler.swift */; };
 		B041E8B62B25CCAD00B0F65A /* SceneTrasitionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041E8B52B25CCAD00B0F65A /* SceneTrasitionBrick+Instruction.swift */; };
 		B041EBBA2B1E6928004D4A5C /* SceneStartBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */; };
+		B052D66B2B7407DF002EF16A /* SceneTransitionBrickGlobalVar.xml in Resources */ = {isa = PBXBuildFile; fileRef = B052D66A2B7407DF002EF16A /* SceneTransitionBrickGlobalVar.xml */; };
 		B06E813E2B230B4800DDCF8E /* StageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E813D2B230B4800DDCF8E /* StageManager.swift */; };
 		B07A35A42B1CA52800D136B0 /* ProjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */; };
 		B07A35A62B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A35A52B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift */; };
@@ -4420,6 +4421,7 @@
 		B041E8B32B25CB0F00B0F65A /* SceneTrasitionBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SceneTrasitionBrick+CBXMLHandler.swift"; path = "Catty/DataModel/Bricks/Scenes/SceneTrasitionBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
 		B041E8B52B25CCAD00B0F65A /* SceneTrasitionBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneTrasitionBrick+Instruction.swift"; sourceTree = "<group>"; };
 		B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SceneStartBrick.xml; sourceTree = "<group>"; };
+		B052D66A2B7407DF002EF16A /* SceneTransitionBrickGlobalVar.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SceneTransitionBrickGlobalVar.xml; sourceTree = "<group>"; };
 		B06E813D2B230B4800DDCF8E /* StageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManager.swift; sourceTree = "<group>"; };
 		B07A35A32B1CA52800D136B0 /* ProjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectExtension.swift; sourceTree = "<group>"; };
 		B07A35A52B1CA73000D136B0 /* StagepresenterViewControllerActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagepresenterViewControllerActionExtension.swift; sourceTree = "<group>"; };
@@ -10886,6 +10888,7 @@
 			isa = PBXGroup;
 			children = (
 				B041EBB92B1E6928004D4A5C /* SceneStartBrick.xml */,
+				B052D66A2B7407DF002EF16A /* SceneTransitionBrickGlobalVar.xml */,
 			);
 			path = ValidSceneStartBrick;
 			sourceTree = "<group>";
@@ -11914,6 +11917,7 @@
 				7B37461C29ACD8080085A90D /* StoreAuthenticator.refreshToken.success.json in Resources */,
 				4C55CCD924BF291300FB8393 /* Air_fight_0.5_0992.xml in Resources */,
 				2ED41879241120B000AFE2FD /* ElementOfListFunction0991.xml in Resources */,
+				B052D66B2B7407DF002EF16A /* SceneTransitionBrickGlobalVar.xml in Resources */,
 				E5EC6D7426B010D30031F13A /* ValidHeader09993.xml in Resources */,
 				2ED4184C241120B000AFE2FD /* Flappy_v3.0_093.xml in Resources */,
 				7B144F1E28FDCE3500C4A300 /* StoreProjectDownloader.fetchMostDownloadedProjects.success.json in Resources */,

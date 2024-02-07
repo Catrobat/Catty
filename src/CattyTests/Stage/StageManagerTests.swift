@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,9 @@
 import XCTest
 
 class StagePresenterVCMock: StagePresenterViewControllerStageManagerDelegate {
+    func continueScene() {
+        self.stageManager.resumeScheduler()
+    }
 
     let stageManager: StageManager
 
@@ -69,5 +72,23 @@ final class StageManagerTests: XMLAbstractTest {
         stageManager.restartSceneAndResetUserData()
         XCTAssertTrue(project.activeScene == project.scenes[2] as! Scene)
         XCTAssertTrue(project.userData.variables().first!.value as! Int == 1)
+    }
+
+    // test case stuck in infinity loop
+    func testStageManagerWithMultipleScenesAndGlobalVarsSceneTransition() {
+        let project = self.getProjectForXML(xmlFile: "SceneTransitionBrickGlobalVar")
+        project.activeScene = project.scenes[0] as! Scene
+        print(project.activeScene.name)
+        let stageManager = StageManager(project: project)
+        let stagepresenterVC = StagePresenterVCMock(stageManager: stageManager)
+        stageManager.stagePresenterDeleagte = stagepresenterVC
+        XCTAssertTrue(project.userData.variables().first!.value == nil)
+        stageManager.setupStage()
+        stagepresenterVC.startNewScene()
+        XCTAssertTrue(project.activeScene == project.scenes[0] as! Scene)
+        XCTAssertTrue(project.userData.variables().first!.value as! Int == 5)
+        stageManager.stopActionAndResetUserData()
+        XCTAssertTrue(project.activeScene == project.scenes[0] as! Scene)
+        XCTAssertTrue(project.userData.variables().first!.value == nil)
     }
 }
