@@ -25,6 +25,7 @@ import SpriteKit
 
 protocol StageManagerProtocol: AnyObject {
     var project: Project { get }
+
     func startnewScene(scene: Scene)
     func continueScene(scene: Scene)
 }
