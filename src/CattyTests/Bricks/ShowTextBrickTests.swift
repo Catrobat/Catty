@@ -79,11 +79,11 @@ final class ShowTextBrickTests: XCTestCase {
         let expectedPos = CGPoint(x: stageSize.width / 2 + pos.x, y: stageSize.height / 2 + pos.y)
 
         let userVariable = UserVariable(name: "testName")
-        let label = SKLabelNode()
-        userVariable.textLabel = label
+
+        userVariable.textLabels["Scene 1"] = SKLabelNode()
 
         let stage = SKScene(size: stageSize)
-        stage.addChild(label)
+        stage.addChild(userVariable.textLabels["Scene 1"]!)
 
         let brick = ShowTextBrick()
         brick.script = script
@@ -93,8 +93,8 @@ final class ShowTextBrickTests: XCTestCase {
 
         executeInstruction(for: brick)
 
-        XCTAssertEqual(expectedPos.x, userVariable.textLabel?.position.x)
-        XCTAssertEqual(expectedPos.y, userVariable.textLabel?.position.y)
+        XCTAssertEqual(expectedPos.x, userVariable.textLabels["Scene 1"]?.position.x)
+        XCTAssertEqual(expectedPos.y, userVariable.textLabels["Scene 1"]?.position.y)
     }
 
     private func executeInstruction(for brick: CBInstructionProtocol) {

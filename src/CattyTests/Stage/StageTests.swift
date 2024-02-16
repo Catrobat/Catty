@@ -118,13 +118,13 @@ final class StageTests: XCTestCase {
         let userVariable = UserVariable(name: "testName")
         project.userData.add(userVariable)
 
-        XCTAssertNil(userVariable.textLabel)
+        XCTAssertNil(userVariable.textLabels[scene.name])
         XCTAssertTrue(stage.startProject())
-        XCTAssertNotNil(userVariable.textLabel)
-        XCTAssertTrue(userVariable.textLabel?.isHidden == true)
-        XCTAssertEqual(SKLabelHorizontalAlignmentMode.center, userVariable.textLabel?.horizontalAlignmentMode)
-        XCTAssertEqual(CGFloat(SpriteKitDefines.defaultLabelFontSize), userVariable.textLabel?.fontSize)
-        XCTAssertEqual(1, userVariable.textLabel?.text?.count)
+        XCTAssertNotNil(userVariable.textLabels[scene.name]?.text)
+        XCTAssertTrue(userVariable.textLabels[scene.name]?.isHidden == true)
+        XCTAssertEqual(SKLabelHorizontalAlignmentMode.center, userVariable.textLabels[scene.name]?.horizontalAlignmentMode)
+        XCTAssertEqual(CGFloat(SpriteKitDefines.defaultLabelFontSize), userVariable.textLabels[scene.name]?.fontSize)
+        XCTAssertEqual(1, userVariable.textLabels[scene.name]?.text?.count)
 
         stage.stopProject()
     }
