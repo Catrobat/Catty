@@ -91,7 +91,16 @@ import Foundation
     }
     
     func createProjectCreationDialogue() {
-        Util.askUser(forProject: #selector(createProject(inputName: isdefault: )), target: self, promptTitle: kLocalizedNewProject, promptMessage: kLocalizedProjectName, promptValue: nil, promptPlaceholder: kLocalizedEnterYourProjectNameHere, minInputLength: UInt(kMinNumOfProjectNameCharacters), maxInputLength: UInt(kMaxNumOfProjectNameCharacters), invalidInputAlertMessage: kLocalizedProjectNameAlreadyExistsDescription, existingNames: Project.allProjectNames())
+        Util.askUser(forProject: #selector(createProject(inputName: isdefault: )),
+                     target: self,
+                     promptTitle: kLocalizedNewProject,
+                     promptMessage: kLocalizedProjectName,
+                     promptValue: nil,
+                     promptPlaceholder: kLocalizedEnterYourProjectNameHere,
+                     minInputLength: UInt(kMinNumOfProjectNameCharacters),
+                     maxInputLength: UInt(kMaxNumOfProjectNameCharacters),
+                     invalidInputAlertMessage: kLocalizedProjectNameAlreadyExistsDescription,
+                     existingNames: Project.allProjectNames())
     }
     
 }

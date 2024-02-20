@@ -39,7 +39,7 @@ class CreateProjectTests: XCTestCase {
         app.tables.staticTexts[kLocalizedNewProject].tap()
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedNewProject].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         addObjectAndDrawNewImage(name: testObject, in: app)
@@ -105,7 +105,7 @@ class CreateProjectTests: XCTestCase {
         app.tables.staticTexts[kLocalizedNewProject].tap()
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedNewProject].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         addObjectAndDrawNewImage(name: helloText, in: app)
