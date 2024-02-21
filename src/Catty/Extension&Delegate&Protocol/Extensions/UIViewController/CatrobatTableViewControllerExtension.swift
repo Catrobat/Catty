@@ -75,11 +75,8 @@ import Foundation
     
     func createProject(inputName: String, isdefault: Bool) {
         print("createProject bool: \(isdefault)")
-        
-        if isdefault
-        {
-            if let project = CBFileManager.shared().addDefaultProject(toProjectsRootDirectory: inputName)
-            {
+        if isdefault {
+            if let project = CBFileManager.shared().addDefaultProject(toProjectsRootDirectory: inputName) {
                 self.openProject(project)
             }
         }
@@ -87,7 +84,6 @@ import Foundation
             let project = self.projectManager.createProject(name: inputName, projectId: nil)
             self.openProject(project)
         }
-        
     }
     
     func createProjectCreationDialogue() {
@@ -102,5 +98,4 @@ import Foundation
                      invalidInputAlertMessage: kLocalizedProjectNameAlreadyExistsDescription,
                      existingNames: Project.allProjectNames())
     }
-    
 }
