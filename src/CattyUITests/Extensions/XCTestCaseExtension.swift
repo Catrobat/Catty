@@ -64,7 +64,7 @@ extension XCTestCase {
 
         let alert = waitForElementToAppear(app.alerts[kLocalizedNewProject])
         alert.textFields[kLocalizedEnterYourProjectNameHere].typeText(name)
-        alert.buttons[kLocalizedOK].tap()
+        alert.buttons[kLocalizedNewProject].tap()
 
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[name]))
     }

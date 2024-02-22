@@ -40,7 +40,7 @@ class ProjectsTVCTests: XCTestCase {
         let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
 
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedNewProject].tap()
         XCTAssert(waitForElementToAppear(app.navigationBars[testProject]).exists)
 
         app.navigationBars.buttons[kLocalizedProjects].tap()
