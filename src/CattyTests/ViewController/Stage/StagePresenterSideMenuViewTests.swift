@@ -38,6 +38,10 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
         project.header = Header()
         project.header.screenWidth = 123
         project.header.screenHeight = 456
+        let scene = Scene(name: "Test")
+        scene.project = project
+        project.scenes.add(scene)
+        project.activeScene = scene
 
         delegateMock = StagePresenterSideMenuDelegateMock(project: project)
     }

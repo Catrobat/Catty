@@ -30,7 +30,10 @@ class ProjectMock: Project {
 
     override convenience init() {
         self.init(width: 300, andHeight: 400)
-        self.scenes.add(Scene(name: "Test"))
+        let scene = Scene(name: "MockScene")
+        self.scenes.add(scene)
+        self.activeScene = scene
+        scene.project = self
     }
 
     convenience init(requiredResources: Int) {
@@ -39,7 +42,10 @@ class ProjectMock: Project {
 
     convenience init(width: CGFloat, andHeight: CGFloat) {
         self.init(width: width, andHeight: andHeight, andRequiredResources: ResourceType.noResources.rawValue)
-        self.scenes.add(Scene(name: "Test"))
+        let scene = Scene(name: "MockScene")
+        self.scenes.add(scene)
+        self.activeScene = scene
+        scene.project = self
     }
 
     required init(width: CGFloat, andHeight: CGFloat, andRequiredResources: Int) {

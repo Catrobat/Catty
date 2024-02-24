@@ -38,6 +38,7 @@ final class ScriptCollectionViewControllerTests: XCTestCase {
         super.setUp()
 
         project = ProjectMock()
+        ProjectManager.shared.currentProject = project
 
         scene = Scene(name: "testScene")
         scene.project = project

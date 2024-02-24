@@ -82,6 +82,7 @@ final class ShowTextBrickTests: XCTestCase {
 
         userVariable.textLabels["Scene 1"] = SKLabelNode()
 
+
         let stage = SKScene(size: stageSize)
         stage.addChild(userVariable.textLabels["Scene 1"]!)
 
