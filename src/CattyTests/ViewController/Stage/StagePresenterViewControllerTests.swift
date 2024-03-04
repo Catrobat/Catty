@@ -87,6 +87,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
         CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
         Util.setLastProjectWithName(kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)
 
+        vc.stageManager = StageManager(project: project)
         XCTAssertNil(navigationController.currentViewController)
 
         vc.checkResourcesAndPushViewController(to: navigationController)

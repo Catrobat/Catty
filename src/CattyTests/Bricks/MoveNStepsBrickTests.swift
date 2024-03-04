@@ -46,6 +46,7 @@ final class MoveNStepsBrickTests: AbstractBrickTest {
         let project = ProjectMock(width: CGFloat(SCREEN_WIDTH), andHeight: CGFloat(SCREEN_HEIGHT))
         project.scenes.add(scene)
         scene.project = project
+        project.activeScene = scene
 
         self.stage = StageBuilder(project: project).build()
 
