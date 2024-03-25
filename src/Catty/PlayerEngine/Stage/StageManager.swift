@@ -44,7 +44,7 @@ protocol StageManagerProtocol: AnyObject {
     @objc public var scene: Scene
     @objc public let formulaManager: FormulaManager
     var stagePresenterDeleagte: StagePresenterViewControllerStageManagerDelegate?
-    var saveStages: [String: Stage] = [:]
+    var savedStages: [String: Stage] = [:]
 
     @objc(initWithProject:)
     init(project: Project) {
@@ -69,42 +69,42 @@ protocol StageManagerProtocol: AnyObject {
     func startnewScene(scene: Scene) {
         print(project.userData.variables())
         pauseScheduler()
-        saveStages.updateValue(stage, forKey: self.scene.name)
+        savedStages.updateValue(stage, forKey: self.scene.name)
         project.activeScene = scene
-        stagePresenterDeleagte?.startNewScene()
         self.scene = scene
+        stagePresenterDeleagte?.startNewScene()
     }
 
     func continueScene(scene: Scene) {
         print(project.userData.variables())
-        if let stage = saveStages[scene.name] {
+        if let stage = savedStages[scene.name] {
             pauseScheduler()
-            saveStages.updateValue(self.stage, forKey: self.scene.name)
+            savedStages.updateValue(self.stage, forKey: self.scene.name)
             self.stage = stage
             project.activeScene = scene
-            stagePresenterDeleagte?.continueScene()
             self.scene = scene
+            stagePresenterDeleagte?.continueScene()
         } else {
             startnewScene(scene: scene)
         }
     }
 
     func restartSceneAndResetUserData() {
-        self.saveStages = [:]
+        self.savedStages = [:]
         self.stage.CBScene.project?.clearUserData()
         self.stagePresenterDeleagte?.restartAction()
         self.stopAllStages()
     }
 
     func stopActionAndResetUserData() {
-        self.saveStages = [:]
+        self.savedStages = [:]
         self.stage.CBScene.project?.clearUserData()
         self.stagePresenterDeleagte?.stopAction()
         self.stopAllStages()
     }
 
     func stopAllStages() {
-        for stage in saveStages {
+        for stage in savedStages {
             stage.value.stopProject()
         }
     }
