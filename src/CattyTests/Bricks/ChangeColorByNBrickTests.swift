@@ -38,7 +38,7 @@ final class ChangeColorByNBrickTests: AbstractBrickTest {
         script = WhenScript()
         object = SpriteObject()
         project = ProjectManager.shared.createProject(name: "a", projectId: "1")
-        object.scene = project.scene
+        object.scene = (project.scenes[0] as! Scene)
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         object.scene.project = project

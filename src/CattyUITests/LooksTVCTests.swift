@@ -35,6 +35,7 @@ class LooksTVCTests: XCTestCase {
         let lookName = String(repeating: "a", count: 25)
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedLooks].tap()
 
@@ -70,20 +71,22 @@ class LooksTVCTests: XCTestCase {
         app.tables.staticTexts[kLocalizedContinueProject].tap()
 
         for object in projectObjects {
+            app.staticTexts["\(kLocalizedScene) 1"].tap()
             waitForElementToAppear(app.tables.staticTexts[object]).tap()
             app.tables.staticTexts[testElement].tap()
             XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
-            app.navigationBars[object].buttons[kLocalizedMyFirstProject].tap()
+            app.navigationBars[object].buttons["\(kLocalizedScene) 1"].tap()
 
-            let projectVC = waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject])
-            XCTAssert(waitForElementToAppear(projectVC.buttons[kLocalizedPocketCode]).exists)
+            let projectVC = waitForElementToAppear(app.navigationBars["\(kLocalizedScene) 1"])
+            XCTAssert(waitForElementToAppear(projectVC.buttons[kLocalizedMyFirstProject]).exists)
         }
     }
     func testCancelEnterNameDialog() {
         let testElement = kLocalizedLooks
         let testObject = "Mole 1"
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[testObject].tap()
         app.tables.staticTexts[testElement].tap()
         app.buttons[kLocalizedAdd].tap()
@@ -102,6 +105,7 @@ class LooksTVCTests: XCTestCase {
         let testElement = kLocalizedLooks
         let testObject = "Mole 1"
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[testObject].tap()
         app.tables.staticTexts[testElement].tap()
         app.buttons[kLocalizedAdd].tap()

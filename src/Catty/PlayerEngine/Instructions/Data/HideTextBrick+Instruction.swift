@@ -31,9 +31,8 @@
         let userVariable = self.userVariable
 
         return CBInstruction.execClosure { context, _ in
-            //            self.logger.debug("Performing: HideTextBrick")
             if let userVariable = userVariable {
-                userVariable.textLabel?.isHidden = true
+                userVariable.textLabels[spriteObject.scene.name]?.isHidden = true
             }
             context.state = .runnable
         }

@@ -29,9 +29,9 @@ class XMLParserTests092: XMLAbstractTest {
     func testConvertUnsupportedBrickToNoteBrick() {
         let project = getProjectForXML(xmlFile: "InvalidBricksAndScripts")
         XCTAssertNotNil(project, "Project should not be nil")
-        XCTAssertEqual(1, project.scene.objects().count)
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count)
 
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         XCTAssertEqual(3, object.scriptList.count)
 
         let startScript = object.scriptList[0] as! StartScript
@@ -50,9 +50,9 @@ class XMLParserTests092: XMLAbstractTest {
     func testConvertUnsupportedScriptToBroadcastBrick() {
         let project = getProjectForXML(xmlFile: "InvalidBricksAndScripts")
         XCTAssertNotNil(project, "Project should not be nil")
-        XCTAssertEqual(1, project.scene.objects().count)
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count)
 
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         XCTAssertEqual(3, object.scriptList.count)
 
         let unknownScript = object.scriptList[1] as AnyObject
@@ -77,9 +77,9 @@ class XMLParserTests092: XMLAbstractTest {
     func testWhackAMole() {
         let project = getProjectForXML(xmlFile: "Whack_A_Mole_092")
         XCTAssertNotNil(project, "Project should not be nil")
-        XCTAssertEqual(5, project.scene.objects().count)
+        XCTAssertEqual(5, (project.scenes[0] as! Scene).objects().count)
 
-        let object = project.scene.object(at: 1)!
+        let object = (project.scenes[0] as! Scene).object(at: 1)!
         XCTAssertEqual(3, object.lookList.count)
         XCTAssertEqual(1, object.soundList.count)
 

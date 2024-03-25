@@ -40,8 +40,8 @@ class ProjectMigratorTest: XCTestCase {
 
         project = Project()
         project.header = header
-        project.scene = Scene(name: newFolderName)
-        project.scene.project = project
+        project.scenes[0] = Scene(name: newFolderName)
+        (project.scenes[0] as! Scene).project = project
     }
 
     func testMigrateToScene() {

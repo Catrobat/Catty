@@ -24,6 +24,7 @@ protocol CBSchedulerProtocol: AnyObject {
 
     // properties
     var running: Bool { get set }
+    var stageManagerDelegate: StageManagerProtocol? { get set }
 
     // queries
     func isContextScheduled(_ context: CBScriptContextProtocol) -> Bool

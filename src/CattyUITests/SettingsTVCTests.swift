@@ -54,6 +54,7 @@ class SettingsTVCTests: XCTestCase {
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 

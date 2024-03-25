@@ -156,42 +156,42 @@ final class UserVariableTests: XCTestCase {
         let expectedValue = "text"
 
         let userVariable = UserVariable(name: "name")
-        userVariable.textLabel = SKLabelNode()
-        XCTAssertNil(userVariable.textLabel?.text)
+        userVariable.textLabels["Scene 1"] = SKLabelNode()
+        XCTAssertNil(userVariable.textLabels["Scene 1"]?.text)
 
         userVariable.value = expectedValue
-        XCTAssertEqual(expectedValue, userVariable.textLabel?.text)
+        XCTAssertEqual(expectedValue, userVariable.textLabels["Scene 1"]?.text)
     }
 
     func testTextLabelInteger() {
         let expectedValue = 123
 
         let userVariable = UserVariable(name: "name")
-        userVariable.textLabel = SKLabelNode()
-        XCTAssertNil(userVariable.textLabel?.text)
+        userVariable.textLabels["Scene 1"] = SKLabelNode()
+        XCTAssertNil(userVariable.textLabels["Scene 1"]?.text)
 
         userVariable.value = expectedValue
-        XCTAssertEqual(String(expectedValue), userVariable.textLabel?.text)
+        XCTAssertEqual(String(expectedValue), userVariable.textLabels["Scene 1"]?.text)
     }
 
     func testTextLabelFloat() {
         let expectedValue = 12.3
 
         let userVariable = UserVariable(name: "name")
-        userVariable.textLabel = SKLabelNode()
-        XCTAssertNil(userVariable.textLabel?.text)
+        userVariable.textLabels["Scene 1"] = SKLabelNode()
+        XCTAssertNil(userVariable.textLabels["Scene 1"]?.text)
 
         userVariable.value = expectedValue
-        XCTAssertEqual(String(expectedValue), userVariable.textLabel?.text)
+        XCTAssertEqual(String(expectedValue), userVariable.textLabels["Scene 1"]?.text)
     }
 
     func testTextLabelInvalid() {
         let userVariable = UserVariable(name: "name")
-        userVariable.textLabel = SKLabelNode()
-        XCTAssertNil(userVariable.textLabel?.text)
+        userVariable.textLabels["Scene 1"] = SKLabelNode()
+        XCTAssertNil(userVariable.textLabels["Scene 1"]?.text)
 
         userVariable.value = userVariable
-        XCTAssertEqual(SpriteKitDefines.defaultValueShowVariable, userVariable.textLabel?.text)
+        XCTAssertEqual(SpriteKitDefines.defaultValueShowVariable, userVariable.textLabels["Scene 1"]?.text)
     }
 
     func testChangeTextLabel() {
@@ -199,18 +199,18 @@ final class UserVariableTests: XCTestCase {
         let incrementValue = 2
 
         let userVariable = UserVariable(name: "name")
-        userVariable.textLabel = SKLabelNode()
+        userVariable.textLabels["Scene 1"] = SKLabelNode()
 
         userVariable.value = initialValue
-        XCTAssertEqual(String(initialValue), userVariable.textLabel?.text)
+        XCTAssertEqual(String(initialValue), userVariable.textLabels["Scene 1"]?.text)
 
         userVariable.change(by: Double(incrementValue))
-        XCTAssertEqual(String(initialValue + incrementValue), userVariable.textLabel?.text)
+        XCTAssertEqual(String(initialValue + incrementValue), userVariable.textLabels["Scene 1"]?.text)
     }
 
     func testTruncateIfTextLabelLengthExceeded() {
         let userVariable = UserVariable(name: "name")
-        userVariable.textLabel = SKLabelNode()
+        userVariable.textLabels["Scene 1"] = SKLabelNode()
 
         var value = ""
         for _ in 0...(SpriteKitDefines.maxLengthSKLabelNode - 1) {
@@ -218,9 +218,9 @@ final class UserVariableTests: XCTestCase {
         }
         userVariable.value = value
 
-        XCTAssertEqual(value, userVariable.textLabel?.text)
+        XCTAssertEqual(value, userVariable.textLabels["Scene 1"]?.text)
 
         userVariable.value = value + "a"
-        XCTAssertEqual(value + "...", userVariable.textLabel?.text)
+        XCTAssertEqual(value + "...", userVariable.textLabels["Scene 1"]?.text)
     }
 }

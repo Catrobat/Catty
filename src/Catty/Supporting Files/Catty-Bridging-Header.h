@@ -224,3 +224,4 @@
 #import "CBXMLPositionStack.h"
 #import "EVCircularProgressView.h"
 #import "BrickLookProtocol.h"
+#import "BrickSceneProtocol.h"

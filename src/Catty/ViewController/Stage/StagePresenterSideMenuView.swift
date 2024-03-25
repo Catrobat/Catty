@@ -23,7 +23,7 @@
 import UIKit
 
 @objc protocol StagePresenterSideMenuDelegate {
-    var project: Project { get }
+    var stageManager: StageManager { get }
 
     func stopAction()
     func continueAction()
@@ -32,6 +32,8 @@ import UIKit
     func showHideAxisAction()
     func aspectRatioAction()
     func shareDSTAction()
+    func stopActionAndResetUserData()
+    func restartSceneAndResetUserData()
 }
 
 enum SideMenuButtonType {
@@ -70,8 +72,8 @@ enum SideMenuButtonType {
     @objc(initWithFrame:andStagePresenterViewController_:)
     init(frame: CGRect, delegate: StagePresenterSideMenuDelegate) {
         self.delegate = delegate
-        self.landscape = delegate.project.header.landscapeMode
-        self.project = delegate.project
+        self.landscape = delegate.stageManager.project.header.landscapeMode
+        self.project = delegate.stageManager.project
         self.embroidery = self.project.getRequiredResources() & ResourceType.embroidery.rawValue > 0
         self.landscapeMultiplier = 2.0
 
@@ -115,11 +117,11 @@ enum SideMenuButtonType {
     }
 
     private func setUpButtonsPortrait() {
-        let backButton = setupButton(imageName: "chevron.left", selector: #selector(delegate?.stopAction))
+        let backButton = setupButton(imageName: "chevron.left", selector: #selector(delegate?.stopActionAndResetUserData))
         backButton.center = self.center
         backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: marginTopBottom).isActive = true
 
-        let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopAction))
+        let backLabel = setupLabel(title: kLocalizedBack, selector: #selector(delegate?.stopActionAndResetUserData))
         backLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 0).isActive = true
 
         let screenshotButton = setupButton(imageName: "camera.viewfinder", selector: #selector(delegate?.takeScreenshotAction))
@@ -136,7 +138,7 @@ enum SideMenuButtonType {
             restartLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         }
 
-        let restartButton = setupButton(imageName: "arrow.counterclockwise", selector: #selector(delegate?.restartAction))
+        let restartButton = setupButton(imageName: "arrow.counterclockwise", selector: #selector(delegate?.restartSceneAndResetUserData))
         restartButton.bottomAnchor.constraint(equalTo: restartLabel.topAnchor, constant: 0).isActive = true
 
         let continueLabel = setupLabel(title: kLocalizedContinue, selector: #selector(delegate?.continueAction))

@@ -62,7 +62,7 @@ class BrickCellListDataTests: XCTestCase {
         userDataContainer.add(programList)
 
         project = Project()
-        project.scene = spriteObject.scene
+        project.scenes[0] = spriteObject.scene!
         project.userData = userDataContainer
 
         spriteObject.scene.project = project

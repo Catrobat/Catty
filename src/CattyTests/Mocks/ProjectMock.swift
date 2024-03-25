@@ -19,6 +19,7 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+@testable import Pocket_Code
 
 class ProjectMock: Project {
 
@@ -29,6 +30,10 @@ class ProjectMock: Project {
 
     override convenience init() {
         self.init(width: 300, andHeight: 400)
+        let scene = Scene(name: "MockScene")
+        self.scenes.add(scene)
+        self.activeScene = scene
+        scene.project = self
     }
 
     convenience init(requiredResources: Int) {
@@ -37,6 +42,10 @@ class ProjectMock: Project {
 
     convenience init(width: CGFloat, andHeight: CGFloat) {
         self.init(width: width, andHeight: andHeight, andRequiredResources: ResourceType.noResources.rawValue)
+        let scene = Scene(name: "MockScene")
+        self.scenes.add(scene)
+        self.activeScene = scene
+        scene.project = self
     }
 
     required init(width: CGFloat, andHeight: CGFloat, andRequiredResources: Int) {
@@ -45,6 +54,7 @@ class ProjectMock: Project {
         self.header.screenWidth = NSNumber(value: Float(width))
         self.header.screenHeight = NSNumber(value: Float(andHeight))
         self.mockedRequiredResources = andRequiredResources
+        self.scenes.add(Scene(name: "Test"))
     }
 
     override func getRequiredResources() -> Int {

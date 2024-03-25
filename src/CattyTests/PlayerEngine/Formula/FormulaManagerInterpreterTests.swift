@@ -36,7 +36,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         object = SpriteObject()
         object.scene = scene
         project = ProjectMock()
-        project.scene = object.scene
+        project.scenes[0] = object.scene!
     }
 
     func testInterpretDouble() {

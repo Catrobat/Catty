@@ -69,6 +69,7 @@
 #import "BrickPhiroToneProtocol.h"
 #import "BrickPhiroIfSensorProtocol.h"
 #import "Pocket_Code-Swift.h"
+#import "BrickSceneProtocol.h"
 
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
@@ -963,6 +964,22 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [lookBrick setLook:[Util lookWithName:(NSString*)value forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     } else
+        
+        if ([brickCellData isKindOfClass:[BrickCellScenesStartBrickData class]] && [brick conformsToProtocol:@protocol(BrickSceneProtocol)]) {
+            Brick<BrickSceneProtocol> *sceneBrick = (Brick<BrickSceneProtocol>*)brick;
+            
+            NSArray *scenes = ProjectManager.shared.currentProject.scenes;
+
+            for (id object in scenes) {
+                if ([object isKindOfClass:[Scene class]]) {
+                    Scene *scene = (Scene *)object;
+                    if ([scene.name isEqualToString:value]) {
+                        [sceneBrick setScene:scene];
+                        break;
+                    }
+                }
+            }
+        } else
     if ([brickCellData isKindOfClass:[BrickCellBackgroundData class]] && [brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
         SpriteObject *backgroundObject = self.object.scene.objects.firstObject;

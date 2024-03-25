@@ -29,7 +29,7 @@ final class SoundTest: XCTestCase {
     func testPathForScene() {
         let project = Project()
         let scene = Scene(name: "testScene")
-        project.scene = scene
+        project.scenes[0] = scene
         scene.project = project
 
         let sound = Sound(name: "testSound", fileName: "testSoundFile")

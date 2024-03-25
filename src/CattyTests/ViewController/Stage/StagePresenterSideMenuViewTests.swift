@@ -38,6 +38,10 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
         project.header = Header()
         project.header.screenWidth = 123
         project.header.screenHeight = 456
+        let scene = Scene(name: "Test")
+        scene.project = project
+        project.scenes.add(scene)
+        project.activeScene = scene
 
         delegateMock = StagePresenterSideMenuDelegateMock(project: project)
     }
@@ -141,7 +145,12 @@ final class StagePresenterSideMenuViewTests: XCTestCase {
 }
 
 class StagePresenterSideMenuDelegateMock: StagePresenterSideMenuDelegate {
-    var project: Project
+    var stageManager: StageManager
+
+    func stopActionAndResetUserData() {}
+
+    func restartSceneAndResetUserData() {}
+
     var stopActionCalled = false
     var continueActionCalled = false
     var restartActionCalled = false
@@ -151,7 +160,7 @@ class StagePresenterSideMenuDelegateMock: StagePresenterSideMenuDelegate {
     var shareDSTActionCalled = false
 
     init(project: Project) {
-        self.project = project
+        self.stageManager = StageManager(project: project)
     }
 
     func stopAction() {

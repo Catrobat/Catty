@@ -27,11 +27,14 @@
 @class SpriteObject;
 @class ProjectLoadingInfo;
 @class Scene;
-
+@class StagePresenterViewController;
+ 
 @interface Project : NSObject
 
 @property (nonatomic, strong, nonnull) Header *header;
-@property (nonatomic, strong, nonnull) Scene *scene;
+@property (nonatomic, strong, nonnull) NSMutableArray<Scene*> *scenes;
+@property (nonatomic, strong, nonnull) Scene *scene DEPRECATED_ATTRIBUTE; //needed for compadability with "Old Parser"
+@property (nonatomic, strong, nonnull) Scene *activeScene;
 @property (nonatomic, strong, nonnull) UserDataContainer *userData;
 @property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *unsupportedElements;
 @property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *physicsObjectNames;

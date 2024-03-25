@@ -25,26 +25,30 @@
 
 @protocol SpriteManagerDelegate;
 
-@class Project;
-@class FormulaManager;
 @class LoadingView;
 @class StagePresenterSideMenuView;
 @class StagePresenterViewControllerShareExtension;
+@class StageManager;
+@class SKView;
 
 @interface StagePresenterViewController : UIViewController
 
-@property (nonatomic, strong) Project *project;
-@property (nonatomic, strong) FormulaManager *formulaManager;
+@property (nonatomic, strong) StageManager *stageManager;
+@property (nonatomic, strong) SKView *skView;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIView *gridView;
+@property (nonatomic, strong) UINavigationController *stageNavigationController;
 
+- (void)stopAction;
 - (void)pauseAction;
 - (void)resumeAction;
 - (void)connectionLost;
-
+- (void)setupStageAndStart;
 - (void)showLoadingView;
 - (void)hideLoadingView;
 - (void)setUpGridView;
+- (void)restartAction;
+- (void)continueAction;
 
 - (BOOL)isPaused;
 

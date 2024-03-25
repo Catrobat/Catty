@@ -37,11 +37,16 @@
             let yResult = context.formulaInterpreter.interpretDouble(yFormula, for: spriteObject)
 
             if let userVariable = userVariable {
-                guard let scene = userVariable.textLabel?.scene else {
+
+                if let value = userVariable.value as? NSNumber {
+                    userVariable.textLabels[spriteObject.scene.name]?.text = (value).stringValue
+                }
+
+                guard let scene = userVariable.textLabels[spriteObject.scene.name]?.scene else {
                     fatalError("This should never happen!")
                 }
-                userVariable.textLabel?.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
-                userVariable.textLabel?.isHidden = false
+                userVariable.textLabels[spriteObject.scene.name]?.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
+                userVariable.textLabels[spriteObject.scene.name]?.isHidden = false
             }
             context.state = .runnable
         }
