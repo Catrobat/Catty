@@ -38,7 +38,12 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
         let scene = Scene(name: "testScene")
         object.scene = scene
         parent = CBSpriteNodeMock(spriteObject: object)
-        parent.mockedStage = StageBuilder(project: ProjectMock(width: CGFloat(kIphoneXStageWidth), andHeight: CGFloat(kIphoneXStageHeight))).build()
+
+        let project = ProjectMock(width: CGFloat(kIphoneXStageWidth), andHeight: CGFloat(kIphoneXStageHeight))
+        project.scenes.add(scene)
+        scene.project = project
+
+        parent.mockedStage = StageBuilder(scene: scene).build()
 
         BubbleBrickHelper.addBubble(to: parent, withText: "Hello", andType: CBBubbleType.thought)
         child = parent.children.first!

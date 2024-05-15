@@ -24,25 +24,32 @@
 @objcMembers final class UserVariable: NSObject, UserVariableProtocol {
 
     var name: String
-    var textLabel: SKLabelNode?
+    var textLabels: [String: SKLabelNode] = [:]
+
     private let variableLocker = NSLock()
     private var _value: Any?
 
     var value: Any? {
         get {
-          _value
+            _value
         }
         set {
             variableLocker.lock()
             if let value = newValue as? NSString {
                 _value = value
-                textLabel?.text = truncateIfLengthExceeded(value: value as String)
+                for label in textLabels.values {
+                    label.text = truncateIfLengthExceeded(value: value as String)
+                }
             } else if let value = newValue as? NSNumber {
                 _value = value
-                textLabel?.text = value.stringValue
+                for label in textLabels.values {
+                    label.text = value.stringValue
+                }
             } else {
                 _value = NSNumber(value: 0)
-                textLabel?.text = SpriteKitDefines.defaultValueShowVariable
+                for label in textLabels.values {
+                    label.text = SpriteKitDefines.defaultValueShowVariable
+                }
             }
             variableLocker.unlock()
         }
@@ -85,7 +92,10 @@
         if let valueAsDouble = _value as? NSNumber {
             let newValue = valueAsDouble.doubleValue + value
             _value = NSNumber(value: newValue)
-            textLabel?.text = (newValue as NSNumber).stringValue
+            for label in textLabels.values {
+                label.text = (newValue as NSNumber).stringValue
+            }
+            //textLabel?.text = (newValue as NSNumber).stringValue
         }
         variableLocker.unlock()
     }

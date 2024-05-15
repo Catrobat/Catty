@@ -24,21 +24,32 @@ import BluetoothHelper
 import CoreBluetooth
 import UIKit
 
+@objc extension StagePresenterViewController: StagePresenterViewControllerStageManagerDelegate {
+    func startNewScene() {
+        self.restartAction()
+    }
+    func continueScene() {
+
+        self.skView.isPaused = false
+        print(self.stageManager.stage.CBScene.name)
+        self.skView.presentScene(self.stageManager.stage, transition: .crossFade(withDuration: 1))
+        stageManager.resumeScheduler()
+    }
+}
+
 @objc extension StagePresenterViewController {
 
     @objc(checkResourcesAndPushViewControllerTo:completion:)
     func checkResourcesAndPushViewController(to navigationController: UINavigationController, completion: @escaping () -> Void = {}) {
         DispatchQueue.global(qos: .userInitiated).async {
-            guard let project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo()) else {
+            guard let _ = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo()) else {
                 DispatchQueue.main.async {
                     completion()
                     Util.alert(text: kLocalizedInvalidZip)
                 }
                 return
             }
-            self.project = project
             DispatchQueue.main.async {
-                self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
                 let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 
                 completion()
@@ -50,8 +61,21 @@ import UIKit
         }
     }
 
+    @objc func playScene(to navigationController: UINavigationController, completion: @escaping () -> Void = {}) {
+        DispatchQueue.main.async {
+            self.stageManager.stagePresenterDeleagte = self
+            let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
+
+            completion()
+
+            if readyToStart && !(self.navigationController?.topViewController is StagePresenterViewController) {
+                navigationController.pushViewController(self, animated: true)
+            }
+        }
+    }
+
     @nonobjc private func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
-        let requiredResources = project.getRequiredResources()
+        let requiredResources = self.stageManager.project.getRequiredResources()
 
         // Bluetooth
         var unconnectedBluetoothDevices = [BluetoothDeviceID]()
@@ -72,7 +96,7 @@ import UIKit
         }
 
         // All other resources
-        let unavailableSensorResources = formulaManager.unavailableResources(for: requiredResources)
+        let unavailableSensorResources = stageManager.formulaManager.unavailableResources(for: requiredResources)
         var unavailableResourceNames = [String]()
 
         if (unavailableSensorResources & ResourceType.vibration.rawValue) > 0 {

@@ -30,7 +30,7 @@ final class ComeToFrontBrickTests: AbstractBrickTest {
         let project = Project()
         let scene = Scene(name: "testScene")
         scene.project = project
-        project.scene = scene
+        project.scenes[0] = scene
 
         let background = SpriteObject()
         background.scene = scene
@@ -49,9 +49,9 @@ final class ComeToFrontBrickTests: AbstractBrickTest {
         object2.spriteNode = spriteNode2
         spriteNode2.zPosition = 2
 
-        project.scene.add(object: background)
-        project.scene.add(object: object1)
-        project.scene.add(object: object2)
+        (project.scenes[0] as! Scene).add(object: background)
+        (project.scenes[0] as! Scene).add(object: object1)
+        (project.scenes[0] as! Scene).add(object: object2)
 
         let script = WhenScript()
         script.object = object1

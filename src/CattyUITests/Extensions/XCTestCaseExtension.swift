@@ -69,7 +69,7 @@ extension XCTestCase {
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[name]))
     }
 
-    func addObjectAndDrawNewImage(name: String, in app: XCUIApplication) {
+    func addObjectAndDrawNewImage(name: String, in app: XCUIApplication, projectName: String) {
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
         let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
@@ -83,7 +83,7 @@ extension XCTestCase {
         app.navigationBars.buttons[kLocalizedBack].tap()
 
         waitForElementToAppear(app.buttons[kLocalizedSaveChanges]).tap()
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[kLocalizedPocketCode]))
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[projectName]))
     }
 
     func addBrick(label: String, section: String, in app: XCUIApplication) {

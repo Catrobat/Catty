@@ -41,6 +41,7 @@
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @property (nonatomic, strong) ProjectManager *projectManager;
+
 @end
 
 @implementation SceneTableViewController
@@ -79,7 +80,7 @@
     
     if (self.scene.project.header.programName) {
         self.navigationItem.title = self.scene.project.header.programName;
-        self.title = self.scene.project.header.programName;
+        self.title = self.scene.name;
     }
     self.placeHolderView.title = kLocalizedTapPlusToAddSprite;
     [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
@@ -88,10 +89,12 @@
         [self addObjectAction:nil];
     }
     [self checkUnsupportedElements];
+    self.stagePresenterViewController = [StagePresenterViewController new];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    ProjectManager.shared.currentProject.activeScene = self.scene;
     [super viewWillAppear:YES];
     [self.tableView reloadData];
 }
@@ -165,18 +168,6 @@
     };
     [self.navigationController pushViewController:ltvc animated:NO];
     [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
-    [self hideLoadingView];
-}
-
-- (void)renameProjectActionForProjectWithName:(NSString*)newProjectName
-{
-    if ([newProjectName isEqualToString:self.scene.project.header.programName])
-        return;
-    
-    [self showLoadingView];
-    newProjectName = [Util uniqueName:newProjectName existingNames:[Project allProjectNames]];
-    [self.scene.project renameToProjectName:newProjectName andShowSaveNotification:YES];
-    self.navigationItem.title = self.title = self.scene.project.header.programName;
     [self hideLoadingView];
 }
 
@@ -277,24 +268,15 @@
     
     NSString *changeOrientation = self.scene.project.header.landscapeMode ? kLocalizedMakeItPortrait : kLocalizedMakeItLandscape;
     
+    NSString *newScene = [[kLocalizedNew stringByAppendingString:@" "]stringByAppendingString:kLocalizedScene];
+    
     [[[[[[actionSheet
          addDefaultActionWithTitle:changeOrientation handler:^{
         [self changeProjectOrientationAction:self.scene.project];
     }]
-        addDefaultActionWithTitle:kLocalizedRenameProject handler:^{
-        NSMutableArray *unavailableNames = [[Project allProjectNames] mutableCopy];
-        [unavailableNames removeString:self.scene.project.header.programName];
-        [Util askUserForUniqueNameAndPerformAction:@selector(renameProjectActionForProjectWithName:)
-                                            target:self
-                                       promptTitle:kLocalizedRenameProject
-                                     promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
-                                       promptValue:((! [self.scene.project.header.programName isEqualToString:kLocalizedNewProject])
-                                                    ? self.scene.project.header.programName : nil)
-                                 promptPlaceholder:kLocalizedEnterYourProjectNameHere
-                                    minInputLength:kMinNumOfProjectNameCharacters
-                                    maxInputLength:kMaxNumOfProjectNameCharacters
-                          invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
-                                     existingNames:unavailableNames];
+         addDefaultActionWithTitle:newScene handler:^{
+        [self.sceneDelegate addNewScene];
+        [self.navigationController popViewControllerAnimated:YES];
     }]
        addDefaultActionWithTitle:detailActionTitle handler:^{
         [self toggleDetailCellsMode];
@@ -668,11 +650,29 @@
                                                                          target:self
                                                                          action:@selector(addObjectAction:)];
     UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
-                                                        action:@selector(playSceneAction:)];
+                                                        action:@selector(playActionForActiveScene:)];
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                           target:self
                                                                           action:nil];
     self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
+}
+
+-(void)playActionForActiveScene:(id)sender {
+    [self showLoadingView];
+    
+
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).enabledOrientation = true;
+    BOOL landscapeMode = self.project.header.landscapeMode;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (! landscapeMode) {
+            [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+        } else {
+            [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+        }
+        [self.stagePresenterVC playSceneTo:self.navigationController completion:^{
+            [self hideLoadingView];
+        }];
+    });
 }
 
 - (void)setupEditingToolBar
@@ -714,6 +714,10 @@
             [Util showNotificationForSaveAction];
         });
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 }
 
 @end

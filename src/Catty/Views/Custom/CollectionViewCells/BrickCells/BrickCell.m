@@ -364,6 +364,7 @@
             inputViewFrame.size.width = UIDefines.brickInputFieldMinWidth;
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
+            // TODO ADD Scenes List here
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
                 inputField = [[BrickCellFormulaData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
@@ -384,6 +385,9 @@
             } else if ([afterLabelParam rangeOfString:@"BACKGROUND"].location != NSNotFound) {
                 inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellBackgroundData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else if ([afterLabelParam rangeOfString:@"Scenes"].location != NSNotFound) {
+                inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
+                inputField = [[BrickCellScenesStartBrickData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = UIDefines.brickComboBoxWidth;
                 inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];

@@ -42,25 +42,24 @@
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"program"];
     [XMLError exceptionIfNil:context message:@"No context given!"];
     Project *project = [Project new];
+    [project.scenes removeAllObjects];
     // IMPORTANT: DO NOT CHANGE ORDER HERE!!
     project.header = [self parseAndCreateHeaderFromElement:xmlElement withContext:context];
     project.userData = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
     if ([xmlElement childWithElementName:@"scenes"]) {
-        Scene *scene = [self parseAndCreateSceneFromElement:xmlElement withContext:context];
-        scene.project = project;
-        project.scene = scene;
+        [self parseAndCreateSceneFromElement:xmlElement ofProject:project withContext:context];
     } else {
-        project.scene = [[Scene alloc] initWithName: [Util defaultSceneNameForSceneNumber:1]];
-        project.scene.project = project;
+        Scene *scene = [[Scene alloc] initWithName: [Util defaultSceneNameForSceneNumber:1]];
+        project.scenes[0] = scene;
+        scene.project = project;
         for (SpriteObject *object in [Scene parseAndCreateObjectsFromElement:xmlElement withContext:context]) {
             //when project will contain [scenes] then object.scene will be equal to scene where the objects belongs to
-            object.scene = project.scene;
+            object.scene = scene;
             object.scene.project = project;
             //when project will contain [scenes] then object will be added to the scene where it belongs and add scene to [scene] of project
-            [project.scene addObject:object];
+            [scene addObject:object];
         }
     }
-    
     return project;
 }
 
@@ -93,7 +92,8 @@
     return object;
 }
 
-+ (Scene *)parseAndCreateSceneFromElement:(GDataXMLElement*)projectElement withContext:(CBXMLParserContext*)context
++ (void)parseAndCreateSceneFromElement:(GDataXMLElement*)projectElement
+                                ofProject: (Project*)project withContext:(CBXMLParserContext*)context
 {
     NSArray *scenesElements = [projectElement elementsForName:@"scenes"];
     [XMLError exceptionIf:[scenesElements count] notEquals:1 message:@"No scenes given!"];
@@ -102,41 +102,56 @@
     message:@"No scene in scenes, but there must exist "\
     "at least 1 scene!!"];
     
-    GDataXMLElement *sceneElement = [sceneElements firstObject];
-    Scene *scene = [context parseFromElement:sceneElement withClass:[Scene class]];
-    
-    return scene;
+    for (GDataXMLElement *sceneElement in sceneElements) {
+        Scene* scene = [context parseFromElement:sceneElement withClass:[Scene class]];
+        scene.project = project;
+        [project.scenes addObject: scene];
+        [context.spriteObjectList removeAllObjects];
+        [context.pointedSpriteObjectList removeAllObjects];
+    }
+    return;
 }
 
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    // update context object
-    context.spriteObjectList = [[NSMutableArray alloc] initWithArray:self.scene.objects];
     
-    // generate xml element for program
+    //Scene* scene = [self.scenes lastObject];
+
+    // update context object
+    
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];
-    
+
     // add pseudo <settings/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"settings" context:nil]];
-    
     GDataXMLElement *scenes = [GDataXMLElement elementWithName:@"scenes" context:context];
-    [scenes addChild:[self.scene xmlElementWithContext:context] context:context];
+    
+    context.sceneList = [[NSMutableArray alloc] initWithArray:self.scenes];
+    
+    for(Scene* scene in self.scenes) {
+        context.spriteObjectList = [[NSMutableArray alloc] initWithArray: scene.objects];
+        [scenes addChild:[scene xmlElementWithContext:context] context:context];
+        context.pointedSpriteObjectList = nil;
+        context.spriteObjectNamePositions = nil;
+    }
+    
     [xmlElement addChild:scenes context:context];
 
     if (self.userData) {
         GDataXMLElement *projectUserDataXmlElement = [self.userData serializeForProject:context];
-        
+
         GDataXMLElement *programVariableListXmlElement = [projectUserDataXmlElement childWithElementName:@"programVariableList"];
         [XMLError exceptionIfNil:programVariableListXmlElement message:@"No programVariableList element present"];
         [xmlElement addChild:programVariableListXmlElement context:nil];
-        
+
         GDataXMLElement *programListOfListsXmlElement = [projectUserDataXmlElement childWithElementName:@"programListOfLists"];
         [XMLError exceptionIfNil:programListOfListsXmlElement message:@"No programVariableList element present"];
         [xmlElement addChild:programListOfListsXmlElement context:nil];
     }
+
     return xmlElement;
 }
+
 
 @end

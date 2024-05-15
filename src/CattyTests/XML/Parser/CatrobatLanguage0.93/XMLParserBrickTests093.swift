@@ -446,7 +446,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let project = self.getProjectForXML(xmlFile: "PointToBrickWithoutSpriteObject")
         XCTAssertNotNil(project, "Project must not be nil!")
 
-        let moleTwo = project.scene.object(at: 1)!
+        let moleTwo = (project.scenes[0] as! Scene).object(at: 1)!
         XCTAssertNotNil(moleTwo, "SpriteObject must not be nil!")
         XCTAssertEqual(moleTwo.name, "Mole 2", "Invalid object name!")
 

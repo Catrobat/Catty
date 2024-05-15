@@ -40,7 +40,7 @@ final class GoNStepsBackBrickTests: AbstractBrickTest {
         project = Project()
         let scene = Scene(name: "testScene")
         scene.project = project
-        project.scene = scene
+        project.scenes[0] = scene
 
         object1 = SpriteObject()
         object1.scene = scene
@@ -52,8 +52,8 @@ final class GoNStepsBackBrickTests: AbstractBrickTest {
         spriteNode2 = CBSpriteNode(spriteObject: object2)
         object2.spriteNode = spriteNode2
 
-        project.scene.add(object: object1!)
-        project.scene.add(object: object2!)
+        (project.scenes[0] as! Scene).add(object: object1!)
+        (project.scenes[0] as! Scene).add(object: object2!)
 
         script = WhenScript()
         script.object = object1

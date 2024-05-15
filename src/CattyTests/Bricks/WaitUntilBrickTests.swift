@@ -28,6 +28,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
 
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
         let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
+        project.activeScene = project.scenes.firstObject as! Scene
         let testVar = project.userData.getUserVariable(identifiedBy: "testVar")
         let hasFinishedWaiting = project.userData.getUserVariable(identifiedBy: "hasFinishedWaiting")
 
@@ -47,6 +48,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
         let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
+        project.activeScene = project.scenes.firstObject as! Scene
         let hasFinishedWaiting = project.userData.getUserVariable(identifiedBy: "hasFinishedWaiting")
 
         let stage = createStage(project: project)
@@ -116,7 +118,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     private func createStage(project: Project) -> Stage {
-        let stageBuilder = StageBuilder(project: project)
+        let stageBuilder = StageBuilder(scene: project.scenes[0] as! Scene)
             .withFormulaManager(formulaManager: FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false))
             .withAudioEngine(audioEngine: AudioEngineMock())
         return stageBuilder.build()

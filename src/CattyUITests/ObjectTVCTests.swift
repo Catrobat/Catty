@@ -32,6 +32,7 @@ class ObjectTVCTests: XCTestCase {
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
 
         //check every mole for script
         for object in projectObjects {
@@ -39,8 +40,8 @@ class ObjectTVCTests: XCTestCase {
             app.tables.staticTexts[kLocalizedScripts].tap()
             XCTAssert(app.navigationBars[kLocalizedScripts].buttons[object].exists)
             app.navigationBars[kLocalizedScripts].buttons[object].tap()
-            app.navigationBars[object].buttons[kLocalizedMyFirstProject].tap()
-            XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
+            app.navigationBars[object].buttons["\(kLocalizedScene) 1"].tap()
+            XCTAssert(waitForElementToAppear(app.navigationBars["\(kLocalizedScene) 1"]).exists)
         }
     }
 
@@ -48,6 +49,7 @@ class ObjectTVCTests: XCTestCase {
         app = launchApp()
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -65,6 +67,7 @@ class ObjectTVCTests: XCTestCase {
         app = launchApp()
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -82,6 +85,7 @@ class ObjectTVCTests: XCTestCase {
         app = launchApp(with: ["skipPrivacyPolicy", "restoreDefaultProject"])
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -99,6 +103,7 @@ class ObjectTVCTests: XCTestCase {
         app = launchApp()
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -119,6 +124,7 @@ class ObjectTVCTests: XCTestCase {
         app = launchApp()
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -133,6 +139,7 @@ class ObjectTVCTests: XCTestCase {
         app = launchApp()
 
         app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedLooks].tap()
 
@@ -151,10 +158,11 @@ class ObjectTVCTests: XCTestCase {
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
 
-        addObjectAndDrawNewImage(name: objectName, in: app)
+        addObjectAndDrawNewImage(name: objectName, in: app, projectName: projectName)
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["\(kLocalizedScene) 1"]))
         waitForElementToAppear(app.tables.staticTexts[objectName]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
@@ -165,7 +173,7 @@ class ObjectTVCTests: XCTestCase {
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
 
         app.navigationBars.buttons[objectName].tap()
-        app.navigationBars.buttons[projectName].tap()
+        app.navigationBars.buttons["\(kLocalizedScene) 1"].tap()
 
         // Copy object
         app.tables.staticTexts[objectName].swipeLeft()
@@ -177,9 +185,12 @@ class ObjectTVCTests: XCTestCase {
 
         XCTAssertTrue(waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).exists)
 
+        app.navigationBars.buttons[projectName].tap()
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.tables.staticTexts[projectName].tap()
+
+        app.staticTexts[projectName].tap()
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
         waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).tap()
 
         app.staticTexts[kLocalizedScripts].tap()

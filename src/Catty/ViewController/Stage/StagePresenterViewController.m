@@ -31,8 +31,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface StagePresenterViewController() <UIActionSheetDelegate, StagePresenterSideMenuDelegate>
-@property (nonatomic, strong) Stage *stage;
-@property (nonatomic, strong) SKView *skView;
 @property (nonatomic, strong) StagePresenterSideMenuView *menuView;
 @property (nonatomic, strong) NSLayoutConstraint *menuViewLeadingConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *menuViewRightConstraint;
@@ -46,7 +44,7 @@
 
 - (void)stopProject
 {
-    [self.stage stopProject];
+    [self.stageManager pauseScheduler];
     
     // TODO remove Singletons
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -109,7 +107,7 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    if (self.project.header.landscapeMode == YES)
+    if (self.stageManager.project.header.landscapeMode == YES)
     {
         self.menuView = [[StagePresenterSideMenuView alloc] initWithFrame:CGRectMake(0, 0, screenHeight / StagePresenterSideMenuView.widthProportionalLandscape, screenWidth) andStagePresenterViewController_: self];
     } else {
@@ -123,7 +121,7 @@
     [self.menuView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
     [self.menuView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 
-    if (self.project.header.landscapeMode == YES)
+    if (self.stageManager.project.header.landscapeMode == YES)
     {
         self.menuViewRightConstraint = [self.menuView.rightAnchor constraintEqualToAnchor:self.view.leftAnchor constant:self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalLandscape];
     } else {
@@ -147,7 +145,7 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    if (self.project.header.landscapeMode) {
+    if (self.stageManager.project.header.landscapeMode) {
         return UIInterfaceOrientationMaskLandscapeRight;
     }
     return UIInterfaceOrientationMaskPortrait;
@@ -158,7 +156,7 @@
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    if (self.project.header.landscapeMode) {
+    if (self.stageManager.project.header.landscapeMode) {
         return UIInterfaceOrientationLandscapeRight;
     }
     return UIInterfaceOrientationPortrait;
@@ -194,9 +192,6 @@
 
 - (void)freeRessources
 {
-    self.project = nil;
-    self.stage = nil;
-    
     // Delete sound rec for loudness sensor
     NSError *error;
     NSFileManager *fileMgr = [NSFileManager defaultManager];
@@ -210,8 +205,8 @@
 - (void)setUpGridView
 {
     self.gridView.backgroundColor = UIColor.clearColor;
-    int width = self.project.header.landscapeMode? [Util screenHeight]: [Util screenWidth];
-    int height = self.project.header.landscapeMode? [Util screenWidth]: [Util screenHeight];
+    int width = self.stageManager.project.header.landscapeMode? [Util screenHeight]: [Util screenWidth];
+    int height = self.stageManager.project.header.landscapeMode? [Util screenWidth]: [Util screenHeight];
 
     UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0, height/2, width, 1)];
     xArrow.backgroundColor = UIColor.redColor;
@@ -239,7 +234,7 @@
     positiveWidth.textColor = UIColor.redColor;
     
     // negativeWidth 
-    int paddingLeft = self.project.header.landscapeMode? root.view.safeAreaInsets.top: root.view.safeAreaInsets.left + padding;
+    int paddingLeft = self.stageManager.project.header.landscapeMode? root.view.safeAreaInsets.top: root.view.safeAreaInsets.left + padding;
     UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(paddingLeft, heightPosition, labelWidth, labelHeight)];
     negativeWidth.textColor = UIColor.redColor;
     
@@ -249,20 +244,20 @@
     negativeHeight.textColor = UIColor.redColor;
 
     // positiveHeight
-    double paddingTop = self.project.header.landscapeMode? root.view.safeAreaInsets.right + padding: root.view.safeAreaInsets.top;
+    double paddingTop = self.stageManager.project.header.landscapeMode? root.view.safeAreaInsets.right + padding: root.view.safeAreaInsets.top;
     UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake(widthPosition, paddingTop, labelWidth, labelHeight)];
     positiveHeight.textColor = UIColor.redColor;
     
-    if (!self.project.header.landscapeMode) {
-        positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenWidth.floatValue/2];
-        negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenWidth.floatValue/2];
-        positiveHeight.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenHeight.floatValue/2];
-        negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenHeight.floatValue/2];
+    if (!self.stageManager.project.header.landscapeMode) {
+        positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.stageManager.project.header.screenWidth.floatValue/2];
+        negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.stageManager.project.header.screenWidth.floatValue/2];
+        positiveHeight.text = [NSString stringWithFormat:@"%d",(int)self.stageManager.project.header.screenHeight.floatValue/2];
+        negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)self.stageManager.project.header.screenHeight.floatValue/2];
     } else {
-        positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenHeight.floatValue/2];
-        negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenHeight.floatValue/2];
-        positiveHeight.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenWidth.floatValue/2];
-        negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenWidth.floatValue/2];
+        positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.stageManager.project.header.screenHeight.floatValue/2];
+        negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.stageManager.project.header.screenHeight.floatValue/2];
+        positiveHeight.text = [NSString stringWithFormat:@"%d",(int)self.stageManager.project.header.screenWidth.floatValue/2];
+        negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)self.stageManager.project.header.screenWidth.floatValue/2];
     }
     
     [self.gridView addSubview:positiveWidth];
@@ -280,39 +275,19 @@
 
 - (void)setupStageAndStart
 {
-    // Initialize scene
-    Stage *stage = [[[[StageBuilder alloc] initWithProject:self.project] andFormulaManager:self.formulaManager] build];
-    if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-        stage.scaleMode = SKSceneScaleModeFill;
-    } else if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-        stage.scaleMode = SKSceneScaleModeAspectFit;
-    } else {
-        stage.scaleMode = SKSceneScaleModeFill;
-    }
+    [self.stageManager setupStage];
     self.skView.paused = NO;
-    self.stage = stage;
     
     [[BluetoothService sharedInstance] setStagePresenter:self];
     [[CameraPreviewHandler shared] setCamView:self.view];
 
-    [self.skView presentScene:self.stage];
-    if (![self.stage startProject]) {
+    [self.skView presentScene:self.stageManager.stage];
+    if (![self.stageManager.stage startProject]) {
         [self stopAction];
     }
     
     [self hideLoadingView];
     [self continueActionWithDuration:UIDefines.firstSwipeDuration];
-}
-
--(void)resaveLooks
-{
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (SpriteObject *object in self.project.scene.objects) {
-            for (Look *look in object.lookList) {
-                [[RuntimeImageCache sharedImageCache] loadImageFromDiskWithPath:look.fileName];
-            }
-        }
-    });
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -324,25 +299,24 @@
 - (void)pauseAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        [[self.stage getSoundEngine] pause];
+        [[self.stageManager.stage getSoundEngine] pause];
         [[FlashHelper sharedFlashHandler] pause];
         [[BluetoothService sharedInstance] pauseBluetoothDevice];
     });
     
-    [self.stage pauseScheduler];
+    [self.stageManager pauseScheduler];
 }
 
 - (void)resumeAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        [[self.stage getSoundEngine] resume];
+        [[self.stageManager.stage getSoundEngine] resume];
         [[BluetoothService sharedInstance] continueBluetoothDevice];
         if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
             [[FlashHelper sharedFlashHandler] resume];
         }
     });
-    
-    [self.stage resumeScheduler];
+    [self.stageManager resumeScheduler];
 }
 
 - (void)continueAction
@@ -367,7 +341,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andProject:self.project.scene];
+                             [self takeAutomaticScreenshotForSKView:self.skView andScene: self.stageManager.scene];
                          }
                      }];
     self.skView.paused = NO;
@@ -375,7 +349,7 @@
 
 - (void)stopAction
 {
-    Stage *previousStage = self.stage;
+    Stage *previousStage = self.stageManager.stage;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         self.menuView.userInteractionEnabled = NO;
@@ -393,15 +367,15 @@
     [self showLoadingView];
     
     self.menuView.userInteractionEnabled = NO;
-    self.stage.userInteractionEnabled = NO;
+    self.stageManager.stage.userInteractionEnabled = NO;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self stopProject];
     
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.project = [Project projectWithLoadingInfo:[Util lastUsedProjectLoadingInfo]];
+//            self.project = [Project projectWithLoadingInfo:[Util lastUsedProjectLoadingInfo]];
             [self setupStageAndStart];
-            [self.menuView restartWithProject:self.project];
+            [self.menuView restartWithProject:self.stageManager.project];
         });
     });
 }
@@ -411,7 +385,7 @@
 {
     [self showLoadingView];
     self.menuView.userInteractionEnabled = NO;
-    Stage *previousStage = self.stage;
+    Stage *previousStage = self.stageManager.stage;
     previousStage.userInteractionEnabled = NO;
     [self stopProject];
     previousStage.userInteractionEnabled = YES;
@@ -439,11 +413,11 @@
 
 - (void)aspectRatioAction
 {
-    self.stage.scaleMode = self.stage.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
-    if ([self.project.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch]) {
-         self.project.header.screenMode = kCatrobatHeaderScreenModeMaximize;
+    self.stageManager.stage.scaleMode = self.stageManager.stage.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    if ([self.stageManager.project.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch]) {
+         self.stageManager.project.header.screenMode = kCatrobatHeaderScreenModeMaximize;
     } else {
-        self.project.header.screenMode = kCatrobatHeaderScreenModeStretch;
+        self.stageManager.project.header.screenMode = kCatrobatHeaderScreenModeStretch;
     }
     [self.skView setNeedsLayout];
     self.menuOpen = YES;
@@ -454,7 +428,7 @@
 
 - (void)takeScreenshotAction
 {
-    [self takeManualScreenshotForSKView:self.skView andProject:self.project.scene];
+    [self takeManualScreenshotForSKView:self.skView andScene: self.stageManager.scene];
 }
 
 - (void)shareDSTAction
@@ -591,7 +565,7 @@
     [self.view bringSubviewToFront:self.menuView];
     self.menuViewLeadingConstraint.constant = 0;
     
-    if(self.project.header.landscapeMode == YES){
+    if(self.stageManager.project.header.landscapeMode == YES){
         self.menuViewRightConstraint.constant = self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalLandscape;
     } else {
         self.menuViewRightConstraint.constant = self.view.frame.size.width / StagePresenterSideMenuView.widthProportionalPortrait;
@@ -645,6 +619,8 @@
 {
     return self.menuOpen;
 }
+
+
 
 #pragma mark - Helpers
 - (UIImage*)brightnessBackground:(UIImage*)startImage {

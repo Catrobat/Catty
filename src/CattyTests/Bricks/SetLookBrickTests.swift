@@ -53,7 +53,6 @@ final class SetLookBrickTests: AbstractBrickTest {
 
         object.lookList.add(lookA!)
         object.lookList.add(lookB!)
-
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 

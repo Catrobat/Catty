@@ -61,11 +61,11 @@
     }
 
     static func defaultRawValue(for spriteObject: SpriteObject) -> Double {
-        guard let project = spriteObject.scene.project else {
+        guard let scene = spriteObject.scene else {
             return defaultRawValue
         }
 
-        let objectList = project.scene.objects()
+        let objectList = scene.objects()
         var zPosition = defaultRawValue
         for object in objectList {
             if object == spriteObject {

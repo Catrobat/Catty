@@ -24,13 +24,11 @@ final class CBFrontend: CBFrontendProtocol {
 
     // MARK: - Properties
     let logger: CBLogger
-    private(set) weak var project: Project?
     private lazy var _sequenceFilters = [CBFrontendSequenceFilterProtocol]()
 
     // MARK: - Initializers
-    init(logger: CBLogger, project: Project?) {
+    init(logger: CBLogger) {
         self.logger = logger
-        self.project = project
     }
 
     // MARK: - Operations

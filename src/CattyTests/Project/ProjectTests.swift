@@ -38,7 +38,7 @@ class ProjectTests: XCTestCase {
         fileManager = CBFileManager.shared()
         deleteAllProjectsAndCreateDefaultProject()
 
-        self.scene = project.scene
+        self.scene = (project.scenes[0] as! Scene)
         self.object = SpriteObject()
         self.object.scene = scene
     }
@@ -71,13 +71,13 @@ class ProjectTests: XCTestCase {
     }
 
     func testImagesDirectoryExists() {
-        let imageDirectory = project.scene.imagesPath()
+        let imageDirectory = (project.scenes[0] as! Scene).imagesPath()
         let directoryExists = fileManager.directoryExists(imageDirectory)
         XCTAssertTrue(directoryExists)
     }
 
     func testSoundsDirectoryExists() {
-        let soundsDirectory = project.scene.soundsPath()
+        let soundsDirectory = (project.scenes[0] as! Scene).soundsPath()
         let directoryExists = fileManager.directoryExists(soundsDirectory)
         XCTAssertTrue(directoryExists)
     }
@@ -98,15 +98,15 @@ class ProjectTests: XCTestCase {
         let script = StartScript()
         script.brickList.addObjects(from: [ifThenLogicBeginBrick, ifThenLogicEndBrick] as [AnyObject])
         object.scriptList.add(script)
-        project.scene.add(object: object)
+        (project.scenes[0] as! Scene).add(object: object)
 
-        let initialObjectSize = project.scene.objects().count
+        let initialObjectSize = (project.scenes[0] as! Scene).objects().count
         XCTAssertTrue(initialObjectSize > 0)
 
-        let copiedObject = project.scene.copy(object, withNameForCopiedObject: copiedObjectName)!
+        let copiedObject = (project.scenes[0] as! Scene).copy(object, withNameForCopiedObject: copiedObjectName)!
         XCTAssertEqual(1, copiedObject.scriptList.count)
 
-        let objectList = project.scene.objects()
+        let objectList = (project.scenes[0] as! Scene).objects()
         XCTAssertEqual(initialObjectSize + 1, objectList.count)
         XCTAssertEqual(copiedObjectName, (objectList[initialObjectSize] ).name)
 
@@ -145,15 +145,15 @@ class ProjectTests: XCTestCase {
         let script = StartScript()
         script.brickList.addObjects(from: [ifLogicBeginBrick, ifLogicElseBrick, ifLogicEndBrick] as [AnyObject])
         object.scriptList.add(script)
-        project.scene.add(object: object)
+        (project.scenes[0] as! Scene).add(object: object)
 
-        let initialObjectSize = project.scene.objects().count
+        let initialObjectSize = (project.scenes[0] as! Scene).objects().count
         XCTAssertTrue(initialObjectSize > 0)
 
-        let copiedObject = project.scene.copy(object, withNameForCopiedObject: copiedObjectName)!
+        let copiedObject = (project.scenes[0] as! Scene).copy(object, withNameForCopiedObject: copiedObjectName)!
         XCTAssertEqual(1, copiedObject.scriptList.count)
 
-        let objectList = project.scene.objects()
+        let objectList = (project.scenes[0] as! Scene).objects()
         XCTAssertEqual(initialObjectSize + 1, objectList.count)
         XCTAssertEqual(copiedObjectName, (objectList[initialObjectSize] ).name)
 
@@ -184,7 +184,7 @@ class ProjectTests: XCTestCase {
 
     func testCopyObjectWithObjectVariable() {
         object.name = "newObjectName"
-        project.scene.add(object: object)
+        (project.scenes[0] as! Scene).add(object: object)
 
         let variable = UserVariable(name: "userVariable")
         object.userData.add(variable)
@@ -196,16 +196,16 @@ class ProjectTests: XCTestCase {
         script.brickList.addObjects(from: [setVariableBrick] as [AnyObject])
         object.scriptList.add(script)
 
-        let initialObjectSize = project.scene.objects().count
+        let initialObjectSize = (project.scenes[0] as! Scene).objects().count
         XCTAssertTrue(initialObjectSize > 0)
 
         let initialVariableSize = UserDataContainer.allVariables(for: project).count
         XCTAssertTrue(initialVariableSize > 0)
 
-        let copiedObject = project.scene.copy(object, withNameForCopiedObject: "copiedObjectName")!
+        let copiedObject = (project.scenes[0] as! Scene).copy(object, withNameForCopiedObject: "copiedObjectName")!
         XCTAssertEqual(1, copiedObject.scriptList.count)
 
-        let objectList = project.scene.objects()
+        let objectList = (project.scenes[0] as! Scene).objects()
         XCTAssertEqual(initialObjectSize + 1, objectList.count)
         XCTAssertEqual(initialVariableSize + 1, UserDataContainer.allVariables(for: project).count)
         XCTAssertEqual((objectList[initialObjectSize] ).name, copiedObject.name)
@@ -223,7 +223,7 @@ class ProjectTests: XCTestCase {
 
     func testCopyObjectWithObjectList() {
         object.name = "newObjectName"
-        project.scene.add(object: object)
+        (project.scenes[0] as! Scene).add(object: object)
 
         let list = UserList(name: "userList")
         object.userData.add(list)
@@ -235,16 +235,16 @@ class ProjectTests: XCTestCase {
         script.brickList.addObjects(from: [brick] as [AnyObject])
         object.scriptList.add(script)
 
-        let initialObjectSize = project.scene.objects().count
+        let initialObjectSize = (project.scenes[0] as! Scene).objects().count
         XCTAssertTrue(initialObjectSize > 0)
 
         let initialListSize = UserDataContainer.allLists(for: project).count
         XCTAssertTrue(initialListSize > 0)
 
-        let copiedObject = project.scene.copy(object, withNameForCopiedObject: "copiedObjectName")!
+        let copiedObject = (project.scenes[0] as! Scene).copy(object, withNameForCopiedObject: "copiedObjectName")!
         XCTAssertEqual(1, copiedObject.scriptList.count)
 
-        let objectList = project.scene.objects()
+        let objectList = (project.scenes[0] as! Scene).objects()
         XCTAssertEqual(initialObjectSize + 1, objectList.count)
         XCTAssertEqual(initialListSize + 1, UserDataContainer.allLists(for: project).count)
         XCTAssertEqual((objectList[initialObjectSize] ).name, copiedObject.name)
@@ -388,16 +388,16 @@ class ProjectTests: XCTestCase {
 
     func testAllObject() {
         self.project = Project()
-        self.project.scene = Scene()
+        self.project.scenes[0] = Scene()
 
-        XCTAssertEqual(0, self.project.scene.objects().count)
+        XCTAssertEqual(0, (self.project.scenes[0] as! Scene).objects().count)
 
         let objectA = SpriteObject()
         objectA.name = "objectA"
 
-        project.scene.add(object: objectA)
-        XCTAssertEqual(1, self.project.scene.objects().count)
-        XCTAssertTrue(self.project.scene.objects()[0] === objectA)
+        (project.scenes[0] as! Scene).add(object: objectA)
+        XCTAssertEqual(1, (self.project.scenes[0] as! Scene).objects().count)
+        XCTAssertTrue((self.project.scenes[0] as! Scene).objects()[0] === objectA)
     }
 
     func testChangeProjectOrientation() {

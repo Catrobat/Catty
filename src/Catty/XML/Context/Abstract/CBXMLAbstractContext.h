@@ -37,6 +37,7 @@
 //------------------------------------------------------------------------------------------------------------
 // ressources data used while traversing the tree
 //------------------------------------------------------------------------------------------------------------
+@property (nonatomic, strong) NSMutableArray *sceneList;
 @property (nonatomic, strong) NSMutableArray *pointedSpriteObjectList; // contains all already parsed pointed (!!) SpriteObjects
 @property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all known SpriteObjects
 @property (nonatomic, strong) SpriteObject *spriteObject; // contains all looks, sounds, bricks, ... of currently parsed/serialized SpriteObject

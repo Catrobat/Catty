@@ -24,12 +24,20 @@
 #import "BaseTableViewController.h"
 #import "SpriteObject.h"
 
+@protocol SceneDelegate <NSObject>
+- (void)addNewScene;
+@end
+
+
 @interface SceneTableViewController : BaseTableViewController
 
 @property (nonatomic, strong) Scene *scene;
+@property (nonatomic, strong) Project *project;
+@property (nonatomic, strong) StagePresenterViewController *stagePresenterVC;
 
 @property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
 @property (copy) void (^afterSafeBlock)(SpriteObject* object);
+@property (weak, nonatomic) id<SceneDelegate> sceneDelegate;
 
 - (void)addObjectAction:(id)sender;
 

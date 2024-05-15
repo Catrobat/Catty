@@ -40,13 +40,11 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
 
         project = Project()
         project.userData = UserDataContainer()
-
         scene = Scene(name: "testScene")
         scene.project = project
-        project.scene = scene
-
         spriteObject = SpriteObjectMock()
-        project.scene.add(object: spriteObject!)
+        scene.add(object: spriteObject)
+        project.scenes[0] = scene as Scene
 
         script = StartScript()
         spriteObject.scriptList.add(script!)
@@ -109,7 +107,12 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
 
         XCTAssertFalse(controller.isVariableUsed(variable))
 
-        project.scene.add(object: objectB)
+        guard let scene = project.scenes[0] as? Scene else {
+            XCTFail("No Scene found.")
+            return
+        }
+        scene.add(object: objectB)
+        project.scenes[0] = scene
         XCTAssertTrue(controller.isVariableUsed(variable))
     }
 
@@ -160,8 +163,13 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
         brick.userVariable = variable
         scriptB.brickList.add(brick)
         objectB.scriptList.add(scriptB)
-        project.scene.add(object: objectB)
 
+        guard let scene = project.scenes[0] as? Scene else {
+            XCTFail("No Scene found.")
+            return
+        }
+
+        project.scenes[0] = scene.add(object: objectB)
         XCTAssertFalse(controller.isVariableUsed(variable))
 
         controller = FormulaEditorDataSectionViewController(formulaManager: formulaManager,
@@ -227,7 +235,12 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
 
         XCTAssertFalse(controller.isListUsed(list))
 
-        project.scene.add(object: objectB)
+        guard let scene = project.scenes[0] as? Scene else {
+            XCTFail("No Scene found.")
+            return
+        }
+        scene.add(object: objectB)
+        project.scenes[0] = scene
         XCTAssertTrue(controller.isListUsed(list))
     }
 
@@ -278,6 +291,10 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
         let brick = AddItemToUserListBrick()
         let scriptB = WhenScript()
         let objectB = SpriteObject()
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
 
         brick.listFormula = Formula()
 
@@ -285,7 +302,7 @@ final class FormulaEditorDataSectionViewControllerTests: XCTestCase {
         brick.userList = list
         scriptB.brickList.add(brick)
         objectB.scriptList.add(scriptB)
-        project.scene.add(object: objectB)
+        scene.add(object: objectB)
 
         XCTAssertFalse(controller.isListUsed(list))
 

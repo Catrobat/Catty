@@ -109,19 +109,22 @@ final class StageTests: XCTestCase {
 
     func testVariableLabel() {
         let project = ProjectMock(width: self.screenSize.width, andHeight: self.screenSize.height)
-        project.scene = Scene()
+        let scene = Scene()
+        scene.project = project
+        project.scenes[0] = scene
+        project.activeScene = scene
         let stage = StageBuilder(project: project).build()
 
         let userVariable = UserVariable(name: "testName")
         project.userData.add(userVariable)
 
-        XCTAssertNil(userVariable.textLabel)
+        XCTAssertNil(userVariable.textLabels[scene.name])
         XCTAssertTrue(stage.startProject())
-        XCTAssertNotNil(userVariable.textLabel)
-        XCTAssertTrue(userVariable.textLabel?.isHidden == true)
-        XCTAssertEqual(SKLabelHorizontalAlignmentMode.center, userVariable.textLabel?.horizontalAlignmentMode)
-        XCTAssertEqual(CGFloat(SpriteKitDefines.defaultLabelFontSize), userVariable.textLabel?.fontSize)
-        XCTAssertEqual(1, userVariable.textLabel?.text?.count)
+        XCTAssertNotNil(userVariable.textLabels[scene.name]?.text)
+        XCTAssertTrue(userVariable.textLabels[scene.name]?.isHidden == true)
+        XCTAssertEqual(SKLabelHorizontalAlignmentMode.center, userVariable.textLabels[scene.name]?.horizontalAlignmentMode)
+        XCTAssertEqual(CGFloat(SpriteKitDefines.defaultLabelFontSize), userVariable.textLabels[scene.name]?.fontSize)
+        XCTAssertEqual(1, userVariable.textLabels[scene.name]?.text?.count)
 
         stage.stopProject()
     }

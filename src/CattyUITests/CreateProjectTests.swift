@@ -41,16 +41,17 @@ class CreateProjectTests: XCTestCase {
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
 
-        addObjectAndDrawNewImage(name: testObject, in: app)
+        addObjectAndDrawNewImage(name: testObject, in: app, projectName: projectName)
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["\(kLocalizedScene) 1"]))
         app.staticTexts[testObject].tap()
         app.staticTexts[kLocalizedLooks].tap()
 
         XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedLookFilename]).exists)
         app.navigationBars.buttons[testObject].tap()
-        app.navigationBars.buttons[projectName].tap()
+        app.navigationBars.buttons["\(kLocalizedScene) 1"].tap()
 
         //Add Background
         app.tables.staticTexts[kLocalizedBackground].tap()
@@ -72,7 +73,7 @@ class CreateProjectTests: XCTestCase {
 
         XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedLookFilename]).exists)
         app.navigationBars.buttons[kLocalizedBackground].tap()
-        app.navigationBars.buttons[projectName].tap()
+        app.navigationBars.buttons["\(kLocalizedScene) 1"].tap()
 
         //Add Scripts to Object
         app.tables.staticTexts[testObject].tap()
@@ -86,7 +87,7 @@ class CreateProjectTests: XCTestCase {
 
         //Add Script to Background
         app.navigationBars.buttons[testObject].tap()
-        app.navigationBars.buttons[projectName].tap()
+        app.navigationBars.buttons["\(kLocalizedScene) 1"].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -107,10 +108,11 @@ class CreateProjectTests: XCTestCase {
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        app.staticTexts["\(kLocalizedScene) 1"].tap()
 
-        addObjectAndDrawNewImage(name: helloText, in: app)
+        addObjectAndDrawNewImage(name: helloText, in: app, projectName: projectName)
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["\(kLocalizedScene) 1"]))
         XCTAssert(app.staticTexts[helloText].exists)
     }
 }

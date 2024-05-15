@@ -24,6 +24,7 @@
 
     @objc static let shared = ProjectManager()
 
+    @objc public var currentProject = Project.lastUsed()
     private let fileManager: CBFileManager
     private let imageCache: RuntimeImageCache
 
@@ -35,32 +36,12 @@
     @objc func createProject(name: String, projectId: String?) -> Project {
         let project = Project()
         let projectName = Util.uniqueName(name, existingNames: Project.allProjectNames())
-        project.scene = Scene(name: Util.defaultSceneName(forSceneNumber: 1))
-        project.scene.project = project
         project.header = Header.default()
         project.header.programName = projectName
         project.header.programID = projectId
 
-        if fileManager.directoryExists(projectName) == false {
-            fileManager.createDirectory(project.projectPath())
-        }
-
-        let sceneDir = project.scene.path()
-        if !fileManager.directoryExists(sceneDir) {
-            fileManager.createDirectory(sceneDir)
-        }
-
-        let imagesDirName = project.scene.imagesPath()
-        if fileManager.directoryExists(imagesDirName) == false {
-            fileManager.createDirectory(imagesDirName)
-        }
-
-        let soundDirName = project.scene.soundsPath()
-        if fileManager.directoryExists(soundDirName) == false {
-            fileManager.createDirectory(soundDirName)
-        }
-
-        project.scene.addObject(withName: kLocalizedBackground)
+        addNewScene(name: Util.defaultSceneName(forSceneNumber: 1), project: project)
+        project.activeScene = project.scenes[0] as! Scene
 
         let filePath = project.projectPath() + kScreenshotAutoFilename
         let projectIconNames = UIDefines.defaultScreenshots
@@ -78,6 +59,87 @@
         fileManager.writeData(data, path: filePath)
         imageCache.clear()
         return project
+
+    }
+
+    func addNewScene(name: String, project: Project) {
+
+        let scene = Scene(name: name)
+        scene.project = project
+
+        if fileManager.directoryExists(project.header.programName) == false {
+               fileManager.createDirectory(project.projectPath())
+           }
+
+        let sceneDir = scene.path()
+        if !fileManager.directoryExists(sceneDir) {
+            fileManager.createDirectory(sceneDir)
+        }
+
+        let imagesDirName = scene.imagesPath()
+        if fileManager.directoryExists(imagesDirName) == false {
+            fileManager.createDirectory(imagesDirName)
+        }
+
+        let soundDirName = scene.soundsPath()
+        if fileManager.directoryExists(soundDirName) == false {
+            fileManager.createDirectory(soundDirName)
+        }
+        scene.addObject(withName: kLocalizedBackground)
+
+        project.scenes.add(scene)
+        guard let scenePath = scene.path() else {
+            return
+        }
+        let filePath = scenePath + kScreenshotAutoFilename
+        let projectIconNames = UIDefines.defaultScreenshots
+        let randomIndex = Int(arc4random_uniform(UInt32(projectIconNames.count)))
+
+        guard let defaultScreenshotImage = UIImage(named: projectIconNames[randomIndex]) else {
+            debugPrint("Could not find image named \(projectIconNames[randomIndex])")
+            return
+        }
+
+        guard let data = defaultScreenshotImage.pngData() else {
+            return
+        }
+        fileManager.writeData(data, path: filePath)
+        imageCache.clear()
+    }
+
+    func loadSceneImage(scene: Scene, completion: @escaping (_ image: UIImage?) -> Void) {
+
+        guard let scenePath = scene.path() else {
+            completion(UIImage(named: "catrobat"))
+            return
+        }
+
+        let fallbackPaths = [
+            scenePath + kScreenshotFilename,
+            scenePath + kScreenshotManualFilename,
+            scenePath + kScreenshotAutoFilename
+        ]
+
+        for imagePath in fallbackPaths {
+            let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize)
+            if image != nil {
+                completion(image)
+                return
+            }
+        }
+
+        DispatchQueue.global(qos: .default).async {
+            for imagePath in fallbackPaths where self.fileManager.fileExists(imagePath as String) {
+                self.imageCache.loadImageFromDisk(
+                    withPath: imagePath,
+                    andSize: UIDefines.previewImageSize,
+                    onCompletion: { image, _ in completion(image) }
+                )
+                return
+            }
+            completion(UIImage(named: "catrobat"))
+        }
+        return
     }
 
     @objc func loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo, completion: @escaping (_ image: UIImage?, _ path: String?) -> Void) {
@@ -88,8 +150,7 @@
         ]
 
         for imagePath in fallbackPaths {
-            let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize)
-            if image != nil {
+            if let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize) {
                 completion(image, imagePath)
                 return
             }
@@ -172,7 +233,7 @@
     }
 
     @objc func removeObjects(_ project: Project, objects: [SpriteObject]) {
-        let scene = project.scene
+        guard let scene = project.scenes[0] as? Scene else {return}
         for object in objects where scene.objects().contains(object) {
             scene.removeObject(object)
         }

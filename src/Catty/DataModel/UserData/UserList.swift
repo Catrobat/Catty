@@ -23,7 +23,7 @@
 @objcMembers class UserList: NSObject, UserListProtocol {
 
     var name: String
-    fileprivate var elements: SynchronizedArray<Any>
+    var elements: SynchronizedArray<Any>
 
     init(name: String) {
         self.name = name

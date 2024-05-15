@@ -49,7 +49,7 @@ class XMLParserTests0999: XMLAbstractTest {
 
     func testSetPenColorBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0999")
-        let setPenColorBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 46) as! Brick
+        let setPenColorBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 46) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(setPenColorBrick.isKind(of: SetPenColorBrick.self), "Invalid brick type")
@@ -62,7 +62,7 @@ class XMLParserTests0999: XMLAbstractTest {
 
     func testGlideToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let glideToBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
+        let glideToBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(glideToBrick.isKind(of: GlideToBrick.self), "Invalid brick type")
@@ -75,7 +75,7 @@ class XMLParserTests0999: XMLAbstractTest {
 
     func testThinkForBubbleBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let thinkForBubbleBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 37) as! Brick
+        let thinkForBubbleBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 37) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(thinkForBubbleBrick.isKind(of: ThinkForBubbleBrick.self), "Invalid brick type")
@@ -87,7 +87,7 @@ class XMLParserTests0999: XMLAbstractTest {
 
     func testInsertItemIntoUserListBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let insertItemIntoUserListBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 49) as! Brick
+        let insertItemIntoUserListBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 49) as! Brick
 
         let castedBrick = insertItemIntoUserListBrick as! InsertItemIntoUserListBrick
         XCTAssertTrue(castedBrick.index.isEqual(to: Formula(integer: 2)), "Invalid formula")

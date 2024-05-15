@@ -41,7 +41,7 @@ final class SetLookByIndexBrickTest: XCTestCase {
     override func setUp() {
         project = ProjectManager.shared.createProject(name: "setLookByIndexTest", projectId: "1")
         spriteObject = SpriteObject()
-        spriteObject.scene = project.scene
+        spriteObject.scene = (project.scenes[0] as! Scene)
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)

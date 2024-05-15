@@ -46,7 +46,7 @@ final class ShowTextBrickTests: XCTestCase {
         spriteObject.spriteNode = spriteNode
         spriteObject.scene.project = project
 
-        project.scene = spriteObject.scene
+        project.scenes[0] = spriteObject.scene!
 
         script = Script()
         script.object = spriteObject
@@ -79,9 +79,9 @@ final class ShowTextBrickTests: XCTestCase {
         let expectedPos = CGPoint(x: stageSize.width / 2 + pos.x, y: stageSize.height / 2 + pos.y)
 
         let userVariable = UserVariable(name: "testName")
-        let label = SKLabelNode()
-        userVariable.textLabel = label
 
+        let label = SKLabelNode()
+        userVariable.textLabels["testScene"] = label
         let stage = SKScene(size: stageSize)
         stage.addChild(label)
 
@@ -93,8 +93,8 @@ final class ShowTextBrickTests: XCTestCase {
 
         executeInstruction(for: brick)
 
-        XCTAssertEqual(expectedPos.x, userVariable.textLabel?.position.x)
-        XCTAssertEqual(expectedPos.y, userVariable.textLabel?.position.y)
+        XCTAssertEqual(expectedPos.x, userVariable.textLabels["testScene"]?.position.x)
+        XCTAssertEqual(expectedPos.y, userVariable.textLabels["testScene"]?.position.y)
     }
 
     private func executeInstruction(for brick: CBInstructionProtocol) {

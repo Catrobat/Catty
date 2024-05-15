@@ -331,7 +331,6 @@
 
 - (void)removeReferences
 {
-    self.scene = nil;
     [self.scriptList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 

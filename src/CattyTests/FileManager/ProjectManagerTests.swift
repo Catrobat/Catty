@@ -357,13 +357,13 @@ final class ProjectManagerTests: XCTestCase {
         let object3 = SpriteObject()
         object3.name = "testObject3"
         scene.add(object: object3)
-        project.scene = scene
+        project.scenes[0] = scene
 
         XCTAssertEqual(3, scene.objects().count)
 
         projectManager.removeObjects(project, objects: [object1, object2])
 
-        XCTAssertEqual(1, project.scene.objects().count)
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count)
         XCTAssertEqual(object3, scene.objects()[0])
     }
 }
