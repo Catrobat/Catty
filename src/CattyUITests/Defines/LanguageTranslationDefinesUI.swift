@@ -464,6 +464,12 @@ let kLocalizedGreen = NSLocalizedString("green", bundle: Bundle(for: LanguageTra
 let kLocalizedBlue = NSLocalizedString("blue", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedStamp = NSLocalizedString("Stamp", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
+// plot bricks
+let kLocalizedStartPlot = NSLocalizedString("Start plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStopPlot = NSLocalizedString("Stop plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSavePlot = NSLocalizedString("Save plot to SVG", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSavePlotDefaultFile = NSLocalizedString("myplot.svg", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -913,6 +919,7 @@ let kLocalizedCategoryArduino = NSLocalizedString("Arduino", bundle: Bundle(for:
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryEmbroidery = NSLocalizedString("Embroidery", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryPlot = NSLocalizedString("Plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

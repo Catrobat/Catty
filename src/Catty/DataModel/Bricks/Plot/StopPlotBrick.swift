@@ -20,22 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenUpBrick: CBInstructionProtocol {
+@objc(StopPlotBrick)
 
-    func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+@objcMembers class StopPlotBrick: Brick, BrickProtocol {
+
+    override required init() {
+        super.init()
     }
 
-    func actionBlock() -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
+    func category() -> kBrickCategoryType {
+        kBrickCategoryType.plotBrick
+    }
 
-        return {
-            spriteNode.penConfiguration.previousPositionLines.append(spriteNode.penConfiguration.previousPositions)
-            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>();
-            spriteNode.penConfiguration.penDown = false
-        }
+    override class func description() -> String {
+        "PlotBrick"
+    }
+
+    override func getRequiredResources() -> Int {
+        ResourceType.noResources.rawValue
+    }
+
+    override func brickCell() -> BrickCellProtocol.Type! {
+        StopPlotBrickCell.self as BrickCellProtocol.Type
+    }
+
+    override func isDisabledForBackground() -> Bool {
+        true
     }
 
 }

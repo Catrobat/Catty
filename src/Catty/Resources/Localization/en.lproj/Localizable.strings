@@ -1319,6 +1319,9 @@
 "My object" = "My object";
 
 /* No comment provided by engineer. */
+"myplot.svg" = "myplot.svg";
+
+/* No comment provided by engineer. */
 "Name" = "Name";
 
 /* No comment provided by engineer. */
@@ -1551,6 +1554,9 @@
 
 /* bluetooth */
 "Please try resetting the device and try again." = "Please try resetting the device and try again.";
+
+/* No comment provided by engineer. */
+"Plot" = "Plot";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
@@ -1828,6 +1834,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "Save changes";
 
+/* No comment provided by engineer. */
+"Save plot to SVG" = "Save plot to SVG";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
 
@@ -2057,6 +2066,9 @@
 "Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
+"Start plot" = "Start plot";
+
+/* No comment provided by engineer. */
 "Start running stitch with length" = "Start running stitch with length";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2103,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Stop Phiro motor";
+
+/* No comment provided by engineer. */
+"Stop plot" = "Stop plot";
 
 /* No comment provided by engineer. */
 "Su" = "Su";

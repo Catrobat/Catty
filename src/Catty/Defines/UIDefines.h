@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kPhiroBrick                = 8,
     kPenBrick                  = 9,
     kEmbroideryBrick           = 10,
+    kPlotBrick                 = 11,
     kInvisible                 = 99,
     kRecentlyUsedBricks        = 0
 };

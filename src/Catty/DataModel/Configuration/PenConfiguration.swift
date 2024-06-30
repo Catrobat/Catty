@@ -22,6 +22,8 @@
 
 struct PenConfiguration {
     var penDown = false
+    var cut = false
+    
     static let sizeConversionFactor = CGFloat(0.634)
 
     private(set) var size: CGFloat
@@ -38,6 +40,11 @@ struct PenConfiguration {
 
     var color = SpriteKitDefines.defaultPenColor
     var previousPositions = SynchronizedArray<CGPoint>()
+    var previousPositionLines = SynchronizedArray<SynchronizedArray<CGPoint>>()
+    
+    var previousCutPositions = SynchronizedArray<CGPoint>()
+    var drawnCutPoints = 0;
+    var previousCutPositionLines = SynchronizedArray<SynchronizedArray<CGPoint>>()
 
     init(projectWidth: CGFloat?, projectHeight: CGFloat?) {
 

@@ -20,22 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenUpBrick: CBInstructionProtocol {
+class SavePlotSVGBrickCell: BrickCell, BrickCellProtocol {
 
-    func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+    var leftTextLabel: UILabel?
+    var fileTextField: UITextField?
+
+    override init(frame: CGRect) {
+       super.init(frame: frame)
+   }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
-    func actionBlock() -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
-
-        return {
-            spriteNode.penConfiguration.previousPositionLines.append(spriteNode.penConfiguration.previousPositions)
-            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>();
-            spriteNode.penConfiguration.penDown = false
-        }
+    static func cellHeight() -> CGFloat {
+        UIDefines.brickHeight1h
     }
 
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.leftTextLabel = inlineViewSubViews[0] as? UILabel
+        self.fileTextField = inlineViewSubViews[1] as? UITextField
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSavePlot + " %@\n"
+    }
+
+    override func parameters() -> [String]! {
+        NSArray.init(objects: "{FLOAT;range=(0,inf)}", "{VARIABLE}") as? [String]
+    }
 }

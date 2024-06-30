@@ -464,6 +464,12 @@ let kLocalizedGreen = NSLocalizedString("green", comment: "")
 let kLocalizedBlue = NSLocalizedString("blue", comment: "")
 let kLocalizedStamp = NSLocalizedString("Stamp", comment: "")
 
+// plot bricks
+let kLocalizedStartPlot = NSLocalizedString("Start plot", comment: "")
+let kLocalizedStopPlot = NSLocalizedString("Stop plot", comment: "")
+let kLocalizedSavePlot = NSLocalizedString("Save plot to SVG", comment: "")
+let kLocalizedSavePlotDefaultFile = NSLocalizedString("myplot.svg", comment: "")
+
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
@@ -913,6 +919,7 @@ let kLocalizedCategoryArduino = NSLocalizedString("Arduino", comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", comment: "")
 let kLocalizedCategoryEmbroidery = NSLocalizedString("Embroidery", comment: "")
+let kLocalizedCategoryPlot = NSLocalizedString("Plot", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
