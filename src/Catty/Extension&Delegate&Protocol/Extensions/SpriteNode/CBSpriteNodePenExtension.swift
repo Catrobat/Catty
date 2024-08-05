@@ -23,9 +23,9 @@
 extension CBSpriteNode {
 
     @objc func drawPenLine() {
-        for i in 0..<self.penConfiguration.previousPositionLines.count
+        for (_, positionLine) in self.penConfiguration.previousPositionLines.enumerated()
         {
-            drawLineFromConfiguration(with: self.penConfiguration.previousPositionLines[i]!, mode: false)
+            drawLineFromConfiguration(with: positionLine, mode: false)
         }
         self.penConfiguration.previousPositionLines.removeAll()
         if self.penConfiguration.previousPositions.last != self.position && penConfiguration.penDown {
@@ -39,11 +39,11 @@ extension CBSpriteNode {
     }
     
     @objc func drawPlotLine() {
-        for i in 0..<self.penConfiguration.previousCutPositionLines.count
+        for (_, cutPositionLine) in self.penConfiguration.previousCutPositionLines.enumerated()
         {
-            drawLineFromConfiguration(with: self.penConfiguration.previousCutPositionLines[i]!, mode: false)
+            drawLineFromConfiguration(with: cutPositionLine, mode: false)
         }
-        if self.penConfiguration.previousCutPositions.last != self.position && penConfiguration.cut {
+        if self.penConfiguration.previousCutPositions.last != self.position && penConfiguration.isCut {
             self.penConfiguration.previousCutPositions.append(self.position)
         }
         drawLineFromConfiguration(with: self.penConfiguration.previousCutPositions, mode: false, start: self.penConfiguration.drawnCutPoints - 1)
@@ -59,7 +59,7 @@ extension CBSpriteNode {
                     fatalError("This should never happen")
                 }
                 let lineTo = point
-                if(dashed){
+                if dashed{
                     self.addDashedLine(from: lineFrom, to: lineTo, withColor: penConfiguration.color, withSize: penConfiguration.size)
                 } else {
                     self.addLine(from: lineFrom, to: lineTo, withColor: penConfiguration.color, withSize: penConfiguration.size)

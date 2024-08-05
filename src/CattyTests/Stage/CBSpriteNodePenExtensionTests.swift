@@ -99,7 +99,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
     }    
     
     func testWhenSpritePositionChangedStartPlot() {
-        spriteNode.penConfiguration.cut = true
+        spriteNode.penConfiguration.isCut = true
         spriteNode.penConfiguration.previousCutPositions.append(initialPosition)
         spriteNode.position = initialPosition
 
@@ -129,7 +129,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
     }
     
     func testWhenSpritePositionChangedStopPlot() {
-        spriteNode.penConfiguration.cut = false
+        spriteNode.penConfiguration.isCut = false
         spriteNode.position = CGPoint(x: 1, y: 1)
 
         XCTAssertEqual(stage.children.count, 1)
@@ -150,7 +150,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
         XCTAssertEqual(stage.children.count, 1)
     }
     func testWhenSpritePositionNotChangedStartPlot() {
-        spriteNode.penConfiguration.cut = true
+        spriteNode.penConfiguration.isCut = true
         spriteNode.position = initialPosition
 
         XCTAssertEqual(stage.children.count, 1)
@@ -172,7 +172,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
     }
     
     func testWhenSpritePositionNotChangedStopPlot() {
-        spriteNode.penConfiguration.cut = false
+        spriteNode.penConfiguration.isCut = false
         spriteNode.position = initialPosition
 
         XCTAssertEqual(stage.children.count, 1)

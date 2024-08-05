@@ -66,13 +66,7 @@ extension SavePlotSVGBrick: CBInstructionProtocol {
             filename = filename + ".svg"
         }
         let file = self.getDocumentsDirectory().appendingPathComponent(filename)
-        let debugfile = self.getDocumentsDirectory().appendingPathComponent("filename.txt")
-        do {
-            try filecontent.write(to: file, atomically: true, encoding: String.Encoding.utf8)
-            try filecontent.write(to: debugfile, atomically: true, encoding: String.Encoding.utf8)
-        } catch {
-            // TODO: failed to write file
-        }
+        try? filecontent.write(to: file, atomically: true, encoding: String.Encoding.utf8)
     }
     
     private func getLinePath(with positions:SynchronizedArray<CGPoint>) -> String{

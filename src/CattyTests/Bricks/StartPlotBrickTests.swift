@@ -31,7 +31,7 @@ final class StartPlotBrickTest: XCTestCase {
         let scene = Scene(name: "testScene")
         object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
-        spriteNode.penConfiguration.cut = false
+        spriteNode.penConfiguration.isCut = false
         object.spriteNode = spriteNode
 
         let script = Script()
@@ -41,9 +41,9 @@ final class StartPlotBrickTest: XCTestCase {
         brick.script = script
 
         let action = brick.actionBlock()
-        XCTAssertFalse(spriteNode.penConfiguration.cut)
+        XCTAssertFalse(spriteNode.penConfiguration.isCut)
         action()
-        XCTAssertTrue(spriteNode.penConfiguration.cut)
+        XCTAssertTrue(spriteNode.penConfiguration.isCut)
         XCTAssertEqual(spriteNode.penConfiguration.previousCutPositions.last, spriteNode.position)
     }
 }

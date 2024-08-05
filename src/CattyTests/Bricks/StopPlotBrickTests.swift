@@ -32,7 +32,7 @@ final class StopPlotBrickTests: XCTestCase {
         object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        spriteNode.penConfiguration.cut = true
+        spriteNode.penConfiguration.isCut = true
         
         let script = Script()
         script.object = object
@@ -41,8 +41,8 @@ final class StopPlotBrickTests: XCTestCase {
         brick.script = script
 
         let action = brick.actionBlock()
-        XCTAssertTrue(spriteNode.penConfiguration.cut)
+        XCTAssertTrue(spriteNode.penConfiguration.isCut)
         action()
-        XCTAssertFalse(spriteNode.penConfiguration.cut)
+        XCTAssertFalse(spriteNode.penConfiguration.isCut)
     }
 }

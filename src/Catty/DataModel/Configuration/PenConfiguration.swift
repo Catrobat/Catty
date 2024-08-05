@@ -22,7 +22,7 @@
 
 struct PenConfiguration {
     var penDown = false
-    var cut = false
+    var isCut = false
     
     static let sizeConversionFactor = CGFloat(0.634)
 

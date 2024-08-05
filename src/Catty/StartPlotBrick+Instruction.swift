@@ -32,7 +32,7 @@ extension StartPlotBrick: CBInstructionProtocol {
             else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.penConfiguration.cut = true
+            spriteNode.penConfiguration.isCut = true
             spriteNode.penConfiguration.previousCutPositions.append(spriteNode.position)
         }
     }
