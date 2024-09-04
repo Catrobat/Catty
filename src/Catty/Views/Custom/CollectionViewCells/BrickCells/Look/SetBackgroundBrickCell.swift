@@ -28,10 +28,12 @@ class SetBackgroundBrickCell: BrickCell, BrickCellProtocol {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configureAccessibility()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configureAccessibility()
     }
 
     static func cellHeight() -> CGFloat {
@@ -41,7 +43,18 @@ class SetBackgroundBrickCell: BrickCell, BrickCellProtocol {
     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
         self.textLabel = inlineViewSubViews[0] as? UILabel
         self.lookComboBox = inlineViewSubViews[1] as? iOSCombobox
+        configureAccessibility()
     }
+
+    private func configureAccessibility() {
+        self.lookComboBox?.isAccessibilityElement = true
+        self.lookComboBox?.accessibilityLabel = "Choose background"
+        self.lookComboBox?.accessibilityTraits = .popUpButton
+
+        self.textLabel?.isAccessibilityElement = true
+        self.textLabel?.accessibilityLabel = "Background selection"
+    }
+
 
     func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
         kLocalizedSetBackground.appending("\n%@")
