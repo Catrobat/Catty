@@ -26,6 +26,7 @@ import XCTest
 
 class TextBlockPositionFunctionTest: XCTestCase {
     private enum SensorType { case x, y, size }
+
     var textBlockXFunction: TextBlockXFunction!
     var textBlockYFunction: TextBlockYFunction!
     var textBlockSizeFunction: TextBlockSizeFunction!

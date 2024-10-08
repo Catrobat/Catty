@@ -32,7 +32,7 @@ open class ServiceProfile {
     public let tag: String
 
     open var characteristics: [CharacteristicProfile] {
-        let values: [CharacteristicProfile] = [CharacteristicProfile](self.characteristicProfiles.values)
+        let values = [CharacteristicProfile](self.characteristicProfiles.values)
         return values
     }
 

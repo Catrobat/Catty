@@ -42,7 +42,7 @@ public final class Service: ServiceWrapper {
 
     // MARK: getter
     public var characteristics: [Characteristic] {
-        let values: [Characteristic] = [Characteristic](self.ownCharacteristics.values)
+        let values = [Characteristic](self.ownCharacteristics.values)
         return values
     }
 

@@ -32,7 +32,7 @@ open class ArduinoHelper {
     var analogPin4 = 0
     var analogPin5 = 0
 
-    var digitalValues: [Int] = [Int](repeating: 0, count: 21)
+    var digitalValues = [Int](repeating: 0, count: 21)
 
     var portValues = Array(repeating: Array(repeating: 0, count: 8), count: 3)
     //Helper

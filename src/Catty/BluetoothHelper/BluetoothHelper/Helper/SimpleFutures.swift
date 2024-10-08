@@ -920,9 +920,10 @@ open class StreamPromise<T> {
 // FutureStream
 open class FutureStream<T> {
 
-    private var futures         = [Future<T>]()
     private typealias InFuture = (Future<T>) -> Void
-    private var saveCompletes   = [InFuture]()
+
+    private var saveCompletes = [InFuture]()
+    private var futures = [Future<T>]()
     private var capacity: Int?
 
     internal let defaultExecutionContext: ExecutionContext = QueueContext.main

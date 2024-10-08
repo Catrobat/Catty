@@ -31,7 +31,7 @@ class FirmataDelegateMock: FirmataDelegate {
     var receivedString: String = ""
     var receivedPin: Int = 0
     var receivedPort: Int = 0
-    var receivedPortData: [Int] = [Int](repeating: 0, count: 1)
+    var receivedPortData = [Int](repeating: 0, count: 1)
     var receivedValue: Int = 0
     var analogMapping = NSMutableDictionary()
     var capabilityQuery = [[Int: Int]]()
