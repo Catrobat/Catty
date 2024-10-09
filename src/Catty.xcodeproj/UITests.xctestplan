@@ -1,0 +1,42 @@
+{
+  "configurations" : [
+    {
+      "id" : "1C9A3BFC-D3BD-40C9-B224-A0EBD3A4FDBF",
+      "name" : "Fastlane",
+      "options" : {
+        "diagnosticCollectionPolicy" : "Never",
+        "mainThreadCheckerEnabled" : false,
+        "maximumTestRepetitions" : 3,
+        "testRepetitionMode" : "retryOnFailure",
+        "uiTestingScreenshotsLifetime" : "keepNever",
+        "userAttachmentLifetime" : "keepNever"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "environmentVariableEntries" : [
+      {
+        "enabled" : false,
+        "key" : "OS_ACTIVITY_MODE",
+        "value" : "disable"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Catty.xcodeproj",
+      "identifier" : "CADBD6D319B0E8C200C62836",
+      "name" : "Catty"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Catty.xcodeproj",
+        "identifier" : "AAADA0031B9B29D500E0CA9A",
+        "name" : "CattyUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
