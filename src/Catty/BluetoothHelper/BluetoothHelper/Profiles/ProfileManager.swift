@@ -34,7 +34,7 @@ open class ProfileManager {
 
     // PUBLIC
     open var services: [ServiceProfile] {
-        let values: [ServiceProfile] = [ServiceProfile](self.serviceProfiles.values)
+        let values = [ServiceProfile](self.serviceProfiles.values)
         return values
     }
 

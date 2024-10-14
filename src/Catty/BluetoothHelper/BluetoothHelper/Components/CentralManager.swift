@@ -208,7 +208,7 @@ import UIKit
 
     open var peripherals: [Peripheral] {
 
-        let values: [Peripheral] = [Peripheral](self.ownPeripherals.values)
+        let values = [Peripheral](self.ownPeripherals.values)
         return values
     }
 

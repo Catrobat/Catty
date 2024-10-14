@@ -26,6 +26,7 @@ import XCTest
 
 class ObjectRecognitionFunctionsTest: XCTestCase {
     private enum SensorType { case x, y, width, height }
+
     var idOfDetectedObjectFunction: IDOfDetectedObjectFunction!
     var objectWithIDVisibleFunction: ObjectWithIDVisibleFunction!
     var labelOfObjectWithIDFunction: LabelOfObjectWithIDFunction!
