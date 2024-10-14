@@ -33,7 +33,7 @@ extension StopPlotBrick: CBInstructionProtocol {
 
         return {
             spriteNode.penConfiguration.previousCutPositionLines.append(spriteNode.penConfiguration.previousCutPositions)
-            spriteNode.penConfiguration.previousCutPositions = SynchronizedArray<CGPoint>();
+            spriteNode.penConfiguration.previousCutPositions = SynchronizedArray<CGPoint>()
             spriteNode.penConfiguration.isCut = false
             spriteNode.penConfiguration.drawnCutPoints = 0
         }

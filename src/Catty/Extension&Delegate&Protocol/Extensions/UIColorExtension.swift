@@ -302,11 +302,11 @@ extension UIColor {
     static var eventBrickStroke: UIColor {
         UIColor(red: 241.0 / 255.0, green: 167.0 / 255.0, blue: 126.0 / 255.0, alpha: 1.0)
     }
-    
+
     static var plotBrick: UIColor {
         UIColor(red: 145.0 / 255.0, green: 13.0 / 255.0, blue: 6.0 / 255.0, alpha: 1.0)
     }
-    
+
     static var plotBrickStroke: UIColor {
         UIColor(red: 117.0 / 255.0, green: 7.0 / 255.0, blue: 1.0 / 255.0, alpha: 1.0)
     }

@@ -33,7 +33,7 @@ final class StopPlotBrickTests: XCTestCase {
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         spriteNode.penConfiguration.isCut = true
-        
+
         let script = Script()
         script.object = object
 

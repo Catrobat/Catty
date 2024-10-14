@@ -45,7 +45,7 @@ import Foundation
     override func brickCell() -> BrickCellProtocol.Type! {
         StartPlotBrickCell.self as BrickCellProtocol.Type //TODO
     }
-    
+
     override func isDisabledForBackground() -> Bool {
         true
     }

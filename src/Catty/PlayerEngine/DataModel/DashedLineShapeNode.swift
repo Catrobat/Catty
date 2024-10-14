@@ -29,13 +29,13 @@ class DashedLineShapeNode: SKShapeNode {
         self.pathEndPoint = pathEndPoint
 
         super.init()
-        let pattern : [CGFloat] = [10.0, 10.0]
+        let pattern: [CGFloat] = [10.0, 10.0]
 
         let path = CGMutablePath()
         path.move(to: pathStartPoint)
         path.addLine(to: pathEndPoint)
         let dashed = path.copy(dashingWithPhase: 1, lengths: pattern)
-        
+
         self.path = dashed
     }
 

@@ -131,8 +131,7 @@
             // plot brick
             StartPlotBrick(),
             StopPlotBrick(),
-            SavePlotSVGBrick(),
-            //SetWidth()
+            SavePlotSVGBrick()
         ]
 
         if isPhiroEnabled() {
@@ -170,7 +169,7 @@
                           color: UIColor.eventBrick,
                           strokeColor: UIColor.eventBrickStroke,
                           enabled: true),
-            
+
             BrickCategory(type: kBrickCategoryType.plotBrick,
                           name: kLocalizedCategoryPlot,
                           color: UIColor.plotBrick,

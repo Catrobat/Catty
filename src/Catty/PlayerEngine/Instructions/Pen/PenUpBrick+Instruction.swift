@@ -33,7 +33,7 @@ extension PenUpBrick: CBInstructionProtocol {
 
         return {
             spriteNode.penConfiguration.previousPositionLines.append(spriteNode.penConfiguration.previousPositions)
-            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>();
+            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>()
             spriteNode.penConfiguration.penDown = false
         }
     }
