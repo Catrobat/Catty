@@ -83,6 +83,14 @@
 
 #define kDefaultProjectBundleName @"My first project"
 #define kDefaultProjectBundleOtherObjectsNamePrefix @"Mole"
+#define kDefaultFrame @"Frame"
+#define kDefaultFrameFile @"frame"
+#define kDefaultNeedle @"Needle"
+#define kDefaultNeedleFile @"plotter"
+#define kDefaultPlotter @"Plotter"
+#define kDefaultPlotterFile @"plotter"
+#define kDefaultLynx @"Lynx"
+#define kDefaultLynxFile @"lynx_a"
 
 // indexes
 #define kNumberOfSectionsInSceneTableViewController 2

@@ -55,8 +55,10 @@ extension SavePlotSVGBrick: CBInstructionProtocol {
 
     private func saveSVGPlot(with paths: String, to filename: String, width: Int, height: Int) {
         var filecontent = "<?xml version=\"1.0\" standalone=\"no\"?>\n<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
-        filecontent += "<svg width=\"" + String(width) + "\" height=\"" + String(height) + "\" viewBox=\"0 0 " + String(width) + " " + String(height) + "\""
-        filecontent += " style=\"background-color:#ffffff\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n"
+        filecontent += "<svg width=\"" + String(width)
+        filecontent += "\" height=\"" + String(height)
+        filecontent += "\" viewBox=\"0 0 " + String(width) + " "
+        filecontent += String(height) + "\" style=\"background-color:#ffffff\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n"
         filecontent += "<title>Plotter export</title>\n"
         var filename = filename
 
@@ -83,7 +85,7 @@ extension SavePlotSVGBrick: CBInstructionProtocol {
                 guard positions[index - 1] != nil else {
                     fatalError("This should never happen")
                 }
-                path = path + " L" + String(format: "%.2f", point.x) + " " + String(format: "%.2f", point.y)
+                path += " L" + String(format: "%.2f", point.x) + " " + String(format: "%.2f", point.y)
             }
             path += "\" />"
         }

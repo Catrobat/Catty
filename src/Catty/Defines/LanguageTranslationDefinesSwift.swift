@@ -137,6 +137,7 @@ let kLocalizedEditBackgrounds = NSLocalizedString("Edit backgrounds", comment: "
 let kLocalizedEditScript = NSLocalizedString("Edit script", comment: "Action sheet menu title")
 let kLocalizedEditBrick = NSLocalizedString("Edit brick", comment: "Action sheet menu title")
 let kLocalizedAddLook = NSLocalizedString("Add look", comment: "Action sheet menu title")
+let kLocalizedAddLocal = NSLocalizedString("Add local actor or object", comment: "Action sheet menu title")
 let kLocalizedLookFilename = NSLocalizedString("look", comment: "LOOK")
 let kLocalizedEditProject = NSLocalizedString("Edit project", comment: "")
 let kLocalizedEditProjects = NSLocalizedString("Edit projects", comment: "")

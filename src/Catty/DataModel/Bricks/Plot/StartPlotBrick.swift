@@ -39,7 +39,6 @@ import Foundation
 
     override func getRequiredResources() -> Int {
         ResourceType.noResources.rawValue
-
     }
 
     override func brickCell() -> BrickCellProtocol.Type! {

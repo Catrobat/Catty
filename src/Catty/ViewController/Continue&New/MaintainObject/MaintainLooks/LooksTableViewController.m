@@ -594,6 +594,148 @@ UITextFieldDelegate>
 }
 
 #pragma mark - action sheet
+- (void)showAddLocalActionSheet
+{
+    id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddLocal]
+                                               addCancelActionWithTitle:kLocalizedCancel handler:^{
+        if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
+            SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
+        }
+    }];
+    [[[[[[actionSheet addDefaultActionWithTitle:kDefaultNeedle handler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage* image = [UIImage imageNamed:kDefaultNeedleFile];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            // use temporary filename, will be renamed by user afterwards
+            NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                          [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                          kLocalizedMyImageExtension];
+            Look *look = [[Look alloc] initWithName:[Util uniqueName:kDefaultNeedle
+                                                       existingNames:[self.object allLookNames]]
+                                            andPath:newImageFileName];
+        
+            NSString *newImagePath = [look pathForScene:self.object.scene];
+            self.filePath = newImagePath;
+            // leaving the main queue here!
+            [imageData writeToFile:newImagePath atomically:YES];
+            
+            [self hideLoadingView];
+            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            if (self.showAddLookActionSheetAtStartForObject) {
+                [self addLookActionWithName:look.name look:look];
+            }});
+    }] addDefaultActionWithTitle:kDefaultPlotter handler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage* image = [UIImage imageNamed:kDefaultPlotterFile];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            // use temporary filename, will be renamed by user afterwards
+            NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                          [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                          kLocalizedMyImageExtension];
+            Look *look = [[Look alloc] initWithName:[Util uniqueName:kDefaultPlotter
+                                                       existingNames:[self.object allLookNames]]
+                                            andPath:newImageFileName];
+        
+            NSString *newImagePath = [look pathForScene:self.object.scene];
+            self.filePath = newImagePath;
+            // leaving the main queue here!
+            [imageData writeToFile:newImagePath atomically:YES];
+            
+            [self hideLoadingView];
+            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            if (self.showAddLookActionSheetAtStartForObject) {
+                [self addLookActionWithName:look.name look:look];
+            }});
+    }] addDefaultActionWithTitle:kDefaultFrame handler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage* image = [UIImage imageNamed:kDefaultFrameFile];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            // use temporary filename, will be renamed by user afterwards
+            NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                          [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                          kLocalizedMyImageExtension];
+            Look *look = [[Look alloc] initWithName:[Util uniqueName:kDefaultFrame
+                                                       existingNames:[self.object allLookNames]]
+                                            andPath:newImageFileName];
+        
+            NSString *newImagePath = [look pathForScene:self.object.scene];
+            self.filePath = newImagePath;
+            // leaving the main queue here!
+            [imageData writeToFile:newImagePath atomically:YES];
+            
+            [self hideLoadingView];
+            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            if (self.showAddLookActionSheetAtStartForObject) {
+                [self addLookActionWithName:look.name look:look];
+                
+                StartScript *script = [StartScript new];
+                script.object = self.object;
+                [self.object.scriptList addObject:script];
+
+                SetTransparencyBrick* transperency100Brick = [[SetTransparencyBrick alloc] init];
+                transperency100Brick.script = script;
+                transperency100Brick.transparency = [[Formula alloc] init];
+                transperency100Brick.transparency.formulaTree = [[FormulaElement alloc] initWithInteger:100];
+                [script.brickList addObject: transperency100Brick];
+
+                PlaceAtBrick* placeAtXYBrick = [[PlaceAtBrick alloc] init];
+                placeAtXYBrick.script = script;
+                placeAtXYBrick.yPosition = [[Formula alloc] init];
+                placeAtXYBrick.xPosition = [[Formula alloc] init];
+                placeAtXYBrick.xPosition.formulaTree = [[FormulaElement alloc] initWithInteger:250];
+                placeAtXYBrick.yPosition.formulaTree = [[FormulaElement alloc] initWithInteger:-250];
+                
+                [script.brickList addObject: placeAtXYBrick];
+                PenDownBrick* penDownBrick = [[PenDownBrick alloc] init];
+                penDownBrick.script = script;
+                [script.brickList addObject:penDownBrick];
+
+                MoveNStepsBrick* move500Brick = [[MoveNStepsBrick alloc] init];
+                move500Brick.script = script;
+                move500Brick.steps = [[Formula alloc] init];
+                move500Brick.steps.formulaTree = [[FormulaElement alloc] initWithInteger:500];
+
+                TurnRightBrick* turn90Brick = [[TurnRightBrick alloc] init];
+                turn90Brick.script = script;
+                turn90Brick.degrees = [[Formula alloc] init];
+                turn90Brick.degrees.formulaTree = [[FormulaElement alloc] initWithInteger:90];
+                
+                [script.brickList addObject:move500Brick];
+                [script.brickList addObject:turn90Brick];
+                [script.brickList addObject:move500Brick];
+                [script.brickList addObject:turn90Brick];
+                [script.brickList addObject:move500Brick];
+                [script.brickList addObject:turn90Brick];
+                [script.brickList addObject:move500Brick];
+                [script.brickList addObject:turn90Brick];
+            }});
+    }] addDefaultActionWithTitle:kDefaultLynx handler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage* image = [UIImage imageNamed:kDefaultLynxFile];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            // use temporary filename, will be renamed by user afterwards
+            NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                          [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                          kLocalizedMyImageExtension];
+            Look *look = [[Look alloc] initWithName:[Util uniqueName:kDefaultLynx
+                                                       existingNames:[self.object allLookNames]]
+                                            andPath:newImageFileName];
+        
+            NSString *newImagePath = [look pathForScene:self.object.scene];
+            self.filePath = newImagePath;
+            // leaving the main queue here!
+            [imageData writeToFile:newImagePath atomically:YES];
+            
+            [self hideLoadingView];
+            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            if (self.showAddLookActionSheetAtStartForObject) {
+                [self addLookActionWithName:look.name look:look];
+            }});
+    }]
+     build] showWithController:self];
+};
+
+#pragma mark - action sheet
 - (void)showAddLookActionSheet
 {
     id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddLook]
@@ -636,6 +778,14 @@ UITextFieldDelegate>
             }];
         }
     }
+    if (!self.object.isBackground) {
+        [actionSheet addDefaultActionWithTitle:kLocalizedAddLocal handler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showAddLocalActionSheet];
+            });
+        }];
+    }
+    
     
     [[[[actionSheet
         addDefaultActionWithTitle:kLocalizedDrawNewImage handler:^{

@@ -1574,6 +1574,13 @@
 		9EE674DA23253A5E0029D153 /* PlaySameSoundTwiceDifferentObjects.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674D923253A5D0029D153 /* PlaySameSoundTwiceDifferentObjects.xml */; };
 		9EE674E32325447C0029D153 /* half_seconds_patchwork.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674E12325447C0029D153 /* half_seconds_patchwork.mp3 */; };
 		9EE674E42325447C0029D153 /* short_drum_long_sax.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674E22325447C0029D153 /* short_drum_long_sax.mp3 */; };
+		A43B471F2CB452BC00D253B7 /* plotter.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B47192CB452BB00D253B7 /* plotter.png */; };
+		A43B47202CB452BC00D253B7 /* panda_b.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471A2CB452BB00D253B7 /* panda_b.png */; };
+		A43B47212CB452BC00D253B7 /* needle.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471B2CB452BB00D253B7 /* needle.png */; };
+		A43B47222CB452BC00D253B7 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471C2CB452BB00D253B7 /* apple.png */; };
+		A43B47232CB452BC00D253B7 /* lynx_a.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471D2CB452BB00D253B7 /* lynx_a.png */; };
+		A43B47242CB452BC00D253B7 /* panda_a.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471E2CB452BB00D253B7 /* panda_a.png */; };
+		A43B47262CB45F0200D253B7 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B47252CB45F0200D253B7 /* frame.png */; };
 		A4A1C38C2BA9981F006824D9 /* StartPlotBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A1C38B2BA9981F006824D9 /* StartPlotBrickCell.swift */; };
 		A4A1C38F2BA99942006824D9 /* StartPlotBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A1C38E2BA99942006824D9 /* StartPlotBrick+Instruction.swift */; };
 		A4A1C3932BA99AB9006824D9 /* StartPlotBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A1C3922BA99AB9006824D9 /* StartPlotBrick+CBXMLHandler.swift */; };
@@ -4105,6 +4112,13 @@
 		9EE674E12325447C0029D153 /* half_seconds_patchwork.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = half_seconds_patchwork.mp3; sourceTree = "<group>"; };
 		9EE674E22325447C0029D153 /* short_drum_long_sax.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short_drum_long_sax.mp3; sourceTree = "<group>"; };
 		A032C198F02439059E373A5C /* pa */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pa; path = pa.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A43B47192CB452BB00D253B7 /* plotter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plotter.png; path = Resources/plotter.png; sourceTree = "<group>"; };
+		A43B471A2CB452BB00D253B7 /* panda_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panda_b.png; path = Resources/panda_b.png; sourceTree = "<group>"; };
+		A43B471B2CB452BB00D253B7 /* needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = needle.png; path = Resources/needle.png; sourceTree = "<group>"; };
+		A43B471C2CB452BB00D253B7 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = apple.png; path = Resources/apple.png; sourceTree = "<group>"; };
+		A43B471D2CB452BB00D253B7 /* lynx_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lynx_a.png; path = Resources/lynx_a.png; sourceTree = "<group>"; };
+		A43B471E2CB452BB00D253B7 /* panda_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panda_a.png; path = Resources/panda_a.png; sourceTree = "<group>"; };
+		A43B47252CB45F0200D253B7 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = frame.png; path = Resources/frame.png; sourceTree = "<group>"; };
 		A46D335B661B03F52135C789 /* gu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = gu; path = gu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A4A1C38B2BA9981F006824D9 /* StartPlotBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPlotBrickCell.swift; sourceTree = "<group>"; };
 		A4A1C38E2BA99942006824D9 /* StartPlotBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartPlotBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -10912,6 +10926,13 @@
 		B43498471927A3AB002F9075 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A43B471C2CB452BB00D253B7 /* apple.png */,
+				A43B47252CB45F0200D253B7 /* frame.png */,
+				A43B471D2CB452BB00D253B7 /* lynx_a.png */,
+				A43B471B2CB452BB00D253B7 /* needle.png */,
+				A43B471E2CB452BB00D253B7 /* panda_a.png */,
+				A43B471A2CB452BB00D253B7 /* panda_b.png */,
+				A43B47192CB452BB00D253B7 /* plotter.png */,
 				4981EDCB289AC2690052AEB1 /* MLModels */,
 				9EC51F8C24FC03890029CD0E /* Audio Engine */,
 				4C9E2D1D198EA6B600455B77 /* Licenses */,
@@ -12175,11 +12196,13 @@
 				9E5DFCFE250574380049265C /* 8-hand-clap.wv in Resources */,
 				9EC5208124FC04EA0029CD0E /* pizzicato-60.wv in Resources */,
 				9E5DFD1C250574380049265C /* choir-60.wv in Resources */,
+				A43B47202CB452BC00D253B7 /* panda_b.png in Resources */,
 				9E5DFD19250574380049265C /* choir-48.wv in Resources */,
 				9EC520AC24FC063D0029CD0E /* wooden-flute-72.wv in Resources */,
 				9EC520B024FC063D0029CD0E /* basso-48.wv in Resources */,
 				4CDE4CF7203DBBF500B43034 /* EVCircularProgressView.license in Resources */,
 				9EC520B624FC063D0029CD0E /* flute.sfz in Resources */,
+				A43B471F2CB452BC00D253B7 /* plotter.png in Resources */,
 				9E5DFD16250574380049265C /* synth-pad-60.wv in Resources */,
 				9E5DFD8C25057ECF0049265C /* ScratchSampleInstruments.license in Resources */,
 				9EC520B224FC063D0029CD0E /* saxophone-36.wv in Resources */,
@@ -12199,6 +12222,7 @@
 				4CDE4CED203DBBF500B43034 /* NSString+FastImageSize.license in Resources */,
 				9EC5206524FC03E80029CD0E /* piano.sfz in Resources */,
 				9218B1FC1CC4AB75007B4C60 /* nko_brightness_guide.png in Resources */,
+				A43B47222CB452BC00D253B7 /* apple.png in Resources */,
 				9E5DFD1F250574380049265C /* synth-lead.sfz in Resources */,
 				9EC5208924FC04EA0029CD0E /* trombo.sfz in Resources */,
 				9E5DFD1A250574380049265C /* choir-72.wv in Resources */,
@@ -12241,6 +12265,7 @@
 				9E5DFD14250574380049265C /* music-box-60.wv in Resources */,
 				4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */,
 				9E5DFD06250574380049265C /* 10-wood-block.wv in Resources */,
+				A43B47242CB452BC00D253B7 /* panda_a.png in Resources */,
 				9EC5208624FC04EA0029CD0E /* cello.sfz in Resources */,
 				9EC5208C24FC04EA0029CD0E /* bass-48.wv in Resources */,
 				2E88D620263161D80063D573 /* TrustedDomains.plist in Resources */,
@@ -12253,6 +12278,7 @@
 				9EC520B724FC063D0029CD0E /* flute-72.wv in Resources */,
 				9E5DFD15250574380049265C /* synth-pad.sfz in Resources */,
 				9E5DFD0E250574380049265C /* 5-open-hi-hat.wv in Resources */,
+				A43B47232CB452BC00D253B7 /* lynx_a.png in Resources */,
 				9E5DFD0C250574380049265C /* 11-cowbell.wv in Resources */,
 				7B6FBD0027F1D8B4006E3BD5 /* LaunchScreen.storyboard in Resources */,
 				9E5DFD07250574380049265C /* 7-tambourine.wv in Resources */,
@@ -12262,6 +12288,7 @@
 				4CDE4CE3203DBBF500B43034 /* NKOColorPickerView.license in Resources */,
 				9E5DFD05250574380049265C /* 1-snare.wv in Resources */,
 				9EC5206324FC03E80029CD0E /* piano-24.wv in Resources */,
+				A43B47262CB45F0200D253B7 /* frame.png in Resources */,
 				9EC5205C24FC03E80029CD0E /* electric-piano-60.wv in Resources */,
 				9E5DFD03250574380049265C /* 16-guiro.wv in Resources */,
 				9EC5208724FC04EA0029CD0E /* cello-48.wv in Resources */,
@@ -12276,6 +12303,7 @@
 				9EC5208E24FC04EB0029CD0E /* bass.sfz in Resources */,
 				9E5DFD04250574380049265C /* 13-bongo.wv in Resources */,
 				9E5DFD12250574380049265C /* vibraphone.sfz in Resources */,
+				A43B47212CB452BC00D253B7 /* needle.png in Resources */,
 				9EC520AB24FC063D0029CD0E /* wooden-flute-60.wv in Resources */,
 				9EC520A924FC063D0029CD0E /* clarinet-60.wv in Resources */,
 				4CDE4CFE203DBCC100B43034 /* Kingfisher.license in Resources */,

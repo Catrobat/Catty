@@ -106,6 +106,7 @@
          addCancelActionWithTitle:kLocalizedCancel handler:^{
         [self cancelAddingObjectFromScriptEditor];
     }]
+    
         addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
         [self addObjectActionWithName:name];
     }]

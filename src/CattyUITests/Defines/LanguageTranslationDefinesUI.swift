@@ -137,6 +137,7 @@ let kLocalizedEditBackgrounds = NSLocalizedString("Edit backgrounds", bundle: Bu
 let kLocalizedEditScript = NSLocalizedString("Edit script", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
 let kLocalizedEditBrick = NSLocalizedString("Edit brick", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
 let kLocalizedAddLook = NSLocalizedString("Add look", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
+let kLocalizedAddLocal = NSLocalizedString("Add local actor or object", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
 let kLocalizedLookFilename = NSLocalizedString("look", bundle: Bundle(for: LanguageTranslation.self), comment: "LOOK")
 let kLocalizedEditProject = NSLocalizedString("Edit project", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEditProjects = NSLocalizedString("Edit projects", bundle: Bundle(for: LanguageTranslation.self), comment: "")

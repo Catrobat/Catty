@@ -137,6 +137,7 @@
 #define kLocalizedEditScript NSLocalizedString(@"Edit script", @"Action sheet menu title")
 #define kLocalizedEditBrick NSLocalizedString(@"Edit brick", @"Action sheet menu title")
 #define kLocalizedAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
+#define kLocalizedAddLocal NSLocalizedString(@"Add local actor or object", @"Action sheet menu title")
 #define kLocalizedLookFilename NSLocalizedString(@"look", @"LOOK")
 #define kLocalizedEditProject NSLocalizedString(@"Edit project", nil)
 #define kLocalizedEditProjects NSLocalizedString(@"Edit projects", nil)
