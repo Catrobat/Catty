@@ -59,7 +59,7 @@ extension CBSpriteNode {
                 }
                 let lineTo = point
                 self.addLine(from: lineFrom, to: lineTo, withColor: penConfiguration.color, withSize: penConfiguration.size)
-            
+
             }
         }
     }

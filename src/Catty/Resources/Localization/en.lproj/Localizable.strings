@@ -50,6 +50,9 @@
 "Add image" = "Add image";
 
 /* Action sheet menu title */
+"Add local actor or object" = "Add local actor or object";
+
+/* Action sheet menu title */
 "Add look" = "Add look";
 
 /* Action sheet menu title */
@@ -1319,9 +1322,6 @@
 "My object" = "My object";
 
 /* No comment provided by engineer. */
-"myplot.svg" = "myplot.svg";
-
-/* No comment provided by engineer. */
 "Name" = "Name";
 
 /* No comment provided by engineer. */
@@ -1557,6 +1557,9 @@
 
 /* No comment provided by engineer. */
 "Plot" = "Plot";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
@@ -1835,7 +1838,7 @@
 "Save changes" = "Save changes";
 
 /* No comment provided by engineer. */
-"Save plot to SVG" = "Save plot to SVG";
+"Save plot as SVG" = "Save plot as SVG";
 
 /* paint */
 "Save to Photos" = "Save to Photos";
@@ -2066,9 +2069,6 @@
 "Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
-"Start plot" = "Start plot";
-
-/* No comment provided by engineer. */
 "Start running stitch with length" = "Start running stitch with length";
 
 /* No comment provided by engineer. */
@@ -2076,6 +2076,9 @@
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Start sound and wait";
+
+/* No comment provided by engineer. */
+"Start to plot" = "Start to plot";
 
 /* No comment provided by engineer. */
 "Start triple stitch with length" = "Start triple stitch with length";
@@ -2105,7 +2108,7 @@
 "Stop Phiro motor" = "Stop Phiro motor";
 
 /* No comment provided by engineer. */
-"Stop plot" = "Stop plot";
+"Stop to plot" = "Stop to plot";
 
 /* No comment provided by engineer. */
 "Su" = "Su";

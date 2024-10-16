@@ -1576,7 +1576,6 @@
 		9EE674E42325447C0029D153 /* short_drum_long_sax.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674E22325447C0029D153 /* short_drum_long_sax.mp3 */; };
 		A43B471F2CB452BC00D253B7 /* plotter.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B47192CB452BB00D253B7 /* plotter.png */; };
 		A43B47202CB452BC00D253B7 /* panda_b.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471A2CB452BB00D253B7 /* panda_b.png */; };
-		A43B47212CB452BC00D253B7 /* needle.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471B2CB452BB00D253B7 /* needle.png */; };
 		A43B47222CB452BC00D253B7 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471C2CB452BB00D253B7 /* apple.png */; };
 		A43B47232CB452BC00D253B7 /* lynx_a.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471D2CB452BB00D253B7 /* lynx_a.png */; };
 		A43B47242CB452BC00D253B7 /* panda_a.png in Resources */ = {isa = PBXBuildFile; fileRef = A43B471E2CB452BB00D253B7 /* panda_a.png */; };
@@ -4114,7 +4113,6 @@
 		A032C198F02439059E373A5C /* pa */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pa; path = pa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A43B47192CB452BB00D253B7 /* plotter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plotter.png; path = Resources/plotter.png; sourceTree = "<group>"; };
 		A43B471A2CB452BB00D253B7 /* panda_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panda_b.png; path = Resources/panda_b.png; sourceTree = "<group>"; };
-		A43B471B2CB452BB00D253B7 /* needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = needle.png; path = Resources/needle.png; sourceTree = "<group>"; };
 		A43B471C2CB452BB00D253B7 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = apple.png; path = Resources/apple.png; sourceTree = "<group>"; };
 		A43B471D2CB452BB00D253B7 /* lynx_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lynx_a.png; path = Resources/lynx_a.png; sourceTree = "<group>"; };
 		A43B471E2CB452BB00D253B7 /* panda_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panda_a.png; path = Resources/panda_a.png; sourceTree = "<group>"; };
@@ -10929,7 +10927,6 @@
 				A43B471C2CB452BB00D253B7 /* apple.png */,
 				A43B47252CB45F0200D253B7 /* frame.png */,
 				A43B471D2CB452BB00D253B7 /* lynx_a.png */,
-				A43B471B2CB452BB00D253B7 /* needle.png */,
 				A43B471E2CB452BB00D253B7 /* panda_a.png */,
 				A43B471A2CB452BB00D253B7 /* panda_b.png */,
 				A43B47192CB452BB00D253B7 /* plotter.png */,
@@ -12303,7 +12300,6 @@
 				9EC5208E24FC04EB0029CD0E /* bass.sfz in Resources */,
 				9E5DFD04250574380049265C /* 13-bongo.wv in Resources */,
 				9E5DFD12250574380049265C /* vibraphone.sfz in Resources */,
-				A43B47212CB452BC00D253B7 /* needle.png in Resources */,
 				9EC520AB24FC063D0029CD0E /* wooden-flute-60.wv in Resources */,
 				9EC520A924FC063D0029CD0E /* clarinet-60.wv in Resources */,
 				4CDE4CFE203DBCC100B43034 /* Kingfisher.license in Resources */,

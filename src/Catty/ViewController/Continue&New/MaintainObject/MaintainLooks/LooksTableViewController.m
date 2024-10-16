@@ -682,8 +682,8 @@ UITextFieldDelegate>
                 placeAtXYBrick.script = script;
                 placeAtXYBrick.yPosition = [[Formula alloc] init];
                 placeAtXYBrick.xPosition = [[Formula alloc] init];
-                placeAtXYBrick.xPosition.formulaTree = [[FormulaElement alloc] initWithInteger:250];
-                placeAtXYBrick.yPosition.formulaTree = [[FormulaElement alloc] initWithInteger:-250];
+                placeAtXYBrick.xPosition.formulaTree = [[FormulaElement alloc] initWithInteger:-250];
+                placeAtXYBrick.yPosition.formulaTree = [[FormulaElement alloc] initWithInteger:250];
                 
                 [script.brickList addObject: placeAtXYBrick];
                 PenDownBrick* penDownBrick = [[PenDownBrick alloc] init];
