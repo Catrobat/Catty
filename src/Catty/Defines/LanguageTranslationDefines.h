@@ -465,10 +465,10 @@
 #define kLocalizedStamp NSLocalizedString(@"Stamp", nil)
 
 // plot bricks
-#define kLocalizedStartPlot NSLocalizedString(@"Start plot", nil)
-#define kLocalizedStopPlot NSLocalizedString(@"Stop plot", nil)
-#define kLocalizedSavePlot NSLocalizedString(@"Save plot to SVG", nil)
-#define kLocalizedSavePlotDefaultFile NSLocalizedString(@"myplot.svg", nil)
+#define kLocalizedStartPlot NSLocalizedString(@"Start to plot", nil)
+#define kLocalizedStopPlot NSLocalizedString(@"Stop to plot", nil)
+#define kLocalizedSavePlot NSLocalizedString(@"Save plot as SVG", nil)
+#define kLocalizedSavePlotDefaultFile NSLocalizedString(@"plot.svg", nil)
 
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)

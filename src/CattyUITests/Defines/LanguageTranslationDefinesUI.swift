@@ -465,10 +465,10 @@ let kLocalizedBlue = NSLocalizedString("blue", bundle: Bundle(for: LanguageTrans
 let kLocalizedStamp = NSLocalizedString("Stamp", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // plot bricks
-let kLocalizedStartPlot = NSLocalizedString("Start plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedStopPlot = NSLocalizedString("Stop plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedSavePlot = NSLocalizedString("Save plot to SVG", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedSavePlotDefaultFile = NSLocalizedString("myplot.svg", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStartPlot = NSLocalizedString("Start to plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStopPlot = NSLocalizedString("Stop to plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSavePlot = NSLocalizedString("Save plot as SVG", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSavePlotDefaultFile = NSLocalizedString("plot.svg", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")

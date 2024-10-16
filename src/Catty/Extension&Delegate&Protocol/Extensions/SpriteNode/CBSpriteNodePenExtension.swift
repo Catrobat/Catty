@@ -25,14 +25,14 @@ extension CBSpriteNode {
     @objc func drawPenLine() {
         //swiftlint:disable:next unused_enumerated
         for (_, positionLine) in self.penConfiguration.previousPositionLines.enumerated() {
-            drawLineFromConfiguration(with: positionLine, mode: false)
+            drawLineFromConfiguration(with: positionLine)
         }
         self.penConfiguration.previousPositionLines.removeAll()
         if self.penConfiguration.previousPositions.last != self.position && penConfiguration.penDown {
             self.penConfiguration.previousPositions.append(self.position)
         }
         let positions = self.penConfiguration.previousPositions
-        drawLineFromConfiguration(with: positions, mode: false)
+        drawLineFromConfiguration(with: positions)
         if positions.count > 1 {
             self.penConfiguration.previousPositions.removeSubrange(0..<positions.count - 1)
         }
@@ -41,16 +41,16 @@ extension CBSpriteNode {
     @objc func drawPlotLine() {
         //swiftlint:disable:next unused_enumerated
         for (_, cutPositionLine) in self.penConfiguration.previousCutPositionLines.enumerated() {
-            drawLineFromConfiguration(with: cutPositionLine, mode: false)
+            drawLineFromConfiguration(with: cutPositionLine)
         }
         if self.penConfiguration.previousCutPositions.last != self.position && penConfiguration.isCut {
             self.penConfiguration.previousCutPositions.append(self.position)
         }
-        drawLineFromConfiguration(with: self.penConfiguration.previousCutPositions, mode: false, start: self.penConfiguration.drawnCutPoints - 1)
+        drawLineFromConfiguration(with: self.penConfiguration.previousCutPositions, from: self.penConfiguration.drawnCutPoints - 1)
         self.penConfiguration.drawnCutPoints = self.penConfiguration.previousCutPositions.count
     }
 
-    private func drawLineFromConfiguration(with positions: SynchronizedArray<CGPoint>, mode dashed: Bool, start startIndex: Int = 0) {
+    private func drawLineFromConfiguration(with positions: SynchronizedArray<CGPoint>, from startIndex: Int = 0) {
         let positionCount = positions.count
         if positionCount > 1 {
             for (index, point) in positions.enumerated() where index > startIndex && index > 0 {
@@ -58,27 +58,14 @@ extension CBSpriteNode {
                     fatalError("This should never happen")
                 }
                 let lineTo = point
-                if dashed {
-                    self.addDashedLine(from: lineFrom, to: lineTo, withColor: penConfiguration.color, withSize: penConfiguration.size)
-                } else {
-                    self.addLine(from: lineFrom, to: lineTo, withColor: penConfiguration.color, withSize: penConfiguration.size)
-                }
+                self.addLine(from: lineFrom, to: lineTo, withColor: penConfiguration.color, withSize: penConfiguration.size)
+            
             }
         }
     }
 
     private func addLine(from startPoint: CGPoint, to endPoint: CGPoint, withColor color: UIColor, withSize size: CGFloat) {
         let line = LineShapeNode(pathStartPoint: startPoint, pathEndPoint: endPoint)
-        line.name = SpriteKitDefines.penShapeNodeName
-        line.strokeColor = color
-        line.lineWidth = size
-        line.zPosition = SpriteKitDefines.defaultPenZPosition
-
-        self.scene?.addChild(line)
-    }
-
-    private func addDashedLine(from startPoint: CGPoint, to endPoint: CGPoint, withColor color: UIColor, withSize size: CGFloat) {
-        let line = DashedLineShapeNode(pathStartPoint: startPoint, pathEndPoint: endPoint)
         line.name = SpriteKitDefines.penShapeNodeName
         line.strokeColor = color
         line.lineWidth = size

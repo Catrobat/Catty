@@ -24,7 +24,7 @@ extension SavePlotSVGBrick: CBXMLNodeProtocol {
     static func parse(from xmlElement: GDataXMLElement, with context: CBXMLParserContext) -> Self {
         CBXMLParserHelper.validate(xmlElement, forFormulaListWithTotalNumberOfFormulas: 1)
         let brick = self.init()
-        let formula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "ASK_QUESTION", with: context)
+        let formula = CBXMLParserHelper.formula(in: xmlElement, forCategoryName: "WRITE_FILENAME", with: context)
         brick.filename = formula
         return brick
     }
@@ -33,7 +33,7 @@ extension SavePlotSVGBrick: CBXMLNodeProtocol {
         let brick = super.xmlElement(for: "SavePlotSVGBrick", with: context)
         let formulaList = GDataXMLElement(name: "formulaList", context: context)
         let formula = self.filename?.xmlElement(with: context)
-        formula?.addAttribute(GDataXMLElement(name: "category", stringValue: "ASK_QUESTION", context: nil))
+        formula?.addAttribute(GDataXMLElement(name: "category", stringValue: "WRITE_FILENAME", context: nil))
         formulaList?.addChild(formula, context: context)
         brick?.addChild(formulaList, context: context)
         return brick
