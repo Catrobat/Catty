@@ -137,6 +137,7 @@
 #define kLocalizedEditScript NSLocalizedString(@"Edit script", @"Action sheet menu title")
 #define kLocalizedEditBrick NSLocalizedString(@"Edit brick", @"Action sheet menu title")
 #define kLocalizedAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
+#define kLocalizedAddLocal NSLocalizedString(@"Add local actor or object", @"Action sheet menu title")
 #define kLocalizedLookFilename NSLocalizedString(@"look", @"LOOK")
 #define kLocalizedEditProject NSLocalizedString(@"Edit project", nil)
 #define kLocalizedEditProjects NSLocalizedString(@"Edit projects", nil)
@@ -463,6 +464,12 @@
 #define kLocalizedGreen NSLocalizedString(@"green", nil)
 #define kLocalizedBlue NSLocalizedString(@"blue", nil)
 #define kLocalizedStamp NSLocalizedString(@"Stamp", nil)
+
+// plot bricks
+#define kLocalizedStartPlot NSLocalizedString(@"Start to plot", nil)
+#define kLocalizedStopPlot NSLocalizedString(@"Stop to plot", nil)
+#define kLocalizedSavePlot NSLocalizedString(@"Save plot as SVG", nil)
+#define kLocalizedSavePlotDefaultFile NSLocalizedString(@"plot.svg", nil)
 
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
@@ -913,6 +920,7 @@
 #define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedCategoryPen NSLocalizedString(@"Pen", nil)
 #define kLocalizedCategoryEmbroidery NSLocalizedString(@"Embroidery", nil)
+#define kLocalizedCategoryPlot NSLocalizedString(@"Plot", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

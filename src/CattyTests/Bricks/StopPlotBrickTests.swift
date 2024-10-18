@@ -20,22 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenUpBrick: CBInstructionProtocol {
+import XCTest
 
-    func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+@testable import Pocket_Code
+
+final class StopPlotBrickTests: XCTestCase {
+
+    func testStopPlotBrick() {
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        spriteNode.penConfiguration.isCut = true
+
+        let script = Script()
+        script.object = object
+
+        let brick = StopPlotBrick()
+        brick.script = script
+
+        let action = brick.actionBlock()
+        XCTAssertTrue(spriteNode.penConfiguration.isCut)
+        action()
+        XCTAssertFalse(spriteNode.penConfiguration.isCut)
     }
-
-    func actionBlock() -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
-
-        return {
-            spriteNode.penConfiguration.previousPositionLines.append(spriteNode.penConfiguration.previousPositions)
-            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>()
-            spriteNode.penConfiguration.penDown = false
-        }
-    }
-
 }

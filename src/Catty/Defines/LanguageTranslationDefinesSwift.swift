@@ -137,6 +137,7 @@ let kLocalizedEditBackgrounds = NSLocalizedString("Edit backgrounds", comment: "
 let kLocalizedEditScript = NSLocalizedString("Edit script", comment: "Action sheet menu title")
 let kLocalizedEditBrick = NSLocalizedString("Edit brick", comment: "Action sheet menu title")
 let kLocalizedAddLook = NSLocalizedString("Add look", comment: "Action sheet menu title")
+let kLocalizedAddLocal = NSLocalizedString("Add local actor or object", comment: "Action sheet menu title")
 let kLocalizedLookFilename = NSLocalizedString("look", comment: "LOOK")
 let kLocalizedEditProject = NSLocalizedString("Edit project", comment: "")
 let kLocalizedEditProjects = NSLocalizedString("Edit projects", comment: "")
@@ -463,6 +464,12 @@ let kLocalizedRed = NSLocalizedString("red", comment: "")
 let kLocalizedGreen = NSLocalizedString("green", comment: "")
 let kLocalizedBlue = NSLocalizedString("blue", comment: "")
 let kLocalizedStamp = NSLocalizedString("Stamp", comment: "")
+
+// plot bricks
+let kLocalizedStartPlot = NSLocalizedString("Start to plot", comment: "")
+let kLocalizedStopPlot = NSLocalizedString("Stop to plot", comment: "")
+let kLocalizedSavePlot = NSLocalizedString("Save plot as SVG", comment: "")
+let kLocalizedSavePlotDefaultFile = NSLocalizedString("plot.svg", comment: "")
 
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")
@@ -913,6 +920,7 @@ let kLocalizedCategoryArduino = NSLocalizedString("Arduino", comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", comment: "")
 let kLocalizedCategoryEmbroidery = NSLocalizedString("Embroidery", comment: "")
+let kLocalizedCategoryPlot = NSLocalizedString("Plot", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

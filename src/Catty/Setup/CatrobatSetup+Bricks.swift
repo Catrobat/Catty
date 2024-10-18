@@ -127,7 +127,11 @@
             StartZigzagStitchBrick(),
             StartTripleStitchBrick(),
             SewUpBrick(),
-            StopCurrentStitchBrick()
+            StopCurrentStitchBrick(),
+            // plot brick
+            StartPlotBrick(),
+            StopPlotBrick(),
+            SavePlotSVGBrick()
         ]
 
         if isPhiroEnabled() {
@@ -164,6 +168,12 @@
                           name: kLocalizedCategoryEvent,
                           color: UIColor.eventBrick,
                           strokeColor: UIColor.eventBrickStroke,
+                          enabled: true),
+
+            BrickCategory(type: kBrickCategoryType.plotBrick,
+                          name: kLocalizedCategoryPlot,
+                          color: UIColor.plotBrick,
+                          strokeColor: UIColor.plotBrickStroke,
                           enabled: true),
 
             BrickCategory(type: kBrickCategoryType.controlBrick,

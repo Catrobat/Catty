@@ -86,6 +86,7 @@ class CBSpriteNode: SKSpriteNode {
 
     @objc func update(_ currentTime: TimeInterval) {
         self.drawPenLine()
+        self.drawPlotLine()
         self.drawEmbroidery()
 
         for script in self.spriteObject.scriptList where ((script as? WhenConditionScript) != nil) {
