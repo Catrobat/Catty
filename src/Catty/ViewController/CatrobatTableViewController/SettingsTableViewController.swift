@@ -138,6 +138,10 @@ import Foundation
         if Util.isEmbroideryActivated() {
             self.featureItems.append(FormEmbroiderySwitchItem())
         }
+
+        if Util.isPlotActivated() {
+            self.featureItems.append(FormPlotSwitchItem())
+        }
     }
 
     private func setupBluetoothItems() {

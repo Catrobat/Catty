@@ -600,6 +600,11 @@
     return kEmbroideryActivated == 1;
 }
 
++ (BOOL)isPlotActivated
+{
+    return kPlotActivated == 1;
+}
+
 + (BOOL)isPhone
 {
 #ifdef IS_IPHONE

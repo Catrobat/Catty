@@ -46,6 +46,7 @@ final class CatrobatSetupTests: XCTestCase {
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
         UserDefaults.standard.set(false, forKey: kUseEmbroideryBricks)
+        UserDefaults.standard.set(false, forKey: kUsePlotBricks)
 
         var categories = CatrobatSetup.registeredBrickCategories()
 
@@ -54,16 +55,17 @@ final class CatrobatSetupTests: XCTestCase {
         let categoriesPhiroEnabled = CatrobatSetup.registeredBrickCategories()
         XCTAssertEqual(categoriesPhiroEnabled.count, categories.count + 1)
 
-        for category in categories where category.name == kLocalizedCategoryEmbroidery || category.name == kLocalizedCategoryArduino {
+        for category in categories where category.name == kLocalizedCategoryPlot || category.name == kLocalizedCategoryEmbroidery || category.name == kLocalizedCategoryArduino {
             XCTAssertEqual(category.enabled, false)
         }
 
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
         UserDefaults.standard.set(true, forKey: kUseEmbroideryBricks)
+        UserDefaults.standard.set(true, forKey: kUsePlotBricks)
 
         categories = CatrobatSetup.registeredBrickCategories()
 
-        for category in categories where category.name == kLocalizedCategoryEmbroidery || category.name == kLocalizedCategoryArduino {
+        for category in categories where category.name == kLocalizedCategoryPlot || category.name == kLocalizedCategoryEmbroidery || category.name == kLocalizedCategoryArduino {
             XCTAssertEqual(category.enabled, true)
         }
     }

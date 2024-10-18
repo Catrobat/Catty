@@ -23,25 +23,43 @@
 extension CBSpriteNode {
 
     @objc func drawPenLine() {
-
-        if penConfiguration.previousPositions.last != self.position && penConfiguration.penDown {
-            penConfiguration.previousPositions.append(self.position)
+        //swiftlint:disable:next unused_enumerated
+        for (_, positionLine) in self.penConfiguration.previousPositionLines.enumerated() {
+            drawLineFromConfiguration(with: positionLine)
         }
+        self.penConfiguration.previousPositionLines.removeAll()
+        if self.penConfiguration.previousPositions.last != self.position && penConfiguration.penDown {
+            self.penConfiguration.previousPositions.append(self.position)
+        }
+        let positions = self.penConfiguration.previousPositions
+        drawLineFromConfiguration(with: positions)
+        if positions.count > 1 {
+            self.penConfiguration.previousPositions.removeSubrange(0..<positions.count - 1)
+        }
+    }
 
-        let positionCount = penConfiguration.previousPositions.count
+    @objc func drawPlotLine() {
+        //swiftlint:disable:next unused_enumerated
+        for (_, cutPositionLine) in self.penConfiguration.previousCutPositionLines.enumerated() {
+            drawLineFromConfiguration(with: cutPositionLine)
+        }
+        if self.penConfiguration.previousCutPositions.last != self.position && penConfiguration.isCut {
+            self.penConfiguration.previousCutPositions.append(self.position)
+        }
+        drawLineFromConfiguration(with: self.penConfiguration.previousCutPositions, from: self.penConfiguration.drawnCutPoints - 1)
+        self.penConfiguration.drawnCutPoints = self.penConfiguration.previousCutPositions.count
+    }
+
+    private func drawLineFromConfiguration(with positions: SynchronizedArray<CGPoint>, from startIndex: Int = 0) {
+        let positionCount = positions.count
         if positionCount > 1 {
-            for (index, point) in penConfiguration.previousPositions.enumerated() where index > 0 {
-                guard let lineFrom = penConfiguration.previousPositions[index - 1] else {
+            for (index, point) in positions.enumerated() where index > startIndex && index > 0 {
+                guard let lineFrom = positions[index - 1] else {
                     fatalError("This should never happen")
                 }
-                let lineTo = point
-
-                self.addLine(from: lineFrom, to: lineTo, withColor: penConfiguration.color, withSize: penConfiguration.size)
+                self.addLine(from: lineFrom, to: point, withColor: penConfiguration.color, withSize: penConfiguration.size)
             }
-
-            penConfiguration.previousPositions.removeSubrange(0..<positionCount - 1)
         }
-
     }
 
     private func addLine(from startPoint: CGPoint, to endPoint: CGPoint, withColor color: UIColor, withSize size: CGFloat) {
@@ -53,5 +71,4 @@ extension CBSpriteNode {
 
         self.scene?.addChild(line)
     }
-
 }

@@ -20,22 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenUpBrick: CBInstructionProtocol {
-
-    func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+extension StopPlotBrick: CBXMLNodeProtocol {
+    static func parse(from xmlElement: GDataXMLElement, with context: CBXMLParserContext) -> Self {
+        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 0)
+        return self.init()
     }
 
-    func actionBlock() -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
-
-        return {
-            spriteNode.penConfiguration.previousPositionLines.append(spriteNode.penConfiguration.previousPositions)
-            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>()
-            spriteNode.penConfiguration.penDown = false
-        }
+    func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
+        let brick = super.xmlElement(for: "StopPlotBrick", with: context)
+        return brick
     }
-
 }
