@@ -1,0 +1,6 @@
+/.github @Catrobat/product-owners
+/src/crowdin.yml @Catrobat/product-owners
+/src/fastlane @Catrobat/product-owners
+/src/.ruby-version @Catrobat/product-owners
+/src/Gemfile @Catrobat/product-owners
+/src/Gemfile.lock @Catrobat/product-owners
