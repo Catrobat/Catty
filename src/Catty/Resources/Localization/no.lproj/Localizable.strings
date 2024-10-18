@@ -71,10 +71,10 @@
 "All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"Allow the app to control Arduino boards" = "Tillat appen å kontrollere Arduino tavler";
 
 /* No comment provided by engineer. */
-"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+"Allow the app to send crash reports automatically" = "Tillat appen å sende krasjrapporter ustomatisk";
 
 /* No comment provided by engineer. */
 "Allow web access" = "Allow web access";
@@ -86,7 +86,7 @@
 "altitude" = "høyde";
 
 /* No comment provided by engineer. */
-"Always" = "Always";
+"Always" = "Alltid";
 
 /* No comment provided by engineer. */
 "Always allow web access" = "Always allow web access";
@@ -518,7 +518,7 @@
 "Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
-"Deny" = "Deny";
+"Deny" = "Nekt";
 
 /* No comment provided by engineer. */
 "Description" = "Beskrivelse";
@@ -656,7 +656,7 @@
 "Embroidery" = "Embroidery";
 
 /* No comment provided by engineer. */
-"Embroidery extension" = "Embroidery extension";
+"Embroidery extension" = "broderi utvidelse";
 
 /* No comment provided by engineer. */
 "Empty input!" = "Empty input!";
@@ -1430,7 +1430,7 @@
 "Object or actor name" = "Object or actor name";
 
 /* No comment provided by engineer. */
-"Object recognition" = "Object recognition";
+"Object recognition" = "Gjenstands gjenkjenning";
 
 /* No comment provided by engineer. */
 "object with ID visible" = "object with ID visible";
@@ -1451,7 +1451,7 @@
 "on" = "på";
 
 /* No comment provided by engineer. */
-"Once" = "Once";
+"Once" = "En gang";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "only 15 characters allowed";
@@ -1553,6 +1553,12 @@
 "Please try resetting the device and try again." = "Please try resetting the device and try again.";
 
 /* No comment provided by engineer. */
+"Plot" = "Plot";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1589,7 +1595,7 @@
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
-"Pose detection" = "Pose detection";
+"Pose detection" = "Holdningsdeteksjon";
 
 /* No comment provided by engineer. */
 "position x" = "posisjon_x";
@@ -1828,6 +1834,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "Save changes";
 
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Save plot as SVG";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
 
@@ -1877,7 +1886,7 @@
 "seconds " = "sekunder ";
 
 /* No comment provided by engineer. */
-"Select all" = "Select all";
+"Select all" = "Velg alle";
 
 /* bluetooth */
 "Select Arduino" = "Select Arduino";
@@ -1907,7 +1916,7 @@
 "Send web request to" = "Send web request to";
 
 /* No comment provided by engineer. */
-"Sending anonymous crash reports" = "Send anonyme programstopprapporter";
+"Sending anonymous crash reports" = "Send anonyme krasjrapporter";
 
 /* No comment provided by engineer. */
 "Sensors" = "Sensors";
@@ -2066,6 +2075,9 @@
 "Start sound and wait" = "Start lyd og vent";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Start to plot";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "Start triple stitch with length";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2103,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Stopp Phiro motor";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Stop to plot";
 
 /* No comment provided by engineer. */
 "Su" = "Su";
@@ -2408,7 +2423,7 @@
 "We" = "We";
 
 /* No comment provided by engineer. */
-"Web access" = "Web access";
+"Web access" = "Web tilgang";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Wednesday";
