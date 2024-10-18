@@ -20,98 +20,80 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension AudioManager: AudioManagerProtocol {
-    private var noiseRecogniserTimeIntervalInSeconds: Double { 0.05 }
-    private var noiseRecorderChannel: Int { 0 }
+import AudioKit
+import Foundation
 
-    func startLoudnessRecorder() {
-        if self.recorder == nil {
-            self.initRecorder()
-        }
+extension AudioEngine: AudioManagerProtocol {
+       func startLoudnessRecorder() {
+           if !self.isRecording {
+               self.inputNode = self.loudnessEngine.inputNode
+               self.recordingFormat = self.inputNode.outputFormat(forBus: 0)
+               self.inputNode.installTap(onBus: 0, bufferSize: 2048, format: self.recordingFormat) { buffer, _ in
+                   let db = self.decibelFullScale(from: buffer)
+                   if !db.isNaN { self.dbSamples.append(db) }
+               }
+           }
+           self.loudnessEngine.prepare()
+           try? self.loudnessEngine.start()
+           self.isRecording = true
 
-        self.loudnessTimer = Timer.scheduledTimer(timeInterval: noiseRecogniserTimeIntervalInSeconds,
-                                                  target: self,
-                                                  selector: #selector(self.projectTimerCallback),
-                                                  userInfo: nil,
-                                                  repeats: true)
+       }
 
-        self.recorder.isMeteringEnabled = true
-        self.recorder.record()
+       func stopLoudnessRecorder() {
+           if self.isRecording {
+               self.inputNode.removeTap(onBus: 0)
+               self.loudnessEngine.stop()
+               self.dbSamples.removeAll() // dot return sound if stop was called
+               self.isRecording = false
+           }
+       }
+
+       func pauseLoudnessRecorder() {
+           if self.isRecording {
+               self.loudnessEngine.pause()
+               self.isRecording = false
+           }
+       }
+
+       func resumeLoudnessRecorder() {
+           if !self.isRecording {
+               try? self.loudnessEngine.start()
+               self.isRecording = true
+           }
+       }
+
+       func loudness() -> Double? {
+           if self.dbSamples.isEmpty { return nil }
+           return (self.dbSamples.reduce(0, +) / Double(self.dbSamples.count))
+       }
+
+    private func decibelFullScale(from buffer: AVAudioPCMBuffer) -> Double {
+        let arraySize = Int(buffer.frameLength)
+        let samples = Array(UnsafeBufferPointer(start: buffer.floatChannelData![0], count: arraySize))
+        let dBFS = 20 * log10(abs(samples.max()!))
+        return Double(dBFS)
     }
 
-    func stopLoudnessRecorder() {
-        if self.recorder != nil {
-            self.recorder.stop()
-            self.recorder = nil
-        }
+       func loudnessAvailable() -> Bool {
+           var isGranted = false
+           let dispatchGroup = DispatchGroup()
 
-        if self.loudnessTimer != nil {
-            self.loudnessTimer.invalidate()
-            self.loudnessTimer = nil
-        }
-    }
+           switch AVAudioSession.sharedInstance().recordPermission {
+           case AVAudioSession.RecordPermission.denied:
+               isGranted = false
+           case AVAudioSession.RecordPermission.undetermined:
+               dispatchGroup.enter()
+               AVAudioSession.sharedInstance().requestRecordPermission({ (granted: Bool) in
+                   isGranted = granted
+                   dispatchGroup.leave()
+               })
+               dispatchGroup.wait()
+           case AVAudioSession.RecordPermission.granted:
+               isGranted = true
+           @unknown default:
+               print("ERROR: case not handled by switch statement")
+           }
 
-    func pauseLoudnessRecorder() {
-        self.recorder?.pause()
-    }
-
-    func resumeLoudnessRecorder() {
-        self.recorder?.record()
-    }
-
-    func loudness() -> Double? {
-        if self.loudnessInDecibels == nil || self.recorder == nil {
-            return nil // no sound
-        }
-        return self.loudnessInDecibels as? Double
-    }
-
-    func initRecorder() {
-        let url = URL(fileURLWithPath: "/dev/null")
-
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatAppleLossless),
-            AVSampleRateKey: 44100.0,
-            AVNumberOfChannelsKey: 0,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ] as [String: Any]
-
-        try? self.recorder = AVAudioRecorder(url: url, settings: settings)
-    }
-
-    @objc func projectTimerCallback() {
-        guard let recorder = self.recorder else { return }
-        recorder.updateMeters()
-
-        self.loudnessInDecibels = recorder.averagePower(forChannel: noiseRecorderChannel) as NSNumber
-    }
-
-    func loudnessAvailable() -> Bool {
-        var isGranted = false
-        let dispatchGroup = DispatchGroup()
-
-        switch AVAudioSession.sharedInstance().recordPermission {
-        case AVAudioSession.RecordPermission.denied:
-            isGranted = false
-        case AVAudioSession.RecordPermission.undetermined:
-            dispatchGroup.enter()
-            AVAudioSession.sharedInstance().requestRecordPermission({ (granted: Bool) in
-                isGranted = granted
-                dispatchGroup.leave()
-            })
-            dispatchGroup.wait()
-        case AVAudioSession.RecordPermission.granted:
-            isGranted = true
-        @unknown default:
-            print("ERROR: case not handled by switch statement")
-        }
-
-        if isGranted && self.recorder == nil {
-            self.initRecorder()
-            return self.recorder.prepareToRecord()
-        }
-
-        return isGranted
-    }
-
+           return isGranted
+       }
 }
