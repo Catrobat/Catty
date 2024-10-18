@@ -52,7 +52,7 @@ class UIDefines: NSObject {
     @objc static let iPadScreenHeight = CGFloat(1028.0)
 
     // ScenePresenterViewController
-    @objc static let slidingStartArea = 40
+    @objc static let slidingStartArea = 80
     @objc static let firstSwipeDuration = CGFloat(0.65)
     @objc static let hideMenuViewDelay = CGFloat(0.45)
 
