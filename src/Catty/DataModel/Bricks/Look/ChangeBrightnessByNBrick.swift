@@ -28,8 +28,8 @@
         super.init()
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.lookBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.lookBrick.rawValue)]
     }
 
     func formula(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> Formula? {

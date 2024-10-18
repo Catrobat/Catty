@@ -31,9 +31,9 @@
     return (! [self.script.object isBackground]);
 }
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kMotionBrick;
+    return @[@(kMotionBrick)];
 }
 
 - (void)performFromScript:(Script*)script;

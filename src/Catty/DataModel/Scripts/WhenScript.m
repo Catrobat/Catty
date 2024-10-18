@@ -34,9 +34,9 @@
     return self;
 }
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kEventBrick;
+    return @[@(kEventBrick)];
 }
 
 - (BOOL)isEqualToScript:(Script *)script

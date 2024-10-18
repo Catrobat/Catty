@@ -76,9 +76,9 @@
     return NO;
 }
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kDataBrick;
+    return @[@(kDataBrick),@(kLookBrick)];
 }
 
 #pragma mark - Description
