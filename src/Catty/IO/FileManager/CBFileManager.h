@@ -59,5 +59,6 @@
 - (NSArray*)urls:(NSSearchPathDirectory)directory inDomainMask:(NSSearchPathDomainMask)domainMask;
 - (NSData*)read:(NSString*)path;
 - (BOOL)write:(NSData*)data toPath:(NSString*)path;
+- (Project*)addDefaultProjectToProjectsRootDirectory:(NSString*)projectName;
 
 @end

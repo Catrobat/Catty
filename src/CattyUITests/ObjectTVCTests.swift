@@ -149,7 +149,7 @@ class ObjectTVCTests: XCTestCase {
         app.tables.staticTexts[kLocalizedNewProject].tap()
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedNewProject].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         addObjectAndDrawNewImage(name: objectName, in: app)

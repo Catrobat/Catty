@@ -72,4 +72,29 @@ import Foundation
             return UIImage(named: "person.crop.circle#navbar")
         }
     }
+
+    func createProject(inputName: String, isdefault: Bool) {
+        print("createProject bool: \(isdefault)")
+        if isdefault {
+            if let project = CBFileManager.shared().addDefaultProject(toProjectsRootDirectory: inputName) {
+                self.openProject(project)
+            }
+        } else {
+            let project = self.projectManager.createProject(name: inputName, projectId: nil)
+            self.openProject(project)
+        }
+    }
+
+    func createProjectCreationDialogue() {
+        Util.askUser(forProject: #selector(createProject(inputName: isdefault: )),
+                     target: self,
+                     promptTitle: kLocalizedNewProject,
+                     promptMessage: kLocalizedProjectName,
+                     promptValue: nil,
+                     promptPlaceholder: kLocalizedEnterYourProjectNameHere,
+                     minInputLength: UInt(kMinNumOfProjectNameCharacters),
+                     maxInputLength: UInt(kMaxNumOfProjectNameCharacters),
+                     invalidInputAlertMessage: kLocalizedProjectNameAlreadyExistsDescription,
+                     existingNames: Project.allProjectNames())
+    }
 }
