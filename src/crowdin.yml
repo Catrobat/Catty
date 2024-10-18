@@ -1,0 +1,14 @@
+"project_id_env": "CROWDIN_PROJECT_ID"
+"api_token_env": "CROWDIN_PERSONAL_TOKEN"
+"base_path": "Catty/Resources/Localization"
+
+"preserve_hierarchy": true
+
+"files": [
+  {
+    "source": "en.lproj/Localizable.strings",
+    "dest": "catty/Localizable.strings",
+    "translation": "%osx_code%/%original_file_name%"
+    "update_option": "update_as_unapproved",
+  }
+]
