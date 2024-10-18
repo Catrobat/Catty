@@ -13,7 +13,7 @@ Please review the [contributing guidelines](https://github.com/Catrobat/Catty/bl
 - [ ] Verify to commit no other files than the intentionally changed ones
 - [ ] Include reasonable and readable tests verifying the added or changed behavior
 - [ ] Confirm that new and existing unit tests pass locally
-- [ ] Check that the commits’ message style matches the [project’s guideline](https://github.com/Catrobat/Catroid/wiki/Commit-Message-Guidelines)
+- [ ] Check that the commits’ message style matches the [project’s guideline](https://confluence.catrob.at/display/IOS/Git+naming+conventions)
 - [ ] Stick to the project’s git workflow (rebase and squash your commits)
 - [ ] Verify that your changes do not have any conflicts with the base branch
 - [ ] After the PR, verify that all CI checks have passed
