@@ -36,71 +36,39 @@ let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefines.h",
     "LanguageTranslationDefinesSwift.swift",
     "LanguageTranslationDefinesUI.swift",
-    "Functions.[hm]",
-    "Operators.m",
-    "BSKeyboardControls.m",
     "synchronize-localization.swift"
 ]; let localizedStringCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 let localizedStringCheckSeparatedExcludeDirs = [
-    "Pods",
-    "Carthage",
     "Build",
-    "DerivedData"
+    "DerivedData",
+    "vendor/bundle"
 ]; let localizedStringCheckSeparatedExcludeDirsLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeDirs = [
-    "TTTAttributedLabel",
-    "minizip",
-    "SSZipArchive",
-    "GDataXMLNode",
-    "LXReorderableCollectionViewFlowLayout",
-    "AHKActionSheetViewController",
-    "AHKAdditions",
-    "IBActionSheet",
-    "SWCellScrollView",
-    "SWLongPressGestureRecognizer",
-    "SWTableViewCell",
-    "FXBlurView",
-    "BDKNotifyHUD",
-    "EVCircularProgressView",
-    "NSString+FastImageSize",
-    "UIViewController+CWPopup",
-    "OrderedDictionary",
     "3rdParty",
-    "PocketPaint",
-    "Carthage",
     "Build",
     "DerivedData",
-    "Siren",
-    "Pods",
-    "PodSource"
+    "vendor/bundle"
 ]; let licenseCheckExcludeDirsLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
-    "AHKActionSheet.[mh]",
-    "AHKActionSheetViewController.[mh]",
-    "LXReorderableCollectionViewFlowLayout.[mh]",
-    "IBActionSheet.[mh]",
-    "Reachability.[mh]",
-    "SharkfoodMuteSwitchDetector.[mh]",
-    "SWCellScrollView.[mh]",
-    "SWUtilityButtonView.[mh]",
-    "UIImage+AHKAdditions.[mh]",
-    "UIWindow+AHKAdditions.[mh]",
-    "SWLongPressGestureRecognizer.[mh]",
-    "SWTableViewCell.[mh]",
-    "SWUtilityButtonTapGestureRecognizer.[mh]",
-    "SMPageControl.[mh]",
-    "EAIntroPage.[mh]",
-    "MYIntroductionPanel.[mh]",
-    "FBKVOController.[mh]",
-    "JNKeychain.[mh]",
-    "BOButtonTableViewCell.[mh]",
-    "MXPagerView-umbrella.[mh]",
-    "SwellAll.swift",
+    "GDataXMLNode.[mh]",
+    "ImageHelper.[mh]",
+    "LCTableViewPickerControl.[mh]",
     "license-validator.swift",
+    "LinkedListStack.[mh]",
+    "LXReorderableCollectionViewFlowLayout.[mh]",
+    "NKOColorPickerView.[mh]",
+    "NSString+FastImageSize.[mh]",
+    "OrderedDictionary.[mh]",
     "SnapshotHelper.swift",
-    "synchronize-localization.swift"
+    "SPUserResizableView.[mh]",
+    "SwellAll.swift",
+    "synchronize-localization.swift",
+    "UIImage+FloodFill.[mh]",
+    "UIViewController+KNSemiModal.[mh]",
+    "YKImageCropperOverlayView.[mh]",
+    "YKImageCropperView.[mh]"
 ]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%d The Catrobat Team\n"

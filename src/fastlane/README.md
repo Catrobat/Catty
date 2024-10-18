@@ -39,6 +39,14 @@ Create builds at CI pipeline
 
 Upload Development Build to Browserstack
 
+### ios unittests
+
+```sh
+[bundle exec] fastlane ios unittests
+```
+
+Run Unittests
+
 ### ios tests
 
 ```sh

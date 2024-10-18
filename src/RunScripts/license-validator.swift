@@ -72,73 +72,25 @@ enum License: String {
 }
 
 let license3rdPartyDict: [String: License] = [
-    "LLNode": .MIT,
+    "BDKNotifyHUD": .MIT,
     "CBStack": .MIT,
-    "OrderedDictionary": .zlib,
-    "NSString+FastImageSize": .MIT,
-    "UIViewController+CWPopup": .MIT,
+    "EVCircularProgressView": .MIT,
     "GDataXMLNode": .Apache2,
-    "JNKeychain": .MIT,
-    "SwellAll": .Apache2,
-    "crypt": .BSD,
-    "ioapi": .zlib,
-    "mztools": .zlib,
-    "unzip": .zlib,
-    "zip": .zlib,
     "ImageHelper": .MIT,
-    "Reachability": .Apple,
-    "SharkfoodMuteSwitchDetector": .MIT,
-    "Siren": .MIT,
-    "SSZipArchive": .MIT,
     "LCTableViewPickerControl": .MIT,
     "LinkedListStack": .MIT,
+    "LLNode": .MIT,
+    "LXReorderableCollectionViewFlowLayout": .MIT,
     "NKOColorPickerView": .MIT,
+    "NSString+FastImageSize": .MIT,
+    "OrderedDictionary": .zlib,
+    "SnapshotHelper": .MIT,
     "SPUserResizableView": .MIT,
+    "SwellAll": .Apache2,
     "UIImage+FloodFill": .MIT,
     "UIViewController+KNSemiModal": .MIT,
     "YKImageCropperOverlayView": .MIT,
-    "YKImageCropperView": .MIT,
-    "AHKActionSheet": .MIT,
-    "AHKActionSheetViewController": .MIT,
-    "UIImage+AHKAdditions": .MIT,
-    "UIWindow+AHKAdditions": .MIT,
-    "BDKNotifyHUD": .MIT,
-    "EVCircularProgressView": .MIT,
-    "FXBlurView": .zlib,
-    "IBActionSheet": .MIT,
-    "LXReorderableCollectionViewFlowLayout": .MIT,
-    "MYIntroductionPanel": .MIT,
-    "TTTAttributedLabel": .MIT,
-    "MXPagerView": .MIT,
-    "MXPagerViewController": .MIT,
-    "MXParallaxHeader": .MIT,
-    "MXScrollView": .MIT,
-    "MXScrollViewController": .MIT,
-    "AudioKit": .MIT,
-    "SnapshotHelper": .MIT,
-    "ScratchSampleInstruments": .BSD
-]
-
-let licenseCheckDirs: [String: License] = [
-    "Bohr": .MIT,
-    "HMSegmentedControl": .MIT,
-    "PureLayout": .MIT,
-    "M13ProgressSuite": .MIT,
-    "MXSegmentedPager": .MIT,
-    "Target Support Files": .MIT,
-    "VGParallaxHeader": .MIT,
-    "TOCropViewController": .MIT
-]
-
-let checkDirs: [String] = [
-    "Bohr",
-    "HMSegmentedControl",
-    "PureLayout",
-    "M13ProgressSuite",
-    "MXSegmentedPager",
-    "Target Support Files",
-    "VGParallaxHeader",
-    "TOCropViewController"
+    "YKImageCropperView": .MIT
 ]
 
 let compatibleLicenses: [License] = [
@@ -173,8 +125,6 @@ func checkLicenseOfFile(_ filePath: String) {
         let range = content.range(of: licenseSearchStringCurrentYear)
         if range == nil {
             isExternalLibrary = true
-            //let removedFileName = (filePath as NSString).stringByDeletingLastPathComponent
-            //libraryName = (removedFileName as NSString).lastPathComponent
             libraryName = (filePath as NSString).lastPathComponent
             libraryName = (libraryName as NSString).deletingPathExtension
         }
@@ -183,26 +133,6 @@ func checkLicenseOfFile(_ filePath: String) {
     }
 
     if isExternalLibrary {
-        for excludeDir in checkDirs {
-            let range = filePath.range(of: excludeDir)
-            if range != nil {
-                libraryName = excludeDir
-                guard let license = licenseCheckDirs[libraryName] else {
-                    printErrorAndExitIfFailed("No license specified for library: \(libraryName). Please add the license also to our license folder", withFilePath: filePath)
-                    return
-                }
-
-                if license == .Unknown {
-                    printWarning("Unknown License found. Not sure if compatible with PocketCode", withFilePath: filePath)
-                } else {
-                    if !isValidLicense(license) {
-                        printErrorAndExitIfFailed("License (\(license)) is not compatible with PockedCode.", withFilePath: filePath)
-                    }
-                }
-                return
-            }
-        }
-        
         do {
             let content = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
             let previousYear = content.range(of: licenseSearchStringPreviousYear)
@@ -215,7 +145,7 @@ func checkLicenseOfFile(_ filePath: String) {
         }
         
         guard let license = license3rdPartyDict[libraryName] else {
-            printErrorAndExitIfFailed("No license specified for library: \(libraryName).Please add the license also to our license folder", withFilePath: filePath)
+            printErrorAndExitIfFailed("No license specified for library: \(libraryName). Please add the license also to our license folder", withFilePath: filePath)
             return
         }
 
@@ -234,8 +164,8 @@ func checkLicenses() {
     let filePaths = getFilePaths()
     while let filePath = filePaths.nextObject() as? String {
 
-        // skip Build and DerivedData directories
-        if filePath.hasPrefix("Build") || filePath.hasPrefix("DerivedData") || filePath.hasPrefix("Carthage") {
+        // skip Build, DerivedData and bundler directories
+        if filePath.hasPrefix("Build") || filePath.hasPrefix("DerivedData") || filePath.hasPrefix("vendor/bundle") {
             continue
         }
 
