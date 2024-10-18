@@ -464,6 +464,12 @@
 #define kLocalizedBlue NSLocalizedString(@"blue", nil)
 #define kLocalizedStamp NSLocalizedString(@"Stamp", nil)
 
+// plot bricks
+#define kLocalizedStartPlot NSLocalizedString(@"Start to plot", nil)
+#define kLocalizedStopPlot NSLocalizedString(@"Stop to plot", nil)
+#define kLocalizedSavePlot NSLocalizedString(@"Save plot as SVG", nil)
+#define kLocalizedSavePlotDefaultFile NSLocalizedString(@"plot.svg", nil)
+
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
@@ -913,6 +919,7 @@
 #define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedCategoryPen NSLocalizedString(@"Pen", nil)
 #define kLocalizedCategoryEmbroidery NSLocalizedString(@"Embroidery", nil)
+#define kLocalizedCategoryPlot NSLocalizedString(@"Plot", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

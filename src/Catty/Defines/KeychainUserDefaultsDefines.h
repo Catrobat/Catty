@@ -24,6 +24,7 @@
 #define kUseArduinoBricks @"useArduinoBricks"
 #define kUseEmbroideryBricks @"useEmbroideryBricks"
 #define kUseWebRequestBrick @"useWebRequestBrick"
+#define kUsePlotBricks @"usePlotBricks"
 
 #define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
 #define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
@@ -37,3 +38,4 @@
 #define kEmbroideryActivated 1
 #define kFirebaseSendCrashReportsDefault 1
 #define kWebRequestBrickActivated 0
+#define kPlotActivated 1

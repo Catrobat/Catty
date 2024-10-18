@@ -65,6 +65,14 @@ class FormEmbroiderySwitchItem: FormSwitchItem {
     }
 }
 
+class FormPlotSwitchItem: FormSwitchItem {
+    init() {
+        super.init(title: kLocalizedCategoryPlot)
+
+        self.cellType = FormPlotSwitchTableViewCell.self
+    }
+}
+
 class FormPhiroSwitchItem: FormSwitchItem {
     init() {
         super.init(title: kLocalizedCategoryPhiro)

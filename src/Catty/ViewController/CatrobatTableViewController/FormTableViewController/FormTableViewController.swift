@@ -47,6 +47,7 @@ class FormTableViewController: UITableViewController {
         tableView.register(FormSwitchTableViewCell.self, forCellReuseIdentifier: FormSwitchTableViewCell.id)
         tableView.register(FormArduinoSwitchTableViewCell.self, forCellReuseIdentifier: FormArduinoSwitchTableViewCell.id)
         tableView.register(FormEmbroiderySwitchTableViewCell.self, forCellReuseIdentifier: FormEmbroiderySwitchTableViewCell.id)
+        tableView.register(FormPlotSwitchTableViewCell.self, forCellReuseIdentifier: FormPlotSwitchTableViewCell.id)
         tableView.register(FormPhiroSwitchTableViewCell.self, forCellReuseIdentifier: FormPhiroSwitchTableViewCell.id)
         tableView.register(FormCrashReportsSwitchTableViewCell.self, forCellReuseIdentifier: FormCrashReportsSwitchTableViewCell.id)
         tableView.register(FormTextFieldTableViewCell.self, forCellReuseIdentifier: FormTextFieldTableViewCell.id)

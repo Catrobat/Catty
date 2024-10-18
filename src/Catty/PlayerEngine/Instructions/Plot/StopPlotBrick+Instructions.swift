@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenUpBrick: CBInstructionProtocol {
+extension StopPlotBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
         .action { _ in SKAction.run(self.actionBlock()) }
@@ -32,10 +32,10 @@ extension PenUpBrick: CBInstructionProtocol {
             else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.penConfiguration.previousPositionLines.append(spriteNode.penConfiguration.previousPositions)
-            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>()
-            spriteNode.penConfiguration.penDown = false
+            spriteNode.penConfiguration.previousCutPositionLines.append(spriteNode.penConfiguration.previousCutPositions)
+            spriteNode.penConfiguration.previousCutPositions = SynchronizedArray<CGPoint>()
+            spriteNode.penConfiguration.isCut = false
+            spriteNode.penConfiguration.drawnCutPoints = 0
         }
     }
-
 }

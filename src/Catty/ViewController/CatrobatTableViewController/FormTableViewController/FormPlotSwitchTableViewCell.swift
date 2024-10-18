@@ -20,22 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenUpBrick: CBInstructionProtocol {
+import Foundation
+import UIKit
 
-    func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+class FormPlotSwitchTableViewCell: FormSwitchTableViewCell {
+
+    override class var id: String {
+        "FormPlotSwitchTableViewCell"
     }
 
-    func actionBlock() -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
+    override func setupViews() {
+        super.setupViews()
 
-        return {
-            spriteNode.penConfiguration.previousPositionLines.append(spriteNode.penConfiguration.previousPositions)
-            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>()
-            spriteNode.penConfiguration.penDown = false
-        }
+        switchControl.isOn = UserDefaults.standard.bool(forKey: kUsePlotBricks)
     }
 
+    override func switchControlValueChanged() {
+        super.switchControlValueChanged()
+
+        UserDefaults.standard.set(switchControl.isOn, forKey: kUsePlotBricks)
+    }
 }
