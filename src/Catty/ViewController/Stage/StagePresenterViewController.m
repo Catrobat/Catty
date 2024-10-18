@@ -275,6 +275,8 @@
     [positiveHeight sizeToFit];
     [negativeHeight sizeToFit];
     
+    [self.gridView setUserInteractionEnabled:false];
+    
     [self.view insertSubview:self.gridView aboveSubview:self.skView];
 }
 
