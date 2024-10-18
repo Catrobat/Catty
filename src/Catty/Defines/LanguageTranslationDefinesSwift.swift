@@ -168,6 +168,7 @@ let kLocalizedDisableCondition = NSLocalizedString("Disable condition", comment:
 let kLocalizedEnableCondition = NSLocalizedString("Enable condition", comment: "")
 let kLocalizedEditFormula = NSLocalizedString("Edit formula", comment: "")
 let kLocalizedMoveBrick = NSLocalizedString("Move brick", comment: "")
+let kLocalizedMoveScript = NSLocalizedString("Move script", comment: "")
 let kLocalizedDeleteSounds = NSLocalizedString("Delete sounds", comment: "")
 let kLocalizedMoveSounds = NSLocalizedString("Move sounds", comment: "")
 let kLocalizedHideDetails = NSLocalizedString("Hide details", comment: "")
