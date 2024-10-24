@@ -41,6 +41,20 @@
     self.variableComboBoxView = inlineViewSubViews[1];
     self.thirdRowTextLabel = inlineViewSubViews[2];
     self.valueTextField = inlineViewSubViews[3];
+    [self configureAccessibility];
+}
+
+- (void)configureAccessibility
+{
+    self.firstRowTextLabel.isAccessibilityElement = YES;
+    
+    self.variableComboBoxView.isAccessibilityElement = YES;
+    self.variableComboBoxView.accessibilityTraits = UIAccessibilityTraitButton;
+
+    self.thirdRowTextLabel.isAccessibilityElement = YES;
+
+    self.valueTextField.isAccessibilityElement = YES;
+    self.valueTextField.accessibilityTraits = UIAccessibilityTraitKeyboardKey;
 }
 
 - (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
