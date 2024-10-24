@@ -101,41 +101,8 @@
 {
     [self.tableView setEditing:false animated:YES];
     
-    [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
-          placeholder:kLocalizedEnterYourObjectNameHere]
-         addCancelActionWithTitle:kLocalizedCancel handler:^{
-        [self cancelAddingObjectFromScriptEditor];
-    }]
-        addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
-        [self addObjectActionWithName:name];
-    }]
-       valueValidator:^InputValidationResult *(NSString *name) {
-        InputValidationResult *result = [Util validationResultWithName:name
-                                                             minLength:kMinNumOfObjectNameCharacters
-                                                             maxlength:kMaxNumOfObjectNameCharacters];
-        if (!result.valid) {
-            return result;
-        }
-        // Alert for Objects with same name
-        if ([[self.scene allObjectNames] containsObject:name]) {
-            return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
-        }
-        return [InputValidationResult validInput];
-    }] build]
-     showWithController:self];
-}
-
--(void)cancelAddingObjectFromScriptEditor
-{
-    if (self.afterSafeBlock) {
-        self.afterSafeBlock(nil);
-    }
-}
-
-- (void)addObjectActionWithName:(NSString*)objectName
-{
     [self showLoadingView];
-    [self.scene addObjectWithName:[Util uniqueName:objectName existingNames:[self.scene allObjectNames]]];
+    [self.scene addObjectWithName:[Util uniqueName:kLocalizedLook existingNames:[self.scene allObjectNames]]];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
@@ -147,12 +114,44 @@
     ltvc.showAddLookActionSheetAtStartForScriptEditor = NO;
     ltvc.afterSafeBlock =  ^(Look* look) {
         [self.navigationController popViewControllerAnimated:YES];
+        if (look) {
+            NSString *initialText = look.name;
+            [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
+                  placeholder:kLocalizedEnterYourObjectNameHere]
+                initialText:initialText]
+                 addCancelActionWithTitle:kLocalizedCancel handler:^{
+                NSUInteger index = kBackgroundObjectIndex + indexPath.section + indexPath.row;
+                SpriteObject *object = (SpriteObject*)[self.scene.objects objectAtIndex:index];
+                [self.scene removeObject:object];
+                [self.scene.project saveToDiskWithNotification:NO];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+                [self cancelAddingObjectFromScriptEditor];
+            }]
+                addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+                [self renameObjectActionToName:name spriteObject:(SpriteObject*)[self.scene.objects objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]];
+            }]
+               valueValidator:^InputValidationResult *(NSString *name) {
+                InputValidationResult *result = [Util validationResultWithName:name
+                                                                     minLength:kMinNumOfObjectNameCharacters
+                                                                     maxlength:kMaxNumOfObjectNameCharacters];
+                if (!result.valid) {
+                    return result;
+                }
+                // Alert for Objects with same name
+                if ([[self.scene allObjectNames] containsObject:name]) {
+                    return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
+                }
+                return [InputValidationResult validInput];
+            }] build]
+             showWithController:self];
+        }
         if (!look) {
-            NSUInteger index = (kBackgroundObjects + indexPath.row);
+            NSUInteger index = kBackgroundObjectIndex + indexPath.row + 1;
             SpriteObject *object = (SpriteObject*)[self.scene.objects objectAtIndex:index];
             [self.scene removeObject:object];
             [self.scene.project saveToDiskWithNotification:NO];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+            [self cancelAddingObjectFromScriptEditor];
         }
         if (self.afterSafeBlock && look ) {
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
@@ -162,10 +161,16 @@
             self.afterSafeBlock(nil);
         }
         [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
+        [self hideLoadingView];
+        [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
     };
-    [self.navigationController pushViewController:ltvc animated:NO];
-    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
-    [self hideLoadingView];
+    [self.navigationController pushViewController:ltvc animated:NO];}
+
+-(void)cancelAddingObjectFromScriptEditor
+{
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
+    }
 }
 
 - (void)renameProjectActionForProjectWithName:(NSString*)newProjectName
