@@ -23,6 +23,10 @@
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
 
-@interface CatrobatTableViewController : BaseTableViewController
+@class CatrobatTableViewController;
+@class ProjectManager;
 
+
+@interface CatrobatTableViewController : BaseTableViewController
+@property (nonatomic, strong) ProjectManager *projectManager;
 @end

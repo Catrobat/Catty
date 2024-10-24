@@ -144,7 +144,7 @@
 - (void)addProjectAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-    [Util askUserForUniqueNameAndPerformAction:@selector(createAndOpenProjectWithName:)
+    [Util askUserForProject:@selector(createAndOpenProjectWithName:)
                                         target:self
                                    promptTitle:kLocalizedNewProject
                                  promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
@@ -158,11 +158,10 @@
 
 - (void)createAndOpenProjectWithName:(NSString*)projectName
 {
-    projectName = [Util uniqueName:projectName existingNames:[Project allProjectNames]];
+    [self showLoadingView];
     self.defaultProject = [self.projectManager createProjectWithName:projectName projectId:nil];
-    
     if (self.defaultProject) {
-        [self addProject:self.defaultProject.header.programName];
+        [self hideLoadingView];
         [self openProject:self.defaultProject];
     }
 }
