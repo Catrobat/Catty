@@ -26,9 +26,9 @@
 
 @implementation BroadcastWaitBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kEventBrick;
+    return @[@(kControlBrick),@(kEventBrick)];
 }
 
 - (id)initWithMessage:(NSString*)message

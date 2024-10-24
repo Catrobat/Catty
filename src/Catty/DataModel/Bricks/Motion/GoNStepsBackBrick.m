@@ -56,9 +56,9 @@
     return YES;
 }
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kMotionBrick;
+    return @[@(kMotionBrick)];
 }
 
 #pragma mark - Description

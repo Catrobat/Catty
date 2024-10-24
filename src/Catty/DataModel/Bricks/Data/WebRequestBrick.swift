@@ -41,8 +41,8 @@
         self.script = script
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.dataBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.dataBrick.rawValue)]
     }
 
     override class func description() -> String {

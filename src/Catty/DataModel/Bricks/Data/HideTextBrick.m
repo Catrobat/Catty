@@ -26,9 +26,9 @@
 
 @implementation HideTextBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kDataBrick;
+    return @[@(kDataBrick)];
 }
 
 - (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

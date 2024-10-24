@@ -28,6 +28,7 @@
 #import "GlideToBrickCell.h"
 #import "BrickManager.h"
 #import "Pocket_Code-Swift.h"
+#import "LanguageTranslationDefines.h"
 
 @interface BrickCellFormulaData()
 @property (nonatomic, strong) CAShapeLayer *border;
@@ -123,7 +124,7 @@
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
     } else {
-        BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:self.brickCell.scriptOrBrick.category];
+        BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType: (kBrickCategoryType) (NSUInteger) [self.brickCell.scriptOrBrick.category[0] integerValue] ];
         self.border.strokeColor = self.brickCell.scriptOrBrick.isDisabled ? [category strokeColorDisabled].CGColor : category.strokeColor.CGColor;
     }
     

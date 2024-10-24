@@ -51,9 +51,9 @@
     self.xMovement = [[Formula alloc] initWithInteger:10];
 }
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kMotionBrick;
+    return @[@(kMotionBrick)];
 }
 
 #pragma mark - Description

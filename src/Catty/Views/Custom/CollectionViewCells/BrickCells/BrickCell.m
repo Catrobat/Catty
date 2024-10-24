@@ -424,7 +424,7 @@
 {
     CGFloat height = [[self class] cellHeight];
     CGFloat width = [Util screenWidth];
-    BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:self.scriptOrBrick.category];
+    BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:(kBrickCategoryType) (NSUInteger) [self.scriptOrBrick.category[0] integerValue]];
     
     UIColor *fillColor = category.color;
     UIColor *strokeColor = category.strokeColor;

@@ -29,8 +29,8 @@
         super.init()
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.penBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.penBrick.rawValue)]
     }
 
     override class func description() -> String {

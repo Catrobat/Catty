@@ -27,9 +27,9 @@
 
 @implementation IfThenLogicBeginBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kControlBrick;
+    return @[@(kControlBrick)];
 }
 
 - (BOOL)isAnimateable

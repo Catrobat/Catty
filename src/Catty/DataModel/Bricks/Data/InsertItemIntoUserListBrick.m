@@ -74,9 +74,9 @@
     }
 }
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kDataBrick;
+    return @[@(kDataBrick)];
 }
 
 - (BOOL)allowsStringFormula
