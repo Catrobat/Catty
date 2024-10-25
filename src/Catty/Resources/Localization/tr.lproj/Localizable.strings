@@ -1553,6 +1553,12 @@
 "Please try resetting the device and try again." = "Lütfen cihazı sıfırlamayı deneyin ve tekrar deneyin.";
 
 /* No comment provided by engineer. */
+"Plot" = "Plot";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "Cep Kodu";
 
 /* No comment provided by engineer. */
@@ -1828,6 +1834,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "Değişiklikleri Kaydet";
 
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Save plot as SVG";
+
 /* paint */
 "Save to Photos" = "Fotoğraflara Kaydet";
 
@@ -2066,6 +2075,9 @@
 "Start sound and wait" = "Sesi başlat ve bekle";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Start to plot";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "Uzunluğu olan üçlü dikişi başlatın";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2103,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Phiro motorunu durdur";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Stop to plot";
 
 /* No comment provided by engineer. */
 "Su" = "Su";

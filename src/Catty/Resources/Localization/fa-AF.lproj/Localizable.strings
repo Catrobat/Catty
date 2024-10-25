@@ -1553,6 +1553,12 @@
 "Please try resetting the device and try again." = "لطفاً دستگاه را بازنشانی کنید و دوباره امتحان کنید.";
 
 /* No comment provided by engineer. */
+"Plot" = "Plot";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "کد جیبی";
 
 /* No comment provided by engineer. */
@@ -1828,6 +1834,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "ذخیره تغییرات";
 
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Save plot as SVG";
+
 /* paint */
 "Save to Photos" = "ذخیره در عکس ها";
 
@@ -2066,6 +2075,9 @@
 "Start sound and wait" = "صدا را شروع کنید و صبر کنید";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Start to plot";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "دوخت سه گانه را با طول شروع کنید";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2103,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "موتور فیرو را متوقف کنید";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Stop to plot";
 
 /* No comment provided by engineer. */
 "Su" = "یکشنبه";

@@ -1043,16 +1043,16 @@
 "left eyebrow center y" = "linke Augenbraue Mitte y";
 
 /* No comment provided by engineer. */
-"left eyebrow inner x" = "left eyebrow inner x";
+"left eyebrow inner x" = "linke Augenbraue innen x";
 
 /* No comment provided by engineer. */
-"left eyebrow inner y" = "left eyebrow inner y";
+"left eyebrow inner y" = "linke Augenbraue innen y";
 
 /* No comment provided by engineer. */
-"left eyebrow outer x" = "left eyebrow outer x";
+"left eyebrow outer x" = "linke Augenbraue außen x";
 
 /* No comment provided by engineer. */
-"left eyebrow outer y" = "left eyebrow outer y";
+"left eyebrow outer y" = "linke Augenbraue außen y";
 
 /* No comment provided by engineer. */
 "left hip x" = "linke Hüfte x";
@@ -1073,10 +1073,10 @@
 "left knee y" = "linkes Knie y";
 
 /* No comment provided by engineer. */
-"left middle finger knuckle x" = "left middle finger knuckle x";
+"left middle finger knuckle x" = "linker Mittelfingerknöchel x";
 
 /* No comment provided by engineer. */
-"left middle finger knuckle y" = "left middle finger knuckle y";
+"left middle finger knuckle y" = "linker Mittelfingerknöchel y";
 
 /* No comment provided by engineer. */
 "left pinky knuckle x" = "Knöchel des linken Fingers x";
@@ -1085,10 +1085,10 @@
 "left pinky knuckle y" = "linker kleiner Fingerknöchel y";
 
 /* No comment provided by engineer. */
-"left ring finger knuckle x" = "left ring finger knuckle x";
+"left ring finger knuckle x" = "linker Ringfingerknöchel x";
 
 /* No comment provided by engineer. */
-"left ring finger knuckle y" = "left ring finger knuckle y";
+"left ring finger knuckle y" = "linker Ringfingerknöchel y";
 
 /* No comment provided by engineer. */
 "left shoulder x" = "linke Schulter x";
@@ -1553,6 +1553,12 @@
 "Please try resetting the device and try again." = "Bitte versuche das Gerät zurückzusetzen und versuche es erneut.";
 
 /* No comment provided by engineer. */
+"Plot" = "Plotten";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1742,22 +1748,22 @@
 "right eye outer y" = "rechtes Auge außen y";
 
 /* No comment provided by engineer. */
-"right eyebrow center x" = "right eyebrow center x";
+"right eyebrow center x" = "rechte Augenbraue Mitte x";
 
 /* No comment provided by engineer. */
-"right eyebrow center y" = "right eyebrow center y";
+"right eyebrow center y" = "rechte Augenbraue Mitte y";
 
 /* No comment provided by engineer. */
-"right eyebrow inner x" = "right eyebrow inner x";
+"right eyebrow inner x" = "rechte Augenbraue innen x";
 
 /* No comment provided by engineer. */
-"right eyebrow inner y" = "right eyebrow inner y";
+"right eyebrow inner y" = "rechte Augenbraue innen y";
 
 /* No comment provided by engineer. */
-"right eyebrow outer x" = "right eyebrow outer x";
+"right eyebrow outer x" = "rechte Augenbraue außen x";
 
 /* No comment provided by engineer. */
-"right eyebrow outer y" = "right eyebrow outer y";
+"right eyebrow outer y" = "rechte Augenbraue außen y";
 
 /* No comment provided by engineer. */
 "right hip x" = "rechte Hüfte x";
@@ -1778,10 +1784,10 @@
 "right knee y" = "rechtes Knie y";
 
 /* No comment provided by engineer. */
-"right middle finger knuckle x" = "right middle finger knuckle x";
+"right middle finger knuckle x" = "rechter Mittelfingerknöchel x";
 
 /* No comment provided by engineer. */
-"right middle finger knuckle y" = "right middle finger knuckle y";
+"right middle finger knuckle y" = "rechter Mittelfingerknöchel y";
 
 /* No comment provided by engineer. */
 "right pinky knuckle x" = "rechter kleiner Fingerknöchel x";
@@ -1790,10 +1796,10 @@
 "right pinky knuckle y" = "rechter kleiner Fingerknöchel y";
 
 /* No comment provided by engineer. */
-"right ring finger knuckle x" = "right ring finger knuckle x";
+"right ring finger knuckle x" = "rechter Ringfingerknöchel x";
 
 /* No comment provided by engineer. */
-"right ring finger knuckle y" = "right ring finger knuckle y";
+"right ring finger knuckle y" = "rechter Ringfingerknöchel y";
 
 /* No comment provided by engineer. */
 "right shoulder x" = "rechte Schulter x";
@@ -1827,6 +1833,9 @@
 
 /* No comment provided by engineer. */
 "Save changes" = "Änderungen speichern";
+
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Plot als SVG speichern";
 
 /* paint */
 "Save to Photos" = "In Fotos speichern";
@@ -2066,6 +2075,9 @@
 "Start sound and wait" = "Starte Klang und warte";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Beginne zu plotten";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "Starte Dreifachstich mit Länge";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2103,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Stoppe Phiro Motor";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Höre auf zu plotten";
 
 /* No comment provided by engineer. */
 "Su" = "So";
