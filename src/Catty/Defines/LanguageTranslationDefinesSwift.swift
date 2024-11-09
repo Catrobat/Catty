@@ -955,6 +955,7 @@ let klocalizedBluetoothDisconnected = NSLocalizedString("Device disconnected.", 
 
 let kLocalizedMediaLibrary = NSLocalizedString("Media library", comment: "")
 let kLocalizedSelectFile = NSLocalizedString("Select file", comment: "")
+let kLocalizedMediaLibraryDefaultCategory = NSLocalizedString("Default (Offline)", comment: "")
 let kLocalizedMediaLibraryConnectionIssueTitle = NSLocalizedString("Connection failed", comment: "")
 let kLocalizedMediaLibraryConnectionIssueMessage = NSLocalizedString("Cannot connect to the media library. Please check your internet connection.", comment: "")
 let kLocalizedMediaLibraryImportFailedTitle = NSLocalizedString("Failed to import item", comment: "")

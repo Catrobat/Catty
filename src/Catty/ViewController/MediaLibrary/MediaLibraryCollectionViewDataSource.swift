@@ -71,8 +71,13 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
     }
 
     func fetchItems(completion: @escaping (MediaLibraryDownloadError?) -> Void) {
-        self.downloader.downloadIndex(for: self.mediaType) { [weak self] items, error in
-            guard let items = items, error == nil else { completion(error); return }
+        let mediaType = self.mediaType
+        self.downloader.downloadIndex(for: mediaType) { [weak self] items, error in
+            guard let items = items, error == nil else {
+                self?.items = [mediaType.defaultItems]
+                completion(error)
+                return
+            }
             self?.items = items
             completion(nil)
         }
