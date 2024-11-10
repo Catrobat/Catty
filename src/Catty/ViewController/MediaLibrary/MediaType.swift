@@ -38,3 +38,27 @@ extension MediaType {
         }
     }
 }
+
+extension MediaType {
+    var defaultItems: [MediaItem] {
+        var mediaItems: [MediaItem] = []
+
+        let bundleName = String(indexURLString.split(separator: "/").last!) + ".bundle"
+        let bundleURL = Bundle.main.bundleURL.appendingPathComponent(bundleName)
+        guard let contents = try? FileManager.default.contentsOfDirectory(at: bundleURL, includingPropertiesForKeys: [URLResourceKey.nameKey], options: .skipsHiddenFiles) else {
+            return mediaItems
+        }
+
+        for (index, item) in contents.sorted(by: { $0.path < $1.path }).enumerated() {
+            mediaItems.append(
+                MediaItem(id: index,
+                          name: item.deletingPathExtension().lastPathComponent,
+                          category: kLocalizedMediaLibraryDefaultCategory,
+                          fileExtension: item.pathExtension,
+                          downloadURLString: item.absoluteString)
+            )
+        }
+
+        return mediaItems
+    }
+}

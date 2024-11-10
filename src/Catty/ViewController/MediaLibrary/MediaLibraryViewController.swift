@@ -129,7 +129,6 @@ final class MediaLibraryViewController: UICollectionViewController {
             self?.loadingView.hide()
             if let error = error {
                 self?.showConnectionIssueAlertAndDismiss(error: error)
-                return
             }
             self?.collectionView?.reloadData()
         }
@@ -141,9 +140,7 @@ final class MediaLibraryViewController: UICollectionViewController {
         let buttonTitle = kLocalizedOK
 
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(title: buttonTitle, style: .default) { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
-        }
+        alertController.addAction(title: buttonTitle, style: .default, handler: nil)
         self.present(alertController, animated: true, completion: nil)
     }
 }
