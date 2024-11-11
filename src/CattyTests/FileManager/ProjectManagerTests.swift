@@ -328,7 +328,7 @@ final class ProjectManagerTests: XCTestCase {
 
         XCTAssertEqual(sumProjectNamesBefore + 1, sumProjectNamesAfter)
 
-        XCTAssertTrue((Project.allProjectNames() as! [String]).contains("Tic-Tac-Toe Master"))
+        XCTAssertTrue((Project.allProjectNames()).contains("Tic-Tac-Toe Master"))
     }
 
     func testAddProjectFromFileWithInvalidUrl() {

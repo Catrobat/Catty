@@ -420,7 +420,7 @@ static NSObject* saveLock;
 }
 
 
-+ (NSArray*)allProjectNames
++ (NSArray<NSString*>*)allProjectNames
 {
     NSArray *allProjectLoadingInfos = [[self class] allProjectLoadingInfos];
     NSMutableArray *projectNames = [[NSMutableArray alloc] initWithCapacity:[allProjectLoadingInfos count]];

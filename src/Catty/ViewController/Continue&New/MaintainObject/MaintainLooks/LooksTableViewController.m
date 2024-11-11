@@ -454,6 +454,9 @@ UITextFieldDelegate>
         self.selectedLookIndex = indexPath.row;
         NSString *lookImagePath = [[self.object.lookList objectAtIndex:self.selectedLookIndex] pathForScene: self.object.scene];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
+        if (image == nil) {
+            return;
+        }
         vc.editingImage = image;
         vc.editingPath = lookImagePath;
         NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
