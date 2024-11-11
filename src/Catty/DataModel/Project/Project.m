@@ -395,7 +395,7 @@ static NSObject* saveLock;
     [fileManager addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist];
 }
 
-- (void)translateDefaultProject
+- (void)translateDefaultProject:(NSString*) projectName
 {
     NSUInteger index = 0;
     for (SpriteObject *spriteObject in self.scene.objects) {
@@ -411,7 +411,7 @@ static NSObject* saveLock;
         }
         ++index;
     }
-    [self renameToProjectName:kLocalizedMyFirstProject andShowSaveNotification:NO]; // saves to disk!
+    [self renameToProjectName:projectName andShowSaveNotification:NO];
 }
 
 + (NSString*)basePath

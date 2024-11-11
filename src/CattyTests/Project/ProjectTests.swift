@@ -369,7 +369,7 @@ class ProjectTests: XCTestCase {
         project.rename(toProjectName: "Project Name", andShowSaveNotification: true)
         XCTAssertTrue(project.saveNotificationShown)
 
-        project.translateDefaultProject()
+        project.translateDefaultProject("TestProject")
         XCTAssertFalse(project.saveNotificationShown)
     }
 

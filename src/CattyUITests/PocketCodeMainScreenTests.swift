@@ -47,7 +47,7 @@ class PocketCodeMainScreenTests: XCTestCase {
         app.tables.staticTexts[kLocalizedNewProject].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedNewProject].tap()
 
         // go back and try to add project with same name
         app.navigationBars[testProject].buttons[kLocalizedPocketCode].tap()
@@ -55,7 +55,7 @@ class PocketCodeMainScreenTests: XCTestCase {
         app.tables.staticTexts[kLocalizedNewProject].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedNewProject].tap()
 
         // check if error message is displayed
         XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).staticTexts[kLocalizedProjectNameAlreadyExistsDescription].exists)
@@ -82,7 +82,7 @@ class PocketCodeMainScreenTests: XCTestCase {
             let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
             waitForElementToAppear(alertQuery.textFields[kLocalizedEnterYourProjectNameHere]).tap()
             waitForElementToAppear(alertQuery.textFields[kLocalizedEnterYourProjectNameHere]).typeText(projectName)
-            waitForElementToAppear(alertQuery.buttons[kLocalizedOK]).tap()
+            waitForElementToAppear(alertQuery.buttons[kLocalizedNewProject]).tap()
 
             let alert = waitForElementToAppear(app.alerts[kLocalizedPocketCode])
             XCTAssert(alert.exists)
@@ -117,12 +117,12 @@ class PocketCodeMainScreenTests: XCTestCase {
         let newStaticText = tablesQuery.staticTexts[kLocalizedNewProject]
         let alertQuery = app.alerts[kLocalizedNewProject]
         let enterYourProjectNameHereTextField = alertQuery.textFields[kLocalizedEnterYourProjectNameHere]
-        let okButton = alertQuery.buttons[kLocalizedOK]
+        let projectButton = alertQuery.buttons[kLocalizedNewProject]
 
         for projectName in projectNames {
             newStaticText.tap()
             enterYourProjectNameHereTextField.typeText(projectName)
-            okButton.tap()
+            projectButton.tap()
             app.navigationBars[projectName].buttons[kLocalizedPocketCode].tap()
         }
 

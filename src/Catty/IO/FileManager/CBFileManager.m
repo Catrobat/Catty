@@ -302,7 +302,16 @@
     [self addNewBundleProjectWithName:kDefaultProjectBundleName];
     ProjectLoadingInfo *loadingInfo = [ProjectLoadingInfo projectLoadingInfoForProjectWithName:kDefaultProjectBundleName projectID:nil];
     Project *project = [Project projectWithLoadingInfo:loadingInfo];
-    [project translateDefaultProject];
+    [project translateDefaultProject:kLocalizedMyFirstProject];
+}
+
+- (Project*)addDefaultProjectToProjectsRootDirectory:(NSString*)projectName
+{
+    [self addNewBundleProjectWithName:kDefaultProjectBundleName];
+    ProjectLoadingInfo *loadingInfo = [ProjectLoadingInfo projectLoadingInfoForProjectWithName:kDefaultProjectBundleName projectID:nil];
+    Project *project = [Project projectWithLoadingInfo:loadingInfo];
+    [project translateDefaultProject:projectName];
+    return project;
 }
 
 - (void)addNewBundleProjectWithName:(NSString*)projectName
