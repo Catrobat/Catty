@@ -154,18 +154,18 @@
             Util.alert(text: kLocalizedUnableToImportProject)
             return nil
         }
-        projectLoadingInfo.useOriginalName = true
 
-        guard let projectObject = Project(loadingInfo: projectLoadingInfo),
-              let newProjectName = Util.uniqueName(projectObject.header.programName, existingNames: Project.allProjectNames()) else {
+        projectLoadingInfo.useOriginalName = true
+        guard let projectObject = Project(loadingInfo: projectLoadingInfo) else {
             Project.removeProjectFromDisk(withProjectName: tempProjectName, projectID: kNoProjectIDYetPlaceholder)
             Util.alert(text: kLocalizedUnableToImportProject)
             return nil
         }
+        let newProjectName = Util.uniqueName(projectObject.header.programName, existingNames: Project.allProjectNames())
 
         projectLoadingInfo.useOriginalName = false
-
         let project = Project(loadingInfo: projectLoadingInfo)
+
         project?.rename(toProjectName: newProjectName, andShowSaveNotification: false)
 
         return project

@@ -111,8 +111,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSString *_Nullable)normalizedDescriptionWithFormat:(NSString *_Nonnull)descriptionFormat formatParameter:(NSUInteger)formatParameter;
 
-+ (NSString* _Nullable)uniqueName:(NSString* _Nullable)nameToCheck existingNames:(NSArray* _Nullable)existingNames;
-
 + (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString* _Nullable)xmlPath;
 
 + (double)radiansToDegree:(double)rad;

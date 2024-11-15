@@ -73,7 +73,7 @@
 + (BOOL)isLastUsedProject:(NSString* _Nonnull)projectName projectID:(NSString* _Nonnull)projectID;
 + (void)setLastUsedProject:(Project* _Nonnull)project;
 + (NSString* _Nonnull)basePath;
-+ (NSArray* _Nonnull)allProjectNames;
++ (NSArray<NSString*>* _Nonnull)allProjectNames;
 + (NSArray* _Nonnull)allProjectLoadingInfos;
 + (NSString* _Nonnull)projectDirectoryNameForProjectName:(NSString* _Nonnull)projectName
                                                projectID:(NSString* _Nullable)projectID;

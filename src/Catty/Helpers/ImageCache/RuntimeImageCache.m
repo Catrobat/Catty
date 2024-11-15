@@ -88,6 +88,12 @@
 {
     dispatch_async(self.imageCacheQueue, ^{
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+        if (image == nil) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                completion(nil, imagePath);
+            });
+            return;
+        }
 
         CGSize imageSize = CGSizeMake(size.width, size.height);
         if (image.size.height > image.size.width)
