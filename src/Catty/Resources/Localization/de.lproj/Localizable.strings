@@ -434,6 +434,9 @@
 "decimal logarithm" = "Dekadischer Logarithmus";
 
 /* No comment provided by engineer. */
+"Default (Offline)" = "Standard (Offline)";
+
+/* No comment provided by engineer. */
 "degrees" = "Grad";
 
 /* No comment provided by engineer. */
@@ -2075,7 +2078,7 @@
 "Start sound and wait" = "Starte Klang und warte";
 
 /* No comment provided by engineer. */
-"Start to plot" = "Beginne zu plotten";
+"Start to plot" = "Plotten starten";
 
 /* No comment provided by engineer. */
 "Start triple stitch with length" = "Starte Dreifachstich mit Länge";
@@ -2105,7 +2108,7 @@
 "Stop Phiro motor" = "Stoppe Phiro Motor";
 
 /* No comment provided by engineer. */
-"Stop to plot" = "Höre auf zu plotten";
+"Stop to plot" = "Plotten beenden";
 
 /* No comment provided by engineer. */
 "Su" = "So";
