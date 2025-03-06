@@ -434,7 +434,7 @@
 "decimal logarithm" = "Logaritmo decimal";
 
 /* No comment provided by engineer. */
-"Default (Offline)" = "Default (Offline)";
+"Default (Offline)" = "Padrão (Offline)";
 
 /* No comment provided by engineer. */
 "degrees" = "graus";
@@ -1838,7 +1838,7 @@
 "Save changes" = "Salvar mudanças";
 
 /* No comment provided by engineer. */
-"Save plot as SVG" = "Save plot as SVG";
+"Save plot as SVG" = "Salvar plot como SVG";
 
 /* paint */
 "Save to Photos" = "Salvar em fotos";
@@ -2078,7 +2078,7 @@
 "Start sound and wait" = "Iniciar som e aguardar";
 
 /* No comment provided by engineer. */
-"Start to plot" = "Start to plot";
+"Start to plot" = "Iniciar a plotagem";
 
 /* No comment provided by engineer. */
 "Start triple stitch with length" = "Iniciar pontos triplos com comprimento";
@@ -2108,7 +2108,7 @@
 "Stop Phiro motor" = "Parar motor Phiro";
 
 /* No comment provided by engineer. */
-"Stop to plot" = "Stop to plot";
+"Stop to plot" = "Parar a plotagem";
 
 /* No comment provided by engineer. */
 "Su" = "Dom";
