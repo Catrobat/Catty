@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "Esiste già un'immagine con lo stesso nome; riprovare, grazie.";
+"A message with the same name already exists, try again." = "Esiste già un messaggio con lo stesso nome; riprova, grazie.";
 
 /* No comment provided by engineer. */
 "A project with the same name already exists, try again." = "Esiste già un progetto con lo stesso nome, riprova con uno nuovo.";
@@ -1556,7 +1556,7 @@
 "Please try resetting the device and try again." = "Si prega di provare a resettare il dispositivo e riprovare.";
 
 /* No comment provided by engineer. */
-"Plot" = "Plot";
+"Plot" = "Disegno";
 
 /* No comment provided by engineer. */
 "plot.svg" = "plot.svg";
@@ -1838,7 +1838,7 @@
 "Save changes" = "Salvare le modifiche";
 
 /* No comment provided by engineer. */
-"Save plot as SVG" = "Save plot as SVG";
+"Save plot as SVG" = "Salva disegno come SVG";
 
 /* paint */
 "Save to Photos" = "Salva in Foto";
@@ -2078,7 +2078,7 @@
 "Start sound and wait" = "Avvia suono e attendi";
 
 /* No comment provided by engineer. */
-"Start to plot" = "Start to plot";
+"Start to plot" = "Inizia il disegno";
 
 /* No comment provided by engineer. */
 "Start triple stitch with length" = "Avvia \"punto triplo\" con lunghezza";
@@ -2108,7 +2108,7 @@
 "Stop Phiro motor" = "Arresta il motore del Phiro";
 
 /* No comment provided by engineer. */
-"Stop to plot" = "Stop to plot";
+"Stop to plot" = "Ferma il disegno";
 
 /* No comment provided by engineer. */
 "Su" = "Do";

@@ -434,7 +434,7 @@
 "decimal logarithm" = "log";
 
 /* No comment provided by engineer. */
-"Default (Offline)" = "Default (Offline)";
+"Default (Offline)" = "ค่าเริ่มต้น (ออฟไลน์)";
 
 /* No comment provided by engineer. */
 "degrees" = "องศา";
@@ -1556,10 +1556,10 @@
 "Please try resetting the device and try again." = "โปรดลองรีเซ็ตอุปกรณ์แล้วลองอีกครั้ง";
 
 /* No comment provided by engineer. */
-"Plot" = "Plot";
+"Plot" = "พล็อต";
 
 /* No comment provided by engineer. */
-"plot.svg" = "plot.svg";
+"plot.svg" = "พล็อต.svg";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "พอกเก็ต โค้ด";
@@ -1838,7 +1838,7 @@
 "Save changes" = "บันทึกการเปลี่ยนแปลง";
 
 /* No comment provided by engineer. */
-"Save plot as SVG" = "Save plot as SVG";
+"Save plot as SVG" = "บันทึกพล็อตเป็น SVG";
 
 /* paint */
 "Save to Photos" = "บันทึกลงใน Photos";
@@ -2078,7 +2078,7 @@
 "Start sound and wait" = "เริ่มเสียงแล้วรอ";
 
 /* No comment provided by engineer. */
-"Start to plot" = "Start to plot";
+"Start to plot" = "เริ่มวางแผน";
 
 /* No comment provided by engineer. */
 "Start triple stitch with length" = "เริ่มเย็บสามครั้งด้วยความยาว";
@@ -2108,7 +2108,7 @@
 "Stop Phiro motor" = "หยุดมอเตอร์ฟีโร";
 
 /* No comment provided by engineer. */
-"Stop to plot" = "Stop to plot";
+"Stop to plot" = "หยุดวางแผน";
 
 /* No comment provided by engineer. */
 "Su" = "วันอาทิตย์";
