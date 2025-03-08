@@ -37,6 +37,33 @@ platform :ios do
       output_name: $build_name
     )
   end
+  
+  desc "Build UI tests for App Automate"
+  lane :ui_tests_app_automate do
+    clear_derived_data
+
+    $output_dir = "fastlane/app_automate/"
+    $runner_path = "../" + $output_dir + $build_name + "-UITests.zip"
+
+    gym(
+      scheme: $catty_schemes["debug"],
+      xcodebuild_formatter: "xcbeautify",
+      configuration: "Debug",
+      export_method: "development",
+      output_directory: $output_dir,
+      output_name: $build_name
+    )
+
+    scan(
+      scheme: $catty_schemes["debug"],
+      xcodebuild_formatter: "xcbeautify",
+      destination: "generic/platform=iOS",
+      disable_slide_to_type: false,
+      build_for_testing: true
+    )
+
+    sh("pushd " + lane_context[SharedValues::SCAN_DERIVED_DATA_PATH] + "/Build/Products/Debug-iphoneos && zip --symlinks -r $OLDPWD/" + $runner_path + " CattyUITests-Runner.app && popd")
+  end
 
   ##########################################################################
   #
