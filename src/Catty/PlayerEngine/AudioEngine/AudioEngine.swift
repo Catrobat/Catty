@@ -32,6 +32,13 @@ import Foundation
     var audioEngineHelper = AudioEngineHelper()
     var speechSynth = SpeechSynthesizer()
 
+    var loudnessEngine = AVAudioEngine()
+    var loudnessTimer: Timer!
+    var dbSamples: [Double] = []
+    var isRecording = false
+    var inputNode: AVAudioInputNode!
+    var recordingFormat: AVAudioFormat!
+
     var tempo = Int()
 
     var subtrees = [String: AudioSubtree]()
