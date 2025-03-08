@@ -181,7 +181,7 @@ final class ScriptCollectionViewControllerTests: XCTestCase {
         let indexPathWhenScript = IndexPath(row: 0, section: 1)
         whenScript.isAnimatedInsertBrick = true
         (BrickInsertManager.sharedInstance() as! BrickInsertManager).setBrickInsertionMode(true)
-        XCTAssertFalse(viewController.collectionView(viewController.collectionView, canMoveItemAt: indexPathStartScript))
+        XCTAssertTrue(viewController.collectionView(viewController.collectionView, canMoveItemAt: indexPathStartScript))
         (BrickInsertManager.sharedInstance() as! BrickInsertManager).setBrickInsertionMode(true)
         XCTAssertTrue(viewController.collectionView(viewController.collectionView, canMoveItemAt: indexPathWhenScript))
     }

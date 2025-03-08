@@ -68,9 +68,10 @@
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
     
     BOOL canMove = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                             itemAtIndexPath:indexPathFrom
-                                                          canMoveToIndexPath:indexPathTo
-                                                                   andObject:self.spriteObject];
+                                                     itemAtIndexPath:indexPathFrom
+                                                  canMoveToIndexPath:indexPathTo
+                                                           andObject:self.spriteObject
+                                                             isBrick:YES];
     
     XCTAssertTrue(canMove, @"Should be allowed to move WaitBrick behind SetVariableBrick");
 }
@@ -105,18 +106,20 @@
         NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
         
         BOOL canMoveWaitBrickInsideForeverBrick = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                 itemAtIndexPath:indexPathFrom
-                                                              canMoveToIndexPath:indexPathTo
-                                                                       andObject:self.spriteObject];
+                                                                                    itemAtIndexPath:indexPathFrom
+                                                                                 canMoveToIndexPath:indexPathTo
+                                                                                          andObject:self.spriteObject
+                                                                                            isBrick:YES];
         XCTAssertTrue(canMoveWaitBrickInsideForeverBrick, @"Should be allowed to move WaitBrick inside ForeverBrick");
     }
     
     {
         NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
         BOOL canMoveWaitBrickBehindForeverBrick = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                   itemAtIndexPath:indexPathFrom
-                                                                                canMoveToIndexPath:indexPathTo
-                                                                                         andObject:self.spriteObject];
+                                                                                    itemAtIndexPath:indexPathFrom
+                                                                                 canMoveToIndexPath:indexPathTo
+                                                                                          andObject:self.spriteObject
+                                                                                            isBrick:YES];
         XCTAssertFalse(canMoveWaitBrickBehindForeverBrick, @"Should not be allowed to move WaitBrick behind ForeverBrick");
     }
     
@@ -150,9 +153,10 @@
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
     BOOL canMoveWaitBrickBehindRepeatBrick = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                        itemAtIndexPath:indexPathFrom
-                                                                                     canMoveToIndexPath:indexPathTo
-                                                                                              andObject:self.spriteObject];
+                                                                               itemAtIndexPath:indexPathFrom
+                                                                            canMoveToIndexPath:indexPathTo
+                                                                                     andObject:self.spriteObject
+                                                                                       isBrick:YES];
     XCTAssertTrue(canMoveWaitBrickBehindRepeatBrick, @"Should be allowed to move WaitBrick behind RepeatBrick");
 }
 
@@ -191,9 +195,10 @@
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:0 inSection:1];
     
     BOOL canMoveWaitInOtherScript = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                        itemAtIndexPath:indexPathFrom
-                                                                                     canMoveToIndexPath:indexPathTo
-                                                                                              andObject:self.spriteObject];
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject
+                                                                              isBrick:YES];
     XCTAssertTrue(canMoveWaitInOtherScript, @"Should be allowed to move WaitBrick into other Script");
 }
 
@@ -244,18 +249,20 @@
             if(![indexPathTo isEqual:validTarget] && destinationIDX != indexPathFrom.item ) {
                 [[BrickMoveManager sharedInstance] reset];
                 BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                          itemAtIndexPath:indexPathFrom
-                                                                       canMoveToIndexPath:indexPathTo
-                                                                                andObject:self.spriteObject];
+                                                                              itemAtIndexPath:indexPathFrom
+                                                                           canMoveToIndexPath:indexPathTo
+                                                                                    andObject:self.spriteObject
+                                                                                      isBrick:YES];
                 XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", (unsigned long)(unsigned long)destinationIDX, (unsigned long)section);
             }
         }
     }
     [[BrickMoveManager sharedInstance] reset];
     BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                      itemAtIndexPath:indexPathFrom
-                                                                   canMoveToIndexPath:validTarget
-                                                                            andObject:self.spriteObject];
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:validTarget
+                                                                        andObject:self.spriteObject
+                                                                          isBrick:YES];
     XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", (unsigned long)validRow, (unsigned long)validSection);
     
 }
@@ -302,9 +309,10 @@
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:section];
             
             BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                              itemAtIndexPath:indexPathFrom
-                                                                           canMoveToIndexPath:indexPathTo
-                                                                                    andObject:self.spriteObject];
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject
+                                                                                  isBrick:YES];
             XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", (unsigned long)destinationIDX, (unsigned long)section);
         }
     }
@@ -358,18 +366,20 @@
             if(![indexPathTo isEqual:validTarget] && destinationIDX != indexPathFrom.item) {
                 [[BrickMoveManager sharedInstance] reset];
                 BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                  itemAtIndexPath:indexPathFrom
-                                                                               canMoveToIndexPath:indexPathTo
-                                                                                        andObject:self.spriteObject];
+                                                                              itemAtIndexPath:indexPathFrom
+                                                                           canMoveToIndexPath:indexPathTo
+                                                                                    andObject:self.spriteObject
+                                                                                      isBrick:YES];
                 XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", (unsigned long)destinationIDX, (unsigned long)section);
             }
         }
     }
     [[BrickMoveManager sharedInstance] reset];
     BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                      itemAtIndexPath:indexPathFrom
-                                                                   canMoveToIndexPath:validTarget
-                                                                            andObject:self.spriteObject];
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:validTarget
+                                                                        andObject:self.spriteObject
+                                                                          isBrick:YES];
     XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", (unsigned long)validRow, (unsigned long)validSection);
     
 }
@@ -421,18 +431,20 @@
             
             if(![indexPathTo isEqual:validTarget] && destinationIDX != indexPathFrom.item) {
                 BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                  itemAtIndexPath:indexPathFrom
-                                                                               canMoveToIndexPath:indexPathTo
-                                                                                        andObject:self.spriteObject];
+                                                                              itemAtIndexPath:indexPathFrom
+                                                                           canMoveToIndexPath:indexPathTo
+                                                                                    andObject:self.spriteObject
+                                                                                      isBrick:YES];
                 XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", (unsigned long)destinationIDX, (unsigned long)section);
             }
         }
     }
     
     BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                      itemAtIndexPath:indexPathFrom
-                                                                   canMoveToIndexPath:validTarget
-                                                                            andObject:self.spriteObject];
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:validTarget
+                                                                        andObject:self.spriteObject
+                                                                          isBrick:YES];
     XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", (unsigned long)validRow, (unsigned long)validSection);
     
 }
@@ -522,15 +534,145 @@
                     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:destinationSection];
                     
                     BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                      itemAtIndexPath:indexPathFrom
-                                                                                   canMoveToIndexPath:indexPathTo
-                                                                                            andObject:self.spriteObject];
+                                                                                  itemAtIndexPath:indexPathFrom
+                                                                               canMoveToIndexPath:indexPathTo
+                                                                                        andObject:self.spriteObject
+                                                                                          isBrick:YES];
                     XCTAssertTrue(canMoveToDestination, @"Should be allowed to move from section %lu, row %lu to section %lu, row %lu", (unsigned long)sourceSection, (unsigned long)sourceIDX, (unsigned long)destinationSection, (unsigned long)destinationIDX);
                     
                 }
             }
         }
     }
+}
+
+- (void)testMoveStartScriptBehindOtherScript {
+
+    /*  Test:
+
+     0 startedScript    --->
+     1  wait
+
+     0 whenScript       <---
+     1
+     */
+
+    [self.viewController.collectionView reloadData];
+
+    NSUInteger addedSections = 1;
+    NSUInteger addedBricksStart = 1;
+
+    WaitBrick *waitBrick = [[WaitBrick alloc] init];
+    waitBrick.script = self.startScript;
+    [self.startScript.brickList addObject:waitBrick];
+    addedBricksStart++;
+
+    WhenScript *whenScript = [[WhenScript alloc] init];
+    whenScript.object = self.spriteObject;
+    [self.spriteObject.scriptList addObject:whenScript];
+    NSUInteger addedBricksWhen = 1;
+    addedSections++;
+
+    XCTAssertEqual(addedSections, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricksStart, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricksWhen, [self.viewController.collectionView numberOfItemsInSection:1]);
+
+    NSIndexPath * indexPathFrom = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath * indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
+
+    BOOL canMoveStartScriptBehindOtherScript = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject
+                                                                              isBrick:NO];
+    XCTAssertFalse(canMoveStartScriptBehindOtherScript, @"Should not be allowed to move StartScript");
+
+    indexPathFrom = [NSIndexPath indexPathForRow:0 inSection:0];
+    indexPathTo = [NSIndexPath indexPathForRow:0 inSection:1];
+
+    canMoveStartScriptBehindOtherScript = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject
+                                                                              isBrick:NO];
+    XCTAssertTrue(canMoveStartScriptBehindOtherScript, @"Should be allowed to move StartScript behind the whenScript");
+}
+
+- (void)testMoveStartScriptBeforeOrBehindOtherScripts {
+
+    /*  Test:
+
+     0 startedScript
+     1  wait
+
+     0 whenScriptA
+     1
+
+     0 whenScriptB
+     1  waitBrickA
+     2  setXBrickA
+     3  setYBrickA
+     4  waitBrickB
+     5  placeAtXYA
+     6  waitBrickC
+     */
+
+    [self.viewController.collectionView reloadData];
+
+    NSUInteger addedSections = 1;
+    NSUInteger addedBricksStart = 1;
+
+    WaitBrick *waitBrick = [[WaitBrick alloc] init];
+    waitBrick.script = self.startScript;
+    [self.startScript.brickList addObject:waitBrick];
+    addedBricksStart++;
+
+    WhenScript *whenScriptA = [[WhenScript alloc] init];
+    whenScriptA.object = self.spriteObject;
+    [self.spriteObject.scriptList addObject:whenScriptA];
+    NSUInteger addedBricksWhen = 1;
+    addedSections++;
+
+    WhenScript *whenScriptB = [[WhenScript alloc] init];
+    whenScriptB.object = self.spriteObject;
+    [self.spriteObject.scriptList addObject:whenScriptB];
+    NSUInteger addedBricksWhenB = 1;
+    addedSections++;
+    addedBricksWhenB += [self addWaitSetXSetYWaitPlaceAtWaitBricksToScript:whenScriptB];
+
+    XCTAssertEqual(addedSections, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricksStart, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricksWhen, [self.viewController.collectionView numberOfItemsInSection:1]);
+
+    NSIndexPath * indexPathFrom = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath * indexPathTo = [NSIndexPath indexPathForRow:0 inSection:2];
+
+    BOOL canMoveStartScriptBehindOtherScripts = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject
+                                                                              isBrick:NO];
+    XCTAssertTrue(canMoveStartScriptBehindOtherScripts, @"Should be allowed to move startScript behind whenScriptA and whenScriptB");
+
+    indexPathFrom = [NSIndexPath indexPathForRow:0 inSection:0];
+    indexPathTo = [NSIndexPath indexPathForRow:0 inSection:1];
+
+    BOOL canMoveWhenScriptABehindWhenScriptB = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject
+                                                                              isBrick:NO];
+    XCTAssertTrue(canMoveWhenScriptABehindWhenScriptB, @"Should be allowed to move whenScriptA behind whenScriptB");
+
+    indexPathFrom = [NSIndexPath indexPathForRow:0 inSection:1];
+    indexPathTo = [NSIndexPath indexPathForRow:0 inSection:0];
+
+    BOOL canMoveWhenScriptABeforeWhenScriptB = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject
+                                                                              isBrick:NO];
+    XCTAssertTrue(canMoveWhenScriptABeforeWhenScriptB, @"Should be allowed to move whenScriptA before whenScriptB");
 }
 
 
