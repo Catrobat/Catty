@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ final class BrickCategoryOverviewControllerTest: XCTestCase {
     func testDisplayEnabledCategories () {
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
         UserDefaults.standard.set(false, forKey: kUseEmbroideryBricks)
+        UserDefaults.standard.set(false, forKey: kUsePlotBricks)
 
         let scriptCollectionViewController = ScriptCollectionViewController()
         var overview = BrickCategoryOverviewController(scriptCollectionViewController: scriptCollectionViewController)
@@ -36,9 +37,10 @@ final class BrickCategoryOverviewControllerTest: XCTestCase {
         let count = overview.categegoriesBricks.count
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
         UserDefaults.standard.set(true, forKey: kUseEmbroideryBricks)
+        UserDefaults.standard.set(true, forKey: kUsePlotBricks)
 
         overview = BrickCategoryOverviewController(scriptCollectionViewController: scriptCollectionViewController)
 
-        XCTAssertEqual(count, overview.categegoriesBricks.count - 2)
+        XCTAssertEqual(count, overview.categegoriesBricks.count - 3)
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -111,8 +111,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSString *_Nullable)normalizedDescriptionWithFormat:(NSString *_Nonnull)descriptionFormat formatParameter:(NSUInteger)formatParameter;
 
-+ (NSString* _Nullable)uniqueName:(NSString* _Nullable)nameToCheck existingNames:(NSArray* _Nullable)existingNames;
-
 + (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString* _Nullable)xmlPath;
 
 + (double)radiansToDegree:(double)rad;
@@ -147,11 +145,13 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (void)setNetworkActivityIndicator:(BOOL)enabled;
 
++ (BOOL)isPhiroActivated;
+
 + (BOOL)isArduinoActivated;
 
 + (BOOL)isEmbroideryActivated;
 
-+ (BOOL)isPhiroActivated;
++ (BOOL)isPlotActivated;
 
 + (BOOL)isPhone;
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -285,5 +285,30 @@ func synchronized(lock: AnyObject, closure: () -> Void) {
             }
         }
         return nil
+    }
+
+    static func uniqueName(_ nameToCheck: String, existingNames: [String]) -> String {
+        var baseName = nameToCheck.trimmingCharacters(in: .whitespaces)
+
+        if !existingNames.contains(baseName) {
+            return baseName
+        }
+
+        var counter = 0
+        let regex = try? NSRegularExpression(pattern: "\\((\\d+)\\)$", options: [])
+        if let match = regex?.firstMatch(in: baseName, options: [], range: NSRange(location: 0, length: baseName.count)) {
+            let numberStr = (baseName as NSString).substring(with: match.range(at: 1))
+            counter = Int(numberStr) ?? 0
+            baseName = (baseName as NSString).substring(to: match.range.location)
+            baseName = baseName.trimmingCharacters(in: .whitespaces)
+        }
+
+        var uniqueName: String
+        repeat {
+            counter += 1
+            uniqueName = "\(baseName) (\(counter))"
+        } while existingNames.contains(uniqueName)
+
+        return uniqueName
     }
 }

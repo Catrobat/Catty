@@ -52,7 +52,7 @@ class CBStack<T> {
             return
         } else {
             //establish the new item instance
-            let childToUse: LLNode<T> = LLNode<T>()
+            let childToUse = LLNode<T>()
             childToUse.key = key
 
             //set newly created item at the top

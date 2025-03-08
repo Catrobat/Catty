@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -464,6 +464,12 @@ let kLocalizedGreen = NSLocalizedString("green", bundle: Bundle(for: LanguageTra
 let kLocalizedBlue = NSLocalizedString("blue", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedStamp = NSLocalizedString("Stamp", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
+// plot bricks
+let kLocalizedStartPlot = NSLocalizedString("Start to plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStopPlot = NSLocalizedString("Stop to plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSavePlot = NSLocalizedString("Save plot as SVG", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSavePlotDefaultFile = NSLocalizedString("plot.svg", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -913,6 +919,7 @@ let kLocalizedCategoryArduino = NSLocalizedString("Arduino", bundle: Bundle(for:
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryEmbroidery = NSLocalizedString("Embroidery", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryPlot = NSLocalizedString("Plot", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
@@ -948,6 +955,7 @@ let klocalizedBluetoothDisconnected = NSLocalizedString("Device disconnected.", 
 
 let kLocalizedMediaLibrary = NSLocalizedString("Media library", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSelectFile = NSLocalizedString("Select file", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedMediaLibraryDefaultCategory = NSLocalizedString("Default (Offline)", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMediaLibraryConnectionIssueTitle = NSLocalizedString("Connection failed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMediaLibraryConnectionIssueMessage = NSLocalizedString("Cannot connect to the media library. Please check your internet connection.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMediaLibraryImportFailedTitle = NSLocalizedString("Failed to import item", bundle: Bundle(for: LanguageTranslation.self), comment: "")

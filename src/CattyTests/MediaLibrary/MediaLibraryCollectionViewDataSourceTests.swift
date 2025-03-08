@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -170,7 +170,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
         // store image in cache
         let indexPath = IndexPath(item: 0, section: 1)
-        let resource = ImageResource(downloadURL: self.exampleCategories[indexPath].downloadURL!)
+        let resource = KF.ImageResource(downloadURL: self.exampleCategories[indexPath].downloadURL!)
         ImageCache.default.store(UIImage(data: kExampleData)!, forKey: resource.cacheKey)
 
         let expectation = XCTestExpectation(description: "Fetch looks")

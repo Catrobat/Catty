@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -54,12 +54,12 @@ final class SpeechSynthesizerTests: XCTestCase {
 
     func testSpeechSynthStartSpeaking() {
         speechSynth.speak(newUtterance, expectation: newUtteranceExpectation)
-        expect(self.speechSynth.isSpeaking).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
+        expect(self.speechSynth.isSpeaking).toEventually(beTrue(), timeout: NimbleTimeInterval.seconds(3))
     }
 
     func testSpeechSynthExpectDidFinishCallbackToFulfillExpectation() {
         speechSynth.speak(newUtterance, expectation: newUtteranceExpectation)
-        expect(self.newUtteranceExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
+        expect(self.newUtteranceExpectation.isFulfilled).toEventually(beTrue(), timeout: NimbleTimeInterval.seconds(3))
     }
 
     func testAlreadySpeakingSpeechSynthExpectCurrentExpectationToBeFulfilledAndRemovedWhenSpeakingNewUtterance() {

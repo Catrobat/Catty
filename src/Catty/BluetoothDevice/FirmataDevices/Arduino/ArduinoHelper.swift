@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ open class ArduinoHelper {
     var analogPin4 = 0
     var analogPin5 = 0
 
-    var digitalValues: [Int] = [Int](repeating: 0, count: 21)
+    var digitalValues = [Int](repeating: 0, count: 21)
 
     var portValues = Array(repeating: Array(repeating: 0, count: 8), count: 3)
     //Helper

@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "Esiste già un'immagine con lo stesso nome; riprovare, grazie.";
+"A message with the same name already exists, try again." = "Esiste già un messaggio con lo stesso nome; riprova, grazie.";
 
 /* No comment provided by engineer. */
 "A project with the same name already exists, try again." = "Esiste già un progetto con lo stesso nome, riprova con uno nuovo.";
@@ -149,7 +149,7 @@
 "Arduino extension" = "Estensione di Arduino";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+"Are you sure you want to delete your account? This cannot be undone!" = "Sei sicuro di voler eliminare il tuo account? L'operazione non può essere annullata!";
 
 /* No comment provided by engineer. */
 "Ask " = "Chiedi";
@@ -432,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "decimal logarithm" = "log";
+
+/* No comment provided by engineer. */
+"Default (Offline)" = "Default (Offline)";
 
 /* No comment provided by engineer. */
 "degrees" = "gradi";
@@ -1553,6 +1556,12 @@
 "Please try resetting the device and try again." = "Si prega di provare a resettare il dispositivo e riprovare.";
 
 /* No comment provided by engineer. */
+"Plot" = "Disegno";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1828,6 +1837,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "Salvare le modifiche";
 
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Salva disegno come SVG";
+
 /* paint */
 "Save to Photos" = "Salva in Foto";
 
@@ -2066,6 +2078,9 @@
 "Start sound and wait" = "Avvia suono e attendi";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Inizia il disegno";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "Avvia \"punto triplo\" con lunghezza";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2106,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Arresta il motore del Phiro";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Ferma il disegno";
 
 /* No comment provided by engineer. */
 "Su" = "Do";
@@ -2477,7 +2495,7 @@
 "You have already downloaded this project!" = "Hai già scaricato questo progetto!";
 
 /* No comment provided by engineer. */
-"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+"Your account has been successfully deleted." = "Il tuo account è stato eliminato.";
 
 /* No comment provided by engineer. */
 "Your answer" = "La tua risposta";

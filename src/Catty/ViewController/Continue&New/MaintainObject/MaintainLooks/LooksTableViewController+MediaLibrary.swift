@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ extension LooksTableViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
-    private func showImportAlert(itemName: String) {
+    public func showImportAlert(itemName: String) {
         let alertTitle = kLocalizedMediaLibraryImportFailedTitle
         let alertMessage = "\(kLocalizedMediaLibraryImportFailedMessage) \(itemName)"
         let buttonTitle = kLocalizedOK

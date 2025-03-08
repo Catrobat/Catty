@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -272,67 +272,6 @@
      showWithController:[Util topmostViewController]];
 }
 
-+ (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
-{
-    NSMutableString *uniqueName = [nameToCheck mutableCopy];
-    unichar lastChar = [uniqueName characterAtIndex:([uniqueName length] - 1)];
-    if (lastChar == 0x20) {
-        [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
-    }
-
-    NSUInteger counter = 0;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\(\\d\\)"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:NULL];
-    NSArray *results = [regex matchesInString:uniqueName
-                                      options:0
-                                        range:NSMakeRange(0, [uniqueName length])];
-    if ([results count]) {
-        BOOL duplicate = NO;
-        for (NSString *existingName in existingNames) {
-            if ([existingName isEqualToString:uniqueName]) {
-                duplicate = YES;
-                break;
-            }
-        }
-        if (! duplicate) {
-            return [uniqueName copy];
-        }
-        NSTextCheckingResult *lastOccurenceResult = [results lastObject];
-        NSMutableString *lastOccurence = [(NSString*)[uniqueName substringWithRange:lastOccurenceResult.range] mutableCopy];
-        [uniqueName replaceOccurrencesOfString:lastOccurence
-                                    withString:@""
-                                       options:NSCaseInsensitiveSearch
-                                         range:NSMakeRange(0, [uniqueName length])];
-        unichar lastChar = [uniqueName characterAtIndex:([uniqueName length] - 1)];
-        if (lastChar == 0x20) {
-            [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
-        }
-        [lastOccurence replaceOccurrencesOfString:@"("
-                                       withString:@""
-                                          options:NSCaseInsensitiveSearch
-                                            range:NSMakeRange(0, [lastOccurence length])];
-        [lastOccurence replaceOccurrencesOfString:@")"
-                                       withString:@""
-                                          options:NSCaseInsensitiveSearch
-                                            range:NSMakeRange(0, [lastOccurence length])];
-        counter = [lastOccurence integerValue];
-    }
-    NSString *uniqueFinalName = [uniqueName copy];
-    BOOL duplicate;
-    do {
-        duplicate = NO;
-        for (NSString *existingName in existingNames) {
-            if ([existingName isEqualToString:uniqueFinalName]) {
-                uniqueFinalName = [NSString stringWithFormat:@"%@ (%lu)", uniqueName, (unsigned long)++counter];
-                duplicate = YES;
-                break;
-            }
-        }
-    } while (duplicate);
-    return uniqueFinalName;
-}
-
 + (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString*)xmlPath
 {
     NSError *error;
@@ -598,6 +537,11 @@
 + (BOOL)isEmbroideryActivated
 {
     return kEmbroideryActivated == 1;
+}
+
++ (BOOL)isPlotActivated
+{
+    return kPlotActivated == 1;
 }
 
 + (BOOL)isPhone

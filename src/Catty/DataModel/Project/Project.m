@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -420,7 +420,7 @@ static NSObject* saveLock;
 }
 
 
-+ (NSArray*)allProjectNames
++ (NSArray<NSString*>*)allProjectNames
 {
     NSArray *allProjectLoadingInfos = [[self class] allProjectLoadingInfos];
     NSMutableArray *projectNames = [[NSMutableArray alloc] initWithCapacity:[allProjectLoadingInfos count]];

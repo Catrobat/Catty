@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -130,7 +130,7 @@ extension UIColor {
         default: //teal
             return UIColor(hex: 0xadeef0)
         }*/
-        return UIColor(hex: 0xadeef0)
+        UIColor(hex: 0xadeef0)
     }
 
     static var medium: UIColor {
@@ -143,7 +143,7 @@ extension UIColor {
         default: //teal
             return UIColor(hex: 0x18a5b7)
         }*/
-        return UIColor(hex: 0x18a5b7)
+        UIColor(hex: 0x18a5b7)
     }
 
     static var dark: UIColor {
@@ -183,7 +183,7 @@ extension UIColor {
                 return self.dark
             }
         }*/
-        return self.light
+        self.light
     }
 
     static var navText: UIColor {
@@ -225,7 +225,7 @@ extension UIColor {
                 return self.light
             }
         }*/
-        return self.dark
+        self.dark
     }
 
     static var pageIndicator: UIColor {
@@ -301,6 +301,14 @@ extension UIColor {
 
     static var eventBrickStroke: UIColor {
         UIColor(red: 241.0 / 255.0, green: 167.0 / 255.0, blue: 126.0 / 255.0, alpha: 1.0)
+    }
+
+    static var plotBrick: UIColor {
+        UIColor(red: 145.0 / 255.0, green: 13.0 / 255.0, blue: 6.0 / 255.0, alpha: 1.0)
+    }
+
+    static var plotBrickStroke: UIColor {
+        UIColor(red: 117.0 / 255.0, green: 7.0 / 255.0, blue: 1.0 / 255.0, alpha: 1.0)
     }
 
     static var variableBrickRed: UIColor {

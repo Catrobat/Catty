@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ class FirmataDelegateMock: FirmataDelegate {
     var receivedString: String = ""
     var receivedPin: Int = 0
     var receivedPort: Int = 0
-    var receivedPortData: [Int] = [Int](repeating: 0, count: 1)
+    var receivedPortData = [Int](repeating: 0, count: 1)
     var receivedValue: Int = 0
     var analogMapping = NSMutableDictionary()
     var capabilityQuery = [[Int: Int]]()

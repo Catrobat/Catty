@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -62,6 +62,14 @@ class FormEmbroiderySwitchItem: FormSwitchItem {
         super.init(title: kLocalizedCategoryEmbroidery)
 
         self.cellType = FormEmbroiderySwitchTableViewCell.self
+    }
+}
+
+class FormPlotSwitchItem: FormSwitchItem {
+    init() {
+        super.init(title: kLocalizedCategoryPlot)
+
+        self.cellType = FormPlotSwitchTableViewCell.self
     }
 }
 

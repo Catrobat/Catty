@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -88,6 +88,12 @@
 {
     dispatch_async(self.imageCacheQueue, ^{
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+        if (image == nil) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                completion(nil, imagePath);
+            });
+            return;
+        }
 
         CGSize imageSize = CGSizeMake(size.width, size.height);
         if (image.size.height > image.size.width)

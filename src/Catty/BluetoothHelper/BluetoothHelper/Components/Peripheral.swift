@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -203,7 +203,7 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 
     open var services: [Service] {
-        let values: [Service] = [Service](self.ownServices.values)
+        let values = [Service](self.ownServices.values)
         return values
     }
 

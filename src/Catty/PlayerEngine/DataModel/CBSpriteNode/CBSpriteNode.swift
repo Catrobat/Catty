@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -86,6 +86,7 @@ class CBSpriteNode: SKSpriteNode {
 
     @objc func update(_ currentTime: TimeInterval) {
         self.drawPenLine()
+        self.drawPlotLine()
         self.drawEmbroidery()
 
         for script in self.spriteObject.scriptList where ((script as? WhenConditionScript) != nil) {

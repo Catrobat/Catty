@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,8 @@
 
 struct PenConfiguration {
     var penDown = false
+    var isCut = false
+
     static let sizeConversionFactor = CGFloat(0.634)
 
     private(set) var size: CGFloat
@@ -38,6 +40,11 @@ struct PenConfiguration {
 
     var color = SpriteKitDefines.defaultPenColor
     var previousPositions = SynchronizedArray<CGPoint>()
+    var previousPositionLines = SynchronizedArray<SynchronizedArray<CGPoint>>()
+
+    var previousCutPositions = SynchronizedArray<CGPoint>()
+    var drawnCutPoints = 0
+    var previousCutPositionLines = SynchronizedArray<SynchronizedArray<CGPoint>>()
 
     init(projectWidth: CGFloat?, projectHeight: CGFloat?) {
 

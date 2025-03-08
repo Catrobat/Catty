@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -83,6 +83,16 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
             completion(nil, .unexpectedError)
             return
         }
+
+        if downloadURL.isFileURL {
+            guard let data = try? Data(contentsOf: downloadURL) else {
+                completion(nil, .unexpectedError)
+                return
+            }
+            completion(data, nil)
+            return
+        }
+
         self.session.dataTask(with: URLRequest(url: downloadURL)) { data, response, error in
             DispatchQueue.main.async {
                 guard let response = response as? HTTPURLResponse else {

@@ -434,6 +434,9 @@
 "decimal logarithm" = "اعشاریہ لوگارتھم";
 
 /* No comment provided by engineer. */
+"Default (Offline)" = "Default (Offline)";
+
+/* No comment provided by engineer. */
 "degrees" = "ڈگری";
 
 /* No comment provided by engineer. */
@@ -1553,6 +1556,12 @@
 "Please try resetting the device and try again." = "براہ کرم آلہ دوبارہ ترتیب دینے کی کوشش کریں اور دوبارہ کوشش کریں.";
 
 /* No comment provided by engineer. */
+"Plot" = "Plot";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "پاکٹ کوڈ";
 
 /* No comment provided by engineer. */
@@ -1828,6 +1837,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "تبدیلیاں محفوظ کرو";
 
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Save plot as SVG";
+
 /* paint */
 "Save to Photos" = "تصاویر میں محفوظ کریں۔";
 
@@ -2066,6 +2078,9 @@
 "Start sound and wait" = "آواز کا آغاز اور انتظار کریں";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Start to plot";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "لمبائی کے ساتھ ٹرپل سلائی شروع کریں۔";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2106,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "پہرو موٹر بند کرو";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Stop to plot";
 
 /* No comment provided by engineer. */
 "Su" = "اتوار";

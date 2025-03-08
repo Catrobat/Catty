@@ -434,6 +434,9 @@
 "decimal logarithm" = "десятичный логарифм";
 
 /* No comment provided by engineer. */
+"Default (Offline)" = "По умолчанию (Офлайн)";
+
+/* No comment provided by engineer. */
 "degrees" = "градусов";
 
 /* No comment provided by engineer. */
@@ -1553,6 +1556,12 @@
 "Please try resetting the device and try again." = "Пожалуйста, попробуйте перезагрузить устройство и попробовать еще раз.";
 
 /* No comment provided by engineer. */
+"Plot" = "Работа с svg";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1828,6 +1837,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "Сохранить изменения";
 
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Сохранить диаграмму как SVG";
+
 /* paint */
 "Save to Photos" = "Сохранить в Фото";
 
@@ -2066,6 +2078,9 @@
 "Start sound and wait" = "Воспроизвести звук и ждать";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Начать рисовать диаграмму";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "Запустить тройную вышивку с длиной";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2106,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Остановить мотор Phiro";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Перестать рисовать диаграмму";
 
 /* No comment provided by engineer. */
 "Su" = "Вс";

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -127,7 +127,11 @@
             StartZigzagStitchBrick(),
             StartTripleStitchBrick(),
             SewUpBrick(),
-            StopCurrentStitchBrick()
+            StopCurrentStitchBrick(),
+            // plot brick
+            StartPlotBrick(),
+            StopPlotBrick(),
+            SavePlotSVGBrick()
         ]
 
         if isPhiroEnabled() {
@@ -148,6 +152,12 @@
 
     @objc public static func registeredBrickCategories() -> [BrickCategory] {
         var categories = [
+            BrickCategory(type: kBrickCategoryType.plotBrick,
+                          name: kLocalizedCategoryPlot,
+                          color: UIColor.plotBrick,
+                          strokeColor: UIColor.plotBrickStroke,
+                          enabled: isPlotEnabled()),
+
             BrickCategory(type: kBrickCategoryType.embroideryBrick,
                           name: kLocalizedCategoryEmbroidery,
                           color: UIColor.embroideryBrickPink,
@@ -239,5 +249,9 @@
 
     private static func isWebRequestBrickEnabled() -> Bool {
          UserDefaults.standard.bool(forKey: kUseWebRequestBrick)
+    }
+
+    private static func isPlotEnabled() -> Bool {
+         UserDefaults.standard.bool(forKey: kUsePlotBricks)
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,8 @@ extension PenUpBrick: CBInstructionProtocol {
             else { fatalError("This should never happen!") }
 
         return {
+            spriteNode.penConfiguration.previousPositionLines.append(spriteNode.penConfiguration.previousPositions)
+            spriteNode.penConfiguration.previousPositions = SynchronizedArray<CGPoint>()
             spriteNode.penConfiguration.penDown = false
         }
     }

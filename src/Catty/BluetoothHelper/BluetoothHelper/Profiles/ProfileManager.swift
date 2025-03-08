@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ open class ProfileManager {
 
     // PUBLIC
     open var services: [ServiceProfile] {
-        let values: [ServiceProfile] = [ServiceProfile](self.serviceProfiles.values)
+        let values = [ServiceProfile](self.serviceProfiles.values)
         return values
     }
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -208,7 +208,7 @@ import UIKit
 
     open var peripherals: [Peripheral] {
 
-        let values: [Peripheral] = [Peripheral](self.ownPeripherals.values)
+        let values = [Peripheral](self.ownPeripherals.values)
         return values
     }
 

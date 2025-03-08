@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ class UIDefines: NSObject {
     @objc static let iPadScreenHeight = CGFloat(1028.0)
 
     // ScenePresenterViewController
-    @objc static let slidingStartArea = 40
+    @objc static let slidingStartArea = 60
     @objc static let firstSwipeDuration = CGFloat(0.65)
     @objc static let hideMenuViewDelay = CGFloat(0.45)
 

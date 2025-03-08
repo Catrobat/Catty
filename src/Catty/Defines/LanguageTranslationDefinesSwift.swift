@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -464,6 +464,12 @@ let kLocalizedGreen = NSLocalizedString("green", comment: "")
 let kLocalizedBlue = NSLocalizedString("blue", comment: "")
 let kLocalizedStamp = NSLocalizedString("Stamp", comment: "")
 
+// plot bricks
+let kLocalizedStartPlot = NSLocalizedString("Start to plot", comment: "")
+let kLocalizedStopPlot = NSLocalizedString("Stop to plot", comment: "")
+let kLocalizedSavePlot = NSLocalizedString("Save plot as SVG", comment: "")
+let kLocalizedSavePlotDefaultFile = NSLocalizedString("plot.svg", comment: "")
+
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
@@ -913,6 +919,7 @@ let kLocalizedCategoryArduino = NSLocalizedString("Arduino", comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", comment: "")
 let kLocalizedCategoryEmbroidery = NSLocalizedString("Embroidery", comment: "")
+let kLocalizedCategoryPlot = NSLocalizedString("Plot", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
@@ -948,6 +955,7 @@ let klocalizedBluetoothDisconnected = NSLocalizedString("Device disconnected.", 
 
 let kLocalizedMediaLibrary = NSLocalizedString("Media library", comment: "")
 let kLocalizedSelectFile = NSLocalizedString("Select file", comment: "")
+let kLocalizedMediaLibraryDefaultCategory = NSLocalizedString("Default (Offline)", comment: "")
 let kLocalizedMediaLibraryConnectionIssueTitle = NSLocalizedString("Connection failed", comment: "")
 let kLocalizedMediaLibraryConnectionIssueMessage = NSLocalizedString("Cannot connect to the media library. Please check your internet connection.", comment: "")
 let kLocalizedMediaLibraryImportFailedTitle = NSLocalizedString("Failed to import item", comment: "")

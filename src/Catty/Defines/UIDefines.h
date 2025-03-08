@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kPhiroBrick                = 8,
     kPenBrick                  = 9,
     kEmbroideryBrick           = 10,
+    kPlotBrick                 = 11,
     kInvisible                 = 99,
     kRecentlyUsedBricks        = 0
 };

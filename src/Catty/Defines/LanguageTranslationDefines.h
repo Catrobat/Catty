@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -464,6 +464,12 @@
 #define kLocalizedBlue NSLocalizedString(@"blue", nil)
 #define kLocalizedStamp NSLocalizedString(@"Stamp", nil)
 
+// plot bricks
+#define kLocalizedStartPlot NSLocalizedString(@"Start to plot", nil)
+#define kLocalizedStopPlot NSLocalizedString(@"Stop to plot", nil)
+#define kLocalizedSavePlot NSLocalizedString(@"Save plot as SVG", nil)
+#define kLocalizedSavePlotDefaultFile NSLocalizedString(@"plot.svg", nil)
+
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
@@ -913,6 +919,7 @@
 #define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedCategoryPen NSLocalizedString(@"Pen", nil)
 #define kLocalizedCategoryEmbroidery NSLocalizedString(@"Embroidery", nil)
+#define kLocalizedCategoryPlot NSLocalizedString(@"Plot", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
@@ -948,6 +955,7 @@
 
 #define kLocalizedMediaLibrary NSLocalizedString(@"Media library", nil)
 #define kLocalizedSelectFile NSLocalizedString(@"Select file", nil)
+#define kLocalizedMediaLibraryDefaultCategory NSLocalizedString(@"Default (Offline)", nil)
 #define kLocalizedMediaLibraryConnectionIssueTitle NSLocalizedString(@"Connection failed", nil)
 #define kLocalizedMediaLibraryConnectionIssueMessage NSLocalizedString(@"Cannot connect to the media library. Please check your internet connection.", nil)
 #define kLocalizedMediaLibraryImportFailedTitle NSLocalizedString(@"Failed to import item", nil)

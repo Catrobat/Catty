@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -83,7 +83,7 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         // Without this, other required gestures (like the left slide out control strip) are blocked.
-        return true
+        true
     }
 
     func handle(touch: UITouch, for state: UIGestureRecognizer.State) {

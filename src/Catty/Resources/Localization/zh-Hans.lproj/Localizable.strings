@@ -434,6 +434,9 @@
 "decimal logarithm" = "小数对数";
 
 /* No comment provided by engineer. */
+"Default (Offline)" = "Default (Offline)";
+
+/* No comment provided by engineer. */
 "degrees" = "度";
 
 /* No comment provided by engineer. */
@@ -1553,6 +1556,12 @@
 "Please try resetting the device and try again." = "请尝试重启设备，然后重试。";
 
 /* No comment provided by engineer. */
+"Plot" = "Plot";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "口袋编程";
 
 /* No comment provided by engineer. */
@@ -1828,6 +1837,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "保存更改";
 
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Save plot as SVG";
+
 /* paint */
 "Save to Photos" = "保存到照片";
 
@@ -2066,6 +2078,9 @@
 "Start sound and wait" = "播放声音并等待";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Start to plot";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "开始以三重线迹缝制，按照长度";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2106,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "停止Phiro马达";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Stop to plot";
 
 /* No comment provided by engineer. */
 "Su" = "苏文";

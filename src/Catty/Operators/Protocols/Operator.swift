@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -91,7 +91,7 @@ extension LogicalOperator {
 
     func doubleParameter(_ left: Double, isEqualTo right: Double) -> Bool {
         // Produce same behavior as Java's Double.compareTo(Double)
-        return left.isEqual(to: right) || (left.isNaN && right.isNaN)
+        left.isEqual(to: right) || (left.isNaN && right.isNaN)
     }
 
     func doubleParameter(_ left: Double, isGreaterThan right: Double) -> Bool {

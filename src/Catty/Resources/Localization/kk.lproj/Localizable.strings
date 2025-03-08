@@ -20,7 +20,7 @@
 "About Us" = "Біз туралы";
 
 /* No comment provided by engineer. */
-"absolute value" = "absolute value";
+"absolute value" = "абсолюттік ман";
 
 /* No comment provided by engineer. */
 "acceleration x" = "үдеу X";
@@ -32,7 +32,7 @@
 "acceleration z" = "үдеу Z";
 
 /* No comment provided by engineer. */
-"acceleration-sensor" = "acceleration-sensor";
+"acceleration-sensor" = "үдеу сенсоры";
 
 /* No comment provided by engineer. */
 "Actors and objects" = "Актерлер мен объектілер";
@@ -41,10 +41,10 @@
 "Add" = "Қосу";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "Актёр немесе объект қосу";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"add comment here..." = "осында пікір қалдырыңыз...";
 
 /* No comment provided by engineer. */
 "Add image" = "Суретті қосу";
@@ -56,19 +56,19 @@
 "Add sound" = "Дыбысту қосу";
 
 /* No comment provided by engineer. */
-"Add trusted domain" = "Add trusted domain";
+"Add trusted domain" = "Сенімді доменді қосу";
 
 /* No comment provided by engineer. */
 "Agree" = "Келісу";
 
 /* No comment provided by engineer. */
-"all around" = "all around";
+"all around" = "айнала";
 
 /* No comment provided by engineer. */
-"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+"All Bluetooth devices successfully disconnected" = "Барлық Bluetooth құрылғылары сәтті ажыратылды";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+"All known Bluetooth devices successfully removed" = "Барлық белгілі Bluetooth құрылғылары сәтті жойылды";
 
 /* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "Қолданбаға Arduino тақталарын басқаруға рұқсат ету";
@@ -77,7 +77,7 @@
 "Allow the app to send crash reports automatically" = "Қолданбаға қателер туралы анонимдік есептер жіберуге рұқсат ету";
 
 /* No comment provided by engineer. */
-"Allow web access" = "Allow web access";
+"Allow web access" = "Web-рұқсат беру";
 
 /* paint */
 "Alpha" = "Альфа";
@@ -89,19 +89,19 @@
 "Always" = "Әрқашан";
 
 /* No comment provided by engineer. */
-"Always allow web access" = "Always allow web access";
+"Always allow web access" = "Әрқашан да web-рұқсат беру";
 
 /* No comment provided by engineer. */
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+"An image with the same name already exists, try again." = "Бұндай атпен сурет алдын аталған, тағыда қайталап көріңіз.";
 
 /* No comment provided by engineer. */
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+"An object with the same name already exists, try again." = "Бұндай атпен объект алдын аталған, тағыда қайталап көріңіз.";
 
 /* No comment provided by engineer. */
 "An unknown error occurred. Check your Internet connection." = "Белгісіз қате орын алды. Интернет байланысын тексеріңіз.";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+"An unknown error occurred. Please try again later." = "Белгісіз қателік орын алды. Кейінірек тағы қайталап көріңіз.";
 
 /* No comment provided by engineer. */
 "and" = "және";
@@ -110,7 +110,7 @@
 "and store answer in" = "және жазбаша жауапты сақтаңыз";
 
 /* No comment provided by engineer. */
-"and store written answer in " = "and store written answer in ";
+"and store written answer in " = "және жазылған жауапты   енгізу";
 
 /* No comment provided by engineer. */
 "and wait" = "және күту";
@@ -119,37 +119,37 @@
 "and width" = "және ені";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Animate brick-parts";
+"Animate brick-parts" = "Блок бөліктерін анимациялау";
 
 /* No comment provided by engineer. */
-"Apr" = "Apr";
+"Apr" = "Сәу";
 
 /* No comment provided by engineer. */
-"April" = "April";
+"April" = "Сәуір";
 
 /* No comment provided by engineer. */
-"arccosine" = "arccosine";
+"arccosine" = "арккосинус";
 
 /* No comment provided by engineer. */
-"arcsine" = "arcsine";
+"arcsine" = "арксинус";
 
 /* No comment provided by engineer. */
-"arctangent" = "arctangent";
+"arctangent" = "арктангенс";
 
 /* No comment provided by engineer. */
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino analog" = "arduino analog";
+"arduino analog" = "arduino аналогты";
 
 /* No comment provided by engineer. */
-"arduino digital" = "arduino digital";
+"arduino digital" = "arduino цифрлы";
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino кеңейтімі";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+"Are you sure you want to delete your account? This cannot be undone!" = "Аккаунтыңызды жойғыңыз келетініне сенімдісізбе? Бұл әрекетті қайтару мүмкін емес!";
 
 /* No comment provided by engineer. */
 "Ask " = "Сұрау";
@@ -164,10 +164,10 @@
 "Attributes:" = "Attributes:";
 
 /* No comment provided by engineer. */
-"Aug" = "Aug";
+"Aug" = "Там.";
 
 /* No comment provided by engineer. */
-"August" = "August";
+"August" = "Тамыз";
 
 /* No comment provided by engineer. */
 "Authentication failed" = "Аутентификация орындамалды";
@@ -432,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "decimal logarithm" = "decimal logarithm";
+
+/* No comment provided by engineer. */
+"Default (Offline)" = "Default (Offline)";
 
 /* No comment provided by engineer. */
 "degrees" = "градус";
@@ -1553,6 +1556,12 @@
 "Please try resetting the device and try again." = "Please try resetting the device and try again.";
 
 /* No comment provided by engineer. */
+"Plot" = "Plot";
+
+/* No comment provided by engineer. */
+"plot.svg" = "plot.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1828,6 +1837,9 @@
 /* No comment provided by engineer. */
 "Save changes" = "Save changes";
 
+/* No comment provided by engineer. */
+"Save plot as SVG" = "Save plot as SVG";
+
 /* paint */
 "Save to Photos" = "Save to Photos";
 
@@ -2066,6 +2078,9 @@
 "Start sound and wait" = "Дыбысты бастау және күту";
 
 /* No comment provided by engineer. */
+"Start to plot" = "Start to plot";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "Ұзындықпен үш тігісті бастау";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2106,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Phiro моторын тоқтату";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "Stop to plot";
 
 /* No comment provided by engineer. */
 "Su" = "Su";

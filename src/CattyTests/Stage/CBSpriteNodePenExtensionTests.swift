@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -96,7 +96,47 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
         XCTAssertEqual(allShapeNodes.count, 2)
         XCTAssertEqual(allShapeNodes[1].pathStartPoint, CGPoint(x: 1, y: 1))
         XCTAssertEqual(allShapeNodes[1].pathEndPoint, spriteNode.position)
+    }
 
+    func testWhenSpritePositionChangedStartPlot() {
+        spriteNode.penConfiguration.isCut = true
+        spriteNode.penConfiguration.previousCutPositions.append(initialPosition)
+        spriteNode.position = initialPosition
+
+        XCTAssertEqual(stage.children.count, 1)
+
+        spriteNode.position = CGPoint(x: 1, y: 1)
+        spriteNode.update(CACurrentMediaTime())
+
+        XCTAssertEqual(stage.children.count, 2)
+
+        var allShapeNodes = getAllLineShapeNodes()
+
+        XCTAssertEqual(allShapeNodes.count, 1)
+        XCTAssertEqual(allShapeNodes[0].pathStartPoint, initialPosition)
+        XCTAssertEqual(allShapeNodes[0].pathEndPoint, spriteNode.position)
+
+        spriteNode.position = CGPoint(x: 2, y: 2)
+        spriteNode.update(CACurrentMediaTime())
+
+        XCTAssertEqual(stage.children.count, 3)
+
+        allShapeNodes = getAllLineShapeNodes()
+
+        XCTAssertEqual(allShapeNodes.count, 2)
+        XCTAssertEqual(allShapeNodes[1].pathStartPoint, CGPoint(x: 1, y: 1))
+        XCTAssertEqual(allShapeNodes[1].pathEndPoint, spriteNode.position)
+    }
+
+    func testWhenSpritePositionChangedStopPlot() {
+        spriteNode.penConfiguration.isCut = false
+        spriteNode.position = CGPoint(x: 1, y: 1)
+
+        XCTAssertEqual(stage.children.count, 1)
+
+        spriteNode.update(CACurrentMediaTime())
+
+        XCTAssertEqual(stage.children.count, 1)
     }
 
     func testWhenSpritePositionNotChangedPenUp() {
@@ -109,9 +149,30 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
 
         XCTAssertEqual(stage.children.count, 1)
     }
+    func testWhenSpritePositionNotChangedStartPlot() {
+        spriteNode.penConfiguration.isCut = true
+        spriteNode.position = initialPosition
+
+        XCTAssertEqual(stage.children.count, 1)
+
+        spriteNode.update(CACurrentMediaTime())
+
+        XCTAssertEqual(stage.children.count, 1)
+    }
 
     func testWhenSpritePositionNotChangedPenDown() {
         spriteNode.penConfiguration.penDown = true
+        spriteNode.position = initialPosition
+
+        XCTAssertEqual(stage.children.count, 1)
+
+        spriteNode.update(CACurrentMediaTime())
+
+        XCTAssertEqual(stage.children.count, 1)
+    }
+
+    func testWhenSpritePositionNotChangedStopPlot() {
+        spriteNode.penConfiguration.isCut = false
         spriteNode.position = initialPosition
 
         XCTAssertEqual(stage.children.count, 1)

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -454,6 +454,9 @@ UITextFieldDelegate>
         self.selectedLookIndex = indexPath.row;
         NSString *lookImagePath = [[self.object.lookList objectAtIndex:self.selectedLookIndex] pathForScene: self.object.scene];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
+        if (image == nil) {
+            return;
+        }
         vc.editingImage = image;
         vc.editingPath = lookImagePath;
         NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
@@ -637,7 +640,7 @@ UITextFieldDelegate>
         }
     }
     
-    [[[[actionSheet
+    [[[[[actionSheet
         addDefaultActionWithTitle:kLocalizedDrawNewImage handler:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
@@ -658,7 +661,13 @@ UITextFieldDelegate>
                 [self showLooksMediaLibrary];
             }
         });
-    }] build]
+    }]
+      addDefaultActionWithTitle:kLocalizedSelectFile handler:^{
+          dispatch_async(dispatch_get_main_queue(), ^{
+              [self showImagesSelectFile];
+          });
+      }]
+      build]
      showWithController:self];
 }
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -328,7 +328,7 @@ final class ProjectManagerTests: XCTestCase {
 
         XCTAssertEqual(sumProjectNamesBefore + 1, sumProjectNamesAfter)
 
-        XCTAssertTrue((Project.allProjectNames() as! [String]).contains("Tic-Tac-Toe Master"))
+        XCTAssertTrue((Project.allProjectNames()).contains("Tic-Tac-Toe Master"))
     }
 
     func testAddProjectFromFileWithInvalidUrl() {

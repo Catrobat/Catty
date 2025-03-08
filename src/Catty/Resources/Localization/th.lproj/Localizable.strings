@@ -149,7 +149,7 @@
 "Arduino extension" = "ส่วนขยาย Arduino";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete your account? This cannot be undone!" = "Are you sure you want to delete your account? This cannot be undone!";
+"Are you sure you want to delete your account? This cannot be undone!" = "คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีของคุณ? สิ่งนี้ไม่สามารถยกเลิกได้!";
 
 /* No comment provided by engineer. */
 "Ask " = "คำถาม ";
@@ -380,7 +380,7 @@
 "Continue" = "ทำต่อ";
 
 /* No comment provided by engineer. */
-"Continue project" = "ดำเนินการโครงการ";
+"Continue project" = "ทำโปรเจ็กต์ต่อ";
 
 /* No comment provided by engineer. */
 "Control" = "ควบคุม";
@@ -432,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "decimal logarithm" = "log";
+
+/* No comment provided by engineer. */
+"Default (Offline)" = "ค่าเริ่มต้น (ออฟไลน์)";
 
 /* No comment provided by engineer. */
 "degrees" = "องศา";
@@ -578,7 +581,7 @@
 "Download" = "ดาวน์โหลด";
 
 /* No comment provided by engineer. */
-"Download again" = "Download again";
+"Download again" = "ดาวน์โหลดอีกครั้ง";
 
 /* No comment provided by engineer. */
 "Download too big" = "ดาวน์โหลดใหญ่เกินไป";
@@ -857,7 +860,7 @@
 "head top y" = "หัวด้านบน y";
 
 /* No comment provided by engineer. */
-"height of object with ID" = "height of object with ID";
+"height of object with ID" = "ความสูงของวัตถุที่มี ID";
 
 /* No comment provided by engineer. */
 "Hello!" = "สวัสดี!";
@@ -977,7 +980,7 @@
 "LA" = "ลา";
 
 /* No comment provided by engineer. */
-"label of object with ID" = "label of object with ID";
+"label of object with ID" = "ป้ายกำกับของวัตถุที่มี ID";
 
 /* No comment provided by engineer. */
 "Last access" = "เข้าถึงครั้งสุดท้าย";
@@ -1037,22 +1040,22 @@
 "left eye outer y" = "ตาซ้ายด้านนอก y";
 
 /* No comment provided by engineer. */
-"left eyebrow center x" = "left eyebrow center x";
+"left eyebrow center x" = "คิ้วซ้ายตรงกลาง x";
 
 /* No comment provided by engineer. */
-"left eyebrow center y" = "left eyebrow center y";
+"left eyebrow center y" = "คิ้วซ้ายตรงกลาง y";
 
 /* No comment provided by engineer. */
-"left eyebrow inner x" = "left eyebrow inner x";
+"left eyebrow inner x" = "คิ้วซ้ายด้านใน x";
 
 /* No comment provided by engineer. */
-"left eyebrow inner y" = "left eyebrow inner y";
+"left eyebrow inner y" = "คิ้วซ้ายด้านใน y";
 
 /* No comment provided by engineer. */
-"left eyebrow outer x" = "left eyebrow outer x";
+"left eyebrow outer x" = "คิ้วซ้ายด้านนอก x";
 
 /* No comment provided by engineer. */
-"left eyebrow outer y" = "left eyebrow outer y";
+"left eyebrow outer y" = "คิ้วซ้ายด้านนอก y";
 
 /* No comment provided by engineer. */
 "left hip x" = "สะโพกซ้าย x";
@@ -1346,7 +1349,7 @@
 "New message" = "ข้อความใหม่";
 
 /* No comment provided by engineer. */
-"New project" = "โครงการใหม่";
+"New project" = "โปรเจ็กต์ใหม่";
 
 /* No comment provided by engineer. */
 "New text" = "ข้อความใหม่";
@@ -1553,6 +1556,12 @@
 "Please try resetting the device and try again." = "โปรดลองรีเซ็ตอุปกรณ์แล้วลองอีกครั้ง";
 
 /* No comment provided by engineer. */
+"Plot" = "พล็อต";
+
+/* No comment provided by engineer. */
+"plot.svg" = "พล็อต.svg";
+
+/* No comment provided by engineer. */
 "Pocket Code" = "พอกเก็ต โค้ด";
 
 /* No comment provided by engineer. */
@@ -1742,22 +1751,22 @@
 "right eye outer y" = "ตาขวาด้านนอก y";
 
 /* No comment provided by engineer. */
-"right eyebrow center x" = "right eyebrow center x";
+"right eyebrow center x" = "คิ้วขวาตรงกลาง x";
 
 /* No comment provided by engineer. */
-"right eyebrow center y" = "right eyebrow center y";
+"right eyebrow center y" = "คิ้วขวาตรงกลาง y";
 
 /* No comment provided by engineer. */
-"right eyebrow inner x" = "right eyebrow inner x";
+"right eyebrow inner x" = "คิ้วขวาด้านใน x";
 
 /* No comment provided by engineer. */
-"right eyebrow inner y" = "right eyebrow inner y";
+"right eyebrow inner y" = "คิ้วขวาด้านใน y";
 
 /* No comment provided by engineer. */
-"right eyebrow outer x" = "right eyebrow outer x";
+"right eyebrow outer x" = "คิ้วขวาด้านนอก x";
 
 /* No comment provided by engineer. */
-"right eyebrow outer y" = "right eyebrow outer y";
+"right eyebrow outer y" = "คิ้วขวาด้านนอก y";
 
 /* No comment provided by engineer. */
 "right hip x" = "สะโพกขวา x";
@@ -1827,6 +1836,9 @@
 
 /* No comment provided by engineer. */
 "Save changes" = "บันทึกการเปลี่ยนแปลง";
+
+/* No comment provided by engineer. */
+"Save plot as SVG" = "บันทึกพล็อตเป็น SVG";
 
 /* paint */
 "Save to Photos" = "บันทึกลงใน Photos";
@@ -2066,6 +2078,9 @@
 "Start sound and wait" = "เริ่มเสียงแล้วรอ";
 
 /* No comment provided by engineer. */
+"Start to plot" = "เริ่มวางแผน";
+
+/* No comment provided by engineer. */
 "Start triple stitch with length" = "เริ่มเย็บสามครั้งด้วยความยาว";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2106,9 @@
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "หยุดมอเตอร์ฟีโร";
+
+/* No comment provided by engineer. */
+"Stop to plot" = "หยุดวางแผน";
 
 /* No comment provided by engineer. */
 "Su" = "วันอาทิตย์";
@@ -2441,7 +2459,7 @@
 "When you receive" = "เมื่อคุณได้รับ";
 
 /* No comment provided by engineer. */
-"width of object with ID" = "width of object with ID";
+"width of object with ID" = "ความกว้างของวัตถุที่มี ID";
 
 /* paint */
 "Width selection" = "การเลือกความกว้าง";
@@ -2453,13 +2471,13 @@
 "Wooden Flute" = "ขลุ่ยไม้";
 
 /* No comment provided by engineer. */
-"X of object with ID" = "X of object with ID";
+"X of object with ID" = "X ของวัตถุที่มี ID";
 
 /* No comment provided by engineer. */
 "x: " = "X: ";
 
 /* No comment provided by engineer. */
-"Y of object with ID" = "Y of object with ID";
+"Y of object with ID" = "Y ของวัตถุที่มี ID";
 
 /* No comment provided by engineer. */
 "y: " = "Y: ";
@@ -2477,7 +2495,7 @@
 "You have already downloaded this project!" = "คุณได้ดาวน์โหลดโครงการนี้แล้ว!";
 
 /* No comment provided by engineer. */
-"Your account has been successfully deleted." = "Your account has been successfully deleted.";
+"Your account has been successfully deleted." = "บัญชีของคุณถูกลบเรียบร้อยแล้ว";
 
 /* No comment provided by engineer. */
 "Your answer" = "คำตอบของคุณ";

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #import "UIUtil.h"
 #import "Pocket_Code-Swift.h"
 #import "ViewControllerDefines.h"
+#import "ProjectTableHeaderView.h"
 
 @interface MyProjectsViewController () <UITextFieldDelegate, SetProjectDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
@@ -78,7 +79,6 @@
     
     [self setSectionHeaders];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.sectionIndexBackgroundColor = UIColor.background;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -359,6 +359,12 @@
 {
     // INFO: NEVER REMOVE THIS EMPTY METHOD!!
     // This activates the swipe gesture handler for TableViewCells.
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    ProjectTableHeaderView *headerView = (ProjectTableHeaderView*)view;
+    headerView.textLabel.textColor = UIColor.globalTint;
 }
 
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath

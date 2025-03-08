@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,5 +36,29 @@ extension MediaType {
         case .sounds:
             return NetworkDefines.apiEndpointMediaPackageSounds
         }
+    }
+}
+
+extension MediaType {
+    var defaultItems: [MediaItem] {
+        var mediaItems: [MediaItem] = []
+
+        let bundleName = String(indexURLString.split(separator: "/").last!) + ".bundle"
+        let bundleURL = Bundle.main.bundleURL.appendingPathComponent(bundleName)
+        guard let contents = try? FileManager.default.contentsOfDirectory(at: bundleURL, includingPropertiesForKeys: [URLResourceKey.nameKey], options: .skipsHiddenFiles) else {
+            return mediaItems
+        }
+
+        for (index, item) in contents.sorted(by: { $0.path < $1.path }).enumerated() {
+            mediaItems.append(
+                MediaItem(id: index,
+                          name: item.deletingPathExtension().lastPathComponent,
+                          category: kLocalizedMediaLibraryDefaultCategory,
+                          fileExtension: item.pathExtension,
+                          downloadURLString: item.absoluteString)
+            )
+        }
+
+        return mediaItems
     }
 }

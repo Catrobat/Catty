@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2023 The Catrobat Team
+ *  Copyright (C) 2010-2024 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -124,16 +124,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setDefaultUserDefaults(defaults: UserDefaults) {
-
         if !Util.isPhiroActivated() {
             defaults.set(false, forKey: kUsePhiroBricks)
         }
+
         if !Util.isArduinoActivated() {
             defaults.set(false, forKey: kUseArduinoBricks)
         }
 
         if !Util.isEmbroideryActivated() {
             defaults.set(false, forKey: kUseEmbroideryBricks)
+        }
+
+        if !Util.isPlotActivated() {
+            defaults.set(false, forKey: kUsePlotBricks)
         }
 
         if defaults.value(forKey: kFirebaseSendCrashReports) == nil {
