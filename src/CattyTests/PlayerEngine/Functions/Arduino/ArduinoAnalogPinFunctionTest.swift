@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import BluetoothHelper
 import XCTest
 
 @testable import Pocket_Code
@@ -47,7 +48,14 @@ class ArduinoAnalogPinFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0.5 as AnyObject), accuracy: Double.epsilon)
     }
 
-    // TODO: add testValue() test
+    func testValue() {
+        bluetoothService.arduino = ArduinoMock(peripheral: Peripheral(cbPeripheral: PeripheralMock.create(), advertisements: [String: String](), rssi: 0))
+
+        let expectedValue = 5
+        let result = function.value(parameter: expectedValue as AnyObject)
+        bluetoothService.arduino = nil
+        XCTAssertEqual(Double(expectedValue), result)
+    }
 
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
