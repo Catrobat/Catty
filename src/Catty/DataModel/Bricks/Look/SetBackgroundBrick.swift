@@ -22,6 +22,7 @@
 
 @objc(SetBackgroundBrick)
 @objcMembers class SetBackgroundBrick: Brick, BrickLookProtocol {
+
     @objc var look: Look?
 
     init(look: Look) {
@@ -33,8 +34,8 @@
         super.init()
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.lookBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.lookBrick.rawValue)]
     }
 
     func pathForLook() -> String {

@@ -24,9 +24,9 @@
 
 @implementation HideBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kLookBrick;
+    return @[@(kLookBrick)];
 }
 
 #pragma mark - Description

@@ -26,9 +26,9 @@
 
 @implementation RepeatBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kControlBrick;
+    return @[@(kControlBrick)];
 }
 
 - (BOOL)isLoopBrick

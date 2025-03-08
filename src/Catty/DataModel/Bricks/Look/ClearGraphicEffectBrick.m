@@ -26,9 +26,9 @@
 
 @implementation ClearGraphicEffectBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kLookBrick;
+    return @[@(kLookBrick)];
 }
 
 - (NSString*)pathForLook:(Look*)look

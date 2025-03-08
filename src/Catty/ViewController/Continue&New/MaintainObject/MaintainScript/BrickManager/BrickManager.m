@@ -93,10 +93,11 @@
         }
         return (NSArray*)selectableBricksForCategoryMutable;
     }
+    
     for (id<BrickProtocol> brick in selectableBricks) {
         if (inBackground && brick.isDisabledForBackground) {
             continue;
-        } else if (brick.category == categoryType) {
+        } else if ([brick.category containsObject:@(categoryType)]) {
             [selectableBricksForCategoryMutable addObject:brick];
         }
     }

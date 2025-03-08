@@ -26,9 +26,9 @@
 
 @implementation WaitBrick
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kControlBrick;
+    return @[@(kControlBrick)];
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

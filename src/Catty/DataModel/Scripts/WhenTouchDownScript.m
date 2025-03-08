@@ -24,9 +24,9 @@
 
 @implementation WhenTouchDownScript
 
-- (kBrickCategoryType)category
+- (NSArray<NSNumber *> *)category
 {
-    return kEventBrick;
+    return @[@(kEventBrick)];
 }
 
 @end

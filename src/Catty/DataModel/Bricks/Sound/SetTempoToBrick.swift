@@ -30,8 +30,8 @@
         super.init()
     }
 
-    func category() -> kBrickCategoryType {
-        kBrickCategoryType.soundBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.soundBrick.rawValue)]
     }
 
     override class func description() -> String {

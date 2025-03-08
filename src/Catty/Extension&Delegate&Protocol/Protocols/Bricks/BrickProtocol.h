@@ -32,7 +32,7 @@
 @property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
 @property (nonatomic) BOOL isDisabled;
 
-- (kBrickCategoryType)category;
+- (NSArray<NSNumber *> *)category;
 - (NSInteger)getRequiredResources;
 
 - (BOOL)isDisabledForBackground;

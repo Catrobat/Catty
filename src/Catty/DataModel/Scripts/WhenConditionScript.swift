@@ -24,6 +24,7 @@ import Foundation
 
 @objc(WhenConditionScript)
 class WhenConditionScript: Script, BrickFormulaProtocol {
+
     @objc var condition: Formula
     @objc var preCondition: Bool
 
@@ -43,8 +44,8 @@ class WhenConditionScript: Script, BrickFormulaProtocol {
         super.init()
     }
 
-    public func category() -> kBrickCategoryType {
-        kBrickCategoryType.eventBrick
+    func category() -> [NSNumber]! {
+        [NSNumber(value: kBrickCategoryType.eventBrick.rawValue)]
     }
 
     override func isAnimateable() -> Bool {
