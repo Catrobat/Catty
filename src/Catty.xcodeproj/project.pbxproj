@@ -14505,7 +14505,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				CURRENT_PROJECT_VERSION = 50;
+				CURRENT_PROJECT_VERSION = 52;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 8FL5R8726S;
 				GCC_PREFIX_HEADER = "Catty/Supporting Files/App-Prefix.pch";
@@ -14521,7 +14521,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.6.22;
+				MARKETING_VERSION = 0.6.23;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-lxml2",
@@ -14549,7 +14549,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				CURRENT_PROJECT_VERSION = 50;
+				CURRENT_PROJECT_VERSION = 52;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 8FL5R8726S;
 				GCC_PREFIX_HEADER = "Catty/Supporting Files/App-Prefix.pch";
@@ -14565,7 +14565,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.6.22;
+				MARKETING_VERSION = 0.6.23;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -14663,7 +14663,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.20.0;
+				minimumVersion = 11.9.0;
 			};
 		};
 		4CFAC28B25ADCD8100AF0DD1 /* XCRemoteSwiftPackageReference "Nimble" */ = {
