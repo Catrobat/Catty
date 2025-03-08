@@ -539,6 +539,11 @@ UITextFieldDelegate>
                             [self saveImageData:imageData withFileName:@"" andImageFileNameExtension:@""];
                         }
                     }];
+                } else {
+                    // if asset cannot be found and iOS Version > 14 the access to the image might be limited and need to be checked
+                    if (@available(iOS 14, *)) {
+                        [self checkAndUpdateLimitedPhotosAccess];
+                    }
                 }
             } else if(picker.sourceType == UIImagePickerControllerSourceTypeCamera){
                 NSData *imageData = UIImagePNGRepresentation(image);
