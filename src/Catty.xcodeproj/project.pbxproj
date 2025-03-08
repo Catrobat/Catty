@@ -2228,6 +2228,7 @@
 		1764E6372A06CC940013102B /* SoundRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRecorderViewController.swift; sourceTree = "<group>"; };
 		17A8AC642644E6A900DDD480 /* ForceInit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForceInit.m; sourceTree = "<group>"; };
 		17A8AC6B2644E6B500DDD480 /* ForceInit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForceInit.h; sourceTree = "<group>"; };
+		17C90C142CB74DA100303599 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = UITests.xctestplan; path = Catty.xcodeproj/UITests.xctestplan; sourceTree = "<group>"; };
 		17D5F5BD265E927A00C678FF /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Keychain/Keychain.swift; sourceTree = "<group>"; };
 		17D5F5BF265EAEF700C678FF /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		17E983942CDF88B100510DD8 /* Looks.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Looks.bundle; sourceTree = "<group>"; };
@@ -3396,7 +3397,7 @@
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7B014D0329E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.refresh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.success.refresh.json; sourceTree = "<group>"; };
 		7B014D0429E0ADE5004AA0E0 /* StoreAuthenticator.deleteUser.success.upgrade.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreAuthenticator.deleteUser.success.upgrade.json; sourceTree = "<group>"; };
-		7B014D0E29E7122E004AA0E0 /* CattyTestplan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CattyTestplan.xctestplan; path = Catty.xcodeproj/CattyTestplan.xctestplan; sourceTree = "<group>"; };
+		7B014D0E29E7122E004AA0E0 /* Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = Tests.xctestplan; path = Catty.xcodeproj/Tests.xctestplan; sourceTree = "<group>"; };
 		7B09EB6529B1DF8200590F3D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7B09EB6629B1DF8200590F3D /* BaseAuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAuthenticationViewController.swift; sourceTree = "<group>"; };
 		7B09EB6729B1DF8200590F3D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -5094,7 +5095,8 @@
 				92FF32C11A24E33B00093DA7 /* Storyboard+XIB */,
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
 				B43498471927A3AB002F9075 /* Resources */,
-				7B014D0E29E7122E004AA0E0 /* CattyTestplan.xctestplan */,
+				7B014D0E29E7122E004AA0E0 /* Tests.xctestplan */,
+				17C90C142CB74DA100303599 /* UITests.xctestplan */,
 				B46B270317703F9400172837 /* CattyTests */,
 				AAADA0051B9B29D500E0CA9A /* CattyUITests */,
 				187E07A124E26CED00E652C4 /* CattyUISnapshots */,

@@ -68,8 +68,11 @@
       </MacroExpansion>
       <TestPlans>
          <TestPlanReference
-            reference = "container:Catty.xcodeproj/CattyTestplan.xctestplan"
+            reference = "container:Catty.xcodeproj/Tests.xctestplan"
             default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Catty.xcodeproj/UITests.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>
