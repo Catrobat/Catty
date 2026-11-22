@@ -9,7 +9,7 @@ Catrobat is a visual programming language and set of creativity tools for smartp
 
 For more information oriented towards developers please visit our [developers page](http://developer.catrobat.org/).
 
-[![Download on the App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://catrob.at/PCios)
+[![Download on the App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/app/pocket-code/id1117935892)
 
 # Issues #
 
